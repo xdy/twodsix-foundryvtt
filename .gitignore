@@ -1,0 +1,13 @@
+# IDE
+.idea/
+.vs/
+*.iml
+/.vscode
+icons/\!dox/
+/node_modules/
+
+#This project
+node_modules
+foundryconfig.json
+dist
+

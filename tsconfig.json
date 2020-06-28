@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2017",
+    "lib": [
+      "DOM",
+      "ES6",
+      "ES2017",
+      "esnext"
+    ],
+    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "types": [
+      "jquery",
+      "webpack-env",
+      "foundry-pc-types"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "twodsix",
+  "title": "twodsix",
+  "url": "https://github.com/xdy/twodsix-foundryvtt/",
+  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/dist/system.json",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.zip",
+  "version": "0.0.0",
+  "author": "",
+  "authors": [
+    {
+      "email": "",
+      "name": "",
+      "url": ""
+    }
+  ],
+  "bugs": "",
+  "changelog": "",
+  "minimumCoreVersion": "0.6.2",
+  "compatibleCoreVersion": "0.6.4",
+  "description": "",
+  "esmodules": [
+    "./twodsix.ts"
+  ],
+  "gridDistance": 1.5,
+  "gridUnits": "m",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "sv",
+      "name": "Swedish",
+      "path": "lang/sv.json"
+    }
+  ],
+  "license": "LICENSE.txt",
+  "packs": [],
+  "readme": "",
+  "scripts": [],
+  "styles": [
+    "./twodsix.css"
+  ]
+}

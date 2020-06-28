@@ -1,0 +1,207 @@
+{
+  "Actor": {
+    "types": [
+      "character",
+      "npc",
+      "animal"
+    ],
+    "templates": {
+      "characteristics": {
+        "characteristics": {
+          "str": {
+            "value": 0,
+            "short": "STR",
+            "label": "Strengh"
+          },
+          "dex": {
+            "value": 0,
+            "short": "DEX",
+            "label": "Dexterity"
+          },
+          "end": {
+            "value": 0,
+            "short": "END",
+            "label": "Endurance"
+          },
+          "int": {
+            "value": 0,
+            "short": "INT",
+            "label": "Intelligence"
+          },
+          "edu": {
+            "value": 0,
+            "short": "EDU",
+            "label": "Education"
+          },
+          "soc": {
+            "value": 0,
+            "short": "SOC",
+            "label": "Social Status"
+          },
+          "psi": {
+            "value": 0,
+            "short": "PSI",
+            "label": "Psionic Strength"
+          }
+        }
+      },
+      "attribs": {
+        "attribs": {
+          "speed": {
+            "value": 6,
+            "short": "Spd",
+            "label": "Speed"
+          }
+        }
+      },
+      "status": {
+        "status": {
+          "wounded": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "seriouslyWounded": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "unconscious": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "dead": {
+            "type": "boolean",
+            "value": "false"
+          },
+          "Prone": {
+            "type": "boolean",
+            "value": "false"
+          }
+        }
+      },
+      "biography": {
+        "personalDescription": {
+          "type": "string",
+          "value": ""
+        },
+        "career": [
+          {
+            "service": "",
+            "years": 0
+          }
+        ]
+      }
+    },
+    "character": {
+      "templates": [
+        "characteristics",
+        "attribs",
+        "status",
+        "biography"
+      ],
+      "infos": {
+        "occupation": "",
+        "age": "",
+        "sex": "",
+        "residence": "",
+        "birthplace": ""
+      },
+      "flags": {}
+    },
+    "npc": {
+      "templates": [
+        "characteristics",
+        "attribs",
+        "status",
+        "biography"
+      ],
+      "infos": {
+        "occupation": "",
+        "age": "",
+        "sex": ""
+      },
+      "flags": {}
+    },
+    "creature": {
+      "templates": [
+        "characteristics",
+        "attribs",
+        "status",
+        "biography"
+      ],
+      "infos": {
+        "age": ""
+      },
+      "flags": {}
+    }
+  },
+  "Item": {
+    "types": [
+      "item",
+      "weapon",
+      "skill"
+    ],
+    "item": {
+      "description": "",
+      "quantity": 1,
+      "weight": 0,
+      "attributes": {}
+    },
+    "weapon": {
+      "description": {
+        "value": "",
+        "chat": "",
+        "special": ""
+      },
+      "wpnType": "",
+      "skill": {
+        "main": {
+          "name": "",
+          "id": ""
+        },
+        "alternativ": {
+          "name": "",
+          "id": ""
+        }
+      },
+      "range": {
+        "normal": {
+          "value": 0,
+          "units": "",
+          "damage": ""
+        },
+        "long": {
+          "value": 0,
+          "units": "",
+          "damage": ""
+        },
+        "extreme": {
+          "value": 0,
+          "units": "",
+          "damage": ""
+        }
+      },
+      "usesPerRound": {
+        "normal": "",
+        "max": ""
+      },
+      "bullets": "",
+      "malfunction": "",
+      "properties": {},
+      "tl": {},
+      "price": {}
+    },
+    "skill": {
+      "specialization": "",
+      "description": {
+        "value": "",
+        "chat": ""
+      },
+      "base": 0,
+      "value": -1,
+      "attributes": {},
+      "properties": {},
+      "tl": {},
+      "flags": {}
+    }
+  }
+}

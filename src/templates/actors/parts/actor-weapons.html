@@ -1,0 +1,45 @@
+<ol class="weapons-list">
+    {{#each weapons as |item id|}}
+    <li class="item flexcol" data-item-id="{{item._id}}">
+        <div class="flexrow">
+            <div class="flexrow" style="flex: 0 0 48px;background-color: {{#if item.skillSet}}transparent{{else}}red{{/if}};">
+                <div class="weapon-image main" style="background-image: url({{item.img}})" data-skill-id="{{item.data.skill.main.id}}" title="Roll {{item.data.skill.main.name}} skill"></div>
+                {{#if item.data.properties.auto}}
+                <div class="weapon-image alternative" style="background-image: url({{item.img}})" data-skill-id="{{item.data.skill.alternativ.id}}" title="Roll {{item.data.skill.alternativ.name}} skill"></div>
+                {{/if}}
+            </div>
+            <h4 class="skill-name rollable">{{item.name}}:</h4>
+            <div style="flex: 0 0 100px;">
+                <span class="skill-value main">({{item.data.skill.main.value}}%)</span>
+                {{#if item.data.properties.auto}}
+                <span class="skill-value alternativ"> - ({{item.data.skill.alternativ.value}}%)</span>
+                {{/if}}
+            </div>
+            <div class="flex1 flexrow">
+                {{#if item.data.properties.rngd}}
+                {{#if item.data.properties.xplv}}
+                {{#each item.data.range as |range key|}}
+                <div class="flex1">
+                    <a class="inline-roll roll" data-mode="roll" title="{{range.value}}" data-formula="{{range.damage}}"><i class="fas fa-dice-d20"></i> {{range.damage}}</a>
+                </div>
+                {{/each}}
+                {{else}}
+                <div class="flex1">
+                    <a class="inline-roll roll" data-mode="roll" title="{{item.data.range.normal.value}}" data-formula="{{item.data.range.normal.damage}}"><i class="fas fa-dice-d20"></i> {{item.data.range.normal.damage}}</a>
+                </div>
+                {{/if}}
+                {{else}}
+                <div class="flex1">
+                    <a class="inline-roll roll" data-mode="roll" data-formula="{{item.data.range.normal.damage}}" title="{{item.data.range.normal.value}}"><i class="fas fa-dice-d20"></i> {{item.data.range.normal.damage}}</a>
+                </div>
+                {{/if}}
+            </div>
+            <div class="item-controls">
+                <a class="item-control item-detail" title="Detail"><i class="fas fa-arrow-alt-circle-down"></i></a>
+                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</ol>
