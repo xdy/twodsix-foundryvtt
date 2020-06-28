@@ -21,7 +21,7 @@ export class twodsixActorSheet extends ActorSheet {
   getData() {
     const data = super.getData();
     data.dtypes = ["String", "Number", "Boolean"];
-    for (let attr of Object.values(data.data.attributes)) {
+    for (const attr of Object.values(data.data.attributes)) {
       attr.isCheckbox = attr.dtype === "Boolean";
     }
     return data;
@@ -66,19 +66,19 @@ export class twodsixActorSheet extends ActorSheet {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
-    const type = header.dataset.type;
+    const {type} = header.dataset;
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
     // Prepare the item object.
     const itemData = {
-      name: name,
-      type: type,
-      data: data
+      name,
+      type,
+      data
     };
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data["type"];
+    delete itemData.data.type;
 
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
@@ -92,11 +92,11 @@ export class twodsixActorSheet extends ActorSheet {
   _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const dataset = element.dataset;
+    const {dataset} = element;
 
     if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
-      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+      const roll = new Roll(dataset.roll, this.actor.data.data);
+      const label = dataset.label ? `Rolling ${dataset.label}` : '';
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         flavor: label

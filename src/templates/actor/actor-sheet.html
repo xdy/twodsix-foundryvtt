@@ -48,7 +48,6 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
         <a class="item" data-tab="items">Items</a>
-        <a class="item" data-tab="attributes">Attributes</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -82,38 +81,6 @@
             </ol>
         </div>
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <header class="attributes-header flexrow">
-                <span class="attribute-key">Attribute Key</span>
-                <span class="attribute-value">Value</span>
-                <span class="attribute-label">Label</span>
-                <span class="attribute-dtype">Data Type</span>
-                <a class="attribute-control" data-action="create"><i class="fas fa-plus"></i></a>
-            </header>
-
-            <ol class="attributes-list">
-                {{#each actor.characteristics as |attr key|}}
-                <li class="attribute flexrow" data-attribute="{{key}}">
-                    <input class="attribute-key" type="text" name="data.attributes.{{key}}.key" value="{{key}}"/>
-                    {{#if attr.isCheckbox}}
-                    <label class="attribute-value checkbox"><input type="checkbox" name="data.attributes.{{key}}.value" {{checked attr.value}}/></label>
-                    {{else}}
-                    <input class="attribute-value" type="text" name="actor.attributes.{{key}}.value" value="{{attr.value}}" data-dtype="{{attr.dtype}}"/>
-                    {{/if}}
-                    <input class="attribute-label" type="text" name="actor.attributes.{{key}}.label" value="{{attr.label}}"/>
-                    <select class="attribute-dtype" name="actor.attributes.{{key}}.dtype">
-                        {{#select attr.dtype}}
-                        {{#each ../dtypes as |t|}}
-                        <option value="{{t}}">{{t}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <a class="attribute-control" data-action="delete"><i class="fas fa-trash"></i></a>
-                </li>
-                {{/each}}
-            </ol>
-        </div>
     </section>
 </form>
 
