@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack",
     "lint": "eslint ./src",
-    "update": "npm install --save-dev gitlab:foundry-projects/foundry-pc/foundry-pc-types"
+    "update": "git submodule update"
   },
   "author": "",
   "license": "",
@@ -21,6 +21,7 @@
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/webpack-env": "^1.15.2",
     "archiver": "^4.0.1",
+    "babel-eslint": "^10.1.0",
     "chalk": "^4.1.0",
     "compression-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.0.2",
@@ -32,6 +33,7 @@
     "fs-extra": "^9.0.1",
     "json-stringify-pretty-compact": "^2.0.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "prettier": "^2.0.5",
     "sass": "^1.26.9",
     "sass-loader": "^8.0.2",
     "semantic-release": "^17.1.1",
