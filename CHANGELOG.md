@@ -1,3 +1,10 @@
+## [0.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.2...v0.0.3) (2020-06-28)
+
+
+### Bug Fixes
+
+* Another attempt at fixing package.json and system.json ([9c76efb](https://github.com/xdy/twodsix-foundryvtt/commit/9c76efbc42f24aef43efa57a2fb90fc550319361))
+
 ## [0.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.1...v0.0.2) (2020-06-28)
 
 

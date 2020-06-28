@@ -2,9 +2,9 @@
   "name": "twodsix",
   "title": "twodsix",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
-  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/dist/system.json",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.zip",
-  "version": "0.0.2",
+  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/dist/system.json",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.bundle.js.zip",
+  "version": "0.0.3",
   "author": "Jonas Karlsson",
   "authors": [
     {
@@ -17,7 +17,7 @@
   "changelog": "",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.4",
-  "description": "",
+  "description": "2d6 system. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.",
   "esmodules": [
     "./twodsix.ts"
   ],
@@ -35,11 +35,11 @@
       "path": "lang/sv.json"
     }
   ],
-  "license": "LICENSE.txt",
+  "license": "LICENSE",
   "packs": [],
   "readme": "",
   "scripts": [],
   "styles": [
-    "./twodsix.css"
+    "./styles/twodsix.css"
   ]
 }
