@@ -1,3 +1,10 @@
+## [0.0.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.3...v0.0.4) (2020-06-28)
+
+
+### Bug Fixes
+
+* revert changes from when playing around with sheets. ([ff7f5ae](https://github.com/xdy/twodsix-foundryvtt/commit/ff7f5aea92236c85b243576b11450bb433f51c34))
+
 ## [0.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.2...v0.0.3) (2020-06-28)
 
 
