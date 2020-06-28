@@ -4,10 +4,10 @@ module.exports = {
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-            "prepareCmd": ' sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" src/system.json && cp src/system.json dist && sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json',
+            "prepareCmd": 'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" src/system.json && cp src/system.json dist',
         }],
         ["@semantic-release/git", {
-            "assets": ["src/system.json", "dist/system.json", "dist/twodsix.bundle.js.zip"],
+            "assets": ["CHANGELOG.md", "package.json", "src/system.json", "dist/system.json", "dist/twodsix.bundle.js.zip"],
             "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }],
         ["@semantic-release/github", {
