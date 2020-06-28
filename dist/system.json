@@ -2,10 +2,10 @@
   "name": "twodsix",
   "title": "twodsix",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
-  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/dist/system.json",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.bundle.js.zip",
-  "version": "0.0.1",
-  "author": "",
+  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/dist/system.json",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.zip",
+  "version": "0.0.2",
+  "author": "Jonas Karlsson",
   "authors": [
     {
       "email": "jk@xdy.se",
