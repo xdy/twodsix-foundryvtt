@@ -2,8 +2,8 @@
   "name": "twodsix",
   "title": "twodsix",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
-  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.bundle.js.zip",
+  "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v0.0.9/system.json",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v0.0.9/twodsix.zip",
   "version": "0.0.9",
   "author": "Jonas Karlsson",
   "authors": [
