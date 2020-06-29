@@ -47,11 +47,8 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install
-        run: npm install
-
       - name: Build
-        run: npm run build
+        run: npm install && npm run build
 
       - name: Release
         run: npx semantic-release
