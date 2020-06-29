@@ -4,10 +4,16 @@ module.exports = {
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-            "prepareCmd": 'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json && sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json && cp static/system.json dist',
+            "prepareCmd": '' +
+                'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json ' +
+                '&& sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json ' +
+                '&& sed -ie \'s|\\(.*"manifest"\\): "\\(.*\\)",.*|\\1: \'"\\"https://github.com/xdy/twodsix-foundryvtt/releases/download/v${nextRelease.version}/system.json\\",|" static/system.json' +
+                '&& sed -ie \'s|\\(.*"download"\\): "\\(.*\\)",.*|\\1: \'"\\"https://github.com/xdy/twodsix-foundryvtt/releases/download/v${nextRelease.version}/twodsix.zip\\",|" static/system.json' +
+                '&& cp static/system.json dist' +
+                '',
         }],
         ["@semantic-release/git", {
-            "assets": ["CHANGELOG.md", "package.json", "static/system.json"],
+            "assets": ["CHANGELOG.md", "package.json", "package-lock.json", "static/system.json"],
             "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }],
         ["@semantic-release/github", {
