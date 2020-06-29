@@ -1,3 +1,10 @@
+## [0.0.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.10...v0.0.11) (2020-06-29)
+
+
+### Bug Fixes
+
+* Use default configuration for @semantic-release/git to make sure all changed files are committed. Separate install and build steps again. ([ca20c47](https://github.com/xdy/twodsix-foundryvtt/commit/ca20c47a06dc0bb91ca3747ad6b0a80227134567))
+
 ## [0.0.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.9...v0.0.10) (2020-06-29)
 
 
