@@ -4,7 +4,7 @@ module.exports = {
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-            "prepareCmd": 'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json && sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json && cp system.json dist',
+            "prepareCmd": 'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json && sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json && cp static/system.json dist',
         }],
         ["@semantic-release/git", {
             "assets": ["CHANGELOG.md", "package.json", "static/system.json", "dist/**/*"],
