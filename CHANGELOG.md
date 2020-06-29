@@ -1,3 +1,10 @@
+## [0.0.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.8...v0.0.9) (2020-06-29)
+
+
+### Bug Fixes
+
+* Now to get the zip file into the release, with a better name. ([44b9a5d](https://github.com/xdy/twodsix-foundryvtt/commit/44b9a5d7db394fb589a079e8a6327e731f65ad32))
+
 ## [0.0.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.7...v0.0.8) (2020-06-29)
 
 
