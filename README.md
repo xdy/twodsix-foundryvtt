@@ -15,4 +15,4 @@ d) set up tooling, automated releases using semantic versioning, dotting every i
 
 Um. D. Of course. Like any sane person would...
 
-Oh, and for the record. The tooling and automated releases work fine. The system? Not so much. :)
+Oh, and for the record. The tooling and automated releases work fine. The system? Well, you can install it. It's useless. But it's installable. :)
