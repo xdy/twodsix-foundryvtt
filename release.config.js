@@ -5,11 +5,9 @@ module.exports = {
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
             "prepareCmd": '' +
-                'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json ' +
-                '&& sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json ' +
-                '&& sed -ie \'s|\\(.*"manifest"\\): "\\(.*\\)",.*|\\1: \'"\\"https://github.com/xdy/twodsix-foundryvtt/releases/download/v${nextRelease.version}/system.json\\",|" static/system.json ' +
-                '&& sed -ie \'s|\\(.*"download"\\): "\\(.*\\)",.*|\\1: \'"\\"https://github.com/xdy/twodsix-foundryvtt/releases/download/v${nextRelease.version}/twodsix.zip\\",|" static/system.json ' +
+                'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json ' +
                 '&& cp static/system.json dist ' +
+                '&& sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json ' +
                 '&& npm install ' +
                 '',
         }],
