@@ -9,5 +9,5 @@ icons/\!dox/
 #This project
 node_modules
 foundryconfig.json
-dist
+dist/*
 
