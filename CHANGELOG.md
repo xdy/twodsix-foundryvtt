@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.0...v0.1.1) (2020-06-29)
+
+
+### Bug Fixes
+
+* Now you can even *update* the system. ([2ef4fda](https://github.com/xdy/twodsix-foundryvtt/commit/2ef4fdac29a44cda281e0065f096b48bd85e56fa))
+
 # [0.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.12...v0.1.0) (2020-06-29)
 
 
