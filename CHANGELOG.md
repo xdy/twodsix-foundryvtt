@@ -1,3 +1,10 @@
+## [0.0.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.11...v0.0.12) (2020-06-29)
+
+
+### Bug Fixes
+
+* npm install after I've updated the package.json file. ([daddd47](https://github.com/xdy/twodsix-foundryvtt/commit/daddd475a5934c0a803d78ecf96e7de072046eab))
+
 ## [0.0.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.10...v0.0.11) (2020-06-29)
 
 
