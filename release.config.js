@@ -11,7 +11,7 @@ module.exports = {
             "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }],
         ["@semantic-release/github", {
-            "assets": ["dist/system.json", "dist/twodsix.bundle.js.zip"],
+            "assets": ["dist/system.json", "dist/twodsix.zip"],
         }]
     ],
     "preset": "angular"

@@ -49,15 +49,15 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CopyWebpackPlugin([
-                { from: 'static', destination:'dist' }
+                {from: 'static', destination: 'dist'}
             ], {
                 writeToDisk: true
             }),
             new WriteFilePlugin(),
-            new ZipPlugin(),
             new MiniCssExtractPlugin({
                 filename: 'src/scss/twodsix.scss'
-            })
+            }),
+            new ZipPlugin({"filename": "twodsix.zip"})
         ],
         resolve: {
             extensions: ['.tsx', '.ts', '.js']
@@ -67,7 +67,6 @@ module.exports = (env, argv) => {
             filename: "twodsix.bundle.js",
         },
     };
-
 
 
     if (argv.mode === 'production') {
