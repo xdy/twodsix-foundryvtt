@@ -4,7 +4,7 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.bundle.js.zip",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Jonas Karlsson",
   "authors": [
     {

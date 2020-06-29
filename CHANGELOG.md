@@ -1,3 +1,10 @@
+## [0.0.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.7...v0.0.8) (2020-06-29)
+
+
+### Bug Fixes
+
+* Sigh. If this doesn't work I guess I'll have to read the documentation... ([349bea9](https://github.com/xdy/twodsix-foundryvtt/commit/349bea91a16f1cc2daf27187aae595df2da6a491))
+
 ## [0.0.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.6...v0.0.7) (2020-06-29)
 
 
