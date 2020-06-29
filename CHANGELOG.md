@@ -1,3 +1,10 @@
+# [0.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.12...v0.1.0) (2020-06-29)
+
+
+### Features
+
+* The automatic releases work, and the system is installable. Useless, but installable. ([00fd256](https://github.com/xdy/twodsix-foundryvtt/commit/00fd2565f4a38ff87e01caa40ee36dd2cff90fd7))
+
 ## [0.0.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.11...v0.0.12) (2020-06-29)
 
 
