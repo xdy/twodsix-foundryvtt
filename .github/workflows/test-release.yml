@@ -17,6 +17,8 @@ jobs:
       # Fetch the latest commit
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'
 
       # Setup Node.js using the appropriate version
       - name: Use Node.js ${{ matrix.node-version }}
