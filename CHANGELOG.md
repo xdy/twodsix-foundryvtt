@@ -1,3 +1,15 @@
+## [0.0.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.9...v0.0.10) (2020-06-29)
+
+
+### Bug Fixes
+
+* actions/checkout@v2 defaults to not checkout submodules... ([929701c](https://github.com/xdy/twodsix-foundryvtt/commit/929701c4fd34c7b23dfc339867367650c17db7ea))
+* Actually do build in the release, not just install... ([1d9aa4b](https://github.com/xdy/twodsix-foundryvtt/commit/1d9aa4bc3415fe6a2c98716c8ba9915cf10b8f28))
+* Just flailing around, really. ([c5d325a](https://github.com/xdy/twodsix-foundryvtt/commit/c5d325a44ceec38ddfc70a25b12f0a479525a834))
+* npm install rather than ci, fix paths, and commit package-lock.json ([fb51042](https://github.com/xdy/twodsix-foundryvtt/commit/fb5104256420f096216eecd0aea73aa0bfa18a2e))
+* Trying npm install and npm run build in same step ([2a14a0a](https://github.com/xdy/twodsix-foundryvtt/commit/2a14a0adc36a01e0b067f1e4164ac44e8e673411))
+* Use submodules in both steps that checkout... ([889d6c2](https://github.com/xdy/twodsix-foundryvtt/commit/889d6c2f4c48fd56f63d8c11707b6ba3a3f120e3))
+
 ## [0.0.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.8...v0.0.9) (2020-06-29)
 
 
