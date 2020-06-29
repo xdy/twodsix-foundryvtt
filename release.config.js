@@ -9,6 +9,7 @@ module.exports = {
                 '&& cp static/system.json dist ' +
                 '&& sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json ' +
                 '&& npm install ' +
+                '&& zip -ur dist/twodsix.zip ' +
                 '',
         }],
         ["@semantic-release/git", {
