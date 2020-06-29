@@ -16,7 +16,9 @@
     "removeComments": false,
     "resolveJsonModule": true,
     "paths": {
-      "foundry": ["types/foundry-pc-types"]
+      "foundry": [
+        "types/foundry-pc-types"
+      ]
     },
     "types": [
       "jquery",

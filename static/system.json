@@ -2,7 +2,7 @@
   "name": "twodsix",
   "title": "twodsix",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
-  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/dist/system.json",
+  "manifest": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/raw/master/dist/twodsix.bundle.js.zip",
   "version": "0.0.4",
   "author": "Jonas Karlsson",
@@ -18,9 +18,7 @@
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.4",
   "description": "2d6 system. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.",
-  "esmodules": [
-    "./twodsix.ts"
-  ],
+  "esmodules": ["main.bundle.js"],
   "gridDistance": 1.5,
   "gridUnits": "m",
   "languages": [
@@ -40,6 +38,6 @@
   "readme": "",
   "scripts": [],
   "styles": [
-    "./styles/twodsix.css"
+    "./scss/twodsix.scss"
   ]
 }

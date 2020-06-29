@@ -1,4 +1,4 @@
-export const templates = async function() {
+export default function () {
 	const templatePaths = [
 		// Add paths to "systems/twodsix/templates"
 		"systems/twodsix/src/templates/actors/actor-sheet.html",

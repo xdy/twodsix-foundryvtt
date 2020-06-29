@@ -1,7 +1,8 @@
 const path = require("path");
 const fs = require('fs-extra');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
 
 function getFoundryConfig() {
@@ -47,20 +48,15 @@ module.exports = (env, argv) => {
             ],
         },
         plugins: [
+            new CopyWebpackPlugin([
+                { from: 'static', destination:'dist' }
+            ], {
+                writeToDisk: true
+            }),
+            new WriteFilePlugin(),
             new ZipPlugin(),
-            new CompressionPlugin({
-                filename: '[path].gz[query]',
-                algorithm: 'gzip',
-            }),
-            new CompressionPlugin({
-                filename: '[path].br[query]',
-                algorithm: 'brotliCompress',
-                compressionOptions: {
-                    level: 11,
-                },
-            }),
             new MiniCssExtractPlugin({
-                filename: 'src/styles/twodsix.css'
+                filename: 'src/scss/twodsix.scss'
             })
         ],
         resolve: {
@@ -73,11 +69,13 @@ module.exports = (env, argv) => {
     };
 
 
-    if (argv.mode !== 'production') {
+
+    if (argv.mode === 'production') {
+    } else {
         const foundryConfig = getFoundryConfig();
-        if (foundryConfig !== undefined) {
+        if (foundryConfig !== undefined)
             config.output.path = path.join(foundryConfig.dataPath, 'Data', 'systems', foundryConfig.systemName);
-        }
+
         config.devtool = 'inline-source-map';
         config.watch = true;
     }

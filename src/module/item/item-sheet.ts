@@ -35,14 +35,14 @@ export class twodsixItemSheet extends ItemSheet {
 
   /* -------------------------------------------- */
 
-  /** @override */
-  setPosition(options = {}) {
-    const position = super.setPosition(options);
-    const sheetBody = this.element.find(".sheet-body");
-    const bodyHeight = position.height - 192;
-    sheetBody.css("height", bodyHeight);
-    return position;
-  }
+  // /** @override */
+  // setPosition(options = {}) {
+  //   const position = super.setPosition(options);
+  //   const sheetBody = this.element.find(".sheet-body");
+  //   const bodyHeight = position.height - 192;
+  //   sheetBody.css("height", bodyHeight);
+  //   return position;
+  // }
 
   /* -------------------------------------------- */
 
