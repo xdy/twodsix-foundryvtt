@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.4...v0.0.5) (2020-06-29)
+
+
+### Bug Fixes
+
+* Assorted hacking to make it work less bad ([36ff159](https://github.com/xdy/twodsix-foundryvtt/commit/36ff159547e65ef776371d6d3bf86c0de77ff005))
+* Fix another release problem. ([7e2ca4c](https://github.com/xdy/twodsix-foundryvtt/commit/7e2ca4c11996ee33a64a9561ddb9073cedf0f453))
+* Fix one release problem ([86db09f](https://github.com/xdy/twodsix-foundryvtt/commit/86db09fbc1f61db0e14f062f448c6449e7cf33ad))
+
 ## [0.0.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.0.3...v0.0.4) (2020-06-28)
 
 
