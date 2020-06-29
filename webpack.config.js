@@ -48,11 +48,14 @@ module.exports = (env, argv) => {
             ],
         },
         plugins: [
-            new CopyWebpackPlugin([
-                {from: 'static', destination: 'dist'}
-            ], {
-                writeToDisk: true
-            }),
+            new CopyWebpackPlugin({
+                    patterns: [
+                        {from: 'static', to: 'dist'}
+                    ],
+                }, {
+                    writeToDisk: true
+                }
+            ),
             new WriteFilePlugin(),
             new MiniCssExtractPlugin({
                 filename: 'src/scss/twodsix.scss'
