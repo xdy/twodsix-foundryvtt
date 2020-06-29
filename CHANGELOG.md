@@ -1,3 +1,11 @@
+## [0.1.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.1...v0.1.2) (2020-06-29)
+
+
+### Bug Fixes
+
+* Well, you could update. Albeit not to the latest version. Kind of. Maybe this ugly hack will make it possible? ([a8c29d4](https://github.com/xdy/twodsix-foundryvtt/commit/a8c29d49b731895dccb779f5ea5f3aed110da30d))
+* Welp, that broke the build, so: ([cf23010](https://github.com/xdy/twodsix-foundryvtt/commit/cf230107740b8ff92f822356f54faf0a17299e69))
+
 ## [0.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.0...v0.1.1) (2020-06-29)
 
 
