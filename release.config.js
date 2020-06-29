@@ -7,7 +7,7 @@ module.exports = {
             "prepareCmd": 'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json && sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json && cp static/system.json dist',
         }],
         ["@semantic-release/git", {
-            "assets": ["CHANGELOG.md", "package.json", "static/system.json", "dist/**/*"],
+            "assets": ["CHANGELOG.md", "package.json", "static/system.json"],
             "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }],
         ["@semantic-release/github", {
