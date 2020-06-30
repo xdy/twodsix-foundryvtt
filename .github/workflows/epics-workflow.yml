@@ -1,0 +1,14 @@
+name: Epics workflow
+on:
+  schedule:
+    - cron:  '0 5 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Update parent issues
+        uses: ribtoks/parent-issue-update@v0.3-beta
+        with:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
