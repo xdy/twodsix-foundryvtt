@@ -1,3 +1,14 @@
+## [0.1.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.3...v0.1.4) (2020-07-01)
+
+
+### Bug Fixes
+
+* Assorted cleanup, added text to licenses and README.md. Filled out template.json a bit. ([b67eb48](https://github.com/xdy/twodsix-foundryvtt/commit/b67eb48ded5d3888f305ad47a16839a8ea3f2470))
+* Hacked the package-lock.json so that the low severity vulnerability found by npm audit goes away. ([0cb6271](https://github.com/xdy/twodsix-foundryvtt/commit/0cb62717ad711e2d3dd3ad0e37c273a461d2a567))
+* Make release ignore if zip is not updated. ([b4cbec5](https://github.com/xdy/twodsix-foundryvtt/commit/b4cbec5967a6563ed1d7bac9835a4c0461c73be7))
+* Remove todo workflow I was playing around with. ([a800ea5](https://github.com/xdy/twodsix-foundryvtt/commit/a800ea59b54932c09eb58e6691ac691d03df437d))
+* scss > styles ([0ca6bfe](https://github.com/xdy/twodsix-foundryvtt/commit/0ca6bfeb8c98e533702990bef62d8c0589dd84da))
+
 ## [0.1.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.2...v0.1.3) (2020-06-29)
 
 
