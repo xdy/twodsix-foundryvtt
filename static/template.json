@@ -3,7 +3,9 @@
     "types": [
       "character",
       "npc",
-      "animal"
+      "animal",
+      "vehicle",
+      "ship"
     ],
     "templates": {
       "characteristics": {
@@ -51,6 +53,12 @@
             "value": 6,
             "short": "Spd",
             "label": "Speed"
+          },
+          "hits": {
+            "value": 0,
+            "max": 10,
+            "short": "hits",
+            "label": "Hits"
           }
         }
       },
@@ -121,7 +129,7 @@
       },
       "flags": {}
     },
-    "creature": {
+    "animal": {
       "templates": [
         "characteristics",
         "attribs",
@@ -132,13 +140,31 @@
         "age": ""
       },
       "flags": {}
+    },
+    "vehicle": {
+      "flags": {}
+    },
+    "ship": {
+      "flags": {}
     }
   },
   "Item": {
     "types": [
       "item",
       "weapon",
-      "skill"
+      "skill",
+      "species",
+      "trait",
+      "career",
+      "psionic",
+      "armor",
+      "weapon",
+      "ammunition",
+      "consumable",
+      "computer",
+      "software",
+      "vehicle",
+      "ship"
     ],
     "item": {
       "description": "",
@@ -202,6 +228,17 @@
       "properties": {},
       "tl": {},
       "flags": {}
-    }
+    },
+    "species": {},
+    "trait": {},
+    "career": {},
+    "psionic": {},
+    "armor": {},
+    "ammunition": {},
+    "consumable": {},
+    "computer": {},
+    "software": {},
+    "vehicle": {},
+    "ship": {}
   }
 }

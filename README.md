@@ -1,18 +1,30 @@
 # 2d6 system
-
 A system for running games using the world's oldest science fiction rpg system and it's various derivatives.
 
-Or. Actually. It's currently an utterly non-functional system with a nice build system. ;)
+Note that it is *very* early in it's development. As in, it doesn't really do anything useful yet...
 
-When I decided to try to add a new system to foundry, did I:
-a) simply use the sws until I know what I want?
-OR
-b) just make a character sheet?
-OR
-c) set up a basic system that I can expand later?
-OR
-d) set up tooling, automated releases using semantic versioning, dotting every i and crossing every t to make github happy, etc, for the fvtt system I might eventually build if I ever get around to actually working on it?
+At first it will support doing things the way I do it using my favorite 2d6 rules variant, but I intend to make it flexible 
+enough that all/most 2d6 rules variants should be possible to play using this system. Due to licensing restrictions the
+user may have to enter some compendiums. 
 
-Um. D. Of course. Like any sane person would...
+This system may eventually claim compatibility with specific rules sets once I have:
+a) completed said compatibility 
+b) actually have the license to do so
 
-Oh, and for the record. The tooling and automated releases work fine. The system? Well, you can install it. It's useless. But it's installable. :)
+
+### Patch Notes:
+See CHANGELOG.md
+
+
+### Licenses
+Project Licensing:
+*  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2.
+
+Content Usage and Licensing:
+*  Game system information and mechanics are licensed under the Open Game License, see OpenGameLicense.md for details.
+
+Virtual Table Top Platform Licenses:
+*  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
+
+### Contributing
+See CONTRIBUTING.md
