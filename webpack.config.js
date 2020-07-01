@@ -3,7 +3,6 @@ const fs = require('fs-extra');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ZipPlugin = require('zip-webpack-plugin');
 
 function getFoundryConfig() {
     const configPath = path.resolve(process.cwd(), 'foundryconfig.json');
@@ -59,8 +58,7 @@ module.exports = (env, argv) => {
             new WriteFilePlugin(),
             new MiniCssExtractPlugin({
                 filename: 'src/scss/twodsix.scss'
-            }),
-            new ZipPlugin({"filename": "twodsix.zip"})
+            })
         ],
         resolve: {
             extensions: ['.tsx', '.ts', '.js']
