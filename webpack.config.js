@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
         plugins: [
             new CopyWebpackPlugin({
                     patterns: [
-                        {from: 'static', to: 'dist'}
+                        {from: 'static'}
                     ],
                 }, {
                     writeToDisk: true

@@ -4,13 +4,7 @@ module.exports = {
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-            "prepareCmd": '' +
-                'sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" static/system.json ' +
-                '&& cp static/system.json dist ' +
-                '&& sed -ie \'s|\\(.*"version"\\): "\\(.*\\)",.*|\\1: \'"\\"${nextRelease.version}\\",|" package.json ' +
-                '&& npm install ' +
-                '&& cd dist && zip -r twodsix.zip * || true && cd ..' +
-                '',
+            "prepareCmd": "./release.sh ${nextRelease.version}",
         }],
         ["@semantic-release/git", {
             "assets": ["CHANGELOG.md", "package.json", "package-lock.json", "static/system.json"],
