@@ -1,3 +1,11 @@
+## [0.1.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.5...v0.1.6) (2020-07-01)
+
+
+### Bug Fixes
+
+* git update-index --chmod=+x release.sh ([1c61a1f](https://github.com/xdy/twodsix-foundryvtt/commit/1c61a1f3eab6483bcb11525055c30e4d6a590b56))
+* Stupid is as stupid does... ([ea99099](https://github.com/xdy/twodsix-foundryvtt/commit/ea99099843ea02f6bd18f027c4bdf250ea96523b))
+
 ## [0.1.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.4...v0.1.5) (2020-07-01)
 
 
