@@ -1,3 +1,10 @@
+## [0.1.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.4...v0.1.5) (2020-07-01)
+
+
+### Bug Fixes
+
+* Hopefully fixed the zip file problems ([27c469c](https://github.com/xdy/twodsix-foundryvtt/commit/27c469c7dd6417aa1409e3de116ff66cc317e8e2))
+
 ## [0.1.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.3...v0.1.4) (2020-07-01)
 
 
