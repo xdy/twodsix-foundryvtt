@@ -30,19 +30,16 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.scss$/,
+                    test: /\.s[ac]ss$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader?url=false'
-                        },
+                        'css-loader',
                         {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: true,
                             }
-                        }
-                    ]
+                        },],
                 }
             ],
         },
