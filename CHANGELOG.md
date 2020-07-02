@@ -1,3 +1,11 @@
+## [0.1.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.6...v0.1.7) (2020-07-02)
+
+
+### Bug Fixes
+
+* No idea where npm got typescript 3.9.6 from, but it's not officially released, so reverting. ([a925a9e](https://github.com/xdy/twodsix-foundryvtt/commit/a925a9e4387a08af8306dfc9135a7d8fc6bd2868))
+* Working on template.json and actor.ts. ([ff825be](https://github.com/xdy/twodsix-foundryvtt/commit/ff825be6f3bad291948440cb06b82a6d2c523cc2))
+
 ## [0.1.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.5...v0.1.6) (2020-07-01)
 
 
