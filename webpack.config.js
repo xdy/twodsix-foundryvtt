@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
             ),
             new WriteFilePlugin(),
             new MiniCssExtractPlugin({
-                filename: 'src/styles/twodsix.scss'
+                filename: 'styles/twodsix.css'
             })
         ],
         resolve: {
