@@ -1,3 +1,10 @@
+## [0.1.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.10...v0.1.11) (2020-07-02)
+
+
+### Bug Fixes
+
+* Another bad path fixed, commented out code that doesn't work. ([c4e2140](https://github.com/xdy/twodsix-foundryvtt/commit/c4e21406d179d6c669f46c9390be57f2ef73f0f4))
+
 ## [0.1.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.9...v0.1.10) (2020-07-02)
 
 
