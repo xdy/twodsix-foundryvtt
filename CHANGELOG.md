@@ -1,3 +1,10 @@
+## [0.1.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.11...v0.1.12) (2020-07-02)
+
+
+### Bug Fixes
+
+* Fix one problem, cause another. ([8670bc6](https://github.com/xdy/twodsix-foundryvtt/commit/8670bc62d9f63e74f2b1b65ecd51773d7904ea5f))
+
 ## [0.1.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.10...v0.1.11) (2020-07-02)
 
 
