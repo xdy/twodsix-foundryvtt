@@ -1,4 +1,4 @@
-import {twodsixItemSheet} from './item/item-sheet';
+import {twodsixItemSheet} from './items/item-sheet';
 
 export default function registerItemSheets() {
     Items.unregisterSheet("core", ItemSheet);

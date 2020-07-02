@@ -14,12 +14,13 @@
 import {registerSettings} from './module/settings';
 import loadTemplates from './module/templates';
 import registerHandlebarsHelpers from './module/handlebars';
-import TwodsixActor from './module/actor/actor';
-import TwodsixItem from "./module/item/item";
+import TwodsixActor from './module/actors/actor';
+import TwodsixItem from "./module/items/item";
 import {TwodsixSystem} from './module/twodsix-system';
 import registerActors from './module/register-actors';
 import registerItemSheets from './module/register-sheets';
 
+require('./styles/twodsix.scss');
 
 /* ------------------------------------ */
 /* Initialize system					*/

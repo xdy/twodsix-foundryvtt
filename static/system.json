@@ -154,7 +154,7 @@
   "primaryTokenAttribute":"hits",
   "readme": "",
   "styles": [
-    "./styles/twodsix.scss"
+    "./styles/twodsix.css"
   ],
   "templateVersion": 2
 }
