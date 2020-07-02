@@ -16,7 +16,7 @@ export class twodsixItemSheet extends ItemSheet {
 
   /** @override */
   get template() {
-    const path = "systems/twodsix/templates/item";
+    const path = "systems/twodsix/templates/items";
     // Return a single sheet for all item types.
     return `${path}/item-sheet.html`;
     // Alternatively, you could use the following return statement to do a
