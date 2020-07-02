@@ -17,7 +17,7 @@ export class twodsixActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
-      template: "systems/twodsix/templates/actors/character-sheet.html",
+      template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 600,
       height: 600,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
