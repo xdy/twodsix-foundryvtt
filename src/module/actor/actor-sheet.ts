@@ -2,7 +2,16 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
+
 export class twodsixActorSheet extends ActorSheet {
+
+  /**
+   * Return the type of the current Actor
+   * @type {String}
+   */
+  get actorType() {
+    return this.actor.data.type;
+  }
 
   /** @override */
   static get defaultOptions() {
@@ -19,12 +28,10 @@ export class twodsixActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    // data.dtypes = ["String", "Number", "Boolean"];
-    // for (const attr of Object.values(data.data.attributes)) {
-    //   attr.isCheckbox = attr.dtype === "Boolean";
-    // }
-    return data;
+    const sheetData : any = super.getData();
+
+    //
+    return sheetData;
   }
 
   /** @override */

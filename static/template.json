@@ -71,9 +71,7 @@
       },
       "details": {
         "gender": "",
-        "appearance": ""
-      },
-      "biography": {
+        "appearance": "",
         "age": "",
         "residence": "",
         "birthplace": "",
@@ -91,14 +89,14 @@
       "templates": [
         "characteristics",
         "status",
-        "biography"
+        "details"
       ]
     },
     "npc": {
       "templates": [
         "characteristics",
         "status",
-        "biography"
+        "details"
       ]
     },
     "animal": {
