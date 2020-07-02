@@ -1,3 +1,10 @@
+## [0.1.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.8...v0.1.9) (2020-07-02)
+
+
+### Bug Fixes
+
+* wrong sheet name ([3db1fff](https://github.com/xdy/twodsix-foundryvtt/commit/3db1fff0cac2f4677bd974d4ad54ca9900b7aa8f))
+
 ## [0.1.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.7...v0.1.8) (2020-07-02)
 
 
