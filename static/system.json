@@ -153,8 +153,8 @@
   ],
   "primaryTokenAttribute":"hits",
   "readme": "",
-  "scripts": [],
   "styles": [
     "./styles/twodsix.scss"
-  ]
+  ],
+  "templateVersion": 2
 }

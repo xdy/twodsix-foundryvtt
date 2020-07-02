@@ -34,9 +34,4 @@ export default function registerHandlebarsHelpers() {
         }
         return outStr;
     });
-
-    Handlebars.registerHelper('toLowerCase', function(str) {
-        return str.toLowerCase();
-    });
-
 }

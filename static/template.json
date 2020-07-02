@@ -9,7 +9,6 @@
     ],
     "templates": {
       "characteristics": {
-        "characteristics": {
           "str": {
             "value": 0,
             "short": "STR",
@@ -45,24 +44,8 @@
             "short": "PSI",
             "label": "Psionic Strength"
           }
-        }
       },
-      "attribs": {
-        "attribs": {
-          "speed": {
-            "value": 6,
-            "short": "Spd",
-            "label": "Speed"
-          },
-          "hits": {
-            "value": 0,
-            "max": 10,
-            "short": "hits",
-            "label": "Hits"
-          }
-        }
-      },
-      "status": {
+      "status_todo": {
         "status": {
           "wounded": {
             "type": "Boolean",
@@ -86,60 +69,43 @@
           }
         }
       },
+      "details": {
+        "gender": "",
+        "appearance": ""
+      },
       "biography": {
-        "personalDescription": {
-          "type": "string",
-          "value": ""
-        },
+        "age": "",
+        "residence": "",
+        "birthplace": "",
+        "description": "",
         "career": [
           {
             "service": "",
             "years": 0
           }
-        ]
+        ],
+        "personalGoals": ""
       }
     },
     "character": {
       "templates": [
         "characteristics",
-        "attribs",
         "status",
         "biography"
-      ],
-      "infos": {
-        "occupation": "",
-        "age": "",
-        "sex": "",
-        "residence": "",
-        "birthplace": ""
-      },
-      "flags": {}
+      ]
     },
     "npc": {
       "templates": [
         "characteristics",
-        "attribs",
         "status",
         "biography"
-      ],
-      "infos": {
-        "occupation": "",
-        "age": "",
-        "sex": ""
-      },
-      "flags": {}
+      ]
     },
     "animal": {
       "templates": [
         "characteristics",
-        "attribs",
-        "status",
-        "biography"
-      ],
-      "infos": {
-        "age": ""
-      },
-      "flags": {}
+        "status"
+      ]
     },
     "vehicle": {
       "flags": {}
