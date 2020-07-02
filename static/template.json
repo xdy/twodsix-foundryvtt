@@ -9,6 +9,7 @@
     ],
     "templates": {
       "characteristics": {
+        "characteristics": {
           "str": {
             "value": 0,
             "short": "STR",
@@ -44,6 +45,7 @@
             "short": "PSI",
             "label": "Psionic Strength"
           }
+        }
       },
       "status_todo": {
         "status": {

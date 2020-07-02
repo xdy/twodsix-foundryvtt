@@ -11,7 +11,8 @@ export default class TwodsixActor extends Actor {
         super.prepareData();
 
         const actorData = this.data;
-        const {data} = actorData;
+        const {data} = actorData.data;
+        const {flags} = actorData.flags;
 
         // Make separate methods for each Actor type (character, npc, etc.) to keep
         // things organized.
@@ -41,19 +42,20 @@ export default class TwodsixActor extends Actor {
      * Prepare Character type specific data
      */
     _prepareCharacterData(actorData: ActorData) {
-        const {data} = actorData;
+        const data = actorData.data;
 
         // Loop through characteristics scores, and add their modifiers to our sheet output.
-        // for (let [key, c] of Object.entries(data.characteristics)) {
-        //     c["mod"] = Math.floor((c["value"] - 7) / 3);
-        // }
+        for (let [key, c] of Object.entries(data["characteristics"])) {
+            c["mod"] = Math.floor((c["value"] - 6) / 3);
+        }
 
-        // data.upp = this._upp(data);
+        data.upp = this._upp(actorData);
 
     }
 
     _upp(actorData: ActorData) {
-        const {data} = actorData;
+        const data = actorData.data;
+
         for (const abl of Object.values(data.characteristics as Record<any, any>)) {
             if (abl.short != 'PSI') data.upp += this._pseudoHex(abl.value);
         }
