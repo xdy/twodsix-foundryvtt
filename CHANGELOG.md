@@ -1,3 +1,10 @@
+## [0.1.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.7...v0.1.8) (2020-07-02)
+
+
+### Bug Fixes
+
+* reformat and fix some sheet warnings ([75f21a7](https://github.com/xdy/twodsix-foundryvtt/commit/75f21a7a7d32594ec0aaf02ba21b25d4e4ab58e6))
+
 ## [0.1.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.6...v0.1.7) (2020-07-02)
 
 
