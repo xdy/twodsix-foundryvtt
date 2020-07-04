@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --ext .ts",
     "update": "git submodule update"
   },
   "author": "",
@@ -20,6 +20,8 @@
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jquery": "^3.5.0",
     "@types/webpack-env": "^1.15.2",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
     "compression-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.6.0",

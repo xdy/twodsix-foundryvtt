@@ -36,6 +36,7 @@ module.exports = {
         'no-console': 0,
         'import/extensions': [1, 'always'],
         'class-methods-use-this': 0,
+        'max-classes-per-file': 0,
     },
     settings: {
         'import/resolver': {
@@ -45,7 +46,7 @@ module.exports = {
             },
         },
     },
-    plugins: ['prettier'],
+    plugins: ['prettier', '@typescript-eslint'],
     overrides: [
         {
             files: 'tests/**/*',
@@ -54,5 +55,5 @@ module.exports = {
             },
         },
     ],
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
 };
