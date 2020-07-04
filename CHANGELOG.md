@@ -1,3 +1,11 @@
+## [0.1.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.12...v0.1.13) (2020-07-04)
+
+
+### Bug Fixes
+
+* Characteristics and mods visible. Ugly, but visible. ([94ffd9c](https://github.com/xdy/twodsix-foundryvtt/commit/94ffd9cfc42e974b35ede8d7b594c28131903c7c))
+* turn off bars as I don't know what to show in them anyway. ([507786e](https://github.com/xdy/twodsix-foundryvtt/commit/507786e1c30b07c07c2e3aa619d1727f3802ba5c))
+
 ## [0.1.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.11...v0.1.12) (2020-07-02)
 
 
