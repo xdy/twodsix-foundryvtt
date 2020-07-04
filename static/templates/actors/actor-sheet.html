@@ -16,7 +16,7 @@
         <div class="characteristics grid grid-3col">
             {{#each data.characteristics as |characteristic key|}}
             <div class="characteristic flexrow flex-group-center">
-                <label for="data.characteristics.{{key}}.value" class="resource-label">data.characteristics.{{key}}.short</label>
+                <label for="data.characteristics.{{key}}.value" class="resource-label">{{characteristic.short}}</label>
                 <input id="data.characteristics.{{key}}.value" type="text" name="data.characteristics.{{key}}.value"
                        value="{{characteristic.value}}" data-dtype="Number"/>
                 <span class="characteristic-mod rollable" data-roll="2d6+@characteristics.{{key}}.mod"
