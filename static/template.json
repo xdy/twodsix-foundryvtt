@@ -12,36 +12,43 @@
         "characteristics": {
           "str": {
             "value": 0,
+            "damage": 0,
             "short": "STR",
             "label": "Strengh"
           },
           "dex": {
             "value": 0,
+            "damage": 0,
             "short": "DEX",
             "label": "Dexterity"
           },
           "end": {
             "value": 0,
+            "damage": 0,
             "short": "END",
             "label": "Endurance"
           },
           "int": {
             "value": 0,
+            "damage": 0,
             "short": "INT",
             "label": "Intelligence"
           },
           "edu": {
             "value": 0,
+            "damage": 0,
             "short": "EDU",
             "label": "Education"
           },
           "soc": {
             "value": 0,
+            "damage": 0,
             "short": "SOC",
             "label": "Social Status"
           },
           "psi": {
             "value": 0,
+            "damage": 0,
             "short": "PSI",
             "label": "Psionic Strength"
           }

@@ -44,9 +44,10 @@ export default class TwodsixActor extends Actor {
     _prepareCharacterData(actorData: ActorData) {
         const data = actorData.data;
 
-        // Loop through characteristics scores, and add their modifiers to our sheet output.
         for (let [key, c] of Object.entries(data["characteristics"])) {
-            c["mod"] = Math.floor((c["value"] - 6) / 3);
+            let current = c["value"] - c["damage"];
+            c["current"] = current;
+            c["mod"] = Math.floor((current - 6) / 3);
         }
 
         // data.upp = this._upp(actorData);
