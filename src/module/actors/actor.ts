@@ -48,7 +48,7 @@ export default class TwodsixActor extends Actor {
             let current = c["value"] - c["damage"];
             c["current"] = current;
             c["mod"] = Math.floor((current - 6) / 3);
-            if (current === 0){c["mod"] = -3;}
+            // if (current === 0){c["mod"] = -3;} //TODO Should be an option for the predecessor to CE
         }
 
         // Process Cascade skills
