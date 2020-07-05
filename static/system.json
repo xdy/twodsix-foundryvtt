@@ -43,7 +43,7 @@
       "label": "Skills",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/skills.db",
+      "path": "./packs/skills.db",
       "entity": "Item"
     },
     {
@@ -51,7 +51,7 @@
       "label": "Species",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/species.db",
+      "path": "./packs/species.db",
       "entity": "Item"
     },
     {
@@ -59,7 +59,7 @@
       "label": "Careers",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/careers.db",
+      "path": "./packs/careers.db",
       "entity": "Item"
     },
     {
@@ -67,7 +67,7 @@
       "label": "Traits",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/traits.db",
+      "path": "./packs/traits.db",
       "entity": "Item"
     },
     {
@@ -75,15 +75,15 @@
       "label": "Psionics",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/psionics.db",
+      "path": "./packs/psionics.db",
       "entity": "Item"
     },
     {
-      "name": "items",
-      "label": "Item",
+      "name": "gear",
+      "label": "Gear",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/items.db",
+      "path": "./packs/gear.db",
       "entity": "Item"
     },
     {
@@ -91,7 +91,7 @@
       "label": "Armor",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/armor.db",
+      "path": "./packs/armor.db",
       "entity": "Item"
     },
     {
@@ -99,7 +99,7 @@
       "label": "Weapons",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/weapons.db",
+      "path": "./packs/weapons.db",
       "entity": "Item"
     },
     {
@@ -107,7 +107,7 @@
       "label": "Ammunition",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/ammunition.db",
+      "path": "./packs/ammunition.db",
       "entity": "Item"
     },
     {
@@ -115,7 +115,7 @@
       "label": "Consumables",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/consumables.db",
+      "path": "./packs/consumables.db",
       "entity": "Item"
     },
     {
@@ -123,7 +123,7 @@
       "label": "Computers",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/computers.db",
+      "path": "./packs/computers.db",
       "entity": "Item"
     },
     {
@@ -131,7 +131,7 @@
       "label": "Software",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/software.db",
+      "path": "./packs/software.db",
       "entity": "Item"
     },
     {
@@ -139,7 +139,7 @@
       "label": "Vehicles",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/vehicles.db",
+      "path": "./packs/vehicles.db",
       "entity": "Item"
     },
     {
@@ -147,7 +147,7 @@
       "label": "Ships",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "packs/ships.db",
+      "path": "./packs/ships.db",
       "entity": "Item"
     }
   ],
