@@ -1,3 +1,10 @@
+## [0.1.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.13...v0.1.14) (2020-07-05)
+
+
+### Bug Fixes
+
+* Exception on empty skill list. Wrong names for new tabs. ([e243fe6](https://github.com/xdy/twodsix-foundryvtt/commit/e243fe635c76b99734d185abfc7afc0613e28087))
+
 ## [0.1.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.12...v0.1.13) (2020-07-04)
 
 
