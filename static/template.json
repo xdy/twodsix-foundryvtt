@@ -129,7 +129,7 @@
   },
   "Item": {
     "types": [
-      "item",
+      "gear",
       "weapon",
       "skill",
       "species",
@@ -145,68 +145,40 @@
       "vehicle",
       "ship"
     ],
-    "item": {
+    "gear": {
       "description": "",
       "quantity": 1,
       "weight": 0,
       "attributes": {}
     },
     "weapon": {
-      "description": {
-        "value": "",
-        "chat": "",
-        "special": ""
-      },
-      "wpnType": "",
-      "skill": {
-        "main": {
-          "name": "",
-          "id": ""
-        },
-        "alternative": {
-          "name": "",
-          "id": ""
-        }
-      },
-      "range": {
-        "normal": {
-          "value": 0,
-          "units": "",
-          "damage": ""
-        },
-        "long": {
-          "value": 0,
-          "units": "",
-          "damage": ""
-        },
-        "extreme": {
-          "value": 0,
-          "units": "",
-          "damage": ""
-        }
-      },
-      "usesPerRound": {
-        "normal": "",
-        "max": ""
-      },
-      "bullets": "",
-      "malfunction": "",
-      "properties": {},
-      "tl": {},
-      "price": {}
+      "skill": "",
+      "name": "",
+      "cost": 0,
+      "weightKg": 0,
+      "range": "",
+      "rof": "",
+      "damage": "",
+      "attributes": {},
+      "ll": "",
+      "tl": "",
+      "rounds": 0
     },
     "skill": {
       "label": "",
-      "specialization": "",
-      "description": {
-        "value": "",
-        "chat": ""
-      },
+      "name": "",
+      "description":"",
+      "subtype": "",
+      "reference": "",
       "value": -3,
-      "attributes": {},
-      "properties": {},
-      "tl": {},
-      "flags": {},
+      "defaultCharacteristic": "",
+      "tasks": {
+        "characteristic": "DEX",
+        "timeIncrement": "seconds",
+        "difficulty": "Average"
+      },
+      "cascade": false,
+      "specialization": "",
       "show": false
     },
     "species": {},
