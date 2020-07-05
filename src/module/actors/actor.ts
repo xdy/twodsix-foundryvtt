@@ -44,10 +44,45 @@ export default class TwodsixActor extends Actor {
     _prepareCharacterData(actorData: ActorData) {
         const data = actorData.data;
 
-        for (let [key, c] of Object.entries(data["characteristics"])) {
+        for (const [key, c] of Object.entries(data["characteristics"])) {
             let current = c["value"] - c["damage"];
             c["current"] = current;
             c["mod"] = Math.floor((current - 6) / 3);
+            if (current === 0){c["mod"] = -3;}
+        }
+
+        // Process Cascade skills
+        // So... if a child skill is set to 0 or 1, then the cascade parent is set to 0.
+        let key: string, attr: any;
+        for ([key, attr] of Object.entries(data.skills)) {
+
+            if (attr.parent){
+                const pnt = data.skills[attr.parent];
+                if (attr.value >= 0) {
+                    pnt.value = 0;
+                    pnt.show = true;
+                }
+            }
+
+            if (attr.cascade){
+                if (attr.value > 0) {
+                    attr.value = 0;
+                }
+            }
+
+            if (attr.label == "Jack Of All Trades") { //TODO Do I want this?
+                attr.show = attr.value > 0;
+            } else {
+                attr.show = attr.value >= 0;
+            }
+
+            if (data.addskillselect == key) {
+                var skill = data.addskillselect;
+                data.addskillselect = "";
+                if (data.skills[skill].cascade){data.skills[skill].value = 0;}
+                data.skills[skill].show = true;
+            }
+
         }
 
         // data.upp = this._upp(actorData);
@@ -208,23 +243,23 @@ export default class TwodsixActor extends Actor {
     _nobleTitle(soc: number, gender: string) {
         switch (soc) {
             case 10:
-                return gender == "M" ? "Lord" : "Lady";
+                return gender === "M" ? "Lord" : "Lady";
             case 11:
-                return gender == "M" ? "Sir" : "Dame";
+                return gender === "M" ? "Sir" : "Dame";
             case 12:
-                return gender == "M" ? "Baron" : "Baroness";
+                return gender === "M" ? "Baron" : "Baroness";
             case 13:
-                return gender == "M" ? "Marquis" : "Marchioness";
+                return gender === "M" ? "Marquis" : "Marchioness";
             case 14:
-                return gender == "M" ? "Count" : "Countess";
+                return gender === "M" ? "Count" : "Countess";
             case 15:
-                return gender == "M" ? "Duke" : "Duchess";
+                return gender === "M" ? "Duke" : "Duchess";
             case 16:
-                return gender == "M" ? "Archduke" : "Archduchess";
+                return gender === "M" ? "Archduke" : "Archduchess";
             case 17:
-                return gender == "M" ? "Crown Prince" : "Crown Princess";
+                return gender === "M" ? "Crown Prince" : "Crown Princess";
             case 18:
-                return gender == "M" ? "Emperor" : "Empress";
+                return gender === "M" ? "Emperor" : "Empress";
             default:
                 return "";
         }

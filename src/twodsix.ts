@@ -18,7 +18,7 @@ import TwodsixActor from './module/actors/actor';
 import TwodsixItem from "./module/items/item";
 import {TwodsixSystem} from './module/twodsix-system';
 import registerActors from './module/register-actors';
-import registerItemSheets from './module/register-sheets';
+import registerItems from './module/register-sheets';
 
 require('./styles/twodsix.scss');
 
@@ -49,7 +49,7 @@ Hooks.once('init', async function () {
     registerSettings();
     await loadTemplates();
     registerActors();
-    registerItemSheets();
+    registerItems();
     registerHandlebarsHelpers();
 
 });

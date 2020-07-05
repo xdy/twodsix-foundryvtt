@@ -54,7 +54,10 @@
           }
         }
       },
-      "status_todo": {
+      "skills": {
+
+      },
+      "status": {
         "status": {
           "wounded": {
             "type": "Boolean",
@@ -97,6 +100,7 @@
     "character": {
       "templates": [
         "characteristics",
+        "skills",
         "status",
         "details"
       ]
@@ -104,6 +108,7 @@
     "npc": {
       "templates": [
         "characteristics",
+        "skills",
         "status",
         "details"
       ]
@@ -111,6 +116,7 @@
     "animal": {
       "templates": [
         "characteristics",
+        "skills",
         "status"
       ]
     },
@@ -157,7 +163,7 @@
           "name": "",
           "id": ""
         },
-        "alternativ": {
+        "alternative": {
           "name": "",
           "id": ""
         }
@@ -190,17 +196,18 @@
       "price": {}
     },
     "skill": {
+      "label": "",
       "specialization": "",
       "description": {
         "value": "",
         "chat": ""
       },
-      "base": 0,
-      "value": -1,
+      "value": -3,
       "attributes": {},
       "properties": {},
       "tl": {},
-      "flags": {}
+      "flags": {},
+      "show": false
     },
     "species": {},
     "trait": {},

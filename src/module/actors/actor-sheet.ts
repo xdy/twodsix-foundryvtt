@@ -28,10 +28,14 @@ export class twodsixActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const sheetData : any = super.getData();
-
+    const data : any = super.getData();
+    data.dtypes = ["String", "Number", "Boolean"];
+    let attr:any;
+    for (attr of Object.values(data.data.characteristics)) {
+      attr.isCheckbox = attr.dtype === "Boolean";
+    }
     //
-    return sheetData;
+    return data;
   }
 
   /** @override */

@@ -29,20 +29,19 @@ export class twodsixItemSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
-    return data;
+    return super.getData();
   }
 
   /* -------------------------------------------- */
 
-  // /** @override */
-  // setPosition(options = {}) {
-  //   const position = super.setPosition(options);
-  //   const sheetBody = this.element.find(".sheet-body");
-  //   const bodyHeight = position.height - 192;
-  //   sheetBody.css("height", bodyHeight);
-  //   return position;
-  // }
+  /** @override */
+  setPosition(options = {}) {
+    const position = super.setPosition(options);
+    const sheetBody = (this.element as any).find(".sheet-body"); //TODO Fix this misuse of any
+    const bodyHeight = position.height - 192;
+    sheetBody.css("height", bodyHeight);
+    return position;
+  }
 
   /* -------------------------------------------- */
 

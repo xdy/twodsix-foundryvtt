@@ -38,7 +38,10 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="items">UCF</a>
+        <a class="item" data-tab="items">Skills</a>
         <a class="item" data-tab="items">Items</a>
+
     </nav>
 
     {{!-- Sheet Body --}}
@@ -74,6 +77,61 @@
                 </li>
                 {{/each}}
             </ol>
+        </div>
+
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            <div class="skills grid grid-2col">
+
+                <div class="skills flexrow flex-group-center">
+
+                    <div class="skills grid grid-2col">
+                        {{#each data.skills as |skills key|}}
+                        {{#if skills.show}}
+                        {{#if skills.cascade}}
+                        <div class="skills flexrow flex-group-center">
+                            <label for="skills.cascade" class="resource-label">{{skills.label}}</label>
+                        </div>
+                        <div class="skills flexrow flex-group-center">
+                            <input type="text" id="skills.cascade" name="data.skills.{{key}}.value" title = "This is a cascade skill, it can only be 0, any levels must be put into a specialization." value="{{skills.value}}" data-dtype="Number"/>
+                        </div>
+                        {{else}}
+                        {{#if skills.parent}}
+                        <div class="skills flexrow flex-group-center">
+                            <label for="skills.parent" class="resource-label">{{skills.label}}</label>
+                        </div>
+                        <div class="skills flexrow flex-group-center">
+                            <input type="text" id="skills.parent" name="data.skills.{{key}}.value" value="{{skills.value}}" data-dtype="Number"/>
+                        </div>
+                        {{else}}
+                        <div class="skills flexrow flex-group-center">
+                            <label for="else" class="resource-label">{{skills.label}}</label>
+                        </div>
+                        <div class="skills flexrow flex-group-center">
+                            <input type="text" id="else" name="data.skills.{{key}}.value" value="{{skills.value}}"
+                                   data-dtype="Number"/>
+                        </div>
+                        {{/if}}
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
+
+                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
+                            <h2 class="flexbreak">Add Skill:</h2>
+                            <select name="data.addskillselect" style="width:200px;">
+                                <option></option>
+                                {{#each data.skills as |skills key|}}
+                                <option value="{{key}}">{{skills.label}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="skills flexrow flex-group-center">
+
+                </div>
+            </div>
         </div>
 
     </section>
