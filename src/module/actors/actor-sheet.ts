@@ -3,7 +3,7 @@
  * @extends {ActorSheet}
  */
 
-export class twodsixActorSheet extends ActorSheet {
+export class TwodsixActorSheet extends ActorSheet {
 
   /**
    * Return the type of the current Actor

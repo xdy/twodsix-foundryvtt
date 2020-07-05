@@ -36,6 +36,10 @@ export default function registerHandlebarsHelpers() {
     });
 
     Handlebars.registerHelper({
+        add: (v1, v2) => v1 + v2,
+        sub: (v1, v2) => v1 - v2,
+        mul: (v1, v2) => v1 * v2,
+        div: (v1, v2) => v1 / v2,
         eq: (v1, v2) => v1 === v2,
         ne: (v1, v2) => v1 !== v2,
         lt: (v1, v2) => v1 < v2,
@@ -49,4 +53,15 @@ export default function registerHandlebarsHelpers() {
             return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
         }
     });
+
+    Handlebars.registerHelper('isEmpty', (element) => {
+        if (typeof element === undefined) return true;
+        if (Array.isArray(element) && element.length) return false;
+        if (element === '') return true;
+    });
+
+    Handlebars.registerHelper('enrich', (content) => {
+        return new Handlebars.SafeString(TextEditor.enrichHTML(content, {}));
+    });
+
 }

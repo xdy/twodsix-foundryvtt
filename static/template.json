@@ -95,6 +95,13 @@
           }
         ],
         "personalGoals": ""
+      },
+      "owned": {
+        "gear": [],
+        "weapons": [],
+        "armors": [],
+        "skills": [],
+        "inventory": []
       }
     },
     "character": {

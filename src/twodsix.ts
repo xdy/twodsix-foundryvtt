@@ -12,13 +12,13 @@
 
 // Import TypeScript modules
 import {registerSettings} from './module/settings';
-import loadTemplates from './module/templates';
+import preloadTemplates from './module/templates';
 import registerHandlebarsHelpers from './module/handlebars';
 import TwodsixActor from './module/actors/actor';
 import TwodsixItem from "./module/items/item";
 import {TwodsixSystem} from './module/twodsix-system';
-import registerActors from './module/register-actors';
-import registerItems from './module/register-sheets';
+import {TwodsixActorSheet} from "./module/actors/actor-sheet";
+import {TwodsixItemSheet} from "./module/items/item-sheet";
 
 require('./styles/twodsix.scss');
 
@@ -27,6 +27,18 @@ require('./styles/twodsix.scss');
 /* ------------------------------------ */
 
 Hooks.once('init', async function () {
+    let ASCII = "\n" +
+        "\n" +
+        "___________                 .___     .__        \n" +
+        "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
+        "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___/  \\  \\/  /\n" +
+        "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
+        "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
+        "                             \\/    \\/         \\/\n" +
+        "\n";
+    console.log(
+        `TWODSIX | Initializing Twodsix system\n${ASCII}`,
+    );
 
     game.twodsix = {
         twodsixActor: TwodsixActor,
@@ -42,15 +54,22 @@ Hooks.once('init', async function () {
         decimals: 1
     };
 
-    // Define custom Entity classes
+    //Actor
     CONFIG.Actor.entityClass = TwodsixActor;
-    CONFIG.Item.entityClass = TwodsixItem;
+    Actors.unregisterSheet('core', ActorSheet);
+    Actors.registerSheet('twodsix', TwodsixActorSheet, {
+        types: ['character'],
+        makeDefault: true,
+    });
 
-    registerSettings();
-    await loadTemplates();
-    registerActors();
-    registerItems();
+    //Items
+    CONFIG.Item.entityClass = TwodsixItem;
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+
     registerHandlebarsHelpers();
+    registerSettings();
+    await preloadTemplates();
 
 });
 /* ------------------------------------ */
