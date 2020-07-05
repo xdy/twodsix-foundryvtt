@@ -54,7 +54,8 @@ export default class TwodsixActor extends Actor {
         // Process Cascade skills
         // So... if a child skill is set to 0 or 1, then the cascade parent is set to 0.
         let key: string, attr: any;
-        for ([key, attr] of Object.entries(data.skills)) {
+        let o = data.skills || [];
+        for ([key, attr] of Object.entries(o)) {
 
             if (attr.parent){
                 const pnt = data.skills[attr.parent];
