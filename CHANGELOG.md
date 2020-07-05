@@ -1,3 +1,10 @@
+## [0.1.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.14...v0.1.15) (2020-07-05)
+
+
+### Bug Fixes
+
+* CE and it's predecessor uses different modifier for characteristic value of 0, use CE modifier for now, make into an option later. ([269e383](https://github.com/xdy/twodsix-foundryvtt/commit/269e38380af7925662cd5c0a533ccf210fc9f68f))
+
 ## [0.1.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.13...v0.1.14) (2020-07-05)
 
 
