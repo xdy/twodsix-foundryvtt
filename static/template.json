@@ -55,7 +55,6 @@
         }
       },
       "skills": {
-
       },
       "status": {
         "status": {
@@ -152,29 +151,52 @@
       "vehicle",
       "ship"
     ],
+    "templates": {
+      "itemDescription": {
+        "description": "",
+        "notes": ""
+      },
+      "physicalItem": {
+        "quantity": 1,
+        "weight": 0,
+        "cost": 0
+      },
+      "equipable": {
+        "equippable": true,
+        "equipped": false
+      }
+    },
     "gear": {
-      "description": "",
-      "quantity": 1,
-      "weight": 0,
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ],
       "attributes": {}
     },
     "weapon": {
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ],
       "skill": "",
       "name": "",
-      "cost": 0,
-      "weightKg": 0,
       "range": "",
       "rof": "",
       "damage": "",
-      "attributes": {},
       "ll": "",
       "tl": "",
-      "rounds": 0
+      "rounds": 0,
+      "attributes": {}
     },
     "skill": {
+      "templates": [
+        "itemDescription",
+        "equipable"
+      ],
       "label": "",
       "name": "",
-      "description":"",
       "subtype": "",
       "reference": "",
       "value": -3,
@@ -188,16 +210,68 @@
       "specialization": "",
       "show": false
     },
-    "species": {},
-    "trait": {},
-    "career": {},
+    "species": {
+      "templates": [
+        "itemDescription",
+        "equipable"
+      ]
+    },
+    "trait": {
+      "templates": [
+        "itemDescription",
+        "equipable"
+      ]
+    },
+    "career": {
+      "templates": [
+        "itemDescription",
+        "equipable"
+      ]
+    },
     "psionic": {},
-    "armor": {},
-    "ammunition": {},
-    "consumable": {},
-    "computer": {},
-    "software": {},
-    "vehicle": {},
-    "ship": {}
+    "armor": {
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ]
+    },
+    "ammunition": {
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ]
+    },
+    "consumable": {
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ]
+    },
+    "computer": {
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "equipable"
+      ]
+    },
+    "software": {
+      "templates": [
+        "itemDescription",
+        "equipable"
+      ]
+    },
+    "vehicle": {
+      "templates": [
+        "itemDescription"
+      ]
+    },
+    "ship": {
+      "templates": [
+        "itemDescription"
+      ]
+    }
   }
 }

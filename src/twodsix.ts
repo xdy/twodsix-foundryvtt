@@ -14,11 +14,11 @@
 import {registerSettings} from './module/settings';
 import preloadTemplates from './module/templates';
 import registerHandlebarsHelpers from './module/handlebars';
-import TwodsixActor from './module/actors/actor';
-import TwodsixItem from "./module/items/item";
-import {TwodsixSystem} from './module/twodsix-system';
-import {TwodsixActorSheet} from "./module/actors/actor-sheet";
-import {TwodsixItemSheet} from "./module/items/item-sheet";
+import {TwodsixSystem} from './module/TwodsixSystem';
+import TwodsixActor from "./module/entities/TwodsixActor";
+import TwodsixItem from "./module/entities/TwodsixItem";
+import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 
 require('./styles/twodsix.scss');
 
@@ -31,7 +31,7 @@ Hooks.once('init', async function () {
         "\n" +
         "___________                 .___     .__        \n" +
         "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
-        "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___/  \\  \\/  /\n" +
+        "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___  /  \\  \\/  /\n" +
         "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
         "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
         "                             \\/    \\/         \\/\n" +
@@ -41,8 +41,8 @@ Hooks.once('init', async function () {
     );
 
     game.twodsix = {
-        twodsixActor: TwodsixActor,
-        twodsixItem: TwodsixItem
+        TwodsixActor: TwodsixActor,
+        TwodsixItem: TwodsixItem
     };
 
     /**

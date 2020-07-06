@@ -55,6 +55,57 @@ export class TwodsixActorSheet extends ActorSheet {
       item.sheet.render(true);
     });
 
+    if (this.actor.owner) {
+      let handler = (ev) => this._onDragItemStart(ev);
+      // Find all items on the character sheet.
+      html.find('li.item').each((i, li) => {
+        // Add draggable attribute and dragstart listener.
+        li.setAttribute('draggable', 'true');
+        li.addEventListener('dragstart', handler, false);
+      });
+    }
+
+    // Increase Item Quantity
+    html.find('.item-increase-quantity').click((event) => {
+      const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+      const item = this.actor.getOwnedItem(itemId).data;
+      this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity.value': Number(item.data.quantity.value) + 1 });
+    });
+
+    // Decrease Item Quantity
+    html.find('.item-decrease-quantity').click((event) => {
+      const li = $(event.currentTarget).parents('.item');
+      const itemId = li.attr('data-item-id');
+      const item = this.actor.getOwnedItem(itemId).data;
+      if (Number(item.data.quantity.value) > 0) {
+        this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity.value': Number(item.data.quantity.value) - 1 });
+      }
+    });
+
+    // Delete Item
+    html.find('.item-delete').click(async (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
+      const template = `
+      <form>
+        <div>
+          <div style="text-align: center;">"Delete owned item"} 
+            <strong>${ownedItem.name}</strong>?
+          </div>
+          <br>
+        </div>
+      </form>`;
+      await Dialog.confirm({
+        title: "Delete owned item",
+        content: template,
+        yes: async () => {
+          await this.actor.deleteOwnedItem(ownedItem.id);
+          li.slideUp(200, () => this.render(false));
+        },
+        no: () => {},
+      });
+    });
+
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
