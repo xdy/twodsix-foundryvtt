@@ -102,19 +102,23 @@ Hooks.once('ready', function () {
 // Add any additional hooks if necessary
 Hooks.on('preCreateActor', (actor, dir) => {
     if (game.settings.get('twodsix', 'defaultTokenSettings')) {
-        // Set wounds, advantage, and display name visibility
-        mergeObject(actor, {
-            'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
-            'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
-            'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE, // Default disposition to hostile
-            'token.name': actor.name, // Set token name to actor name
-        });
+        let link = true;
+        let disposition = 1;
 
-        // Default characters to HasVision = true and Link Data = true
-        if (actor.type == 'character') {
-            actor.token.vision = true;
-            actor.token.disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-            actor.token.actorLink = true;
+        if (actor.type !== 'character') {
+            link = false;
+            disposition = 0;
         }
+
+        actor.token = actor.token || {};
+        mergeObject(actor.token, {
+            'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+            'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+            vision: true,
+            dimSight: 30,
+            brightSight: 0,
+            actorLink: link,
+            disposition: disposition,
+        });
     }
 });

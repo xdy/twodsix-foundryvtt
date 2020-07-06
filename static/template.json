@@ -54,8 +54,8 @@
           }
         }
       },
-      "skills": {
-      },
+      "skills": [
+      ],
       "status": {
         "status": {
           "wounded": {
@@ -99,7 +99,6 @@
         "gear": [],
         "weapons": [],
         "armors": [],
-        "skills": [],
         "inventory": []
       }
     },
@@ -192,8 +191,7 @@
     },
     "skill": {
       "templates": [
-        "itemDescription",
-        "equipable"
+        "itemDescription"
       ],
       "label": "",
       "name": "",
@@ -202,6 +200,8 @@
       "value": -3,
       "defaultCharacteristic": "",
       "tasks": {
+        "name": "",
+        "description": "",
         "characteristic": "DEX",
         "timeIncrement": "seconds",
         "difficulty": "Average"
