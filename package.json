@@ -33,7 +33,7 @@
     "fs-extra": "^9.0.1",
     "mini-css-extract-plugin": "^0.9.0",
     "prettier": "^2.0.5",
-    "sass": "^1.26.9",
+    "sass": "^1.26.10",
     "sass-loader": "^9.0.1",
     "semantic-release": "^17.1.1",
     "ts-loader": "^7.0.5",
