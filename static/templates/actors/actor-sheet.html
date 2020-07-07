@@ -115,15 +115,19 @@
                         {{/if}}
                         {{/each}}
 
-                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
-                            <h2 class="flexbreak">Add Skill:</h2>
-                            <select name="data.addskillselect" style="width:200px;">
-                                <option></option>
-                                {{#each data.skills as |skills key|}}
-                                <option value="{{key}}">{{skills.label}}</option>
-                                {{/each}}
-                            </select>
+                        <div style="flex: 0 0 14px;">
+                            <a class="add-item" title="Add Skill" data-type="skill"><i class="fas fa-plus-circle"></i></a>
                         </div>
+
+                        <!--                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">-->
+<!--                            <h2 class="flexbreak">Add Skill:</h2>-->
+<!--                            <select name="data.addskillselect" style="width:200px;">-->
+<!--                                <option></option>-->
+<!--                                {{#each data.skills as |skills key|}}-->
+<!--                                <option value="{{key}}">{{skills.label}}</option>-->
+<!--                                {{/each}}-->
+<!--                            </select>-->
+<!--                        </div>-->
                     </div>
 
                 </div>
