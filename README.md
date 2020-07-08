@@ -67,7 +67,7 @@ See CHANGELOG.md
 
 ### Licenses
 Project Licensing:
-*  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2.
+*  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2 (see LICENSE)
 
 Content Usage and Licensing:
 *  Game system information and mechanics are licensed under the Open Game License, see OpenGameLicense.md for details.

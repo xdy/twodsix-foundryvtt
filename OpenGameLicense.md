@@ -8,7 +8,7 @@
 Cepheus Engine and Samardan Press™ are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press™.    
 </p>
 
-Open Content: The contents of this foundry vtt system are declared Open Game Content except for the portions specifically declared as Product Identity.
+Open Content: Everything in this foundry vtt system that is not covered under another license is Open Gaming Content. (See README.md for license details) 
 
 <h2>Publishing Your Own Material</h2>
 <p>
