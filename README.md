@@ -32,10 +32,10 @@ Quote from the srd
 
 Template fields:
 	UCF - just text, is the sole source of truth about the character, parsed from when tab is switched to 'character sheet'
-	Current - contains a modified copy of the temporary state of the character. Exists as long as the token does.
-	Notes - just text, filled in by the player
-	Gear - just text, filled in by the player (maybe, eventually, something calc sheet like. Not for now.)
-	Events - just text, filled in by the player.
+	Notes - An array of strings, used for whatever the player wants
+
+Actor tokens have:
+	Current - a copy of the UCF, adjusted for current situation. Removed with token.
 
 The sheet has two tabs:
 	UCF - textfield, from the template

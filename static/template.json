@@ -1,135 +1,15 @@
 {
   "Actor": {
     "types": [
-      "character",
-      "npc",
-      "animal",
-      "vehicle",
-      "ship"
+      "character"
     ],
-    "templates": {
-      "characteristics": {
-        "characteristics": {
-          "str": {
-            "value": 0,
-            "damage": 0,
-            "short": "STR",
-            "label": "Strengh"
-          },
-          "dex": {
-            "value": 0,
-            "damage": 0,
-            "short": "DEX",
-            "label": "Dexterity"
-          },
-          "end": {
-            "value": 0,
-            "damage": 0,
-            "short": "END",
-            "label": "Endurance"
-          },
-          "int": {
-            "value": 0,
-            "damage": 0,
-            "short": "INT",
-            "label": "Intelligence"
-          },
-          "edu": {
-            "value": 0,
-            "damage": 0,
-            "short": "EDU",
-            "label": "Education"
-          },
-          "soc": {
-            "value": 0,
-            "damage": 0,
-            "short": "SOC",
-            "label": "Social Status"
-          },
-          "psi": {
-            "value": 0,
-            "damage": 0,
-            "short": "PSI",
-            "label": "Psionic Strength"
-          }
-        }
-      },
-      "skills": [
-      ],
-      "status": {
-        "status": {
-          "wounded": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "seriouslyWounded": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "unconscious": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "dead": {
-            "type": "boolean",
-            "value": "false"
-          },
-          "Prone": {
-            "type": "boolean",
-            "value": "false"
-          }
-        }
-      },
-      "details": {
-        "gender": "",
-        "appearance": "",
-        "age": "",
-        "residence": "",
-        "birthplace": "",
-        "description": "",
-        "career": [
-          {
-            "service": "",
-            "years": 0
-          }
-        ],
-        "personalGoals": ""
-      },
-      "owned": {
-        "gear": [],
-        "weapons": [],
-        "armors": [],
-        "inventory": []
-      }
-    },
     "character": {
-      "templates": [
-        "characteristics",
-        "skills",
-        "status",
-        "details"
+      "UCF": "",
+      "notes": [
+        {
+          "note": ""
+        }
       ]
-    },
-    "npc": {
-      "templates": [
-        "characteristics",
-        "skills",
-        "status",
-        "details"
-      ]
-    },
-    "animal": {
-      "templates": [
-        "characteristics",
-        "skills",
-        "status"
-      ]
-    },
-    "vehicle": {
-      "flags": {}
-    },
-    "ship": {
-      "flags": {}
     }
   },
   "Item": {
@@ -171,7 +51,8 @@
         "physicalItem",
         "equipable"
       ],
-      "attributes": {}
+      "attributes": {
+      }
     },
     "weapon": {
       "templates": [
@@ -187,7 +68,8 @@
       "ll": "",
       "tl": "",
       "rounds": 0,
-      "attributes": {}
+      "attributes": {
+      }
     },
     "skill": {
       "templates": [

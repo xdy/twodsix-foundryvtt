@@ -29,17 +29,7 @@ export class TwodsixActorSheet extends ActorSheet {
     /** @override */
     getData() {
         const data: any = super.getData();
-        data.dtypes = ["String", "Number", "Boolean"];
-        let attr: any;
-        for (attr of Object.values(data.data.characteristics)) {
-            attr.isCheckbox = attr.dtype === "Boolean";
-        }
-        //
-
         data.isToken = this.actor.isToken;
-
-        //Where to keep the things parsed out from the UCF
-        data.data.fields = new Map<string, string>();
 
         return data;
     }

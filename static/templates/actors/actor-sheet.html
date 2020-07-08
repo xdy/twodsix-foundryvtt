@@ -2,141 +2,76 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"
-             alt="actor image"/>
-        <div class="header-fields">
-            <h1 class="charname">
-                <label>
-                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-                </label></h1>
-        </div>
-        {{!-- The grid classes are defined in styles/global/_grid.scss. To use,
-        use both the "grid" and "grid-Ncol" class where "N" can be any number
-        from 1 to 12 and will create that number of columns. --}}
-        <div class="characteristics grid grid-3col">
-            <div class="characteristic flexrow flex-group-center">
-                <label></label>
-                <span>Value</span>
-                <span>Curr</span>
-                <span>Dmg</span>
-                <span>Mod</span>
-            </div>
-            {{#each data.characteristics as |characteristic key|}}
-            <div class="characteristic flexrow flex-group-center">
-                <label for="characteristics.{{key}}" class="resource-label">{{characteristic.short}}</label>
-                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>
-                <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>
-                <input id="characteristics.{{key}}" type="text" name="damage" value="{{characteristic.value}}"
-                       data-dtype="Number"/>
-                <span class="characteristic-mod rollable" data-roll="2d6+@characteristics.{{key}}.mod"
-                      data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
-            </div>
-            {{/each}}
-        </div>
+<!--        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"-->
+<!--             alt="actor image"/>-->
+<!--        <div class="header-fields">-->
+<!--            <h1 class="charname">-->
+<!--                <label>-->
+<!--                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>-->
+<!--                </label></h1>-->
+<!--        </div>-->
+<!--        {{!&#45;&#45; The grid classes are defined in styles/global/_grid.scss. To use,-->
+<!--        use both the "grid" and "grid-Ncol" class where "N" can be any number-->
+<!--        from 1 to 12 and will create that number of columns. &#45;&#45;}}-->
+<!--        <div class="characteristics grid grid-3col">-->
+<!--            <div class="characteristic flexrow flex-group-center">-->
+<!--                <label></label>-->
+<!--                <span>Value</span>-->
+<!--                <span>Curr</span>-->
+<!--                <span>Dmg</span>-->
+<!--                <span>Mod</span>-->
+<!--            </div>-->
+<!--            {{#each data.characteristics as |characteristic key|}}-->
+<!--            <div class="characteristic flexrow flex-group-center">-->
+<!--                <label for="characteristics.{{key}}" class="resource-label">{{characteristic.short}}</label>-->
+<!--                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>-->
+<!--                <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>-->
+<!--                <input id="characteristics.{{key}}" type="text" name="damage" value="{{characteristic.value}}"-->
+<!--                       data-dtype="Number"/>-->
+<!--                <span class="characteristic-mod rollable" data-roll="2d6+@characteristics.{{key}}.mod"-->
+<!--                      data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>-->
+<!--            </div>-->
+<!--            {{/each}}-->
+<!--        </div>-->
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="ucf">UCF</a>
-        <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="items">Items</a>
-        <a class="item" data-tab="description">Description</a>
+        <a class="actor" data-tab="ucf">UCF</a>
+        <a class="actor" data-tab="play">Play</a>
+        <a class="actor" data-tab="notes">Notes</a>
 
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Description Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=data.details.description target="data.details.description" button=true owner=owner
-            editable=editable}}
+        {{!-- UCF Tab --}}
+        <div class="tab ucf" data-group="primary" data-tab="ucf">
+            {{editor content=actor.data.ucf target="actor.data.ucf" button=true owner=owner editable=editable}}
         </div>
 
-        {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
-            <ol class="items-list">
-                <li class="item flexrow item-header">
-                    <div class="item-image"></div>
-                    <div class="item-name">Name</div>
-                    <div class="item-controls">
-                        <a class="item-control item-create" title="Create item" data-type="item"><i
-                                class="fas fa-plus"></i> Add item</a>
+        {{!-- Notes Tab --}}
+        <div class="tab notes" data-group="primary" data-tab="notes">
+            {{editor content=actor.notes target="actor.notes" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- Play Tab --}}
+        <div class="tab play" data-group="primary" data-tab="play">
+            <ol class="skills-list">
+                {{#each data.skills as |skill|}}
+                <li>
+                    <div class="selection-control">
+                        <input type="radio" name="skill-selection" data-skill="{{skill}}">
                     </div>
-                </li>
-                {{#each actor.items as |item id|}}
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <div class="item-image">
-                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="item name"/>
-                    </div>
-                    <h4 class="item-name">{{item.name}}</h4>
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    <div class="selection-content">
+                        <h3>{{skill.[0]}}</h3>
+                        <p>{{skill.[0]}}</p>
                     </div>
                 </li>
                 {{/each}}
             </ol>
         </div>
-
-        <div class="tab skills" data-group="primary" data-tab="skills">
-            <div class="skills grid grid-2col">
-
-                <div class="skills flexrow flex-group-center">
-
-                    <div class="skills grid grid-2col">
-                        {{#each data.skills as |skills key|}}
-                        {{#if skills.show}}
-                        {{#if skills.cascade}}
-                        <div class="skills flexrow flex-group-center">
-                            <label for="skills.cascade" class="resource-label">{{skills.label}}</label>
-                        </div>
-                        <div class="skills flexrow flex-group-center">
-                            <input type="text" id="skills.cascade" name="data.skills.{{key}}.value"
-                                   title="This is a cascade skill, it can only be 0, any levels must be put into a specialization."
-                                   value="{{skills.value}}" data-dtype="Number"/>
-                        </div>
-                        {{else}}
-                        {{#if skills.parent}}
-                        <div class="skills flexrow flex-group-center">
-                            <label for="skills.parent" class="resource-label">{{skills.label}}</label>
-                        </div>
-                        <div class="skills flexrow flex-group-center">
-                            <input type="text" id="skills.parent" name="data.skills.{{key}}.value"
-                                   value="{{skills.value}}" data-dtype="Number"/>
-                        </div>
-                        {{else}}
-                        <div class="skills flexrow flex-group-center">
-                            <label for="else" class="resource-label">{{skills.label}}</label>
-                        </div>
-                        <div class="skills flexrow flex-group-center">
-                            <input type="text" id="else" name="data.skills.{{key}}.value" value="{{skills.value}}"
-                                   data-dtype="Number"/>
-                        </div>
-                        {{/if}}
-                        {{/if}}
-                        {{/if}}
-                        {{/each}}
-
-                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
-                            <h2 class="flexbreak">Add Skill:</h2>
-                            <select name="data.addskillselect" style="width:200px;">
-                                <option></option>
-                                {{#each data.allskills as |skills key|}}
-                                <option value="{{key}}">{{skills.name}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="skills flexrow flex-group-center">
-
-                </div>
-            </div>
-        </div>
-
     </section>
 </form>
 

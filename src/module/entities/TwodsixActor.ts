@@ -42,15 +42,45 @@ export default class TwodsixActor extends Actor {
      * Prepare Character type specific data
      */
     _prepareCharacterData(actorData: ActorData) {
-        const data = actorData.data;
+        const data: any = actorData.data;
 
-        for (const [key, c] of Object.entries(data["characteristics"])) {
-            let current = c["value"] - c["damage"];
-            c["current"] = current;
-            c["mod"] = Math.floor((current - 6) / 3);
-            // if (current === 0){c["mod"] = -3;} //TODO Should be an option for the predecessor to CE
+        //TODO Temporary hardcoding
+        data.UCF = "Bruce Ayala \t786A9A \tAge 38\n" +
+            "\tEntertainer (5 terms) \tCr70,000\n" +
+            "\tAthletics-1, Admin-1, Advocate-1, Bribery-1, Carousing-3, Computer-2, Gambling-0, Grav Vehicle-0, Liaison-2, Linguistics-0, Streetwise-0\n" +
+            "\tHigh passage (x2)";
+        data.notes = [];
+
+        this._parseUCF(data, data.UCF)
+    }
+
+    _modForCharacteristic(upp: string, pos: number): number {
+        //TODO If characteristic is 0 and not cepheus, set mod to -3
+        return (this._fromPseudoHex(upp.substr(pos)) - 6) / 3;
+    }
+
+    _parseUCF(data: any, ucf: string): any {
+        let ucfline = ucf.replace(/(\r\n|\n|\r)/gm, "");
+        let strings: string[] = ucfline.split("\t");
+        data.name = strings[0];
+        data.upp = strings[1];
+        data.age = strings[2]
+        data.career = strings[3];
+        data.funds = strings[4];
+        data.skills = new Map<string, number>()
+        let skillString = strings[5];
+        skillString.split(",").forEach(x => {
+            let strings1 = x.split("-").map(x => x.trim());
+            data.skills.set(strings1[0], parseInt(strings1[1]));
+        })
+        if (strings.length === 8) {
+            data.traits = strings[6];
+            data.equipment = strings[7];
+        } else {
+            data.equipment = strings[6];
         }
 
+        return data;
     }
 
     _pseudoHex(value: number) {
