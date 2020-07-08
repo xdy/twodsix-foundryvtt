@@ -16,6 +16,7 @@ The character is described in UCF, support import from 10001 characters and, I s
 Quote from the srd
 	Universal Character Format
 	The following format is used to represent a character’s basic game statistics in the Cepheus Engine rules.
+  ```
 	[Character Name, with rank and/or noble title, if appropriate] 	[Character UPP] 	Age [Character Age]
 	[Character Careers, with terms listed in parentheses]	Cr[Character Funds]
 	[Character Skill List, in alphabetical order, with skill levels listed after skill names]
@@ -26,6 +27,7 @@ Quote from the srd
 	Entertainer (5 terms) 	Cr70,000
 	Athletics-1, Admin-1, Advocate-1, Bribery-1, Carousing-3, Computer-2, Gambling-0, Grav Vehicle-0, Liaison-2, Linguistics-0, Streetwise-0
 	High passage (x2)
+```
 
 Template fields:
 	UCF - just text, is the sole source of truth about the character, parsed from when tab is switched to 'character sheet'
