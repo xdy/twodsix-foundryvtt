@@ -92,7 +92,9 @@
                             <label for="skills.cascade" class="resource-label">{{skills.label}}</label>
                         </div>
                         <div class="skills flexrow flex-group-center">
-                            <input type="text" id="skills.cascade" name="data.skills.{{key}}.value" title = "This is a cascade skill, it can only be 0, any levels must be put into a specialization." value="{{skills.value}}" data-dtype="Number"/>
+                            <input type="text" id="skills.cascade" name="data.skills.{{key}}.value"
+                                   title="This is a cascade skill, it can only be 0, any levels must be put into a specialization."
+                                   value="{{skills.value}}" data-dtype="Number"/>
                         </div>
                         {{else}}
                         {{#if skills.parent}}
@@ -100,7 +102,8 @@
                             <label for="skills.parent" class="resource-label">{{skills.label}}</label>
                         </div>
                         <div class="skills flexrow flex-group-center">
-                            <input type="text" id="skills.parent" name="data.skills.{{key}}.value" value="{{skills.value}}" data-dtype="Number"/>
+                            <input type="text" id="skills.parent" name="data.skills.{{key}}.value"
+                                   value="{{skills.value}}" data-dtype="Number"/>
                         </div>
                         {{else}}
                         <div class="skills flexrow flex-group-center">
@@ -115,19 +118,15 @@
                         {{/if}}
                         {{/each}}
 
-                        <div style="flex: 0 0 14px;">
-                            <a class="add-item" title="Add Skill" data-type="skill"><i class="fas fa-plus-circle"></i></a>
+                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
+                            <h2 class="flexbreak">Add Skill:</h2>
+                            <select name="data.addskillselect" style="width:200px;">
+                                <option></option>
+                                {{#each data.allskills as |skills key|}}
+                                <option value="{{key}}">{{skills.label}}</option>
+                                {{/each}}
+                            </select>
                         </div>
-
-                        <!--                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">-->
-<!--                            <h2 class="flexbreak">Add Skill:</h2>-->
-<!--                            <select name="data.addskillselect" style="width:200px;">-->
-<!--                                <option></option>-->
-<!--                                {{#each data.skills as |skills key|}}-->
-<!--                                <option value="{{key}}">{{skills.label}}</option>-->
-<!--                                {{/each}}-->
-<!--                            </select>-->
-<!--                        </div>-->
                     </div>
 
                 </div>

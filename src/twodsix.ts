@@ -19,6 +19,7 @@ import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
+import {TWODSIX, TwodsixItemList} from "./module/config";
 
 require('./styles/twodsix.scss');
 
@@ -39,6 +40,7 @@ Hooks.once('init', async function () {
     console.log(
         `TWODSIX | Initializing Twodsix system\n${ASCII}`,
     );
+
 
     game.twodsix = {
         TwodsixActor: TwodsixActor,
@@ -93,14 +95,24 @@ Hooks.once('setup', function () {
 /* ------------------------------------ */
 /* When ready							*/
 /* ------------------------------------ */
-Hooks.once('ready', function () {
+Hooks.once('ready', async function () {
     // Do anything once the system is ready
     //Set up migrations here once needed.
+
+    //TODO The below reads all skills from all compendiums. Works for now, but needs to be revisited. Should only read *this* variant's skills.
+     TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+//TODO The above doesn't work. Check DW again.
+
+
+    CONFIG.TWODSIX = TWODSIX;
 
 });
 
 // Add any additional hooks if necessary
-Hooks.on('preCreateActor', (actor, dir) => {
+Hooks.on('preCreateActor', async (actor, dir) => {
+//TEMP TODO REMOVE
+    CONFIG.TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+
     if (game.settings.get('twodsix', 'defaultTokenSettings')) {
         let link = true;
         let disposition = 1;

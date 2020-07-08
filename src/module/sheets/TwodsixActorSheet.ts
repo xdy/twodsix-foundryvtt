@@ -2,6 +2,7 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
+import {TWODSIX} from "../config";
 
 export class TwodsixActorSheet extends ActorSheet {
 
@@ -40,6 +41,7 @@ export class TwodsixActorSheet extends ActorSheet {
         data.itemsByType = {};
         data.skills = {};
         data.weapons = {};
+        data.allSkills = CONFIG.TWODSIX.skills;
 
         if (data.items) {
             for (const item of data.items) {
