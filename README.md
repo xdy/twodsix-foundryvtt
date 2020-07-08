@@ -12,8 +12,10 @@ a) completed said compatibility
 b) actually have the license to do so
 
 Intended design:
+
 The character is described in UCF, support import from 10001 characters and, I suppose, travellertools (extends it a bit)
 Quote from the srd
+
 	Universal Character Format
 	The following format is used to represent a character’s basic game statistics in the Cepheus Engine rules.
   ```
