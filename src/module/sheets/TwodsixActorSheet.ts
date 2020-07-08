@@ -41,7 +41,7 @@ export class TwodsixActorSheet extends ActorSheet {
         data.itemsByType = {};
         data.skills = {};
         data.weapons = {};
-        data.allSkills = CONFIG.TWODSIX.skills;
+        data.data.allSkills = CONFIG.TWODSIX.skills;
 
         if (data.items) {
             for (const item of data.items) {

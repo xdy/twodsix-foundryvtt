@@ -100,9 +100,7 @@ Hooks.once('ready', async function () {
     //Set up migrations here once needed.
 
     //TODO The below reads all skills from all compendiums. Works for now, but needs to be revisited. Should only read *this* variant's skills.
-     TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
-//TODO The above doesn't work. Check DW again.
-
+    TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
 
     CONFIG.TWODSIX = TWODSIX;
 
@@ -110,8 +108,6 @@ Hooks.once('ready', async function () {
 
 // Add any additional hooks if necessary
 Hooks.on('preCreateActor', async (actor, dir) => {
-//TEMP TODO REMOVE
-    CONFIG.TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
 
     if (game.settings.get('twodsix', 'defaultTokenSettings')) {
         let link = true;
