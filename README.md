@@ -41,19 +41,21 @@ The sheet has two tabs:
 	UCF - textfield, from the template
 	Character - what's been parsed from UCF (or the Current field, I guess)
 		Has 'Copy To UCF' and 'Copy From UCF' that does what it says.
-		Has several dynamic lists of radiobuttons formated like 'text:value'
+		Has several dynamic lists of maps backed by radiobuttons formated like 'key:value'
 			Attributes (attribute/value:mod)
 			Skills (skillnamne:value)
 			Difficulties (Average:8, Hard:10, etc)
-			Modifiers (-9 to +9, I guess)
-			Time Increment (seconds, rounds, minutes, etc)
-			Time Increment Modifier (-8 to +8, I guess)
-		Has a few checkboxes for options
+			Modifiers (-9:-9 to +9:+9, I guess)
+			Time Increment (seconds:seconds, rounds, minutes, etc)
+			Time Increment Modifier (-8:-8 to +8:+8, I guess)
+            Tool/Weapon (name:value), where value is either ignored or a dice roll formula. 
+		Has a few checkboxes for transient options:
 			Advantage (3d6, pick highest), disadvantage (2d6 pick lowest)
 		Has a 'Roll' button that rolls based on the above
 		Has a 'Copy Macro' button that creates a roll macro based on the above. (Pseudocode like: "Average Admin roll 2d6+@Admin+@StrMod+@Modifier+@TimeIncrementModifier, takes 1d6*TimeIncrement")
 		Has a 'Take Damage' button that pops up a dialog with a way to enter a number, and an OK button. Applies damage to data.Current
 		Has a 'Heal Damage' button with +/- button next to each attribute. Can't heal above UCF value for attribute.
+        Has a 'Do Damage' button with 
 
 The system has settings for:
 	Mod for attribute 0, defaults to -2

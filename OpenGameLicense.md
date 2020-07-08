@@ -119,4 +119,5 @@ These Stars Are Ours! Copyright © 2016, Stellagama Publishing; Authors Omer Gol
 and Richard Hazlewood.
 Cepheus Light © 2018, Stellagama Publishing; Authors Omer Golan-Joel and Josh Peters.
 Cepheus: Faster Than Light © 2019, Stellagama Publishing; Author Omer Golan-Joel.
+The 2d6 Science Fiction System Reference Document (‘2d6 SF SRD’, '1e 2d6 SF SRD', '2e SF SRD'), is © 2014-2017, Universal Machine Publications.
 		</pre>

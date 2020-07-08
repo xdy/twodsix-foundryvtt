@@ -51,53 +51,7 @@ export default class TwodsixActor extends Actor {
             // if (current === 0){c["mod"] = -3;} //TODO Should be an option for the predecessor to CE
         }
 
-        // Process Cascade skills
-        // So... if a child skill is set to 0 or 1, then the cascade parent is set to 0.
-        let key: string, attr: any;
-        let o = data.skills || [];
-        for ([key, attr] of Object.entries(o)) {
-
-            if (attr.parent){
-                const pnt = data.skills[attr.parent];
-                if (attr.value >= 0) {
-                    pnt.value = 0;
-                    pnt.show = true;
-                }
-            }
-
-            if (attr.cascade){
-                if (attr.value > 0) {
-                    attr.value = 0;
-                }
-            }
-
-            if (attr.label == "Jack Of All Trades") { //TODO Do I want this?
-                attr.show = attr.value > 0;
-            } else {
-                attr.show = attr.value >= 0;
-            }
-
-            if (data.addskillselect == key) {
-                var skill = data.addskillselect;
-                data.addskillselect = "";
-                if (data.skills[skill].cascade){data.skills[skill].value = 0;}
-                data.skills[skill].show = true;
-            }
-
-        }
-
-        // data.upp = this._upp(actorData);
-
     }
-
-    // _upp(actorData: ActorData) {
-    //     const data = actorData.data;
-    //
-    //     for (const abl of Object.values(data.characteristics as Record<any, any>)) {
-    //         if (abl.short != 'PSI') data.upp += this._pseudoHex(abl.value);
-    //     }
-    //     return data;
-    // }
 
     _pseudoHex(value: number) {
         switch (value) {
