@@ -11,8 +11,6 @@ export default class TwodsixActor extends Actor {
         super.prepareData();
 
         const actorData = this.data;
-        const {data} = actorData.data;
-        const {flags} = actorData.flags;
 
         // Make separate methods for each Actor type (character, npc, etc.) to keep
         // things organized.
@@ -33,7 +31,7 @@ export default class TwodsixActor extends Actor {
             //     this._prepareShipData(actorData);
             //     break;
             default:
-                console.log("Unhandled actorData.type in prepareData:" + actorData.type)
+                console.log(`Unhandled actorData.type in prepareData:${actorData.type}`)
         }
 
     }
@@ -41,10 +39,10 @@ export default class TwodsixActor extends Actor {
     /**
      * Prepare Character type specific data
      */
-    _prepareCharacterData(actorData: ActorData) {
-        const data: any = actorData.data;
+    _prepareCharacterData(actorData:ActorData) {
+        const {data} = actorData;
 
-        //TODO Temporary hardcoding
+        // TODO Temporary hardcoding
         data.UCF = "Bruce Ayala \t786A9A \tAge 38\n" +
             "\tEntertainer (5 terms) \tCr70,000\n" +
             "\tAthletics-1, Admin-1, Advocate-1, Bribery-1, Carousing-3, Computer-2, Gambling-0, Grav Vehicle-0, Liaison-2, Linguistics-0, Streetwise-0\n" +
@@ -54,36 +52,75 @@ export default class TwodsixActor extends Actor {
         this._parseUCF(data, data.UCF)
     }
 
-    _modForCharacteristic(upp: string, pos: number): number {
-        //TODO If characteristic is 0 and not cepheus, set mod to -3
+    _modForCharacteristic(upp:string, pos:number):number {
+        // TODO If characteristic is 0 and not cepheus, set mod to -3
         return (this._fromPseudoHex(upp.substr(pos)) - 6) / 3;
     }
 
-    _parseUCF(data: any, ucf: string): any {
-        let ucfline = ucf.replace(/(\r\n|\n|\r)/gm, "");
-        let strings: string[] = ucfline.split("\t");
-        data.name = strings[0];
-        data.upp = strings[1];
-        data.age = strings[2]
-        data.career = strings[3];
-        data.funds = strings[4];
-        data.skills = new Map<string, number>()
-        let skillString = strings[5];
-        skillString.split(",").forEach(x => {
-            let strings1 = x.split("-").map(x => x.trim());
-            data.skills.set(strings1[0], parseInt(strings1[1]));
-        })
-        if (strings.length === 8) {
-            data.traits = strings[6];
-            data.equipment = strings[7];
-        } else {
-            data.equipment = strings[6];
-        }
+    // TODO Move somewhere more appropriate
+    static readonly CHARACTERISTICS = ["STR", "DEX", "END", "INT", "EDU", "SOC"];
 
-        return data;
+    _parseUCF(data:any, ucf:string):any {
+        const ucfData = data;
+        const ucfline = ucf.replace(/(\r\n|\n|\r)/gm, "");
+        const strings:string[] = ucfline.split("\t");
+        ucfData.name = strings[0];
+
+        const characteristics:any[] = [];
+        const upp:string = strings[1];
+        for (let i = 0; i < upp.trim().split('').length; i++) {
+            const value:number = this._fromPseudoHex(upp.trim().split('')[i]);
+            const second:string = TwodsixActor.CHARACTERISTICS[i];
+            characteristics.push([second, value]);
+        }
+        ucfData.characteristics = characteristics;
+        ucfData.upp = upp;
+
+        ucfData.age = strings[2]
+        ucfData.career = strings[3];
+        ucfData.funds = strings[4];
+
+        const skills = [];
+        strings[5].split(",").forEach(x => {
+            const keyValue = x.split("-").map(y => y.trim());
+            skills.push([keyValue[0], keyValue[1]]);
+        })
+        ucfData.skills = skills;
+
+        // TODO Do more with traits and equipment
+        if (strings.length === 8) {
+            ucfData.traits = strings[6];
+            ucfData.equipment = strings[7];
+        } else {
+            ucfData.equipment = strings[6];
+        }
+        // TODO Parse this out and do something with it... (Like, if 'laser pistol', look in compendium, find 'laser pistol', find damage of that, and set it to "laser pistol":"3d6", or whatever the damage is.)
+        ucfData.tools = [""];
+
+        // TODO All the stuff below this should probably be in a json file, not hardcoded.
+
+        // TODO Only cepheus for now, should support other lists
+        // Should maybe hide column if only one value?
+        const difficulties = [];
+        ["Routine:6", "Average:8", "Difficult:10", "Very Difficult:12", "Formidable:14"].forEach(x => {
+            const keyValue = x.split(":");
+            difficulties.push([keyValue[0], keyValue[1]]);
+        })
+        ucfData.difficulties = difficulties;
+        // TODO For cepheus, should really give DM instead of changing value. But, meh, not now.
+
+        ucfData.modifiers = Array.from(Array(19).keys()).map(x => x - 9);
+
+        // TODO Only cepheus for now, should support other lists
+        // Should maybe hide column if empty or only one value?
+        ucfData.increments = ["seconds", "rounds", "minutes", "kiloseconds", "hours", "days", "weeks", "months", "quarters"];
+        ucfData.incrementmodifiers = Array.from(Array(17).keys()).map(x => x - 8);
+
+
+        return ucfData;
     }
 
-    _pseudoHex(value: number) {
+    _pseudoHex(value:number) {
         switch (value) {
             case 0:
             case 1:
@@ -145,11 +182,11 @@ export default class TwodsixActor extends Actor {
             case 33:
                 return "Z";
             default:
-                throw "value " + value + " is not usable as a pseudohexadecimal value";
+                throw new Error(`value ${value} is not usable as a pseudohexadecimal value`);
         }
     }
 
-    _fromPseudoHex(value: string) {
+    _fromPseudoHex(value:string) {
         switch (value) {
             case "0":
                 return 0;
@@ -220,12 +257,12 @@ export default class TwodsixActor extends Actor {
             case "Z":
                 return 33;
             default:
-                throw "value " + value + " is not a pseudohexadecimal value";
+                throw new Error(`value ${value} is not a pseudohexadecimal value`);
         }
     }
 
 
-    _nobleTitle(soc: number, gender: string) {
+    _nobleTitle(soc:number, gender:string) {
         switch (soc) {
             case 10:
                 return gender === "M" ? "Lord" : "Lady";

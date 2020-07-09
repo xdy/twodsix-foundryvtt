@@ -37,6 +37,8 @@ module.exports = {
         'import/extensions': [1, 'always'],
         'class-methods-use-this': 0,
         'max-classes-per-file': 0,
+        "prefer-destructuring": 0,
+        'no-plusplus': 0
     },
     settings: {
         'import/resolver': {

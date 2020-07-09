@@ -42,8 +42,8 @@ The sheet has two tabs:
 	Character - what's been parsed from UCF (or the Current field, I guess)
 		Has 'Copy To UCF' and 'Copy From UCF' that does what it says.
 		Has several dynamic lists of maps backed by radiobuttons formated like 'key:value'
-			Attributes (attribute/value:mod)
 			Skills (skillnamne:value)
+			Attributes (attribute/value:mod)
 			Difficulties (Average:8, Hard:10, etc)
 			Modifiers (-9:-9 to +9:+9, I guess)
 			Time Increment (seconds:seconds, rounds, minutes, etc)

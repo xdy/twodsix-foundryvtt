@@ -23,6 +23,8 @@
     "types": [
       "jquery",
       "webpack-env"
-    ]
+    ],
+    "allowJS": true,
+    "alwaysStrict": true
   }
 }
