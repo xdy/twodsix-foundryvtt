@@ -13,7 +13,6 @@ export class TwodsixActorSheet extends ActorSheet {
             template: "systems/twodsix/templates/actors/actor-sheet.html",
             width: 600,
             height: 600,
-            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
         });
     }
 
