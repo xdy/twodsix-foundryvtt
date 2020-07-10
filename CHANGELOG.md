@@ -1,3 +1,12 @@
+## [0.1.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.15...v0.1.16) (2020-07-10)
+
+
+### Bug Fixes
+
+* Most things show up on the sheet, but it turns out radios are real wonky in foundry right now. ([df6fdb8](https://github.com/xdy/twodsix-foundryvtt/commit/df6fdb8afcaa92a85303e46dfc145be5fc88ebd7))
+* Removing unused stuff as I'm heading in a new direction. ([01af0e8](https://github.com/xdy/twodsix-foundryvtt/commit/01af0e889935e9c95976edc21fc3ceb3ba228065))
+* Updated ts-loader, removed bogus tsconfig.json setting. ([c809312](https://github.com/xdy/twodsix-foundryvtt/commit/c809312dc1df76aa6f9db7c2d7d163836f17e747))
+
 ## [0.1.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.14...v0.1.15) (2020-07-05)
 
 
