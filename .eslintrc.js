@@ -3,7 +3,12 @@ module.exports = {
         browser: true,
         es6: true
     },
-    extends: ['airbnb-base', 'prettier'],
+
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        'eslint-config-prettier'
+    ],
     globals: {
         Atomics: 'readonly',
         SharedArrayBuffer: 'readonly',
@@ -34,11 +39,17 @@ module.exports = {
         'no-new': 0,
         'no-underscore-dangle': 0,
         'no-console': 0,
-        'import/extensions': [1, 'always'],
         'class-methods-use-this': 0,
         'max-classes-per-file': 0,
         "prefer-destructuring": 0,
-        'no-plusplus': 0
+        'no-plusplus': 0,
+        'no-undef': 0,
+        'prefer-rest-params': 0,
+        '@typescript-eslint/explicit-module-boundary-types': ["error", {
+            allowDirectConstAssertionInArrowFunctions: true,
+            allowHigherOrderFunctions: true,
+            allowTypedFunctionExpressions: true
+        }]
     },
     settings: {
         'import/resolver': {

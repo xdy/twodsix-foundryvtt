@@ -24,7 +24,7 @@ require('./styles/twodsix.scss');
 /* ------------------------------------ */
 
 Hooks.once('init', async function () {
-    let ASCII = "\n" +
+    const ASCII = "\n" +
         "\n" +
         "___________                 .___     .__        \n" +
         "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
@@ -39,11 +39,11 @@ Hooks.once('init', async function () {
 
 
     game.twodsix = {
-        TwodsixActor: TwodsixActor,
-        TwodsixItem: TwodsixItem
+        TwodsixActor,
+        TwodsixItem
     };
 
-    //Actor
+    // Actor
     CONFIG.Actor.entityClass = TwodsixActor;
     Actors.unregisterSheet('core', ActorSheet);
     Actors.registerSheet('twodsix', TwodsixActorSheet, {
@@ -51,7 +51,7 @@ Hooks.once('init', async function () {
         makeDefault: true,
     });
 
-    //Items
+    // Items
     CONFIG.Item.entityClass = TwodsixItem;
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
@@ -73,7 +73,7 @@ Hooks.once('setup', function () {
 /* ------------------------------------ */
 Hooks.once('ready', async function () {
     // Do anything once the system is ready
-    //Set up migrations here once needed.
+    // Set up migrations here once needed.
 
 });
 
@@ -96,6 +96,6 @@ Hooks.on('preCreateActor', async (actor, dir) => {
         dimSight: 30,
         brightSight: 0,
         actorLink: link,
-        disposition: disposition,
+        disposition,
     });
 });

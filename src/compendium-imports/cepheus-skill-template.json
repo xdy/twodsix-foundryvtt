@@ -3,7 +3,7 @@
   "type": "skill",
   "data": {
     "description": "{{description}}",
-      "notes": "",
+    "notes": "",
     "label": "{{label}}",
     "name": "{{name}}",
     "subtype": "{{subtype}}",
@@ -19,7 +19,7 @@
     },
     "cascade": false,
     "specialization": "",
-    "show": false,
+    "show": false
   },
   "img": "icons/svg/mystery-man.svg"
 }

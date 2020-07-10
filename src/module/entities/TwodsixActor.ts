@@ -7,7 +7,7 @@ export default class TwodsixActor extends Actor {
     /**
      * Augment the basic actor data with additional dynamic data.
      */
-    prepareData() {
+    prepareData():void {
         super.prepareData();
 
         const actorData = this.data;
@@ -39,7 +39,7 @@ export default class TwodsixActor extends Actor {
     /**
      * Prepare Character type specific data
      */
-    _prepareCharacterData(actorData:ActorData) {
+    _prepareCharacterData(actorData:ActorData):void {
         const {data} = actorData;
 
         // TODO Temporary hardcoding
@@ -60,13 +60,14 @@ export default class TwodsixActor extends Actor {
     // TODO Move somewhere more appropriate
     static readonly CHARACTERISTICS = ["STR", "DEX", "END", "INT", "EDU", "SOC"];
 
-    _parseUCF(data:any, ucf:string):any {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    _parseUCF(data:any, ucf:string):unknown {
         const ucfData = data;
         const ucfline = ucf.replace(/(\r\n|\n|\r)/gm, "");
         const strings:string[] = ucfline.split("\t");
         ucfData.name = strings[0];
 
-        const characteristics:any[] = [];
+        const characteristics:unknown[] = [];
         const upp:string = strings[1];
         for (let i = 0; i < upp.trim().split('').length; i++) {
             const value:number = this._fromPseudoHex(upp.trim().split('')[i]);
@@ -116,11 +117,10 @@ export default class TwodsixActor extends Actor {
         ucfData.increments = ["seconds", "rounds", "minutes", "kiloseconds", "hours", "days", "weeks", "months", "quarters"];
         ucfData.incrementmodifiers = Array.from(Array(17).keys()).map(x => x - 8);
 
-
         return ucfData;
     }
 
-    _pseudoHex(value:number) {
+    _pseudoHex(value:number):string {
         switch (value) {
             case 0:
             case 1:
@@ -132,7 +132,7 @@ export default class TwodsixActor extends Actor {
             case 7:
             case 8:
             case 9:
-                return value;
+                return String(value);
             case 10:
                 return "A";
             case 11:
@@ -186,7 +186,7 @@ export default class TwodsixActor extends Actor {
         }
     }
 
-    _fromPseudoHex(value:string) {
+    _fromPseudoHex(value:string):number {
         switch (value) {
             case "0":
                 return 0;
@@ -261,8 +261,7 @@ export default class TwodsixActor extends Actor {
         }
     }
 
-
-    _nobleTitle(soc:number, gender:string) {
+    _nobleTitle(soc:number, gender:string):string {
         switch (soc) {
             case 10:
                 return gender === "M" ? "Lord" : "Lady";

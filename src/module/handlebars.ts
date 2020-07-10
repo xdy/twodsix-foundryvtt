@@ -1,5 +1,5 @@
-export default function registerHandlebarsHelpers() {
-    Handlebars.registerHelper('add', function(a, b) {
+export default function registerHandlebarsHelpers():void {
+    Handlebars.registerHelper('add', function (a, b) {
         return a + b;
     });
 
@@ -7,7 +7,7 @@ export default function registerHandlebarsHelpers() {
         const args = [].slice.apply(arguments);
         const opts = args.pop();
 
-        let { fn } = opts;
+        let {fn} = opts;
         for (let i = 0; i < args.length; ++i) {
             if (args[i]) continue;
             fn = opts.inverse;
@@ -16,19 +16,19 @@ export default function registerHandlebarsHelpers() {
         return fn(this);
     });
 
-    Handlebars.registerHelper('toLowerCase', function(str) {
+    Handlebars.registerHelper('toLowerCase', function (str) {
         return String.prototype.toLowerCase.call(str ?? '');
     });
 
-    Handlebars.registerHelper('multiply', function(a, b) {
+    Handlebars.registerHelper('multiply', function (a, b) {
         return a * b;
     });
 
     // If you need to add Handlebars helpers, here are a few useful examples:
-    Handlebars.registerHelper('concat', function() {
+    Handlebars.registerHelper('concat', function () {
         let outStr = '';
-        for (let arg in arguments) {
-            if (typeof arguments[arg] != 'object') {
+        for (const arg in arguments) {
+            if (typeof arguments[arg] !== 'object') {
                 outStr += arguments[arg];
             }
         }

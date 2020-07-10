@@ -5,7 +5,7 @@
 export class TwodsixItemSheet extends ItemSheet {
 
     /** @override */
-    static get defaultOptions() {
+    static get defaultOptions():FormApplicationOptions {
         return mergeObject(super.defaultOptions, {
             classes: ["twodsix", "sheet", "item"],
             width: 520,
@@ -15,7 +15,7 @@ export class TwodsixItemSheet extends ItemSheet {
     }
 
     /** @override */
-    get template() {
+    get template():string {
         const path = "systems/twodsix/templates/items";
         // Return a single sheet for all item types.
         return `${path}/item-sheet.html`;
@@ -28,16 +28,16 @@ export class TwodsixItemSheet extends ItemSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    getData() {
+    getData():ItemSheetData {
         return super.getData();
     }
 
     /* -------------------------------------------- */
 
     /** @override */
-    setPosition(options = {}) {
+    setPosition(options:ApplicationPosition = {}):any {
         const position = super.setPosition(options);
-        const sheetBody = (this.element as any).find(".sheet-body");
+        const sheetBody = (this.element as JQuery).find(".sheet-body");
         const bodyHeight = position.height - 192;
         sheetBody.css("height", bodyHeight);
         return position;
@@ -46,7 +46,7 @@ export class TwodsixItemSheet extends ItemSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    activateListeners(html) {
+    activateListeners(html:JQuery<HTMLElement>):void {
         super.activateListeners(html);
 
         // Everything below here is only needed if the sheet is editable
