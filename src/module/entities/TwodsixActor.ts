@@ -84,7 +84,8 @@ export default class TwodsixActor extends Actor {
         const skills = [];
         strings[5].split(",").forEach(x => {
             const keyValue = x.split("-").map(y => y.trim());
-            skills.push([keyValue[0], keyValue[1]]);
+            const skill = {name: keyValue[0], level: keyValue[1], selected: false};
+            skills.push(skill);
         })
         ucfData.skills = skills;
 

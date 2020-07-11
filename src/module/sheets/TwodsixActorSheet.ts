@@ -19,11 +19,16 @@ export class TwodsixActorSheet extends ActorSheet {
     /* -------------------------------------------- */
 
     /** @override */
-    activateListeners(html:JQuery):void {
+    protected activateListeners(html: JQuery<HTMLElement>):void {
         super.activateListeners(html);
 
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
+
+        // Submit when changing the state of checkboxes
+        html.find('input[type="checkbox"]').on('change', (ev) =>
+            this._onSubmit(ev)
+        );
 
         // Rollable abilities.
         html.find('.rollable').click((function (event):void {
