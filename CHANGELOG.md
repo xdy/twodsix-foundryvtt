@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.16...v0.2.0) (2020-07-19)
+
+
+### Features
+
+* Another new (old) direction, this time with some help incoming. ([6e5f7af](https://github.com/xdy/twodsix-foundryvtt/commit/6e5f7af539346095f1af03da60ce5eba6e00fafd))
+
 ## [0.1.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.1.15...v0.1.16) (2020-07-10)
 
 
