@@ -121,6 +121,15 @@ export default class TwodsixActor extends Actor {
         return ucfData;
     }
 
+    // _upp(actorData: ActorData) {
+    //     const data = actorData.data;
+    //
+    //     for (const abl of Object.values(data.characteristics as Record<any, any>)) {
+    //         if (abl.short != 'PSI') data.upp += this._pseudoHex(abl.value);
+    //     }
+    //     return data;
+    // }
+
     _pseudoHex(value:number):string {
         switch (value) {
             case 0:

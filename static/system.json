@@ -5,14 +5,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.1.16",
-  "author": "Jonas Karlsson",
-  "authors": [
-    {
-      "email": "jk@xdy.se",
-      "name": "Jonas Karlsson",
-      "url": ""
-    }
-  ],
+  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
   "bugs": "",
   "changelog": "",
   "minimumCoreVersion": "0.6.2",
@@ -32,7 +25,121 @@
     }
   ],
   "license": "LICENSE",
-  "primaryTokenAttribute":"hits",
+  "packs": [
+    {
+      "name": "skills",
+      "label": "Skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "species",
+      "label": "Species",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/species.db",
+      "entity": "Item"
+    },
+    {
+      "name": "careers",
+      "label": "Careers",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/careers.db",
+      "entity": "Item"
+    },
+    {
+      "name": "traits",
+      "label": "Traits",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/traits.db",
+      "entity": "Item"
+    },
+    {
+      "name": "psionics",
+      "label": "Psionics",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/psionics.db",
+      "entity": "Item"
+    },
+    {
+      "name": "gear",
+      "label": "Gear",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/gear.db",
+      "entity": "Item"
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/weapons.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ammunition",
+      "label": "Ammunition",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/ammunition.db",
+      "entity": "Item"
+    },
+    {
+      "name": "consumables",
+      "label": "Consumables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/consumables.db",
+      "entity": "Item"
+    },
+    {
+      "name": "computers",
+      "label": "Computers",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/computers.db",
+      "entity": "Item"
+    },
+    {
+      "name": "software",
+      "label": "Software",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/software.db",
+      "entity": "Item"
+    },
+    {
+      "name": "vehicles",
+      "label": "Vehicles",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/vehicles.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ships",
+      "label": "Ships",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce/ships.db",
+      "entity": "Item"
+    }
+  ],
+  "primaryTokenAttribute": "hits",
   "readme": "",
   "styles": [
     "./styles/twodsix.css"
