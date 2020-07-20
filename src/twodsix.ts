@@ -3,11 +3,8 @@
  * Register custom settings, sheets, and constants using the Foundry API.
  * Change this heading to be more descriptive to your system, or remove it.
  * Author: [your name]
- * Content License: [copyright and-or license] If using an existing system
- *                    you may want to put a (link to a) license or copyright
- *                    notice here (e.g. the OGL).
- * Software License: [your license] Put your desired license here, which
- *                     determines how others may use and modify your system
+ * Content License: OGL, see License section of README.md for details
+ * Software License: Apache, see License section of README.md for details
  */
 
 import {registerSettings} from './module/settings';
@@ -18,7 +15,7 @@ import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
-import {TWODSIX, TwodsixItemList} from "./module/config";
+import {TWODSIX} from "./module/config";
 
 
 require('./styles/twodsix.scss');
@@ -78,24 +75,11 @@ Hooks.once('init', async function () {
 /* Setup system							*/
 /* ------------------------------------ */
 Hooks.once('setup', async function () {
-    // Do anything after initialization but before
-    // ready
-
-    //TODO The below reads all skills from all compendiums. Works for now, but needs to be revisited. Should only read *this* variant's skills.
-    TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+    // Do anything after initialization but before ready
 
     CONFIG.TWODSIX = TWODSIX;
 
     (window as any).Twodsix = new TwodsixSystem();
-
-    // Localize CONFIG objects once up-front
-    const toLocalize = [];
-    for (const o of toLocalize) {
-        CONFIG.Twodsix[o] = Object.entries(CONFIG.Twodsix[o]).reduce((obj, e: any) => {
-            obj[e[0]] = game.i18n.localize(e[1]);
-            return obj;
-        }, {});
-    }
 
 
 });
@@ -105,7 +89,12 @@ Hooks.once('setup', async function () {
 /* ------------------------------------ */
 Hooks.once('ready', async function () {
     // Do anything once the system is ready
+
+    // //TODO The below reads all skill *names* from all compendiums. Needs to be revisited. Should only read *this* variant's skills. Also, not sure I'm going to need it.
+    // TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+
     // Set up migrations here once needed.
+
 
 });
 

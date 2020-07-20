@@ -3,22 +3,23 @@ export const TWODSIX:any = {};
 
 /**
  * The sets of rules variants one can use
+ * TODO Should be loaded from json, really
  * @type {Object}
  */
-TWODSIX.variant = {
+TWODSIX.VARIANTS = {
     "ce": "Cepheus Engine",
 }
 
 
 //TODO Start with skills, should do for others as well I guess
 export class TwodsixItemList {
-    static async getItems(itemType?:string, metadataName?:string, labels_only = true):Promise<string[] | Item[]> {
+    static async getItems(itemType?:string, metadataName?:string, labels_only = false):Promise<string[] | Item[]> {
         // First, retrieve any custom or overridden items so that we can prioritize those.
         const items = game.items;
-        if (items == null) {
-            return null;
+        let allItems:Item[];
+        if (items !== undefined) {
+            allItems = items.entities.filter(item => item.type == itemType);
         }
-        let allItems = items.entities.filter(item => item.type == itemType);
         // Next, retrieve compendium items and merge them in.
         let c:any;
         for (c of game.packs) {

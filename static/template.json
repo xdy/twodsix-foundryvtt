@@ -7,138 +7,179 @@
       "vehicle",
       "ship"
     ],
-    "Item": {
-      "types": [
-        "gear",
-        "weapon",
-        "skill",
-        "species",
-        "trait",
-        "career",
-        "psionic",
-        "armor",
-        "weapon",
-        "ammunition",
-        "consumable",
-        "computer",
-        "software",
-        "vehicle",
-        "ship"
-      ],
-      "templates": {
+    "templates": {
+      "characteristics": {
         "characteristics": {
-          "characteristics": {
-            "str": {
-              "value": 0,
-              "damage": 0,
-              "short": "STR",
-              "label": "Strengh"
-            },
-            "dex": {
-              "value": 0,
-              "damage": 0,
-              "short": "DEX",
-              "label": "Dexterity"
-            },
-            "end": {
-              "value": 0,
-              "damage": 0,
-              "short": "END",
-              "label": "Endurance"
-            },
-            "int": {
-              "value": 0,
-              "damage": 0,
-              "short": "INT",
-              "label": "Intelligence"
-            },
-            "edu": {
-              "value": 0,
-              "damage": 0,
-              "short": "EDU",
-              "label": "Education"
-            },
-            "soc": {
-              "value": 0,
-              "damage": 0,
-              "short": "SOC",
-              "label": "Social Status"
-            },
-            "psi": {
-              "value": 0,
-              "damage": 0,
-              "short": "PSI",
-              "label": "Psionic Strength"
-            }
-          }
-        },
-        "skills": [
-        ],
-        "status": {
-          "status": {
-            "wounded": {
-              "type": "Boolean",
-              "value": "false"
-            },
-            "seriouslyWounded": {
-              "type": "Boolean",
-              "value": "false"
-            },
-            "unconscious": {
-              "type": "Boolean",
-              "value": "false"
-            },
-            "dead": {
-              "type": "boolean",
-              "value": "false"
-            },
-            "Prone": {
-              "type": "boolean",
-              "value": "false"
-            }
-          }
-        },
-        "details": {
-          "gender": "",
-          "appearance": "",
-          "birth_year": 0,
-          "birth_day": 0,
-          "rads": 0,
-          "residence": "",
-          "birthplace": "",
-          "description": "",
-          "career": [
-            {
-              "service": "",
-              "years": 0
-            }
-          ],
-          "personalGoals": ""
-        },
-        "owned": {
-          "gear": [],
-          "weapons": [],
-          "armors": [],
-          "inventory": []
-        },
-        "finances": {
-          "pension": {
-            "value": 0
+          "str": {
+            "value": 0,
+            "damage": 0,
+            "short": "STR",
+            "label": "Strengh"
           },
-          "debt": {
-            "value": 0
+          "dex": {
+            "value": 0,
+            "damage": 0,
+            "short": "DEX",
+            "label": "Dexterity"
           },
-          "credits": {
-            "value": 0
+          "end": {
+            "value": 0,
+            "damage": 0,
+            "short": "END",
+            "label": "Endurance"
           },
-          "payments": {
-            "value": 0
+          "int": {
+            "value": 0,
+            "damage": 0,
+            "short": "INT",
+            "label": "Intelligence"
           },
-          "lcosts": {
-            "value": 0
+          "edu": {
+            "value": 0,
+            "damage": 0,
+            "short": "EDU",
+            "label": "Education"
+          },
+          "soc": {
+            "value": 0,
+            "damage": 0,
+            "short": "SOC",
+            "label": "Social Status"
+          },
+          "psi": {
+            "value": 0,
+            "damage": 0,
+            "short": "PSI",
+            "label": "Psionic Strength"
           }
         }
       },
+      "skills": [
+      ],
+      "status": {
+        "status": {
+          "wounded": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "seriouslyWounded": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "unconscious": {
+            "type": "Boolean",
+            "value": "false"
+          },
+          "dead": {
+            "type": "boolean",
+            "value": "false"
+          },
+          "Prone": {
+            "type": "boolean",
+            "value": "false"
+          }
+        }
+      },
+      "details": {
+        "gender": "",
+        "appearance": "",
+        "birth_year": 0,
+        "birth_day": 0,
+        "rads": 0,
+        "residence": "",
+        "birthplace": "",
+        "description": "",
+        "career": [
+          {
+            "service": "",
+            "years": 0
+          }
+        ],
+        "personalGoals": ""
+      },
+      "owned": {
+        "gear": [],
+        "weapons": [],
+        "armors": [],
+        "inventory": []
+      },
+      "finances": {
+        "pension": {
+          "value": 0
+        },
+        "debt": {
+          "value": 0
+        },
+        "credits": {
+          "value": 0
+        },
+        "payments": {
+          "value": 0
+        },
+        "lcosts": {
+          "value": 0
+        }
+      }
+    },
+    "character": {
+      "templates": [
+        "characteristics",
+        "status",
+        "skills",
+        "status",
+        "details",
+        "owned",
+        "finances"
+      ],
+      "UCF": "",
+      "notes": [
+        {
+          "note": ""
+        }
+      ],
+      "skills": []
+    },
+    "npc": {
+      "templates": [
+        "characteristics",
+        "skills",
+        "status",
+        "details"
+      ]
+    },
+    "animal": {
+      "templates": [
+        "characteristics",
+        "skills",
+        "status"
+      ]
+    },
+    "vehicle": {
+      "flags": {}
+    },
+    "ship": {
+      "flags": {}
+    }
+  },
+  "Item": {
+    "types": [
+      "gear",
+      "weapon",
+      "skill",
+      "species",
+      "trait",
+      "career",
+      "psionic",
+      "armor",
+      "weapon",
+      "ammunition",
+      "consumable",
+      "computer",
+      "software",
+      "vehicle",
+      "ship"
+    ],
+    "templates": {
       "itemDescription": {
         "description": "",
         "notes": ""
@@ -263,44 +304,5 @@
         "itemDescription"
       ]
     }
-  },
-  "character": {
-    "templates": [
-      "characteristics",
-      "status",
-      "skills",
-      "status",
-      "details",
-      "owned",
-      "finances"
-    ],
-    "UCF": "",
-    "notes": [
-      {
-        "note": ""
-      }
-    ],
-    "skills": []
-  },
-  "npc": {
-    "templates": [
-      "characteristics",
-      "skills",
-      "status",
-      "details"
-    ]
-  },
-  "animal": {
-    "templates": [
-      "characteristics",
-      "skills",
-      "status"
-    ]
-  },
-  "vehicle": {
-    "flags": {}
-  },
-  "ship": {
-    "flags": {}
   }
 }

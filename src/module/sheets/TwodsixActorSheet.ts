@@ -3,8 +3,59 @@
  * @extends {ActorSheet}
  */
 
-
 export class TwodsixActorSheet extends ActorSheet {
+
+    /**
+     * Return the type of the current Actor
+     * @type {String}
+     */
+    get actorType():string {
+        return this.actor.data.type;
+    }
+
+    /** @override */
+    getData():any {
+        const data:any = super.getData();
+        data.dtypes = ["String", "Number", "Boolean"];
+        let attr:any;
+        for (attr of Object.values(data.data.characteristics)) {
+            attr.isCheckbox = attr.dtype === "Boolean";
+        }
+        //
+
+        data.isToken = this.actor.isToken;
+        data.itemsByType = {};
+
+
+        if (data.items) {
+            for (const item of data.items) {
+                let list = data.itemsByType[item.type];
+                if (!list) {
+                    list = [];
+                    data.itemsByType[item.type] = list;
+                }
+                list.push(item);
+            }
+
+            data.skills = data.itemsByType['skill'];
+            data.weapons = data.itemsByType['weapon'];
+        }
+
+        // TODO Not sure this is the proper format.
+        async function addAllSkillsFromCompendium() {
+            const skillPack = game.packs.filter(c => c.metadata.entity && c.metadata.entity == 'Item' && c.metadata.name == 'skills')[0];
+            const entities = await skillPack.getContent();
+
+            data.allskills = entities.reduce(function (result, item) {
+                result[item.data.data.label] = item;
+                return result;
+            }, {});
+        }
+
+        addAllSkillsFromCompendium();
+
+        return data
+    }
 
     /** @override */
     static get defaultOptions():FormApplicationOptions {
@@ -13,6 +64,7 @@ export class TwodsixActorSheet extends ActorSheet {
             template: "systems/twodsix/templates/actors/actor-sheet.html",
             width: 600,
             height: 600,
+            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
         });
     }
 
@@ -50,6 +102,15 @@ export class TwodsixActorSheet extends ActorSheet {
             });
         }
 
+        // Draggables
+        const handler = (ev) => this._onDragItemStart(ev);
+        // Find all items on the character sheet.
+        html.find('.draggable').each((i, li) => {
+            // Add draggable attribute and dragstart listener.
+            li.setAttribute('draggable', 'true');
+            li.addEventListener('dragstart', handler, false);
+        });
+
         // Increase Item Quantity
         html.find('.item-increase-quantity').on('click', (event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
@@ -73,30 +134,6 @@ export class TwodsixActorSheet extends ActorSheet {
             }
         });
 
-        // Delete Item
-        html.find('.item-delete').on('click', async (ev) => {
-            const li = $(ev.currentTarget).parents('.item');
-            const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
-            const template = `
-      <form>
-        <div>
-          <div style="text-align: center;">"Delete owned item"} 
-            <strong>${ownedItem.name}</strong>?
-          </div>
-          <br>
-        </div>
-      </form>`;
-            await Dialog.confirm({
-                title: "Delete owned item",
-                content: template,
-                yes: async () => {
-                    await this.actor.deleteOwnedItem(ownedItem.id);
-                    li.slideUp(200, () => this.render(false));
-                },
-                no: () => {},
-            });
-        });
-
         // Delete Inventory Item
         html.find('.item-delete').on('click', ev => {
             const li = $(ev.currentTarget).parents(".item");
@@ -105,20 +142,7 @@ export class TwodsixActorSheet extends ActorSheet {
         });
 
         // Rollable abilities.
-        html.find('.rollable').on('click', (function (event):void {
-            event.preventDefault();
-            const element = event.currentTarget;
-            const {dataset} = element;
-
-            if (dataset.roll) {
-                const roll = new Roll(dataset.roll, this.actor.data.data);
-                const label = dataset.label ? `Rolling ${dataset.label}` : '';
-                roll.roll().toMessage({
-                    speaker: ChatMessage.getSpeaker({actor: this.actor}),
-                    flavor: label
-                });
-            }
-        }).bind(this));
+        html.find('.rollable').on('click', (this._onRollable).bind(this));
     }
 
     /**
@@ -148,4 +172,36 @@ export class TwodsixActorSheet extends ActorSheet {
         return this.actor.createOwnedItem(itemData);
     }
 
+    /**
+     * Handle clickable rolls.
+     * @param {Event} event   The originating click event
+     * @private
+     */
+    _onRollable(event:{ preventDefault:() => void; currentTarget:any; }):void {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const {dataset} = element;
+
+        if (dataset.roll) {
+            const roll = new Roll(dataset.roll, this.actor.data.data);
+            const label = dataset.label ? `Rolling ${dataset.label}` : '';
+            roll.roll().toMessage({
+                speaker: ChatMessage.getSpeaker({actor: this.actor}),
+                flavor: label
+            });
+        }
+    }
+
+    async _onDrop(event:any):Promise<boolean> {
+        event.preventDefault();
+
+        //TODO If an attribute mod is being dragged onto a skill, do a roll.
+        const target = $(event.target);
+        const dragData = event.dataTransfer.getData('text/plain');
+        const dragItem = JSON.parse(dragData);
+
+        dragItem
+
+        return true;
+    }
 }

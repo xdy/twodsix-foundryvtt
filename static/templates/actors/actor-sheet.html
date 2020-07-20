@@ -10,195 +10,109 @@
                     <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
                 </label></h1>
         </div>
-        <script>
-            $("input:checkbox").on("click", function () {
-                const group = "input:checkbox[name='" + $(this).prop("name") + "']";
-                $(group).prop("checked", false);
-                $(this).prop("checked", true);
-            });
-        </script>
-
+        {{!-- The grid classes are defined in styles/global/_grid.scss. To use,
+        use both the "grid" and "grid-Ncol" class where "N" can be any number
+        from 1 to 12 and will create that number of columns. --}}
+        <div class="characteristics grid grid-3col">
+            <div class="characteristic flexrow flex-group-center">
+                <label></label>
+                <span>Value</span>
+                <span>Curr</span>
+                <span>Dmg</span>
+                <span>Mod</span>
+            </div>
+            {{#each data.characteristics as |characteristic key|}}
+            <div class="characteristic flexrow flex-group-center">
+                <label for="characteristics.{{key}}" class="resource-label">{{characteristic.short}}</label>
+                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>
+                <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>
+                <input id="characteristics.{{key}}" type="text" name="damage" value="{{characteristic.value}}"
+                       data-dtype="Number"/>
+                <span class="characteristic-mod rollable draggable" data-roll="2d6+@characteristics.{{key}}.mod"
+                      data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
+            </div>
+            {{/each}}
+        </div>
     </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="ucf">UCF</a>
+        <a class="item" data-tab="skills">Skills</a>
+        <a class="item" data-tab="items">Items</a>
+        <a class="item" data-tab="description">Description</a>
+    </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        {{log data.skills}}
+        {{log data.characteristics}}
 
-        <!--        TODO Should format UCF-->
-        {{editor content=data.UCF target="data.UCF" button=true owner=owner editable=editable}}
-        {{editor content=actor.notes target="actor.notes" button=true owner=owner editable=editable}}
-        <!--        <style>-->
-        <!--            /* The container */-->
-        <!--            .container {-->
-        <!--                display: block;-->
-        <!--                position: relative;-->
-        <!--                padding-left: 35px;-->
-        <!--                margin-bottom: 12px;-->
-        <!--                cursor: pointer;-->
-        <!--                font-size: 22px;-->
-        <!--                -webkit-user-select: none;-->
-        <!--                -moz-user-select: none;-->
-        <!--                -ms-user-select: none;-->
-        <!--                user-select: none;-->
-        <!--            }-->
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            <div class="skills grid grid-2col">
+                <div class="skills flexrow flex-group-center">
+                    <div class="skills grid grid-2col">
+                        <h2 class="clearfix flexbreak">Skills</h2>
 
-        <!--            /* Hide the browser's default radio button */-->
-        <!--            .container input {-->
-        <!--                position: absolute;-->
-        <!--                opacity: 0;-->
-        <!--                cursor: pointer;-->
-        <!--            }-->
-
-        <!--            /* Create a custom radio button */-->
-        <!--            .checkmark {-->
-        <!--                position: absolute;-->
-        <!--                top: 0;-->
-        <!--                left: 0;-->
-        <!--                height: 25px;-->
-        <!--                width: 25px;-->
-        <!--                background-color: #eee;-->
-        <!--                border-radius: 50%;-->
-        <!--            }-->
-
-        <!--            /* On mouse-over, add a grey background color */-->
-        <!--            .container:hover input ~ .checkmark {-->
-        <!--                background-color: #ccc;-->
-        <!--            }-->
-
-        <!--            /* When the radio button is checked, add a blue background */-->
-        <!--            .container input:checked ~ .checkmark {-->
-        <!--                background-color: #2196F3;-->
-        <!--            }-->
-
-        <!--            /* Create the indicator (the dot/circle - hidden when not checked) */-->
-        <!--            .checkmark:after {-->
-        <!--                content: "";-->
-        <!--                position: absolute;-->
-        <!--                display: none;-->
-        <!--            }-->
-
-        <!--            /* Show the indicator (dot/circle) when checked */-->
-        <!--            .container input:checked ~ .checkmark:after {-->
-        <!--                display: block;-->
-        <!--            }-->
-
-        <!--            /* Style the indicator (dot/circle) */-->
-        <!--            .container .checkmark:after {-->
-        <!--                top: 9px;-->
-        <!--                left: 9px;-->
-        <!--                width: 8px;-->
-        <!--                height: 8px;-->
-        <!--                border-radius: 50%;-->
-        <!--                background: white;-->
-        <!--            }-->
-        <!--        </style>-->
-        <table>
-            <thead>
-            <tr>
-                <th>Skill (name:level)</th>
-                <th>Attribute (name:level)</th>
-                <th>Difficulties (Average:8, Hard:10, etc)</th>
-                <th>Modifiers (-9:-9 to +9:+9, I guess)</th>
-                <th>Time Increment (seconds:seconds, rounds, minutes, etc)</th>
-                <th>Time Increment Modifier (-8:-8 to +8:+8, I guess)</th>
-                <th>Tool/Weapon (name:value), where value is either ignored or a dice roll formula.</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.skills as |skill|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <label class="container" >{{skill.name}}:{{skill.level}}
-                                    <input type="checkbox" id="skill" name="radio" value="{{skill}} {{checked check}}">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </td>
-                        </tr>
+                        <!--TODO Filter out skills from items, I can see items filled, but not data.skills.-->
+                        {{#each items as |skills key|}}
+                        <div class="skills flexrow flex-group-center">
+                            <label class="resource-label">{{skills.name}}</label>
+                        </div>
+                        <span class="skill-value rollable draggable" data-roll="2d6+{{skills.data.value}}"
+                              data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
                         {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.characteristics as |characteristic|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <input id="characteristic" type="radio" name="characteristic" value="{{characteristic}}">
-                                <label for="characteristic">{{characteristic.[0]}}:{{characteristic.[1]}}</label>
-                            </td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.difficulties as |difficulty|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <input type="radio" name="difficulty" value="{{difficulty}}">{{difficulty}}<br>
-                            </td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.modifiers as |modifier|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <input type="radio" name="modifier" value="{{modifier}}">{{modifier}}<br>
-                            </td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.increments as |increment|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <input type="radio" name="increment" value="{{increment}}">{{increment}}<br>
-                            </td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td style="vertical-align: top;">
-                    <table>
-                        <tbody>
-                        {{#each data.incrementmodifiers as |incrementmodifier|}}
-                        <tr style="white-space: nowrap">
-                            <td>
-                                <input type="radio" name="incrementmodifier" value="{{incrementmodifier}}">{{incrementmodifier}}<br>
-                            </td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-                </td>
-                <td>tools/weapons todo</td>
-            </tr>
-            </tbody>
-        </table>
+                        <!-- TODO Add characteristics dropdown here, with default choice from skill-->
 
-        <input type="radio" name="normal" value="normal">normal<br>
-        <input type="radio" name="advantage" value="advantage">advantage<br>
-        <input type="radio" name="disadvantage" value="disadvantage">disadvantage<br>
-        <button>Roll</button>
-        <button>Copy As Macro</button>
-        <button>Take Damage</button>
-        <button>Heal Damage</button>
-        <button>Do Damage</button>
+                        <!-- TODO And here I should have all skills from the compendium available-->
+                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
+                            <h2 class="flexbreak">Add Skill:</h2>
+                            <select name="data.addskillselect" style="width:200px;">
+                                <option></option>
+                                {{#each data.allskills as |skills key|}}
+                                <option value="{{key}}">{{skills.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        {{!-- Owned Items Tab --}}
+        <div class="tab items" data-group="primary" data-tab="items">
+            <ol class="items-list">
+                <li class="item flexrow item-header">
+                    <div class="item-image"></div>
+                    <div class="item-name">Name</div>
+                    <div class="item-controls">
+                        <a class="item-control item-create" title="Create item" data-type="item"><i
+                                class="fas fa-plus"></i> Add item</a>
+                    </div>
+                </li>
+                Owned items should be here...
+                {{#each actor.items as |item id|}}
+                <li class="item flexrow" data-item-id="{{item._id}}">
+                    <div class="item-image">
+                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="item name"/>
+                    </div>
+                    <h4 class="item-name">{{item.name}}</h4>
+                    <div class="item-controls">
+                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                </li>
+                {{/each}}
+            </ol>
+        </div>
+
+        {{!-- Description Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
+            {{editor content=data.details.description target="data.details.description" button=true owner=owner
+            editable=editable}}
+        </div>
+
+
     </section>
 </form>
