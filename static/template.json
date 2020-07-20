@@ -229,7 +229,7 @@
       "subtype": "",
       "reference": "",
       "value": -3,
-      "defaultCharacteristic": "",
+      "defaultCharacteristic": "DEX",
       "tasks": {
         "name": "",
         "description": "",

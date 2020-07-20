@@ -64,4 +64,8 @@ export default function registerHandlebarsHelpers():void {
         return new Handlebars.SafeString(TextEditor.enrichHTML(content, {}));
     });
 
+    Handlebars.registerHelper('option', function(value, label, selectedValue) {
+        const selectedProperty = value == selectedValue ? 'selected="selected"' : '';
+        return new Handlebars.SafeString('<option value="' + label + '"' +  selectedProperty + ' data-value="' + value + '">' + label + "</option>");
+    });
 }
