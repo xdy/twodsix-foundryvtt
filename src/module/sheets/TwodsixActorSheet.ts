@@ -1,8 +1,3 @@
-/**
- * Extend the basic ActorSheet with some very simple modifications
- * @extends {ActorSheet}
- */
-
 export class TwodsixActorSheet extends ActorSheet {
 
     /**
@@ -142,7 +137,10 @@ export class TwodsixActorSheet extends ActorSheet {
         });
 
         // Rollable abilities.
-        html.find('.rollable').on('click', (this._onRollable).bind(this));
+        html.find('.rollable-characteristic').on('click', (this._onRollableCharacteristic).bind(this));
+
+        html.find('.rollable-skill').on('click', (this._onRollableSkill).bind(this));
+
     }
 
     /**
@@ -177,7 +175,7 @@ export class TwodsixActorSheet extends ActorSheet {
      * @param {Event} event   The originating click event
      * @private
      */
-    _onRollable(event:{ preventDefault:() => void; currentTarget:any; }):void {
+    _onRollableCharacteristic(event:{ preventDefault:() => void; currentTarget:any; }):void {
         event.preventDefault();
         const element = event.currentTarget;
         const {dataset} = element;
@@ -191,6 +189,35 @@ export class TwodsixActorSheet extends ActorSheet {
             });
         }
     }
+
+    /**
+     * Handle clickable rolls.
+     * @param {Event} event   The originating click event
+     * @private
+     */
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    _onRollableSkill(event:any):void {
+        event.preventDefault();
+        const children = event.currentTarget.children;
+
+
+        if (event.originalEvent.target.type === 'select-one') {
+            //Don't treat select as rollable
+            return;
+        }
+
+        //Ugly...
+        const skill:string = children.item(0).innerText;
+        const skillValue:number = parseInt(children.item(2).textContent);
+        const characteristicMod = parseInt(this.actor.data.data.characteristics[children.item(1).value].mod);
+        const roll = new Roll("2d6+" + skillValue + "+" + characteristicMod, this.actor.data.data);
+        const label = `Rolling ${skill}`;
+        roll.roll().toMessage({
+            speaker: ChatMessage.getSpeaker({actor: this.actor}),
+            flavor: label
+        });
+    }
+
 
     // async _onDrop(event:any):Promise<boolean> {
     //     event.preventDefault();

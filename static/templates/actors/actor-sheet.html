@@ -28,7 +28,7 @@
                 <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>
                 <input id="characteristics.{{key}}" type="text" name="damage" value="{{characteristic.value}}"
                        data-dtype="Number"/>
-                <span class="characteristic-mod rollable draggable" data-roll="2d6+@characteristics.{{key}}.mod"
+                <span class="characteristic-mod rollable-characteristic draggable" data-roll="2d6+characteristic.mod"
                       data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
             </div>
             {{/each}}
@@ -48,7 +48,7 @@
         {{log data.skills}}
         {{log data.characteristics}}
 
-<!--        TODO Skill + level + ability dropdown | + 2d6 = output chat-->
+        <!--        TODO Skill + level + ability dropdown | + 2d6 = output chat-->
 
         <div class="tab skills" data-group="primary" data-tab="skills">
             <div class="skills grid grid-2col">
@@ -58,28 +58,28 @@
 
                         <!--TODO Filter out skills from items, I can see items filled, but not data.skills.-->
                         {{#each items as |skills key|}}
-                        <div class="skills flexrow flex-group-center">
-                            <label class="resource-label">{{skills.name}}</label>
-                        </div>
-                        <!-- TODO Add characteristics dropdown here, with default choice from skill-->
-                        <label>
+                        <div class="rollable-skill">
+                            <div class="skills flexrow flex-group-center">
+                                <label class="resource-label">{{skills.name}}</label>
+                            </div>
+                            <!-- TODO Add characteristics dropdown here, with default choice from skill-->
                             <select name="data.addskillselect" style="width:200px;">
                                 <!-- TODO Something like the line below, but I get "select doesn't match each"-->
-<!--                                { { # select skills.data.defaultCharacteristic} }-->
+                                <!--                                { { # select skills.data.defaultCharacteristic} }-->
                                 {{log "skills.data.defaultCharacteristic"}}
                                 {{log skills.data.defaultCharacteristic}}
                                 {{log "../skill.defaultCharacteristic"}}
                                 {{log ../skill.defaultCharacteristic}}
                                 {{#each ../data.characteristics as |characteristic ckey|}}
-<!--                                TODO Also tried handlebar helper for option, same problem.-->
-<!--                                { { # option ../data.characteristics.{{ckey}}.mod ../data.characteristics.{{ckey}}.short ../skills.data.defaultCharacteristic } }-->
+                                <!--                                TODO Also tried handlebar helper for option, same problem.-->
+                                <!--                                { { # option ../data.characteristics.{{ckey}}.mod ../data.characteristics.{{ckey}}.short ../skills.data.defaultCharacteristic } }-->
                                 <option value="{{characteristic.short}}" data-value="{{numberFormat characteristic.mod decimals=0 sign=true}}">{{characteristic.short}}</option>
                                 {{/each}}
                             </select>
-                        </label>
-                        <!-- TODO Somehow, find what has been selected, and add that in the data-roll. Or, do a custom handler, probably better -->
-                        <span class="skill-value rollable draggable" data-roll="2d6+{{skills.data.value}}"
-                              data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
+                            <!-- TODO Somehow, find what has been selected, and add that in the data-roll. Or, do a custom handler, probably better -->
+                            <span class="skill-value draggable" data-roll="2d6+{{skills.data.value}}"
+                                  data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
+                        </div>
                         {{/each}}
 
                         <!-- TODO And here I should have all skills from the compendium available-->
@@ -109,7 +109,6 @@
                                 class="fas fa-plus"></i> Add item</a>
                     </div>
                 </li>
-                Owned items should be here...
                 {{#each actor.items as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image">

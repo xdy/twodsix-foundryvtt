@@ -6,7 +6,7 @@
 import {TWODSIX} from "../config";
 import {calcModFromString, fromPseudoHex} from "./sheetUtils";
 
-TWODSIX.CHARACTERISTICS = ["STR", "DEX", "END", "INT", "EDU", "SOC", "PSI"];
+TWODSIX.CHARACTERISTICS = ["str", "dex", "end", "int", "edu", "soc", "psi"];
 
 //TODO Change so that it modifies the current character's data.
 

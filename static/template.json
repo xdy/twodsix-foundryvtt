@@ -13,43 +13,43 @@
           "str": {
             "value": 0,
             "damage": 0,
-            "short": "STR",
+            "short": "str",
             "label": "Strengh"
           },
           "dex": {
             "value": 0,
             "damage": 0,
-            "short": "DEX",
+            "short": "dex",
             "label": "Dexterity"
           },
           "end": {
             "value": 0,
             "damage": 0,
-            "short": "END",
+            "short": "end",
             "label": "Endurance"
           },
           "int": {
             "value": 0,
             "damage": 0,
-            "short": "INT",
+            "short": "int",
             "label": "Intelligence"
           },
           "edu": {
             "value": 0,
             "damage": 0,
-            "short": "EDU",
+            "short": "edu",
             "label": "Education"
           },
           "soc": {
             "value": 0,
             "damage": 0,
-            "short": "SOC",
+            "short": "soc",
             "label": "Social Status"
           },
           "psi": {
             "value": 0,
             "damage": 0,
-            "short": "PSI",
+            "short": "psi",
             "label": "Psionic Strength"
           }
         }
