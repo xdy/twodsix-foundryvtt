@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.1...v0.2.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* Fixed drag and drop of skills, had broken it while messing around with _onDrop earlier, commented that out for now, wasn't anywhere near complete anyway. ([34858ad](https://github.com/xdy/twodsix-foundryvtt/commit/34858ad3af41035cbb071fea9804eb54be690c23))
+
 ## [0.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.0...v0.2.1) (2020-07-20)
 
 
