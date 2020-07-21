@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.2...v0.2.3) (2020-07-21)
+
+
+### Bug Fixes
+
+* Skills can now be rolled, with the selected characteristic's modifier. Not pretty, but it works. ([1a27f1b](https://github.com/xdy/twodsix-foundryvtt/commit/1a27f1b7eb2b90b80c86cb597b5b740451110a03))
+
 ## [0.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.1...v0.2.2) (2020-07-21)
 
 
