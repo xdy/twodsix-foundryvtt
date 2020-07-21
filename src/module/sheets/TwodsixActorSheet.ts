@@ -102,14 +102,14 @@ export class TwodsixActorSheet extends ActorSheet {
             });
         }
 
-        // Draggables
-        const handler = (ev) => this._onDragItemStart(ev);
-        // Find all items on the character sheet.
-        html.find('.draggable').each((i, li) => {
-            // Add draggable attribute and dragstart listener.
-            li.setAttribute('draggable', 'true');
-            li.addEventListener('dragstart', handler, false);
-        });
+        // // Draggables
+        // const handler = (ev) => this._onDragItemStart(ev);
+        // // Find all items on the character sheet.
+        // html.find('.draggable').each((i, li) => {
+        //     // Add draggable attribute and dragstart listener.
+        //     li.setAttribute('draggable', 'true');
+        //     li.addEventListener('dragstart', handler, false);
+        // });
 
         // Increase Item Quantity
         html.find('.item-increase-quantity').on('click', (event) => {
@@ -192,16 +192,16 @@ export class TwodsixActorSheet extends ActorSheet {
         }
     }
 
-    async _onDrop(event:any):Promise<boolean> {
-        event.preventDefault();
-
-        //TODO If an attribute mod is being dragged onto a skill, do a roll.
-        const target = $(event.target);
-        const dragData = event.dataTransfer.getData('text/plain');
-        const dragItem = JSON.parse(dragData);
-
-        dragItem
-
-        return true;
-    }
+    // async _onDrop(event:any):Promise<boolean> {
+    //     event.preventDefault();
+    //
+    //     //TODO If an attribute mod is being dragged onto a skill, do a roll.
+    //     const target = $(event.target);
+    //     const dragData = event.dataTransfer.getData('text/plain');
+    //     const dragItem = JSON.parse(dragData);
+    //
+    //     dragItem
+    //
+    //     return true;
+    // }
 }
