@@ -1,3 +1,5 @@
+import {Difficulties, Rolltype} from "../utils/sheetUtils";
+
 export class TwodsixActorSheet extends ActorSheet {
 
     /**
@@ -20,7 +22,6 @@ export class TwodsixActorSheet extends ActorSheet {
 
         data.isToken = this.actor.isToken;
         data.itemsByType = {};
-
 
         if (data.items) {
             for (const item of data.items) {
@@ -208,10 +209,17 @@ export class TwodsixActorSheet extends ActorSheet {
 
         //Ugly...
         const skill:string = children.item(0).innerText;
-        const skillValue:number = parseInt(children.item(2).textContent);
+        const skillValue:number = parseInt(children.item(4).textContent);
         const characteristicMod = parseInt(this.actor.data.data.characteristics[children.item(1).value].mod);
-        const roll = new Roll("2d6+" + skillValue + "+" + characteristicMod, this.actor.data.data);
-        const label = `Rolling ${skill}`;
+        const dice = Rolltype[children.item(2).value];
+        const difficulty = children.item(3).value as keyof typeof Difficulties;
+
+        //TODO This is for CE, other variants change the target from 8 instead of modifying roll, should read formula from config based on variant
+        const successValue = 8;
+        const formula = `${dice}ms=${successValue}+${skillValue}+${characteristicMod}+${Difficulties[difficulty]}`;
+        const roll = new Roll(formula, this.actor.data.data);
+        const label = `Rolling ${skill} at ${difficulty} difficulty`;
+        //TODO Should use custom html
         roll.roll().toMessage({
             speaker: ChatMessage.getSpeaker({actor: this.actor}),
             flavor: label

@@ -48,8 +48,6 @@
         {{log data.skills}}
         {{log data.characteristics}}
 
-        <!--        TODO Skill + level + ability dropdown | + 2d6 = output chat-->
-
         <div class="tab skills" data-group="primary" data-tab="skills">
             <div class="skills grid grid-2col">
                 <div class="skills flexrow flex-group-center">
@@ -62,7 +60,7 @@
                             <div class="skills flexrow flex-group-center">
                                 <label class="resource-label">{{skills.name}}</label>
                             </div>
-                            <!-- TODO Add characteristics dropdown here, with default choice from skill-->
+                            <!-- TODO Characteristics dropdown here should default to default attribute from skill (or, possibly, the first defined task, if one exists)-->
                             <select name="data.addskillselect" style="width:200px;">
                                 <!-- TODO Something like the line below, but I get "select doesn't match each"-->
                                 <!--                                { { # select skills.data.defaultCharacteristic} }-->
@@ -76,9 +74,23 @@
                                 <option value="{{characteristic.short}}" data-value="{{numberFormat characteristic.mod decimals=0 sign=true}}">{{characteristic.short}}</option>
                                 {{/each}}
                             </select>
-                            <!-- TODO Somehow, find what has been selected, and add that in the data-roll. Or, do a custom handler, probably better -->
-                            <span class="skill-value draggable" data-roll="2d6+{{skills.data.value}}"
-                                  data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
+
+                            <select name="rolltype" style="width:200px;">
+                                <option value="Normal" data-value="Normal">Normal</option>
+                                <option value="Advantage" data-value="Advantage">Advantage</option>
+                                <option value="Disadvantage" data-value="Disadvantage">Disadvantage</option>
+                            </select>
+                            <!-- Dropdown should default to Average, but still be sorted in correct order -->
+                            <select name="difficulty" style="width:200px;">
+                                <option value="Average" data-value="Average">Average</option>
+                                <option value="Simple" data-value="Simple">Simple</option>
+                                <option value="Easy" data-value="Easy">Easy</option>
+                                <option value="Difficult" data-value="Difficult">Difficult</option>
+                                <option value="VeryDifficult" data-value="VeryDifficult">Very Difficult</option>
+                                <option value="Formidable" data-value="Formidable">Formidable</option>
+                                <option value="Impossible" data-value="Impossible">Impossible</option>
+                            </select>
+                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
                         </div>
                         {{/each}}
 
@@ -95,7 +107,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
         {{!-- Owned Items Tab --}}
@@ -129,7 +140,5 @@
             {{editor content=data.details.description target="data.details.description" button=true owner=owner
             editable=editable}}
         </div>
-
-
     </section>
 </form>

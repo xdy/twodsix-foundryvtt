@@ -178,5 +178,26 @@ export function calcModFromString(characteristic:string):number {
     return (number - 6) / 3;
 }
 
+//TODO The terms used for this should be configurable
+export enum Rolltype {
+    Advantage = "3d6kh2",
+    Normal = "2d6",
+    Disadvantage = "3d6kl2",
+}
+
+//TODO This is defined the CE way, but it's mathematically equivalent to other variants.
+export enum Difficulties {
+    Simple = 6,
+    Easy = 4,
+    Routine = 2,
+    Average = 0,
+    Difficult = -2,
+    VeryDifficult = -4,
+    Formidable = -6,
+    Impossible = -8
+}
+
+
+
 
 

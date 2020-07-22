@@ -25,7 +25,7 @@ export default class TwodsixActor extends Actor {
             //     this._prepareNpcData(actorData);
             //     break;
             // case 'animal':
-                // TODO This is for animals 'without characteristics', like in mongoose 2. If they have characteristics, they're npcs.
+            // TODO This is for animals 'without characteristics', like in mongoose 2. If they have characteristics, they're npcs.
             //     this._prepareAnimalData(actorData);
             //     break;
             // case 'vehicle':
@@ -45,11 +45,12 @@ export default class TwodsixActor extends Actor {
      */
     _prepareCharacterData(actorData:ActorData):void {
         // Get the Actor's data object
-        const { data } = actorData;
+        const {data} = actorData;
 
         for (const cha of Object.values(data.characteristics as Record<any, any>)) {
             cha.mod = calcModFor(cha.value)
         }
+
     }
 
 
