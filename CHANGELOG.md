@@ -1,3 +1,10 @@
+## [0.2.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.3...v0.2.4) (2020-07-22)
+
+
+### Bug Fixes
+
+* Skill rolls now support difficulty and 'roll type' (e.g. advantage/disadvantage, 3d6kh2/3d6kl2) ([c25ccee](https://github.com/xdy/twodsix-foundryvtt/commit/c25ccee7c8c99a6c4e503267abc1f2734edb58c5))
+
 ## [0.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.2...v0.2.3) (2020-07-21)
 
 
