@@ -1,3 +1,10 @@
+## [0.2.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.4...v0.2.5) (2020-07-25)
+
+
+### Bug Fixes
+
+* Made characterstics editable, calculate current value and mod as damage (and value, which really should be locked for edit by default) change. Added dropdown for skill level (still called value, should probably change that.) ([5a6c54d](https://github.com/xdy/twodsix-foundryvtt/commit/5a6c54d03f17fd256c6e62873b539446dd62e831))
+
 ## [0.2.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.3...v0.2.4) (2020-07-22)
 
 
