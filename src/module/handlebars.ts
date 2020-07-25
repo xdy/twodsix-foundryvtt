@@ -68,4 +68,10 @@ export default function registerHandlebarsHelpers():void {
         const selectedProperty = value == selectedValue ? 'selected="selected"' : '';
         return new Handlebars.SafeString('<option value="' + label + '"' +  selectedProperty + ' data-value="' + value + '">' + label + "</option>");
     });
+
+    Handlebars.registerHelper('select2', function( value, options ){
+        const $el = $('<select />').html( options.fn(this) );
+        $el.find('[value="' + value + '"]').attr({'selected':'selected'});
+        return $el.html();
+    });
 }

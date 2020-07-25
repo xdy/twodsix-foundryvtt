@@ -48,7 +48,8 @@ export default class TwodsixActor extends Actor {
         const {data} = actorData;
 
         for (const cha of Object.values(data.characteristics as Record<any, any>)) {
-            cha.mod = calcModFor(cha.value)
+            cha.current = cha.value - cha.damage;
+            cha.mod = calcModFor(cha.current);
         }
 
     }

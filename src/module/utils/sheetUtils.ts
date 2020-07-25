@@ -169,7 +169,7 @@ export function nobleTitle(soc:number, gender:string):string {
 
 export function calcModFor(characteristic:number):number {
     // TODO If characteristic is 0 and not cepheus, set mod to -3
-    return (characteristic - 6) / 3;
+    return Math.floor((characteristic - 6) / 3);
 }
 
 export function calcModFromString(characteristic:string):number {

@@ -23,13 +23,13 @@
             </div>
             {{#each data.characteristics as |characteristic key|}}
             <div class="characteristic flexrow flex-group-center">
-                <label for="characteristics.{{key}}" class="resource-label">{{characteristic.short}}</label>
-                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>
+                <label class="resource-label">{{characteristic.short}}</label>
+                <input type="text" min="0" name="data.characteristics.{{key}}.value" value="{{characteristic.value}}" />
+<!--                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>-->
+<!--                <input type="text" name="data.characteristics.{{key}}.current" value="{{characteristic.current}}" />-->
                 <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>
-                <input id="characteristics.{{key}}" type="text" name="damage" value="{{characteristic.value}}"
-                       data-dtype="Number"/>
-                <span class="characteristic-mod rollable-characteristic draggable" data-roll="2d6+characteristic.mod"
-                      data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
+                <input type="text" max="{{characteristic.value}}" min="0"  name="data.characteristics.{{key}}.damage" value="{{characteristic.damage}}" data-dtype="Number"/>
+                <span class="characteristic-mod rollable-characteristic draggable"  data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
             </div>
             {{/each}}
         </div>
@@ -66,8 +66,6 @@
                                 <!--                                { { # select skills.data.defaultCharacteristic} }-->
                                 {{log "skills.data.defaultCharacteristic"}}
                                 {{log skills.data.defaultCharacteristic}}
-                                {{log "../skill.defaultCharacteristic"}}
-                                {{log ../skill.defaultCharacteristic}}
                                 {{#each ../data.characteristics as |characteristic ckey|}}
                                 <!--                                TODO Also tried handlebar helper for option, same problem.-->
                                 <!--                                { { # option ../data.characteristics.{{ckey}}.mod ../data.characteristics.{{ckey}}.short ../skills.data.defaultCharacteristic } }-->
@@ -80,7 +78,9 @@
                                 <option value="Advantage" data-value="Advantage">Advantage</option>
                                 <option value="Disadvantage" data-value="Disadvantage">Disadvantage</option>
                             </select>
-                            <!-- Dropdown should default to Average, but still be sorted in correct order -->
+
+
+                            <!-- Dropdown should really default to Average, but still be sorted in correct order -->
                             <select name="difficulty" style="width:200px;">
                                 <option value="Average" data-value="Average">Average</option>
                                 <option value="Simple" data-value="Simple">Simple</option>
@@ -90,7 +90,18 @@
                                 <option value="Formidable" data-value="Formidable">Formidable</option>
                                 <option value="Impossible" data-value="Impossible">Impossible</option>
                             </select>
-                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>
+<!--                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>-->
+
+                            <select name="skill.value" value="{{skill.value}}" style="width:200px;">
+                                <option value=-3 data-value=-3>Untrained</option>
+                                <option value=0 data-value=0>0</option>
+                                <option value=1 data-value=1>1</option>
+                                <option value=2 data-value=1>2</option>
+                                <option value=3 data-value=2>3</option>
+                                <option value=4 data-value=3>4</option>
+                                <option value=5 data-value=3>5</option>
+                                <option value=6 data-value=3>6</option>
+                            </select>
                         </div>
                         {{/each}}
 

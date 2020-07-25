@@ -209,10 +209,11 @@ export class TwodsixActorSheet extends ActorSheet {
 
         //Ugly...
         const skill:string = children.item(0).innerText;
-        const skillValue:number = parseInt(children.item(4).textContent);
         const characteristicMod = parseInt(this.actor.data.data.characteristics[children.item(1).value].mod);
         const dice = Rolltype[children.item(2).value];
         const difficulty = children.item(3).value as keyof typeof Difficulties;
+        // const skillValue:number = parseInt(children.item(4).textContent);
+        const skillValue:number = children.item(4).value;
 
         //TODO This is for CE, other variants change the target from 8 instead of modifying roll, should read formula from config based on variant
         const successValue = 8;
