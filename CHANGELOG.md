@@ -1,3 +1,10 @@
+## [0.2.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.5...v0.2.6) (2020-07-26)
+
+
+### Bug Fixes
+
+* Show actor skills, not data items in skills list. Not sure this is the way I want to go, need to read up on the data model. ([f44fe27](https://github.com/xdy/twodsix-foundryvtt/commit/f44fe27832ef631cabd6a5975737c8aa942266a1))
+
 ## [0.2.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.4...v0.2.5) (2020-07-25)
 
 
