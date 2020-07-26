@@ -21,36 +21,45 @@ export class TwodsixActorSheet extends ActorSheet {
         //
 
         data.isToken = this.actor.isToken;
-        data.itemsByType = {};
+        this._prepareCharacterItems(data);
 
-        if (data.items) {
-            for (const item of data.items) {
-                let list = data.itemsByType[item.type];
+        return data
+    }
+
+    private _prepareCharacterItems(sheetData:any) {
+        const actor = sheetData.actor;
+
+        actor.itemsByType = [];
+
+        if (actor.items) {
+            for (const item of sheetData.items) {
+                let list = actor.itemsByType[item.type];
                 if (!list) {
                     list = [];
-                    data.itemsByType[item.type] = list;
+                    actor.itemsByType[item.type] = list;
                 }
                 list.push(item);
             }
 
-            data.skills = data.itemsByType['skill'];
-            data.weapons = data.itemsByType['weapon'];
+            actor.skills = actor.itemsByType['skill'];
+            actor.weapons = actor.itemsByType['weapon'];
+            actor.armors = actor.itemsByType['armor'];
+            actor.gear = actor.itemsByType['skill'];
+            //TODO Handle if weapons, armors and/or gear are undefined
+            // character.inventory = character.weapons.concat(character.armors, character.gear);
         }
 
-        // TODO Not sure this is the proper format.
-        async function addAllSkillsFromCompendium() {
+        async function addAllSkillsFromCompendium():Promise<void> {
             const skillPack = game.packs.filter(c => c.metadata.entity && c.metadata.entity == 'Item' && c.metadata.name == 'skills')[0];
             const entities = await skillPack.getContent();
 
-            data.allskills = entities.reduce(function (result, item) {
+            actor.allskills = entities.reduce(function (result, item) {
                 result[item.data.data.label] = item;
                 return result;
             }, {});
         }
 
         addAllSkillsFromCompendium();
-
-        return data
     }
 
     /** @override */
@@ -58,7 +67,7 @@ export class TwodsixActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["twodsix", "sheet", "actor"],
             template: "systems/twodsix/templates/actors/actor-sheet.html",
-            width: 600,
+            width: 900,
             height: 600,
             tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
         });

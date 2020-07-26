@@ -45,8 +45,6 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{log data.skills}}
-        {{log data.characteristics}}
 
         <div class="tab skills" data-group="primary" data-tab="skills">
             <div class="skills grid grid-2col">
@@ -54,8 +52,10 @@
                     <div class="skills grid grid-2col">
                         <h2 class="clearfix flexbreak">Skills</h2>
 
-                        <!--TODO Filter out skills from items, I can see items filled, but not data.skills.-->
-                        {{#each items as |skills key|}}
+                        {{log actor.skills}}
+                        {{log actor.allskills}}
+
+                        {{#each actor.skills as |skills key|}}
                         <div class="rollable-skill">
                             <div class="skills flexrow flex-group-center">
                                 <label class="resource-label">{{skills.name}}</label>
@@ -108,9 +108,9 @@
                         <!-- TODO And here I should have all skills from the compendium available-->
                         <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
                             <h2 class="flexbreak">Add Skill:</h2>
-                            <select name="data.addskillselect" style="width:200px;">
+                            <select name="actor.addskillselect" style="width:200px;">
                                 <option></option>
-                                {{#each data.allskills as |skills key|}}
+                                {{#each actor.allskills as |skills key|}}
                                 <option value="{{key}}">{{skills.name}}</option>
                                 {{/each}}
                             </select>
@@ -131,7 +131,7 @@
                                 class="fas fa-plus"></i> Add item</a>
                     </div>
                 </li>
-                {{#each actor.items as |item id|}}
+                {{#each actor.inventory as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="item name"/>
