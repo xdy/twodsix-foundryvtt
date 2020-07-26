@@ -1,4 +1,5 @@
 {
+  "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
   "name": "twodsix",
   "title": "twodsix",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
