@@ -2,12 +2,12 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.data.name}}" height="100" width="100"
              alt="actor image"/>
         <div class="header-fields">
             <h1 class="charname">
                 <label>
-                    <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                    <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
                 </label></h1>
         </div>
         {{!-- The grid classes are defined in styles/global/_grid.scss. To use,
@@ -40,116 +40,41 @@
         <a class="item" data-tab="ucf">UCF</a>
         <a class="item" data-tab="skills">Skills</a>
         <a class="item" data-tab="items">Items</a>
-        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="personal-info">Personal info</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
-            <div class="skills grid grid-2col">
-                <div class="skills flexrow flex-group-center">
-                    <div class="skills grid grid-2col">
-                        <h2 class="clearfix flexbreak">Skills</h2>
-
-                        {{log actor.skills}}
-                        {{log actor.allskills}}
-
-                        {{#each actor.skills as |skills key|}}
-                        <div class="rollable-skill">
-                            <div class="skills flexrow flex-group-center">
-                                <label class="resource-label">{{skills.name}}</label>
-                            </div>
-                            <!-- TODO Characteristics dropdown here should default to default attribute from skill (or, possibly, the first defined task, if one exists)-->
-                            <select name="data.addskillselect" style="width:200px;">
-                                <!-- TODO Something like the line below, but I get "select doesn't match each"-->
-                                <!--                                { { # select skills.data.defaultCharacteristic} }-->
-                                {{log "skills.data.defaultCharacteristic"}}
-                                {{log skills.data.defaultCharacteristic}}
-                                {{#each ../data.characteristics as |characteristic ckey|}}
-                                <!--                                TODO Also tried handlebar helper for option, same problem.-->
-                                <!--                                { { # option ../data.characteristics.{{ckey}}.mod ../data.characteristics.{{ckey}}.short ../skills.data.defaultCharacteristic } }-->
-                                <option value="{{characteristic.short}}" data-value="{{numberFormat characteristic.mod decimals=0 sign=true}}">{{characteristic.short}}</option>
-                                {{/each}}
-                            </select>
-
-                            <select name="rolltype" style="width:200px;">
-                                <option value="Normal" data-value="Normal">Normal</option>
-                                <option value="Advantage" data-value="Advantage">Advantage</option>
-                                <option value="Disadvantage" data-value="Disadvantage">Disadvantage</option>
-                            </select>
-
-
-                            <!-- Dropdown should really default to Average, but still be sorted in correct order -->
-                            <select name="difficulty" style="width:200px;">
-                                <option value="Average" data-value="Average">Average</option>
-                                <option value="Simple" data-value="Simple">Simple</option>
-                                <option value="Easy" data-value="Easy">Easy</option>
-                                <option value="Difficult" data-value="Difficult">Difficult</option>
-                                <option value="VeryDifficult" data-value="VeryDifficult">Very Difficult</option>
-                                <option value="Formidable" data-value="Formidable">Formidable</option>
-                                <option value="Impossible" data-value="Impossible">Impossible</option>
-                            </select>
-<!--                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>-->
-
-                            <select name="skill.value" value="{{skill.value}}" style="width:200px;">
-                                <option value=-3 data-value=-3>Untrained</option>
-                                <option value=0 data-value=0>0</option>
-                                <option value=1 data-value=1>1</option>
-                                <option value=2 data-value=1>2</option>
-                                <option value=3 data-value=2>3</option>
-                                <option value=4 data-value=3>4</option>
-                                <option value=5 data-value=3>5</option>
-                                <option value=6 data-value=3>6</option>
-                            </select>
-                        </div>
-                        {{/each}}
-
-                        <!-- TODO And here I should have all skills from the compendium available-->
-                        <div class="flexrow flex-group-center" style="grid-column-start: 1;grid-column-end:3;">
-                            <h2 class="flexbreak">Add Skill:</h2>
-                            <select name="actor.addskillselect" style="width:200px;">
-                                <option></option>
-                                {{#each actor.allskills as |skills key|}}
-                                <option value="{{key}}">{{skills.name}}</option>
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
+            <div class="item flexrow item-header">
+                <div class="item-image"></div>
+                <div class="item-name">Name</div>
+                <div class="item-controls">
+                    <a class="item-control item-create" title="Add new skill" data-type="skill"><i
+                            class="fas fa-plus"></i> Add new skill</a>
                 </div>
             </div>
+
+            {{#unless data.flags.locked}} <!-- TODO Add lock...-->
+            {{/unless}}
+            {{> "systems/twodsix/templates/actors/parts/actor-skills.html"}}
         </div>
 
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
-            <ol class="items-list">
-                <li class="item flexrow item-header">
-                    <div class="item-image"></div>
-                    <div class="item-name">Name</div>
-                    <div class="item-controls">
-                        <a class="item-control item-create" title="Create item" data-type="item"><i
-                                class="fas fa-plus"></i> Add item</a>
-                    </div>
-                </li>
-                {{#each actor.inventory as |item id|}}
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <div class="item-image">
-                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" alt="item name"/>
-                    </div>
-                    <h4 class="item-name">{{item.name}}</h4>
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-                </li>
-                {{/each}}
-            </ol>
+            {{#unless data.flags.locked}}
+            <div style='flex:initial;'>
+                <div class="add-item button" title="Add Item2" data-type="gear" data-item-type="skill">Add item</div>
+            </div>
+            {{/unless}}
+            {{> "systems/twodsix/templates/actors/parts/actor-items.html"}}
         </div>
 
-        {{!-- Description Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=data.details.description target="data.details.description" button=true owner=owner
-            editable=editable}}
+        {{!-- Personal Info Tab --}}
+        <div class="tab personal-info" data-group="primary" data-tab="personal-info">
+            {{> "systems/twodsix/templates/actors/parts/actor-personal-info.html"}}
         </div>
     </section>
 </form>

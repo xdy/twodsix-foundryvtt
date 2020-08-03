@@ -21,18 +21,22 @@ export class TwodsixActorSheet extends ActorSheet {
         //
 
         data.isToken = this.actor.isToken;
+
+        //TODO Only run on refresh,
         this._prepareCharacterItems(data);
 
         return data
     }
 
     private _prepareCharacterItems(sheetData:any) {
+
         const actor = sheetData.actor;
 
         actor.itemsByType = [];
 
+        // TODO This doesn't feel right.
         if (actor.items) {
-            for (const item of sheetData.items) {
+            for (const item of actor.items) {
                 let list = actor.itemsByType[item.type];
                 if (!list) {
                     list = [];
@@ -41,10 +45,10 @@ export class TwodsixActorSheet extends ActorSheet {
                 list.push(item);
             }
 
-            actor.skills = actor.itemsByType['skill'];
-            actor.weapons = actor.itemsByType['weapon'];
-            actor.armors = actor.itemsByType['armor'];
-            actor.gear = actor.itemsByType['skill'];
+            actor.data.skills = actor.itemsByType['skill'];
+            actor.data.weapons = actor.itemsByType['weapon'];
+            actor.data.armors = actor.itemsByType['armor'];
+            actor.data.gear = actor.itemsByType['skill'];
             //TODO Handle if weapons, armors and/or gear are undefined
             // character.inventory = character.weapons.concat(character.armors, character.gear);
         }
