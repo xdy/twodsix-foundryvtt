@@ -1,3 +1,11 @@
+## [0.2.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.6...v0.2.7) (2020-08-04)
+
+
+### Bug Fixes
+
+* Make the release script executable at the new location... ([64bc0e7](https://github.com/xdy/twodsix-foundryvtt/commit/64bc0e727fb1f6db1177cb2afb86f0770df9ed67))
+* Working on adding css and graphics from Kevin. ([41719bb](https://github.com/xdy/twodsix-foundryvtt/commit/41719bbfb1c090799eea0fce8c3478460f284368))
+
 ## [0.2.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.5...v0.2.6) (2020-07-26)
 
 
