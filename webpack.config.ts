@@ -1,22 +1,24 @@
-const path = require("path");
-const fs = require('fs-extra');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from "path";
+import fs from "fs-extra";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import WriteFilePlugin from "write-file-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {Configuration} from "webpack";
 
-function getFoundryConfig() {
+//Only a partial type, not sure what else can be in this, and haven't looked into it.
+type FoundryConfig = { dataPath:string, systemName:string };
+
+function getFoundryConfig():FoundryConfig {
     const configPath = path.resolve(process.cwd(), 'foundryconfig.json');
-    let config;
 
     if (fs.existsSync(configPath)) {
-        config = fs.readJSONSync(configPath);
-        return config;
+        return fs.readJSONSync(configPath);
     }
 }
 
 
 module.exports = (env, argv) => {
-    let config = {
+    const config:Configuration = {
         context: __dirname,
         entry: {
             main: "./src/twodsix.ts",
@@ -67,11 +69,11 @@ module.exports = (env, argv) => {
     };
 
 
-    if (argv.mode === 'production') {
-    } else {
-        const foundryConfig = getFoundryConfig();
-        if (foundryConfig !== undefined)
+    if (argv.mode !== 'production') {
+        const foundryConfig:FoundryConfig = getFoundryConfig();
+        if (foundryConfig !== undefined) {
             config.output.path = path.join(foundryConfig.dataPath, 'Data', 'systems', foundryConfig.systemName);
+        }
 
         config.devtool = 'inline-source-map';
         config.watch = true;
