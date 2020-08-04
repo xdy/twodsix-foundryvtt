@@ -54,7 +54,7 @@
         <div class="special psi">
           <span class="special-name">PSI</span>
           <span class="special-ability"><input type="text" min="0" name="data.characteristics.psi.value" data-label="data.characteristics.psi.value" value="{{data.characteristics.psi.value}}" data-dtype="Number"/></span>
-          <span class="special-damage"><input type="text" name="" value="0" data-dtype="Number"/></span>
+          <span class="special-damage"><input type="text" max="{{data.characteristics.psi.value}}" min="0" name="data.characteristics.psi.damage" value="{{data.characteristics.psi.damage}}" data-dtype="Number"/></span>
           <span class="special-modifier"><input type="text" value="{{numberFormat data.characteristics.edu.mod decimals=0 sign=true}}"/></span>
         </div>
       </div>
