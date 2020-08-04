@@ -3,15 +3,15 @@
  * @extends {Item}
  */
 export default class TwodsixItem extends Item {
-    /**
-     * Augment the basic Item data model with additional dynamic data.
-     */
-    prepareData():void {
-        super.prepareData();
+  /**
+   * Augment the basic Item data model with additional dynamic data.
+   */
+  prepareData():void {
+    super.prepareData();
 
-        // Get the Item's data
-        // const itemData = this.data;
-        // const actorData = this.actor ? this.actor.data : {};
-        // const {data} = itemData;
-    }
+    // Get the Item's data
+    // const itemData = this.data;
+    // const actorData = this.actor ? this.actor.data : {};
+    // const {data} = itemData;
+  }
 }

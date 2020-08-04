@@ -25,61 +25,61 @@ require('./styles/twodsix.scss');
 /* ------------------------------------ */
 
 Hooks.once('init', async function () {
-    const ASCII = "\n" +
-        "\n" +
-        "___________                 .___     .__        \n" +
-        "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
-        "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___  /  \\  \\/  /\n" +
-        "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
-        "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
-        "                             \\/    \\/         \\/\n" +
-        "\n";
-    console.log(
-        `TWODSIX | Initializing Twodsix system\n${ASCII}`,
-    );
+  const ASCII = "\n" +
+    "\n" +
+    "___________                 .___     .__        \n" +
+    "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
+    "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___  /  \\  \\/  /\n" +
+    "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
+    "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
+    "                             \\/    \\/         \\/\n" +
+    "\n";
+  console.log(
+    `TWODSIX | Initializing Twodsix system\n${ASCII}`,
+  );
 
 
-    game.twodsix = {
-        TwodsixActor,
-        TwodsixItem
-    };
+  game.twodsix = {
+    TwodsixActor,
+    TwodsixItem
+  };
 
-    // Actor
-    CONFIG.Actor.entityClass = TwodsixActor;
-    Actors.unregisterSheet('core', ActorSheet);
-    Actors.registerSheet('twodsix', TwodsixActorSheet, {
-        types: ['character'],
-        makeDefault: true,
-    });
+  // Actor
+  CONFIG.Actor.entityClass = TwodsixActor;
+  Actors.unregisterSheet('core', ActorSheet);
+  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+    types: ['character'],
+    makeDefault: true,
+  });
 
-    // Items
-    CONFIG.Item.entityClass = TwodsixItem;
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+  // Items
+  CONFIG.Item.entityClass = TwodsixItem;
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
 
-    /**
-     * Set an initiative formula for the system
-     * TODO Should be done via a setting
-     * @type {String}
-     */
-    CONFIG.Combat.initiative = {
-        formula: "1d6",
-        decimals: 1
-    };
-    registerHandlebarsHelpers();
-    registerSettings();
-    await preloadTemplates();
+  /**
+   * Set an initiative formula for the system
+   * TODO Should be done via a setting
+   * @type {String}
+   */
+  CONFIG.Combat.initiative = {
+    formula: "1d6",
+    decimals: 1
+  };
+  registerHandlebarsHelpers();
+  registerSettings();
+  await preloadTemplates();
 
 });
 /* ------------------------------------ */
 /* Setup system							*/
 /* ------------------------------------ */
 Hooks.once('setup', async function () {
-    // Do anything after initialization but before ready
+  // Do anything after initialization but before ready
 
-    CONFIG.TWODSIX = TWODSIX;
+  CONFIG.TWODSIX = TWODSIX;
 
-    (window as any).Twodsix = new TwodsixSystem();
+  (window as any).Twodsix = new TwodsixSystem();
 
 
 });
@@ -88,12 +88,12 @@ Hooks.once('setup', async function () {
 /* When ready							*/
 /* ------------------------------------ */
 Hooks.once('ready', async function () {
-    // Do anything once the system is ready
+  // Do anything once the system is ready
 
-    // //TODO The below reads all skill *names* from all compendiums. Needs to be revisited. Should only read *this* variant's skills. Also, not sure I'm going to need it.
-    // TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+  // //TODO The below reads all skill *names* from all compendiums. Needs to be revisited. Should only read *this* variant's skills. Also, not sure I'm going to need it.
+  // TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
 
-    // Set up migrations here once needed.
+  // Set up migrations here once needed.
 
 
 });
@@ -101,24 +101,24 @@ Hooks.once('ready', async function () {
 // Add any additional hooks if necessary
 Hooks.on('preCreateActor', async (actor, dir) => {
 
-    if (game.settings.get('twodsix', 'defaultTokenSettings')) {
-        let link = true;
-        let disposition = 1;
+  if (game.settings.get('twodsix', 'defaultTokenSettings')) {
+    let link = true;
+    let disposition = 1;
 
-        if (actor.type !== 'character') {
-            link = false;
-            disposition = 0;
-        }
-
-        actor.token = actor.token || {};
-        mergeObject(actor.token, {
-            'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-            'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-            vision: true,
-            dimSight: 30,
-            brightSight: 0,
-            actorLink: link,
-            disposition,
-        });
+    if (actor.type !== 'character') {
+      link = false;
+      disposition = 0;
     }
+
+    actor.token = actor.token || {};
+    mergeObject(actor.token, {
+      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+      vision: true,
+      dimSight: 30,
+      brightSight: 0,
+      actorLink: link,
+      disposition,
+    });
+  }
 });

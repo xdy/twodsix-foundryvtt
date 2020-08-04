@@ -1,5 +1,5 @@
 export class TwodsixSystem {
-    //Nothing to do yet
+  //Nothing to do yet
 
-    //TODO
+  //TODO
 }
