@@ -2,6 +2,9 @@
  * Prepare Character type specific data
  */
 
+//TODO Extracted this from earlier version when I intended to base the character around the UCF. Some possibly useful code for the UCF tab when that gets done.
+
+
 //The base characteristics
 import {TWODSIX} from "../config";
 import {calcModFromString, fromPseudoHex} from "./sheetUtils";

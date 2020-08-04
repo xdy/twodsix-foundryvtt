@@ -11,7 +11,7 @@ This system may eventually claim compatibility with specific rules sets once I h
 a) completed said compatibility 
 b) actually have the license to do so
 
-Intended design:
+Intended design for the UCF tab:
   ```
 
 The character is described in UCF, support import from 10001 characters and, I suppose, travellertools (extends it a bit)

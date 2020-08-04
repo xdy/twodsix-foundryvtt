@@ -63,7 +63,7 @@ export function pseudoHex(value:number):string {
         case 33:
             return "Z";
         default:
-            throw new Error(`value ${value} is not usable as a pseudohexadecimal value`);
+            throw new Error(`value ${value} is not usable as a pseudo-hexadecimal value`);
     }
 }
 
@@ -138,7 +138,7 @@ export function fromPseudoHex(value:string):number {
         case "Z":
             return 33;
         default:
-            throw new Error(`value ${value} is not a pseudohexadecimal value`);
+            throw new Error(`value ${value} is not a pseudo-hexadecimal value`);
     }
 }
 

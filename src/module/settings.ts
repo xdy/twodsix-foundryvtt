@@ -9,6 +9,6 @@ export const registerSettings = function ():void {
         type: Boolean,
     });
 
-    //TODO Tons of settings to come. Iniative rule, skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
+    //TODO Tons of settings to come. Initiative rule, skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
 }
