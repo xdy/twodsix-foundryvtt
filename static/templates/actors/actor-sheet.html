@@ -4,14 +4,14 @@
     <div class="character-info">
       <div class="character-photo">
         <span class="helper"></span>
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.data.name}}" height="100" width="100" alt="actor image"/>
+        <img src="{{actor.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" alt="actor image"/>
       </div>
       <div class="character-name"><h2><input name="{{data.name}}" type="text" value="Character Name" placeholder="Character Name"/></h2></div>
       <div class="character-bgi">
-        <span class="bgi-age">|| Age:<input name="name" type="text" value="0" placeholder="0"/> ||</span>
-        <span class="bgi-gender">Gender:<input name="name" type="text" value="Sex" placeholder="-"/> ||</span>
-        <span class="bgi-species">|| Species:<input name="name" type="text" value="Character Race" placeholder="-"/> ||</span>
-        <span class="bgi-homeworld">|| Homeworld:<input name="name" type="text" value="Name World" placeholder="-"/> ||</span>
+        <span class="bgi-age">|| Age:<input name="name" type="text" value="{{data.age}}" placeholder="0"/> ||</span>
+        <span class="bgi-gender">Gender:<input name="name" type="text" value="{{data.gender}}" placeholder="-"/> ||</span>
+        <span class="bgi-species">|| Species:<input name="name" type="text" value="{{data.species}}" placeholder="-"/> ||</span>
+        <span class="bgi-homeworld">|| Homeworld:<input name="name" type="text" value="{{data.homeworld}}" placeholder="-"/> ||</span>
 
       </div>
       <div class="character-characteristics">

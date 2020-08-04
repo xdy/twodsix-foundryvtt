@@ -81,13 +81,14 @@
         }
       },
       "details": {
+        "species": "",
         "gender": "",
         "appearance": "",
         "birth_year": 0,
         "birth_day": 0,
         "rads": 0,
         "residence": "",
-        "birthplace": "",
+        "homeworld": "",
         "description": "",
         "career": [
           {
