@@ -4,16 +4,22 @@ body {
 
 /*div {border: thin dotted #FFF;}*/
 
-.bg-body {
-	background-attachment: fixed;
-	background-image: url(../assets/actor/bg2.jpg);
-	background-repeat: repeat-x;
-  font-family: Consolas, monospace;
-	color: #00E5FF;
+.window-content {
+    background-attachment: fixed !important;
+    background-image: url(../assets/actor/bg2.jpg)!important;
+    background-repeat: repeat-x !important;
+    font-family: Consolas, monospace;
+    color: #00E5FF !important;
 }
 
 h2 {
     margin-bottom: -0.5em;
+    border: none;
+}
+
+img {
+    border: none !important;
+    max-width: 100%;
 }
 
 
@@ -46,25 +52,32 @@ input[type="text"], input[type="password"], input[type="datetime-local"] {
 
 .character-info {
 	grid-area: character-info;
-    background-image: url(../assets/actor/Profile-Block3b.svg);
-    background-repeat: no-repeat;
     margin-left: -8px;
     margin-top: -2px;
 	position: relative;
 }
 
+img.character-info-mask {
+    z-index: 5;
+    position: absolute;
+}
+
 .character-tabs { grid-area: character-tabs; }
 
 .character-photo {
-    margin-top: 0.25em;
-    margin-left: 0.6em;
+    margin-top: -0.3em;
+    margin-left: 0.3em;
     position: absolute;
-    width: 92.8%;
-    z-index: -1;
-    margin-bottom: -7.8em;
+    width: 97%;
+    height: 100%;
+    z-index: 0;
 }
 
-.character-photo img {width: 100%; vertical-align: middle;}
+.character-photo img {
+    width: 100%;
+    vertical-align: middle;
+    z-index: -1;
+}
 
 .helper {
 	display: inline-block;
@@ -74,63 +87,78 @@ input[type="text"], input[type="password"], input[type="datetime-local"] {
 }
 .character-name {
     position: relative;
-	top: -0.9em;
+    top: 1em;
     text-align: center;
+    z-index: 6;
 }
 
 .character-name input[type="text"] {
-	height: 1.4em;
+    height: 1.6em;
     margin: 0.1em;
     background-color: #000;
     border: 3px solid #29aae1;
-    margin-left: -0.1em;
-    margin-top: 0em;
-    width: 12em;
+    margin-left: -0.05em;
+    position: relative;
+    top: -0.45em;
+    width: 14em;
 }
 
 .character-bgi {
-	margin-left: 1em;
-	margin-right: 1em;
-	position: relative;
-    top: 17em;
+    margin-left: 1em;
+    margin-right: 1em;
+    position: relative;
+    top: 21.4em;
+    z-index: 6;
 }
+
 .bgi-age input {width: 1.5em;}
 .bgi-gender input {width: 3.5em;}
 .bgi-species input {width: 9.1em;}
 .bgi-homeworld input {width: 8em;}
 
+span.bgi-age {margin-right: 4em;}
+.character-bgi span {margin-right: 4em;}
+
 .character-characteristics {
-    width: 17.3em;
-    margin-top: 17.5em;
+    width: 21em;
+    margin-top: 21.5em;
     margin-left: 0.5em;
+    position: relative;
+    z-index: 6;
 }
 
 .stat {
     background-image: url(../assets/actor/statblock1.svg);
-    height: 3.5em;
-    width: 5em;
+    height: 4em;
+    width: 5.5em;
     background-size: cover;
     display: inline-block;
-    margin-top: 2em;
-	margin-right: -0.5em;
+    margin-top: 2.5em;
+    margin-left: 0.5em;
+    margin-right: -1em;
 }
 
-.stat input, .special input {width: 1em; text-align:center;}
+.stat input, .special input {
+    width: 1.5em;
+    text-align: center;
+    margin-left: -0.1em;
+}
 
 .special {
     background-image: url(../assets/actor/psiblock1.svg);
-    height: 4em;
-    width: 5em;
+    height: 4.5em;
+    width: 5.5em;
     background-size: cover;
     position: relative;
-    right: -13.3em;
-    top: -7.2em;
+    right: -15.0em;
+    top: -8.2em;
 }
 
 span.stat-name {
     position: relative;
-    left: 1.8em;
-    top: -1.2em;
+    left: 1.7em;
+    top: -1.5em;
+    font-size: 1.2em;
 }
 
 span.stat-ability {
@@ -149,14 +177,15 @@ span.stat-modifier {
 
 span.stat-damage {
     position: relative;
-    left: 2em;
+    left: 2.35em;
     top: 0.6em;
 }
 
 span.special-name {
     position: relative;
     top: -1.1em;
-    right: -2em;
+    right: -1.85em;
+    font-size: 1.2em;
 }
 
 span.special-ability {
@@ -165,15 +194,16 @@ span.special-ability {
 }
 
 span.special-modifier {
-	margin: -5px;
+    margin: -5px;
     position: relative;
     left: 0.7em;
-    top: 1em;
+    top: 0.8em;
 }
 
 span.special-damage {
     position: relative;
-	left: 3.3em;
+    left: 3.8em;
+    top: -0.3em;
 }
 
 svg:hover {
@@ -182,23 +212,27 @@ svg:hover {
 
 .character-tabs { grid-area: character-tabs; }
 
+.character-tabs .tabs {
+    position: relative;
+    top: 0.4em;
+    left: 2.75em;
+    z-index: 0;
+    width: 29.5em;
+}
+
+.character-tabs a.item {
+    border: 1px solid;
+    padding: 0.3em 1.0em 0.3em 1.0em;
+    background-color: #000000a6;
+    text-align: center;
+}
+
 .character-tabs-info {
     grid-area: character-tabs-info;
     background-image: url(../assets/actor/tabs-bg.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1;
 }
 
-nav.tabs {
-    position: relative;
-    top: 1.5em;
-    left: 2em;
-    z-index: -1;
-}
 
-a.item {
-    border: 1px solid;
-    padding: 0.3em 1.78em 0.3em 1.78em;
-    background-color: #000000a6;
-    text-align: center;
-}

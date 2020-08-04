@@ -15,14 +15,10 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
-    "paths": {
-      "foundry": [
-        "types/foundry-pc-types"
-      ]
-    },
     "types": [
       "jquery",
-      "webpack-env"
+      "webpack-env",
+      "foundry-pc-types"
     ],
     "alwaysStrict": true
   }
