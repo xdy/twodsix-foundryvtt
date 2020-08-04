@@ -1,3 +1,11 @@
+## [0.2.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.7...v0.2.8) (2020-08-04)
+
+
+### Bug Fixes
+
+* Forgot psi damage. ([58ef6a9](https://github.com/xdy/twodsix-foundryvtt/commit/58ef6a9241df6775a03ae1f5427d416332bb1235))
+* Replace some sample data with data from template. Still doesn't work. ([3d1d0da](https://github.com/xdy/twodsix-foundryvtt/commit/3d1d0da8976f1a5a93d74dbf7e8a50ef2eea5e9f))
+
 ## [0.2.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.6...v0.2.7) (2020-08-04)
 
 
