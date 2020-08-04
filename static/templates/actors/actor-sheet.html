@@ -1,17 +1,17 @@
 <form class="{{cssClass}} bg-body" autocomplete="off">
 
   <div class="grid-container">
-    <div class="character-info">
+    <div class="character-info"><img class="character-info-mask" src="./systems/twodsix/assets/actor/Profile-Block3b.svg"/>
       <div class="character-photo">
         <span class="helper"></span>
-        <img src="{{actor.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" alt="actor image"/>
+        <div class="character-photo"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
       </div>
       <div class="character-name"><h2><input name="{{data.name}}" type="text" value="Character Name" placeholder="Character Name"/></h2></div>
       <div class="character-bgi">
-        <span class="bgi-age">|| Age:<input name="name" type="text" value="{{data.age}}" placeholder="0"/> ||</span>
-        <span class="bgi-gender">Gender:<input name="name" type="text" value="{{data.gender}}" placeholder="-"/> ||</span>
-        <span class="bgi-species">|| Species:<input name="name" type="text" value="{{data.species}}" placeholder="-"/> ||</span>
-        <span class="bgi-homeworld">|| Homeworld:<input name="name" type="text" value="{{data.homeworld}}" placeholder="-"/> ||</span>
+        <span class="bgi-age">Age:<input type="text" name="data.age" value="{{data.age}}" placeholder="0"/></span>
+        <span class="bgi-gender">Gender:<input name="name" type="text" name="data.gender" value="{{data.gender}}" placeholder="Sex"/></span>
+        <span class="bgi-species">Species:<input name="name" type="text" value="{{data.species}}" placeholder="Character Race"/></span>
+        <span class="bgi-homeworld">Homeworld:<input name="name" type="text" value="{{data.homeworld}}" placeholder="Name World"/></span>
 
       </div>
       <div class="character-characteristics">
