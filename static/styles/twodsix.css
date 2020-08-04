@@ -1,0 +1,204 @@
+body {
+  font-family: Consolas, monospace;
+}
+
+/*div {border: thin dotted #FFF;}*/
+
+.bg-body {
+	background-attachment: fixed;
+	background-image: url(../assets/actor/bg2.jpg);
+	background-repeat: repeat-x;
+  font-family: Consolas, monospace;
+	color: #00E5FF;
+}
+
+h2 {
+    margin-bottom: -0.5em;
+}
+
+
+input[type="text"], input[type="password"], input[type="datetime-local"] {
+    background: rgba(0, 0, 0, 0.21);
+    margin: 0;
+    color: #6e819e !important;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    line-height: inherit;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    border: none;
+}
+
+
+.grid-container {
+  height: 600px;
+  width: 800px;
+  display: grid;
+  grid-template-columns: 38% 20.5% 20.5% 20%;
+  grid-template-rows: 5% 45% 45% 5%;
+  gap: 1px 1px;
+  grid-template-areas: "character-info character-tabs character-tabs character-tabs" "character-info character-tabs-info character-tabs-info character-tabs-info" "character-info character-tabs-info character-tabs-info character-tabs-info" "character-info character-tabs-info character-tabs-info character-tabs-info";
+}
+
+
+.character-info {
+	grid-area: character-info;
+    background-image: url(../assets/actor/Profile-Block3b.svg);
+    background-repeat: no-repeat;
+    margin-left: -8px;
+    margin-top: -2px;
+	position: relative;
+}
+
+.character-tabs { grid-area: character-tabs; }
+
+.character-photo {
+    margin-top: 0.25em;
+    margin-left: 0.6em;
+    position: absolute;
+    width: 92.8%;
+    z-index: -1;
+    margin-bottom: -7.8em;
+}
+
+.character-photo img {width: 100%; vertical-align: middle;}
+
+.helper {
+	display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+	height: 1em;
+}
+.character-name {
+    position: relative;
+	top: -0.9em;
+    text-align: center;
+}
+
+.character-name input[type="text"] {
+	height: 1.4em;
+    margin: 0.1em;
+    background-color: #000;
+    border: 3px solid #29aae1;
+    margin-left: -0.1em;
+    margin-top: 0em;
+    width: 12em;
+}
+
+.character-bgi {
+	margin-left: 1em;
+	margin-right: 1em;
+	position: relative;
+    top: 17em;
+}
+.bgi-age input {width: 1.5em;}
+.bgi-gender input {width: 3.5em;}
+.bgi-species input {width: 9.1em;}
+.bgi-homeworld input {width: 8em;}
+
+.character-characteristics {
+    width: 17.3em;
+    margin-top: 17.5em;
+    margin-left: 0.5em;
+}
+
+.stat {
+    background-image: url(../assets/actor/statblock1.svg);
+    height: 3.5em;
+    width: 5em;
+    background-size: cover;
+    display: inline-block;
+    margin-top: 2em;
+	margin-right: -0.5em;
+}
+
+.stat input, .special input {width: 1em; text-align:center;}
+
+.special {
+    background-image: url(../assets/actor/psiblock1.svg);
+    height: 4em;
+    width: 5em;
+    background-size: cover;
+    position: relative;
+    right: -13.3em;
+    top: -7.2em;
+}
+
+span.stat-name {
+    position: relative;
+    left: 1.8em;
+    top: -1.2em;
+}
+
+span.stat-ability {
+	margin: -0.3em;
+    position: relative;
+    left: -0.9em;
+    top: 0.4em;
+}
+
+span.stat-modifier {
+    margin: -5px;
+    position: relative;
+    left: -0.2em;
+    top: 0.4em;
+}
+
+span.stat-damage {
+    position: relative;
+    left: 2em;
+    top: 0.6em;
+}
+
+span.special-name {
+    position: relative;
+    top: -1.1em;
+    right: -2em;
+}
+
+span.special-ability {
+    position: relative;
+    top: 0.4em;
+}
+
+span.special-modifier {
+	margin: -5px;
+    position: relative;
+    left: 0.7em;
+    top: 1em;
+}
+
+span.special-damage {
+    position: relative;
+	left: 3.3em;
+}
+
+svg:hover {
+  fill: red;
+}
+
+.character-tabs { grid-area: character-tabs; }
+
+.character-tabs-info {
+    grid-area: character-tabs-info;
+    background-image: url(../assets/actor/tabs-bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav.tabs {
+    position: relative;
+    top: 1.5em;
+    left: 2em;
+    z-index: -1;
+}
+
+a.item {
+    border: 1px solid;
+    padding: 0.3em 1.78em 0.3em 1.78em;
+    background-color: #000000a6;
+    text-align: center;
+}

@@ -18,7 +18,7 @@ import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import {TWODSIX} from "./module/config";
 
 
-require('./styles/twodsix.scss');
+require('../static/styles/twodsix.css');
 
 /* ------------------------------------ */
 /* Initialize system					*/

@@ -1,80 +1,106 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} bg-body" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.data.name}}" height="100" width="100"
-             alt="actor image"/>
-        <div class="header-fields">
-            <h1 class="charname">
-                <label>
-                    <input name="name" type="text" value="{{data.name}}" placeholder="Name"/>
-                </label></h1>
-        </div>
-        {{!-- The grid classes are defined in styles/global/_grid.scss. To use,
-        use both the "grid" and "grid-Ncol" class where "N" can be any number
-        from 1 to 12 and will create that number of columns. --}}
-        <div class="characteristics grid grid-3col">
-            <div class="characteristic flexrow flex-group-center">
-                <label></label>
-                <span>Value</span>
-                <span>Curr</span>
-                <span>Dmg</span>
-                <span>Mod</span>
-            </div>
-            {{#each data.characteristics as |characteristic key|}}
-            <div class="characteristic flexrow flex-group-center">
-                <label class="resource-label">{{characteristic.short}}</label>
-                <input type="text" min="0" name="data.characteristics.{{key}}.value" value="{{characteristic.value}}" />
-<!--                <span data-label="characteristics.{{value}}">{{numberFormat characteristic.value decimals=0}}</span>-->
-<!--                <input type="text" name="data.characteristics.{{key}}.current" value="{{characteristic.current}}" />-->
-                <span data-label="characteristics.{{current}}">{{numberFormat characteristic.current decimals=0}}</span>
-                <input type="text" max="{{characteristic.value}}" min="0"  name="data.characteristics.{{key}}.damage" value="{{characteristic.damage}}" data-dtype="Number"/>
-                <span class="characteristic-mod rollable-characteristic draggable"  data-label="{{key}}">{{numberFormat characteristic.mod decimals=0 sign=true}}</span>
-            </div>
-            {{/each}}
-        </div>
-    </header>
+  <div class="grid-container">
+    <div class="character-info">
+      <div class="character-photo">
+        <span class="helper"></span>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.data.name}}" height="100" width="100" alt="actor image"/>
+      </div>
+      <div class="character-name"><h2><input name="{{data.name}}" type="text" value="Character Name" placeholder="Character Name"/></h2></div>
+      <div class="character-bgi">
+        <span class="bgi-age">|| Age:<input name="name" type="text" value="0" placeholder="0"/> ||</span>
+        <span class="bgi-gender">Gender:<input name="name" type="text" value="Sex" placeholder="-"/> ||</span>
+        <span class="bgi-species">|| Species:<input name="name" type="text" value="Character Race" placeholder="-"/> ||</span>
+        <span class="bgi-homeworld">|| Homeworld:<input name="name" type="text" value="Name World" placeholder="-"/> ||</span>
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
+      </div>
+      <div class="character-characteristics">
+        <div class="stat str">
+          <span class="stat-name">STR</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.str.value" data-label="data.characteristics.str.value" value="{{data.characteristics.str.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.str.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.str.value}}" min="0" name="data.characteristics.str.damage" value="{{data.characteristics.str.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="stat dex">
+          <span class="stat-name">DEX</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.dex.value" data-label="data.characteristics.dex.value" value="{{data.characteristics.dex.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.dex.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.dex.value}}" min="0" name="data.characteristics.dex.damage" value="{{data.characteristics.dex.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="stat end">
+          <span class="stat-name">END</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.end.value" data-label="data.characteristics.end.value" value="{{data.characteristics.end.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.end.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.end.value}}" min="0" name="data.characteristics.end.damage" value="{{data.characteristics.end.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="stat int">
+          <span class="stat-name">INT</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.int.value" data-label="data.characteristics.int.value" value="{{data.characteristics.int.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.int.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.int.value}}" min="0" name="data.characteristics.int.damage" value="{{data.characteristics.int.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="stat edu">
+          <span class="stat-name">EDU</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.edu.value" data-label="data.characteristics.edu.value" value="{{data.characteristics.edu.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.edu.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.edu.value}}" min="0" name="data.characteristics.edu.damage" value="{{data.characteristics.edu.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="stat soc">
+          <span class="stat-name">SOC</span>
+          <span class="stat-ability"><input type="text" min="0" name="data.characteristics.soc.value" data-label="data.characteristics.soc.value" value="{{data.characteristics.soc.value}}" data-dtype="Number"/></span>
+          <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.soc.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="text" max="{{data.characteristics.soc.value}}" min="0" name="data.characteristics.soc.damage" value="{{data.characteristics.soc.damage}}" data-dtype="Number"/></span>
+        </div>
+        <div class="special psi">
+          <span class="special-name">PSI</span>
+          <span class="special-ability"><input type="text" min="0" name="data.characteristics.psi.value" data-label="data.characteristics.psi.value" value="{{data.characteristics.psi.value}}" data-dtype="Number"/></span>
+          <span class="special-damage"><input type="text" name="" value="0" data-dtype="Number"/></span>
+          <span class="special-modifier"><input type="text" value="{{numberFormat data.characteristics.edu.mod decimals=0 sign=true}}"/></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="character-tabs">
+      <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="ucf">UCF</a>
         <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="items">Items</a>
+        <a class="item" data-tab="items">Inventory</a>
         <a class="item" data-tab="personal-info">Personal info</a>
-    </nav>
+      </nav>
+    </div>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        {{!-- Skills Tab --}}
-        <div class="tab skills" data-group="primary" data-tab="skills">
-            <div class="item flexrow item-header">
-                <div class="item-image"></div>
-                <div class="item-name">Name</div>
-                <div class="item-controls">
-                    <a class="item-control item-create" title="Add new skill" data-type="skill"><i
-                            class="fas fa-plus"></i> Add new skill</a>
-                </div>
-            </div>
-
-            {{#unless data.flags.locked}} <!-- TODO Add lock...-->
-            {{/unless}}
-            {{> "systems/twodsix/templates/actors/parts/actor-skills.html"}}
+    <div class="character-tabs-info">
+      {{!-- Skills Tab --}}
+      <div class="tab skills" data-group="primary" data-tab="skills">
+        <div class="item flexrow item-header">
+          <div class="item-image"></div>
+          <div class="item-name">Name</div>
+          <div class="item-controls">
+            <a class="item-control item-create" title="Add new skill" data-type="skill"><i
+              class="fas fa-plus"></i> Add new skill</a>
+          </div>
         </div>
 
-        {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
-            {{#unless data.flags.locked}}
-            <div style='flex:initial;'>
-                <div class="add-item button" title="Add Item2" data-type="gear" data-item-type="skill">Add item</div>
-            </div>
-            {{/unless}}
-            {{> "systems/twodsix/templates/actors/parts/actor-items.html"}}
-        </div>
+        {{#unless data.flags.locked}} <!-- TODO Add lock...-->
+        {{/unless}}
+        {{> "systems/twodsix/templates/actors/parts/actor-skills.html"}}
+      </div>
 
-        {{!-- Personal Info Tab --}}
-        <div class="tab personal-info" data-group="primary" data-tab="personal-info">
-            {{> "systems/twodsix/templates/actors/parts/actor-personal-info.html"}}
+      {{!-- Owned Items Tab --}}
+      <div class="tab items" data-group="primary" data-tab="items">
+        {{#unless data.flags.locked}}
+        <div style='flex:initial;'>
+          <div class="add-item button" title="Add Item" data-type="gear" data-item-type="skill">Add item</div>
         </div>
-    </section>
+        {{/unless}}
+        {{> "systems/twodsix/templates/actors/parts/actor-items.html"}}
+      </div>
+
+      {{!-- Personal Info Tab --}}
+      <div class="tab personal-info" data-group="primary" data-tab="personal-info">
+        {{> "systems/twodsix/templates/actors/parts/actor-personal-info.html"}}
+      </div>
+    </div>
+  </div>
 </form>
+
