@@ -1,3 +1,11 @@
+## [0.2.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.12...v0.2.13) (2020-08-05)
+
+
+### Bug Fixes
+
+* Change name of 'Personal Info' tab to just 'Info' ([f75ca78](https://github.com/xdy/twodsix-foundryvtt/commit/f75ca780806c557fdb8cb389596c3186fe2807c0))
+* Css fixes from Kevin. ([3937c23](https://github.com/xdy/twodsix-foundryvtt/commit/3937c23f03f352493e7897cbb629ee94ea56902e))
+
 ## [0.2.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.11...v0.2.12) (2020-08-05)
 
 
