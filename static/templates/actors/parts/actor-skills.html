@@ -1,62 +1,60 @@
 <div class="skills grid grid-2col">
-    <div class="skills flexrow flex-group-center">
-        <div class="skills grid grid-2col">
-            <h2 class="clearfix flexbreak">Skills</h2>
+  <div class="skills flexrow flex-group-center">
+    <div class="skills grid grid-2col">
+      <h2 class="clearfix flexbreak">Skills</h2>
 
-            <!-- TODO Fix so updates actually update... (Name, value at least)-->
-            {{#each data.skills as |skills key|}}
-            <div class="rollable-skill">
-                <div class="skills flexrow flex-group-center">
-                    {{#if (eq skills.name "New Skill")}}
-                    <input name="name" type="text" value="{{skills.name}}" placeholder="{{skills.name}}"/>
-                    {{else}}
-                    <label class="resource-label">{{skills.name}}</label>
-                    {{/if}}
-                </div>
-                <!-- TODO Characteristics dropdown here should default to default attribute from skill (or, possibly, the first defined task, if one exists)-->
-                <select name="data.addskillselect" style="width:200px;">
-                    <!-- TODO Something like the line below, but I get "select doesn't match each"-->
-                    <!--                    { { # select skills.data.defaultCharacteristic } }-->
-                    {{log skill.data.defaultCharacteristic}}
-                    {{#each ../data.characteristics as |characteristic ckey|}}
-                    <!--                                TODO Also tried handlebar helper for option, same problem.-->
-                    <!--                                { { # option ../data.characteristics.{{ckey}}.mod ../data.characteristics.{{ckey}}.short ../skills.data.defaultCharacteristic } }-->
-                    <option name="{{characteristic.short}}" value="{{characteristic.short}}" data-value="{{numberFormat characteristic.mod decimals=0 sign=true}}">{{characteristic.short}}</option>
-                    {{/each}}
-                </select>
-
-                <select name="rolltype" style="width:200px;">
-                    <option value="Normal" data-value="Normal">Normal</option>
-                    <option value="Advantage" data-value="Advantage">Advantage</option>
-                    <option value="Disadvantage" data-value="Disadvantage">Disadvantage</option>
-                </select>
-
-
-                <!-- Dropdown should really default to Average, but still be sorted in correct order -->
-                <select name="difficulty" style="width:200px;">
-                    <option value="Average" data-value="Average">Average</option>
-                    <option value="Simple" data-value="Simple">Simple</option>
-                    <option value="Easy" data-value="Easy">Easy</option>
-                    <option value="Difficult" data-value="Difficult">Difficult</option>
-                    <option value="VeryDifficult" data-value="VeryDifficult">Very Difficult</option>
-                    <option value="Formidable" data-value="Formidable">Formidable</option>
-                    <option value="Impossible" data-value="Impossible">Impossible</option>
-                </select>
-                <!--                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>-->
-
-                <select name="skill.value" value="{{skill.value}}" style="width:200px;">
-                    <option value=-3 data-value=-3>Untrained</option>
-                    <option value=0 data-value=0>0</option>
-                    <option value=1 data-value=1>1</option>
-                    <option value=2 data-value=1>2</option>
-                    <option value=3 data-value=2>3</option>
-                    <option value=4 data-value=3>4</option>
-                    <option value=5 data-value=3>5</option>
-                    <option value=6 data-value=3>6</option>
-                </select>
-            </div>
-            {{/each}}
-
+      {{log actor.items}}
+      {{#each actor.items as |skill key|}}
+      {{#if (eq skill.type "skill")}}
+      <div class="rollable-skill">
+        <div class="skills flexrow flex-group-center">
+          {{#if (eq skill.name "New Skill")}}
+          <input name="name" type="text" value="{{skill.name}}" placeholder="{{skill.name}}"/>
+          {{else}}
+          <label class="resource-label">{{skill.name}}</label>
+          {{/if}}
         </div>
+        <!-- TODO Characteristics dropdown here should default to default attribute from skill (or, possibly, the first defined task, if one exists)-->
+        <select name="data.addskillselect" style="width:200px;">
+          {{#each ../data.characteristics as |characteristic ckey|}}
+          <!-- TODO Something like the line below, but I get "select doesn't match each"-->
+          <!--          { { # select skill.data.defaultCharacteristic } }-->
+          <option name="{{characteristic.short}}" value="{{characteristic.short}}" data-value="{{numberFormat characteristic.mod decimals=0 sign=true}}">{{characteristic.short}}</option>
+          {{/each}}
+        </select>
+
+        <select name="rolltype" style="width:200px;">
+          <option value="Normal" data-value="Normal">Normal</option>
+          <option value="Advantage" data-value="Advantage">Advantage</option>
+          <option value="Disadvantage" data-value="Disadvantage">Disadvantage</option>
+        </select>
+
+
+        <!-- Dropdown should really default to Average, but still be sorted in correct order -->
+        <select name="difficulty" style="width:200px;">
+          <option value="Average" data-value="Average">Average</option>
+          <option value="Simple" data-value="Simple">Simple</option>
+          <option value="Easy" data-value="Easy">Easy</option>
+          <option value="Difficult" data-value="Difficult">Difficult</option>
+          <option value="VeryDifficult" data-value="VeryDifficult">Very Difficult</option>
+          <option value="Formidable" data-value="Formidable">Formidable</option>
+          <option value="Impossible" data-value="Impossible">Impossible</option>
+        </select>
+        <!--                            <span class="skill-value draggable" data-label="{{key}}">{{numberFormat skills.data.value decimals=0 sign=true}}</span>-->
+
+        <select name="skill.value" value="{{skill.value}}" style="width:200px;">
+          <option value=-3 data-value=-3>Untrained</option>
+          <option value=0 data-value=0>0</option>
+          <option value=1 data-value=1>1</option>
+          <option value=2 data-value=1>2</option>
+          <option value=3 data-value=2>3</option>
+          <option value=4 data-value=3>4</option>
+          <option value=5 data-value=3>5</option>
+          <option value=6 data-value=3>6</option>
+        </select>
+      </div>
+      {{/if}}
+      {{/each}}
     </div>
+  </div>
 </div>

@@ -34,36 +34,36 @@ export class TwodsixActorSheet extends ActorSheet {
 
     actor.itemsByType = [];
 
-    // TODO This doesn't feel right.
-    if (actor.items) {
-      for (const item of actor.items) {
-        let list = actor.itemsByType[item.type];
-        if (!list) {
-          list = [];
-          actor.itemsByType[item.type] = list;
-        }
-        list.push(item);
-      }
-
-      actor.data.skills = actor.itemsByType['skill'];
-      actor.data.weapons = actor.itemsByType['weapon'];
-      actor.data.armors = actor.itemsByType['armor'];
-      actor.data.gear = actor.itemsByType['skill'];
-      //TODO Handle if weapons, armors and/or gear are undefined
-      // character.inventory = character.weapons.concat(character.armors, character.gear);
-    }
-
-    async function addAllSkillsFromCompendium():Promise<void> {
-      const skillPack = game.packs.filter(c => c.metadata.entity && c.metadata.entity == 'Item' && c.metadata.name == 'skills')[0];
-      const entities = await skillPack.getContent();
-
-      actor.allskills = entities.reduce(function (result, item) {
-        result[item.data.data.label] = item;
-        return result;
-      }, {});
-    }
-
-    addAllSkillsFromCompendium();
+    // // TODO This doesn't feel right.
+    // if (actor.items) {
+    //   for (const item of actor.items) {
+    //     let list = actor.itemsByType[item.type];
+    //     if (!list) {
+    //       list = [];
+    //       actor.itemsByType[item.type] = list;
+    //     }
+    //     list.push(item);
+    //   }
+    //
+    //   actor.data.skills = actor.itemsByType['skill'];
+    //   actor.data.weapons = actor.itemsByType['weapon'];
+    //   actor.data.armors = actor.itemsByType['armor'];
+    //   actor.data.gear = actor.itemsByType['skill'];
+    //   //TODO Handle if weapons, armors and/or gear are undefined
+    //   // character.inventory = character.weapons.concat(character.armors, character.gear);
+    // }
+    //
+    // async function addAllSkillsFromCompendium():Promise<void> {
+    //   const skillPack = game.packs.filter(c => c.metadata.entity && c.metadata.entity == 'Item' && c.metadata.name == 'skills')[0];
+    //   const entities = await skillPack.getContent();
+    //
+    //   actor.allskills = entities.reduce(function (result, item) {
+    //     result[item.data.data.label] = item;
+    //     return result;
+    //   }, {});
+    // }
+    //
+    // addAllSkillsFromCompendium();
   }
 
   /** @override */
