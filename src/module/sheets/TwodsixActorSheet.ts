@@ -196,7 +196,7 @@ export class TwodsixActorSheet extends ActorSheet {
 
     if (dataset.roll) {
       const roll = new Roll(dataset.roll, this.actor.data.data);
-      const label = dataset.label ? `Rolling ${dataset.label}` : '';
+      const label = `Rolling ${element.innerText}`;
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: label

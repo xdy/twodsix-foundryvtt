@@ -4,7 +4,7 @@
     <div class="character-info"><img class="character-info-mask" src="./systems/twodsix/assets/actor/Profile-Block3b.svg"/>
       <div class="character-photo">
         <span class="helper"></span>
-        <div class="character-photo"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
+        <div class="character-photo"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/></div>
       </div>
       <div class="character-name"><h2><input name="{{data.name}}" type="text" value="Character Name" placeholder="Character Name"/></h2></div>
       <div class="character-bgi">
@@ -16,43 +16,43 @@
       </div>
       <div class="character-characteristics">
         <div class="stat str">
-          <span class="stat-name">STR</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.str.mod}}">STR</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.str.value" data-label="data.characteristics.str.value" value="{{data.characteristics.str.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.str.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.str.value}}" min="0" name="data.characteristics.str.damage" value="{{data.characteristics.str.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="stat dex">
-          <span class="stat-name">DEX</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.dex.mod}}">DEX</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.dex.value" data-label="data.characteristics.dex.value" value="{{data.characteristics.dex.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.dex.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.dex.value}}" min="0" name="data.characteristics.dex.damage" value="{{data.characteristics.dex.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="stat end">
-          <span class="stat-name">END</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.end.mod}}">END</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.end.value" data-label="data.characteristics.end.value" value="{{data.characteristics.end.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.end.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.end.value}}" min="0" name="data.characteristics.end.damage" value="{{data.characteristics.end.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="stat int">
-          <span class="stat-name">INT</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.int.mod}}">INT</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.int.value" data-label="data.characteristics.int.value" value="{{data.characteristics.int.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.int.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.int.value}}" min="0" name="data.characteristics.int.damage" value="{{data.characteristics.int.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="stat edu">
-          <span class="stat-name">EDU</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.edu.mod}}">EDU</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.edu.value" data-label="data.characteristics.edu.value" value="{{data.characteristics.edu.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.edu.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.edu.value}}" min="0" name="data.characteristics.edu.damage" value="{{data.characteristics.edu.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="stat soc">
-          <span class="stat-name">SOC</span>
+          <span class="stat-name rollable-characteristic" data-roll="2d6+{{data.characteristics.soc.mod}}">SOC</span>
           <span class="stat-ability"><input type="text" min="0" name="data.characteristics.soc.value" data-label="data.characteristics.soc.value" value="{{data.characteristics.soc.value}}" data-dtype="Number"/></span>
           <span class="stat-modifier"><input type="text" value="{{numberFormat data.characteristics.soc.mod decimals=0 sign=true}}"/></span>
           <span class="stat-damage"><input type="text" max="{{data.characteristics.soc.value}}" min="0" name="data.characteristics.soc.damage" value="{{data.characteristics.soc.damage}}" data-dtype="Number"/></span>
         </div>
         <div class="special psi">
-          <span class="special-name">PSI</span>
+          <span class="special-name rollable-characteristic" data-roll="2d6+{{data.characteristics.psi.mod}}">PSI</span>
           <span class="special-ability"><input type="text" min="0" name="data.characteristics.psi.value" data-label="data.characteristics.psi.value" value="{{data.characteristics.psi.value}}" data-dtype="Number"/></span>
           <span class="special-damage"><input type="text" max="{{data.characteristics.psi.value}}" min="0" name="data.characteristics.psi.damage" value="{{data.characteristics.psi.damage}}" data-dtype="Number"/></span>
           <span class="special-modifier"><input type="text" value="{{numberFormat data.characteristics.psi.mod decimals=0 sign=true}}"/></span>
