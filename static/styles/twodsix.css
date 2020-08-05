@@ -12,9 +12,14 @@ body {
     color: #00E5FF !important;
 }
 
-h2 {
+.character-name h2 {
     margin-bottom: -0.5em;
     border: none;
+}
+
+h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #225078;
 }
 
 img {
@@ -58,8 +63,9 @@ input[type="text"], input[type="password"], input[type="datetime-local"] {
 }
 
 img.character-info-mask {
-    z-index: 5;
+    z-index: 4;
     position: absolute;
+    pointer-events: none;
 }
 
 .character-tabs { grid-area: character-tabs; }
@@ -107,7 +113,7 @@ img.character-info-mask {
     margin-left: 1em;
     margin-right: 1em;
     position: relative;
-    top: 21.4em;
+    top: 20.8em;
     z-index: 6;
 }
 
@@ -235,4 +241,51 @@ svg:hover {
     z-index: 1;
 }
 
+/* TABS */
 
+.tabs .item.active {
+    text-shadow: 0 0 2em #29aae1;
+    text-decoration: underline;
+}
+
+.tabs .item.active {
+    text-shadow: 0 0 2em #29aae1;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-shadow: 0 0 8px #29aae1;
+  }
+
+/* Style overrides */
+
+::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 3px;
+    background: #225078;
+    border: 1px solid #29aae1;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="datetime-local"]:focus {
+    box-shadow: 0 0 5px #29aae1;
+}
+
+select {
+    height: 25px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #7a7971;
+    border-radius: 3px;
+    padding: 0 3px;
+    text-overflow: ellipsis;
+    color: #6e819e;
+}
+
+form button {
+    background: rgba(0, 0, 0, 0.1);
+    border: 2px groove #6e819e;
+    color: #a2bce4;
+}
+
+button:hover {
+    box-shadow: 0 0 5px #29aae1;
+  }
