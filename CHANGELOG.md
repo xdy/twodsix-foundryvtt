@@ -1,3 +1,10 @@
+## [0.2.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.9...v0.2.10) (2020-08-05)
+
+
+### Bug Fixes
+
+* Fixed cut and paste that broke psi modifier. ([0454664](https://github.com/xdy/twodsix-foundryvtt/commit/045466470ba2031ff097b3c307b85ea7d2b5edc8))
+
 ## [0.2.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.8...v0.2.9) (2020-08-05)
 
 
