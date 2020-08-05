@@ -5,7 +5,7 @@ export default function ():Promise<void> {
     "systems/twodsix/templates/actors/actor-sheet.html",
     "systems/twodsix/templates/actors/parts/actor-skills.html",
     "systems/twodsix/templates/actors/parts/actor-items.html",
-    "systems/twodsix/templates/actors/parts/actor-personal-info.html",
+    "systems/twodsix/templates/actors/parts/actor-info.html",
     "systems/twodsix/templates/items/item-sheet.html"
   ];
 
