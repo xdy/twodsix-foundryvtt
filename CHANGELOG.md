@@ -1,3 +1,10 @@
+## [0.2.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.8...v0.2.9) (2020-08-05)
+
+
+### Bug Fixes
+
+* Added Kevin's CSS/Template changes ([554b4c3](https://github.com/xdy/twodsix-foundryvtt/commit/554b4c3ab70517c212f42264d432182825456a1f))
+
 ## [0.2.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.7...v0.2.8) (2020-08-04)
 
 
