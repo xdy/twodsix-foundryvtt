@@ -1,3 +1,10 @@
+## [0.2.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.11...v0.2.12) (2020-08-05)
+
+
+### Bug Fixes
+
+* Several problems with the character sheet (mainly pointing at the wrong field) ([cb53457](https://github.com/xdy/twodsix-foundryvtt/commit/cb53457072e3e5061cb175725ea07f63d9875bb6))
+
 ## [0.2.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.10...v0.2.11) (2020-08-05)
 
 
