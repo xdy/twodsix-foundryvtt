@@ -1,3 +1,10 @@
+## [0.2.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.10...v0.2.11) (2020-08-05)
+
+
+### Bug Fixes
+
+* One can now roll characteristics by clicking on the characteristic name ([f3095a3](https://github.com/xdy/twodsix-foundryvtt/commit/f3095a3bd806896c658402759e761d1f1f2b2e90))
+
 ## [0.2.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.9...v0.2.10) (2020-08-05)
 
 
