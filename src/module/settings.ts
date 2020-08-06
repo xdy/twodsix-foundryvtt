@@ -57,6 +57,15 @@ export const registerSettings = function ():void {
     type: Number,
   });
 
+  game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
+    name: 'What bonus/penalty to give per each time increment change in a task.',
+    hint: "Leave empty to use default (+/-1). Not currently used.",
+    scope: 'world',
+    config: true,
+    default: -1,
+    type: Number,
+  });
+
   //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
 }
