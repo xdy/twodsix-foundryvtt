@@ -3,7 +3,6 @@
     <div class="skills grid grid-2col">
       <h2 class="clearfix flexbreak">Skills</h2>
 
-      {{log actor.items}}
       {{#each actor.items as |skill key|}}
       {{#if (eq skill.type "skill")}}
       <div class="rollable-skill">

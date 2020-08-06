@@ -272,7 +272,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="datetime-loc
 
 select {
     height: 25px;
-    background: rgba(0, 0, 0, 0.05);
+    background: #000000a6;
     border: 1px solid #7a7971;
     border-radius: 3px;
     padding: 0 3px;
@@ -280,12 +280,44 @@ select {
     color: #6e819e;
 }
 
+select:focus {
+    box-shadow: 0 0 5px #29aae1;
+    outline: none;
+    background: #000000a6;
+}
+
 form button {
-    background: rgba(0, 0, 0, 0.1);
+    background: #000000a6 !important;
     border: 2px groove #6e819e;
     color: #a2bce4;
 }
 
 button:hover {
     box-shadow: 0 0 5px #29aae1;
+    color: #00e5ff;
+    border-color: #00e5ff;
   }
+
+form .notes, form .hint {
+    flex: 0 0 100%;
+    font-size: 12px;
+    line-height: 16px;
+    color: #bfbfbf;
+    margin: 3px 0;
+}
+
+#module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
+    color: #bfbfbf;
+}
+
+.dialog .dialog-buttons button:last-child {
+    margin-right: 0;
+    border: 2px groove #6e819e;
+    color: #a2bce4;
+}
+
+.dialog .dialog-buttons button:last-child:hover {
+    margin-right: 0;
+    color: #00e5ff;
+    border-color: #00e5ff;
+}
