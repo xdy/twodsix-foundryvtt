@@ -1,3 +1,20 @@
+## [0.2.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.13...v0.2.14) (2020-08-06)
+
+
+### Bug Fixes
+
+* Add support for different modifiers for characteristic value of 0. ([1c3f4a7](https://github.com/xdy/twodsix-foundryvtt/commit/1c3f4a799684b1ea779c8662cf97fb9a1a13cdc0))
+* Added setting for naming advantage/disadvantage. But, mostly to force a rerelease now that npmjs.com is supposedly up again. ([407803c](https://github.com/xdy/twodsix-foundryvtt/commit/407803c63d5d42f0970357cc86f79fb538deaecc))
+* Added settings for what bonus/penalty to give for each time increment in a task (not currently used). ([163e692](https://github.com/xdy/twodsix-foundryvtt/commit/163e692e37da685c28b9c3d1312cf57a8fdacd1a))
+* Another pointless change. ([dafbdf3](https://github.com/xdy/twodsix-foundryvtt/commit/dafbdf33edf04aab2b16708c14b049bbe684ef67))
+* Fixing warnings. ([61814bd](https://github.com/xdy/twodsix-foundryvtt/commit/61814bd26ded09918857fb9ac9191e8f8e5b60ae))
+* Maybe switching to npm install instead of npm ci will work? ([d70d7d1](https://github.com/xdy/twodsix-foundryvtt/commit/d70d7d1b80c6d3f407c41d7ccbb807007ece1f41))
+* Minor cleanup (mostly as a test of branch protection for master) ([0b8c414](https://github.com/xdy/twodsix-foundryvtt/commit/0b8c414f0f3b01429b058b7fcf619168a91dadf8))
+* Pointless commit to force rebuild, https://status.npmjs.org/ says their site works again. ([a1b771b](https://github.com/xdy/twodsix-foundryvtt/commit/a1b771bb407304464cfa952faf6d98ddba10d4dd))
+* Pointless commit to force rebuild. ([3058493](https://github.com/xdy/twodsix-foundryvtt/commit/3058493a3bcfd0abf4f0dde781b7fe175cc09864))
+* Remove the UCF tab, it should be available from a button somewhere, and doesn't work well yet. Fix some documentation. ([fcf7f3f](https://github.com/xdy/twodsix-foundryvtt/commit/fcf7f3ff648b54ac124e12df83fceb0e0926937a))
+* Switching back to npm ci, the problem is that npmjs.com isn't stable right now. ([ce8d1c9](https://github.com/xdy/twodsix-foundryvtt/commit/ce8d1c97928155403800f63d68ef6d19a947ed93))
+
 ## [0.2.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.12...v0.2.13) (2020-08-05)
 
 
