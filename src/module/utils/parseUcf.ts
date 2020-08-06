@@ -7,7 +7,7 @@
 
 //The base characteristics
 import {TWODSIX} from "../config";
-import {calcModFromString, fromPseudoHex} from "./sheetUtils";
+import {calcModForPseudoHex, fromPseudoHex} from "./sheetUtils";
 
 TWODSIX.CHARACTERISTICS = ["str", "dex", "end", "int", "edu", "soc", "psi"];
 
@@ -91,6 +91,6 @@ function parseUCF(data:any, ucf:string):unknown {
 function modForCharacteristicFromUpp(upp:string, pos:number):
   number {
   const characteristic = upp.substr(pos);
-  return calcModFromString(characteristic);
+  return calcModForPseudoHex(characteristic);
 }
 

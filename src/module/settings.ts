@@ -48,6 +48,15 @@ export const registerSettings = function ():void {
     }
   }
 
+  game.settings.register('twodsix', 'modifierForZeroCharacteristic', {
+    name: 'Modifier for characteristic value of zero.',
+    hint: "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
+    scope: 'world',
+    config: true,
+    default: -2,
+    type: Number,
+  });
+
   //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
 }

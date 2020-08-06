@@ -1,6 +1,6 @@
 //Assorted utility functions likely to be helpful when displaying characters
 
-
+//TODO Use a type instead
 export function pseudoHex(value:number):string {
   switch (value) {
     case 0:
@@ -67,6 +67,7 @@ export function pseudoHex(value:number):string {
   }
 }
 
+//TODO Use a type instead
 export function fromPseudoHex(value:string):number {
   switch (value) {
     case "0":
@@ -168,14 +169,16 @@ export function nobleTitle(soc:number, gender:string):string {
 }
 
 export function calcModFor(characteristic:number):number {
-  // TODO If characteristic is 0 and not cepheus, set mod to -3
-  return Math.floor((characteristic - 6) / 3);
+  let modifier = Math.floor((characteristic - 6) / 3);
+  if (characteristic === 0) {
+    modifier = game.settings.get('twodsix', 'modifierForZeroCharacteristic');
+  }
+  return modifier;
 }
 
-export function calcModFromString(characteristic:string):number {
-  // TODO If characteristic is 0 and not cepheus, set mod to -3
-  const number = fromPseudoHex(characteristic);
-  return (number - 6) / 3;
+export function calcModForPseudoHex(characteristicPseudoHex:string):number {
+  const characteristic = fromPseudoHex(characteristicPseudoHex);
+  return calcModFor(characteristic);
 }
 
 //TODO The terms used for this should be configurable
