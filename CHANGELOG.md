@@ -1,3 +1,10 @@
+## [0.2.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.14...v0.2.15) (2020-08-06)
+
+
+### Bug Fixes
+
+* Style changes from kevin. ([a5730fc](https://github.com/xdy/twodsix-foundryvtt/commit/a5730fc65dc6ec26d7f5131c5bb315e0c141424b))
+
 ## [0.2.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.13...v0.2.14) (2020-08-06)
 
 
