@@ -1,67 +1,19 @@
 # 2d6 system
-A system for running games using the world's oldest science fiction rpg system and it's various derivatives.
+A system for running games using various 2d6-based role playing games.
 
-Note that it is *very* early in it's development. As in, it doesn't really do anything useful yet...
+Note that this system is *very* early in it's development.
 
-At first it will support doing things the way I do it using my favorite 2d6 rules variant, but I intend to make it flexible 
-enough that all/most 2d6 rules variants should be possible to play using this system. Due to licensing restrictions the
-user may have to enter some compendiums. 
+It mainly supports Cepheus Engine, but the intention is to make it flexible enough that all/most 2d6 rules variants should be possible to play using this system.
+Due to licensing restrictions the user may have to fill compendiums themselves. (The system will contain data from Cepheus Engine when completed.) 
 
-This system may eventually claim compatibility with specific rules sets once I have:
-a) completed said compatibility 
-b) actually have the license to do so
+Note:
+* This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.
+* Cepheus Engine and Samardan Press™ are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press™.    
 
-Intended design for the UCF tab:
-  ```
+This system may eventually claim compatibility with other specific rules sets once it:
+a) actually has said compatibility 
+b) actually has the license to do so
 
-The character is described in UCF, support import from 10001 characters and, I suppose, travellertools (extends it a bit)
-Quote from the srd
-
-	Universal Character Format
-	The following format is used to represent a character’s basic game statistics in the Cepheus Engine rules.
-	[Character Name, with rank and/or noble title, if appropriate] 	[Character UPP] 	Age [Character Age]
-	[Character Careers, with terms listed in parentheses]	Cr[Character Funds]
-	[Character Skill List, in alphabetical order, with skill levels listed after skill names]
-	[Species Traits, if not human; optional]
-	[Character Equipment, if available; list only significant property]
-	Here is an example of a system-wide human celebrity that has been entertaining his holovid fans for almost two 	decades with his heroic action movies:
-	Bruce Ayala 	786A9A 	Age 38
-	Entertainer (5 terms) 	Cr70,000
-	Athletics-1, Admin-1, Advocate-1, Bribery-1, Carousing-3, Computer-2, Gambling-0, Grav Vehicle-0, Liaison-2, Linguistics-0, Streetwise-0
-	High passage (x2)
-
-Template fields:
-	UCF - just text, is the sole source of truth about the character, parsed from when tab is switched to 'character sheet'
-	Notes - An array of strings, used for whatever the player wants
-
-Actor tokens have:
-	Current - a copy of the UCF, adjusted for current situation. Removed with token.
-
-The sheet has two tabs:
-	UCF - textfield, from the template
-	Character - what's been parsed from UCF (or the Current field, I guess)
-		Has 'Copy To UCF' and 'Copy From UCF' that does what it says.
-		Has several dynamic lists of maps backed by radiobuttons formated like 'key:value'
-			Skills (skillnamne:value)
-			Attributes (attribute/value:mod)
-			Difficulties (Average:8, Hard:10, etc)
-			Modifiers (-9:-9 to +9:+9, I guess)
-			Time Increment (seconds:seconds, rounds, minutes, etc)
-			Time Increment Modifier (-8:-8 to +8:+8, I guess)
-            Tool/Weapon (name:value), where value is either ignored or a dice roll formula. 
-		Has a few checkboxes for transient options:
-			Advantage (3d6, pick highest), disadvantage (2d6 pick lowest)
-		Has a 'Roll' button that rolls based on the above
-		Has a 'Copy Macro' button that creates a roll macro based on the above. (Pseudocode like: "Average Admin roll 2d6+@Admin+@StrMod+@Modifier+@TimeIncrementModifier, takes 1d6*TimeIncrement")
-		Has a 'Take Damage' button that pops up a dialog with a way to enter a number, and an OK button. Applies damage to data.Current
-		Has a 'Heal Damage' button with +/- button next to each attribute. Can't heal above UCF value for attribute.
-        Has a 'Do Damage' button with 
-
-The system has settings for:
-	Mod for attribute 0, defaults to -2
-	Modifier for each Time Increment, defaults to 1
-  ```
-	
 
 ### Patch Notes:
 See CHANGELOG.md
@@ -72,7 +24,7 @@ Project Licensing:
 *  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2 (see LICENSE)
 
 Content Usage and Licensing:
-*  Game system information and mechanics are licensed under the Open Game License, see OpenGameLicense.md for details.
+*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md] for details.
 
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
