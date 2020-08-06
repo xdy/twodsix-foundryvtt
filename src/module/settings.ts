@@ -66,6 +66,22 @@ export const registerSettings = function ():void {
     type: Number,
   });
 
+  game.settings.register('twodsix', 'termForAdvantage', {
+    name: 'What you want to call rolls with advantage (3d6kh2).',
+    hint: "Don't use the same as for termForDisadvantage. :) Not currently used.",
+    scope: 'world',
+    config: true,
+    default: 'advantage',
+  });
+
+  game.settings.register('twodsix', 'termForDisadvantage', {
+    name: 'What you want to call rolls with disadvantage (3d6kl2).',
+    hint: "Don't use the same as for termForAdvantage. :) Not currently used.",
+    scope: 'world',
+    config: true,
+    default: 'disadvantage',
+  });
+
   //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
 }
