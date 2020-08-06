@@ -1,7 +1,7 @@
 # 2d6 system
-A system for running games using various 2d6-based role playing games.
+A system for running games using various 2d6-based role-playing games.
 
-Note that this system is *very* early in it's development.
+Note that this system is *very* early in its development.
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough that all/most 2d6 rules variants should be possible to play using this system.
 Due to licensing restrictions the user may have to fill compendiums themselves. (The system will contain data from Cepheus Engine when completed.) 
