@@ -28,7 +28,7 @@ jobs:
 
       # Install package dependencies
       - name: Install
-        run: npm ci
+        run: npm install
 
       # Building is the only test right now (mainly tests if dependabot actually can update)
       - name: Build
