@@ -1,6 +1,31 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-    <!-- TODO This should become a tab, with export/import buttons. Probably don't need the rest. -->
+    <!-- TODO This should be a popup, with export/import buttons. -->
+
+  <!--
+  Some semi-working code for doing some of this exists in parseUcf.ts.
+  Intended design for the UCF popup:
+
+The character is described in UCF, support import from 10001 characters and, I suppose, travellertools (extends it a bit)
+Quote from the srd
+
+	Universal Character Format
+	The following format is used to represent a character’s basic game statistics in the Cepheus Engine rules.
+	[Character Name, with rank and/or noble title, if appropriate] 	[Character UPP] 	Age [Character Age]
+	[Character Careers, with terms listed in parentheses]	Cr[Character Funds]
+	[Character Skill List, in alphabetical order, with skill levels listed after skill names]
+	[Species Traits, if not human; optional]
+	[Character Equipment, if available; list only significant property]
+	Here is an example of a system-wide human celebrity that has been entertaining his holovid fans for almost two 	decades with his heroic action movies:
+	Bruce Ayala 	786A9A 	Age 38
+	Entertainer (5 terms) 	Cr70,000
+	Athletics-1, Admin-1, Advocate-1, Bribery-1, Carousing-3, Computer-2, Gambling-0, Grav Vehicle-0, Liaison-2, Linguistics-0, Streetwise-0
+	High passage (x2)
+
+	Has 'Copy To UCF' that converts the character into UCF, and updates the textfield
+	Has 'Copy from UCF' that imports the character from the UCF textfield, changing as neccessary. (i.e. adding/removing skills, setting attribute values, adding/removing gear, etc)
+
+  -->
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
