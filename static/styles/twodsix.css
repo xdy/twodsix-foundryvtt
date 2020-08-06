@@ -272,7 +272,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="datetime-loc
 
 select {
     height: 25px;
-    background: #000000a6;
+    background: #000000a6 !important;
     border: 1px solid #7a7971;
     border-radius: 3px;
     padding: 0 3px;
@@ -314,6 +314,7 @@ form .notes, form .hint {
     margin-right: 0;
     border: 2px groove #6e819e;
     color: #a2bce4;
+    background-color: #000;
 }
 
 .dialog .dialog-buttons button:last-child:hover {
@@ -321,3 +322,5 @@ form .notes, form .hint {
     color: #00e5ff;
     border-color: #00e5ff;
 }
+
+option {background-color: #000;}
