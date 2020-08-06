@@ -1,3 +1,10 @@
+## [0.2.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.16...v0.2.17) (2020-08-06)
+
+
+### Bug Fixes
+
+* Load background image from css. ([1c4f7c4](https://github.com/xdy/twodsix-foundryvtt/commit/1c4f7c413364116fc9f49521a3e2e9a64d44f17f))
+
 ## [0.2.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.15...v0.2.16) (2020-08-06)
 
 
