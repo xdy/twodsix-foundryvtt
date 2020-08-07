@@ -6,14 +6,20 @@
 <polygon stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="28.876,28.098 8.752,48.222 8.752,7.974 49,7.974 "/>
 <polygon stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="279.918,29.074 300.041,49.198 300.041,8.95 
 	259.794,8.95 "/>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="154.2473" y1="591.2764" x2="153.9531" y2="398.4648">
+	<stop  offset="0" style="stop-color:#101014"/>
+	<stop  offset="0.3054" style="stop-color:#000000"/>
+	<stop  offset="0.8522" style="stop-color:#000000"/>
+	<stop  offset="1" style="stop-color:#16161C"/>
+</linearGradient>
+<polygon fill="url(#SVGID_1_)" points="5.252,572.535 27.352,594.5 280.819,594.5 302.919,572.535 302.919,397.832 5.252,397.832 
+	"/>
 <rect x="5.252" y="313.439" opacity="0.65" fill="#010101" enable-background="new    " width="297.667" height="84.393"/>
 <polygon fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="5.252,397.832 5.252,312.066 5.252,52.071 
 	5.252,52.071 53.199,4.126 254.193,4.126 254.193,4.126 302.919,52.071 302.919,397.832 "/>
-<image overflow="visible" width="298" height="196" xlink:href="D:\Tabletop\Traveller\HTML\stat-bg.png"  transform="matrix(0.9999 0 0 0.9999 5.1042 398.1777)">
-</image>
 <polygon fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="5.252,572.535 27.352,594.635 
 	280.819,594.635 302.919,572.535 302.919,397.832 5.252,397.832 "/>
-<line fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" x1="5.252" y1="313.439" x2="302.919" y2="313.439"/>
+<line fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" x1="5.252" y1="313.439" x2="301.018" y2="313.439"/>
 <polygon stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="291.666,583.585 300.082,575.168 300.082,592.001 
 	283.25,592.001 "/>
 <polygon stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="16.5,583.585 8.083,575.168 8.083,592.001 
