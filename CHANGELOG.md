@@ -1,3 +1,10 @@
+## [0.2.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.19...v0.2.20) (2020-08-07)
+
+
+### Bug Fixes
+
+* Add forgotten dice icon from Kevin. ([eb65fca](https://github.com/xdy/twodsix-foundryvtt/commit/eb65fcad27868a855dc95291863eefa98d7ee8b1))
+
 ## [0.2.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.18...v0.2.19) (2020-08-07)
 
 
