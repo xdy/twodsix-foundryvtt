@@ -1,68 +1,68 @@
 ---
 env:
-        browser: true
-        es6: true
+  browser: true
+  es6: true
 extends:
-        - eslint:recommended
-        - plugin:@typescript-eslint/recommended
-        - eslint-config-prettier
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - eslint-config-prettier
 globals:
-        Atomics: readonly
-        SharedArrayBuffer: readonly
-        ItemSheet: readonly
-        game: readonly
-        mergeObject: readonly
-        CONFIG: writable
-        duplicate: readonly
-        "$": readonly
-        Tabs: readonly
-        Hooks: readonly
-        Items: readonly
-        loadTemplates: readonly
-        Combat: writable
-        canvas: readonly
-        ActorSheet: readonly
-        Actor: readonly
-        Actors: readonly
-        fetchSpell: readonly
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+  ItemSheet: readonly
+  game: readonly
+  mergeObject: readonly
+  CONFIG: writable
+  duplicate: readonly
+  "$": readonly
+  Tabs: readonly
+  Hooks: readonly
+  Items: readonly
+  loadTemplates: readonly
+  Combat: writable
+  canvas: readonly
+  ActorSheet: readonly
+  Actor: readonly
+  Actors: readonly
+  fetchSpell: readonly
 parserOptions:
-        ecmaVersion: 2018
-        sourceType: module
+  ecmaVersion: 2018
+  sourceType: module
 rules:
-        prettier/prettier: error
-        no-restricted-syntax: 0
-        no-new: 0
-        no-underscore-dangle: 0
-        no-console: 0
-        class-methods-use-this: 0
-        max-classes-per-file: 0
-        prefer-destructuring: 0
-        no-plusplus: 0
-        no-undef: 0
-        prefer-rest-params: 0
-        "@typescript-eslint/explicit-module-boundary-types":
-                - error
-                - allowDirectConstAssertionInArrowFunctions: true
-                  allowHigherOrderFunctions: true
-                  allowTypedFunctionExpressions: true
+  prettier/prettier: error
+  no-restricted-syntax: 0
+  no-new: 0
+  no-underscore-dangle: 0
+  no-console: 0
+  class-methods-use-this: 0
+  max-classes-per-file: 0
+  prefer-destructuring: 0
+  no-plusplus: 0
+  no-undef: 0
+  prefer-rest-params: 0
+  "@typescript-eslint/explicit-module-boundary-types":
+    - error
+    - allowDirectConstAssertionInArrowFunctions: true
+      allowHigherOrderFunctions: true
+      allowTypedFunctionExpressions: true
 settings:
-        import/resolver:
-                node:
-                        paths:
-                                - src
-                                - ''
-                                - dist
-                        extensions:
-                                - ".js"
-                                - ".jsx"
-                                - ".ts"
-                                - ".tsx"
-                                - ".json"
+  import/resolver:
+    node:
+      paths:
+        - src
+        - ''
+        - dist
+      extensions:
+        - ".js"
+        - ".jsx"
+        - ".ts"
+        - ".tsx"
+        - ".json"
 plugins:
-        - prettier
-        - "@typescript-eslint"
+  - prettier
+  - "@typescript-eslint"
 overrides:
-        - files: tests/**/*
-          rules:
-                  global-require: 'off'
+  - files: tests/**/*
+    rules:
+      global-require: 'off'
 parser: "@typescript-eslint/parser"

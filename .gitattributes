@@ -1,1 +1,10 @@
+# Autodetect text files
+* text=auto eol=lf
+
+# Definitively text
 *.db text
+
+# Definitively not text
+*.jpg binary
+*.png binary
+*.pdf binary

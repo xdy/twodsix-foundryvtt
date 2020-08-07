@@ -15,15 +15,15 @@ pull_request_rules:
     conditions:
       - conflict
     actions:
-        comment:
-          message: This pull request is now in conflicts. Could you fix it? 🙏
+      comment:
+        message: This pull request is now in conflicts. Could you fix it? 🙏
 
   - name: ask to fix commit message
     conditions:
       - status-failure=Semantic Pull Request
       - -closed
     actions:
-        comment:
-          message: |
-            Title does not follow the guidelines of [Conventional Commits](https://www.conventionalcommits.org).
-            Please adjust title before merge.
+      comment:
+        message: |
+          Title does not follow the guidelines of [Conventional Commits](https://www.conventionalcommits.org).
+          Please adjust title before merge.
