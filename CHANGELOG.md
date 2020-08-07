@@ -1,3 +1,10 @@
+## [0.2.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.18...v0.2.19) (2020-08-07)
+
+
+### Bug Fixes
+
+* More changes from Kevin's fork. ([eb61fb1](https://github.com/xdy/twodsix-foundryvtt/commit/eb61fb15a587b104598471b490c37efe6aaef326))
+
 ## [0.2.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.17...v0.2.18) (2020-08-07)
 
 
