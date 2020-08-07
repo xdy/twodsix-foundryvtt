@@ -1,3 +1,10 @@
+## [0.2.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.20...v0.2.21) (2020-08-07)
+
+
+### Bug Fixes
+
+* Reformatting all files (using the current settings) ([f638f17](https://github.com/xdy/twodsix-foundryvtt/commit/f638f176c490d41b2875f092c309a636b019bad1))
+
 ## [0.2.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.19...v0.2.20) (2020-08-07)
 
 
