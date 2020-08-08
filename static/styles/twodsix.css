@@ -28,7 +28,7 @@ textarea:focus {
 
 .window-content {
   background-attachment: fixed !important;
-  background-image: url(../assets/actor/bg2.jpg) !important;
+  background-image: url(../assets/actor/bg2.jpg)!important;
   background-repeat: repeat-x !important;
   font-family: Consolas, monospace;
   color: #00E5FF !important;
@@ -70,9 +70,7 @@ input[type="text"]:focus, input[type="number"] input[type="password"]:focus, inp
   box-shadow: 0 0 10px #207ab7;
 }
 
-input::-webkit-inner-spin-button {
-  display: none
-}
+input::-webkit-inner-spin-button {display:none}
 
 
 .grid-container {
@@ -99,9 +97,7 @@ img.character-info-mask {
   pointer-events: none;
 }
 
-.character-tabs {
-  grid-area: character-tabs;
-}
+.character-tabs { grid-area: character-tabs; }
 
 .character-photo {
   margin-top: -0.3em;
@@ -124,7 +120,6 @@ img.character-info-mask {
   vertical-align: middle;
   height: 1em;
 }
-
 .character-name {
   position: relative;
   top: 1em;
@@ -151,29 +146,13 @@ img.character-info-mask {
   z-index: 6;
 }
 
-.bgi-age input {
-  width: 1.5em;
-}
+.bgi-age input {width: 1.5em;}
+.bgi-gender input {width: 3.5em;}
+.bgi-species input {width: 9.1em;}
+.bgi-homeworld input {width: 8em;}
 
-.bgi-gender input {
-  width: 3.5em;
-}
-
-.bgi-species input {
-  width: 9.1em;
-}
-
-.bgi-homeworld input {
-  width: 8em;
-}
-
-span.bgi-age {
-  margin-right: 4em;
-}
-
-.character-bgi span {
-  margin-right: 4em;
-}
+span.bgi-age {margin-right: 4em;}
+.character-bgi span {margin-right: 4em;}
 
 .character-characteristics {
   width: 21em;
@@ -197,7 +176,7 @@ span.bgi-age {
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
-  margin-left: -0.1em;
+  margin-left: -0.25em;
   background-color: #0000;
   border: none;
   color: #6e819e;
@@ -244,18 +223,18 @@ span.stat-ability {
 span.stat-modifier {
   margin: -5px;
   position: relative;
-  left: -0.2em;
+  left: 0em;
   top: 0.4em;
 }
 
 span.stat-damage {
   position: relative;
-  left: 2.4em;
+  left: 2.55em;
   top: 0.65em;
 }
 
 span.stat-damage input, span.special-damage input {
-  color: #612e2e !important;
+  color: #612e2e!important;
 }
 
 span.special-name {
@@ -273,13 +252,13 @@ span.special-ability {
 span.special-modifier {
   margin: -5px;
   position: relative;
-  left: 0.7em;
+  left: 1em;
   top: 1em;
 }
 
 span.special-damage {
   position: relative;
-  left: 3.8em;
+  left: 4em;
   top: 0em;
 }
 
@@ -287,9 +266,7 @@ svg:hover {
   fill: red;
 }
 
-.character-tabs {
-  grid-area: character-tabs;
-}
+.character-tabs { grid-area: character-tabs; }
 
 .character-tabs .tabs {
   position: relative;
@@ -420,9 +397,7 @@ form .notes, form .hint {
   border-color: #00e5ff;
 }
 
-option {
-  background-color: #000;
-}
+option {background-color: #000;}
 
 .window-app .window-header {
   flex: 0 0 30px;
@@ -437,7 +412,7 @@ option {
 
 .app {
   max-height: 100%;
-  background-image: url(../assets/actor/bg2.jpg) !important;
+  background-image: url(../assets/actor/bg2.jpg)!important;
   background-repeat: repeat-x !important;
   border-radius: 5px;
   box-shadow: 0 0 20px #000;
@@ -478,9 +453,7 @@ option {
   color: #95b6ca;
 }
 
-#sidebar-tabs > .item:hover {
-  color: #00e5ff;
-}
+#sidebar-tabs > .item:hover {color: #00e5ff; }
 
 #sidebar-tabs > .item.active {
   color: #00e5ff;
@@ -551,7 +524,6 @@ option {
 #hotbar .macro:hover {
   box-shadow: 0 0 10px #29aae1 inset;
 }
-
 #hotbar .macro.active:hover {
   border: 1px solid #00e5ff;
 }
@@ -574,9 +546,7 @@ option {
   fill: #29aae1;
 }
 
-.tox .tox-tbtn:hover svg {
-  fill: #00e5ff !important
-}
+.tox .tox-tbtn:hover svg{fill:#00e5ff !important}
 
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
