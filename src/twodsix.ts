@@ -96,7 +96,7 @@ Hooks.on('preCreateActor', async (actor, dir) => {
     let link = true;
     let disposition = 1;
 
-    if (actor.type !== 'character') {
+    if (actor.type !== 'traveller') {
       link = false;
       disposition = 0;
     }
