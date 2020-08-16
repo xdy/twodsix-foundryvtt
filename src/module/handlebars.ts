@@ -1,4 +1,41 @@
 export default function registerHandlebarsHelpers():void {
+
+  // If you need to add Handlebars helpers, here are a few useful examples:
+  Handlebars.registerHelper('concat', function() {
+    let outStr = '';
+    for (const arg in arguments) {
+      if (typeof arguments[arg] != 'object') {
+        outStr += arguments[arg];
+      }
+    }
+    return outStr;
+  });
+
+  Handlebars.registerHelper('toLowerCase', function(str) {
+    return str.toLowerCase();
+  });
+
+  Handlebars.registerHelper('checkPsi', function(characteristic) {
+    if (!game.user.isGM && characteristic.shortlabel === 'PSI' && characteristic.value === 0) {
+      return false;
+    }
+    return true;
+  });
+
+  Handlebars.registerHelper('checkTrainedSkill', function(skill) {
+    return skill.trained
+  });
+
+  Handlebars.registerHelper('shouldShowSkill', function(skill, hideUntrainedSkills) {
+    console.log('shouldShowSkill', skill, hideUntrainedSkills)
+    return skill.trained || hideUntrainedSkills
+  });
+
+  Handlebars.registerHelper('getSkillValueWithJoat', function(skill, joat) {
+    if (skill.trained) return skill.value
+    return skill.value + joat.value
+  });
+
   Handlebars.registerHelper({
     add: (v1, v2) => v1 + v2,
     sub: (v1, v2) => v1 - v2,

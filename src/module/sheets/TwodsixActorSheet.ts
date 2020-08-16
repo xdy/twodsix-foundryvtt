@@ -1,5 +1,3 @@
-import {Difficulties, Rolltype} from "../utils/sheetUtils";
-
 export class TwodsixActorSheet extends ActorSheet {
 
   /**
@@ -14,56 +12,33 @@ export class TwodsixActorSheet extends ActorSheet {
   getData():any {
     const data:any = super.getData();
     data.dtypes = ["String", "Number", "Boolean"];
-    let attr:any;
-    for (attr of Object.values(data.data.characteristics)) {
-      attr.isCheckbox = attr.dtype === "Boolean";
+
+    // Prepare items.
+    if (this.actor.data.type == 'traveller') {
+      TwodsixActorSheet._prepareCharacterItems(data);
     }
-    //
 
-    data.isToken = this.actor.isToken;
-
-    //TODO Only run on refresh,
-    this._prepareCharacterItems(data);
-
-    return data
+    return data;
   }
 
-  private _prepareCharacterItems(sheetData:any) {
+  private static _prepareCharacterItems(sheetData:any) {
 
-    const actor = sheetData.actor;
+    const actorData = sheetData.actor;
 
-    actor.itemsByType = [];
+    // Initialize containers.
+    const gear = [];
 
-    // // TODO This doesn't feel right.
-    // if (actor.items) {
-    //   for (const item of actor.items) {
-    //     let list = actor.itemsByType[item.type];
-    //     if (!list) {
-    //       list = [];
-    //       actor.itemsByType[item.type] = list;
-    //     }
-    //     list.push(item);
-    //   }
-    //
-    //   actor.data.skills = actor.itemsByType['skill'];
-    //   actor.data.weapons = actor.itemsByType['weapon'];
-    //   actor.data.armors = actor.itemsByType['armor'];
-    //   actor.data.gear = actor.itemsByType['skill'];
-    //   //TODO Handle if weapons, armors and/or gear are undefined
-    //   // character.inventory = character.weapons.concat(character.armors, character.gear);
-    // }
-    //
-    // async function addAllSkillsFromCompendium():Promise<void> {
-    //   const skillPack = game.packs.filter(c => c.metadata.entity && c.metadata.entity == 'Item' && c.metadata.name == 'skills')[0];
-    //   const entities = await skillPack.getContent();
-    //
-    //   actor.allskills = entities.reduce(function (result, item) {
-    //     result[item.data.data.label] = item;
-    //     return result;
-    //   }, {});
-    // }
-    //
-    // addAllSkillsFromCompendium();
+    // Iterate through items, allocating to containers
+    for (const i of sheetData.items) {
+      i.img = i.img || CONST.DEFAULT_TOKEN;
+      // Append to gear.
+      if (i.type === 'equipment' || i.type === 'weapon') {
+        gear.push(i);
+      }
+    }
+
+    // Assign and return
+    actorData.gear = gear;
   }
 
   /** @override */
@@ -86,75 +61,47 @@ export class TwodsixActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
-    // Submit when changing the state of checkboxes
-    html.find('input[type="checkbox"]').on('change', (ev) =>
-      this._onSubmit(ev)
-    );
-
     // Add Inventory Item
-    html.find('.item-create').on('click', this._onItemCreate.bind(this));
+    html.find('.item-create').click(this._onItemCreate.bind(this));
 
     // Update Inventory Item
-    html.find('.item-edit').on('click', ev => {
+    html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.getOwnedItem(li.data("itemId"));
       item.sheet.render(true);
     });
 
-    if (this.actor.owner) {
-      const handler = (ev) => this._onDragItemStart(ev);
-      // Find all items on the character sheet.
-      html.find('li.item').each((i, li) => {
-        // Add draggable attribute and dragstart listener.
-        li.setAttribute('draggable', 'true');
-        li.addEventListener('dragstart', handler, false);
-      });
-    }
-
-    // // Draggables
-    // const handler = (ev) => this._onDragItemStart(ev);
-    // // Find all items on the character sheet.
-    // html.find('.draggable').each((i, li) => {
-    //     // Add draggable attribute and dragstart listener.
-    //     li.setAttribute('draggable', 'true');
-    //     li.addEventListener('dragstart', handler, false);
-    // });
-
-    // Increase Item Quantity
-    html.find('.item-increase-quantity').on('click', (event) => {
-      const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-      const item = this.actor.getOwnedItem(itemId).data;
-      this.actor.updateEmbeddedEntity('OwnedItem', {
-        _id: itemId,
-        'data.quantity.value': Number(item.data.quantity.value) + 1
-      });
-    });
-
-    // Decrease Item Quantity
-    html.find('.item-decrease-quantity').on('click', (event) => {
-      const li = $(event.currentTarget).parents('.item');
-      const itemId = li.attr('data-item-id');
-      const item = this.actor.getOwnedItem(itemId).data;
-      if (Number(item.data.quantity.value) > 0) {
-        this.actor.updateEmbeddedEntity('OwnedItem', {
-          _id: itemId,
-          'data.quantity.value': Number(item.data.quantity.value) - 1
-        });
-      }
-    });
-
     // Delete Inventory Item
-    html.find('.item-delete').on('click', ev => {
+    html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.deleteOwnedItem(li.data("itemId"));
       li.slideUp(200, () => this.render(false));
     });
 
     // Rollable abilities.
-    html.find('.rollable-characteristic').on('click', (this._onRollableCharacteristic).bind(this));
+    html.find('.rollable').click(this._onRoll.bind(this));
 
-    html.find('.rollable-skill').on('click', (this._onRollableSkill).bind(this));
+    // Upgrade/downgrade skills.
+    html.find('.upgrade-skill').click(this._onUpgrade.bind(this));
+    html.find('.downgrade-skill').click(this._onDowngrade.bind(this));
+    html.find('.upgrade-joat').click(this._onUpgradeJoat.bind(this));
+    html.find('.downgrade-joat').click(this._onDowngradeJoat.bind(this));
 
+    html.find('.toggle-skills').click(ev => {
+      ev.preventDefault();
+      this.options.hideUntrainedSkills = !this.options.hideUntrainedSkills;
+      this.actor.sheet.render(true)
+    })
+
+    // Drag events for macros.
+    if (this.actor.owner) {
+      const handler = ev => this._onDragItemStart(ev);
+      html.find('li.item').each((i, li) => {
+        if (li.classList.contains("inventory-header")) return;
+        li.setAttribute("draggable", 'true');
+        li.addEventListener("dragstart", handler, false);
+      });
+    }
   }
 
   /**
@@ -189,14 +136,20 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRollableCharacteristic(event:{ preventDefault:() => void; currentTarget:any; }):void {
+  _onRoll(event):void {
     event.preventDefault();
     const element = event.currentTarget;
-    const {dataset} = element;
+    const dataset = element.dataset;
+    const trainable = element.getAttribute('trainable');
+    const trained = element.getAttribute('trained');
+
+    if (trainable == 'true' && trained == 'false' && !dataset.roll.includes('jackofalltrades.value')) {
+      dataset.roll += "+@jackofalltrades.value";
+    }
 
     if (dataset.roll) {
       const roll = new Roll(dataset.roll, this.actor.data.data);
-      const label = `Rolling ${element.innerText}`;
+      const label = dataset.label ? `Rolling ${dataset.label}` : '';
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: label
@@ -204,53 +157,65 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
+  _onUpgradeJoat(event:any):void {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const actorData = this.actor.data;
+    const data = actorData.data;
+
+    if (data.jackofalltrades.value < 3) {
+      this.actor.update({'data.jackofalltrades.value': data.jackofalltrades.value + 1})
+    }
+  }
+
+  _onDowngradeJoat(event):void {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const actorData = this.actor.data;
+    const data = actorData.data;
+
+    if (data.jackofalltrades.value > 0) {
+      this.actor.update({'data.jackofalltrades.value': data.jackofalltrades.value - 1})
+    }
+  }
+
   /**
-   * Handle clickable rolls.
+   * Handle skill upgrade
    * @param {Event} event   The originating click event
    * @private
    */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  _onRollableSkill(event:any):void {
+  _onUpgrade(event):void {
     event.preventDefault();
-    const children = event.currentTarget.children;
-
-
-    if (event.originalEvent.target.type === 'select-one') {
-      //Don't treat select as rollable
-      return;
+    const element = event.currentTarget;
+    const skillName = element.getAttribute('data-label');
+    const actorData = this.actor.data;
+    const data = actorData.data;
+    const matchingSkill = data.skills[skillName];
+    if (matchingSkill && !matchingSkill.trained) {
+      this.actor.update({[`data.skills.${skillName}.value`]: 0})
+      this.actor.update({[`data.skills.${skillName}.trained`]: true})
+    } else if (matchingSkill && matchingSkill.value < matchingSkill.max) {
+      this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
     }
-
-    //Ugly...
-    const skill:string = children.item(0).innerText;
-    const characteristicMod = parseInt(this.actor.data.data.characteristics[children.item(1).value].mod);
-    const dice = Rolltype[children.item(2).value];
-    const difficulty = children.item(3).value as keyof typeof Difficulties;
-    // const skillValue:number = parseInt(children.item(4).textContent);
-    const skillValue:number = children.item(4).value;
-
-    //TODO This is for CE, other variants change the target from 8 instead of modifying roll, should read formula from config based on variant
-    const successValue = 8;
-    const formula = `${dice}ms=${successValue}+${skillValue}+${characteristicMod}+${Difficulties[difficulty]}`;
-    const roll = new Roll(formula, this.actor.data.data);
-    const label = `Rolling ${skill} at ${difficulty} difficulty`;
-    //TODO Should use custom html
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      flavor: label
-    });
   }
 
-
-  // async _onDrop(event:any):Promise<boolean> {
-  //     event.preventDefault();
-  //
-  //     //TODO If an attribute mod is being dragged onto a skill, do a roll.
-  //     const target = $(event.target);
-  //     const dragData = event.dataTransfer.getData('text/plain');
-  //     const dragItem = JSON.parse(dragData);
-  //
-  //     dragItem
-  //
-  //     return true;
-  // }
+  /**
+   * Handle skill downgrade
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  _onDowngrade(event):void {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const skillName = element.getAttribute('data-label');
+    const actorData = this.actor.data;
+    const data = actorData.data;
+    const matchingSkill = data.skills[skillName];
+    if (matchingSkill && matchingSkill.trained && data.skills[skillName].value == 0) {
+      this.actor.update({[`data.skills.${skillName}.value`]: -3})
+      this.actor.update({[`data.skills.${skillName}.trained`]: false})
+    } else if (matchingSkill && matchingSkill.trained) {
+      this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value - 1})
+    }
+  }
 }

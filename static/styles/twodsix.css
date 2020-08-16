@@ -1,9 +1,14 @@
 body {
   font-family: Consolas, monospace;
-  background-image: url(../assets/actor/workbg2.png);
+  background-image: url(../assets/workbg2.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+svg {
+  fill: currentColor;
+
 }
 
 textarea {
@@ -28,7 +33,7 @@ textarea:focus {
 
 .window-content {
   background-attachment: fixed !important;
-  background-image: url(../assets/actor/bg2.jpg)!important;
+  background-image: url(../assets/bg2.jpg)!important;
   background-repeat: repeat-x !important;
   font-family: Consolas, monospace;
   color: #00E5FF !important;
@@ -101,9 +106,9 @@ img.character-info-mask {
 
 .character-photo {
   margin-top: -0.3em;
-  margin-left: 0.3em;
+  margin-left: 0.24em;
   position: absolute;
-  width: 97%;
+  width: 97.2%;
   height: 100%;
   z-index: 0;
 }
@@ -118,7 +123,7 @@ img.character-info-mask {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-  height: 1em;
+  height: 3em;
 }
 .character-name {
   position: relative;
@@ -266,13 +271,17 @@ svg:hover {
   fill: red;
 }
 
-.character-tabs { grid-area: character-tabs; }
+.character-tabs {
+  grid-area: character-tabs;
+  margin-top: 0.4em;
+  z-index: 50;
+}
 
 .character-tabs .tabs {
   position: relative;
-  top: 0.4em;
+  top: 0.3em;
   left: 2.75em;
-  z-index: 0;
+  z-index: 50;
   width: 29.5em;
 }
 
@@ -289,6 +298,7 @@ svg:hover {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
+  margin-top: -0.7em;
 }
 
 /* TABS */
@@ -307,7 +317,73 @@ a:hover {
   text-shadow: 0 0 8px #29aae1;
 }
 
+/* Skill page TEMP FIX */
+
+.item.flexrow.item-header {
+  margin-top: 2em;
+}
+
+.skills.flexrow.flex-group-center {
+  padding: 1em;
+}
+
 /* Style overrides */
+
+.skills input[type="number"] {
+  width: 2em;
+}
+
+.skill-box-name.inlineblock-left {
+  width: 16em;
+}
+
+.skill-box {
+  /* width: 5em; */
+  border: 1px solid;
+  display: flex;
+}
+
+.skills {
+  margin-left: 0.5em;
+  margin-top: 1em;
+  margin-right: 0.5em;
+}
+
+.tab.skills.active {
+  overflow: auto;
+  height: 38.4em;
+}
+
+.trained-false {
+  color: #6e819e;
+}
+
+.skills-joat {
+  margin-top: -2em;
+}
+
+.skills div>div:nth-of-type(odd) {
+  background: #0d0d0d;
+}
+
+.skill:hover {
+  border-left: 1px solid #00e5ff;
+  border-right: 1px solid #00e5ff;
+}
+
+.skill-output img {
+  height: 1.6em;
+  vertical-align: middle;
+}
+
+/*-------------------------------------------------*/
+
+button.flexrow.flex-group-center.toggle-skills {
+  width: 8em;
+  left: 24em;
+  position: relative;
+  text-align: center;
+}
 
 ::-webkit-scrollbar-thumb {
   outline: none;
@@ -412,7 +488,7 @@ option {background-color: #000;}
 
 .app {
   max-height: 100%;
-  background-image: url(../assets/actor/bg2.jpg)!important;
+  background-image: url(../assets/bg2.jpg)!important;
   background-repeat: repeat-x !important;
   border-radius: 5px;
   box-shadow: 0 0 20px #000;

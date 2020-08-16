@@ -1,309 +1,728 @@
 {
   "Actor": {
-    "types": [
-      "character",
-      "npc",
-      "animal",
-      "vehicle",
-      "ship"
-    ],
-    "templates": {
+    "types": ["traveller"],
+    "traveller": {
+      "name": "",
+      "homeworld": "",
+      "species": "",
+      "description": "",
+      "age": {
+        "value": 18,
+        "min": 0
+      },
+      "radiationDose": {
+        "value": 0,
+        "min": 0
+      },
       "characteristics": {
-        "characteristics": {
-          "str": {
-            "value": 0,
-            "damage": 0,
-            "short": "str",
-            "label": "Strengh"
-          },
-          "dex": {
-            "value": 0,
-            "damage": 0,
-            "short": "dex",
-            "label": "Dexterity"
-          },
-          "end": {
-            "value": 0,
-            "damage": 0,
-            "short": "end",
-            "label": "Endurance"
-          },
-          "int": {
-            "value": 0,
-            "damage": 0,
-            "short": "int",
-            "label": "Intelligence"
-          },
-          "edu": {
-            "value": 0,
-            "damage": 0,
-            "short": "edu",
-            "label": "Education"
-          },
-          "soc": {
-            "value": 0,
-            "damage": 0,
-            "short": "soc",
-            "label": "Social Status"
-          },
-          "psi": {
-            "value": 0,
-            "damage": 0,
-            "short": "psi",
-            "label": "Psionic Strength"
-          }
+        "strength": {
+          "value": 0,
+          "damage": 0,
+          "label": "Strength",
+          "shortlabel": "STR",
+          "mod": 0
+        },
+        "dexterity": {
+          "value": 0,
+          "damage": 0,
+          "label": "Dexterity",
+          "shortlabel": "DEX",
+          "mod": 0
+        },
+        "endurance": {
+          "value": 0,
+          "damage": 0,
+          "label": "Endurance",
+          "shortlabel": "END",
+          "mod": 0
+        },
+        "intellect": {
+          "value": 0,
+          "damage": 0,
+          "label": "Intellect",
+          "shortlabel": "INT",
+          "mod": 0
+        },
+        "education": {
+          "value": 0,
+          "damage": 0,
+          "label": "Education",
+          "shortlabel": "EDU",
+          "mod": 0
+        },
+        "social": {
+          "value": 0,
+          "damage": 0,
+          "label": "Social",
+          "shortlabel": "SOC",
+          "mod": 0
+        },
+        "psionics": {
+          "value": 0,
+          "damage": 0,
+          "label": "Psionics",
+          "shortlabel": "PSI",
+          "mod": 0
         }
       },
-      "skills": [
-      ],
-      "status": {
-        "status": {
-          "wounded": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "seriouslyWounded": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "unconscious": {
-            "type": "Boolean",
-            "value": "false"
-          },
-          "dead": {
-            "type": "boolean",
-            "value": "false"
-          },
-          "Prone": {
-            "type": "boolean",
-            "value": "false"
-          }
-        }
+      "jackofalltrades": {
+        "label": "Jack of All Trades",
+        "value": 0,
+        "max": 9
       },
-      "details": {
-        "species": "",
-        "gender": "",
-        "appearance": "",
-        "birth_year": 0,
-        "birth_day": 0,
-        "rads": 0,
-        "residence": "",
-        "homeworld": "",
-        "description": "",
-        "career": [
-          {
-            "service": "",
-            "years": 0
-          }
-        ],
-        "personalGoals": ""
-      },
-      "owned": {
-        "gear": [],
-        "weapons": [],
-        "armors": [],
-        "inventory": []
-      },
-      "finances": {
-        "pension": {
-          "value": 0
+      "skills": {
+        "admin": {
+          "label": "Admin",
+          "value": -3,
+          "trained": false,
+          "max": 9
         },
-        "debt": {
-          "value": 0
+        "advocate": {
+          "label": "Advocate",
+          "value": -3,
+          "trained": false,
+          "max": 9
         },
-        "credits": {
-          "value": 0
+        "animals-handling": {
+          "label": "Animals (Handling)",
+          "value": -3,
+          "trained": false,
+          "max": 9
         },
-        "payments": {
-          "value": 0
+        "animals-training": {
+          "label": "Animals (Training)",
+          "value": -3,
+          "trained": false,
+          "max": 9
         },
-        "lcosts": {
-          "value": 0
+        "animals-veterinary": {
+          "label": "Animals (Veterinary)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "art-performer": {
+          "label": "Art (Performer)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "art-holography": {
+          "label": "Art (Holography)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "art-instrument": {
+          "label": "Art (Instrument)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "art-visualmedia": {
+          "label": "Art (Visual Media)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "art-write": {
+          "label": "Art (Write)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "astrogation": {
+          "label": "Astrogation",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "athletics-dex": {
+          "label": "Athletics (DEX)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "athletics-end": {
+          "label": "Athletics (END)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "athletics-str": {
+          "label": "Athletics (STR)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "broker": {
+          "label": "Broker",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "carouse": {
+          "label": "Carouse",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "deception": {
+          "label": "Deception",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "diplomat": {
+          "label": "Diplomat",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "drive-hovercraft": {
+          "label": "Drive (Hovercraft)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "drive-mole": {
+          "label": "Drive (Mole)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "drive-track": {
+          "label": "Drive (Track)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "drive-walker": {
+          "label": "Drive (Walker)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "drive-wheel": {
+          "label": "Drive (Wheel)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "electronics-comms": {
+          "label": "Electronics (Comms)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "electronics-computers": {
+          "label": "Electronics (Computers)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "electronics-remoteops": {
+          "label": "Electronics (Remote Ops)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "electronics-sensors": {
+          "label": "Electronics (Sensors)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "engineer-mdrive": {
+          "label": "Engineer (M-Drive)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "engineer-jdrive": {
+          "label": "Engineer (J-Drive)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "engineer-lifesupport": {
+          "label": "Engineer (Life Support)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "engineer-power": {
+          "label": "Engineer (Power)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "explosives": {
+          "label": "Explosives",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "flyer-airship": {
+          "label": "Flyer (Airship)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "flyer-grav": {
+          "label": "Flyer (Grav)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "flyer-ornithopter": {
+          "label": "Flyer (Ornithopter)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "flyer-rotor": {
+          "label": "Flyer (Rotor)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "flyer-wing": {
+          "label": "Flyer (Wing)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "gambler": {
+          "label": "Gambler",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "gunner-turret": {
+          "label": "Gunner (Turret)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "gunner-ortillery": {
+          "label": "Gunner (Ortillery)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "gunner-screen": {
+          "label": "Gunner (Screen)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "gunner-capital": {
+          "label": "Gunner (Capital)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "guncombat-archaic": {
+          "label": "Gun Combat (Archaic)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "guncombat-energy": {
+          "label": "Gun Combat (Energy)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "guncombat-slug": {
+          "label": "Gun Combat (Slug)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "heavyweapons-artillery": {
+          "label": "Heavy Weapons (Artillery)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "heavyweapons-manportable": {
+          "label": "Heavy Weapons (Man Portable)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "heavyweapons-vehicle": {
+          "label": "Heavy Weapons (Vehicle)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "investigate": {
+          "label": "Investigate",
+          "value": -3,
+          "trained": false,
+          "max": 9
+
+        },
+        "language": {
+          "label": "Languages",
+          "value": -3,
+          "max": 0,
+          "trained": false
+        },
+        "language-1": {
+          "label": "Language 1",
+          "value": -3,
+          "trained": false,
+          "max": 9,
+          "customNamed": true
+        },
+        "language-2": {
+          "label": "Language 2",
+          "value": -3,
+          "trained": false,
+          "max": 9,
+          "customNamed": true
+        },
+        "language-3": {
+          "label": "Language 3",
+          "value": -3,
+          "trained": false,
+          "max": 9,
+          "customNamed": true
+        },
+        "language-4": {
+          "label": "Language 4",
+          "value": -3,
+          "trained": false,
+          "max": 9,
+          "customNamed": true
+        },
+        "language-5": {
+          "label": "Language 5",
+          "value": -3,
+          "trained": false,
+          "max": 9,
+          "customNamed": true
+        },
+        "leadership": {
+          "label": "Leadership",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "mechanic": {
+          "label": "Mechanic",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "medic": {
+          "label": "Medic",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "melee-unarmed": {
+          "label": "Melee (Unarmed)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "melee-blade": {
+          "label": "Melee (Blade)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "melee-bludgeon": {
+          "label": "Melee (Bludgeon)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "melee-natural": {
+          "label": "Melee (Natural)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "navigation": {
+          "label": "Navigation",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "persuade": {
+          "label": "Persuade",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "pilot-smallcraft": {
+          "label": "Pilot (Small Craft)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "pilot-spacecraft": {
+          "label": "Pilot (Spacecraft)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "pilot-capitalships": {
+          "label": "Pilot (Capital Ships)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-belter": {
+          "label": "Profession (Belter)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-biologicals": {
+          "label": "Profession (Biologicals)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-civilengineering": {
+          "label": "Profession (Civil Engineering)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-construction": {
+          "label": "Profession (Construction)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-hydroponics": {
+          "label": "Profession (Hydroponics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "profession-polymers": {
+          "label": "Profession (Polymers)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "recon": {
+          "label": "Recon",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-archaeology": {
+          "label": "Science (Archaeology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-astronomy": {
+          "label": "Science (Astronomy)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-biology": {
+          "label": "Science (Biology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-chemistry": {
+          "label": "Science (Chemistry)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-cosmology": {
+          "label": "Science (Cosmology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-cybernetics": {
+          "label": "Science (Cybernetics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-economics": {
+          "label": "Science (Economics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-genetics": {
+          "label": "Science (Genetics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-history": {
+          "label": "Science (History)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-linguistics": {
+          "label": "Science (Linguistics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-philosophy": {
+          "label": "Science (Philosophy)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-physics": {
+          "label": "Science (Physics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-planetology": {
+          "label": "Science (Planetology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-psionicology": {
+          "label": "Science (Psionicology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-psychology": {
+          "label": "Science (Psychology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-robotics": {
+          "label": "Science (Robotics)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-sophontology": {
+          "label": "Science (Sophontology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "science-xenology": {
+          "label": "Science (Xenology)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "seafarer-oceanships": {
+          "label": "Seafarer (Ocean Ships)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "seafarer-personal": {
+          "label": "Seafarer (Personal)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "seafarer-sail": {
+          "label": "Seafarer (Sail)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "seafarer-submarine": {
+          "label": "Seafarer (Submarine)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "stealth": {
+          "label": "Stealth",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "steward": {
+          "label": "Steward",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "streetwise": {
+          "label": "Streetwise",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "survival": {
+          "label": "Survival",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "tactics-military": {
+          "label": "Tactics (Military)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "tactics-naval": {
+          "label": "Tactics (Naval)",
+          "value": -3,
+          "trained": false,
+          "max": 9
+        },
+        "vaccsuit": {
+          "label": "Vacc Suit",
+          "value": -3,
+          "trained": false,
+          "max": 9
         }
       }
-    },
-    "character": {
-      "templates": [
-        "characteristics",
-        "status",
-        "skills",
-        "status",
-        "details",
-        "owned",
-        "finances"
-      ],
-      "UCF": "",
-      "notes": [
-        {
-          "note": ""
-        }
-      ],
-      "skills": []
-    },
-    "npc": {
-      "templates": [
-        "characteristics",
-        "skills",
-        "status",
-        "details"
-      ]
-    },
-    "animal": {
-      "templates": [
-        "characteristics",
-        "skills",
-        "status"
-      ]
-    },
-    "vehicle": {
-      "flags": {}
-    },
-    "ship": {
-      "flags": {}
     }
   },
   "Item": {
-    "types": [
-      "gear",
-      "weapon",
-      "skill",
-      "species",
-      "trait",
-      "career",
-      "psionic",
-      "armor",
-      "weapon",
-      "ammunition",
-      "consumable",
-      "computer",
-      "software",
-      "vehicle",
-      "ship"
-    ],
+    "types": ["equipment", "weapon"],
     "templates": {
-      "itemDescription": {
-        "description": "",
-        "notes": ""
-      },
-      "physicalItem": {
-        "quantity": 1,
-        "weight": 0,
-        "cost": 0
-      },
-      "equipable": {
-        "equippable": true,
-        "equipped": false
-      }
-    },
-    "gear": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ],
-      "attributes": {
-      }
-    },
-    "weapon": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ],
-      "skill": "",
-      "name": "",
-      "range": "",
-      "rof": "",
-      "damage": "",
-      "ll": "",
-      "tl": "",
-      "rounds": 0,
-      "attributes": {
-      }
-    },
-    "skill": {
-      "templates": [
-        "itemDescription"
-      ],
-      "label": "",
-      "name": "",
-      "subtype": "",
-      "reference": "",
-      "value": -3,
-      "defaultCharacteristic": "DEX",
-      "tasks": {
+      "carried": {
         "name": "",
         "description": "",
-        "characteristic": "DEX",
-        "timeIncrement": "seconds",
-        "difficulty": "Average"
+        "quantity": 1,
+        "weight": 0,
+        "techlevel": 0,
+        "cost": 0
       },
-      "cascade": false,
-      "specialization": "",
-      "show": false
+      "weaponTemplate": {
+        "range": 0,
+        "damage": 0,
+        "damagebonus": 0,
+        "magazinesize": 0,
+        "magazinecost": 0,
+        "traits": []
+      }
     },
-    "species": {
-      "templates": [
-        "itemDescription",
-        "equipable"
-      ]
+    "equipment": {
+      "templates": ["carried"]
     },
-    "trait": {
-      "templates": [
-        "itemDescription",
-        "equipable"
-      ]
-    },
-    "career": {
-      "templates": [
-        "itemDescription",
-        "equipable"
-      ]
-    },
-    "psionic": {},
-    "armor": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ]
-    },
-    "ammunition": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ]
-    },
-    "consumable": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ]
-    },
-    "computer": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "equipable"
-      ]
-    },
-    "software": {
-      "templates": [
-        "itemDescription",
-        "equipable"
-      ]
-    },
-    "vehicle": {
-      "templates": [
-        "itemDescription"
-      ]
-    },
-    "ship": {
-      "templates": [
-        "itemDescription"
-      ]
+    "weapon": {
+      "templates": ["carried", "weapon"]
     }
   }
 }

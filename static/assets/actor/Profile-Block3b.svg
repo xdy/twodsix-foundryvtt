@@ -12,7 +12,7 @@
         height="84.393"/>
   <polygon fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="5.252,397.832 5.252,312.066 5.252,52.071
 	5.252,52.071 53.199,4.126 254.193,4.126 254.193,4.126 302.919,52.071 302.919,397.832 "/>
-  <image overflow="visible" width="298" height="196" xlink:href="D:\Tabletop\Traveller\HTML\stat-bg.png"
+  <image overflow="visible" width="298" height="196" xlink:href="./stat-bg.png"
          transform="matrix(0.9999 0 0 0.9999 5.1042 398.1777)">
 </image>
   <polygon fill="none" stroke="#29AAE1" stroke-width="3" stroke-miterlimit="10" points="5.252,572.535 27.352,594.635

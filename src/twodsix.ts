@@ -41,16 +41,14 @@ Hooks.once('init', async function () {
 
   game.twodsix = {
     TwodsixActor,
-    TwodsixItem
+    TwodsixItem,
+    rollItemMacro
   };
 
   // Actor
   CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {
-    types: ['character'],
-    makeDefault: true,
-  });
+  Actors.registerSheet('twodsix', TwodsixActorSheet, {makeDefault: true});
 
   // Items
   CONFIG.Item.entityClass = TwodsixItem;
@@ -84,18 +82,11 @@ Hooks.once('setup', async function () {
 
 });
 
-/* ------------------------------------ */
-/* When ready							*/
-/* ------------------------------------ */
-Hooks.once('ready', async function () {
-  // Do anything once the system is ready
-
-  // //TODO The below reads all skill *names* from all compendiums. Needs to be revisited. Should only read *this* variant's skills. Also, not sure I'm going to need it.
-  // TWODSIX.skills = await TwodsixItemList.getItems('skill', 'skills');
+Hooks.once("ready", async function () {
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  Hooks.on("hotbarDrop", (bar, data, slot) => createMongooseTraveller2eMacro(data, slot));
 
   // Set up migrations here once needed.
-
-
 });
 
 // Add any additional hooks if necessary
@@ -122,3 +113,55 @@ Hooks.on('preCreateActor', async (actor, dir) => {
     });
   }
 });
+
+/* -------------------------------------------- */
+/*  Hotbar Macros                               */
+
+/* -------------------------------------------- */
+
+/**
+ * Create a Macro from an Item drop.
+ * Get an existing item macro if one exists, otherwise create a new one.
+ * @param {Object} data     The dropped data
+ * @param {number} slot     The hotbar slot to use
+ * @returns {Promise}
+ */
+async function createMongooseTraveller2eMacro(data, slot) {
+  if (data.type !== "Item") return;
+  if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
+  const item = data.data;
+
+  // Create the macro command
+  const command = `game.twodsix.rollItemMacro("${item.name}");`;
+  // @ts-ignore
+  let macro:Entity = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+  if (!macro) {
+    macro = await Macro.create({
+      name: item.name,
+      type: "script",
+      img: item.img,
+      command: command,
+      flags: {"mongoosetraveller2e.itemMacro": true}
+    });
+  }
+  game.user.assignHotbarMacro(macro as Macro, slot);
+  return false;
+}
+
+/**
+ * Create a Macro from an Item drop.
+ * Get an existing item macro if one exists, otherwise create a new one.
+ * @param {string} itemName
+ * @return {Promise}
+ */
+function rollItemMacro(itemName) {
+  const speaker = ChatMessage.getSpeaker();
+  let actor;
+  if (speaker.token) actor = game.actors.tokens[speaker.token];
+  if (!actor) actor = game.actors.get(speaker.actor);
+  const item = actor ? actor.items.find(i => i.name === itemName) : null;
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+
+  // Trigger the item roll
+  return item.roll();
+}

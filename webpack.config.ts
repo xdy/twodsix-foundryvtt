@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
     entry: {
       main: "./src/twodsix.ts",
     },
-    mode: "none",
+    mode: "development",
     module: {
       rules: [
         {
