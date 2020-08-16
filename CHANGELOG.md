@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.22...v0.3.0) (2020-08-16)
+
+
+### Features
+
+* Switched to Kevin's/Rob's way of doing things. ([047859b](https://github.com/xdy/twodsix-foundryvtt/commit/047859b8a0d1beba7045e55fd08525d4acafda96))
+
 ## [0.2.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.21...v0.2.22) (2020-08-08)
 
 
