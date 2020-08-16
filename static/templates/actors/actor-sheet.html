@@ -108,13 +108,14 @@
 
               <label for="data.skills.{{key}}.value" class="flex3 resource-label skill-{{skill.trained}}">{{skill.label}}</label>
 
-              <span><select class="skill-stat" name="characteristic">
-                <option value="data.characteristics.strength.mod">{{data.strength.shortlabel}}</option>
-                <option value="data.characteristics.dexterity.mod">{{data.dexterity.shortlabel}}</option>
-                <option value="data.characteristics.endurance.mod">{{data.endurance.shortlabel}}</option>
-                <option value="data.characteristics.intellect.mod">{{data.intellect.shortlabel}}</option>
-                <option value="data.characteristics.education.mod">{{data.education.shortlabel}}</option>
-                <option value="data.characteristics.social.mod">{{data.social.shortlabel}}</option>
+              <span><select disabled class="skill-stat" name="characteristic">
+                <option value="data.characteristics.dexterity.mod">{{../data.characteristics.dexterity.shortlabel}}</option>
+                <option value="data.characteristics.strength.mod">{{../data.characteristics.strength.shortlabel}}</option>
+                <option value="data.characteristics.endurance.mod">{{../data.characteristics.endurance.shortlabel}}</option>
+                <option value="data.characteristics.intellect.mod">{{../data.characteristics.intellect.shortlabel}}</option>
+                <option value="data.characteristics.education.mod">{{../data.characteristics.education.shortlabel}}</option>
+                <option value="data.characteristics.social.mod">{{../data.characteristics.social.shortlabel}}</option>
+                <option value="data.characteristics.psionics.mod">{{../data.characteristics.psionics.shortlabel}}</option>
               </select></span>
 
               <span class="skill-arrows flex1">
@@ -127,9 +128,10 @@
               </span>
 
 
+              <!-- TODO Hardcoded dexterity for now, but it should get the value from the dropdown. Also moved dexterity to the top and disabled the select to make it seem less strange. :) -->
               <span class="skill-output" trainable="true" trained="{{skill.trained}}" class="flex1 skill-mod rollable"
                 data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackofalltrades) decimals=0 sign=true}}
-                <img class="rollable" data-roll="2d6+@skills.{{key}}.value+@characteristics.{{key}}.mod" src="./systems/twodsix/assets/d6-icon.svg"/>
+                <img class="rollable" data-roll="2d6+@skills.{{key}}.value+@characteristics.dexterity.mod" src="./systems/twodsix/assets/d6-icon.svg"/>
               </span>
 
 
