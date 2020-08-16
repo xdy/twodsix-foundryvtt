@@ -4,7 +4,7 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import WriteFilePlugin from "write-file-webpack-plugin";
 import {Configuration} from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-
+import glob from "glob";
 
 //Only a partial type, not sure what else can be in this, and haven't looked into it.
 type FoundryConfig = { dataPath:string, systemName:string };
@@ -21,9 +21,10 @@ function getFoundryConfig():FoundryConfig {
 module.exports = (env, argv) => {
   const config:Configuration = {
     context: __dirname,
-    entry: {
-      main: "./src/twodsix.ts",
-    },
+    entry: glob.sync('./src/*.ts', './src/**/*.ts').reduce((acc, file) => {
+      acc[file.replace(/^\.\/src\/(.*?)\.js$/, (_, filename) => filename)] = file
+      return acc
+    }, {}),
     mode: "development",
     module: {
       rules: [
@@ -64,7 +65,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: "twodsix.bundle.js",
+      filename: '[name].js'
     },
   };
 
