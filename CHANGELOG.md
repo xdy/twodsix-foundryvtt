@@ -1,3 +1,11 @@
+## [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
+
+
+### Bug Fixes
+
+* Hardcode dex for skill rolls (really, start of support for choice of characteristic for skill rolls) ([2749a29](https://github.com/xdy/twodsix-foundryvtt/commit/2749a29c637aeef1723393bfafa8d2ad7cf197d6))
+* Turn off bundling for now, hopefully this makes it easier for Kevin to work. ([a91bdb3](https://github.com/xdy/twodsix-foundryvtt/commit/a91bdb3848848f78c01df8165861643945960384))
+
 ## [0.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.0...v0.3.1) (2020-08-16)
 
 
