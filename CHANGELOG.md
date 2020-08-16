@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.0...v0.3.1) (2020-08-16)
+
+
+### Bug Fixes
+
+* Wrong actor type ([a9a13f8](https://github.com/xdy/twodsix-foundryvtt/commit/a9a13f89c54578e4c27ebf7c06e23fb304977a65))
+
 # [0.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.2.22...v0.3.0) (2020-08-16)
 
 
