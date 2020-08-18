@@ -75,295 +75,344 @@
           "label": "Admin",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "advocate": {
           "label": "Advocate",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "animals-handling": {
           "label": "Animals (Handling)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "animals-training": {
           "label": "Animals (Training)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "animals-veterinary": {
           "label": "Animals (Veterinary)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "art-performer": {
           "label": "Art (Performer)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "art-holography": {
           "label": "Art (Holography)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "art-instrument": {
           "label": "Art (Instrument)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "art-visualmedia": {
           "label": "Art (Visual Media)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "art-write": {
           "label": "Art (Write)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "astrogation": {
           "label": "Astrogation",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "athletics-dex": {
           "label": "Athletics (DEX)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "athletics-end": {
           "label": "Athletics (END)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "athletics-str": {
           "label": "Athletics (STR)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "broker": {
           "label": "Broker",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "carouse": {
           "label": "Carouse",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "deception": {
           "label": "Deception",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "diplomat": {
           "label": "Diplomat",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "drive-hovercraft": {
           "label": "Drive (Hovercraft)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "drive-mole": {
           "label": "Drive (Mole)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "drive-track": {
           "label": "Drive (Track)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "drive-walker": {
           "label": "Drive (Walker)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "drive-wheel": {
           "label": "Drive (Wheel)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "electronics-comms": {
           "label": "Electronics (Comms)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "electronics-computers": {
           "label": "Electronics (Computers)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "electronics-remoteops": {
           "label": "Electronics (Remote Ops)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "electronics-sensors": {
           "label": "Electronics (Sensors)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "engineer-mdrive": {
           "label": "Engineer (M-Drive)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "engineer-jdrive": {
           "label": "Engineer (J-Drive)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "engineer-lifesupport": {
           "label": "Engineer (Life Support)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "engineer-power": {
           "label": "Engineer (Power)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "explosives": {
           "label": "Explosives",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "flyer-airship": {
           "label": "Flyer (Airship)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "flyer-grav": {
           "label": "Flyer (Grav)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "flyer-ornithopter": {
           "label": "Flyer (Ornithopter)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "flyer-rotor": {
           "label": "Flyer (Rotor)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "flyer-wing": {
           "label": "Flyer (Wing)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "gambler": {
           "label": "Gambler",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "gunner-turret": {
           "label": "Gunner (Turret)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "gunner-ortillery": {
           "label": "Gunner (Ortillery)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "gunner-screen": {
           "label": "Gunner (Screen)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "gunner-capital": {
           "label": "Gunner (Capital)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "guncombat-archaic": {
           "label": "Gun Combat (Archaic)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "guncombat-energy": {
           "label": "Gun Combat (Energy)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "guncombat-slug": {
           "label": "Gun Combat (Slug)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "heavyweapons-artillery": {
           "label": "Heavy Weapons (Artillery)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "heavyweapons-manportable": {
           "label": "Heavy Weapons (Man Portable)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "heavyweapons-vehicle": {
           "label": "Heavy Weapons (Vehicle)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "investigate": {
           "label": "Investigate",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
 
         },
         "language": {
@@ -376,324 +425,382 @@
           "label": "Language 1",
           "value": -3,
           "trained": false,
+          "customNamed": true,         
           "max": 9,
-          "customNamed": true
+          "modifier":{}
+
         },
         "language-2": {
           "label": "Language 2",
           "value": -3,
           "trained": false,
+          "customNamed": true,         
           "max": 9,
-          "customNamed": true
+          "modifier":{}
+
         },
         "language-3": {
           "label": "Language 3",
           "value": -3,
           "trained": false,
+          "customNamed": true,         
           "max": 9,
-          "customNamed": true
+          "modifier":{}
+
         },
         "language-4": {
           "label": "Language 4",
           "value": -3,
           "trained": false,
+          "customNamed": true,         
           "max": 9,
-          "customNamed": true
+          "modifier":{}
+
         },
         "language-5": {
           "label": "Language 5",
           "value": -3,
           "trained": false,
+          "customNamed": true,         
           "max": 9,
-          "customNamed": true
+          "modifier":{}
+
         },
         "leadership": {
           "label": "Leadership",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "mechanic": {
           "label": "Mechanic",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "medic": {
           "label": "Medic",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "melee-unarmed": {
           "label": "Melee (Unarmed)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "melee-blade": {
           "label": "Melee (Blade)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "melee-bludgeon": {
           "label": "Melee (Bludgeon)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "melee-natural": {
           "label": "Melee (Natural)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "navigation": {
           "label": "Navigation",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "persuade": {
           "label": "Persuade",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "pilot-smallcraft": {
           "label": "Pilot (Small Craft)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "pilot-spacecraft": {
           "label": "Pilot (Spacecraft)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "pilot-capitalships": {
           "label": "Pilot (Capital Ships)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-belter": {
           "label": "Profession (Belter)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-biologicals": {
           "label": "Profession (Biologicals)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-civilengineering": {
           "label": "Profession (Civil Engineering)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-construction": {
           "label": "Profession (Construction)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-hydroponics": {
           "label": "Profession (Hydroponics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "profession-polymers": {
           "label": "Profession (Polymers)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "recon": {
           "label": "Recon",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-archaeology": {
           "label": "Science (Archaeology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-astronomy": {
           "label": "Science (Astronomy)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-biology": {
           "label": "Science (Biology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-chemistry": {
           "label": "Science (Chemistry)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-cosmology": {
           "label": "Science (Cosmology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-cybernetics": {
           "label": "Science (Cybernetics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-economics": {
           "label": "Science (Economics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-genetics": {
           "label": "Science (Genetics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-history": {
           "label": "Science (History)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-linguistics": {
           "label": "Science (Linguistics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-philosophy": {
           "label": "Science (Philosophy)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-physics": {
           "label": "Science (Physics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-planetology": {
           "label": "Science (Planetology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-psionicology": {
           "label": "Science (Psionicology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-psychology": {
           "label": "Science (Psychology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-robotics": {
           "label": "Science (Robotics)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-sophontology": {
           "label": "Science (Sophontology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "science-xenology": {
           "label": "Science (Xenology)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "seafarer-oceanships": {
           "label": "Seafarer (Ocean Ships)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "seafarer-personal": {
           "label": "Seafarer (Personal)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "seafarer-sail": {
           "label": "Seafarer (Sail)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "seafarer-submarine": {
           "label": "Seafarer (Submarine)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "stealth": {
           "label": "Stealth",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "steward": {
           "label": "Steward",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "streetwise": {
           "label": "Streetwise",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "survival": {
           "label": "Survival",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "tactics-military": {
           "label": "Tactics (Military)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "tactics-naval": {
           "label": "Tactics (Naval)",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         },
         "vaccsuit": {
           "label": "Vacc Suit",
           "value": -3,
           "trained": false,
-          "max": 9
+          "max": 9,
+          "modifier":{}
         }
       }
     }
