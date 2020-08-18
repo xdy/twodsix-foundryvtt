@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.0...v0.3.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* Removed read only, attempts to fix drop-down ([a52c66c](https://github.com/UltraKev/twodsix-foundryvtt/commit/a52c66c0b4ae5b4e96235d41488a46da666cb7a7))
+
 # [0.3.0](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.2.10...v0.3.0) (2020-08-18)
 
 
