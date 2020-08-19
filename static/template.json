@@ -77,7 +77,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "advocate": {
           "label": "Advocate",
@@ -85,7 +85,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "animals-handling": {
           "label": "Animals (Handling)",
@@ -93,7 +93,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "animals-training": {
           "label": "Animals (Training)",
@@ -101,7 +101,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "animals-veterinary": {
           "label": "Animals (Veterinary)",
@@ -109,7 +109,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "art-performer": {
           "label": "Art (Performer)",
@@ -117,7 +117,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "art-holography": {
           "label": "Art (Holography)",
@@ -125,7 +125,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "art-instrument": {
           "label": "Art (Instrument)",
@@ -133,7 +133,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "art-visualmedia": {
           "label": "Art (Visual Media)",
@@ -141,7 +141,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "art-write": {
           "label": "Art (Write)",
@@ -149,7 +149,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "astrogation": {
           "label": "Astrogation",
@@ -157,7 +157,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "athletics-dex": {
           "label": "Athletics (DEX)",
@@ -165,7 +165,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "athletics-end": {
           "label": "Athletics (END)",
@@ -173,7 +173,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "athletics-str": {
           "label": "Athletics (STR)",
@@ -181,7 +181,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "broker": {
           "label": "Broker",
@@ -189,7 +189,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "carouse": {
           "label": "Carouse",
@@ -197,7 +197,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "deception": {
           "label": "Deception",
@@ -205,7 +205,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "diplomat": {
           "label": "Diplomat",
@@ -213,7 +213,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "drive-hovercraft": {
           "label": "Drive (Hovercraft)",
@@ -221,7 +221,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "drive-mole": {
           "label": "Drive (Mole)",
@@ -229,7 +229,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "drive-track": {
           "label": "Drive (Track)",
@@ -237,7 +237,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "drive-walker": {
           "label": "Drive (Walker)",
@@ -245,7 +245,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "drive-wheel": {
           "label": "Drive (Wheel)",
@@ -253,7 +253,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "electronics-comms": {
           "label": "Electronics (Comms)",
@@ -261,7 +261,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "electronics-computers": {
           "label": "Electronics (Computers)",
@@ -269,7 +269,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "electronics-remoteops": {
           "label": "Electronics (Remote Ops)",
@@ -277,7 +277,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "electronics-sensors": {
           "label": "Electronics (Sensors)",
@@ -285,7 +285,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "engineer-mdrive": {
           "label": "Engineer (M-Drive)",
@@ -293,7 +293,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "engineer-jdrive": {
           "label": "Engineer (J-Drive)",
@@ -301,7 +301,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "engineer-lifesupport": {
           "label": "Engineer (Life Support)",
@@ -309,7 +309,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "engineer-power": {
           "label": "Engineer (Power)",
@@ -317,7 +317,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "explosives": {
           "label": "Explosives",
@@ -325,7 +325,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "flyer-airship": {
           "label": "Flyer (Airship)",
@@ -333,7 +333,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "flyer-grav": {
           "label": "Flyer (Grav)",
@@ -341,7 +341,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "flyer-ornithopter": {
           "label": "Flyer (Ornithopter)",
@@ -349,7 +349,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "flyer-rotor": {
           "label": "Flyer (Rotor)",
@@ -357,7 +357,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "flyer-wing": {
           "label": "Flyer (Wing)",
@@ -365,7 +365,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "gambler": {
           "label": "Gambler",
@@ -373,7 +373,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "gunner-turret": {
           "label": "Gunner (Turret)",
@@ -381,7 +381,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "gunner-ortillery": {
           "label": "Gunner (Ortillery)",
@@ -389,7 +389,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "gunner-screen": {
           "label": "Gunner (Screen)",
@@ -397,7 +397,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "gunner-capital": {
           "label": "Gunner (Capital)",
@@ -405,7 +405,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "guncombat-archaic": {
           "label": "Gun Combat (Archaic)",
@@ -413,7 +413,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "guncombat-energy": {
           "label": "Gun Combat (Energy)",
@@ -421,7 +421,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "guncombat-slug": {
           "label": "Gun Combat (Slug)",
@@ -429,7 +429,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "heavyweapons-artillery": {
           "label": "Heavy Weapons (Artillery)",
@@ -437,7 +437,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "heavyweapons-manportable": {
           "label": "Heavy Weapons (Man Portable)",
@@ -445,7 +445,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "heavyweapons-vehicle": {
           "label": "Heavy Weapons (Vehicle)",
@@ -453,7 +453,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "investigate": {
           "label": "Investigate",
@@ -461,7 +461,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "language": {
@@ -470,56 +470,56 @@
           "max": 0,
           "trained": false,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "language-1": {
           "label": "Language 1",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "language-2": {
           "label": "Language 2",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "language-3": {
           "label": "Language 3",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "language-4": {
           "label": "Language 4",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "language-5": {
           "label": "Language 5",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
 
         },
         "leadership": {
@@ -528,7 +528,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "mechanic": {
           "label": "Mechanic",
@@ -536,7 +536,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "medic": {
           "label": "Medic",
@@ -544,7 +544,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "melee-unarmed": {
           "label": "Melee (Unarmed)",
@@ -552,7 +552,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "melee-blade": {
           "label": "Melee (Blade)",
@@ -560,7 +560,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "melee-bludgeon": {
           "label": "Melee (Bludgeon)",
@@ -568,7 +568,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "melee-natural": {
           "label": "Melee (Natural)",
@@ -576,7 +576,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "navigation": {
           "label": "Navigation",
@@ -584,7 +584,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "persuade": {
           "label": "Persuade",
@@ -592,7 +592,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "pilot-smallcraft": {
           "label": "Pilot (Small Craft)",
@@ -600,7 +600,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "pilot-spacecraft": {
           "label": "Pilot (Spacecraft)",
@@ -608,7 +608,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "pilot-capitalships": {
           "label": "Pilot (Capital Ships)",
@@ -616,7 +616,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-belter": {
           "label": "Profession (Belter)",
@@ -624,7 +624,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-biologicals": {
           "label": "Profession (Biologicals)",
@@ -632,7 +632,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-civilengineering": {
           "label": "Profession (Civil Engineering)",
@@ -640,7 +640,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-construction": {
           "label": "Profession (Construction)",
@@ -648,7 +648,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-hydroponics": {
           "label": "Profession (Hydroponics)",
@@ -656,7 +656,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "profession-polymers": {
           "label": "Profession (Polymers)",
@@ -664,7 +664,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "recon": {
           "label": "Recon",
@@ -672,7 +672,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-archaeology": {
           "label": "Science (Archaeology)",
@@ -680,7 +680,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-astronomy": {
           "label": "Science (Astronomy)",
@@ -688,7 +688,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-biology": {
           "label": "Science (Biology)",
@@ -696,7 +696,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-chemistry": {
           "label": "Science (Chemistry)",
@@ -704,7 +704,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-cosmology": {
           "label": "Science (Cosmology)",
@@ -712,7 +712,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-cybernetics": {
           "label": "Science (Cybernetics)",
@@ -720,7 +720,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-economics": {
           "label": "Science (Economics)",
@@ -728,7 +728,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-genetics": {
           "label": "Science (Genetics)",
@@ -736,7 +736,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-history": {
           "label": "Science (History)",
@@ -744,7 +744,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-linguistics": {
           "label": "Science (Linguistics)",
@@ -752,7 +752,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-philosophy": {
           "label": "Science (Philosophy)",
@@ -760,7 +760,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-physics": {
           "label": "Science (Physics)",
@@ -768,7 +768,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-planetology": {
           "label": "Science (Planetology)",
@@ -776,7 +776,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-psionicology": {
           "label": "Science (Psionicology)",
@@ -784,7 +784,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-psychology": {
           "label": "Science (Psychology)",
@@ -792,7 +792,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-robotics": {
           "label": "Science (Robotics)",
@@ -800,7 +800,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-sophontology": {
           "label": "Science (Sophontology)",
@@ -808,7 +808,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "science-xenology": {
           "label": "Science (Xenology)",
@@ -816,7 +816,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "seafarer-oceanships": {
           "label": "Seafarer (Ocean Ships)",
@@ -824,7 +824,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "seafarer-personal": {
           "label": "Seafarer (Personal)",
@@ -832,7 +832,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "seafarer-sail": {
           "label": "Seafarer (Sail)",
@@ -840,7 +840,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "seafarer-submarine": {
           "label": "Seafarer (Submarine)",
@@ -848,7 +848,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "stealth": {
           "label": "Stealth",
@@ -856,7 +856,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "steward": {
           "label": "Steward",
@@ -864,7 +864,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "streetwise": {
           "label": "Streetwise",
@@ -872,7 +872,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "survival": {
           "label": "Survival",
@@ -880,7 +880,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "tactics-military": {
           "label": "Tactics (Military)",
@@ -888,7 +888,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "tactics-naval": {
           "label": "Tactics (Naval)",
@@ -896,7 +896,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         },
         "vaccsuit": {
           "label": "Vacc Suit",
@@ -904,7 +904,7 @@
           "trained": false,
           "max": 9,
           "mod": 0,
-          "characteristic": ""
+          "characteristic": "strength"
         }
       }
     }
