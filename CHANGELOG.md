@@ -1,3 +1,10 @@
+## [0.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
+
+
+### Bug Fixes
+
+* Set the intentionally wrong default characteristic of strength for all skills. ([e4c5c77](https://github.com/xdy/twodsix-foundryvtt/commit/e4c5c771ead67dd565fae5e4587ec07758344cd0))
+
 ## [0.3.3](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
 
 
