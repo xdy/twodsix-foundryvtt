@@ -1,3 +1,10 @@
+## [0.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-19)
+
+
+### Bug Fixes
+
+* Several fixes. ([38d789f](https://github.com/xdy/twodsix-foundryvtt/commit/38d789f6a8e5ba811e5059f6e9e26c6285d222af))
+
 ## [0.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
 
 
