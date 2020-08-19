@@ -10,6 +10,7 @@
         "value": 18,
         "min": 0
       },
+      "gender": "",
       "radiationDose": {
         "value": 0,
         "min": 0
