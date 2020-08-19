@@ -1,3 +1,5 @@
+import { SIGKILL } from "constants";
+
 export default function registerHandlebarsHelpers():void {
 
   // If you need to add Handlebars helpers, here are a few useful examples:
@@ -35,6 +37,11 @@ export default function registerHandlebarsHelpers():void {
     if (skill.trained) return skill.value
     return skill.value + joat.value
   });
+
+  Handlebars.registerHelper('getTotalSkillValue', function(skill, joat, mod){
+  return skill.value + joat.value + skill.mod
+});
+
 
   Handlebars.registerHelper({
     add: (v1, v2) => v1 + v2,

@@ -369,6 +369,8 @@ a:hover {
 .skill:hover {
   border-left: 1px solid #00e5ff;
   border-right: 1px solid #00e5ff;
+  background-color: #29aae1 !important;
+  color: #000000a6 !important;
 }
 
 .skill-output img {
@@ -376,6 +378,77 @@ a:hover {
   vertical-align: middle;
 }
 
+.skill-container {
+  display: grid;
+  grid-template-columns: 16em 5em 6em 2.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+}
+
+.skill-level {
+  text-align: center;
+}
+
+.skill-mod {
+  text-align: center;
+}
+
+.skill label {
+  display: inline-block;
+}
+
+select.select-mod {
+  width: 4.4em;
+  margin-left: 1em;
+}
+
+span.total-output {
+  text-align: center;
+  font-weight: bold;
+}
+
+.trained-true select {
+  color: #00e5ff;
+  border-color: #29aae1;
+}
+
+.trained-false select {
+  border-color: #6e819e;
+}
+
+span.mini-dice {
+  text-align: right;
+}
+
+.roll-dice {
+  text-align: right;
+  margin-left: 1em;
+}
+.skill-total {
+  text-align: center;
+}
+
+.skill {
+  /* height: 2.5em; */
+  padding-top: 0.2em;
+}
+
+
+
+.resource-label {
+  padding-top: 0.2em;
+}
+
+.select-mod:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
 
 
 /*-------------------------------------------------*/
@@ -411,6 +484,18 @@ select:focus {
   background: #000000a6;
 }
 
+select {
+  height: 18px;
+  border-radius: 12px;
+  padding: 0 3px;
+  text-overflow: ellipsis;
+  color: #6e819e;
+}
+
+.mini-dice img.rollable {
+  width: 1.5em;
+  margin-left: 0em;
+}
 /*
 #settings button {
     position: relative;
