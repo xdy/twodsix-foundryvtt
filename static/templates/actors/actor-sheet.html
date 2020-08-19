@@ -108,15 +108,20 @@
 
               <label for="data.skills.{{key}}.value" class="flex3 resource-label skill-{{skill.trained}}">{{skill.label}}</label>
 
-              <span><select disabled class="skill-stat" name="characteristic">
-                <option value="data.characteristics.dexterity.mod">{{../data.characteristics.dexterity.shortlabel}}</option>
-                <option value="data.characteristics.strength.mod">{{../data.characteristics.strength.shortlabel}}</option>
-                <option value="data.characteristics.endurance.mod">{{../data.characteristics.endurance.shortlabel}}</option>
-                <option value="data.characteristics.intellect.mod">{{../data.characteristics.intellect.shortlabel}}</option>
-                <option value="data.characteristics.education.mod">{{../data.characteristics.education.shortlabel}}</option>
-                <option value="data.characteristics.social.mod">{{../data.characteristics.social.shortlabel}}</option>
-                <option value="data.characteristics.psionics.mod">{{../data.characteristics.psionics.shortlabel}}</option>
-              </select></span>
+              <select class="select-mod" name="data.skills.{{key}}.characteristic" value={{skill.characteristic}} >
+                {{#select skill.characteristic}}
+                    <option value="strength" for="skill-modifier">STR</option>
+                    <option value="dexterity" for="skill-modifier">DEX</option>
+                    <option value="endurance" for="skill-modifier">END</option>
+                    <option value="intellect" for="skill-modifier">INT</option>
+                    <option value="education" for="skill-modifier">EDU</option>
+                    <option value="social" for="skill-modifier">SOC</option>
+                    <option value="psionics" for="skill-modifier">PSI</option>
+                {{/select}}
+            </select>
+              
+
+ 
 
               <span class="skill-arrows flex1">
 
@@ -131,7 +136,7 @@
               <!-- TODO Hardcoded dexterity for now, but it should get the value from the dropdown. Also moved dexterity to the top and disabled the select to make it seem less strange. :) -->
               <span class="skill-output" trainable="true" trained="{{skill.trained}}" class="flex1 skill-mod rollable"
                 data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackofalltrades) decimals=0 sign=true}}
-                <img class="rollable" data-roll="2d6+@skills.{{key}}.value+@characteristics.dexterity.mod" src="./systems/twodsix/assets/d6-icon.svg"/>
+                <img class="rollable" data-roll="2d6+{{skill.value}}+{{skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg"/>
               </span>
 
 

@@ -1,3 +1,61 @@
+## [0.3.3](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
+
+
+### Bug Fixes
+
+* Skill modifiers and option default jumps fixed *so happy!* ([5ddc84b](https://github.com/UltraKev/twodsix-foundryvtt/commit/5ddc84b59617c1f22f298ad6054cfebb51570132))
+
+## [0.3.2](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* Removed read only, attempts to fix drop-down ([2420161](https://github.com/UltraKev/twodsix-foundryvtt/commit/242016187fc4bacbb5d093e6a766a7ec55eacda9))
+
+## [0.3.1](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.0...v0.3.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* Removed read only, attempts to fix drop-down ([a52c66c](https://github.com/UltraKev/twodsix-foundryvtt/commit/a52c66c0b4ae5b4e96235d41488a46da666cb7a7))
+
+# [0.3.0](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.2.10...v0.3.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* Add forgotten dice icon from Kevin. ([eb65fca](https://github.com/UltraKev/twodsix-foundryvtt/commit/eb65fcad27868a855dc95291863eefa98d7ee8b1))
+* Add support for different modifiers for characteristic value of 0. ([1c3f4a7](https://github.com/UltraKev/twodsix-foundryvtt/commit/1c3f4a799684b1ea779c8662cf97fb9a1a13cdc0))
+* Added setting for naming advantage/disadvantage. But, mostly to force a rerelease now that npmjs.com is supposedly up again. ([407803c](https://github.com/UltraKev/twodsix-foundryvtt/commit/407803c63d5d42f0970357cc86f79fb538deaecc))
+* Added settings for what bonus/penalty to give for each time increment in a task (not currently used). ([163e692](https://github.com/UltraKev/twodsix-foundryvtt/commit/163e692e37da685c28b9c3d1312cf57a8fdacd1a))
+* Another pointless change. ([dafbdf3](https://github.com/UltraKev/twodsix-foundryvtt/commit/dafbdf33edf04aab2b16708c14b049bbe684ef67))
+* Change name of 'Personal Info' tab to just 'Info' ([f75ca78](https://github.com/UltraKev/twodsix-foundryvtt/commit/f75ca780806c557fdb8cb389596c3186fe2807c0))
+* CSS changes from Kevin's fork. ([d8c0e7f](https://github.com/UltraKev/twodsix-foundryvtt/commit/d8c0e7ff0681d48ab42d2455b5ea4c2d49f4dd54))
+* Css fixes from Kevin. ([3937c23](https://github.com/UltraKev/twodsix-foundryvtt/commit/3937c23f03f352493e7897cbb629ee94ea56902e))
+* Fixing warnings. ([61814bd](https://github.com/UltraKev/twodsix-foundryvtt/commit/61814bd26ded09918857fb9ac9191e8f8e5b60ae))
+* Hardcode dex for skill rolls (really, start of support for choice of characteristic for skill rolls) ([2749a29](https://github.com/UltraKev/twodsix-foundryvtt/commit/2749a29c637aeef1723393bfafa8d2ad7cf197d6))
+* Load background image from css. ([1c4f7c4](https://github.com/UltraKev/twodsix-foundryvtt/commit/1c4f7c413364116fc9f49521a3e2e9a64d44f17f))
+* Maybe switching to npm install instead of npm ci will work? ([d70d7d1](https://github.com/UltraKev/twodsix-foundryvtt/commit/d70d7d1b80c6d3f407c41d7ccbb807007ece1f41))
+* Minor cleanup (mostly as a test of branch protection for master) ([0b8c414](https://github.com/UltraKev/twodsix-foundryvtt/commit/0b8c414f0f3b01429b058b7fcf619168a91dadf8))
+* More changes from Kevin's fork. ([eb61fb1](https://github.com/UltraKev/twodsix-foundryvtt/commit/eb61fb15a587b104598471b490c37efe6aaef326))
+* More css fixes from Kevin ([8674f46](https://github.com/UltraKev/twodsix-foundryvtt/commit/8674f46aeac3189c82a6a875f009bf4d12560c42))
+* One can now roll characteristics by clicking on the characteristic name ([f3095a3](https://github.com/UltraKev/twodsix-foundryvtt/commit/f3095a3bd806896c658402759e761d1f1f2b2e90))
+* Pointless commit to force rebuild, https://status.npmjs.org/ says their site works again. ([a1b771b](https://github.com/UltraKev/twodsix-foundryvtt/commit/a1b771bb407304464cfa952faf6d98ddba10d4dd))
+* Pointless commit to force rebuild. ([3058493](https://github.com/UltraKev/twodsix-foundryvtt/commit/3058493a3bcfd0abf4f0dde781b7fe175cc09864))
+* Reformatting all files (using the current settings) ([f638f17](https://github.com/UltraKev/twodsix-foundryvtt/commit/f638f176c490d41b2875f092c309a636b019bad1))
+* Remove the UCF tab, it should be available from a button somewhere, and doesn't work well yet. Fix some documentation. ([fcf7f3f](https://github.com/UltraKev/twodsix-foundryvtt/commit/fcf7f3ff648b54ac124e12df83fceb0e0926937a))
+* Several problems with the character sheet (mainly pointing at the wrong field) ([cb53457](https://github.com/UltraKev/twodsix-foundryvtt/commit/cb53457072e3e5061cb175725ea07f63d9875bb6))
+* Style changes from kevin. ([a5730fc](https://github.com/UltraKev/twodsix-foundryvtt/commit/a5730fc65dc6ec26d7f5131c5bb315e0c141424b))
+* Style changes from Kevin. ([186d587](https://github.com/UltraKev/twodsix-foundryvtt/commit/186d587824e4e76f0540919b933c14546706e8fb))
+* Switching back to npm ci, the problem is that npmjs.com isn't stable right now. ([ce8d1c9](https://github.com/UltraKev/twodsix-foundryvtt/commit/ce8d1c97928155403800f63d68ef6d19a947ed93))
+* Turn off bundling for now, hopefully this makes it easier for Kevin to work. ([a91bdb3](https://github.com/UltraKev/twodsix-foundryvtt/commit/a91bdb3848848f78c01df8165861643945960384))
+* Wrong actor type ([a9a13f8](https://github.com/UltraKev/twodsix-foundryvtt/commit/a9a13f89c54578e4c27ebf7c06e23fb304977a65))
+
+
+### Features
+
+* Switched to Kevin's/Rob's way of doing things. ([047859b](https://github.com/UltraKev/twodsix-foundryvtt/commit/047859b8a0d1beba7045e55fd08525d4acafda96))
+
 ## [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
 
 

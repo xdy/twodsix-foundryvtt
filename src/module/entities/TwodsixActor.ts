@@ -21,7 +21,7 @@ export default class TwodsixActor extends Actor {
         this._prepareCharacterData(actorData);
         break;
       default:
-        console.log(`Unhandled actorData.type in prepareData:${actorData.type}`)
+       
     }
 
   }
@@ -32,13 +32,16 @@ export default class TwodsixActor extends Actor {
   _prepareCharacterData(actorData:ActorData):void {
     // Get the Actor's data object
     const {data} = actorData;
-
+  
     for (const cha of Object.values(data.characteristics as Record<any, any>)) {
       cha.current = cha.value - cha.damage;
       cha.mod = calcModFor(cha.current);
     }
-
+    
+    for (const skill of Object.values(data.skills as Record<any, any>)) {
+      var characteristic = skill.characteristic;
+      console.log(skill)
+      skill.mod = data.characteristics[characteristic].mod;
+    }
   }
-
-
 }
