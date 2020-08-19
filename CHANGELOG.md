@@ -1,3 +1,10 @@
+## [0.3.3](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
+
+
+### Bug Fixes
+
+* Skill modifiers and option default jumps fixed *so happy!* ([5ddc84b](https://github.com/UltraKev/twodsix-foundryvtt/commit/5ddc84b59617c1f22f298ad6054cfebb51570132))
+
 ## [0.3.2](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-18)
 
 
