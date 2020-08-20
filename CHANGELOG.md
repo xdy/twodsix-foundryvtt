@@ -1,3 +1,10 @@
+## [0.3.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.4...v0.3.5) (2020-08-20)
+
+
+### Bug Fixes
+
+* Add Rob as author. ([d8a7cfd](https://github.com/xdy/twodsix-foundryvtt/commit/d8a7cfdb00b1bb3d70c203f32a6267f44402cc49))
+
 ## [0.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-19)
 
 
