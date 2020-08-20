@@ -39,6 +39,9 @@ textarea:focus {
   color: #00E5FF !important;
 }
 
+.window-app .window-content {
+  overflow: hidden !important;
+}
 .character-name h2 {
   margin-bottom: -0.5em;
   border: none;
@@ -77,20 +80,15 @@ input[type="text"]:focus, input[type="number"] input[type="password"]:focus, inp
 
 input::-webkit-inner-spin-button {display:none}
 
-
-.grid-container {
-  height: 600px;
-  width: 800px;
+.content-container {
   display: grid;
-  grid-template-columns: 38% 20.5% 20.5% 20%;
-  grid-template-rows: 5% 45% 45% 5%;
+  grid-template-columns: 22em 34.5em;
+  grid-template-rows: ;
   gap: 1px 1px;
-  grid-template-areas: "character-info character-tabs character-tabs character-tabs" "character-info character-tabs-info character-tabs-info character-tabs-info" "character-info character-tabs-info character-tabs-info character-tabs-info" "character-info character-tabs-info character-tabs-info character-tabs-info";
+  grid-template-areas: "character-info character-tabs-info";
 }
 
-
 .character-info {
-  grid-area: character-info;
   margin-left: -8px;
   margin-top: -2px;
   position: relative;
@@ -102,13 +100,11 @@ img.character-info-mask {
   pointer-events: none;
 }
 
-.character-tabs { grid-area: character-tabs; }
-
 .character-photo {
   margin-top: -0.3em;
   margin-left: 0.24em;
   position: absolute;
-  width: 97.2%;
+  width: 96.6%;
   height: 100%;
   z-index: 0;
 }
@@ -152,7 +148,7 @@ img.character-info-mask {
 }
 
 .bgi-age input {width: 1.5em;}
-.bgi-gender input {width: 3.5em;}
+.bgi-gender input {width: 4em;}
 .bgi-species input {width: 9.1em;}
 .bgi-homeworld input {width: 8em;}
 
@@ -272,52 +268,64 @@ svg:hover {
 }
 
 .character-tabs {
-  grid-area: character-tabs;
-  margin-top: 0.4em;
+  margin-top: -1.0em;
   z-index: 50;
+
+}
+
+.tabs .item.active {
+    text-shadow: 0 0 2em #29aae1;
+    text-decoration: none;
+    background-color: #29aae1;
+    color: #0d0d0d;
 }
 
 .character-tabs .tabs {
   position: relative;
-  top: 0.3em;
-  left: 2.75em;
+  top: 0.2em;
+  left: 2.47em;
   z-index: 50;
   width: 29.5em;
+  border: 1px solid #29aae1;
+  background-color: #0d0d0d;
 }
 
 .character-tabs a.item {
   border: 1px solid;
   padding: 0.3em 1.0em 0.3em 1.0em;
-  background-color: #000000a6;
   text-align: center;
+  border-color: #29aae1;
 }
 
 .character-tabs-info {
-  grid-area: character-tabs-info;
   background-image: url(../assets/actor/tabs-bg.svg);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
-  margin-top: -0.7em;
+  margin-top: 2em;
+  max-width: 490px;
+  max-height: 585px;
 }
 
 /* TABS */
 
 .tabs .item.active {
   text-shadow: 0 0 2em #29aae1;
-  text-decoration: underline;
+  text-decoration: none;
+  background-color: #29aae1;
+  color: #0d0d0d;
 }
 
 .tabs .item.active {
   text-shadow: 0 0 2em #29aae1;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-a:hover {
-  text-shadow: 0 0 8px #29aae1;
+.tabs a:hover {
+  text-shadow: 0 0 0.8em #00e5ff;
 }
 
-/* Skill page TEMP FIX */
+/*-------Skill Tab-----------*/
 
 .item.flexrow.item-header {
   margin-top: 2em;
@@ -349,9 +357,10 @@ a:hover {
   margin-right: 0.5em;
 }
 
-.tab.skills.active {
-  overflow: auto;
+.tab {
   height: 38.4em;
+  overflow: auto;
+  margin-top: -0.2em;
 }
 
 .trained-false {
@@ -369,6 +378,8 @@ a:hover {
 .skill:hover {
   border-left: 1px solid #00e5ff;
   border-right: 1px solid #00e5ff;
+  background-color: #29aae1 !important;
+  color: #000000a6 !important;
 }
 
 .skill-output img {
@@ -376,6 +387,88 @@ a:hover {
   vertical-align: middle;
 }
 
+.skill-container {
+  display: grid;
+  grid-template-columns: 16em 4.5em 6em 2.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+}
+
+.skill-level {
+  text-align: center;
+}
+
+.skill-mod {
+  text-align: center;
+}
+
+.skill label {
+  display: inline-block;
+}
+
+select.select-mod {
+  width: 4.4em;
+  margin-left: 1em;
+}
+
+span.total-output {
+  text-align: center;
+  font-weight: bold;
+}
+
+.trained-true select {
+  color: #00e5ff;
+  border-color: #29aae1;
+}
+
+.trained-false select {
+  border-color: #6e819e;
+}
+
+span.mini-dice {
+  text-align: right;
+}
+
+.roll-dice {
+  text-align: right;
+  margin-left: 1em;
+}
+.skill-total {
+  text-align: center;
+}
+
+.skill {
+  /* height: 2.5em; */
+  padding-top: 0.2em;
+}
+
+
+
+.resource-label {
+  padding-top: 0.2em;
+}
+
+.select-mod:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*-------Info Tab-----------*/
+.info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . ." "Biography Biography Biography";
+}
+
+.Biography { grid-area: Biography; }
 
 
 /*-------------------------------------------------*/
@@ -409,6 +502,110 @@ select:focus {
   box-shadow: 0 0 5px #29aae1;
   outline: none;
   background: #000000a6;
+}
+
+select {
+  height: 18px;
+  border-radius: 12px;
+  padding: 0 3px;
+  text-overflow: ellipsis;
+  color: #6e819e;
+}
+
+.mini-dice img.rollable {
+  width: 1.5em;
+  margin-left: 0em;
+}
+
+/*--- Chat Log ---*/
+
+#chat-log .message {
+  background: none !important;
+  background-color: #1111118a !important;
+  border: 1px solid #6e819e;
+  border-radius: 0px;
+  margin: 3px;
+  padding: 5px;
+  color: #29aae1;
+  font-size: 14px;
+  box-shadow: 0px 0px 7px #111;
+}
+
+#chat-log .message .message-header {
+  line-height: 20px;
+  color: #29aae1 !important;
+}
+
+.dice-roll .dice-formula, .dice-roll .dice-total {
+  flex: 0 0 100%;
+  position: relative;
+  margin: 0;
+  line-height: 24px;
+  text-align: center;
+  background: #0d0d0d;
+  border: 1px solid #29aae1;
+  border-radius: 1px;
+  box-shadow: 0 0 2px #0d0d0d inset;
+  word-break: break-all;
+}
+
+.dice-tooltip .dice-rolls .roll.d6 {
+  background-image: url(../assets/chatlog/d6.svg)!important;
+}
+
+.dice-tooltip .dice-rolls .roll.max {
+  color: #2f7822;
+  filter: none !important;
+}
+
+.dice-tooltip .dice-rolls .roll.min {
+  color: #aa0200;
+  filter: none !important;
+}
+
+.dice-tooltip .dice-rolls .roll {
+  width: 24px;
+  line-height: 24px;
+  float: left;
+  margin-right: 1px;
+  background-image: url(../assets/chatlog/d6.svg)!important;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  font-size: 16px;
+  color: #29aae1;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dice-roll .dice-formula, .dice-roll .dice-total {
+  flex: 0 0 100%;
+  position: relative;
+  margin: 0;
+  line-height: 24px;
+  text-align: center;
+  background: #00000036;
+  color: #29aae1;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+  box-shadow: 0 0 2px #0d0d0d inset;
+  word-break: break-all;
+}
+
+#chat-form textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  color: #00e5ff;
+  background: #0d0d0d !important;
+  border-color: #29aae1 !important;
+}
+
+#chat-controls div.roll-type-select select {
+  position: relative;
+  width: 200px;
+  height: 24px;
+  top: -3px;
+  border-color: #29aae1 !important;
 }
 
 /*
@@ -532,6 +729,10 @@ option {background-color: #000;}
 }
 
 #sidebar-tabs > .item:hover {color: #00e5ff; }
+
+.sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
+  border-color: #29aae1;
+}
 
 #sidebar-tabs > .item.active {
   color: #00e5ff;

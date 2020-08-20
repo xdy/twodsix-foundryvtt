@@ -10,6 +10,7 @@
         "value": 18,
         "min": 0
       },
+      "gender": "",
       "radiationDose": {
         "value": 0,
         "min": 0
@@ -476,7 +477,7 @@
           "label": "Language 1",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
@@ -486,7 +487,7 @@
           "label": "Language 2",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
@@ -496,7 +497,7 @@
           "label": "Language 3",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
@@ -506,7 +507,7 @@
           "label": "Language 4",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
@@ -516,7 +517,7 @@
           "label": "Language 5",
           "value": -3,
           "trained": false,
-          "customNamed": true,         
+          "customNamed": true,
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
@@ -910,7 +911,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon"],
+    "types": ["equipment", "weapon", "armor"],
     "templates": {
       "carried": {
         "name": "",
@@ -918,7 +919,10 @@
         "quantity": 1,
         "weight": 0,
         "techlevel": 0,
-        "cost": 0
+        "cost": 0,
+        "equiped": {
+          "weight": 0
+        }
       },
       "weaponTemplate": {
         "range": 0,
@@ -934,6 +938,11 @@
     },
     "weapon": {
       "templates": ["carried", "weapon"]
+    },
+    "armor": {
+      "templates": ["carried", "armor"]
     }
-  }
+  },
+  "Contacts": {}
+  
 }

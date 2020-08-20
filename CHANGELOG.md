@@ -3,7 +3,52 @@
 
 ### Bug Fixes
 
+* Added more Chatlog changes, previously forgotten ([fc86dd6](https://github.com/UltraKev/twodsix-foundryvtt/commit/fc86dd6f3597cda6d2e3f8404e9be186b4f413c5))
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([7485c33](https://github.com/UltraKev/twodsix-foundryvtt/commit/7485c335f9fb8805c2dc9f0fc8d606fab8a8135d))
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([b939487](https://github.com/UltraKev/twodsix-foundryvtt/commit/b939487b8661a2bbb1244e3253631ed911d46a41))
 * JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+* Layout, CSS fixes and chatlog CSS ([debbbce](https://github.com/UltraKev/twodsix-foundryvtt/commit/debbbcee7035053923d8d4a82e41a89fe8656e6b))
+
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-20)
+
+
+### Bug Fixes
+
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([7485c33](https://github.com/UltraKev/twodsix-foundryvtt/commit/7485c335f9fb8805c2dc9f0fc8d606fab8a8135d))
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([b939487](https://github.com/UltraKev/twodsix-foundryvtt/commit/b939487b8661a2bbb1244e3253631ed911d46a41))
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+* Layout, CSS fixes and chatlog CSS ([debbbce](https://github.com/UltraKev/twodsix-foundryvtt/commit/debbbcee7035053923d8d4a82e41a89fe8656e6b))
+
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-19)
+
+
+### Bug Fixes
+
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([7485c33](https://github.com/UltraKev/twodsix-foundryvtt/commit/7485c335f9fb8805c2dc9f0fc8d606fab8a8135d))
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([b939487](https://github.com/UltraKev/twodsix-foundryvtt/commit/b939487b8661a2bbb1244e3253631ed911d46a41))
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+
+<<<<<<< HEAD
+## [0.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-19)
+=======
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-19)
+>>>>>>> 0f66d33941e904dd5c35c97baec74c64c8c7a702
+
+
+### Bug Fixes
+
+<<<<<<< HEAD
+* Several fixes. ([38d789f](https://github.com/xdy/twodsix-foundryvtt/commit/38d789f6a8e5ba811e5059f6e9e26c6285d222af))
+
+## [0.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
+
+
+### Bug Fixes
+
+* Set the intentionally wrong default characteristic of strength for all skills. ([e4c5c77](https://github.com/xdy/twodsix-foundryvtt/commit/e4c5c771ead67dd565fae5e4587ec07758344cd0))
+=======
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+>>>>>>> 0f66d33941e904dd5c35c97baec74c64c8c7a702
 
 ## [0.3.3](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
 

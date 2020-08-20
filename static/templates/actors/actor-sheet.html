@@ -1,76 +1,76 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    <div class="grid-container">
+    <div class="content-container">
       <div class="character-info"><img class="character-info-mask" src="./systems/twodsix/assets/actor/profile-block.svg"/>
         <div class="character-photo">
           <span class="helper"></span>
           <div class="character-photo"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/></div>
         </div>
-        <div class="character-name"><h2><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/></h2></div>
+        <div class="character-name"><h2><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"  onClick="this.select();"/></h2></div>
         <div class="character-bgi">
-          <span class="bgi-age">Age:<input type="text" name="data.age" value="{{data.age}}" placeholder="0"/></span>
-          <span class="bgi-gender">Gender:<input name="data.gender" type="text" value="{{data.gender}}" placeholder="Sex"/></span>
-          <span class="bgi-species">Species:<input name="data.species" type="text" value="{{data.species}}" placeholder="Character Race"/></span>
-          <span class="bgi-homeworld">Homeworld:<input name="data.homeworld" type="text" value="{{data.homeworld}}" placeholder="Name World"/></span>
+          <span class="bgi-age">Age:<input type="text" name="data.age.value" value="{{data.age.value}}" placeholder="0"/></span>
+          <span class="bgi-gender">Gender:<input name="data.gender" type="text" value="{{data.gender}}" placeholder="Gender" onClick="this.select();"/></span>
+          <span class="bgi-species">Species:<input name="data.species" type="text" value="{{data.species}}" placeholder="Species" onClick="this.select();"/></span>
+          <span class="bgi-homeworld">Homeworld:<input name="data.homeworld" type="text" value="{{data.homeworld}}" placeholder="Homeworld" onClick="this.select();"/></span>
         </div>
 
         <div class="character-characteristics">
           <div class="stat str">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.strength.mod}}">STR <img src="./systems/twodsix/assets/d6-icon.svg"/></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value" data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value" data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.strength.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0" name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0" name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="stat dex">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}">DEX <img src="./systems/twodsix/assets/d6-icon.svg"/></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value" data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value" data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.dexterity.value}}" min="0" name="data.characteristics.dexterity.damage" value="{{data.characteristics.dexterity.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.dexterity.value}}" min="0" name="data.characteristics.dexterity.damage" value="{{data.characteristics.dexterity.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="stat end">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}">END <img src="./systems/twodsix/assets/d6-icon.svg"/></span></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value" data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value" data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0" name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0" name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="stat int">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.intellect.mod}}">INT <img src="./systems/twodsix/assets/d6-icon.svg"/></span></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intellect.value" data-label="data.characteristics.intellect.value" value="{{data.characteristics.intellect.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intellect.value" data-label="data.characteristics.intellect.value" value="{{data.characteristics.intellect.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.intellect.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.intellect.value}}" min="0" name="data.characteristics.intellect.damage" value="{{data.characteristics.intellect.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.intellect.value}}" min="0" name="data.characteristics.intellect.damage" value="{{data.characteristics.intellect.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="stat edu">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.education.mod}}">EDU <img src="./systems/twodsix/assets/d6-icon.svg"/></span></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value" data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value" data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.education.value}}" min="0" name="data.characteristics.education.damage" value="{{data.characteristics.education.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.education.value}}" min="0" name="data.characteristics.education.damage" value="{{data.characteristics.education.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="stat soc">
             <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.social.mod}}">SOC <img src="./systems/twodsix/assets/d6-icon.svg"/></span></span>
-            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.social.value" data-label="data.characteristics.social.value" value="{{data.characteristics.social.value}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-ability"><input type="number" min="0" name="data.characteristics.social.value" data-label="data.characteristics.social.value" value="{{data.characteristics.social.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.social.mod decimals=0 sign=true}}"/></span>
-            <span class="stat-damage"><input type="number" max="{{data.characteristics.social.value}}" min="0" name="data.characteristics.social.damage" value="{{data.characteristics.social.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="stat-damage"><input type="number" max="{{data.characteristics.social.value}}" min="0" name="data.characteristics.social.damage" value="{{data.characteristics.social.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
           </div>
           <div class="special psi">
             <span class="special-name rollable" data-roll="2d6+{{data.characteristics.psionics.mod}}">PSI <img src="./systems/twodsix/assets/d6-icon.svg"/></span></span>
-            <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionics.value" data-label="data.characteristics.psionics.value" value="{{data.characteristics.psionics.value}}" placeholder="0" data-dtype="Number"/></span>
-            <span class="special-damage"><input type="number" max="{{data.characteristics.psionics.value}}" min="0" name="data.characteristics.psionics.damage" value="{{data.characteristics.psionics.damage}}" placeholder="0" data-dtype="Number"/></span>
+            <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionics.value" data-label="data.characteristics.psionics.value" value="{{data.characteristics.psionics.value}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+            <span class="special-damage"><input type="number" max="{{data.characteristics.psionics.value}}" min="0" name="data.characteristics.psionics.damage" value="{{data.characteristics.psionics.damage}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
             <span class="special-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.psionics.mod decimals=0 sign=true}}"/></span>
           </div>
         </div>
       </div>
 
-      {{!-- Sheet Tab Navigation --}}
-      <div class="character-tabs">
-        <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item" data-tab="skills">Skills</a>
-          <a class="item" data-tab="items">Inventory</a>
-          <a class="item" data-tab="info">Info</a>
-        </nav>
-      </div>
-
-
       {{!-- Sheet Body --}}
       <div class="character-tabs-info sheet-body">
+        
+        {{!-- Sheet Tab Navigation --}}
+        <div class="character-tabs">
+          <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="skills">Skills</a>
+            <a class="item" data-tab="items">Inventory</a>
+            <a class="item" data-tab="info">Info</a>
+          </nav>
+        </div>
+
 
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
@@ -99,44 +99,46 @@
 
 
           <div class="skills grid grid-4col">
-
+          <span class="skill-container">
+            <div class="skill-title">Skill Name</div>
+            <div class="skill-level">Level</div>
+            <div class="skill-mod">Modifier</div>
+            <div class="skill-total">Total</div>
+            <div class="roll-dice">Roll</div>
+          </span>  
             {{#each data.skills as |skill key|}}
 
             {{#if (shouldShowSkill skill @root.options.hideUntrainedSkills)}}
 
-            <div class="skill flexrow flex-group-center trained-{{skill.trained}}">
+            <div class="skill skill-container trained-{{skill.trained}}">
 
-              <label for="data.skills.{{key}}.value" class="flex3 resource-label skill-{{skill.trained}}">{{skill.label}}</label>
-
-              <select class="select-mod" name="data.skills.{{key}}.characteristic" value={{skill.characteristic}} >
-                {{#select skill.characteristic}}
-                    <option value="strength" for="skill-modifier">STR</option>
-                    <option value="dexterity" for="skill-modifier">DEX</option>
-                    <option value="endurance" for="skill-modifier">END</option>
-                    <option value="intellect" for="skill-modifier">INT</option>
-                    <option value="education" for="skill-modifier">EDU</option>
-                    <option value="social" for="skill-modifier">SOC</option>
-                    <option value="psionics" for="skill-modifier">PSI</option>
-                {{/select}}
-            </select>
+              <label for="data.skills.{{key}}.value" class="flex2 resource-label skill-{{skill.trained}}">{{skill.label}}</label>
               
-
- 
-
               <span class="skill-arrows flex1">
-
                 <i data-label="{{key}}" class="fa fa-arrow-circle-down downgrade-skill-{{skill.trained}} downgrade-skill"></i>
+             
+                <span class="skill-output" class="flex1 skill-mod" data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackofalltrades) decimals=0 sign=true}}</span>
+
                 <i data-label="{{key}}" class="fa fa-arrow-circle-up upgrade-skill{{skill.value}} upgrade-skill"></i>
-
                 {{data.jackofalltrades.value}}
-
               </span>
 
+              
+              <select class="select-mod" name="data.skills.{{key}}.characteristic" value={{skill.characteristic}} >
+                  {{#select skill.characteristic}}
+                      <option value="strength" for="skill-modifier">STR</option>
+                      <option value="dexterity" for="skill-modifier">DEX</option>
+                      <option value="endurance" for="skill-modifier">END</option>
+                      <option value="intellect" for="skill-modifier">INT</option>
+                      <option value="education" for="skill-modifier">EDU</option>
+                      <option value="social" for="skill-modifier">SOC</option>
+                      <option value="psionics" for="skill-modifier">PSI</option>
+                  {{/select}}
+              </select>
 
-              <!-- TODO Hardcoded dexterity for now, but it should get the value from the dropdown. Also moved dexterity to the top and disabled the select to make it seem less strange. :) -->
-              <span class="skill-output" trainable="true" trained="{{skill.trained}}" class="flex1 skill-mod rollable"
-                data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackofalltrades) decimals=0 sign=true}}
-                <img class="rollable" data-roll="2d6+{{skill.value}}+{{skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg"/>
+              <span class="total-output" class="flex1 skill-mod" data-label="skill.total">{{numberFormat (getTotalSkillValue skill @root.data.jackofalltrades) decimals=0 sign=true}}</span>
+
+              <span class="mini-dice"><img class="rollable" data-roll="2d6+{{getSkillValueWithJoat skill @root.data.jackofalltrades}}+{{skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg"/></span>
               </span>
 
 
@@ -147,7 +149,8 @@
         </div>
 
         {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="inventory">
+
+        <div class="tab items" data-group="primary" data-tab="items">
           <ol class="items-list">
             <li class="item flexrow item-header">
               <div class="item-image"></div>
@@ -171,8 +174,17 @@
         </div>
 
         {{!-- Biography Tab --}}
+  
         <div class="tab info" data-group="primary" data-tab="info">
-          {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+          <div class="grid-container">
+            <div class="contacts"></div>
+            <div class="allies"></div>
+            <div class="enemies"></div>
+            <div class="biography">
+              {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+            </div>
+          </div>
+
         </div>
 
         <!--
@@ -228,8 +240,8 @@
             {{/each}}
             {{/each}}
           </ol>
-        </div>
--->
+        </div>-->
+
 </div>
 </div>
 </form>
