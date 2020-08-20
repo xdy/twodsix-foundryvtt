@@ -3,9 +3,20 @@
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * Added more Chatlog changes, previously forgotten ([fc86dd6](https://github.com/UltraKev/twodsix-foundryvtt/commit/fc86dd6f3597cda6d2e3f8404e9be186b4f413c5))
 * Added total (skill+mod) near dice, added CSS styling to finish skill list ([7485c33](https://github.com/UltraKev/twodsix-foundryvtt/commit/7485c335f9fb8805c2dc9f0fc8d606fab8a8135d))
 * Added total (skill+mod) near dice, added CSS styling to finish skill list ([b939487](https://github.com/UltraKev/twodsix-foundryvtt/commit/b939487b8661a2bbb1244e3253631ed911d46a41))
+=======
+* Added more Chatlog changes, previously forgotten ([006d17f](https://github.com/UltraKev/twodsix-foundryvtt/commit/006d17f4f63274988d187cfb6cc3716995c3445e))
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-20)
+
+
+### Bug Fixes
+
+>>>>>>> ed6d2f7750ce10b0fcdd8e2a20795ab835c78fdf
 * JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
 * Layout, CSS fixes and chatlog CSS ([debbbce](https://github.com/UltraKev/twodsix-foundryvtt/commit/debbbcee7035053923d8d4a82e41a89fe8656e6b))
 
