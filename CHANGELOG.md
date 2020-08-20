@@ -1,3 +1,10 @@
+## [0.3.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.6...v0.3.7) (2020-08-20)
+
+
+### Bug Fixes
+
+* Make info visible, with an oh so very perfect layout. :) ([0b58761](https://github.com/xdy/twodsix-foundryvtt/commit/0b58761bd7462e75cf934c857ad986e9611047a9))
+
 ## [0.3.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.5...v0.3.6) (2020-08-20)
 
 
