@@ -1,3 +1,13 @@
+## [0.3.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.5...v0.3.6) (2020-08-20)
+
+
+### Bug Fixes
+
+* Added more Chatlog changes, previously forgotten ([0b68e45](https://github.com/xdy/twodsix-foundryvtt/commit/0b68e45dfbdea25dd3f8678c0d4649932b9eb0f9))
+* Added total (skill+mod) near dice, added CSS styling to finish skill list ([a3c6340](https://github.com/xdy/twodsix-foundryvtt/commit/a3c63408be3ebca02ee6a5d4bc765f25cbcef4f7))
+* Layout, CSS fixes and chatlog CSS ([678dad3](https://github.com/xdy/twodsix-foundryvtt/commit/678dad39e0124c9ccd200ad2c4d5da57ea10ce98))
+* Several fixes. ([de9da1d](https://github.com/xdy/twodsix-foundryvtt/commit/de9da1d4a2dbbb4711ed304773f003a6378c7085))
+
 ## [0.3.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.4...v0.3.5) (2020-08-20)
 
 
