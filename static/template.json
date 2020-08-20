@@ -911,7 +911,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon"],
+    "types": ["equipment", "weapon", "armor"],
     "templates": {
       "carried": {
         "name": "",
@@ -919,7 +919,10 @@
         "quantity": 1,
         "weight": 0,
         "techlevel": 0,
-        "cost": 0
+        "cost": 0,
+        "equiped": {
+          "weight": 0
+        }
       },
       "weaponTemplate": {
         "range": 0,
@@ -935,6 +938,11 @@
     },
     "weapon": {
       "templates": ["carried", "weapon"]
+    },
+    "armor": {
+      "templates": ["carried", "armor"]
     }
-  }
+  },
+  "Contacts": {}
+  
 }

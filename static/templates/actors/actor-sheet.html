@@ -1,5 +1,5 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    <div class="grid-container">
+    <div class="content-container">
       <div class="character-info"><img class="character-info-mask" src="./systems/twodsix/assets/actor/profile-block.svg"/>
         <div class="character-photo">
           <span class="helper"></span>
@@ -59,18 +59,18 @@
         </div>
       </div>
 
-      {{!-- Sheet Tab Navigation --}}
-      <div class="character-tabs">
-        <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item" data-tab="skills">Skills</a>
-          <a class="item" data-tab="items">Inventory</a>
-          <a class="item" data-tab="info">Info</a>
-        </nav>
-      </div>
-
-
       {{!-- Sheet Body --}}
       <div class="character-tabs-info sheet-body">
+        
+        {{!-- Sheet Tab Navigation --}}
+        <div class="character-tabs">
+          <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="skills">Skills</a>
+            <a class="item" data-tab="items">Inventory</a>
+            <a class="item" data-tab="info">Info</a>
+          </nav>
+        </div>
+
 
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
@@ -145,7 +145,8 @@
         </div>
 
         {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="inventory">
+
+        <div class="tab items" data-group="primary" data-tab="items">
           <ol class="items-list">
             <li class="item flexrow item-header">
               <div class="item-image"></div>
@@ -169,8 +170,17 @@
         </div>
 
         {{!-- Biography Tab --}}
+  
         <div class="tab info" data-group="primary" data-tab="info">
-          {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+          <div class="grid-container">
+            <div class="contacts"></div>
+            <div class="allies"></div>
+            <div class="enemies"></div>
+            <div class="biography">
+              {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+            </div>
+          </div>
+
         </div>
 
         <!--
@@ -226,8 +236,8 @@
             {{/each}}
             {{/each}}
           </ol>
-        </div>
--->
+        </div>-->
+
 </div>
 </div>
 </form>

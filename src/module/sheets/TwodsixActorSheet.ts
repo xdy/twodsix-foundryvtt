@@ -46,8 +46,8 @@ export class TwodsixActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
-      width: 832,
-      height: 657,
+      width: 822,
+      height: 653,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
     });
   }
@@ -213,3 +213,6 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 }
+
+
+
