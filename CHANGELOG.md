@@ -1,3 +1,10 @@
+## [0.3.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.7...v0.3.8) (2020-08-20)
+
+
+### Bug Fixes
+
+* Hid the 'Add item' button for now as it doesn't work. ([5772f9c](https://github.com/xdy/twodsix-foundryvtt/commit/5772f9c59d700122bee4a51eacfa4f93378dd81a))
+
 ## [0.3.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.6...v0.3.7) (2020-08-20)
 
 
