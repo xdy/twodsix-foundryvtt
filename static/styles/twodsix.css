@@ -577,6 +577,37 @@ select {
   text-align: center;
 }
 
+.dice-roll .dice-formula, .dice-roll .dice-total {
+  flex: 0 0 100%;
+  position: relative;
+  margin: 0;
+  line-height: 24px;
+  text-align: center;
+  background: #00000036;
+  color: #29aae1;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+  box-shadow: 0 0 2px #0d0d0d inset;
+  word-break: break-all;
+}
+
+#chat-form textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  color: #00e5ff;
+  background: #0d0d0d !important;
+  border-color: #29aae1 !important;
+}
+
+#chat-controls div.roll-type-select select {
+  position: relative;
+  width: 200px;
+  height: 24px;
+  top: -3px;
+  border-color: #29aae1 !important;
+}
+
 /*
 #settings button {
     position: relative;
