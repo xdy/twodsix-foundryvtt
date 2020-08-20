@@ -1,3 +1,10 @@
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-20)
+
+
+### Bug Fixes
+
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+
 ## [0.3.3](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.2...v0.3.3) (2020-08-19)
 
 
