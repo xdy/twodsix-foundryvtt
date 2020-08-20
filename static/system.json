@@ -6,7 +6,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.3.4",
-  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
+  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
   "bugs": "",
   "changelog": "",
   "minimumCoreVersion": "0.6.2",
