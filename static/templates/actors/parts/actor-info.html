@@ -1,23 +1,4 @@
-<div class="tab info" data-group="primary" data-tab="info">
-  <div class="grid-container">
-    <div class="contacts">
-      contacts:
-      {{{editor content=data.contacts target="data.contacts" button=true owner=owner editable=editable}}}
-
-    </div>
-    <div class="allies">
-      allies:
-      {{{editor content=data.allies target="data.allies" button=true owner=owner editable=editable}}}
-
-    </div>
-    <div class="enemies">
-      enemies:
-      {{{editor content=data.enemies target="data.enemies" button=true owner=owner editable=editable}}}
-
-    </div>
-    <div class="description">
-      Description:
-      {{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}}
-    </div>
-  </div>
+{{!-- Biography Tab --}}
+<div class="tab biography" data-group="primary" data-tab="description">
+  {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
 </div>
