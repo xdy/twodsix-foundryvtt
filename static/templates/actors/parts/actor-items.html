@@ -1,14 +1,13 @@
-{{!-- Owned Items Tab --}}
 <div class="tab items" data-group="primary" data-tab="items">
   <ol class="items-list">
-    <li class="item flexrow item-header">
-      <div class="item-image"></div>
-      <div class="item-name">Name</div>
-      <div class="item-controls">
-        <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add
-          item</a>
-      </div>
-    </li>
+<!--    <li class="item flexrow item-header">-->
+<!--      <div class="item-image"></div>-->
+<!--      <div class="item-name">Name</div>-->
+<!--      <div class="item-controls">-->
+<!--        <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add-->
+<!--          item</a>-->
+<!--      </div>-->
+<!--    </li>-->
     {{#each actor.gear as |item id|}}
     <li class="item flexrow" data-item-id="{{item._id}}">
       <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
