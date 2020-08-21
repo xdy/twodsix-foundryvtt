@@ -741,6 +741,14 @@ option {background-color: #000;}
   box-shadow: 0 0 6px inset #29aae1;
 }
 
+.sidebar-tab .directory-header .header-search input {
+  background: #0d0d0d;
+  width: calc(100% - 26px);
+  margin: 0 2px;
+  border: 1px solid #29aae1;
+  color: #00e5ff !important;
+}
+
 .window-app .window-header {
   flex: 0 0 30px;
   overflow: hidden;
