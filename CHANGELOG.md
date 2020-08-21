@@ -1,3 +1,14 @@
+## [0.3.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.8...v0.3.9) (2020-08-21)
+
+
+### Bug Fixes
+
+* Fixed differences between versions ([2d0f1e8](https://github.com/xdy/twodsix-foundryvtt/commit/2d0f1e86b6e87a170cce2366ad1be59e2501c80f))
+* Fixed differences between versions ([fbd2c96](https://github.com/xdy/twodsix-foundryvtt/commit/fbd2c969d620af4e542a04f3123f0c5cc9e5e7f2))
+* Funky item page stuff ([fcf3004](https://github.com/xdy/twodsix-foundryvtt/commit/fcf3004de6c8f22df31531d2606ee23ce0936f23))
+* Item page fixed and styled, Info page broken ([1a7be64](https://github.com/xdy/twodsix-foundryvtt/commit/1a7be64e6b4b9bfd5ad122ff89bd2aed3ca4f2f7))
+* Item page fixed and styled, Info page broken ([3271bdb](https://github.com/xdy/twodsix-foundryvtt/commit/3271bdb0c29dd271c1b0a13433c187f2667cccf7))
+
 ## [0.3.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.7...v0.3.8) (2020-08-20)
 
 
