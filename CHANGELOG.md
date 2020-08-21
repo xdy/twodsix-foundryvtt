@@ -1,3 +1,10 @@
+## [0.3.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.9...v0.3.10) (2020-08-21)
+
+
+### Bug Fixes
+
+* Info tab visible again. Skill roll shows skill again. Fixed a lot of warnings. ([aa46fe9](https://github.com/xdy/twodsix-foundryvtt/commit/aa46fe94d1aeaa0839fad9e10d0a04fe01a26ac6))
+
 ## [0.3.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.8...v0.3.9) (2020-08-21)
 
 
