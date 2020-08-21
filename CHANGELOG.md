@@ -1,3 +1,15 @@
+## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-21)
+
+
+### Bug Fixes
+
+* Added more Chatlog changes, previously forgotten ([006d17f](https://github.com/UltraKev/twodsix-foundryvtt/commit/006d17f4f63274988d187cfb6cc3716995c3445e))
+* Fixed differences between versions ([f1b9bb8](https://github.com/UltraKev/twodsix-foundryvtt/commit/f1b9bb8fe06c08d8d7f9598ed8b35e87a834cd43))
+* Fixed differences between versions ([1753fb4](https://github.com/UltraKev/twodsix-foundryvtt/commit/1753fb4520d312358c34450f1002850526cfdb7d))
+* JSON error fix ([9956bce](https://github.com/UltraKev/twodsix-foundryvtt/commit/9956bce58b64b2ee3337a902dce76e762ced4fa9))
+* Re-push, hoping to get all the changes uploaded ([617f69b](https://github.com/UltraKev/twodsix-foundryvtt/commit/617f69b51a5ba2b5c72916206ae2e9d4e0eeef26))
+* Re-push, hoping to get all the changes uploaded ([b201819](https://github.com/UltraKev/twodsix-foundryvtt/commit/b201819e2be802075fd5d8f10fca722292b8eb33))
+
 ## [0.3.4](https://github.com/UltraKev/twodsix-foundryvtt/compare/v0.3.3...v0.3.4) (2020-08-20)
 
 
