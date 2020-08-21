@@ -29,6 +29,10 @@ textarea:focus {
   box-shadow: 0 0 10px #29aae1;
 }
 
+.centre {
+  text-align: center;
+}
+
 /*div {border: thin dotted #FFF;}*/
 
 .window-content {
@@ -359,7 +363,6 @@ svg:hover {
 .tab {
   height: 38.4em;
   overflow: auto;
-  margin-top: -0.2em;
 }
 
 .trained-false {
@@ -529,6 +532,48 @@ select {
   user-select: text;
 }
 
+.item-container {
+  display: grid;
+  grid-template-columns: 15em 2em 2em 4em 6em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . . .";
+}
+
+.item-container.items-list {
+  margin-bottom: 2em;
+  color: #6e819e;
+}
+
+.items-list {
+  position: relative;
+  top: 1em;
+}
+
+.items {
+  margin-left: 1em;
+  margin-right: 0.6em;
+}
+
+.items {
+  margin-bottom: 0.2em;
+}
+
+.item {
+  color: #29aae1;
+}
+
+.item div>div:nth-of-type(odd) {
+  background: #0d0d0d;
+}
+
+a.item-control:hover{
+  color: #00e5ff;
+  text-shadow: 0 0 5px #29aae1;
+}
+
+
+
 .item-page input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
@@ -543,6 +588,26 @@ select {
   user-select: text;
   border: none;
   border: 1px solid #6e819e;
+}
+
+.item-type {
+  position: relative;
+  float: right;
+  margin-bottom: 0.4em;
+}
+
+.item-tl {margin-top: 0.5em;}
+
+.item-qty {margin-top: 0.5em;}
+
+.item-weight {margin-top: 0.5em;}
+
+.item-descr {margin-top: 0.5em;}
+
+.item-descr .editor {
+  height: calc(100px);
+  background: rgba(0, 0, 0, 0.22);
+  color: #207ab7;
 }
 
 /*--- Chat Log ---*/

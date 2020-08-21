@@ -7,7 +7,6 @@
       "name": "name",
       "homeworld": "",
       "species": "",
-      "description": "description",
       "age": {
         "value": 18,
         "min": 0
@@ -906,7 +905,8 @@
       },
       "contacts": "",
       "allies": "",
-      "enemies": ""
+      "enemies": "",
+      "bio":"Background Information"
     }
   },
   "Item": {
@@ -917,94 +917,60 @@
       "augment"
     ],
     "templates": {
-      "equipmentTemplate": {
-        "name": "Equipment",
+      "gearTemplate": {
+        "name": "",
         "techlevel": 0,
-        "description": "description",
+        "description": "Item Information",
         "quantity": 1,
         "weight": 0,
         "traits": [],
-        "type": "equipment",
         "equiped": {
           "weight": 0
         }
       },
+      "equipmentTemplate": {
+        "type": "equipment"
+      },
       "weaponTemplate": {
-        "name": "Weapon",
-        "techlevel": 0,
-        "description": "description",
-        "quantity": 1,
         "range": 0,
         "damage": 0,
         "damagebonus": 0,
         "magazinesize": 0,
         "magazinecost": 0,
-        "traits": [],
-        "type": "weapon",
-        "equiped": {
-          "weight": 0
-        }
+        "type": "weapon"
       },
       "armorTemplate": {
-        "name": "Armor",
-        "techlevel": 0,
-        "description": "description",
-        "quantity": 1,
         "armour": 0,
-        "traits": [],
-        "type": "armor",
-        "equiped": {
-          "weight": 0
-        }
+        "type": "armor"
       },
       "augmentTemplate": {
-        "name": "augment",
-        "techlevel": 0,
-        "description": "description",
-        "quantity": 1,
         "location": "",
-        "traits": [],
-        "type": "augment",
-        "equiped": {
-          "weight": 0
-        }
+        "type": "augment"
       }
     },
     "equipment": {
-      "templates": ["equipmentTemplate"],
-      "name": "Item Name",
-      "techlevel": 0,
-      "quantity": 1,
-      "weight": 0,
-      "type": "equipment",
-      "description": "Item Description"
+      "templates": [
+        "gearTemplate",
+        "equipmentTemplate"
+      ]
     },
     "weapon": {
-      "templates": ["weaponTemplate"],
-      "name": "Item Name",
-      "techlevel": 0,
-      "quantity": 1,
-      "weight": 0,
-      "type": "equipment",
-      "description": "Item Description"
+      "templates": [
+        "gearTemplate",
+        "weaponTemplate"
+      ]
     },
     "armor": {
-      "templates": ["armorTemplate"],
-      "name": "Item Name",
-      "techlevel": 0,
-      "quantity": 1,
-      "weight": 0,
-      "type": "equipment",
-      "description": "Item Description"
+      "templates": [
+        "gearTemplate",
+        "armorTemplate"
+      ]
     },
     "augment": {
-      "templates": ["augmentTemplate"],
-      "name": "Item Name",
-      "techlevel": 0,
-      "quantity": 1,
-      "weight": 0,
-      "type": "equipment",
-      "description": "Item Description"
+      "templates": [
+        "gearTemplate",
+        "augmentTemplate"
+      ]
     }
   }
 }
