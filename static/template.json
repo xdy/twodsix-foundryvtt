@@ -4,10 +4,10 @@
       "traveller"
     ],
     "traveller": {
-      "name": "",
+      "name": "name",
       "homeworld": "",
       "species": "",
-      "description": "",
+      "description": "description",
       "age": {
         "value": 18,
         "min": 0
@@ -913,45 +913,98 @@
     "types": [
       "equipment",
       "weapon",
-      "armor"
+      "armor",
+      "augment"
     ],
     "templates": {
-      "carried": {
-        "name": "",
-        "description": "",
+      "equipmentTemplate": {
+        "name": "Equipment",
+        "techlevel": 0,
+        "description": "description",
         "quantity": 1,
         "weight": 0,
-        "techlevel": 0,
-        "cost": 0,
+        "traits": [],
+        "type": "equipment",
         "equiped": {
           "weight": 0
         }
       },
       "weaponTemplate": {
+        "name": "Weapon",
+        "techlevel": 0,
+        "description": "description",
+        "quantity": 1,
         "range": 0,
         "damage": 0,
         "damagebonus": 0,
         "magazinesize": 0,
         "magazinecost": 0,
-        "traits": []
+        "traits": [],
+        "type": "weapon",
+        "equiped": {
+          "weight": 0
+        }
+      },
+      "armorTemplate": {
+        "name": "Armor",
+        "techlevel": 0,
+        "description": "description",
+        "quantity": 1,
+        "armour": 0,
+        "traits": [],
+        "type": "armor",
+        "equiped": {
+          "weight": 0
+        }
+      },
+      "augmentTemplate": {
+        "name": "augment",
+        "techlevel": 0,
+        "description": "description",
+        "quantity": 1,
+        "location": "",
+        "traits": [],
+        "type": "augment",
+        "equiped": {
+          "weight": 0
+        }
       }
     },
     "equipment": {
-      "templates": [
-        "carried"
-      ]
+      "templates": ["equipmentTemplate"],
+      "name": "Item Name",
+      "techlevel": 0,
+      "quantity": 1,
+      "weight": 0,
+      "type": "equipment",
+      "description": "Item Description"
     },
     "weapon": {
-      "templates": [
-        "carried",
-        "weapon"
-      ]
+      "templates": ["weaponTemplate"],
+      "name": "Item Name",
+      "techlevel": 0,
+      "quantity": 1,
+      "weight": 0,
+      "type": "equipment",
+      "description": "Item Description"
     },
     "armor": {
-      "templates": [
-        "carried",
-        "armor"
-      ]
+      "templates": ["armorTemplate"],
+      "name": "Item Name",
+      "techlevel": 0,
+      "quantity": 1,
+      "weight": 0,
+      "type": "equipment",
+      "description": "Item Description"
+    },
+    "augment": {
+      "templates": ["augmentTemplate"],
+      "name": "Item Name",
+      "techlevel": 0,
+      "quantity": 1,
+      "weight": 0,
+      "type": "equipment",
+      "description": "Item Description"
     }
   }
 }

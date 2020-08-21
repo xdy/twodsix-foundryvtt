@@ -1,41 +1,29 @@
 <form class="{{cssClass}}" autocomplete="off">
-  <header class="sheet-header">
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" alt="item image"/>
-    <div class="header-fields">
-      <h1 class="charname">
-        <label for="item.name" class="resource-label">Quantity</label>
-        <input id="item.name" name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-      <div class="grid grid-2col">
-        <div class="resource">
-          <label for="data.quantity" class="resource-label">Quantity</label>
-          <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}"
-                 data-dtype="Number"/>
-        </div>
-        <div class="resource">
-          <label for="data.weight" class="resource-label">Weight</label>
-          <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div class="item-page">
+    
+    <label for="item.name" class="resource-label">Item Name</label>
+    <input id="data.name" name="name" type="text" value="{{item.name}}" placeholder="Item Name"/>
+  
+    <label for="data.techlevel" class="resource-label">TL</label>
+    <input id="data.techlevel" name="techlevel" type="text" value="{{item.techlevel}}" data-dtype="Number"/>
+  
+    <label for="data.quantity" class="resource-label">Quantity</label>
+    <input id="data.quantity" name="quantity" type="text" value="{{item.quantity}}" data-dtype="Number"/>
+  
+    <label for="data.weight" class="resource-label">Weight</label>
+    <input id="data.weight" name="weight" type="text" value="{{item.weight}}" data-dtype="Number"/>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="attributes">Attributes</a>
-  </nav>
+    <label for="item.type" class="resource-label">Item Type</label>
+    <select name="type" value={{item.type}} >
+        {{#select item.type}}
+        <option value="equipment">Equipment</option>
+        <option value="weapon">Weapon</option>
+        <option value="armor">Armor</option>
+        <option value="augment">Augment</option>
+        {{/select}}
+      </select>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
-
-    {{!-- Description Tab --}}
-    <div class="tab" data-group="primary" data-tab="description">
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
-
-    {{!-- Attributes Tab --}}
-    <div class="tab attributes" data-group="primary" data-tab="attributes">
-      {{!-- As you add new fields, add them in here! --}}
-    </div>
-  </section>
+    <label for="data.description" class="resource-label">Item description</label>
+    <textarea id="item.description" type="text" name="description" for="item.description" value="{{item.description}}"></textarea>
+  </div>
 </form>

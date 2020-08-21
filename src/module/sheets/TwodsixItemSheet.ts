@@ -9,7 +9,7 @@ export class TwodsixItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       width: 520,
-      height: 480,
+      height: 321,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
   }
