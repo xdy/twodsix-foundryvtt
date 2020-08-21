@@ -42,8 +42,7 @@ textarea:focus {
   font-family: Consolas, monospace;
   color: #00E5FF !important;
 }
-
-.window-app .window-content {
+.app .window-app .twodsix .sheet .actor .window-content {
   overflow: hidden !important;
 }
 .character-name h2 {
@@ -361,7 +360,7 @@ svg:hover {
 }
 
 .tab {
-  height: 38.4em;
+  height: 37.4em;
   overflow: auto;
 }
 
