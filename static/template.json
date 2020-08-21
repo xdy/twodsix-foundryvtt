@@ -1,8 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "traveller"
-    ],
+    "types": ["traveller"],
     "traveller": {
       "name": "",
       "homeworld": "",
@@ -465,6 +463,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "language": {
           "label": "Languages",
@@ -482,6 +481,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "language-2": {
           "label": "Language 2",
@@ -491,6 +491,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "language-3": {
           "label": "Language 3",
@@ -500,6 +501,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "language-4": {
           "label": "Language 4",
@@ -509,6 +511,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "language-5": {
           "label": "Language 5",
@@ -518,6 +521,7 @@
           "max": 9,
           "mod": 0,
           "characteristic": "strength"
+
         },
         "leadership": {
           "label": "Leadership",
@@ -903,18 +907,11 @@
           "mod": 0,
           "characteristic": "strength"
         }
-      },
-      "contacts": "",
-      "allies": "",
-      "enemies": ""
+      }
     }
   },
   "Item": {
-    "types": [
-      "equipment",
-      "weapon",
-      "armor"
-    ],
+    "types": ["equipment", "weapon", "armor"],
     "templates": {
       "carried": {
         "name": "",
@@ -937,21 +934,15 @@
       }
     },
     "equipment": {
-      "templates": [
-        "carried"
-      ]
+      "templates": ["carried"]
     },
     "weapon": {
-      "templates": [
-        "carried",
-        "weapon"
-      ]
+      "templates": ["carried", "weapon"]
     },
     "armor": {
-      "templates": [
-        "carried",
-        "armor"
-      ]
+      "templates": ["carried", "armor"]
     }
-  }
+  },
+  "Contacts": {}
+  
 }

@@ -810,7 +810,7 @@ option {background-color: #000;}
 /* EDITOR */
 
 .editor {
-  height: calc(100px);
+  height: calc(100% - 115px);
   background: rgba(0, 0, 0, 0.51);
   color: #207ab7;
 

@@ -29,6 +29,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('shouldShowSkill', function(skill, hideUntrainedSkills) {
+    // console.log('shouldShowSkill', skill, hideUntrainedSkills)
     return skill.trained || hideUntrainedSkills
   });
 
