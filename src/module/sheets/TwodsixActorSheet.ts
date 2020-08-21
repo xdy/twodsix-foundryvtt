@@ -72,22 +72,22 @@ export class TwodsixActorSheet extends ActorSheet {
     }));
 
     // Delete Inventory Item
-    html.find('.item-delete').on('click',(ev => {
+    html.find('.item-delete').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.deleteOwnedItem(li.data("itemId"));
       li.slideUp(200, () => this.render(false));
     }));
 
     // Rollable abilities.
-    html.find('.rollable').on('click',(this._onRoll.bind(this)));
+    html.find('.rollable').on('click', (this._onRoll.bind(this)));
 
     // Upgrade/downgrade skills.
-    html.find('.upgrade-skill').on('click',this._onUpgrade.bind(this));
-    html.find('.downgrade-skill').on('click',this._onDowngrade.bind(this));
-    html.find('.upgrade-joat').on('click',this._onUpgradeJoat.bind(this));
-    html.find('.downgrade-joat').on('click',this._onDowngradeJoat.bind(this));
+    html.find('.upgrade-skill').on('click', this._onUpgrade.bind(this));
+    html.find('.downgrade-skill').on('click', this._onDowngrade.bind(this));
+    html.find('.upgrade-joat').on('click', this._onUpgradeJoat.bind(this));
+    html.find('.downgrade-joat').on('click', this._onDowngradeJoat.bind(this));
 
-    html.find('.toggle-skills').on('click',ev => {
+    html.find('.toggle-skills').on('click', ev => {
       ev.preventDefault();
       this.options.hideUntrainedSkills = !this.options.hideUntrainedSkills;
       this.actor.sheet.render(true)
@@ -136,7 +136,7 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event: { preventDefault: () => void; currentTarget: any; }):void {
+  _onRoll(event:{ preventDefault:() => void; currentTarget:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
@@ -151,7 +151,7 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
-  _onUpgradeJoat(event: { preventDefault: () => void; currentTarget: any; }):void {
+  _onUpgradeJoat(event:{ preventDefault:() => void; currentTarget:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const actorData = this.actor.data;
@@ -162,7 +162,7 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
-  _onDowngradeJoat(event: { preventDefault: () => void; currentTarget: any; }):void {
+  _onDowngradeJoat(event:{ preventDefault:() => void; currentTarget:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const actorData = this.actor.data;
@@ -178,7 +178,7 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onUpgrade(event: { preventDefault: () => void; currentTarget: any; }):void {
+  _onUpgrade(event:{ preventDefault:() => void; currentTarget:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const skillName = element.getAttribute('data-label');
@@ -198,7 +198,7 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onDowngrade(event: { preventDefault: () => void; currentTarget: any; }):void {
+  _onDowngrade(event:{ preventDefault:() => void; currentTarget:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const skillName = element.getAttribute('data-label');

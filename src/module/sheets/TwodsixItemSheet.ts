@@ -10,8 +10,8 @@ export class TwodsixItemSheet extends ItemSheet {
       classes: ["twodsix", "sheet", "item"],
       width: 520,
       height: 377,
-      submitOnClose:true,
-      submitOnChange:true,
+      submitOnClose: true,
+      submitOnChange: true,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
   }

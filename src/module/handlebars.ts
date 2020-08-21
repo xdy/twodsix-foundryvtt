@@ -1,9 +1,7 @@
-import { SIGKILL } from "constants";
-
 export default function registerHandlebarsHelpers():void {
 
   // If you need to add Handlebars helpers, here are a few useful examples:
-  Handlebars.registerHelper('concat', function() {
+  Handlebars.registerHelper('concat', function () {
     let outStr = '';
     for (const arg in arguments) {
       if (typeof arguments[arg] != 'object') {
@@ -13,33 +11,35 @@ export default function registerHandlebarsHelpers():void {
     return outStr;
   });
 
-  Handlebars.registerHelper('toLowerCase', function(str) {
+  Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
   });
 
-  Handlebars.registerHelper('checkPsi', function(characteristic) {
+  Handlebars.registerHelper('checkPsi', function (characteristic) {
     if (!game.user.isGM && characteristic.shortlabel === 'PSI' && characteristic.value === 0) {
       return false;
     }
     return true;
   });
 
-  Handlebars.registerHelper('checkTrainedSkill', function(skill) {
+  Handlebars.registerHelper('checkTrainedSkill', function (skill) {
     return skill.trained
   });
 
-  Handlebars.registerHelper('shouldShowSkill', function(skill, hideUntrainedSkills) {
+  Handlebars.registerHelper('shouldShowSkill', function (skill, hideUntrainedSkills) {
     return skill.trained || hideUntrainedSkills
   });
 
-  Handlebars.registerHelper('getSkillValueWithJoat', function(skill, joat) {
+  Handlebars.registerHelper('getSkillValueWithJoat', getSkillValueWithJoat);
+
+  function getSkillValueWithJoat(skill, joat) {
     if (skill.trained) return skill.value
     return skill.value + joat.value
-  });
+  }
 
-  Handlebars.registerHelper('getTotalSkillValue', function(skill, joat, mod){
-  return skill.value + joat.value + skill.mod
-});
+  Handlebars.registerHelper('getTotalSkillValue', function (skill, joat, mod) {
+    return getSkillValueWithJoat(skill, joat) + mod
+  });
 
 
   Handlebars.registerHelper({

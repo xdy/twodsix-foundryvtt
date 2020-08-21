@@ -5,7 +5,7 @@
     ],
     "traveller": {
       "name": "name",
-      "homeworld": "",
+      "homeWorld": "",
       "species": "",
       "age": {
         "value": 18,
@@ -16,6 +16,11 @@
         "value": 0,
         "min": 0
       },
+      "contacts": "",
+      "allies": "",
+      "enemies": "",
+      "description": "",
+      "bio": "",
       "characteristics": {
         "strength": {
           "value": 0,
@@ -67,7 +72,7 @@
           "mod": 0
         }
       },
-      "jackofalltrades": {
+      "jackOfAllTrades": {
         "label": "Jack of All Trades",
         "value": 0,
         "max": 9
@@ -902,11 +907,7 @@
           "mod": 0,
           "characteristic": "strength"
         }
-      },
-      "contacts": "",
-      "allies": "",
-      "enemies": "",
-      "bio":"Background Information"
+      }
     }
   },
   "Item": {
@@ -919,12 +920,12 @@
     "templates": {
       "gearTemplate": {
         "name": "",
-        "techlevel": 0,
+        "techLevel": 0,
         "description": "Item Information",
         "quantity": 1,
         "weight": 0,
         "traits": [],
-        "equiped": {
+        "equipped": {
           "weight": 0
         }
       },
@@ -934,9 +935,9 @@
       "weaponTemplate": {
         "range": 0,
         "damage": 0,
-        "damagebonus": 0,
-        "magazinesize": 0,
-        "magazinecost": 0,
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "magazineCost": 0,
         "type": "weapon"
       },
       "armorTemplate": {

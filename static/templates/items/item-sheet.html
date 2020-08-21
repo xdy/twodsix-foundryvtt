@@ -13,28 +13,28 @@
         {{/select}}
       </select></div>
 
-    <div class="item-name">  
-      <label for="item.name" class="resource-label">Item Name
+    <div class="item-name">
+      <label for="data.name" class="resource-label">Item Name
       <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
 
     <div class="item-tl">
-    <label for="item.techlevel" class="resource-label">TL
-    <input type="text" name="data.techlevel" value="{{data.techlevel}}" data-dtype="Number"/></label>
+    <label for="data.techLevel" class="resource-label">TL
+    <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-qty">
-    <label for="item.quantity" class="resource-label">Quantity
-    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/></label>
+    <label for="data.quantity" class="resource-label">Quantity
+    <input id="data.quantity"  type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-weight">
-    <label for="item.weight" class="resource-label">Weight
-    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/></label>
+    <label for="data.weight" class="resource-label">Weight
+    <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-descr">
-    <label for="item.description" class="resource-label">Item description</label>
+    <label class="resource-label">Item description</label>
     {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
   </div>

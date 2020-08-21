@@ -1,33 +1,31 @@
 <div class="item-container items-list">
-        <div class="item-name">Name</div>
-        <div class="item-name centre">TL</div>
-        <div class="item-name centre">Qty</div>
-        <div class="item-name centre">Weight</div>
-        <div class="item-name centre">Type</div>
-        <div class="item-controls centre">
-          <a class="item-control item-create" title="Create item" data-type="equipment"><i class="fas fa-plus"></i></a>
-        </div>
+  <div class="item-name">Name</div>
+  <div class="item-name centre">TL</div>
+  <div class="item-name centre">Qty</div>
+  <div class="item-name centre">Weight</div>
+  <div class="item-name centre">Type</div>
+  <div class="item-controls centre">
+    <a class="item-control item-create" title="Create item" data-type="equipment"><i class="fas fa-plus"></i></a>
+  </div>
 </div>
 
 
-  {{#each actor.gear as |item id|}}
-  <div class="item">
-      <li class="item flexrow" data-item-id="{{item._id}}">
-        <div class="item-container">  
+{{#each actor.gear as |item id|}}
+<div class="item">
+  <ol class="ol-no-indent">
+    <li class="item flexrow" data-item-id="{{item._id}}">
+      <div class="item-container">
         <h4 class="item-name">{{item.name}}</h4>
-        <h4 class="item-name centre">{{data.techlevel}}</h4>
+        <h4 class="item-name centre">{{data.techLevel}}</h4>
         <h4 class="item-name centre">{{data.quantity}}</h4>
         <h4 class="item-name centre">{{data.weight}}</h4>
         <h4 class="item-type centre">{{item.type}}</h4>
-          <div class="item-controls centre">
-              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-          </div>
+        <div class="item-controls centre">
+          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
         </div>
-      </li>
-    </div>
-  {{/each}}
-
-  
+      </div>
+    </li>
   </ol>
 </div>
+{{/each}}
