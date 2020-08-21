@@ -83,7 +83,6 @@ input::-webkit-inner-spin-button {display:none}
 .content-container {
   display: grid;
   grid-template-columns: 22em 34.5em;
-  grid-template-rows: ;
   gap: 1px 1px;
   grid-template-areas: "character-info character-tabs-info";
 }
@@ -515,6 +514,35 @@ select {
 .mini-dice img.rollable {
   width: 1.5em;
   margin-left: 0em;
+}
+/*--- Item Page ---*/
+.item-page textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid #6e819e;
+  border-radius: 1px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.item-page input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
+  background: rgba(0, 0, 0, 0.21);
+  margin: 0;
+  color: #6e819e !important;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: none;
+  border: 1px solid #6e819e;
 }
 
 /*--- Chat Log ---*/

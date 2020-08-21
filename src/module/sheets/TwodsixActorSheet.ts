@@ -32,7 +32,7 @@ export class TwodsixActorSheet extends ActorSheet {
     for (const i of sheetData.items) {
       i.img = i.img || CONST.DEFAULT_TOKEN;
       // Append to gear.
-      if (i.type === 'equipment' || i.type === 'weapon') {
+      if (i.type === 'equipment' || i.type === 'weapon' || i.type === 'armor' || i.type === 'augment') {
         gear.push(i);
       }
     }
