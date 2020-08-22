@@ -29,12 +29,12 @@
 
   {{#if (shouldShowSkill skill @root.options.hideUntrainedSkills)}}
 
-  <div class="skill skill-container trained-{{skill.trained}}">
+  <div class="skill skill-container trained-{{gte skill.value 0}}">
 
-    <label for="data.skills.{{key}}.value" class="flex2 resource-label skill-{{skill.trained}}">{{skill.label}}</label>
+    <label for="data.skills.{{key}}.value" class="flex2 resource-label skill-{{gte skill.value 0}}">{{skill.label}}</label>
 
     <span class="skill-arrows flex1">
-        <i data-label="{{key}}" class="fa fa-arrow-circle-down downgrade-skill-{{skill.trained}} downgrade-skill"></i>
+        <i data-label="{{key}}" class="fa fa-arrow-circle-down downgrade-skill-{{gte skill.value 0}} downgrade-skill"></i>
 
         <span class="skill-output flex1 skill-mod" data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackOfAllTrades) decimals=0 sign=true}}</span>
 

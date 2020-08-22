@@ -192,11 +192,10 @@ export class TwodsixActorSheet extends ActorSheet {
         if (this.parentSkillIsTrained(matchingSkill) && matchingSkill.value < maxSkillLevel) {
           this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
         }
-      } else if (!matchingSkill.trained) {
+      } else if (matchingSkill.value < 0) {
         this.actor.update({[`data.skills.${skillName}.value`]: 0})
-        this.actor.update({[`data.skills.${skillName}.trained`]: true})
         if (matchingSkill.hasChildren) {
-          this.processChildren(data, skillName, 0, true);
+          this.processChildren(data, skillName, 0);
         }
       } else if (!matchingSkill.hasChildren && matchingSkill.value < maxSkillLevel) {
         this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
@@ -204,23 +203,21 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
-  private processChildren(data:any, skillName:string, level:number, trained:boolean) {
+  private processChildren(data:any, skillName:string, level:number) {
     for (const [key, value] of Object.entries(data.skills)) {
       if (key.startsWith(skillName + "-")) {
         this.actor.update({[`data.skills.${key}.value`]: level})
-        this.actor.update({[`data.skills.${key}.trained`]: trained})
-        console.log(`${key}: ${value["label"]}`);
       }
     }
   }
 
   private static isChildSkill(matchingSkill:any) {
-    return matchingSkill.childOf === "";
+    return matchingSkill.childOf != null && matchingSkill.childOf != "";
   }
 
   private parentSkillIsTrained(matchingSkill:any) {
     const parent = this.actor.data.data.skills[matchingSkill.childOf];
-    return parent.trained && matchingSkill.childOf === parent.label;
+    return parent && parent.value >= 0;
   }
 
   /**
@@ -235,14 +232,14 @@ export class TwodsixActorSheet extends ActorSheet {
     const actorData = this.actor.data;
     const data = actorData.data;
     const matchingSkill = data.skills[skillName];
+    const parent = matchingSkill.childOf
     if (matchingSkill) {
-      if (matchingSkill.trained && data.skills[skillName].value === 0) {
+      if (matchingSkill.value === 0 && parent == null) {
         this.actor.update({[`data.skills.${skillName}.value`]: -3})
-        this.actor.update({[`data.skills.${skillName}.trained`]: false})
         if (matchingSkill.hasChildren) {
-          this.processChildren(data, skillName, -3, false);
+          this.processChildren(data, skillName, -3);
         }
-      } else if (matchingSkill.trained) {
+      } else if (matchingSkill.value > 0) {
         this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value - 1})
       }
     }

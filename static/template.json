@@ -73,643 +73,538 @@
         "admin": {
           "label": "Admin",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "advocate": {
           "label": "Advocate",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "animals": {
           "label": "Animals",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "hasChildren": true
         },
         "animals-handling": {
           "label": "Animals (Handling)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "childOf": "animals"
         },
         "animals-training": {
           "label": "Animals (Training)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "childOf": "animals"
         },
         "animals-veterinary": {
           "label": "Animals (Veterinary)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "childOf": "animals"
         },
         "art": {
           "label": "Art (Performer)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "hasChildren": true
         },
         "art-performer": {
           "label": "Art (Performer)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength",
           "childOf": "art"
         },
         "art-holography": {
           "label": "Art (Holography)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "art-instrument": {
           "label": "Art (Instrument)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "art-visualmedia": {
           "label": "Art (Visual Media)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "art-write": {
           "label": "Art (Write)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "astrogation": {
           "label": "Astrogation",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "athletics-dex": {
           "label": "Athletics (DEX)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "athletics-end": {
           "label": "Athletics (END)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "athletics-str": {
           "label": "Athletics (STR)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "broker": {
           "label": "Broker",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "carouse": {
           "label": "Carouse",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "deception": {
           "label": "Deception",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "diplomat": {
           "label": "Diplomat",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "drive-hovercraft": {
           "label": "Drive (Hovercraft)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "drive-mole": {
           "label": "Drive (Mole)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "drive-track": {
           "label": "Drive (Track)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "drive-walker": {
           "label": "Drive (Walker)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "drive-wheel": {
           "label": "Drive (Wheel)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "electronics-comms": {
           "label": "Electronics (Comms)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "electronics-computers": {
           "label": "Electronics (Computers)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "electronics-remoteops": {
           "label": "Electronics (Remote Ops)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "electronics-sensors": {
           "label": "Electronics (Sensors)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "engineer-mdrive": {
           "label": "Engineer (M-Drive)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "engineer-jdrive": {
           "label": "Engineer (J-Drive)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "engineer-lifesupport": {
           "label": "Engineer (Life Support)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "engineer-power": {
           "label": "Engineer (Power)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "explosives": {
           "label": "Explosives",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "flyer-airship": {
           "label": "Flyer (Airship)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "flyer-grav": {
           "label": "Flyer (Grav)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "flyer-ornithopter": {
           "label": "Flyer (Ornithopter)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "flyer-rotor": {
           "label": "Flyer (Rotor)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "flyer-wing": {
           "label": "Flyer (Wing)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "gambler": {
           "label": "Gambler",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "gunner-turret": {
           "label": "Gunner (Turret)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "gunner-ortillery": {
           "label": "Gunner (Ortillery)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "gunner-screen": {
           "label": "Gunner (Screen)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "gunner-capital": {
           "label": "Gunner (Capital)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "guncombat-archaic": {
           "label": "Gun Combat (Archaic)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "guncombat-energy": {
           "label": "Gun Combat (Energy)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "guncombat-slug": {
           "label": "Gun Combat (Slug)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "heavyweapons-artillery": {
           "label": "Heavy Weapons (Artillery)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "heavyweapons-manportable": {
           "label": "Heavy Weapons (Man Portable)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "heavyweapons-vehicle": {
           "label": "Heavy Weapons (Vehicle)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "investigate": {
           "label": "Investigate",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "language": {
           "label": "Languages",
           "value": -3,
           "max": 0,
-          "trained": false,
           "characteristic": "strength"
         },
         "language-1": {
           "label": "Language 1",
           "value": -3,
-          "trained": false,
           "customNamed": true,
           "characteristic": "strength"
         },
         "language-2": {
           "label": "Language 2",
           "value": -3,
-          "trained": false,
           "customNamed": true,
           "characteristic": "strength"
         },
         "language-3": {
           "label": "Language 3",
           "value": -3,
-          "trained": false,
           "customNamed": true,
           "characteristic": "strength"
         },
         "language-4": {
           "label": "Language 4",
           "value": -3,
-          "trained": false,
           "customNamed": true,
           "characteristic": "strength"
         },
         "language-5": {
           "label": "Language 5",
           "value": -3,
-          "trained": false,
           "customNamed": true,
           "characteristic": "strength"
         },
         "leadership": {
           "label": "Leadership",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "mechanic": {
           "label": "Mechanic",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "medic": {
           "label": "Medic",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "melee-unarmed": {
           "label": "Melee (Unarmed)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "melee-blade": {
           "label": "Melee (Blade)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "melee-bludgeon": {
           "label": "Melee (Bludgeon)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "melee-natural": {
           "label": "Melee (Natural)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "navigation": {
           "label": "Navigation",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "persuade": {
           "label": "Persuade",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "pilot-smallcraft": {
           "label": "Pilot (Small Craft)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "pilot-spacecraft": {
           "label": "Pilot (Spacecraft)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "pilot-capitalships": {
           "label": "Pilot (Capital Ships)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-belter": {
           "label": "Profession (Belter)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-biologicals": {
           "label": "Profession (Biologicals)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-civilengineering": {
           "label": "Profession (Civil Engineering)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-construction": {
           "label": "Profession (Construction)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-hydroponics": {
           "label": "Profession (Hydroponics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "profession-polymers": {
           "label": "Profession (Polymers)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "recon": {
           "label": "Recon",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-archaeology": {
           "label": "Science (Archaeology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-astronomy": {
           "label": "Science (Astronomy)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-biology": {
           "label": "Science (Biology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-chemistry": {
           "label": "Science (Chemistry)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-cosmology": {
           "label": "Science (Cosmology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-cybernetics": {
           "label": "Science (Cybernetics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-economics": {
           "label": "Science (Economics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-genetics": {
           "label": "Science (Genetics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-history": {
           "label": "Science (History)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-linguistics": {
           "label": "Science (Linguistics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-philosophy": {
           "label": "Science (Philosophy)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-physics": {
           "label": "Science (Physics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-planetology": {
           "label": "Science (Planetology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-psionicology": {
           "label": "Science (Psionicology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-psychology": {
           "label": "Science (Psychology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-robotics": {
           "label": "Science (Robotics)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-sophontology": {
           "label": "Science (Sophontology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "science-xenology": {
           "label": "Science (Xenology)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "seafarer-oceanships": {
           "label": "Seafarer (Ocean Ships)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "seafarer-personal": {
           "label": "Seafarer (Personal)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "seafarer-sail": {
           "label": "Seafarer (Sail)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "seafarer-submarine": {
           "label": "Seafarer (Submarine)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "stealth": {
           "label": "Stealth",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "steward": {
           "label": "Steward",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "streetwise": {
           "label": "Streetwise",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "survival": {
           "label": "Survival",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "tactics-military": {
           "label": "Tactics (Military)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "tactics-naval": {
           "label": "Tactics (Naval)",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         },
         "vaccsuit": {
           "label": "Vacc Suit",
           "value": -3,
-          "trained": false,
           "characteristic": "strength"
         }
       }
