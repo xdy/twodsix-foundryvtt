@@ -1,3 +1,14 @@
+## [0.3.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.14...v0.3.15) (2020-08-22)
+
+
+### Bug Fixes
+
+* Cascade works better, still only on animals skill. ([c7ff0f8](https://github.com/xdy/twodsix-foundryvtt/commit/c7ff0f808b16c121b18c37e42c9083224140b13e))
+* Item page fixed and styled, Info page broken ([13d2aa2](https://github.com/xdy/twodsix-foundryvtt/commit/13d2aa20fbfabcf73358763b61044f1ebe855be9))
+* Made max skill level into a system setting (default 9). ([a397de7](https://github.com/xdy/twodsix-foundryvtt/commit/a397de7b2110f02095b0d8827955efc5a806c5f2))
+* Set up all skills for cascade, but still buggy. ([db430ec](https://github.com/xdy/twodsix-foundryvtt/commit/db430ec0c2178f87ccabe8f39ac6f02d4710de70))
+* Support for cascade skills (only Animals so far, will add for all soon) ([74102ed](https://github.com/xdy/twodsix-foundryvtt/commit/74102ed3de1530b636ebc0978af81b7e34049769))
+
 ## [0.3.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.13...v0.3.14) (2020-08-22)
 
 
