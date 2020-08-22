@@ -184,6 +184,7 @@ span.bgi-age {
   margin-left: 0.2em;
   position: relative;
   z-index: 6;
+  height: 14em;
 }
 
 .stat {
@@ -375,9 +376,18 @@ svg:hover {
 }
 
 .skills {
-  margin-left: 0.5em;
+
+}
+
+.skills.grid.grid-2col {
+  margin-left: 1em;
   margin-top: 1em;
-  margin-right: 0.5em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+span.skill-title {
+  margin-left: 1em;
 }
 
 .tab {
@@ -404,6 +414,12 @@ svg:hover {
   color: #000000a6 !important;
 }
 
+.skill-arrows i:hover, .rollable:hover, select:hover, svg:hover{
+  text-shadow: 0 0 5px #a9e9f0;
+  fill: #a9e9f0 !important;
+  cursor: pointer;
+}
+
 .skill-output img {
   height: 1.6em;
   vertical-align: middle;
@@ -414,6 +430,12 @@ svg:hover {
   grid-template-columns: 16em 4.5em 6em 2.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
+}
+
+.skill.skill-container {
+  margin-left: 0.35em;
+  padding-left: 1em;
+  width: 33.8em;
 }
 
 .skill-level {
@@ -484,16 +506,46 @@ span.mini-dice {
 /*-------Info Tab-----------*/
 .info-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 10.75em 10.75em 10.75em;
+  grid-template-rows: 8em 22em 5em;
   gap: 1px 1px;
-  grid-template-areas: ". . ." "Biography Biography Biography";
+  grid-template-areas:
+      "char-description char-description char-description"
+      "char-bio char-bio char-bio"
+      "char-contacts char-allies char-enemies";
+  padding: 1em;
 }
 
-.Biography {
-  grid-area: Biography;
+.info-container .editor {
+  border: 1px solid;
+  border-radius: 2px;
 }
 
+.char-description { grid-area: char-description; }
+
+.char-bio { grid-area: char-bio; }
+
+.char-bio .editor {
+  height: 19.5em;
+}
+
+.char-contacts { 
+  grid-area: char-contacts;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.char-allies {
+  grid-area: char-allies;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.char-enemies { 
+  grid-area: char-enemies;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
 
 /*-------------------------------------------------*/
 
@@ -566,6 +618,7 @@ select {
 .item-container.items-list {
   margin-bottom: 2em;
   color: #6e819e;
+  margin-left: 1em;
 }
 
 .items-list {
@@ -573,24 +626,37 @@ select {
   top: 1em;
 }
 
-.items {
-  margin-left: 1em;
+
+li.item.flexrow {
+  padding: 0.4em 0em 0.4em 0em;
   margin-right: 0.6em;
 }
 
-.items {
-  margin-bottom: 0.2em;
-}
-
-.item {
-  color: #29aae1;
-}
-
-.item div > div:nth-of-type(odd) {
+.items .item:nth-of-type(even) {
   background: #0d0d0d;
 }
 
-a.item-control:hover {
+.item-container.items-list:hover {background-color: none !important;}
+
+.items .item:hover {
+  background-color: #29aae1 !important;
+  color: #000000a6 !important;
+}
+
+.item-edit:hover, .item-delete:hover {
+  background-color: #29aae1 !important;
+  color: #000000a6 !important;
+}
+
+.item.item-list {
+  margin-left: 0.3em;
+  margin-right: 0.4em;
+  padding-left: 0.7em;
+  margin-top: 0em;
+  margin-bottom: -0.5em;
+}
+
+a:hover {
   color: #00e5ff;
   text-shadow: 0 0 5px #29aae1;
 }
