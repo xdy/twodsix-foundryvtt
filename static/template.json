@@ -4,7 +4,7 @@
       "traveller"
     ],
     "traveller": {
-      "name": "name",
+      "name": "",
       "homeWorld": "",
       "species": "",
       "age": {
@@ -23,46 +23,46 @@
       "bio": "",
       "characteristics": {
         "strength": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Strength",
-          "shortlabel": "STR"
+          "shortLabel": "STR"
         },
         "dexterity": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Dexterity",
-          "shortlabel": "DEX"
+          "shortLabel": "DEX"
         },
         "endurance": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Endurance",
-          "shortlabel": "END"
+          "shortLabel": "END"
         },
         "intellect": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Intellect",
-          "shortlabel": "INT"
+          "shortLabel": "INT"
         },
         "education": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Education",
-          "shortlabel": "EDU"
+          "shortLabel": "EDU"
         },
         "social": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Social",
-          "shortlabel": "SOC"
+          "shortLabel": "SOC"
         },
         "psionics": {
-          "value": 0,
+          "value": 7,
           "damage": 0,
           "label": "Psionics",
-          "shortlabel": "PSI"
+          "shortLabel": "PSI"
         }
       },
       "jackOfAllTrades": {
@@ -82,29 +82,47 @@
           "trained": false,
           "characteristic": "strength"
         },
+        "animals": {
+          "label": "Animals",
+          "value": -3,
+          "trained": false,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "animals-handling": {
           "label": "Animals (Handling)",
           "value": -3,
           "trained": false,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "animals"
         },
         "animals-training": {
           "label": "Animals (Training)",
           "value": -3,
           "trained": false,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "animals"
         },
         "animals-veterinary": {
           "label": "Animals (Veterinary)",
           "value": -3,
           "trained": false,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "animals"
+        },
+        "art": {
+          "label": "Art (Performer)",
+          "value": -3,
+          "trained": false,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "art-performer": {
           "label": "Art (Performer)",
           "value": -3,
           "trained": false,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "art"
         },
         "art-holography": {
           "label": "Art (Holography)",

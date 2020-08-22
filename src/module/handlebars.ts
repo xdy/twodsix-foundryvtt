@@ -16,7 +16,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('checkPsi', function (characteristic) {
-    if (!game.user.isGM && characteristic.shortlabel === 'PSI' && characteristic.value === 0) {
+    if (!game.user.isGM && characteristic.shortLabel === 'PSI' && characteristic.value === 0) {
       return false;
     }
     return true;

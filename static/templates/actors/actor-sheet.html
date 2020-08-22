@@ -15,7 +15,8 @@
 
       <div class="character-characteristics">
         <div class="stat str">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.strength.mod}}">STR <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">STR
+            <img class="rollable" data-roll="2d6+{{data.characteristics.strength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.strength.shortLabel}}" alt="roll strength"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value" data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.strength.mod decimals=0 sign=true}}"/></span>
@@ -23,7 +24,7 @@
                                            onClick="this.select();"/></span>
         </div>
         <div class="stat dex">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}">DEX <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">DEX <img class="rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.dexterity.shortLabel}}" alt="roll dexterity"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value" data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
@@ -31,7 +32,7 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat end">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}">END <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">END <img class="rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.endurance.shortLabel}}" alt="roll endurance"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value" data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
@@ -39,7 +40,7 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat int">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.intellect.mod}}">INT <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">INT <img class="rollable" data-roll="2d6+{{data.characteristics.intellect.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.intellect.shortLabel}}" alt="roll intellect"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intellect.value" data-label="data.characteristics.intellect.value" value="{{data.characteristics.intellect.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.intellect.mod decimals=0 sign=true}}"/></span>
@@ -47,7 +48,7 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat edu">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.education.mod}}">EDU <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">EDU <img class="rollable" data-roll="2d6+{{data.characteristics.education.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.education.shortLabel}}" alt="roll education"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value" data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}"/></span>
@@ -55,7 +56,7 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat soc">
-          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.social.mod}}">SOC <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="stat-name">SOC <img class="rollable" data-roll="2d6+{{data.characteristics.social.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.social.shortLabel}}" alt="roll social"/></span>
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.social.value" data-label="data.characteristics.social.value" value="{{data.characteristics.social.value}}" placeholder="0" data-dtype="Number"
                                             onClick="this.select();"/></span>
           <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.social.mod decimals=0 sign=true}}"/></span>
@@ -63,7 +64,7 @@
                                            onClick="this.select();"/></span>
         </div>
         <div class="special psi">
-          <span class="special-name rollable" data-roll="2d6+{{data.characteristics.psionics.mod}}">PSI <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll attribute"/></span>
+          <span class="special-name">PSI <img class="rollable" data-roll="2d6+{{data.psionics.strength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.psionics.shortLabel}}" alt="roll psionics"/></span>
           <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionics.value" data-label="data.characteristics.psionics.value" value="{{data.characteristics.psionics.value}}" placeholder="0"
                                                data-dtype="Number" onClick="this.select();"/></span>
           <span class="special-damage"><input type="number" max="{{data.characteristics.psionics.value}}" min="0" name="data.characteristics.psionics.damage" value="{{data.characteristics.psionics.damage}}" placeholder="0"
