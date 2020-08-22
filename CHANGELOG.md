@@ -1,3 +1,10 @@
+## [0.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.10...v0.3.11) (2020-08-22)
+
+
+### Bug Fixes
+
+* Misspelled variable. ([45e1c69](https://github.com/xdy/twodsix-foundryvtt/commit/45e1c6912ec3a1760434b869937995bffed2bc0d))
+
 ## [0.3.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.9...v0.3.10) (2020-08-21)
 
 
