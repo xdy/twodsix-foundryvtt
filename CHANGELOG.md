@@ -1,3 +1,10 @@
+## [0.3.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.12...v0.3.13) (2020-08-22)
+
+
+### Bug Fixes
+
+* Cascade works better, still only on animals skill. ([33ee24b](https://github.com/xdy/twodsix-foundryvtt/commit/33ee24bdced37541d3d3c0ee6560844da76b0a07))
+
 ## [0.3.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.11...v0.3.12) (2020-08-22)
 
 
