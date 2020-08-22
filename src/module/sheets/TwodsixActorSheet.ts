@@ -185,10 +185,11 @@ export class TwodsixActorSheet extends ActorSheet {
     const actorData = this.actor.data;
     const data = actorData.data;
     const matchingSkill = data.skills[skillName];
+    const maxSkillLevel = game.settings.get('twodsix', 'maxSkillLevel');
     if (matchingSkill && !matchingSkill.trained) {
       this.actor.update({[`data.skills.${skillName}.value`]: 0})
       this.actor.update({[`data.skills.${skillName}.trained`]: true})
-    } else if (matchingSkill && matchingSkill.value < matchingSkill.max) {
+    } else if (matchingSkill && matchingSkill.value < maxSkillLevel) {
       this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
     }
   }
