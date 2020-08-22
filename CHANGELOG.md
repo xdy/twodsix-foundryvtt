@@ -1,3 +1,10 @@
+## [0.3.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.13...v0.3.14) (2020-08-22)
+
+
+### Bug Fixes
+
+* Set up all skills for cascade, but still buggy. ([39af597](https://github.com/xdy/twodsix-foundryvtt/commit/39af597f2e000da522480e31874000b8c054aeb7))
+
 ## [0.3.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.12...v0.3.13) (2020-08-22)
 
 
