@@ -10,10 +10,10 @@
 
   <div class="skills-joat"></div>
   <label for="joat" class="flex3 resource-label">Jack of All Trades</label>
-  <span id="joat" class="flex4">
-    <i class="fa fa-arrow-circle-down downgrade-joat downgrade-joat-{{data.jackofalltrades.value}}"></i>
-    <i class="fa fa-arrow-circle-up upgrade-joat upgrade-joat-{{data.jackofalltrades.value}}"></i>
-    {{data.jackofalltrades.value}}
+  <span class="flex4">
+    <i class="fa fa-arrow-circle-down downgrade-joat downgrade-joat-{{data.jackOfAllTrades.value}}"></i>
+    <i class="fa fa-arrow-circle-up upgrade-joat upgrade-joat-{{data.jackOfAllTrades.value}}"></i>
+    {{data.jackOfAllTrades.value}}
   </span></div>
 
 
@@ -36,10 +36,10 @@
     <span class="skill-arrows flex1">
         <i data-label="{{key}}" class="fa fa-arrow-circle-down downgrade-skill-{{skill.trained}} downgrade-skill"></i>
 
-        <span class="skill-output flex1 skill-mod" id="data.skills.{{key}}.value" data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackofalltrades) decimals=0 sign=true}}</span>
+        <span class="skill-output flex1 skill-mod" data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackOfAllTrades) decimals=0 sign=true}}</span>
 
         <i data-label="{{key}}" class="fa fa-arrow-circle-up upgrade-skill{{skill.value}} upgrade-skill"></i>
-        {{data.jackofalltrades.value}}
+        {{data.jackOfAllTrades.value}}
       </span>
 
 
@@ -55,9 +55,9 @@
       {{/select}}
     </select>
 
-    <span class="total-output flex1 skill-mod">{{numberFormat (getTotalSkillValue skill @root.data.jackofalltrades skill.mod) decimals=0 sign=true}}</span>
+    <span class="total-output flex1 skill-mod">{{numberFormat (getTotalSkillValue skill @root.data.jackOfAllTrades skill.mod) decimals=0 sign=true}}</span>
 
-    <span class="mini-dice"><img class="rollable" data-label="{{skill.label}}" data-roll="2d6+{{getTotalSkillValue skill @root.data.jackofalltrades skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg" alt="roll skill"/></span>
+    <span class="mini-dice"><img class="rollable" data-label="{{skill.label}}" data-roll="2d6+{{getTotalSkillValue skill @root.data.jackOfAllTrades skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg" alt="roll skill"/></span>
 
   </div>
   {{/if}}

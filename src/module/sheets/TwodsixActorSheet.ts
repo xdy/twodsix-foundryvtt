@@ -157,8 +157,8 @@ export class TwodsixActorSheet extends ActorSheet {
     const actorData = this.actor.data;
     const data = actorData.data;
 
-    if (data.jackofalltrades.value < 3) {
-      this.actor.update({'data.jackofalltrades.value': data.jackofalltrades.value + 1})
+    if (data.jackOfAllTrades.value < 3) {
+      this.actor.update({'data.jackOfAllTrades.value': data.jackOfAllTrades.value + 1})
     }
   }
 
@@ -168,8 +168,8 @@ export class TwodsixActorSheet extends ActorSheet {
     const actorData = this.actor.data;
     const data = actorData.data;
 
-    if (data.jackofalltrades.value > 0) {
-      this.actor.update({'data.jackofalltrades.value': data.jackofalltrades.value - 1})
+    if (data.jackOfAllTrades.value > 0) {
+      this.actor.update({'data.jackOfAllTrades.value': data.jackOfAllTrades.value - 1})
     }
   }
 
