@@ -23,17 +23,17 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('checkTrainedSkill', function (skill) {
-    return skill.trained
+    return skill.value >= 0
   });
 
   Handlebars.registerHelper('shouldShowSkill', function (skill, hideUntrainedSkills) {
-    return skill.trained || hideUntrainedSkills
+    return skill.value >= 0 || hideUntrainedSkills
   });
 
   Handlebars.registerHelper('getSkillValueWithJoat', getSkillValueWithJoat);
 
   function getSkillValueWithJoat(skill, joat) {
-    if (skill.trained) return skill.value
+    if (skill.value >= 0) return skill.value
     return skill.value + joat.value
   }
 
