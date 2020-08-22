@@ -1,3 +1,11 @@
+## [0.3.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.11...v0.3.12) (2020-08-22)
+
+
+### Bug Fixes
+
+* Made max skill level into a system setting (default 9). ([ec3914d](https://github.com/xdy/twodsix-foundryvtt/commit/ec3914d4ffed971a8da1acc27d6f6b277a130a2b))
+* Support for cascade skills (only Animals so far, will add for all soon) ([b21ea51](https://github.com/xdy/twodsix-foundryvtt/commit/b21ea51d1242c061ec35840b231ff357cb9a02ce))
+
 ## [0.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.10...v0.3.11) (2020-08-22)
 
 
