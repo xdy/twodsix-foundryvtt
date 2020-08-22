@@ -19,6 +19,50 @@ export const registerSettings = function ():void {
     onChange: formula => _simpleUpdateInit(formula, true)
   });
 
+  game.settings.register('twodsix', 'modifierForZeroCharacteristic', {
+    name: 'Modifier for characteristic value of zero.',
+    hint: "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
+    scope: 'world',
+    config: true,
+    default: -2,
+    type: Number,
+  });
+
+  game.settings.register('twodsix', 'maxSkillLevel', {
+    name: 'Maximum skill level.',
+    hint: "Leave empty to use default (9).",
+    scope: 'world',
+    config: true,
+    default: 9,
+    type: Number,
+  });
+
+
+  game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
+    name: 'What bonus/penalty to give per each time increment change in a task.',
+    hint: "Leave empty to use default (+/-1). Not currently used.",
+    scope: 'world',
+    config: true,
+    default: -1,
+    type: Number,
+  });
+
+  game.settings.register('twodsix', 'termForAdvantage', {
+    name: 'What you want to call rolls with advantage (3d6kh2).',
+    hint: "Don't use the same as for termForDisadvantage. :) Not currently used.",
+    scope: 'world',
+    config: true,
+    default: 'advantage',
+  });
+
+  game.settings.register('twodsix', 'termForDisadvantage', {
+    name: 'What you want to call rolls with disadvantage (3d6kl2).',
+    hint: "Don't use the same as for termForAdvantage. :) Not currently used.",
+    scope: 'world',
+    config: true,
+    default: 'disadvantage',
+  });
+
   // Retrieve and assign the initiative formula setting.
   const initFormula = game.settings.get("twodsix", "initiativeFormula");
   _simpleUpdateInit(initFormula);
@@ -47,40 +91,6 @@ export const registerSettings = function ():void {
       ui.notifications.notify(message, notificationType);
     }
   }
-
-  game.settings.register('twodsix', 'modifierForZeroCharacteristic', {
-    name: 'Modifier for characteristic value of zero.',
-    hint: "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
-    scope: 'world',
-    config: true,
-    default: -2,
-    type: Number,
-  });
-
-  game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
-    name: 'What bonus/penalty to give per each time increment change in a task.',
-    hint: "Leave empty to use default (+/-1). Not currently used.",
-    scope: 'world',
-    config: true,
-    default: -1,
-    type: Number,
-  });
-
-  game.settings.register('twodsix', 'termForAdvantage', {
-    name: 'What you want to call rolls with advantage (3d6kh2).',
-    hint: "Don't use the same as for termForDisadvantage. :) Not currently used.",
-    scope: 'world',
-    config: true,
-    default: 'advantage',
-  });
-
-  game.settings.register('twodsix', 'termForDisadvantage', {
-    name: 'What you want to call rolls with disadvantage (3d6kl2).',
-    hint: "Don't use the same as for termForAdvantage. :) Not currently used.",
-    scope: 'world',
-    config: true,
-    default: 'disadvantage',
-  });
 
   //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
