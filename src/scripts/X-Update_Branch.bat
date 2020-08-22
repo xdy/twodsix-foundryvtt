@@ -6,10 +6,7 @@ cd twodsix-foundryvtt
 git status
 echo "If git status is not empty, stop and fix"
 pause
-git fetch
-git checkout master
-git rebase upstream/master
-git push --force
 git checkout $BRANCH
 git rebase upstream/master
+git push --force
 pause
