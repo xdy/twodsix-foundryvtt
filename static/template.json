@@ -105,7 +105,7 @@
           "childOf": "animals"
         },
         "art": {
-          "label": "Art (Performer)",
+          "label": "Art",
           "value": -3,
           "characteristic": "strength",
           "hasChildren": true
@@ -119,42 +119,55 @@
         "art-holography": {
           "label": "Art (Holography)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "art"
         },
         "art-instrument": {
           "label": "Art (Instrument)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "art"
         },
         "art-visualmedia": {
           "label": "Art (Visual Media)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "art"
         },
         "art-write": {
           "label": "Art (Write)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "art"
         },
         "astrogation": {
           "label": "Astrogation",
           "value": -3,
           "characteristic": "strength"
         },
+        "athletics": {
+          "label": "Athletics",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "athletics-dex": {
           "label": "Athletics (DEX)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "dexterity",
+          "childOf": "athletics"
         },
         "athletics-end": {
           "label": "Athletics (END)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "endurance",
+          "childOf": "athletics"
         },
         "athletics-str": {
           "label": "Athletics (STR)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "athletics"
         },
         "broker": {
           "label": "Broker",
@@ -176,155 +189,219 @@
           "value": -3,
           "characteristic": "strength"
         },
+        "drive": {
+          "label": "Drive",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "drive-hovercraft": {
           "label": "Drive (Hovercraft)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "drive"
         },
         "drive-mole": {
           "label": "Drive (Mole)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "drive"
         },
         "drive-track": {
           "label": "Drive (Track)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "drive"
         },
         "drive-walker": {
           "label": "Drive (Walker)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "drive"
         },
         "drive-wheel": {
           "label": "Drive (Wheel)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "drive"
+        },
+        "electronics": {
+          "label": "Electronics",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "electronics-comms": {
           "label": "Electronics (Comms)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "electronics-computers": {
           "label": "Electronics (Computers)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "electronics-remoteops": {
           "label": "Electronics (Remote Ops)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "electronics-sensors": {
           "label": "Electronics (Sensors)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "engineer-mdrive": {
           "label": "Engineer (M-Drive)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "engineer-jdrive": {
           "label": "Engineer (J-Drive)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "engineer-lifesupport": {
           "label": "Engineer (Life Support)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "engineer-power": {
           "label": "Engineer (Power)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "electronics"
         },
         "explosives": {
           "label": "Explosives",
           "value": -3,
           "characteristic": "strength"
         },
+        "flyer": {
+          "label": "Flyer",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "flyer-airship": {
           "label": "Flyer (Airship)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "flyer"
         },
         "flyer-grav": {
           "label": "Flyer (Grav)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "flyer"
         },
         "flyer-ornithopter": {
           "label": "Flyer (Ornithopter)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "flyer"
         },
         "flyer-rotor": {
           "label": "Flyer (Rotor)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "flyer"
         },
         "flyer-wing": {
           "label": "Flyer (Wing)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "flyer"
         },
         "gambler": {
           "label": "Gambler",
           "value": -3,
           "characteristic": "strength"
         },
+        "gunner": {
+          "label": "Gunner",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "gunner-turret": {
           "label": "Gunner (Turret)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "gunner"
         },
         "gunner-ortillery": {
           "label": "Gunner (Ortillery)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "gunner"
         },
         "gunner-screen": {
           "label": "Gunner (Screen)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "gunner"
         },
         "gunner-capital": {
           "label": "Gunner (Capital)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "gunner"
+        },
+        "guncombat": {
+          "label": "Gun Combat",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "guncombat-archaic": {
           "label": "Gun Combat (Archaic)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "guncombat"
         },
         "guncombat-energy": {
           "label": "Gun Combat (Energy)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "guncombat"
         },
         "guncombat-slug": {
           "label": "Gun Combat (Slug)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "guncombat"
+        },
+        "heavyweapons": {
+          "label": "Heavy Weapons",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "heavyweapons-artillery": {
           "label": "Heavy Weapons (Artillery)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "heavyweapons"
         },
         "heavyweapons-manportable": {
           "label": "Heavy Weapons (Man Portable)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "heavyweapons"
         },
         "heavyweapons-vehicle": {
           "label": "Heavy Weapons (Vehicle)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "heavyweapons"
         },
         "investigate": {
           "label": "Investigate",
@@ -335,37 +412,43 @@
           "label": "Languages",
           "value": -3,
           "max": 0,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "language-1": {
           "label": "Language 1",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "language"
         },
         "language-2": {
           "label": "Language 2",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "language"
         },
         "language-3": {
           "label": "Language 3",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "language"
         },
         "language-4": {
           "label": "Language 4",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "language"
         },
         "language-5": {
           "label": "Language 5",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "language"
         },
         "leadership": {
           "label": "Leadership",
@@ -382,25 +465,35 @@
           "value": -3,
           "characteristic": "strength"
         },
+        "melee": {
+          "label": "Melee",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "melee-unarmed": {
           "label": "Melee (Unarmed)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "melee"
         },
         "melee-blade": {
           "label": "Melee (Blade)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "melee"
         },
         "melee-bludgeon": {
           "label": "Melee (Bludgeon)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "melee"
         },
         "melee-natural": {
           "label": "Melee (Natural)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "melee"
         },
         "navigation": {
           "label": "Navigation",
@@ -412,165 +505,220 @@
           "value": -3,
           "characteristic": "strength"
         },
-        "pilot-smallcraft": {
-          "label": "Pilot (Small Craft)",
+        "pilot": {
+          "label": "Pilot",
           "value": -3,
-          "characteristic": "strength"
-        },
-        "pilot-spacecraft": {
-          "label": "Pilot (Spacecraft)",
-          "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "pilot-capitalships": {
           "label": "Pilot (Capital Ships)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "pilot"
+        },
+        "pilot-smallcraft": {
+          "label": "Pilot (Small Craft)",
+          "value": -3,
+          "characteristic": "strength",
+          "childOf": "pilot"
+        },
+        "pilot-spacecraft": {
+          "label": "Pilot (Spacecraft)",
+          "value": -3,
+          "characteristic": "strength",
+          "childOf": "pilot"
+        },
+        "profession": {
+          "label": "Profession",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "profession-belter": {
           "label": "Profession (Belter)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "profession-biologicals": {
           "label": "Profession (Biologicals)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "profession-civilengineering": {
           "label": "Profession (Civil Engineering)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "profession-construction": {
           "label": "Profession (Construction)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "profession-hydroponics": {
           "label": "Profession (Hydroponics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "profession-polymers": {
           "label": "Profession (Polymers)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "profession"
         },
         "recon": {
           "label": "Recon",
           "value": -3,
           "characteristic": "strength"
         },
+        "science": {
+          "label": "Science",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "science-archaeology": {
           "label": "Science (Archaeology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-astronomy": {
           "label": "Science (Astronomy)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-biology": {
           "label": "Science (Biology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-chemistry": {
           "label": "Science (Chemistry)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-cosmology": {
           "label": "Science (Cosmology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-cybernetics": {
           "label": "Science (Cybernetics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-economics": {
           "label": "Science (Economics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-genetics": {
           "label": "Science (Genetics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-history": {
           "label": "Science (History)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-linguistics": {
           "label": "Science (Linguistics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-philosophy": {
           "label": "Science (Philosophy)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-physics": {
           "label": "Science (Physics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-planetology": {
           "label": "Science (Planetology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-psionicology": {
           "label": "Science (Psionicology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-psychology": {
           "label": "Science (Psychology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-robotics": {
           "label": "Science (Robotics)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-sophontology": {
           "label": "Science (Sophontology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
         },
         "science-xenology": {
           "label": "Science (Xenology)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "science"
+        },
+        "seafarer": {
+          "label": "Seafarer",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
         },
         "seafarer-oceanships": {
           "label": "Seafarer (Ocean Ships)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "seafarer"
         },
         "seafarer-personal": {
           "label": "Seafarer (Personal)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "seafarer"
         },
         "seafarer-sail": {
           "label": "Seafarer (Sail)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "seafarer"
         },
         "seafarer-submarine": {
           "label": "Seafarer (Submarine)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "seafarer"
         },
         "stealth": {
           "label": "Stealth",
@@ -592,15 +740,23 @@
           "value": -3,
           "characteristic": "strength"
         },
+        "tactics": {
+          "label": "Tactics",
+          "value": -3,
+          "characteristic": "strength",
+          "hasChildren": true
+        },
         "tactics-military": {
           "label": "Tactics (Military)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "tactics"
         },
         "tactics-naval": {
           "label": "Tactics (Naval)",
           "value": -3,
-          "characteristic": "strength"
+          "characteristic": "strength",
+          "childOf": "tactics"
         },
         "vaccsuit": {
           "label": "Vacc Suit",
