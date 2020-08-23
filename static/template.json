@@ -83,6 +83,7 @@
           "label": "Admin",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "advocate": {
@@ -90,6 +91,7 @@
           "label": "Advocate",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "animals": {
@@ -97,6 +99,7 @@
           "label": "Animals",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -105,6 +108,7 @@
           "label": "Animals (Handling)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
@@ -113,6 +117,7 @@
           "label": "Animals (Training)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
@@ -121,6 +126,7 @@
           "label": "Animals (Veterinary)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
@@ -129,6 +135,7 @@
           "label": "Art",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -137,6 +144,7 @@
           "label": "Art (Performer)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "art"
         },
@@ -145,6 +153,7 @@
           "label": "Art (Holography)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "art"
         },
@@ -153,6 +162,7 @@
           "label": "Art (Instrument)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "art"
         },
@@ -161,6 +171,7 @@
           "label": "Art (Visual Media)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "art"
         },
@@ -169,6 +180,7 @@
           "label": "Art (Write)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "art"
         },
@@ -177,6 +189,7 @@
           "label": "Astrogation",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "athletics": {
@@ -184,6 +197,7 @@
           "label": "Athletics",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -192,6 +206,7 @@
           "label": "Athletics (Archery)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "dexterity",
           "childOf": "athletics"
         },
@@ -200,6 +215,7 @@
           "label": "Athletics (DEX)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "dexterity",
           "childOf": "athletics"
         },
@@ -208,6 +224,7 @@
           "label": "Athletics (END)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "endurance",
           "childOf": "athletics"
         },
@@ -216,6 +233,7 @@
           "label": "Athletics (STR)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "athletics"
         },
@@ -224,6 +242,7 @@
           "label": "Battle Dress",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "broker": {
@@ -231,6 +250,7 @@
           "label": "Broker",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "carouse": {
@@ -238,6 +258,7 @@
           "label": "Carouse",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "deception": {
@@ -245,6 +266,7 @@
           "label": "Deception",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "diplomat": {
@@ -252,6 +274,7 @@
           "label": "Diplomat",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "drive": {
@@ -259,6 +282,7 @@
           "label": "Drive",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -267,6 +291,7 @@
           "label": "Drive (Hovercraft)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
@@ -275,6 +300,7 @@
           "label": "Drive (Mole)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
@@ -283,6 +309,7 @@
           "label": "Drive (Tracked)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
@@ -291,6 +318,7 @@
           "label": "Drive (Walker)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
@@ -299,6 +327,7 @@
           "label": "Drive (Wheeled)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
@@ -307,6 +336,7 @@
           "label": "Electronics",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -315,6 +345,7 @@
           "label": "Electronics (Comms)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
@@ -323,6 +354,7 @@
           "label": "Electronics (Computers)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
@@ -331,6 +363,7 @@
           "label": "Electronics (Remote Ops)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
@@ -339,6 +372,7 @@
           "label": "Electronics (Sensors)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
@@ -347,6 +381,7 @@
           "label": "Engineer (Jump Drive)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "engineer"
         },
@@ -355,6 +390,7 @@
           "label": "Engineer (Life Support)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "engineer"
         },
@@ -363,6 +399,7 @@
           "label": "Engineer (Maneuver Drive)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "engineer"
         },
@@ -371,6 +408,7 @@
           "label": "Engineer (Power Plant)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "engineer"
         },
@@ -379,6 +417,7 @@
           "label": "Explosives",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "flyer": {
@@ -386,6 +425,7 @@
           "label": "Flyer",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -394,6 +434,7 @@
           "label": "Flyer (Airship)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
@@ -402,6 +443,7 @@
           "label": "Flyer (Grav)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
@@ -410,6 +452,7 @@
           "label": "Flyer (Ornithopter)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
@@ -418,6 +461,7 @@
           "label": "Flyer (Rotor)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
@@ -426,6 +470,7 @@
           "label": "Flyer (Wing)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
@@ -434,6 +479,7 @@
           "label": "Gambler",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "gunner": {
@@ -441,6 +487,7 @@
           "label": "Gunner",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -449,6 +496,7 @@
           "label": "Gunner (Capital Weapons)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
@@ -457,6 +505,7 @@
           "label": "Gunner (Ortillery)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
@@ -465,6 +514,7 @@
           "label": "Gunner (Screens)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
@@ -473,6 +523,7 @@
           "label": "Gunner (Turret)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
@@ -481,6 +532,7 @@
           "label": "Gun Combat",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -489,6 +541,7 @@
           "label": "Gun Combat (Archaic)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
@@ -497,6 +550,7 @@
           "label": "Gun Combat (Energy)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
@@ -505,6 +559,7 @@
           "label": "Gun Combat (Slug)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
@@ -513,6 +568,7 @@
           "label": "Heavy Weapons",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -521,6 +577,7 @@
           "label": "Heavy Weapons (Artillery)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
@@ -529,6 +586,7 @@
           "label": "Heavy Weapons (Man-Portable)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
@@ -537,6 +595,7 @@
           "label": "Heavy Weapons (Vehicle)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
@@ -545,6 +604,7 @@
           "label": "Investigate",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "language": {
@@ -553,6 +613,7 @@
           "value": -3,
           "max": 0,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -562,6 +623,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -571,6 +633,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -580,6 +643,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -589,6 +653,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -598,6 +663,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -607,6 +673,7 @@
           "value": -3,
           "customNamed": true,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "language"
         },
@@ -615,6 +682,7 @@
           "label": "Leadership",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "mechanic": {
@@ -622,6 +690,7 @@
           "label": "Mechanic",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "medic": {
@@ -629,6 +698,7 @@
           "label": "Medic",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "melee": {
@@ -636,6 +706,7 @@
           "label": "Melee",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -644,6 +715,7 @@
           "label": "Melee (Blade)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
@@ -652,6 +724,7 @@
           "label": "Melee (Bludgeon)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
@@ -660,6 +733,7 @@
           "label": "Melee (Natural)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
@@ -668,6 +742,7 @@
           "label": "Melee (Unarmed)",
           "value": -3,
           "skillType": "weapon",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
@@ -676,6 +751,7 @@
           "label": "Navigation",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "persuade": {
@@ -683,6 +759,7 @@
           "label": "Persuade",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "pilot": {
@@ -690,6 +767,7 @@
           "label": "Pilot",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -698,6 +776,7 @@
           "label": "Pilot (Capital Ships)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
@@ -706,6 +785,7 @@
           "label": "Pilot (Small Craft)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
@@ -714,6 +794,7 @@
           "label": "Pilot (Spacecraft)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
@@ -722,6 +803,7 @@
           "label": "Profession",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -730,6 +812,7 @@
           "label": "Profession (Belter)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -738,6 +821,7 @@
           "label": "Profession (Biologicals)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -746,6 +830,7 @@
           "label": "Profession (Civil Engineering)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -754,6 +839,7 @@
           "label": "Profession (Construction)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -762,6 +848,7 @@
           "label": "Profession (Hydroponics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -770,6 +857,7 @@
           "label": "Profession (Polymers)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
@@ -778,6 +866,7 @@
           "label": "Recon",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "science": {
@@ -785,6 +874,7 @@
           "label": "Science",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -793,6 +883,7 @@
           "label": "Science (Archaeology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -801,6 +892,7 @@
           "label": "Science (Astronomy)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -809,6 +901,7 @@
           "label": "Science (Biology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -817,6 +910,7 @@
           "label": "Science (Chemistry)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -825,6 +919,7 @@
           "label": "Science (Cosmology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -833,6 +928,7 @@
           "label": "Science (Cybernetics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -841,6 +937,7 @@
           "label": "Science (Economics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -849,6 +946,7 @@
           "label": "Science (Genetics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -857,6 +955,7 @@
           "label": "Science (History)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -865,6 +964,7 @@
           "label": "Science (Linguistics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -873,6 +973,7 @@
           "label": "Science (Philosophy)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -881,6 +982,7 @@
           "label": "Science (Physics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -889,6 +991,7 @@
           "label": "Science (Planetology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -897,6 +1000,7 @@
           "label": "Science (Psionicology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -905,6 +1009,7 @@
           "label": "Science (Psychology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -913,6 +1018,7 @@
           "label": "Science (Robotics)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -921,6 +1027,7 @@
           "label": "Science (Sophontology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -929,6 +1036,7 @@
           "label": "Science (Xenology)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "science"
         },
@@ -937,6 +1045,7 @@
           "label": "Seafarer",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -945,6 +1054,7 @@
           "label": "Seafarer (Ocean Ships)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
@@ -953,6 +1063,7 @@
           "label": "Seafarer (Personal)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
@@ -961,6 +1072,7 @@
           "label": "Seafarer (Sail)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
@@ -969,6 +1081,7 @@
           "label": "Seafarer (Submarine)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
@@ -977,6 +1090,7 @@
           "label": "Stealth",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "steward": {
@@ -984,6 +1098,7 @@
           "label": "Steward",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "streetwise": {
@@ -991,6 +1106,7 @@
           "label": "Streetwise",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "survival": {
@@ -998,6 +1114,7 @@
           "label": "Survival",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         },
         "tactics": {
@@ -1005,6 +1122,7 @@
           "label": "Tactics",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "hasChildren": true
         },
@@ -1013,6 +1131,7 @@
           "label": "Tactics (Military)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "tactics"
         },
@@ -1021,6 +1140,7 @@
           "label": "Tactics (Naval)",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength",
           "childOf": "tactics"
         },
@@ -1029,6 +1149,7 @@
           "label": "Vacc Suit",
           "value": -3,
           "skillType": "basic",
+          "skillSource": "2e",
           "defaultCharacteristic": "strength"
         }
       }
@@ -1091,7 +1212,8 @@
       "label": "",
       "value": -3,
       "skillType": "basic",
-      "defaultCharacteristic": "strength",
+          "skillSource": "2e",
+          "defaultCharacteristic": "strength",
       "hasChildren": false,
       "childOf": null,
       "description": "",
