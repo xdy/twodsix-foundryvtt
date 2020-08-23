@@ -1,3 +1,11 @@
+## [0.3.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.16...v0.3.17) (2020-08-23)
+
+
+### Bug Fixes
+
+* Cleanup and renaming ([f456400](https://github.com/xdy/twodsix-foundryvtt/commit/f4564003105730795e78dd72b0f6b3a7673b0817))
+* Cleanup and renaming ([11073ec](https://github.com/xdy/twodsix-foundryvtt/commit/11073ec496b03fc9eed62efd17957321736c976e))
+
 ## [0.3.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.15...v0.3.16) (2020-08-23)
 
 
