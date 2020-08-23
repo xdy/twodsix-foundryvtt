@@ -1,3 +1,10 @@
+## [0.3.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.15...v0.3.16) (2020-08-23)
+
+
+### Bug Fixes
+
+* Removed todo from system.json ([dd25074](https://github.com/xdy/twodsix-foundryvtt/commit/dd25074ae343eb12aa2eadb2e894d06a0d28dfde))
+
 ## [0.3.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.14...v0.3.15) (2020-08-22)
 
 
