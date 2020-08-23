@@ -84,7 +84,7 @@ Hooks.once('setup', async function () {
 
 Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createMongooseTraveller2eMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => createTwodsixMacro(data, slot));
 
   // Set up migrations here once needed.
 });
@@ -126,7 +126,7 @@ Hooks.on('preCreateActor', async (actor, dir) => {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createMongooseTraveller2eMacro(data, slot) {
+async function createTwodsixMacro(data, slot) {
   if (data.type !== "Item") return;
   if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
   const item = data.data;
@@ -141,7 +141,7 @@ async function createMongooseTraveller2eMacro(data, slot) {
       type: "script",
       img: item.img,
       command: command,
-      flags: {"mongoosetraveller2e.itemMacro": true}
+      flags: {"twodsix.itemMacro": true}
     });
   }
   game.user.assignHotbarMacro(macro as Macro, slot);
