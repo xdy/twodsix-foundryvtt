@@ -1,3 +1,10 @@
+## [0.3.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.17...v0.3.18) (2020-08-23)
+
+
+### Bug Fixes
+
+* Cut and paste error ([65cab91](https://github.com/xdy/twodsix-foundryvtt/commit/65cab91561c9905242e3686376ba7d6e01478571))
+
 ## [0.3.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.16...v0.3.17) (2020-08-23)
 
 
