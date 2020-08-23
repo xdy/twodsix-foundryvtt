@@ -11,7 +11,7 @@
   "changelog": "",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.5",
-  "description": "2d6 Variant Rules System. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.<br/>See the files OpenGameLicense.md and LICENSE for license details (TODO fill out the OGL properly).<br/>",
+  "description": "2d6 Variant Rules System. A system for running games using various 2d6-based role-playing games.<br/>See the files OpenGameLicense.md and LICENSE for license details.<br/>",
   "esmodules": [
     "twodsix.bundle.js"
   ],
