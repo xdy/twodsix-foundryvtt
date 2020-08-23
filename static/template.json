@@ -23,745 +23,1013 @@
       "bio": "",
       "characteristics": {
         "strength": {
+          "key": "strength",
           "value": 7,
           "damage": 0,
           "label": "Strength",
           "shortLabel": "STR"
         },
         "dexterity": {
+          "key": "dexterity",
           "value": 7,
           "damage": 0,
           "label": "Dexterity",
           "shortLabel": "DEX"
         },
         "endurance": {
+          "key": "endurance",
           "value": 7,
           "damage": 0,
           "label": "Endurance",
           "shortLabel": "END"
         },
-        "intellect": {
+        "intelligence": {
+          "key": "intelligence",
           "value": 7,
           "damage": 0,
-          "label": "Intellect",
+          "label": "Intelligence",
           "shortLabel": "INT"
         },
         "education": {
+          "key": "education",
           "value": 7,
           "damage": 0,
           "label": "Education",
           "shortLabel": "EDU"
         },
-        "social": {
+        "socialStanding": {
+          "key": "socialStanding",
           "value": 7,
           "damage": 0,
-          "label": "Social",
+          "label": "Social Standing",
           "shortLabel": "SOC"
         },
-        "psionics": {
+        "psionicStrength": {
+          "key": "psionicStrength",
           "value": 7,
           "damage": 0,
-          "label": "Psionics",
+          "label": "Psionic Strength",
           "shortLabel": "PSI"
         }
       },
       "jackOfAllTrades": {
+        "key": "jackOfAllTrades",
         "label": "Jack of All Trades",
         "value": 0
       },
       "skills": {
         "admin": {
+          "key": "admin",
           "label": "Admin",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength"
         },
         "advocate": {
+          "key": "advocate",
           "label": "Advocate",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength"
         },
         "animals": {
+          "key": "animals",
           "label": "Animals",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "animals-handling": {
+          "key": "animals-handling",
           "label": "Animals (Handling)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
         "animals-training": {
+          "key": "animals-training",
           "label": "Animals (Training)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
         "animals-veterinary": {
+          "key": "animals-veterinary",
           "label": "Animals (Veterinary)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "animals"
         },
         "art": {
+          "key": "art",
           "label": "Art",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "art-performer": {
+          "key": "art-performer",
           "label": "Art (Performer)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "art"
         },
         "art-holography": {
+          "key": "art-holography",
           "label": "Art (Holography)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "art"
         },
         "art-instrument": {
+          "key": "art-instrument",
           "label": "Art (Instrument)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "art"
         },
         "art-visualmedia": {
+          "key": "art-visualmedia",
           "label": "Art (Visual Media)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "art"
         },
         "art-write": {
+          "key": "art-write",
           "label": "Art (Write)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "art"
         },
         "astrogation": {
+          "key": "astrogation",
           "label": "Astrogation",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "athletics": {
+          "key": "athletics",
           "label": "Athletics",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
+        "athletics-archery": {
+          "key": "athletics-archery",
+          "label": "Athletics (Archery)",
+          "value": -3,
+          "skillType": "weapon",
+          "defaultCharacteristic": "dexterity",
+          "childOf": "athletics"
+        },
         "athletics-dex": {
+          "key": "athletics-dex",
           "label": "Athletics (DEX)",
           "value": -3,
-          "characteristic": "dexterity",
+          "skillType": "basic",
+          "defaultCharacteristic": "dexterity",
           "childOf": "athletics"
         },
         "athletics-end": {
+          "key": "athletics-end",
           "label": "Athletics (END)",
           "value": -3,
-          "characteristic": "endurance",
+          "skillType": "basic",
+          "defaultCharacteristic": "endurance",
           "childOf": "athletics"
         },
         "athletics-str": {
+          "key": "athletics-str",
           "label": "Athletics (STR)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "athletics"
         },
+        "battleDress": {
+          "key": "battleDress",
+          "label": "Battle Dress",
+          "value": -3,
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
+        },
         "broker": {
+          "key": "broker",
           "label": "Broker",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "carouse": {
+          "key": "carouse",
           "label": "Carouse",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "deception": {
+          "key": "deception",
           "label": "Deception",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "diplomat": {
+          "key": "diplomat",
           "label": "Diplomat",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "drive": {
+          "key": "drive",
           "label": "Drive",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "drive-hovercraft": {
+          "key": "drive-hovercraft",
           "label": "Drive (Hovercraft)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
         "drive-mole": {
+          "key": "drive-mole",
           "label": "Drive (Mole)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
         "drive-track": {
-          "label": "Drive (Track)",
+          "key": "drive-track",
+          "label": "Drive (Tracked)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
         "drive-walker": {
+          "key": "drive-walker",
           "label": "Drive (Walker)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
         "drive-wheel": {
-          "label": "Drive (Wheel)",
+          "key": "drive-wheel",
+          "label": "Drive (Wheeled)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "drive"
         },
         "electronics": {
+          "key": "electronics",
           "label": "Electronics",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "electronics-comms": {
+          "key": "electronics-comms",
           "label": "Electronics (Comms)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
         "electronics-computers": {
+          "key": "electronics-computers",
           "label": "Electronics (Computers)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
         "electronics-remoteops": {
+          "key": "electronics-remoteops",
           "label": "Electronics (Remote Ops)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
         "electronics-sensors": {
+          "key": "electronics-sensors",
           "label": "Electronics (Sensors)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "electronics"
         },
-        "engineer-mdrive": {
-          "label": "Engineer (M-Drive)",
+        "engineer-jumpDrive": {
+          "key": "engineer-jumpDrive",
+          "label": "Engineer (Jump Drive)",
           "value": -3,
-          "characteristic": "strength",
-          "childOf": "electronics"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
+          "childOf": "engineer"
         },
-        "engineer-jdrive": {
-          "label": "Engineer (J-Drive)",
-          "value": -3,
-          "characteristic": "strength",
-          "childOf": "electronics"
-        },
-        "engineer-lifesupport": {
+        "engineer-lifeSupport": {
+          "key": "engineer-lifeSupport",
           "label": "Engineer (Life Support)",
           "value": -3,
-          "characteristic": "strength",
-          "childOf": "electronics"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
+          "childOf": "engineer"
         },
-        "engineer-power": {
-          "label": "Engineer (Power)",
+        "engineer-maneuverDrive": {
+          "key": "engineer-maneuverDrive",
+          "label": "Engineer (Maneuver Drive)",
           "value": -3,
-          "characteristic": "strength",
-          "childOf": "electronics"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
+          "childOf": "engineer"
+        },
+        "engineer-powerPlant": {
+          "key": "engineer-powerPlant",
+          "label": "Engineer (Power Plant)",
+          "value": -3,
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
+          "childOf": "engineer"
         },
         "explosives": {
+          "key": "explosives",
           "label": "Explosives",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "flyer": {
+          "key": "flyer",
           "label": "Flyer",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "flyer-airship": {
+          "key": "flyer-airship",
           "label": "Flyer (Airship)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
         "flyer-grav": {
+          "key": "flyer-grav",
           "label": "Flyer (Grav)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
         "flyer-ornithopter": {
+          "key": "flyer-ornithopter",
           "label": "Flyer (Ornithopter)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
         "flyer-rotor": {
+          "key": "flyer-rotor",
           "label": "Flyer (Rotor)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
         "flyer-wing": {
+          "key": "flyer-wing",
           "label": "Flyer (Wing)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "flyer"
         },
         "gambler": {
+          "key": "gambler",
           "label": "Gambler",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "gunner": {
+          "key": "gunner",
           "label": "Gunner",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
-        "gunner-turret": {
-          "label": "Gunner (Turret)",
+        "gunner-capitalWeapons": {
+          "key": "gunner-capitalWeapons",
+          "label": "Gunner (Capital Weapons)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
         "gunner-ortillery": {
+          "key": "gunner-ortillery",
           "label": "Gunner (Ortillery)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
         "gunner-screen": {
-          "label": "Gunner (Screen)",
+          "key": "gunner-screen",
+          "label": "Gunner (Screens)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
-        "gunner-capital": {
-          "label": "Gunner (Capital)",
+        "gunner-turret": {
+          "key": "gunner-turret",
+          "label": "Gunner (Turret)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "gunner"
         },
         "guncombat": {
+          "key": "guncombat",
           "label": "Gun Combat",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "guncombat-archaic": {
+          "key": "guncombat-archaic",
           "label": "Gun Combat (Archaic)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
         "guncombat-energy": {
+          "key": "guncombat-energy",
           "label": "Gun Combat (Energy)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
         "guncombat-slug": {
+          "key": "guncombat-slug",
           "label": "Gun Combat (Slug)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "guncombat"
         },
         "heavyweapons": {
+          "key": "heavyweapons",
           "label": "Heavy Weapons",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "heavyweapons-artillery": {
+          "key": "heavyweapons-artillery",
           "label": "Heavy Weapons (Artillery)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
         "heavyweapons-manportable": {
-          "label": "Heavy Weapons (Man Portable)",
+          "key": "heavyweapons-manportable",
+          "label": "Heavy Weapons (Man-Portable)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
         "heavyweapons-vehicle": {
+          "key": "heavyweapons-vehicle",
           "label": "Heavy Weapons (Vehicle)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "heavyweapons"
         },
         "investigate": {
+          "key": "investigate",
           "label": "Investigate",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "language": {
-          "label": "Languages",
+          "key": "language",
+          "label": "Language",
           "value": -3,
           "max": 0,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
-        "language-1": {
-          "label": "Language 1",
+        "language-anglic": {
+          "key": "language-anglic",
+          "label": "Language (Anglic)",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
+          "childOf": "language"
+        },
+        "language-1": {
+          "key": "language-1",
+          "label": "Language (1)",
+          "value": -3,
+          "customNamed": true,
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "language"
         },
         "language-2": {
-          "label": "Language 2",
+          "key": "language-2",
+          "label": "Language (2)",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "language"
         },
         "language-3": {
-          "label": "Language 3",
+          "key": "language-3",
+          "label": "Language (3)",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "language"
         },
         "language-4": {
-          "label": "Language 4",
+          "key": "language-4",
+          "label": "Language (4)",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "language"
         },
         "language-5": {
-          "label": "Language 5",
+          "key": "language-5",
+          "label": "Language (5)",
           "value": -3,
           "customNamed": true,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "language"
         },
         "leadership": {
+          "key": "leadership",
           "label": "Leadership",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "mechanic": {
+          "key": "mechanic",
           "label": "Mechanic",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "medic": {
+          "key": "medic",
           "label": "Medic",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "melee": {
+          "key": "melee",
           "label": "Melee",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
-        "melee-unarmed": {
-          "label": "Melee (Unarmed)",
-          "value": -3,
-          "characteristic": "strength",
-          "childOf": "melee"
-        },
         "melee-blade": {
+          "key": "melee-blade",
           "label": "Melee (Blade)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
         "melee-bludgeon": {
+          "key": "melee-bludgeon",
           "label": "Melee (Bludgeon)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
         "melee-natural": {
+          "key": "melee-natural",
           "label": "Melee (Natural)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
+          "childOf": "melee"
+        },
+        "melee-unarmed": {
+          "key": "melee-unarmed",
+          "label": "Melee (Unarmed)",
+          "value": -3,
+          "skillType": "weapon",
+          "defaultCharacteristic": "strength",
           "childOf": "melee"
         },
         "navigation": {
+          "key": "navigation",
           "label": "Navigation",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "persuade": {
+          "key": "persuade",
           "label": "Persuade",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "pilot": {
+          "key": "pilot",
           "label": "Pilot",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "pilot-capitalships": {
+          "key": "pilot-capitalships",
           "label": "Pilot (Capital Ships)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
         "pilot-smallcraft": {
+          "key": "pilot-smallcraft",
           "label": "Pilot (Small Craft)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
         "pilot-spacecraft": {
+          "key": "pilot-spacecraft",
           "label": "Pilot (Spacecraft)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "pilot"
         },
         "profession": {
+          "key": "profession",
           "label": "Profession",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "profession-belter": {
+          "key": "profession-belter",
           "label": "Profession (Belter)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "profession-biologicals": {
+          "key": "profession-biologicals",
           "label": "Profession (Biologicals)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "profession-civilengineering": {
+          "key": "profession-civilengineering",
           "label": "Profession (Civil Engineering)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "profession-construction": {
+          "key": "profession-construction",
           "label": "Profession (Construction)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "profession-hydroponics": {
+          "key": "profession-hydroponics",
           "label": "Profession (Hydroponics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "profession-polymers": {
+          "key": "profession-polymers",
           "label": "Profession (Polymers)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "profession"
         },
         "recon": {
+          "key": "recon",
           "label": "Recon",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "science": {
+          "key": "science",
           "label": "Science",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "science-archaeology": {
+          "key": "science-archaeology",
           "label": "Science (Archaeology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-astronomy": {
+          "key": "science-astronomy",
           "label": "Science (Astronomy)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-biology": {
+          "key": "science-biology",
           "label": "Science (Biology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-chemistry": {
+          "key": "science-chemistry",
           "label": "Science (Chemistry)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-cosmology": {
+          "key": "science-cosmology",
           "label": "Science (Cosmology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-cybernetics": {
+          "key": "science-cybernetics",
           "label": "Science (Cybernetics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-economics": {
+          "key": "science-economics",
           "label": "Science (Economics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-genetics": {
+          "key": "science-genetics",
           "label": "Science (Genetics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-history": {
+          "key": "science-history",
           "label": "Science (History)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-linguistics": {
+          "key": "science-linguistics",
           "label": "Science (Linguistics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-philosophy": {
+          "key": "science-philosophy",
           "label": "Science (Philosophy)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-physics": {
+          "key": "science-physics",
           "label": "Science (Physics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-planetology": {
+          "key": "science-planetology",
           "label": "Science (Planetology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-psionicology": {
+          "key": "science-psionicology",
           "label": "Science (Psionicology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-psychology": {
+          "key": "science-psychology",
           "label": "Science (Psychology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-robotics": {
+          "key": "science-robotics",
           "label": "Science (Robotics)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-sophontology": {
+          "key": "science-sophontology",
           "label": "Science (Sophontology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "science-xenology": {
+          "key": "science-xenology",
           "label": "Science (Xenology)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "science"
         },
         "seafarer": {
+          "key": "seafarer",
           "label": "Seafarer",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "seafarer-oceanships": {
+          "key": "seafarer-oceanships",
           "label": "Seafarer (Ocean Ships)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
         "seafarer-personal": {
+          "key": "seafarer-personal",
           "label": "Seafarer (Personal)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
         "seafarer-sail": {
+          "key": "seafarer-sail",
           "label": "Seafarer (Sail)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
         "seafarer-submarine": {
+          "key": "seafarer-submarine",
           "label": "Seafarer (Submarine)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "seafarer"
         },
         "stealth": {
+          "key": "stealth",
           "label": "Stealth",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "steward": {
+          "key": "steward",
           "label": "Steward",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "streetwise": {
+          "key": "streetwise",
           "label": "Streetwise",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "survival": {
+          "key": "survival",
           "label": "Survival",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         },
         "tactics": {
+          "key": "tactics",
           "label": "Tactics",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "hasChildren": true
         },
         "tactics-military": {
+          "key": "tactics-military",
           "label": "Tactics (Military)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "tactics"
         },
         "tactics-naval": {
+          "key": "tactics-naval",
           "label": "Tactics (Naval)",
           "value": -3,
-          "characteristic": "strength",
+          "skillType": "basic",
+          "defaultCharacteristic": "strength",
           "childOf": "tactics"
         },
         "vaccsuit": {
+          "key": "vaccsuit",
           "label": "Vacc Suit",
           "value": -3,
-          "characteristic": "strength"
+          "skillType": "basic",
+          "defaultCharacteristic": "strength"
         }
       }
     }
@@ -771,7 +1039,8 @@
       "equipment",
       "weapon",
       "armor",
-      "augment"
+      "augment",
+      "skill"
     ],
     "templates": {
       "gearTemplate": {
@@ -816,6 +1085,19 @@
       ],
       "location": "",
       "type": "augment"
+    },
+    "skill": {
+      "key": "",
+      "label": "",
+      "value": -3,
+      "skillType": "basic",
+      "defaultCharacteristic": "strength",
+      "hasChildren": false,
+      "childOf": null,
+      "description": "",
+      "notes": "",
+      "reference": "",
+      "show": false
     }
   }
 }

@@ -40,11 +40,11 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat int">
-          <span class="stat-name">INT <img class="rollable" data-roll="2d6+{{data.characteristics.intellect.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.intellect.shortLabel}}" alt="roll intellect"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intellect.value" data-label="data.characteristics.intellect.value" value="{{data.characteristics.intellect.value}}" placeholder="0"
+          <span class="stat-name">INT <img class="rollable" data-roll="2d6+{{data.characteristics.intelligence.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.intelligence.shortLabel}}" alt="roll intelligence"/></span>
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value" data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}" placeholder="0"
                                             data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.intellect.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.intellect.value}}" min="0" name="data.characteristics.intellect.damage" value="{{data.characteristics.intellect.damage}}" placeholder="0"
+          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.intelligence.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.intelligence.value}}" min="0" name="data.characteristics.intelligence.damage" value="{{data.characteristics.intelligence.damage}}" placeholder="0"
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat edu">
@@ -56,20 +56,20 @@
                                            data-dtype="Number" onClick="this.select();"/></span>
         </div>
         <div class="stat soc">
-          <span class="stat-name">SOC <img class="rollable" data-roll="2d6+{{data.characteristics.social.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.social.shortLabel}}" alt="roll social"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.social.value" data-label="data.characteristics.social.value" value="{{data.characteristics.social.value}}" placeholder="0" data-dtype="Number"
+          <span class="stat-name">SOC <img class="rollable" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.socialStanding.shortLabel}}" alt="roll socialStanding"/></span>
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value" data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}" placeholder="0" data-dtype="Number"
                                             onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.social.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.social.value}}" min="0" name="data.characteristics.social.damage" value="{{data.characteristics.social.damage}}" placeholder="0" data-dtype="Number"
+          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.socialStanding.value}}" min="0" name="data.characteristics.socialStanding.damage" value="{{data.characteristics.socialStanding.damage}}" placeholder="0" data-dtype="Number"
                                            onClick="this.select();"/></span>
         </div>
         <div class="special psi">
-          <span class="special-name">PSI <img class="rollable" data-roll="2d6+{{data.psionics.strength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.psionics.shortLabel}}" alt="roll psionics"/></span>
-          <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionics.value" data-label="data.characteristics.psionics.value" value="{{data.characteristics.psionics.value}}" placeholder="0"
+          <span class="special-name">PSI <img class="rollable" data-roll="2d6+{{data.psionicStrength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.psionicStrength.shortLabel}}" alt="roll psionicStrength"/></span>
+          <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value" data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}" placeholder="0"
                                                data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-damage"><input type="number" max="{{data.characteristics.psionics.value}}" min="0" name="data.characteristics.psionics.damage" value="{{data.characteristics.psionics.damage}}" placeholder="0"
+          <span class="special-damage"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0" name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}" placeholder="0"
                                               data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.psionics.mod decimals=0 sign=true}}"/></span>
+          <span class="special-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
         </div>
       </div>
     </div>

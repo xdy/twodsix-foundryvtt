@@ -7,8 +7,8 @@
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.3.16",
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
-  "bugs": "",
-  "changelog": "",
+  "bugs": "Plenty of them, this is an early alpha...",
+  "changelog": "See CHANGELOG.md",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.5",
   "description": "2d6 Variant Rules System. A system for running games using various 2d6-based role-playing games.<br/>See the files OpenGameLicense.md and LICENSE for license details.<br/>",
@@ -28,115 +28,19 @@
   "license": "LICENSE",
   "packs": [
     {
-      "name": "skills",
-      "label": "Skills",
+      "name": "ce-skills",
+      "label": "ce skills",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce/skills.db",
+      "path": "./packs/ce-skills.db",
       "entity": "Item"
     },
     {
-      "name": "species",
-      "label": "Species",
+      "name": "2e-skills",
+      "label": "2e skills",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce/species.db",
-      "entity": "Item"
-    },
-    {
-      "name": "careers",
-      "label": "Careers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/careers.db",
-      "entity": "Item"
-    },
-    {
-      "name": "traits",
-      "label": "Traits",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/traits.db",
-      "entity": "Item"
-    },
-    {
-      "name": "psionics",
-      "label": "Psionics",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/psionics.db",
-      "entity": "Item"
-    },
-    {
-      "name": "gear",
-      "label": "Gear",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/gear.db",
-      "entity": "Item"
-    },
-    {
-      "name": "armor",
-      "label": "Armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "weapons",
-      "label": "Weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/weapons.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ammunition",
-      "label": "Ammunition",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/ammunition.db",
-      "entity": "Item"
-    },
-    {
-      "name": "consumables",
-      "label": "Consumables",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/consumables.db",
-      "entity": "Item"
-    },
-    {
-      "name": "computers",
-      "label": "Computers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/computers.db",
-      "entity": "Item"
-    },
-    {
-      "name": "software",
-      "label": "Software",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/software.db",
-      "entity": "Item"
-    },
-    {
-      "name": "vehicles",
-      "label": "Vehicles",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/vehicles.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ships",
-      "label": "Ships",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/ships.db",
+      "path": "./packs/2e-skills.db",
       "entity": "Item"
     }
   ],

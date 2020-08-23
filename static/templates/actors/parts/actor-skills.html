@@ -43,15 +43,15 @@
       </span>
 
 
-    <select class="select-mod" name="data.skills.{{key}}.characteristic" value={{skill.characteristic}}>
-      {{#select skill.characteristic}}
+    <select class="select-mod" name="data.skills.{{key}}.defaultCharacteristic" value={{skill.defaultCharacteristic}}>
+      {{#select skill.defaultCharacteristic}}
       <option value="strength" for="skill-modifier">STR</option>
       <option value="dexterity" for="skill-modifier">DEX</option>
       <option value="endurance" for="skill-modifier">END</option>
-      <option value="intellect" for="skill-modifier">INT</option>
+      <option value="intelligence" for="skill-modifier">INT</option>
       <option value="education" for="skill-modifier">EDU</option>
-      <option value="social" for="skill-modifier">SOC</option>
-      <option value="psionics" for="skill-modifier">PSI</option>
+      <option value="socialStanding" for="skill-modifier">SOC</option>
+      <option value="psionicStrength" for="skill-modifier">PSI</option>
       {{/select}}
     </select>
 
