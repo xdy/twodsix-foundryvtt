@@ -36,7 +36,7 @@
     "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
     "fs-extra": "^9.0.1",
     "mini-css-extract-plugin": "^0.10.0",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "semantic-release": "^17.1.1",
