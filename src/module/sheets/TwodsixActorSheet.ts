@@ -66,7 +66,7 @@ export class TwodsixActorSheet extends ActorSheet {
       height: 648,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"},
-      {navSelector: ".sheet-subtabs", contentSelector: ".sheet-subbody", initial: "equipped"}]
+      {navSelector: ".sub-tabs", contentSelector: ".sub-body", initial: "storage"}]
     });
   }
 

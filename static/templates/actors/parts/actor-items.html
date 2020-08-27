@@ -1,9 +1,9 @@
 {{!-- Sheet Body --}}
-<div class="character-tabs-info sheet-subbody">
+<div class="character-tabs-info sheet-body sub-body">
 
   {{!-- Sheet Tab Navigation --}}
   <div class="character-subtabs">
-    <nav class="sheet-subtabs tabs" data-group="primairy">
+    <nav class="sheet-tabs sub-tabs tabs" data-group="primairy">
       <a class="item inventory-tab" data-tab="equipped">Equipped</a>
       <a class="item storage-tab" data-tab="storage">Storage</a>
       <a class="item finances-tab" data-tab="finances">Finances</a>
@@ -12,16 +12,188 @@
 
   {{!-- Equiped Tab --}}
   <div class="tab equipped" data-group="primairy" data-tab="equipped">
-    {{> "systems/twodsix/templates/actors/parts/items/actor-items-inventory.html"}}
-  </div>
+  <div> <span class="pusher"></span>
+
+    <!---- WEAPONS ---->
+
+    <span class="item-title">WEAPONS</span>
+    <div class="items-weapons">
+      <span class="item-name">Name</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Qty.</span>
+      <span class="item-name centre">Weight</span>
+      <span class="item-name centre">Range</span>
+      <span class="item-name centre">Damage</span>
+      <span class="item-name centre">Ammo</span>
+      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="weapon"><i
+            class="fas fa-plus"></i></a></span>
+    </div>
+
+    {{#each actor.weapon as |item id|}}
+    <div class="item">
+      <ol class="ol-no-indent">
+        <li class="item flexrow" data-item-id="{{item._id}}">
+          <span class="items-weapons">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-name centre">{{data.techLevel}}</span>
+            <span class="item-name centre">{{data.quantity}}</span>
+            <span class="item-name centre">{{data.weight}}</span>
+            <span class="item-name centre">{{data.range}}</span>
+            <span class="item-name centre rollable" data-roll="{{data.damage}}" alt="roll weapon">{{data.damage}}</span>
+            <span class="item-name centre">{{data.ammo}}</span>
+            <span class="item-controls centre">
+              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </span>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+
+    <!---- ARMOR ---->
+    <div> <span class="pusher"></span>
+      <span class="item-title">ARMOR</span>
+      <div class="items-armor">
+        <span class="item-name">Name</span>
+        <span class="item-name centre">TL</span>
+        <span class="item-name centre">Qty.</span>
+        <span class="item-name centre">Weight</span>
+        <span class="item-name centre">Armor #</span>
+        <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="armor"><i
+              class="fas fa-plus"></i></a></span>
+      </div>
+
+      <div class="items-armor">
+        {{#each actor.armor as |item id|}}
+        <div class="item item-list">
+          <ol class="ol-no-indent">
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <span class="item-container">
+                <span class="item-name">{{item.name}}</span>
+                <span class="item-name centre">{{data.techLevel}}</span>
+                <span class="item-name centre">{{data.quantity}}</span>
+                <span class="item-name centre">{{data.weight}}</span>
+                <span class="item-name centre">{{data.armour}}</span>
+                <span class="item-controls centre">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </span>
+              </span>
+            </li>
+          </ol>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <!---- AUGMENTS ---->
+    <div> <span class="pusher"></span>
+      <span class="item-title">AUGMENTS</span>
+      <div class="items-augments">
+        <span class="item-name">Name</span>
+        <span class="item-name centre">TL</span>
+        <span class="item-name centre">Qty.</span>
+        <span class="item-name centre">Effect</span>
+        <span class="item-name centre">Location</span>
+        <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="augment"><i
+              class="fas fa-plus"></i></a></span>
+      </div>
+
+      <div class="items-augment">
+        {{#each actor.augment as |item id|}}
+        <div class="item item-list">
+          <ol class="ol-no-indent">
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <span class="item-container">
+                <span class="item-name">{{item.name}}</span>
+                <span class="item-name centre">{{data.techLevel}}</span>
+                <span class="item-name centre">{{data.quantity}}</span>
+                <span class="item-name centre">{{data.bonus}}</span>
+                <span class="item-name centre">{{data.location}}</span>
+                <span class="item-controls centre">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </span>
+              </span>
+            </li>
+          </ol>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+
+    <!---- EQUIPMENT ---->
+    <div> <span class="pusher"></span>
+      <span class="item-title">EQUIPMENT</span>
+      <div class="items-equipment">
+        <span class="item-name">Name</span>
+        <span class="item-name centre">TL</span>
+        <span class="item-name centre">Qty.</span>
+        <span class="item-name centre">Short Descr.</span>
+        <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="equipment"><i
+              class="fas fa-plus"></i></a></span>
+      </div>
+
+      <div class="items-equipment">
+        {{#each actor.equipment as |item id|}}
+        <div class="item item-list">
+          <ol class="ol-no-indent">
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <span class="item-container">
+                <span class="item-name">{{item.name}}</span>
+                <span class="item-name centre">{{data.techLevel}}</span>
+                <span class="item-name centre">{{data.quantity}}</span>
+                <span class="item-name centre">{{data.shortdescr}}</span>
+                <span class="item-controls centre">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </span>
+              </span>
+            </li>
+          </ol>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div></div>
+
 
   {{!-- Storage Items Tab --}}
   <div class="tab storage" data-group="primairy" data-tab="storage">
-    {{> "systems/twodsix/templates/actors/parts/items/actor-items-storage.html"}}
+    <div><span class="pusher"></span>
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+      STORAGE PAGE
+    </div>
   </div>
 
   {{!-- Finances Tab --}}
   <div class="tab finances" data-group="primairy" data-tab="finances">
-    {{> "systems/twodsix/templates/actors/parts/items/actor-items-finances.html"}}
+    <div><span class="pusher"></span>
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+      FINANCIAL PAGE
+    </div>
   </div>
 </div>
