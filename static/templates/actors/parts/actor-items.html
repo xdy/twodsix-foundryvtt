@@ -1,31 +1,27 @@
-<div class="item-container items-list">
-  <div class="item-name">Name</div>
-  <div class="item-name centre">TL</div>
-  <div class="item-name centre">Qty</div>
-  <div class="item-name centre">Weight</div>
-  <div class="item-name centre">Type</div>
-  <div class="item-controls centre">
-    <a class="item-control item-create" title="Create item" data-type="equipment"><i class="fas fa-plus"></i></a>
+{{!-- Sheet Body --}}
+<div class="character-tabs-info sheet-body">
+
+  {{!-- Sheet Tab Navigation --}}
+  <div class="character-subtabs">
+    <nav class="sheet-tabs tabs" data-group="primary">
+      <a class="item equiped-tab" data-tab="equiped">Equiped</a>
+      <a class="item storage-tab" data-tab="storage">Storage</a>
+      <a class="item finances-tab" data-tab="finances">Finances</a>
+    </nav>
+  </div>
+
+  {{!-- Equiped Tab --}}
+  <div class="tab equiped" data-group="primary" data-tab="equiped">
+    {{> "systems/twodsix/templates/actors/parts/actor-items-equiped.html"}}
+  </div>
+
+  {{!-- Storage Items Tab --}}
+  <div class="tab storage" data-group="primary" data-tab="storage">
+    {{> "systems/twodsix/templates/actors/parts/actor-items-storage.html"}}
+  </div>
+
+  {{!-- Finances Tab --}}
+  <div class="tab finances" data-group="primary" data-tab="finances">
+    {{> "systems/twodsix/templates/actors/parts/actor-items-finances.html"}}
   </div>
 </div>
-
-
-{{#each actor.gear as |item id|}}
-<div class="item item-list">
-  <ol class="ol-no-indent">
-    <li class="item flexrow" data-item-id="{{item._id}}">
-      <span class="item-container">
-        <span class="item-name">{{item.name}}</span>
-        <span class="item-name centre">{{data.techLevel}}</span>
-        <span class="item-name centre">{{data.quantity}}</span>
-        <span class="item-name centre">{{data.weight}}</span>
-        <span class="item-type centre">{{item.type}}</span>
-        <span class="item-controls centre">
-          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-        </span>
-      </span>
-    </li>
-  </ol>
-</div>
-{{/each}}
