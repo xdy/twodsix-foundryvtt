@@ -1,31 +1,144 @@
-<div class="item-container items-list">
-  <div class="item-name">Name</div>
-  <div class="item-name centre">TL</div>
-  <div class="item-name centre">Qty</div>
-  <div class="item-name centre">Weight</div>
-  <div class="item-name centre">Type</div>
-  <div class="item-controls centre">
-    <a class="item-control item-create" title="Create item" data-type="equipment"><i class="fas fa-plus"></i></a>
+{{!-- Sheet Body --}}
+<div class="character-tabs-info character-inventory">
+  <div> <span class="pusher"></span>
+    
+    <!---- WEAPONS ---->
+
+    <span class="item-title">WEAPONS</span>
+    <div class="items-weapons gear-header">
+      <span class="item-name">Name</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Qty.</span>
+      <span class="item-name centre">Weight</span>
+      <span class="item-name centre">Range</span>
+      <span class="item-name centre">Damage</span>
+      <span class="item-name centre">Ammo</span>
+      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="weapon"><i
+            class="fas fa-plus"></i></a></span>
+    </div>
+
+    {{#each actor.weapon as |item id|}}
+    <div class="item gear">
+      <ol class="ol-no-indent">
+        <li class="item flexrow" data-item-id="{{item._id}}">
+          <span class="items-weapons">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-name centre">{{data.techLevel}}</span>
+            <span class="item-name centre">{{data.quantity}}</span>
+            <span class="item-name centre">{{data.weight}}</span>
+            <span class="item-name centre">{{data.range}}</span>
+            <span class="item-name centre rollable" data-roll="{{data.damage}}" alt="roll weapon">{{data.damage}}</span>
+            <span class="item-name centre">{{data.ammo}}</span>
+            <span class="item-controls centre">
+              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </span>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+  </div>
+
+  <!---- ARMOR ---->
+  <div> <span class="pusher"></span>
+    <span class="item-title">ARMOR</span>
+    <div class="items-armor gear-header">
+      <span class="item-name">Name</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Qty.</span>
+      <span class="item-name centre">Weight</span>
+      <span class="item-name centre">Armor #</span>
+      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="armor"><i
+            class="fas fa-plus"></i></a></span>
+    </div>
+
+
+    {{#each actor.armor as |item id|}}
+    <div class="item gear">
+      <ol class="ol-no-indent">
+        <li class="item flexrow" data-item-id="{{item._id}}">
+          <span class="items-armor">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-name centre">{{data.techLevel}}</span>
+            <span class="item-name centre">{{data.quantity}}</span>
+            <span class="item-name centre">{{data.weight}}</span>
+            <span class="item-name centre">{{data.armor}}</span>
+            <span class="item-controls centre">
+              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </span>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+  </div>
+
+  <!---- AUGMENTS ---->
+  <div> <span class="pusher"></span>
+    <span class="item-title">AUGMENTS</span>
+    <div class="items-augments gear-header">
+      <span class="item-name">Name</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Qty.</span>
+      <span class="item-name centre">Effect</span>
+      <span class="item-name centre">Location</span>
+      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="augment"><i
+            class="fas fa-plus"></i></a></span>
+    </div>
+
+    {{#each actor.augment as |item id|}}
+    <div class="item gear">
+      <ol class="ol-no-indent">
+        <li class="item flexrow" data-item-id="{{item._id}}">
+          <span class="items-augments">
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-name centre">{{data.techLevel}}</span>
+            <span class="item-name centre">{{data.quantity}}</span>
+            <span class="item-name centre">{{data.bonus}}</span>
+            <span class="item-name centre">{{data.auglocation}}</span>
+            <span class="item-controls centre">
+              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </span>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+  </div>
+
+  <!---- EQUIPMENT ---->
+  <div> <span class="pusher"></span>
+    <span class="item-title">EQUIPMENT</span>
+    <div class="items-equipment gear-header">
+      <span class="item-name">Name</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Qty.</span>
+      <span class="item-name centre">Short Descr.</span>
+      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="equipment"><i
+            class="fas fa-plus"></i></a></span>
+    </div>
+
+
+      {{#each actor.equipment as |item id|}}
+      <div class="item gear">
+        <ol class="ol-no-indent">
+          <li class="item flexrow" data-item-id="{{item._id}}">
+            <span class="items-equipment">
+              <span class="item-name">{{item.name}}</span>
+              <span class="item-name centre">{{data.techLevel}}</span>
+              <span class="item-name centre">{{data.quantity}}</span>
+              <span class="item-name centre">{{data.shortdescr}}</span>
+              <span class="item-controls centre">
+                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+              </span>
+            </span>
+          </li>
+        </ol>
+      </div>
+      {{/each}}
   </div>
 </div>
-
-
-{{#each actor.gear as |item id|}}
-<div class="item item-list">
-  <ol class="ol-no-indent">
-    <li class="item flexrow" data-item-id="{{item._id}}">
-      <span class="item-container">
-        <span class="item-name">{{item.name}}</span>
-        <span class="item-name centre">{{data.techLevel}}</span>
-        <span class="item-name centre">{{data.quantity}}</span>
-        <span class="item-name centre">{{data.weight}}</span>
-        <span class="item-type centre">{{item.type}}</span>
-        <span class="item-controls centre">
-          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-        </span>
-      </span>
-    </li>
-  </ol>
-</div>
-{{/each}}

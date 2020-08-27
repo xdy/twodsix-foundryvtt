@@ -181,7 +181,7 @@
 
 * Switched to Kevin's/Rob's way of doing things. ([047859b](https://github.com/UltraKev/twodsix-foundryvtt/commit/047859b8a0d1beba7045e55fd08525d4acafda96))
 
-## [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
+# [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
 
 
 ### Bug Fixes

@@ -1,88 +1,143 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+  <img class="content-background" src="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?" />
   <div class="content-container">
-    <div class="character-info"><img class="character-info-mask" src="./systems/twodsix/assets/actor/profile-block.svg" alt="?"/>
+    <div class="character-info">
+      <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?" />
       <div class="character-photo">
-        <span class="helper"></span>
-        <div class="character-photo"><img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="Character image"/></div>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="Character image" />
       </div>
-      <div class="character-name"><h2><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name" onClick="this.select();"/></h2></div>
+      <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"
+          onClick="this.select();" /></div>
       <div class="character-bgi">
-        <span class="bgi-age">Age:<input type="text" name="data.age.value" value="{{data.age.value}}" placeholder="0"/></span>
-        <span class="bgi-gender">Gender:<input name="data.gender" type="text" value="{{data.gender}}" placeholder="Gender" onClick="this.select();"/></span>
-        <span class="bgi-species">Species:<input name="data.species" type="text" value="{{data.species}}" placeholder="Species" onClick="this.select();"/></span>
-        <span class="bgi-homeWorld">Home world:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}" placeholder="Homeworld" onClick="this.select();"/></span>
+        <span class="bgi-age">Age:<input type="text" name="data.age.value" value="{{data.age.value}}"
+            placeholder="0" /></span>
+        <span class="bgi-gender">Gender:<input name="data.gender" type="text" value="{{data.gender}}"
+            placeholder="Gender" onClick="this.select();" /></span>
+        <span class="bgi-species">Species:<input name="data.species" type="text" value="{{data.species}}"
+            placeholder="Species" onClick="this.select();" /></span>
+        <span class="bgi-homeWorld">Home world:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
+            placeholder="Homeworld" onClick="this.select();" /></span>
       </div>
 
       <div class="character-characteristics">
         <div class="stat str">
-          <span class="stat-name">STR
-            <img class="rollable" data-roll="2d6+{{data.characteristics.strength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.strength.shortLabel}}" alt="roll strength"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value" data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}" placeholder="0"
-                                            data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.strength.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0" name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}" placeholder="0" data-dtype="Number"
-                                           onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
+          alt="roll strength" >STR <img src="./systems/twodsix/assets/d6-icon.svg" /></span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
+              data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.strength.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0"
+              name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="stat dex">
-          <span class="stat-name">DEX <img class="rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.dexterity.shortLabel}}" alt="roll dexterity"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value" data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}" placeholder="0"
-                                            data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.dexterity.value}}" min="0" name="data.characteristics.dexterity.damage" value="{{data.characteristics.dexterity.damage}}" placeholder="0"
-                                           data-dtype="Number" onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}"
+          alt="roll dexterity" >DEX <img src="./systems/twodsix/assets/d6-icon.svg" />
+          </span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value"
+              data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.dexterity.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.dexterity.value}}" min="0"
+              name="data.characteristics.dexterity.damage" value="{{data.characteristics.dexterity.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="stat end">
-          <span class="stat-name">END <img class="rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.endurance.shortLabel}}" alt="roll endurance"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value" data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}" placeholder="0"
-                                            data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0" name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}" placeholder="0"
-                                           data-dtype="Number" onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
+          alt="roll endurance" >END <img src="./systems/twodsix/assets/d6-icon.svg" />
+        </span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
+              data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.endurance.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0"
+              name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="stat int">
-          <span class="stat-name">INT <img class="rollable" data-roll="2d6+{{data.characteristics.intelligence.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.intelligence.shortLabel}}" alt="roll intelligence"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value" data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}" placeholder="0"
-                                            data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.intelligence.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.intelligence.value}}" min="0" name="data.characteristics.intelligence.damage" value="{{data.characteristics.intelligence.damage}}" placeholder="0"
-                                           data-dtype="Number" onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}"
+          alt="roll intelligence" >INT <img src="./systems/twodsix/assets/d6-icon.svg" />
+        </span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value"
+              data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.intelligence.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.intelligence.value}}" min="0"
+              name="data.characteristics.intelligence.damage" value="{{data.characteristics.intelligence.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="stat edu">
-          <span class="stat-name">EDU <img class="rollable" data-roll="2d6+{{data.characteristics.education.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.education.shortLabel}}" alt="roll education"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value" data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}" placeholder="0"
-                                            data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.education.value}}" min="0" name="data.characteristics.education.damage" value="{{data.characteristics.education.damage}}" placeholder="0"
-                                           data-dtype="Number" onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}"
+          alt="roll education" >EDU <img src="./systems/twodsix/assets/d6-icon.svg"/>
+        </span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value"
+              data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.education.value}}" min="0"
+              name="data.characteristics.education.damage" value="{{data.characteristics.education.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="stat soc">
-          <span class="stat-name">SOC <img class="rollable" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.socialStanding.shortLabel}}" alt="roll socialStanding"/></span>
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value" data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}" placeholder="0" data-dtype="Number"
-                                            onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.socialStanding.value}}" min="0" name="data.characteristics.socialStanding.damage" value="{{data.characteristics.socialStanding.damage}}" placeholder="0" data-dtype="Number"
-                                           onClick="this.select();"/></span>
+          <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}"
+          alt="roll socialStanding">SOC <img src="./systems/twodsix/assets/d6-icon.svg" />
+        </span>
+
+          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value"
+              data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="stat-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.socialStanding.mod decimals=0 sign=true}}" /></span>
+          <span class="stat-damage"><input type="number" max="{{data.characteristics.socialStanding.value}}" min="0"
+              name="data.characteristics.socialStanding.damage" value="{{data.characteristics.socialStanding.damage}}" placeholder="0"
+              data-dtype="Number" onClick="this.select();" /></span>
         </div>
+
         <div class="special psi">
-          <span class="special-name">PSI <img class="rollable" data-roll="2d6+{{data.psionicStrength.mod}}" src="./systems/twodsix/assets/d6-icon.svg" data-label="{{data.characteristics.psionicStrength.shortLabel}}" alt="roll psionicStrength"/></span>
-          <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value" data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}" placeholder="0"
-                                               data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-damage"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0" name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}" placeholder="0"
-                                              data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-modifier"><input readonly type="text" value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
+          <span class="special-name rollable" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
+          alt="roll psionicStrength" >PSI <img src="./systems/twodsix/assets/d6-icon.svg" />
+        </span>
+
+          <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
+              data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="special-damage"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
+              name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();" /></span>
+          <span class="special-modifier"><input readonly type="text"
+              value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}" /></span>
+
         </div>
       </div>
     </div>
 
-    {{!-- Sheet Body --}}
-    <div class="character-tabs-info sheet-body">
+      {{!-- Sheet Body --}}
+      <div class="character-tabs-info sheet-body">
 
-      {{!-- Sheet Tab Navigation --}}
-      <div class="character-tabs">
-        <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item" data-tab="skills">Skills</a>
-          <a class="item" data-tab="items">Inventory</a>
-          <a class="item" data-tab="info">Info</a>
+        {{!-- Sheet Tab Navigation --}}
+        <div class="character-tabs">
+          <nav class="sheet-tabs tabs" data-group="primary">
+          <a class="item skill-tab" data-tab="skills">Skills</a>
+          <a class="item item-tab" data-tab="inventory">Inventory</a>
+          <a class="item finances-tab" data-tab="finances">Finances</a>
+          <a class="item info-tab" data-tab="info">Info</a>
+           <a class="item notes-tab" data-tab="notes">Notes</a>
         </nav>
       </div>
 
@@ -92,13 +147,23 @@
       </div>
 
       {{!-- Owned Items Tab --}}
-      <div class="tab items" data-group="primary" data-tab="items">
+      <div class="tab inventory" data-group="primary" data-tab="inventory">
         {{> "systems/twodsix/templates/actors/parts/actor-items.html"}}
+      </div>
+
+      {{!-- Finances Tab --}}
+      <div class="tab finances" data-group="primary" data-tab="finances">
+        {{> "systems/twodsix/templates/actors/parts/actor-finances.html"}}
       </div>
 
       {{!-- Biography Tab --}}
       <div class="tab info" data-group="primary" data-tab="info">
         {{> "systems/twodsix/templates/actors/parts/actor-info.html"}}
+      </div>
+
+      {{!-- Notes Tab --}}
+      <div class="tab notes" data-group="primary" data-tab="notes">
+        {{> "systems/twodsix/templates/actors/parts/actor-notes.html"}}
       </div>
 
     </div>

@@ -1,65 +1,39 @@
-<div class="skills grid grid-2col">
-  <button class="flexrow flex-group-center toggle-skills">
-    {{#if @root.options.hideUntrainedSkills}}
-    Hide Untrained
-    {{else}}
-    Show Untrained
-    {{/if}}
-  </button>
-
-
-  <div class="skills-joat"></div>
-  <label for="joat" class="flex3 resource-label">Jack of All Trades</label>
-  <span class="flex4">
-    <i class="fa fa-arrow-circle-down downgrade-joat downgrade-joat-{{data.jackOfAllTrades.value}}"></i>
-    <i class="fa fa-arrow-circle-up upgrade-joat upgrade-joat-{{data.jackOfAllTrades.value}}"></i>
-    {{data.jackOfAllTrades.value}}
-  </span></div>
-
-
-<div class="skills grid grid-4col">
+<a class="add-skill item-control item-create" title="Create item" data-type="skills"><span class="add-skill-txt"></span>>> Add Skill <<</span></i></a>
+<div class="skill-list">
   <span class="skill-container">
+    <span></span>
     <span class="skill-title">Skill Name</span>
-    <span class="skill-level">Level</span>
-    <span class="skill-mod">Modifier</span>
-    <span class="skill-total">Total</span>
-    <span class="roll-dice">Roll</span>
+    <span class="skill-level centre">Level</span>
+    <span class="skill-mod centre">Modifier</span>
+    <span class="skill-total centre">Total</span>
+    <span class="skill-edit-remove centre">Edit/Remove</span>
   </span>
-  {{#each data.skills as |skill key|}}
+</div>
 
-  {{#if (shouldShowSkill skill @root.options.hideUntrainedSkills)}}
 
-  <div class="skill skill-container trained-{{gte skill.value 0}}">
+{{#each actor.skills as |item id|}}
+<div class="skill">
+<span class="item skill-container" >
+  <ol class="ol-no-indent">
+    <li class="item flexrow" data-item-id="{{item._id}}">
+      <span class="skill-container rollable" >
+        <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" src="./systems/twodsix/assets/d6-icon.svg" /></span>
+        <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{item.name}}</span>
+        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.value}}</span>
+        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})
 
-    <label for="data.skills.{{key}}.value" class="flex2 resource-label skill-{{gte skill.value 0}}">{{skill.label}}</label>
+      </span>
+      <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.total}}</span>
 
-    <span class="skill-arrows flex1">
-        <i data-label="{{key}}" class="fa fa-arrow-circle-down downgrade-skill-{{gte skill.value 0}} downgrade-skill"></i>
 
-        <span class="skill-output flex1 skill-mod" data-label="{{skill.label}}">{{numberFormat (getSkillValueWithJoat skill @root.data.jackOfAllTrades) decimals=0 sign=true}}</span>
-
-        <i data-label="{{key}}" class="fa fa-arrow-circle-up upgrade-skill{{skill.value}} upgrade-skill"></i>
-        {{data.jackOfAllTrades.value}}
+      <span class="item-controls centre">
+          <a class="skl item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+          <a class="skl item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
       </span>
 
-
-    <select class="select-mod" name="data.skills.{{key}}.defaultCharacteristic" value={{skill.defaultCharacteristic}}>
-      {{#select skill.defaultCharacteristic}}
-      <option value="strength" for="skill-modifier">STR</option>
-      <option value="dexterity" for="skill-modifier">DEX</option>
-      <option value="endurance" for="skill-modifier">END</option>
-      <option value="intelligence" for="skill-modifier">INT</option>
-      <option value="education" for="skill-modifier">EDU</option>
-      <option value="socialStanding" for="skill-modifier">SOC</option>
-      <option value="psionicStrength" for="skill-modifier">PSI</option>
-      {{/select}}
-    </select>
-
-    <span class="total-output flex1 skill-mod">{{numberFormat (getTotalSkillValue skill @root.data.jackOfAllTrades skill.mod) decimals=0 sign=true}}</span>
-
-    <span class="mini-dice"><img class="rollable" data-label="{{skill.label}}" data-roll="2d6+{{getTotalSkillValue skill @root.data.jackOfAllTrades skill.mod}}" src="./systems/twodsix/assets/d6-icon.svg" alt="roll skill"/></span>
-
-  </div>
-  {{/if}}
-  {{/each}}
+    </span>
+    </li>
+  </ol>
+</span>
 </div>
+{{/each}}

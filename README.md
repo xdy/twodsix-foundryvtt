@@ -1,5 +1,5 @@
 # 2d6 system
-A system for running games using various 2d6-based role-playing games.
+A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
 
@@ -28,6 +28,9 @@ Content Usage and Licensing:
 
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
+
+Font licenses:
+* Perfect DOS VGA 437 (quote from https://www.dafont.com/font-comment.php?file=perfect_dos_vga_437 "zeh  author of Perfect DOS VGA 437   Sep 16, 2014 The license is this: this font is free to use in whatever you want.")
 
 ### Contributing
 See CONTRIBUTING.md

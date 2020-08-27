@@ -1,0 +1,45 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+  <div class="item-sheet">
+
+    <div class="item-name">
+      <label for="data.name" class="resource-label">Item Name
+      <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
+    </div>
+
+    <div class="item-tl">
+    <label for="data.techLevel" class="resource-label">TL
+    <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
+    </div>
+
+    <div class="item-bonus">
+    <label for="data.bonus" class="resource-label">Effect
+    <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></label>
+    </div>
+
+    <div class="item-type">
+      <label for="item.auglocation" class="resource-label">Item Location</label>
+      <select name="data.auglocation" value={{data.auglocation}} >
+          {{#select data.auglocation}}
+          <option value="Head">Head</option>
+          <option value="Torso">Torso</option>
+          <option value="Arms">Arms</option>
+          <option value="Legs">Legs</option>
+          <option value="Full-Body">Full Body</option>
+          {{/select}}
+        </select></div>
+
+    <div class="item-price">
+      <label for="data.price" class="resource-label">Value (Cr.)
+      <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
+    </div>
+
+    <div class="item-descr">
+    <label class="resource-label">Item description</label>
+    {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+</form>
+
+</section>
+</form>
