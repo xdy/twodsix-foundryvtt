@@ -5,12 +5,13 @@
     <div class="item-type">
     <label for="item.type" class="resource-label">Item Type</label>
     <select name="type" value={{data.type}} >
-        {{#select item.type}}
-        <option value="equipment">Equipment</option>
-        <option value="weapon">Weapon</option>
-        <option value="armor">Armor</option>
-        <option value="augment">Augment</option>
-        {{/select}}
+      {{#select item.type}}
+      <option value="augment">Assign: Augment</option>
+      <option value="weapon">Assign: Weapon</option>
+      <option value="armor">Assign: Armor</option>
+      <option value="equipment">Assign: Equipment</option>
+      <option value="storage">Move: Storage</option>
+      {{/select}}
       </select></div>
 
     <div class="item-name">

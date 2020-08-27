@@ -405,7 +405,7 @@ a.info-tab.active {
   height: 22px;
 }
 
-.equiped-tab {
+.inventory-tab {
   background-image: url(../assets/actor/Interface-subTabs.svg);
   background-position-x: 0em;
   width: 109.75px;
@@ -414,13 +414,13 @@ a.info-tab.active {
   background-color: none !important;
 }
 
-a.equiped-tab:hover {
+a.inventory-tab:hover {
   background-image: url(../assets/actor/Interface-subTabs-Hover.svg);
   color: #fff;
   background-color: transparent !important;
 }
 
-a.equiped-tab:active {
+a.inventory-tab.active {
   background-image: url(../assets/actor/Interface-subTabs-Active.svg);
   color: #000;
   text-shadow:none !important;
@@ -833,9 +833,9 @@ a:hover {
   grid-template-areas: ". . . . .";
 }
 
-.items-armors {
+.items-armor {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 12em 4.4em 4.4em 4.4em 4.4em 4.4em;
   grid-template-rows: ;
   gap: 1px 1px;
   grid-template-areas: ". . . . .";
@@ -843,7 +843,7 @@ a:hover {
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 12em 4.4em 4.4em 4.4em 4.4em 4.4em;
   grid-template-rows: ;
   gap: 1px 1px;
   grid-template-areas: ". . . . .";
@@ -851,7 +851,7 @@ a:hover {
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 12em 5.5em 5.5em 5.5em 5.5em;
   grid-template-rows: ;
   gap: 1px 1px;
   grid-template-areas: ". . . . .";

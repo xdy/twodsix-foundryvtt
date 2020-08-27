@@ -26,16 +26,20 @@ export class TwodsixActorSheet extends ActorSheet {
     const actorData = sheetData.actor;
 
     // Initialize containers.
-    const skills = [];
+    const storage = [];
+    const inventory = [];
+    const equipment = [];
     const weapon = [];
     const armor = [];
     const augment = [];
-    const equipment = [];
+    const skills = [];
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       i.img = i.img || CONST.DEFAULT_TOKEN;
       // Append to gear.
+      if (i.type === 'storage'){storage.push(i);}
+      if (i.type === 'inventory'){inventory.push(i);}
       if (i.type === 'equipment'){equipment.push(i);}
       if (i.type === 'weapon'){weapon.push(i);} 
       if (i.type === 'armor'){armor.push(i);} 
@@ -43,11 +47,13 @@ export class TwodsixActorSheet extends ActorSheet {
       if (i.type === 'skills'){skills.push(i);} 
     }
     // Assign and return
-    actorData.skills = skills;
+    actorData.storage = storage;
+    actorData.inventory = inventory;
+    actorData.equipment = equipment;
     actorData.weapon = weapon;
     actorData.armor = armor;
     actorData.augment = augment;
-    actorData.equipment = equipment;
+    actorData.skills = skills;
     
   }
 
@@ -59,7 +65,8 @@ export class TwodsixActorSheet extends ActorSheet {
       width: 825,
       height: 648,
       resizable: false,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"},
+      {navSelector: ".sheet-subtabs", contentSelector: ".sheet-subbody", initial: "equipped"}]
     });
   }
 

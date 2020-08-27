@@ -1,27 +1,27 @@
 {{!-- Sheet Body --}}
-<div class="character-tabs-info sheet-body">
+<div class="character-tabs-info sheet-subbody">
 
   {{!-- Sheet Tab Navigation --}}
   <div class="character-subtabs">
-    <nav class="sheet-tabs tabs" data-group="primary">
-      <a class="item equiped-tab" data-tab="equiped">Equiped</a>
+    <nav class="sheet-subtabs tabs" data-group="primairy">
+      <a class="item inventory-tab" data-tab="equipped">Equipped</a>
       <a class="item storage-tab" data-tab="storage">Storage</a>
       <a class="item finances-tab" data-tab="finances">Finances</a>
     </nav>
   </div>
 
   {{!-- Equiped Tab --}}
-  <div class="tab equiped" data-group="primary" data-tab="equiped">
-    {{> "systems/twodsix/templates/actors/parts/actor-items-equiped.html"}}
+  <div class="tab equipped" data-group="primairy" data-tab="equipped">
+    {{> "systems/twodsix/templates/actors/parts/items/actor-items-inventory.html"}}
   </div>
 
   {{!-- Storage Items Tab --}}
-  <div class="tab storage" data-group="primary" data-tab="storage">
-    {{> "systems/twodsix/templates/actors/parts/actor-items-storage.html"}}
+  <div class="tab storage" data-group="primairy" data-tab="storage">
+    {{> "systems/twodsix/templates/actors/parts/items/actor-items-storage.html"}}
   </div>
 
   {{!-- Finances Tab --}}
-  <div class="tab finances" data-group="primary" data-tab="finances">
-    {{> "systems/twodsix/templates/actors/parts/actor-items-finances.html"}}
+  <div class="tab finances" data-group="primairy" data-tab="finances">
+    {{> "systems/twodsix/templates/actors/parts/items/actor-items-finances.html"}}
   </div>
 </div>

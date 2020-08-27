@@ -36,6 +36,8 @@ export default class TwodsixItem extends Item {
       }
 
       itemData.data.total = itemData.data.value + mod;
+      itemData.data.mod = mod;
+      
     }
   }
 }
