@@ -28,6 +28,13 @@ textarea {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+  color: #207ab7 !important;
+}
+
+.macro-sheet .form-group.command textarea {
+  height: calc(100% - 24px);
+  resize: none;
+  color: #29aae1;
 }
 
 
