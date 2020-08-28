@@ -20,15 +20,15 @@
         <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" src="./systems/twodsix/assets/d6-icon.svg" /></span>
         <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{item.name}}</span>
         <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.value}}</span>
-        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" for="skill-modifier">{{data.characteristic}}
+        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})
 
       </span>
       <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.total}}</span>
 
 
       <span class="item-controls centre">
-          <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+          <a class="skl item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+          <a class="skl item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
       </span>
 
     </span>

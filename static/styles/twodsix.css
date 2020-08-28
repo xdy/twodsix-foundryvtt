@@ -1,12 +1,12 @@
-@font-face
-{
-	src: url('/fonts/PerfectDOSVGA437.eot');  /* IE */
-	src: local('Calibri'), url('/fonts/PerfectDOSVGA437.ttf') format('truetype'); /* For non-IE */
-	font-family: "Perfect DOS VGA 437";
+@font-face {
+  src: url('/fonts/PerfectDOSVGA437.eot');
+  /* IE */
+  src: local('Calibri'), url('/fonts/PerfectDOSVGA437.ttf') format('truetype');
+  /* For non-IE */
+  font-family: "Perfect DOS VGA 437";
 }
 
 body {
-
   background-image: url(../assets/workbg2.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -15,7 +15,6 @@ body {
 
 svg {
   fill: currentColor;
-
 }
 
 textarea {
@@ -31,8 +30,9 @@ textarea {
   user-select: text;
 }
 
+
 .rollable:hover {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 textarea:focus {
@@ -47,11 +47,11 @@ textarea:focus {
 /*div {border: thin dotted #FFF;}*/
 
 .window-content {
-	background-attachment: fixed !important;
-	background-image: url(../assets/bg2.jpg) !important;
-	background-repeat: repeat-x !important;
-	font-family: "Perfect DOS VGA 437";
-	color: #00E5FF !important;
+  background-attachment: fixed !important;
+  background-image: url(../assets/bg2.jpg) !important;
+  background-repeat: repeat-x !important;
+  font-family: "Perfect DOS VGA 437";
+  color: #00E5FF !important;
 }
 
 .app .window-app .twodsix .sheet .actor .window-content {
@@ -72,7 +72,6 @@ img {
   border: none !important;
   max-width: 100%;
 }
-
 
 input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
   background: rgba(0, 0, 0, 0.21);
@@ -180,7 +179,9 @@ img.character-info-mask {
   color: #29aae1 !important;
 }
 
-.character-bgi input{background-color: transparent !important;}
+.character-bgi input {
+  background-color: transparent !important;
+}
 
 .bgi-age input {
   width: 1.5em;
@@ -329,18 +330,20 @@ svg:hover {
 .character-tabs .tabs {
   position: relative;
   top: 2em;
-  left: 2.40em;
+  left: 0.3em;
   z-index: 50;
-  width: 345px;
+  width: 453px;
   height: 22px;
 }
 
-.character-tabs-info {background: transparent !important}
+.character-tabs-info {
+  background: transparent !important
+}
 
 .skill-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: -0.15em;
-  width: 115px;
+  background-position-x: -2px;
+  width: 90px;
   padding-top: 0.15em;
   display: block;
   background-color: none !important;
@@ -354,132 +357,122 @@ a.skill-tab:hover {
 a.skill-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
-  text-shadow:none !important;
+  text-shadow: none !important;
 }
 
-a.item-tab {
+.item-tab, .finances-tab, .info-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: -8.4em;
+  background-position-x: -97px;
   padding-top: 0.15em;
-  width: 115px;
+  width: 90px;
   display: block;
   background-color: transparent !important;
 }
 
-a.item-tab:hover {
+a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: #fff;
 }
-a.item-tab.active {
+
+a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
-  text-shadow:none !important;
+  text-shadow: none !important;
 }
 
-a.info-tab {
+.notes-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: -16.65em;
+  background-position-x: 93px;
   padding-top: 0.15em;
-  width: 115px;
+  width: 93px;
   display: block;
   background-color: none !important;
 }
 
-a.info-tab:hover {
+a.notes-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: #fff;
-  
+  background-color: none !important;
 }
-a.info-tab.active {
+
+a.notes-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
-  text-shadow:none !important;
+  text-shadow: none !important;
 }
 
-.character-subtabs .tabs {
-  position: relative;
-  top: 1.9em;
-  left: 2.95em;
-  z-index: 50;
-  width: 328px;
-  height: 22px;
+.hidden {
+  display: none;
 }
-
-.inventory-tab {
-  background-image: url(../assets/actor/Interface-subTabs.svg);
-  background-position-x: 0em;
-  width: 109.75px;
-  padding-top: 0.15em;
-  display: block;
-  background-color: none !important;
-}
-
-a.inventory-tab:hover {
-  background-image: url(../assets/actor/Interface-subTabs-Hover.svg);
-  color: #fff;
-  background-color: transparent !important;
-}
-
-a.inventory-tab.active {
-  background-image: url(../assets/actor/Interface-subTabs-Active.svg);
-  color: #000;
-  text-shadow:none !important;
-}
-
-a.storage-tab {
-  background-image: url(../assets/actor/Interface-subTabs.svg);
-  background-position-x: -7.83em;
-  padding-top: 0.15em;
-  width: 109.75px;
-  display: block;
-  background-color: transparent !important;
-}
-
-a.storage-tab:hover {
-  background-image: url(../assets/actor/Interface-subTabs-Hover.svg);
-  color: #fff;
-  background-color: none !important;
-}
-a.storage-tab.active {
-  background-image: url(../assets/actor/Interface-subTabs-Active.svg);
-  color: #000;
-  text-shadow:none !important;
-}
-
-a.finances-tab {
-  background-image: url(../assets/actor/Interface-subTabs.svg);
-  background-position-x: -15.65em;
-  padding-top: 0.15em;
-  width: 109.75px;
-  display: block;
-  background-color: none !important;
-}
-
-a.finances-tab:hover {
-  background-image: url(../assets/actor/Interface-subTabs-Hover.svg);
-  color: #fff;
-  background-color: none !important;
-}
-a.finances-tab.active {
-  background-image: url(../assets/actor/Interface-subTabs-Active.svg);
-  color: #000;
-  text-shadow:none !important;
-}
-
-.hidden {display:none;}
 
 .tab[data-tab].active {
   display: block;
   position: relative;
 }
 
+.tab.inventory {
+  height: 39.4em;
+  overflow-x: hidden;
+}
+
+.character-inventory {
+  width: 34em;
+  overflow-x: hidden
+}
+
+.inventory {
+  top: 2em
+}
+
+.items-weapons {
+  display: grid;
+  grid-template-columns: 12em 2em 3em 3em 3em 4em 3em 3em;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . .";
+}
+
+.gear-header {
+  border: 2px solid #29aae1;
+  background-color: #29aae1;
+  color: #000;
+  padding-left: 0.5em;
+}
+
+.gear {
+  border: 1px solid #29aae1;
+  padding-left: 0.5em;
+}
+
+.items-armor {
+  display: grid;
+  grid-template-columns: 14em 4em 4em 4em 4em 3em;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . .";
+}
+
+.items-augments {
+  display: grid;
+  grid-template-columns: 14em 4em 4em 4em 4em 3em;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . .";
+}
+
+.items-equipment {
+  display: grid;
+  grid-template-columns: 12em 2em 3em 13em 3em;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . .";
+}
+
 /*-------Skill Tab-----------*/
 
 .skill-list {
-  background-color: #111;
   padding: 0.5em;
   width: 34.2em;
-  border: 1px groove #00e5ff;
+  border: 1px groove #29aae1;
+  background-color: #29aae1;
+  color: #0d0d0d;
+  font-weight: bold;
 }
 
 .add-skill {
@@ -489,10 +482,11 @@ a.finances-tab.active {
   height: 22px;
   display: block;
   position: relative;
-  /* top: -0.5em; */
+  top: 0.1em;
   left: 26.5em;
   z-index: 51;
   color: #000;
+  font-weight: bold;
 }
 
 .add-skill:hover {
@@ -509,12 +503,13 @@ span.add-skill-txt {
   margin-left: 0.95em;
 }
 
-.skill {padding: 0.1em 0em 0.1em 0.5em;}
-
-.skills {overflow-y: auto}
+.skill {
+  padding: 0.1em 0em 0.1em 0.5em;
+}
 
 a:hover, a.active {
-  text-shadow: 0 0 0.8em #00e5ff;}
+  text-shadow: 0 0 0.8em #00e5ff;
+}
 
 .item.flexrow.item-header {
   margin-top: 2em;
@@ -542,7 +537,8 @@ a:hover, a.active {
 
 .skills {
   position: relative;
-  top: 2em;
+  top: 2.5em;
+  overflow-y: auto
 }
 
 .skills.grid.grid-2col {
@@ -556,7 +552,7 @@ a:hover, a.active {
   overflow-x: hidden;
 }
 
-.item-control.item-edit {
+.skl.item-control.item-edit {
   padding-right: 1.5em;
 }
 
@@ -570,7 +566,6 @@ a:hover, a.active {
   background-color: #29aae1 !important;
   color: #000000a6 !important;
 }
-
 
 .skill-container {
   display: grid;
@@ -597,8 +592,6 @@ span.total-output {
   text-align: center;
 }
 
-
-
 .resource-label {
   padding-top: 0.2em;
 }
@@ -614,19 +607,125 @@ span.total-output {
   border-color: #fff transparent transparent transparent;
 }
 
+/*-------Finances Tab-----------*/
+.finances-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "cash financial-notes" "pension financial-notes" "debt financial-notes" "ship-payments financial-notes" "living-costs financial-notes";
+  position: relative;
+  margin-top: 3em;
+}
+
+.financial-notes { 
+  grid-area: financial-notes;
+  padding: 1em;
+
+}
+
+.financial-notes > .editor {
+  border: 1px solid #29aae1;
+  width: 14.8em;
+  height: 26em;
+}
+
+.cash { 
+  grid-area: cash; 
+  padding: 1em;
+}
+
+.cash input[type="text"] {
+  width: 14.8em;
+  padding: 0.5em;
+  height: 31px;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+}
+
+.pension {
+  grid-area: pension;
+  padding: 1em;
+}
+
+.pension input[type="text"] {
+  width: 14.8em;
+  padding: 0.5em;
+  height: 31px;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+}
+
+.debt {
+  grid-area: debt;
+  padding: 1em;
+}
+
+.debt input[type="text"] {
+  width: 14.8em;
+  padding: 0.5em;
+  height: 31px;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+}
+
+.ship-payments {
+  grid-area: ship-payments;
+  padding: 1em;
+}
+
+.ship-payments input[type="text"] {
+  width: 14.8em;
+  padding: 0.5em;
+  height: 31px;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+}
+
+.living-costs {
+  grid-area: living-costs;
+  padding: 1em;
+}
+
+.living-costs input[type="text"] {
+  width: 14.8em;
+  padding: 0.5em;
+  height: 31px;
+  border: 1px solid #29aae1;
+  border-radius: 0px;
+}
+
+
+.item-title {
+  background-image: url(../assets/actor/header.svg);
+  height: 22px;
+  width: 207px;
+  display: block;
+  color: #000;
+  font-weight: bold;
+  padding: 0.2em 0.2em 0.2em 0.5em;
+}
+
 /*-------Info Tab-----------*/
+
 .info-container {
   display: grid;
-  grid-template-columns: 10.75em 10.75em 10.75em;
-  grid-template-rows: 8em 22em 5em;
+  grid-template-rows: 8em 8em 8em 11em;
   gap: 1px 1px;
-  grid-template-areas:
-      "char-description char-description char-description"
-      "char-bio char-bio char-bio"
-      "char-contacts char-allies char-enemies";
+  grid-template-areas: "char-contacts" "char-allies" "char-enemies" "char-bio";
   padding: 1em;
   position: relative;
   margin-top: 2em;
+}
+.tab.info {
+  height: 39.4em;
+  overflow-x: hidden;
+}
+
+.info {
+  margin-top: 2em;
+  overflow-x: hidden;
+  margin-bottom: -2em;
 }
 
 .info-container .editor {
@@ -634,30 +733,53 @@ span.total-output {
   border-radius: 2px;
 }
 
-.char-description { grid-area: char-description; }
+.char-description {
+  grid-area: char-description;
+  position: relative;
+  top: -2em;
+}
 
-.char-bio { grid-area: char-bio; }
+.char-bio {
+  grid-area: char-bio;
+  position: relative;
+  top: -2em;
+}
 
 .char-bio .editor {
   height: 19.5em;
 }
 
-.char-contacts { 
+.char-contacts {
   grid-area: char-contacts;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
+  position: relative;
+  top: -2em;
 }
 
 .char-allies {
   grid-area: char-allies;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
+  position: relative;
+  top: -2em;
 }
 
-.char-enemies { 
+.char-enemies {
   grid-area: char-enemies;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
+  position: relative;
+  top: -2em;
+}
+
+/*-------- Notes Tab ----*/
+.notes-container {
+  margin-left: 1em;
+  padding-top: 3em;
+  height: 48em;
+  margin-bottom: -3em;
+  overflow-x: hidden;
+}
+
+.notes-container > .editor {
+  height: 42em;
+  width: 38em;
+  border: 1px solid #29aae1;
 }
 
 /*-------------------------------------------------*/
@@ -675,7 +797,6 @@ button.flexrow.flex-group-center.toggle-skills {
   background: #225078;
   border: 1px solid #29aae1;
 }
-
 
 select {
   height: 25px;
@@ -707,6 +828,7 @@ select {
 }
 
 /*--- Item Page ---*/
+
 .item-page textarea {
   width: 100%;
   min-height: 50px;
@@ -775,7 +897,6 @@ a:hover {
   text-shadow: 0 0 5px #29aae1;
 }
 
-
 .item-page input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
@@ -822,43 +943,11 @@ a:hover {
 
 .pusher {
   display: block;
-  height: 3em;
+  height: 2em;
 }
-
-.items-weapons {
-  display: grid;
-  grid-template-columns: 12em 2em 3em 4em 3em 4em 3em 3em;
-  grid-template-rows: ;
-  gap: 1px 1px;
-  grid-template-areas: ". . . . .";
-}
-
-.items-armor {
-  display: grid;
-  grid-template-columns: 12em 4.4em 4.4em 4.4em 4.4em 4.4em;
-  grid-template-rows: ;
-  gap: 1px 1px;
-  grid-template-areas: ". . . . .";
-}
-
-.items-augments {
-  display: grid;
-  grid-template-columns: 12em 4.4em 4.4em 4.4em 4.4em 4.4em;
-  grid-template-rows: ;
-  gap: 1px 1px;
-  grid-template-areas: ". . . . .";
-}
-
-.items-equipment {
-  display: grid;
-  grid-template-columns: 12em 5.5em 5.5em 5.5em 5.5em;
-  grid-template-rows: ;
-  gap: 1px 1px;
-  grid-template-areas: ". . . . .";
-}
-
 
 /*--- Chat Log ---*/
+
 #sidebar-tabs.tabs .item.active {
   text-shadow: 0 0 2em #29aae1;
   text-decoration: none;
@@ -1045,7 +1134,7 @@ option {
   z-index: 99;
 }
 
-.window-app .window-content > * {
+.window-app .window-content>* {
   flex: 1;
 }
 
@@ -1074,7 +1163,6 @@ option {
   color: #5694af;
   border-radius: 4px 0 0 0;
 }
-
 
 div.app.window-app.twodsix.sheet.actor header h4.window-title {
   position: relative;
@@ -1110,7 +1198,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   box-shadow: 0 0 10px #00e5ff;
 }
 
-#sidebar-tabs > .item {
+#sidebar-tabs>.item {
   position: relative;
   flex: 0 0 27px;
   line-height: 32px;
@@ -1119,7 +1207,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   color: #95b6ca;
 }
 
-#sidebar-tabs > .item:hover {
+#sidebar-tabs>.item:hover {
   color: #00e5ff;
 }
 
@@ -1127,7 +1215,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   border-color: #29aae1;
 }
 
-#sidebar-tabs > .item.active {
+#sidebar-tabs>.item.active {
   color: #00e5ff;
   border: 1px solid #00e5ff;
   border-bottom: none;
@@ -1135,6 +1223,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
 }
 
 /* SCENE INTERFACE */
+
 #navigation {
   position: fixed;
   top: 12px;
@@ -1191,6 +1280,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
 }
 
 /* TOKEN SHEET */
+
 .token-sheet .sheet-tabs {
   flex: 0 0 32px;
   border-bottom: 1px solid #b5b3a4;
@@ -1198,14 +1288,12 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   width: 32.5em;
 }
 
-
 /* EDITOR */
 
 .editor {
   height: calc(75px);
   background: rgba(0, 0, 0, 0.51);
   color: #207ab7;
-
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
@@ -1220,7 +1308,6 @@ div.app.window-app.twodsix.sheet.actor header a.close {
 .tox .tox-tbtn:hover svg {
   fill: #00e5ff !important
 }
-
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
   background: none !important;

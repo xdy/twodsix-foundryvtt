@@ -21,6 +21,16 @@
       "enemies": "",
       "description": "",
       "bio": "",
+      "notes": "",
+      "finances": {
+        "cash":"0",
+        "pension":"0",
+        "debt":"0",
+        "payments":"0",
+        "livingCosts":"0",
+        "financial-notes": ""
+      },
+
       "characteristics": {
         "strength": {
           "value": 7,
@@ -87,6 +97,7 @@
         "shortdescr" : "",
         "quantity": 1,
         "weight": 0,
+        "price": "0 Cr",
         "traits": [],
         "equipped": {
           "weight": 0
@@ -98,7 +109,10 @@
         "gearTemplate"
       ],
       "type": "equipment",
-      "price": "0 Cr"
+      "location": [
+        "inventory",
+        "storage"
+      ]
     },
     "weapon": {
       "templates": [
@@ -111,28 +125,33 @@
       "ammo": 0,
       "magazineCost": 0,
       "type": "weapon",
-      "price": "0 Cr"
+      "location": [
+        "inventory",
+        "storage"
+      ]
     },
     "armor": {
       "templates": [
         "gearTemplate"
       ],
-      "armour": 0,
+      "armor": 0,
       "type": "armor",
-      "price": "0 Cr"
+      "location": [
+        "inventory",
+        "storage"
+      ]
     },
     "augment": {
       "templates": [
         "gearTemplate"
       ],
-      "location": [
-        "head",
-        "limbs",
-        "body"
-      ],
+      "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
-      "price": "0 Cr"
+      "location": [
+        "inventory",
+        "storage"
+      ]
 
     },
     "skills": {

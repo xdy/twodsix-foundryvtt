@@ -13,6 +13,15 @@
               <option value="storage">Move: Storage</option>
               {{/select}}
             </select></div>
+
+            <div class="item-type">
+              <label for="item.location" class="resource-label">Item Location</label>
+              <select name="type" value={{data.location}}>
+                {{#select item.location}}
+                <option value="inventory">Inventory</option>
+                <option value="storage">Storage</option>
+                {{/select}}
+              </select></div>
       
           <div class="item-name">
             <label for="data.name" class="resource-label">Item Name

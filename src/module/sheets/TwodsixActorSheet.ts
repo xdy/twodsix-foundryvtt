@@ -20,6 +20,7 @@ export class TwodsixActorSheet extends ActorSheet {
 
     return data;
   }
+  
 
   private static _prepareCharacterItems(sheetData:any) {
 
@@ -65,8 +66,7 @@ export class TwodsixActorSheet extends ActorSheet {
       width: 825,
       height: 648,
       resizable: false,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"},
-      {navSelector: ".sub-tabs", contentSelector: ".sub-body", initial: "storage"}]
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
     });
   }
 
@@ -110,6 +110,7 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
+  
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event

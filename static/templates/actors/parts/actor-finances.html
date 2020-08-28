@@ -1,0 +1,36 @@
+<div class="finances-container">
+  
+  
+  <div class="cash">
+    <span class="item-title">CASH ON HAND</span>    
+    <input name="data.finances.cash" type="text" value="{{data.finances.cash}}" placeholder="0"/>
+  </div>
+
+  <div class="pension">
+    <span class="item-title">PENSION</span>    
+    <input name="data.finances.pension" type="text" value="{{data.finances.pension}}" placeholder="0"/>
+  </div>
+  
+  <div class="debt">
+    <span class="item-title">DEBT</span>    
+    <input name="data.finances.debt" type="text" value="{{data.finances.debt}}" placeholder="0"/>
+  </div>
+  
+    <div class="ship-payments">
+      <span class="item-title">SHIP PAYMENTS (MONTHLY)</span>    
+      <input name="data.finances.payments" type="text" value="{{data.finances.payments}}" placeholder="0"/>
+    </div>
+
+  <div class="living-costs">
+    <span class="item-title">LIVING COSTS</span>    
+    <input name="data.finances.livingCosts" type="text" value="{{data.finances.livingCosts}}" placeholder="0"/>
+  </div>
+  
+  
+   
+    <div class="financial-notes"><span class="item-title">FINANCIAL NOTES</span>
+      {{{editor content=data.finances.financial-notes target="data.finances.financial-notes" button=true owner=owner editable=editable}}}
+    </div>
+
+
+</div>

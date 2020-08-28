@@ -6,12 +6,12 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.3.15",
-  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
-  "bugs": "",
+  "author": "Kevin Maree (Ultra Kev#9816), Jonas Karlsson (xdy#3735)",
+  "bugs": "Changing characteristics will not auto-update skill modifier, will be fixed with the next update",
   "changelog": "",
   "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.6.5",
-  "description": "2d6 Variant Rules System. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.<br/>See the files OpenGameLicense.md and LICENSE for license details (TODO fill out the OGL properly).<br/>",
+  "compatibleCoreVersion": "0.6.6",
+  "description": "TwodSix, Cepheus & Traveller customizable system for FoundryVTT. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.<br/>See the files OpenGameLicense.md and LICENSE for license details (TODO fill out the OGL properly).<br/>",
   "esmodules": [
     "twodsix.bundle.js"
   ],

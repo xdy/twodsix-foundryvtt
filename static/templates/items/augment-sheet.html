@@ -1,18 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
 
   <div class="item-sheet">
-  <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-    <div class="item-type">
-    <label for="item.type" class="resource-label">Item Type</label>
-    <select name="type" value={{data.type}} >
-        {{#select item.type}}
-        <option value="augment">Assign: Augment</option>
-        <option value="weapon">Assign: Weapon</option>
-        <option value="armor">Assign: Armor</option>
-        <option value="equipment">Assign: Equipment</option>
-        <option value="storage">Move: Storage</option>
-        {{/select}}
-      </select></div>
 
     <div class="item-name">
       <label for="data.name" class="resource-label">Item Name
@@ -26,8 +14,20 @@
 
     <div class="item-bonus">
     <label for="data.bonus" class="resource-label">Effect
-    <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}" data-dtype="Number"/></label>
+    <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></label>
     </div>
+
+    <div class="item-type">
+      <label for="item.auglocation" class="resource-label">Item Location</label>
+      <select name="data.auglocation" value={{data.auglocation}} >
+          {{#select data.auglocation}}
+          <option value="Head">Head</option>
+          <option value="Torso">Torso</option>
+          <option value="Arms">Arms</option>
+          <option value="Legs">Legs</option>
+          <option value="Full-Body">Full Body</option>
+          {{/select}}
+        </select></div>
 
     <div class="item-price">
       <label for="data.price" class="resource-label">Value (Cr.)
