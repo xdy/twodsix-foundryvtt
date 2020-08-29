@@ -1,3 +1,10 @@
+## [0.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.2...v0.4.3) (2020-08-29)
+
+
+### Bug Fixes
+
+* Cutting and pasting is difficult. Apparently... ([fe38e9a](https://github.com/xdy/twodsix-foundryvtt/commit/fe38e9abb731f98563eed3fe1bf43b5ed2e97dd5))
+
 ## [0.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.1...v0.4.2) (2020-08-29)
 
 
