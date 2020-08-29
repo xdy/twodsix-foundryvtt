@@ -1,7 +1,7 @@
 {
   "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
-  "name": "Twodsix - Cepheus & Traveller (Unofficial)",
-  "title": "twodsix",
+  "name": "twodsix",
+  "title": "Twodsix - Cepheus & Traveller (Unofficial)",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
