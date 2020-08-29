@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.18...v0.4.0) (2020-08-29)
+
+
+### Features
+
+* Squashed, rebased, merged in changes from Kevin, tested that nothing seems to have broken. ([b437cdf](https://github.com/xdy/twodsix-foundryvtt/commit/b437cdf373b358c2f4bf3108be8ded168c814f96)), closes [#43](https://github.com/xdy/twodsix-foundryvtt/issues/43)
+
 ## [0.3.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.17...v0.3.18) (2020-08-23)
 
 
