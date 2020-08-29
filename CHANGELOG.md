@@ -1,3 +1,10 @@
+## [0.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.4...v0.4.5) (2020-08-29)
+
+
+### Bug Fixes
+
+* Entered text into wrong field... ([de3b2c9](https://github.com/xdy/twodsix-foundryvtt/commit/de3b2c930dfd033e2962f9227f5c4e1d23cd187a))
+
 ## [0.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.3...v0.4.4) (2020-08-29)
 
 
