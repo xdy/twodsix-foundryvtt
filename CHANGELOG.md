@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.1...v0.4.2) (2020-08-29)
+
+
+### Bug Fixes
+
+* Entered the wrong description... ([92c6c26](https://github.com/xdy/twodsix-foundryvtt/commit/92c6c2671f0e02dbafc78a02fcab4b2c432bf10a))
+
 ## [0.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.0...v0.4.1) (2020-08-29)
 
 
