@@ -6,7 +6,6 @@ git checkout master
 git status
 pause
 git fetch upstream
-git pull upstream master
 git reset --hard upstream/master
 git push origin master --force
 pause
