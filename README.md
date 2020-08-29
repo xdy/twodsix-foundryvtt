@@ -16,7 +16,7 @@ b) actually has the license to do so
 
 
 ### Patch Notes:
-See CHANGELOG.md
+See [CHANGELOG.md](CHANGELOG.md)
 
 
 ### Licenses
@@ -24,7 +24,7 @@ Project Licensing:
 *  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2 (see LICENSE)
 
 Content Usage and Licensing:
-*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md] for details.
+*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](OpenGameLicense.md) for details.
 
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
