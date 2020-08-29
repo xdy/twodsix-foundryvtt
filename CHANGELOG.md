@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.3...v0.4.4) (2020-08-29)
+
+
+### Bug Fixes
+
+* Change the system.json title to match the one to be used in the release. ([4fc1268](https://github.com/xdy/twodsix-foundryvtt/commit/4fc126829a8aca935156c16d4de77175d5edab95))
+
 ## [0.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.2...v0.4.3) (2020-08-29)
 
 
