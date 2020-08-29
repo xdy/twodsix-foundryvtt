@@ -2,8 +2,8 @@
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
  * Change this heading to be more descriptive to your system, or remove it.
- * Author: [your name]
- * Content License: OGL, see License section of README.md for details
+ * Author: See the system.json file, where they are in chronological order.
+ * Content License: Basically OGL, see License section of README.md for details
  * Software License: Apache, see License section of README.md for details
  */
 
@@ -78,7 +78,6 @@ Hooks.once('setup', async function () {
   CONFIG.TWODSIX = TWODSIX;
 
   (window as any).Twodsix = new TwodsixSystem();
-
 
 });
 

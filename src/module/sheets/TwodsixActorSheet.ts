@@ -20,7 +20,7 @@ export class TwodsixActorSheet extends ActorSheet {
 
     return data;
   }
-  
+
 
   private static _prepareCharacterItems(sheetData:any) {
 
@@ -42,10 +42,10 @@ export class TwodsixActorSheet extends ActorSheet {
       if (i.type === 'storage'){storage.push(i);}
       if (i.type === 'inventory'){inventory.push(i);}
       if (i.type === 'equipment'){equipment.push(i);}
-      if (i.type === 'weapon'){weapon.push(i);} 
-      if (i.type === 'armor'){armor.push(i);} 
-      if (i.type === 'augment'){augment.push(i);} 
-      if (i.type === 'skills'){skills.push(i);} 
+      if (i.type === 'weapon'){weapon.push(i);}
+      if (i.type === 'armor'){armor.push(i);}
+      if (i.type === 'augment'){augment.push(i);}
+      if (i.type === 'skills'){skills.push(i);}
     }
     // Assign and return
     actorData.storage = storage;
@@ -55,7 +55,7 @@ export class TwodsixActorSheet extends ActorSheet {
     actorData.armor = armor;
     actorData.augment = augment;
     actorData.skills = skills;
-    
+
   }
 
   /** @override */
@@ -98,7 +98,7 @@ export class TwodsixActorSheet extends ActorSheet {
 
     // Rollable abilities.
     html.find('.rollable').on('click', (this._onRoll.bind(this)));
-  
+
     // Drag events for macros.
     if (this.actor.owner) {
       const handler = ev => this._onDragItemStart(ev);
@@ -110,7 +110,7 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
-  
+
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event
@@ -159,6 +159,7 @@ export class TwodsixActorSheet extends ActorSheet {
     }
   }
 
+  //Unused, but something like is needed to support cascade/subskills, so letting it stay for now.
   /**
    * Handle skill upgrade
    * @param {Event} event   The originating click event
