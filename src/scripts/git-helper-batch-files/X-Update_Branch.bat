@@ -7,6 +7,7 @@ git status
 echo "If git status is not empty, stop and fix"
 pause
 git checkout $BRANCH
+git fetch upstream
 git rebase upstream/master
 git push --force
 pause
