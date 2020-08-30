@@ -160,7 +160,8 @@ export class TwodsixActorSheet extends ActorSheet {
         this.rollSkill(itemId, event, dataset);
       } else {
         const roll = new Roll(dataset.roll, this.actor.data.data);
-        const label = dataset.label ? `Rolling ${dataset.label}` : '';
+        const label = dataset.label ? game.i18n.localize("TWODSIX.Actor.Rolling") + ` ${dataset.label}` : '';
+
         roll.roll().toMessage({
           speaker: ChatMessage.getSpeaker({actor: this.actor}),
           flavor: label

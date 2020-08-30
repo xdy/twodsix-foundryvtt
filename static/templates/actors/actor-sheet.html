@@ -4,25 +4,25 @@
     <div class="character-info">
       <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?" />
       <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="Character image" />
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
       </div>
-      <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"
+      <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
           onClick="this.select();" /></div>
       <div class="character-bgi">
-        <span class="bgi-age">Age:<input type="text" name="data.age.value" value="{{data.age.value}}"
+        <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value" value="{{data.age.value}}"
             placeholder="0" /></span>
-        <span class="bgi-gender">Gender:<input name="data.gender" type="text" value="{{data.gender}}"
-            placeholder="Gender" onClick="this.select();" /></span>
-        <span class="bgi-species">Species:<input name="data.species" type="text" value="{{data.species}}"
-            placeholder="Species" onClick="this.select();" /></span>
-        <span class="bgi-homeWorld">Home world:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
-            placeholder="Homeworld" onClick="this.select();" /></span>
+        <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="data.gender" type="text" value="{{data.gender}}"
+            placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();" /></span>
+        <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text" value="{{data.species}}"
+            placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span>
+        <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
+            placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span>
       </div>
 
       <div class="character-characteristics">
         <div class="stat str">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
-          alt="roll strength" >STR <img src="./systems/twodsix/assets/d6-icon.svg" /></span>
+          alt="roll strength" >{{localize "TWODSIX.Actor.Characteristics.STR"}} <img src="./systems/twodsix/assets/d6-icon.svg" /></span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
               data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
@@ -36,7 +36,7 @@
 
         <div class="stat dex">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}"
-          alt="roll dexterity" >DEX <img src="./systems/twodsix/assets/d6-icon.svg" />
+          alt="roll dexterity" >{{localize "TWODSIX.Actor.Characteristics.DEX"}} <img src="./systems/twodsix/assets/d6-icon.svg" />
           </span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value"
@@ -51,7 +51,7 @@
 
         <div class="stat end">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
-          alt="roll endurance" >END <img src="./systems/twodsix/assets/d6-icon.svg" />
+          alt="roll endurance" >{{localize "TWODSIX.Actor.Characteristics.END"}} <img src="./systems/twodsix/assets/d6-icon.svg" />
         </span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
@@ -66,7 +66,7 @@
 
         <div class="stat int">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}"
-          alt="roll intelligence" >INT <img src="./systems/twodsix/assets/d6-icon.svg" />
+          alt="roll intelligence" >{{localize "TWODSIX.Actor.Characteristics.INT"}} <img src="./systems/twodsix/assets/d6-icon.svg" />
         </span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value"
@@ -81,7 +81,7 @@
 
         <div class="stat edu">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}"
-          alt="roll education" >EDU <img src="./systems/twodsix/assets/d6-icon.svg"/>
+          alt="roll education" >{{localize "TWODSIX.Actor.Characteristics.EDU"}} <img src="./systems/twodsix/assets/d6-icon.svg"/>
         </span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value"
@@ -96,7 +96,7 @@
 
         <div class="stat soc">
           <span class="stat-name rollable" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}"
-          alt="roll socialStanding">SOC <img src="./systems/twodsix/assets/d6-icon.svg" />
+          alt="roll socialStanding">{{localize "TWODSIX.Actor.Characteristics.SOC"}} <img src="./systems/twodsix/assets/d6-icon.svg" />
         </span>
 
           <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value"
@@ -111,7 +111,7 @@
 
         <div class="special psi">
           <span class="special-name rollable" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-          alt="roll psionicStrength" >PSI <img src="./systems/twodsix/assets/d6-icon.svg" />
+          alt="roll psionicStrength" >{{localize "TWODSIX.Actor.Characteristics.PSI"}} <img src="./systems/twodsix/assets/d6-icon.svg" />
         </span>
 
           <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
@@ -133,11 +133,11 @@
         {{!-- Sheet Tab Navigation --}}
         <div class="character-tabs">
           <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item skill-tab" data-tab="skills">Skills</a>
-          <a class="item item-tab" data-tab="inventory">Inventory</a>
-          <a class="item finances-tab" data-tab="finances">Finances</a>
-          <a class="item info-tab" data-tab="info">Info</a>
-           <a class="item notes-tab" data-tab="notes">Notes</a>
+          <a class="item skill-tab" data-tab="skills">{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
+          <a class="item item-tab" data-tab="inventory">{{localize "TWODSIX.Actor.Tabs.Inventory"}}</a>
+          <a class="item finances-tab" data-tab="finances">{{localize "TWODSIX.Actor.Tabs.Finances"}}</a>
+          <a class="item info-tab" data-tab="info">{{localize "TWODSIX.Actor.Tabs.Info"}}</a>
+           <a class="item notes-tab" data-tab="notes">{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
         </nav>
       </div>
 

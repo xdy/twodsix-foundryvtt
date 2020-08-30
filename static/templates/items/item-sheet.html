@@ -3,48 +3,48 @@
         <div class="item-sheet">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
           <div class="item-type">
-          <label for="item.type" class="resource-label">Item Type</label>
+          <label for="item.type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}}</label>
           <select name="type" value={{data.type}} >
               {{#select item.type}}
-              <option value="augment">Assign: Augment</option>
-              <option value="weapon">Assign: Weapon</option>
-              <option value="armor">Assign: Armor</option>
-              <option value="equipment">Assign: Equipment</option>
-              <option value="storage">Move: Storage</option>
+              <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
+              <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
+              <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
+              <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
+              <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
               {{/select}}
             </select></div>
 
             <div class="item-type">
-              <label for="item.location" class="resource-label">Item Location</label>
+              <label for="item.location" class="resource-label">{{localize "TWODSIX.Items.Items.ItemLocation"}}</label>
               <select name="type" value={{data.location}}>
                 {{#select item.location}}
-                <option value="inventory">Inventory</option>
-                <option value="storage">Storage</option>
+                <option value="inventory">{{localize "TWODSIX.Items.Items.Inventory"}}</option>
+                <option value="storage">{{localize "TWODSIX.Items.Items.Storage"}}</option>
                 {{/select}}
               </select></div>
-      
+
           <div class="item-name">
-            <label for="data.name" class="resource-label">Item Name
+            <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Items.ItemName"}}
             <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
           </div>
-      
+
           <div class="item-tl">
-          <label for="data.techLevel" class="resource-label">TL
+          <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Items.TL"}}
           <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
           </div>
-      
+
           <div class="item-qty">
-          <label for="data.quantity" class="resource-label">Quantity
+          <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Items.Quantity"}}
           <input id="data.quantity"  type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/></label>
           </div>
-      
+
           <div class="item-weight">
-          <label for="data.weight" class="resource-label">Weight
+          <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Items.Weight"}}
           <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/></label>
           </div>
-      
+
           <div class="item-descr">
-          <label class="resource-label">Item description</label>
+          <label class="resource-label">{{localize "TWODSIX.Items.Items.ItemDescription"}}</label>
           {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
           </div>
         </div>

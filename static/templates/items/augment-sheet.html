@@ -3,39 +3,39 @@
   <div class="item-sheet">
 
     <div class="item-name">
-      <label for="data.name" class="resource-label">Item Name
+      <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.AugmentationItemName"}}
       <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
 
     <div class="item-tl">
-    <label for="data.techLevel" class="resource-label">TL
+    <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.AugmentationTL"}}
     <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-bonus">
-    <label for="data.bonus" class="resource-label">Effect
+    <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.AugmentationEffect"}}
     <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></label>
     </div>
 
     <div class="item-type">
-      <label for="item.auglocation" class="resource-label">Item Location</label>
+      <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.AugmentationItemLocation"}}</label>
       <select name="data.auglocation" value={{data.auglocation}} >
           {{#select data.auglocation}}
-          <option value="Head">Head</option>
-          <option value="Torso">Torso</option>
-          <option value="Arms">Arms</option>
-          <option value="Legs">Legs</option>
-          <option value="Full-Body">Full Body</option>
+          <option value="Head">{{localize "TWODSIX.Items.AugmentationHead"}}</option>
+          <option value="Torso">{{localize "TWODSIX.Items.AugmentationTorso"}}</option>
+          <option value="Arms">{{localize "TWODSIX.Items.AugmentationArms"}}</option>
+          <option value="Legs">{{localize "TWODSIX.Items.AugmentationLegs"}}</option>
+          <option value="Full-Body">{{localize "TWODSIX.Items.AugmentationFullBody"}}</option>
           {{/select}}
         </select></div>
 
     <div class="item-price">
-      <label for="data.price" class="resource-label">Value (Cr.)
+      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.AugmentationValueCr"}}
       <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-descr">
-    <label class="resource-label">Item description</label>
+    <label class="resource-label">{{localize "TWODSIX.Items.AugmentationItemDescription"}}</label>
     {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
   </div>

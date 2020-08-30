@@ -625,7 +625,7 @@ span.total-output {
   margin-top: 3em;
 }
 
-.financial-notes { 
+.financial-notes {
   grid-area: financial-notes;
   padding: 1em;
 
@@ -637,8 +637,8 @@ span.total-output {
   height: 26em;
 }
 
-.cash { 
-  grid-area: cash; 
+.cash {
+  grid-area: cash;
   padding: 1em;
 }
 
@@ -719,11 +719,12 @@ span.total-output {
   display: grid;
   grid-template-rows: 8em 8em 8em 11em;
   gap: 1px 1px;
-  grid-template-areas: "char-contacts" "char-allies" "char-enemies" "char-bio";
+  grid-template-areas: "char-description" "char-contacts" "char-allies" "char-enemies" "char-bio";
   padding: 1em;
   position: relative;
   margin-top: 2em;
 }
+
 .tab.info {
   height: 39.4em;
   overflow-x: hidden;
@@ -788,7 +789,6 @@ span.total-output {
   width: 38em;
   border: 1px solid #29aae1;
 }
-
 
 
 /*-------------------------------------------------*/
@@ -1143,7 +1143,7 @@ option {
   z-index: 99;
 }
 
-.window-app .window-content>* {
+.window-app .window-content > * {
   flex: 1;
 }
 
@@ -1207,7 +1207,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   box-shadow: 0 0 10px #00e5ff;
 }
 
-#sidebar-tabs>.item {
+#sidebar-tabs > .item {
   position: relative;
   flex: 0 0 27px;
   line-height: 32px;
@@ -1216,7 +1216,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   color: #95b6ca;
 }
 
-#sidebar-tabs>.item:hover {
+#sidebar-tabs > .item:hover {
   color: #00e5ff;
 }
 
@@ -1224,7 +1224,7 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   border-color: #29aae1;
 }
 
-#sidebar-tabs>.item.active {
+#sidebar-tabs > .item.active {
   color: #00e5ff;
   border: 1px solid #00e5ff;
   border-bottom: none;

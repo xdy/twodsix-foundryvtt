@@ -1,33 +1,30 @@
 <form class="{{cssClass}}" autocomplete="off">
-<div class="skill-container-small">
+  <div class="skill-container-small">
     <div class="item-name">
-        <label for="data.name" class="resource-label">Skill Name
+      <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Skills.SkillName"}}
         <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
     <div class="item-lvl">
-        <label for="data.value" class="resource-label">Level
+      <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
         <input id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/></label>
     </div>
     <div class="item-type centre">
-        <label for="data.characteristic" class="resource-label">Modifier</label>
-          <select class="select-mod" name="data.characteristic" value={{characteristic}}>
-            {{#select data.characteristic}}
-
-
-          <option value="STR" for="skill-modifier">STR</option>
-          <option value="DEX" for="skill-modifier">DEX</option>
-          <option value="END" for="skill-modifier">END</option>
-          <option value="INT" for="skill-modifier">INT</option>
-          <option value="EDU" for="skill-modifier">EDU</option>
-          <option value="SOC" for="skill-modifier">SOC</option>
-          <option value="PSI" for="skill-modifier">PSI</option>
-          {{/select}}
-        </select>
+      <label for="data.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
+      <select class="select-mod" name="data.characteristic" value={{characteristic}}>
+        {{#select data.characteristic}}
+        <option value="STR" for="skill-modifier">{{localize "TWODSIX.Items.Skills.STR"}}</option>
+        <option value="DEX" for="skill-modifier">{{localize "TWODSIX.Items.Skills.DEX"}}</option>
+        <option value="END" for="skill-modifier">{{localize "TWODSIX.Items.Skills.END"}}</option>
+        <option value="INT" for="skill-modifier">{{localize "TWODSIX.Items.Skills.INT"}}</option>
+        <option value="EDU" for="skill-modifier">{{localize "TWODSIX.Items.Skills.EDU"}}</option>
+        <option value="SOC" for="skill-modifier">{{localize "TWODSIX.Items.Skills.SOC"}}</option>
+        <option value="PSI" for="skill-modifier">{{localize "TWODSIX.Items.Skills.PSI"}}</option>
+        {{/select}}
+      </select>
     </div>
     <span class="total-output flex1 skill-mod"></span>
 
-</div>
+  </div>
 </form>
 
 
- 

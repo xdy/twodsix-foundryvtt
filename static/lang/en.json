@@ -1,1 +1,179 @@
-{}
+{
+  "TWODSIX": {
+    "Settings": {
+      "defaultTokenSettings.name": "Default Prototype Token Settings",
+      "defaultTokenSettings.hint": "Automatically set advised prototype token settings to newly created Actors.",
+      "initiativeFormula.name": "Initiative Formula",
+      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dex.mod\"",
+      "modifierForZeroCharacteristic.name": "Modifier for characteristic value of zero.",
+      "modifierForZeroCharacteristic.hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
+      "maxSkillLevel.name": "Maximum skill level.",
+      "maxSkillLevel.hint": "Leave empty to use default (9).",
+      "absoluteBonusValueForEachTimeIncrement.name": "What bonus/penalty to give per each time increment change in a task.",
+      "absoluteBonusValueForEachTimeIncrement.hint": "Leave empty to use default (+/-1). Not currently used.",
+      "termForAdvantage.name": "What you want to call rolls with advantage (3d6kh2).",
+      "termForAdvantage.hint": "Don't use the same as for termForDisadvantage. :) Not currently used.",
+      "termForDisadvantage.name": "What you want to call rolls with disadvantage (3d6kl2).",
+      "termForDisadvantage.hint": "Don't use the same as for termForAdvantage. :) Not currently used.",
+      "initiativeFormula.success": "Set initiative formula to: ${formula}",
+      "initiativeFormula.failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead."
+    },
+    "Actor": {
+      "Rolling": "Rolling",
+      "Finances": {
+        "CASH_ON_HAND": "CASH ON HAND",
+        "PENSION": "PENSION",
+        "DEBT": "DEBT",
+        "SHIP_PAYMENTS_MONTHLY": "SHIP PAYMENTS MONTHLY",
+        "LIVING_COSTS": "LIVING COSTS",
+        "FINANCIAL_NOTES": "FINANCIAL NOTES"
+      },
+      "Info": {
+        "CONTACTS": "CONTACTS",
+        "ALLIES": "ALLIES",
+        "ENEMIES": "ENEMIES",
+        "BIOGRAPHY": "BIOGRAPHY",
+        "DESCRIPTION": "DESCRIPTION"
+      },
+      "Notes": {
+        "NOTES": "NOTES"
+      },
+      "Characteristics": {
+        "STR": "STR",
+        "DEX": "DEX",
+        "END": "END",
+        "INT": "INT",
+        "EDU": "EDU",
+        "SOC": "SOC",
+        "PSI": "PSI"
+      },
+      "Items": {
+        "WEAPONS": "WEAPONS",
+        "Name": "Name",
+        "TL": "TL",
+        "Qty": "Qty",
+        "Range": "Range",
+        "Damage": "Damage",
+        "Weight": "Weight",
+        "Ammo": "Ammo",
+        "CreateItem": "Create Item",
+        "EditItem": "Edit Item",
+        "DeleteItem": "Delete Item",
+        "ARMOR": "ARMOR",
+        "ArmorNumber": "Armor Number",
+        "Effect": "Effect",
+        "Location": "Location",
+        "ShortDescr": "Short Descr",
+        "AUGMENTS": "AUGMENTS",
+        "EQUIPMENT": "EQUIPMENT"
+      },
+      "Skills": {
+        "AddSkill": ">>Add Skill<<",
+        "SkillName": "Skill Name",
+        "Level": "Level",
+        "Modifier": "Modifier",
+        "Total": "Total",
+        "EditOrRemove": "Edit / Remove",
+        "EditItem": "Edit Item",
+        "DeleteItem": "Delete Item"
+      },
+      "Age": "Age",
+      "CharacterImage": "Character Image",
+      "CharacterName": "Character Name",
+      "Gender": "Gender",
+      "HomeWorld": "Home world",
+      "Species": "Species",
+      "Tabs": {
+        "Skills": "Skills",
+        "Inventory": "Inventory",
+        "Finances": "Finances",
+        "Info": "Info",
+        "Notes": "Notes"
+      }
+    },
+    "Chat": {
+      "Roll": {
+        "DialogNote": "Note that this skill roll dialog uses the Cepheus Engine rules, i.e. it adds a modifier for difficulty rather than change the target number. It then subtracts 8 from the result, showing the Effect of the skill roll.",
+        "Difficulty": "Roll difficulty",
+        "Type": "Roll type",
+        "Mode": "Roll mode",
+        "OtherModifiers": "Other modifiers"
+      }
+    },
+    "Items": {
+      "Armor": {
+        "ItemName": "Item Name",
+        "TL": "TL",
+        "Quantity": "Quantity",
+        "Armor": "Armor",
+        "Weight": "Weight",
+        "ItemPrice": "Item Price",
+        "ItemDescription": "Item Description"
+      },
+      "Equipment": {
+        "ItemName": "Item Name",
+        "TL": "TL",
+        "Quantity": "Quantity",
+        "ShortDescription": "Short Description",
+        "Weight": "Weight",
+        "ItemPrice": "Item Price",
+        "ItemDescription": "Item Description"
+      },
+      "Items": {
+        "ItemType": "Item Type",
+        "AssignAugment": "Assign Augment",
+        "AssignWeapon": "Assign Weapon",
+        "AssignArmor": "Assign Armor",
+        "AssignEquipment": "Assign Equipment",
+        "MoveStorage": "Move Storage",
+        "ItemLocation": "Item Location",
+        "Inventory": "Inventory",
+        "Storage": "Storage",
+        "ItemName": "Item Name",
+        "TL": "TL",
+        "Quantity": "Quantity",
+        "Weight": "Weight",
+        "ItemDescription": "Item Description"
+      },
+      "Skills": {
+        "SkillName": "Skill Name",
+        "Level": "Level",
+        "Modifier": "Modifier",
+        "STR": "STR",
+        "DEX": "DEX",
+        "END": "END",
+        "INT": "INT",
+        "EDU": "EDU",
+        "SOC": "SOC",
+        "PSI": "PSI"
+      },
+      "Weapon": {
+        "ItemName": "Item Name",
+        "TL": "TL",
+        "Damage": "Damage",
+        "Quantity": "Quantity",
+        "Weight": "Weight",
+        "Ammo": "Ammo",
+        "ItemPrice": "Item Price",
+        "ItemDescription": "Item Description"
+      }
+    },
+    "Rolls": {
+      "Cancel": "Cancel",
+      "Rolling": "Rolling",
+      "With": "with"
+    }
+  },
+  "Simple": "Simple",
+  "Easy": "Easy",
+  "Routine": "Routine",
+  "Average": "Average",
+  "Difficult": "Difficult",
+  "Very Difficult": "Very Difficult",
+  "Formidable": "Formidable",
+  "Impossible": "Impossible",
+  "Normal": "Normal",
+  "Advantage": "Advantage",
+  "Disadvantage": "Disadvantage",
+  "Cancel": "Cancel"
+}
