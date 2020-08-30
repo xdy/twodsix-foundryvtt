@@ -156,7 +156,7 @@ export class TwodsixActorSheet extends ActorSheet {
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
 
     if (dataset.roll) {
-      if (item.type === 'skills' && event.shiftKey) {
+      if (item != null && 'skills' === item.type && event.shiftKey) {
         this.rollSkill(itemId, event, dataset);
       } else {
         const roll = new Roll(dataset.roll, this.actor.data.data);
