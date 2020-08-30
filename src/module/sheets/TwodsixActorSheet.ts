@@ -1,3 +1,6 @@
+import TwodsixItem from "../entities/TwodsixItem";
+import {TwodsixRolls} from "../utils/TwodsixRolls";
+
 export class TwodsixActorSheet extends ActorSheet {
 
   /**
@@ -39,13 +42,13 @@ export class TwodsixActorSheet extends ActorSheet {
     for (const i of sheetData.items) {
       i.img = i.img || CONST.DEFAULT_TOKEN;
       // Append to gear.
-      if (i.type === 'storage'){storage.push(i);}
-      if (i.type === 'inventory'){inventory.push(i);}
-      if (i.type === 'equipment'){equipment.push(i);}
-      if (i.type === 'weapon'){weapon.push(i);}
-      if (i.type === 'armor'){armor.push(i);}
-      if (i.type === 'augment'){augment.push(i);}
-      if (i.type === 'skills'){skills.push(i);}
+      if (i.type === 'storage') {storage.push(i);}
+      if (i.type === 'inventory') {inventory.push(i);}
+      if (i.type === 'equipment') {equipment.push(i);}
+      if (i.type === 'weapon') {weapon.push(i);}
+      if (i.type === 'armor') {armor.push(i);}
+      if (i.type === 'augment') {augment.push(i);}
+      if (i.type === 'skills') {skills.push(i);}
     }
     // Assign and return
     actorData.storage = storage;
@@ -144,22 +147,55 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event:{ preventDefault:() => void; currentTarget:any; }):void {
+  _onRoll(event: { preventDefault: any; currentTarget: any; shiftKey?: any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
 
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
+
     if (dataset.roll) {
-      const roll = new Roll(dataset.roll, this.actor.data.data);
-      const label = dataset.label ? `Rolling ${dataset.label}` : '';
-      roll.roll().toMessage({
-        speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        flavor: label
-      });
+      if (item.type === 'skills' && event.shiftKey) {
+        this.rollSkill(itemId, event, dataset);
+      } else {
+        const roll = new Roll(dataset.roll, this.actor.data.data);
+        const label = dataset.label ? `Rolling ${dataset.label}` : '';
+        roll.roll().toMessage({
+          speaker: ChatMessage.getSpeaker({actor: this.actor}),
+          flavor: label
+        });
+      }
     }
   }
 
-  //Unused, but something like is needed to support cascade/subskills, so letting it stay for now.
+  rollSkill(
+    skillId:string,
+    event:{ preventDefault:() => void; currentTarget:any; },
+    dataset:{ roll:string; }
+  ):Promise<any> {
+
+    const skillData = {};
+    const skills = this.getData().actor.skills;
+    if (!skills.length) {
+      return;
+    }
+
+    const rollParts = dataset.roll.split("+");
+
+    const flavorParts:string[] = [];
+    flavorParts.push(`${skills[0].name}`);
+
+    return TwodsixRolls.Roll({
+      parts: rollParts,
+      data: skillData,
+      flavorParts: flavorParts,
+      title: `${skills[0].name}`,
+      speaker: ChatMessage.getSpeaker({actor: this.getData().actor}),
+    });
+  }
+
+  //Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.
   /**
    * Handle skill upgrade
    * @param {Event} event   The originating click event

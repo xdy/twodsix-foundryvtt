@@ -13,27 +13,22 @@
 
 {{#each actor.skills as |item id|}}
 <div class="skill">
-<span class="item skill-container" >
-  <ol class="ol-no-indent">
-    <li class="item flexrow" data-item-id="{{item._id}}">
-      <span class="skill-container rollable" >
-        <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" src="./systems/twodsix/assets/d6-icon.svg" /></span>
-        <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{item.name}}</span>
-        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.value}}</span>
-        <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})
-
-      </span>
-      <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" alt="roll skill">{{data.total}}</span>
-
-
-      <span class="item-controls centre">
-          <a class="skl item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-          <a class="skl item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-      </span>
-
-    </span>
-    </li>
-  </ol>
-</span>
+  <span class="item skill-container">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <span class="skill-container rollable">
+          <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" src="./systems/twodsix/assets/d6-icon.svg"/></span>
+          <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{item.name}}</span>
+          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.value}}</span>
+          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})</span>
+          <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.total}}</span>
+          <span class="item-controls centre">
+            <a class="skl item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="skl item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+          </span>
+        </span>
+      </li>
+    </ol>
+  </span>
 </div>
 {{/each}}
