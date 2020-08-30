@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.1...v0.5.2) (2020-08-30)
+
+
+### Bug Fixes
+
+* Make raw characteristic rolls work again. ([ad9e558](https://github.com/xdy/twodsix-foundryvtt/commit/ad9e5585dee3b9af2805fc82a500164c486a129c))
+
 ## [0.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.0...v0.5.1) (2020-08-30)
 
 
