@@ -15,12 +15,12 @@ export class TwodsixRolls {
     const dialogData = {
       formula: usefulParts.join(' '),
       data: data,
-      rollType: CONFIG.TWODSIX.ROLLTYPES.Normal,
+      rollType: "Normal",
       rollTypes: CONFIG.TWODSIX.ROLLTYPES,
+      difficulty: "Average",
+      difficulties: CONFIG.TWODSIX.DIFFICULTIES,
       rollMode: game.settings.get('core', 'rollMode'),
-      rollModes: CONFIG.Dice.rollModes,
-      difficulty: CONFIG.TWODSIX.DIFFICULTIES.Normal,
-      difficulties: CONFIG.TWODSIX.DIFFICULTIES
+      rollModes: CONFIG.Dice.rollModes
     };
 
     const buttons = {
@@ -32,7 +32,7 @@ export class TwodsixRolls {
             form: html[0].children[0],
             rollParts: usefulParts,
             flavorParts,
-            speaker,
+            speaker
           });
           rolled = true;
         },
@@ -82,8 +82,10 @@ export class TwodsixRolls {
 
     if (data['rollType'] && data['rollType'].length > 0) {
       rollParts[0] = CONFIG.TWODSIX.ROLLTYPES[data['rollType']];
-      flavorParts.push("with");
-      flavorParts.push(`${data['rollType']}`);
+      if (data['rollType'] != 'Normal') {
+        flavorParts.push("with");
+        flavorParts.push(`${data['rollType']}`);
+      }
     }
 
     //So that the result is the Effect of the skill roll.

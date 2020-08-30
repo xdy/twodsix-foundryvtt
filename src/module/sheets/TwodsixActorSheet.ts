@@ -147,7 +147,7 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event: { preventDefault: any; currentTarget: any; shiftKey?: any; }):void {
+  _onRoll(event:{ preventDefault:any; currentTarget:any; shiftKey?:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
@@ -184,13 +184,14 @@ export class TwodsixActorSheet extends ActorSheet {
     const rollParts = dataset.roll.split("+");
 
     const flavorParts:string[] = [];
-    flavorParts.push(`${skills[0].name}`);
+    const skill = skills.filter(x => x._id === skillId)[0];
+    flavorParts.push(`${skill.name}`);
 
     return TwodsixRolls.Roll({
       parts: rollParts,
       data: skillData,
       flavorParts: flavorParts,
-      title: `${skills[0].name}`,
+      title: `${skill.name}`,
       speaker: ChatMessage.getSpeaker({actor: this.getData().actor}),
     });
   }
