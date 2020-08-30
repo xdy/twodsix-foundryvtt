@@ -1,20 +1,20 @@
 {{!-- Sheet Body --}}
 <div class="character-tabs-info character-inventory">
-  <div> <span class="pusher"></span>
-    
+  <div><span class="pusher"></span>
+
     <!---- WEAPONS ---->
 
-    <span class="item-title">WEAPONS</span>
+    <span class="item-title">{{localize "TWODSIX.Actor.Items.WEAPONS"}}</span>
     <div class="items-weapons gear-header">
-      <span class="item-name">Name</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Qty.</span>
-      <span class="item-name centre">Weight</span>
-      <span class="item-name centre">Range</span>
-      <span class="item-name centre">Damage</span>
-      <span class="item-name centre">Ammo</span>
-      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="weapon"><i
-            class="fas fa-plus"></i></a></span>
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Range"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Damage"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Ammo"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon"><i
+        class="fas fa-plus"></i></a></span>
     </div>
 
     {{#each actor.weapon as |item id|}}
@@ -27,11 +27,11 @@
             <span class="item-name centre">{{data.quantity}}</span>
             <span class="item-name centre">{{data.weight}}</span>
             <span class="item-name centre">{{data.range}}</span>
-            <span class="item-name centre rollable" data-roll="{{data.damage}}" alt="roll weapon">{{data.damage}}</span>
+            <span class="item-name centre rollable" data-roll="{{data.damage}}">{{data.damage}}</span>
             <span class="item-name centre">{{data.ammo}}</span>
             <span class="item-controls centre">
-              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+              <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
           </span>
         </li>
@@ -41,16 +41,16 @@
   </div>
 
   <!---- ARMOR ---->
-  <div> <span class="pusher"></span>
-    <span class="item-title">ARMOR</span>
+  <div><span class="pusher"></span>
+    <span class="item-title">{{localize "TWODSIX.Actor.Items.ARMOR"}}</span>
     <div class="items-armor gear-header">
-      <span class="item-name">Name</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Qty.</span>
-      <span class="item-name centre">Weight</span>
-      <span class="item-name centre">Armor #</span>
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ArmorNumber"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="armor"><i
-            class="fas fa-plus"></i></a></span>
+        class="fas fa-plus"></i></a></span>
     </div>
 
 
@@ -65,8 +65,8 @@
             <span class="item-name centre">{{data.weight}}</span>
             <span class="item-name centre">{{data.armor}}</span>
             <span class="item-controls centre">
-              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+              <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
           </span>
         </li>
@@ -76,16 +76,16 @@
   </div>
 
   <!---- AUGMENTS ---->
-  <div> <span class="pusher"></span>
-    <span class="item-title">AUGMENTS</span>
+  <div><span class="pusher"></span>
+    <span class="item-title">{{localize "TWODSIX.Actor.Items.AUGMENTS"}}</span>
     <div class="items-augments gear-header">
-      <span class="item-name">Name</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Qty.</span>
-      <span class="item-name centre">Effect</span>
-      <span class="item-name centre">Location</span>
-      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="augment"><i
-            class="fas fa-plus"></i></a></span>
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Effect"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Location"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="augment"><i
+        class="fas fa-plus"></i></a></span>
     </div>
 
     {{#each actor.augment as |item id|}}
@@ -99,8 +99,8 @@
             <span class="item-name centre">{{data.bonus}}</span>
             <span class="item-name centre">{{data.auglocation}}</span>
             <span class="item-controls centre">
-              <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-              <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+              <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
           </span>
         </li>
@@ -110,35 +110,35 @@
   </div>
 
   <!---- EQUIPMENT ---->
-  <div> <span class="pusher"></span>
-    <span class="item-title">EQUIPMENT</span>
+  <div><span class="pusher"></span>
+    <span class="item-title">{{localize "TWODSIX.Actor.Items.EQUIPMENT"}}</span>
     <div class="items-equipment gear-header">
-      <span class="item-name">Name</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Qty.</span>
-      <span class="item-name centre">Short Descr.</span>
-      <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="equipment"><i
-            class="fas fa-plus"></i></a></span>
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="equipment"><i
+        class="fas fa-plus"></i></a></span>
     </div>
 
 
-      {{#each actor.equipment as |item id|}}
-      <div class="item gear">
-        <ol class="ol-no-indent">
-          <li class="item flexrow" data-item-id="{{item._id}}">
+    {{#each actor.equipment as |item id|}}
+    <div class="item gear">
+      <ol class="ol-no-indent">
+        <li class="item flexrow" data-item-id="{{item._id}}">
             <span class="items-equipment">
               <span class="item-name">{{item.name}}</span>
               <span class="item-name centre">{{data.techLevel}}</span>
               <span class="item-name centre">{{data.quantity}}</span>
               <span class="item-name centre">{{data.shortdescr}}</span>
               <span class="item-controls centre">
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
               </span>
             </span>
-          </li>
-        </ol>
-      </div>
-      {{/each}}
+        </li>
+      </ol>
+    </div>
+    {{/each}}
   </div>
 </div>

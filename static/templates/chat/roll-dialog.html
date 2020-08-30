@@ -1,38 +1,38 @@
 <form>
-  <div>Note that this skill roll dialog uses the Cepheus Engine rules, i.e. it adds a modifier for difficulty rather than change the target number. It then subtracts 8 from the result, showing the Effect of the skill roll.</div>
+  <div>{{localize "TWODSIX.Chat.Roll.DialogNote"}}</div>
   <div class="form-group">
-    <label>Difficulty
+    <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
       <select name="difficulty">
         {{#select difficulty}}
         {{#each difficulties as |label difficulty|}}
-        <option value="{{difficulty}}">{{difficulty}}</option>
+        <option value="{{difficulty}}">{{localize difficulty}}</option>
         {{/each}}
         {{/select}}
       </select>
     </label>
   </div>
   <div class="form-group">
-    <label>Roll type
+    <label>{{localize "TWODSIX.Chat.Roll.Type"}}
       <select name="rollType">
         {{#select rollType}}
         {{#each rollTypes as |label type|}}
-        <option value="{{type}}">{{type}}</option>
+        <option value="{{type}}">{{localize type}}</option>
         {{/each}}
         {{/select}}
       </select>
     </label>
   </div>
   <div class="form-group">
-    <label>Other modifiers
+    <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
       <input type="number" name="bonus" value="0" placeholder="0" onClick="this.select();"/>
     </label>
   </div>
   <div class="form-group">
-    <label>Roll mode
+    <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
       <select name="rollMode">
         {{#select rollMode}}
         {{#each rollModes as |label mode|}}
-        <option value="{{mode}}">{{label}}</option>
+        <option value="{{mode}}">{{localize label}}</option>
         {{/each}}
         {{/select}}
       </select>

@@ -1,12 +1,12 @@
-<a class="add-skill item-control item-create" title="Create item" data-type="skills"><span class="add-skill-txt"></span>>> Add Skill <<</span></i></a>
+<a class="add-skill item-control item-create" title="Create item" data-type="skills"><span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span></a>
 <div class="skill-list">
   <span class="skill-container">
     <span></span>
-    <span class="skill-title">Skill Name</span>
-    <span class="skill-level centre">Level</span>
-    <span class="skill-mod centre">Modifier</span>
-    <span class="skill-total centre">Total</span>
-    <span class="skill-edit-remove centre">Edit/Remove</span>
+    <span class="skill-title">{{localize "TWODSIX.Actor.Skills.SkillName"}}</span>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="skill-mod centre">{{localize "TWODSIX.Actor.Skills.Modifier"}}</span>
+    <span class="skill-total centre">{{localize "TWODSIX.Actor.Skills.Total"}}</span>
+    <span class="skill-edit-remove centre">{{localize "TWODSIX.Actor.Skills.EditOrRemove"}}</span>
   </span>
 </div>
 
@@ -23,8 +23,8 @@
           <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})</span>
           <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.total}}</span>
           <span class="item-controls centre">
-            <a class="skl item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-            <a class="skl item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
+            <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>
           </span>
         </span>
       </li>

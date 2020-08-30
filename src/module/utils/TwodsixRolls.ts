@@ -15,9 +15,9 @@ export class TwodsixRolls {
     const dialogData = {
       formula: usefulParts.join(' '),
       data: data,
-      rollType: "Normal",
+      rollType: game.i18n.localize("Normal"),
       rollTypes: CONFIG.TWODSIX.ROLLTYPES,
-      difficulty: "Average",
+      difficulty: game.i18n.localize("Average"),
       difficulties: CONFIG.TWODSIX.DIFFICULTIES,
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes
@@ -39,7 +39,7 @@ export class TwodsixRolls {
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: "Cancel",
+        label: game.i18n.localize("Cancel"),
       },
     };
 
@@ -78,12 +78,12 @@ export class TwodsixRolls {
       flavorParts.unshift(`${data['difficulty']}`);
     }
 
-    flavorParts.unshift("Rolling:");
+    flavorParts.unshift(game.i18n.localize("TWODSIX.Rolls.Rolling") + ":");
 
     if (data['rollType'] && data['rollType'].length > 0) {
       rollParts[0] = CONFIG.TWODSIX.ROLLTYPES[data['rollType']];
       if (data['rollType'] != 'Normal') {
-        flavorParts.push("with");
+        flavorParts.push(game.i18n.localize("TWODSIX.Rolls.With"));
         flavorParts.push(`${data['rollType']}`);
       }
     }

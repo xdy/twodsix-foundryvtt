@@ -1,20 +1,23 @@
 <div class="info-container">
-<div class="puller"></div>
+  <div class="puller"></div>
+  <div class="char-description">
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
+    {{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}}
+  </div>
   <div class="char-contacts">
-    <span class="item-title">CONTACTS</span>  
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
     {{{editor content=data.contacts target="data.contacts" button=true owner=owner editable=editable}}}
   </div>
   <div class="char-allies">
-    <span class="item-title">ALLIES</span>  
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.ALLIES"}}</span>
     {{{editor content=data.allies target="data.allies" button=true owner=owner editable=editable}}}
   </div>
   <div class="char-enemies">
-    <span class="item-title">ENEMIES</span>  
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.ENEMIES"}}</span>
     {{{editor content=data.enemies target="data.enemies" button=true owner=owner editable=editable}}}
   </div>
   <div class="char-bio">
-    <span class="item-title">BIOGRAPHY</span>  
-      {{{editor content=data.bio target="data.bio" button=true owner=owner editable=editable}}}
-    </div>
-    
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
+    {{{editor content=data.bio target="data.bio" button=true owner=owner editable=editable}}}
+  </div>
 </div>
