@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.0...v0.5.1) (2020-08-30)
+
+
+### Bug Fixes
+
+* Embarrassing bug on the skill roll dialog meaning only the first skill worked. Also set Average difficulty and Normal roll type as defaults. ([c61cf40](https://github.com/xdy/twodsix-foundryvtt/commit/c61cf40bc1c39c95014d52a0afa6475155e7660a))
+
 # [0.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.5...v0.5.0) (2020-08-30)
 
 
