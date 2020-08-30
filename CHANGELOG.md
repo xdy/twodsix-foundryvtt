@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.5...v0.5.0) (2020-08-30)
+
+
+### Features
+
+* Issue [#59](https://github.com/xdy/twodsix-foundryvtt/issues/59) Add support for advantage/disadvantage ([67767da](https://github.com/xdy/twodsix-foundryvtt/commit/67767da1097703f68e6a7bb2eded60b32a5e5560))
+
 ## [0.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.4...v0.4.5) (2020-08-29)
 
 
