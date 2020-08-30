@@ -57,13 +57,13 @@ Hooks.once('init', async function () {
 
   /**
    * Set an initiative formula for the system
-   * TODO Should be done via a setting
    * @type {String}
    */
   CONFIG.Combat.initiative = {
     formula: "1d6",
     decimals: 1
   };
+
   registerHandlebarsHelpers();
   registerSettings();
   await preloadTemplates();
