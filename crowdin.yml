@@ -1,3 +1,0 @@
-files:
-  - source: /static/lang/*.json
-    translation: /static/lang/%two_letters_code%.%file_extension%
