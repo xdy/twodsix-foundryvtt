@@ -2,7 +2,7 @@
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
-But, it has been downloaded by ![this many](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total?style=for-the-badge), so, why not try it?
+But, it has been downloaded by ![this many](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total), so, why not try it?
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough to play all/most 2d6 rules variants using this system.
 Due to licensing restrictions the user will have to fill compendiums with skills, etc, themselves. (When completed, data from Cepheus Engine will be included.) 
