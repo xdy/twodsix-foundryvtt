@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.2...v0.6.0) (2020-08-31)
+
+
+### Features
+
+* Issue [#66](https://github.com/xdy/twodsix-foundryvtt/issues/66) Support translating the system to other languages (excluding compendiums, as we have none). Added quick and dirty Swedish translation as an example. ([78bc9f8](https://github.com/xdy/twodsix-foundryvtt/commit/78bc9f83529554bd9cb2f695a8852646d3f6afa8))
+
 ## [0.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.1...v0.5.2) (2020-08-30)
 
 
