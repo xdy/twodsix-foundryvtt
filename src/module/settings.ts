@@ -94,4 +94,15 @@ export const registerSettings = function ():void {
 
   //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
 
+  //Should be the last setting in the file
+  game.settings.register('twodsix', 'systemMigrationVersion', {
+    name: 'System Schema Version',
+    hint: "Records the schema version for the Twodsix system. (don't modify this unless you know what you are doing)",
+    scope: 'world',
+    config: true,
+    default: 0,
+    type: String,
+  });
+
+
 }
