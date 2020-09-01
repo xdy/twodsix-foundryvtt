@@ -1,6 +1,6 @@
 name: Test and release
 
-# Run the workflow when a Pull Request is opened or when changes are pushed to master
+# Run the workflow when a Pull Request is opened or when changes are pushed to master on 'xdy/twodsix' (i.e. don't run on forks)
 on:
   pull_request:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    if: github.repository == 'xdy/twodsix'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,8 +40,8 @@ jobs:
       #run: npm test
 
   release:
-    # Only release on push to master
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    # Only release on push to master of xdy/twodsix
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'xdy/twodsix'
     runs-on: ubuntu-latest
     # Waits for test jobs for each Node.js version to complete
     needs: [test]
