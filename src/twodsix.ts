@@ -6,7 +6,6 @@
  * Content License: Basically OGL, see License section of README.md for details
  * Software License: Apache, see License section of README.md for details
  */
-
 import {registerSettings} from './module/settings';
 import preloadTemplates from './module/templates';
 import registerHandlebarsHelpers from './module/handlebars';
@@ -16,6 +15,7 @@ import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import {TWODSIX} from "./module/config";
+import {Migration} from "./module/migration";
 
 
 require('../static/styles/twodsix.css');
@@ -82,10 +82,28 @@ Hooks.once('setup', async function () {
 });
 
 Hooks.once("ready", async function () {
+  // Determine whether a system migration is required and feasible
+  const MIGRATIONS_IMPLEMENTED = "0.6.1";
+  let currentVersion = null;
+  if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
+    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion")
+    if (currentVersion == "null") {
+      currentVersion = null;
+    }
+  }
+  const needMigration = currentVersion === null || currentVersion === "" || currentVersion < game.system.data.version;
+
+  // Perform the migration
+  if (needMigration && game.user.isGM) {
+    if (!currentVersion || currentVersion < MIGRATIONS_IMPLEMENTED) {
+      ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
+    }
+    await Migration.migrateWorld();
+  }
+
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createTwodsixMacro(data, slot));
 
-  // Set up migrations here once needed.
 });
 
 // Add any additional hooks if necessary
