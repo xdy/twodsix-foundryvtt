@@ -1,3 +1,10 @@
+## [0.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.2...v0.6.3) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#69](https://github.com/xdy/twodsix-foundryvtt/issues/69) Setting your own name for advantage/disadvantage. ([ef7e6d1](https://github.com/xdy/twodsix-foundryvtt/commit/ef7e6d1b6c8d4ef9bbeff4f892c5fe1b9fb41068))
+
 ## [0.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.1...v0.6.2) (2020-09-02)
 
 
