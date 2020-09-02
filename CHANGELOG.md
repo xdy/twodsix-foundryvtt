@@ -1,3 +1,10 @@
+## [0.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.0...v0.6.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#65](https://github.com/xdy/twodsix-foundryvtt/issues/65) Added basic migration support ([2ee210c](https://github.com/xdy/twodsix-foundryvtt/commit/2ee210c3adbd96f2893790f809b95923a50b4853))
+
 # [0.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.2...v0.6.0) (2020-08-31)
 
 
