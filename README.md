@@ -5,7 +5,7 @@ Note that this system is *very* early in its development.
 
 Total downloads: ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total)
 
-The latest version ([![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt)](https://gitHub.com/xdy/twodsix-foundryvtt/releases/)
+The latest version (![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt)]
 ): ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough to play all/most 2d6 rules variants using this system.
