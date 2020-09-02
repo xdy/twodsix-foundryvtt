@@ -1,0 +1,62 @@
+---
+env:
+  browser: true
+  es6: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - eslint-config-prettier
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+  ItemSheet: readonly
+  game: readonly
+  mergeObject: readonly
+  CONFIG: writable
+  duplicate: readonly
+  "$": readonly
+  Tabs: readonly
+  Hooks: readonly
+  Items: readonly
+  loadTemplates: readonly
+  Combat: writable
+  canvas: readonly
+  ActorSheet: readonly
+  Actor: readonly
+  Actors: readonly
+  fetchSpell: readonly
+parserOptions:
+  ecmaVersion: 2020
+  sourceType: module
+rules:
+  prettier/prettier: error
+  "@typescript-eslint/explicit-module-boundary-types":
+    - error
+    - allowDirectConstAssertionInArrowFunctions: true
+      allowHigherOrderFunctions: true
+      allowTypedFunctionExpressions: true
+  curly: warn
+  brace-style: 1
+  no-mixed-spaces-and-tabs: warn
+  indent: [2, 2]
+settings:
+  import/resolver:
+    node:
+      paths:
+        - src
+        - ''
+        - dist
+      extensions:
+        - ".js"
+        - ".jsx"
+        - ".ts"
+        - ".tsx"
+        - ".json"
+plugins:
+  - prettier
+  - "@typescript-eslint"
+overrides:
+  - files: tests/**/*
+    rules:
+      global-require: 'off'
+parser: "@typescript-eslint/parser"

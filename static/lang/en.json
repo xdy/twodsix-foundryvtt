@@ -12,11 +12,13 @@
       "absoluteBonusValueForEachTimeIncrement.name": "What bonus/penalty to give per each time increment change in a task.",
       "absoluteBonusValueForEachTimeIncrement.hint": "Leave empty to use default (+/-1). Not currently used.",
       "termForAdvantage.name": "What you want to call rolls with advantage (3d6kh2).",
-      "termForAdvantage.hint": "Don't use the same as for termForDisadvantage. :) Not currently used.",
+      "termForAdvantage.hint": "Don't use the same as for termForDisadvantage...",
       "termForDisadvantage.name": "What you want to call rolls with disadvantage (3d6kl2).",
-      "termForDisadvantage.hint": "Don't use the same as for termForAdvantage. :) Not currently used.",
+      "termForDisadvantage.hint": "Don't use the same as for termForAdvantage...",
       "initiativeFormula.success": "Set initiative formula to: ${formula}",
-      "initiativeFormula.failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead."
+      "initiativeFormula.failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.",
+      "systemMigrationVersion.name": "System Schema Version",
+      "systemMigrationVersion.hint": "Records the schema version for the Twodsix system. (don't modify this unless you know what you are doing)"
     },
     "Actor": {
       "Rolling": "Rolling",

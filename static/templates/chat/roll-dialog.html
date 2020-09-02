@@ -16,7 +16,7 @@
       <select name="rollType">
         {{#select rollType}}
         {{#each rollTypes as |label type|}}
-        <option value="{{type}}">{{localize type}}</option>
+        <option value="{{type}}">{{localize (advantageDisadvantageTerm type)}}</option>
         {{/each}}
         {{/select}}
       </select>

@@ -3,7 +3,7 @@
   /* IE */
   src: local('Calibri'), url('/fonts/PerfectDOSVGA437.ttf') format('truetype');
   /* For non-IE */
-  font-family: "Perfect DOS VGA 437";
+  font-family: 'Perfect DOS VGA 437';
 }
 
 body {
@@ -37,7 +37,6 @@ textarea {
   color: #29aae1;
 }
 
-
 .rollable:hover {
   cursor: pointer;
 }
@@ -57,8 +56,8 @@ textarea:focus {
   background-attachment: fixed !important;
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
-  font-family: "Perfect DOS VGA 437";
-  color: #00E5FF !important;
+  font-family: 'Perfect DOS VGA 437';
+  color: #00e5ff !important;
 }
 
 .app .window-app .twodsix .sheet .actor .window-content {
@@ -80,7 +79,9 @@ img {
   max-width: 100%;
 }
 
-input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
+input[type='text'],
+input[type='number'] input[type='password'],
+input[type='datetime-local'] {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
   color: #6e819e !important;
@@ -95,13 +96,15 @@ input[type="text"], input[type="number"] input[type="password"], input[type="dat
   border: none;
 }
 
-input[type="text"]:focus, input[type="number"] input[type="password"]:focus, input[type="datetime-local"]:focus {
+input[type='text']:focus,
+input[type='number'] input[type='password']:focus,
+input[type='datetime-local']:focus {
   outline: 2px solid #222f3e;
   box-shadow: 0 0 10px #207ab7;
 }
 
 input::-webkit-inner-spin-button {
-  display: none
+  display: none;
 }
 
 .content-container {
@@ -167,7 +170,7 @@ img.character-info-mask {
   width: 18.5em;
 }
 
-.character-name input[type="text"] {
+.character-name input[type='text'] {
   background-color: transparent;
   position: relative;
   width: 15.55em;
@@ -244,7 +247,8 @@ span.stat-name {
   cursor: pointer;
 }
 
-.stat input, .special input {
+.stat input,
+.special input {
   width: 1.5em;
   text-align: center;
   margin-left: -0.25em;
@@ -305,7 +309,8 @@ span.stat-damage {
   top: -1.6em;
 }
 
-span.stat-damage input, span.special-damage input {
+span.stat-damage input,
+span.special-damage input {
   color: #612e2e !important;
 }
 
@@ -344,7 +349,7 @@ svg:hover {
 }
 
 .character-tabs-info {
-  background: transparent !important
+  background: transparent !important;
 }
 
 .skill-tab {
@@ -367,7 +372,9 @@ a.skill-tab.active {
   text-shadow: none !important;
 }
 
-.item-tab, .finances-tab, .info-tab {
+.item-tab,
+.finances-tab,
+.info-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
   background-position-x: -97px;
   padding-top: 0.15em;
@@ -376,12 +383,16 @@ a.skill-tab.active {
   background-color: transparent !important;
 }
 
-a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
+a.item-tab:hover,
+a.finances-tab:hover,
+a.info-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: #fff;
 }
 
-a.item-tab.active, a.finances-tab.active, a.info-tab.active {
+a.item-tab.active,
+a.finances-tab.active,
+a.info-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
   text-shadow: none !important;
@@ -424,18 +435,18 @@ a.notes-tab.active {
 
 .character-inventory {
   width: 34em;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 .inventory {
-  top: 2em
+  top: 2em;
 }
 
 .items-weapons {
   display: grid;
   grid-template-columns: 12em 2em 3em 3em 3em 4em 3em 3em;
   gap: 1px 1px;
-  grid-template-areas: ". . . . .";
+  grid-template-areas: '. . . . .';
 }
 
 .gear-header {
@@ -454,21 +465,21 @@ a.notes-tab.active {
   display: grid;
   grid-template-columns: 14em 4em 4em 4em 4em 3em;
   gap: 1px 1px;
-  grid-template-areas: ". . . . .";
+  grid-template-areas: '. . . . .';
 }
 
 .items-augments {
   display: grid;
   grid-template-columns: 14em 4em 4em 4em 4em 3em;
   gap: 1px 1px;
-  grid-template-areas: ". . . . .";
+  grid-template-areas: '. . . . .';
 }
 
 .items-equipment {
   display: grid;
   grid-template-columns: 12em 2em 3em 13em 3em;
   gap: 1px 1px;
-  grid-template-areas: ". . . . .";
+  grid-template-areas: '. . . . .';
 }
 
 /*-------Skill Tab-----------*/
@@ -506,7 +517,7 @@ span.add-skill-txt {
   height: 22px;
   display: inline-block;
   position: relative;
-  margin-top: -0.40em;
+  margin-top: -0.4em;
   margin-left: 0.95em;
 }
 
@@ -514,7 +525,8 @@ span.add-skill-txt {
   padding: 0.1em 0em 0.1em 0.5em;
 }
 
-a:hover, a.active {
+a:hover,
+a.active {
   text-shadow: 0 0 0.8em #00e5ff;
 }
 
@@ -528,7 +540,7 @@ a:hover, a.active {
 
 /* Style overrides */
 
-.skills input[type="number"] {
+.skills input[type='number'] {
   width: 2em;
 }
 
@@ -545,7 +557,7 @@ a:hover, a.active {
 .skills {
   position: relative;
   top: 2.5em;
-  overflow-y: auto
+  overflow-y: auto;
 }
 
 .skills.grid.grid-2col {
@@ -605,7 +617,7 @@ span.total-output {
 
 .select-mod:after {
   position: absolute;
-  content: "";
+  content: '';
   top: 14px;
   right: 10px;
   width: 0;
@@ -620,7 +632,7 @@ span.total-output {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 1px 1px;
-  grid-template-areas: "cash financial-notes" "pension financial-notes" "debt financial-notes" "ship-payments financial-notes" "living-costs financial-notes";
+  grid-template-areas: 'cash financial-notes' 'pension financial-notes' 'debt financial-notes' 'ship-payments financial-notes' 'living-costs financial-notes';
   position: relative;
   margin-top: 3em;
 }
@@ -628,7 +640,6 @@ span.total-output {
 .financial-notes {
   grid-area: financial-notes;
   padding: 1em;
-
 }
 
 .financial-notes > .editor {
@@ -642,7 +653,7 @@ span.total-output {
   padding: 1em;
 }
 
-.cash input[type="text"] {
+.cash input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
@@ -655,7 +666,7 @@ span.total-output {
   padding: 1em;
 }
 
-.pension input[type="text"] {
+.pension input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
@@ -668,7 +679,7 @@ span.total-output {
   padding: 1em;
 }
 
-.debt input[type="text"] {
+.debt input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
@@ -681,7 +692,7 @@ span.total-output {
   padding: 1em;
 }
 
-.ship-payments input[type="text"] {
+.ship-payments input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
@@ -694,14 +705,13 @@ span.total-output {
   padding: 1em;
 }
 
-.living-costs input[type="text"] {
+.living-costs input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
   border-radius: 0px;
 }
-
 
 .item-title {
   background-image: url(../assets/actor/header.svg);
@@ -719,7 +729,7 @@ span.total-output {
   display: grid;
   grid-template-rows: 8em 8em 8em 11em;
   gap: 1px 1px;
-  grid-template-areas: "char-description" "char-contacts" "char-allies" "char-enemies" "char-bio";
+  grid-template-areas: 'char-description' 'char-contacts' 'char-allies' 'char-enemies' 'char-bio';
   padding: 1em;
   position: relative;
   margin-top: 2em;
@@ -790,7 +800,6 @@ span.total-output {
   border: 1px solid #29aae1;
 }
 
-
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
@@ -856,7 +865,7 @@ select {
   grid-template-columns: 15em 2em 2em 4em 6em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". . . . . .";
+  grid-template-areas: '. . . . . .';
 }
 
 .item-container.items-list {
@@ -906,7 +915,9 @@ a:hover {
   text-shadow: 0 0 5px #29aae1;
 }
 
-.item-page input[type="text"], input[type="number"] input[type="password"], input[type="datetime-local"] {
+.item-page input[type='text'],
+input[type='number'] input[type='password'],
+input[type='datetime-local'] {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
   color: #6e819e !important;
@@ -990,7 +1001,8 @@ a:hover {
   color: #29aae1 !important;
 }
 
-.dice-roll .dice-formula, .dice-roll .dice-total {
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
   flex: 0 0 100%;
   position: relative;
   margin: 0;
@@ -1031,7 +1043,8 @@ a:hover {
   text-align: center;
 }
 
-.dice-roll .dice-formula, .dice-roll .dice-total {
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
   flex: 0 0 100%;
   position: relative;
   margin: 0;
@@ -1103,7 +1116,8 @@ button:hover {
   border-color: #00e5ff;
 }
 
-form .notes, form .hint {
+form .notes,
+form .hint {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
@@ -1111,7 +1125,9 @@ form .notes, form .hint {
   margin: 3px 0;
 }
 
-#module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
+#module-management .package-list .package-title,
+#module-management .package-list .package-metadata,
+#module-management .package-list .package-description {
   color: #bfbfbf;
 }
 
@@ -1220,7 +1236,8 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   color: #00e5ff;
 }
 
-.sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
+.sidebar-tab .directory-list .directory-item.context,
+.sidebar-tab .directory-list .directory-item.active {
   border-color: #29aae1;
 }
 
@@ -1248,16 +1265,20 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   border: 1px groove #191813;
 }
 
-#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover {
-  color: #FFF;
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
+  color: #fff;
   border: 1px solid #00e5ff;
   border-bottom: 1px solid #29aae1;
   box-shadow: 0 0 10px #29aae1;
 }
 
-#navigation #scene-list .scene.view, #navigation #scene-list .scene.context {
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context {
   cursor: default;
-  color: #FFF;
+  color: #fff;
   border: 1px solid #00e5ff;
   background: rgba(52, 52, 52, 0.95);
   border-bottom: 1px solid #29aae1;
@@ -1305,7 +1326,9 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   color: #207ab7;
 }
 
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
   background-color: #000 !important;
 }
 
@@ -1315,10 +1338,12 @@ div.app.window-app.twodsix.sheet.actor header a.close {
 }
 
 .tox .tox-tbtn:hover svg {
-  fill: #00e5ff !important
+  fill: #00e5ff !important;
 }
 
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
   background: none !important;
   background-color: #000 !important;
   display: flex;
