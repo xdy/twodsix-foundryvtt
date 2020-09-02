@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ES2017",
+    "target": "ES2018",
     "lib": [
-      "DOM",
-      "ES6",
-      "ES2017",
-      "esnext"
+      "WebWorker",
+      "ScriptHost",
+      "ESNext",
+      "DOM"
     ],
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,

@@ -26,7 +26,7 @@ globals:
   Actors: readonly
   fetchSpell: readonly
 parserOptions:
-  ecmaVersion: 2018
+  ecmaVersion: 2020
   sourceType: module
 rules:
   prettier/prettier: error
@@ -45,6 +45,9 @@ rules:
     - allowDirectConstAssertionInArrowFunctions: true
       allowHigherOrderFunctions: true
       allowTypedFunctionExpressions: true
+  curly: warn
+  brace-style: 1
+  indent: warn
 settings:
   import/resolver:
     node:

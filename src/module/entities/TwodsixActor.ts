@@ -6,36 +6,36 @@ import {calcModFor} from "../utils/sheetUtils";
 
 export default class TwodsixActor extends Actor {
 
-  /**
+    /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData():void {
-    super.prepareData();
+    prepareData():void {
+        super.prepareData();
 
-    const actorData = this.data;
+        const actorData = this.data;
 
-    // Make separate methods for each Actor type (character, npc, etc.) to keep
-    // things organized.
-    switch (actorData.type) {
-      case 'traveller':
-        this._prepareCharacterData(actorData);
-        break;
-      default:
+        // Make separate methods for each Actor type (character, npc, etc.) to keep
+        // things organized.
+        switch (actorData.type) {
+        case 'traveller':
+            this._prepareCharacterData(actorData);
+            break;
+        default:
+
+        }
 
     }
 
-  }
-
-  /**
+    /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData:ActorData):void {
+    _prepareCharacterData(actorData:ActorData):void {
     // Get the Actor's data object
-    const {data} = actorData;
+        const {data} = actorData;
 
-    for (const cha of Object.values(data.characteristics as Record<any, any>)) {
-      cha.current = cha.value - cha.damage;
-      cha.mod = calcModFor(cha.current);
+        for (const cha of Object.values(data.characteristics as Record<any, any>)) {
+            cha.current = cha.value - cha.damage;
+            cha.mod = calcModFor(cha.current);
+        }
     }
-  }
 }

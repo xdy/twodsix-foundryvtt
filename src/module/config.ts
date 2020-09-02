@@ -8,24 +8,24 @@ export const TWODSIX:any = {};
  * @type {Object}
  */
 TWODSIX.VARIANTS = {
-  "ce": "Cepheus Engine",
+    "ce": "Cepheus Engine",
 }
 
 TWODSIX.ROLLTYPES = {
-  Advantage: "3d6kh2",
-  Normal: "2d6",
-  Disadvantage: "3d6kl2"
+    Advantage: "3d6kh2",
+    Normal: "2d6",
+    Disadvantage: "3d6kl2"
 }
 
 //This is defined the CE way, but it's mathematically equivalent to other variants.
 TWODSIX.DIFFICULTIES = {
-  Simple: 6,
-  Easy: 4,
-  Routine: 2,
-  Average: 0,
-  Difficult: -2,
-  VeryDifficult: -4,
-  Formidable: -6,
-  Impossible: -8
+    Simple: 6,
+    Easy: 4,
+    Routine: 2,
+    Average: 0,
+    Difficult: -2,
+    VeryDifficult: -4,
+    Formidable: -6,
+    Impossible: -8
 }
 
