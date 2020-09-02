@@ -154,7 +154,10 @@ async function createTwodsixMacro(data, slot) {
 
     // Create the macro command
     const command = `game.twodsix.rollItemMacro("${item.name}");`;
-    let macro:Entity = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+
+    //TODO Add command to upstream
+    // @ts-ignore
+    let macro:Entity = game.macros.entities.find((m:Macro) => (m.name === item.name) && (m.command === command));
     if (!macro) {
         macro = await Macro.create({
             name: item.name,
