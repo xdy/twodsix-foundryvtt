@@ -1,3 +1,10 @@
+## [0.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.1...v0.6.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#67](https://github.com/xdy/twodsix-foundryvtt/issues/67), Skills and items no longer jump. ([aa8f04d](https://github.com/xdy/twodsix-foundryvtt/commit/aa8f04d4694d2b890f1e829946d9009601323e33))
+
 ## [0.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.0...v0.6.1) (2020-09-02)
 
 
