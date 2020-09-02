@@ -2,7 +2,11 @@
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
-But, it has been downloaded by ![this many](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total), so, why not try it?
+
+Total downloads: ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total)
+
+The latest version ([![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt)](https://gitHub.com/xdy/twodsix-foundryvtt/releases/)
+): ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough to play all/most 2d6 rules variants using this system.
 Due to licensing restrictions the user will have to fill compendiums with skills, etc, themselves. (When completed, data from Cepheus Engine will be included.) 
@@ -37,6 +41,5 @@ Font licenses:
 See CONTRIBUTING.md
 
 [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt)](https://gitHub.com/xdy/twodsix-foundryvtt/releases/)
 [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/)
 
