@@ -1,7 +1,5 @@
 ---
-trailingComma: es5
 singleQuote: true
-tabWidth: 2
 requirePragma: true
 overrides:
   - files:
@@ -12,6 +10,6 @@ overrides:
       parser: scss
   - files: "*.html"
     options:
-      requirePragma: false
+      requirePragma: true
       parser: html
       htmlWhitespaceSensitivity: ignore

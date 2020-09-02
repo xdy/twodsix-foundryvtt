@@ -10,4 +10,5 @@ icons/\!dox/
 node_modules
 foundryconfig.json
 dist/*
+foundry.js
 

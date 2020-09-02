@@ -1,8 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "traveller"
-    ],
+    "types": ["traveller"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -23,11 +21,11 @@
       "bio": "",
       "notes": "",
       "finances": {
-        "cash":"0",
-        "pension":"0",
-        "debt":"0",
-        "payments":"0",
-        "livingCosts":"0",
+        "cash": "0",
+        "pension": "0",
+        "debt": "0",
+        "payments": "0",
+        "livingCosts": "0",
         "financial-notes": ""
       },
 
@@ -82,26 +80,16 @@
           "shortLabel": "PSI"
         }
       }
-
     }
-
-
   },
   "Item": {
-    "types": [
-      "equipment",
-      "weapon",
-      "armor",
-      "augment",
-      "storage",
-      "skills"
-    ],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "skills"],
     "templates": {
       "gearTemplate": {
         "name": "",
         "techLevel": 0,
         "description": "",
-        "shortdescr" : "",
+        "shortdescr": "",
         "quantity": 1,
         "weight": 0,
         "price": "0 Cr",
@@ -112,19 +100,12 @@
       }
     },
     "equipment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "type": "equipment",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -132,43 +113,27 @@
       "ammo": 0,
       "magazineCost": 0,
       "type": "weapon",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "armor": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "armor": 0,
       "type": "armor",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "augment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
-      "location": [
-        "inventory",
-        "storage"
-      ]
-
+      "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": [
-        "skillsTemplate"
-      ],
-        "name": "Skill Name",
-        "value": -3,
-        "characteristic": "STR",
-        "type": "skills"
+      "templates": ["skillsTemplate"],
+      "name": "Skill Name",
+      "value": -3,
+      "characteristic": "STR",
+      "type": "skills"
     }
   }
 }

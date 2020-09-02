@@ -12,9 +12,9 @@
       "absoluteBonusValueForEachTimeIncrement.name": "Vilken bonus/malus som ges för varje tidsintervallsteg.",
       "absoluteBonusValueForEachTimeIncrement.hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
       "termForAdvantage.name": "Det du vill kalla tärningsslag med fördel (3d6kh2).",
-      "termForAdvantage.hint": "Använd inte samma ord som för termForDisadvantage. :) Används inte för närvarande.",
+      "termForAdvantage.hint": "Använd inte samma ord som för termForDisadvantage...",
       "termForDisadvantage.name": "Det du vill kalla tärningsslag med nackdel (3d6kl2).",
-      "termForDisadvantage.hint": "Använd inte samma ord som för termForAdvantage. :) Används inte för närvarande.",
+      "termForDisadvantage.hint": "Använd inte samma ord som för termForAdvantage...",
       "initiativeFormula.success": "Sätt initiativformel till: ${formula}",
       "initiativeFormula.failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället."
     },
