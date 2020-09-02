@@ -39,3 +39,4 @@ See CONTRIBUTING.md
 [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt)](https://gitHub.com/xdy/twodsix-foundryvtt/releases/)
 [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/)
+
