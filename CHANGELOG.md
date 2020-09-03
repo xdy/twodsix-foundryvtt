@@ -1,3 +1,10 @@
+## [0.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.3...v0.6.4) (2020-09-03)
+
+
+### Bug Fixes
+
+* Issue [#80](https://github.com/xdy/twodsix-foundryvtt/issues/80) Choose whether to show Effect or dice roll total. ([1e3c283](https://github.com/xdy/twodsix-foundryvtt/commit/1e3c2837a8020c59fe4ba6ff3a370b558efaf3f6))
+
 ## [0.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.2...v0.6.3) (2020-09-02)
 
 
