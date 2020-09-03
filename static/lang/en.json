@@ -95,7 +95,6 @@
     },
     "Chat": {
       "Roll": {
-        "DialogNote": "Note that this skill roll dialog uses the Cepheus Engine rules, i.e. it adds a modifier for difficulty rather than change the target number. It then subtracts 8 from the result, showing the Effect of the skill roll.",
         "Difficulty": "Roll difficulty",
         "Type": "Roll type",
         "Mode": "Roll mode",
@@ -163,7 +162,10 @@
     "Rolls": {
       "Cancel": "Cancel",
       "Rolling": "Rolling",
-      "With": "with"
+      "With": "with",
+      "resultShows": "result shows",
+      "Effect": "Effect",
+      "sum": "sum"
     }
   },
   "Simple": "Simple",

@@ -93,7 +93,6 @@
     },
     "Chat": {
       "Roll": {
-        "DialogNote": "Notera att denna färdighetsslagsdialog använder Cepheus Engine-reglerna, dvs. den lägger till en modifierare för svårigheter snarare än att ändra målnumret. Därefter subtraheras 8 från resultatet vilket visas som Effekten av färdighetsslaget.",
         "Difficulty": "Svårighet",
         "Type": "Slagtyp",
         "Mode": "Slagläge",
@@ -168,8 +167,12 @@
       "ItemDescription": "Sakbeskrivning"
     },
     "Rolls": {
+      "Cancel": "Avbryt",
       "Rolling": "Rullar",
-      "With": "med"
+      "With": "med",
+      "resultShows": "resultatet är",
+      "Effect": "Effekten",
+      "sum": "summan"
     }
   },
   "Simple": "Enkelt",

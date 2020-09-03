@@ -59,6 +59,15 @@ export const registerSettings = function ():void {
     default: 'disadvantage',
   });
 
+  game.settings.register('twodsix', 'effectOrTotal', {
+    name: 'Show effect or total roll value for skill and characteristic rolls.',
+    hint: "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
+    scope: 'world',
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+
   game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
     name: 'What bonus/penalty to give per each time increment change in a task.',
     hint: "Leave empty to use default (+/-1). Not currently used.",

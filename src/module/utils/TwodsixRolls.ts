@@ -1,4 +1,5 @@
 import {advantageDisadvantageTerm} from "../settings";
+import { skillRollResultDisplay } from "./sheetUtils";
 
 export class TwodsixRolls {
   static async Roll({
@@ -90,9 +91,7 @@ export class TwodsixRolls {
       }
     }
 
-    //So that the result is the Effect of the skill roll.
-    rollParts.push("-8");
-
+    skillRollResultDisplay(rollParts, flavorParts);
     const roll = new Roll(rollParts.join('+'), data).roll();
     const flavor = flavorParts.join(' ');
 

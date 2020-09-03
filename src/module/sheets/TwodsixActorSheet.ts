@@ -1,4 +1,5 @@
 import TwodsixItem from "../entities/TwodsixItem";
+import {skillRollResultDisplay} from "../utils/sheetUtils";
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 
 export class TwodsixActorSheet extends ActorSheet {
@@ -41,28 +42,33 @@ export class TwodsixActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       i.img = i.img || CONST.DEFAULT_TOKEN;
-      // Append to gear.
-      if (i.type === 'storage') {
-        storage.push(i);
+      switch (i.type) {
+        case 'storage':
+          storage.push(i);
+          break;
+        case 'inventory':
+          inventory.push(i);
+          break;
+        case 'equipment':
+          equipment.push(i);
+          break;
+        case 'weapon':
+          weapon.push(i);
+          break;
+        case 'armor':
+          armor.push(i);
+          break;
+        case 'augment':
+          augment.push(i);
+          break;
+        case 'skills':
+          skills.push(i);
+          break;
+        default:
+          break;
       }
-      if (i.type === 'inventory') {
-        inventory.push(i);
-      }
-      if (i.type === 'equipment') {
-        equipment.push(i);
-      }
-      if (i.type === 'weapon') {
-        weapon.push(i);
-      }
-      if (i.type === 'armor') {
-        armor.push(i);
-      }
-      if (i.type === 'augment') {
-        augment.push(i);
-      }
-      if (i.type === 'skills') {
-        skills.push(i);
-      }
+
+      actorData.showEffect = game.settings.get("twodsix", "effectOrTotal");
     }
     // Assign and return
     actorData.storage = storage;
@@ -176,24 +182,29 @@ export class TwodsixActorSheet extends ActorSheet {
 
     if (dataset.roll) {
       if (item != null && 'skills' === item.type && event.shiftKey) {
-        this.rollSkill(itemId, event, dataset);
+        this.advancedSkillRoll(itemId, event, dataset);
       } else {
-        const roll = new Roll(dataset.roll, this.actor.data.data);
-        const label = dataset.label ? game.i18n.localize("TWODSIX.Actor.Rolling") + ` ${dataset.label}` : '';
-
-        roll.roll().toMessage({
-          speaker: ChatMessage.getSpeaker({actor: this.actor}),
-          flavor: label
-        });
+        this.simpleSkillRoll(dataset);
       }
     }
   }
 
-  rollSkill(
-    skillId:string,
-    event:{ preventDefault:() => void; currentTarget:any; },
-    dataset:{ roll:string; }
-  ):Promise<any> {
+  private simpleSkillRoll(dataset:DOMStringMap) {
+    const rollParts = dataset.roll.split("+");
+    const flavorParts:string[] = [];
+    const label = dataset.label ? game.i18n.localize("TWODSIX.Actor.Rolling") + ` ${dataset.label}` : '';
+    flavorParts.push(label);
+    skillRollResultDisplay(rollParts, flavorParts);
+    const flavor = flavorParts.join(' ');
+    const roll = new Roll(rollParts.join('+'), this.actor.data.data);
+
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({actor: this.actor}),
+      flavor: flavor
+    });
+  }
+
+  advancedSkillRoll(skillId:string, event:{ preventDefault:() => void; currentTarget:any; }, dataset:{ roll:string; }):Promise<any> {
 
     const skillData = {};
     const skills = this.getData().actor.skills;
