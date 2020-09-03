@@ -18,7 +18,7 @@
       "initiativeFormula.success": "Set initiative formula to: ${formula}",
       "initiativeFormula.failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.",
       "systemMigrationVersion.name": "System Schema Version",
-      "systemMigrationVersion.hint": "Records the schema version for the Twodsix system. (don't modify this unless you know what you are doing)"
+      "systemMigrationVersion.hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)"
     },
     "Actor": {
       "Rolling": "Rolling",

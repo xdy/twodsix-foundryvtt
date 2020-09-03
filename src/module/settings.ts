@@ -71,7 +71,7 @@ export const registerSettings = function ():void {
   //Must be the last setting in the file
   game.settings.register('twodsix', 'systemMigrationVersion', {
     name: 'System Schema Version',
-    hint: "Records the schema version for the Twodsix system. (don't modify this unless you know what you are doing)",
+    hint: "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
     scope: 'world',
     config: true,
     default: 0,
