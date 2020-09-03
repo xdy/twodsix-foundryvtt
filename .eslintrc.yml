@@ -16,5 +16,4 @@ plugins:
   - "@typescript-eslint"
 rules: {
   prettier/prettier: error
-
 }

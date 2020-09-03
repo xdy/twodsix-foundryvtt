@@ -168,11 +168,11 @@
 // }
 
 export function calcModFor(characteristic:number):number {
-    let modifier = Math.floor((characteristic - 6) / 3);
-    if (characteristic === 0) {
-        modifier = game.settings.get('twodsix', 'modifierForZeroCharacteristic');
-    }
-    return modifier;
+  let modifier = Math.floor((characteristic - 6) / 3);
+  if (characteristic === 0) {
+    modifier = game.settings.get('twodsix', 'modifierForZeroCharacteristic');
+  }
+  return modifier;
 }
 
 // export function calcModForPseudoHex(characteristicPseudoHex:string):number {

@@ -12,4 +12,3 @@ ij_html_quote_style = double
 [*.md]
 # do not remove any whitespace characters preceding newline characters
 trim_trailing_whitespace = false
-
