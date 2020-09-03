@@ -180,6 +180,15 @@ export function calcModFor(characteristic:number):number {
 //   return calcModFor(characteristic);
 // }
 
+export function skillRollResultDisplay(rollParts:string[], flavorParts:string[]):void {
+  const showEffect = game.settings.get("twodsix", "effectOrTotal");
+  if (showEffect) {
+    //So that the result is the Effect of the skill roll.
+    rollParts.push("-8");
+  }
+  const string = showEffect ? game.i18n.localize("TWODSIX.Rolls.Effect") : game.i18n.localize("TWODSIX.Rolls.sum");
+  flavorParts.push("(" + game.i18n.localize("TWODSIX.Rolls.resultShows") + " " + string + ")");
+}
 
 
 
