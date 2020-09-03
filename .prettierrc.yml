@@ -1,6 +1,7 @@
 ---
 singleQuote: true
 requirePragma: true
+tabWidth: 2
 overrides:
   - files:
       - "*.scss"
