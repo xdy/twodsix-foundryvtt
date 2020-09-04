@@ -18,10 +18,10 @@ export default class TwodsixItem extends Item {
       default:
 
     }
-    // Get the Item's data
-    // const itemData = this.data;
-    // const actorData = this.actor ? this.actor.data : {};
-    // const {data} = itemData;
+  // Get the Item's data
+  // const itemData = this.data;
+  // const actorData = this.actor ? this.actor.data : {};
+  // const {data} = itemData;
   }
 
   private _prepareSkillData(itemData:ItemData) {

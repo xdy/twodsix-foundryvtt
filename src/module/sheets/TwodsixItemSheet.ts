@@ -52,6 +52,6 @@ export class TwodsixItemSheet extends ItemSheet {
       return;
     }
 
-    // Roll handlers, click handlers, etc. would go here.
+  // Roll handlers, click handlers, etc. would go here.
   }
 }
