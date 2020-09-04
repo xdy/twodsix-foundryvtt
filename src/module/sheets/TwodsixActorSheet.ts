@@ -158,7 +158,7 @@ export class TwodsixActorSheet extends ActorSheet {
       name,
       type,
       data
-    }
+    };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data.type;
@@ -245,23 +245,23 @@ export class TwodsixActorSheet extends ActorSheet {
     if (matchingSkill) {
       if (TwodsixActorSheet.isChildSkill(matchingSkill)) {
         if (this.parentSkillIsTrained(matchingSkill) && matchingSkill.value < maxSkillLevel) {
-          this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
+          this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
         }
       } else if (matchingSkill.value < 0) {
-        this.actor.update({[`data.skills.${skillName}.value`]: 0})
+        this.actor.update({[`data.skills.${skillName}.value`]: 0});
         if (matchingSkill.hasChildren) {
           this.processChildren(data, skillName, 0);
         }
       } else if (!matchingSkill.hasChildren && matchingSkill.value < maxSkillLevel) {
-        this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
+        this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
       }
     }
   }
 
   private processChildren(data:any, skillName:string, level:number) {
-    for (const [key, value] of Object.entries(data.skills)) {
+    for (const [key] of Object.entries(data.skills)) {
       if (key.startsWith(skillName + "-")) {
-        this.actor.update({[`data.skills.${key}.value`]: level})
+        this.actor.update({[`data.skills.${key}.value`]: level});
       }
     }
   }

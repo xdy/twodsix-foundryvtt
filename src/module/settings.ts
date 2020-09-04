@@ -87,7 +87,7 @@ export const registerSettings = function ():void {
     type: String,
   });
 
-}
+};
 
 /**
  * Update the initiative formula.
@@ -100,10 +100,10 @@ function _simpleUpdateInit(formula:string, notify = false):void {
   const currentFormula = CONFIG.Combat.initiative.formula;
   try {
     new Roll(formula).roll();
-    message = `Set initiative formula to: ${formula}`
+    message = `Set initiative formula to: ${formula}`;
   } catch (error) {
     if (notify) {
-      message = `Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.`
+      message = `Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.`;
       notificationType = "error";
     }
     game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);

@@ -87,7 +87,7 @@ Hooks.once("ready", async function () {
   const MIGRATIONS_IMPLEMENTED = "0.6.1";
   let currentVersion = null;
   if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
-    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion")
+    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion");
     if (currentVersion == "null") {
       currentVersion = null;
     }

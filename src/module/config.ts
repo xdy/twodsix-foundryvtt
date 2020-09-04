@@ -9,13 +9,13 @@ export const TWODSIX:any = {};
  */
 TWODSIX.VARIANTS = {
   "ce": "Cepheus Engine",
-}
+};
 
 TWODSIX.ROLLTYPES = {
   Advantage: "3d6kh2",
   Normal: "2d6",
   Disadvantage: "3d6kl2"
-}
+};
 
 //This is defined the CE way, but it's mathematically equivalent to other variants.
 TWODSIX.DIFFICULTIES = {
@@ -27,5 +27,5 @@ TWODSIX.DIFFICULTIES = {
   VeryDifficult: -4,
   Formidable: -6,
   Impossible: -8
-}
+};
 

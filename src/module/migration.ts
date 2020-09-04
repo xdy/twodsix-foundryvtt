@@ -64,7 +64,7 @@ export class Migration {
     await pack.migrate();
     const content = await pack.getContent();
 
-    const promises = []
+    const promises = [];
     for (const ent of content) {
       try {
         let updateData = null;
@@ -89,7 +89,7 @@ export class Migration {
         console.error(err);
       }
     }
-    await Promise.all(promises)
+    await Promise.all(promises);
 
     console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
   }
