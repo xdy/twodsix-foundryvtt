@@ -19,7 +19,7 @@
     "@semantic-release/github": "^7.0.7",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jquery": "^3.5.1",
-    "@types/node": "^14.0.27",
+    "@types/node": "^14.6.4",
     "@types/webpack": "^4.41.22",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
