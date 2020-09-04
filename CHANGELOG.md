@@ -1,3 +1,10 @@
+## [0.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.4...v0.6.5) (2020-09-04)
+
+
+### Bug Fixes
+
+* Improved handling of system data version a bit, by settings a better default than 0. ([61d75cc](https://github.com/xdy/twodsix-foundryvtt/commit/61d75ccb9d945aee4433c832235f91aa99a9aa7e))
+
 ## [0.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.3...v0.6.4) (2020-09-03)
 
 
