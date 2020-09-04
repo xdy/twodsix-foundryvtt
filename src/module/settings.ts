@@ -83,7 +83,7 @@ export const registerSettings = function ():void {
     hint: "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
     scope: 'world',
     config: true,
-    default: 0,
+    default: game.system.data.version,
     type: String,
   });
 
