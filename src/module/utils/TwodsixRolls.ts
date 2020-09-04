@@ -3,12 +3,12 @@ import { skillRollResultDisplay } from "./sheetUtils";
 
 export class TwodsixRolls {
   static async Roll({
-                      parts = [],
-                      data = {},
-                      flavorParts = [],
-                      title = null,
-                      speaker = null,
-                    } = {}):Promise<unknown> {
+    parts = [],
+    data = {},
+    flavorParts = [],
+    title = null,
+    speaker = null,
+  } = {}):Promise<unknown> {
     let rolled = false;
     const usefulParts = parts.filter(function (el) {
       return el != '' && el;

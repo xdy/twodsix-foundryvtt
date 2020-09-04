@@ -21,7 +21,7 @@ export default class TwodsixActor extends Actor {
         this._prepareCharacterData(actorData);
         break;
       default:
-
+        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + actorData.type);
     }
 
   }

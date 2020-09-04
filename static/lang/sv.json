@@ -20,6 +20,7 @@
     },
     "Actor": {
       "Rolling": "Rullar",
+      "Unknown actor type ": "Okänd aktörstyp: ",
       "Finances": {
         "CASH_ON_HAND": "PENGAR I HANDEN",
         "PENSION": "PENSION",
