@@ -44,8 +44,8 @@
     </div>
 
     <div class="item-descr">
-      <label class="resource-label">{{localize "TWODSIX.Items.Items.ItemDescription"}}</label>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      <label class="resource-label">Item Description</label>
+      <textarea id="data.description" type="text" name="data.description" value="{{data.description}}">{{data.description}}</textarea>
     </div>
   </div>
 </form>

@@ -18,7 +18,11 @@ export default function ():Promise<void> {
     "systems/twodsix/templates/items/skills-sheet.html",
     "systems/twodsix/templates/items/armor-sheet.html",
     "systems/twodsix/templates/items/augment-sheet.html",
-    "systems/twodsix/templates/items/equipment-sheet.html"
+    "systems/twodsix/templates/items/tool-sheet.html",
+    "systems/twodsix/templates/items/junk-sheet.html",
+    "systems/twodsix/templates/items/equipment-sheet.html",
+    "systems/twodsix/templates/items/storage-sheet.html"
+
   ];
 
   return loadTemplates(templatePaths);

@@ -25,6 +25,6 @@
   </div>
 
   <div class="financial-notes"><span class="item-title">{{localize "TWODSIX.Actor.Finances.FINANCIAL_NOTES"}}</span>
-    {{{editor content=data.finances.financial-notes target="data.finances.financial-notes" button=true owner=owner editable=editable}}}
+    <textarea id="data.finances.financial-notes" type="text name="data.finances.financial-notes" value="data.finances.financial-notes">{{data.finances.financial-notes}}</textarea>
   </div>
-</div>
+

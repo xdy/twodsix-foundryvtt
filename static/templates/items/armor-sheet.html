@@ -7,6 +7,17 @@
       <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
 
+    <select name="type" value={{data.type}} >
+      {{#select item.type}}
+      <option value="equipment" data-dtype="type">Equipment</option>
+      <option value="weapon" data-dtype="type">Weapon</option>
+      <option value="armor" data-dtype="type">Armor</option>
+      <option value="augment" data-dtype="type">Augment</option>
+      <option value="tool" data-dtype="type">Tool</option>
+      <option value="junk" data-dtype="type">Junk</option>
+      {{/select}}
+    </select>
+
     <div class="item-tl">
     <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Armor.TL"}}
     <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
@@ -33,8 +44,8 @@
     </div>
 
     <div class="item-descr">
-    <label class="resource-label">{{localize "TWODSIX.Items.Armor.ItemDescription"}}</label>
-    {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      <label class="resource-label">Item Description</label>
+      <textarea id="data.description" type="text" name="data.description" value="{{data.description}}">{{data.description}}</textarea>
     </div>
   </div>
 </form>

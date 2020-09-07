@@ -8,7 +8,9 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('capitalize', (str) => {
-    if (!util.isString(str)) return '';
-     return str.charAt(0).toUpperCase() + str.slice(1);
-   });
+    if (!util.isString(str)) {
+      return '';
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  });
 }

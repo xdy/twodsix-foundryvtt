@@ -49,7 +49,7 @@ export class TwodsixActorSheet extends ActorSheet {
         case 'inventory':
           inventory.push(i);
           break;
-        case 'equipment':
+        case 'equipment' || 'tool' || 'junk':
           equipment.push(i);
           break;
         case 'weapon':
@@ -64,12 +64,6 @@ export class TwodsixActorSheet extends ActorSheet {
         case 'skills':
           skills.push(i);
           break;
-        case 'tool':
-          skills.push(i);
-          break;
-        case 'junk':
-          skills.push(i);
-          break;      
         default:
           break;
       }
