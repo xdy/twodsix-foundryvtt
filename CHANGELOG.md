@@ -1,3 +1,130 @@
+## [0.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.4...v0.6.5) (2020-09-04)
+
+
+### Bug Fixes
+
+* Improved handling of system data version a bit, by settings a better default than 0. ([61d75cc](https://github.com/xdy/twodsix-foundryvtt/commit/61d75ccb9d945aee4433c832235f91aa99a9aa7e))
+
+## [0.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.3...v0.6.4) (2020-09-03)
+
+
+### Bug Fixes
+
+* Issue [#80](https://github.com/xdy/twodsix-foundryvtt/issues/80) Choose whether to show Effect or dice roll total. ([1e3c283](https://github.com/xdy/twodsix-foundryvtt/commit/1e3c2837a8020c59fe4ba6ff3a370b558efaf3f6))
+
+## [0.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.2...v0.6.3) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#69](https://github.com/xdy/twodsix-foundryvtt/issues/69) Setting your own name for advantage/disadvantage. ([ef7e6d1](https://github.com/xdy/twodsix-foundryvtt/commit/ef7e6d1b6c8d4ef9bbeff4f892c5fe1b9fb41068))
+
+## [0.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.1...v0.6.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#67](https://github.com/xdy/twodsix-foundryvtt/issues/67), Skills and items no longer jump. ([aa8f04d](https://github.com/xdy/twodsix-foundryvtt/commit/aa8f04d4694d2b890f1e829946d9009601323e33))
+
+## [0.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.0...v0.6.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* Issue [#65](https://github.com/xdy/twodsix-foundryvtt/issues/65) Added basic migration support ([2ee210c](https://github.com/xdy/twodsix-foundryvtt/commit/2ee210c3adbd96f2893790f809b95923a50b4853))
+
+# [0.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.2...v0.6.0) (2020-08-31)
+
+
+### Features
+
+* Issue [#66](https://github.com/xdy/twodsix-foundryvtt/issues/66) Support translating the system to other languages (excluding compendiums, as we have none). Added quick and dirty Swedish translation as an example. ([78bc9f8](https://github.com/xdy/twodsix-foundryvtt/commit/78bc9f83529554bd9cb2f695a8852646d3f6afa8))
+
+## [0.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.1...v0.5.2) (2020-08-30)
+
+
+### Bug Fixes
+
+* Make raw characteristic rolls work again. ([ad9e558](https://github.com/xdy/twodsix-foundryvtt/commit/ad9e5585dee3b9af2805fc82a500164c486a129c))
+
+## [0.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.5.0...v0.5.1) (2020-08-30)
+
+
+### Bug Fixes
+
+* Embarrassing bug on the skill roll dialog meaning only the first skill worked. Also set Average difficulty and Normal roll type as defaults. ([c61cf40](https://github.com/xdy/twodsix-foundryvtt/commit/c61cf40bc1c39c95014d52a0afa6475155e7660a))
+
+# [0.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.5...v0.5.0) (2020-08-30)
+
+
+### Features
+
+* Issue [#59](https://github.com/xdy/twodsix-foundryvtt/issues/59) Add support for advantage/disadvantage ([67767da](https://github.com/xdy/twodsix-foundryvtt/commit/67767da1097703f68e6a7bb2eded60b32a5e5560))
+
+## [0.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.4...v0.4.5) (2020-08-29)
+
+
+### Bug Fixes
+
+* Entered text into wrong field... ([de3b2c9](https://github.com/xdy/twodsix-foundryvtt/commit/de3b2c930dfd033e2962f9227f5c4e1d23cd187a))
+
+## [0.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.3...v0.4.4) (2020-08-29)
+
+
+### Bug Fixes
+
+* Change the system.json title to match the one to be used in the release. ([4fc1268](https://github.com/xdy/twodsix-foundryvtt/commit/4fc126829a8aca935156c16d4de77175d5edab95))
+
+## [0.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.2...v0.4.3) (2020-08-29)
+
+
+### Bug Fixes
+
+* Cutting and pasting is difficult. Apparently... ([fe38e9a](https://github.com/xdy/twodsix-foundryvtt/commit/fe38e9abb731f98563eed3fe1bf43b5ed2e97dd5))
+
+## [0.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.1...v0.4.2) (2020-08-29)
+
+
+### Bug Fixes
+
+* Entered the wrong description... ([92c6c26](https://github.com/xdy/twodsix-foundryvtt/commit/92c6c2671f0e02dbafc78a02fcab4b2c432bf10a))
+
+## [0.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.4.0...v0.4.1) (2020-08-29)
+
+
+### Bug Fixes
+
+* Updated the system description after a discussion with Kevin. ([557a0c3](https://github.com/xdy/twodsix-foundryvtt/commit/557a0c3aa08a87bbe74c6df8f8b8980d497c8918))
+
+# [0.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.18...v0.4.0) (2020-08-29)
+
+
+### Features
+
+* Squashed, rebased, merged in changes from Kevin, tested that nothing seems to have broken. ([b437cdf](https://github.com/xdy/twodsix-foundryvtt/commit/b437cdf373b358c2f4bf3108be8ded168c814f96)), closes [#43](https://github.com/xdy/twodsix-foundryvtt/issues/43)
+
+## [0.3.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.17...v0.3.18) (2020-08-23)
+
+
+### Bug Fixes
+
+* Cut and paste error ([65cab91](https://github.com/xdy/twodsix-foundryvtt/commit/65cab91561c9905242e3686376ba7d6e01478571))
+
+## [0.3.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.16...v0.3.17) (2020-08-23)
+
+
+### Bug Fixes
+
+* Cleanup and renaming ([f456400](https://github.com/xdy/twodsix-foundryvtt/commit/f4564003105730795e78dd72b0f6b3a7673b0817))
+* Cleanup and renaming ([11073ec](https://github.com/xdy/twodsix-foundryvtt/commit/11073ec496b03fc9eed62efd17957321736c976e))
+
+## [0.3.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.15...v0.3.16) (2020-08-23)
+
+
+### Bug Fixes
+
+* Removed todo from system.json ([dd25074](https://github.com/xdy/twodsix-foundryvtt/commit/dd25074ae343eb12aa2eadb2e894d06a0d28dfde))
+
 ## [0.3.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.14...v0.3.15) (2020-08-22)
 
 
@@ -159,7 +286,7 @@
 
 * Switched to Kevin's/Rob's way of doing things. ([047859b](https://github.com/UltraKev/twodsix-foundryvtt/commit/047859b8a0d1beba7045e55fd08525d4acafda96))
 
-## [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
+# [0.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.3.1...v0.3.2) (2020-08-16)
 
 
 ### Bug Fixes

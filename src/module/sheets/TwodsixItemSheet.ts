@@ -20,11 +20,7 @@ export class TwodsixItemSheet extends ItemSheet {
   get template():string {
     const path = "systems/twodsix/templates/items";
     // Return a single sheet for all item types.
-    return `${path}/item-sheet.html`;
-    // Alternatively, you could use the following return statement to do a
-    // unique item sheet by type, like `weapon-sheet.html`.
-
-    // return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -52,8 +48,10 @@ export class TwodsixItemSheet extends ItemSheet {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
+    if (!this.options.editable) {
+      return;
+    }
 
-    // Roll handlers, click handlers, etc. would go here.
+  // Roll handlers, click handlers, etc. would go here.
   }
 }

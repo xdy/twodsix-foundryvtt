@@ -2,11 +2,10 @@
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
  * Change this heading to be more descriptive to your system, or remove it.
- * Author: [your name]
- * Content License: OGL, see License section of README.md for details
+ * Author: See the system.json file, where they are in chronological order.
+ * Content License: Basically OGL, see License section of README.md for details
  * Software License: Apache, see License section of README.md for details
  */
-
 import {registerSettings} from './module/settings';
 import preloadTemplates from './module/templates';
 import registerHandlebarsHelpers from './module/handlebars';
@@ -14,8 +13,11 @@ import {TwodsixSystem} from './module/TwodsixSystem';
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixNPCSheet} from "./module/sheets/TwodsixNPCSheet";
+import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import {TWODSIX} from "./module/config";
+import {Migration} from "./module/migration";
 
 
 require('../static/styles/twodsix.css');
@@ -49,6 +51,8 @@ Hooks.once('init', async function () {
   CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('twodsix', TwodsixActorSheet, {makeDefault: true});
+  Actors.registerSheet('twodsix', TwodsixNPCSheet, {makeDefault: true});
+  Actors.registerSheet('twodsix', TwodsixShipSheet, {makeDefault: true});
 
   // Items
   CONFIG.Item.entityClass = TwodsixItem;
@@ -57,15 +61,15 @@ Hooks.once('init', async function () {
 
   /**
    * Set an initiative formula for the system
-   * TODO Should be done via a setting
    * @type {String}
    */
   CONFIG.Combat.initiative = {
     formula: "1d6",
     decimals: 1
   };
-  registerHandlebarsHelpers();
+
   registerSettings();
+  registerHandlebarsHelpers();
   await preloadTemplates();
 
 });
@@ -83,10 +87,28 @@ Hooks.once('setup', async function () {
 });
 
 Hooks.once("ready", async function () {
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createMongooseTraveller2eMacro(data, slot));
+  // Determine whether a system migration is required and feasible
+  const MIGRATIONS_IMPLEMENTED = "0.6.1";
+  let currentVersion = null;
+  if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
+    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion");
+    if (currentVersion == "null") {
+      currentVersion = null;
+    }
+  }
+  const needMigration = currentVersion === null || currentVersion === "" || currentVersion < game.system.data.version;
 
-  // Set up migrations here once needed.
+  // Perform the migration
+  if (needMigration && game.user.isGM) {
+    if (!currentVersion || currentVersion < MIGRATIONS_IMPLEMENTED) {
+      ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
+    }
+    await Migration.migrateWorld();
+  }
+
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  Hooks.on("hotbarDrop", (bar, data, slot) => createTwodsixMacro(data, slot));
+
 });
 
 // Add any additional hooks if necessary
@@ -126,22 +148,28 @@ Hooks.on('preCreateActor', async (actor, dir) => {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createMongooseTraveller2eMacro(data, slot) {
-  if (data.type !== "Item") return;
-  if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
+async function createTwodsixMacro(data, slot) {
+  if (data.type !== "Item") {
+    return;
+  }
+  if (!("data" in data)) {
+    return ui.notifications.warn("You can only create macro buttons for owned Items");
+  }
   const item = data.data;
 
   // Create the macro command
   const command = `game.twodsix.rollItemMacro("${item.name}");`;
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  let macro:Entity = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+  let macro:Macro = game.macros.entities.find((m:Macro) => (m.name === item.name) && (m.data.command === command));
   if (!macro) {
-    macro = await Macro.create({
+    macro = <Macro>await Macro.create({
       name: item.name,
       type: "script",
       img: item.img,
       command: command,
-      flags: {"mongoosetraveller2e.itemMacro": true}
+      flags: {"twodsix.itemMacro": true}
     });
   }
   game.user.assignHotbarMacro(macro as Macro, slot);
@@ -157,10 +185,17 @@ async function createMongooseTraveller2eMacro(data, slot) {
 function rollItemMacro(itemName) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
-  if (speaker.token) actor = game.actors.tokens[speaker.token];
-  if (!actor) actor = game.actors.get(speaker.actor);
+  if (speaker.token) {
+    actor = game.actors.tokens[speaker.token];
+  }
+  if (!actor) {
+    actor = game.actors.get(speaker.actor);
+  }
   const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  if (!item) {
+    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  }
+
 
   // Trigger the item roll
   return item.roll();

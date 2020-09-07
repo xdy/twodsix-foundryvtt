@@ -1,20 +1,18 @@
 {
   "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
   "name": "twodsix",
-  "title": "twodsix",
+  "title": "Twodsix - Cepheus & Traveller (Unofficial)",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
-  "version": "0.3.15",
+  "version": "0.6.5",
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
-  "bugs": "",
-  "changelog": "",
+  "bugs": "Plenty of them, this is an early alpha...",
+  "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
   "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.6.5",
-  "description": "2d6 Variant Rules System. A system for running games using the world's oldest science fiction rpg system and it's various derivatives.<br/>See the files OpenGameLicense.md and LICENSE for license details (TODO fill out the OGL properly).<br/>",
-  "esmodules": [
-    "twodsix.bundle.js"
-  ],
+  "compatibleCoreVersion": "0.6.6",
+  "description": "Twodsix: A system for use with the Cepheus Engine Core Rules, Traveller (unofficial), and other similar games. <br/>This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.<br/>Cepheus Engine and Samardan Press™ are the trademarks of Jason \"Flynn\" Kemp; we are not affiliated with Jason \"Flynn\" Kemp or Samardan Press™.<br/> See the files OpenGameLicense.md and LICENSE for license details.<br/>",
+  "esmodules": ["twodsix.bundle.js"],
   "gridDistance": 1.5,
   "gridUnits": "m",
   "initiative": "2d6 + @characteristics.dex.mod",
@@ -23,127 +21,34 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "sv",
+      "name": "Svenska",
+      "path": "lang/sv.json"
     }
   ],
   "license": "LICENSE",
   "packs": [
     {
-      "name": "skills",
-      "label": "Skills",
+      "name": "ce-skills",
+      "label": "ce skills",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce/skills.db",
+      "path": "./packs/ce-skills.db",
       "entity": "Item"
     },
     {
-      "name": "species",
-      "label": "Species",
+      "name": "2e-skills",
+      "label": "2e skills",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce/species.db",
-      "entity": "Item"
-    },
-    {
-      "name": "careers",
-      "label": "Careers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/careers.db",
-      "entity": "Item"
-    },
-    {
-      "name": "traits",
-      "label": "Traits",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/traits.db",
-      "entity": "Item"
-    },
-    {
-      "name": "psionics",
-      "label": "Psionics",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/psionics.db",
-      "entity": "Item"
-    },
-    {
-      "name": "gear",
-      "label": "Gear",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/gear.db",
-      "entity": "Item"
-    },
-    {
-      "name": "armor",
-      "label": "Armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "weapons",
-      "label": "Weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/weapons.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ammunition",
-      "label": "Ammunition",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/ammunition.db",
-      "entity": "Item"
-    },
-    {
-      "name": "consumables",
-      "label": "Consumables",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/consumables.db",
-      "entity": "Item"
-    },
-    {
-      "name": "computers",
-      "label": "Computers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/computers.db",
-      "entity": "Item"
-    },
-    {
-      "name": "software",
-      "label": "Software",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/software.db",
-      "entity": "Item"
-    },
-    {
-      "name": "vehicles",
-      "label": "Vehicles",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/vehicles.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ships",
-      "label": "Ships",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce/ships.db",
+      "path": "./packs/2e-skills.db",
       "entity": "Item"
     }
   ],
   "primaryTokenAttribute": "hits",
   "readme": "",
-  "styles": [
-    "./styles/twodsix.css"
-  ],
+  "styles": ["./styles/twodsix.css"],
   "templateVersion": 2
 }

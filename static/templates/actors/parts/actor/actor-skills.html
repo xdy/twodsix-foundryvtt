@@ -1,0 +1,34 @@
+<a class="add-skill item-control item-create" title="Create item" data-type="skills"><span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span></a>
+<div class="skill-list">
+  <span class="skill-container">
+    <span></span>
+    <span class="skill-title">{{localize "TWODSIX.Actor.Skills.SkillName"}}</span>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="skill-mod centre">{{localize "TWODSIX.Actor.Skills.Modifier"}}</span>
+    <span class="skill-total centre">{{localize "TWODSIX.Actor.Skills.Total"}}</span>
+    <span class="skill-edit-remove centre">{{localize "TWODSIX.Actor.Skills.EditOrRemove"}}</span>
+  </span>
+</div>
+
+
+{{#each actor.skills as |item id|}}
+<div class="skill">
+  <span class="item skill-container">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <span class="skill-container rollable">
+          <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" src="./systems/twodsix/assets/d6-icon.svg"/></span>
+          <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{item.name}}</span>
+          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.value}}</span>
+          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})</span>
+          <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.total}}</span>
+          <span class="item-controls centre">
+            <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
+            <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>
+          </span>
+        </span>
+      </li>
+    </ol>
+  </span>
+</div>
+{{/each}}

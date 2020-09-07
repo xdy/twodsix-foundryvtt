@@ -1,7 +1,12 @@
 # 2d6 system
-A system for running games using various 2d6-based role-playing games.
+A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
+
+Total downloads: ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total)
+
+The latest version (![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt) ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt)
+): ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough to play all/most 2d6 rules variants using this system.
 Due to licensing restrictions the user will have to fill compendiums with skills, etc, themselves. (When completed, data from Cepheus Engine will be included.) 
@@ -16,18 +21,26 @@ b) actually has the license to do so
 
 
 ### Patch Notes:
-See CHANGELOG.md
+See [CHANGELOG.md](CHANGELOG.md)
 
 
 ### Licenses
 Project Licensing:
-*  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2 (see LICENSE)
+*  All HTML, CSS, Typescript and Javascript in this project is licensed under the Apache License v2 (see [LICENSE](LICENSE))
 
 Content Usage and Licensing:
-*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md] for details.
+*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](OpenGameLicense.md) for details.
 
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
 
+Font licenses:
+* Perfect DOS VGA 437 (quote from https://www.dafont.com/font-comment.php?file=perfect_dos_vga_437 "zeh  author of Perfect DOS VGA 437   Sep 16, 2014 The license is this: this font is free to use in whatever you want.")
+
 ### Contributing
 See CONTRIBUTING.md
+
+[![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
+[![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)

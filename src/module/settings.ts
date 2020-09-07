@@ -1,4 +1,5 @@
 export const registerSettings = function ():void {
+
   // Register any custom system settings here
   game.settings.register('twodsix', 'defaultTokenSettings', {
     name: 'Default Prototype Token Settings',
@@ -19,6 +20,10 @@ export const registerSettings = function ():void {
     onChange: formula => _simpleUpdateInit(formula, true)
   });
 
+  // Retrieve and assign the initiative formula setting. Not sure it should be here.
+  const initFormula = game.settings.get("twodsix", "initiativeFormula");
+  _simpleUpdateInit(initFormula);
+
   game.settings.register('twodsix', 'modifierForZeroCharacteristic', {
     name: 'Modifier for characteristic value of zero.',
     hint: "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
@@ -38,6 +43,31 @@ export const registerSettings = function ():void {
   });
 
 
+  game.settings.register('twodsix', 'termForAdvantage', {
+    name: 'What you want to call rolls with advantage (3d6kh2).',
+    hint: "Don't use the same word as for termForDisadvantage...",
+    scope: 'world',
+    config: true,
+    default: 'advantage',
+  });
+
+  game.settings.register('twodsix', 'termForDisadvantage', {
+    name: 'What you want to call rolls with disadvantage (3d6kl2).',
+    hint: "Don't use the same word as for termForAdvantage...",
+    scope: 'world',
+    config: true,
+    default: 'disadvantage',
+  });
+
+  game.settings.register('twodsix', 'effectOrTotal', {
+    name: 'Show effect or total roll value for skill and characteristic rolls.',
+    hint: "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
+    scope: 'world',
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+
   game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
     name: 'What bonus/penalty to give per each time increment change in a task.',
     hint: "Leave empty to use default (+/-1). Not currently used.",
@@ -47,51 +77,51 @@ export const registerSettings = function ():void {
     type: Number,
   });
 
-  game.settings.register('twodsix', 'termForAdvantage', {
-    name: 'What you want to call rolls with advantage (3d6kh2).',
-    hint: "Don't use the same as for termForDisadvantage. :) Not currently used.",
+  //Must be the last setting in the file
+  game.settings.register('twodsix', 'systemMigrationVersion', {
+    name: 'System Schema Version',
+    hint: "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
     scope: 'world',
     config: true,
-    default: 'advantage',
+    default: game.system.data.version,
+    type: String,
   });
 
-  game.settings.register('twodsix', 'termForDisadvantage', {
-    name: 'What you want to call rolls with disadvantage (3d6kl2).',
-    hint: "Don't use the same as for termForAdvantage. :) Not currently used.",
-    scope: 'world',
-    config: true,
-    default: 'disadvantage',
-  });
+};
 
-  // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("twodsix", "initiativeFormula");
-  _simpleUpdateInit(initFormula);
-
-  /**
-   * Update the initiative formula.
-   * @param {string} formula - Dice formula to evaluate.
-   * @param {boolean} notify - Whether or not to post notifications.
-   */
-  function _simpleUpdateInit(formula:string, notify = false):void {
-    let message:string;
-    let notificationType:'info' | 'warning' | 'error' = "info";
-    const currentFormula = CONFIG.Combat.initiative.formula;
-    try {
-      new Roll(formula).roll();
-      message = `Set initiative formula to: ${formula}`
-    } catch (error) {
-      if (notify) {
-        message = `Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.`
-        notificationType = "error";
-      }
-      game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);
-    }
-    CONFIG.Combat.initiative.formula = formula;
+/**
+ * Update the initiative formula.
+ * @param {string} formula - Dice formula to evaluate.
+ * @param {boolean} notify - Whether or not to post notifications.
+ */
+function _simpleUpdateInit(formula:string, notify = false):void {
+  let message:string;
+  let notificationType:'info' | 'warning' | 'error' = "info";
+  const currentFormula = CONFIG.Combat.initiative.formula;
+  try {
+    new Roll(formula).roll();
+    message = `Set initiative formula to: ${formula}`;
+  } catch (error) {
     if (notify) {
-      ui.notifications.notify(message, notificationType);
+      message = `Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.`;
+      notificationType = "error";
     }
+    game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);
   }
-
-  //TODO Tons of settings to come. Skill-list to use, assorted rules that differ between different 2d6 rules sets (CE, CE FTL, etc)
-
+  CONFIG.Combat.initiative.formula = formula;
+  if (notify) {
+    ui.notifications.notify(message, notificationType);
+  }
 }
+
+export function advantageDisadvantageTerm(rollType:string):string {
+  switch (rollType.toLowerCase()) {
+    case "advantage":
+      return game.settings.get('twodsix', 'termForAdvantage');
+    case "disadvantage":
+      return game.settings.get('twodsix', 'termForDisadvantage');
+    default:
+      return rollType;
+  }
+}
+

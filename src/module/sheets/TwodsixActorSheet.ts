@@ -1,3 +1,7 @@
+import TwodsixItem from "../entities/TwodsixItem";
+import {skillRollResultDisplay} from "../utils/sheetUtils";
+import {TwodsixRolls} from "../utils/TwodsixRolls";
+
 export class TwodsixActorSheet extends ActorSheet {
 
   /**
@@ -21,24 +25,60 @@ export class TwodsixActorSheet extends ActorSheet {
     return data;
   }
 
+
   private static _prepareCharacterItems(sheetData:any) {
 
     const actorData = sheetData.actor;
 
     // Initialize containers.
-    const gear = [];
+    const storage = [];
+    const inventory = [];
+    const equipment = [];
+    const weapon = [];
+    const armor = [];
+    const augment = [];
+    const skills = [];
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
       i.img = i.img || CONST.DEFAULT_TOKEN;
-      // Append to gear.
-      if (i.type === 'equipment' || i.type === 'weapon' || i.type === 'armor' || i.type === 'augment') {
-        gear.push(i);
+      switch (i.type) {
+        case 'storage':
+          storage.push(i);
+          break;
+        case 'inventory':
+          inventory.push(i);
+          break;
+        case 'equipment':
+          equipment.push(i);
+          break;
+        case 'weapon':
+          weapon.push(i);
+          break;
+        case 'armor':
+          armor.push(i);
+          break;
+        case 'augment':
+          augment.push(i);
+          break;
+        case 'skills':
+          skills.push(i);
+          break;
+        default:
+          break;
       }
-    }
 
+      actorData.showEffect = game.settings.get("twodsix", "effectOrTotal");
+    }
     // Assign and return
-    actorData.gear = gear;
+    actorData.storage = storage;
+    actorData.inventory = inventory;
+    actorData.equipment = equipment;
+    actorData.weapon = weapon;
+    actorData.armor = armor;
+    actorData.augment = augment;
+    actorData.skills = skills;
+
   }
 
   /** @override */
@@ -46,9 +86,11 @@ export class TwodsixActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
-      width: 822,
-      height: 653,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}]
+      width: 825,
+      height: 648,
+      resizable: false,
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
+      scrollY: [".skills", ".inventory"]
     });
   }
 
@@ -59,7 +101,9 @@ export class TwodsixActorSheet extends ActorSheet {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
+    if (!this.options.editable) {
+      return;
+    }
 
     // Add Inventory Item
     html.find('.item-create').on('click', this._onItemCreate.bind(this));
@@ -81,28 +125,19 @@ export class TwodsixActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').on('click', (this._onRoll.bind(this)));
 
-    // Upgrade/downgrade skills.
-    html.find('.upgrade-skill').on('click', this._onUpgrade.bind(this));
-    html.find('.downgrade-skill').on('click', this._onDowngrade.bind(this));
-    html.find('.upgrade-joat').on('click', this._onUpgradeJoat.bind(this));
-    html.find('.downgrade-joat').on('click', this._onDowngradeJoat.bind(this));
-
-    html.find('.toggle-skills').on('click', ev => {
-      ev.preventDefault();
-      this.options.hideUntrainedSkills = !this.options.hideUntrainedSkills;
-      this.actor.sheet.render(true)
-    })
-
     // Drag events for macros.
     if (this.actor.owner) {
       const handler = ev => this._onDragItemStart(ev);
       html.find('li.item').each((i, li) => {
-        if (li.classList.contains("inventory-header")) return;
+        if (li.classList.contains("inventory-header")) {
+          return;
+        }
         li.setAttribute("draggable", 'true');
         li.addEventListener("dragstart", handler, false);
       });
     }
   }
+
 
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
@@ -124,6 +159,7 @@ export class TwodsixActorSheet extends ActorSheet {
       type,
       data
     };
+
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data.type;
 
@@ -136,43 +172,62 @@ export class TwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event:{ preventDefault:() => void; currentTarget:any; }):void {
+  _onRoll(event:{ preventDefault:any; currentTarget:any; shiftKey?:any; }):void {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
 
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
+
     if (dataset.roll) {
-      const roll = new Roll(dataset.roll, this.actor.data.data);
-      const label = dataset.label ? `Rolling ${dataset.label}` : '';
-      roll.roll().toMessage({
-        speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        flavor: label
-      });
+      if (item != null && 'skills' === item.type && event.shiftKey) {
+        this.advancedSkillRoll(itemId, event, dataset);
+      } else {
+        this.simpleSkillRoll(dataset);
+      }
     }
   }
 
-  _onUpgradeJoat(event:{ preventDefault:() => void; currentTarget:any; }):void {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const actorData = this.actor.data;
-    const data = actorData.data;
+  private simpleSkillRoll(dataset:DOMStringMap) {
+    const rollParts = dataset.roll.split("+");
+    const flavorParts:string[] = [];
+    const label = dataset.label ? game.i18n.localize("TWODSIX.Actor.Rolling") + ` ${dataset.label}` : '';
+    flavorParts.push(label);
+    skillRollResultDisplay(rollParts, flavorParts);
+    const flavor = flavorParts.join(' ');
+    const roll = new Roll(rollParts.join('+'), this.actor.data.data);
 
-    if (data.jackOfAllTrades.value < 3) {
-      this.actor.update({'data.jackOfAllTrades.value': data.jackOfAllTrades.value + 1})
-    }
+    roll.roll().toMessage({
+      speaker: ChatMessage.getSpeaker({actor: this.actor}),
+      flavor: flavor
+    });
   }
 
-  _onDowngradeJoat(event:{ preventDefault:() => void; currentTarget:any; }):void {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const actorData = this.actor.data;
-    const data = actorData.data;
+  advancedSkillRoll(skillId:string, event:{ preventDefault:() => void; currentTarget:any; }, dataset:{ roll:string; }):Promise<any> {
 
-    if (data.jackOfAllTrades.value > 0) {
-      this.actor.update({'data.jackOfAllTrades.value': data.jackOfAllTrades.value - 1})
+    const skillData = {};
+    const skills = this.getData().actor.skills;
+    if (!skills.length) {
+      return;
     }
+
+    const rollParts = dataset.roll.split("+");
+
+    const flavorParts:string[] = [];
+    const skill = skills.filter(x => x._id === skillId)[0];
+    flavorParts.push(`${skill.name}`);
+
+    return TwodsixRolls.Roll({
+      parts: rollParts,
+      data: skillData,
+      flavorParts: flavorParts,
+      title: `${skill.name}`,
+      speaker: ChatMessage.getSpeaker({actor: this.getData().actor}),
+    });
   }
 
+  //Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.
   /**
    * Handle skill upgrade
    * @param {Event} event   The originating click event
@@ -190,23 +245,23 @@ export class TwodsixActorSheet extends ActorSheet {
     if (matchingSkill) {
       if (TwodsixActorSheet.isChildSkill(matchingSkill)) {
         if (this.parentSkillIsTrained(matchingSkill) && matchingSkill.value < maxSkillLevel) {
-          this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
+          this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
         }
       } else if (matchingSkill.value < 0) {
-        this.actor.update({[`data.skills.${skillName}.value`]: 0})
+        this.actor.update({[`data.skills.${skillName}.value`]: 0});
         if (matchingSkill.hasChildren) {
           this.processChildren(data, skillName, 0);
         }
       } else if (!matchingSkill.hasChildren && matchingSkill.value < maxSkillLevel) {
-        this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1})
+        this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
       }
     }
   }
 
   private processChildren(data:any, skillName:string, level:number) {
-    for (const [key, value] of Object.entries(data.skills)) {
+    for (const [key] of Object.entries(data.skills)) {
       if (key.startsWith(skillName + "-")) {
-        this.actor.update({[`data.skills.${key}.value`]: level})
+        this.actor.update({[`data.skills.${key}.value`]: level});
       }
     }
   }
@@ -218,31 +273,6 @@ export class TwodsixActorSheet extends ActorSheet {
   private parentSkillIsTrained(matchingSkill:any) {
     const parent = this.actor.data.data.skills[matchingSkill.childOf];
     return parent && parent.value >= 0;
-  }
-
-  /**
-   * Handle skill downgrade
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onDowngrade(event:{ preventDefault:() => void; currentTarget:any; }):void {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const skillName = element.getAttribute('data-label');
-    const actorData = this.actor.data;
-    const data = actorData.data;
-    const matchingSkill = data.skills[skillName];
-    const parent = matchingSkill.childOf
-    if (matchingSkill) {
-      if (matchingSkill.value === 0 && parent == null) {
-        this.actor.update({[`data.skills.${skillName}.value`]: -3})
-        if (matchingSkill.hasChildren) {
-          this.processChildren(data, skillName, -3);
-        }
-      } else if (matchingSkill.value > 0) {
-        this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value - 1})
-      }
-    }
   }
 }
 

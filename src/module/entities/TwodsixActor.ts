@@ -13,6 +13,10 @@ export default class TwodsixActor extends Actor {
     super.prepareData();
 
     const actorData = this.data;
+    const data = actorData.data;
+    const flags = actorData.flags;
+
+    if (actorData.type === 'character') this._prepareCharacterData(actorData);
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
@@ -21,10 +25,9 @@ export default class TwodsixActor extends Actor {
         this._prepareCharacterData(actorData);
         break;
       default:
-
+        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + actorData.type);
     }
-
-  }
+}
 
   /**
    * Prepare Character type specific data
@@ -37,10 +40,23 @@ export default class TwodsixActor extends Actor {
       cha.current = cha.value - cha.damage;
       cha.mod = calcModFor(cha.current);
     }
+  }
+  _prepareNPCData(actorData:ActorData):void {
+    // Get the Actor's data object
+    const {data} = actorData;
 
-    for (const skill of Object.values(data.skills as Record<any, any>)) {
-      const characteristic = skill.characteristic;
-      skill.mod = calcModFor(data.characteristics[characteristic].value);
+    for (const cha of Object.values(data.characteristics as Record<any, any>)) {
+      cha.current = cha.value - cha.damage;
+      cha.mod = calcModFor(cha.current);
     }
   }
+    _prepareShipData(actorData:ActorData):void {
+    // Get the Actor's data object
+    const {data} = actorData;
+  
+    for (const cha of Object.values(data.characteristics as Record<any, any>)) {
+      cha.current = cha.value - cha.damage;
+      cha.mod = calcModFor(cha.current);
+    }
+  }  
 }

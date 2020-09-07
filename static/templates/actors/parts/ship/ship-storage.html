@@ -1,0 +1,33 @@
+  <span class="item-title">SHIPS STORAGE</span>
+  <div class="items-armor gear-header">
+    <span class="item-name">Item Name</span>
+    <span class="item-name">Catagory</span>
+    <span class="item-name centre">Weight</span>
+    <span class="item-name centre">Value</span>
+    <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="storage"><i
+      class="fas fa-plus"></i></a></span>
+  </div>
+
+
+  {{#each actor.storage as |item id|}}
+  <div class="item storage">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <span class="items-storage">
+          <span class="item-name">{{item.name}}</span>
+          <span class="item-name centre">{{data.category}}</span>
+          <span class="item-name centre">{{data.quantity}}</span>
+          <span class="item-name centre">{{data.weight}}</span>
+          <span class="item-name centre">{{data.price}}</span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
+          </span>
+        </span>
+      </li>
+    </ol>
+  </div>
+  {{/each}}
+</div>
+
+
