@@ -1,8 +1,10 @@
+import {AbstractTwodsixItemSheet} from "./AbstractTwodsixItemSheet";
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class TwodsixItemSheet extends ItemSheet {
+export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
   static get defaultOptions():FormApplicationOptions {
@@ -51,11 +53,7 @@ export class TwodsixItemSheet extends ItemSheet {
     if (!this.options.editable) {
       return;
     }
-
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'focusout',
-      this._onSubmit.bind(this)
-    );
+    this.handleContentEditable(html);
 
     // Roll handlers, click handlers, etc. would go here.
   }

@@ -1,3 +1,4 @@
+import { TWODSIX } from "../config";
 import {advantageDisadvantageTerm} from "../settings";
 import { skillRollResultDisplay } from "./sheetUtils";
 
@@ -19,9 +20,9 @@ export class TwodsixRolls {
       formula: usefulParts.join(' '),
       data: data,
       rollType: game.i18n.localize("Normal"),
-      rollTypes: CONFIG.TWODSIX.ROLLTYPES,
+      rollTypes: TWODSIX.ROLLTYPES,
       difficulty: game.i18n.localize("Average"),
-      difficulties: CONFIG.TWODSIX.DIFFICULTIES,
+      difficulties: TWODSIX.DIFFICULTIES,
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes
     };
@@ -77,14 +78,14 @@ export class TwodsixRolls {
     }
 
     if (data['difficulty'] && data['difficulty'].length > 0) {
-      rollParts.push("" + CONFIG.TWODSIX.DIFFICULTIES[data['difficulty']]);
+      rollParts.push("" + TWODSIX.DIFFICULTIES[data['difficulty']]);
       flavorParts.unshift(`${data['difficulty']}`);
     }
 
     flavorParts.unshift(game.i18n.localize("TWODSIX.Rolls.Rolling") + ":");
 
     if (data['rollType'] && data['rollType'].length > 0) {
-      rollParts[0] = CONFIG.TWODSIX.ROLLTYPES[data['rollType']];
+      rollParts[0] = TWODSIX.ROLLTYPES[data['rollType']];
       if (data['rollType'] != 'Normal') {
         flavorParts.push(game.i18n.localize("TWODSIX.Rolls.With"));
         flavorParts.push(`${(advantageDisadvantageTerm(data['rollType']))}`);
