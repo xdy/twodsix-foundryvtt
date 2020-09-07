@@ -1,0 +1,73 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <img class="ship-mask-bg" src="/systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+  <div class="ship-container">
+    <div class="ship_image">
+      <img class="ship-img" src="{{actor.img}}" data-edit="img" title="{{actor.ship.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
+    </div>
+    <div class="ship-name">
+      <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
+    </div>
+    <div class="ship-info">
+      <div class="ship-state-grid">
+        <div class="ship-hull"><span>Ship Hull</span><input type="text" value="{{data.ship.shipStats.hullCurrent}}" name="data.ship.shipStats.hullCurrent" placeholder="0"/>
+          <input type="text" value="{{data.ship.shipStats.hull}}" name="data.ship.shipStats.hull" placeholder="0"/></div>
+        <div class="ship-fuel"><span>Fuel</span><input type="text" value="{{data.ship.shipStats.fuelCurrent}}" name="data.ship.shipStats.fuelCurrent" placeholder="0"/>
+          <input type="text" value="{{data.ship.shipStats.fuel}}" name="data.ship.shipStats.fuel" placeholder="0"/></div>
+        <div class="ship-maintenance"><span>Maintenance P/M</span>
+          <input type="text" value="{{data.ship.maintenance_cost}}" name="data.ship.maintenance_cost" placeholder="0"/>
+        </div>
+
+      </div>
+    </div>
+    <div class="ship-power-managment"><h3>Power Management</h3>
+      <div class="ship-power"><label>Power</label>
+        <span class="power-now">USED</span>
+        <input class="power-current" type="text" value="{{data.ship.shipStats.powerCurrent}}" name="data.ship.shipStats.powerCurrent" placeholder="0"/>
+        <input class="power-total" type="text" value="{{data.ship.shipStats.power}}" name="data.ship.shipStats.power" placeholder="0"/><span class="power-max">MAX</span>
+      </div>
+      <div class="power-grid">
+        <div class="ship-systems"><label>Systems</label><input type="text" value="{{data.ship.reqPower.systems}}" name="data.ship.reqPower.systems" placeholder="0"/></div>
+        <div class="ship-m-drive"><label>M-Drive</label><input type="text" value="{{data.ship.reqPower.m-drive}}" name="data.ship.reqPower.m-drive" placeholder="0"/></div>
+        <div class="ship-j-drive"><label>J-Drive</label><input type="text" value="{{data.ship.reqPower.j-drive}}" name="data.ship.reqPower.j-drive" placeholder="0"/></div>
+        <div class="ship-sensors"><label>Sensors</label><input type="text" value="{{data.ship.reqPower.sensors}}" name="data.ship.reqPower.sensors" placeholder="0"/></div>
+        <div class="ship-weapons">Weapons<input type="text" value="{{data.ship.reqPower.weapons}}" name="data.ship.reqPower.weapons" placeholder="0"/></li>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Sheet Body --}}
+  <div class="ship-tabs-info sheet-body">
+
+    {{!-- Sheet Tab Navigation --}}
+    <div class="ship-tabs">
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item ship-crew-tab" data-tab="ship-crew">Crew</a>
+        <a class="item ship-storage-tab" data-tab="ship-storage">Locker</a>
+        <a class="item ship-cargo-tab" data-tab="ship-cargo">Cargo</a>
+        <a class="item ship-notes-tab" data-tab="ship-notes">Notes</a>
+      </nav>
+    </div>
+
+    {{!-- Crew Tab --}}
+    <div class="tab ship-crew" data-group="primary" data-tab="ship-crew">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-crew.html"}}
+    </div>
+
+    {{!-- Storage Tab --}}
+    <div class="tab ship-storage" data-group="primary" data-tab="ship-storage">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
+    </div>
+
+    {{!-- Cargo Tab --}}
+    <div class="tab ship-cargo" data-group="primary" data-tab="ship-cargo">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo.html"}}
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab ship-notes" data-group="primary" data-tab="ship-notes">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-notes.html"}}
+    </div>
+
+
+</form>

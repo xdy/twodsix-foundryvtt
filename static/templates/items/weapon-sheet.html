@@ -5,6 +5,17 @@
         <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
 
+    <select name="type" value={{item.type}}>
+      {{#select item.type}}
+      <option value="equipment">Equipment</option>
+      <option value="weapon">Weapon</option>
+      <option value="armor">Armor</option>
+      <option value="augment">Augment</option>
+      <option value="tool">Tool</option>
+      <option value="junk">Junk</option>
+      {{/select}}
+    </select>
+
     <div class="item-tl">
       <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Weapon.TL"}}
         <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
@@ -32,12 +43,12 @@
 
     <div class="item-price">
       <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Weapon.ItemPrice"}}
-        <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
+        <input id="data.price" type="text" name="data.price" value="{{data.price}}"/></label>
     </div>
 
     <div class="item-descr">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ItemDescription"}}</label>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      <label class="resource-label">Item Description</label>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
     </div>
   </div>
 </form>

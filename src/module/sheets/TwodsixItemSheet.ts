@@ -52,6 +52,11 @@ export class TwodsixItemSheet extends ItemSheet {
       return;
     }
 
-  // Roll handlers, click handlers, etc. would go here.
+    html.find('div[contenteditable="true"][data-edit]').on(
+      'focusout',
+      this._onSubmit.bind(this)
+    );
+
+    // Roll handlers, click handlers, etc. would go here.
   }
 }

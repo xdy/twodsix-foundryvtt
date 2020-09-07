@@ -40,12 +40,12 @@
 
     <div class="item-weight">
       <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Items.Weight"}}
-        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/></label>
+        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}"/></label>
     </div>
 
     <div class="item-descr">
-      <label class="resource-label">{{localize "TWODSIX.Items.Items.ItemDescription"}}</label>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+      <label class="resource-label">Item Description</label>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</textarea>
     </div>
   </div>
 </form>

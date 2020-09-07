@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller"],
+    "types": ["traveller", "ship"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -80,10 +80,187 @@
           "shortLabel": "PSI"
         }
       }
+    },
+    "ship":{
+      "name": "",
+      "crew": {
+        "captain": "",
+        "pilot": "",
+        "astrogator": "",
+        "engineer": "",
+        "maintenance": "",
+        "gunner": "",
+        "medic": "",
+        "admin": "",
+        "steward": "",
+        "broker": "",
+        "marine": "",
+        "other": ""
+      },
+      "notes": "",
+      "cargo": "",
+      "maintenance_cost": "",
+      "ship_value": "",
+      "reqPower": {
+        "systems": "",
+        "m-drive": "",
+        "j-drive": "",
+        "sensors": "",
+        "weapons": ""
+        },
+      "other":"",
+      "shipStats":{
+        "hull": "0",
+        "hullCurrent": "0",
+        "fuel": "0",
+        "fuelCurrent": "0",
+        "power": "0",
+        "powerCurrent": "0",
+        "armor": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "m-drive": {
+          "name":"M-Drive",
+          "weight": "",
+          "cost":""
+        },
+        "j-drive":{
+          "name":"J-Drive",
+          "weight": "",
+          "cost":""
+        },
+        "power_plant":{
+          "name":"Power-Plant",
+          "power":"",
+          "weight": "",
+          "cost":""
+        },
+        "fuel_tanks": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "bridge": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "computer": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "sensors": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "weapons": {
+          "weapon1":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon2":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon3":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon4":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon5":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon6":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon7":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "weapon8":{
+            "name":"",
+            "weight": "",
+            "cost":""
+          }
+        },
+        "ammunition": ""
+        },
+        "systems": {
+          "system1": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system2": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system3": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system4": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system5": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system6": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system7": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          },
+          "system8": {
+            "name":"",
+            "weight": "",
+            "cost":""
+          }
+        },
+        "staterooms": {
+          "name":"",
+          "weight": "",
+          "cost":""
+        },
+        "software":{
+          "name":"",
+          "cost": ""
+        },
+        "common_areas":{
+          "number": "",
+          "weight": "",
+          "cost": ""
+        }
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "skills"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -136,4 +313,5 @@
       "type": "skills"
     }
   }
+
 }

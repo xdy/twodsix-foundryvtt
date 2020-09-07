@@ -13,6 +13,7 @@ import {TwodsixSystem} from './module/TwodsixSystem';
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import {TWODSIX} from "./module/config";
 import {Migration} from "./module/migration";
@@ -48,7 +49,15 @@ Hooks.once('init', async function () {
   // Actor
   CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {makeDefault: true});
+
+  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+    types: ["traveller"],
+    makeDefault: true});
+
+  Actors.registerSheet("twodsix", TwodsixShipSheet, {
+    types: ["ship"],
+    makeDefault: true,
+  });
 
   // Items
   CONFIG.Item.entityClass = TwodsixItem;

@@ -1,4 +1,5 @@
 import {advantageDisadvantageTerm} from "./settings";
+import * as util from "util";
 
 export default function registerHandlebarsHelpers():void {
 
@@ -6,4 +7,10 @@ export default function registerHandlebarsHelpers():void {
     return advantageDisadvantageTerm(str);
   });
 
+  Handlebars.registerHelper('capitalize', (str) => {
+    if (!util.isString(str)) {
+      return '';
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  });
 }

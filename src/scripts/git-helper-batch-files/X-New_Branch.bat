@@ -3,6 +3,6 @@ echo "This creates a new branch, check to make sure that $BRANCH is the right na
 pause
 d:
 cd \GitHub\twodsix-foundryvtt
-git checkout -b $BRANCH
-git push --set-upstream origin $BRANCH
+git checkout -b Code_for_Daddi
+git push --set-upstream origin Code_for_Daddi
 pause
