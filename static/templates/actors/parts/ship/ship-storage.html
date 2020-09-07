@@ -9,13 +9,13 @@
   </div>
 
 
-  {{#each actor.storage as |item id|}}
+  {{#each data.storage as |item id|}}
   <div class="item storage">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item._id}}">
         <span class="items-storage">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{data.category}}</span>
+          <span class="item-name centre">{{capitalize data.type}}</span>
           <span class="item-name centre">{{data.quantity}}</span>
           <span class="item-name centre">{{data.weight}}</span>
           <span class="item-name centre">{{data.price}}</span>

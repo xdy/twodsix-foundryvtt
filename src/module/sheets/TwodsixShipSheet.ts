@@ -26,7 +26,7 @@
   }
   
   private static _prepareCharacterItems(sheetData:any) {
-    sheetData.storage = sheetData.actor.items;
+    sheetData.data.storage = sheetData.actor.items;
   }
 
 
@@ -58,6 +58,7 @@
     html.find('.item-create').on('click', this._onItemCreate.bind(this));
 
     // Update Inventory Item
+    (console.log)
     html.find('.item-edit').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.getOwnedItem(li.data("itemId"));

@@ -24,6 +24,9 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
         this._prepareCharacterData(actorData);
         break;
+      case 'ship':
+        this._prepareCharacterData(shipData);
+        break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + actorData.type);
     }

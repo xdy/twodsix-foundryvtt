@@ -50,9 +50,15 @@ Hooks.once('init', async function () {
   // Actor
   CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {makeDefault: true});
-  Actors.registerSheet('twodsix', TwodsixNPCSheet, {makeDefault: true});
-  Actors.registerSheet('twodsix', TwodsixShipSheet, {makeDefault: true});
+  
+  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+    types: ["traveller"],
+    makeDefault: true});
+  
+  Actors.registerSheet("twodsix", TwodsixShipSheet, {
+    types: ["ship"],
+    makeDefault: true,
+  });
 
   // Items
   CONFIG.Item.entityClass = TwodsixItem;

@@ -64,6 +64,12 @@ export class TwodsixActorSheet extends ActorSheet {
         case 'skills':
           skills.push(i);
           break;
+        case 'tool':
+          skills.push(i);
+          break;
+        case 'junk':
+          skills.push(i);
+          break;      
         default:
           break;
       }
