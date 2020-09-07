@@ -46,7 +46,9 @@ export class TwodsixActorSheet extends ActorSheet {
         case 'storage':
           storage.push(i);
           break;
-        case 'equipment' || 'tool' || 'junk':
+        case 'equipment':
+        case 'tool':
+        case 'junk':
           equipment.push(i);
           break;
         case 'weapon':

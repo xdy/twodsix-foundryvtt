@@ -6,24 +6,16 @@
  * Content License: Basically OGL, see License section of README.md for details
  * Software License: Apache, see License section of README.md for details
  */
-import {registerSettings} from './module/settings';
-import preloadTemplates from './module/templates';
-import registerHandlebarsHelpers from './module/handlebars';
-import {TwodsixSystem} from './module/TwodsixSystem';
+
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
-import {TWODSIX} from "./module/config";
-import {Migration} from "./module/migration";
-
+import registerHandlebarsHelpers from "./module/handlebars";
+import {registerSettings} from "./module/settings";
 
 require('../static/styles/twodsix.css');
-
-/* ------------------------------------ */
-/* Initialize system					*/
-/* ------------------------------------ */
 
 Hooks.once('init', async function () {
   const ASCII = "\n" +
@@ -39,11 +31,10 @@ Hooks.once('init', async function () {
     `TWODSIX | Initializing Twodsix system\n${ASCII}`,
   );
 
-
   game.twodsix = {
     TwodsixActor,
-    TwodsixItem,
-    rollItemMacro
+    TwodsixItem
+    // rollItemMacro
   };
 
   // Actor
@@ -73,135 +64,34 @@ Hooks.once('init', async function () {
     decimals: 1
   };
 
-  registerSettings();
   registerHandlebarsHelpers();
-  await preloadTemplates();
 
-});
-/* ------------------------------------ */
-/* Setup system							*/
-/* ------------------------------------ */
-Hooks.once('setup', async function () {
-  // Do anything after initialization but before ready
+  registerSettings();
+  const templatePaths = [
+    //TODO Set up so the templates are instead loaded during build, using all html files in the templates folder
+    "systems/twodsix/templates/actors/actor-sheet.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-items.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-items.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-info.html",
+    "systems/twodsix/templates/actors/ship-sheet.html",
+    "systems/twodsix/templates/actors/parts/ship/ship-crew.html",
+    "systems/twodsix/templates/actors/parts/ship/ship-storage.html",
+    "systems/twodsix/templates/actors/parts/ship/ship-cargo.html",
+    "systems/twodsix/templates/actors/parts/ship/ship-notes.html",
+    "systems/twodsix/templates/items/item-sheet.html",
+    "systems/twodsix/templates/items/skills-sheet.html",
+    "systems/twodsix/templates/items/armor-sheet.html",
+    "systems/twodsix/templates/items/augment-sheet.html",
+    "systems/twodsix/templates/items/tool-sheet.html",
+    "systems/twodsix/templates/items/junk-sheet.html",
+    "systems/twodsix/templates/items/equipment-sheet.html",
+    "systems/twodsix/templates/items/storage-sheet.html"  ];
+  loadTemplates(templatePaths);
 
-  CONFIG.TWODSIX = TWODSIX;
-
-  (window as any).Twodsix = new TwodsixSystem();
-
-
-});
-
-Hooks.once("ready", async function () {
-  // Determine whether a system migration is required and feasible
-  const MIGRATIONS_IMPLEMENTED = "0.6.1";
-  let currentVersion = null;
-  if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
-    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion");
-    if (currentVersion == "null") {
-      currentVersion = null;
-    }
-  }
-  const needMigration = currentVersion === null || currentVersion === "" || currentVersion < game.system.data.version;
-
-  // Perform the migration
-  if (needMigration && game.user.isGM) {
-    if (!currentVersion || currentVersion < MIGRATIONS_IMPLEMENTED) {
-      ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
-    }
-    await Migration.migrateWorld();
-  }
-
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createTwodsixMacro(data, slot));
+  // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
 });
 
-// Add any additional hooks if necessary
-Hooks.on('preCreateActor', async (actor, dir) => {
-
-  if (game.settings.get('twodsix', 'defaultTokenSettings')) {
-    let link = true;
-    let disposition = 1;
-
-    if (actor.type !== 'traveller') {
-      link = false;
-      disposition = 0;
-    }
-
-    actor.token = actor.token || {};
-    mergeObject(actor.token, {
-      'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      vision: true,
-      dimSight: 30,
-      brightSight: 0,
-      actorLink: link,
-      disposition,
-    });
-  }
-});
-
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-
-/* -------------------------------------------- */
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
- */
-async function createTwodsixMacro(data, slot) {
-  if (data.type !== "Item") {
-    return;
-  }
-  if (!("data" in data)) {
-    return ui.notifications.warn("You can only create macro buttons for owned Items");
-  }
-  const item = data.data;
-
-  // Create the macro command
-  const command = `game.twodsix.rollItemMacro("${item.name}");`;
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  let macro:Macro = game.macros.entities.find((m:Macro) => (m.name === item.name) && (m.data.command === command));
-  if (!macro) {
-    macro = <Macro>await Macro.create({
-      name: item.name,
-      type: "script",
-      img: item.img,
-      command: command,
-      flags: {"twodsix.itemMacro": true}
-    });
-  }
-  game.user.assignHotbarMacro(macro as Macro, slot);
-  return false;
-}
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
- * @return {Promise}
- */
-function rollItemMacro(itemName) {
-  const speaker = ChatMessage.getSpeaker();
-  let actor;
-  if (speaker.token) {
-    actor = game.actors.tokens[speaker.token];
-  }
-  if (!actor) {
-    actor = game.actors.get(speaker.actor);
-  }
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) {
-    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
-  }
-
-
-  // Trigger the item roll
-  return item.roll();
-}
