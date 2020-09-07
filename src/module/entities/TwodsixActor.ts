@@ -2,19 +2,19 @@
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-import { calcModFor } from "../utils/sheetUtils";
+import {calcModFor} from "../utils/sheetUtils";
 
 export default class TwodsixActor extends Actor {
 
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData(): void {
+  prepareData():void {
     super.prepareData();
 
     const actorData = this.data;
-    const data = actorData.data;
-    const flags = actorData.flags;
+    // const data = actorData.data;
+    // const flags = actorData.flags;
 
     if (actorData.type === 'character') {
       this._prepareCharacterData(actorData);
@@ -37,18 +37,19 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareCharacterData(actorData: ActorData): void {
+  _prepareCharacterData(actorData:ActorData):void {
     // Get the Actor's data object
-    const { data } = actorData;
+    const {data} = actorData;
 
     for (const cha of Object.values(data.characteristics as Record<any, any>)) {
       cha.current = cha.value - cha.damage;
       cha.mod = calcModFor(cha.current);
     }
   }
-  _prepareShipData(actorData: ActorData): void {
+
+  _prepareShipData(actorData:ActorData):void {
     // Get the Actor's data object
-    const { data } = actorData;
+    const {data} = actorData;
 
     for (const cha of Object.values(data.characteristics as Record<any, any>)) {
       cha.current = cha.value - cha.damage;
