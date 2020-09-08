@@ -25,10 +25,58 @@ export class TwodsixShipSheet extends ActorSheet {
     return data;
   }
 
-  private static _prepareCharacterItems(sheetData: any) {
-    sheetData.data.storage = sheetData.actor.items;
-  }
 
+  private static _prepareCharacterItems(sheetData:any) {
+    sheetData.data.storage = sheetData.actor.items;
+
+    // Initialize containers.
+    const storage = [];
+    const equipment = [];
+    const weapon = [];
+    const armor = [];
+    const augment = [];
+    const tool = [];
+    const junk = [];
+    const skills = [];
+
+    // Iterate through items, allocating to containers
+    for (const i of sheetData.items) {
+      i.img = i.img || CONST.DEFAULT_TOKEN;
+      switch (i.type) {
+        case 'storage':
+          storage.push(i);
+          break;
+        case 'equipment' || 'tool' || 'junk':
+          equipment.push(i);
+          break;
+        case 'weapon':
+          weapon.push(i);
+          break;
+        case 'armor':
+          armor.push(i);
+          break;
+        case 'augment':
+          augment.push(i);
+          break;
+        case 'skills':
+          skills.push(i);
+          break;
+        default:
+          break;
+      }
+
+    }
+    // Assign and return
+    sheetData.storage = storage;
+    sheetData.equipment = equipment;
+    sheetData.weapon = weapon;
+    sheetData.armor = armor;
+    sheetData.augment = augment;
+    sheetData.tool = tool;
+    sheetData.junk = junk;
+    sheetData.skills = skills;
+
+  }
 
   /** @override */
   static get defaultOptions() {

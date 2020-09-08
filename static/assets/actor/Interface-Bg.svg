@@ -3,13 +3,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_2_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="804px" height="629px" viewBox="0 0 804 629" enable-background="new 0 0 804 629" xml:space="preserve">
-<polygon opacity="0.5" stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" points="333,612 323,622 763,622 753,612 "/>
+<polygon opacity="0.5" stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" enable-background="new    " points="333,612 
+	323,622 763,622 753,612 "/>
 <polygon fill="#231F20" stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" points="283,7 678,7 658,27 303,27 "/>
 <g>
 	<path stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" d="M778,2h-94.833L658,27H303L277.667,2H28L3,27v580.25L23,627
 		h250.063L283,617h5l10,10h484.5l20.5-20V27.25L778,2z M323,622l10-10h420l10,10H323z M798,602l-20,20h-5l-15-15H328l-15,15l-15-15
 		V37h10l15,15h430l15-15h15l15,15V602z"/>
 </g>
-<polygon opacity="0.5" stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" points="768,37 753,52 323,52 308,37 298,37 
-	298,607 313,622 328,607 758,607 773,622 778,622 798,602 798,52 783,37 "/>
+<polygon opacity="0.5" stroke="#26A9E0" stroke-width="2" stroke-miterlimit="10" enable-background="new    " points="768,37 
+	753,52 323,52 308,37 298,37 298,607 313,622 328,607 758,607 773,622 778,622 798,602 798,52 783,37 "/>
 </svg>

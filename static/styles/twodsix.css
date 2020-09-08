@@ -18,17 +18,14 @@ svg {
 }
 
 textarea {
-  width: 100%;
-  min-height: 50px;
-  padding: 5px;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid #000;
-  border-radius: 3px;
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
   color: #207ab7 !important;
+  white-space: nowrap;
 }
 
 .no-scroll {
@@ -914,8 +911,6 @@ img.ship-img {
 .ship-fuel {
   grid-area: ship-fuel;
   display: grid;
-  margin-left: 0.1em;
-  margin-top: 0.5em;
   background-image: url(../assets/ship/fuel.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -1067,16 +1062,92 @@ input.power-total {
 
 /*----------- Ship Tabs ----------*/
 
+.ship-tabs {
+  width: 389px;
+  display: block;
+  margin-left: 20.5em;
+  margin-top: -2.3em;
+  z-index: 99;
+  height: 20px;
+}
+
+a.ship-crew-tab {
+  background-image: url(../assets/ship/ship-tabs.svg);
+  background-position: 0.1em;
+  display: block;
+  height: 20px;
+}
+
+a.ship-crew-tab:hover {
+  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  background-position: 0.1em;
+  color: #fff;
+  display: block;
+  height: 20px;
+}
+
+a.ship-crew-tab.active {
+  background-image: url(../assets/ship/ship-tabs-active.svg);
+  background-position: 0.1em;
+  color: #000;
+  text-shadow: none !important;
+  display: block;
+  height: 20px;
+}
+
+a.ship-storage-tab, a.ship-cargo-tab {
+  background-image: url(../assets/ship/ship-tabs.svg);
+  background-position: -99px;
+  display: block;
+  height: 20px;
+}
+
+a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
+  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  background-position: -99px;
+  display: block;
+  height: 20px;
+  color: #fff;
+}
+
+a.ship-storage-tab.active, a.ship-cargo-tab.active {
+  background-image: url(../assets/ship/ship-tabs-active.svg);
+  background-position: 0.1em;
+  background-position: -99px;
+  display: block;
+  height: 20px;
+  color: #000;
+  text-shadow: none !important;
+}
+
+a.ship-notes-tab {
+  background-image: url(../assets/ship/ship-tabs.svg);
+  background-position: 7.1em;
+  display: block;
+  height: 20px;
+}
+
+a.ship-notes-tab:hover {
+  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  background-position: 7em;
+  display: block;
+  height: 20px;
+  color: #fff;
+}
+
+a.ship-notes-tab.active {
+  background-image: url(../assets/ship/ship-tabs-active.svg);
+  background-position: 7em;
+  color: #000;
+  text-shadow: none !important;
+  display: block;
+  height: 20px;
+}
+
+
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: relative;
-}
-
-.ship-tabs {
-  z-index: 99;
-  margin-left: 21em;
-  margin-top: -2.25em;
-  width: 26em;
 }
 
 .ship-grid {
@@ -1100,7 +1171,7 @@ input.power-total {
 }
 
 .ship-grid input[type="text"] {
-  width: 15em;
+  width: 14.8em;
   border: 1px groove #00e5ff;
   border-radius: 0px;
 }
@@ -1127,7 +1198,7 @@ input.power-total {
 
 .storage-stored {
   display: grid;
-  grid-template-columns: 9.5em 4em 2em 3em 5em 3em;
+  grid-template-columns: 8.5em 5em 3em 3em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". . . . . .";
@@ -1139,9 +1210,23 @@ input.power-total {
   color: #000;
 }
 
-li.item:nth-of-type(even) {
-  background: #0d0d0dbb;
+.cargo-wrapper {
+  padding: 0em 2em 0em 2em;
+  margin-top: 0.5em;
 }
+
+textarea.cargo-block {
+  border: 1px solid #29aae1;
+  height: 20em;
+}
+
+
+.ship-notes-box{
+  z-index:99;
+  widows: 10em;
+  height: 10em;
+}
+
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
