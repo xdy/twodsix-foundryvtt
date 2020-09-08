@@ -11,6 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Perfect DOS VGA 437';
 }
 
 svg {
@@ -23,9 +24,21 @@ textarea {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
+  user-select: text;}
+
+input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], textarea {
+  background: rgba(0, 0, 0, 0.21);
+  margin: 0;
+  color: #29aae1 !important;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
   user-select: text;
-  color: #207ab7 !important;
-  white-space: nowrap;
+  border: none;
 }
 
 .no-scroll {
@@ -93,10 +106,10 @@ img {
   max-width: 100%;
 }
 
-input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'] {
+input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], textarea {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
-  color: #6e819e !important;
+  color: #29aae1 !important;
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -106,6 +119,7 @@ input[type='text'], input[type='number'] input[type='password'], input[type='dat
   -ms-user-select: text;
   user-select: text;
   border: none;
+  border-radius: 0px;
 }
 
 input[type='text']:focus, input[type='number'] input[type='password']:focus, input[type='datetime-local']:focus {
@@ -121,8 +135,6 @@ input::-webkit-inner-spin-button {
   display: grid;
   grid-template-columns: 22em 34.5em;
   gap: 1px 1px;
-  /* width: 804px; */
-  /* height: 627px; */
   position: relative;
   top: -2.4em;
   left: -0.3em;
@@ -646,7 +658,7 @@ span.total-output {
 
 .financial-notes textarea {
   border: 1px solid #29aae1;
-  width: 15.6em;
+  width: 14.8em;
   height: 28.5em;
   border-radius: 0px;
 }
@@ -806,10 +818,11 @@ span.total-output {
   overflow-x: hidden;
 }
 
-.notes-container>.editor {
+.character-notes {
   height: 42em;
   width: 38em;
   border: 1px solid #29aae1;
+  border-radius: 0px;
 }
 
 /*----------- Ship Sheet ---------*/
@@ -1177,13 +1190,15 @@ a.ship-notes-tab.active {
 }
 
 .ship-grid textarea[type="text"] {
-  width: 15.6em;
+  width: 14.8em;
   border: 1px groove #00e5ff;
   border-radius: 0px;
 }
 
-.storage-wrapper{
-  margin-top: 1em;
+.storage-wrapper {
+  margin-top: 0.1em;
+  overflow-y: auto;
+  height: 21em;
 }
 
 .grid-columns {
@@ -1212,12 +1227,14 @@ a.ship-notes-tab.active {
 
 .cargo-wrapper {
   padding: 0em 2em 0em 2em;
-  margin-top: 0.5em;
+  margin-top: 0em;
+  position: relative;
+  top: 1em;
 }
 
 textarea.cargo-block {
   border: 1px solid #29aae1;
-  height: 20em;
+  height: 18em;
 }
 
 
@@ -1368,7 +1385,7 @@ a:hover {
 .item-descr .editor {
   height: calc(100px);
   background: rgba(0, 0, 0, 0.22);
-  color: #207ab7;
+  color: #29aae1;
 }
 
 .pusher {
@@ -1723,7 +1740,7 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
 .editor {
   height: calc(75px);
   background: rgba(0, 0, 0, 0.51);
-  color: #207ab7;
+  color: #29aae1;
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {

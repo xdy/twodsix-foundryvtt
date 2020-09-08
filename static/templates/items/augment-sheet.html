@@ -3,7 +3,7 @@
   <div class="item-sheet">
 
     <div class="item-name">
-      <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.AugmentationItemName"}}
+      <label for="data.name" class="resource-label">Augment Name
       <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
     </div>
 
@@ -19,29 +19,29 @@
     </select>
 
     <div class="item-tl">
-    <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.AugmentationTL"}}
+    <label for="data.techLevel" class="resource-label">TL
     <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
     </div>
 
     <div class="item-bonus">
-    <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.AugmentationEffect"}}
+    <label for="data.bonus" class="resource-label">Augment Effect
     <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></label>
     </div>
 
     <div class="item-type">
-      <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.AugmentationItemLocation"}}</label>
+      <label for="item.auglocation" class="resource-label">Augment Location</label>
       <select name="data.auglocation" value={{data.auglocation}} >
           {{#select data.auglocation}}
-          <option value="Head">{{localize "TWODSIX.Items.AugmentationHead"}}</option>
-          <option value="Torso">{{localize "TWODSIX.Items.AugmentationTorso"}}</option>
-          <option value="Arms">{{localize "TWODSIX.Items.AugmentationArms"}}</option>
-          <option value="Legs">{{localize "TWODSIX.Items.AugmentationLegs"}}</option>
-          <option value="Full-Body">{{localize "TWODSIX.Items.AugmentationFullBody"}}</option>
+          <option value="Head">Head</option>
+          <option value="Torso">Torso</option>
+          <option value="Arms">Arms</option>
+          <option value="Legs">Legs</option>
+          <option value="Full-Body">Full Body</option>
           {{/select}}
         </select></div>
 
     <div class="item-price">
-      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.AugmentationValueCr"}}
+      <label for="data.price" class="resource-label">Item Price
       <input id="data.price" type="text" name="data.price" value="{{data.price}}"/></label>
     </div>
 

@@ -46,15 +46,6 @@ export default class TwodsixActor extends Actor {
       cha.mod = calcModFor(cha.current);
     }
   }
-  _prepareNPCData(actorData: ActorData): void {
-    // Get the Actor's data object
-    const { data } = actorData;
-
-    for (const cha of Object.values(data.characteristics as Record<any, any>)) {
-      cha.current = cha.value - cha.damage;
-      cha.mod = calcModFor(cha.current);
-    }
-  }
   _prepareShipData(actorData: ActorData): void {
     // Get the Actor's data object
     const { data } = actorData;

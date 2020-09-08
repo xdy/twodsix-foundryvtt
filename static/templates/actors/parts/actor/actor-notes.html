@@ -1,5 +1,4 @@
 <div class="notes-container">
-
-  <span class="item-title">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
-    {{{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}}
-  </div>
+  <span class="item-title">CHARACTER NOTES</span>
+  <textarea class="character-notes" rows="10" data-dtype="String" name="data.notes">{{#if data.notes}}{{data.notes}}{{/if}}</textarea>
+</div>

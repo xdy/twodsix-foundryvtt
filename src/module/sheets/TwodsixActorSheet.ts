@@ -27,7 +27,6 @@ export class TwodsixActorSheet extends ActorSheet {
 
 
   private static _prepareCharacterItems(sheetData:any) {
-
     const actorData = sheetData.actor;
 
     // Initialize containers.
@@ -89,7 +88,7 @@ export class TwodsixActorSheet extends ActorSheet {
       height: 648,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".inventory", ".finances"]
+      scrollY: [".skills", ".inventory", ".finances", ".info", ".notes"]
     });
   }
 

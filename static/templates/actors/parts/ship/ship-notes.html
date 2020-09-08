@@ -1,5 +1,4 @@
-
-  <span class="item-title">SHIP NOTES</span>
-  <div class="ship-notes-box">
-    {{{editor content=data.ship.notes target="data.ship.notes" button=true owner=owner editable=editable}}}
+  <div class="cargo-wrapper">
+    <span class="item-title">SHIP NOTES</span>
+      <textarea class="cargo-block" rows="10" data-dtype="String" name="data.ship.notes">{{#if data.ship.notes}}{{data.ship.notes}}{{/if}}</textarea>
   </div>

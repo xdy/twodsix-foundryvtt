@@ -79,14 +79,15 @@ export class TwodsixShipSheet extends ActorSheet {
   }
 
   /** @override */
-  static get defaultOptions() {
+  static get defaultOptions():FormApplicationOptions {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "ship", "actor"],
       template: "systems/twodsix/templates/actors/ship-sheet.html",
       width: 825,
       height: 648,
       resizable: false,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew" }]
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew"}],
+      scrollY: [".ship-crew", ".ship-storage", ".storage-wrapper", ".ship-notes"]
     });
   }
 
