@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="825px" height="648px" viewBox="0 0 825 648" enable-background="new 0 0 825 648" xml:space="preserve">
+<g id="Layer_1_2_">
+	<g id="Layer_1_1_">
+	</g>
+	<g id="Layer_3" display="none">
+		
+			<image display="inline" overflow="visible" enable-background="new    " width="685" height="424" xlink:href="../../../../../Tabletop/Traveller/Ship Images/Commerce_Raider.JPG"  transform="matrix(0.5547 0 0 0.5547 15.0005 49.9993)">
+		</image>
+	</g>
+	<g id="Layer_2">
+		<g>
+			<polygon fill="#231F20" stroke="#28A8E0" stroke-width="2" stroke-miterlimit="10" points="688,16 293,16 313,36 668,36 			"/>
+			<path fill="#010101" stroke="#28A8E0" stroke-width="2" stroke-miterlimit="10" d="M308,325h-3l20-20h343l25,20h99.5l20.5-20
+				V36.25L788,11h-94.834L668,36H313l-25.333-25H38L13,36v269.25L33,325h250.063H308z M320,280l-25,25H55l-25-25V75l25-25h320l25,25
+				v205H320z"/>
+		</g>
+	</g>
+	<g id="Layer_4">
+		<polygon opacity="0.5" enable-background="new    " points="33,325 20,312.25 20,620 40,640 785,640 805,620 805,312.827 
+			792.5,325 		"/>
+		<rect x="193.462" y="40" fill="#2075BC" width="18.461" height="5"/>
+		<rect x="221.153" y="40" fill="#29AAE1" width="18.463" height="5"/>
+		<rect x="248.847" y="40" fill="#5FCAE6" width="18.461" height="5"/>
+		<rect x="276.538" y="40" fill="#B0E0E9" width="18.462" height="5"/>
+		<rect x="165.77" y="40" fill="#2075BC" width="18.461" height="5"/>
+		<rect x="138.077" y="40" fill="#29AAE1" width="18.461" height="5"/>
+		<rect x="110.385" y="40" fill="#5FCAE6" width="18.462" height="5"/>
+		<rect x="82.692" y="40" fill="#B0E0E9" width="18.461" height="5"/>
+		<rect x="55" y="40" fill="#FFFFFF" width="18.462" height="5"/>
+		<rect x="193.461" y="310" fill="#2075BC" width="18.461" height="5"/>
+		<rect x="221.154" y="310" fill="#29AAE1" width="18.462" height="5"/>
+		<rect x="248.846" y="310" fill="#5FCAE6" width="18.461" height="5"/>
+		<rect x="276.539" y="310" fill="#B0E0E9" width="18.461" height="5"/>
+		<rect x="165.769" y="310" fill="#2075BC" width="18.462" height="5"/>
+		<rect x="138.077" y="310" fill="#29AAE1" width="18.461" height="5"/>
+		<rect x="110.385" y="310" fill="#5FCAE6" width="18.461" height="5"/>
+		<rect x="82.692" y="310" fill="#B0E0E9" width="18.461" height="5"/>
+		<rect x="55" y="310" fill="#FFFFFF" width="18.461" height="5"/>
+		<polygon fill="none" stroke="#28A8E0" stroke-width="2" stroke-miterlimit="10" points="33,325 20,312.25 20,620 40,640 785,640 
+			805,620 805,312.827 792.5,325 		"/>
+		<polygon fill="#27AAE1" points="391.968,285.213 391.968,297.888 398.305,291.55 		"/>
+		<polygon fill="#27AAE1" points="379.573,285.213 379.573,297.888 385.911,291.55 		"/>
+		<polygon fill="#27AAE1" points="367.181,285.213 367.181,297.888 373.518,291.55 		"/>
+		<polygon fill="#27AAE1" points="354.786,285.213 354.786,297.888 361.125,291.55 		"/>
+		<polygon fill="#27AAE1" points="342.394,285.213 342.394,297.888 348.731,291.55 		"/>
+		<polygon fill="#27AAE1" points="330,285.213 330,297.888 336.337,291.55 		"/>
+	</g>
+</g>
+<g id="Layer_2_1_">
+</g>
+</svg>

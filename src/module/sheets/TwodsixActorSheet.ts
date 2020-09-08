@@ -27,16 +27,16 @@ export class TwodsixActorSheet extends ActorSheet {
 
 
   private static _prepareCharacterItems(sheetData:any) {
-
     const actorData = sheetData.actor;
 
     // Initialize containers.
     const storage = [];
-    const inventory = [];
     const equipment = [];
     const weapon = [];
     const armor = [];
     const augment = [];
+    const tool = [];
+    const junk = [];
     const skills = [];
 
     // Iterate through items, allocating to containers
@@ -46,10 +46,7 @@ export class TwodsixActorSheet extends ActorSheet {
         case 'storage':
           storage.push(i);
           break;
-        case 'inventory':
-          inventory.push(i);
-          break;
-        case 'equipment':
+        case 'equipment' || 'tool' || 'junk':
           equipment.push(i);
           break;
         case 'weapon':
@@ -72,11 +69,12 @@ export class TwodsixActorSheet extends ActorSheet {
     }
     // Assign and return
     actorData.storage = storage;
-    actorData.inventory = inventory;
     actorData.equipment = equipment;
     actorData.weapon = weapon;
     actorData.armor = armor;
     actorData.augment = augment;
+    actorData.tool = tool;
+    actorData.junk = junk;
     actorData.skills = skills;
 
   }
@@ -90,7 +88,7 @@ export class TwodsixActorSheet extends ActorSheet {
       height: 648,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".inventory"]
+      scrollY: [".skills", ".inventory", ".finances", ".info", ".notes"]
     });
   }
 
@@ -136,6 +134,12 @@ export class TwodsixActorSheet extends ActorSheet {
         li.addEventListener("dragstart", handler, false);
       });
     }
+
+    html.find('div[contenteditable="true"][data-edit]').on(
+      'focusout',
+      this._onSubmit.bind(this)
+    );
+
   }
 
 
