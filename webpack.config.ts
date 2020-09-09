@@ -5,7 +5,6 @@ import WriteFilePlugin from "write-file-webpack-plugin";
 import {Configuration} from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-
 //Only a partial type, not sure what else can be in this, and haven't looked into it.
 type FoundryConfig = { dataPath:string, systemName:string };
 
@@ -22,14 +21,17 @@ module.exports = (env, argv) => {
   const config:Configuration = {
     context: __dirname,
     entry: {
-      main: "./src/twodsix.ts",
+      main: ["./src/twodsix.ts", "./src/module/hooks/ready.ts", "./src/module/hooks/setup.ts", "./src/module/hooks/preCreateActor.ts"]
     },
     mode: "development",
     module: {
       rules: [
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: [
+            "ts-loader",
+            "source-map-loader",
+          ],
           exclude: /node_modules/,
         },
         {
@@ -47,12 +49,12 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CopyWebpackPlugin({
-          patterns: [
-            {from: 'static'}
-          ],
-        }, {
-          writeToDisk: true
-        }
+        patterns: [
+          {from: 'static'}
+        ],
+      }, {
+        writeToDisk: true
+      }
       ),
       new WriteFilePlugin(),
       new MiniCssExtractPlugin({

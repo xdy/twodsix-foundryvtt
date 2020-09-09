@@ -51,7 +51,6 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
-
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event
@@ -66,6 +65,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     const data = duplicate(header.dataset);
     // Initialize a default name.
     const name = `New ${type.capitalize()}`;
+    data.name = name;
     // Prepare the item object.
     const itemData = {
       name,

@@ -10,7 +10,7 @@ export class Migration {
     const updateData:UpdateData = <UpdateData>{};
 
     //Insert migrations here
-    // if (systemMigrationVersion < 0.601) {
+    // if (systemMigrationVersion < "0.6.0") {
     //  updateData['data.new'] = 42;
     //  I.e. set, calculate or copy in a reasonable value
     // }
@@ -18,22 +18,18 @@ export class Migration {
     return updateData;
   }
 
-
   private static async migrateItemData(item:ItemData<any>, systemMigrationVersion:string):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
 
-    //Insert migrations here
-    // if (systemMigrationVersion < 0.601) {
-    //  updateData['data.new'] = 42;
-    //  I.e. set, calculate or copy in a reasonable value
-    // }
+    if (systemMigrationVersion < "0.6.8") {
+      updateData['data.name'] = item.name;
+    }
 
     return updateData;
   }
 
 
   private static async migrateSceneData(scene:EntityData<any>, systemMigrationVersion:string):Promise<{ tokens:any }> {
-    // TODO Add tokens field to upstream
     const tokens = duplicate(scene["tokens"]);
     return {
       tokens: tokens.map(t => {
@@ -104,7 +100,7 @@ export class Migration {
 
     const actorMigrations = game.actors.entities.map(async actor => {
       try {
-        const updateData = Migration.migrateActorData(actor.data, systemMigrationVersion);
+        const updateData = await Migration.migrateActorData(actor.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Actor ${actor.name}`);
           await actor.update(updateData, {enforceTypes: false});
@@ -116,7 +112,7 @@ export class Migration {
 
     const itemMigrations = game.items.entities.map(async item => {
       try {
-        const updateData = Migration.migrateItemData(item.data, systemMigrationVersion);
+        const updateData = await Migration.migrateItemData(item.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Item ${item.name}`);
           await item.update(updateData, {enforceTypes: false});
@@ -128,7 +124,7 @@ export class Migration {
 
     const sceneMigrations = game.scenes.entities.map(async scene => {
       try {
-        const updateData = Migration.migrateSceneData(scene.data, systemMigrationVersion);
+        const updateData = await Migration.migrateSceneData(scene.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Scene ${scene.name}`);
           await scene.update(updateData, {enforceTypes: false});
