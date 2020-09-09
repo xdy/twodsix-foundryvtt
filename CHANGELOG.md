@@ -1,3 +1,10 @@
+## [0.6.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.6...v0.6.7) (2020-09-09)
+
+
+### Bug Fixes
+
+* Fixed the font bug for Mac users, change the font to a free one and adjusted the CSS files accordingly. (Kevin) ([001bb7d](https://github.com/xdy/twodsix-foundryvtt/commit/001bb7d5070f3c243fd35bc42acabf551370f374))
+
 ## [0.6.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.5...v0.6.6) (2020-09-08)
 
 
