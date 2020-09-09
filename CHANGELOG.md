@@ -1,3 +1,10 @@
+## [0.6.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.7...v0.6.8) (2020-09-09)
+
+
+### Bug Fixes
+
+* Fixes issue [#70](https://github.com/xdy/twodsix-foundryvtt/issues/70) (the data.name field was not set) ([999b72e](https://github.com/xdy/twodsix-foundryvtt/commit/999b72e27a95fcbae16a1339cceae6db899ecc7b))
+
 ## [0.6.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.6...v0.6.7) (2020-09-09)
 
 
