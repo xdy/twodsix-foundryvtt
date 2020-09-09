@@ -66,10 +66,7 @@ Hooks.once('init', async function () {
 
   registerHandlebarsHelpers();
 
-
-
   registerSettings();
-
 
   const templatePaths = [
     //TODO Set up so the templates are instead loaded during build, using all html files in the templates folder
