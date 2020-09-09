@@ -1,9 +1,14 @@
 @font-face {
-  src: url('../fonts/PerfectDOSVGA437.eot');
-  /* IE */
-  src: local('Calibri'), url('../fonts/PerfectDOSVGA437.ttf') format('truetype');
-  /* For non-IE */
-  font-family: 'Perfect DOS VGA 437';
+  font-family: "Asap-Regular";
+  src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
+  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */
+  url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */
+  url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */
+  url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */
+  url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -11,7 +16,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Perfect DOS VGA 437', monospace;
+  font-family: "Asap-Regular";
 }
 
 svg {
@@ -85,7 +90,7 @@ div[contenteditable]:focus {
   background-attachment: fixed !important;
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
-  font-family: 'Perfect DOS VGA 437', monospace;
+  font-family: inherit;
   color: #00e5ff !important;
 }
 
@@ -263,7 +268,7 @@ span.bgi-age {
 
 span.stat-name {
   position: relative;
-  left: 0.5em;
+  left: 1.2em;
   top: -1.1em;
   font-size: 1.2em;
   display: block;
@@ -282,10 +287,10 @@ span.stat-name {
 
 .stat img {
   position: relative;
-  height: 1.2em;
-  margin-top: 0.05em;
+  height: 1.0em;
+  margin-top: 0.2em;
   top: -1.3em;
-  left: 1.65em;
+  left: -0.85em;
 }
 
 .special img {
@@ -316,20 +321,20 @@ span.stat-ability {
   margin: -0.3em;
   position: relative;
   left: 1.1em;
-  top: -3.1em;
+  top: -2.95em;
 }
 
 span.stat-modifier {
   margin: -5px;
   position: relative;
-  left: 2.1em;
-  top: -3.1em;
+  left: 1.95em;
+  top: -2.95em;
 }
 
 span.stat-damage {
   position: relative;
-  left: 0.2em;
-  top: -1.6em;
+  left: 0.15em;
+  top: -1.49em;
 }
 
 span.stat-damage input, span.special-damage input {
@@ -338,7 +343,7 @@ span.stat-damage input, span.special-damage input {
 
 span.special-ability {
   position: relative;
-  top: -1.2em;
+  top: -1.1em;
   left: 0.7em;
 }
 
@@ -351,8 +356,8 @@ span.special-modifier {
 
 span.special-damage {
   position: relative;
-  left: 0.4em;
-  top: -0.3em;
+  left: 0.35em;
+  top: -0.22em;
 }
 
 svg:hover {
@@ -460,7 +465,7 @@ a.notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 12em 2em 3em 3em 3em 4em 3em 3em;
+  grid-template-columns: 12em 2em 2.5em 3.5em 3em 4em 3em 3em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -603,7 +608,7 @@ a:hover, a.active {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.1em 15em 3.4em 4em 3.5em 6em;
+  grid-template-columns: 1.1em 15em 3.4em 4em 3em 6.5em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -992,17 +997,18 @@ img.ship-img {
   left: 1.5em;
   width: 5.3em;
   margin-right: -5.3em;
-  margin-bottom: -3em;
+  margin-bottom: -2.43em;
+  top: 0.23em;
 }
 
 .power-grid {
   display: grid;
-  grid-template-columns: 3.8em 3.8em 3.8em 3.8em 3.8em;
+  grid-template-columns: 3.82em 3.82em 3.82em 3.82em 3.82em;
   grid-template-rows: 1fr;
   gap: 2px 2px;
   grid-template-areas: "ship-systems ship-m-drive ship-j-drive ship-sensors ship-weapons";
   position: relative;
-  left: 7.4em;
+  left: 7.45em;
   top: -4em;
   margin-bottom: -4em;
   height: 4em;
@@ -1037,7 +1043,7 @@ img.ship-img {
   font-size: 28px;
   position: relative;
   display: block;
-  width: 1.9em;
+  width: 1.8em;
   top: 0.20em;
   text-align: center;
 }
@@ -1643,13 +1649,13 @@ div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-ap
 div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
   position: absolute;
   left: 22em;
-  top: 0.95em;
+  top: 0.8em;
 }
 
 div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-app.twodsix.ship.actor header a.configure-token {
   position: absolute;
-  left: 39em;
-  top: 0.95em;
+  left: 38.5em;
+  top: 0.8em;
 }
 
 div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsix.ship.actor header a.close {

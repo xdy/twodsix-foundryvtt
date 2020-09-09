@@ -35,7 +35,7 @@ Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
 
 Font licenses:
-* Perfect DOS VGA 437 (quote from https://www.dafont.com/font-comment.php?file=perfect_dos_vga_437 "zeh  author of Perfect DOS VGA 437   Sep 16, 2014 The license is this: this font is free to use in whatever you want.")
+* [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
 
 ### Contributing
 See CONTRIBUTING.md
