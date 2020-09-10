@@ -1,6 +1,6 @@
 # 2d6 system
 
-<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total) ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
+<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/) ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total) ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
 
 
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
@@ -40,5 +40,4 @@ Font licenses:
 See CONTRIBUTING.md
 
 [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
-[![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
