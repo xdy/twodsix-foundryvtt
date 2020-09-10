@@ -37,7 +37,7 @@ Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
 
 ### Contributing
-See CONTRIBUTING.md
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
