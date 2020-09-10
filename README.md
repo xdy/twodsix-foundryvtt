@@ -42,4 +42,3 @@ See CONTRIBUTING.md
 [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
 [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)
