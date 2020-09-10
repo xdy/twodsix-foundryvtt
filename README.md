@@ -31,7 +31,7 @@ Content Usage and Licensing:
 *  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](OpenGameLicense.md) for details.
 
 Virtual Table Top Platform Licenses:
-*  Foundry VTT support is covered by the following license: [Limited License Agreement for module development 09/02/2020](https://foundryvtt.com/article/license/).
+*  Foundry VTT support is covered by the following license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
 Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
