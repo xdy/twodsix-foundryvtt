@@ -27,17 +27,18 @@ export default class TwodsixItem extends Item {
   private _prepareSkillData(itemData:ItemData) {
     if (this.isOwned) {
       const itemCharacteristic = itemData.data.characteristic;
-      const actorCharacteristics = Object.values(this.actor.data.data.characteristics);
-      const activeCharacteristic:any = actorCharacteristics.filter((c:any) => c.shortLabel === itemCharacteristic);
+      if (this.actor.data.data.characteristics) { //Temporary fix until issue #102
+        const actorCharacteristics = Object.values(this.actor.data.data.characteristics);
+        const activeCharacteristic:any = actorCharacteristics.filter((c:any) => c.shortLabel === itemCharacteristic);
 
-      let mod = 0;
-      if (activeCharacteristic.length) {
-        mod = activeCharacteristic[0].mod;
+        let mod = 0;
+        if (activeCharacteristic.length) {
+          mod = activeCharacteristic[0].mod;
+        }
+
+        itemData.data.total = itemData.data.value + mod;
+        itemData.data.mod = mod;
       }
-
-      itemData.data.total = itemData.data.value + mod;
-      itemData.data.mod = mod;
-
     }
   }
 }

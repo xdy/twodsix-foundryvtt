@@ -6,22 +6,39 @@ type UpdateData = {
 
 export class Migration {
 
-  private static async migrateActorData(actor:ActorData<any>, systemMigrationVersion:string):Promise<UpdateData> {
+  private static async migrateActorData(actor:Actor, systemMigrationVersion:string):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
+    const actorData = actor.data;
+    await this.migrateActorItems(actorData, systemMigrationVersion, actor);
 
-    //Insert migrations here
+    //Insert specific migrations here as needed
     // if (systemMigrationVersion < "0.6.0") {
     //  updateData['data.new'] = 42;
     //  I.e. set, calculate or copy in a reasonable value
     // }
 
+
     return updateData;
+  }
+
+  private static async migrateActorItems(actorData:ActorData<any>, systemMigrationVersion:string, actor:Actor<any>) {
+    //Handle any items that are on the actor
+    const actorItems = actorData["items"];
+    for (const i of actorItems) {
+      const migratedItemData = await this.migrateItemData(i, systemMigrationVersion);
+      const migratedItem = mergeObject(i, migratedItemData);
+      try {
+        await actor.updateEmbeddedEntity("OwnedItem", migratedItem);
+      } catch (err) {
+        console.error(err);
+      }
+    }
   }
 
   private static async migrateItemData(item:ItemData<any>, systemMigrationVersion:string):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
 
-    if (systemMigrationVersion < "0.6.8") {
+    if (systemMigrationVersion < "0.6.9") {
       updateData['data.name'] = item.name;
     }
 
@@ -38,7 +55,7 @@ export class Migration {
           t.actorId = null;
           t.actorData = {};
         } else if (!t.actorLink) {
-          const updateData = Migration.migrateActorData(token.data.actorData, systemMigrationVersion);
+          const updateData = Migration.migrateActorData(token.actor, systemMigrationVersion);
           t.actorData = mergeObject(token.data.actorData, updateData);
         }
         return t;
@@ -69,7 +86,7 @@ export class Migration {
             updateData = Migration.migrateItemData(ent.data, systemMigrationVersion);
             break;
           case 'Actor':
-            updateData = Migration.migrateActorData(ent.data, systemMigrationVersion);
+            updateData = Migration.migrateActorData(ent, systemMigrationVersion);
             break;
           case 'Scene':
             updateData = Migration.migrateSceneData(ent.data, systemMigrationVersion);
@@ -92,7 +109,7 @@ export class Migration {
 
   static async migrateWorld():Promise<void> {
     const systemMigrationVersion = game.settings.get('twodsix', 'systemMigrationVersion');
-    const packs:any[] = game.packs.filter(p => {
+    const packs = game.packs.filter(p => {
       return (p.metadata.package === 'twodsix') && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
     });
 
@@ -100,7 +117,7 @@ export class Migration {
 
     const actorMigrations = game.actors.entities.map(async actor => {
       try {
-        const updateData = await Migration.migrateActorData(actor.data, systemMigrationVersion);
+        const updateData = await Migration.migrateActorData(actor, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Actor ${actor.name}`);
           await actor.update(updateData, {enforceTypes: false});
@@ -139,7 +156,6 @@ export class Migration {
     });
 
     await Promise.all([...actorMigrations, ...itemMigrations, ...sceneMigrations, ...packMigrations]);
-
 
     game.settings.set("twodsix", "systemMigrationVersion", game.system.data.version);
     ui.notifications.info(`Twodsix System Migration to version ${game.system.data.version} completed!`, {permanent: true});
