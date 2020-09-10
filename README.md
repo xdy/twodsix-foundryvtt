@@ -1,7 +1,7 @@
 # 2d6 system
-<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important">
-<img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important">
-<img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success">
+
+<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success">
+
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
