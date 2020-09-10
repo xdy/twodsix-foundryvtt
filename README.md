@@ -1,15 +1,11 @@
 # 2d6 system
 
-<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success">
+<img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total) ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
+
 
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
-
-Total downloads: ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total)
-
-The latest version (![GitHub release](https://img.shields.io/github/release/xdy/twodsix-foundryvtt) ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt)
-): ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
 
 It mainly supports Cepheus Engine, but the intention is to make it flexible enough to play all/most 2d6 rules variants using this system.
 Due to licensing restrictions the user will have to fill compendiums with skills, etc, themselves. (When completed, data from Cepheus Engine will be included.) 
