@@ -43,7 +43,8 @@ Hooks.once('init', async function () {
 
   Actors.registerSheet('twodsix', TwodsixActorSheet, {
     types: ["traveller"],
-    makeDefault: true});
+    makeDefault: true
+  });
 
   Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
@@ -69,7 +70,7 @@ Hooks.once('init', async function () {
   registerSettings();
 
   const templatePaths = [
-    //TODO Set up so the templates are instead loaded during build, using all html files in the templates folder
+    //TODO Set up so the templates are instead loaded during build (or possibly during startup?), using all html files in the templates folder
     "systems/twodsix/templates/actors/actor-sheet.html",
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
     "systems/twodsix/templates/actors/parts/actor/actor-items.html",
@@ -89,7 +90,8 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/items/tool-sheet.html",
     "systems/twodsix/templates/items/junk-sheet.html",
     "systems/twodsix/templates/items/equipment-sheet.html",
-    "systems/twodsix/templates/items/storage-sheet.html"  ];
+    "systems/twodsix/templates/items/storage-sheet.html"
+  ];
   loadTemplates(templatePaths);
 
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
