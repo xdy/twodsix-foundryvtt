@@ -33,11 +33,10 @@ div[contenteditable] {
   resize: none;
 }
 
-input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], div[contenteditable]{
+input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], div[contenteditable] {
   background: rgba(0, 0, 0, 0.21);
   margin: 0;
   color: #00e5ff !important;
-  font-size: 18px;
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -61,7 +60,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+  -moz-app-appearance: textfield;
 }
 
 /******************************/
@@ -80,6 +79,7 @@ div[contenteditable]:focus {
   outline: 2px solid #222f3e;
   box-shadow: 0 0 10px #29aae1;
 }
+
 .centre {
   text-align: center;
 }
@@ -126,7 +126,7 @@ input[type='text'], input[type='number'] input[type='password'], input[type='dat
   -ms-user-select: text;
   user-select: text;
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 input[type='text']:focus, input[type='number'] input[type='password']:focus, input[type='datetime-local']:focus {
@@ -185,7 +185,6 @@ img.character-info-mask {
 
 .helper {
   display: inline-block;
-  height: 100%;
   vertical-align: middle;
   height: 3em;
 }
@@ -210,7 +209,7 @@ img.character-info-mask {
 
 .character-bgi {
   margin-left: 2.6em;
-  margin-right: 0em;
+  margin-right: 0;
   position: relative;
   margin-top: 0.3em;
   width: 19em;
@@ -385,7 +384,7 @@ svg:hover {
   width: 90px;
   padding-top: 0.15em;
   display: block;
-  background-color: none !important;
+  background-color: unset !important;
 }
 
 a.skill-tab:hover {
@@ -425,13 +424,13 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   padding-top: 0.15em;
   width: 93px;
   display: block;
-  background-color: none !important;
+  background-color: unset !important;
 }
 
 a.notes-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: #fff;
-  background-color: none !important;
+  background-color: unset !important;
 }
 
 a.notes-tab.active {
@@ -543,7 +542,7 @@ span.add-skill-txt {
 }
 
 .skill {
-  padding: 0.1em 0em 0.1em 0.5em;
+  padding: 0.1em 0 0.1em 0.5em;
 }
 
 a:hover, a.active {
@@ -643,7 +642,7 @@ span.total-output {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+  border-top-color: #fff;
 }
 
 /*-------Finances Tab-----------*/
@@ -667,7 +666,7 @@ span.total-output {
   border: 1px solid #29aae1;
   width: 14.8em;
   height: 28.5em;
-  border-radius: 0px;
+  border-radius: 0;
   overflow-y: auto;
   color: #29aae1 !important;
   padding: 0.2em;
@@ -683,7 +682,7 @@ span.total-output {
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .pension {
@@ -696,7 +695,7 @@ span.total-output {
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .debt {
@@ -709,7 +708,7 @@ span.total-output {
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .ship-payments {
@@ -722,7 +721,7 @@ span.total-output {
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .living-costs {
@@ -735,7 +734,7 @@ span.total-output {
   padding: 0.5em;
   height: 31px;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .item-title {
@@ -820,7 +819,7 @@ span.total-output {
   padding: 0.2em;
 }
 
-.char-bio div[contenteditable]  {
+.char-bio div[contenteditable] {
   border: 1px solid #29aae1;
   height: 19.5em;
   overflow-y: auto;
@@ -842,7 +841,7 @@ span.total-output {
   min-height: 34em;
   width: 30.2em;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
   font-size: 15px;
   color: #00e5ff !important;
   padding: 0.2em;
@@ -909,7 +908,7 @@ img.ship-img {
 }
 
 .ship-info ul {
-  padding: 0 0 0 0em !important;
+  padding: 0 0 0 0 !important;
 }
 
 .ship-info input {
@@ -1080,7 +1079,7 @@ span.power-max {
 input.power-current {
   font-size: 21px;
   position: relative;
-  left: 0em;
+  left: 0;
   top: -1.65em;
   width: 3.6em;
   display: block;
@@ -1089,7 +1088,7 @@ input.power-current {
 input.power-total {
   font-size: 21px;
   position: relative;
-  left: 0em;
+  left: 0;
   top: -1.65em;
   width: 3.6em;
   display: block;
@@ -1149,7 +1148,6 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
 
 a.ship-storage-tab.active, a.ship-cargo-tab.active {
   background-image: url(../assets/ship/ship-tabs-active.svg);
-  background-position: 0.1em;
   background-position: -99px;
   display: block;
   height: 20px;
@@ -1207,16 +1205,16 @@ a.ship-notes-tab.active {
   height: 20.4em;
 }
 
-.ship-grid input[type="text"]{
+.ship-grid input[type="text"] {
   width: 14.8em;
   border: 1px groove #00e5ff;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .ship-grid > div > div[contenteditable] {
   width: 14.8em;
   border: 1px groove #00e5ff !important;
-  border-radius: 0px;
+  border-radius: 0;
   min-height: 3em;
 }
 
@@ -1251,8 +1249,8 @@ a.ship-notes-tab.active {
 }
 
 .cargo-wrapper {
-  padding: 0em 2em 0em 2em;
-  margin-top: 0em;
+  padding: 0 2em 0 2em;
+  margin-top: 0;
   position: relative;
   top: 1em;
 }
@@ -1267,7 +1265,7 @@ a.ship-notes-tab.active {
 
 .ship-notes-box {
   z-index: 99;
-  widows: 10em;
+  width: 10em;
   height: 10em;
 }
 
@@ -1313,7 +1311,7 @@ select {
 
 .mini-dice img.rollable {
   width: 1.5em;
-  margin-left: 0em;
+  margin-left: 0;
 }
 
 /*--- Item Page ---*/
@@ -1352,11 +1350,8 @@ select {
 }
 
 .item.item-list {
-  margin-left: 0.3em;
-  margin-right: 0.4em;
   padding-left: 0.7em;
-  margin-top: 0em;
-  margin-bottom: -0.5em;
+  margin: 0 0.4em -0.5em 0.3em;
 }
 
 a:hover {
@@ -1376,7 +1371,6 @@ a:hover {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  border: none;
   border: 1px solid #6e819e;
 }
 
@@ -1402,6 +1396,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.item-damage {
+  margin-top: 0.5em;
+}
+
 .item-descr {
   margin-top: 0.5em;
 }
@@ -1411,13 +1409,6 @@ a:hover {
   background: rgba(0, 0, 0, 0.22);
   color: #207ab7;
   border: none;
-}
-
-img.item-img {
-  width: 25%;
-  vertical-align: middle;
-  z-index: -1;
-  max-height: 19em;
 }
 
 .pusher {
@@ -1444,15 +1435,14 @@ img.item-img {
 }
 
 #chat-log .message {
-  background: none !important;
-  background-color: #1111118a !important;
+  background: #1111118a none !important;
   border: 1px solid #6e819e;
-  border-radius: 0px;
+  border-radius: 0;
   margin: 3px;
   padding: 5px;
   color: #29aae1;
   font-size: 14px;
-  box-shadow: 0px 0px 7px #111;
+  box-shadow: 0 0 7px #111;
 }
 
 #chat-log .message .message-header {
@@ -1510,12 +1500,12 @@ img.item-img {
   background: #00000036;
   color: #29aae1;
   border: 1px solid #29aae1;
-  border-radius: 0px;
+  border-radius: 0;
   box-shadow: 0 0 2px #0d0d0d inset;
   word-break: break-all;
 }
 
-#chat-form div[contenteditable] {
+#chat-form textarea {
   width: 100%;
   height: 100%;
   resize: none;
@@ -1644,7 +1634,6 @@ option {
 }
 
 div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
-  position: relative;
   margin-top: 0.25em !important;
   margin-left: 3em !important;
   position: relative;
@@ -1710,9 +1699,7 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   width: calc(100% - 440px);
   margin: 0;
   padding: 0;
-  background: none;
   box-shadow: none;
-  border: none;
   background-color: #0d0d0d;
   background-image: none !important;
   border: 1px groove #191813;
@@ -1740,9 +1727,7 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   left: 10px;
   padding: 10px;
   list-style: none;
-  background: none;
   box-shadow: none;
-  border: none;
   background-image: none !important;
   background-color: #0d0d0d;
   border: 1px groove #111;
@@ -1789,8 +1774,7 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background: none !important;
-  background-color: #000 !important;
+  background: #000 none !important;
   display: flex;
   flex: 0 0 auto;
   flex-shrink: 0;
