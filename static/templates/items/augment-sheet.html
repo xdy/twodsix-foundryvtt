@@ -1,54 +1,25 @@
 <form class="{{cssClass}}" autocomplete="off">
-
   <div class="item-sheet">
+    {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
-    <div class="item-name">
-      <label for="data.name" class="resource-label">Augment Name
-        <input id="data.name" name="name" type="text" value="{{item.name}}"/>
+    <div class="item-type">
+      <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}
+        <select name="data.auglocation" value={{data.auglocation}}>
+          {{#select data.auglocation}}
+          <option value="Head">Head</option>
+          <option value="Torso">Torso</option>
+          <option value="Arms">Arms</option>
+          <option value="Legs">Legs</option>
+          <option value="Full-Body">Full Body</option>
+          {{/select}}
+        </select>
       </label>
     </div>
 
-    <select name="type" value={{item.type}}>
-      {{#select item.type}}
-      <option value="equipment">Equipment</option>
-      <option value="weapon">Weapon</option>
-      <option value="armor">Armor</option>
-      <option value="augment">Augment</option>
-      <option value="tool">Tool</option>
-      <option value="junk">Junk</option>
-      {{/select}}
-    </select>
-
-    <div class="item-tl">
-      <label for="data.techLevel" class="resource-label">TL
-        <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/></label>
-    </div>
-
     <div class="item-bonus">
-      <label for="data.bonus" class="resource-label">Augment Effect
-        <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></label>
-    </div>
-
-    <div class="item-type">
-      <label for="item.auglocation" class="resource-label">Augment Location</label>
-      <select name="data.auglocation" value={{data.auglocation}}>
-        {{#select data.auglocation}}
-        <option value="Head">Head</option>
-        <option value="Torso">Torso</option>
-        <option value="Arms">Arms</option>
-        <option value="Legs">Legs</option>
-        <option value="Full-Body">Full Body</option>
-        {{/select}}
-      </select></div>
-
-    <div class="item-price">
-      <label for="data.price" class="resource-label">Item Price
-        <input id="data.price" type="text" name="data.price" value="{{data.price}}"/></label>
-    </div>
-
-    <div class="item-descr">
-      <label class="resource-label">Item Description</label>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}
+        <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/>
+      </label>
     </div>
   </div>
 </form>

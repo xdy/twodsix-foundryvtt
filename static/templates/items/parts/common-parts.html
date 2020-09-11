@@ -1,0 +1,46 @@
+<img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" alt="{{item.name}}"/>
+
+<div class="item-type">
+  <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}}
+    <select id="type" name="type" value={{data.type}}>
+      {{#select item.type}}
+      <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
+      <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
+      <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
+      <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
+      <option value="storage">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
+      <option value="storage">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
+      <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
+      {{/select}}
+    </select>
+  </label>
+</div>
+
+<div class="item-name">
+  <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Equipment.ItemName"}}
+    <input id="data.name" name="name" type="text" value="{{item.name}}"/>
+  </label>
+</div>
+
+<div class="item-tl">
+  <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}
+    <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/>
+  </label>
+</div>
+
+<div class="item-price">
+  <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}
+    <input id="data.price" type="text" name="data.price" value="{{data.price}}"/>
+  </label>
+</div>
+
+<div class="item-short">
+  <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
+    <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+  </label>
+</div>
+
+<div class="item-descr">
+  <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+  <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+</div>

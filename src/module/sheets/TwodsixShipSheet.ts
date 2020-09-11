@@ -1,6 +1,6 @@
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 
-export class TwodsixShipSheet extends ActorSheet {
+export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
   /**
    * Return the type of the current Actor
@@ -23,7 +23,6 @@ export class TwodsixShipSheet extends ActorSheet {
 
     return data;
   }
-
 
   /** @override */
   static get defaultOptions():FormApplicationOptions {

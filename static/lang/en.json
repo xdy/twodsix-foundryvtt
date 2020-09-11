@@ -104,13 +104,15 @@
     },
     "Items": {
       "Armor": {
-        "ItemName": "Item Name",
-        "TL": "TL",
-        "Quantity": "Quantity",
-        "Armor": "Armor",
-        "Weight": "Weight",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Armor": "Armor"
+      },
+      "Augmentation": {
+        "AugLocation": "Augmentation Location",
+        "AugEffect": "Augmentation Effect",
+        "Head": "Head",
+        "Torso": "Torso",
+        "Legs": "Legs",
+        "ValueCr": "Value in Cr"
       },
       "Equipment": {
         "ItemName": "Item Name",
@@ -118,24 +120,21 @@
         "Quantity": "Quantity",
         "ShortDescription": "Short Description",
         "Weight": "Weight",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Price": "Price",
+        "Description": "Description",
+        "Location": "Location"
       },
       "Items": {
-        "ItemType": "Item Type",
-        "AssignAugment": "Assign Augment",
-        "AssignWeapon": "Assign Weapon",
+        "ItemType": "Type",
         "AssignArmor": "Assign Armor",
+        "AssignAugment": "Assign Augment",
         "AssignEquipment": "Assign Equipment",
+        "AssignTool": "Assign Tool",
+        "AssignJunk": "Assign Junk",
+        "AssignWeapon": "Assign Weapon",
         "MoveStorage": "Move Storage",
-        "ItemLocation": "Item Location",
         "Inventory": "Inventory",
-        "Storage": "Storage",
-        "ItemName": "Item Name",
-        "TL": "TL",
-        "Quantity": "Quantity",
-        "Weight": "Weight",
-        "ItemDescription": "Item Description"
+        "Storage": "Storage"
       },
       "Skills": {
         "SkillName": "Skill Name",
@@ -149,15 +148,12 @@
         "SOC": "SOC",
         "PSI": "PSI"
       },
+      "Tool": {
+        "Bonus": "Bonus"
+      },
       "Weapon": {
-        "ItemName": "Item Name",
-        "TL": "TL",
         "Damage": "Damage",
-        "Quantity": "Quantity",
-        "Weight": "Weight",
-        "Ammo": "Ammo",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Ammo": "Ammo"
       }
     },
     "Rolls": {

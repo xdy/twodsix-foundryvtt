@@ -1390,6 +1390,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.item-ammo {
+  margin-top: 0.5em;
+}
+
 .item-qty {
   margin-top: 0.5em;
 }
@@ -1409,10 +1413,11 @@ a:hover {
   border: none;
 }
 
-.item-descr .editor {
-  height: calc(100px);
-  background: rgba(0, 0, 0, 0.22);
-  color: #29aae1;
+img.item-img {
+  width: 25%;
+  vertical-align: middle;
+  z-index: -1;
+  max-height: 19em;
 }
 
 .pusher {

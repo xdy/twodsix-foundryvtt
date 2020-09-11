@@ -16,7 +16,9 @@
       "termForDisadvantage.name": "Det du vill kalla tärningsslag med nackdel (3d6kl2).",
       "termForDisadvantage.hint": "Använd inte samma ord som för termForAdvantage...",
       "initiativeFormula.success": "Sätt initiativformel till: ${formula}",
-      "initiativeFormula.failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället."
+      "initiativeFormula.failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället.",
+      "systemMigrationVersion.name": "System Schema Version",
+      "systemMigrationVersion.hint": "Innehåller schema versionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)"
     },
     "Actor": {
       "Rolling": "Rullar",
@@ -103,47 +105,37 @@
   },
   "Items": {
     "Armor": {
-      "ItemName": "Saknamn",
-      "TL": "TL",
-      "Quantity": "Antal",
-      "Armor": "Rustning",
-      "Weight": "Vikt",
-      "ItemPrice": "Sakpris",
-      "ItemDescription": "Sakbeskrivning"
+      "Armor": "Rustning"
     },
     "Augmentation": {
-      "ItemName": "Saknamn",
-      "TL": "TL",
-      "ItemLocation": "Sakplacering",
+      "AugLocation": "Augmenteringsplacering",
+      "AugEffect": "Augmenteringseffekt",
       "Head": "Huvud",
       "Torso": "Torso",
       "Legs": "Ben",
-      "ValueCr": "Värde Cr",
-      "ItemDescription": "Sakbeskrivning"
+      "ValueCr": "Värde Cr"
     },
     "Equipment": {
-      "ItemName": "Saknamn",
+      "ItemName": "Namn",
       "TL": "TL",
       "Quantity": "Antal",
       "ShortDescription": "Kort Beskrivning",
       "Weight": "Vikt",
-      "ItemPrice": "Sakpris",
-      "ItemDescription": "Sakbeskrivning"
+      "ItemPrice": "Pris",
+      "ItemDescription": "Beskrivning",
+      "ItemLocation": "Placering"
     },
     "Items": {
-      "ItemType": "Saktyp",
-      "AssignAugment": "Tilldela Förbättring",
-      "AssignWeapon": "Tilldela Vapen",
+      "ItemType": "Typ",
       "AssignArmor": "Tilldela Rustning",
+      "AssignAugment": "Tilldela Förbättring",
       "AssignEquipment": "Tilldela Utrustning",
+      "AssignTool": "Tilldela Verktyg",
+      "AssignJunk": "Tilldela Skrot",
+      "AssignWeapon": "Tilldela Vapen",
       "MoveStorage": "Lägg i lager",
-      "ItemLocation": "Plats",
       "Inventory": "Utrustningslista",
-      "Storage": "Lager",
-      "ItemName": "Saknamn",
-      "TL": "TL",
-      "Quantity": "Antal",
-      "Weight": "Vikt"
+      "Storage": "Lager"
     },
     "Skills": {
       "SkillName": "Färdighetsnamn",
@@ -157,15 +149,12 @@
       "SOC": "SOC",
       "PSI": "PSI"
     },
+    "Tool": {
+      "Bonus": "Bonus"
+    },
     "Weapon": {
-      "ItemName": "Saknamn",
-      "TL": "TL",
       "Damage": "Skada",
-      "Quantity": "Antal",
-      "Weight": "Vikt",
-      "Ammo": "Ammo",
-      "ItemPrice": "Sakpris",
-      "ItemDescription": "Sakbeskrivning"
+      "Ammo": "Ammo"
     },
     "Rolls": {
       "Cancel": "Avbryt",
