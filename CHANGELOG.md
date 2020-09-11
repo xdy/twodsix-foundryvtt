@@ -1,3 +1,10 @@
+## [0.6.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.10...v0.6.11) (2020-09-11)
+
+
+### Bug Fixes
+
+* Adds the range field to the weapon sheet. ([f3cae4b](https://github.com/xdy/twodsix-foundryvtt/commit/f3cae4b6e16f50f81bb7e8e18f80ac4c1c6f723e))
+
 ## [0.6.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.9...v0.6.10) (2020-09-11)
 
 
