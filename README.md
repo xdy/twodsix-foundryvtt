@@ -1,6 +1,7 @@
 # 2d6 system
 
 <img title="Minimum core version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=core&query=minimumCoreVersion&suffix=%2B&style=flat-square&color=important"> <img title="Latest compatible version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=compatible&query=compatibleCoreVersion&style=flat-square&color=important"> <img src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://GitHub.com/xdy/twodsix-foundryvtt/commit/) ![all versions](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/total) ![the latest version](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/total)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
@@ -22,6 +23,10 @@ b) actually has the license to do so
 ### Patch Notes:
 See [CHANGELOG.md](CHANGELOG.md)
 
+### Contributing
+**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github) 
+For more, see [CONTRIBUTING.md](CONTRIBUTING.md)
+
 
 ### Licenses
 Project Licensing:
@@ -36,9 +41,6 @@ Virtual Table Top Platform Licenses:
 Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
 
-### Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md)
-
-[![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
-
+* [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
+* [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
+* [![HitCount](http://hits.dwyl.com/xdy/twodsix-foundryvtt.svg)](http://hits.dwyl.com/xdy/twodsix-foundryvtt) (since 2020-09-11)
