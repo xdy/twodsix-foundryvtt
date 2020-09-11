@@ -1,3 +1,10 @@
+## [0.6.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.8...v0.6.9) (2020-09-11)
+
+
+### Bug Fixes
+
+* Fixes issue [#101](https://github.com/xdy/twodsix-foundryvtt/issues/101), migrating items that are on an actor. Also fixes bug that made the Ship's Locker not work. ([d656741](https://github.com/xdy/twodsix-foundryvtt/commit/d6567410f1faa3ceccd239a47cfea6f1e1de38aa))
+
 ## [0.6.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.7...v0.6.8) (2020-09-09)
 
 
