@@ -1,3 +1,10 @@
+## [0.6.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.9...v0.6.10) (2020-09-11)
+
+
+### Bug Fixes
+
+* Fixes another bug with Ship's Locker. Also, internal cleanup of item sheets, leading to some of the layout changing. ([cc4706e](https://github.com/xdy/twodsix-foundryvtt/commit/cc4706ef069936f86124fae6acd5b7aa96c67045))
+
 ## [0.6.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.8...v0.6.9) (2020-09-11)
 
 
