@@ -154,7 +154,8 @@
     },
     "Weapon": {
       "Damage": "Skada",
-      "Ammo": "Ammo"
+      "Ammo": "Ammo",
+      "Range": "Räckvidd"
     },
     "Rolls": {
       "Cancel": "Avbryt",
