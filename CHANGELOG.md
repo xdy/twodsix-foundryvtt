@@ -1,3 +1,10 @@
+## [0.6.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.11...v0.6.12) (2020-09-12)
+
+
+### Bug Fixes
+
+* Fixes [#106](https://github.com/xdy/twodsix-foundryvtt/issues/106), setting initiative correctly and not showing decimals. Also fixes some typos and localization problems. ([9545805](https://github.com/xdy/twodsix-foundryvtt/commit/95458054d9047fde084ebc4fb233ea8a25afd884))
+
 ## [0.6.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.10...v0.6.11) (2020-09-11)
 
 
