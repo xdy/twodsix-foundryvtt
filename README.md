@@ -24,8 +24,7 @@ b) actually has the license to do so
 See [CHANGELOG.md](CHANGELOG.md)
 
 ### Contributing
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github) 
-For more, see [CONTRIBUTING.md](CONTRIBUTING.md)
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
 ### Licenses
