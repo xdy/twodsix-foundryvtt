@@ -18,7 +18,7 @@
   ],
   "gridDistance": 1.5,
   "gridUnits": "m",
-  "initiative": "2d6 + @characteristics.dex.mod",
+  "initiative": "2d6 + @characteristics.dexterity.mod",
   "languages": [
     {
       "lang": "en",

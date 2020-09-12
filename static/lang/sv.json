@@ -4,7 +4,7 @@
       "defaultTokenSettings.name": "Defaultprototypspelfigursinställningar",
       "defaultTokenSettings.hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",
       "initiativeFormula.name": "Initiativformel",
-      "initiativeFormula.hint": "T ex: \"2d6 + @characteristics.dex.mod\"",
+      "initiativeFormula.hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
       "modifierForZeroCharacteristic.name": "Modifierare for egenskapsvärde noll.",
       "modifierForZeroCharacteristic.hint": "Lämna tomt för att använda default (-2). Räknas inte om automatiskt för existerande karaktärer",
       "maxSkillLevel.name": "Maximal färdighetsnivå",

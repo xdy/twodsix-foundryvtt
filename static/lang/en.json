@@ -4,7 +4,7 @@
       "defaultTokenSettings.name": "Default Prototype Token Settings",
       "defaultTokenSettings.hint": "Automatically set advised prototype token settings to newly created Actors.",
       "initiativeFormula.name": "Initiative Formula",
-      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dex.mod\"",
+      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
       "modifierForZeroCharacteristic.name": "Modifier for characteristic value of zero.",
       "modifierForZeroCharacteristic.hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
       "maxSkillLevel.name": "Maximum skill level.",
