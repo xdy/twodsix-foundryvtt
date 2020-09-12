@@ -25,17 +25,18 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     html.find('.item-delete').on('click', async (ev) => {
       const li = $(ev.currentTarget).parents('.item');
       const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
+      const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
       const template = `
       <form>
         <div>
-          <div style="text-align: center;">"Delete owned item"}
-            <strong>${ownedItem.name}</strong>?
+          <div style="text-align: center;">${title}
+             "<strong>${ownedItem.name}</strong>"?
           </div>
           <br>
         </div>
       </form>`;
       await Dialog.confirm({
-        title: "Delete owned item",
+        title: title,
         content: template,
         yes: async () => {
           await this.actor.deleteOwnedItem(ownedItem.id);
@@ -74,7 +75,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onItemCreate(event:{ preventDefault:() => void; currentTarget:any; }):Promise<Item> {
+  private _onItemCreate(event:{ preventDefault:() => void; currentTarget:any }):Promise<Item> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -99,7 +100,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
-  static _prepareItemContainers(sheetData:any) {
+  protected static _prepareItemContainers(sheetData: { actor: any; items: any; }):void {
     const actorData = sheetData.actor;
 
     // Initialize containers.

@@ -28,7 +28,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
   getData():ItemSheetData {
-    return super.getData();
+    const data = super.getData();
+
+    return data;
   }
 
   /* -------------------------------------------- */

@@ -1,5 +1,9 @@
 {
   "TWODSIX": {
+    "Migration": {
+      "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern.",
+      "Completed": "Twodsix Systemmigrering till version {version} klar!"
+    },
     "Settings": {
       "defaultTokenSettings.name": "Defaultprototypspelfigursinställningar",
       "defaultTokenSettings.hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",
@@ -22,7 +26,9 @@
     },
     "Actor": {
       "Rolling": "Rullar",
+      "using": "mha",
       "Unknown actor type ": "Okänd aktörstyp: ",
+      "DeleteOwnedItem": "Ta bort ägd sak",
       "Finances": {
         "CASH_ON_HAND": "PENGAR I HANDEN",
         "PENSION": "PENSION",
@@ -63,7 +69,7 @@
         "EditItem": "Ändra Sak",
         "DeleteItem": "Ta bort Sak",
         "ARMOR": "RUSTNING",
-        "ArmorNumber": "Rustningsvärde",
+        "Armor": "Rustning",
         "Effect": "Effekt",
         "Location": "Plats",
         "ShortDescr": "Kort Beskr",
@@ -107,11 +113,13 @@
         "Armor": "Rustning"
       },
       "Augmentation": {
-        "AugLocation": "Augmenteringsplacering",
-        "AugEffect": "Augmenteringseffekt",
+        "AugLocation": "Placering",
+        "AugEffect": "Effekt",
         "Head": "Huvud",
         "Torso": "Torso",
+        "Armar": "Armar",
         "Legs": "Ben",
+        "FullBody": "Hela Kroppen",
         "ValueCr": "Värde Cr"
       },
       "Equipment": {
@@ -122,7 +130,9 @@
         "Weight": "Vikt",
         "Price": "Pris",
         "Description": "Beskrivning",
-        "Location": "Placering"
+        "Location": "Placering",
+        "AssignSkill": "Tilldela Färdighet",
+        "SkillModifier": "Färdighetsmodifierare"
       },
       "Items": {
         "ItemType": "Typ",
@@ -165,7 +175,8 @@
       "resultShows": "resultatet är",
       "Effect": "Effekten",
       "sum": "summan",
-      "Roll": "Rulla"
+      "Roll": "Rulla",
+      "AdjustedDamage": "Skadan justerad av effekten:"
     }
   },
   "Simple": "Enkelt",
@@ -173,7 +184,7 @@
   "Routine": "Rutin",
   "Average": "Genomsnittligt",
   "Difficult": "Svårt",
-  "Very Difficult": "Mycket Svårt",
+  "VeryDifficult": "Mycket Svårt",
   "Formidable": "Formidabelt",
   "Impossible": "Omöjligt",
   "Normal": "Normal",

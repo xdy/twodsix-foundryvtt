@@ -1,3 +1,5 @@
+import {TwodsixItemData} from "./entities/TwodsixItem";
+
 type UpdateData = {
   _id?:any;
   items?:any;
@@ -35,11 +37,15 @@ export class Migration {
     }
   }
 
-  private static async migrateItemData(item:ItemData<any>, systemMigrationVersion:string):Promise<UpdateData> {
+  private static async migrateItemData(item:TwodsixItemData, systemMigrationVersion:string):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
 
     if (systemMigrationVersion < "0.6.9") {
       updateData['data.name'] = item.name;
+    }
+
+    if (systemMigrationVersion < "0.6.15") {
+      updateData['data.skillModifier'] = 0;
     }
 
     return updateData;
@@ -113,7 +119,7 @@ export class Migration {
       return (p.metadata.package === 'twodsix') && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
     });
 
-    ui.notifications.info(`Migrating Twodsix to  ${(game.system.data.version)}. Do not close your game or shut down your sever.`, {permanent: true});
+    ui.notifications.info(game.i18n.format("TWODSIX.Migration.DoNotClose", {version: game.system.data.version}), {permanent: true});
 
     const actorMigrations = game.actors.entities.map(async actor => {
       try {
@@ -129,7 +135,7 @@ export class Migration {
 
     const itemMigrations = game.items.entities.map(async item => {
       try {
-        const updateData = await Migration.migrateItemData(item.data, systemMigrationVersion);
+        const updateData = await Migration.migrateItemData(<TwodsixItemData>item.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Item ${item.name}`);
           await item.update(updateData, {enforceTypes: false});
@@ -158,6 +164,6 @@ export class Migration {
     await Promise.all([...actorMigrations, ...itemMigrations, ...sceneMigrations, ...packMigrations]);
 
     game.settings.set("twodsix", "systemMigrationVersion", game.system.data.version);
-    ui.notifications.info(`Twodsix System Migration to version ${game.system.data.version} completed!`, {permanent: true});
+    ui.notifications.info(game.i18n.format("TWODSIX.Migration.Completed", {version: game.system.data.version}), {permanent: true});
   }
 }
