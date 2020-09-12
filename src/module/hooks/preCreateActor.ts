@@ -18,7 +18,7 @@ Hooks.on('preCreateActor', async (actor, dir) => {
       dimSight: 30,
       brightSight: 0,
       actorLink: link,
-      disposition,
+      disposition
     });
   }
 });

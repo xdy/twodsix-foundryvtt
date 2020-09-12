@@ -39,7 +39,7 @@
         "DESCRIPTION": "DESCRIPTION"
       },
       "Notes": {
-        "NOTES": "NOTES"
+        "NOTES": "CHARACTER NOTES"
       },
       "Characteristics": {
         "STR": "STR",
@@ -134,7 +134,8 @@
         "AssignWeapon": "Assign Weapon",
         "MoveStorage": "Move Storage",
         "Inventory": "Inventory",
-        "Storage": "Storage"
+        "Storage": "Storage",
+        "New": "New"
       },
       "Skills": {
         "SkillName": "Skill Name",
@@ -163,7 +164,8 @@
       "With": "with",
       "resultShows": "result shows",
       "Effect": "Effect",
-      "sum": "sum"
+      "sum": "sum",
+      "Roll": "Roll"
     }
   },
   "Simple": "Simple",

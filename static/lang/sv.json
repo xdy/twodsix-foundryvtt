@@ -101,61 +101,62 @@
         "Mode": "Slagläge",
         "OtherModifiers": "Andra modifierare"
       }
-    }
-  },
-  "Items": {
-    "Armor": {
-      "Armor": "Rustning"
-    },
-    "Augmentation": {
-      "AugLocation": "Augmenteringsplacering",
-      "AugEffect": "Augmenteringseffekt",
-      "Head": "Huvud",
-      "Torso": "Torso",
-      "Legs": "Ben",
-      "ValueCr": "Värde Cr"
-    },
-    "Equipment": {
-      "ItemName": "Namn",
-      "TL": "TL",
-      "Quantity": "Antal",
-      "ShortDescription": "Kort Beskrivning",
-      "Weight": "Vikt",
-      "ItemPrice": "Pris",
-      "ItemDescription": "Beskrivning",
-      "ItemLocation": "Placering"
     },
     "Items": {
-      "ItemType": "Typ",
-      "AssignArmor": "Tilldela Rustning",
-      "AssignAugment": "Tilldela Förbättring",
-      "AssignEquipment": "Tilldela Utrustning",
-      "AssignTool": "Tilldela Verktyg",
-      "AssignJunk": "Tilldela Skrot",
-      "AssignWeapon": "Tilldela Vapen",
-      "MoveStorage": "Lägg i lager",
-      "Inventory": "Utrustningslista",
-      "Storage": "Lager"
-    },
-    "Skills": {
-      "SkillName": "Färdighetsnamn",
-      "Level": "Nivå",
-      "Modifier": "Modifierare",
-      "STR": "STY",
-      "DEX": "SMI",
-      "END": "UTH",
-      "INT": "INT",
-      "EDU": "UTB",
-      "SOC": "SOC",
-      "PSI": "PSI"
-    },
-    "Tool": {
-      "Bonus": "Bonus"
-    },
-    "Weapon": {
-      "Damage": "Skada",
-      "Ammo": "Ammo",
-      "Range": "Räckvidd"
+      "Armor": {
+        "Armor": "Rustning"
+      },
+      "Augmentation": {
+        "AugLocation": "Augmenteringsplacering",
+        "AugEffect": "Augmenteringseffekt",
+        "Head": "Huvud",
+        "Torso": "Torso",
+        "Legs": "Ben",
+        "ValueCr": "Värde Cr"
+      },
+      "Equipment": {
+        "ItemName": "Namn",
+        "TL": "TL",
+        "Quantity": "Antal",
+        "ShortDescription": "Kort Beskrivning",
+        "Weight": "Vikt",
+        "Price": "Pris",
+        "Description": "Beskrivning",
+        "Location": "Placering"
+      },
+      "Items": {
+        "ItemType": "Typ",
+        "AssignArmor": "Tilldela Rustning",
+        "AssignAugment": "Tilldela Förbättring",
+        "AssignEquipment": "Tilldela Utrustning",
+        "AssignTool": "Tilldela Verktyg",
+        "AssignJunk": "Tilldela Skrot",
+        "AssignWeapon": "Tilldela Vapen",
+        "MoveStorage": "Lägg i lager",
+        "Inventory": "Utrustningslista",
+        "Storage": "Lager",
+        "New": "Ny"
+      },
+      "Skills": {
+        "SkillName": "Färdighetsnamn",
+        "Level": "Nivå",
+        "Modifier": "Modifierare",
+        "STR": "STY",
+        "DEX": "SMI",
+        "END": "UTH",
+        "INT": "INT",
+        "EDU": "UTB",
+        "SOC": "SOC",
+        "PSI": "PSI"
+      },
+      "Tool": {
+        "Bonus": "Bonus"
+      },
+      "Weapon": {
+        "Damage": "Skada",
+        "Ammo": "Ammo",
+        "Range": "Räckvidd"
+      }
     },
     "Rolls": {
       "Cancel": "Avbryt",
@@ -163,7 +164,8 @@
       "With": "med",
       "resultShows": "resultatet är",
       "Effect": "Effekten",
-      "sum": "summan"
+      "sum": "summan",
+      "Roll": "Rulla"
     }
   },
   "Simple": "Enkelt",
