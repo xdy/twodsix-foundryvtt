@@ -29,7 +29,7 @@ export class TwodsixRolls {
 
     const buttons = {
       ok: {
-        label: "Roll",
+        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
         icon: '<i class="fas fa-dice"></i>',
         callback: (html) => {
           roll = TwodsixRolls._handleRoll({

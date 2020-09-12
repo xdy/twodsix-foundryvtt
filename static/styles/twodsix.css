@@ -973,7 +973,7 @@ img.ship-img {
   margin-left: -0.8em;
 }
 
-.ship-power-managment {
+.ship-power-management {
   grid-area: ship-requirements;
   z-index: 3;
   text-align: center;
@@ -983,7 +983,7 @@ img.ship-img {
   padding-top: 0.3em;
 }
 
-.ship-power-managment h3 {
+.ship-power-management h3 {
   color: black;
   font-weight: bold;
   position: relative;

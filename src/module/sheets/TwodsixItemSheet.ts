@@ -21,7 +21,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /** @override */
   get template():string {
     const path = "systems/twodsix/templates/items";
-    // Return a single sheet for all item types.
     return `${path}/${this.item.data.type}-sheet.html`;
   }
 
@@ -53,8 +52,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (!this.options.editable) {
       return;
     }
-    this.handleContentEditable(html);
 
-    // Roll handlers, click handlers, etc. would go here.
+    this.handleContentEditable(html);
   }
 }

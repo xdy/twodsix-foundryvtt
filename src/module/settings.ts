@@ -10,10 +10,10 @@ export const registerSettings = function ():void {
     type: Boolean,
   });
 
-  const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dex.mod";
+  const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
   game.settings.register('twodsix', 'initiativeFormula', {
     name: 'Initiative Formula',
-    hint: "Like: \"2d6 + @characteristics.dex.mod\"",
+    hint: "Like: \"2d6 + @characteristics.dexterity.mod\"",
     scope: 'world',
     config: true,
     default: DEFAULT_INITIATIVE_FORMULA,
@@ -108,7 +108,10 @@ function _simpleUpdateInit(formula:string, notify = false):void {
     }
     game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);
   }
-  CONFIG.Combat.initiative.formula = formula;
+  CONFIG.Combat.initiative = {
+    formula: formula,
+    decimals: 0
+  };
   if (notify) {
     ui.notifications.notify(message, notificationType);
   }
