@@ -64,7 +64,16 @@ export const registerSettings = function ():void {
     hint: "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
     scope: 'world',
     config: true,
-    default: true,
+    default: false,
+    type: Boolean,
+  });
+
+  game.settings.register('twodsix', 'automateDamageRollOnHit', {
+    name: 'Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?',
+    hint: "true=Roll damage, modified by effect of skill roll. false=Don't roll damage.",
+    scope: 'world',
+    config: true,
+    default: false,
     type: Boolean,
   });
 

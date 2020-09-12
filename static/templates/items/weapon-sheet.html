@@ -1,24 +1,9 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off"
+      data-item-id="{{item._id}}"
+      data-has-owner="{{hasOwner}}"
+      data-actor-id="{{actor._id}}">
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
-
-    <div class="item-qty">
-      <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
-        <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-      </label>
-    </div>
-
-    <div class="item-weight">
-      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
-        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-      </label>
-    </div>
-
-    <div class="item-ammo">
-      <label for="data.ammo" class="resource-label">{{localize "TWODSIX.Items.Weapon.Ammo"}}
-        <input id="data.ammo" type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="Number"/>
-      </label>
-    </div>
 
     <div class="item-damage">
       <label for="data.damage" class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}
@@ -32,5 +17,27 @@
       </label>
     </div>
 
+    <div class="item-ammo">
+      <label for="data.ammo" class="resource-label">{{localize "TWODSIX.Items.Weapon.Ammo"}}
+        <input id="data.ammo" type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-qty">
+      <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
+        <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-weight">
+      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
+        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    </div>
   </div>
 </form>

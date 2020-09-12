@@ -2,24 +2,36 @@
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
-    <div class="item-type">
-      <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}
+    <div class="small-grid">
+      <!-- Labels -->
+      <div class="item-bonus item-label">
+        <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
+      </div>
+
+      <div class="item-skill">
+        <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
+      </div>
+
+      <!-- Inputs -->
+      <div class="item-bonus item-label"><input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></div>
+
+      <div class="item-skill">
         <select name="data.auglocation" value={{data.auglocation}}>
           {{#select data.auglocation}}
-          <option value="Head">Head</option>
-          <option value="Torso">Torso</option>
-          <option value="Arms">Arms</option>
-          <option value="Legs">Legs</option>
-          <option value="Full-Body">Full Body</option>
+          <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
+          <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
+          <option value="Arms">{{localize "TWODSIX.Items.Augmentation.Arms"}}</option>
+          <option value="Legs">{{localize "TWODSIX.Items.Augmentation.Legs"}}</option>
+          <option value="Full-Body">{{localize "TWODSIX.Items.Augmentation.FullBody"}}</option>
           {{/select}}
         </select>
-      </label>
+      </div>
+
     </div>
 
-    <div class="item-bonus">
-      <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}
-        <input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/>
-      </label>
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
     </div>
   </div>
 </form>

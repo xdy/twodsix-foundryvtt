@@ -1,3 +1,11 @@
+
+
+<div class="item-name">
+  <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Equipment.ItemName"}}
+    <input id="data.name" name="name" type="text" value="{{item.name}}" />
+  </label>
+</div>
+
 <div class="item-type">
   <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}}
     <select id="type" name="type" value={{data.type}}>
@@ -14,31 +22,39 @@
   </label>
 </div>
 
-<div class="item-name">
-  <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Equipment.ItemName"}}
-    <input id="data.name" name="name" type="text" value="{{item.name}}"/>
+
+{{#if data.owner}}
+<div class="item-skill">
+  <label for="data.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:
+    <select id="data.skill" name="data.skill" value="{{data.skill}}">
+      {{#select data.skill}}
+      <option value="">-</option>
+      {{#each data.owner.items as |skill|}}
+      {{#if (eq skill.type 'skills')}}
+      <option value="{{skill.data._id}}">{{skill.name}}</option>
+      {{/if}}
+      {{/each}}
+      {{/select}}
+    </select>
   </label>
 </div>
 
+<div class="item-skillModifier">
+  <span class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</span>
+  <input id="data.skillModifier" type="text" name="data.skillModifier" value="{{data.skillModifier}}" data-dtype="Number" />
+</div>
+{{/if}}
+
+
 <div class="item-tl">
   <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}
-    <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/>
+    <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number" />
   </label>
 </div>
 
 <div class="item-price">
   <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}
-    <input id="data.price" type="text" name="data.price" value="{{data.price}}"/>
+    <input id="data.price" type="text" name="data.price" value="{{data.price}}" />
   </label>
 </div>
 
-<div class="item-short">
-  <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-    <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
-  </label>
-</div>
-
-<div class="item-descr">
-  <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-  <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
-</div>

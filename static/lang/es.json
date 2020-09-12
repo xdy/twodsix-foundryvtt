@@ -122,7 +122,9 @@
         "Weight": "KG",
         "Price": "Precio",
         "Description": "Descripción",
-        "Location": "Zona"
+        "Location": "Zona",
+        "AssignSkill": "Assignar Habilidad",
+        "Modifier": "Modificador de Habilidad"
       },
       "Items": {
         "ItemType": "Tipo",
@@ -165,7 +167,8 @@
       "resultShows": "Resultado en:",
       "Effect": "Efecto",
       "sum": "Objetivo 8+",
-      "Roll": "Tirar"
+      "Roll": "Tirar",
+      "AdjustedDamage": "Daño ajustado por efecto:"
     }
   },
   "Simple": "Sencilla",

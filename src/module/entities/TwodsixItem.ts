@@ -3,28 +3,26 @@
  * @extends {Item}
  */
 export default class TwodsixItem extends Item {
+  data:TwodsixItemData;
+
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
   prepareData():void {
     super.prepareData();
 
-    const itemData:ItemData = this.data;
+    const itemData:TwodsixItemData = this.data;
 
     switch (itemData.type) {
       case 'skills':
         this._prepareSkillData(itemData);
         break;
       default:
-
+        break;
     }
-  // Get the Item's data
-  // const itemData = this.data;
-  // const actorData = this.actor ? this.actor.data : {};
-  // const {data} = itemData;
   }
 
-  private _prepareSkillData(itemData:ItemData) {
+  private _prepareSkillData(itemData:TwodsixItemData) {
     if (this.isOwned) {
       const itemCharacteristic = itemData.data.characteristic;
       if (this.actor.data.data.characteristics) { //Temporary fix until issue #102
@@ -42,3 +40,13 @@ export default class TwodsixItem extends Item {
     }
   }
 }
+
+//TODO Move these types to a better place.
+//MUST match what's in the template.json. TODO Should build this from the template.json I guess
+export type TwodsixItemType = "equipment" | "weapon" | "armor" | "augment" | "storage" | "tool" | "junk" | "skills";
+
+export interface TwodsixItemData extends ItemData {
+  type:TwodsixItemType;
+  hasOwner:boolean;
+}
+

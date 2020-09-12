@@ -13,4 +13,8 @@ export default function registerHandlebarsHelpers():void {
     }
     return str.charAt(0).toUpperCase() + str.slice(1);
   });
+
+  Handlebars.registerHelper('concat', function (a, b) {
+    return a + b;
+  });
 }

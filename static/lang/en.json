@@ -1,5 +1,9 @@
 {
   "TWODSIX": {
+    "Migration": {
+      "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
+      "Completed": "Twodsix System Migration to version {version} completed!"
+    },
     "Settings": {
       "defaultTokenSettings.name": "Default Prototype Token Settings",
       "defaultTokenSettings.hint": "Automatically set advised prototype token settings to newly created Actors.",
@@ -22,7 +26,9 @@
     },
     "Actor": {
       "Rolling": "Rolling",
+      "using": "using",
       "Unknown actor type ": "Unknown actor type ",
+      "DeleteOwnedItem": "Delete owned item",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
         "PENSION": "PENSION",
@@ -57,13 +63,13 @@
         "Qty": "Qty",
         "Range": "Range",
         "Damage": "Damage",
-        "Weight": "Weight",
+        "Weight": "Wt",
         "Ammo": "Ammo",
         "CreateItem": "Create Item",
         "EditItem": "Edit Item",
         "DeleteItem": "Delete Item",
         "ARMOR": "ARMOR",
-        "ArmorNumber": "Armor Number",
+        "Armor": "Armor",
         "Effect": "Effect",
         "Location": "Location",
         "ShortDescr": "Short Descr",
@@ -107,11 +113,13 @@
         "Armor": "Armor"
       },
       "Augmentation": {
-        "AugLocation": "Augmentation Location",
-        "AugEffect": "Augmentation Effect",
+        "AugLocation": "Location",
+        "AugEffect": "Effect",
         "Head": "Head",
         "Torso": "Torso",
+        "Arms": "Arms",
         "Legs": "Legs",
+        "FullBody": "Full Body",
         "ValueCr": "Value in Cr"
       },
       "Equipment": {
@@ -122,7 +130,9 @@
         "Weight": "Weight",
         "Price": "Price",
         "Description": "Description",
-        "Location": "Location"
+        "Location": "Location",
+        "AssignSkill": "Assign Skill",
+        "SkillModifier": "Skill Modifier"
       },
       "Items": {
         "ItemType": "Type",
@@ -165,7 +175,8 @@
       "resultShows": "result shows",
       "Effect": "Effect",
       "sum": "sum",
-      "Roll": "Roll"
+      "Roll": "Roll",
+      "AdjustedDamage": "Damage adjusted by effect:"
     }
   },
   "Simple": "Simple",
@@ -173,7 +184,7 @@
   "Routine": "Routine",
   "Average": "Average",
   "Difficult": "Difficult",
-  "Very Difficult": "Very Difficult",
+  "VeryDifficult": "Very Difficult",
   "Formidable": "Formidable",
   "Impossible": "Impossible",
   "Normal": "Normal",

@@ -51,5 +51,8 @@
   },
   "browserslist": [
     "last 3 versions"
-  ]
+  ],
+  "dependencies": {
+    "compare-versions": "^3.6.0"
+  }
 }

@@ -6,6 +6,7 @@
 
     <span class="item-title">{{localize "TWODSIX.Actor.Items.WEAPONS"}}</span>
     <div class="items-weapons gear-header">
+      <span></span>
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
@@ -22,7 +23,8 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-weapons">
-            <span class="item-name">{{item.name}}</span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
             <span class="item-name centre">{{data.weight}}</span>
@@ -44,11 +46,12 @@
   <div><span class="pusher"></span>
     <span class="item-title">{{localize "TWODSIX.Actor.Items.ARMOR"}}</span>
     <div class="items-armor gear-header">
+      <span></span>
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ArmorNumber"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title="Create item" data-type="armor"><i
         class="fas fa-plus"></i></a></span>
     </div>
@@ -59,7 +62,8 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-armor">
-            <span class="item-name">{{item.name}}</span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
             <span class="item-name centre">{{data.weight}}</span>
@@ -79,6 +83,7 @@
   <div><span class="pusher"></span>
     <span class="item-title">{{localize "TWODSIX.Actor.Items.AUGMENTS"}}</span>
     <div class="items-augments gear-header">
+      <span></span>
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
@@ -93,7 +98,8 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-augments">
-            <span class="item-name">{{item.name}}</span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
             <span class="item-name centre">{{data.bonus}}</span>
@@ -113,6 +119,7 @@
   <div><span class="pusher"></span>
     <span class="item-title">{{localize "TWODSIX.Actor.Items.EQUIPMENT"}}</span>
     <div class="items-equipment gear-header">
+      <span></span>
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
@@ -121,13 +128,13 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-
     {{#each actor.equipment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
-            <span class="items-equipment items-tools items-junk">
-              <span class="item-name">{{item.name}}</span>
+            <span class="items-equipment">
+              <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+              <span class="item-name rollable">{{item.name}}</span>
               <span class="item-name centre">{{data.techLevel}}</span>
               <span class="item-name centre">{{data.quantity}}</span>
               <span class="item-name centre">{{data.shortdescr}}</span>

@@ -1,4 +1,6 @@
 import {Migration} from "../migration";
+import compareVersions from "compare-versions";
+
 
 Hooks.once("ready", async function () {
   // Determine whether a system migration is required and feasible
@@ -10,7 +12,7 @@ Hooks.once("ready", async function () {
       currentVersion = null;
     }
   }
-  const needMigration = currentVersion === null || currentVersion === "" || currentVersion < game.system.data.version;
+  const needMigration = currentVersion === null || currentVersion === "" || compareVersions(currentVersion, game.system.data.version);
 
   // Perform the migration
   if (needMigration && game.user.isGM) {

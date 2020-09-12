@@ -1,5 +1,3 @@
-import TwodsixItem from "../entities/TwodsixItem";
-import {skillRollResultDisplay} from "../utils/sheetUtils";
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 
@@ -41,7 +39,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  protected activateListeners(html:JQuery) {
+  protected activateListeners(html:JQuery):void {
     super.activateListeners(html);
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
@@ -53,59 +51,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onRoll(event:{ preventDefault:any; currentTarget:any; shiftKey?:any; }):void {
+  private _onRoll(event:Event):void {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
-
-    if (dataset.roll) {
-      if (item != null && 'skills' === item.type && event.shiftKey) {
-        this.advancedSkillRoll(itemId, event, dataset);
-      } else {
-        this.simpleSkillRoll(dataset);
-      }
-    }
-  }
-
-  private simpleSkillRoll(dataset:DOMStringMap) {
-    const rollParts = dataset.roll.split("+");
-    const flavorParts:string[] = [];
-    const label = dataset.label ? game.i18n.localize("TWODSIX.Actor.Rolling") + ` ${dataset.label}` : '';
-    flavorParts.push(label);
-    skillRollResultDisplay(rollParts, flavorParts);
-    const flavor = flavorParts.join(' ');
-    const roll = new Roll(rollParts.join('+'), this.actor.data.data);
-
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      flavor: flavor
-    });
-  }
-
-  advancedSkillRoll(skillId:string, event:{ preventDefault:() => void; currentTarget:any; }, dataset:{ roll:string; }):Promise<any> {
-
-    const skillData = {};
-    const skills = this.getData().actor.skills;
-    if (!skills.length) {
-      return;
-    }
-
-    const rollParts = dataset.roll.split("+");
-
-    const flavorParts:string[] = [];
-    const skill = skills.filter(x => x._id === skillId)[0];
-    flavorParts.push(`${skill.name}`);
-
-    return TwodsixRolls.Roll({
-      parts: rollParts,
-      data: skillData,
-      flavorParts: flavorParts,
-      title: `${skill.name}`,
-      speaker: ChatMessage.getSpeaker({actor: this.getData().actor}),
-    });
+    event.stopPropagation();
+    TwodsixRolls.handleSkillRoll(event, this.actor);
   }
 
 //Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.
