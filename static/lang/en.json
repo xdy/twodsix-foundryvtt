@@ -4,7 +4,7 @@
       "defaultTokenSettings.name": "Default Prototype Token Settings",
       "defaultTokenSettings.hint": "Automatically set advised prototype token settings to newly created Actors.",
       "initiativeFormula.name": "Initiative Formula",
-      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dex.mod\"",
+      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
       "modifierForZeroCharacteristic.name": "Modifier for characteristic value of zero.",
       "modifierForZeroCharacteristic.hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
       "maxSkillLevel.name": "Maximum skill level.",
@@ -22,6 +22,7 @@
     },
     "Actor": {
       "Rolling": "Rolling",
+      "using": "using",
       "Unknown actor type ": "Unknown actor type ",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
@@ -39,7 +40,7 @@
         "DESCRIPTION": "DESCRIPTION"
       },
       "Notes": {
-        "NOTES": "NOTES"
+        "NOTES": "CHARACTER NOTES"
       },
       "Characteristics": {
         "STR": "STR",
@@ -57,13 +58,13 @@
         "Qty": "Qty",
         "Range": "Range",
         "Damage": "Damage",
-        "Weight": "Weight",
+        "Weight": "Wt.",
         "Ammo": "Ammo",
         "CreateItem": "Create Item",
         "EditItem": "Edit Item",
         "DeleteItem": "Delete Item",
         "ARMOR": "ARMOR",
-        "ArmorNumber": "Armor Number",
+        "ArmorNumber": "Armor",
         "Effect": "Effect",
         "Location": "Location",
         "ShortDescr": "Short Descr",
@@ -104,13 +105,15 @@
     },
     "Items": {
       "Armor": {
-        "ItemName": "Item Name",
-        "TL": "TL",
-        "Quantity": "Quantity",
-        "Armor": "Armor",
-        "Weight": "Weight",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Armor": "Armor"
+      },
+      "Augmentation": {
+        "AugLocation": "Location",
+        "AugEffect": "Augment Effect",
+        "Head": "Head",
+        "Torso": "Torso",
+        "Legs": "Legs",
+        "ValueCr": "Value in Cr"
       },
       "Equipment": {
         "ItemName": "Item Name",
@@ -118,24 +121,23 @@
         "Quantity": "Quantity",
         "ShortDescription": "Short Description",
         "Weight": "Weight",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Price": "Price",
+        "Description": "Description",
+        "Location": "Location",
+        "Skill": "Skill"
       },
       "Items": {
-        "ItemType": "Item Type",
-        "AssignAugment": "Assign Augment",
-        "AssignWeapon": "Assign Weapon",
+        "ItemType": "Type",
         "AssignArmor": "Assign Armor",
+        "AssignAugment": "Assign Augment",
         "AssignEquipment": "Assign Equipment",
+        "AssignTool": "Assign Tool",
+        "AssignJunk": "Assign Junk",
+        "AssignWeapon": "Assign Weapon",
         "MoveStorage": "Move Storage",
-        "ItemLocation": "Item Location",
         "Inventory": "Inventory",
         "Storage": "Storage",
-        "ItemName": "Item Name",
-        "TL": "TL",
-        "Quantity": "Quantity",
-        "Weight": "Weight",
-        "ItemDescription": "Item Description"
+        "New": "New"
       },
       "Skills": {
         "SkillName": "Skill Name",
@@ -149,15 +151,13 @@
         "SOC": "SOC",
         "PSI": "PSI"
       },
+      "Tool": {
+        "Bonus": "Bonus"
+      },
       "Weapon": {
-        "ItemName": "Item Name",
-        "TL": "TL",
         "Damage": "Damage",
-        "Quantity": "Quantity",
-        "Weight": "Weight",
         "Ammo": "Ammo",
-        "ItemPrice": "Item Price",
-        "ItemDescription": "Item Description"
+        "Range": "Range"
       }
     },
     "Rolls": {
@@ -166,7 +166,8 @@
       "With": "with",
       "resultShows": "result shows",
       "Effect": "Effect",
-      "sum": "sum"
+      "sum": "sum",
+      "Roll": "Roll"
     }
   },
   "Simple": "Simple",
