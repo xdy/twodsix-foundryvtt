@@ -1,3 +1,10 @@
+## [0.6.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.13...v0.6.14) (2020-09-14)
+
+
+### Bug Fixes
+
+* Adds Spanish translation thanks to ForjaSalvaje[#2419](https://github.com/xdy/twodsix-foundryvtt/issues/2419) ([e86f261](https://github.com/xdy/twodsix-foundryvtt/commit/e86f26108900c4460d979445bceb6a1dc2d02b7e))
+
 ## [0.6.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.12...v0.6.13) (2020-09-12)
 
 
