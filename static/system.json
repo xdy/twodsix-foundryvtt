@@ -21,7 +21,7 @@
   "initiative": "2d6 + @characteristics.dexterity.mod",
   "languages": [
     {
-      "lang": "De",
+      "lang": "de",
       "name": "Deutsche",
       "path": "lang/de.json"
     },
