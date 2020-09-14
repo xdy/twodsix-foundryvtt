@@ -21,17 +21,26 @@
   "initiative": "2d6 + @characteristics.dexterity.mod",
   "languages": [
     {
+      "lang": "De",
+      "name": "Deutsche",
+      "path": "lang/de.json"
+    },
+    {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
     },
     {
       "lang": "sv",
       "name": "Svenska",
       "path": "lang/sv.json"
     }
-  ],
-  "license": "LICENSE",
+  ],  "license": "LICENSE",
   "packs": [
     {
       "name": "ce-skills",
