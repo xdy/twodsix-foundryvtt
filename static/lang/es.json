@@ -1,1 +1,183 @@
-{}
+{
+  "TWODSIX": {
+    "Settings": {
+      "defaultTokenSettings.name": "Configuración por defecto del token",
+      "defaultTokenSettings.hint": "Automáticamente asignar configuración al token de nuevos Actores.",
+      "initiativeFormula.name": "Fórmula de iniciativa",
+      "initiativeFormula.hint": "Ej: \"2d6 + @characteristics.dexterity.mod\"",
+      "modifierForZeroCharacteristic.name": "Modificador para los Atributos a cero.",
+      "modifierForZeroCharacteristic.hint": "Dejar vacío para utilizar por defecto (-2). No recalcula los modificadores para personajes ya existentes.",
+      "maxSkillLevel.name": "Máximo nivel habilidad.",
+      "maxSkillLevel.hint": "Dejar vacío para utilizar por defecto (9).",
+      "absoluteBonusValueForEachTimeIncrement.name": "Qué bonus/penalización aplicar a cada incremento en una tarea.",
+      "absoluteBonusValueForEachTimeIncrement.hint": "Dejar vacío para utilizar por defecto (+/-1). No utilizado todavía.",
+      "termForAdvantage.name": "Cómo llamar las tiradas con Ventaja (3d6kh2).",
+      "termForAdvantage.hint": "No utilizar el mismo que en termForDisadvantage...",
+      "termForDisadvantage.name": "Cómo llamar las tiradas con Desventaja (3d6kl2).",
+      "termForDisadvantage.hint": "No utilizar el mismo que en termForAdvantage...",
+      "initiativeFormula.success": "Nueva fórmula de iniciativa asignada correctamente: ${formula}",
+      "initiativeFormula.failure": "Fallo al asignar nueva fórmula: ${formula}, utilizando el valor anterior ${currentFormula}.",
+      "systemMigrationVersion.name": "Versión Schema del sistema",
+      "systemMigrationVersion.hint": "Guarda la versión del schema para el sistema Twodsix. (No modificar a menos que se sepa lo que se hace)"
+    },
+    "Actor": {
+      "Rolling": "Tirada de",
+      "Unknown actor type ": "Tipo actor desconocido ",
+      "Finances": {
+        "CASH_ON_HAND": "DINERO DISPONIBLE",
+        "PENSION": "PENSIÓN",
+        "DEBT": "DEUDA",
+        "SHIP_PAYMENTS_MONTHLY": "GASTO MENSUAL NAVE",
+        "LIVING_COSTS": "COSTES DE VIDA",
+        "FINANCIAL_NOTES": "NOTAS FINANZAS"
+      },
+      "Info": {
+        "CONTACTS": "CONTACTOS",
+        "ALLIES": "ALIADOS",
+        "ENEMIES": "ENEMIGOS",
+        "BIOGRAPHY": "BIOGRAFÍA",
+        "DESCRIPTION": "DESCRIPCIÓN"
+      },
+      "Notes": {
+        "NOTES": "NOTAS DEL PERSONAJE"
+      },
+      "Characteristics": {
+        "STR": "FUE",
+        "DEX": "DES",
+        "END": "RES",
+        "INT": "INT",
+        "EDU": "EDU",
+        "SOC": "SOC",
+        "PSI": "PSI"
+      },
+      "Items": {
+        "WEAPONS": "ARMAS",
+        "Name": "Nombre",
+        "TL": "NT",
+        "Qty": "Cant.",
+        "Range": "Alcance",
+        "Damage": "Daño",
+        "Weight": "KG",
+        "Ammo": "Cargador",
+        "CreateItem": "Crear Objeto",
+        "EditItem": "Editar Objeto",
+        "DeleteItem": "Borrar Objeto",
+        "ARMOR": "ARMADURA",
+        "ArmorNumber": "Protección",
+        "Effect": "Efecto",
+        "Location": "Zona",
+        "ShortDescr": "Opciones",
+        "AUGMENTS": "AUMENTOS",
+        "EQUIPMENT": "EQUIPO"
+      },
+      "Skills": {
+        "AddSkill": ">>Añadir<<",
+        "SkillName": "Nombre",
+        "Level": "Nivel",
+        "Modifier": "Mod.",
+        "Total": "Total",
+        "EditOrRemove": "Editar / Borrar",
+        "EditItem": "Editar Objeto",
+        "DeleteItem": "Borrar Objeto"
+      },
+      "Age": "Edad",
+      "CharacterImage": "Imagen Personaje",
+      "CharacterName": "Nombre Personaje",
+      "Gender": "Sexo",
+      "HomeWorld": "Planeta Natal",
+      "Species": "Especie",
+      "Tabs": {
+        "Skills": "Habilidades",
+        "Inventory": "Equipo",
+        "Finances": "Finanzas",
+        "Info": "Info",
+        "Notes": "Notas"
+      }
+    },
+    "Chat": {
+      "Roll": {
+        "Difficulty": "Dificultad tirada",
+        "Type": "Tipo tirada",
+        "Mode": "Modo tirada",
+        "OtherModifiers": "Otros modificadores"
+      }
+    },
+    "Items": {
+      "Armor": {
+        "Armor": "Armadura"
+      },
+      "Augmentation": {
+        "AugLocation": "Zona Aumento",
+        "AugEffect": "Efecto Aumento",
+        "Head": "Cabeza",
+        "Torso": "Torso",
+        "Legs": "Piernas",
+        "ValueCr": "Valor en Cr"
+      },
+      "Equipment": {
+        "ItemName": "Nombre Objeto",
+        "TL": "NT",
+        "Quantity": "Cantidad",
+        "ShortDescription": "Opciones",
+        "Weight": "KG",
+        "Price": "Precio",
+        "Description": "Descripción",
+        "Location": "Zona"
+      },
+      "Items": {
+        "ItemType": "Tipo",
+        "AssignArmor": "Armadura",
+        "AssignAugment": "Aumento",
+        "AssignEquipment": "Equipo",
+        "AssignTool": "Herramienta",
+        "AssignJunk": "Chatarra",
+        "AssignWeapon": "Arma",
+        "MoveStorage": "Mover Carga",
+        "Inventory": "Inventario",
+        "Storage": "Carga",
+        "New": "Nuevo"
+      },
+      "Skills": {
+        "SkillName": "Nombre Hab.",
+        "Level": "Nivel",
+        "Modifier": "Modificador",
+        "STR": "FUE",
+        "DEX": "DES",
+        "END": "RES",
+        "INT": "INT",
+        "EDU": "EDU",
+        "SOC": "SOC",
+        "PSI": "PSI"
+      },
+      "Tool": {
+        "Bonus": "Bono"
+      },
+      "Weapon": {
+        "Damage": "Daño",
+        "Ammo": "Cargador",
+        "Range": "Alcance"
+      }
+    },
+    "Rolls": {
+      "Cancel": "Cancelar",
+      "Rolling": "Tirada",
+      "With": "con",
+      "resultShows": "Resultado en:",
+      "Effect": "Efecto",
+      "sum": "Objetivo 8+",
+      "Roll": "Tirar"
+    }
+  },
+  "Simple": "Sencilla",
+  "Easy": "Fácil",
+  "Routine": "Rutinaria",
+  "Average": "Normal",
+  "Difficult": "Difícil",
+  "Very Difficult": "Muy Difícil",
+  "Formidable": "Formidable",
+  "Impossible": "Imposible",
+  "Normal": "Normal",
+  "Advantage": "Ventaja",
+  "Disadvantage": "Desventaja",
+  "Cancel": "Cancelar"
+}
