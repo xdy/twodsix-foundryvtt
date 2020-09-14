@@ -21,13 +21,31 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
       item.sheet.render(true);
     }));
 
-    // Delete Inventory Item
-    html.find('.item-delete').on('click', (ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
-      li.slideUp(200, () => this.render(false));
-    }));
-
+    // Delete Item
+    html.find('.item-delete').on('click', async (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
+      const template = `
+      <form>
+        <div>
+          <div style="text-align: center;">"Delete owned item"}
+            <strong>${ownedItem.name}</strong>?
+          </div>
+          <br>
+        </div>
+      </form>`;
+      await Dialog.confirm({
+        title: "Delete owned item",
+        content: template,
+        yes: async () => {
+          await this.actor.deleteOwnedItem(ownedItem.id);
+          li.slideUp(200, () => this.render(false));
+        },
+        no: () => {
+          //Nothing
+        },
+      });
+    });
     // Drag events for macros.
     if (this.actor.owner) {
       const handler = ev => this._onDragItemStart(ev);
