@@ -1,3 +1,10 @@
+## [0.6.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.15...v0.6.16) (2020-09-15)
+
+
+### Bug Fixes
+
+* The threshold for rolling damage is now effect >= 0. Automatic damage rolling now also works if effectOrTotal is false. And you can again just roll damage by clicking the formula in the damage column on an actor's weapon ([efede0d](https://github.com/xdy/twodsix-foundryvtt/commit/efede0dbf8ab3277d15e674a9103d0c8cbcc1c78))
+
 ## [0.6.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.14...v0.6.15) (2020-09-15)
 
 
