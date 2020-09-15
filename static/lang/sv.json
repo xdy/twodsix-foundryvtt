@@ -176,7 +176,8 @@
       "Effect": "Effekten",
       "sum": "summan",
       "Roll": "Rulla",
-      "AdjustedDamage": "Skadan justerad av effekten:"
+      "AdjustedDamage": "Skadan justerad av effekten:",
+      "DamageUsing": "Skada med"
     }
   },
   "Simple": "Enkelt",

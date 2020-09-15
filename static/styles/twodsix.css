@@ -89,6 +89,10 @@ input[type=number] {
   cursor: pointer;
 }
 
+.roll-damage:hover {
+  cursor: pointer;
+}
+
 div[contenteditable]:focus {
   outline: 2px solid #222f3e;
   box-shadow: 0 0 10px #29aae1;

@@ -176,7 +176,8 @@
       "Effect": "Effect",
       "sum": "sum",
       "Roll": "Roll",
-      "AdjustedDamage": "Damage adjusted by effect:"
+      "AdjustedDamage": "Damage adjusted by effect:",
+      "DamageUsing": "Damage using"
     }
   },
   "Simple": "Simple",

@@ -1,5 +1,6 @@
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
+import TwodsixItem from "../entities/TwodsixItem";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -44,10 +45,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
     html.find('.rollable').on('click', (this._onRoll.bind(this)));
+
+    html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
   }
 
   /**
-   * Handle clickable rolls.
+   * Handle clickable skill rolls.
    * @param {Event} event   The originating click event
    * @private
    */
@@ -55,6 +58,19 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     event.preventDefault();
     event.stopPropagation();
     TwodsixRolls.handleSkillRoll(event, this.actor);
+  }
+
+  /**
+   * Handle clickable damage rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private _onRollDamage(event:Event):void {
+    event.preventDefault();
+    event.stopPropagation();
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
+    TwodsixRolls.rollDamage(item, true, 0, this.actor, true);
   }
 
 //Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.

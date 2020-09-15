@@ -33,7 +33,7 @@ export class TwodsixRolls {
         icon: '<i class="fas fa-dice"></i>',
         callback: (html) => {
           roll = TwodsixRolls._handleRoll(html[0].children[0], usefulParts, data, flavorParts, speaker, showEffect);
-          this.rollDamage(item, showEffect, roll._total, actor);
+          this.rollDamage(item, showEffect, roll._total, actor, false);
           rolled = true;
         },
       },
@@ -131,7 +131,7 @@ export class TwodsixRolls {
     item = actor.getOwnedItem(itemId) as TwodsixItem;
     let skill:TwodsixItem;
 
-    if ('skills' === item?.data?.type) {
+    if ('skills' === item?.data?.data?.type) {
       //It *is* the skill, so don't need item.
       skill = item;
       dataset.skill = skill.name;
@@ -183,24 +183,24 @@ export class TwodsixRolls {
     const flavor = flavorParts.join(' ');
     const skillRoll = new Roll(rollParts.join('+'), actor.data.data);
 
-    console.log(dataset.roll);
     const result = skillRoll.roll();
     result.toMessage({
       speaker: ChatMessage.getSpeaker({actor: actor}),
       flavor: flavor
     });
-    this.rollDamage(item, showEffect, result._total, actor);
-
+    this.rollDamage(item, showEffect, result._total, actor, false);
   }
 
-  private static async rollDamage(item:TwodsixItem, showEffect:boolean, total:number, actor:TwodsixActor) {
-    if (total > 0 && game.settings.get("twodsix", "automateDamageRollOnHit") && item?.data?.data?.damage != null) {
-      const damageFormula = item.data.data.damage + "+" + (showEffect ? total : total - 8);
+  static async rollDamage(item:TwodsixItem, showEffect:boolean, total:number, actor:TwodsixActor, justRollIt:boolean):Promise<void> {
+    const result = showEffect ? total : total - 8;
+    const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
+    if (result >= 0 && rollDamage && item?.data?.data?.damage != null) {
+      const damageFormula = item.data.data.damage + (justRollIt ? "" : "+" + result);
       const damageRoll = new Roll(damageFormula, actor.data.data);
       const damage = damageRoll.roll();
       await damage.toMessage({
         speaker: ChatMessage.getSpeaker({actor: actor}),
-        flavor: game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
+        flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") +" " + item.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
       });
     }
   }
