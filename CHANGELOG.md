@@ -1,3 +1,10 @@
+## [0.6.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.14...v0.6.15) (2020-09-15)
+
+
+### Bug Fixes
+
+* Fixes issue [#102](https://github.com/xdy/twodsix-foundryvtt/issues/102), fixes [#62](https://github.com/xdy/twodsix-foundryvtt/issues/62). Support for linking items to skills, and making skill rolls using the item (modified by the 'skill modifier' that can now be set permanently on items.) ([0b3b2d8](https://github.com/xdy/twodsix-foundryvtt/commit/0b3b2d81fa754b3b8164f4d436e9a8f1340bd69b))
+
 ## [0.6.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.13...v0.6.14) (2020-09-14)
 
 
