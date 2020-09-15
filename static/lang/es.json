@@ -1,5 +1,9 @@
 {
   "TWODSIX": {
+      "Migration": {
+      "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
+      "Completed": "¡Migración del sistema Twodsix a la version {version} completada!"
+    },
     "Settings": {
       "defaultTokenSettings.name": "Configuración por defecto del token",
       "defaultTokenSettings.hint": "Automáticamente asignar configuración al token de nuevos Actores.",
@@ -22,7 +26,9 @@
     },
     "Actor": {
       "Rolling": "Tirada de",
+	  "using": "utilizando",
       "Unknown actor type ": "Tipo actor desconocido ",
+	  "DeleteOwnedItem": "Borrar objeto",
       "Finances": {
         "CASH_ON_HAND": "DINERO DISPONIBLE",
         "PENSION": "PENSIÓN",
@@ -111,7 +117,9 @@
         "AugEffect": "Efecto Aumento",
         "Head": "Cabeza",
         "Torso": "Torso",
+		"Arms": "Brazos",
         "Legs": "Piernas",
+        "FullBody": "Cuerpo Entero",
         "ValueCr": "Valor en Cr"
       },
       "Equipment": {
@@ -123,8 +131,8 @@
         "Price": "Precio",
         "Description": "Descripción",
         "Location": "Zona",
-        "AssignSkill": "Assignar Habilidad",
-        "Modifier": "Modificador de Habilidad"
+		"AssignSkill": "Asignar Habilidad",
+        "SkillModifier": "Modificador Habilidad"
       },
       "Items": {
         "ItemType": "Tipo",
@@ -168,7 +176,7 @@
       "Effect": "Efecto",
       "sum": "Objetivo 8+",
       "Roll": "Tirar",
-      "AdjustedDamage": "Daño ajustado por efecto:"
+	  "AdjustedDamage": "Daño ajustado por efecto:"
     }
   },
   "Simple": "Sencilla",
@@ -176,7 +184,7 @@
   "Routine": "Rutinaria",
   "Average": "Normal",
   "Difficult": "Difícil",
-  "Very Difficult": "Muy Difícil",
+  "VeryDifficult": "Muy Difícil",
   "Formidable": "Formidable",
   "Impossible": "Imposible",
   "Normal": "Normal",
