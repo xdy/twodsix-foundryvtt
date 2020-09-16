@@ -14,7 +14,7 @@
       "maxSkillLevel.name": "Máximo nivel habilidad.",
       "maxSkillLevel.hint": "Dejar vacío para utilizar por defecto (9).",
       "absoluteBonusValueForEachTimeIncrement.name": "Qué bonus/penalización aplicar a cada incremento en una tarea.",
-      "absoluteBonusValueForEachTimeIncrement.hint": "Dejar vacío para utilizar por defecto (+/-1). No utilizado todavía.",
+      "absoluteBonusValueForEachTimeIncrement.hint": "Dejar vacío para utilizar por defecto (+/-1). Sin utilidad actualmente.",
       "termForAdvantage.name": "Cómo llamar las tiradas con Ventaja (3d6kh2).",
       "termForAdvantage.hint": "No utilizar el mismo que en termForDisadvantage...",
       "termForDisadvantage.name": "Cómo llamar las tiradas con Desventaja (3d6kl2).",
@@ -176,7 +176,8 @@
       "Effect": "Efecto",
       "sum": "Objetivo 8+",
       "Roll": "Tirar",
-	  "AdjustedDamage": "Daño ajustado por efecto:"
+	  "AdjustedDamage": "Daño ajustado (+Efecto):",
+	  "DamageUsing": "Daño utilizando"
     }
   },
   "Simple": "Sencilla",
