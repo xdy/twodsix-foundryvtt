@@ -47,6 +47,20 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find('.rollable').on('click', (this._onRoll.bind(this)));
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
+
+    html.find('.stat-damage').on('change', this._limitDamage.bind(this));
+    html.find('.special-damage').on('change', this._limitDamage.bind(this));
+  }
+
+  private _limitDamage(event:Event):void {
+    const characteristicString = $(event.currentTarget).parents('.stat:first,.special:first').attr('data-characteristic');
+    const characteristic = this.actor.data.data.characteristics[characteristicString];
+    const input = $(event.currentTarget).children("");
+    if (input.val() > characteristic.value) {
+      input.val(characteristic.value);
+    } else if (input.val() < 0) {
+      input.val(0);
+    }
   }
 
   /**

@@ -12,9 +12,15 @@
         "value": 18,
         "min": 0
       },
+      "hits": {
+        "value": 0,
+        "min": 0,
+        "max": 0
+      },
       "gender": "",
       "radiationDose": {
         "value": 0,
+        "max": 0,
         "min": 0
       },
       "contacts": "",

@@ -1,6 +1,7 @@
 import {TwodsixItemData} from "./entities/TwodsixItem";
 
-type UpdateData = {
+//TODO Move all types to a better place
+export type UpdateData = {
   _id?:any;
   items?:any;
   tokens?:any[];
@@ -13,12 +14,12 @@ export class Migration {
     const actorData = actor.data;
     await this.migrateActorItems(actorData, systemMigrationVersion, actor);
 
-    //Insert specific migrations here as needed
-    // if (systemMigrationVersion < "0.6.0") {
-    //  updateData['data.new'] = 42;
-    //  I.e. set, calculate or copy in a reasonable value
-    // }
-
+    if (systemMigrationVersion < "0.6.20") {
+      updateData['data.hits.value'] = 0;
+      updateData['data.hits.min'] = 0;
+      updateData['data.hits.max'] = 0;
+      updateData['data.radiationDose.max'] = 0;
+    }
 
     return updateData;
   }
