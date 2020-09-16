@@ -119,7 +119,7 @@ export class TwodsixRolls {
     return roll;
   }
 
-  static async handleSkillRoll(event:Event, actor:TwodsixActor) {
+  static async handleSkillRoll(event:Event, actor:TwodsixActor):Promise<void> {
     const element = event.currentTarget;
     const dataset = element["dataset"];
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
@@ -200,7 +200,7 @@ export class TwodsixRolls {
       const damage = damageRoll.roll();
       await damage.toMessage({
         speaker: ChatMessage.getSpeaker({actor: actor}),
-        flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") +" " + item.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
+        flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") + " " + item.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
       });
     }
   }
