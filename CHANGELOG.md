@@ -1,3 +1,10 @@
+## [0.6.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.17...v0.6.18) (2020-09-17)
+
+
+### Bug Fixes
+
+* Added localization for system settings. ([f76e2cd](https://github.com/xdy/twodsix-foundryvtt/commit/f76e2cdb95a09e089496d3ecb7feae7f5414131b))
+
 ## [0.6.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.16...v0.6.17) (2020-09-15)
 
 
