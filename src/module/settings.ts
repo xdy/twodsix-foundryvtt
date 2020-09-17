@@ -2,8 +2,8 @@ export const registerSettings = function ():void {
 
   // Register any custom system settings here
   game.settings.register('twodsix', 'defaultTokenSettings', {
-    name: 'Default Prototype Token Settings',
-    hint: "Automatically set advised prototype token settings to newly created Actors.",
+    name: game.i18n.localize("TWODSIX.Settings.defaultTokenSettings.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.defaultTokenSettings.hint"),
     scope: 'world',
     config: true,
     default: true,
@@ -12,8 +12,8 @@ export const registerSettings = function ():void {
 
   const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
   game.settings.register('twodsix', 'initiativeFormula', {
-    name: 'Initiative Formula',
-    hint: "Like: \"2d6 + @characteristics.dexterity.mod\"",
+    name: game.i18n.localize("TWODSIX.Settings.initiativeFormula.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.initiativeFormula.hint"),
     scope: 'world',
     config: true,
     default: DEFAULT_INITIATIVE_FORMULA,
@@ -25,8 +25,8 @@ export const registerSettings = function ():void {
   _simpleUpdateInit(initFormula);
 
   game.settings.register('twodsix', 'modifierForZeroCharacteristic', {
-    name: 'Modifier for characteristic value of zero.',
-    hint: "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
+    name: game.i18n.localize("TWODSIX.Settings.modifierForZeroCharacteristic.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.modifierForZeroCharacteristic.hint"),
     scope: 'world',
     config: true,
     default: -2,
@@ -34,8 +34,8 @@ export const registerSettings = function ():void {
   });
 
   game.settings.register('twodsix', 'maxSkillLevel', {
-    name: 'Maximum skill level.',
-    hint: "Leave empty to use default (9).",
+    name: game.i18n.localize("TWODSIX.Settings.maxSkillLevel.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.maxSkillLevel.hint"),
     scope: 'world',
     config: true,
     default: 9,
@@ -44,24 +44,24 @@ export const registerSettings = function ():void {
 
 
   game.settings.register('twodsix', 'termForAdvantage', {
-    name: 'What you want to call rolls with advantage (3d6kh2).',
-    hint: "Don't use the same word as for termForDisadvantage...",
+    name: game.i18n.localize("TWODSIX.Settings.termForAdvantage.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.termForAdvantage.hint"),
     scope: 'world',
     config: true,
     default: 'advantage',
   });
 
   game.settings.register('twodsix', 'termForDisadvantage', {
-    name: 'What you want to call rolls with disadvantage (3d6kl2).',
-    hint: "Don't use the same word as for termForAdvantage...",
+    name: game.i18n.localize("TWODSIX.Settings.termForDisadvantage.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.termForDisadvantage.hint"),
     scope: 'world',
     config: true,
     default: 'disadvantage',
   });
 
   game.settings.register('twodsix', 'effectOrTotal', {
-    name: 'Show effect or total roll value for skill and characteristic rolls.',
-    hint: "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
+    name: game.i18n.localize("TWODSIX.Settings.effectOrTotal.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.effectOrTotal.name"),
     scope: 'world',
     config: true,
     default: false,
@@ -69,8 +69,8 @@ export const registerSettings = function ():void {
   });
 
   game.settings.register('twodsix', 'automateDamageRollOnHit', {
-    name: 'Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?',
-    hint: "true=Roll damage, modified by effect of skill roll. false=Don't roll damage.",
+    name: game.i18n.localize("TWODSIX.Settings.automateDamageRollOnHit.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.automateDamageRollOnHit.name"),
     scope: 'world',
     config: true,
     default: false,
@@ -78,8 +78,8 @@ export const registerSettings = function ():void {
   });
 
   game.settings.register('twodsix', 'absoluteBonusValueForEachTimeIncrement', {
-    name: 'What bonus/penalty to give per each time increment change in a task.',
-    hint: "Leave empty to use default (+/-1). Not currently used.",
+    name: game.i18n.localize("TWODSIX.Settings.absoluteBonusValueForEachTimeIncrement.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.absoluteBonusValueForEachTimeIncrement.hint"),
     scope: 'world',
     config: true,
     default: -1,
@@ -88,8 +88,8 @@ export const registerSettings = function ():void {
 
   //Must be the last setting in the file
   game.settings.register('twodsix', 'systemMigrationVersion', {
-    name: 'System Schema Version',
-    hint: "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
+    name: game.i18n.localize("TWODSIX.Settings.systemMigrationVersion.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.systemMigrationVersion.hint"),
     scope: 'world',
     config: true,
     default: game.system.data.version,

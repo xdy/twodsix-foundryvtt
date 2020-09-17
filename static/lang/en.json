@@ -1,111 +1,98 @@
 {
+  "Advantage": "Advantage",
+  "Average": "Average",
+  "Cancel": "Cancel",
+  "Difficult": "Difficult",
+  "Disadvantage": "Disadvantage",
+  "Easy": "Easy",
+  "Formidable": "Formidable",
+  "Impossible": "Impossible",
+  "Normal": "Normal",
+  "Routine": "Routine",
+  "Simple": "Simple",
   "TWODSIX": {
-    "Migration": {
-      "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
-      "Completed": "Twodsix System Migration to version {version} completed!"
-    },
-    "Settings": {
-      "defaultTokenSettings.name": "Default Prototype Token Settings",
-      "defaultTokenSettings.hint": "Automatically set advised prototype token settings to newly created Actors.",
-      "initiativeFormula.name": "Initiative Formula",
-      "initiativeFormula.hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
-      "modifierForZeroCharacteristic.name": "Modifier for characteristic value of zero.",
-      "modifierForZeroCharacteristic.hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
-      "maxSkillLevel.name": "Maximum skill level.",
-      "maxSkillLevel.hint": "Leave empty to use default (9).",
-      "absoluteBonusValueForEachTimeIncrement.name": "What bonus/penalty to give per each time increment change in a task.",
-      "absoluteBonusValueForEachTimeIncrement.hint": "Leave empty to use default (+/-1). Not currently used.",
-      "termForAdvantage.name": "What you want to call rolls with advantage (3d6kh2).",
-      "termForAdvantage.hint": "Don't use the same as for termForDisadvantage...",
-      "termForDisadvantage.name": "What you want to call rolls with disadvantage (3d6kl2).",
-      "termForDisadvantage.hint": "Don't use the same as for termForAdvantage...",
-      "initiativeFormula.success": "Set initiative formula to: ${formula}",
-      "initiativeFormula.failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.",
-      "systemMigrationVersion.name": "System Schema Version",
-      "systemMigrationVersion.hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)"
-    },
     "Actor": {
-      "Rolling": "Rolling",
-      "using": "using",
-      "Unknown actor type ": "Unknown actor type ",
+      "Age": "Age",
+      "CharacterImage": "Character Image",
+      "CharacterName": "Character Name",
+      "Characteristics": {
+        "DEX": "DEX",
+        "EDU": "EDU",
+        "END": "END",
+        "INT": "INT",
+        "PSI": "PSI",
+        "SOC": "SOC",
+        "STR": "STR"
+      },
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
-        "PENSION": "PENSION",
         "DEBT": "DEBT",
-        "SHIP_PAYMENTS_MONTHLY": "SHIP PAYMENTS MONTHLY",
+        "FINANCIAL_NOTES": "FINANCIAL NOTES",
         "LIVING_COSTS": "LIVING COSTS",
-        "FINANCIAL_NOTES": "FINANCIAL NOTES"
+        "PENSION": "PENSION",
+        "SHIP_PAYMENTS_MONTHLY": "SHIP PAYMENTS MONTHLY"
       },
+      "Gender": "Gender",
+      "HomeWorld": "Home world",
       "Info": {
-        "CONTACTS": "CONTACTS",
         "ALLIES": "ALLIES",
-        "ENEMIES": "ENEMIES",
         "BIOGRAPHY": "BIOGRAPHY",
-        "DESCRIPTION": "DESCRIPTION"
+        "CONTACTS": "CONTACTS",
+        "DESCRIPTION": "DESCRIPTION",
+        "ENEMIES": "ENEMIES"
+      },
+      "Items": {
+        "ARMOR": "ARMOR",
+        "AUGMENTS": "AUGMENTS",
+        "Ammo": "Ammo",
+        "Armor": "Armor",
+        "CreateItem": "Create Item",
+        "Damage": "Damage",
+        "DeleteItem": "Delete Item",
+        "EQUIPMENT": "EQUIPMENT",
+        "EditItem": "Edit Item",
+        "Effect": "Effect",
+        "Location": "Location",
+        "Name": "Name",
+        "Qty": "Qty",
+        "Range": "Range",
+        "ShortDescr": "Short Descr",
+        "TL": "TL",
+        "WEAPONS": "WEAPONS",
+        "Weight": "Wt"
       },
       "Notes": {
         "NOTES": "CHARACTER NOTES"
       },
-      "Characteristics": {
-        "STR": "STR",
-        "DEX": "DEX",
-        "END": "END",
-        "INT": "INT",
-        "EDU": "EDU",
-        "SOC": "SOC",
-        "PSI": "PSI"
-      },
-      "Items": {
-        "WEAPONS": "WEAPONS",
-        "Name": "Name",
-        "TL": "TL",
-        "Qty": "Qty",
-        "Range": "Range",
-        "Damage": "Damage",
-        "Weight": "Wt",
-        "Ammo": "Ammo",
-        "CreateItem": "Create Item",
-        "EditItem": "Edit Item",
-        "DeleteItem": "Delete Item",
-        "ARMOR": "ARMOR",
-        "Armor": "Armor",
-        "Effect": "Effect",
-        "Location": "Location",
-        "ShortDescr": "Short Descr",
-        "AUGMENTS": "AUGMENTS",
-        "EQUIPMENT": "EQUIPMENT"
-      },
+      "Rolling": "Rolling",
       "Skills": {
         "AddSkill": ">>Add Skill<<",
-        "SkillName": "Skill Name",
+        "DeleteItem": "Delete Item",
+        "EditItem": "Edit Item",
+        "EditOrRemove": "Edit / Remove",
         "Level": "Level",
         "Modifier": "Modifier",
-        "Total": "Total",
-        "EditOrRemove": "Edit / Remove",
-        "EditItem": "Edit Item",
-        "DeleteItem": "Delete Item"
+        "SkillName": "Skill Name",
+        "Total": "Total"
       },
-      "Age": "Age",
-      "CharacterImage": "Character Image",
-      "CharacterName": "Character Name",
-      "Gender": "Gender",
-      "HomeWorld": "Home world",
       "Species": "Species",
       "Tabs": {
-        "Skills": "Skills",
-        "Inventory": "Inventory",
         "Finances": "Finances",
         "Info": "Info",
-        "Notes": "Notes"
-      }
+        "Inventory": "Inventory",
+        "Notes": "Notes",
+        "Skills": "Skills"
+      },
+      "Unknown actor type ": "Unknown actor type ",
+      "using": "using"
     },
     "Chat": {
       "Roll": {
         "Difficulty": "Roll difficulty",
-        "Type": "Roll type",
         "Mode": "Roll mode",
-        "OtherModifiers": "Other modifiers"
+        "OtherModifiers": "Other modifiers",
+        "Type": "Roll type"
       }
     },
     "Items": {
@@ -113,83 +100,120 @@
         "Armor": "Armor"
       },
       "Augmentation": {
-        "AugLocation": "Location",
-        "AugEffect": "Effect",
-        "Head": "Head",
-        "Torso": "Torso",
         "Arms": "Arms",
-        "Legs": "Legs",
+        "AugEffect": "Effect",
+        "AugLocation": "Location",
         "FullBody": "Full Body",
+        "Head": "Head",
+        "Legs": "Legs",
+        "Torso": "Torso",
         "ValueCr": "Value in Cr"
       },
       "Equipment": {
+        "AssignSkill": "Assign Skill",
+        "Description": "Description",
         "ItemName": "Item Name",
-        "TL": "TL",
+        "Location": "Location",
+        "Price": "Price",
         "Quantity": "Quantity",
         "ShortDescription": "Short Description",
-        "Weight": "Weight",
-        "Price": "Price",
-        "Description": "Description",
-        "Location": "Location",
-        "AssignSkill": "Assign Skill",
-        "SkillModifier": "Skill Modifier"
+        "SkillModifier": "Skill Modifier",
+        "TL": "TL",
+        "Weight": "Weight"
       },
       "Items": {
-        "ItemType": "Type",
         "AssignArmor": "Assign Armor",
         "AssignAugment": "Assign Augment",
         "AssignEquipment": "Assign Equipment",
-        "AssignTool": "Assign Tool",
         "AssignJunk": "Assign Junk",
+        "AssignTool": "Assign Tool",
         "AssignWeapon": "Assign Weapon",
-        "MoveStorage": "Move Storage",
         "Inventory": "Inventory",
-        "Storage": "Storage",
-        "New": "New"
+        "ItemType": "Type",
+        "MoveStorage": "Move Storage",
+        "New": "New",
+        "Storage": "Storage"
       },
       "Skills": {
-        "SkillName": "Skill Name",
-        "Level": "Level",
-        "Modifier": "Modifier",
-        "STR": "STR",
         "DEX": "DEX",
+        "EDU": "EDU",
         "END": "END",
         "INT": "INT",
-        "EDU": "EDU",
+        "Level": "Level",
+        "Modifier": "Modifier",
+        "PSI": "PSI",
         "SOC": "SOC",
-        "PSI": "PSI"
+        "STR": "STR",
+        "SkillName": "Skill Name"
       },
       "Tool": {
         "Bonus": "Bonus"
       },
       "Weapon": {
-        "Damage": "Damage",
         "Ammo": "Ammo",
+        "Damage": "Damage",
         "Range": "Range"
       }
     },
+    "Migration": {
+      "Completed": "Twodsix System Migration to version {version} completed!",
+      "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server."
+    },
     "Rolls": {
+      "AdjustedDamage": "Damage adjusted by effect:",
       "Cancel": "Cancel",
+      "DamageUsing": "Damage using",
+      "Effect": "Effect",
+      "Roll": "Roll",
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
-      "Effect": "Effect",
-      "sum": "sum",
-      "Roll": "Roll",
-      "AdjustedDamage": "Damage adjusted by effect:",
-      "DamageUsing": "Damage using"
+      "sum": "sum"
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+        "hint": "Leave empty to use default (+/-1). Not currently used.",
+        "name": "What bonus/penalty to give per each time increment change in a task."
+      },
+      "automateDamageRollOnHit": {
+        "hint": "true=Roll damage, modified by effect of skill roll. false=Don't roll damage.",
+        "name": "Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?"
+      },
+      "defaultTokenSettings": {
+        "hint": "Automatically set advised prototype token settings to newly created Actors.",
+        "name": "Default Prototype Token Settings"
+      },
+      "effectOrTotal": {
+        "hint": "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
+        "name": "Show effect or total roll value for skill and characteristic rolls."
+      },
+      "initiativeFormula": {
+        "failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.",
+        "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Initiative Formula",
+        "success": "Set initiative formula to: ${formula}"
+      },
+      "maxSkillLevel": {
+        "hint": "Leave empty to use default (9).",
+        "name": "Maximum skill level."
+      },
+      "modifierForZeroCharacteristic": {
+        "hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
+        "name": "Modifier for characteristic value of zero."
+      },
+      "systemMigrationVersion": {
+        "hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
+        "name": "System Schema Version"
+      },
+      "termForAdvantage": {
+        "hint": "Don't use the same as for termForDisadvantage...",
+        "name": "What you want to call rolls with advantage (3d6kh2)."
+      },
+      "termForDisadvantage": {
+        "hint": "Don't use the same as for termForAdvantage...",
+        "name": "What you want to call rolls with disadvantage (3d6kl2)."
+      }
     }
   },
-  "Simple": "Simple",
-  "Easy": "Easy",
-  "Routine": "Routine",
-  "Average": "Average",
-  "Difficult": "Difficult",
-  "VeryDifficult": "Very Difficult",
-  "Formidable": "Formidable",
-  "Impossible": "Impossible",
-  "Normal": "Normal",
-  "Advantage": "Advantage",
-  "Disadvantage": "Disadvantage",
-  "Cancel": "Cancel"
+  "VeryDifficult": "Very Difficult"
 }

@@ -1,111 +1,98 @@
 {
+  "Advantage": "Nackdel",
+  "Average": "Genomsnittligt",
+  "Cancel": "Avbryt",
+  "Difficult": "Svårt",
+  "Disadvantage": "Fördel",
+  "Easy": "Lätt",
+  "Formidable": "Formidabelt",
+  "Impossible": "Omöjligt",
+  "Normal": "Normal",
+  "Routine": "Rutin",
+  "Simple": "Enkelt",
   "TWODSIX": {
-    "Migration": {
-      "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern.",
-      "Completed": "Twodsix Systemmigrering till version {version} klar!"
-    },
-    "Settings": {
-      "defaultTokenSettings.name": "Defaultprototypspelfigursinställningar",
-      "defaultTokenSettings.hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",
-      "initiativeFormula.name": "Initiativformel",
-      "initiativeFormula.hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
-      "modifierForZeroCharacteristic.name": "Modifierare for egenskapsvärde noll.",
-      "modifierForZeroCharacteristic.hint": "Lämna tomt för att använda default (-2). Räknas inte om automatiskt för existerande karaktärer",
-      "maxSkillLevel.name": "Maximal färdighetsnivå",
-      "maxSkillLevel.hint": "Lämna tomt för att använda default (9).",
-      "absoluteBonusValueForEachTimeIncrement.name": "Vilken bonus/malus som ges för varje tidsintervallsteg.",
-      "absoluteBonusValueForEachTimeIncrement.hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
-      "termForAdvantage.name": "Det du vill kalla tärningsslag med fördel (3d6kh2).",
-      "termForAdvantage.hint": "Använd inte samma ord som för termForDisadvantage...",
-      "termForDisadvantage.name": "Det du vill kalla tärningsslag med nackdel (3d6kl2).",
-      "termForDisadvantage.hint": "Använd inte samma ord som för termForAdvantage...",
-      "initiativeFormula.success": "Sätt initiativformel till: ${formula}",
-      "initiativeFormula.failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället.",
-      "systemMigrationVersion.name": "System Schema Version",
-      "systemMigrationVersion.hint": "Innehåller schema versionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)"
-    },
     "Actor": {
-      "Rolling": "Rullar",
-      "using": "mha",
-      "Unknown actor type ": "Okänd aktörstyp: ",
+      "Age": "Ålder",
+      "CharacterImage": "Karaktärens bild",
+      "CharacterName": "Karaktärens namn",
+      "Characteristics": {
+        "DEX": "SMI",
+        "EDU": "UTB",
+        "END": "UTH",
+        "INT": "INT",
+        "PSI": "PSI",
+        "SOC": "SOC",
+        "STR": "STY"
+      },
       "DeleteOwnedItem": "Ta bort ägd sak",
       "Finances": {
         "CASH_ON_HAND": "PENGAR I HANDEN",
-        "PENSION": "PENSION",
         "DEBT": "SKULD",
-        "SHIP_PAYMENTS_MONTHLY": "SKEPPSBETALNING (MÅNATLIG)",
+        "FINANCIAL_NOTES": "FINANSIELLA ANTECKNINGAR",
         "LIVING_COSTS": "LEVNADSOMKOSTNADER",
-        "FINANCIAL_NOTES": "FINANSIELLA ANTECKNINGAR"
+        "PENSION": "PENSION",
+        "SHIP_PAYMENTS_MONTHLY": "SKEPPSBETALNING (MÅNATLIG)"
       },
+      "Gender": "Kön",
+      "HomeWorld": "Hemvärld",
       "Info": {
-        "CONTACTS": "KONTAKTER",
         "ALLIES": "ALLIERADE",
-        "ENEMIES": "FIENDER",
         "BIOGRAPHY": "BIOGRAFI",
-        "DESCRIPTION": "BESKRIVNING"
+        "CONTACTS": "KONTAKTER",
+        "DESCRIPTION": "BESKRIVNING",
+        "ENEMIES": "FIENDER"
+      },
+      "Items": {
+        "ARMOR": "RUSTNING",
+        "AUGMENTS": "FÖRBÄTTRINGAR",
+        "Ammo": "Ammo",
+        "Armor": "Rustning",
+        "CreateItem": "Skapa Sak",
+        "Damage": "Skada",
+        "DeleteItem": "Ta bort Sak",
+        "EQUIPMENT": "UTRUSTNING",
+        "EditItem": "Ändra Sak",
+        "Effect": "Effekt",
+        "Location": "Plats",
+        "Name": "Namn",
+        "Qty": "Ant",
+        "Range": "Avstånd",
+        "ShortDescr": "Kort Beskr",
+        "TL": "TL",
+        "WEAPONS": "VAPEN",
+        "Weight": "Vikt"
       },
       "Notes": {
         "NOTES": "ANTECKNINGAR"
       },
-      "Characteristics": {
-        "STR": "STY",
-        "DEX": "SMI",
-        "END": "UTH",
-        "INT": "INT",
-        "EDU": "UTB",
-        "SOC": "SOC",
-        "PSI": "PSI"
-      },
-      "Items": {
-        "WEAPONS": "VAPEN",
-        "Name": "Namn",
-        "TL": "TL",
-        "Qty": "Ant",
-        "Range": "Avstånd",
-        "Damage": "Skada",
-        "Weight": "Vikt",
-        "Ammo": "Ammo",
-        "CreateItem": "Skapa Sak",
-        "EditItem": "Ändra Sak",
-        "DeleteItem": "Ta bort Sak",
-        "ARMOR": "RUSTNING",
-        "Armor": "Rustning",
-        "Effect": "Effekt",
-        "Location": "Plats",
-        "ShortDescr": "Kort Beskr",
-        "AUGMENTS": "FÖRBÄTTRINGAR",
-        "EQUIPMENT": "UTRUSTNING"
-      },
+      "Rolling": "Rullar",
       "Skills": {
         "AddSkill": ">>Ny färdighet<<",
-        "SkillName": "Färdighetsnamn",
+        "DeleteItem": "Ta bort Sak",
+        "EditItem": "Ändra Sak",
+        "EditOrRemove": "Ändra el Sudda",
         "Level": "Nivå",
         "Modifier": "Mod",
-        "Total": "Totalt",
-        "EditOrRemove": "Ändra el Sudda",
-        "EditItem": "Ändra Sak",
-        "DeleteItem": "Ta bort Sak"
+        "SkillName": "Färdighetsnamn",
+        "Total": "Totalt"
       },
-      "Age": "Ålder",
-      "CharacterImage": "Karaktärens bild",
-      "CharacterName": "Karaktärens namn",
-      "Gender": "Kön",
-      "HomeWorld": "Hemvärld",
       "Species": "Art",
       "Tabs": {
-        "Skills": "Färdigheter",
-        "Inventory": "Ägodelar",
         "Finances": "Finanser",
         "Info": "Info",
-        "Notes": "Anteckningar"
-      }
+        "Inventory": "Ägodelar",
+        "Notes": "Anteckningar",
+        "Skills": "Färdigheter"
+      },
+      "Unknown actor type ": "Okänd aktörstyp: ",
+      "using": "mha"
     },
     "Chat": {
       "Roll": {
         "Difficulty": "Svårighet",
-        "Type": "Slagtyp",
         "Mode": "Slagläge",
-        "OtherModifiers": "Andra modifierare"
+        "OtherModifiers": "Andra modifierare",
+        "Type": "Slagtyp"
       }
     },
     "Items": {
@@ -113,83 +100,120 @@
         "Armor": "Rustning"
       },
       "Augmentation": {
-        "AugLocation": "Placering",
-        "AugEffect": "Effekt",
-        "Head": "Huvud",
-        "Torso": "Torso",
         "Armar": "Armar",
-        "Legs": "Ben",
+        "AugEffect": "Effekt",
+        "AugLocation": "Placering",
         "FullBody": "Hela Kroppen",
+        "Head": "Huvud",
+        "Legs": "Ben",
+        "Torso": "Torso",
         "ValueCr": "Värde Cr"
       },
       "Equipment": {
+        "AssignSkill": "Tilldela Färdighet",
+        "Description": "Beskrivning",
         "ItemName": "Namn",
-        "TL": "TL",
+        "Location": "Placering",
+        "Price": "Pris",
         "Quantity": "Antal",
         "ShortDescription": "Kort Beskrivning",
-        "Weight": "Vikt",
-        "Price": "Pris",
-        "Description": "Beskrivning",
-        "Location": "Placering",
-        "AssignSkill": "Tilldela Färdighet",
-        "SkillModifier": "Färdighetsmodifierare"
+        "SkillModifier": "Färdighetsmodifierare",
+        "TL": "TL",
+        "Weight": "Vikt"
       },
       "Items": {
-        "ItemType": "Typ",
         "AssignArmor": "Tilldela Rustning",
         "AssignAugment": "Tilldela Förbättring",
         "AssignEquipment": "Tilldela Utrustning",
-        "AssignTool": "Tilldela Verktyg",
         "AssignJunk": "Tilldela Skrot",
+        "AssignTool": "Tilldela Verktyg",
         "AssignWeapon": "Tilldela Vapen",
-        "MoveStorage": "Lägg i lager",
         "Inventory": "Utrustningslista",
-        "Storage": "Lager",
-        "New": "Ny"
+        "ItemType": "Typ",
+        "MoveStorage": "Lägg i lager",
+        "New": "Ny",
+        "Storage": "Lager"
       },
       "Skills": {
-        "SkillName": "Färdighetsnamn",
-        "Level": "Nivå",
-        "Modifier": "Modifierare",
-        "STR": "STY",
         "DEX": "SMI",
+        "EDU": "UTB",
         "END": "UTH",
         "INT": "INT",
-        "EDU": "UTB",
+        "Level": "Nivå",
+        "Modifier": "Modifierare",
+        "PSI": "PSI",
         "SOC": "SOC",
-        "PSI": "PSI"
+        "STR": "STY",
+        "SkillName": "Färdighetsnamn"
       },
       "Tool": {
         "Bonus": "Bonus"
       },
       "Weapon": {
-        "Damage": "Skada",
         "Ammo": "Ammo",
+        "Damage": "Skada",
         "Range": "Räckvidd"
       }
     },
+    "Migration": {
+      "Completed": "Twodsix Systemmigrering till version {version} klar!",
+      "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern."
+    },
     "Rolls": {
+      "AdjustedDamage": "Skadan justerad av effekten:",
       "Cancel": "Avbryt",
+      "DamageUsing": "Skada med",
+      "Effect": "Effekten",
+      "Roll": "Rulla",
       "Rolling": "Rullar",
       "With": "med",
       "resultShows": "resultatet är",
-      "Effect": "Effekten",
-      "sum": "summan",
-      "Roll": "Rulla",
-      "AdjustedDamage": "Skadan justerad av effekten:",
-      "DamageUsing": "Skada med"
+      "sum": "summan"
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+        "hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
+        "name": "Vilken bonus/malus som ges för varje tidsintervallsteg."
+      },
+      "automateDamageRollOnHit": {
+        "hint": "sant=Rulla skadan, modifierad av färdighetsslagets effekt. falskt=rulla inte skadan.",
+        "name": "Ska skador på lyckade färdighetsslag (dvs som har effekt >= 0) rullas automatiskt om använd sak kan göra skada?"
+      },
+      "defaultTokenSettings": {
+        "hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",
+        "name": "Defaultprototypspelfigursinställningar"
+      },
+      "effectOrTotal": {
+        "hint": "sant=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), falskt=visa total (dvs. resultat+modifierare)",
+        "name": "Visa effekten eller totalvärdet när färgdighet och grundförmågor rullas."
+      },
+      "initiativeFormula": {
+        "failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället.",
+        "hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Initiativformel",
+        "success": "Sätt initiativformel till: ${formula}"
+      },
+      "maxSkillLevel": {
+        "hint": "Lämna tomt för att använda default (9).",
+        "name": "Maximal färdighetsnivå"
+      },
+      "modifierForZeroCharacteristic": {
+        "hint": "Lämna tomt för att använda default (-2). Räknas inte om automatiskt för existerande karaktärer",
+        "name": "Modifierare for egenskapsvärde noll."
+      },
+      "systemMigrationVersion": {
+        "hint": "Innehåller schema versionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",
+        "name": "System Schema Version"
+      },
+      "termForAdvantage": {
+        "hint": "Använd inte samma ord som för termForDisadvantage...",
+        "name": "Det du vill kalla tärningsslag med fördel (3d6kh2)."
+      },
+      "termForDisadvantage": {
+        "hint": "Använd inte samma ord som för termForAdvantage...",
+        "name": "Det du vill kalla tärningsslag med nackdel (3d6kl2)."
+      }
     }
   },
-  "Simple": "Enkelt",
-  "Easy": "Lätt",
-  "Routine": "Rutin",
-  "Average": "Genomsnittligt",
-  "Difficult": "Svårt",
-  "VeryDifficult": "Mycket Svårt",
-  "Formidable": "Formidabelt",
-  "Impossible": "Omöjligt",
-  "Normal": "Normal",
-  "Advantage": "Nackdel",
-  "Disadvantage": "Fördel",
-  "Cancel": "Avbryt"
+  "VeryDifficult": "Mycket Svårt"
 }
