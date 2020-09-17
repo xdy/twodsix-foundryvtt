@@ -1,3 +1,10 @@
+## [0.6.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.18...v0.6.19) (2020-09-17)
+
+
+### Bug Fixes
+
+* Minor gui fix (increase a dropdown width), more Spanish localization, and some general localization fixes. ([2092837](https://github.com/xdy/twodsix-foundryvtt/commit/2092837f503880e506f5a4d4b5d35e3933ecce6a))
+
 ## [0.6.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.17...v0.6.18) (2020-09-17)
 
 
