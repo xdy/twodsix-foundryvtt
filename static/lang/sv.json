@@ -188,10 +188,10 @@
         "name": "Visa effekten eller totalvärdet när färgdighet och grundförmågor rullas."
       },
       "initiativeFormula": {
-        "failure": "Misslyckades sätta initiativformel till: ${formula}, använder föregående värde ${currentFormula} istället.",
+        "failure": "Misslyckades sätta initiativformel till: {formula}, använder föregående värde {currentFormula} istället.",
         "hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiativformel",
-        "success": "Sätt initiativformel till: ${formula}"
+        "success": "Sätt initiativformel till: {formula}"
       },
       "maxSkillLevel": {
         "hint": "Lämna tomt för att använda default (9).",

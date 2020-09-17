@@ -188,10 +188,10 @@
         "name": "Show effect or total roll value for skill and characteristic rolls."
       },
       "initiativeFormula": {
-        "failure": "Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.",
+        "failure": "Failed to set initiative formula to: {formula}, using previous value {currentFormula} instead.",
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula",
-        "success": "Set initiative formula to: ${formula}"
+        "success": "Set initiative formula to: {formula}"
       },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",

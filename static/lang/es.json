@@ -175,15 +175,23 @@
         "hint": "Dejar vacío para utilizar por defecto (+/-1). Sin utilidad actualmente.",
         "name": "Qué bonus/penalización aplicar a cada incremento en una tarea."
       },
+	  "automateDamageRollOnHit": {
+        "hint": "true=Tirar daño, modificado por el efecto de la tirada de habilidad. false=No tirar el daño.",
+        "name": "¿Tirar daño automaticamente en las tiradas de habilidad que impacten (Ej: efecto > 0) con objetos que puedan dañar?"
+      },
       "defaultTokenSettings": {
         "hint": "Automáticamente asignar configuración al token de nuevos Actores.",
         "name": "Configuración por defecto del token"
       },
+	  "effectOrTotal": {
+        "hint": "true=Mostrar Efecto (Ej: tirada+modificadores-objetivo, normalmente 8), false=Mostrar Valor (Ej: tirada+modificadores)",
+        "name": "Mostrar el Efecto o el Valor final en las tiradas de habilidad y característica."
+      },
       "initiativeFormula": {
-        "failure": "Fallo al asignar nueva fórmula: ${formula}, utilizando el valor anterior ${currentFormula}.",
+        "failure": "Fallo al asignar nueva fórmula: {formula}, utilizando el valor anterior {currentFormula}.",
         "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Fórmula de iniciativa",
-        "success": "Nueva fórmula de iniciativa asignada correctamente: ${formula}"
+        "success": "Nueva fórmula de iniciativa asignada correctamente: {formula}"
       },
       "maxSkillLevel": {
         "hint": "Dejar vacío para utilizar por defecto (9).",
@@ -194,16 +202,16 @@
         "name": "Modificador para los Atributos a cero."
       },
       "systemMigrationVersion": {
-        "hint": "Guarda la versión del schema para el sistema Twodsix. (No modificar a menos que se sepa lo que se hace)",
+        "hint": "Cambia la versión del schema del sistema Twodsix. (No modificar a menos que se sepa lo que se hace)",
         "name": "Versión Schema del sistema"
       },
       "termForAdvantage": {
-        "hint": "No utilizar el mismo que en termForDisadvantage...",
-        "name": "Cómo llamar las tiradas con Ventaja (3d6kh2)."
+        "hint": "No utilizar el mismo término que en Desventaja.",
+        "name": "Nombre de las tiradas con Ventaja (3d6kh2)."
       },
       "termForDisadvantage": {
-        "hint": "No utilizar el mismo que en termForAdvantage...",
-        "name": "Cómo llamar las tiradas con Desventaja (3d6kl2)."
+        "hint": "No utilizar el mismo término que en Ventaja.",
+        "name": "Nombre de las tiradas con Desventaja (3d6kl2)."
       }
     }
   },

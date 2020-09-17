@@ -61,7 +61,7 @@ export const registerSettings = function ():void {
 
   game.settings.register('twodsix', 'effectOrTotal', {
     name: game.i18n.localize("TWODSIX.Settings.effectOrTotal.name"),
-    hint: game.i18n.localize("TWODSIX.Settings.effectOrTotal.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.effectOrTotal.hint"),
     scope: 'world',
     config: true,
     default: false,
@@ -70,7 +70,7 @@ export const registerSettings = function ():void {
 
   game.settings.register('twodsix', 'automateDamageRollOnHit', {
     name: game.i18n.localize("TWODSIX.Settings.automateDamageRollOnHit.name"),
-    hint: game.i18n.localize("TWODSIX.Settings.automateDamageRollOnHit.name"),
+    hint: game.i18n.localize("TWODSIX.Settings.automateDamageRollOnHit.hint"),
     scope: 'world',
     config: true,
     default: false,
@@ -109,10 +109,13 @@ function _simpleUpdateInit(formula:string, notify = false):void {
   const currentFormula = CONFIG.Combat.initiative.formula;
   try {
     new Roll(formula).roll();
-    message = `Set initiative formula to: ${formula}`;
+    message = game.i18n.format("TWODSIX.Settings.initiativeFormula.success", {formula: formula});
   } catch (error) {
     if (notify) {
-      message = `Failed to set initiative formula to: ${formula}, using previous value ${currentFormula} instead.`;
+      message = game.i18n.format("TWODSIX.Settings.initiativeFormula.failure", {
+        formula: formula,
+        currentFormula: currentFormula
+      });
       notificationType = "error";
     }
     game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);

@@ -1,5 +1,5 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-  <img class="ship-mask-bg" src="/systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+  <img class="ship-mask-bg" src="./systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
   <div class="ship-container">
     <div class="ship_image">
       <img class="ship-img" src="{{actor.img}}" data-edit="img" title="{{actor.ship.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
@@ -30,8 +30,7 @@
         <div class="ship-m-drive"><label>M-Drive</label><input type="text" value="{{data.ship.reqPower.m-drive}}" name="data.ship.reqPower.m-drive" placeholder="0"/></div>
         <div class="ship-j-drive"><label>J-Drive</label><input type="text" value="{{data.ship.reqPower.j-drive}}" name="data.ship.reqPower.j-drive" placeholder="0"/></div>
         <div class="ship-sensors"><label>Sensors</label><input type="text" value="{{data.ship.reqPower.sensors}}" name="data.ship.reqPower.sensors" placeholder="0"/></div>
-        <div class="ship-weapons">Weapons<input type="text" value="{{data.ship.reqPower.weapons}}" name="data.ship.reqPower.weapons" placeholder="0"/></li>
-        </div>
+        <div class="ship-weapons">Weapons<input type="text" value="{{data.ship.reqPower.weapons}}" name="data.ship.reqPower.weapons" placeholder="0"></div>s
       </div>
     </div>
   </div>
@@ -68,6 +67,5 @@
     <div class="tab ship-notes" data-group="primary" data-tab="ship-notes">
       {{> "systems/twodsix/templates/actors/parts/ship/ship-notes.html"}}
     </div>
-
-
+  </div>
 </form>
