@@ -1,3 +1,10 @@
+## [0.6.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.19...v0.6.20) (2020-09-18)
+
+
+### Bug Fixes
+
+* Fixes [#89](https://github.com/xdy/twodsix-foundryvtt/issues/89) Uses the primary bar to show 'hits' (i.e. str.mod+end.mod+dex.mod) ([f67f990](https://github.com/xdy/twodsix-foundryvtt/commit/f67f9904ffb11d96d7539256bae9b0193c4b50c8))
+
 ## [0.6.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.18...v0.6.19) (2020-09-17)
 
 
