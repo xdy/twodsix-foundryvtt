@@ -1,3 +1,10 @@
+## [0.6.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.20...v0.6.21) (2020-09-19)
+
+
+### Bug Fixes
+
+* Alpha0.6.21 visual adjustments ([#131](https://github.com/xdy/twodsix-foundryvtt/issues/131)) ([f9a315f](https://github.com/xdy/twodsix-foundryvtt/commit/f9a315f14533a639b2c764802c6d54ce27afe5ed))
+
 ## [0.6.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.19...v0.6.20) (2020-09-18)
 
 
