@@ -23,19 +23,13 @@ svg {
   fill: currentColor;
 }
 
-div[contenteditable] {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid #000;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  resize: none;
+p span, p {
+  background-color: transparent !important;
+  font-family: inherit !important;
 }
 
-input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], div[contenteditable] {
-  background: rgba(0, 0, 0, 0.21);
-  margin: 0;
+input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
+  background: #00000073 !important;
   color: #00e5ff !important;
   font-family: inherit;
   font-size: inherit;
@@ -45,17 +39,30 @@ input[type='text'], input[type='number'] input[type='password'], input[type='dat
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  border: none;
+  border: 1px solid #0d0d0d;
+  border-radius: 0px !important;
 }
 
-img {
-  border: none !important;
-  max-width: 100%;
+select {
+  height: 25px;
+  background: #00000073 !important;
+  color: #00e5ff !important;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid #0d0d0d;
+  border-radius: 0px !important;
 }
 
-input[type='text']:focus, input[type='number'] input[type='password']:focus, input[type='datetime-local']:focus {
-  outline: 2px solid #222f3e;
+input[type='text']:focus, input[type='number'] input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+  outline: none;
   box-shadow: 0 0 10px #207ab7;
+  background: #000000a6;
 }
 
 input::-webkit-inner-spin-button {
@@ -64,6 +71,11 @@ input::-webkit-inner-spin-button {
 
 .no-scroll {
   overflow: hidden;
+}
+
+img {
+  border: none !important;
+  max-width: 100%;
 }
 
 /*** Firebox Number Box Fix ***/
@@ -82,7 +94,22 @@ input[type=number] {
 .macro-sheet .form-group.command div[contenteditable] {
   height: calc(100% - 24px);
   resize: none;
-  color: #29aae1;
+  color: #00e5ff;
+}
+
+form .form-group, form .form-group-stacked {
+  clear: both;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3px 0;
+  color: #00e5ff !important;
+}
+
+#player-config label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #29aae1 !important;
 }
 
 .rollable:hover {
@@ -91,11 +118,6 @@ input[type=number] {
 
 .roll-damage:hover {
   cursor: pointer;
-}
-
-div[contenteditable]:focus {
-  outline: 2px solid #222f3e;
-  box-shadow: 0 0 10px #29aae1;
 }
 
 .centre {
@@ -193,6 +215,7 @@ img.character-info-mask {
   font-size: 1.2em;
   text-align: center;
   color: #29aae1 !important;
+  border: none;
 }
 
 .character-bgi {
@@ -207,22 +230,27 @@ img.character-info-mask {
 
 .character-bgi input {
   background-color: transparent !important;
+  border: none;
 }
 
 .bgi-age input {
   width: 2.5em;
+  border: none;
 }
 
 .bgi-gender input {
   width: 4em;
+  border: none;
 }
 
 .bgi-species input {
   width: 9.1em;
+  border: none;
 }
 
 .bgi-homeWorld input {
   width: 8em;
+  border: none;
 }
 
 span.bgi-age {
@@ -267,9 +295,10 @@ span.stat-name {
   width: 1.5em;
   text-align: center;
   margin-left: -0.25em;
-  background-color: #0000;
+  background-color: transparent !important;
   border: none;
   color: #6e819e;
+  border: none;
 }
 
 .stat img {
@@ -325,7 +354,8 @@ span.stat-damage {
 }
 
 span.stat-damage input, span.special-damage input {
-  color: #612e2e !important;
+  color: #b52c2c !important;
+  border: none;
 }
 
 span.special-ability {
@@ -656,7 +686,6 @@ span.total-output {
   height: 28.5em;
   border-radius: 0;
   overflow-y: auto;
-  color: #29aae1 !important;
   padding: 0.2em;
 }
 
@@ -736,18 +765,28 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
 
+.item-title-short {
+  background-image: url(../assets/actor/header.svg);
+  height: 22px;
+  width: 9.8em;
+  display: block;
+  color: #000;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0.2em 0.2em 0.2em 0.5em;
+}
+
 /*-------Info Tab-----------*/
 
 .info-container {
   display: grid;
-  grid-template-rows: 8em 8em 8em 8em 11em;
+  grid-template-columns: 10.5em 10.5em 10.5em;
+  grid-template-rows: 8em 8em 19em;
   gap: 1px 1px;
   grid-template-areas:
-      'char-description'
-      'char-contacts'
-      'char-allies'
-      'char-enemies'
-      'char-bio';
+      "char-description char-description char-description"
+      "char-contacts char-allies char-enemies"
+      "char-bio char-bio char-bio";
   padding: 1em;
   position: relative;
   margin-top: 2em;
@@ -1273,36 +1312,12 @@ button.flexrow.flex-group-center.toggle-skills {
   border: 1px solid #29aae1;
 }
 
-select {
-  height: 25px;
-  background: #000000a6 !important;
-  border: 1px solid #7a7971;
-  border-radius: 3px;
-  padding: 0 3px;
-  text-overflow: ellipsis;
-  color: #6e819e;
-}
-
-select:focus {
-  box-shadow: 0 0 5px #29aae1;
-  outline: none;
-  background: #000000a6;
-}
-
 .mini-dice img.rollable {
   width: 1.5em;
   margin-left: 0;
 }
 
 /*--- Item Page ---*/
-
-.item-sheet {
-  color: #29aae1;
-}
-
-.item-sheet div{
-  padding-top: 0.5em;
-}
 
 .small-grid {
   display: grid;
@@ -1368,6 +1383,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.item-price {
+  margin-top: 0.5em;
+}
+
 .item-skill {
   margin-top: 0.5em;
 }
@@ -1401,10 +1420,10 @@ a:hover {
 }
 
 .item-descr div[contenteditable] {
-  height: 140px;
+  min-height: 140px;
   background: rgba(0, 0, 0, 0.22);
-  color: #207ab7;
   border: none;
+  padding: 0.5em;
 }
 
 .pusher {
