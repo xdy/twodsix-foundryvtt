@@ -61,6 +61,12 @@ export class Migration {
       }
     }
 
+    if (before(systemMigrationVersion, "0.6.23")) {
+      if (item.type === 'skills') {
+        updateData['data.description'] = "";
+        updateData['data.shortDesc'] = "";
+      }
+    }
 
     return updateData;
   }
