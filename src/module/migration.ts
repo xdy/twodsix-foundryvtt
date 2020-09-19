@@ -68,6 +68,14 @@ export class Migration {
       }
     }
 
+    if (before(systemMigrationVersion, "0.6.24")) {
+      if (item.type === 'skills') {
+        updateData['data.subtype'] = "";
+        updateData['data.reference'] = "";
+        updateData['data.key'] = "";
+      }
+    }
+
     return updateData;
   }
 

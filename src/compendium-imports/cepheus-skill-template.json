@@ -1,25 +1,15 @@
 {
   "name": "{{name}}",
-  "type": "skill",
+  "type": "skills",
   "data": {
-    "description": "{{description}}",
-    "notes": "",
-    "label": "{{label}}",
+    "key": "{{key}}",
     "name": "{{name}}",
+    "description": "{{description}}",
+    "shortdescr": "{{shortdescr}}",
     "subtype": "{{subtype}}",
     "reference": "{{reference}}",
     "value": -3,
-    "defaultCharacteristic": "",
-    "tasks": {
-      "name": "",
-      "description": "",
-      "characteristic": "DEX",
-      "timeIncrement": "seconds",
-      "difficulty": "Average"
-    },
-    "cascade": false,
-    "specialization": "",
-    "show": false
+    "characteristic": ""
   },
   "img": "icons/svg/mystery-man.svg"
 }
