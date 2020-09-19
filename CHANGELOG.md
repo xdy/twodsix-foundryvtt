@@ -1,3 +1,10 @@
+## [0.6.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.22...v0.6.23) (2020-09-19)
+
+
+### Bug Fixes
+
+* All item sheets should have description and shortDescription on them, including skills (for which I added a migration). ([d2022aa](https://github.com/xdy/twodsix-foundryvtt/commit/d2022aa5f8f8271ccbb575a38654029bb2417fce))
+
 ## [0.6.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.21...v0.6.22) (2020-09-19)
 
 
