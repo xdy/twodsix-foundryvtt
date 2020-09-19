@@ -1,3 +1,10 @@
+## [0.6.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.21...v0.6.22) (2020-09-19)
+
+
+### Bug Fixes
+
+* Hopefully this should fix the issue with disappearing item skills and skill modifiers. It also makes it less likely that future migrations mess things up. ([3334e23](https://github.com/xdy/twodsix-foundryvtt/commit/3334e2304c0925de274eec47d35c33a45d8e78d8))
+
 ## [0.6.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.20...v0.6.21) (2020-09-19)
 
 
