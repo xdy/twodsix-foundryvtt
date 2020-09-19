@@ -1,3 +1,10 @@
+## [0.6.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.23...v0.6.24) (2020-09-19)
+
+
+### Bug Fixes
+
+* Adds the cepheus engine skill list to the compendium 'ce skills'. Also adds a few hidden fields (as in, not on any item sheet) that I think will be needed later, but that right now have no system support. ([9387898](https://github.com/xdy/twodsix-foundryvtt/commit/93878989ef06172064f9beb08f52edcf3640f8d2))
+
 ## [0.6.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.22...v0.6.23) (2020-09-19)
 
 
