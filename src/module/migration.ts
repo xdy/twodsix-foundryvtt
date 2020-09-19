@@ -1,4 +1,5 @@
 import {TwodsixItemData} from "./entities/TwodsixItem";
+import {before} from "./hooks/ready";
 
 //TODO Move all types to a better place
 export type UpdateData = {
@@ -14,7 +15,7 @@ export class Migration {
     const actorData = actor.data;
     await this.migrateActorItems(actorData, systemMigrationVersion, actor);
 
-    if (systemMigrationVersion < "0.6.20") {
+    if (before(systemMigrationVersion, "0.6.20")) {
       updateData['data.hits.value'] = 0;
       updateData['data.hits.min'] = 0;
       updateData['data.hits.max'] = 0;
@@ -41,13 +42,25 @@ export class Migration {
   private static async migrateItemData(item:TwodsixItemData, systemMigrationVersion:string):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
 
-    if (systemMigrationVersion < "0.6.9") {
+    if (before(systemMigrationVersion, "0.6.9")) {
       updateData['data.name'] = item.name;
     }
 
-    if (systemMigrationVersion < "0.6.15") {
+    if (before(systemMigrationVersion, "0.6.15")) {
       updateData['data.skillModifier'] = 0;
     }
+
+    if (before(systemMigrationVersion, "0.6.22")) {
+      if (item.type != 'skills') {
+        if (!item.data.skill) {
+          updateData['data.skill'] = "";
+        }
+        if (!item.data.skillModifier) {
+          updateData['data.skillModifier'] = 0;
+        }
+      }
+    }
+
 
     return updateData;
   }

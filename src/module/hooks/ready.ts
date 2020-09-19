@@ -2,21 +2,28 @@ import {Migration} from "../migration";
 import compareVersions from "compare-versions";
 
 
+export function before(worldVersion, MIGRATIONS_IMPLEMENTED:string) {
+  return compareVersions(worldVersion, MIGRATIONS_IMPLEMENTED) === -1;
+}
+
 Hooks.once("ready", async function () {
   // Determine whether a system migration is required and feasible
+
   const MIGRATIONS_IMPLEMENTED = "0.6.1";
-  let currentVersion = null;
+  const systemVersion = game.system.data.version;
+  let worldVersion = null;
   if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
-    currentVersion = await game.settings.get("twodsix", "systemMigrationVersion");
-    if (currentVersion == "null") {
-      currentVersion = null;
+    worldVersion = await game.settings.get("twodsix", "systemMigrationVersion");
+    if (worldVersion == "null" || worldVersion == "") {
+      worldVersion = null;
     }
   }
-  const needMigration = currentVersion === null || currentVersion === "" || compareVersions(currentVersion, game.system.data.version);
+
+  const needMigration = worldVersion === null || compareVersions(worldVersion, systemVersion) === -1;
 
   // Perform the migration
   if (needMigration && game.user.isGM) {
-    if (!currentVersion || currentVersion < MIGRATIONS_IMPLEMENTED) {
+    if (!worldVersion || before(worldVersion, MIGRATIONS_IMPLEMENTED)) {
       ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
     }
     await Migration.migrateWorld();

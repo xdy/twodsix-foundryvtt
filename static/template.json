@@ -291,7 +291,8 @@
         "equipped": {
           "weight": 0
         },
-        "skillModifier": 0
+        "skillModifier": 0,
+        "skill": ""
       }
     },
     "equipment": {
