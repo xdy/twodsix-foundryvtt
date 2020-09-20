@@ -1,3 +1,10 @@
+## [0.6.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.24...v0.6.25) (2020-09-20)
+
+
+### Bug Fixes
+
+* Add a weapon compendium with the SRD weapons for Cepheus Engine (excluding heavy weapons like explosives and grenade launchers). ([be5e558](https://github.com/xdy/twodsix-foundryvtt/commit/be5e558c96ee0c0d17af6660901bbfd5734dfdb0))
+
 ## [0.6.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.23...v0.6.24) (2020-09-19)
 
 
