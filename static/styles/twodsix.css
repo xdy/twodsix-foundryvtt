@@ -1,7 +1,12 @@
 @font-face {
   font-family: "Asap-Regular";
   src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */
+  url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */
+  url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */
+  url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */
+  url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
 }
@@ -913,6 +918,7 @@ img.ship-img {
 
 .ship-name input[type="text"] {
   height: 1.3em;
+  border:none;
 }
 
 .ship-info {
@@ -940,6 +946,8 @@ img.ship-img {
   margin-left: 1.7em;
   font-size: 22px;
   width: 2.5em;
+  border:none;
+  background-color: transparent !important;
 }
 
 .ship-state-grid {
@@ -984,11 +992,12 @@ img.ship-img {
 }
 
 .ship-maintenance input[type="text"] {
-  background-color: #000000bd;
+  background-color: #000000bd !important;
   width: 4.5em;
   border: 1px solid #29aae1;
   left: -1em;
   position: relative;
+  border:none;
 }
 
 .ship-maintenance span {
@@ -1067,6 +1076,8 @@ img.ship-img {
   width: 1.8em;
   top: 0.20em;
   text-align: center;
+  border:none;
+  background-color: transparent !important;
 }
 
 /*--- Labels ---*/
@@ -1105,6 +1116,8 @@ input.power-current {
   top: -1.65em;
   width: 3.6em;
   display: block;
+  border:none;
+  background-color: transparent !important;
 }
 
 input.power-total {
@@ -1114,6 +1127,8 @@ input.power-total {
   top: -1.65em;
   width: 3.6em;
   display: block;
+  border:none;
+  background-color: transparent !important;
 }
 
 /*------------------*/
@@ -1231,6 +1246,7 @@ a.ship-notes-tab.active {
   width: 14.8em;
   border: 1px groove #00e5ff;
   border-radius: 0;
+
 }
 
 .ship-grid > div > div[contenteditable] {
