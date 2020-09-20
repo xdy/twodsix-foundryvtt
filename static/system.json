@@ -51,11 +51,11 @@
       "entity": "Item"
     },
     {
-      "name": "2e-skills",
-      "label": "2e skills",
+      "name": "ce-weapons",
+      "label": "ce weapons",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/2e-skills.db",
+      "path": "./packs/ce-weapons.db",
       "entity": "Item"
     }
   ],

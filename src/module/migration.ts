@@ -76,6 +76,35 @@ export class Migration {
       }
     }
 
+    if (before(systemMigrationVersion, "0.6.25")) {
+      let cost;
+      try {
+        const price = item.data.price as string;
+        cost = Number(price.toLowerCase().replace(" ", "").replace("cr", ""));
+      } catch (e) {
+        cost = 0;
+        const message = game.i18n.format("TWODSIX.Migration.MigrationError0_6_25", {
+          name: item.name,
+          price: item.data.price
+        });
+        console.log(message);
+        ui.notifications.warn(message);
+      }
+      updateData['data.price'] = cost;
+
+      if (item.type === 'weapon') {
+        updateData['data.lawLevel'] = 0;
+        updateData['data.rangeBand'] = "";
+        updateData['data.weaponType'] = "";
+        updateData['data.damageType'] = "";
+        updateData['data.rateOfFire'] = "";
+        updateData['data.recoil'] = false;
+      }
+    }
+
+    // Remove deprecated fields
+    this._migrateRemoveDeprecated(item, updateData);
+
     return updateData;
   }
 
@@ -139,6 +168,30 @@ export class Migration {
     await Promise.all(promises);
 
     console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+  }
+
+  /**
+   * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
+   * @private
+   */
+  static _migrateRemoveDeprecated(ent:TwodsixItemData, updateData:UpdateData):void {
+    const flat = flattenObject(ent.data);
+    // console.warn('flat', flat);
+    // Identify objects to deprecate
+    const toDeprecate = Object.entries(flat)
+      .filter((e) => e[0].endsWith('_deprecated') && e[1] === true)
+      .map((e) => {
+        const parent = e[0].split('.');
+        parent.pop();
+        return parent.join('.');
+      });
+
+    // Remove them
+    for (const k of toDeprecate) {
+      const parts = k.split('.');
+      parts[parts.length - 1] = '-=' + parts[parts.length - 1];
+      updateData[`data.${parts.join('.')}`] = null;
+    }
   }
 
   static async migrateWorld():Promise<void> {

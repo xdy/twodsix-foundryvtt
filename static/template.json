@@ -286,7 +286,7 @@
         "shortdescr": "",
         "quantity": 1,
         "weight": 0,
-        "price": "0 Cr",
+        "price": 0,
         "traits": [],
         "equipped": {
           "weight": 0
@@ -319,7 +319,13 @@
       "location": [
         "inventory",
         "storage"
-      ]
+      ],
+      "lawLevel": 0,
+      "rangeBand": "",
+      "weaponType": "",
+      "damageType": "",
+      "rateOfFire": "",
+      "recoil": false
     },
     "armor": {
       "templates": [

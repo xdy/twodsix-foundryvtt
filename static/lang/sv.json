@@ -152,12 +152,20 @@
       "Weapon": {
         "Ammo": "Ammo",
         "Damage": "Skada",
-        "Range": "Räckvidd"
+        "Range": "Räckvidd",
+        "lawLevel": "Lagnivå",
+        "rangeBand": "Räckviddsband",
+        "weaponType": "Vapentyp",
+        "damageType": "Skadetyp",
+        "rateOfFire": "Eldhastighet",
+        "recoil": "Rekyl"
+
       }
     },
     "Migration": {
       "Completed": "Twodsix Systemmigrering till version {version} klar!",
-      "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern."
+      "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern.",
+      "MigrationError0_6_25": "Migrationsfel: Kunde inte tolka priset för ${name}, det var ${price} men är nu 0."
     },
     "Rolls": {
       "AdjustedDamage": "Skadan justerad av effekten:",

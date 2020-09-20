@@ -66,7 +66,7 @@ async function createTwodsixMacro(data, slot) {
       flags: {"twodsix.itemMacro": true}
     });
   }
-  await game.user.assignHotbarMacro(macro as Macro, slot);
+  await game.user.assignHotbarMacro(macro, slot);
   return false;
 }
 

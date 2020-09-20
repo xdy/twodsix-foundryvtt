@@ -1,12 +1,7 @@
 @font-face {
   font-family: "Asap-Regular";
   src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-  url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */
-  url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */
-  url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */
-  url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */
-  url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
 }
@@ -1416,6 +1411,30 @@ a:hover {
 }
 
 .item-descr {
+  margin-top: 0.5em;
+}
+
+.item-lawLevel {
+  margin-top: 0.5em;
+}
+
+.item-rangeBand {
+  margin-top: 0.5em;
+}
+
+.item-weaponType {
+  margin-top: 0.5em;
+}
+
+.item-damageType {
+  margin-top: 0.5em;
+}
+
+.item-rateOfFire {
+  margin-top: 0.5em;
+}
+
+.item-recoil {
   margin-top: 0.5em;
 }
 
