@@ -1,3 +1,10 @@
+## [0.6.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.26...v0.6.27) (2020-09-20)
+
+
+### Bug Fixes
+
+* Css changes and a typo fix from Kevin. ([5801c16](https://github.com/xdy/twodsix-foundryvtt/commit/5801c169fe853969e16a9257ddc368e773bc9b9e))
+
 ## [0.6.26](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.25...v0.6.26) (2020-09-20)
 
 
