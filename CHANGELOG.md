@@ -1,3 +1,10 @@
+## [0.6.26](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.25...v0.6.26) (2020-09-20)
+
+
+### Bug Fixes
+
+* Rolls back the price change. ([799a72c](https://github.com/xdy/twodsix-foundryvtt/commit/799a72c13b21ab9e9cc57af247a9fb043b993ccb))
+
 ## [0.6.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.24...v0.6.25) (2020-09-20)
 
 
