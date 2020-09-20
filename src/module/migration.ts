@@ -77,20 +77,20 @@ export class Migration {
     }
 
     if (before(systemMigrationVersion, "0.6.25")) {
-      let cost;
-      try {
-        const price = item.data.price as string;
-        cost = Number(price.toLowerCase().replace(" ", "").replace("cr", ""));
-      } catch (e) {
-        cost = 0;
-        const message = game.i18n.format("TWODSIX.Migration.MigrationError0_6_25", {
-          name: item.name,
-          price: item.data.price
-        });
-        console.log(message);
-        ui.notifications.warn(message);
-      }
-      updateData['data.price'] = cost;
+      // let cost;
+      // try {
+      //   const price = item.data.price as string;
+      //   cost = Number(price.toLowerCase().replace(" ", "").replace("cr", ""));
+      // } catch (e) {
+      //   cost = 0;
+      //   const message = game.i18n.format("TWODSIX.Migration.MigrationError0_6_25", {
+      //     name: item.name,
+      //     price: item.data.price
+      //   });
+      //   console.log(message);
+      //   ui.notifications.warn(message);
+      // }
+      // updateData['data.price'] = cost;
 
       if (item.type === 'weapon') {
         updateData['data.lawLevel'] = 0;

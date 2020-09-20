@@ -286,7 +286,7 @@
         "shortdescr": "",
         "quantity": 1,
         "weight": 0,
-        "price": 0,
+        "price": "",
         "traits": [],
         "equipped": {
           "weight": 0
