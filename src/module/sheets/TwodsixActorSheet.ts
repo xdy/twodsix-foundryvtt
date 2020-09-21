@@ -1,6 +1,7 @@
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import TwodsixItem from "../entities/TwodsixItem";
+import {UpdateData} from "../migration";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -52,6 +53,21 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find('.special-damage').on('change', this._limitDamage.bind(this));
   }
 
+  private _updateHits():void {
+    for (const cha of Object.values(this.actor.data.data.characteristics as Record<any, any>)) {
+      cha.current = cha.value - cha.damage;
+    }
+    const updateData = <UpdateData>{};
+    const characteristics = this.actor.data.data.characteristics;
+    updateData['data.hits.value'] = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
+    updateData['data.hits.max'] = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
+    try {
+      this.actor.update(updateData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   private _limitDamage(event:Event):void {
     const characteristicString = $(event.currentTarget).parents('.stat:first,.special:first').attr('data-characteristic');
     const characteristic = this.actor.data.data.characteristics[characteristicString];
@@ -61,6 +77,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     } else if (input.val() < 0) {
       input.val(0);
     }
+    characteristic.damage = input.val();
+    this._updateHits();
   }
 
   /**
