@@ -1,3 +1,10 @@
+## [0.6.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.27...v0.6.28) (2020-09-21)
+
+
+### Bug Fixes
+
+* Infinite hits calculation changed to only start calculating once an actor actually has taken damage, until then the bar is empty. ([c3e1674](https://github.com/xdy/twodsix-foundryvtt/commit/c3e1674a7756baed053e890882692438ba722c97))
+
 ## [0.6.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.26...v0.6.27) (2020-09-20)
 
 
