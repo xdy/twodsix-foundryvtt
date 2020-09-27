@@ -2,7 +2,7 @@ import {Migration} from "../migration";
 import compareVersions from "compare-versions";
 
 
-export function before(worldVersion, MIGRATIONS_IMPLEMENTED:string) {
+export function before(worldVersion:string, MIGRATIONS_IMPLEMENTED:string):boolean {
   return compareVersions(worldVersion, MIGRATIONS_IMPLEMENTED) === -1;
 }
 

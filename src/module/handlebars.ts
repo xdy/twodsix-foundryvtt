@@ -1,5 +1,5 @@
-import {advantageDisadvantageTerm} from "./settings";
 import * as util from "util";
+import {advantageDisadvantageTerm} from "./i18n";
 
 export default function registerHandlebarsHelpers():void {
 

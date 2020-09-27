@@ -12,9 +12,15 @@
     </div>
 
     <div class="item-range">
+      {{#if data.settings.ShowRangeBandAndHideRange}}
+      <label for="data.rangeBand" class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}
+        <input id="data.rangeBand" type="text" name="data.rangeBand" value="{{data.rangeBand}}">
+      </label>
+      {{else}}
       <label for="data.range" class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}
         <input id="data.range" type="text" name="data.range" value="{{data.range}}">
       </label>
+      {{/if}}
     </div>
 
     <div class="item-ammo">
@@ -35,35 +41,46 @@
       </label>
     </div>
 
+    {{#if data.settings.ShowLawLevel}}
     <div class="item-lawLevel">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
       <div contenteditable="true" data-edit="data.lawLevel">{{{data.lawLevel}}}</div>
     </div>
+    {{/if}}
 
-    <div class="item-rangeBand">
-      <span class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</span>
-      <div contenteditable="true" data-edit="data.rangeBand">{{{data.rangeBand}}}</div>
-    </div>
-
+    {{#if data.settings.ShowWeaponType}}
     <div class="item-weaponType">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.weaponType"}}</span>
       <div contenteditable="true" data-edit="data.weaponType">{{{data.weaponType}}}</div>
     </div>
+    {{/if}}
 
+    {{#if data.settings.ShowDamageType}}
     <div class="item-damageType">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</span>
       <div contenteditable="true" data-edit="data.damageType">{{{data.damageType}}}</div>
     </div>
+    {{/if}}
 
+    {{#if data.settings.ShowRateOfFire}}
     <div class="item-rateOfFire">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</span>
       <div contenteditable="true" data-edit="data.rateOfFire">{{{data.rateOfFire}}}</div>
     </div>
+    {{/if}}
 
+    {{#if data.settings.ShowRecoil}}
+    <!-- Should be a checkbox, but it behaved strangely, so I switched to a dropdown instead. -->
     <div class="item-recoil">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.recoil"}}</span>
-      <div contenteditable="true" data-edit="data.recoil">{{{data.recoil}}}</div>
+      <select name="data.recoil" value={{data.recoil}}>
+        {{#select data.recoil}}
+        <option value="true">{{localize "TWODSIX.Yes"}}</option>
+        <option value="false">{{localize "TWODSIX.No"}}</option>
+        {{/select}}
+      </select>
     </div>
+    {{/if}}
 
     <div class="item-short">
       <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}

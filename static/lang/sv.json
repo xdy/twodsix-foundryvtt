@@ -5,6 +5,7 @@
   "Difficult": "Svårt",
   "Disadvantage": "Fördel",
   "Easy": "Lätt",
+  "False": "Falskt",
   "Formidable": "Formidabelt",
   "Impossible": "Omöjligt",
   "Normal": "Normal",
@@ -100,7 +101,7 @@
         "Armor": "Rustning"
       },
       "Augmentation": {
-        "Armar": "Armar",
+        "Arms": "Armar",
         "AugEffect": "Effekt",
         "AugLocation": "Placering",
         "FullBody": "Hela Kroppen",
@@ -159,14 +160,14 @@
         "damageType": "Skadetyp",
         "rateOfFire": "Eldhastighet",
         "recoil": "Rekyl"
-
       }
     },
     "Migration": {
       "Completed": "Twodsix Systemmigrering till version {version} klar!",
       "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern.",
-      "MigrationError0_6_25": "Migrationsfel: Kunde inte tolka priset för ${name}, det var ${price} men är nu 0."
+      "MigrationError0.6.25": "Migrationsfel: Kunde inte tolka priset för ${name}, det var ${price} men är nu 0."
     },
+    "No": "Nej",
     "Rolls": {
       "AdjustedDamage": "Skadan justerad av effekten:",
       "Cancel": "Avbryt",
@@ -220,8 +221,33 @@
       "termForDisadvantage": {
         "hint": "Använd inte samma ord som för termForAdvantage...",
         "name": "Det du vill kalla tärningsslag med nackdel (3d6kl2)."
+      },
+      "ShowLawLevel": {
+        "name": "Visa 'Lagnivå' fältet på vapenblad",
+        "hint": "sant=Visa 'Lagnivå' fältet, falskt=Göm det"
+      },
+      "ShowRecoil": {
+        "name": "Visa 'Rekyl' fältet på vapenblad",
+        "hint": "true=Visa 'Rekyl' fältet, falskt=Göm det"
+      },
+      "ShowRateOfFire": {
+        "name": "Visa 'Eldhastighet' fältet på vapenblad",
+        "hint": "true=Visa 'Eldhastighet' fältet, falskt=Göm det"
+      },
+      "ShowDamageType": {
+        "name": "Visa 'Skadetyp' fältet på vapenblad",
+        "hint": "true=Visa 'Skadetyp' fältet, falskt=Göm det"
+      },
+      "ShowWeaponType": {
+        "name": "Visa 'Vapentyp' fältet på vapenblad",
+        "hint": "true=Visa 'Vapentyp' fältet, falskt=Göm det"
+      },
+      "ShowRangeBandAndHideRange": {
+        "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",
+        "hint": "sant=Visar 'Räckviddsband', falskt=Visar 'Räckvidd'"
       }
-    }
+    },
+    "Yes": "Ja"
   },
   "VeryDifficult": "Mycket Svårt"
 }

@@ -25,6 +25,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     }
     this.actor.data.showEffect = game.settings.get("twodsix", "effectOrTotal");
 
+    // Add relevant data from system settings
+    data.data.settings = {
+      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
+    };
+
     return data;
   }
 

@@ -166,6 +166,7 @@
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
       "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
     },
+    "No": "No",
     "Rolls": {
       "AdjustedDamage": "Damage adjusted by effect:",
       "Cancel": "Cancel",
@@ -219,8 +220,33 @@
       "termForDisadvantage": {
         "hint": "Don't use the same as for termForAdvantage...",
         "name": "What you want to call rolls with disadvantage (3d6kl2)."
+      },
+      "ShowLawLevel": {
+        "hint": "true=Show the 'Law Level' field, false=hide it",
+        "name": "Show the 'Law Level' field on weapon sheets"
+      },
+      "ShowRecoil": {
+        "hint": "true=Show the 'Recoil' field, false=hide it",
+        "name": "Show the 'Recoil' field on weapon sheets"
+      },
+      "ShowRateOfFire": {
+        "name": "true=Show the 'Rate of Fire' field, false=hide it",
+        "hint": "Show the 'Rate of Fire' field on weapon sheets"
+      },
+      "ShowDamageType": {
+        "hint": "true=Show the 'Damage Type' field, false=hide it",
+        "name": "Show the 'Damage Type' field on weapon sheets"
+      },
+      "ShowWeaponType": {
+        "hint": "true=Show the 'Weapon Type' field, false=hide it",
+        "name": "Show the 'Weapon Type' field on weapon sheets"
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "true=Shows 'Range Band', false=Shows 'Range'",
+        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
       }
-    }
+    },
+    "Yes": "Yes"
   },
   "VeryDifficult": "Very Difficult"
 }

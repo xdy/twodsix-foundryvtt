@@ -30,6 +30,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   getData():ItemSheetData {
     const data = super.getData();
 
+    // Add relevant data from system settings
+    data.data.settings = {
+      ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
+      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
+      ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
+      ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
+      ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
+      ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
+    };
+
     return data;
   }
 

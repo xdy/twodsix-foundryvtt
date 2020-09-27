@@ -1,7 +1,7 @@
 import {TWODSIX} from "../config";
-import {advantageDisadvantageTerm} from "../settings";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
+import {advantageDisadvantageTerm} from "../i18n";
 
 
 export class TwodsixRolls {

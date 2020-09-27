@@ -23,12 +23,16 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-weapons">
-            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
             <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
             <span class="item-name centre">{{data.weight}}</span>
+            {{#if actor.data.settings.ShowRangeBandAndHideRange}}
+            <span class="item-name centre">{{data.rangeBand}}</span>
+            {{else}}
             <span class="item-name centre">{{data.range}}</span>
+            {{/if}}
             <span class="item-name centre roll-damage" data-roll="{{data.damage}}">{{data.damage}}</span>
             <span class="item-name centre">{{data.ammo}}</span>
             <span class="item-controls centre">
@@ -62,7 +66,7 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-armor">
-            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
             <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
@@ -98,7 +102,7 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-augments">
-            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
             <span class="item-name rollable">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
@@ -133,7 +137,7 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
             <span class="items-equipment">
-              <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}"src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+              <span class="mini-dice rollable"><img class="rollable" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
               <span class="item-name rollable">{{item.name}}</span>
               <span class="item-name centre">{{data.techLevel}}</span>
               <span class="item-name centre">{{data.quantity}}</span>
