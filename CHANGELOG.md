@@ -1,3 +1,10 @@
+## [0.6.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.28...v0.6.29) (2020-09-27)
+
+
+### Bug Fixes
+
+* Hide the cepheus-only fields on the weapon sheet by default, with a setting each to show them. Turn recoil into a dropdown (should be a checkbox, but I couldn't get that to behave, so went with a two value dropdown instead.) Clean up of settings. Adds several i18n keys. ([cc25a04](https://github.com/xdy/twodsix-foundryvtt/commit/cc25a04430ba673754ad6ea3876e090ce6d397e4))
+
 ## [0.6.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.27...v0.6.28) (2020-09-21)
 
 
