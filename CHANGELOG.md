@@ -1,3 +1,10 @@
+## [0.6.30](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.29...v0.6.30) (2020-10-03)
+
+
+### Bug Fixes
+
+* Fixed skill characteristic modifiers not updating when characters take damage. Includes migration that adds a localization string: ([36061b4](https://github.com/xdy/twodsix-foundryvtt/commit/36061b4359ed8b0d277f334380b26681054c67d8))
+
 ## [0.6.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.28...v0.6.29) (2020-09-27)
 
 
