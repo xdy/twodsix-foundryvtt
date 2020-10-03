@@ -356,7 +356,7 @@
       ],
       "name": "Skill Name",
       "value": -3,
-      "characteristic": "STR",
+      "characteristic": "strength",
       "type": "skills",
       "description": "",
       "shortdescr": "",
