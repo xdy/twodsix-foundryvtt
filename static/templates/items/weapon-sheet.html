@@ -70,9 +70,15 @@
     {{/if}}
 
     {{#if data.settings.ShowRecoil}}
+    <!-- Should be a checkbox, but it behaved strangely, so I switched to a dropdown instead. -->
     <div class="item-recoil">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.recoil"}}</span>
-      <input type="checkbox" class="checkbox" name="data.recoil" {{checked data.recoil}} data-dtype="Boolean" />
+      <select name="data.recoil" value={{data.recoil}}>
+        {{#select data.recoil}}
+        <option value="true">{{localize "TWODSIX.Yes"}}</option>
+        <option value="false">{{localize "TWODSIX.No"}}</option>
+        {{/select}}
+      </select>
     </div>
     {{/if}}
 

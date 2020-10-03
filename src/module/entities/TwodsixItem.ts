@@ -27,9 +27,7 @@ export default class TwodsixItem extends Item {
       const itemCharacteristic = itemData.data.characteristic;
       if (this.actor.data.data.characteristics) { //Temporary fix until issue #102
         const actorCharacteristics = Object.values(this.actor.data.data.characteristics);
-        const activeCharacteristic:any = actorCharacteristics.filter((c:any) => {
-          return c.key === itemCharacteristic;
-        });
+        const activeCharacteristic:any = actorCharacteristics.filter((c:any) => c.shortLabel === itemCharacteristic);
 
         let mod = 0;
         if (activeCharacteristic.length) {

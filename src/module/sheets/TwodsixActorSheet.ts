@@ -3,7 +3,6 @@ import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import TwodsixItem from "../entities/TwodsixItem";
 import {UpdateData} from "../migration";
 import {calcModFor} from "../utils/sheetUtils";
-import {TWODSIX} from "../config";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -30,7 +29,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     data.data.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
     };
-    data.config = TWODSIX;
 
     return data;
   }
@@ -76,16 +74,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     const updateData = <UpdateData>{};
     const characteristics = this.actor.data.data.characteristics;
+    updateData[`data.characteristics.${characteristicKey}.damage`] = characteristic.damage;
     updateData['data.hits.value'] = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
     updateData['data.hits.max'] = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
-
-    for (const skill of this.actor.items.filter(x => x.type === 'skills').filter(x => x.data.data.characteristic === characteristicKey)) {
-      const itemData = <UpdateData>{};
-      itemData['data.mod'] = characteristic.mod;
-      await (this.actor.getOwnedItem(skill._id) as TwodsixItem).update(itemData, null);
+    try {
+      await this.actor.update(updateData);
+    } catch (e) {
+      console.log(e);
     }
-
-    await this.actor.update(updateData);
   }
 
   /**

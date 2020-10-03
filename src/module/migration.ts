@@ -1,7 +1,5 @@
 import {TwodsixItemData} from "./entities/TwodsixItem";
 import {before} from "./hooks/ready";
-import {TWODSIX} from "./config";
-import {getKeyByValue} from "./utils/sheetUtils";
 
 //TODO Move all types to a better place
 export type UpdateData = {
@@ -79,7 +77,6 @@ export class Migration {
     }
 
     if (before(systemMigrationVersion, "0.6.25")) {
-      // This migration failed horribly, so removed in 0.6.26
       // let cost;
       // try {
       //   const price = item.data.price as string;
@@ -102,30 +99,6 @@ export class Migration {
         updateData['data.damageType'] = "";
         updateData['data.rateOfFire'] = "";
         updateData['data.recoil'] = false;
-      }
-    }
-
-    if (before(systemMigrationVersion, "0.6.30")) {
-      if (item.type === 'skills') {
-        let characteristic;
-        //If it can be found, it's already correct
-        const alreadyCorrect = !!(TWODSIX.CHARACTERISTICS)[item.data.characteristic];
-        if (!alreadyCorrect) {
-          //If it's in the reverse map, use that.
-          characteristic = getKeyByValue(TWODSIX.CHARACTERISTICS, item.data.characteristic);
-          if (!characteristic) {
-            //Failed somehow, so set it to strength as a fallback (unlikely to be right, but at least it's obviously wrong...)
-            characteristic = 'strength';
-            console.log(game.i18n.format("TWODSIX.Migration.MigrationError0_6_29", {
-              characteristic: item.data.characteristic,
-              name: item.data.name,
-              fallback: TWODSIX.CHARACTERISTICS[0]
-            }));
-          }
-        }
-        if (!alreadyCorrect) {
-          updateData['data.characteristic'] = characteristic;
-        }
       }
     }
 

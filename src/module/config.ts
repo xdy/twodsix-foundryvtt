@@ -2,16 +2,6 @@
 
 export const TWODSIX:any = {};
 
-TWODSIX.CHARACTERISTICS = {
-  "strength": "STR",
-  "dexterity": "DEX",
-  "endurance": "END",
-  "intelligence": "INT",
-  "education": "EDU",
-  "socialStanding": "SOC",
-  "psionicStrength": "PSI"
-};
-
 /**
  * The sets of rules variants one can use
  * Not currently used for anything. TODO Remove?

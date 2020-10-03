@@ -180,10 +180,6 @@ export function calcModFor(characteristic:number):number {
 //   return calcModFor(characteristic);
 // }
 
-export function getKeyByValue(object, value) {
-  return Object.keys(object).find(key => object[key] === value);
-}
-
 
 
 

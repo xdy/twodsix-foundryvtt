@@ -20,8 +20,7 @@
           <span class="mini-dice centre"><img class="rollable" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
           <span class="item-name rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{item.name}}</span>
           <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.value}}</span>
-          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" for="skill-modifier">
-            {{localize (concat "TWODSIX.Actor.Characteristics." (lookup ../config.CHARACTERISTICS data.characteristic))}}({{numberFormat data.mod decimals=0 sign=true}})</span>
+          <span class="item-name centre rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}" for="skill-modifier">{{data.characteristic}} ({{numberFormat data.mod decimals=0 sign=true}})</span>
           <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}" data-roll="2d6+{{data.mod}}+{{data.value}}">{{data.total}}</span>
           <span class="item-controls centre">
             <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
