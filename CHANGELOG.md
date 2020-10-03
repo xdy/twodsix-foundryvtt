@@ -1,3 +1,10 @@
+## [0.6.31](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.30...v0.6.31) (2020-10-03)
+
+
+### Bug Fixes
+
+* Reverts changes from previous version. ([c391715](https://github.com/xdy/twodsix-foundryvtt/commit/c3917153eaa1f18ce618d26558ab9af9384a35fd))
+
 ## [0.6.30](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.29...v0.6.30) (2020-10-03)
 
 
