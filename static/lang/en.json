@@ -164,7 +164,8 @@
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
-      "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
+      "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0.",
+      "MigrationError0_6_29": "0.6.30 migration failed to replace the characteristic '${characteristic}' of skill '${name}' so set it to '${fallback}'"
     },
     "No": "No",
     "Rolls": {
@@ -192,7 +193,7 @@
         "name": "Default Prototype Token Settings"
       },
       "effectOrTotal": {
-        "hint": "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=show total (i.e. roll+modifiers)",
+        "hint": "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=Show total (i.e. roll+modifiers)",
         "name": "Show effect or total roll value for skill and characteristic rolls."
       },
       "initiativeFormula": {
@@ -222,23 +223,23 @@
         "name": "What you want to call rolls with disadvantage (3d6kl2)."
       },
       "ShowLawLevel": {
-        "hint": "true=Show the 'Law Level' field, false=hide it",
+        "hint": "true=Show the 'Law Level' field, false=Hide it",
         "name": "Show the 'Law Level' field on weapon sheets"
       },
       "ShowRecoil": {
-        "hint": "true=Show the 'Recoil' field, false=hide it",
+        "hint": "true=Show the 'Recoil' field, false=Hide it",
         "name": "Show the 'Recoil' field on weapon sheets"
       },
       "ShowRateOfFire": {
-        "name": "true=Show the 'Rate of Fire' field, false=hide it",
+        "name": "true=Show the 'Rate of Fire' field, false=Hide it",
         "hint": "Show the 'Rate of Fire' field on weapon sheets"
       },
       "ShowDamageType": {
-        "hint": "true=Show the 'Damage Type' field, false=hide it",
+        "hint": "true=Show the 'Damage Type' field, false=Hide it",
         "name": "Show the 'Damage Type' field on weapon sheets"
       },
       "ShowWeaponType": {
-        "hint": "true=Show the 'Weapon Type' field, false=hide it",
+        "hint": "true=Show the 'Weapon Type' field, false=Hide it",
         "name": "Show the 'Weapon Type' field on weapon sheets"
       },
       "ShowRangeBandAndHideRange": {
