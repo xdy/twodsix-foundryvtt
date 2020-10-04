@@ -2,6 +2,7 @@ import {TWODSIX} from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import {advantageDisadvantageTerm} from "../i18n";
+import {calcModFor, getKeyByValue} from "./sheetUtils";
 
 
 export class TwodsixRolls {
@@ -137,6 +138,7 @@ export class TwodsixRolls {
       dataset.skill = skill.name;
       item = null;
       dataset.item = "";
+      this.createDatasetRoll(dataset, skill, actor);
     } else if (item) {
       //If the item isn't the skill, dig up the skill from the item
       skillId = item.data.data.skill;
@@ -144,7 +146,7 @@ export class TwodsixRolls {
       if (skill != null) {
         dataset.skill = skill.name;
         dataset.item = item.name;
-        dataset.roll = "2d6+" + skill.data.data.mod + "+" + skill.data.data.value;
+        this.createDatasetRoll(dataset, skill, actor);
       } else {
         //No skill, no roll
         return;
@@ -157,6 +159,22 @@ export class TwodsixRolls {
     } else {
       TwodsixRolls.simpleSkillRoll(dataset, actor, item, showEffect);
     }
+  }
+
+  private static createDatasetRoll(dataset, skill:TwodsixItem, actor:TwodsixActor) {
+    if (!dataset.roll) {
+      if (skill) {
+        const mod = this.recalcMod(skill, actor);
+        dataset.roll = "2d6" + "+" + mod + "+" + skill.data.data.value;
+      }
+    }
+    console.log(dataset.roll);
+  }
+
+  private static recalcMod(skill:TwodsixItem, actor:TwodsixActor) {
+    const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.data.data.characteristic);
+    const characteristic = actor.data.data.characteristics[keyByValue];
+    return calcModFor(characteristic.current);
   }
 
   private static simpleSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item ?:TwodsixItem, showEffect:boolean = game.settings.get("twodsix", "effectOrTotal")):void {
@@ -207,7 +225,8 @@ export class TwodsixRolls {
 
   private static async advancedSkillRoll(event:{ preventDefault:() => void; currentTarget:any }, dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem, showEffect:boolean) {
     const skillData = {};
-    const rollParts = dataset.roll?.split("+") || [];
+
+    const rollParts = dataset.roll?.split("+");
 
     const flavorParts:string[] = [];
     let title;
