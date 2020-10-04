@@ -86,7 +86,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 input[type=number] {
-  -moz-app-appearance: textfield;
+    -moz-appearance:textfield;
 }
 
 /******************************/
@@ -299,6 +299,7 @@ span.stat-name {
   border: none;
   color: #6e819e;
   border: none;
+  -moz-appearance: textfield;
 }
 
 .stat img {
