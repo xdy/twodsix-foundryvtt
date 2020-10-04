@@ -1,5 +1,7 @@
 import {TwodsixItemData} from "./entities/TwodsixItem";
 import {before} from "./hooks/ready";
+import {TWODSIX} from "./config";
+import {getKeyByValue} from "./utils/sheetUtils";
 
 //TODO Move all types to a better place
 export type UpdateData = {
@@ -28,18 +30,14 @@ export class Migration {
   private static async migrateActorItems(actorData:ActorData<any>, systemMigrationVersion:string, actor:Actor<any>) {
     //Handle any items that are on the actor
     const actorItems = actorData["items"];
+    const toUpdate = [];
     for (const i of actorItems) {
-      const migratedItemData = await this.migrateItemData(i, systemMigrationVersion);
-      const migratedItem = mergeObject(i, migratedItemData);
-      try {
-        await actor.updateEmbeddedEntity("OwnedItem", migratedItem);
-      } catch (err) {
-        console.error(err);
-      }
+      toUpdate.push(mergeObject(i, this.migrateItemData(i, systemMigrationVersion)));
     }
+    await actor.updateEmbeddedEntity("OwnedItem", toUpdate);
   }
 
-  private static async migrateItemData(item:TwodsixItemData, systemMigrationVersion:string):Promise<UpdateData> {
+  private static migrateItemData(item:TwodsixItemData, systemMigrationVersion:string):UpdateData {
     const updateData:UpdateData = <UpdateData>{};
 
     if (before(systemMigrationVersion, "0.6.9")) {
@@ -77,6 +75,7 @@ export class Migration {
     }
 
     if (before(systemMigrationVersion, "0.6.25")) {
+      // This migration failed horribly, so removed in 0.6.26
       // let cost;
       // try {
       //   const price = item.data.price as string;
@@ -101,9 +100,6 @@ export class Migration {
         updateData['data.recoil'] = false;
       }
     }
-
-    // Remove deprecated fields
-    this._migrateRemoveDeprecated(item, updateData);
 
     return updateData;
   }
@@ -141,25 +137,25 @@ export class Migration {
     const content = await pack.getContent();
 
     const promises = [];
-    for (const ent of content) {
+    for (const actor of content) {
       try {
         let updateData = null;
         switch (entity) {
           case 'Item':
-            updateData = Migration.migrateItemData(ent.data, systemMigrationVersion);
+            updateData = Migration.migrateItemData(actor.data, systemMigrationVersion);
             break;
           case 'Actor':
-            updateData = Migration.migrateActorData(ent, systemMigrationVersion);
+            updateData = Migration.migrateActorData(actor, systemMigrationVersion);
             break;
           case 'Scene':
-            updateData = Migration.migrateSceneData(ent.data, systemMigrationVersion);
+            updateData = Migration.migrateSceneData(actor.data, systemMigrationVersion);
             break;
         }
         if (updateData && !isObjectEmpty(updateData)) {
           expandObject(updateData);
-          updateData._id = ent._id;
+          updateData._id = actor._id;
           promises.push(pack.updateEntity(updateData));
-          console.log(`Migrating ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+          console.log(`Migrating ${entity} entity ${actor.name} in Compendium ${pack.collection}`);
         }
       } catch (err) {
         console.error(err);
@@ -174,8 +170,8 @@ export class Migration {
    * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
    * @private
    */
-  static _migrateRemoveDeprecated(ent:TwodsixItemData, updateData:UpdateData):void {
-    const flat = flattenObject(ent.data);
+  static _migrateRemoveDeprecated(itemData:TwodsixItemData, updateData:UpdateData):void {
+    const flat = flattenObject(itemData.data);
     // console.warn('flat', flat);
     // Identify objects to deprecate
     const toDeprecate = Object.entries(flat)
@@ -192,6 +188,9 @@ export class Migration {
       parts[parts.length - 1] = '-=' + parts[parts.length - 1];
       updateData[`data.${parts.join('.')}`] = null;
     }
+
+    //TODO Do as follows to remove a key in a migration.
+    //entity.update({ '-=key.to.remove': null });
   }
 
   static async migrateWorld():Promise<void> {
@@ -244,7 +243,7 @@ export class Migration {
 
     await Promise.all([...actorMigrations, ...itemMigrations, ...sceneMigrations, ...packMigrations]);
 
-    game.settings.set("twodsix", "systemMigrationVersion", game.system.data.version);
+    await game.settings.set("twodsix", "systemMigrationVersion", game.system.data.version);
     ui.notifications.info(game.i18n.format("TWODSIX.Migration.Completed", {version: game.system.data.version}), {permanent: true});
   }
 }

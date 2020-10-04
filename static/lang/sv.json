@@ -68,7 +68,7 @@
       },
       "Rolling": "Rullar",
       "Skills": {
-        "AddSkill": ">>Ny färdighet<<",
+        "AddSkill": "Ny färdighet",
         "DeleteItem": "Ta bort Sak",
         "EditItem": "Ändra Sak",
         "EditOrRemove": "Ändra el Sudda",
@@ -95,6 +95,9 @@
         "OtherModifiers": "Andra modifierare",
         "Type": "Slagtyp"
       }
+    },
+    "Handlebars": {
+      "CantShowCharacteristic": "Du måste återigen välja attribut för alla färdigheter som är markerade med XXX. Ledsen..."
     },
     "Items": {
       "Armor": {
@@ -193,7 +196,7 @@
         "name": "Defaultprototypspelfigursinställningar"
       },
       "effectOrTotal": {
-        "hint": "sant=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), falskt=visa total (dvs. resultat+modifierare)",
+        "hint": "sant=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), falskt=Visa total (dvs. resultat+modifierare)",
         "name": "Visa effekten eller totalvärdet när färgdighet och grundförmågor rullas."
       },
       "initiativeFormula": {
@@ -211,7 +214,7 @@
         "name": "Modifierare for egenskapsvärde noll."
       },
       "systemMigrationVersion": {
-        "hint": "Innehåller schema versionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",
+        "hint": "Innehåller schemaversionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",
         "name": "System Schema Version"
       },
       "termForAdvantage": {
@@ -228,19 +231,19 @@
       },
       "ShowRecoil": {
         "name": "Visa 'Rekyl' fältet på vapenblad",
-        "hint": "true=Visa 'Rekyl' fältet, falskt=Göm det"
+        "hint": "sant=Visa 'Rekyl' fältet, falskt=Göm det"
       },
       "ShowRateOfFire": {
         "name": "Visa 'Eldhastighet' fältet på vapenblad",
-        "hint": "true=Visa 'Eldhastighet' fältet, falskt=Göm det"
+        "hint": "sant=Visa 'Eldhastighet' fältet, falskt=Göm det"
       },
       "ShowDamageType": {
         "name": "Visa 'Skadetyp' fältet på vapenblad",
-        "hint": "true=Visa 'Skadetyp' fältet, falskt=Göm det"
+        "hint": "sant=Visa 'Skadetyp' fältet, falskt=Göm det"
       },
       "ShowWeaponType": {
         "name": "Visa 'Vapentyp' fältet på vapenblad",
-        "hint": "true=Visa 'Vapentyp' fältet, falskt=Göm det"
+        "hint": "sant=Visa 'Vapentyp' fältet, falskt=Göm det"
       },
       "ShowRangeBandAndHideRange": {
         "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",

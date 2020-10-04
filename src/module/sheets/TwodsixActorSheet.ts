@@ -2,7 +2,8 @@ import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import TwodsixItem from "../entities/TwodsixItem";
 import {UpdateData} from "../migration";
-import {calcModFor} from "../utils/sheetUtils";
+import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
+import {TWODSIX} from "../config";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -29,6 +30,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     data.data.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
     };
+    data.config = TWODSIX;
 
     return data;
   }
@@ -63,25 +65,21 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const characteristicKey = $(event.currentTarget).parents('.stat:first,.special:first').attr('data-characteristic');
     const characteristic = this.actor.data.data.characteristics[characteristicKey];
     const input = $(event.currentTarget).children("");
-    if (input.val() > characteristic.value) {
-      input.val(characteristic.value);
-    } else if (input.val() < 0) {
-      input.val(0);
+    let damage = input.val();
+    if (damage > characteristic.value) {
+      damage = characteristic.value;
+    } else if (damage < 0) {
+      damage = 0;
     }
-    characteristic.damage = input.val();
+    characteristic.damage = damage;
     characteristic.current = characteristic.value - characteristic.damage;
     characteristic.mod = calcModFor(characteristic.current);
 
     const updateData = <UpdateData>{};
     const characteristics = this.actor.data.data.characteristics;
-    updateData[`data.characteristics.${characteristicKey}.damage`] = characteristic.damage;
     updateData['data.hits.value'] = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
     updateData['data.hits.max'] = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
-    try {
-      await this.actor.update(updateData);
-    } catch (e) {
-      console.log(e);
-    }
+    await this.actor.update(updateData);
   }
 
   /**
