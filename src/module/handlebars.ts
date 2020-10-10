@@ -26,11 +26,13 @@ export default function registerHandlebarsHelpers():void {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
-      const mod = calcModFor(characteristicElement.current);
-      return game.i18n.localize("TWODSIX.Items.Skills." + characteristicElement.shortLabel) + "(" + (mod < 0 ? "" : "+") + mod + ")";
+      const mod:number = calcModFor(characteristicElement.current);
+      return game.i18n.localize("TWODSIX.Items.Skills." + characteristic) + "(" + (mod < 0 ? "" : "+") + mod + ")";
+    } else if ('NONE' === characteristic) {
+      return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
-        ui.notifications.error("TWODSIX.Handlebars.CantShowCharacteristic");
+        ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
         showedError = true;
       }
       return "XXX";

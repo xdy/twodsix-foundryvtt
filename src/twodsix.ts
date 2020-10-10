@@ -14,6 +14,7 @@ import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
+import {rollItemMacro} from "./module/hooks/ready";
 
 require('../static/styles/twodsix.css');
 
@@ -33,8 +34,8 @@ Hooks.once('init', async function () {
 
   game.twodsix = {
     TwodsixActor,
-    TwodsixItem
-    // rollItemMacro
+    TwodsixItem,
+    rollItemMacro
   };
 
   // Actor

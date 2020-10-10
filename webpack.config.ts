@@ -16,7 +16,6 @@ function getFoundryConfig():FoundryConfig {
   }
 }
 
-
 module.exports = (env, argv) => {
   const config:Configuration = {
     context: __dirname,

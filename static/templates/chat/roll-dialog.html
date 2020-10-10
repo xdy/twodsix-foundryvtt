@@ -22,6 +22,22 @@
     </label>
   </div>
   <div class="form-group">
+    <label class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}
+      <select class="select-mod" name="characteristic" value={{characteristic}}>
+        {{#select characteristic}}
+        <option value="STR" for="skill-modifier">{{localize "TWODSIX.Items.Skills.STR"}}</option>
+        <option value="DEX" for="skill-modifier">{{localize "TWODSIX.Items.Skills.DEX"}}</option>
+        <option value="END" for="skill-modifier">{{localize "TWODSIX.Items.Skills.END"}}</option>
+        <option value="INT" for="skill-modifier">{{localize "TWODSIX.Items.Skills.INT"}}</option>
+        <option value="EDU" for="skill-modifier">{{localize "TWODSIX.Items.Skills.EDU"}}</option>
+        <option value="SOC" for="skill-modifier">{{localize "TWODSIX.Items.Skills.SOC"}}</option>
+        <option value="PSI" for="skill-modifier">{{localize "TWODSIX.Items.Skills.PSI"}}</option>
+        <option value="NONE" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</option>
+        {{/select}}
+      </select>
+    </label>
+  </div>
+  <div class="form-group">
     <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
       <input type="number" name="skillModifier" value="{{skillModifier}}" placeholder="0" onClick="this.select();"/>
     </label>

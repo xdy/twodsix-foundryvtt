@@ -144,6 +144,7 @@
         "INT": "INT",
         "Level": "Level",
         "Modifier": "Modifier",
+        "NONE": "---",
         "PSI": "PSI",
         "SOC": "SOC",
         "STR": "STR",
@@ -179,7 +180,8 @@
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
-      "sum": "sum"
+      "sum": "sum",
+      "using": "using {characteristic}"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -247,6 +249,14 @@
       "ShowRangeBandAndHideRange": {
         "hint": "true=Shows 'Range Band', false=Shows 'Range'",
         "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
+      },
+      "difficultyListUsed": {
+        "hint": "Select which variant's difficulty list should be used.",
+        "name": "Select which variant's difficulty list should be used."
+      },
+      "difficultiesAsTargetNumber": {
+        "hint": "true=Use target number rather than modifier for difficulties, false=Use modifiers",
+        "name": "Use target numbers rather than modifiers for difficulties."
       }
     },
     "Yes": "Yes"

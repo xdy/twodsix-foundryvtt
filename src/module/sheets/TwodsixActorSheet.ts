@@ -2,7 +2,7 @@ import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import TwodsixItem from "../entities/TwodsixItem";
 import {UpdateData} from "../migration";
-import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
+import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
@@ -87,10 +87,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onRoll(event:Event):void {
+  private async _onRoll(event:Event):Promise<void> {
     event.preventDefault();
     event.stopPropagation();
-    TwodsixRolls.handleSkillRoll(event, this.actor);
+    const advanced = event["shiftKey"];
+    const element = event.currentTarget;
+    const dataset = element["dataset"];
+    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    await TwodsixRolls.performRoll(this.actor, itemId, dataset, advanced);
   }
 
   /**
@@ -103,7 +107,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
-    TwodsixRolls.rollDamage(item, true, 0, this.actor, true);
+    TwodsixRolls.rollDamage(item, true, this.actor);
   }
 
 //Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.

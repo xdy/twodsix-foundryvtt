@@ -18,7 +18,8 @@ TWODSIX.CHARACTERISTICS = {
  * @type {Object}
  */
 TWODSIX.VARIANTS = {
-  "ce": "Cepheus Engine",
+  "CE": "CE",
+  "CEL": "CEL",
 };
 
 TWODSIX.ROLLTYPES = {
@@ -27,15 +28,22 @@ TWODSIX.ROLLTYPES = {
   Disadvantage: "3d6kl2"
 };
 
-//This is defined the CE way, but it's mathematically equivalent to other variants.
 TWODSIX.DIFFICULTIES = {
-  Simple: 6,
-  Easy: 4,
-  Routine: 2,
-  Average: 0,
-  Difficult: -2,
-  VeryDifficult: -4,
-  Formidable: -6,
-  Impossible: -8
+  "CE": {
+    Simple: {mod: 6, target: 2},
+    Easy: {mod: 4, target: 4},
+    Routine: {mod: 2, target: 6},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -2, target: 10},
+    VeryDifficult: {mod: -4, target: 12},
+    Formidable: {mod: -6, target: 14},
+    Impossible: {mod: -8, target: 16},
+  },
+  "CEL": {
+    Routine: {mod: 2, target: 4},
+    Average: {mod: 0, target: 6},
+    Difficult: {mod: -2, target: 8},
+    VeryDifficult: {mod: -4, target: 10},
+    Formidable: {mod: -6, target: 12},
+  }
 };
-
