@@ -1,5 +1,7 @@
 import {Migration} from "../migration";
 import compareVersions from "compare-versions";
+import {simpleUpdateInit} from "../settings";
+import {TwodsixRolls} from "../utils/TwodsixRolls";
 
 
 export function before(worldVersion:string, MIGRATIONS_IMPLEMENTED:string):boolean {
@@ -7,6 +9,10 @@ export function before(worldVersion:string, MIGRATIONS_IMPLEMENTED:string):boole
 }
 
 Hooks.once("ready", async function () {
+
+  //Things that need to be done once settings have been set (and should probably be moved elsewhere...)
+  simpleUpdateInit(game.settings.get("twodsix", "initiativeFormula"));
+
   // Determine whether a system migration is required and feasible
 
   const MIGRATIONS_IMPLEMENTED = "0.6.1";
@@ -30,7 +36,7 @@ Hooks.once("ready", async function () {
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createTwodsixMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 
 });
 
@@ -38,46 +44,35 @@ Hooks.once("ready", async function () {
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
+ * @param {Object} item     The item data
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createTwodsixMacro(data, slot) {
-  if (data.type !== "Item") {
-    return;
-  }
-  if (!("data" in data)) {
-    return ui.notifications.warn("You can only create macro buttons for owned Items");
-  }
-  const item = data.data;
-
-  // Create the macro command
-  const command = `game.twodsix.rollItemMacro("${item.name}");`;
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  let macro:Macro = game.macros.entities.find((m:Macro) => (m.name === item.name) && (m.data.command === command));
+async function createItemMacro(item, slot):Promise<void> {
+  const command = `game.twodsix.rollItemMacro("${item._id ? item._id : item.data._id}");`;
+  let macro = game.macros.entities.find((m) => (m.name === item.name) /*&& (m.data.command === command)*/);
   if (!macro) {
-    macro = <Macro>await Macro.create({
-      name: item.name,
-      type: "script",
-      img: item.img,
+    const name = item.name ? item.name : item.data.name;
+    const img = item.img ? item.img : item.data.img;
+    macro = await Macro.create({
       command: command,
-      flags: {"twodsix.itemMacro": true}
-    });
+      name: name,
+      type: 'script',
+      img: img,
+      flags: {'twodsix.itemMacro': true},
+    }, {displaySheet: false}) as Macro;
+
+    await game.user.assignHotbarMacro(macro, slot);
   }
-  await game.user.assignHotbarMacro(macro, slot);
-  return false;
 }
 
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
+ * @param {string} itemId
  * @return {Promise}
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function rollItemMacro(itemName) { // lgtm [js/unused-local-variable]
+export async function rollItemMacro(itemId):Promise<void> {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) {
@@ -86,12 +81,13 @@ function rollItemMacro(itemName) { // lgtm [js/unused-local-variable]
   if (!actor) {
     actor = game.actors.get(speaker.actor);
   }
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
+  const item = actor ? actor.items.find((i) => i._id === itemId) : null;
   if (!item) {
-    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+    ui.notifications.warn(`Your controlled Actor does not have an item with ID ${itemId}`);
+  } else {
+    // Trigger the item roll
+    const domStringMap = DOMStringMap.prototype;
+    await TwodsixRolls.performRoll(actor, itemId, domStringMap, false);
   }
-
-
-  // Trigger the item roll
-  return item.roll();
 }
+

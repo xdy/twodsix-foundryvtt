@@ -5,7 +5,6 @@
   "Difficult": "Svårt",
   "Disadvantage": "Fördel",
   "Easy": "Lätt",
-  "False": "Falskt",
   "Formidable": "Formidabelt",
   "Impossible": "Omöjligt",
   "Normal": "Normal",
@@ -145,6 +144,7 @@
         "INT": "INT",
         "Level": "Nivå",
         "Modifier": "Modifierare",
+        "NONE": "---",
         "PSI": "PSI",
         "SOC": "SOC",
         "STR": "STY",
@@ -180,7 +180,9 @@
       "Rolling": "Rullar",
       "With": "med",
       "resultShows": "resultatet är",
-      "sum": "summan"
+      "sum": "summan",
+      "using": "med {characteristic}"
+
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -248,6 +250,14 @@
       "ShowRangeBandAndHideRange": {
         "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",
         "hint": "sant=Visar 'Räckviddsband', falskt=Visar 'Räckvidd'"
+      },
+      "difficultyListUsed": {
+        "hint": "Välj vilken variants svårighetslista som ska användas.",
+        "name": "Välj vilken variants svårighetslista som ska användas."
+      },
+      "difficultiesAsTargetNumber": {
+        "hint": "sant=Använd målnummer istf modifierare för svårigheter, false=Använd modifierare",
+        "name": "Använd målnummer istf modifierare för svårigheter."
       }
     },
     "Yes": "Ja"

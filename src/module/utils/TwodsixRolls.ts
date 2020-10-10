@@ -4,11 +4,16 @@ import TwodsixActor from "../entities/TwodsixActor";
 import {advantageDisadvantageTerm} from "../i18n";
 import {calcModFor, getKeyByValue} from "./sheetUtils";
 
-
+//TODO This one needs refactoring.
 export class TwodsixRolls {
-  private static DEFAULT_TARGET_NUMBER_MODIFIER = "-8";
 
-  private static async rollDialog(parts, data, flavorParts, title, speaker, showEffect, actor, item):Promise<Roll> {
+  private static targetNumber() {
+    const variant = game.settings.get('twodsix', 'difficultyListUsed');
+    const difficultyList = TWODSIX.DIFFICULTIES[variant];
+    return difficultyList.Average.target;
+  }
+
+  private static async rollDialog(parts, data, flavorParts, title, speaker, showEffect, actor, item, skill):Promise<Roll> {
     let rolled = false;
     const usefulParts = parts.filter(function (el) {
       return el != '' && el;
@@ -16,15 +21,15 @@ export class TwodsixRolls {
 
     const template = 'systems/twodsix/templates/chat/roll-dialog.html';
     const dialogData = {
-      formula: usefulParts.join(' '),
       data: data,
       rollType: "Normal",
       rollTypes: TWODSIX.ROLLTYPES,
       difficulty: "Average",
-      difficulties: TWODSIX.DIFFICULTIES,
+      difficulties: TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')],
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes,
-      skillModifier: item ? item?.data?.data?.skillModifier : 0
+      skillModifier: item ? item?.data?.data?.skillModifier : 0,
+      characteristic: skill.data.data.characteristic
     };
 
     let roll:Roll;
@@ -33,8 +38,8 @@ export class TwodsixRolls {
         label: game.i18n.localize("TWODSIX.Rolls.Roll"),
         icon: '<i class="fas fa-dice"></i>',
         callback: (html) => {
-          roll = TwodsixRolls._handleRoll(html[0].children[0], usefulParts, data, flavorParts, speaker, showEffect);
-          this.rollDamage(item, showEffect, roll._total, actor, false);
+          roll = TwodsixRolls._handleRoll(html[0].children[0], usefulParts, data, flavorParts, speaker, showEffect, actor);
+          this.rollDamage(item, showEffect, actor, false, roll._total, this.targetNumber());
           rolled = true;
         },
       },
@@ -61,27 +66,38 @@ export class TwodsixRolls {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  private static _handleRoll(form, rollParts, data, flavorParts, speaker, showEffect):Roll {
+  private static _handleRoll(form, rollParts, data, flavorParts, speaker, showEffect, actor):Roll {
     let rollMode = game.settings.get('core', 'rollMode');
 
     const usingItem = flavorParts.length == 2;
 
+    const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     if (form !== null) {
-      data['skillModifier'] = form.skillModifier.value;
-      data['difficulty'] = form.difficulty.value;
-      data['rollType'] = form.rollType.value;
-      data['rollMode'] = form.rollMode.value;
+      data.skillModifier = form.skillModifier.value;
+      data.difficulty = difficulties[form.difficulty.value];
+      data.rollType = form.rollType.value;
+      data.rollMode = form.rollMode.value;
+      data.characteristic = form.characteristic.value;
     }
 
-    const skillModifier = data['skillModifier'];
+    const skillModifier = data.skillModifier;
     if (skillModifier && skillModifier.length > 0) {
       rollParts.push(skillModifier);
       flavorParts.push(skillModifier >= 0 ? "+" + skillModifier : skillModifier);
     }
 
-    if (data['difficulty'] && data['difficulty'].length > 0) {
-      rollParts.push("" + TWODSIX.DIFFICULTIES[data['difficulty']]);
-      flavorParts.unshift(`${data['difficulty']}`);
+    //Should use Average if no difficulty is chosen, else the variant's Average (i.e. 6 or 8)
+    //Should add modifier if not using targetnumber, else 0.
+    let targetNumber = this.targetNumber();
+    if (data.difficulty) {
+      const datum = data.difficulty;
+      const keyByValue = getKeyByValue(difficulties, datum);
+      if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+        targetNumber = data.difficulty.target;
+      } else {
+        rollParts.push("" + datum.mod);
+      }
+      flavorParts.unshift(`${(game.i18n.localize(keyByValue))}`);
     }
 
     flavorParts.unshift(game.i18n.localize("TWODSIX.Rolls.Rolling") + ":");
@@ -93,19 +109,24 @@ export class TwodsixRolls {
       flavorParts.push(pop);
     }
 
-    if (data['rollType'] && data['rollType'].length > 0) {
+    if (data.rollType && data.rollType.length > 0) {
       if (rollParts[0] == '2d6') {
-        rollParts[0] = TWODSIX.ROLLTYPES[data['rollType']];
+        rollParts[0] = TWODSIX.ROLLTYPES[data.rollType];
       } else {
-        rollParts.unshift(TWODSIX.ROLLTYPES[data['rollType']]);
+        rollParts.unshift(TWODSIX.ROLLTYPES[data.rollType]);
       }
-      if (data['rollType'] != 'Normal') {
+      if (data.rollType != 'Normal') {
         flavorParts.push(game.i18n.localize("TWODSIX.Rolls.With"));
-        flavorParts.push(`${(advantageDisadvantageTerm(data['rollType']))}`);
+        flavorParts.push(`${(advantageDisadvantageTerm(data.rollType))}`);
       }
     }
 
-    TwodsixRolls.skillRollResultDisplay(rollParts, flavorParts, showEffect);
+    if (data.characteristic && data.characteristic.length > 0) {
+      rollParts[1] = actor.data.data.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, data.characteristic)].mod;
+      flavorParts.push(game.i18n.format("TWODSIX.Rolls.using", {characteristic: game.i18n.localize("TWODSIX.Items.Skills." + data.characteristic)}));
+    }
+
+    TwodsixRolls.skillRollResultDisplay(rollParts, flavorParts, showEffect, targetNumber);
     const roll = new Roll(rollParts.join('+'), data).roll();
     const flavor = flavorParts.join(' ');
 
@@ -120,16 +141,10 @@ export class TwodsixRolls {
     return roll;
   }
 
-  static async handleSkillRoll(event:Event, actor:TwodsixActor):Promise<void> {
-    const element = event.currentTarget;
-    const dataset = element["dataset"];
+  public static async performRoll(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, advanced:boolean):Promise<void> {
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
-
     let skillId:string;
-    let item:TwodsixItem;
-    //Get the item
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    item = actor.getOwnedItem(itemId) as TwodsixItem;
+    let item = actor.getOwnedItem(itemId) as TwodsixItem;
     let skill:TwodsixItem;
 
     if ('skills' === item?.data?.data?.type) {
@@ -154,10 +169,10 @@ export class TwodsixRolls {
     } else {
       //It's a characteristic roll, everything is set already.
     }
-    if (event["shiftKey"]) {
-      await TwodsixRolls.advancedSkillRoll(event, dataset, actor, item, showEffect);
+    if (advanced) {
+      await TwodsixRolls.advancedSkillRoll(dataset, actor, item, showEffect, skill);
     } else {
-      TwodsixRolls.simpleSkillRoll(dataset, actor, item, showEffect);
+      await TwodsixRolls.simpleSkillRoll(dataset, actor, item, showEffect);
     }
   }
 
@@ -172,12 +187,16 @@ export class TwodsixRolls {
   }
 
   private static recalcMod(skill:TwodsixItem, actor:TwodsixActor) {
-    const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.data.data.characteristic);
-    const characteristic = actor.data.data.characteristics[keyByValue];
-    return calcModFor(characteristic.current);
+    if ('NONE' === skill.data.data.characteristic) {
+      return 0;
+    } else {
+      const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.data.data.characteristic);
+      const characteristic = actor.data.data.characteristics[keyByValue];
+      return calcModFor(characteristic.current);
+    }
   }
 
-  private static simpleSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item ?:TwodsixItem, showEffect:boolean = game.settings.get("twodsix", "effectOrTotal")):void {
+  private static async simpleSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item ?:TwodsixItem, showEffect:boolean = game.settings.get("twodsix", "effectOrTotal")):Promise<void> {
     const rollParts = dataset.roll?.split("+") || [];
     const flavorParts:string[] = [];
     let label:string;
@@ -197,20 +216,22 @@ export class TwodsixRolls {
       }
     }
     flavorParts.push(label);
-    TwodsixRolls.skillRollResultDisplay(rollParts, flavorParts, showEffect);
+
+
+    TwodsixRolls.skillRollResultDisplay(rollParts, flavorParts, showEffect, this.targetNumber());
     const flavor = flavorParts.join(' ');
     const skillRoll = new Roll(rollParts.join('+'), actor.data.data);
 
     const result = skillRoll.roll();
-    result.toMessage({
+    await result.toMessage({
       speaker: ChatMessage.getSpeaker({actor: actor}),
       flavor: flavor
     });
-    this.rollDamage(item, showEffect, result._total, actor, false);
+    await this.rollDamage(item, showEffect, actor, false, result._total, this.targetNumber());
   }
 
-  static async rollDamage(item:TwodsixItem, showEffect:boolean, total:number, actor:TwodsixActor, justRollIt:boolean):Promise<void> {
-    const result = showEffect ? total : total - 8;
+  static async rollDamage(item:TwodsixItem, showEffect:boolean, actor:TwodsixActor, justRollIt = true, total = 0, targetNumber = 0):Promise<void> {
+    const result = showEffect ? total : total - targetNumber;
     const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
     if (result >= 0 && rollDamage && item?.data?.data?.damage != null) {
       const damageFormula = item.data.data.damage + (justRollIt ? "" : "+" + result);
@@ -223,7 +244,7 @@ export class TwodsixRolls {
     }
   }
 
-  private static async advancedSkillRoll(event:{ preventDefault:() => void; currentTarget:any }, dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem, showEffect:boolean) {
+  private static async advancedSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem, showEffect:boolean, skill:TwodsixItem) {
     const skillData = {};
 
     const rollParts = dataset.roll?.split("+");
@@ -242,14 +263,14 @@ export class TwodsixRolls {
       }
     }
 
-    await TwodsixRolls.rollDialog(rollParts, skillData, flavorParts, title, ChatMessage.getSpeaker({actor: actor}), showEffect, actor, item);
+    await TwodsixRolls.rollDialog(rollParts, skillData, flavorParts, title, ChatMessage.getSpeaker({actor: actor}), showEffect, actor, item, skill);
 
   }
 
-  private static skillRollResultDisplay(rollParts:string[], flavorParts:string[], showEffect:boolean):void {
+  private static skillRollResultDisplay(rollParts:string[], flavorParts:string[], showEffect:boolean, targetNumber:number):void {
     if (showEffect) {
       //So that the result is the Effect of the skill roll.
-      rollParts.push(TwodsixRolls.DEFAULT_TARGET_NUMBER_MODIFIER);
+      rollParts.push("-" + String(targetNumber));
     }
     const string = showEffect ? game.i18n.localize("TWODSIX.Rolls.Effect") : game.i18n.localize("TWODSIX.Rolls.sum");
     flavorParts.push("(" + game.i18n.localize("TWODSIX.Rolls.resultShows") + " " + string + ")");

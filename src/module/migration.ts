@@ -1,7 +1,5 @@
 import {TwodsixItemData} from "./entities/TwodsixItem";
 import {before} from "./hooks/ready";
-import {TWODSIX} from "./config";
-import {getKeyByValue} from "./utils/sheetUtils";
 
 //TODO Move all types to a better place
 export type UpdateData = {

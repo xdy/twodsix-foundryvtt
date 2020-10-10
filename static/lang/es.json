@@ -95,6 +95,9 @@
         "Type": "Tipo tirada"
       }
     },
+	"Handlebars": {
+      "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar la características en todas las habilidades marcadas con XXX."
+    },
     "Items": {
       "Armor": {
         "Armor": "Armadura"
@@ -152,13 +155,21 @@
       "Weapon": {
         "Ammo": "Cargador",
         "Damage": "Daño",
-        "Range": "Alcance"
+        "Range": "Alcance",
+		"lawLevel": "Nivel de Ley",
+        "rangeBand": "Banda de Alcance",
+        "weaponType": "Tipo Arma",
+        "damageType": "Tipo Daño",
+        "rateOfFire": "Cadencia de Tiro",
+        "recoil": "Retroceso"
       }
     },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
-      "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor."
+      "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
+	  "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
+	"No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto):",
       "Cancel": "Cancelar",
@@ -175,16 +186,16 @@
         "hint": "Dejar vacío para utilizar por defecto (+/-1). Sin utilidad actualmente.",
         "name": "Qué bonus/penalización aplicar a cada incremento en una tarea."
       },
-	  "automateDamageRollOnHit": {
-        "hint": "true=Tirar daño, modificado por el efecto de la tirada de habilidad. false=No tirar el daño.",
+      "automateDamageRollOnHit": {
+        "hint": "verdadero=Tirar daño, modificado por el efecto de la tirada de habilidad. falso=No tirar el daño.",
         "name": "¿Tirar daño automaticamente en las tiradas de habilidad que impacten (Ej: efecto > 0) con objetos que puedan dañar?"
       },
       "defaultTokenSettings": {
         "hint": "Automáticamente asignar configuración al token de nuevos Actores.",
         "name": "Configuración por defecto del token"
       },
-	  "effectOrTotal": {
-        "hint": "true=Mostrar Efecto (Ej: tirada+modificadores-objetivo, normalmente 8), false=Mostrar Valor (Ej: tirada+modificadores)",
+      "effectOrTotal": {
+        "hint": "verdadero=Mostrar Efecto (Ej: tirada+modificadores-objetivo, normalmente 8), falso=Mostrar Valor (Ej: tirada+modificadores)",
         "name": "Mostrar el Efecto o el Valor final en las tiradas de habilidad y característica."
       },
       "initiativeFormula": {
@@ -212,8 +223,33 @@
       "termForDisadvantage": {
         "hint": "No utilizar el mismo término que en Ventaja.",
         "name": "Nombre de las tiradas con Desventaja (3d6kl2)."
+      },
+	  "ShowLawLevel": {
+        "hint": "verdadero=Mostrar campo 'Nivel de Ley', falso=Esconder",
+        "name": "Mostrar campo 'Nivel de Ley' en las armas"
+      },
+      "ShowRecoil": {
+        "hint": "verdadero=Mostrar campo 'Retroceso', falso=Esconder",
+        "name": "Mostrar campo 'Retroceso' en las armas"
+      },
+      "ShowRateOfFire": {
+        "name": "verdadero=Mostrar campo 'Cadencia de Tiro', falso=Esconder",
+        "hint": "Mostrar campo 'Cadencia de Tiro' en las armas"
+      },
+      "ShowDamageType": {
+        "hint": "verdadero=Mostrar campo 'Tipo Daño', falso=Esconder",
+        "name": "Mostrar campo 'Tipo Daño' en las armas"
+      },
+      "ShowWeaponType": {
+        "hint": "verdadero=Mostrar campo 'Tipo Arma', falso=Esconder",
+        "name": "Mostrar campo 'Tipo Arma' en las armas"
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "verdadero=Shows 'Range Band', falso=Shows 'Range'",
+        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
       }
-    }
+    },
+	"Yes": "Si"
   },
   "VeryDifficult": "Muy Difícil"
 }

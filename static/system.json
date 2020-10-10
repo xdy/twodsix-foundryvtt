@@ -40,7 +40,8 @@
       "name": "Svenska",
       "path": "lang/sv.json"
     }
-  ],  "license": "LICENSE",
+  ],
+  "license": "LICENSE",
   "packs": [
     {
       "name": "ce-skills",
@@ -57,9 +58,99 @@
       "module": "twodsix",
       "path": "./packs/ce-weapons.db",
       "entity": "Item"
+    },
+    {
+      "name": "ce-light-armor",
+      "label": "ce light-armor",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-augments",
+      "label": "ce light-augments",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-augments.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-equipment",
+      "label": "ce light-equipment",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-equipment.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-grenades",
+      "label": "ce light-grenades",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-grenades.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-items",
+      "label": "ce light-items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-pharma",
+      "label": "ce light-pharma",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-pharma.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-ranged-weapon-accessories",
+      "label": "ce light-ranged-weapon-accessories",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-ranged-weapon-accessories.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-robots",
+      "label": "ce light-robots",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-robots.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-skills",
+      "label": "ce light-skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-weapons",
+      "label": "ce light-weapons",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-weapons.db",
+      "entity": "Item"
+    },
+    {
+      "name": "expanded-ce-light-skills",
+      "label": "expanded ce light-skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/expanded-ce-light-skills.db",
+      "entity": "Item"
     }
   ],
   "primaryTokenAttribute": "hits",
-  "styles": ["./styles/twodsix.css"],
+  "styles": [
+    "./styles/twodsix.css"
+  ],
   "templateVersion": 2
 }

@@ -17,8 +17,8 @@ Note:
 * Cepheus Engine and Samardan Press™ are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press™.    
 
 This system may eventually claim compatibility with other specific rules sets once it:
-a) actually has said compatibility 
-b) actually has the license to do so
+* actually has said compatibility 
+* actually has the license to do so
 
 
 ### Patch Notes:
@@ -40,6 +40,9 @@ Virtual Table Top Platform Licenses:
 
 Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
+
+Asset licenses:
+* The icons in the assets/twodsix_icons/General folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) as well as  are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/)
 
 ## Some more stats
 * [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
