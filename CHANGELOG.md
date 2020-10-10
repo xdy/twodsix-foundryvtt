@@ -1,3 +1,10 @@
+## [0.6.33](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.32...v0.6.33) (2020-10-10)
+
+
+### Bug Fixes
+
+* Refixes damage update and handles damage from previous migration by showing an error message with what could be done to fix it. ([9359924](https://github.com/xdy/twodsix-foundryvtt/commit/93599240345378abf42145ee84c535b1e5d84211))
+
 ## [0.6.32](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.31...v0.6.32) (2020-10-04)
 
 
