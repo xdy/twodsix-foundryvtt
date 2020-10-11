@@ -1,3 +1,10 @@
+## [0.6.35](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.34...v0.6.35) (2020-10-11)
+
+
+### Bug Fixes
+
+* Set the proper type on ce-light-robots.db, robots are characters, not items. ([46afd83](https://github.com/xdy/twodsix-foundryvtt/commit/46afd83197d9a6324a861f73a3bb19c8dc1d998c))
+
 ## [0.6.34](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.33...v0.6.34) (2020-10-11)
 
 
