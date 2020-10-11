@@ -92,14 +92,6 @@
       "entity": "Item"
     },
     {
-      "name": "ce-light-items",
-      "label": "ce light-items",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-items.db",
-      "entity": "Item"
-    },
-    {
       "name": "ce-light-pharma",
       "label": "ce light-pharma",
       "system": "twodsix",
@@ -121,7 +113,7 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-light-robots.db",
-      "entity": "Item"
+      "entity": "Actor"
     },
     {
       "name": "ce-light-skills",
