@@ -1,3 +1,10 @@
+## [0.6.34](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.33...v0.6.34) (2020-10-11)
+
+
+### Bug Fixes
+
+* Added support for Cepheus Light. ([3c14435](https://github.com/xdy/twodsix-foundryvtt/commit/3c14435f4622c554eecd7b027038ef8ca6bd339a)), closes [#133](https://github.com/xdy/twodsix-foundryvtt/issues/133) [#128](https://github.com/xdy/twodsix-foundryvtt/issues/128) [#141](https://github.com/xdy/twodsix-foundryvtt/issues/141) [#144](https://github.com/xdy/twodsix-foundryvtt/issues/144) [#61](https://github.com/xdy/twodsix-foundryvtt/issues/61)
+
 ## [0.6.33](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.32...v0.6.33) (2020-10-10)
 
 
