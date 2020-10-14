@@ -23,6 +23,15 @@
         "max": 0,
         "min": 0
       },
+      "primaryArmor": {
+        "value": 0
+      },
+      "secondaryArmor": {
+        "value": 0
+      },
+      "radiationProtection": {
+        "value": 0
+      },
       "contacts": "",
       "allies": "",
       "enemies": "",
@@ -332,6 +341,12 @@
         "gearTemplate"
       ],
       "armor": 0,
+      "secondaryArmor": {
+        "value": 0
+      },
+      "radiationProtection": {
+        "value": 0
+      },
       "type": "armor",
       "location": [
         "inventory",

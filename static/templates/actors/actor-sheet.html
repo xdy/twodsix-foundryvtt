@@ -5,6 +5,16 @@
       <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        {{#if actor.data.settings.ExperimentalFeatures}}
+        <div>
+          <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}"
+                                                                                  placeholder='0' onClick="this.select();"/></span>
+          <span class="bgi-armor">/<input name="data.secondaryArmor.value" type="text" value="{{data.secondaryArmor.value}}"
+                                          placeholder='0' onClick="this.select();"/></span>
+          <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}"
+                                                       placeholder='0' onClick="this.select();"/></span>
+        </div>
+        {{/if}}
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>

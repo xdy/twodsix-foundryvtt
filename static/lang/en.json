@@ -100,7 +100,9 @@
     },
     "Items": {
       "Armor": {
-        "Armor": "Armor"
+        "Armor": "Armor",
+        "SecondaryArmor": "Secondary Armor",
+        "RadProt": "Rad Prot"
       },
       "Augmentation": {
         "Arms": "Arms",
@@ -257,6 +259,10 @@
       "difficultiesAsTargetNumber": {
         "hint": "true=Use target number rather than modifier for difficulties, false=Use modifiers",
         "name": "Use target numbers rather than modifiers for difficulties."
+      },
+      "ExperimentalFeatures": {
+        "hint": "true=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, false=Hide them like any sane person would",
+        "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
       }
     },
     "Yes": "Yes"

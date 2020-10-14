@@ -22,6 +22,12 @@ export class Migration {
       updateData['data.radiationDose.max'] = 0;
     }
 
+    if (before(systemMigrationVersion, "0.6.35")) {
+      updateData['data.primaryArmor.value'] = 0;
+      updateData['data.secondaryArmor.value'] = 0;
+      updateData['data.radiationProtection.value'] = 0;
+    }
+
     return updateData;
   }
 
@@ -96,6 +102,13 @@ export class Migration {
         updateData['data.damageType'] = "";
         updateData['data.rateOfFire'] = "";
         updateData['data.recoil'] = false;
+      }
+    }
+
+    if (before(systemMigrationVersion, "0.6.35")) {
+      if (item.type === 'armor') {
+        updateData['data.secondaryArmor.value'] = 0;
+        updateData['data.radiationProtection.value'] = 0;
       }
     }
 

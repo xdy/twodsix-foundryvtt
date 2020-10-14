@@ -27,6 +27,8 @@ export const registerSettings = function ():void {
   _stringChoiceSetting('difficultyListUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
   _booleanSetting('difficultiesAsTargetNumber', false);
 
+  _booleanSetting('ExperimentalFeatures', false);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);

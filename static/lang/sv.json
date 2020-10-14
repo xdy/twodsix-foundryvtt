@@ -100,7 +100,9 @@
     },
     "Items": {
       "Armor": {
-        "Armor": "Rustning"
+        "Armor": "Rustning",
+        "SecondaryArmor": "Sekundär rustning",
+        "RadProt": "Strålskydd"
       },
       "Augmentation": {
         "Arms": "Armar",
@@ -182,7 +184,6 @@
       "resultShows": "resultatet är",
       "sum": "summan",
       "using": "med {characteristic}"
-
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -256,8 +257,12 @@
         "name": "Välj vilken variants svårighetslista som ska användas."
       },
       "difficultiesAsTargetNumber": {
-        "hint": "sant=Använd målnummer istf modifierare för svårigheter, false=Använd modifierare",
+        "hint": "sant=Använd målnummer istf modifierare för svårigheter, falskt=Använd modifierare",
         "name": "Använd målnummer istf modifierare för svårigheter."
+      },
+      "ExperimentalFeatures": {
+        "hint": "sant=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. falskt=Uppför dig normalt och göm dom",
+        "name": "Visa fula, buggiga och ej färdiggjorda funktioner. Dvs, typ som alla andra funktioner som inte döljs av denna flagga. :)"
       }
     },
     "Yes": "Ja"

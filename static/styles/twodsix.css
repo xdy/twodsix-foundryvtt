@@ -1,12 +1,7 @@
 @font-face {
   font-family: "Asap-Regular";
   src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-  url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */
-  url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */
-  url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */
-  url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */
-  url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
 }
@@ -86,7 +81,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 /******************************/
@@ -257,6 +252,21 @@ span.bgi-age {
   margin-right: 4em;
 }
 
+span.bgi-armor {
+  margin-left: 1em;
+  font-size: 14px;
+  font-weight: bold;
+  color: #29aae1 !important;
+}
+
+.bgi-armor input {
+  position: relative;
+  alignment: center;
+  margin-bottom: -0.5em;
+  width: 2.5em;
+  border: none;
+}
+
 .character-bgi span {
   display: inline-block;
 }
@@ -311,12 +321,12 @@ span.stat-name {
 }
 
 .special img {
-    position: relative;
-    height: 1.2em;
-    margin-left: 1.2em;
-    top: -1.2em;
-    display: inline-block;
-  }
+  position: relative;
+  height: 1.2em;
+  margin-left: 1.2em;
+  top: -1.2em;
+  display: inline-block;
+}
 
 .special {
   background-image: url(../assets/actor/Stat-Psi.svg);
@@ -367,16 +377,16 @@ span.special-ability {
 }
 
 span.special-modifier {
-    margin: -5px;
-    position: relative;
-    left: 1em;
-    top: -2.55em;
-  }
+  margin: -5px;
+  position: relative;
+  left: 1em;
+  top: -2.55em;
+}
 
-  span.special-damage {
-    position: relative;
-    padding-left: 0.3em;
-    top: -1.95em;
+span.special-damage {
+  position: relative;
+  padding-left: 0.3em;
+  top: -1.95em;
 }
 
 svg:hover {
@@ -920,7 +930,7 @@ img.ship-img {
 
 .ship-name input[type="text"] {
   height: 1.3em;
-  border:none;
+  border: none;
 }
 
 .ship-info {
@@ -948,7 +958,7 @@ img.ship-img {
   margin-left: 1.7em;
   font-size: 22px;
   width: 2.5em;
-  border:none;
+  border: none;
   background-color: transparent !important;
 }
 
@@ -999,7 +1009,7 @@ img.ship-img {
   border: 1px solid #29aae1;
   left: -1em;
   position: relative;
-  border:none;
+  border: none;
 }
 
 .ship-maintenance span {
@@ -1078,7 +1088,7 @@ img.ship-img {
   width: 1.8em;
   top: 0.20em;
   text-align: center;
-  border:none;
+  border: none;
   background-color: transparent !important;
 }
 
@@ -1118,7 +1128,7 @@ input.power-current {
   top: -1.65em;
   width: 3.6em;
   display: block;
-  border:none;
+  border: none;
   background-color: transparent !important;
 }
 
@@ -1129,7 +1139,7 @@ input.power-total {
   top: -1.65em;
   width: 3.6em;
   display: block;
-  border:none;
+  border: none;
   background-color: transparent !important;
 }
 

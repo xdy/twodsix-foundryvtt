@@ -8,6 +8,19 @@
       </label>
     </div>
 
+    <!-- This is to handle armors like reflec with 0/14. I.e. put the 14 here. -->
+    <div class="item-secondaryArmor">
+      <label for="data.secondaryArmor.value" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}
+        <input id="data.secondaryArmor.value" type="text" name="data.secondaryArmor.value" value="{{data.secondaryArmor.value}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-radiationProtection">
+      <label for="data.radiationProtection.value" class="resource-label">{{localize "TWODSIX.Items.Armor.RadProt"}}
+        <input id="data.radiationProtection.value" type="text" name="data.radiationProtection.value" value="{{data.radiationProtection.value}}" data-dtype="Number"/>
+      </label>
+    </div>
+
     <div class="item-qty">
       <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
         <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
