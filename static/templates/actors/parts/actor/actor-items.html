@@ -33,7 +33,7 @@
             {{else}}
             <span class="item-name centre">{{data.range}}</span>
             {{/if}}
-            <span class="item-name centre roll-damage" data-roll="{{data.damage}}">{{data.damage}}</span>
+            <span class="item-name centre roll-damage" data-roll="{{data.damage}}">{{limitLength data.damage 5}}</span>
             <span class="item-name centre">{{data.ammo}}</span>
             <span class="item-controls centre">
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>

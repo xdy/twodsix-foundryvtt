@@ -22,6 +22,10 @@ export default function registerHandlebarsHelpers():void {
     return a + b;
   });
 
+  Handlebars.registerHelper('limitLength', function (a, b) {
+    return a.length > b ? '(...)' : a;
+  });
+
   Handlebars.registerHelper('skillCharacteristic', (actor, characteristic) => {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
