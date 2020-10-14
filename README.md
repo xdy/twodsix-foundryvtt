@@ -21,6 +21,18 @@ This system may eventually claim compatibility with other specific rules sets on
 * actually has said compatibility 
 * actually has the license to do so
 
+## The Programmer's Mantra
+```
+It is by caffeine alone I set my mind in motion
+It is by the beans of Java that thoughts acquire speed
+The hands acquire shakes
+The shakes become a warning
+It is by caffeine alone I set my mind in motion
+```
+
+* Help xdy stay awake long enough to add more bugs! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/xdy1337)
+* Help ultra_kev stay awake long enough to make xdy's bugs look pretty! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/https://ko-fi.com/ultra_kev)
+
 ### Patch Notes:
 See [CHANGELOG.md](CHANGELOG.md)
 
@@ -43,16 +55,4 @@ Font licenses:
 
 Asset licenses:
 * The icons in the assets/twodsix_icons/General folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) as well as  are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/)
-
-## The Programmer's Mantra
-```
-It is by caffeine alone I set my mind in motion
-It is by the beans of Java that thoughts acquire speed
-The hands acquire shakes
-The shakes become a warning
-It is by caffeine alone I set my mind in motion
-```
-
-* Help xdy stay awake long enough to add more bugs! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/xdy1337)
-* Help ultra_kev stay awake long enough to make xdy's bugs look pretty! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/https://ko-fi.com/ultra_kev)
 
