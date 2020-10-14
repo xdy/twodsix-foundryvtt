@@ -1,3 +1,12 @@
+## [0.6.36](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.35...v0.6.36) (2020-10-14)
+
+
+### Bug Fixes
+
+* Add system setting to show experimental features. ([6bede4e](https://github.com/xdy/twodsix-foundryvtt/commit/6bede4e6d98e842c692035e5f6b860accb0de5b0))
+* Damage for Unarmed was wrong. ([86bda68](https://github.com/xdy/twodsix-foundryvtt/commit/86bda684cf0a4d8dc104b50ade46b25912950040))
+* Replaces overly long damage formulas with (...) on the character sheet's weapon list. You can still do the dice roll, and see the full formula by editing the weapon. ([e0e89fe](https://github.com/xdy/twodsix-foundryvtt/commit/e0e89fee9b1e45017662255cadec6970e187c1b0))
+
 ## [0.6.35](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.34...v0.6.35) (2020-10-11)
 
 
