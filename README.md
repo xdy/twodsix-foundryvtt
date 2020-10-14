@@ -5,6 +5,7 @@
 
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
+
 A system for running games using various 2d6-based role-playing games, specifically with the Cepheus Engine Core Rules.
 
 Note that this system is *very* early in its development.
@@ -19,7 +20,6 @@ Note:
 This system may eventually claim compatibility with other specific rules sets once it:
 * actually has said compatibility 
 * actually has the license to do so
-
 
 ### Patch Notes:
 See [CHANGELOG.md](CHANGELOG.md)
@@ -44,7 +44,15 @@ Font licenses:
 Asset licenses:
 * The icons in the assets/twodsix_icons/General folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) as well as  are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/)
 
-## Some more stats
-* [![GitHub license](https://img.shields.io/github/license/xdy/twodsix-foundryvtt)](https://github.com/xdy/twodsix-foundryvtt/blob/master/LICENSE)
-* [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
-* [![HitCount](http://hits.dwyl.com/xdy/twodsix-foundryvtt.svg)](http://hits.dwyl.com/xdy/twodsix-foundryvtt) (since 2020-09-11)
+## The Programmer's Mantra
+```
+It is by caffeine alone I set my mind in motion
+It is by the beans of Java that thoughts acquire speed
+The hands acquire shakes
+The shakes become a warning
+It is by caffeine alone I set my mind in motion
+```
+
+* Help xdy stay awake long enough to add more bugs! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/xdy1337)
+* Help ultra_kev stay awake long enough to make xdy's bugs look pretty! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/https://ko-fi.com/ultra_kev)
+
