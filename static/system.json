@@ -132,11 +132,59 @@
       "entity": "Item"
     },
     {
+      "name": "ce-light-psionics",
+      "label": "ce light-psionics",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-psionics.db",
+      "entity": "Item"
+    },
+    {
       "name": "expanded-ce-light-skills",
       "label": "expanded ce light-skills",
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/expanded-ce-light-skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-ftl-armor",
+      "label": "ce ftl armor",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-ftl-armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-ftl-equipment",
+      "label": "ce ftl equipment",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-ftl-equipment.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-ftl-explosives",
+      "label": "ce ftl explosives",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-ftl-explosives.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-ftl-skills",
+      "label": "ce ftl skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-ftl-skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-ftl-weapons",
+      "label": "ce ftl weapons",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-ftl-weapons.db",
       "entity": "Item"
     }
   ],
