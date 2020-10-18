@@ -10,8 +10,10 @@
   </span>
 </div>
 
-
 {{#each actor.skills as |item id|}}
+{{#if (hideUntrainedSkills item.data.value)}}
+<!-- Hiding {{item.name}} -->
+{{else}}
 <div class="skill">
   <span class="item skill-container">
     <ol class="ol-no-indent">
@@ -33,4 +35,24 @@
     </ol>
   </span>
 </div>
+{{/if}}
 {{/each}}
+{{#if (hideUntrainedSkills -1)}}
+<div class="skill">
+  <span class="item skill-container">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <span class="skill-container">
+          <span class="mini-dice centre"><img class="rollable" data-label="Untrained" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+          <span class="item-name rollable" data-label="Untrained">{{localize "TWODSIX.Actor.Skills.Untrained"}}</span>
+          <span class="item-name centre rollable" data-label="Untrained">{{actor.data.settings.untrainedSkillValue}}</span>
+          <span class="item-name centre rollable" data-label="Untrained" for="skill-modifier">
+            {{localize "TWODSIX.Items.Skills.NONE"}}
+          </span>
+          <span class="total-output flex1 skill-mod rollable" data-label="Untrained">{{actor.data.settings.untrainedSkillValue}}</span>
+        </span>
+      </li>
+    </ol>
+  </span>
+</div>
+{{/if}}

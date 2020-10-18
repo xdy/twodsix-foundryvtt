@@ -5,7 +5,7 @@
 
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
-A system for running games using various 2d6-based role-playing games.
+A Foundry VTT system for running games using various 2d6-based role-playing games.
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 System settings and compendiums are available that make it compatible with Cepheus Light and Cepheus Faster Than Light. (See pinned post in #general in the discord for details).

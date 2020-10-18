@@ -49,7 +49,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     });
     // Drag events for macros.
     if (this.actor.owner) {
-      const handler = ev => this._onDragItemStart(ev);
+      const handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
           return;
@@ -60,6 +60,15 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     this.handleContentEditable(html);
+  }
+
+  _onDragStart(event:any):void {
+    const header = event.currentTarget;
+    if (!header.dataset) {
+      return;
+    }
+
+    return super._onDragStart(event);
   }
 
   private handleContentEditable(html:JQuery<HTMLElement>) {
@@ -96,10 +105,78 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data.type;
 
+    if (itemData.type === 'skills') {
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        itemData.data.value = game.settings.get('twodsix', 'untrainedSkillValue');
+      } else {
+        itemData.data.value = 0;
+      }
+    }
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
   }
 
+  /**
+   * Special handling of skills dropping.
+   */
+  protected async _onDrop(event:DragEvent):Promise<any> {
+    event.preventDefault();
+
+    let data:any;
+    try {
+      data = JSON.parse(event.dataTransfer.getData('text/plain'));
+    } catch (err) {
+      console.log(`Twodsix | Drop failed with {err}`);
+      return false;
+    }
+
+    if (!data) {
+      console.log(`Twodsix | Dragging something that can't be dragged`);
+      return false;
+    }
+
+    const actor = this.actor;
+    let itemData;
+
+    if (data.pack) {
+      // compendium
+      const pack = game.packs.find((p) => p.collection === data.pack);
+      if (pack.metadata.entity !== 'Item') {
+        return;
+      }
+      const item = await pack.getEntity(data.id);
+      itemData = duplicate(item.data);
+    } else if (data.data) {
+      // other actor
+      itemData = duplicate(data.data);
+    } else {
+      // items directory
+      itemData = duplicate(game.items.get(data.id).data);
+    }
+
+    //Special for skills
+    if (itemData.type === 'skills') {
+      const matching = actor.data.items.filter(x => {
+        return x.name === itemData.name;
+      });
+      if (matching.length > 0) {
+        console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+        //TODO Maybe this should mean increase skill value?
+        return false;
+      }
+
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        itemData.data.value = game.settings.get('twodsix', 'untrainedSkillValue');
+      } else {
+        itemData.data.value = 0;
+      }
+
+      await actor.createOwnedItem(itemData);
+      console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+    } else {
+      return super._onDrop(event);
+    }
+  }
 
   protected static _prepareItemContainers(sheetData:{ actor:any; items:any; }):void {
     const actorData = sheetData.actor;

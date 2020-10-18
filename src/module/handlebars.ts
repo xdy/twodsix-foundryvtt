@@ -42,4 +42,9 @@ export default function registerHandlebarsHelpers():void {
       return "XXX";
     }
   });
+
+  Handlebars.registerHelper('hideUntrainedSkills', (value) => {
+    return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
+  });
+
 }

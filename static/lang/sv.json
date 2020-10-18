@@ -74,7 +74,8 @@
         "Level": "Nivå",
         "Modifier": "Mod",
         "SkillName": "Färdighetsnamn",
-        "Total": "Totalt"
+        "Total": "Totalt",
+        "Untrained": "Otränad"
       },
       "Species": "Art",
       "Tabs": {
@@ -263,6 +264,14 @@
       "ExperimentalFeatures": {
         "hint": "sant=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. falskt=Uppför dig normalt och göm dom",
         "name": "Visa fula, buggiga och ej färdiggjorda funktioner. Dvs, typ som alla andra funktioner som inte döljs av denna flagga. :)"
+      },
+      "hideUntrainedSkills": {
+        "hint": "sant=Visa pseudo-färdigheten 'Otränad' istf alla otränade färdigheter. falskt=Visa alla otränade färdigheter",
+        "name": "Dölj alla otränade färdigheter, visa istället en pseudo-färdighet some heter 'Otränad'."
+      },
+      "untrainedSkillValue": {
+        "hint": "Ändra detta så det matchar karaktärens 'Jack of All Trades' (JOAT) färdighet, dvs om du har JOAT 1, sätt värdet till -2, etc.",
+        "name": "Värdet som används för otränade färdigheter."
       }
     },
     "Yes": "Ja"

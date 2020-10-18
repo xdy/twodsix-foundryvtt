@@ -30,6 +30,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     data.data.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
+      untrainedSkillValue: game.settings.get('twodsix', 'untrainedSkillValue'),
     };
     data.config = TWODSIX;
 

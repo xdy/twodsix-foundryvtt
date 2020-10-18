@@ -74,7 +74,8 @@
         "Level": "Level",
         "Modifier": "Modifier",
         "SkillName": "Skill Name",
-        "Total": "Total"
+        "Total": "Total",
+        "Untrained": "Untrained"
       },
       "Species": "Species",
       "Tabs": {
@@ -263,6 +264,14 @@
       "ExperimentalFeatures": {
         "hint": "true=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, false=Hide them like any sane person would",
         "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
+      },
+      "hideUntrainedSkills": {
+        "hint": "true=Show pseudo-skill 'Untrained' instead of all untrained skills. false=Show all untrained skills",
+        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value."
+      },
+      "untrainedSkillValue": {
+        "hint": "Change this to match the character's level of the 'Jack of All Trades' (JOAT) skill. If you have JOAT 1, set the value to -2, etc.",
+        "name": "The value that is used for untrained skills."
       }
     },
     "Yes": "Yes"

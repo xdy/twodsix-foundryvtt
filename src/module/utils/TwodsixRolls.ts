@@ -13,7 +13,7 @@ export class TwodsixRolls {
     return difficultyList.Average.target;
   }
 
-  private static async rollDialog(parts, data, flavorParts, title, speaker, showEffect, actor, item, skill):Promise<Roll> {
+  private static async rollDialog(parts, data, flavorParts, title, speaker, showEffect, actor, item, characteristic):Promise<Roll> {
     let rolled = false;
     const usefulParts = parts.filter(function (el) {
       return el != '' && el;
@@ -29,7 +29,7 @@ export class TwodsixRolls {
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes,
       skillModifier: item ? item?.data?.data?.skillModifier : 0,
-      characteristic: skill.data.data.characteristic
+      characteristic: characteristic
     };
 
     let roll:Roll;
@@ -81,7 +81,7 @@ export class TwodsixRolls {
     }
 
     const skillModifier = data.skillModifier;
-    if (skillModifier && skillModifier.length > 0) {
+    if (skillModifier && skillModifier.length > 0 && skillModifier !== "0") {
       rollParts.push(skillModifier);
       flavorParts.push(skillModifier >= 0 ? "+" + skillModifier : skillModifier);
     }
@@ -95,7 +95,9 @@ export class TwodsixRolls {
       if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
         targetNumber = data.difficulty.target;
       } else {
-        rollParts.push("" + datum.mod);
+        if (datum.mod !== 0) {
+          rollParts.push("" + datum.mod);
+        }
       }
       flavorParts.unshift(`${(game.i18n.localize(keyByValue))}`);
     }
@@ -121,7 +123,7 @@ export class TwodsixRolls {
       }
     }
 
-    if (data.characteristic && data.characteristic.length > 0) {
+    if (data.characteristic && data.characteristic.length > 0 && data.characteristic !== 'NONE') {
       rollParts[1] = actor.data.data.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, data.characteristic)].mod;
       flavorParts.push(game.i18n.format("TWODSIX.Rolls.using", {characteristic: game.i18n.localize("TWODSIX.Items.Skills." + data.characteristic)}));
     }
@@ -146,6 +148,7 @@ export class TwodsixRolls {
     let skillId:string;
     let item = actor.getOwnedItem(itemId) as TwodsixItem;
     let skill:TwodsixItem;
+    let characteristic;
 
     if ('skills' === item?.data?.data?.type) {
       //It *is* the skill, so don't need item.
@@ -154,6 +157,7 @@ export class TwodsixRolls {
       item = null;
       dataset.item = "";
       this.createDatasetRoll(dataset, skill, actor);
+      characteristic = skill.data.data.characteristic;
     } else if (item) {
       //If the item isn't the skill, dig up the skill from the item
       skillId = item.data.data.skill;
@@ -166,11 +170,18 @@ export class TwodsixRolls {
         //No skill, no roll
         return;
       }
+      characteristic = skill.data.data.characteristic;
+    } else if (dataset.label === 'Untrained') {
+      //Untrained pseudo-skill
+      dataset.skill = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+      dataset.roll = "2d6" + "+" + this.recalcMod('NONE', actor) + "+" + game.settings.get('twodsix', 'untrainedSkillValue');
+      characteristic = 'NONE';
     } else {
-      //It's a characteristic roll, everything is set already.
+      //It's a characteristic roll, everything is set already, but, don't add characteristic bonus again by default.
+      characteristic = 'NONE';
     }
     if (advanced) {
-      await TwodsixRolls.advancedSkillRoll(dataset, actor, item, showEffect, skill);
+      await TwodsixRolls.advancedSkillRoll(dataset, actor, item, showEffect, characteristic);
     } else {
       await TwodsixRolls.simpleSkillRoll(dataset, actor, item, showEffect);
     }
@@ -179,20 +190,19 @@ export class TwodsixRolls {
   private static createDatasetRoll(dataset, skill:TwodsixItem, actor:TwodsixActor) {
     if (!dataset.roll) {
       if (skill) {
-        const mod = this.recalcMod(skill, actor);
+        const mod = this.recalcMod(skill.data.data.characteristic, actor);
         dataset.roll = "2d6" + "+" + mod + "+" + skill.data.data.value;
       }
     }
     console.log(dataset.roll);
   }
 
-  private static recalcMod(skill:TwodsixItem, actor:TwodsixActor) {
-    if ('NONE' === skill.data.data.characteristic) {
+  private static recalcMod(characteristic:string, actor:TwodsixActor) {
+    if ('NONE' === characteristic) {
       return 0;
     } else {
-      const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.data.data.characteristic);
-      const characteristic = actor.data.data.characteristics[keyByValue];
-      return calcModFor(characteristic.current);
+      const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+      return calcModFor(actor.data.data.characteristics[keyByValue].current);
     }
   }
 
@@ -208,11 +218,13 @@ export class TwodsixRolls {
       if (dataset.item) {
         label += ' ' + game.i18n.localize("TWODSIX.Actor.using") + ` ${dataset.item}`;
         let skillModifier = (item ? item?.data?.data?.skillModifier : 0);
-        if (skillModifier >= 0) {
-          skillModifier = " +" + skillModifier;
+        if (skillModifier !== 0) {
+          if (skillModifier >= 0) {
+            skillModifier = " +" + skillModifier;
+          }
+          rollParts.push(skillModifier);
+          label += skillModifier;
         }
-        rollParts.push(skillModifier);
-        label += skillModifier;
       }
     }
     flavorParts.push(label);
@@ -244,7 +256,7 @@ export class TwodsixRolls {
     }
   }
 
-  private static async advancedSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem, showEffect:boolean, skill:TwodsixItem) {
+  private static async advancedSkillRoll(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem, showEffect:boolean, characteristic) {
     const skillData = {};
 
     const rollParts = dataset.roll?.split("+");
@@ -263,7 +275,7 @@ export class TwodsixRolls {
       }
     }
 
-    await TwodsixRolls.rollDialog(rollParts, skillData, flavorParts, title, ChatMessage.getSpeaker({actor: actor}), showEffect, actor, item, skill);
+    await TwodsixRolls.rollDialog(rollParts, skillData, flavorParts, title, ChatMessage.getSpeaker({actor: actor}), showEffect, actor, item, characteristic);
 
   }
 
