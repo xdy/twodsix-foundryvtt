@@ -1,3 +1,12 @@
+## [0.6.38](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.37...v0.6.38) (2020-10-18)
+
+
+### Bug Fixes
+
+* Forgot to add science.svg ([a6b1773](https://github.com/xdy/twodsix-foundryvtt/commit/a6b17736869e909cd26308d5a10d31cf5162b69c))
+* Updated README.md to claim compatibility with Cepheus Light and Cepheus Faster Than Light. ([8af9ff9](https://github.com/xdy/twodsix-foundryvtt/commit/8af9ff9d70be9bb0f18766b835b6ef3af39ce489))
+* Various skill and roll-related fixes: ([b82ea31](https://github.com/xdy/twodsix-foundryvtt/commit/b82ea3118a8b36353b997e828871bc8f2f66e60e))
+
 ## [0.6.37](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.36...v0.6.37) (2020-10-18)
 
 
