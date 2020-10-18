@@ -7,7 +7,7 @@ export const registerSettings = function ():void {
 
   //House rules/variant related settings
   const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
-  _stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, formula => simpleUpdateInit(formula, true));
+  _stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, 'world', formula => simpleUpdateInit(formula, true));
   _numberSetting('modifierForZeroCharacteristic', -2);
   _stringSetting('termForAdvantage', 'advantage');
   _stringSetting('termForDisadvantage', 'disadvantage');
@@ -29,6 +29,9 @@ export const registerSettings = function ():void {
 
   _booleanSetting('ExperimentalFeatures', false);
 
+  _booleanSetting('hideUntrainedSkills', false);
+  _numberSetting('untrainedSkillValue', -3, 'client');
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
@@ -37,11 +40,11 @@ export const registerSettings = function ():void {
   _stringSetting('systemMigrationVersion', game.system.data.version);
 
   //Utility functions
-  function _booleanSetting(key:string, defaultValue:boolean, onChange = null):void {
+  function _booleanSetting(key:string, defaultValue:boolean, scope = 'world', onChange = null):void {
     game.settings.register('twodsix', key, {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
-      scope: 'world',
+      scope: scope,
       config: true,
       default: defaultValue,
       type: Boolean,
@@ -49,11 +52,11 @@ export const registerSettings = function ():void {
     });
   }
 
-  function _numberSetting(key:string, defaultValue:number, onChange = null):void {
+  function _numberSetting(key:string, defaultValue:number, scope = 'world', onChange = null):void {
     game.settings.register('twodsix', key.replace('.', ''), {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
-      scope: 'world',
+      scope: scope,
       config: true,
       default: defaultValue,
       type: Number,
@@ -61,11 +64,11 @@ export const registerSettings = function ():void {
     });
   }
 
-  function _stringChoiceSetting(key:string, defaultValue:string, choices, onChange = null):void {
+  function _stringChoiceSetting(key:string, defaultValue:string, choices, scope = 'world', onChange = null):void {
     game.settings.register('twodsix', key.replace('.', ''), {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
-      scope: 'world',
+      scope: scope,
       config: true,
       default: defaultValue,
       type: String,
@@ -74,11 +77,11 @@ export const registerSettings = function ():void {
     });
   }
 
-  function _stringSetting(key:string, defaultValue:string, onChange = null):void {
+  function _stringSetting(key:string, defaultValue:string, scope = 'world', onChange = null):void {
     game.settings.register('twodsix', key.replace('.', ''), {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
-      scope: 'world',
+      scope: scope,
       config: true,
       default: defaultValue,
       type: String,
