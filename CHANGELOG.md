@@ -1,3 +1,10 @@
+## [0.6.37](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.36...v0.6.37) (2020-10-18)
+
+
+### Bug Fixes
+
+* Courtesy of marvin9257: Full compendiums for Cepheus FTL, added Psionics compendium for Cepheus Light, updated skills and weapons for Cepheus Light. ([1deee92](https://github.com/xdy/twodsix-foundryvtt/commit/1deee927eed134cf09808fe976c06fc37a2e957e))
+
 ## [0.6.36](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.35...v0.6.36) (2020-10-14)
 
 
