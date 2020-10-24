@@ -38,7 +38,7 @@ export class TwodsixRolls {
         label: game.i18n.localize("TWODSIX.Rolls.Roll"),
         icon: '<i class="fas fa-dice"></i>',
         callback: (html) => {
-          roll = TwodsixRolls._handleRoll(html[0].children[0], usefulParts, data, flavorParts, speaker, showEffect, actor);
+          roll = TwodsixRolls._handleRoll(html, usefulParts, data, flavorParts, speaker, showEffect, actor);
           this.rollDamage(item, showEffect, actor, false, roll._total, this.targetNumber());
           rolled = true;
         },
@@ -66,18 +66,18 @@ export class TwodsixRolls {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  private static _handleRoll(form, rollParts, data, flavorParts, speaker, showEffect, actor):Roll {
+  private static _handleRoll(html, rollParts, data, flavorParts, speaker, showEffect, actor):Roll {
     let rollMode = game.settings.get('core', 'rollMode');
 
     const usingItem = flavorParts.length == 2;
 
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
-    if (form !== null) {
-      data.skillModifier = form.skillModifier.value;
-      data.difficulty = difficulties[form.difficulty.value];
-      data.rollType = form.rollType.value;
-      data.rollMode = form.rollMode.value;
-      data.characteristic = form.characteristic.value;
+    if (html !== null) {
+      data.skillModifier = html.find('[name="skillModifier"]').val();
+      data.difficulty = difficulties[html.find('[name="difficulty"]').val()];
+      data.rollType = html.find('[name="rollType"]').val();
+      data.rollMode = html.find('[name="rollMode"]').val();
+      data.characteristic = html.find('[name="characteristic"]').val();
     }
 
     const skillModifier = data.skillModifier;
@@ -132,7 +132,7 @@ export class TwodsixRolls {
     const roll = new Roll(rollParts.join('+'), data).roll();
     const flavor = flavorParts.join(' ');
 
-    rollMode = form ? form.rollMode.value : rollMode;
+    rollMode = html ? data.rollMode : rollMode;
     roll.toMessage(
       {
         speaker: speaker,
