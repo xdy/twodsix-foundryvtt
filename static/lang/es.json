@@ -95,7 +95,7 @@
         "Type": "Tipo tirada"
       }
     },
-	"Handlebars": {
+    "Handlebars": {
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar la características en todas las habilidades marcadas con XXX."
     },
     "Items": {
@@ -156,7 +156,7 @@
         "Ammo": "Cargador",
         "Damage": "Daño",
         "Range": "Alcance",
-		"lawLevel": "Nivel de Ley",
+        "lawLevel": "Nivel de Ley",
         "rangeBand": "Banda de Alcance",
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
@@ -167,9 +167,9 @@
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
-	  "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
+      "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-	"No": "No",
+    "No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto):",
       "Cancel": "Cancelar",
@@ -199,10 +199,8 @@
         "name": "Mostrar el Efecto o el Valor final en las tiradas de habilidad y característica."
       },
       "initiativeFormula": {
-        "failure": "Fallo al asignar nueva fórmula: {formula}, utilizando el valor anterior {currentFormula}.",
         "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\"",
-        "name": "Fórmula de iniciativa",
-        "success": "Nueva fórmula de iniciativa asignada correctamente: {formula}"
+        "name": "Fórmula de iniciativa"
       },
       "maxSkillLevel": {
         "hint": "Dejar vacío para utilizar por defecto (9).",
@@ -224,7 +222,7 @@
         "hint": "No utilizar el mismo término que en Ventaja.",
         "name": "Nombre de las tiradas con Desventaja (3d6kl2)."
       },
-	  "ShowLawLevel": {
+      "ShowLawLevel": {
         "hint": "verdadero=Mostrar campo 'Nivel de Ley', falso=Esconder",
         "name": "Mostrar campo 'Nivel de Ley' en las armas"
       },
@@ -249,7 +247,7 @@
         "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
       }
     },
-	"Yes": "Si"
+    "Yes": "Si"
   },
   "VeryDifficult": "Muy Difícil"
 }

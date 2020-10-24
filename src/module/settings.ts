@@ -7,7 +7,10 @@ export const registerSettings = function ():void {
 
   //House rules/variant related settings
   const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
-  _stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, 'world', formula => simpleUpdateInit(formula, true));
+  _stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, 'world', formula => CONFIG.Combat.initiative = {
+    formula: formula,
+    decimals: 0
+  });
   _numberSetting('modifierForZeroCharacteristic', -2);
   _stringSetting('termForAdvantage', 'advantage');
   _stringSetting('termForDisadvantage', 'disadvantage');
@@ -89,42 +92,3 @@ export const registerSettings = function ():void {
     });
   }
 };
-
-
-/**
- * Update the initiative formula.
- * @param {string} formula - Dice formula to evaluate.
- * @param {boolean} notify - Whether or not to post notifications.
- */
-export function simpleUpdateInit(formula:string, notify = false):void {
-  let message:string;
-  let notificationType:'info' | 'error' = "info";
-  const currentFormula = CONFIG.Combat.initiative.formula;
-  try {
-    new Roll(formula).roll();
-    message = game.i18n.format("TWODSIX.Settings.initiativeFormula.success", {formula: formula});
-  } catch (error) {
-    if (notify) {
-      message = game.i18n.format("TWODSIX.Settings.initiativeFormula.failure", {
-        formula: formula,
-        currentFormula: currentFormula
-      });
-      notificationType = "error";
-    }
-    game.settings.set("twodsix", "initiativeFormula", currentFormula).then(() => formula = currentFormula);
-  }
-  CONFIG.Combat.initiative = {
-    formula: formula,
-    decimals: 0
-  };
-  if (notify && game.data.version) {
-    switch (notificationType) {
-      case "error":
-        ui.notifications.error(message);
-        break;
-      case "info":
-        ui.notifications.info(message);
-        break;
-    }
-  }
-}

@@ -1,6 +1,5 @@
 import {Migration} from "../migration";
 import compareVersions from "compare-versions";
-import {simpleUpdateInit} from "../settings";
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 
 
@@ -11,7 +10,10 @@ export function before(worldVersion:string, MIGRATIONS_IMPLEMENTED:string):boole
 Hooks.once("ready", async function () {
 
   //Things that need to be done once settings have been set (and should probably be moved elsewhere...)
-  simpleUpdateInit(game.settings.get("twodsix", "initiativeFormula"));
+  CONFIG.Combat.initiative = {
+    formula: game.settings.get("twodsix", "initiativeFormula"),
+    decimals: 0
+  };
 
   // Determine whether a system migration is required and feasible
 
