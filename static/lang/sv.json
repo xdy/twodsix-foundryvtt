@@ -192,7 +192,7 @@
         "name": "Vilken bonus/malus som ges för varje tidsintervallsteg."
       },
       "automateDamageRollOnHit": {
-        "hint": "sant=Rulla skadan, modifierad av färdighetsslagets effekt. falskt=rulla inte skadan.",
+        "hint": "ikryssat=Rulla skadan, modifierad av färdighetsslagets effekt. urkryssat=rulla inte skadan.",
         "name": "Ska skador på lyckade färdighetsslag (dvs som har effekt >= 0) rullas automatiskt om använd sak kan göra skada?"
       },
       "defaultTokenSettings": {
@@ -200,7 +200,7 @@
         "name": "Defaultprototypspelfigursinställningar"
       },
       "effectOrTotal": {
-        "hint": "sant=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), falskt=Visa total (dvs. resultat+modifierare)",
+        "hint": "ikryssat=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), urkryssat=Visa total (dvs. resultat+modifierare)",
         "name": "Visa effekten eller totalvärdet när färgdighet och grundförmågor rullas."
       },
       "initiativeFormula": {
@@ -229,42 +229,42 @@
       },
       "ShowLawLevel": {
         "name": "Visa 'Lagnivå' fältet på vapenblad",
-        "hint": "sant=Visa 'Lagnivå' fältet, falskt=Göm det"
+        "hint": "ikryssat=Visa 'Lagnivå' fältet, urkryssat=Göm det"
       },
       "ShowRecoil": {
         "name": "Visa 'Rekyl' fältet på vapenblad",
-        "hint": "sant=Visa 'Rekyl' fältet, falskt=Göm det"
+        "hint": "ikryssat=Visa 'Rekyl' fältet, urkryssat=Göm det"
       },
       "ShowRateOfFire": {
         "name": "Visa 'Eldhastighet' fältet på vapenblad",
-        "hint": "sant=Visa 'Eldhastighet' fältet, falskt=Göm det"
+        "hint": "ikryssat=Visa 'Eldhastighet' fältet, urkryssat=Göm det"
       },
       "ShowDamageType": {
         "name": "Visa 'Skadetyp' fältet på vapenblad",
-        "hint": "sant=Visa 'Skadetyp' fältet, falskt=Göm det"
+        "hint": "ikryssat=Visa 'Skadetyp' fältet, urkryssat=Göm det"
       },
       "ShowWeaponType": {
         "name": "Visa 'Vapentyp' fältet på vapenblad",
-        "hint": "sant=Visa 'Vapentyp' fältet, falskt=Göm det"
+        "hint": "ikryssat=Visa 'Vapentyp' fältet, urkryssat=Göm det"
       },
       "ShowRangeBandAndHideRange": {
         "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",
-        "hint": "sant=Visar 'Räckviddsband', falskt=Visar 'Räckvidd'"
+        "hint": "ikryssat=Visar 'Räckviddsband', urkryssat=Visar 'Räckvidd'"
       },
       "difficultyListUsed": {
         "hint": "Välj vilken variants svårighetslista som ska användas.",
         "name": "Välj vilken variants svårighetslista som ska användas."
       },
       "difficultiesAsTargetNumber": {
-        "hint": "sant=Använd målnummer istf modifierare för svårigheter, falskt=Använd modifierare",
+        "hint": "ikryssat=Använd målnummer istf modifierare för svårigheter, urkryssat=Använd modifierare",
         "name": "Använd målnummer istf modifierare för svårigheter."
       },
       "ExperimentalFeatures": {
-        "hint": "sant=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. falskt=Uppför dig normalt och göm dom",
+        "hint": "ikryssat=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. urkryssat=Uppför dig normalt och göm dom",
         "name": "Visa fula, buggiga och ej färdiggjorda funktioner. Dvs, typ som alla andra funktioner som inte döljs av denna flagga. :)"
       },
       "hideUntrainedSkills": {
-        "hint": "sant=Visa pseudo-färdigheten 'Otränad' istf alla otränade färdigheter. falskt=Visa alla otränade färdigheter",
+        "hint": "ikryssat=Visa pseudo-färdigheten 'Otränad' istf alla otränade färdigheter. urkryssat=Visa alla otränade färdigheter",
         "name": "Dölj alla otränade färdigheter, visa istället en pseudo-färdighet some heter 'Otränad'."
       },
       "untrainedSkillValue": {

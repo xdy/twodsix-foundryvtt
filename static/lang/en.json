@@ -192,7 +192,7 @@
         "name": "What bonus/penalty to give per each time increment change in a task."
       },
       "automateDamageRollOnHit": {
-        "hint": "true=Roll damage, modified by effect of skill roll. false=Don't roll damage.",
+        "hint": "checked=Roll damage, modified by effect of skill roll. unchecked=Don't roll damage.",
         "name": "Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?"
       },
       "defaultTokenSettings": {
@@ -200,7 +200,7 @@
         "name": "Default Prototype Token Settings"
       },
       "effectOrTotal": {
-        "hint": "true=Show effect (i.e. roll+modifiers-target number, usually 8), false=Show total (i.e. roll+modifiers)",
+        "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 8), unchecked=Show total (i.e. roll+modifiers)",
         "name": "Show effect or total roll value for skill and characteristic rolls."
       },
       "initiativeFormula": {
@@ -228,27 +228,27 @@
         "name": "What you want to call rolls with disadvantage (3d6kl2)."
       },
       "ShowLawLevel": {
-        "hint": "true=Show the 'Law Level' field, false=Hide it",
+        "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
         "name": "Show the 'Law Level' field on weapon sheets"
       },
       "ShowRecoil": {
-        "hint": "true=Show the 'Recoil' field, false=Hide it",
+        "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
         "name": "Show the 'Recoil' field on weapon sheets"
       },
       "ShowRateOfFire": {
         "name": "Show the 'Rate of Fire' field on weapon sheets",
-        "hint": "true=Show the 'Rate of Fire' field, false=Hide it"
+        "hint": "checked=Show the 'Rate of Fire' field, unchecked=Hide it"
       },
       "ShowDamageType": {
-        "hint": "true=Show the 'Damage Type' field, false=Hide it",
+        "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
         "name": "Show the 'Damage Type' field on weapon sheets"
       },
       "ShowWeaponType": {
-        "hint": "true=Show the 'Weapon Type' field, false=Hide it",
+        "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
         "name": "Show the 'Weapon Type' field on weapon sheets"
       },
       "ShowRangeBandAndHideRange": {
-        "hint": "true=Shows 'Range Band', false=Shows 'Range'",
+        "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
         "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
       },
       "difficultyListUsed": {
@@ -256,15 +256,15 @@
         "name": "Select which variant's difficulty list should be used."
       },
       "difficultiesAsTargetNumber": {
-        "hint": "true=Use target number rather than modifier for difficulties, false=Use modifiers",
+        "hint": "checked=Use target number rather than modifier for difficulties, unchecked=Use modifiers",
         "name": "Use target numbers rather than modifiers for difficulties."
       },
       "ExperimentalFeatures": {
-        "hint": "true=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, false=Hide them like any sane person would",
+        "hint": "checked=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, unchecked=Hide them like any sane person would",
         "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
       },
       "hideUntrainedSkills": {
-        "hint": "true=Show pseudo-skill 'Untrained' instead of all untrained skills. false=Show all untrained skills",
+        "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
         "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value."
       },
       "untrainedSkillValue": {
