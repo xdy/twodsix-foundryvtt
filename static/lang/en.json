@@ -236,8 +236,8 @@
         "name": "Show the 'Recoil' field on weapon sheets"
       },
       "ShowRateOfFire": {
-        "name": "true=Show the 'Rate of Fire' field, false=Hide it",
-        "hint": "Show the 'Rate of Fire' field on weapon sheets"
+        "name": "Show the 'Rate of Fire' field on weapon sheets",
+        "hint": "true=Show the 'Rate of Fire' field, false=Hide it"
       },
       "ShowDamageType": {
         "hint": "true=Show the 'Damage Type' field, false=Hide it",

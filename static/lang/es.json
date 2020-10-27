@@ -231,8 +231,8 @@
         "name": "Mostrar campo 'Retroceso' en las armas"
       },
       "ShowRateOfFire": {
-        "name": "verdadero=Mostrar campo 'Cadencia de Tiro', falso=Esconder",
-        "hint": "Mostrar campo 'Cadencia de Tiro' en las armas"
+        "hint": "verdadero=Mostrar campo 'Cadencia de Tiro', falso=Esconder",
+        "name": "Mostrar campo 'Cadencia de Tiro' en las armas"
       },
       "ShowDamageType": {
         "hint": "verdadero=Mostrar campo 'Tipo Daño', falso=Esconder",
