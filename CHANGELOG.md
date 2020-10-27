@@ -1,3 +1,10 @@
+## [0.6.40](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.39...v0.6.40) (2020-10-27)
+
+
+### Bug Fixes
+
+* Switch to use checked/unchecked rather than true/false in the setting hints. ([5463ab8](https://github.com/xdy/twodsix-foundryvtt/commit/5463ab874b3f39bc63f0e6c0cbaf139715de8cd2))
+
 ## [0.6.39](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.38...v0.6.39) (2020-10-25)
 
 
