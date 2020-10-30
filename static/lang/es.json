@@ -74,7 +74,8 @@
         "Level": "Nivel",
         "Modifier": "Mod.",
         "SkillName": "Nombre",
-        "Total": "Total"
+        "Total": "Total",
+		"Untrained": "Sin Entrenar"
       },
       "Species": "Especie",
       "Tabs": {
@@ -95,12 +96,14 @@
         "Type": "Tipo tirada"
       }
     },
-    "Handlebars": {
+	"Handlebars": {
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar la características en todas las habilidades marcadas con XXX."
     },
     "Items": {
       "Armor": {
-        "Armor": "Armadura"
+        "Armor": "Armadura",
+		"SecondaryArmor": "Armadura 2ª",
+        "RadProt": "Prot Rad"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -144,6 +147,7 @@
         "INT": "INT",
         "Level": "Nivel",
         "Modifier": "Modificador",
+		"NONE": "---",
         "PSI": "PSI",
         "SOC": "SOC",
         "STR": "FUE",
@@ -156,7 +160,7 @@
         "Ammo": "Cargador",
         "Damage": "Daño",
         "Range": "Alcance",
-        "lawLevel": "Nivel de Ley",
+		"lawLevel": "Nivel de Ley",
         "rangeBand": "Banda de Alcance",
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
@@ -167,9 +171,9 @@
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
-      "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
+	  "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-    "No": "No",
+	"No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto):",
       "Cancel": "Cancelar",
@@ -179,75 +183,96 @@
       "Rolling": "Tirada",
       "With": "con",
       "resultShows": "Resultado en:",
-      "sum": "Objetivo 8+"
+      "sum": "Objetivo 8+",
+	  "using": "de {characteristic}"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
-        "hint": "Dejar vacío para utilizar por defecto (+/-1). Sin utilidad actualmente.",
-        "name": "Qué bonus/penalización aplicar a cada incremento en una tarea."
+        "hint": "Vacío por defecto (+/-1). Sin uso actual.",
+        "name": "Bonus/penaliz. incrementar tarea:"
       },
-      "automateDamageRollOnHit": {
-        "hint": "verdadero=Tirar daño, modificado por el efecto de la tirada de habilidad. falso=No tirar el daño.",
-        "name": "¿Tirar daño automaticamente en las tiradas de habilidad que impacten (Ej: efecto > 0) con objetos que puedan dañar?"
+	  "automateDamageRollOnHit": {
+        "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
+        "name": "Daño en tirada que impacte"
       },
       "defaultTokenSettings": {
-        "hint": "Automáticamente asignar configuración al token de nuevos Actores.",
-        "name": "Configuración por defecto del token"
+        "hint": "Configuración automática del token en nuevos Actores.",
+        "name": "Asignar un token por defecto"
       },
-      "effectOrTotal": {
-        "hint": "verdadero=Mostrar Efecto (Ej: tirada+modificadores-objetivo, normalmente 8), falso=Mostrar Valor (Ej: tirada+modificadores)",
-        "name": "Mostrar el Efecto o el Valor final en las tiradas de habilidad y característica."
+	  "effectOrTotal": {
+        "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
+        "name": "Estilo resultados por Efecto"
       },
       "initiativeFormula": {
-        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\"",
-        "name": "Fórmula de iniciativa"
+        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\".",
+        "name": "Fórmula para iniciativa:"
       },
       "maxSkillLevel": {
-        "hint": "Dejar vacío para utilizar por defecto (9).",
-        "name": "Máximo nivel habilidad."
+        "hint": "Vacío por defecto (9).",
+        "name": "Máximo nivel habilidad:"
       },
       "modifierForZeroCharacteristic": {
-        "hint": "Dejar vacío para utilizar por defecto (-2). No recalcula los modificadores para personajes ya existentes.",
-        "name": "Modificador para los Atributos a cero."
+        "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
+        "name": "Modificador Atributo nuevo:"
       },
       "systemMigrationVersion": {
-        "hint": "Cambia la versión del schema del sistema Twodsix. (No modificar a menos que se sepa lo que se hace)",
-        "name": "Versión Schema del sistema"
+        "hint": "Versión schema del sistema. (No modificar)",
+        "name": "Versión Schema del sistema:"
       },
       "termForAdvantage": {
-        "hint": "No utilizar el mismo término que en Desventaja.",
-        "name": "Nombre de las tiradas con Ventaja (3d6kh2)."
+        "hint": "No asignar igual a Desventaja.",
+        "name": "Nombre tirada Ventaja:"
       },
       "termForDisadvantage": {
-        "hint": "No utilizar el mismo término que en Ventaja.",
-        "name": "Nombre de las tiradas con Desventaja (3d6kl2)."
+        "hint": "No asignar igual a Ventaja.",
+        "name": "Nombre tirada Desventaja:"
       },
-      "ShowLawLevel": {
-        "hint": "verdadero=Mostrar campo 'Nivel de Ley', falso=Esconder",
-        "name": "Mostrar campo 'Nivel de Ley' en las armas"
+	  "ShowLawLevel": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Nivel de Ley' en armas"
       },
       "ShowRecoil": {
-        "hint": "verdadero=Mostrar campo 'Retroceso', falso=Esconder",
-        "name": "Mostrar campo 'Retroceso' en las armas"
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Retroceso' en armas"
       },
       "ShowRateOfFire": {
-        "hint": "verdadero=Mostrar campo 'Cadencia de Tiro', falso=Esconder",
-        "name": "Mostrar campo 'Cadencia de Tiro' en las armas"
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Cadencia de Tiro' en armas"
       },
       "ShowDamageType": {
-        "hint": "verdadero=Mostrar campo 'Tipo Daño', falso=Esconder",
-        "name": "Mostrar campo 'Tipo Daño' en las armas"
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Tipo Daño' en armas"
       },
       "ShowWeaponType": {
-        "hint": "verdadero=Mostrar campo 'Tipo Arma', falso=Esconder",
-        "name": "Mostrar campo 'Tipo Arma' en las armas"
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Tipo Arma' en armas"
       },
       "ShowRangeBandAndHideRange": {
-        "hint": "verdadero=Shows 'Range Band', falso=Shows 'Range'",
-        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
+        "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
+        "name": "Banda de Alcance"
+      },
+      "difficultyListUsed": {
+        "hint": "Variante del listado de dificultad.",
+        "name": "Listado dificultad:"
+      },
+      "difficultiesAsTargetNumber": {
+        "hint": "Marca=Objetivo numérico; SinMarca=Modificadores.",
+        "name": "Dificultad por objetivo numérico"
+      },
+      "ExperimentalFeatures": {
+        "hint": "Marca=Activar funciones experimentales sin testeo; SinMarca=Ocultas.",
+        "name": "Mostrar funciones experimentales"
+      },
+      "hideUntrainedSkills": {
+        "hint": "Marca=Utilizar habilidad 'Sin Entrenamiento' unificada. SinMarca=Mantener habilidades individuales.",
+        "name": "Unificar 'Sin Entrenamiento'"
+      },
+      "untrainedSkillValue": {
+        "hint": "Cambiar el modificador por habilidad 'Polivalencia'. Para Nivel 1 utilizar -2.",
+        "name": "Mod. con Polivalencia:"
       }
     },
-    "Yes": "Si"
+	"Yes": "Si"
   },
   "VeryDifficult": "Muy Difícil"
 }

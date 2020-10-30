@@ -272,7 +272,18 @@
         "name": "The value that is used for untrained skills."
       }
     },
-    "Yes": "Yes"
+    "Yes": "Yes",
+    "itemTypes": {
+      "equipment": "equipment",
+      "weapon": "weapon",
+      "armor": "armor",
+      "augment": "augment",
+      "storage": "storage",
+      "tool": "tool",
+      "junk": "junk",
+      "skills": "skills",
+      "skill": "skill"
+    }
   },
   "VeryDifficult": "Very Difficult"
 }

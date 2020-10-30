@@ -92,8 +92,8 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
-    const itemType = (type === "skills" ? "skill" : type).capitalize();
-    const name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + `${itemType}`;
+    const itemType = (type === "skills" ? "skill" : type);
+    const name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
     data.name = name;
     // Prepare the item object.
     const itemData = {
