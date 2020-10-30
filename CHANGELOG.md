@@ -1,3 +1,10 @@
+## [0.6.41](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.40...v0.6.41) (2020-10-30)
+
+
+### Bug Fixes
+
+* More Spanish translations. Added translations for item types to English and Swedish. ([3c6b2a1](https://github.com/xdy/twodsix-foundryvtt/commit/3c6b2a1d5ab8364a1c90e2310519362cd631be78))
+
 ## [0.6.40](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.39...v0.6.40) (2020-10-27)
 
 
