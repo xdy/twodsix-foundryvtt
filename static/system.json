@@ -44,6 +44,14 @@
   "license": "LICENSE",
   "packs": [
     {
+      "name": "twoe-skills",
+      "label": "2e skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/2e-skills.db",
+      "entity": "Item"
+    },
+    {
       "name": "ce-skills",
       "label": "ce skills",
       "system": "twodsix",
