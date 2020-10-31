@@ -1,3 +1,10 @@
+## [0.6.42](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.41...v0.6.42) (2020-10-31)
+
+
+### Bug Fixes
+
+* Courtesy of [@marvin9257](https://github.com/marvin9257), a compendium with 2e-skills ([d7cb14b](https://github.com/xdy/twodsix-foundryvtt/commit/d7cb14b640e6d21d3f0e947f57c18ed43a74c9db)), closes [#132](https://github.com/xdy/twodsix-foundryvtt/issues/132)
+
 ## [0.6.41](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.40...v0.6.41) (2020-10-30)
 
 
