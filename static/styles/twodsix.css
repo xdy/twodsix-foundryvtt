@@ -751,6 +751,11 @@ select.select-mod {
   margin-left: 1em;
 }
 
+select.select-difficulty {
+  width: 10em;
+  margin-left: 1em;
+}
+
 span.total-output {
   text-align: center;
 }
@@ -769,6 +774,17 @@ span.total-output {
 }
 
 .select-mod:after {
+  position: absolute;
+  content: '';
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+}
+
+.select-difficulty:after {
   position: absolute;
   content: '';
   top: 14px;

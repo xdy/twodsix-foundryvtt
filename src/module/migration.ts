@@ -111,7 +111,11 @@ export class Migration {
         updateData['data.radiationProtection.value'] = 0;
       }
     }
-
+    if (before(systemMigrationVersion, "0.6.43")) {
+      if (item.type === 'skills') {
+        updateData['data.difficulty'] = 'Average';
+      }
+    }
     return updateData;
   }
 
