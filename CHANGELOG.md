@@ -1,3 +1,10 @@
+## [0.6.43](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.42...v0.6.43) (2020-11-01)
+
+
+### Bug Fixes
+
+* Makes it possible to set a default difficulty for skills. Defaults to Average. ([40d1a41](https://github.com/xdy/twodsix-foundryvtt/commit/40d1a41ec19b210752dc50ca3faccb861f00875d)), closes [#155](https://github.com/xdy/twodsix-foundryvtt/issues/155)
+
 ## [0.6.42](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.41...v0.6.42) (2020-10-31)
 
 
