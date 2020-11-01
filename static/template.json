@@ -377,7 +377,8 @@
       "shortdescr": "",
       "subtype": "",
       "reference": "",
-      "key": "key"
+      "key": "key",
+      "difficulty": "Average"
     }
   }
 }
