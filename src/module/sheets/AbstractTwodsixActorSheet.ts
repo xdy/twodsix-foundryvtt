@@ -116,6 +116,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     return this.actor.createOwnedItem(itemData);
   }
 
+
   /**
    * Special handling of skills dropping.
    */
@@ -159,6 +160,14 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
       const matching = actor.data.items.filter(x => {
         return x.name === itemData.name;
       });
+
+      // Handle item sorting within the same Actor
+      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+      if (sameActor) {
+        console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+        return this._onSortItem(event, itemData);
+      }
+
       if (matching.length > 0) {
         console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
         //TODO Maybe this should mean increase skill value?
@@ -171,11 +180,23 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.data.value = 0;
       }
 
+
       await actor.createOwnedItem(itemData);
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
-      return super._onDrop(event);
+      // Handle item sorting within the same Actor
+      const actor = this.actor;
+      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+      if (sameActor) {
+        return this._onSortItem(event, itemData);
+      }
+
+      // Create the owned item (TODO Add to type and remove the two lines below...)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return this._onDropItemCreate(itemData);
     }
+
   }
 
   protected static _prepareItemContainers(sheetData:{ actor:any; items:any; }):void {
