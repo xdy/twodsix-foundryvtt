@@ -81,13 +81,12 @@ export class TwodsixRolls {
       difficultyString += ` (${difficulty.target}+)`;
     }
 
-    if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+    if (!game.settings.get('twodsix', 'difficultiesAsTargetNumber') && !showEffect) {
       if (difficulty.mod !== 0) {
         rollParts.push("" + difficulty.mod);
       }
-    } else {
-      rollParts.push("" + difficulty.mod);
     }
+
     flavorParts.unshift(difficultyString);
 
     flavorParts.unshift(game.i18n.localize("TWODSIX.Rolls.Rolling") + ":");
@@ -227,12 +226,10 @@ export class TwodsixRolls {
       }
     }
 
-    if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+    if (!game.settings.get('twodsix', 'difficultiesAsTargetNumber') && !showEffect) {
       if (difficulty.mod !== 0) {
         rollParts.push("" + difficulty.mod);
       }
-    } else {
-      rollParts.push("" + difficulty.mod);
     }
 
     flavorParts.push(label);
