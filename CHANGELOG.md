@@ -1,3 +1,10 @@
+## [0.6.45](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.44...v0.6.45) (2020-11-06)
+
+
+### Bug Fixes
+
+* Seems the ability to drag items to characters had quietly broken, the fix for that also made it possible to again sort items and skills by dragging and dropping them. ([7393055](https://github.com/xdy/twodsix-foundryvtt/commit/7393055f9dc2f9a620010bbc7e91dd5d48ee5adc))
+
 ## [0.6.44](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.43...v0.6.44) (2020-11-06)
 
 

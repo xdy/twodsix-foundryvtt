@@ -6,7 +6,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
-  "version": "0.6.44",
+  "version": "0.6.45",
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
   "bugs": "Plenty of them, this is an early alpha...",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
