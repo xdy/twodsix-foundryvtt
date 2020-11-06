@@ -1,3 +1,10 @@
+## [0.6.44](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.43...v0.6.44) (2020-11-06)
+
+
+### Bug Fixes
+
+* Fixes a dice roll bug [@marvin9257](https://github.com/marvin9257) found. (Basically, it sometimes double-counted the difficulty.) ([0e50dff](https://github.com/xdy/twodsix-foundryvtt/commit/0e50dffd860102e954a8f6062d63f0347d53e07a))
+
 ## [0.6.43](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.42...v0.6.43) (2020-11-01)
 
 
