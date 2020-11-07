@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="286.666px" height="22px" viewBox="0 0 286.666 22" enable-background="new 0 0 286.666 22" xml:space="preserve">
-<polygon fill="#27AAE1" stroke="#27AAE1" stroke-width="2" stroke-miterlimit="10" points="96.666,21 106.666,1 186.666,1 
-	186.666,21 106.666,21 "/>
-<polygon fill="#27AAE1" stroke="#27AAE1" stroke-width="2" stroke-miterlimit="10" points="191.666,21 201.666,1 281.666,1 
-	281.666,11 271.666,21 201.666,21 "/>
-<polygon fill="#27AAE1" stroke="#27AAE1" stroke-width="2" stroke-miterlimit="10" points="1.666,11 11.666,1 91.666,1 91.666,21 
-	11.666,21 "/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="286.666" height="22"><path fill="#27AAE1" stroke="#27AAE1" stroke-width="2" stroke-miterlimit="10" d="M96.666 21l10-20h80v20h-80zM191.666 21l10-20h80v10l-10 10h-70zM1.666 11l10-10h80v20h-80z"/></svg>
