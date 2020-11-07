@@ -1,3 +1,10 @@
+## [0.6.47](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.46...v0.6.47) (2020-11-07)
+
+
+### Bug Fixes
+
+* Rebuilds a lot of the internals for skill rolls etc. Preparation for issue 86, 120, 168. ([28e059d](https://github.com/xdy/twodsix-foundryvtt/commit/28e059d50c9cc3a4f9ee088e2f66fbec47257a1f))
+
 ## [0.6.46](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.45...v0.6.46) (2020-11-07)
 
 
