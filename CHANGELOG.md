@@ -1,3 +1,10 @@
+## [0.6.46](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.45...v0.6.46) (2020-11-07)
+
+
+### Bug Fixes
+
+* Indicate compatibility with Foundry 0.7.6. ([0015e60](https://github.com/xdy/twodsix-foundryvtt/commit/0015e60a41aa53b2ee9eb6d5e98eadfe4b5d8618))
+
 ## [0.6.45](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.44...v0.6.45) (2020-11-06)
 
 
