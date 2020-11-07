@@ -2,7 +2,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "ES2018",
-    "lib": ["WebWorker", "ScriptHost", "ESNext", "DOM"],
+    "lib": [
+      "WebWorker",
+      "ScriptHost",
+      "ESNext",
+      "DOM"
+    ],
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -10,7 +15,11 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
-    "types": ["jquery", "webpack-env", "foundry-pc-types"],
+    "types": [
+      "jquery",
+      "webpack-env",
+      "foundry-pc-types"
+    ],
     "alwaysStrict": true
   }
 }

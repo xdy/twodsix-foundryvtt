@@ -92,11 +92,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onRoll(event:Event):Promise<void> {
     event.preventDefault();
     event.stopPropagation();
-    const advanced = event["shiftKey"];
+    const showThrowDialog = event["shiftKey"];
     const element = event.currentTarget;
     const dataset = element["dataset"];
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    await TwodsixRolls.performRoll(this.actor, itemId, dataset, advanced);
+    await TwodsixRolls.performRoll(this.actor, itemId, dataset, showThrowDialog);
   }
 
   /**
@@ -109,56 +109,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
-    TwodsixRolls.rollDamage(item, true, this.actor);
-  }
 
-//Unused, but something like it is needed to support cascade/subskills, so letting it stay for now.
-//   /**
-//    * Handle skill upgrade
-//    * @param {Event} event   The originating click event
-//    * @private
-//    */
-//   _onUpgrade(event:{ preventDefault:() => void; currentTarget:any; }):void {
-//     event.preventDefault();
-//     const element = event.currentTarget;
-//     const skillName = element.getAttribute('data-label');
-//     const actorData = this.actor.data;
-//     const data = actorData.data;
-//     const matchingSkill = data.skills[skillName];
-//     const maxSkillLevel = game.settings.get('twodsix', 'maxSkillLevel');
-//
-//     if (matchingSkill) {
-//       if (TwodsixActorSheet.isChildSkill(matchingSkill)) {
-//         if (this.parentSkillIsTrained(matchingSkill) && matchingSkill.value < maxSkillLevel) {
-//           this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
-//         }
-//       } else if (matchingSkill.value < 0) {
-//         this.actor.update({[`data.skills.${skillName}.value`]: 0});
-//         if (matchingSkill.hasChildren) {
-//           this.processChildren(data, skillName, 0);
-//         }
-//       } else if (!matchingSkill.hasChildren && matchingSkill.value < maxSkillLevel) {
-//         this.actor.update({[`data.skills.${skillName}.value`]: data.skills[skillName].value + 1});
-//       }
-//     }
-//   }
-//
-//   private processChildren(data:any, skillName:string, level:number) {
-//     for (const [key] of Object.entries(data.skills)) {
-//       if (key.startsWith(skillName + "-")) {
-//         this.actor.update({[`data.skills.${key}.value`]: level});
-//       }
-//     }
-//   }
-//
-//   private static isChildSkill(matchingSkill:any) {
-//     return matchingSkill.childOf != null && matchingSkill.childOf != "";
-//   }
-//
-//   private parentSkillIsTrained(matchingSkill:any) {
-//     const parent = this.actor.data.data.skills[matchingSkill.childOf];
-//     return parent && parent.value >= 0;
-//   }
+    async function extracted(this):Promise<void> {
+      return await TwodsixRolls.rollDamage(item, true, this.actor);
+    }
+
+    extracted.call(this);
+  }
 }
 
 

@@ -22,7 +22,7 @@ Hooks.once("ready", async function () {
     }
   }
 
-  const needMigration = worldVersion === null || !isNewerVersion(worldVersion, systemVersion);
+  const needMigration = worldVersion === null || isNewerVersion(worldVersion, systemVersion);
 
   // Perform the migration
   if (needMigration && game.user.isGM) {
