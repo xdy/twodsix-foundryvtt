@@ -20,7 +20,7 @@ export default class TwodsixActor extends Actor {
     // things organized.
     switch (actorData.type) {
       case 'traveller':
-        this._prepareCharacterData(actorData);
+        this._prepareTravellerData(actorData);
         break;
       case 'ship':
         break;
@@ -32,7 +32,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  async _prepareCharacterData(actorData:ActorData):Promise<void> {
+  _prepareTravellerData(actorData:ActorData):void {
     // Get the Actor's data object
     const {data} = actorData;
 

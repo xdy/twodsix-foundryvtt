@@ -125,6 +125,9 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
 
     let data:any;
     try {
+      if (!event.dataTransfer) {
+        return false;
+      }
       data = JSON.parse(event.dataTransfer.getData('text/plain'));
     } catch (err) {
       console.log(`Twodsix | Drop failed with {err}`);
@@ -203,14 +206,14 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     const actorData = sheetData.actor;
 
     // Initialize containers.
-    const storage = [];
-    const equipment = [];
-    const weapon = [];
-    const armor = [];
-    const augment = [];
-    const tool = [];
-    const junk = [];
-    const skills = [];
+    const storage:Item[] = [];
+    const equipment:Item[] = [];
+    const weapon:Item[] = [];
+    const armor:Item[] = [];
+    const augment:Item[] = [];
+    const tool:Item[] = [];
+    const junk:Item[] = [];
+    const skills:Item[] = [];
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
