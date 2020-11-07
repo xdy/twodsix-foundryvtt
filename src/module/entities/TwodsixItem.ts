@@ -3,7 +3,6 @@
  * @extends {Item}
  */
 export default class TwodsixItem extends Item {
-  data:TwodsixItemData;
 
   /**
    * Augment the basic Item data model with additional dynamic data.
@@ -11,7 +10,7 @@ export default class TwodsixItem extends Item {
   prepareData():void {
     super.prepareData();
 
-    const itemData:TwodsixItemData = this.data;
+    const itemData:TwodsixItemData = <TwodsixItemData>this.data;
 
     switch (itemData.type) {
       case 'skills':

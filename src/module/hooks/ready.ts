@@ -1,11 +1,6 @@
 import {Migration} from "../migration";
-import compareVersions from "compare-versions";
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 
-
-export function before(worldVersion:string, MIGRATIONS_IMPLEMENTED:string):boolean {
-  return compareVersions(worldVersion, MIGRATIONS_IMPLEMENTED) === -1;
-}
 
 Hooks.once("ready", async function () {
 
@@ -27,11 +22,11 @@ Hooks.once("ready", async function () {
     }
   }
 
-  const needMigration = worldVersion === null || compareVersions(worldVersion, systemVersion) === -1;
+  const needMigration = worldVersion === null || !isNewerVersion(worldVersion, systemVersion);
 
   // Perform the migration
   if (needMigration && game.user.isGM) {
-    if (!worldVersion || before(worldVersion, MIGRATIONS_IMPLEMENTED)) {
+    if (!worldVersion || !isNewerVersion(worldVersion, MIGRATIONS_IMPLEMENTED)) {
       ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
     }
     await Migration.migrateWorld();

@@ -1,4 +1,3 @@
-import * as util from "util";
 import {advantageDisadvantageTerm} from "./i18n";
 import {calcModFor, getKeyByValue} from "./utils/sheetUtils";
 import {TWODSIX} from "./config";
@@ -12,7 +11,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('capitalize', (str) => {
-    if (!util.isString(str)) {
+    if (typeof str === 'string') {
       return '';
     }
     return str.charAt(0).toUpperCase() + str.slice(1);

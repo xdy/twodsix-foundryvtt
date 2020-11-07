@@ -1,6 +1,6 @@
 import {TWODSIX} from "../config";
-import TwodsixItem from "../entities/TwodsixItem";
-import TwodsixActor from "../entities/TwodsixActor";
+import type TwodsixItem from "../entities/TwodsixItem";
+import type TwodsixActor from "../entities/TwodsixActor";
 import {advantageDisadvantageTerm} from "../i18n";
 import {calcModFor, getKeyByValue} from "./sheetUtils";
 

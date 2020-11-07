@@ -1,7 +1,7 @@
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
-import TwodsixItem from "../entities/TwodsixItem";
-import {UpdateData} from "../migration";
+import type TwodsixItem from "../entities/TwodsixItem";
+import type {UpdateData} from "../migration";
 import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
 

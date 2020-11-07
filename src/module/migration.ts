@@ -1,5 +1,4 @@
-import {TwodsixItemData} from "./entities/TwodsixItem";
-import {before} from "./hooks/ready";
+import type {TwodsixItemData} from "./entities/TwodsixItem";
 
 //TODO Move all types to a better place
 export type UpdateData = {
@@ -15,14 +14,14 @@ export class Migration {
     const actorData = actor.data;
     await this.migrateActorItems(actorData, systemMigrationVersion, actor);
 
-    if (before(systemMigrationVersion, "0.6.20")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.20")) {
       updateData['data.hits.value'] = 0;
       updateData['data.hits.min'] = 0;
       updateData['data.hits.max'] = 0;
       updateData['data.radiationDose.max'] = 0;
     }
 
-    if (before(systemMigrationVersion, "0.6.35")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.35")) {
       updateData['data.primaryArmor.value'] = 0;
       updateData['data.secondaryArmor.value'] = 0;
       updateData['data.radiationProtection.value'] = 0;
@@ -44,15 +43,15 @@ export class Migration {
   private static migrateItemData(item:TwodsixItemData, systemMigrationVersion:string):UpdateData {
     const updateData:UpdateData = <UpdateData>{};
 
-    if (before(systemMigrationVersion, "0.6.9")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.9")) {
       updateData['data.name'] = item.name;
     }
 
-    if (before(systemMigrationVersion, "0.6.15")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.15")) {
       updateData['data.skillModifier'] = 0;
     }
 
-    if (before(systemMigrationVersion, "0.6.22")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.22")) {
       if (item.type != 'skills') {
         if (!item.data.skill) {
           updateData['data.skill'] = "";
@@ -63,14 +62,14 @@ export class Migration {
       }
     }
 
-    if (before(systemMigrationVersion, "0.6.23")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.23")) {
       if (item.type === 'skills') {
         updateData['data.description'] = "";
         updateData['data.shortDesc'] = "";
       }
     }
 
-    if (before(systemMigrationVersion, "0.6.24")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.24")) {
       if (item.type === 'skills') {
         updateData['data.subtype'] = "";
         updateData['data.reference'] = "";
@@ -78,7 +77,7 @@ export class Migration {
       }
     }
 
-    if (before(systemMigrationVersion, "0.6.25")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.25")) {
       // This migration failed horribly, so removed in 0.6.26
       // let cost;
       // try {
@@ -105,13 +104,13 @@ export class Migration {
       }
     }
 
-    if (before(systemMigrationVersion, "0.6.35")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.35")) {
       if (item.type === 'armor') {
         updateData['data.secondaryArmor.value'] = 0;
         updateData['data.radiationProtection.value'] = 0;
       }
     }
-    if (before(systemMigrationVersion, "0.6.43")) {
+    if (!isNewerVersion(systemMigrationVersion, "0.6.43")) {
       if (item.type === 'skills') {
         updateData['data.difficulty'] = 'Average';
       }
