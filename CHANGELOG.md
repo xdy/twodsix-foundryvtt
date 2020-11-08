@@ -1,3 +1,14 @@
+## [0.6.49](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.48...v0.6.49) (2020-11-08)
+
+
+### Bug Fixes
+
+* Change 'other modifiers' to a text field to avoid invisible text. ([4f93765](https://github.com/xdy/twodsix-foundryvtt/commit/4f93765d269e1bcbba877cbca6710f68da8be630))
+* Change 'other modifiers' to a text field to avoid invisible text. ([f643ef8](https://github.com/xdy/twodsix-foundryvtt/commit/f643ef81ef760cd38bb42b4229ec8c48c7dc24e8))
+* Change 'other modifiers' to a text field to avoid invisible text. ([a901dc4](https://github.com/xdy/twodsix-foundryvtt/commit/a901dc4167e6efeb10a1d6e1cc0ea22ba0938c1c))
+* Change 'other modifiers' to a text field to avoid invisible text. ([2002cc2](https://github.com/xdy/twodsix-foundryvtt/commit/2002cc2c0dca239e126a1746827f1e1c77d06998))
+* Change 'other modifiers' to a text field to avoid invisible text. ([87f3655](https://github.com/xdy/twodsix-foundryvtt/commit/87f3655e1f5f34e2211c62661657433360751b92))
+
 ## [0.6.48](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.47...v0.6.48) (2020-11-08)
 
 
