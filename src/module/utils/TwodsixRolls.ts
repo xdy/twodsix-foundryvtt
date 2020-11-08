@@ -251,35 +251,43 @@ export class TwodsixRolls {
       //Do the throw
       roll.roll();
 
-      //Handle special results
-      const diceValues:number[] = <number[]>roll.dice[0]['results'];
-      let effect:number;
+      let effect;
       if (showEffect) {
         effect = roll.total;
       } else {
         effect = roll.total - difficulty.target;
       }
 
-      //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
-      if (diceValues[0] + diceValues[1] === 2) {
-        console.log("Got a natural 2!");
-        if (0 <= effect) {
-          //effect = -1;
-        }
-      } else if (diceValues[0] + diceValues[1] === 12) {
-        console.log("Got a natural 12!");
-        if (effect < 0) {
-          //effect = 0;
-        }
-      }
 
-      //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
-      const TODO_UNHARDCODEME_ISSUE_120 = 6;
-      if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
-        console.log("Got a critical success");
-      } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
-        console.log("Got a critical failure");
-      }
+      /* Builds fine locally, but got this on github action for some reason, so commenting out:
+      *  [tsl] ERROR in /home/runner/work/twodsix-foundryvtt/twodsix-foundryvtt/src/module/utils/TwodsixRolls.ts(255,35)
+      * TS2352: Conversion of type 'object[]' to type 'number[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+      * Type 'object' is not comparable to type 'number'.
+      * */
+
+      // //Handle special results
+      // const diceValues:number[] = <number[]>roll.dice[0]['results'];
+      //
+      // //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
+      // if (diceValues[0] + diceValues[1] === 2) {
+      //   console.log("Got a natural 2!");
+      //   if (0 <= effect) {
+      //     //effect = -1;
+      //   }
+      // } else if (diceValues[0] + diceValues[1] === 12) {
+      //   console.log("Got a natural 12!");
+      //   if (effect < 0) {
+      //     //effect = 0;
+      //   }
+      // }
+      //
+      // //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
+      // const TODO_UNHARDCODEME_ISSUE_120 = 6;
+      // if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
+      //   console.log("Got a critical success");
+      // } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
+      //   console.log("Got a critical failure");
+      // }
 
       //And send to chat
       await roll.toMessage(
