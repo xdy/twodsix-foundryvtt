@@ -4,7 +4,7 @@ import type TwodsixActor from "../entities/TwodsixActor";
 import {advantageDisadvantageTerm} from "../i18n";
 import {calcModFor, getKeyByValue} from "./sheetUtils";
 
-type throwSettings = { difficulty; skillModifier; shouldRoll:boolean; rollType:string; rollMode; characteristic }
+type throwSettings = { difficulty; skillModifier; shouldRoll:boolean; rollType:string; rollMode:string; characteristic }
 
 //TODO This one needs refactoring.
 //At least within this class a Roll is just a roll of some dice, whereas a Throw belongs to the Cepheus Engine domain and denotes a 'throw' of a skill or characteristic, which I really wish had a better common name...
@@ -64,7 +64,7 @@ export class TwodsixRolls {
     });
   }
 
-  public static async performRoll(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean):Promise<void> {
+  public static async performThrow(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean):Promise<void> {
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
     let skillId:string;
     let item:TwodsixItem | null = actor.getOwnedItem(itemId) as TwodsixItem;
@@ -122,43 +122,26 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0):Promise<void> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode: string):Promise<any> {
     const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
     const success = effect >= 0;
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
+    let newVar;
     if (success && rollDamage && doesDamage) {
       const damageFormula = item?.data?.data?.damage + (justRollIt ? "" : "+" + effect);
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
-      await damage.toMessage({
+      newVar = await damage.toMessage({
         speaker: ChatMessage.getSpeaker({actor: actor}),
         flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") + " " + item?.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
-      });
+      }, {rollMode: rollMode, create: false});
     }
-    //TODO Should #63 be handled here or on return?
+    return newVar;
   }
 
   private static async _handleThrows(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem | null, showEffect:boolean, characteristic, skill:TwodsixItem | null, showRollDialog:boolean) {
     let rollParts:string[] = [];
-    if (dataset.roll) {
-      rollParts = dataset.roll?.split("+");
-    }
-    const flavorParts:string[] = [];
-
-    let title;
-    if (dataset.roll && !dataset.skill) {
-      flavorParts.push(`${dataset.label}`);
-      title = dataset.label;
-    }
-    if (dataset.skill) {
-      flavorParts.push(`${dataset.skill}`);
-      title = dataset.skill;
-      if (dataset.item) {
-        flavorParts.push(`${dataset.item}`);
-      }
-    }
-
     const speaker = ChatMessage.getSpeaker({actor: actor});
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const rollMode = game.settings.get('core', 'rollMode');
@@ -173,6 +156,25 @@ export class TwodsixRolls {
       skillModifier: skillModifier,
       characteristic: characteristic
     };
+
+    if (dataset.roll) {
+      rollParts = dataset.roll?.split("+");
+    }
+    const flavorParts:string[] = [];
+
+    let title;
+    if (dataset.roll && !dataset.skill) {
+      flavorParts.push(`${dataset.label}`);
+      title = dataset.label;
+    }
+    if (dataset.skill) {
+      flavorParts.push(`${dataset.skill}`);
+      title = dataset.skill;
+      if (dataset.item) {
+        title += ` ${game.i18n.localize("TWODSIX.Actor.using")} ${dataset.item}`;
+        flavorParts.push(`${dataset.item}`);
+      }
+    }
 
     if (showRollDialog) {
       settings = await TwodsixRolls._throwDialog(title, difficulties, settings);
@@ -288,7 +290,7 @@ export class TwodsixRolls {
       );
 
       //With possible followup
-      await this.rollDamage(item, showEffect, actor, false, effect);
+      await this.rollDamage(item, showEffect, actor, false, effect, rollMode);
     }
   }
 }

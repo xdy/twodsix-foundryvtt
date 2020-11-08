@@ -96,7 +96,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = event.currentTarget;
     const dataset = element["dataset"];
     const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    await TwodsixRolls.performRoll(this.actor, itemId, dataset, showThrowDialog);
+    await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog);
   }
 
   /**
@@ -111,7 +111,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
 
     async function extracted(this):Promise<void> {
-      return await TwodsixRolls.rollDamage(item, true, this.actor);
+      return await TwodsixRolls.rollDamage(item, true, this.actor, true, 0, game.settings.get('core', 'rollMode'));
     }
 
     extracted.call(this);

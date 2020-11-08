@@ -84,7 +84,7 @@ export async function rollItemMacro(itemId):Promise<void> {
   } else {
     // Trigger the item roll
     const domStringMap = DOMStringMap.prototype;
-    await TwodsixRolls.performRoll(actor, itemId, domStringMap, false);
+    await TwodsixRolls.performThrow(actor, itemId, domStringMap, false);
   }
 }
 
