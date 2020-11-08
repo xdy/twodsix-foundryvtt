@@ -1,3 +1,10 @@
+## [0.6.48](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.47...v0.6.48) (2020-11-08)
+
+
+### Bug Fixes
+
+* UI changes from Kevin ([0f5d939](https://github.com/xdy/twodsix-foundryvtt/commit/0f5d9398b0ac5d0ba9c98d8ef9cc05a61b4be459))
+
 ## [0.6.47](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.46...v0.6.47) (2020-11-07)
 
 
