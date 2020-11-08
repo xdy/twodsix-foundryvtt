@@ -252,7 +252,7 @@ export class TwodsixRolls {
       roll.roll();
 
       //Handle special results
-      const diceValues = roll.dice[0]['results'];
+      const diceValues:number[] = roll.dice[0]['results'];
       let effect:number;
       if (showEffect) {
         effect = roll.total;
