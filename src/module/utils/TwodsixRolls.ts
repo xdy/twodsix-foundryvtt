@@ -122,7 +122,7 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode: string):Promise<any> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode:string):Promise<any> {
     const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
     const success = effect >= 0;
     const doesDamage = item?.data?.data?.damage != null;
@@ -169,10 +169,11 @@ export class TwodsixRolls {
     }
     if (dataset.skill) {
       flavorParts.push(`${dataset.skill}`);
-      title = dataset.skill;
       if (dataset.item) {
-        title += ` ${game.i18n.localize("TWODSIX.Actor.using")} ${dataset.item}`;
+        title = `${dataset.skill} ${game.i18n.localize("TWODSIX.Actor.using")} ${dataset.item}`;
         flavorParts.push(`${dataset.item}`);
+      } else {
+        title = dataset.skill;
       }
     }
 
