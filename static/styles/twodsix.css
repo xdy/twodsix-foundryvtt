@@ -150,12 +150,13 @@ input[type=number] {
   width: 96%;
 }
 .sheet nav.sheet-tabs {
-  height: 22px !important;
+  height: 21px !important;
   flex: 0 0 23px !important;
-  margin: 4px 0 !important;
+  /* margin: 0 0 !important; */
   line-height: 16px !important;
-  position: relative;
-  top: 25px !important;
+  /* position: relative; */
+  top: 1.8em !important;
+  /* margin-bottom: 1em; */
   border: none !important;
 }
 
@@ -203,6 +204,13 @@ form .form-group, form .form-group-stacked {
   flex-wrap: wrap;
   margin: 3px 0;
   color: #00e5ff !important;
+}
+
+form .form-group span.units {
+  flex: 0;
+  line-height: 28px;
+  font-size: 12px;
+  color: #c9c7b8 !important;
 }
 
 #player-config label {
@@ -1598,6 +1606,11 @@ a:hover {
   height: 2em;
 }
 
+
+.tabs .item.active {
+  text-shadow: 0 0 10px #00e5ff !important;
+}
+
 /*--- Chat Log ---*/
 
 #sidebar-tabs.tabs .item.active {
@@ -1743,6 +1756,11 @@ button:hover {
   border-color: #00e5ff;
 }
 
+button:hover, button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #29aae1 !important;
+}
+
 form .notes, form .hint {
   flex: 0 0 100%;
   font-size: 12px;
@@ -1870,6 +1888,24 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   box-shadow: 0 0 6px inset #29aae1;
 }
 
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  width: 300px;
+  height: 99vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-image: none !important;
+  /* border: none !important; */
+  background-color: #0d0d0dad;
+}
+
 /* SCENE INTERFACE */
 
 #navigation {
@@ -1880,9 +1916,9 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   margin: 0;
   padding: 0;
   box-shadow: none;
-  background-color: #0d0d0d;
+  background-color: #0d0d0d00 !important;
   background-image: none !important;
-  border: 1px groove #191813;
+  border: 1px groove #19181300 !important;
 }
 
 #controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover {
@@ -1901,6 +1937,11 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   box-shadow: 0 0 10px #29aae1;
 }
 
+#navigation #scene-list .scene.gm {
+  background: #130027;
+  border: 1px solid #333 !important;
+}
+
 #controls {
   position: fixed;
   top: 60px;
@@ -1909,8 +1950,8 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   list-style: none;
   box-shadow: none;
   background-image: none !important;
-  background-color: #0d0d0d;
-  border: 1px groove #111;
+  background-color: none !important;
+  border: none !important;
 }
 
 /* MACRO BAR */
@@ -1930,6 +1971,14 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   border-bottom: 1px solid #b5b3a4;
   line-height: 10px;
   width: 32.5em;
+}
+
+.token-sheet .notes {
+  font-size: 13px;
+  padding: 0.5em 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #b5b3a4;
+  margin-top: 1.5em;
 }
 
 /* EDITOR */
@@ -1988,4 +2037,24 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   list-style: none;
   padding-left: 0;
 }
+
+/* ------ WEBCAM Settings ------ */
+
+#camera-views {
+  position: fixed;
+  bottom: 70px;
+  left: 225px;
+  width: calc(100% - 550px);
+  margin: 0;
+  padding: 0;
+  align-items: baseline;
+  z-index: 60;
+  background: none;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+  background: none !important;
+  border: none !important;
+}
+
 
