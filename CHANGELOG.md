@@ -1,3 +1,10 @@
+## [0.6.50](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.49...v0.6.50) (2020-11-10)
+
+
+### Bug Fixes
+
+* Start showing rolled damage again. ([ca73ce3](https://github.com/xdy/twodsix-foundryvtt/commit/ca73ce3af3b6eb7df0e9c8259d49f7adabb30c0f))
+
 ## [0.6.49](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.48...v0.6.49) (2020-11-08)
 
 
