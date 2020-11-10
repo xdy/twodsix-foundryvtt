@@ -135,7 +135,7 @@ export class TwodsixRolls {
       newVar = await damage.toMessage({
         speaker: ChatMessage.getSpeaker({actor: actor}),
         flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") + " " + item?.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
-      }, {rollMode: rollMode, create: false});
+      }, {rollMode: rollMode, create: true});
     }
     return newVar;
   }
