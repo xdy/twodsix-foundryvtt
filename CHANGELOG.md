@@ -1,3 +1,10 @@
+## [0.6.51](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.50...v0.6.51) (2020-11-14)
+
+
+### Bug Fixes
+
+* Set to compatible with 0.7.7. Update some dependencies. ([0f3f1f2](https://github.com/xdy/twodsix-foundryvtt/commit/0f3f1f23e2c6c4b4d4ea21baf1f9e1dd794de161))
+
 ## [0.6.50](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.49...v0.6.50) (2020-11-10)
 
 
