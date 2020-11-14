@@ -265,29 +265,29 @@ export class TwodsixRolls {
       * Type 'object' is not comparable to type 'number'.
       * */
 
-      // //Handle special results
-      // const diceValues:number[] = <number[]>roll.dice[0]['results'];
-      //
-      // //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
-      // if (diceValues[0] + diceValues[1] === 2) {
-      //   console.log("Got a natural 2!");
-      //   if (0 <= effect) {
-      //     //effect = -1;
-      //   }
-      // } else if (diceValues[0] + diceValues[1] === 12) {
-      //   console.log("Got a natural 12!");
-      //   if (effect < 0) {
-      //     //effect = 0;
-      //   }
-      // }
-      //
-      // //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
-      // const TODO_UNHARDCODEME_ISSUE_120 = 6;
-      // if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
-      //   console.log("Got a critical success");
-      // } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
-      //   console.log("Got a critical failure");
-      // }
+      //Handle special results
+      const diceValues:number[] = <number[]><unknown>roll.dice[0].results;
+
+      //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
+      if (diceValues[0] + diceValues[1] === 2) {
+        console.log("Got a natural 2!");
+        if (0 <= effect) {
+          //effect = -1;
+        }
+      } else if (diceValues[0] + diceValues[1] === 12) {
+        console.log("Got a natural 12!");
+        if (effect < 0) {
+          //effect = 0;
+        }
+      }
+
+      //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
+      const TODO_UNHARDCODEME_ISSUE_120 = 6;
+      if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
+        console.log("Got a critical success");
+      } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
+        console.log("Got a critical failure");
+      }
 
       //And send to chat
       await roll.toMessage(
