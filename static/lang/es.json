@@ -75,7 +75,7 @@
         "Modifier": "Mod.",
         "SkillName": "Nombre",
         "Total": "Total",
-		"Untrained": "Sin Entrenar"
+        "Untrained": "Sin Entrenar"
       },
       "Species": "Especie",
       "Tabs": {
@@ -96,13 +96,13 @@
         "Type": "Tipo tirada"
       }
     },
-	"Handlebars": {
+    "Handlebars": {
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar la características en todas las habilidades marcadas con XXX."
     },
     "Items": {
       "Armor": {
         "Armor": "Armadura",
-		"SecondaryArmor": "Armadura 2ª",
+        "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad"
       },
       "Augmentation": {
@@ -147,7 +147,7 @@
         "INT": "INT",
         "Level": "Nivel",
         "Modifier": "Modificador",
-		"NONE": "---",
+        "NONE": "---",
         "PSI": "PSI",
         "SOC": "SOC",
         "STR": "FUE",
@@ -160,7 +160,7 @@
         "Ammo": "Cargador",
         "Damage": "Daño",
         "Range": "Alcance",
-		"lawLevel": "Nivel de Ley",
+        "lawLevel": "Nivel de Ley",
         "rangeBand": "Banda de Alcance",
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
@@ -171,9 +171,9 @@
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
-	  "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
+      "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-	"No": "No",
+    "No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto):",
       "Cancel": "Cancelar",
@@ -184,14 +184,14 @@
       "With": "con",
       "resultShows": "Resultado en:",
       "sum": "Objetivo 8+",
-	  "using": "de {characteristic}"
+      "using": "de {characteristic}"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
         "name": "Bonus/penaliz. incrementar tarea:"
       },
-	  "automateDamageRollOnHit": {
+      "automateDamageRollOnHit": {
         "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
         "name": "Daño en tirada que impacte"
       },
@@ -199,7 +199,7 @@
         "hint": "Configuración automática del token en nuevos Actores.",
         "name": "Asignar un token por defecto"
       },
-	  "effectOrTotal": {
+      "effectOrTotal": {
         "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
         "name": "Estilo resultados por Efecto"
       },
@@ -227,7 +227,7 @@
         "hint": "No asignar igual a Ventaja.",
         "name": "Nombre tirada Desventaja:"
       },
-	  "ShowLawLevel": {
+      "ShowLawLevel": {
         "hint": "Marca=Mostrar; SinMarca=Esconder.",
         "name": "Mostrar 'Nivel de Ley' en armas"
       },
@@ -272,7 +272,18 @@
         "name": "Mod. con Polivalencia:"
       }
     },
-	"Yes": "Si"
+    "Yes": "Si",
+    "itemTypes": {
+      "equipment": "equipo",
+      "weapon": "arma",
+      "armor": "armadura",
+      "augment": "aumento",
+      "storage": "carga",
+      "tool": "herramienta",
+      "junk": "chatarra",
+      "skills": "habilidades",
+      "skill": "habilidad"
+    }
   },
   "VeryDifficult": "Muy Difícil"
 }
