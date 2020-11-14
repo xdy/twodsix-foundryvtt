@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ES2018",
+    "moduleResolution": "Node",
+    "target": "ES6",
     "lib": [
       "WebWorker",
       "ScriptHost",
       "ESNext",
-      "DOM"
+      "DOM",
+      "ES6",
+      "ES2017",
+      "ES2018"
     ],
+    "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
