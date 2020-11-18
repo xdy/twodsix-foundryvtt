@@ -1,1 +1,289 @@
-{}
+{
+  "Advantage": "Vorteil",
+  "Average": "Durchschnittlich",
+  "Cancel": "Abbrechen",
+  "Difficult": "Schwierigkeit",
+  "Disadvantage": "Nachteil",
+  "Easy": "Einfach",
+  "Formidable": "Hervorragend",
+  "Impossible": "Unmöglich",
+  "Normal": "Normal",
+  "Routine": "Routine",
+  "Simple": "Leicht",
+  "TWODSIX": {
+    "Actor": {
+      "Age": "Alter",
+      "CharacterImage": "Charakter Bild",
+      "CharacterName": "Charakter Name",
+      "Characteristics": {
+        "DEX": "GES",
+        "EDU": "BIL",
+        "END": "AUS",
+        "INT": "INT",
+        "PSI": "PSI",
+        "SOC": "SOZ",
+        "STR": "STA"
+      },
+      "DeleteOwnedItem": "Lösche Gegenstand im Besitz",
+      "Finances": {
+        "CASH_ON_HAND": "BARGELD",
+        "DEBT": "SCHULDEN",
+        "FINANCIAL_NOTES": "FINANZIELLE ANMERKUNG",
+        "LIVING_COSTS": "LEBENSKOSTEN",
+        "PENSION": "PENSION",
+        "SHIP_PAYMENTS_MONTHLY": "SCHIFFSZAHLUNGEN MONATLICH"
+      },
+      "Gender": "Geschlecht",
+      "HomeWorld": "Heimatwelt",
+      "Info": {
+        "ALLIES": "VERBÜNDETE",
+        "BIOGRAPHY": "BIOGRAPHIE",
+        "CONTACTS": "KONTAKTE",
+        "DESCRIPTION": "BESCHREIBUNG",
+        "ENEMIES": "FEINDE"
+      },
+      "Items": {
+        "ARMOR": "RÜSTUNG",
+        "AUGMENTS": "ANPASSUNGEN",
+        "Ammo": "Munition",
+        "Armor": "Rüstung",
+        "CreateItem": "Gegenstand erschaffen",
+        "Damage": "Schaden",
+        "DeleteItem": "Lösche Gegenstand",
+        "EQUIPMENT": "AUSRÜSTUNG",
+        "EditItem": "Gegenstand bearbeiten",
+        "Effect": "Effekt",
+        "Location": "Ort",
+        "Name": "Name",
+        "Qty": "Qty",
+        "Range": "Reichweite",
+        "ShortDescr": "Kurzbeschreibung",
+        "TL": "TL",
+        "WEAPONS": "WAFFEN",
+        "Weight": "Gew."
+      },
+      "Notes": {
+        "NOTES": "CHARAKTER NOTIZEN"
+      },
+      "Rolling": "Würfle",
+      "Skills": {
+        "AddSkill": ">>Fertigkeit hinzufügen<<",
+        "DeleteItem": "Gegenstand löschen",
+        "EditItem": "Gegenstand bearbeiten",
+        "EditOrRemove": "Bearbeiten / Löschen",
+        "Level": "Level",
+        "Modifier": "Modifizierung",
+        "SkillName": "Fertigkeits Name",
+        "Total": "Total",
+        "Untrained": "Untrainiert"
+      },
+      "Species": "Spezies",
+      "Tabs": {
+        "Finances": "Finanzen",
+        "Info": "Info",
+        "Inventory": "Inventar",
+        "Notes": "Notizen",
+        "Skills": "Fertigkeiten"
+      },
+      "Unknown actor type ": "Unbekannter Charaktertyp ",
+      "using": "benutzt"
+    },
+    "Chat": {
+      "Roll": {
+        "Difficulty": "Wurf Schwierigkeiten",
+        "Mode": "Wurf-Mod.",
+        "OtherModifiers": "Andere modifizierer",
+        "Type": "Wurf Typ"
+      }
+    },
+    "Handlebars": {
+      "CantShowCharacteristic": "Sie müssen das Merkmal für alle mit XXX markierten Fähigkeiten erneut auswählen. Entschuldigung..."
+    },
+    "Items": {
+      "Armor": {
+        "Armor": "Rüstung",
+        "SecondaryArmor": "Zweite Rüstung",
+        "RadProt": "Rad Prot"
+      },
+      "Augmentation": {
+        "Arms": "Arme",
+        "AugEffect": "Effekt",
+        "AugLocation": "Ort",
+        "FullBody": "Ganzkörper",
+        "Head": "Kopf",
+        "Legs": "Beine",
+        "Torso": "Torso",
+        "ValueCr": "Menge in Cr."
+      },
+      "Equipment": {
+        "AssignSkill": "Fertigkeit zuweisen",
+        "Description": "Beschreibung",
+        "ItemName": "Gegenstand Name",
+        "Location": "Ort",
+        "Price": "Preis",
+        "Quantity": "Menge",
+        "ShortDescription": "Kurzbeschreibung",
+        "SkillModifier": "Fertigkeit Modifikator",
+        "TL": "TL",
+        "Weight": "Gewicht"
+      },
+      "Items": {
+        "AssignArmor": "Rüstung zuweisen",
+        "AssignAugment": "Anpassung zuweisen",
+        "AssignEquipment": "Ausrüstung zuweisen",
+        "AssignJunk": "Junk zuweisen",
+        "AssignTool": "Werkzeug zuweisen",
+        "AssignWeapon": "Waffen zuweisen",
+        "Inventory": "Inventar",
+        "ItemType": "Typ",
+        "MoveStorage": "Aufbewahrung verschieben",
+        "New": "Neu",
+        "Storage": "Aufbewahrung"
+      },
+      "Skills": {
+        "DEX": "GES",
+        "EDU": "BIL",
+        "END": "AUS",
+        "INT": "INT",
+        "Level": "Level",
+        "Modifier": "Modifikator",
+        "NONE": "---",
+        "PSI": "PSI",
+        "SOC": "SOZ",
+        "STR": "STA",
+        "SkillName": "Fertigkeit Name"
+      },
+      "Tool": {
+        "Bonus": "Bonus"
+      },
+      "Weapon": {
+        "Ammo": "Munition",
+        "Damage": "Schaden",
+        "Range": "Reichweite",
+        "lawLevel": "Justizgrad",
+        "rangeBand": "Reichweite Bande",
+        "weaponType": "Waffen Typ",
+        "damageType": "Schaden Typ",
+        "rateOfFire": "Dauerfeuer",
+        "recoil": "Rückstoss"
+      }
+    },
+    "Migration": {
+      "Completed": "Twodsix System-Migration auf Version {Version} abgeschlossen!",
+      "DoNotClose": "Migration von Twodsix zu {Version}. Schließen Sie Ihr Spiel nicht und fahren Sie Ihren Server nicht herunter.",
+      "MigrationError0.6.25": "Migrationsfehler: Konnte Preis für ${name} nicht analysieren, er war ${price}, ist aber jetzt 0."
+    },
+    "No": "Nein",
+    "Rolls": {
+      "AdjustedDamage": "Schaden durch Wirkung angepasst:",
+      "Cancel": "Abbrechen",
+      "DamageUsing": "Schaden verwenden",
+      "Effect": "Effekt",
+      "Roll": "Wurf",
+      "Rolling": "Würfeln",
+      "With": "mit",
+      "resultShows": "Resultat zeigt",
+      "sum": "Summe",
+      "using": "benutzt {characteristic}"
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+        "hint": "Leer lassen, um die Standardeinstellung (+/-1) zu verwenden. Wird derzeit nicht verwendet.",
+        "name": "Welchen Bonus/Strafe ist bei jeder schrittweisen Änderung einer Aufgabe zu gewähren?"
+      },
+      "automateDamageRollOnHit": {
+        "hint": "angekreuzt=Schadenswurf, modifiziert durch die Wirkung des Fertigkeitswurfs. nicht angekreuzt=Schaden nicht auswürfeln.",
+        "name": "Automatisch Schaden auf Fertigkeitswürfe würfeln, die mit Gegenständen, die Schaden verursachen, treffen (d.h. Wirkung > 0 erhalten)?"
+      },
+      "defaultTokenSettings": {
+        "hint": "Automatisches Setzen der empfohlenen Prototyp-Token-Einstellungen für neu erstellte Akteure.",
+        "name": "Standard-Prototyp-Token-Einstellungen"
+      },
+      "effectOrTotal": {
+        "hint": "angekreuzt=Zeige Effekt (d.h. Rolle+Modifikatoren-Zielnummer, normalerweise 8), nicht angekreuzt=Zeige Gesamt (d.h. Rolle+Modifikatoren)",
+        "name": "Show effect or total roll value for skill and characteristic rolls."
+      },
+      "initiativeFormula": {
+        "hint": "Beispiel: \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Initiative Formel"
+      },
+      "maxSkillLevel": {
+        "hint": "Leer lassen, um Standard zu verwenden (9).",
+        "name": "Fertigkeits Stufe maximum."
+      },
+      "modifierForZeroCharacteristic": {
+        "hint": "Leer lassen, um die Voreinstellung zu verwenden (-2). Berechnet Modifikatoren für vorhandene Charaktere nicht automatisch neu.",
+        "name": "Modifikator für Charakteristik Null."
+      },
+      "systemMigrationVersion": {
+        "hint": "Zeichnet die Schemaversion für das Twodsix-System auf. (Ändern Sie dies nicht, wenn Sie nicht wissen, was Sie tun)",
+        "name": "System Schema Version"
+      },
+      "termForAdvantage": {
+        "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Nachteil...",
+        "name": "Wie Sie Würfe mit Vorteil nennen wollen (3d6kh2)."
+      },
+      "termForDisadvantage": {
+        "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Vorteil...",
+        "name": "Wie Sie Würfe mit Nachteil nennen wollen (3d6kl2)."
+      },
+      "ShowLawLevel": {
+        "hint": "angekreuzt=Feld 'Justizgrad' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das Feld 'Justizgrad' auf Waffen Eintrag anzeigen"
+      },
+      "ShowRecoil": {
+        "hint": "angekreuzt=Zeige das Feld 'Rückstoß' an, nicht angekreuzt=Verstecke es",
+        "name": "Das Feld 'Rückstoss' auf Waffeneintrag anzeigen"
+      },
+      "ShowRateOfFire": {
+        "name": "Zeigen Sie das Feld 'Dauerfeuer' auf den Waffeneinträgen",
+        "hint": "angekreuzt=Zeigt das Feld 'Dauerfeuer' an, nicht angekreuzt=Ausblenden"
+      },
+      "ShowDamageType": {
+        "hint": "angekreuzt=Feld 'Schaden Typ' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das Feld 'Schadentyp' auf Waffenblättern anzeigen"
+      },
+      "ShowWeaponType": {
+        "hint": "angekreuzt=Feld 'Waffentyp' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Zeigen Sie das Feld 'Waffentyp' auf den Waffeneinträgen"
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
+        "name": "Zeigt 'Reichweite Band' und *verbergt* 'Reichweite' auf den Waffeneinträgen und dem Charakterblatt"
+      },
+      "difficultyListUsed": {
+        "hint": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll.",
+        "name": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll."
+      },
+      "difficultiesAsTargetNumber": {
+        "hint": "angekreuzt=Zielnummer statt Modifikator für Schwierigkeiten verwenden, nicht angekreuzt=Modifikatoren verwenden,angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
+        "name": "Verwenden Sie bei Schwierigkeiten eher Zielnummern als Modifikatoren."
+      },
+      "ExperimentalFeatures": {
+        "hint": "angekreuzt=Sichern Sie hässliche und fehlerhafte experimentelle Funktionen, die Ihre Spielwelt vielleicht einfach nicht löschen, nicht angekreuzt=Verstecken Sie sie, wie es jeder vernünftige Mensch tun würde",
+        "name": "Hässliche, fehlerhafte und unfertige Funktionen anzeigen. D.h., so wie alle anderen Funktionen, die nicht durch diese Flagge verdeckt werden. :)"
+      },
+      "hideUntrainedSkills": {
+        "hint": "checked=Zeige Pseudo-Fähigkeit 'Ungeübt' statt aller untrainierten Fähigkeiten. unchecked=Zeige alle untrainierten Fähigkeiten",
+        "name": "Blenden Sie alle untrainierten Fähigkeiten aus, zeigen Sie stattdessen eine einzige Pseudo-Fähigkeit namens 'Ungeübt' an. Dies führt auch dazu, dass neue Fertigkeiten bei 0 anstelle des Wertes der untrainierten Fertigkeiten hinzugefügt werden."
+      },
+      "untrainedSkillValue": {
+        "hint": "Ändern Sie dies, um die Stufe des Charakters an die Stufe der Fertigkeit 'Jack of all Trades' (JOAT) anzupassen. Wenn Sie JOAT 1 haben, setzen Sie den Wert auf -2, usw.",
+        "name": "Der Wert, der für untrainierte Fähigkeiten verwendet wird."
+      }
+    },
+    "Yes": "Ja",
+    "itemTypes": {
+      "equipment": "Ausrüstung",
+      "weapon": "waffen",
+      "armor": "rüstung",
+      "augment": "anpassung",
+      "storage": "aufbewahrung",
+      "tool": "werkzeug",
+      "junk": "junk",
+      "skills": "fertigkeiten",
+      "skill": "fertigkeit"
+    }
+  },
+  "VeryDifficult": "Sehr schwierig"
+}
