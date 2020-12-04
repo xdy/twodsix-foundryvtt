@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "twodsix",
-  "version": "0.6.52",
+  "version": "0.6.53",
   "description": "A 2d6 system",
   "scripts": {
     "build": "webpack --mode production",
