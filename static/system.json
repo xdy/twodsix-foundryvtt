@@ -7,7 +7,7 @@
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.6.53",
-  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816), Rob (RobCubed #9180)",
+  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
   "bugs": "Plenty of them, this is an early alpha...",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
   "minimumCoreVersion": "0.6.2",
@@ -200,5 +200,33 @@
   "styles": [
     "./styles/twodsix.css"
   ],
-  "templateVersion": 2
+  "templateVersion": 2,
+  "manifestPlusVersion": "1.0.0",
+  "authors": [
+    {
+      "name": "Jonas Karlsson",
+      "url": "https://gnu.xdy.se/home",
+      "discord": "xdy#3735",
+      "twitter": "@xdy",
+      "reddit": "u/xdydxy"
+    },
+    {
+      "name": "Kevin Maree",
+      "discord": "Ultra Kev#9816"
+    }
+  ],
+  "media": [
+    {
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp"
+    },
+    {
+      "type": "screenshot",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp"
+    },
+    {
+      "type": "icon",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_icon.svg"
+    }
+  ]
 }
