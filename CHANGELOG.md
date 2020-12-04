@@ -1,3 +1,10 @@
+## [0.6.54](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.53...v0.6.54) (2020-12-04)
+
+
+### Bug Fixes
+
+* Support for Manifest+, adds screenshot (also used as cover) and icon. ([1970cd5](https://github.com/xdy/twodsix-foundryvtt/commit/1970cd552f45da8443ee84b1c2a8afee623c1a7a))
+
 ## [0.6.53](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.52...v0.6.53) (2020-12-04)
 
 
