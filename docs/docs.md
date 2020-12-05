@@ -2,7 +2,7 @@
 _Not a lot of ducks either._
 
 # Twodsix System
-A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) for more information.
+A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) for more information.)
 
 ## Cepheus Engine
 Right now the only compendiums are for skills and weapons (though, the ones for Cepheus Light are generally quite compatible.) Feel free to submit compendiums for the rest, or wait patiently for me to decide that I want to do data entry. Oh, and don't hold your breath... :)
