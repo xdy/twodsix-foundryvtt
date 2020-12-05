@@ -8,7 +8,7 @@ A Foundry VTT system for running games using various 2d6-based role-playing game
 Right now the only compendiums are for skills and weapons (though, the ones for Cepheus Light are generally quite compatible.) Feel free to submit compendiums for the rest, or wait patiently for me to decide that I want to do data entry. Oh, and don't hold your breath... :)
 
 ## Cepheus Light
-To get the system closer to Cepheus Light (which should also work fairly well for Cepheus Faster Than Light, and even Sword of Cepheus if you don't mind the SF theming):
+To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming):
 In system settings:
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
