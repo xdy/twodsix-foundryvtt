@@ -8,8 +8,7 @@ A Foundry VTT system for running games using various 2d6-based role-playing game
 Right now the only compendiums are for skills and weapons (though, the ones for Cepheus Light are generally quite compatible.) Feel free to submit compendiums for the rest, or wait patiently for me to decide that I want to do data entry. Oh, and don't hold your breath... :)
 
 ## Cepheus Light
-To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming):
-In system settings:
+To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) change the following in the system settings:
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
@@ -18,8 +17,7 @@ In system settings:
 * Set skills to not use any characteristic for modifiers.
 
 ## Cepheus Faster Than Light
-To get the system closer to Cepheus Faster Than Light:
-In system settings:
+To get the system closer to Cepheus Faster Than Light change the following in the system settings:
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
@@ -28,14 +26,14 @@ In system settings:
 * Set skills to not use any characteristic for modifiers.
 
 ## MGT2
-The things I know that can be done to make the system more compatible with MGT2 are:
+To get the system closer to MGT2 change the following in the system settings:
 
-* Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)" in system settings
-* Also in system settings, change the modifier for a characteristic of 0 to -3 rather than -2
-* Also in system settings, switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
-* Also in system settings, rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
+* Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)"
+* Change the modifier for a characteristic of 0 to -3 rather than -2
+* Switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
+* Rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
 
-Compendiums with skills and gear cannot be included for licensing reasons.
+Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you get a popup where you can change difficulty, modifiers, used characteristic, etc for this roll only.
