@@ -1,3 +1,10 @@
+## [0.6.55](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.54...v0.6.55) (2020-12-05)
+
+
+### Bug Fixes
+
+* Adds a separate file for the cover, produced using https://zhodani.space/stuff/lbb-covers/ ([5cd85c6](https://github.com/xdy/twodsix-foundryvtt/commit/5cd85c6c673ffd4952b81c46ae40b9a9a4b88a0b))
+
 ## [0.6.54](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.53...v0.6.54) (2020-12-04)
 
 
