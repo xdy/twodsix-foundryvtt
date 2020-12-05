@@ -1,3 +1,10 @@
+## [0.6.56](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.55...v0.6.56) (2020-12-05)
+
+
+### Bug Fixes
+
+* Altered the layout a bit so the German characteristics fit. ([9bcaf19](https://github.com/xdy/twodsix-foundryvtt/commit/9bcaf19a211ceefa0cb2a1b03697bb4c3d71b839))
+
 ## [0.6.55](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.54...v0.6.55) (2020-12-05)
 
 
