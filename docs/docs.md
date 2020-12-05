@@ -10,27 +10,27 @@ Right now the only compendiums are for skills and weapons (though, the ones for 
 ## Cepheus Light
 To get the system closer to Cepheus Light (which should also work fairly well for Cepheus Faster Than Light, and even Sword of Cepheus if you don't mind the SF theming):
 In system settings:
-1) Choose the CEL difficulty list.
-2) Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
-3) Use the skills and gear from the various 'ce light-something' compendiums (supplied by @marvin9257).
-4) Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
-5) Set skills to not use any characteristic for modifiers.
+* Choose the CEL difficulty list.
+* Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
+* Use the skills and gear from the various 'ce light-something' compendiums (supplied by @marvin9257).
+* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Set skills to not use any characteristic for modifiers.
 
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light:
 In system settings:
-1) Choose the CEL difficulty list.
-2) Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
-3) Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
-4) Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
-5) Set skills to not use any characteristic for modifiers.
+* Choose the CEL difficulty list.
+* Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
+* Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
+* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Set skills to not use any characteristic for modifiers.
 
 ## MGT2
 The things I know that can be done to make the system more compatible with MGT2 are:
-1) Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)" in system settings
-2) Also in system settings, change the modifier for a characteristic of 0 to -3 rather than -2
-3) Also in system settings, switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
-4) Also in system settings, rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
+* Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)" in system settings
+* Also in system settings, change the modifier for a characteristic of 0 to -3 rather than -2
+* Also in system settings, switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
+* Also in system settings, rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
 
 Compendiums with skills and gear cannot be included for licensing reasons.
 
