@@ -23,6 +23,8 @@ This system may eventually claim compatibility with other specific rules sets on
 
 Note that this system is *very* early in its development.
 
+See [docs.md](docs/docs.md) for what little documentation exists.
+
 ## The Programmer's Mantra
 ```
 It is by caffeine alone I set my mind in motion
@@ -40,7 +42,6 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 ### Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md)
-
 
 ### Licenses
 Project Licensing:
