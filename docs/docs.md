@@ -10,6 +10,7 @@ Right now the only compendiums are for skills and weapons (though, the ones for 
 ## Cepheus Light
 To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming):
 In system settings:
+
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
 * Use the skills and gear from the various 'ce light-something' compendiums (supplied by @marvin9257).
@@ -19,6 +20,7 @@ In system settings:
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light:
 In system settings:
+
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
 * Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
@@ -27,6 +29,7 @@ In system settings:
 
 ## MGT2
 The things I know that can be done to make the system more compatible with MGT2 are:
+
 * Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)" in system settings
 * Also in system settings, change the modifier for a characteristic of 0 to -3 rather than -2
 * Also in system settings, switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
