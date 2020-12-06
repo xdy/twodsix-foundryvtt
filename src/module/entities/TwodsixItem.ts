@@ -2,6 +2,9 @@
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
+import {CharacteristicType} from "../TwodsixSystem";
+import {TwodsixItemData} from "../../types/TwodsixItemData";
+
 export default class TwodsixItem extends Item {
 
   /**
@@ -25,8 +28,8 @@ export default class TwodsixItem extends Item {
     if (this.isOwned) {
       const itemCharacteristic = itemData.data.characteristic;
       if (this.actor.data.data.characteristics) { //Temporary fix until issue #102
-        const actorCharacteristics = Object.values(this.actor.data.data.characteristics);
-        const activeCharacteristic:any = actorCharacteristics.filter((c:any) => {
+        const actorCharacteristics:CharacteristicType[] = Object.values(this.actor.data.data.characteristics);
+        const activeCharacteristic = actorCharacteristics.filter((c) => {
           return c.shortLabel === itemCharacteristic;
         });
 
@@ -42,12 +45,4 @@ export default class TwodsixItem extends Item {
   }
 }
 
-//TODO Move these types to a better place.
-//MUST match what's in the template.json. TODO Should build this from the template.json I guess
-export type TwodsixItemType = "equipment" | "weapon" | "armor" | "augment" | "storage" | "tool" | "junk" | "skills";
-
-export interface TwodsixItemData extends ItemData {
-  type:TwodsixItemType;
-  hasOwner:boolean;
-}
 

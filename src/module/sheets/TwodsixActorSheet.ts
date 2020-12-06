@@ -1,9 +1,11 @@
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
-import type TwodsixItem from "../entities/TwodsixItem";
 import type {UpdateData} from "../migration";
 import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
+import {CharacteristicType} from "../TwodsixSystem";
+import TwodsixItem from "../entities/TwodsixItem";
+import {TwodsixItemData} from "../../types/TwodsixItemData";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -59,28 +61,39 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
 
-    html.find('.stat-damage').on('change', this._handleDamage.bind(this));
-    html.find('.special-damage').on('change', this._handleDamage.bind(this));
+    html.find('.stat-damage').on('change', this._handleDamageEvent.bind(this));
+    html.find('.special-damage').on('change', this._handleDamageEvent.bind(this));
   }
 
-  private async _handleDamage(event:Event):Promise<void> {
-    const characteristicKey = $(event.currentTarget).parents('.stat:first,.special:first').attr('data-characteristic');
-    const characteristic = this.actor.data.data.characteristics[characteristicKey];
-    const input = $(event.currentTarget).children("");
-    let damage = input.val();
-    if (damage > characteristic.value) {
-      damage = characteristic.value;
+  private async _handleDamageEvent(event:Event):Promise<void> {
+    const eventTargets = $(event.currentTarget);
+    const characteristicKey = eventTargets.parents('.stat:first,.special:first').attr('data-characteristic');
+    const characteristic:CharacteristicType = this.actor.data.data.characteristics[characteristicKey];
+    let damage = Number(eventTargets.children("").val());
+    if (damage > characteristic.current) {
+      damage = characteristic.current;
     } else if (damage < 0) {
       damage = 0;
     }
+    eventTargets.children("").val(damage);
     characteristic.damage = damage;
     characteristic.current = characteristic.value - characteristic.damage;
     characteristic.mod = calcModFor(characteristic.current);
+    await this.updateHits();
+  }
 
+
+  private async updateHits():Promise<void> {
     const updateData = <UpdateData>{};
     const characteristics = this.actor.data.data.characteristics;
     updateData['data.hits.value'] = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
     updateData['data.hits.max'] = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
+    updateData['data.characteristics.endurance.damage'] = characteristics["endurance"].damage;
+    updateData['data.characteristics.strength.damage'] = characteristics["strength"].damage;
+    updateData['data.characteristics.dexterity.damage'] = characteristics["dexterity"].damage;
+    updateData['data.characteristics.endurance.current'] = characteristics["endurance"].current;
+    updateData['data.characteristics.strength.current'] = characteristics["strength"].current;
+    updateData['data.characteristics.dexterity.current'] = characteristics["dexterity"].current;
     await this.actor.update(updateData);
   }
 
@@ -116,6 +129,47 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     extracted.call(this);
   }
+
+  protected async damageActor(itemData:TwodsixItemData):Promise<number> {
+    //TODO Naive implementation, assumes always choose current highest, assumes armor works
+    //TODO Implement choice of primary/secondary/no armor, and full/half/double armor, as well as 'ignore first X points of armor'.
+    const damage = itemData["damage"];
+    const characteristics = this.actor.data.data.characteristics;
+    for (const cha of Object.values(characteristics as Record<any, any>)) {
+      cha.current = cha.value - cha.damage;
+    }
+
+    const armor = this.actor.data.data.primaryArmor.value;
+    let remaining:number = damage - armor;
+    remaining = TwodsixActorSheet.handleDamage(remaining, characteristics['endurance']);
+    if (remaining > 0 && characteristics['strength'].current > characteristics['dexterity'].current) {
+      remaining = TwodsixActorSheet.handleDamage(remaining, characteristics['strength']);
+      remaining = TwodsixActorSheet.handleDamage(remaining, characteristics['dexterity']);
+    } else {
+      remaining = TwodsixActorSheet.handleDamage(remaining, characteristics['dexterity']);
+      remaining = TwodsixActorSheet.handleDamage(remaining, characteristics['strength']);
+    }
+    if (remaining > 0) {
+      console.log(`Twodsix | Actor ${this.actor.name} was overkilled by ${remaining}`);
+    }
+    await this.updateHits();
+    return remaining;
+  }
+
+  private static handleDamage(damage:number, characteristic:CharacteristicType):number {
+    let handledDamage = damage;
+    if (damage > characteristic.current) {
+      handledDamage = characteristic.current;
+    } else if (damage < 0) {
+      handledDamage = 0;
+    }
+    characteristic.damage += handledDamage;
+    characteristic.current = characteristic.value - characteristic.damage;
+    characteristic.mod = calcModFor(characteristic.current);
+    return damage - handledDamage;
+  }
+
+
 }
 
 
