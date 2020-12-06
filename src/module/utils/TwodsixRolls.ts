@@ -168,7 +168,7 @@ export class TwodsixRolls {
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const rollMode = game.settings.get('core', 'rollMode');
     const difficulty = skill ? difficulties[skill.data.data.difficulty] : difficulties.Average;
-    const skillModifier = item ? item?.data?.data?.skillModifier : 0;
+    const skillModifier = item?.data?.data?.skillModifier ?? 0;
 
     let settings:throwSettings = {
       shouldRoll: false,
@@ -180,7 +180,7 @@ export class TwodsixRolls {
     };
 
     if (dataset.roll) {
-      rollParts = dataset.roll?.split("+");
+      rollParts = dataset.roll.split("+");
     }
     const flavorParts:string[] = [];
 
@@ -230,7 +230,7 @@ export class TwodsixRolls {
       }
 
       //Handle skillModifier
-      if (settings.skillModifier && settings.skillModifier !== 0) {
+      if (settings.skillModifier !== 0) {
         rollParts.push(settings.skillModifier);
         flavorParts.push(settings.skillModifier >= 0 ? "+" + settings.skillModifier : settings.skillModifier);
       }
