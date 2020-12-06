@@ -85,7 +85,7 @@
         "Notes": "Anteckningar",
         "Skills": "Färdigheter"
       },
-      "Unknown actor type ": "Okänd aktörstyp: ",
+      "UnknownActorType": "Okänd aktörstyp:",
       "using": "mha"
     },
     "Chat": {

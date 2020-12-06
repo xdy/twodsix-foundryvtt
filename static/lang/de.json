@@ -85,7 +85,7 @@
         "Notes": "Notizen",
         "Skills": "Fertigkeiten"
       },
-      "Unknown actor type ": "Unbekannter Charaktertyp ",
+      "UnknownActorType": "Unbekannter Charaktertyp",
       "using": "benutzt"
     },
     "Chat": {

@@ -25,7 +25,7 @@ export default class TwodsixActor extends Actor {
       case 'ship':
         break;
       default:
-        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + actorData.type);
+        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
     }
   }
 
