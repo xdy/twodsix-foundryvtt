@@ -1,3 +1,10 @@
+## [0.6.57](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.56...v0.6.57) (2020-12-06)
+
+
+### Bug Fixes
+
+* Support doing damage to a character by dragging a damage roll from chat. ([c9b20c8](https://github.com/xdy/twodsix-foundryvtt/commit/c9b20c874dde51079fac5f4276857d50c6a2c75b)), closes [#87](https://github.com/xdy/twodsix-foundryvtt/issues/87) [#63](https://github.com/xdy/twodsix-foundryvtt/issues/63)
+
 ## [0.6.56](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.55...v0.6.56) (2020-12-05)
 
 
