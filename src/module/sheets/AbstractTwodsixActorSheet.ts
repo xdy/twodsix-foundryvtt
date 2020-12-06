@@ -1,6 +1,6 @@
-export class AbstractTwodsixActorSheet extends ActorSheet {
+import {TwodsixItemData} from "../../types/TwodsixItemData";
 
-  /* -------------------------------------------- */
+export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
   protected activateListeners(html:JQuery<HTMLElement>):void {
@@ -62,7 +62,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     this.handleContentEditable(html);
   }
 
-  _onDragStart(event:any):void {
+  _onDragStart(event):void {
     const header = event.currentTarget;
     if (!header.dataset) {
       return;
@@ -139,6 +139,11 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
+    if (data.type === 'damageItem') {
+      this.damageActor(data.payload);
+      return;
+    }
+
     const actor = this.actor;
     let itemData;
 
@@ -158,6 +163,8 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
       itemData = duplicate(game.items.get(data.id).data);
     }
 
+
+    //If we get here, we're sorting things.
     //Special for skills
     if (itemData.type === 'skills') {
       const matching = actor.data.items.filter(x => {
@@ -183,7 +190,6 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.data.value = 0;
       }
 
-
       await actor.createOwnedItem(itemData);
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
@@ -202,7 +208,7 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected static _prepareItemContainers(sheetData:{ actor:any; items:any; }):void {
+  protected static _prepareItemContainers(sheetData:{ actor; items; }):void {
     const actorData = sheetData.actor;
 
     // Initialize containers.
@@ -254,4 +260,6 @@ export class AbstractTwodsixActorSheet extends ActorSheet {
     actorData.skills = skills;
 
   }
+
+  protected abstract damageActor(itemData:TwodsixItemData):void;
 }

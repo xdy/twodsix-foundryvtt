@@ -1717,6 +1717,18 @@ a:hover {
   border-color: #29aae1 !important;
 }
 
+.damage-message {
+  border: 1px outset #6f6c66;
+  border-radius: 5px;
+  margin: 3px 3px 3px 20px;
+  padding: 0.25em;
+}
+
+.damage-message:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
 /*
 #settings button {
     position: relative;

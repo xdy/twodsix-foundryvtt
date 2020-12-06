@@ -122,22 +122,44 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode:string):Promise<any> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode:string):Promise<void> {
     const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
     const success = effect >= 0;
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
-    let newVar;
     if (success && rollDamage && doesDamage) {
       const damageFormula = item?.data?.data?.damage + (justRollIt ? "" : "+" + effect);
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
-      newVar = await damage.toMessage({
+      const contentData = {
+        flavor: justRollIt ? `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${item?.name}` : `${game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")} (${damage.formula}):`,
+        roll: damage,
+        damage: damage.total
+      };
+
+      const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+
+      const messageData = {
+        user: game.user._id,
         speaker: ChatMessage.getSpeaker({actor: actor}),
-        flavor: justRollIt ? game.i18n.localize("TWODSIX.Rolls.DamageUsing") + " " + item?.name : game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")
-      }, {rollMode: rollMode, create: true});
+        content: html,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        roll: damage,
+        rollMode: rollMode
+      };
+
+      messageData["flags.transfer"] = JSON.stringify(
+        {
+          type: 'damageItem',
+          payload: contentData
+        }
+      );
+
+      CONFIG.ChatMessage.entityClass.create(messageData).then((arg) => {
+        console.log(arg);
+      });
+
     }
-    return newVar;
   }
 
   private static async _handleThrows(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem | null, showEffect:boolean, characteristic, skill:TwodsixItem | null, showRollDialog:boolean) {

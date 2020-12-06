@@ -175,7 +175,7 @@
     },
     "No": "No",
     "Rolls": {
-      "AdjustedDamage": "Damage adjusted by effect:",
+      "AdjustedDamage": "Damage adjusted by effect",
       "Cancel": "Cancel",
       "DamageUsing": "Damage using",
       "Effect": "Effect",

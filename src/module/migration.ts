@@ -1,6 +1,6 @@
-import type {TwodsixItemData} from "./entities/TwodsixItem";
-
 //TODO Move all types to a better place
+import {TwodsixItemData} from "../types/TwodsixItemData";
+
 export type UpdateData = {
   _id?:any;
   items?:any;
