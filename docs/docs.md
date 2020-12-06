@@ -51,4 +51,4 @@ Twodsix has been translated into the following languages:
 * Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
 * If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.)
 
-Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than the text on the various system settings.
+Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
