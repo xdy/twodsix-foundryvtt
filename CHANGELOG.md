@@ -1,3 +1,10 @@
+## [0.6.58](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.57...v0.6.58) (2020-12-06)
+
+
+### Bug Fixes
+
+* Images are now editable for skills and items. ([ee10247](https://github.com/xdy/twodsix-foundryvtt/commit/ee10247088e2f2cd1065c8f03932a0071832f14c)), closes [#142](https://github.com/xdy/twodsix-foundryvtt/issues/142)
+
 ## [0.6.57](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.56...v0.6.57) (2020-12-06)
 
 
