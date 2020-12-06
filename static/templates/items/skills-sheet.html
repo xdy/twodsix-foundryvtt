@@ -1,8 +1,21 @@
 <form class="{{cssClass}}" autocomplete="off">
   <div class="skill-container-small">
-    <div class="item-name">
-      <label for="data.name" class="resource-label">{{localize "TWODSIX.Items.Skills.SkillName"}}
-        <input id="data.name" name="name" type="text" value="{{item.name}}"/></label>
+    <div>
+      <table>
+        <tr>
+          <th>
+            <div class="item-img">
+              <img class="item-img" src="{{item.img}}" title="{{item.img}}" alt="{{item.name}}" data-edit="img" width="128"
+                   height="128"/></div>
+          </th>
+          <th>
+            <div class="item-name">
+              <label for="data.name">{{localize "TWODSIX.Items.Skills.SkillName"}}</label>
+              <input id="data.name" name="name" type="text" value="{{item.name}}"/>
+            </div>
+          </th>
+        </tr>
+      </table>
     </div>
     <div class="item-lvl">
       <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
