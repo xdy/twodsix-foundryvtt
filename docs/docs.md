@@ -43,6 +43,12 @@ Compendiums with skills and gear cannot be included for licensing reasons, so yo
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
-If you prefer Spanish, Swedish or German, switch to those languages in Foundry settings. If you prefer some other language, send in a translation to that language and I'll add it to the system.
+Twodsix has been translated into the following languages:
+* English (default)
+* Swedish (included)
+* Spanish (included)
+* German (included)
+* Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
+* If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.)
 
 Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than the text on the various system settings.
