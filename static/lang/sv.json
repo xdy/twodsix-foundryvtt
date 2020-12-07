@@ -207,6 +207,14 @@
         "hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiativformel"
       },
+      "isNatural2AlwaysSuccess": {
+        "hint": "Dvs, ska de alltid ge Effekt 0?",
+        "name": "Är en naturlig 12:a alltid ett lyckat slag?"
+      },
+      "isNatural12AlwaysFailure": {
+        "hint": "Dvs, ska de alltid ge Effekt -1?",
+        "name": "Är en naturlig 2:a alltid ett misslyckat slag?"
+      },
       "maxSkillLevel": {
         "hint": "Lämna tomt för att använda default (9).",
         "name": "Maximal färdighetsnivå"

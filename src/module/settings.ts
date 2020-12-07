@@ -35,6 +35,9 @@ export const registerSettings = function ():void {
   _booleanSetting('hideUntrainedSkills', false);
   _numberSetting('untrainedSkillValue', -3, 'client');
 
+  _booleanSetting('isNatural2AlwaysSuccess', false);
+  _booleanSetting('isNatural12AlwaysFailure', false);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);

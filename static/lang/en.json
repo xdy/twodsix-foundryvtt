@@ -207,6 +207,14 @@
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula"
       },
+      "isNatural2AlwaysSuccess": {
+        "hint": "I.e. should it be treated as an Effect of 0?",
+        "name": "Is a natural 12 always a success?"
+      },
+      "isNatural12AlwaysFailure": {
+        "hint": "I.e. should it be treated as an Effect of -1?",
+        "name": "Is a natural 12 always a failure?"
+      },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",
         "name": "Maximum skill level."
