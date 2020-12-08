@@ -1,3 +1,10 @@
+## [0.6.59](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.58...v0.6.59) (2020-12-08)
+
+
+### Bug Fixes
+
+* Add two commas. No more. No less. ([28d47d6](https://github.com/xdy/twodsix-foundryvtt/commit/28d47d6258a55b63594844290b37152153fb95ed))
+
 ## [0.6.58](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.57...v0.6.58) (2020-12-06)
 
 
