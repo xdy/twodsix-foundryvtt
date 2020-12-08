@@ -23,7 +23,7 @@ p span, p {
   font-family: inherit !important;
 }
 
-input[type='text'], input[type='number'] input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
+input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
   background: #00000073 !important;
   color: #00e5ff !important;
   font-family: inherit;
@@ -54,7 +54,7 @@ select {
   border-radius: 0px !important;
 }
 
-input[type='text']:focus, input[type='number'] input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+input[type='text']:focus, input[type='number'], input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
   box-shadow: 0 0 10px #207ab7;
   background: #000000a6;
