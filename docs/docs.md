@@ -52,4 +52,21 @@ Twodsix has been translated into the following languages:
 * Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
 * If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.)
 
+## The settings I (xdy) use
+Fwiw, this is how I have set up the system - i.e. the setting combination that is the most tested by me... (Showing the system setting key, and the value I have changed it to. Any setting not mentioned has the default value.)
+* automateDamageRollOnHit:true
+* difficultiesAsTargetNumber:true
+* effectOrTotal:true
+* ExperimentalFeatures:true
+* modifierForZeroCharacteristic:-3
+* termForAdvantage:Boon
+* termForDisadvantage:Bane
+
+## The modules I consider essential
+Dice So Nice!, Compendium Folders, Dice Tray, Forien's Quest Log, Hey, Listen!, Hidden Initiative, Illandril's Chat Enhancements, Inline Web Viewer, MyTab, Navigation Presets, Pathfinding Ruler, PDFoundry, Permission Viewer, PopOut!, Popout Resizer, Switch to Chat, Workshop's Party Unit Frames
+
+## The modules I really like, but guess I could do without
+Autocomplete Whispers, BubbleRolls, Chat Scrolling, Combat Carousel, Combat Numbers, Combat Ready, Compendium Folders, Cursor Hider, Custom Nameplates, Default Scene, DF Scene Enhancement, DF Settings Clarity, Everybody Look, Forien's Copy Enviromment, FX Master, GM Notes, ModBox, Not Your Turn! Tidy UI, Token Chat Link, Token Mold.
+
+
 Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
