@@ -4,6 +4,7 @@
  */
 import {CharacteristicType} from "../TwodsixSystem";
 import {TwodsixItemData} from "../../types/TwodsixItemData";
+import {calcModFor} from "../utils/sheetUtils";
 
 export default class TwodsixItem extends Item {
 
@@ -29,13 +30,13 @@ export default class TwodsixItem extends Item {
       const itemCharacteristic = itemData.data.characteristic;
       if (this.actor.data.data.characteristics) { //Temporary fix until issue #102
         const actorCharacteristics:CharacteristicType[] = Object.values(this.actor.data.data.characteristics);
-        const activeCharacteristic = actorCharacteristics.filter((c) => {
+        const activeCharacteristic:CharacteristicType[] = actorCharacteristics.filter((c) => {
           return c.shortLabel === itemCharacteristic;
         });
 
         let mod = 0;
         if (activeCharacteristic.length) {
-          mod = activeCharacteristic[0].mod;
+          mod = calcModFor(activeCharacteristic[0].current);
         }
 
         itemData.data.total = itemData.data.value + mod;
