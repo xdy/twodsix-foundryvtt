@@ -1,3 +1,10 @@
+## [0.6.60](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.59...v0.6.60) (2020-12-10)
+
+
+### Bug Fixes
+
+* Calculate total for skills again ([e44fb67](https://github.com/xdy/twodsix-foundryvtt/commit/e44fb6733b13cc61e7509b30a9b223a550fbb76e))
+
 ## [0.6.59](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.58...v0.6.59) (2020-12-08)
 
 
