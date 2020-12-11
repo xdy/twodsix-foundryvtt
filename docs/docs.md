@@ -66,7 +66,7 @@ Fwiw, this is how I have set up the system - i.e. the setting combination that i
 Dice So Nice!, Compendium Folders, Dice Tray, Forien's Quest Log, Hey, Listen!, Hidden Initiative, Illandril's Chat Enhancements, Inline Web Viewer, MyTab, Navigation Presets, Pathfinding Ruler, PDFoundry, Permission Viewer, PopOut!, Popout Resizer, Switch to Chat, Workshop's Party Unit Frames
 
 ## The modules I really like, but guess I could do without
-Autocomplete Whispers, BubbleRolls, Chat Scrolling, Combat Carousel, Combat Numbers, Combat Ready, Compendium Folders, Cursor Hider, Custom Nameplates, Default Scene, DF Scene Enhancement, DF Settings Clarity, Everybody Look, Forien's Copy Enviromment, FX Master, GM Notes, ModBox, Not Your Turn! Tidy UI, Token Chat Link, Token Mold.
+Autocomplete Whispers, BubbleRolls, Chat Scrolling, Combat Carousel, Combat Numbers, Combat Ready, Compendium Folders, Cursor Hider, Custom Nameplates, Default Scene, DF Scene Enhancement, DF Settings Clarity, Everybody Look, Forien's Copy Enviromment, FX Master, GM Notes, GM Screen, ModBox, Not Your Turn! Tidy UI, Token Chat Link, Token Mold.
 
 
 Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
