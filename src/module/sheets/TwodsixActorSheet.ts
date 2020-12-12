@@ -1,7 +1,7 @@
 import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import type {UpdateData} from "../migration";
-import {calcModFor} from "../utils/sheetUtils";
+import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
 import {CharacteristicType} from "../TwodsixSystem";
 import TwodsixItem from "../entities/TwodsixItem";
@@ -79,21 +79,21 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     characteristic.damage = damage;
     characteristic.current = characteristic.value - characteristic.damage;
     characteristic.mod = calcModFor(characteristic.current);
-    await this.updateHits();
+    await this.updateAfterDamage();
   }
 
 
-  private async updateHits():Promise<void> {
+  private async updateAfterDamage():Promise<void> {
+    //TODO Maybe this should live on TwodsixActor instead? And get called at the end of prepareData?
     const updateData = <UpdateData>{};
     const characteristics = this.actor.data.data.characteristics;
     updateData['data.hits.value'] = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
     updateData['data.hits.max'] = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
-    updateData['data.characteristics.endurance.damage'] = characteristics["endurance"].damage;
-    updateData['data.characteristics.strength.damage'] = characteristics["strength"].damage;
-    updateData['data.characteristics.dexterity.damage'] = characteristics["dexterity"].damage;
-    updateData['data.characteristics.endurance.current'] = characteristics["endurance"].current;
-    updateData['data.characteristics.strength.current'] = characteristics["strength"].current;
-    updateData['data.characteristics.dexterity.current'] = characteristics["dexterity"].current;
+
+    for (const cha of Object.values(characteristics as Record<any, any>)) {
+      updateData[`data.characteristics.${cha.key}.current`] = cha.current;
+      updateData[`data.characteristics.${cha.key}.damage`] = cha.damage;
+    }
     await this.actor.update(updateData);
   }
 
@@ -152,7 +152,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (remaining > 0) {
       console.log(`Twodsix | Actor ${this.actor.name} was overkilled by ${remaining}`);
     }
-    await this.updateHits();
+    await this.updateAfterDamage();
     return remaining;
   }
 
