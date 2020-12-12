@@ -23,7 +23,7 @@
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
-    "compression-webpack-plugin": "^6.1.1",
+    "compression-webpack-plugin": "^7.0.0",
     "copy-webpack-plugin": "^6.3.1",
     "css-loader": "^4.2.1",
     "eslint": "^7.14.0",
