@@ -1,3 +1,10 @@
+## [0.6.61](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.60...v0.6.61) (2020-12-12)
+
+
+### Bug Fixes
+
+* Damage to all characteristics should now be handled. ([caeaaf1](https://github.com/xdy/twodsix-foundryvtt/commit/caeaaf17c3f1cf2b50fd0da456c879ed0762fae8))
+
 ## [0.6.60](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.59...v0.6.60) (2020-12-10)
 
 
