@@ -1,3 +1,10 @@
+## [0.6.62](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.61...v0.6.62) (2020-12-19)
+
+
+### Bug Fixes
+
+* Courtesy of [@marvin9257](https://github.com/marvin9257)[#8916](https://github.com/xdy/twodsix-foundryvtt/issues/8916) a number of tables from Cepheus Engine and Cepheus Light have been added as Journal entries. (Especially suitable for use with the excellent https://foundryvtt.com/packages/gm-screen/ module.) ([9e17554](https://github.com/xdy/twodsix-foundryvtt/commit/9e17554a965e469004c68703e1ed7a5e5c4e0ce2))
+
 ## [0.6.61](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.60...v0.6.61) (2020-12-12)
 
 
