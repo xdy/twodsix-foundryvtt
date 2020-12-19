@@ -194,6 +194,30 @@
       "module": "twodsix",
       "path": "./packs/ce-ftl-weapons.db",
       "entity": "Item"
+    },
+    {
+      "name": "ce-srd-gm-screen",
+      "label": "ce srd gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-gm-screen.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "ce-light-gm-screen",
+      "label": "ce light srd gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-gm-screen.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "ce-srd-roll-tables",
+      "label": "ce srd roll tables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-roll-tables.db",
+      "entity": "RollTable"
     }
   ],
   "primaryTokenAttribute": "hits",
