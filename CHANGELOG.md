@@ -1,3 +1,10 @@
+## [0.6.63](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.62...v0.6.63) (2020-12-19)
+
+
+### Bug Fixes
+
+* The various roll modes for skill rolls (public, self, etc) broke a couple of releases ago. Hopefully this fixes it. ([dbb4c9d](https://github.com/xdy/twodsix-foundryvtt/commit/dbb4c9d99ac874234f9308cf62b5521748d58270))
+
 ## [0.6.62](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.61...v0.6.62) (2020-12-19)
 
 
