@@ -25,7 +25,7 @@
           <span class="item-name centre rollable" data-label="{{item.name}}" for="skill-modifier">
             {{skillCharacteristic ../actor data.characteristic}}
           </span>
-          <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}">{{data.total}}</span>
+          <span class="total-output flex1 skill-mod rollable" data-label="{{item.name}}">{{skillTotal ../actor data.characteristic data.value}}</span>
           <span class="item-controls centre">
             <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
             <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>

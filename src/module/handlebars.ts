@@ -42,6 +42,21 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
+  Handlebars.registerHelper('skillTotal', (actor, characteristic, value) => {
+    const actorData = actor.data;
+    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    if (characteristicElement) {
+      if (!characteristicElement.current) {
+        characteristicElement.current = characteristicElement.value - characteristicElement.damage;
+      }
+
+      const mod = calcModFor(characteristicElement.current);
+      return Number(value) + mod;
+    } else {
+      return value;
+    }
+  });
+
   Handlebars.registerHelper('hideUntrainedSkills', (value) => {
     return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
   });
