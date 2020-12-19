@@ -20,7 +20,7 @@ export class TwodsixRolls {
       difficulty: getKeyByValue(difficulties, settings.difficulty),
       difficulties: difficulties,
       rollMode: game.settings.get('core', 'rollMode'),
-      rollModes: CONFIG.Dice.rollModes,
+      rollModes: CONFIG.  Dice.rollModes,
       skillModifier: settings.skillModifier,
       characteristic: settings.characteristic
     };
@@ -315,7 +315,9 @@ export class TwodsixRolls {
       await roll.toMessage(
         {
           speaker: speaker,
-          flavor: flavor
+          flavor: flavor,
+          rollMode: settings.rollMode,
+          rollType: settings.rollType,
         },
         {rollMode: rollMode}
       );
