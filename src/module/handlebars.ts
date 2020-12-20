@@ -95,7 +95,7 @@ export default function registerHandlebarsHelpers():void {
       case '1':
         return '0';
       case '3':
-        return '1'
+        return '1';
       case '4':
         return '1d6';
       case '10':
