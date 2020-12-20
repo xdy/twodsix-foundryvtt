@@ -33,7 +33,7 @@ To get the system closer to MGT2 change the following in the system settings:
 * Change the modifier for a characteristic of 0 to -3 rather than -2
 * Switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
 * Rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
-* Select CEL style autofire rules and make sure weapons have single number for their 'Rate of Fire/Auto X' setting.
+* Select CEL style autofire rules and make sure weapons have single number for their 'Rate of Fire/Auto X' setting (you need to enable the Rate of Fire field in settings).
 
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
@@ -69,6 +69,5 @@ Dice So Nice!, Compendium Folders, Dice Tray, Forien's Quest Log, Hey, Listen!, 
 
 ## The modules I really like, but guess I could do without
 Autocomplete Whispers, BubbleRolls, Chat Scrolling, Combat Carousel, Combat Numbers, Combat Ready, Compendium Folders, Cursor Hider, Custom Nameplates, Default Scene, DF Scene Enhancement, DF Settings Clarity, Everybody Look, Forien's Copy Enviromment, FX Master, GM Notes, GM Screen, ModBox, Not Your Turn! Tidy UI, Token Chat Link, Token Mold.
-
 
 Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
