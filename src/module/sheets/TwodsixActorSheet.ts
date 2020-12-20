@@ -178,6 +178,3 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
 
 }
-
-
-
