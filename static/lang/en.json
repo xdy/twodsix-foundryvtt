@@ -164,7 +164,7 @@
         "rangeBand": "Range Band",
         "weaponType": "Weapon Type",
         "damageType": "Damage Type",
-        "rateOfFire": "Rate of Fire",
+        "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil"
       }
     },
@@ -250,6 +250,10 @@
       "ShowRangeBandAndHideRange": {
         "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
         "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
+      },
+      "autofireRulesUsed": {
+        "hint": "Select which variant's auto/burst fire rules should be used.",
+        "name": "Select which variant's auto/burst fire rules should be used."
       },
       "difficultyListUsed": {
         "hint": "Select which variant's difficulty list should be used.",

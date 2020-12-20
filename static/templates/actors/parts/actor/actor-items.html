@@ -40,6 +40,22 @@
               <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
           </span>
+          {{#if (twodsix_useCEAutofireRules)}}
+            {{#each (twodsix_burstModes data) as |mode|}}
+              <span class="items-weapons-abilities">
+                <span class="item-name">Burst {{mode}}</span>
+                <span class="item-name item-ability rollable" data-rof-bonus="{{twodsix_burstAttackDM mode}}">[+{{twodsix_burstAttackDM mode}} Attack DM]</span>
+                <span class="item-name item-ability roll-damage" data-bonus-damage="{{twodsix_burstBonusDamage mode}}">[+{{twodsix_burstBonusDamage mode}} Damage]</span>
+              </span>
+            {{/each}}
+          {{/if}}
+          {{#if (twodsix_useCELAutofireRules data)}}
+            <span class="items-weapons-abilities">
+              <span class="item-name">Auto {{data.rateOfFire}}</span>
+              <span class="item-name item-ability roll-damage" data-bonus-damage="{{data.rateOfFire}}">[Burst Damage]</span>
+              <span class="item-name item-ability rollable" data-num-attacks="{{data.rateOfFire}}">[Full Auto]</span>
+            </span>
+          {{/if}}
         </li>
       </ol>
     </div>
