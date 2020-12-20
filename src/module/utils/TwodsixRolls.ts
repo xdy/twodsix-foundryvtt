@@ -325,7 +325,7 @@ export class TwodsixRolls {
 
       //With possible followup
       if(game.settings.get("twodsix", "automateDamageRollOnHit")) {
-        await this.rollDamage(item, showEffect, actor, rollMode, '', String(effect));
+        await this.rollDamage(item, showEffect, actor, rollMode, '');
       }
     }
   }
