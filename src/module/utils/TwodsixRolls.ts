@@ -111,7 +111,7 @@ export class TwodsixRolls {
         dataset.roll = "2d6" + "+" + mod + "+" + skill.data.data.value;
       }
       if (dataset.rofBonus) {
-        dataset.roll += `+${dataset["rofBonus"]}`
+        dataset.roll += `+${dataset["rofBonus"]}`;
       }
     }
   }
@@ -125,7 +125,7 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, effect=0, rollMode:string, bonusDamage: string):Promise<void> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, rollMode:string, bonusDamage: string):Promise<void> {
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
     if (doesDamage) {
