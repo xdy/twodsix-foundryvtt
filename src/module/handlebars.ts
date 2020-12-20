@@ -6,26 +6,22 @@ export default function registerHandlebarsHelpers():void {
 
   let showedError = false;
 
-  Handlebars.registerHelper('advantageDisadvantageTerm', (str) => {
+  Handlebars.registerHelper('twodsix_advantageDisadvantageTerm', (str) => {
     return advantageDisadvantageTerm(str);
   });
 
-  Handlebars.registerHelper('capitalize', (str) => {
+  Handlebars.registerHelper('twodsix_capitalize', (str) => {
     if (typeof str === 'string') {
       return '';
     }
     return str.charAt(0).toUpperCase() + str.slice(1);
   });
 
-  Handlebars.registerHelper('concat', function (a, b) {
-    return a + b;
-  });
-
-  Handlebars.registerHelper('limitLength', function (a, b) {
+  Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
     return a.length > b ? '(...)' : a;
   });
 
-  Handlebars.registerHelper('skillCharacteristic', (actor, characteristic) => {
+  Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
@@ -42,7 +38,7 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
-  Handlebars.registerHelper('skillTotal', (actor, characteristic, value) => {
+  Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
@@ -57,7 +53,7 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
-  Handlebars.registerHelper('hideUntrainedSkills', (value) => {
+  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (value) => {
     return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
   });
 
