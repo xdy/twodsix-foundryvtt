@@ -33,6 +33,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       untrainedSkillValue: game.settings.get('twodsix', 'untrainedSkillValue'),
+      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed')
     };
     data.config = TWODSIX;
 
@@ -108,8 +109,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const showThrowDialog = event["shiftKey"];
     const element = event.currentTarget;
     const dataset = element["dataset"];
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
-    await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog);
+    const itemId = $(event.currentTarget).parents('.item').data('item-id');
+    const numAttacks = $(element).data('num-attacks') || 1;
+
+    for(let i=0; i<numAttacks; i++) {
+      await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog);
+    }
   }
 
   /**
@@ -120,11 +125,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private _onRollDamage(event:Event):void {
     event.preventDefault();
     event.stopPropagation();
-    const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+    const itemId = $(event.currentTarget).parents('.item').data('item-id');
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
 
+    const element = $(event.currentTarget);
+    const bonusDamage = String(element.data('bonus-damage')) || '';
     async function extracted(this):Promise<void> {
-      return await TwodsixRolls.rollDamage(item, true, this.actor, true, 0, game.settings.get('core', 'rollMode'));
+      return await TwodsixRolls.rollDamage(item, true, this.actor, 0, game.settings.get('core', 'rollMode'), bonusDamage);
     }
 
     extracted.call(this);

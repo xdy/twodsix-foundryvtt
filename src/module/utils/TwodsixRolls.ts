@@ -110,6 +110,9 @@ export class TwodsixRolls {
         const mod = this._recalculateMod(skill.data.data.characteristic, actor);
         dataset.roll = "2d6" + "+" + mod + "+" + skill.data.data.value;
       }
+      if (dataset.rofBonus) {
+        dataset.roll += `+${dataset["rofBonus"]}`
+      }
     }
   }
 
@@ -122,18 +125,16 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, justRollIt = true, effect = 0, rollMode:string):Promise<void> {
-    const rollDamage = game.settings.get("twodsix", "automateDamageRollOnHit") || justRollIt;
-    const success = effect >= 0;
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, effect=0, rollMode:string, bonusDamage: string):Promise<void> {
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
-    if (success && rollDamage && doesDamage) {
-      const damageFormula = item?.data?.data?.damage + (justRollIt ? "" : "+" + effect);
+    if (doesDamage) {
+      const damageFormula = item?.data?.data?.damage + (bonusDamage.length>0 ? "+" + bonusDamage : "");
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
       const contentData = {
-        flavor: justRollIt ? `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${item?.name}` : `${game.i18n.localize("TWODSIX.Rolls.AdjustedDamage")} (${damage.formula}):`,
-        roll: damage,
+        flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${item?.name}`,
+        roll: damage.formula,
         damage: damage.total
       };
 
@@ -323,7 +324,9 @@ export class TwodsixRolls {
       );
 
       //With possible followup
-      await this.rollDamage(item, showEffect, actor, false, effect, rollMode);
+      if(game.settings.get("twodsix", "automateDamageRollOnHit")) {
+        await this.rollDamage(item, showEffect, actor, rollMode, '', String(effect));
+      }
     }
   }
 }

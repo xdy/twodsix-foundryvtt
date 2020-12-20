@@ -15,6 +15,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 * Use the skills and gear from the various 'ce light-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
+* Select CEL style autofire rules and make sure weapons have single number for their 'Rate of Fire/Auto X' setting.
 
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light change the following in the system settings:
@@ -32,6 +33,7 @@ To get the system closer to MGT2 change the following in the system settings:
 * Change the modifier for a characteristic of 0 to -3 rather than -2
 * Switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
 * Rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
+* Select CEL style autofire rules and make sure weapons have single number for their 'Rate of Fire/Auto X' setting.
 
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
