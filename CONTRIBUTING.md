@@ -34,6 +34,6 @@ Make an issue if you have ideas or have found bugs, or a pull request if you hav
        `npm run build:dev`
 
 
-* Depending on your editor/IDE you may have to install a plugin for editconfig to be supported (the builds will complain if you don't format the code according to the rules set up there). See https://editorconfig.org/ details, and plugin locations.
+* Depending on your editor/IDE you may have to install a plugin/integration for editconfig to be supported (the builds will complain if you don't format the code according to the rules set up there). See https://editorconfig.org/ for details and where to find that for your editor/IDE.
 
-* You may also need a plugin to support eslint, for pretty much the same reasons. See here for details: https://eslint.org/docs/user-guide/integrations 
+* You may also need a plugin/integration to support eslint, for pretty much the same reasons. See https://eslint.org/docs/user-guide/integrations for where to find that  for your editor/IDE. (Though, you can of course run eslint manually before committing if you prefer.)
