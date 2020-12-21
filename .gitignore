@@ -6,17 +6,12 @@
 icons/\!dox/
 /node_modules/
 .DS_Store
-# Uncomment this line to not commit *.env files consumed by dotenv-safe in rollup.config.js
 **.env
 npm-debug.log
 coverage/
 debug/
 docs/
 node_modules/
-
-# Unnecessary, but included so that the default settings in .env files deployed to these directories and
-# aren't committed.
-deploy/
 dist/
 
 #This project
