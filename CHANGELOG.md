@@ -1,3 +1,10 @@
+## [0.6.66](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.65...v0.6.66) (2020-12-21)
+
+
+### Bug Fixes
+
+* Fixes bug with autorolled damage. Fixed rate of fire of all weapons in included compendiums (it should be a single number, or empty). Improved documentation. Set 'Show Rate of Fire' to always be shown. ([7b2d265](https://github.com/xdy/twodsix-foundryvtt/commit/7b2d2650a4129acee9661465d2ca0fbc49373331))
+
 ## [0.6.65](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.64...v0.6.65) (2020-12-20)
 
 
