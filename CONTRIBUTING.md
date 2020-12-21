@@ -31,7 +31,7 @@ Either send in a completed translation file for your language (e.g. by copying e
         ```
         ln -s /Users/shammond/Projects/FoundryVTT/twodsix-foundryvtt/dist "/Users/shammond/Library/Application Support/FoundryVTT/Data/systems/twodsix"
         ```
-        1. Windows example:
+        1. Windows example (add /h to mklink to get a hard link rather than a soft link):
         ```
         mklink /d C:\Users\jk\foundryvtt\twodsix\dist C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix
         ```
