@@ -164,7 +164,7 @@
         "rangeBand": "Räckviddsband",
         "weaponType": "Vapentyp",
         "damageType": "Skadetyp",
-        "rateOfFire": "Eldhastighet",
+        "rateOfFire": "Eldhastighet/Auto X",
         "recoil": "Rekyl"
       }
     },

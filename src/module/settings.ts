@@ -24,7 +24,7 @@ export const registerSettings = function ():void {
   _booleanSetting('ShowRangeBandAndHideRange', false);
   _booleanSetting('ShowWeaponType', false);
   _booleanSetting('ShowDamageType', false);
-  _booleanSetting('ShowRateOfFire', false);
+  _booleanSetting('ShowRateOfFire', true);
   _booleanSetting('ShowRecoil', false);
 
   _stringChoiceSetting('difficultyListUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
