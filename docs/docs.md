@@ -17,6 +17,8 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 * Set skills to not use any characteristic for modifiers.
 * Select CEL style autofire rules and make sure weapons have single number for their 'Rate of Fire/Auto X' setting.
 
+Reasonably complete compendiums for Cepheus Light exist.
+
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light change the following in the system settings:
 
@@ -25,6 +27,8 @@ To get the system closer to Cepheus Faster Than Light change the following in th
 * Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
+
+Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
 ## MGT2
 To get the system closer to MGT2 change the following in the system settings:
@@ -46,13 +50,13 @@ Compendiums with skills and gear cannot be included for licensing reasons, so yo
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
-Twodsix has been translated into the following languages:
+Twodsix has been translated by users of the system into the following languages:
 * English (default)
 * Swedish (included)
 * Spanish (included)
 * German (included)
 * Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
-* If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.)
+* If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.) See [CONTRIBUTING.MD](../CONTRIBUTING.md)
 
 ## The settings I (xdy) use
 Fwiw, this is how I have set up the system - i.e. the setting combination that is the most tested by me... (Showing the system setting key, and the value I have changed it to. Any setting not mentioned has the default value.)
