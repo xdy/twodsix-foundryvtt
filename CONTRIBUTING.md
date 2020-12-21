@@ -2,10 +2,10 @@
 
 Make an issue if you have ideas or have found bugs, or a pull request if you have code or documentation.
 
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
-
 ## To contribute translations
-Either send in a completed translation file for your language (e.g. by copying en.json to xx.json), or do as per below, making sure to also add your system to "languages" in system.json
+Either send in a completed translation file for your language (e.g. by copying en.json to xx.json, and translating only the text to the right of the colon for each line), or if you are comfortable with it, do as per below, making sure to also add your system to "languages" in system.json before you do the Pull Request.
+
+**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
 ## How to set up for development
 1. Fork project in github
@@ -34,7 +34,7 @@ Either send in a completed translation file for your language (e.g. by copying e
        `npm install`
     1. Runs the system in 'developer mode', watching for changes in the code as they happen
        `npm run build:dev`
-
+1. When you are done, create a Pull Request as per the section above this.
 
 * Depending on your editor/IDE you may have to install a plugin/integration for editconfig to be supported (the builds will complain if you don't format the code according to the rules set up there). See https://editorconfig.org/ for details and where to find that for your editor/IDE.
 
