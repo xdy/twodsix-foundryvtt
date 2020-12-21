@@ -21,3 +21,7 @@ Make an issue if you have ideas or have found bugs, or a pull request if you hav
         }```
 1. `npm install`
 1. `npm run build:dev`
+
+* Depending on your editor/IDE you may have to install a plugin for editconfig to be supported (the builds will complain if you don't format the code according to the rules set up there). See https://editorconfig.org/ details, and plugin locations.
+
+* You may also need a plugin to support eslint, for pretty much the same reasons. See here for details: https://eslint.org/docs/user-guide/integrations 
