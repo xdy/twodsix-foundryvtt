@@ -4,6 +4,8 @@ Make an issue if you have ideas or have found bugs, or a pull request if you hav
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
+## To contribute translations
+Either send in a completed translation file for your language (e.g. by copying en.json to xx.json), or do as per below, making sure to also add your system to "languages" in system.json
 
 ## How to set up for development
 1. Fork project in github
