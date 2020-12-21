@@ -164,7 +164,7 @@
         "rangeBand": "Reichweite Bande",
         "weaponType": "Waffen Typ",
         "damageType": "Schaden Typ",
-        "rateOfFire": "Dauerfeuer",
+        "rateOfFire": "Dauerfeuer/Auto X",
         "recoil": "Rückstoss"
       }
     },

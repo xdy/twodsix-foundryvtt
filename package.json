@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "twodsix",
-  "version": "0.6.64",
+  "version": "0.6.65",
   "description": "A 2d6 system",
   "scripts": {
     "build": "webpack --mode production",
@@ -23,6 +23,7 @@
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
+    "@typhonjs-fvtt/eslint-foundry.js": "^0.3.1",
     "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^6.3.1",
     "css-loader": "^4.2.1",

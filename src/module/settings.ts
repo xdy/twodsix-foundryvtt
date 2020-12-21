@@ -24,7 +24,7 @@ export const registerSettings = function ():void {
   _booleanSetting('ShowRangeBandAndHideRange', false);
   _booleanSetting('ShowWeaponType', false);
   _booleanSetting('ShowDamageType', false);
-  _booleanSetting('ShowRateOfFire', false);
+  _booleanSetting('ShowRateOfFire', true);
   _booleanSetting('ShowRecoil', false);
 
   _stringChoiceSetting('difficultyListUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
@@ -34,6 +34,8 @@ export const registerSettings = function ():void {
 
   _booleanSetting('hideUntrainedSkills', false);
   _numberSetting('untrainedSkillValue', -3, 'client');
+
+  _stringChoiceSetting('autofireRulesUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);

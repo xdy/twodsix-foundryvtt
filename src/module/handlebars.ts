@@ -57,4 +57,85 @@ export default function registerHandlebarsHelpers():void {
     return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
   });
 
+  Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
+    // Parse rates of fire, and ignore the 1
+    const modes = weapon.rateOfFire.split('-');
+    modes.shift();
+    return modes;
+  });
+
+  Handlebars.registerHelper('twodsix_useCEAutofireRules', () => {
+    return (game.settings.get('twodsix', 'autofireRulesUsed') == TWODSIX.VARIANTS.CE);
+  });
+
+  Handlebars.registerHelper('twodsix_useCELAutofireRules', (weapon) => {
+    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.VARIANTS.CEL) && (weapon.rateOfFire > 1));
+  });
+
+  Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize) => {
+    switch(burstSize) {
+      case '1':
+        return 0;
+      case '3':
+      case '4':
+        return 1;
+      case '10':
+        return 2;
+      case '20':
+        return 3;
+      case '100':
+        return 4;
+      default:
+        return 0;
+    }
+  });
+
+  Handlebars.registerHelper('twodsix_burstBonusDamage', (burstSize) => {
+    switch(burstSize) {
+      case '1':
+        return '0';
+      case '3':
+        return '1';
+      case '4':
+        return '1d6';
+      case '10':
+        return '2d6';
+      case '20':
+        return '3d6';
+      case '100':
+        return '4d6';
+      default:
+        return '0';
+    }
+  });
+
+  //From https://discord.com/channels/732325252788387980/732328233630171188/790507540818690068
+  //Not used yet
+  Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
+    switch (operator) {
+      case '==':
+        return (v1 == v2) ? options.fn(this) : options.inverse(this);
+      case '===':
+        return (v1 === v2) ? options.fn(this) : options.inverse(this);
+      case '!=':
+        return (v1 != v2) ? options.fn(this) : options.inverse(this);
+      case '!==':
+        return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+      case '<':
+        return (v1 < v2) ? options.fn(this) : options.inverse(this);
+      case '<=':
+        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+      case '>':
+        return (v1 > v2) ? options.fn(this) : options.inverse(this);
+      case '>=':
+        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+      case '&&':
+        return (v1 && v2) ? options.fn(this) : options.inverse(this);
+      case '||':
+        return (v1 || v2) ? options.fn(this) : options.inverse(this);
+      default:
+        return options.inverse(this);
+    }
+  });
+
 }

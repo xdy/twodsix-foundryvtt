@@ -1,3 +1,10 @@
+## [0.6.65](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.64...v0.6.65) (2020-12-20)
+
+
+### Bug Fixes
+
+* This commit exists only to do a new release. Specifically, one containing support for automatic/burst fire added by [@shammond42](https://github.com/shammond42) ([b473053](https://github.com/xdy/twodsix-foundryvtt/commit/b4730533a75bf3afb1bcc01e78e719a9f4599437))
+
 ## [0.6.64](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.63...v0.6.64) (2020-12-19)
 
 

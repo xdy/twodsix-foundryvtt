@@ -5,10 +5,16 @@
 /.vscode
 icons/\!dox/
 /node_modules/
+.DS_Store
+**.env
+npm-debug.log
+coverage/
+debug/
+docs/
+node_modules/
+dist/
 
 #This project
-node_modules
 foundryconfig.json
-dist/*
 foundry.js
 

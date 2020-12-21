@@ -164,7 +164,7 @@
         "rangeBand": "Banda de Alcance",
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
-        "rateOfFire": "Cadencia de Tiro",
+        "rateOfFire": "Cadencia de Tiro/Auto X",
         "recoil": "Retroceso"
       }
     },
