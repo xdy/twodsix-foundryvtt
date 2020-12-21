@@ -27,8 +27,14 @@ Either send in a completed translation file for your language (e.g. by copying e
         }
         ```
     1. Symlink dist directory to your Foundry data directory.
-        1. Mac/unix example: `ln -s /Users/shammond/Projects/FoundryVTT/twodsix-foundryvtt/dist "/Users/shammond/Library/Application Support/FoundryVTT/Data/systems/twodsix"`
-        1. Windows example: `mklink /d C:\Users\jk\foundryvtt\twodsix\dist C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix`
+        1. Mac/unix example:
+        ```
+        ln -s /Users/shammond/Projects/FoundryVTT/twodsix-foundryvtt/dist "/Users/shammond/Library/Application Support/FoundryVTT/Data/systems/twodsix"
+        ```
+        1. Windows example:
+        ```
+        mklink /d C:\Users\jk\foundryvtt\twodsix\dist C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix
+        ```
 1. Do the following each time you have updated your fork and want to test your code:
     1. Builds the prerequisites
        `npm install`
