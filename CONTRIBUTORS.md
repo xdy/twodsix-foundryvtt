@@ -5,7 +5,7 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * [UltraKev](https://github.com/UltraKev/) - Convinced Jonas to do it properly, makes the bugs look pretty.
 * RobCubed - Helped out in the beginning.
 * ForjaSalvaje - Spanish translation.
-* marvin9257 - Compendiums for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
+* [marvin9257](https://github.com/marvin9257) - Compendiums for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
 * RicoM - German translation.
 * [shammond42](https://github.com/shammond42/) - Added automatic weapons fire.
 
