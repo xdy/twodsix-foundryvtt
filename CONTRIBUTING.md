@@ -1,11 +1,26 @@
+## Before getting started
+
+Thank you for being interested in contributing to this entirely volunteer-driven project!
+You will be paid in none or more of:
+* Honor
+* Glory
+* Power
+* Fame
+* Riches
+* Attribution in [CONTRIBUTORS.md](CONTRIBUTORS.md)
+
 ## How to contribute to twodsix
 
 Make an issue if you have ideas or have found bugs, or a pull request if you have code or documentation.
 
-## To contribute translations
-Either send in a completed translation file for your language (e.g. by copying en.json to xx.json, and translating only the text to the right of the colon for each line), or if you are comfortable with it, do as per below, making sure to also add your system to "languages" in system.json before you do the Pull Request.
+If you see an already existing issue you would like to tackle, ask about it on the [Discord](https://discord.gg/VNFUvjv) first.
 
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+Likewise, if you need further guidance, try the [Discord](https://discord.gg/VNFUvjv)
+
+Do note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project. (TL/DR: [Be excellent to each other!](https://www.youtube.com/watch?v=rph_1DODXDU))
+
+## To contribute translations
+Either post a completed translation file for your language on the [Discord](https://discord.gg/VNFUvjv) (e.g. by copying en.json to xx.json (replacing xx with the language code of the language you want to translate t9), and translating only the text to the right of the colon for each line), or if you are comfortable with it, after translating, instead of sending the file, make a Pull Request, making sure to also add your system to "languages" in system.json before you do the Pull Request. (See below for instructions).
 
 ## How to set up for development
 1. Fork project in github
@@ -40,8 +55,17 @@ Either send in a completed translation file for your language (e.g. by copying e
        `npm install`
     1. Runs the system in 'developer mode', watching for changes in the code as they happen
        `npm run build:dev`
-1. When you are done, create a Pull Request as per the section above this.
 
-* Depending on your editor/IDE you may have to install a plugin/integration for editconfig to be supported (the builds will complain if you don't format the code according to the rules set up there). See https://editorconfig.org/ for details and where to find that for your editor/IDE.
+## Coding conventions
 
-* You may also need a plugin/integration to support eslint, for pretty much the same reasons. See https://eslint.org/docs/user-guide/integrations for where to find that  for your editor/IDE. (Though, you can of course run eslint manually before committing if you prefer.)
+In order to sanitize coding standards, please use eslint with the included settings either directly supported in your IDE, or at least run eslint before you make your Pull Request. (See https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project/ for a description of eslint)
+* You may also need a plugin/integration to support eslint. See https://eslint.org/docs/user-guide/integrations for where to find that  for your editor/IDE. (Though, you can of course run eslint manually before committing if you prefer.)
+* Depending on your editor/IDE you may have to install a plugin/integration for .editorconfig to be supported. See https://editorconfig.org/ for details and where to find that for your editor/IDE. (It is more important that you use eslint, but if your editor only supports .editorconfig at least indenting etc will use the right setting.)
+
+## When it's time to do your Pull Request
+* Name the Pull Request beginning with WIP until you think it is in a good shape to be merged.
+* Make sure eslint has been run with no complaints on your code.
+* Squash any merge commits and other cruft. Aim for one commit per feature or issue your Pull Request tackles.
+* If any of the checks on the Pull Request fails, try to fix them, or ask for help if you can't figure out what's wrong.
+* When you're done, note that in the Pull Request and/or on the Discord that there is a Pull Request that is ready to be merged, and remove the WIP from the beginning of the Pull Request name.
+* If your Pull Request completes an issue, include a line like 'Fixes #nnn' in the description, replacing nnn with the actual issue number.
