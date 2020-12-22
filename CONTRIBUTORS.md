@@ -2,7 +2,7 @@
 The list is in chronological order - hopefully a correct one - with a Discord username, possibly a link to a Github profile followed by a brief and incomplete description of what this person has contributed.
 
 * [xdy](https://github.com/xdy/) - Started the project, has added most bugs, and keeps adding more bugs. Swedish translation.
-* [UltraKev](https://github.com/UltraKev/) - Convinced Jonas to do it properly, makes the bugs look pretty.
+* [UltraKev](https://github.com/UltraKev/) - Convinced xdy to do it properly, makes the bugs look pretty.
 * RobCubed - Helped out in the beginning.
 * ForjaSalvaje - Spanish translation.
 * [marvin9257](https://github.com/marvin9257) - Compendiums for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
