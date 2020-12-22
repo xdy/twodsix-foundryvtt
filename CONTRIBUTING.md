@@ -19,6 +19,8 @@ Likewise, if you need further guidance, try the [Discord](https://discord.gg/VNF
 
 Do note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project. (TL/DR: [Be excellent to each other!](https://www.youtube.com/watch?v=rph_1DODXDU))
 
+Also note that all contributions must adhere to the licenses mentioned in the [README](README.md) and not otherwise break any relevant (or irrelevant) law...
+
 ## To contribute translations
 Either post a completed translation file for your language on the [Discord](https://discord.gg/VNFUvjv) (e.g. by copying en.json to xx.json (replacing xx with the language code of the language you want to translate to), and translating only the text to the right of the colon for each line), or if you are comfortable with it, after translating, instead of sending the file, make a Pull Request, making sure to also add your system to "languages" in system.json before you do the Pull Request. (See below for instructions).
 
