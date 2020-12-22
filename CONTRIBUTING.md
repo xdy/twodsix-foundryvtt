@@ -15,12 +15,12 @@ Make an issue if you have ideas or have found bugs, or a pull request if you hav
 
 If you see an already existing issue you would like to tackle, ask about it on the [Discord](https://discord.gg/VNFUvjv) first.
 
-Likewise, if you need further guidance, try the [Discord](https://discord.gg/VNFUvjv)
+Likewise, if you need further guidance, try the [Discord](https://discord.gg/VNFUvjv).
 
 Do note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project. (TL/DR: [Be excellent to each other!](https://www.youtube.com/watch?v=rph_1DODXDU))
 
 ## To contribute translations
-Either post a completed translation file for your language on the [Discord](https://discord.gg/VNFUvjv) (e.g. by copying en.json to xx.json (replacing xx with the language code of the language you want to translate t9), and translating only the text to the right of the colon for each line), or if you are comfortable with it, after translating, instead of sending the file, make a Pull Request, making sure to also add your system to "languages" in system.json before you do the Pull Request. (See below for instructions).
+Either post a completed translation file for your language on the [Discord](https://discord.gg/VNFUvjv) (e.g. by copying en.json to xx.json (replacing xx with the language code of the language you want to translate to), and translating only the text to the right of the colon for each line), or if you are comfortable with it, after translating, instead of sending the file, make a Pull Request, making sure to also add your system to "languages" in system.json before you do the Pull Request. (See below for instructions).
 
 ## How to set up for development
 1. Fork project in github
@@ -58,7 +58,7 @@ Either post a completed translation file for your language on the [Discord](http
 
 ## Coding conventions
 
-In order to sanitize coding standards, please use eslint with the included settings either directly supported in your IDE, or at least run eslint before you make your Pull Request. (See https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project/ for a description of eslint)
+In order to keep to sane coding standards - aka the ones I prefer :), please use eslint with the included settings either directly supported in your IDE, or at least run eslint before you make your Pull Request. (See https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project/ for a description of eslint)
 * You may also need a plugin/integration to support eslint. See https://eslint.org/docs/user-guide/integrations for where to find that  for your editor/IDE. (Though, you can of course run eslint manually before committing if you prefer.)
 * Depending on your editor/IDE you may have to install a plugin/integration for .editorconfig to be supported. See https://editorconfig.org/ for details and where to find that for your editor/IDE. (It is more important that you use eslint, but if your editor only supports .editorconfig at least indenting etc will use the right setting.)
 
