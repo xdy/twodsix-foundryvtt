@@ -251,6 +251,10 @@
         "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
         "name": "Banda de Alcance"
       },
+	  "autofireRulesUsed": {
+        "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
+        "name": "Variante disparo automático"
+      },
       "difficultyListUsed": {
         "hint": "Variante del listado de dificultad.",
         "name": "Listado dificultad:"

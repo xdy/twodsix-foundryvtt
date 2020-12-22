@@ -251,6 +251,10 @@
         "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",
         "hint": "ikryssat=Visar 'Räckviddsband', urkryssat=Visar 'Räckvidd'"
       },
+      "autofireRulesUsed": {
+        "hint": "Välj vilken variants regler för automateld/salva som ska användas.",
+        "name": "Välj vilken variants regler för automateld/salva som ska användas."
+      },
       "difficultyListUsed": {
         "hint": "Välj vilken variants svårighetslista som ska användas.",
         "name": "Välj vilken variants svårighetslista som ska användas."
