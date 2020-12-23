@@ -129,7 +129,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
 
     const element = $(event.currentTarget);
-    const bonusDamage = String(element.data('bonus-damage') || '');
+    const bonusDamage = Number(element.data('bonus-damage') || 0);
     async function extracted(this):Promise<void> {
       return await TwodsixRolls.rollDamage(item, true, this.actor, game.settings.get('core', 'rollMode'), bonusDamage);
     }

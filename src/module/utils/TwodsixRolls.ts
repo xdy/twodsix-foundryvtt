@@ -20,7 +20,7 @@ export class TwodsixRolls {
       difficulty: getKeyByValue(difficulties, settings.difficulty),
       difficulties: difficulties,
       rollMode: game.settings.get('core', 'rollMode'),
-      rollModes: CONFIG.  Dice.rollModes,
+      rollModes: CONFIG.Dice.rollModes,
       skillModifier: settings.skillModifier,
       characteristic: settings.characteristic
     };
@@ -125,11 +125,11 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, rollMode:string, bonusDamage: string):Promise<void> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, rollMode:string, bonusDamage:number):Promise<void> {
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
     if (doesDamage) {
-      const damageFormula = item?.data?.data?.damage + (bonusDamage.length>0 ? "+" + bonusDamage : "");
+      const damageFormula = item?.data?.data?.damage + (bonusDamage > 0 ? "+" + bonusDamage : "");
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
       const contentData = {
@@ -324,8 +324,8 @@ export class TwodsixRolls {
       );
 
       //With possible followup
-      if(game.settings.get("twodsix", "automateDamageRollOnHit") && effect>=0) {
-        await this.rollDamage(item, showEffect, actor, rollMode, '');
+      if (game.settings.get("twodsix", "automateDamageRollOnHit") && effect >= 0) {
+        await this.rollDamage(item, showEffect, actor, rollMode, effect);
       }
     }
   }
