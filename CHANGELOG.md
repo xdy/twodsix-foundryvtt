@@ -1,3 +1,11 @@
+## [0.6.67](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.66...v0.6.67) (2020-12-23)
+
+
+### Bug Fixes
+
+* Fixes damage rolls, effect bonus was inadventertently removed ([f8941f7](https://github.com/xdy/twodsix-foundryvtt/commit/f8941f71bd8d9239ad42517dbbdc1a2df4f49019))
+* Made it so damage roll dice can be shown. Also made the border red to make damage a bit more visible. ([ab059ef](https://github.com/xdy/twodsix-foundryvtt/commit/ab059effc661dc5147f03c924f97e3bf8a93bd99))
+
 ## [0.6.66](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.65...v0.6.66) (2020-12-21)
 
 
