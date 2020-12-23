@@ -132,10 +132,14 @@ export class TwodsixRolls {
       const damageFormula = item?.data?.data?.damage + (bonusDamage > 0 ? "+" + bonusDamage : "");
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const results = damage.terms[0].results;
       const contentData = {
         flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${item?.name}`,
-        roll: damage.formula,
-        damage: damage.total
+        roll: damage,
+        damage:damage.total,
+        dice: results
       };
 
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);

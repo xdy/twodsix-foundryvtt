@@ -1,14 +1,25 @@
-<div class='twodsix damage-message dice-roll' data-transfer='{{transfer}}'>
-  <div class='roll-message dice-'>
+<div class='twodsix-message dice-roll' data-transfer='{{transfer}}'>
+  <div class='damage-message'>
     <div class='prefix'>{{flavor}}</div>
     <br/>
     <div class="dice-result">
-      <div class="dice-total centre">
-        {{roll}}
+      <div class="dice-formula">{{roll.formula}}</div>
+      <div class="dice-tooltip">
+        <section class="tooltip-part">
+          <div class="dice">
+            <header class="part-header flexrow">
+              <span class="part-formula">{{roll.formula}}</span>
+              <span class="part-total">{{roll.total}}</span>
+            </header>
+            <ol class="dice-rolls">
+              {{#each dice as |die|}}
+                <li class="roll">{{die.result}}</li>
+              {{/each}}
+            </ol>
+          </div>
+        </section>
       </div>
-      <div class="dice-total centre">
-        {{damage}}
-      </div>
+      <h4 class="dice-total">{{damage}}</h4>
     </div>
   </div>
 </div>

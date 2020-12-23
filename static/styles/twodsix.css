@@ -1717,9 +1717,13 @@ a:hover {
   border-color: #29aae1 !important;
 }
 
+.damage {
+  border: #b52c2c;
+}
+
 .damage-message {
-  border: 1px outset #6f6c66;
   border-radius: 5px;
+  border: 1px outset #b52c2c;
   margin: 3px 3px 3px 20px;
   padding: 0.25em;
 }
