@@ -40,7 +40,7 @@
     "sass": "^1.27.0",
     "sass-loader": "^10.1.0",
     "semantic-release": "^17.3.0",
-    "source-map-loader": "^1.1.0",
+    "source-map-loader": "^2.0.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.12",
     "ts-node": "^9.1.1",
