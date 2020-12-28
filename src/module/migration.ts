@@ -136,7 +136,7 @@ export class Migration {
     };
   }
 
-  private static async migrateCompendium(pack:{ metadata:{ entity:any; }; migrate:() => any; getContent:() => any; updateEntity:(arg0:any) => any; collection:any; }, systemMigrationVersion:string):Promise<void> {
+  private static async migrateCompendium(pack:{ metadata:{ entity:any; }; migrate:() => any; getContent:() => any; updateEntity:(arg0:any) => any; collection; }, systemMigrationVersion:string):Promise<void> {
     const entity = pack.metadata.entity;
     if (!['Actor', 'Item', 'Scene'].includes(entity)) {
       return;
@@ -191,9 +191,9 @@ export class Migration {
     const toDeprecate = Object.entries(flat)
       .filter((e) => e[0].endsWith('_deprecated') && e[1] === true)
       .map((e) => {
-        const parent = e[0].split('.');
-        parent.pop();
-        return parent.join('.');
+        const path = e[0].split('.');
+        path.pop();
+        return path.join('.');
       });
 
     // Remove them

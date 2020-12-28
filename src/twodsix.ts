@@ -19,17 +19,16 @@ import {rollItemMacro} from "./module/hooks/ready";
 require('../static/styles/twodsix.css');
 
 Hooks.once('init', async function () {
-  const ASCII = "\n" +
-    "\n" +
-    "___________                 .___     .__        \n" +
-    "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
-    "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___  /  \\  \\/  /\n" +
-    "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
-    "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
-    "                             \\/    \\/         \\/\n" +
-    "\n";
   console.log(
-    `TWODSIX | Initializing Twodsix system\n${ASCII}`,
+    `TWODSIX | Initializing Twodsix system\n${("\n" +
+      "\n" +
+      "___________                 .___     .__        \n" +
+      "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
+      "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___  /  \\  \\/  /\n" +
+      "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
+      "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
+      "                             \\/    \\/         \\/\n" +
+      "\n")}`,
   );
 
   game.twodsix = {

@@ -1,5 +1,4 @@
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
-import {TwodsixItemData} from "../../types/TwodsixItemData";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
@@ -36,9 +35,5 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew"}],
       scrollY: [".ship-crew", ".ship-storage", ".storage-wrapper", ".ship-notes"]
     });
-  }
-
-  protected damageActor(itemData:TwodsixItemData):void {
-    //TODO Handle damage
   }
 }

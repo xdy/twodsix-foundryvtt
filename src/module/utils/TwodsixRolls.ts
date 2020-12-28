@@ -29,14 +29,14 @@ export class TwodsixRolls {
       ok: {
         label: game.i18n.localize("TWODSIX.Rolls.Roll"),
         icon: '<i class="fas fa-dice"></i>',
-        callback: (html) => {
+        callback: (buttonHtml) => {
           return updatedSettings = {
             shouldRoll: true,
-            difficulty: difficulties[html.find('[name="difficulty"]').val()],
-            rollType: html.find('[name="rollType"]').val(),
-            rollMode: html.find('[name="rollMode"]').val(),
-            characteristic: html.find('[name="characteristic"]').val(),
-            skillModifier: html.find('[name="skillModifier"]').val()
+            difficulty: difficulties[buttonHtml.find('[name="difficulty"]').val()],
+            rollType: buttonHtml.find('[name="rollType"]').val(),
+            rollMode: buttonHtml.find('[name="rollMode"]').val(),
+            characteristic: buttonHtml.find('[name="characteristic"]').val(),
+            skillModifier: buttonHtml.find('[name="skillModifier"]').val()
           };
         },
       },
@@ -212,7 +212,6 @@ export class TwodsixRolls {
 
     if (settings.shouldRoll) {
       const usingItem = flavorParts.length == 2;
-      const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
 
       if (!game.settings.get('twodsix', 'difficultiesAsTargetNumber') && !showEffect) {
         if (settings.difficulty.mod !== 0) {

@@ -1,5 +1,3 @@
-import {TwodsixItemData} from "../../types/TwodsixItemData";
-
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
@@ -62,9 +60,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.handleContentEditable(html);
   }
 
-  _onDragStart(event):void {
+  _onDragStart(event: DragEvent):void {
     const header = event.currentTarget;
-    if (!header.dataset) {
+    if (!header["dataset"]) {
       return;
     }
 
@@ -93,11 +91,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const data = duplicate(header.dataset);
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
-    const name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
-    data.name = name;
+    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
     // Prepare the item object.
     const itemData = {
-      name,
+      name: data.name,
       type,
       data
     };
@@ -140,7 +137,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (data.type === 'damageItem') {
-      this.damageActor(data.payload);
+      await this.actor.damageActor(data.payload["damage"]);
       return;
     }
 
@@ -194,7 +191,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
       // Handle item sorting within the same Actor
-      const actor = this.actor;
       const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
         return this._onSortItem(event, itemData);
@@ -261,5 +257,4 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected abstract damageActor(itemData:TwodsixItemData):void;
 }
