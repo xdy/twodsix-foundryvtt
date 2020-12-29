@@ -96,10 +96,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
     const numAttacks = $(element).data('num-attacks') || 1;
 
-    //TODO Move numattacks inside performThrow
-    for(let i=0; i<numAttacks; i++) {
-      await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog);
-    }
+    await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog, numAttacks);
   }
 
   /**

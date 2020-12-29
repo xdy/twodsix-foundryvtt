@@ -64,7 +64,7 @@ export class TwodsixRolls {
     });
   }
 
-  public static async performThrow(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean):Promise<void> {
+  public static async performThrow(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean, numAttacks = 0):Promise<void> {
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
     let skillId:string;
     let item:TwodsixItem | null = actor.getOwnedItem(itemId) as TwodsixItem;
@@ -101,7 +101,7 @@ export class TwodsixRolls {
       //It's a characteristic roll, everything is set already, but, don't add characteristic bonus again by default.
       characteristic = 'NONE';
     }
-    await TwodsixRolls._handleThrows(dataset, actor, item, showEffect, characteristic, skill, showThrowDialog);
+    await TwodsixRolls._handleThrows(dataset, actor, item, showEffect, characteristic, skill, showThrowDialog, numAttacks);
   }
 
   private static _createDatasetRoll(dataset:DOMStringMap, skill:TwodsixItem, actor:TwodsixActor) {
@@ -138,7 +138,7 @@ export class TwodsixRolls {
       const contentData = {
         flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${item?.name}`,
         roll: damage,
-        damage:damage.total,
+        damage: damage.total,
         dice: results
       };
 
@@ -167,7 +167,7 @@ export class TwodsixRolls {
     }
   }
 
-  private static async _handleThrows(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem | null, showEffect:boolean, characteristic, skill:TwodsixItem | null, showRollDialog:boolean) {
+  private static async _handleThrows(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem | null, showEffect:boolean, characteristic, skill:TwodsixItem | null, showRollDialog:boolean, numAttacks:number) {
     let rollParts:string[] = [];
     const speaker = ChatMessage.getSpeaker({actor: actor});
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
@@ -270,65 +270,68 @@ export class TwodsixRolls {
         flavor: flavor
       };
 
-      const roll = new Roll(rollParts.filter(function (el) {
-        return el != '' && el;
-      }).join('+'), data);
+      for (let i = 0; i < numAttacks; i++) {
 
-      //Do the throw
-      roll.roll();
+        const roll = new Roll(rollParts.filter(function (el) {
+          return el != '' && el;
+        }).join('+'), data);
 
-      let effect;
-      if (showEffect) {
-        effect = roll.total;
-      } else {
-        effect = roll.total - difficulty.target;
-      }
+        //Do the throw
+        roll.roll();
 
-
-      /* Builds fine locally, but got this on github action for some reason, so commenting out:
-      *  [tsl] ERROR in /home/runner/work/twodsix-foundryvtt/twodsix-foundryvtt/src/module/utils/TwodsixRolls.ts(255,35)
-      * TS2352: Conversion of type 'object[]' to type 'number[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
-      * Type 'object' is not comparable to type 'number'.
-      * */
-
-      //Handle special results
-      const diceValues:number[] = <number[]><unknown>roll.dice[0].results;
-
-      //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
-      if (diceValues[0] + diceValues[1] === 2) {
-        console.log("Got a natural 2!");
-        if (0 <= effect) {
-          //effect = -1;
+        let effect;
+        if (showEffect) {
+          effect = roll.total;
+        } else {
+          effect = roll.total - difficulty.target;
         }
-      } else if (diceValues[0] + diceValues[1] === 12) {
-        console.log("Got a natural 12!");
-        if (effect < 0) {
-          //effect = 0;
+
+
+        /* Builds fine locally, but got this on github action for some reason, so commenting out:
+        *  [tsl] ERROR in /home/runner/work/twodsix-foundryvtt/twodsix-foundryvtt/src/module/utils/TwodsixRolls.ts(255,35)
+        * TS2352: Conversion of type 'object[]' to type 'number[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+        * Type 'object' is not comparable to type 'number'.
+        * */
+
+        //Handle special results
+        const diceValues:number[] = <number[]><unknown>roll.dice[0].results;
+
+        //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
+        if (diceValues[0] + diceValues[1] === 2) {
+          console.log("Got a natural 2!");
+          if (0 <= effect) {
+            //effect = -1;
+          }
+        } else if (diceValues[0] + diceValues[1] === 12) {
+          console.log("Got a natural 12!");
+          if (effect < 0) {
+            //effect = 0;
+          }
         }
-      }
 
-      //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
-      const TODO_UNHARDCODEME_ISSUE_120 = 6;
-      if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
-        console.log("Got a critical success");
-      } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
-        console.log("Got a critical failure");
-      }
+        //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
+        const TODO_UNHARDCODEME_ISSUE_120 = 6;
+        if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
+          console.log("Got a critical success");
+        } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
+          console.log("Got a critical failure");
+        }
 
-      //And send to chat
-      await roll.toMessage(
-        {
-          speaker: speaker,
-          flavor: flavor,
-          rollMode: settings.rollMode,
-          rollType: settings.rollType,
-        },
-        {rollMode: rollMode}
-      );
+        //And send to chat
+        await roll.toMessage(
+          {
+            speaker: speaker,
+            flavor: flavor,
+            rollMode: settings.rollMode,
+            rollType: settings.rollType,
+          },
+          {rollMode: rollMode}
+        );
 
-      //With possible followup
-      if (game.settings.get("twodsix", "automateDamageRollOnHit") && effect >= 0) {
-        await this.rollDamage(item, showEffect, actor, rollMode, effect);
+        //With possible followup
+        if (game.settings.get("twodsix", "automateDamageRollOnHit") && effect >= 0) {
+          await this.rollDamage(item, showEffect, actor, rollMode, effect);
+        }
       }
     }
   }
