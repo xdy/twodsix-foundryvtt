@@ -1,3 +1,10 @@
+## [0.6.68](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.67...v0.6.68) (2020-12-29)
+
+
+### Bug Fixes
+
+* Better support for shift-click on autofire. (Only shows one dialog rather than one per round fired.) ([6eab38f](https://github.com/xdy/twodsix-foundryvtt/commit/6eab38f92e81e81f2d06ca31d5f64ee1b1531236))
+
 ## [0.6.67](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.66...v0.6.67) (2020-12-23)
 
 
