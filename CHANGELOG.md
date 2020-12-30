@@ -1,3 +1,10 @@
+## [0.6.69](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.68...v0.6.69) (2020-12-30)
+
+
+### Bug Fixes
+
+* Cepheus Engine compendium fixes and additions courtesy of [@marvin9257](https://github.com/marvin9257) ([1ed4010](https://github.com/xdy/twodsix-foundryvtt/commit/1ed401091dff70ded5f2342d437fc5e0f8a56ba1))
+
 ## [0.6.68](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.67...v0.6.68) (2020-12-29)
 
 
