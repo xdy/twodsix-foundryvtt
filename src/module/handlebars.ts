@@ -58,14 +58,14 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
-    // Parse rates of fire, and ignore the 1
-    const modes = weapon.rateOfFire.split('-');
+    // Parse rates of fire, and ignore the first number (usually 1, but can be 0, which means no single fire)
+    const modes = weapon.rateOfFire.split(/-|\//);
     modes.shift();
     return modes;
   });
 
   Handlebars.registerHelper('twodsix_useCEAutofireRules', () => {
-    return (game.settings.get('twodsix', 'autofireRulesUsed') == TWODSIX.VARIANTS.CE);
+    return (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.VARIANTS.CE);
   });
 
   Handlebars.registerHelper('twodsix_useCELAutofireRules', (weapon) => {

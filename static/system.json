@@ -218,6 +218,22 @@
       "module": "twodsix",
       "path": "./packs/ce-srd-roll-tables.db",
       "entity": "RollTable"
+    },
+    {
+      "name": "ce-srd-armor",
+      "label": "ce srd armor",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-srd-items",
+      "label": "ce srd items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-items.db",
+      "entity": "Item"
     }
   ],
   "primaryTokenAttribute": "hits",
