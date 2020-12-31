@@ -60,14 +60,6 @@
       "entity": "Item"
     },
     {
-      "name": "ce-weapons",
-      "label": "ce weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-weapons.db",
-      "entity": "Item"
-    },
-    {
       "name": "ce-light-armor",
       "label": "ce light-armor",
       "system": "twodsix",
@@ -218,14 +210,6 @@
       "module": "twodsix",
       "path": "./packs/ce-srd-roll-tables.db",
       "entity": "RollTable"
-    },
-    {
-      "name": "ce-srd-armor",
-      "label": "ce srd armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-srd-armor.db",
-      "entity": "Item"
     },
     {
       "name": "ce-srd-items",
