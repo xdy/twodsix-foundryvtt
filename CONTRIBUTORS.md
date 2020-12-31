@@ -7,6 +7,7 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * ForjaSalvaje - Spanish translation.
 * [marvin9257](https://github.com/marvin9257) - Compendiums for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
 * RicoM - German translation.
+* [Meldinov](https://github.com/Meldinov) - Additional Spanish translation.
 * [shammond42](https://github.com/shammond42/) - Added automatic weapons fire.
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
