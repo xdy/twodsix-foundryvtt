@@ -24,6 +24,8 @@ Also note that all contributions must adhere to the licenses mentioned in the [R
 ## To contribute translations
 Either post a completed translation file for your language on the [Discord](https://discord.gg/VNFUvjv) (e.g. by copying en.json to xx.json (replacing xx with the language code of the language you want to translate to), and translating only the text to the right of the colon for each line), or if you are comfortable with it, after translating, instead of sending the file, make a Pull Request, making sure to also add your system to "languages" in system.json before you do the Pull Request. (See below for instructions).
 
+Or, if you prefer to do it as a separate module, make sure to mention it on the discord so we can link to it!
+
 ## How to set up for development
 1. Fork project in github
 1. Clone project to your local working directory
