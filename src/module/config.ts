@@ -13,8 +13,8 @@ TWODSIX.CHARACTERISTICS = {
 };
 
 /**
- * The sets of rules variants one can use
- * Not currently used for anything. TODO Remove?
+ * The sets of rules variants one can use.
+ * Note that only variants that actually have different rules implementations are listed here.
  * @type {Object}
  */
 TWODSIX.VARIANTS = {

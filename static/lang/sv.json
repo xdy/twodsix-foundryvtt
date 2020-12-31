@@ -173,6 +173,12 @@
       "DoNotClose": "Migrerar Twodsix till {version}. Avsluta inte ditt spel och stäng inte ner servern.",
       "MigrationError0.6.25": "Migrationsfel: Kunde inte tolka priset för ${name}, det var ${price} men är nu 0."
     },
+    "Modules": {
+      "compendiumFolders": {
+        "missing": "Inkluderade kompendium för de olika Cepheus-varianterna använder ofta modulen 'Compendium Folders', om du vill använda dessa, installera 'Compendium Folders' modulen i Foundry VTT. Eller slå av denna varning i Systeminställningar.",
+        "disabled": "Aktivera modulen 'Compendium Folder' i denna värld om du har tänkt använda inkluderade kompendium. Eller slå av denna varning i Systeminställningar."
+      }
+    },
     "No": "Nej",
     "Rolls": {
       "AdjustedDamage": "Skadan justerad av effekten",
@@ -214,6 +220,10 @@
       "modifierForZeroCharacteristic": {
         "hint": "Lämna tomt för att använda default (-2). Räknas inte om automatiskt för existerande karaktärer",
         "name": "Modifierare for egenskapsvärde noll."
+      },
+      "showMissingCompendiumWarnings": {
+        "hint": "Anger om varningar om oinstallerade/avslagna moduler visas när världen startas.",
+        "name": "Visa varningar om oinstallerade/avslagna moduler."
       },
       "systemMigrationVersion": {
         "hint": "Innehåller schemaversionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",

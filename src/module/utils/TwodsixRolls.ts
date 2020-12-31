@@ -150,7 +150,8 @@ export class TwodsixRolls {
         content: html,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: damage,
-        rollMode: rollMode
+        rollMode: rollMode,
+        flags: {"core.canPopout": true}
       };
 
       messageData["flags.transfer"] = JSON.stringify(
@@ -160,10 +161,9 @@ export class TwodsixRolls {
         }
       );
 
-      CONFIG.ChatMessage.entityClass.create(messageData).then((arg) => {
+      CONFIG.ChatMessage.entityClass.create(messageData, {rollMode: rollMode}).then((arg) => {
         console.log(arg);
       });
-
     }
   }
 
@@ -322,8 +322,8 @@ export class TwodsixRolls {
           {
             speaker: speaker,
             flavor: flavor,
-            rollMode: settings.rollMode,
             rollType: settings.rollType,
+            flags: {"core.canPopout": true}
           },
           {rollMode: rollMode}
         );

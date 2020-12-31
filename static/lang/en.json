@@ -173,6 +173,12 @@
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
       "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
     },
+    "Modules": {
+      "compendiumFolders":{
+        "missing": "The included compendiums for the various Cepheus variants often use the 'Compendium Folders' module. If you use those, please install the Compendium Folders module in Foundry VTT. Or turn off this warning in System Settings.",
+        "disabled": "Please enable the 'Compendium Folders' module in this world if you intend to use the included compendiums. Or turn off this warning in System Settings."
+      }
+    },
     "No": "No",
     "Rolls": {
       "AdjustedDamage": "Damage adjusted by effect",
@@ -214,6 +220,10 @@
       "modifierForZeroCharacteristic": {
         "hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
         "name": "Modifier for characteristic value of zero."
+      },
+      "showMissingCompendiumWarnings": {
+        "hint": "Whether to show warnings for missing/disabled modules on world start.",
+        "name": "Show warnings about missing/disabled modules."
       },
       "systemMigrationVersion": {
         "hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",

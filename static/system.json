@@ -268,5 +268,12 @@
       "type": "icon",
       "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_icon.svg"
     }
+  ],
+  "dependencies": [
+    {
+      "type": "module",
+      "name": "compendium-folders",
+      "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/master/module.json"
+    }
   ]
 }

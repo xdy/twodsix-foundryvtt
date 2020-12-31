@@ -37,6 +37,8 @@ export const registerSettings = function ():void {
 
   _stringChoiceSetting('autofireRulesUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
 
+  _booleanSetting('showMissingCompendiumWarnings', true);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
