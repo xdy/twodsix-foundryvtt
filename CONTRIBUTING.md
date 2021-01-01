@@ -52,7 +52,7 @@ Or, if you prefer to do it as a separate module, make sure to mention it on the 
         ```
         1. Windows example (add /h to mklink to get a hard link rather than a soft link):
         ```
-        mklink /d C:\Users\jk\foundryvtt\twodsix\dist C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix
+        mklink /d C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix C:\Users\jk\foundryvtt\twodsix\dist 
         ```
 1. Do the following each time you have updated your fork and want to test your code:
     1. Builds the prerequisites
