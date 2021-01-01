@@ -32,4 +32,4 @@ rules:
   brace-style: 1
   indent: [ "warn", 2, { "SwitchCase": 1 } ]
   'no-trailing-spaces': ["error"]
-
+  'eol-last': ["error", "always"]
