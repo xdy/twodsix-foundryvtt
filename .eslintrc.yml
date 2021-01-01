@@ -22,6 +22,8 @@ rules:
   #Fvtt support
   no-shadow: off
   '@typescript-eslint/no-shadow': [ "error", { "builtinGlobals": true, "hoist": "all", "allow": [ "event" ] } ]
+  #The following rule should be turned on later
+  '@typescript-eslint/no-explicit-any': off
 
   #Personal preferences
   prettier/prettier: error
