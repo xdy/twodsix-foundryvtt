@@ -174,7 +174,7 @@
       "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
     },
     "Modules": {
-      "compendiumFolders":{
+      "compendiumFolders": {
         "missing": "The included compendiums for the various Cepheus variants often use the 'Compendium Folders' module. If you use those, please install the Compendium Folders module in Foundry VTT. Or turn off this warning in System Settings.",
         "disabled": "Please enable the 'Compendium Folders' module in this world if you intend to use the included compendiums. Or turn off this warning in System Settings."
       }
@@ -286,6 +286,8 @@
         "name": "The value that is used for untrained skills."
       }
     },
+    "CloseAndCreateNew": "Close and create new",
+    "Copy": "Copy",
     "Yes": "Yes",
     "itemTypes": {
       "equipment": "equipment",
