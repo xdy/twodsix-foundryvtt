@@ -1,4 +1,5 @@
 // Add any additional hooks if necessary
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 Hooks.on('preCreateActor', async (actor, dir) => {
 
   if (game.settings.get('twodsix', 'defaultTokenSettings')) {
