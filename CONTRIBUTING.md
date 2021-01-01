@@ -38,7 +38,7 @@ Or, if you prefer to do it as a separate module, make sure to mention it on the 
         "systemName": "twodsix"
         }
        ```
-        1. TODO: Mac/unix example not verified to work:
+        1. Mac/unix example of foundryconfig.json contents:
         ```
         {
         "dataPath": "/Users/shammond/Library/Application Support/FoundryVTT",
