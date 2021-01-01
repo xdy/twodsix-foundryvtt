@@ -286,6 +286,8 @@
         "name": "Värdet som används för otränade färdigheter."
       }
     },
+    "CloseAndCreateNew": "Stäng och skapa ny",
+    "Copy": "Kopia",
     "Yes": "Ja",
     "itemTypes": {
       "equipment": "utrustning",

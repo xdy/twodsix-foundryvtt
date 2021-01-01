@@ -286,6 +286,8 @@
         "name": "The value that is used for untrained skills."
       }
     },
+    "CloseAndCreateNew": "Close and create new",
+    "Copy": "Copy",
     "Yes": "Yes",
     "itemTypes": {
       "equipment": "equipment",
