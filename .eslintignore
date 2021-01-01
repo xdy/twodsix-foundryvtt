@@ -1,1 +1,20 @@
+# IDE
+.idea/
+.vs/
+*.iml
+/.vscode
+icons/\!dox/
+/node_modules/
+.DS_Store
+**.env
+npm-debug.log
+coverage/
+debug/
+docs/
+node_modules/
 dist/
+
+#This project
+foundryconfig.json
+foundry.js
+
