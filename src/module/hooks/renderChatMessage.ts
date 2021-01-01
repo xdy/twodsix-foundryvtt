@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 Hooks.on('renderChatMessage', (app, html, msg) => {
   const damageMessage = html.find(".damage-message")[0];
   if (damageMessage) {
