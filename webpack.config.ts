@@ -20,7 +20,7 @@ module.exports = (env, argv) => {
   const config:Configuration = {
     context: __dirname,
     entry: {
-      main: ["./src/twodsix.ts", "./src/module/hooks/ready.ts", "./src/module/hooks/setup.ts", "./src/module/hooks/preCreateActor.ts", "./src/module/hooks/renderChatMessage.ts"]
+      main: ["./src/twodsix.ts", "./src/module/hooks/ready.ts", "./src/module/hooks/setup.ts", "./src/module/hooks/preCreateActor.ts", "./src/module/hooks/createItem.ts", "./src/module/hooks/renderItemSheet.ts", "./src/module/hooks/renderChatMessage.ts"]
     },
     mode: "development",
     module: {
