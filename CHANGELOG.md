@@ -1,3 +1,11 @@
+## [0.6.74](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.73...v0.6.74) (2021-01-02)
+
+
+### Bug Fixes
+
+* Hotbar macros had broken, fixed. ([a8e11b1](https://github.com/xdy/twodsix-foundryvtt/commit/a8e11b17073dec1b4a9f3959218f57bd4f506f72))
+* Hotbar macros had broken, fixed. ([b7bc36f](https://github.com/xdy/twodsix-foundryvtt/commit/b7bc36f65920c27c3240171345c9958668b21ec9))
+
 ## [0.6.73](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.72...v0.6.73) (2021-01-02)
 
 
