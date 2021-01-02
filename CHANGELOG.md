@@ -1,3 +1,10 @@
+## [0.6.73](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.72...v0.6.73) (2021-01-02)
+
+
+### Bug Fixes
+
+* add dropdown with settings for rulesets ([0f6b767](https://github.com/xdy/twodsix-foundryvtt/commit/0f6b7671b3f0b91025312d4926c3467166a222a8)), closes [#183](https://github.com/xdy/twodsix-foundryvtt/issues/183)
+
 ## [0.6.72](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.71...v0.6.72) (2021-01-02)
 
 
