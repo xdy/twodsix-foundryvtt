@@ -76,6 +76,7 @@ TWODSIX.RULESETS = {
     }
   },
   OTHER: {
+    key: "OTHER",
     name: "Other",
     settings: {}
   }
