@@ -22,6 +22,61 @@ TWODSIX.VARIANTS = {
   "CEL": "CEL",
 };
 
+TWODSIX.RULESETS = {
+  "CE": {
+    "name": "Cepheus Engine",
+    "setttings": {
+      "initiativeFormula": "2d6 + @characteristics.dexterity.mod",
+      "difficultyListUsed": "CE",
+      "difficultiesAsTargetNumber": false,
+      "autofireRulesUsed": "CE",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "CEL": {
+    "name": "Cepheus Light",
+    "setttings": {
+      "initiativeFormula": "2d6",
+      "difficultyListUsed": "CEL",
+      "difficultiesAsTargetNumber": true,
+      "autofireRulesUsed": "CEL",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "CEFTL": {
+    "name": "Cepheus Faster Than Light",
+    "setttings": {
+      "initiativeFormula": "2d6",
+      "difficultyListUsed": "CEL",
+      "difficultiesAsTargetNumber": true,
+      "autofireRulesUsed": "CE",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "MGT2": {
+    "name": "Mongoose Traveller 2e",
+    "setttings": {
+      "initiativeFormula": "2d6 -8 + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)",
+      "difficultyListUsed": "CE",
+      "difficultiesAsTargetNumber": true,
+      "autofireRulesUsed": "CEL",
+      "modifierForZeroCharacteristic": -3,
+      "termForAdvantage": "boon",
+      "termForDisadvantage": "bane",
+      "absoluteBonusValueForEachTimeIncrement": 2
+    }
+  }
+};
+
 TWODSIX.ROLLTYPES = {
   Advantage: "3d6kh2",
   Normal: "2d6",
