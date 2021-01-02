@@ -22,6 +22,52 @@ TWODSIX.VARIANTS = {
   "CEL": "CEL",
 };
 
+TWODSIX.RULESETS = {
+  "CE": {
+    "name": "Cepheus Engine",
+    "setttings": {
+      "initiativeFormula": "2d6 + @characteristics.dexterity.mod",
+      "difficultyListUsed": "CE",
+      "difficultiesAsTargetNumber": false,
+      "autofireRulesUsed": "CE",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "CEL": {
+    "name": "Cepheus Light",
+    "setttings": {
+      "initiativeFormula": "2d6",
+      "difficultyListUsed": "CEL",
+      "difficultiesAsTargetNumber": true,
+      "autofireRulesUsed": "CEL",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "CEFTL": {
+    "name": "Cepheus Faster Than Light",
+    "setttings": {
+      "initiativeFormula": "2d6",
+      "difficultyListUsed": "CEL",
+      "difficultiesAsTargetNumber": true,
+      "autofireRulesUsed": "CE",
+      "modifierForZeroCharacteristic": -2,
+      "termForAdvantage": "advantage",
+      "termForDisadvantage": "disadvantage",
+      "absoluteBonusValueForEachTimeIncrement": 1
+    }
+  },
+  "OTHER": {
+    "name": "Other",
+    "setttings": {}
+  }
+};
+
 TWODSIX.ROLLTYPES = {
   Advantage: "3d6kh2",
   Normal: "2d6",

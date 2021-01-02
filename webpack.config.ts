@@ -7,6 +7,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 //Only a partial type, not sure what else can be in this, and haven't looked into it.
 type FoundryConfig = { dataPath:string, systemName:string };
+const hookDir = './src/module/hooks/';
 
 function getFoundryConfig():FoundryConfig {
   const configPath = path.resolve(process.cwd(), 'foundryconfig.json');
@@ -20,7 +21,7 @@ module.exports = (env, argv) => {
   const config:Configuration = {
     context: __dirname,
     entry: {
-      main: ["./src/twodsix.ts", "./src/module/hooks/ready.ts", "./src/module/hooks/setup.ts", "./src/module/hooks/preCreateActor.ts", "./src/module/hooks/createItem.ts", "./src/module/hooks/renderItemSheet.ts", "./src/module/hooks/renderChatMessage.ts"]
+      main: ["./src/twodsix.ts"].concat(fs.readdirSync(hookDir).map(file => hookDir + file))
     },
     mode: "development",
     module: {
