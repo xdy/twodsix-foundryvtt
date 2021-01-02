@@ -44,7 +44,7 @@ It is by caffeine alone I set my mind in motion
 See [CHANGELOG.md](CHANGELOG.md)
 
 ### Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CONTRIBUTORS](CONTRIBUTORS.md)
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CONTRIBUTORS.md](CONTRIBUTORS.md)
 
 ### Licenses
 Project Licensing:
