@@ -235,7 +235,7 @@ export class Migration {
       }
     });
 
-    const sceneMigrations = game.scenes.entities.map(async scene => {
+    const sceneMigrations = game.scenes.entries().map(async scene => {
       try {
         const updateData = await Migration.migrateSceneData(scene.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {

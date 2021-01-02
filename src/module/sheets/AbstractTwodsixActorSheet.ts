@@ -82,7 +82,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onItemCreate(event:{ preventDefault:() => void; currentTarget: any }):Promise<Item> {
+  private _onItemCreate(event:{ preventDefault:() => void; currentTarget: HTMLElement }):Promise<Item> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -106,7 +106,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         itemData.data.value = game.settings.get('twodsix', 'untrainedSkillValue');
       } else {
-        itemData.data.value = 0;
+        itemData.data.value = String(0);
       }
     }
     // Finally, create the item!
@@ -117,7 +117,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Special handling of skills dropping.
    */
-  protected async _onDrop(event:DragEvent):Promise<any> {
+  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
     let data:any;

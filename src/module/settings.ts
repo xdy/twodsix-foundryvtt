@@ -16,8 +16,7 @@ export const registerSettings = function ():void {
     formula: formula,
     decimals: 0
   });
-  const DEFAULT_UNTRAINED = -2;
-  _numberSetting('modifierForZeroCharacteristic', DEFAULT_UNTRAINED);
+  _numberSetting('modifierForZeroCharacteristic', -2);
   _stringSetting('termForAdvantage', 'advantage');
   _stringSetting('termForDisadvantage', 'disadvantage');
 
@@ -39,7 +38,7 @@ export const registerSettings = function ():void {
   _booleanSetting('ExperimentalFeatures', false);
 
   _booleanSetting('hideUntrainedSkills', false);
-  _numberSetting('untrainedSkillValue', DEFAULT_UNTRAINED, 'client');
+  _numberSetting('untrainedSkillValue', -3, 'client');
 
   _stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
 
