@@ -1,3 +1,10 @@
+## [0.6.72](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.71...v0.6.72) (2021-01-02)
+
+
+### Bug Fixes
+
+* This commit exists only to do a new release. Specifically to add feature to close and create new item after adding a new item, courtesy of [@jonepatr](https://github.com/jonepatr) ([@pajon](https://github.com/pajon) on discord) ([398379c](https://github.com/xdy/twodsix-foundryvtt/commit/398379ce067f61251858cb1541041dee31b733dc))
+
 ## [0.6.71](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.70...v0.6.71) (2020-12-31)
 
 
