@@ -82,7 +82,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onItemCreate(event:{ preventDefault:() => void; currentTarget:any }):Promise<Item> {
+  private _onItemCreate(event:{ preventDefault:() => void; currentTarget: any }):Promise<Item> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.

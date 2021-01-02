@@ -3,8 +3,7 @@
  * @extends {Actor}
  */
 import {calcModFor} from "../utils/sheetUtils";
-import {CharacteristicType} from "../TwodsixSystem";
-import {UpdateData} from "../migration";
+import {CharacteristicType, UpdateData} from "../../types/twodsix";
 
 export default class TwodsixActor extends Actor {
 

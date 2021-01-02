@@ -2,8 +2,8 @@ import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
-import {CharacteristicType} from "../TwodsixSystem";
 import TwodsixItem from "../entities/TwodsixItem";
+import {CharacteristicType} from "../../types/twodsix";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -112,13 +112,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     const element = $(event.currentTarget);
     const bonusDamage = Number(element.data('bonus-damage') || 0);
+
     async function extracted(this):Promise<void> {
       return await TwodsixRolls.rollDamage(item, true, this.actor, game.settings.get('core', 'rollMode'), bonusDamage);
     }
 
     extracted.call(this);
   }
-
 
 
 }

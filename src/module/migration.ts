@@ -1,11 +1,7 @@
 //TODO Move all types to a better place
-import {TwodsixItemData} from "../types/TwodsixItemData";
 
-export type UpdateData = {
-  _id?:any;
-  items?:any;
-  tokens?:any[];
-};
+
+import {TwodsixItemData, UpdateData} from "../types/twodsix";
 
 export class Migration {
 
@@ -30,7 +26,7 @@ export class Migration {
     return updateData;
   }
 
-  private static async migrateActorItems(actorData:ActorData<any>, systemMigrationVersion:string, actor:Actor<any>) {
+  private static async migrateActorItems(actorData:ActorData, systemMigrationVersion:string, actor:Actor) {
     //Handle any items that are on the actor
     const actorItems = actorData["items"];
     const toUpdate = [];
@@ -119,7 +115,7 @@ export class Migration {
   }
 
 
-  private static async migrateSceneData(scene:EntityData<any>, systemMigrationVersion:string):Promise<{ tokens:any }> {
+  private static async migrateSceneData(scene:EntityData, systemMigrationVersion:string):Promise<{ tokens }> {
     const tokens = duplicate(scene["tokens"]);
     return {
       tokens: tokens.map(t => {
@@ -136,7 +132,7 @@ export class Migration {
     };
   }
 
-  private static async migrateCompendium(pack:{ metadata:{ entity:any; }; migrate:() => any; getContent:() => any; updateEntity:(arg0:any) => any; collection; }, systemMigrationVersion:string):Promise<void> {
+  private static async migrateCompendium(pack:{ metadata:{ entity; }; migrate:() => any; getContent:() => any; updateEntity:(arg0:any) => any; collection; }, systemMigrationVersion:string):Promise<void> {
     const entity = pack.metadata.entity;
     if (!['Actor', 'Item', 'Scene'].includes(entity)) {
       return;

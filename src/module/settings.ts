@@ -16,7 +16,8 @@ export const registerSettings = function ():void {
     formula: formula,
     decimals: 0
   });
-  _numberSetting('modifierForZeroCharacteristic', -2);
+  const DEFAULT_UNTRAINED = -2;
+  _numberSetting('modifierForZeroCharacteristic', DEFAULT_UNTRAINED);
   _stringSetting('termForAdvantage', 'advantage');
   _stringSetting('termForDisadvantage', 'disadvantage');
 
@@ -32,15 +33,15 @@ export const registerSettings = function ():void {
   _booleanSetting('ShowRateOfFire', true);
   _booleanSetting('ShowRecoil', false);
 
-  _stringChoiceSetting('difficultyListUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
+  _stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
   _booleanSetting('difficultiesAsTargetNumber', false);
 
   _booleanSetting('ExperimentalFeatures', false);
 
   _booleanSetting('hideUntrainedSkills', false);
-  _numberSetting('untrainedSkillValue', -3, 'client');
+  _numberSetting('untrainedSkillValue', DEFAULT_UNTRAINED, 'client');
 
-  _stringChoiceSetting('autofireRulesUsed', TWODSIX.VARIANTS.CE, TWODSIX.VARIANTS);
+  _stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
 
   _booleanSetting('showMissingCompendiumWarnings', true);
 

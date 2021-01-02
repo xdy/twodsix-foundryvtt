@@ -5,7 +5,7 @@ Hooks.on('renderItemSheet', async (app, html, data) => {
   // Check if item was just created
   if (item && item.getFlag('twodsix', 'newItem')) {
     // Mark item as no longer being new so that it won't show up when opening the item in the future
-    item.unsetFlag('twodsix', 'newItem');
+    await item.unsetFlag('twodsix', 'newItem');
 
     const closeAndCreateNew = game.i18n.localize("TWODSIX.CloseAndCreateNew");
     const copyText = game.i18n.localize("TWODSIX.Copy");

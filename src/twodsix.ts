@@ -93,7 +93,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/items/tool-sheet.html",
     'systems/twodsix/templates/chat/damage-message.html'
   ];
-  loadTemplates(templatePaths);
+  await loadTemplates(templatePaths);
 
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 

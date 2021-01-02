@@ -6,5 +6,5 @@ Hooks.once('setup', async function () {
 
   CONFIG.TWODSIX = TWODSIX;
 
-  (window as any).Twodsix = new TwodsixSystem();
+  window["Twodsix"] = new TwodsixSystem();
 });

@@ -11,10 +11,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
-    if (typeof str === 'string') {
-      return '';
-    }
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return typeof str === 'string' ? '' : str.charAt(0).toUpperCase() + str.slice(1);
   });
 
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
@@ -59,53 +56,48 @@ export default function registerHandlebarsHelpers():void {
 
   Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
     // Parse rates of fire, and ignore the first number (usually 1, but can be 0, which means no single fire)
-    const modes = weapon.rateOfFire.split(/-|\//);
+    const modes = weapon.rateOfFire.split(/[-/]/);
     modes.shift();
     return modes;
   });
 
   Handlebars.registerHelper('twodsix_useCEAutofireRules', () => {
-    return (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.VARIANTS.CE);
+    return (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key);
   });
 
   Handlebars.registerHelper('twodsix_useCELAutofireRules', (weapon) => {
-    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.VARIANTS.CEL) && (weapon.rateOfFire > 1));
+    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && (weapon.rateOfFire > 1));
   });
 
-  Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize) => {
-    switch(burstSize) {
-      case '1':
-        return 0;
-      case '3':
-      case '4':
-        return 1;
-      case '10':
-        return 2;
-      case '20':
-        return 3;
-      case '100':
-        return 4;
-      default:
-        return 0;
+  Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize:string) => {
+    const number = Number(burstSize);
+    if (number <= 2) {
+      return 0;
+    } else if (number >= 4) {
+      return 1;
+    } else if (number >= 10) {
+      return 2;
+    } else if (number >= 20) {
+      return 3;
+    } else if (number >= 100) {
+      return 4;
     }
   });
 
   Handlebars.registerHelper('twodsix_burstBonusDamage', (burstSize) => {
-    switch(burstSize) {
-      case '1':
-        return '0';
-      case '3':
-        return '1';
-      case '4':
-        return '1d6';
-      case '10':
-        return '2d6';
-      case '20':
-        return '3d6';
-      case '100':
-        return '4d6';
-      default:
-        return '0';
+    const number = Number(burstSize);
+    if (number <= 2) {
+      return '0';
+    } else if (number === 3) {
+      return '1';
+    } else if (number >= 4) {
+      return '1d6';
+    } else if (number >= 10) {
+      return '2d6';
+    } else if (number >= 20) {
+      return '3d6';
+    } else if (number >= 100) {
+      return '4d6';
     }
   });
 

@@ -20,10 +20,11 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
+    "typeRoots": [ "./types" ],
     "types": [
       "jquery",
       "webpack-env",
-      "foundry-pc-types"
+      "foundry-vtt-types"
     ],
     "alwaysStrict": true
   }
