@@ -64,7 +64,7 @@ export class TwodsixRolls {
     });
   }
 
-  public static async performThrow(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean, numAttacks = 0):Promise<void> {
+  public static async performThrow(actor:TwodsixActor, itemId:string, dataset:DOMStringMap, showThrowDialog:boolean, numAttacks = 1):Promise<void> {
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
     let skillId:string;
     let item:TwodsixItem | null = actor.getOwnedItem(itemId) as TwodsixItem;
