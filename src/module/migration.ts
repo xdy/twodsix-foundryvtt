@@ -235,7 +235,9 @@ export class Migration {
       }
     });
 
-    const sceneMigrations = game.scenes.entries().map(async scene => {
+    const sceneMigrations = [];
+    let scene: any;
+    for (scene of game.scenes.entries()) {
       try {
         const updateData = await Migration.migrateSceneData(scene.data, systemMigrationVersion);
         if (!isObjectEmpty(updateData)) {
@@ -245,7 +247,7 @@ export class Migration {
       } catch (err) {
         console.error(err);
       }
-    });
+    }
 
     const packMigrations = packs.map(async pack => {
       await Migration.migrateCompendium(pack, systemMigrationVersion);

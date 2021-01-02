@@ -1,7 +1,6 @@
 import {TWODSIX} from "../config";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-Hooks.on('renderSettingsConfig', async (app, html, data) => {
+Hooks.on('renderSettingsConfig', async (app, html) => {
   html.find('[name="twodsix.ruleset"]').on('change', ev => {
     const ruleset = ev.target.value;
     const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;

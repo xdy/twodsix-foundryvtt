@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-Hooks.on('renderChatMessage', (app, html, msg) => {
+Hooks.on('renderChatMessage', (app, html) => {
   const damageMessage = html.find(".damage-message")[0];
   if (damageMessage) {
     damageMessage.setAttribute("draggable", "true");

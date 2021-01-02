@@ -9,12 +9,14 @@ extends:
   - 'eslint-config-prettier'
   - 'plugin:prettier/recommended'
   - './node_modules/@typhonjs-fvtt/eslint-foundry.js/config/latest/.eslintrc'
+  #- 'plugin:@typescript-eslint/recommended'
 
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2020
   sourceType: module
   project: ./tsconfig.json
+  tsconfigRootDir: .
 plugins:
   - prettier
   - "@typescript-eslint"

@@ -1,6 +1,6 @@
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
-  protected handleContentEditable(html:JQuery<HTMLElement>):void {
+  protected handleContentEditable(html:JQuery):void {
     html.find('div[contenteditable="true"][data-edit]').on(
       'focusout',
       this._onSubmit.bind(this)
@@ -12,7 +12,7 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     super.activateListeners(html);
   }
 
-  getData():ItemSheetData<any> {
+  getData():ItemSheetData {
     const data = super.getData();
     data.data.owner = this.actor;
 

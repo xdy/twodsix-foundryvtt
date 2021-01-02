@@ -1,7 +1,7 @@
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
-  protected activateListeners(html:JQuery<HTMLElement>):void {
+  protected activateListeners(html:JQuery):void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
@@ -69,7 +69,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return super._onDragStart(event);
   }
 
-  private handleContentEditable(html:JQuery<HTMLElement>) {
+  private handleContentEditable(html:JQuery) {
     html.find('div[contenteditable="true"][data-edit]').on(
       'focusout',
       this._onSubmit.bind(this)

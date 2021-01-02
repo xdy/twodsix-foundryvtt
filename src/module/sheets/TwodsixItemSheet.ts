@@ -60,7 +60,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners(html:JQuery<HTMLElement>):void {
+  activateListeners(html:JQuery):void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
