@@ -5,6 +5,11 @@ export const registerSettings = function ():void {
   //Foundry default behaviour related settings
   _booleanSetting('defaultTokenSettings', true);
 
+  const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
+    return [id, ruleset["name"]];
+  });
+  _stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].name, Object.fromEntries(rulesetOptions), 'twodsix');
+
   //House rules/variant related settings
   const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
   _stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, 'world', formula => CONFIG.Combat.initiative = {

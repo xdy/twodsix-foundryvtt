@@ -193,6 +193,10 @@
       "using": "med {characteristic}"
     },
     "Settings": {
+      "ruleset": {
+        "hint": "Detta kommer att ställa in nedanstående fält med de bästa inställningarna för angiven spelvariant.",
+        "name": "Spelvariant"
+      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
         "name": "Vilken bonus/malus som ges för varje tidsintervallsteg."

@@ -174,7 +174,7 @@
       "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
     },
     "Modules": {
-      "compendiumFolders":{
+      "compendiumFolders": {
         "missing": "The included compendiums for the various Cepheus variants often use the 'Compendium Folders' module. If you use those, please install the Compendium Folders module in Foundry VTT. Or turn off this warning in System Settings.",
         "disabled": "Please enable the 'Compendium Folders' module in this world if you intend to use the included compendiums. Or turn off this warning in System Settings."
       }
@@ -193,6 +193,10 @@
       "using": "using {characteristic}"
     },
     "Settings": {
+      "ruleset": {
+        "hint": "This will configure the below settings with the best options for the given ruleset.",
+        "name": "Ruleset"
+      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Leave empty to use default (+/-1). Not currently used.",
         "name": "What bonus/penalty to give per each time increment change in a task."
