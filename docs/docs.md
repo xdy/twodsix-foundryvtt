@@ -46,7 +46,7 @@ To get the system closer to MGT2 change the following in the system settings (af
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
 ## General features that really should be documented somewhere:
-* A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you get a popup where you can change difficulty, modifiers, used characteristic, etc for this roll only.
+* A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll without modifiers with a difficulty of 8. This can be set as the default behavior in the settings.
 * A feature I like (and thus added) but most people seem to not like is to in system settings change to show the Effect of the roll rather than the raw result (by subtracting the target number.)
 * You can connect a skill to any item on a character, with an optional permanent bonus, so you can do 'skill rolls' (often enough weapon attacks) by clicking the item rather than the skill, and get that bonus added automatically.
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)

@@ -50,6 +50,14 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_invertSkillRollShiftClick', () => {
+    if (game.settings.get('twodsix', 'invertSkillRollShiftClick')) {
+      return game.i18n.localize("TWODSIX.Actor.Skills.InvertedSkillRollTooltip");
+    } else {
+      return game.i18n.localize("TWODSIX.Actor.Skills.SkillRollTooltip");
+    }
+  });
+
   Handlebars.registerHelper('twodsix_hideUntrainedSkills', (value) => {
     return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
   });

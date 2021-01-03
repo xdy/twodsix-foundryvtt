@@ -75,7 +75,9 @@
         "Modifier": "Modifier",
         "SkillName": "Skill Name",
         "Total": "Total",
-        "Untrained": "Untrained"
+        "Untrained": "Untrained",
+        "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
+        "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog"
       },
       "Species": "Species",
       "Tabs": {
@@ -296,6 +298,10 @@
       "untrainedSkillValue": {
         "hint": "Change this to match the character's level of the 'Jack of All Trades' (JOAT) skill. If you have JOAT 1, set the value to -2, etc.",
         "name": "The value that is used for untrained skills."
+      },
+      "invertSkillRollShiftClick": {
+        "hint": "When clicking on a skill a dialog for the skill roll typically appears. Shift-clicking is a shortcut for rolling without modifiers witth a dificulty of 8. Checking this box swaps this behavior.",
+        "name": "Invert behavior for shift-clicking for skill rolls"
       }
     },
     "CloseAndCreateNew": "Close and create new",
