@@ -50,6 +50,8 @@ export const registerSettings = function ():void {
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
 
+  _booleanSetting('invertSkillRollShiftClick', false);
+
   //Must be the last setting in the file
   _stringSetting('systemMigrationVersion', game.system.data.version);
 

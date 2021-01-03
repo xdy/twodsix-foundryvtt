@@ -90,7 +90,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onRoll(event:Event):Promise<void> {
     event.preventDefault();
     event.stopPropagation();
-    const showThrowDialog = event["shiftKey"];
+
+    const useInvertedShiftClick:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick');
+    const showThrowDialog:boolean = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
     const element = event.currentTarget;
     const dataset = element["dataset"];
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
