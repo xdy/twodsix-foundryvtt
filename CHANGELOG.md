@@ -1,3 +1,10 @@
+## [0.6.77](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.76...v0.6.77) (2021-01-03)
+
+
+### Bug Fixes
+
+* switch behavior of skill roll in character sheet ([61992e0](https://github.com/xdy/twodsix-foundryvtt/commit/61992e078636d15ede08188a563ee630e3282500)), closes [#267](https://github.com/xdy/twodsix-foundryvtt/issues/267)
+
 ## [0.6.76](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.75...v0.6.76) (2021-01-03)
 
 
