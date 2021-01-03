@@ -1,3 +1,10 @@
+## [0.6.76](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.75...v0.6.76) (2021-01-03)
+
+
+### Bug Fixes
+
+* Adds settings for effects of natural 2/12, if a natural 2 or 12 should affect Effect, setting for what Effect is considered a critical success or failure. Also adds code supporting that to rolls. ([cc475a9](https://github.com/xdy/twodsix-foundryvtt/commit/cc475a9d3b1c1fd743cf9ed12f8691f9087ad0a8))
+
 ## [0.6.75](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.74...v0.6.75) (2021-01-03)
 
 
