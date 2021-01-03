@@ -11,8 +11,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   static get defaultOptions():FormApplicationOptions {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
-      width: 520,
-      height: 377,
       submitOnClose: true,
       submitOnChange: true,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
