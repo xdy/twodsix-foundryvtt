@@ -17,6 +17,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
+* Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
 Reasonably complete compendiums for Cepheus Light exist.
 
@@ -28,6 +29,7 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 * Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
+* Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
 Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
@@ -39,6 +41,7 @@ To get the system closer to MGT2 change the following in the system settings (af
 * Switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
 * Rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
+* Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 6.
 
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 

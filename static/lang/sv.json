@@ -201,9 +201,17 @@
         "hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
         "name": "Vilken bonus/malus som ges för varje tidsintervallsteg."
       },
+      "absoluteCriticalEffectValue": {
+        "hint": "Defaultvärde 99, vilket betyder att effekten ignoreras.",
+        "name": "Den effekt som krävs för att ett slag ska räknas som kritiskt lyckad/misslyckad (dvs färgas röd eller grön)."
+      },
       "automateDamageRollOnHit": {
         "hint": "ikryssat=Rulla skadan, modifierad av färdighetsslagets effekt. urkryssat=rulla inte skadan.",
         "name": "Ska skador på lyckade färdighetsslag (dvs som har effekt >= 0) rullas automatiskt om använd sak kan göra skada?"
+      },
+      "criticalNaturalAffectsEffect": {
+        "hint": "ikryssat=Oavsett om slaget är lyckat räknas en naturlig 2:a som att man fick Effect -1, och en naturlig 12:a som att man fick Effekt 0, urkryssat=använd de vanliga reglerna",
+        "name": "Om en naturlig 2:a eller 12:a ska behandlas speciellt med avseende på om slaget är lyckat/misslyckat."
       },
       "defaultTokenSettings": {
         "hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",

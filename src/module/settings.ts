@@ -43,6 +43,8 @@ export const registerSettings = function ():void {
   _stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
 
   _booleanSetting('showMissingCompendiumWarnings', true);
+  _booleanSetting('criticalNaturalAffectsEffect', false);
+  _numberSetting('absoluteCriticalEffectValue', 99);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);

@@ -201,9 +201,17 @@
         "hint": "Leave empty to use default (+/-1). Not currently used.",
         "name": "What bonus/penalty to give per each time increment change in a task."
       },
+      "absoluteCriticalEffectValue": {
+        "hint": "Defaults to 99, which means that effect is ignored.",
+        "name": "What effect is required for a throw to be considered a critical success/failure (i.e. be colored green/red)."
+      },
       "automateDamageRollOnHit": {
         "hint": "checked=Roll damage, modified by effect of skill roll. unchecked=Don't roll damage.",
         "name": "Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?"
+      },
+      "criticalNaturalAffectsEffect": {
+        "hint": "checked=Regardless of success consider a natural 2 to have an effect of -1 and a 12 to have an effect of 0, unchecked=Use normal rules",
+        "name": "Whether a natural 2 or 12 should have special treatment as regards to success/failure."
       },
       "defaultTokenSettings": {
         "hint": "Automatically set advised prototype token settings to newly created Actors.",
