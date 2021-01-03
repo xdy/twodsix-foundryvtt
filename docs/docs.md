@@ -9,7 +9,7 @@ Complete skill and personal equipment compendiums are available (supplied by @ma
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
 
 ## Cepheus Light
-To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) change the following in the system settings:
+To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Light' in the dropdown near the top of the system settings, that will set the following settings:
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
@@ -21,7 +21,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 Reasonably complete compendiums for Cepheus Light exist.
 
 ## Cepheus Faster Than Light
-To get the system closer to Cepheus Faster Than Light change the following in the system settings:
+To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Than Light' in the dropdown near the top of the system settings, that will set the following settings:
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
@@ -32,7 +32,7 @@ To get the system closer to Cepheus Faster Than Light change the following in th
 Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
 ## MGT2
-To get the system closer to MGT2 change the following in the system settings:
+To get the system closer to MGT2 change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
 
 * Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)"
 * Change the modifier for a characteristic of 0 to -3 rather than -2
