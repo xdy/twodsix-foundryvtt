@@ -47,7 +47,13 @@ TWODSIX.RULESETS = {
       termForDisadvantage: "disadvantage",
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: false,
-      absoluteCriticalEffectValue: 99
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: true,
+      ShowRangeBandAndHideRange: true,
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: true
     }
   },
   CEL: {
