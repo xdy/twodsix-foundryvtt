@@ -5,7 +5,8 @@ export const TWODSIX = {
   VARIANTS: undefined,
   ROLLTYPES: undefined,
   DIFFICULTIES: undefined,
-  RULESETS: undefined
+  RULESETS: undefined,
+  CRIT: undefined
 };
 
 TWODSIX.CHARACTERISTICS = {
@@ -107,3 +108,5 @@ TWODSIX.DIFFICULTIES = {
     Formidable: {mod: -6, target: 12},
   }
 };
+
+TWODSIX.CRIT = Object.freeze({"SUCCESS": 1, "FAIL": 2});

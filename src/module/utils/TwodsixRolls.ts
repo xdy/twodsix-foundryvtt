@@ -279,7 +279,7 @@ export class TwodsixRolls {
         //Do the throw
         roll.roll();
 
-        let effect;
+        let effect:number, crit:number;
         if (showEffect) {
           effect = roll.total;
         } else {
@@ -294,15 +294,20 @@ export class TwodsixRolls {
         * */
 
         //Handle special results
-        const diceValues:number[] = <number[]><unknown>roll.dice[0].results;
+
+        const diceResult = roll.dice[0].results.reduce((total:number, dice) => {
+          return dice["active"] ? total+dice["result"] : total;
+        }, 0);
 
         //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
-        if (diceValues[0] + diceValues[1] === 2) {
+        if (diceResult === 2) {
+          crit = TWODSIX.CRIT.FAIL;
           console.log("Got a natural 2!");
           if (0 <= effect) {
             //effect = -1;
           }
-        } else if (diceValues[0] + diceValues[1] === 12) {
+        } else if (diceResult === 12) {
+          crit = TWODSIX.CRIT.SUCCESS;
           console.log("Got a natural 12!");
           if (effect < 0) {
             //effect = 0;
@@ -312,8 +317,14 @@ export class TwodsixRolls {
         //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
         const TODO_UNHARDCODEME_ISSUE_120 = 6;
         if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
+          if (!crit) {
+            crit = TWODSIX.CRIT.SUCCESS;
+          }
           console.log("Got a critical success");
         } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
+          if (!crit) {
+            crit = TWODSIX.CRIT.FAIL;
+          }
           console.log("Got a critical failure");
         }
 
@@ -323,7 +334,7 @@ export class TwodsixRolls {
             speaker: speaker,
             flavor: flavor,
             rollType: settings.rollType,
-            flags: {"core.canPopout": true}
+            flags: {"core.canPopout": true, "twodsix.crit": crit}
           },
           {rollMode: rollMode}
         );
