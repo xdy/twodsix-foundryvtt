@@ -1,3 +1,10 @@
+## [0.6.78](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.77...v0.6.78) (2021-01-03)
+
+
+### Bug Fixes
+
+* change so that item window size adapts to content ([313c1e4](https://github.com/xdy/twodsix-foundryvtt/commit/313c1e4302e207bc2c9e0876d13e4726605926ac)), closes [#264](https://github.com/xdy/twodsix-foundryvtt/issues/264)
+
 ## [0.6.77](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.76...v0.6.77) (2021-01-03)
 
 
