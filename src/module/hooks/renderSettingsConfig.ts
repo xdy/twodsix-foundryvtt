@@ -7,7 +7,13 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
 
     // Step through each option and update the corresponding field
     Object.entries(rulesetSettings).forEach(([settingName, value]) => {
-      html.find(`[name="twodsix.${settingName}"]`).val(value);
+      console.log(`${ruleset} ${settingName} = ${value}`);
+      const setting = html.find(`[name="twodsix.${settingName}"]`);
+      if (!setting.is(':checkbox')) {
+        setting.val(value);
+      } else {
+        setting.prop('checked', Boolean(value));
+      }
     });
   });
 });

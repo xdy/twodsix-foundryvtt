@@ -286,46 +286,38 @@ export class TwodsixRolls {
           effect = roll.total - difficulty.target;
         }
 
-
-        /* Builds fine locally, but got this on github action for some reason, so commenting out:
-        *  [tsl] ERROR in /home/runner/work/twodsix-foundryvtt/twodsix-foundryvtt/src/module/utils/TwodsixRolls.ts(255,35)
-        * TS2352: Conversion of type 'object[]' to type 'number[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
-        * Type 'object' is not comparable to type 'number'.
-        * */
-
         //Handle special results
-
         const diceResult = roll.dice[0].results.reduce((total:number, dice) => {
-          return dice["active"] ? total+dice["result"] : total;
+          return dice["active"] ? total + dice["result"] : total;
         }, 0);
 
-        //TODO #168 Uncomment natural 2/12 handling below, once there is a setting to enable it
         if (diceResult === 2) {
           crit = TWODSIX.CRIT.FAIL;
-          console.log("Got a natural 2!");
-          if (0 <= effect) {
-            //effect = -1;
+          console.log(`Got a natural 2 with Effect ${effect}!`);
+          if (effect >= 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
+            console.log("Setting Effect to -1 due to natural 2!");
+            effect = -1;
           }
         } else if (diceResult === 12) {
           crit = TWODSIX.CRIT.SUCCESS;
-          console.log("Got a natural 12!");
-          if (effect < 0) {
-            //effect = 0;
+          console.log(`Got a natural 12 with Effect ${effect}!`);
+          if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
+            console.log("Setting Effect to 0 due to natural 12!");
+            effect = 0;
           }
         }
 
-        //TODO #120 Handle critical success/failure once there is a system setting (or two) for it, maybe just show in chat card?
-        const TODO_UNHARDCODEME_ISSUE_120 = 6;
-        if (effect >= TODO_UNHARDCODEME_ISSUE_120) {
+        const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
+        if (effect >= CRITICAL_EFFECT_VALUE) {
           if (!crit) {
             crit = TWODSIX.CRIT.SUCCESS;
+            console.log("Got a critical success due to high Effect");
           }
-          console.log("Got a critical success");
-        } else if (effect <= -TODO_UNHARDCODEME_ISSUE_120) {
+        } else if (effect <= -CRITICAL_EFFECT_VALUE) {
           if (!crit) {
             crit = TWODSIX.CRIT.FAIL;
+            console.log("Got a critical failure due to low Effect");
           }
-          console.log("Got a critical failure");
         }
 
         //And send to chat

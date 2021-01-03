@@ -45,7 +45,9 @@ TWODSIX.RULESETS = {
       modifierForZeroCharacteristic: -2,
       termForAdvantage: "advantage",
       termForDisadvantage: "disadvantage",
-      absoluteBonusValueForEachTimeIncrement: 1
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99
     }
   },
   CEL: {
@@ -59,7 +61,9 @@ TWODSIX.RULESETS = {
       modifierForZeroCharacteristic: -2,
       termForAdvantage: "advantage",
       termForDisadvantage: "disadvantage",
-      absoluteBonusValueForEachTimeIncrement: 1
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99
     }
   },
   CEFTL: {
@@ -73,7 +77,9 @@ TWODSIX.RULESETS = {
       modifierForZeroCharacteristic: -2,
       termForAdvantage: "advantage",
       termForDisadvantage: "disadvantage",
-      absoluteBonusValueForEachTimeIncrement: 1
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99
     }
   },
   OTHER: {
