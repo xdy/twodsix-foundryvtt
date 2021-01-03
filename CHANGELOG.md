@@ -1,3 +1,10 @@
+## [0.6.75](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.74...v0.6.75) (2021-01-03)
+
+
+### Bug Fixes
+
+* added coloring of crit success/fail ([cdbba61](https://github.com/xdy/twodsix-foundryvtt/commit/cdbba6123b1b6742617a4380dd4f672e4b333407)), closes [#120](https://github.com/xdy/twodsix-foundryvtt/issues/120) [#168](https://github.com/xdy/twodsix-foundryvtt/issues/168)
+
 ## [0.6.74](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.73...v0.6.74) (2021-01-02)
 
 
