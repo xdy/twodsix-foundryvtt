@@ -1658,6 +1658,14 @@ a:hover {
   word-break: break-all;
 }
 
+.dice-roll .dice-total.crit-fail-roll {
+  color: #aa0200;
+}
+
+.dice-roll .dice-total.crit-success-roll {
+  color: #2f7822;
+}
+
 .dice-tooltip .dice-rolls .roll.d6 {
   background-image: url(../assets/chatlog/d6.svg) !important;
 }
@@ -2072,5 +2080,3 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   background: none !important;
   border: none !important;
 }
-
-
