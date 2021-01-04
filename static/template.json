@@ -378,7 +378,8 @@
       "subtype": "",
       "reference": "",
       "key": "key",
-      "difficulty": "Average"
+      "difficulty": "Average",
+      "rolltype": "Normal"
     }
   }
 }
