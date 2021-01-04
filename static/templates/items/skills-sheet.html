@@ -51,8 +51,8 @@
       <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}
         <select class="select-rolltype" name="data.rolltype" value={{rolltype}}>
           {{#select data.rolltype}}
-            {{#each data.config.ROLLTYPES as |label rolltype|}}
-              <option value="{{rolltype}}">{{localize rolltype}}</option>
+            {{#each data.config.ROLLTYPES as |type|}}
+              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
             {{/each}}
           {{/select}}
         </select>

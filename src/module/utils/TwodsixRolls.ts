@@ -125,11 +125,11 @@ export class TwodsixRolls {
     }
   }
 
-  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, rollMode:string, bonusDamage:number):Promise<void> {
+  static async rollDamage(item:TwodsixItem | null, showEffect:boolean, actor:TwodsixActor, rollMode:string, bonusDamageFormula:string):Promise<void> {
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
     if (doesDamage) {
-      const damageFormula = item?.data?.data?.damage + (bonusDamage > 0 ? "+" + bonusDamage : "");
+      const damageFormula = item?.data?.data?.damage + (bonusDamageFormula.length>0 ? "+" + bonusDamageFormula : "");
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -335,7 +335,7 @@ export class TwodsixRolls {
 
         //With possible followup
         if (game.settings.get("twodsix", "automateDamageRollOnHit") && effect >= 0) {
-          await this.rollDamage(item, showEffect, actor, rollMode, effect);
+          await this.rollDamage(item, showEffect, actor, rollMode, String(effect));
         }
       }
     }

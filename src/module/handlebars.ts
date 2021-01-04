@@ -81,14 +81,14 @@ export default function registerHandlebarsHelpers():void {
     const number = Number(burstSize);
     if (number <= 2) {
       return 0;
-    } else if (number >= 4) {
-      return 1;
-    } else if (number >= 10) {
-      return 2;
-    } else if (number >= 20) {
-      return 3;
     } else if (number >= 100) {
       return 4;
+    } else if (number >= 20) {
+      return 3;
+    } else if (number >= 10) {
+      return 2;
+    } else if (number >= 4) {
+      return 1;
     }
   });
 
@@ -96,16 +96,16 @@ export default function registerHandlebarsHelpers():void {
     const number = Number(burstSize);
     if (number <= 2) {
       return '0';
-    } else if (number === 3) {
-      return '1';
-    } else if (number >= 4) {
-      return '1d6';
-    } else if (number >= 10) {
-      return '2d6';
-    } else if (number >= 20) {
-      return '3d6';
     } else if (number >= 100) {
       return '4d6';
+    } else if (number >= 20) {
+      return '3d6';
+    } else if (number >= 10) {
+      return '2d6';
+    } else if (number >= 4) {
+      return '1d6';
+    } else if (number === 3) {
+      return '1';
     }
   });
 
