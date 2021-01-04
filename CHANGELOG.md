@@ -1,3 +1,10 @@
+## [0.6.79](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.78...v0.6.79) (2021-01-04)
+
+
+### Bug Fixes
+
+* Adds the ability to set default rolltype for a skill. (Needed for traits, so might as well make it available in the gui). ([feee077](https://github.com/xdy/twodsix-foundryvtt/commit/feee077c7383ea4263989addb0fd9f178389f397))
+
 ## [0.6.78](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.77...v0.6.78) (2021-01-03)
 
 
