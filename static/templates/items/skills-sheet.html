@@ -47,6 +47,17 @@
         </select>
       </label>
     </div>
+    <div class="item-name left">
+      <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}
+        <select class="select-rolltype" name="data.rolltype" value={{rolltype}}>
+          {{#select data.rolltype}}
+            {{#each data.config.ROLLTYPES as |label rolltype|}}
+              <option value="{{rolltype}}">{{localize rolltype}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
     <span class="total-output flex1 skill-mod"></span>
     <div class="item-short">
       <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
@@ -60,5 +71,3 @@
     </div>
   </div>
 </form>
-
-
