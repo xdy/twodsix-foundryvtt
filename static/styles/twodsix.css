@@ -764,6 +764,11 @@ select.select-difficulty {
   margin-left: 1em;
 }
 
+select.select-rolltype {
+  width: 10em;
+  margin-left: 1em;
+}
+
 span.total-output {
   text-align: center;
 }

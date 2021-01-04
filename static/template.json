@@ -1,9 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "traveller",
-      "ship"
-    ],
+    "types": ["traveller", "ship"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -277,16 +274,7 @@
     }
   },
   "Item": {
-    "types": [
-      "equipment",
-      "weapon",
-      "armor",
-      "augment",
-      "storage",
-      "tool",
-      "junk",
-      "skills"
-    ],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -305,19 +293,12 @@
       }
     },
     "equipment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "type": "equipment",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -325,10 +306,7 @@
       "ammo": 0,
       "magazineCost": 0,
       "type": "weapon",
-      "location": [
-        "inventory",
-        "storage"
-      ],
+      "location": ["inventory", "storage"],
       "lawLevel": 0,
       "rangeBand": "",
       "weaponType": "",
@@ -337,9 +315,7 @@
       "recoil": false
     },
     "armor": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "armor": 0,
       "secondaryArmor": {
         "value": 0
@@ -348,27 +324,17 @@
         "value": 0
       },
       "type": "armor",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "augment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": [
-        "skillsTemplate"
-      ],
+      "templates": ["skillsTemplate"],
       "name": "Skill Name",
       "value": -3,
       "characteristic": "STR",
@@ -378,7 +344,8 @@
       "subtype": "",
       "reference": "",
       "key": "key",
-      "difficulty": "Average"
+      "difficulty": "Average",
+      "rolltype": "Normal"
     }
   }
 }

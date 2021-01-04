@@ -15,7 +15,7 @@ export class TwodsixRolls {
     let updatedSettings = settings;
     const template = 'systems/twodsix/templates/chat/throw-dialog.html';
     const dialogData = {
-      rollType: "Normal",
+      rollType: settings.rollType,
       rollTypes: TWODSIX.ROLLTYPES,
       difficulty: getKeyByValue(difficulties, settings.difficulty),
       difficulties: difficulties,
@@ -167,6 +167,7 @@ export class TwodsixRolls {
     }
   }
 
+  //TODO Refactor. This method is *way* too brittle. And long...
   private static async _handleThrows(dataset:DOMStringMap, actor:TwodsixActor, item:TwodsixItem | null, showEffect:boolean, characteristic, skill:TwodsixItem | null, showRollDialog:boolean, numAttacks:number) {
     let rollParts:string[] = [];
     const speaker = ChatMessage.getSpeaker({actor: actor});
@@ -174,10 +175,11 @@ export class TwodsixRolls {
     const rollMode = game.settings.get('core', 'rollMode');
     const difficulty = skill ? difficulties[skill.data.data.difficulty] : difficulties.Average;
     const skillModifier = item?.data?.data?.skillModifier ?? 0;
+    const rollType = skill ? (skill.data.data.rolltype || TWODSIX.ROLLTYPES.Normal.key) : TWODSIX.ROLLTYPES.Normal.key;
 
     let settings:throwSettings = {
       shouldRoll: false,
-      rollType: "Normal",
+      rollType: rollType,
       rollMode: rollMode,
       difficulty: difficulty,
       skillModifier: skillModifier,
@@ -240,13 +242,13 @@ export class TwodsixRolls {
       }
 
       if (settings.rollType && settings.rollType.length > 0) {
-        if (rollParts[0] == '2d6') {
-          rollParts[0] = TWODSIX.ROLLTYPES[settings.rollType];
+        if (rollParts[0] == TWODSIX.ROLLTYPES.Normal.formula) {
+          rollParts[0] = TWODSIX.ROLLTYPES[settings.rollType].formula;
         } else {
-          rollParts.unshift(TWODSIX.ROLLTYPES[settings.rollType]);
+          rollParts.unshift(TWODSIX.ROLLTYPES[settings.rollType].formula);
         }
 
-        if (settings.rollType != 'Normal') {
+        if (settings.rollType != TWODSIX.ROLLTYPES.Normal.key) {
           flavorParts.push(game.i18n.localize("TWODSIX.Rolls.With"));
           flavorParts.push(`${(advantageDisadvantageTerm(settings.rollType))}`);
         }

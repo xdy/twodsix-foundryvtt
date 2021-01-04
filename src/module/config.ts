@@ -1,15 +1,6 @@
 // Namespace TWODSIX Configuration Values
 
-export const TWODSIX = {
-  CHARACTERISTICS: undefined,
-  VARIANTS: undefined,
-  ROLLTYPES: undefined,
-  DIFFICULTIES: undefined,
-  RULESETS: undefined,
-  CRIT: undefined
-};
-
-TWODSIX.CHARACTERISTICS = {
+const CHARACTERISTICS = Object.freeze({
   "strength": "STR",
   "dexterity": "DEX",
   "endurance": "END",
@@ -17,23 +8,23 @@ TWODSIX.CHARACTERISTICS = {
   "education": "EDU",
   "socialStanding": "SOC",
   "psionicStrength": "PSI"
-};
+});
 
 /**
  * Rules variants one can use.
  * Note that only variants that actually have different rules implementations are listed here.
  * @type {Object}
  */
-TWODSIX.VARIANTS = {
+const VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
-};
+});
 
 //TODO VARIANTS and RULESETS should really be combined/refactored.
 /**
  * Sets of Twodsix settings that best match each supported ruleset.
  */
-TWODSIX.RULESETS = {
+const RULESETS = Object.freeze({
   CE: {
     key: "CE",
     name: "Cepheus Engine",
@@ -93,15 +84,15 @@ TWODSIX.RULESETS = {
     name: "Other",
     settings: {}
   }
-};
+});
 
-TWODSIX.ROLLTYPES = {
-  Advantage: "3d6kh2",
-  Normal: "2d6",
-  Disadvantage: "3d6kl2"
-};
+const ROLLTYPES = Object.freeze({
+  Advantage: {key: 'Advantage', formula: "3d6kh2"},
+  Normal: {key: 'Normal', formula: "2d6"},
+  Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
+});
 
-TWODSIX.DIFFICULTIES = {
+const DIFFICULTIES = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -119,6 +110,15 @@ TWODSIX.DIFFICULTIES = {
     VeryDifficult: {mod: -4, target: 10},
     Formidable: {mod: -6, target: 12},
   }
-};
+});
 
-TWODSIX.CRIT = Object.freeze({"SUCCESS": 1, "FAIL": 2});
+const CRIT = Object.freeze({"SUCCESS": 1, "FAIL": 2});
+
+export const TWODSIX = {
+  CHARACTERISTICS: CHARACTERISTICS,
+  VARIANTS: VARIANTS,
+  ROLLTYPES: ROLLTYPES,
+  DIFFICULTIES: DIFFICULTIES,
+  RULESETS: RULESETS,
+  CRIT: CRIT
+};
