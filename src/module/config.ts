@@ -122,4 +122,3 @@ export const TWODSIX = {
   RULESETS: RULESETS,
   CRIT: CRIT
 };
-
