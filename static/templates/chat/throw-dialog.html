@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label>{{localize "TWODSIX.Chat.Roll.Type"}}
-o      <select name="rollType">
+      <select name="rollType">
         {{#select rollType}}
           {{#each rollTypes as |type|}}
             <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>

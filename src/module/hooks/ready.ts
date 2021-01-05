@@ -20,7 +20,6 @@ Hooks.once("ready", async function () {
 
   // Determine whether a system migration is required and feasible
 
-  const MIGRATIONS_IMPLEMENTED = "0.6.1";
   const systemVersion = game.system.data.version;
   let worldVersion = null;
   if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
@@ -30,13 +29,10 @@ Hooks.once("ready", async function () {
     }
   }
 
-  const needMigration = worldVersion === null || isNewerVersion(worldVersion, systemVersion);
+  const needMigration = worldVersion === null || isNewerVersion(systemVersion, worldVersion);
 
   // Perform the migration
   if (needMigration && game.user.isGM) {
-    if (!worldVersion || !isNewerVersion(worldVersion, MIGRATIONS_IMPLEMENTED)) {
-      ui.notifications.error(`Your world data is from a Twodsix system version before migrations were implemented (in 0.6.1). This is most likely not a problem if you have used the system recently, but errors may occur.`, {permanent: true});
-    }
     await Migration.migrateWorld();
   }
 
