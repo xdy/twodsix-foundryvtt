@@ -1,3 +1,10 @@
+## [0.6.81](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.80...v0.6.81) (2021-01-05)
+
+
+### Bug Fixes
+
+* Fixed migrations. Added migration to add rolltype to skills on characters from older versions. Removed all old migrations. ([0acbad4](https://github.com/xdy/twodsix-foundryvtt/commit/0acbad4435f7f885b890a181478cfc2287116a8f))
+
 ## [0.6.80](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.79...v0.6.80) (2021-01-04)
 
 
