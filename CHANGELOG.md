@@ -1,3 +1,10 @@
+## [0.6.82](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.81...v0.6.82) (2021-01-05)
+
+
+### Bug Fixes
+
+* Weapons can now always be rolled by clicking them, default skill is 'Unskilled', with the usual penalty for unskilled use (normally -3). ([67eed1b](https://github.com/xdy/twodsix-foundryvtt/commit/67eed1bdf91edc2da74955acdf483e465638e834))
+
 ## [0.6.81](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.80...v0.6.81) (2021-01-05)
 
 
