@@ -86,16 +86,18 @@ export class TwodsixRolls {
       if (skill != null) {
         dataset.skill = skill.name;
         dataset.item = item.name;
+        characteristic = skill.data.data.characteristic;
         this._createDatasetRoll(dataset, skill, actor);
       } else {
-        //No skill, no roll
-        return;
+        //Use Untrained
+        dataset.skill = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+        dataset.roll = "2d6" + "+" + 0 + "+" + game.settings.get('twodsix', 'untrainedSkillValue');
+        characteristic = 'NONE';
       }
-      characteristic = skill.data.data.characteristic;
     } else if (dataset.label === 'Untrained') {
       //Untrained pseudo-skill
       dataset.skill = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
-      dataset.roll = "2d6" + "+" + this._recalculateMod('NONE', actor) + "+" + game.settings.get('twodsix', 'untrainedSkillValue');
+      dataset.roll = "2d6" + "+" + 0 + "+" + game.settings.get('twodsix', 'untrainedSkillValue');
       characteristic = 'NONE';
     } else {
       //It's a characteristic roll, everything is set already, but, don't add characteristic bonus again by default.
@@ -106,10 +108,8 @@ export class TwodsixRolls {
 
   private static _createDatasetRoll(dataset:DOMStringMap, skill:TwodsixItem, actor:TwodsixActor) {
     if (!dataset.roll) {
-      if (skill) {
-        const mod = this._recalculateMod(skill.data.data.characteristic, actor);
-        dataset.roll = "2d6" + "+" + mod + "+" + skill.data.data.value;
-      }
+      const mod = this._recalculateMod(skill.data.data.characteristic, actor);
+      dataset.roll = "2d6" + "+" + mod + "+" + skill ? skill.data.data.value : game.settings.get('twodsix', 'untrainedSkillValue');
       if (dataset.rofBonus) {
         dataset.roll += `+${dataset["rofBonus"]}`;
       }
@@ -129,7 +129,7 @@ export class TwodsixRolls {
     const doesDamage = item?.data?.data?.damage != null;
     let damage:Roll;
     if (doesDamage) {
-      const damageFormula = item?.data?.data?.damage + (bonusDamageFormula.length>0 ? "+" + bonusDamageFormula : "");
+      const damageFormula = item?.data?.data?.damage + (bonusDamageFormula.length > 0 ? "+" + bonusDamageFormula : "");
       const damageRoll = new Roll(damageFormula, {});
       damage = damageRoll.roll();
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
