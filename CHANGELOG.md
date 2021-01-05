@@ -1,3 +1,10 @@
+## [0.6.83](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.82...v0.6.83) (2021-01-05)
+
+
+### Bug Fixes
+
+* Hide ruleset setting from players. ([80313aa](https://github.com/xdy/twodsix-foundryvtt/commit/80313aa046255c2f500399293fd73e38fa91a582)), closes [#279](https://github.com/xdy/twodsix-foundryvtt/issues/279)
+
 ## [0.6.82](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.81...v0.6.82) (2021-01-05)
 
 
