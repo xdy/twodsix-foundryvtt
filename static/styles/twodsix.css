@@ -227,6 +227,10 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.rollable-untrained:hover {
+  cursor: pointer;
+}
+
 .roll-damage:hover {
   cursor: pointer;
 }

@@ -62,6 +62,7 @@ export class TwodsixDiceRoll {
       data["difficultyMod"] = this.settings.difficulty.mod;
     }
 
+
     this.roll = new Roll(formula, data).roll();
   }
 

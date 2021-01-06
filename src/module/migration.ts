@@ -1,4 +1,6 @@
 import {TwodsixItemData, UpdateData} from "../types/twodsix";
+import TwodsixActor from "./entities/TwodsixActor";
+import TwodsixItem from "./entities/TwodsixItem";
 
 /**
  * New style migrations should look at the object instead of the version to figure out what needs to be done.
@@ -7,29 +9,43 @@ import {TwodsixItemData, UpdateData} from "../types/twodsix";
  */
 export class Migration {
 
-  private static async migrateActorData(actor:Actor):Promise<UpdateData> {
+  private static async migrateActorData(actor:TwodsixActor):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
-    const actorData = actor.data;
-    await this.migrateActorItems(actorData, actor);
+
+    const untrainedSkill = await actor.buildUntrainedSkill();
+    if (!actor.getUntrainedSkill()) {
+      updateData['data.untrainedSkill'] = untrainedSkill._id;
+    }
+
+    //TODO Get rid of the untrainedSkill passing
+    await this.migrateActorItems(actor, untrainedSkill);
 
     return updateData;
   }
 
-  private static async migrateActorItems(actorData:ActorData, actor:Actor) {
+  private static async migrateActorItems(actor:TwodsixActor, untrainedSkill:TwodsixItem=null) {
     //Handle any items that are on the actor
-    const actorItems = actorData["items"];
+    const actorItems = actor.data["items"];
     const toUpdate = [];
     for (const i of actorItems) {
-      toUpdate.push(mergeObject(i, this.migrateItemData(i)));
+      toUpdate.push(mergeObject(i, this.migrateItemData(i, actor, untrainedSkill)));
     }
     await actor.updateEmbeddedEntity("OwnedItem", toUpdate);
   }
 
-  private static migrateItemData(item:TwodsixItemData):UpdateData {
+  private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor = null, untrainedSkill:TwodsixItem=null):UpdateData {
     const updateData:UpdateData = <UpdateData>{};
 
-    if (item.type === 'skills') {
+    if (item.type === 'skills') { //0.6.82
       updateData['data.rolltype'] = item.data.rolltype || 'Normal';
+    }
+
+    if (actor) {
+      if (item.type !== 'skills') {
+        if (!item.data.skill) { //0.6.84
+          updateData['data.skill'] = untrainedSkill;
+        }
+      }
     }
 
     return updateData;
@@ -45,7 +61,7 @@ export class Migration {
           t.actorId = null;
           t.actorData = {};
         } else if (!t.actorLink) {
-          const updateData = Migration.migrateActorData(token.actor);
+          const updateData = Migration.migrateActorData(<TwodsixActor>token.actor);
           t.actorData = mergeObject(token.data.actorData, updateData);
         }
         return t;
@@ -73,7 +89,7 @@ export class Migration {
         let updateData = null;
         switch (entity) {
           case 'Item':
-            updateData = Migration.migrateItemData(actor.data);
+            updateData = Migration.migrateItemData(actor.data, actor);
             break;
           case 'Actor':
             updateData = Migration.migrateActorData(actor);
@@ -133,7 +149,7 @@ export class Migration {
 
     const actorMigrations = game.actors.entities.map(async actor => {
       try {
-        const updateData = await Migration.migrateActorData(actor);
+        const updateData = await Migration.migrateActorData(<TwodsixActor>actor);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Actor ${actor.name}`);
           await actor.update(updateData, {enforceTypes: false});

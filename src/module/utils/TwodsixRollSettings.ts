@@ -1,20 +1,20 @@
 import {TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import {getKeyByValue} from "./sheetUtils";
+import { getKeyByValue } from "./sheetUtils";
 
 
 export class TwodsixRollSettings {
-  difficulty:{ mod:number, target:number };
-  diceModifier:number;
-  shouldRoll:boolean;
-  rollType:string;
-  rollMode:string;
-  characteristic:string;
-  skillRoll:boolean;
-  difficulties:any;
+  difficulty: {mod:number, target:number};
+  diceModifier: number;
+  shouldRoll: boolean;
+  rollType: string;
+  rollMode: string;
+  characteristic: string;
+  skillRoll: boolean;
+  difficulties: any;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  constructor(settings?:any, skill?:TwodsixItem, item?:TwodsixItem) {
+  constructor(settings?: any, skill?:TwodsixItem, item?:TwodsixItem) {
     this.difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const difficulty = skill?.data?.data?.difficulty ? this.difficulties[skill.data.data.difficulty] : this.difficulties.Average;
     const skillModifier = item?.data?.data?.skillModifier ?? 0;
@@ -29,10 +29,10 @@ export class TwodsixRollSettings {
     this.skillRoll = !!(settings?.skillRoll ?? skill);
   }
 
-  public static async create(showThrowDialog:boolean, settings?:unknown, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
+  public static async create(showThrowDialog:boolean, settings?: unknown, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
     if (showThrowDialog) {
-      let title:string;
+      let title: string;
       const skillName = skill?.data.name || 'Untrained';
       if (item) {
         title = `${skillName} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.data.name}`;

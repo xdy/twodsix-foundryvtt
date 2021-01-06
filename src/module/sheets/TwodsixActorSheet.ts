@@ -58,6 +58,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
     html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
     html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
+    html.find('.rollable-untrained').on('click', this._onRollWrapper(this._onRollUntrained));
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
 
@@ -107,7 +108,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onPerformAttack(event:Event, showTrowDiag:boolean):Promise<void> {
     const attackType = event.currentTarget["dataset"].attackType;
-    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
+    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof) : null;
 
     const item = this.getItem(event);
     await item.performAttack(attackType, showTrowDiag, rof);
@@ -135,6 +136,16 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   /**
+   * Handle clickable untrained skill rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  private async _onRollUntrained(event:Event, showTrowDiag:boolean):Promise<void> {
+    this.actor.getUntrainedSkill().skillRoll(showTrowDiag);
+  }
+
+  /**
    * Handle clickable damage rolls.
    * @param {Event} event   The originating click event
    * @private
@@ -148,8 +159,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    async function rollDamage(this:TwodsixActorSheet):Promise<Roll> {
-      return item.rollDamage(game.settings.get('core', 'rollMode'), bonusDamageFormula);
+    async function extracted(this:TwodsixActorSheet):Promise<Roll> {
+      return await item.rollDamage(game.settings.get('core', 'rollMode'), bonusDamageFormula);
     }
 
     rollDamage.call(this);

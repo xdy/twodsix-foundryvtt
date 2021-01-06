@@ -2,9 +2,9 @@
  * @extends {Item}
  */
 
-import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
-import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
+import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
+import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 
 export default class TwodsixItem extends Item {
   public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
@@ -76,6 +76,11 @@ export default class TwodsixItem extends Item {
     } else if (this.data.data.skill) {
       skill = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
       item = this;
+    }
+
+    if (!skill) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      return;
     }
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
