@@ -57,7 +57,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
 
-    html.find('.rollable').on('click', (this._onRoll.bind(this)));
+    html.find('.rollable').on('click', (this._onRoll.bind(this))); //Deprecated
 
     html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
     html.find('.rollable-v2').on('click', this._onRollWrapper(this._onSkillRoll));
