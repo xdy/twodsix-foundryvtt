@@ -7,6 +7,11 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 
 export default class TwodsixItem extends Item {
+  public static async create(data: Record<string, unknown>, options?: Record<string, unknown>): Promise<Entity> {
+    const item = await super.create(data, options) as TwodsixItem;
+    item.setFlag('twodsix', 'newItem', true);
+    return item;
+  }
 
   /**
    * Augment the basic Item data model with additional dynamic data.
