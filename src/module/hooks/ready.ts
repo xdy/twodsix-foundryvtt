@@ -1,5 +1,5 @@
 import {Migration} from "../migration";
-import {TwodsixRolls} from "../utils/TwodsixRolls";
+import TwodsixItem from "../entities/TwodsixItem";
 
 
 Hooks.once("ready", async function () {
@@ -82,13 +82,10 @@ export async function rollItemMacro(itemId:string):Promise<void> {
   if (!actor) {
     actor = game.actors.get(speaker.actor);
   }
-  const item = actor ? actor.items.find((i) => i._id === itemId) : null;
+  const item:TwodsixItem= actor ? actor.items.find((i) => i._id === itemId) : null;
   if (!item) {
     ui.notifications.warn(`Your controlled Actor does not have an item with ID ${itemId}`);
   } else {
-    // Trigger the item roll
-    const domStringMap = DOMStringMap.prototype;
-    await TwodsixRolls.performThrow(actor, itemId, domStringMap, false);
+    await item.skillRoll(false);
   }
 }
-

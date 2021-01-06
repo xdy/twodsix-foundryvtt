@@ -317,6 +317,11 @@
       "junk": "junk",
       "skills": "skills",
       "skill": "skill"
+    },
+    "Errors": {
+      "NoCharacteristicForRoll": "You tried to perform a characteristics roll without specifying a characteristic",
+      "NoROFForAttack": "Rate of fire must be specified for this attack",
+      "NoDamageForWeapon": "This weapon has not specified the damage it does"
     }
   },
   "VeryDifficult": "Very Difficult"
