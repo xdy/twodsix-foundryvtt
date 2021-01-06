@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack",
-    "lint": "eslint ./src --fix --ext .ts"
+    "lint": "eslint ./src --fix"
   },
   "author": "",
   "license": "",

@@ -31,6 +31,10 @@ jobs:
       - name: Install
         run: npm ci
 
+      # Lint the code
+      - name: Install
+        run: npm run lint
+
       # Building is the only test right now (mainly tests if dependabot actually can update)
       - name: Build
         run: npm run build
