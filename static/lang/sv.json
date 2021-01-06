@@ -317,6 +317,11 @@
       "junk": "skrot",
       "skills": "färdigheter",
       "skill": "färdighet"
+    },
+    "Errors": {
+      "NoCharacteristicForRoll": "Du försökte göra ett atttributslag utan att välja ett attribut",
+      "NoROFForAttack": "Eldhastighet måste anges för detta anfall",
+      "NoDamageForWeapon": "Detta vapen har inte angett skadan det gör"
     }
   },
   "VeryDifficult": "Mycket Svårt"

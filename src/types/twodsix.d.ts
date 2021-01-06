@@ -20,3 +20,8 @@ export type UpdateData = {
   items?:any;
   tokens?:any[];
 };
+
+export const enum Crit {
+  success,
+  fail
+}

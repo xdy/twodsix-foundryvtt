@@ -1,6 +1,7 @@
 import {advantageDisadvantageTerm} from "./i18n";
 import {calcModFor, getKeyByValue} from "./utils/sheetUtils";
 import {TWODSIX} from "./config";
+import TwodsixItem from "./entities/TwodsixItem";
 
 export default function registerHandlebarsHelpers():void {
 
@@ -79,63 +80,46 @@ export default function registerHandlebarsHelpers():void {
 
   Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize:string) => {
     const number = Number(burstSize);
-    if (number <= 2) {
-      return 0;
-    } else if (number >= 100) {
-      return 4;
-    } else if (number >= 20) {
-      return 3;
-    } else if (number >= 10) {
-      return 2;
-    } else if (number >= 4) {
-      return 1;
-    }
+    return TwodsixItem.burstAttackDM(number);
   });
 
   Handlebars.registerHelper('twodsix_burstBonusDamage', (burstSize) => {
     const number = Number(burstSize);
-    if (number <= 2) {
-      return '0';
-    } else if (number >= 100) {
-      return '4d6';
-    } else if (number >= 20) {
-      return '3d6';
-    } else if (number >= 10) {
-      return '2d6';
-    } else if (number >= 4) {
-      return '1d6';
-    } else if (number === 3) {
-      return '1';
-    }
+    return TwodsixItem.burstBonusDamage(number);
+  });
+
+  // Handy for debugging
+  Handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
   });
 
   //From https://discord.com/channels/732325252788387980/732328233630171188/790507540818690068
   //Not used yet
-  Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
-    switch (operator) {
-      case '==':
-        return (v1 == v2) ? options.fn(this) : options.inverse(this);
-      case '===':
-        return (v1 === v2) ? options.fn(this) : options.inverse(this);
-      case '!=':
-        return (v1 != v2) ? options.fn(this) : options.inverse(this);
-      case '!==':
-        return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-      case '<':
-        return (v1 < v2) ? options.fn(this) : options.inverse(this);
-      case '<=':
-        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-      case '>':
-        return (v1 > v2) ? options.fn(this) : options.inverse(this);
-      case '>=':
-        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-      case '&&':
-        return (v1 && v2) ? options.fn(this) : options.inverse(this);
-      case '||':
-        return (v1 || v2) ? options.fn(this) : options.inverse(this);
-      default:
-        return options.inverse(this);
-    }
-  });
+  // Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
+  //   switch (operator) {
+  //     case '==':
+  //       return (v1 == v2) ? options.fn(this) : options.inverse(this);
+  //     case '===':
+  //       return (v1 === v2) ? options.fn(this) : options.inverse(this);
+  //     case '!=':
+  //       return (v1 != v2) ? options.fn(this) : options.inverse(this);
+  //     case '!==':
+  //       return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+  //     case '<':
+  //       return (v1 < v2) ? options.fn(this) : options.inverse(this);
+  //     case '<=':
+  //       return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+  //     case '>':
+  //       return (v1 > v2) ? options.fn(this) : options.inverse(this);
+  //     case '>=':
+  //       return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+  //     case '&&':
+  //       return (v1 && v2) ? options.fn(this) : options.inverse(this);
+  //     case '||':
+  //       return (v1 || v2) ? options.fn(this) : options.inverse(this);
+  //     default:
+  //       return options.inverse(this);
+  //   }
+  // });
 
 }
