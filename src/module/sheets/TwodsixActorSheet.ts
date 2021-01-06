@@ -142,28 +142,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollUntrained(event:Event, showTrowDiag:boolean):Promise<void> {
-    const data = {
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-      "data": {
-        "value": game.settings.get('twodsix', 'untrainedSkillValue')
-      },
-      "type": "skills"
-    };
-
-    // this feels very hacky, but creating temporary TwodsixItems only returns a plain js object..
-    // however the rest of the handling of this roll then behaves exactly like a normal skill, so it feels
-    // somewhat worth it.
-    let skill:TwodsixItem;
-    try {
-      skill = TwodsixItem.createOwned(data, this.actor) as TwodsixItem;
-      await skill.skillRoll(showTrowDiag);
-    } finally {
-      if (skill) {
-        skill.delete();
-      }
-    }
+    this.actor.getUntrainedSkill().skillRoll(showTrowDiag);
   }
-
 
   /**
    * Handle clickable damage rolls.

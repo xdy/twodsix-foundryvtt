@@ -32,6 +32,7 @@
       "contacts": "",
       "allies": "",
       "enemies": "",
+      "untrainedSkill": null,
       "description": "",
       "bio": "",
       "notes": "",

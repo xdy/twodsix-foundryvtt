@@ -88,6 +88,15 @@ export default function registerHandlebarsHelpers():void {
     return TwodsixItem.burstBonusDamage(number);
   });
 
+  Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
+    return !skill.data.flags.twodsix?.hide && skill.type === "skills";
+  });
+
+  // Handy for debugging
+  Handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
+  });
+
   //From https://discord.com/channels/732325252788387980/732328233630171188/790507540818690068
   //Not used yet
   Handlebars.registerHelper("iff", function (v1, operator, v2, options) {

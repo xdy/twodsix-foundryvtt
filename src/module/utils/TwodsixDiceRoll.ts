@@ -16,6 +16,20 @@ export class TwodsixDiceRoll {
   effect: number;
   roll: Roll;
 
+  constructor (settings: TwodsixRollSettings, actor: TwodsixActor, skill: TwodsixItem=null, item: TwodsixItem=null) {
+    this.settings = settings;
+    this.actor = actor;
+    this.skill = skill;
+    this.item = item;
+
+    this.createRoll();
+
+    this.naturalTotal = this.roll.dice[0].results.reduce((total:number, dice) => {
+      return dice["active"] ? total + dice["result"] : total;
+    }, 0);
+
+    this.calculateEffect();
+  }
 
   private createRoll(): void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
@@ -50,23 +64,7 @@ export class TwodsixDiceRoll {
       data["difficultyMod"] = this.settings.difficulty.mod;
     }
 
-    this.roll = new Roll(formula, data);
-    this.roll.roll();
-  }
-
-  constructor (settings: TwodsixRollSettings, actor: TwodsixActor, skill: TwodsixItem=null, item: TwodsixItem=null) {
-    this.settings = settings;
-    this.actor = actor;
-    this.skill = skill;
-    this.item = item;
-
-    this.createRoll();
-
-    this.naturalTotal = this.roll.dice[0].results.reduce((total:number, dice) => {
-      return dice["active"] ? total + dice["result"] : total;
-    }, 0);
-
-    this.calculateEffect();
+    this.roll = new Roll(formula, data).roll();
   }
 
   public getCrit(): Crit {
