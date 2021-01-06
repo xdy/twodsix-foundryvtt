@@ -20,9 +20,9 @@
       <li class="item flexrow" data-item-id="{{item._id}}">
         <span class="skill-container">
           <span class="mini-dice centre">
-            <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
+            <img class="rollable rollable-v2" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
           </span>
-          <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+          <span class="item-name rollable rollable-v2" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
           <span class="item-name centre">{{data.value}}</span>
           <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor data.characteristic}}</span>
           <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor data.characteristic data.value}}</span>
@@ -43,8 +43,8 @@
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item._id}}">
         <span class="skill-container">
-          <span class="mini-dice centre"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
-          <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained">{{localize "TWODSIX.Actor.Skills.Untrained"}}</span>
+          <span class="mini-dice centre"><img class="rollable rollable-untrained" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+          <span class="item-name rollable rollable-untrained" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained">{{localize "TWODSIX.Actor.Skills.Untrained"}}</span>
           <span class="item-name centre">{{actor.data.settings.untrainedSkillValue}}</span>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
           <span class="total-output flex1 skill-mod">{{actor.data.settings.untrainedSkillValue}}</span>
