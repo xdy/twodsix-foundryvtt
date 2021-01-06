@@ -1,4 +1,4 @@
-import { TWODSIX } from "../config";
+import {Crit} from "../../types/twodsix";
 
 Hooks.on('renderChatMessage', (app, html) => {
   const damageMessage = html.find(".damage-message")[0];
@@ -10,14 +10,20 @@ Hooks.on('renderChatMessage', (app, html) => {
     });
   }
 
-  const diceTotal = html.find(".dice-total");
+  if (!damageMessage) {
+    const diceTotal = html.find(".dice-total");
 
-  if (diceTotal.length > 0) {
-    const crit = app.getFlag("twodsix", "crit");
-    if (crit && crit == TWODSIX.CRIT.SUCCESS) {
-      diceTotal.addClass("crit-success-roll");
-    } else if (crit && crit == TWODSIX.CRIT.FAIL) {
-      diceTotal.addClass("crit-fail-roll");
+    // Add effect
+    diceTotal.text(`${game.i18n.localize('TWODSIX.Rolls.sum').capitalize()}: ${diceTotal.text()} ${game.i18n.localize('TWODSIX.Rolls.Effect')}: ${app.getFlag("twodsix", "effect")}`);
+
+    // Color crits
+    if (diceTotal.length > 0) {
+      const crit = app.getFlag("twodsix", "crit");
+      if (crit && crit == Crit.success) {
+        diceTotal.addClass("crit-success-roll");
+      } else if (crit && crit == Crit.fail) {
+        diceTotal.addClass("crit-fail-roll");
+      }
     }
   }
 });

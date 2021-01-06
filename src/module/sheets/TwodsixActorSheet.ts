@@ -1,4 +1,3 @@
-import {TwodsixRolls} from "../utils/TwodsixRolls";
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
@@ -24,7 +23,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (this.actor.data.type == 'traveller') {
       TwodsixActorSheet._prepareItemContainers(data);
     }
-    this.actor.data.showEffect = game.settings.get("twodsix", "effectOrTotal");
 
     // Add relevant data from system settings
     data.data.settings = {
@@ -56,7 +54,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     super.activateListeners(html);
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
-    html.find('.rollable').on('click', (this._onRoll.bind(this)));
+
+    html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
+    html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+    html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
 
@@ -81,24 +82,56 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     await this.actor.updateActor();
   }
 
+  private getItem(event:Event):TwodsixItem {
+    const itemId = $(event.currentTarget).parents('.item').data('item-id');
+    return this.actor.getOwnedItem(itemId);
+  }
+
+  private _onRollWrapper(func:(event:Event, showTrowDiag:boolean) => Promise<void>):(event:Event) => void {
+    return (event:Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const useInvertedShiftClick:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick');
+      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+
+      func.bind(this)(event, showTrowDiag);
+    };
+  }
+
+  /**
+   * Handle clickable weapon attacks.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  private async _onPerformAttack(event:Event, showTrowDiag:boolean):Promise<void> {
+    const attackType = event.currentTarget["dataset"].attackType;
+    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
+
+    const item = this.getItem(event);
+    await item.performAttack(attackType, showTrowDiag, rof);
+  }
 
   /**
    * Handle clickable skill rolls.
    * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onRoll(event:Event):Promise<void> {
-    event.preventDefault();
-    event.stopPropagation();
+  private async _onSkillRoll(event:Event, showTrowDiag:boolean):Promise<void> {
+    const item = this.getItem(event);
+    await item.skillRoll(showTrowDiag);
+  }
 
-    const useInvertedShiftClick:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick');
-    const showThrowDialog:boolean = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-    const element = event.currentTarget;
-    const dataset = element["dataset"];
-    const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    const numAttacks = $(element).data('num-attacks') || 1;
-
-    await TwodsixRolls.performThrow(this.actor, itemId, dataset, showThrowDialog, numAttacks);
+  /**
+   * Handle clickable characteristics rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  private async _onRollChar(event:Event, showTrowDiag:boolean):Promise<void> {
+    await this.actor.characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
   }
 
   /**
@@ -115,12 +148,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    async function extracted(this):Promise<void> {
-      return await TwodsixRolls.rollDamage(item, true, this.actor, game.settings.get('core', 'rollMode'), bonusDamageFormula);
+    async function rollDamage(this:TwodsixActorSheet):Promise<Roll> {
+      return item.rollDamage(game.settings.get('core', 'rollMode'), bonusDamageFormula);
     }
 
-    extracted.call(this);
+    rollDamage.call(this);
   }
-
-
 }

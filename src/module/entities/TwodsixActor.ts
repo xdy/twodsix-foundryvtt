@@ -2,11 +2,13 @@
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-import {calcModFor} from "../utils/sheetUtils";
+import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
 import {CharacteristicType, UpdateData} from "../../types/twodsix";
+import {TWODSIX} from "../config";
+import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
+import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 
 export default class TwodsixActor extends Actor {
-
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -70,6 +72,34 @@ export default class TwodsixActor extends Actor {
     return remaining;
   }
 
+  public getCharacteristicModifier(characteristic:string):number {
+    if (characteristic === 'NONE') {
+      return 0;
+    } else {
+      const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+      return calcModFor(this.data.data.characteristics[keyByValue].current);
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  public async characteristicRoll(tmpSettings:any, showThrowDialog:boolean, showInChat = true):Promise<TwodsixDiceRoll> {
+    if (!tmpSettings["characteristic"]) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
+      return;
+    }
+    const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings);
+    if (!settings.shouldRoll) {
+      return;
+    }
+
+    const diceRoll = new TwodsixDiceRoll(settings, this);
+    if (showInChat) {
+      diceRoll.sendToChat();
+    }
+    console.log("DEBUG CHARACTERISTICS ROLL:", diceRoll);
+    return diceRoll;
+  }
+
   private static addDamage(damage:number, characteristic:CharacteristicType):number {
     let handledDamage = 0;
     if (damage + characteristic.damage > characteristic.value) {
@@ -101,5 +131,4 @@ export default class TwodsixActor extends Actor {
     updateData['data.hits.max'] = this.data.data.hits.max;
     await this.update(updateData);
   }
-
 }

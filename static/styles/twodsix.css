@@ -223,6 +223,10 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.perform-attack:hover {
+  cursor: pointer;
+}
+
 .roll-damage:hover {
   cursor: pointer;
 }

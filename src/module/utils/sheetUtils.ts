@@ -180,11 +180,7 @@ export function calcModFor(characteristic:number):number {
 //   return calcModFor(characteristic);
 // }
 
-export function getKeyByValue(object: { [x: string]: string; }, value:string):string {
+export function getKeyByValue(object: { [x: string]: unknown; }, value:unknown):string {
   //TODO This assumes I always find the value. Bad form really.
   return <string>Object.keys(object).find(key => object[key] === value);
 }
-
-
-
-
