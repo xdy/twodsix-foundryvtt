@@ -13,6 +13,7 @@ export class TwodsixRollSettings {
   skillRoll: boolean;
   difficulties: any;
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?: any, skill?:TwodsixItem, item?:TwodsixItem) {
     this.difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const difficulty = skill?.data?.data?.difficulty ? this.difficulties[skill.data.data.difficulty] : this.difficulties.Average;
@@ -25,7 +26,7 @@ export class TwodsixRollSettings {
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + diceModifier : diceModifier;
     this.characteristic = settings?.characteristic ?? characteristic;
-    this.skillRoll = (settings?.skillRoll ?? skill) ? true : false;
+    this.skillRoll = !!(settings?.skillRoll ?? skill);
   }
 
   public static async create(showThrowDialog:boolean, settings?: unknown, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {

@@ -82,6 +82,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public async characteristicRoll(tmpSettings: any, showThrowDialog:boolean, showInChat=true):Promise<TwodsixDiceRoll> {
     if (!tmpSettings["characteristic"]) {
       ui.notifications.error(game.i18n.localize("Errors.NoCharacteristicForRoll"));
