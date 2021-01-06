@@ -3,6 +3,7 @@ import type TwodsixItem from "../entities/TwodsixItem";
 import type TwodsixActor from "../entities/TwodsixActor";
 import {advantageDisadvantageTerm} from "../i18n";
 import {calcModFor, getKeyByValue} from "./sheetUtils";
+import { Crit } from "src/types/twodsix";
 
 type throwSettings = { difficulty; skillModifier; shouldRoll:boolean; rollType:string; rollMode:string; characteristic }
 
@@ -22,7 +23,8 @@ export class TwodsixRolls {
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes,
       skillModifier: settings.skillModifier,
-      characteristic: settings.characteristic
+      characteristic: settings.characteristic,
+      skillRoll: true
     };
 
     const buttons = {
@@ -296,14 +298,14 @@ export class TwodsixRolls {
         }, 0);
 
         if (diceResult === 2) {
-          crit = TWODSIX.CRIT.FAIL;
+          crit = Crit.fail;
           console.log(`Got a natural 2 with Effect ${effect}!`);
           if (effect >= 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
             console.log("Setting Effect to -1 due to natural 2!");
             effect = -1;
           }
         } else if (diceResult === 12) {
-          crit = TWODSIX.CRIT.SUCCESS;
+          crit = Crit.success;
           console.log(`Got a natural 12 with Effect ${effect}!`);
           if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
             console.log("Setting Effect to 0 due to natural 12!");
@@ -314,12 +316,12 @@ export class TwodsixRolls {
         const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
         if (effect >= CRITICAL_EFFECT_VALUE) {
           if (!crit) {
-            crit = TWODSIX.CRIT.SUCCESS;
+            crit = Crit.success;
             console.log("Got a critical success due to high Effect");
           }
         } else if (effect <= -CRITICAL_EFFECT_VALUE) {
           if (!crit) {
-            crit = TWODSIX.CRIT.FAIL;
+            crit = Crit.fail;
             console.log("Got a critical failure due to low Effect");
           }
         }
@@ -330,7 +332,7 @@ export class TwodsixRolls {
             speaker: speaker,
             flavor: flavor,
             rollType: settings.rollType,
-            flags: {"core.canPopout": true, "twodsix.crit": crit}
+            flags: {"core.canPopout": true, "twodsix.crit": crit, "twodsix.effect": effect}
           },
           {rollMode: rollMode}
         );
