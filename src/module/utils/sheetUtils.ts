@@ -184,7 +184,3 @@ export function getKeyByValue(object: { [x: string]: unknown; }, value:unknown):
   //TODO This assumes I always find the value. Bad form really.
   return <string>Object.keys(object).find(key => object[key] === value);
 }
-
-
-
-
