@@ -20,10 +20,10 @@ export class TwodsixDiceRoll {
   private createRoll(): void {
     const showEffect = game.settings.get("twodsix", "effectOrTotal");
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
-    const rollTtype = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
+    const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
     const data = {} as {string:number};
 
-    let formula = `${rollTtype}`;
+    let formula = `${rollType}`;
 
     // Add characteristic modifier
     if (this.settings.characteristic !== "NONE") {
@@ -38,12 +38,12 @@ export class TwodsixDiceRoll {
     }
 
     // Add dice modifier
-    if (this.settings.diceModifier) {
+    if (this.settings.diceModifier) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
       formula += "+ @DM";
       data["DM"] = this.settings.diceModifier;
     }
 
-    // Add dificulty modifier or set target
+    // Add difficulty modifier or set target
     if (!showEffect && !difficultiesAsTargetNumber) {
       formula += "+ @difficultyMod";
       data["difficultyMod"] = this.settings.difficulty.mod;
@@ -115,10 +115,6 @@ export class TwodsixDiceRoll {
   public sendToChat():void {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const resultsShowString = game.i18n.localize("TWODSIX.Rolls.resultShows");
-    const showEffect = game.settings.get("twodsix", "effectOrTotal");
-    const sumString = game.i18n.localize("TWODSIX.Rolls.sum");
-    const effectString = game.i18n.localize("TWODSIX.Rolls.Effect");
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
@@ -128,14 +124,14 @@ export class TwodsixDiceRoll {
       flavor += `(${this.target}+)`;
     }
 
-    if (this.settings.rollType != 'Normal') {
+    if (this.settings.rollType != TWODSIX.ROLLTYPES.Normal.key) {
       const rollType = advantageDisadvantageTerm(this.settings.rollType);
       flavor += ` ${game.i18n.localize("TWODSIX.Rolls.With")} ${rollType}`;
     }
 
     if (this.skill) {
       const skillValue = this.skill.data.data.value;
-      flavor += ` ${usingString} ${this.skill.data.name}(${skillValue <= 0 ? "" : "+"}${skillValue})`;
+      flavor += ` ${this.skill.data.name}(${skillValue <= 0 ? "" : "+"}${skillValue})`;
     }
 
     if (this.item) {
@@ -146,12 +142,10 @@ export class TwodsixDiceRoll {
       flavor += ` +DM(${this.roll.data.DM <= 0 ? "" : "+"}${this.roll.data.DM})`;
     }
 
-    if (this.settings.characteristic !== 'NONE') {
+    if (this.settings.characteristic !== 'NONE') { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
       const characteristicValue = this.roll.data[this.settings.characteristic];
       flavor += ` ${usingString} ${this.settings.characteristic}(${characteristicValue <= 0 ? "" : "+"}${characteristicValue})`;
     }
-
-    flavor += ` (${resultsShowString} ${showEffect ? effectString : sumString})`;
 
     this.roll.toMessage(
       {

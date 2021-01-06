@@ -14,7 +14,7 @@ Hooks.on('renderChatMessage', (app, html) => {
     const diceTotal = html.find(".dice-total");
 
     // Add effect
-    diceTotal.text(`${diceTotal.text()} (${app.getFlag("twodsix", "effect")})`);
+    diceTotal.text(`${game.i18n.localize('TWODSIX.Rolls.sum').capitalize()}: ${diceTotal.text()} ${game.i18n.localize('TWODSIX.Rolls.Effect')}: ${app.getFlag("twodsix", "effect")}`);
 
     // Color crits
     if (diceTotal.length > 0) {
