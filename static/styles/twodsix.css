@@ -219,12 +219,7 @@ form .form-group span.units {
   color: #29aae1 !important;
 }
 
-/*deprecated*/
 .rollable:hover {
-  cursor: pointer;
-}
-
-.rollable-v2:hover {
   cursor: pointer;
 }
 

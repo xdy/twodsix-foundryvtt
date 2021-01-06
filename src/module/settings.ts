@@ -21,7 +21,6 @@ export const registerSettings = function ():void {
   _stringSetting('termForDisadvantage', 'disadvantage');
 
   //Automation related settings
-  _booleanSetting('effectOrTotal', false);
   _booleanSetting('automateDamageRollOnHit', false);
 
   //Cepheus weaponry related settings

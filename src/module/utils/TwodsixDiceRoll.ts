@@ -18,7 +18,6 @@ export class TwodsixDiceRoll {
 
 
   private createRoll(): void {
-    const showEffect = game.settings.get("twodsix", "effectOrTotal");
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
     const data = {} as {string:number};
@@ -44,11 +43,11 @@ export class TwodsixDiceRoll {
     }
 
     // Add difficulty modifier or set target
-    if (!showEffect && !difficultiesAsTargetNumber) {
+    if (difficultiesAsTargetNumber) {
+      this.target = this.settings.difficulty.target;
+    } else {
       formula += "+ @difficultyMod";
       data["difficultyMod"] = this.settings.difficulty.mod;
-    } else {
-      this.target = this.settings.difficulty.target;
     }
 
     this.roll = new Roll(formula, data);
