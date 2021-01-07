@@ -109,7 +109,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.data.value = String(0);
       }
     }
-    itemData.data.skill = this.actor.getUntrainedSkill()._id;
+    itemData.data.skill = this.actor.getUntrainedSkill().id;
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
   }

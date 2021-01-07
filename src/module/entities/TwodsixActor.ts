@@ -5,15 +5,15 @@
 import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
 import {CharacteristicType, UpdateData} from "../../types/twodsix";
 import {TWODSIX} from "../config";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
-import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
+import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
+import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 
 export default class TwodsixActor extends Actor {
   public static async create(data: Record<string, unknown>, options?: Record<string, unknown>): Promise<Entity> {
     const actor = await super.create(data, options) as TwodsixActor;
     if (actor.data.type == "traveller") {
-      actor.createUntrainedSkill();
+      await actor.createUntrainedSkill();
     }
     return actor;
   }
@@ -93,7 +93,7 @@ export default class TwodsixActor extends Actor {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public async characteristicRoll(tmpSettings: any, showThrowDialog:boolean, showInChat=true):Promise<TwodsixDiceRoll> {
     if (!tmpSettings["characteristic"]) {
-      ui.notifications.error(game.i18n.localize("Errors.NoCharacteristicForRoll"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
     }
     const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings);
@@ -146,15 +146,19 @@ export default class TwodsixActor extends Actor {
   }
 
   private async createUntrainedSkill() {
+    const untrainedSkill = await this.buildUntrainedSkill();
+    await this.update({"data.untrainedSkill": untrainedSkill._id});
+  }
+
+  public async buildUntrainedSkill():Promise<TwodsixItem> {
     const data = {
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained") + "WAZZAA",
+      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
       "data": {
         "value": game.settings.get('twodsix', 'untrainedSkillValue')
       },
       "type": "skills",
       "flags": {'twodsix.hide': true}
     };
-    const untrainedSkill = await this.createOwnedItem(data) as TwodsixItem;
-    await this.update({"data.untrainedSkill": untrainedSkill._id});
+    return await this.createOwnedItem(data) as TwodsixItem;
   }
 }

@@ -30,7 +30,7 @@ export default class TwodsixItem extends Item {
     const rateOfFire = this.data.data.rateOfFire;
 
     if (attackType && !rateOfFire) {
-      ui.notifications.error(game.i18n.localize("Errors.NoROFForAttack"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
     const skill:TwodsixItem = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
     const tmpSettings = {"characteristic": skill.data.data.characteristic};
@@ -79,7 +79,7 @@ export default class TwodsixItem extends Item {
     }
 
     if (!skill)  {
-      ui.notifications.error(game.i18n.localize("Errors.NoSkillForSkillRoll"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
     }
 
@@ -100,7 +100,7 @@ export default class TwodsixItem extends Item {
   public async rollDamage(rollMode:string, bonusDamage="", showInChat=true):Promise<Roll> {
     const doesDamage = this.data.data.damage != null;
     if (!doesDamage) {
-      ui.notifications.error(game.i18n.localize("Errors.NoDamageForWeapon"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
     }
 
     const damageFormula = this.data.data.damage + (bonusDamage ? "+" + bonusDamage : "");
