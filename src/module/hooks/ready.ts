@@ -39,3 +39,4 @@ Hooks.once("ready", async function () {
   Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 
 });
+
