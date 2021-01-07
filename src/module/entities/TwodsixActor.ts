@@ -10,7 +10,7 @@ import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 
 export default class TwodsixActor extends Actor {
-  public static async create(data: Record<string, unknown>, options?: Record<string, unknown>): Promise<Entity> {
+  public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
     const actor = await super.create(data, options) as TwodsixActor;
     if (actor.data.type == "traveller") {
       await actor.createUntrainedSkill();
@@ -91,7 +91,7 @@ export default class TwodsixActor extends Actor {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public async characteristicRoll(tmpSettings: any, showThrowDialog:boolean, showInChat=true):Promise<TwodsixDiceRoll> {
+  public async characteristicRoll(tmpSettings:any, showThrowDialog:boolean, showInChat = true):Promise<TwodsixDiceRoll> {
     if (!tmpSettings["characteristic"]) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
@@ -148,19 +148,18 @@ export default class TwodsixActor extends Actor {
   private async createUntrainedSkill() {
     const untrainedSkill = await this.buildUntrainedSkill();
     await this.update({"data.untrainedSkill": untrainedSkill.id});
+    this.data.data.untrainedSkill = untrainedSkill._id;
   }
 
   public async buildUntrainedSkill():Promise<TwodsixItem> {
-    if (!this.getUntrainedSkill()) {
-      const data = {
-        "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-        "data": {
-          "value": game.settings.get('twodsix', 'untrainedSkillValue')
-        },
-        "type": "skills",
-        "flags": {'twodsix.hide': true}
-      };
-      return await this.createOwnedItem(data) as TwodsixItem;
-    }
+    const data = {
+      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
+      "data": {
+        "value": game.settings.get('twodsix', 'untrainedSkillValue')
+      },
+      "type": "skills",
+      "flags": {'twodsix.hide': true}
+    };
+    return await this.createOwnedItem(data) as TwodsixItem;
   }
 }

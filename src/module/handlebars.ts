@@ -89,7 +89,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
-    return !skill.data.flags.twodsix?.hide && skill.type === "skills";
+    return skill!=null && !skill.flags?.twodsix?.hide && skill.type === "skills";
   });
 
   // Handy for debugging
