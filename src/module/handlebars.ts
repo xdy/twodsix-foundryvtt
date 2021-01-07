@@ -59,7 +59,7 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (value=-1) => {
+  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (value) => {
     return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
   });
 
