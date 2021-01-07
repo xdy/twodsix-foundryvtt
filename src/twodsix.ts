@@ -14,9 +14,8 @@ import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
-import {rollItemMacro} from "./module/hooks/ready";
-
-require('../static/styles/twodsix.css');
+import "./module/hooks/index";
+import {rollItemMacro} from "./module/utils/rollItemMacro";
 
 Hooks.once('init', async function () {
   console.log(
@@ -98,4 +97,3 @@ Hooks.once('init', async function () {
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
 });
-
