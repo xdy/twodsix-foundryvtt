@@ -1,8 +1,6 @@
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
-import {calcModFor} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import {CharacteristicType} from "../../types/twodsix";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -61,26 +59,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
 
-    html.find('.stat-damage').on('change', this._setDamageFromEvent.bind(this));
-    html.find('.special-damage').on('change', this._setDamageFromEvent.bind(this));
   }
 
-  private async _setDamageFromEvent(event:Event):Promise<void> {
-    const eventTargets = $(event.currentTarget);
-    const characteristicKey = eventTargets.parents('.stat:first,.special:first').attr('data-characteristic');
-    const characteristic:CharacteristicType = this.actor.data.data.characteristics[characteristicKey];
-    let damage = Number(eventTargets.children("").val());
-    if (damage > characteristic.value) {
-      damage = characteristic.value;
-    } else if (damage < 0) {
-      damage = 0;
-    }
-    eventTargets.children("").val(damage);
-    characteristic.damage = damage;
-    characteristic.current = characteristic.value - characteristic.damage;
-    characteristic.mod = calcModFor(characteristic.current);
-    await this.actor.updateActor();
-  }
 
   private getItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
