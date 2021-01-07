@@ -147,18 +147,20 @@ export default class TwodsixActor extends Actor {
 
   private async createUntrainedSkill() {
     const untrainedSkill = await this.buildUntrainedSkill();
-    await this.update({"data.untrainedSkill": untrainedSkill._id});
+    await this.update({"data.untrainedSkill": untrainedSkill.id});
   }
 
   public async buildUntrainedSkill():Promise<TwodsixItem> {
-    const data = {
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-      "data": {
-        "value": game.settings.get('twodsix', 'untrainedSkillValue')
-      },
-      "type": "skills",
-      "flags": {'twodsix.hide': true}
-    };
-    return await this.createOwnedItem(data) as TwodsixItem;
+    if (!this.getUntrainedSkill()) {
+      const data = {
+        "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
+        "data": {
+          "value": game.settings.get('twodsix', 'untrainedSkillValue')
+        },
+        "type": "skills",
+        "flags": {'twodsix.hide': true}
+      };
+      return await this.createOwnedItem(data) as TwodsixItem;
+    }
   }
 }

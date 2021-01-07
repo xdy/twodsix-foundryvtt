@@ -1,5 +1,6 @@
 import {TwodsixItemData, UpdateData} from "../types/twodsix";
 import TwodsixActor from "./entities/TwodsixActor";
+import TwodsixItem from "./entities/TwodsixItem";
 
 /**
  * New style migrations should look at the object instead of the version to figure out what needs to be done.
@@ -10,26 +11,29 @@ export class Migration {
 
   private static async migrateActorData(actor:TwodsixActor):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
-    await this.migrateActorItems(actor);
 
+    const untrainedSkill = await actor.buildUntrainedSkill();
     if (!actor.getUntrainedSkill()) {
-      updateData['data.untrainedSkill'] = (await actor.buildUntrainedSkill()).id;
+      updateData['data.untrainedSkill'] = untrainedSkill._id;
     }
+
+    //TODO Get rid of the untrainedSkill passing
+    await this.migrateActorItems(actor, untrainedSkill);
 
     return updateData;
   }
 
-  private static async migrateActorItems(actor:TwodsixActor) {
+  private static async migrateActorItems(actor:TwodsixActor, untrainedSkill:TwodsixItem=null) {
     //Handle any items that are on the actor
     const actorItems = actor.data["items"];
     const toUpdate = [];
     for (const i of actorItems) {
-      toUpdate.push(mergeObject(i, this.migrateItemData(i, actor)));
+      toUpdate.push(mergeObject(i, this.migrateItemData(i, actor, untrainedSkill)));
     }
     await actor.updateEmbeddedEntity("OwnedItem", toUpdate);
   }
 
-  private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor=null):UpdateData {
+  private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor = null, untrainedSkill:TwodsixItem=null):UpdateData {
     const updateData:UpdateData = <UpdateData>{};
 
     if (item.type === 'skills') { //0.6.82
@@ -39,7 +43,7 @@ export class Migration {
     if (actor) {
       if (item.type !== 'skills') {
         if (!item.data.skill) { //0.6.84
-          updateData['data.skill'] = actor.buildUntrainedSkill();
+          updateData['data.skill'] = untrainedSkill;
         }
       }
     }
