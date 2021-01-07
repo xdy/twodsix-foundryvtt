@@ -36,8 +36,12 @@ export class Migration {
       updateData['data.rolltype'] = item.data.rolltype || 'Normal';
     }
 
-    if (actor && item.type !== 'skills' && !item.data.data.skill) { //0.6.84
-      updateData['data.skill'] = actor.getUntrainedSkill();
+    if (actor) {
+      if (item.type !== 'skills') {
+        if (!item.data.skill) { //0.6.84
+          updateData['data.skill'] = actor.buildUntrainedSkill();
+        }
+      }
     }
 
     return updateData;
