@@ -147,8 +147,7 @@ export default class TwodsixActor extends Actor {
 
   private async createUntrainedSkill() {
     const untrainedSkill = await this.buildUntrainedSkill();
-    await this.update({"data.untrainedSkill": untrainedSkill.id});
-    this.data.data.untrainedSkill = untrainedSkill._id;
+    await this.update({"data.untrainedSkill": untrainedSkill._id});
   }
 
   public async buildUntrainedSkill():Promise<TwodsixItem> {
