@@ -61,13 +61,16 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
     html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
 
-    html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
+    html.find('.roll-damage').on('click', this._onRollDamage.bind(this));
 
-    html.find('#joat-skill-input').on('input', (this._updateJoatSkill.bind(this)));
-    html.find('#joat-skill-input').on('blur', (this._onJoatSkillBlur.bind(this)));
+    html.find('#joat-skill-input').on('input', this._updateJoatSkill.bind(this));
+    html.find('#joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
     html.find('#joat-skill-input').on('click', (event) => {
       $(event.currentTarget).trigger("select");
     });
+
+    html.find(".adjust-consumable").on("click", this._onAdjustConsumableCount.bind(this));
+    html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
   }
 
 
@@ -180,5 +183,32 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   private static joatToUndrained(joatValue:number):number {
     return joatValue + game.system.template.Item.skills.value;
+  }
+
+  private getConsumableItem(event:Event):TwodsixItem {
+    const itemId = $(event.currentTarget).parents('.consumable-row').data('consumable-id');
+    return this.actor.getOwnedItem(itemId) as TwodsixItem;
+  }
+
+  private async _onAdjustConsumableCount(event:Event): Promise<void> {
+    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
+    const item = this.getConsumableItem(event);
+    await item.consume(modifier);
+  }
+
+  private async _onRefillConsumable(event:Event): Promise<void> {
+    const item = this.getConsumableItem(event);
+    try {
+      await item.refill();
+    } catch (err) {
+      if (err.name === "TooLowQuantityError") {
+        const refillAction = ["magazine", "power_cell"].includes(item.data.data.subtype) ? "Reload" : "Refill";
+        const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLowerCase();
+        const tooFewString = game.i18n.localize("TWODSIX.Errors.TooFewToReload");
+        ui.notifications.error(tooFewString.replace("_NAME_", item.name.toLowerCase()).replace("_REFILL_ACTION_", refillWord));
+      } else {
+        throw err;
+      }
+    }
   }
 }
