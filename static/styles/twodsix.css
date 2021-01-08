@@ -1,7 +1,12 @@
 @font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  font-family: 'Asap-Regular';
+  src: url('../fonts/Asap-M2Pr.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Asap-M2Pr.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../fonts/Asap-M2Pr.otf') format('opentype'),
+    /* Open Type Font */ url('../fonts/Asap-M2Pr.svg') format('svg'),
+    /* Legacy iOS */ url('../fonts/Asap-M2Pr.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('../fonts/Asap-M2Pr.woff') format('woff'),
+    /* Modern Browsers */ url('../fonts/Asap-M2Pr.woff2') format('woff2'); /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
 }
@@ -11,19 +16,25 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "Asap-Regular";
+  font-family: 'Asap-Regular';
 }
 
 svg {
   fill: currentColor;
 }
 
-p span, p {
+p span,
+p {
   background-color: transparent !important;
   font-family: inherit !important;
 }
 
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='datetime-local'],
+div[contenteditable],
+textarea {
   background: #00000073 !important;
   color: #00e5ff !important;
   font-family: inherit;
@@ -54,7 +65,14 @@ select {
   border-radius: 0px !important;
 }
 
-input[type='text']:focus, input[type='number'], input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+input[type='text']:focus,
+input[type='number'],
+input[type='password']:focus,
+input[type='datetime-local']:focus,
+textarea:focus,
+input:focus,
+div[contenteditable]:focus,
+select:focus {
   outline: none;
   box-shadow: 0 0 10px #207ab7;
   background: #000000a6;
@@ -75,12 +93,13 @@ img {
 
 /*** Firebox Number Box Fix ***/
 
-input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -197,7 +216,8 @@ input[type=number] {
   color: #00e5ff;
 }
 
-form .form-group, form .form-group-stacked {
+form .form-group,
+form .form-group-stacked {
   clear: both;
   display: flex;
   flex-direction: row;
@@ -417,7 +437,8 @@ span.stat-name {
   cursor: pointer;
 }
 
-.stat input, .special input {
+.stat input,
+.special input {
   width: 1.5em;
   text-align: center;
   margin-left: -0.25em;
@@ -430,7 +451,7 @@ span.stat-name {
 
 .stat img {
   position: relative;
-  height: 1.0em;
+  height: 1em;
   margin-top: 0.2em;
   top: -1.3em;
   left: -0.85em;
@@ -481,7 +502,8 @@ span.stat-damage {
   top: -1.49em;
 }
 
-span.stat-damage input, span.special-damage input {
+span.stat-damage input,
+span.special-damage input {
   color: #b52c2c !important;
   border: none;
 }
@@ -544,7 +566,9 @@ a.skill-tab.active {
   text-shadow: none !important;
 }
 
-.item-tab, .finances-tab, .info-tab {
+.item-tab,
+.finances-tab,
+.info-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
   background-position-x: -97px;
   padding-top: 0.15em;
@@ -553,12 +577,16 @@ a.skill-tab.active {
   background-color: transparent !important;
 }
 
-a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
+a.item-tab:hover,
+a.finances-tab:hover,
+a.info-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: #fff;
 }
 
-a.item-tab.active, a.finances-tab.active, a.info-tab.active {
+a.item-tab.active,
+a.finances-tab.active,
+a.info-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
   text-shadow: none !important;
@@ -691,7 +719,8 @@ span.add-skill-txt {
   padding: 0.1em 0 0.1em 0.5em;
 }
 
-a:hover, a.active {
+a:hover,
+a.active {
   text-shadow: 0 0 0.8em #00e5ff;
 }
 
@@ -933,9 +962,9 @@ span.total-output {
   grid-template-rows: 8em 8em 19em;
   gap: 1px 1px;
   grid-template-areas:
-      "char-description char-description char-description"
-      "char-contacts char-allies char-enemies"
-      "char-bio char-bio char-bio";
+    'char-description char-description char-description'
+    'char-contacts char-allies char-enemies'
+    'char-bio char-bio char-bio';
   padding: 1em;
   position: relative;
   margin-top: 2em;
@@ -987,7 +1016,10 @@ span.total-output {
   top: -2em;
 }
 
-.char-description div[contenteditable], .char-contacts div[contenteditable], .char-allies div[contenteditable], .char-enemies div[contenteditable] {
+.char-description div[contenteditable],
+.char-contacts div[contenteditable],
+.char-allies div[contenteditable],
+.char-enemies div[contenteditable] {
   border: 1px solid #29aae1;
   height: 5em;
   overflow-y: auto;
@@ -1030,12 +1062,12 @@ span.total-output {
   grid-template-columns: 28em 28em;
   grid-template-rows: 2.4em 8.5em 9em;
   gap: 1px 1px;
-  grid-template-areas: "ship_image ship-name" "ship_image ship-info" "ship_image ship-requirements";
+  grid-template-areas: 'ship_image ship-name' 'ship_image ship-info' 'ship_image ship-requirements';
 }
 
 img.ship-mask-bg {
   top: 0.1em;
-  left: 0.0em;
+  left: 0em;
   position: absolute;
   z-index: 2;
   pointer-events: none;
@@ -1065,7 +1097,7 @@ img.ship-img {
   padding: 2px 2px 2px 4px;
 }
 
-.ship-name input[type="text"] {
+.ship-name input[type='text'] {
   height: 1.3em;
   border: none;
 }
@@ -1104,7 +1136,7 @@ img.ship-img {
   grid-template-columns: 9.33em 9.33em 9.33em;
   grid-template-rows: 8em;
   gap: 1px 1px;
-  grid-template-areas: "ship-hull ship-fuel ship-maintenance";
+  grid-template-areas: 'ship-hull ship-fuel ship-maintenance';
 }
 
 .ship-state-grid span {
@@ -1140,7 +1172,7 @@ img.ship-img {
   background-size: contain;
 }
 
-.ship-maintenance input[type="text"] {
+.ship-maintenance input[type='text'] {
   background-color: #000000bd !important;
   width: 4.5em;
   border: 1px solid #29aae1;
@@ -1185,7 +1217,7 @@ img.ship-img {
   grid-template-columns: 3.82em 3.82em 3.82em 3.82em 3.82em;
   grid-template-rows: 1fr;
   gap: 2px 2px;
-  grid-template-areas: "ship-systems ship-m-drive ship-j-drive ship-sensors ship-weapons";
+  grid-template-areas: 'ship-systems ship-m-drive ship-j-drive ship-sensors ship-weapons';
   position: relative;
   left: 7.35em;
   top: -4.4em;
@@ -1213,17 +1245,21 @@ img.ship-img {
   grid-area: ship-weapons;
 }
 
-.ship-systems, .ship-m-drive, .ship-j-drive, .ship-sensors, .ship-weapons {
+.ship-systems,
+.ship-m-drive,
+.ship-j-drive,
+.ship-sensors,
+.ship-weapons {
   text-align: center;
   width: 3.8em;
 }
 
-.power-grid input[type="text"] {
+.power-grid input[type='text'] {
   font-size: 28px;
   position: relative;
   display: block;
   width: 54px;
-  top: 0.20em;
+  top: 0.2em;
   text-align: center;
   border: none;
   background-color: transparent !important;
@@ -1245,7 +1281,7 @@ span.power-now {
   position: relative;
   display: block;
   width: 7.5em;
-  top: -3.0em;
+  top: -3em;
 }
 
 span.power-max {
@@ -1317,14 +1353,16 @@ a.ship-crew-tab.active {
   height: 20px;
 }
 
-a.ship-storage-tab, a.ship-cargo-tab {
+a.ship-storage-tab,
+a.ship-cargo-tab {
   background-image: url(../assets/ship/ship-tabs.svg);
   background-position: -99px;
   display: block;
   height: 20px;
 }
 
-a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
+a.ship-storage-tab:hover,
+a.ship-cargo-tab:hover {
   background-image: url(../assets/ship/ship-tabs-hover.svg);
   background-position: -99px;
   display: block;
@@ -1332,7 +1370,8 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
   color: #fff;
 }
 
-a.ship-storage-tab.active, a.ship-cargo-tab.active {
+a.ship-storage-tab.active,
+a.ship-cargo-tab.active {
   background-image: url(../assets/ship/ship-tabs-active.svg);
   background-position: -99px;
   display: block;
@@ -1365,7 +1404,6 @@ a.ship-notes-tab.active {
   height: 20px;
 }
 
-
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: relative;
@@ -1376,7 +1414,7 @@ a.ship-notes-tab.active {
   grid-template-columns: 17em 17em 17em;
   grid-template-rows: 4em 4em 4em;
   gap: 1em 1em;
-  grid-template-areas: ". .";
+  grid-template-areas: '. .';
 }
 
 .tab.ship-crew {
@@ -1391,11 +1429,10 @@ a.ship-notes-tab.active {
   height: 20.4em;
 }
 
-.ship-grid input[type="text"] {
+.ship-grid input[type='text'] {
   width: 14.8em;
   border: 1px groove #00e5ff;
   border-radius: 0;
-
 }
 
 .ship-grid > div > div[contenteditable] {
@@ -1416,7 +1453,7 @@ a.ship-notes-tab.active {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". .";
+  grid-template-areas: '. .';
   margin-left: 1em;
   width: 54.4em;
 }
@@ -1426,7 +1463,7 @@ a.ship-notes-tab.active {
   grid-template-columns: 8.5em 5em 3em 3em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". . . . . .";
+  grid-template-areas: '. . . . . .';
 }
 
 .storage-header {
@@ -1485,8 +1522,8 @@ button.flexrow.flex-group-center.toggle-skills {
   grid-template-rows: 1em 2em;
   gap: 1px 1px;
   grid-template-areas:
-      ". ."
-      ". .";
+    '. .'
+    '. .';
   padding-top: 0.5em;
 }
 
@@ -1615,7 +1652,6 @@ a:hover {
   height: 2em;
 }
 
-
 .tabs .item.active {
   text-shadow: 0 0 10px #00e5ff !important;
 }
@@ -1654,7 +1690,8 @@ a:hover {
   color: #29aae1 !important;
 }
 
-.dice-roll .dice-formula, .dice-roll .dice-total {
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
   flex: 0 0 100%;
   position: relative;
   margin: 0;
@@ -1703,7 +1740,8 @@ a:hover {
   text-align: center;
 }
 
-.dice-roll .dice-formula, .dice-roll .dice-total {
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
   flex: 0 0 100%;
   position: relative;
   margin: 0;
@@ -1715,6 +1753,7 @@ a:hover {
   border-radius: 0;
   box-shadow: 0 0 2px #0d0d0d inset;
   word-break: break-all;
+  font-size: inherit;
 }
 
 #chat-form textarea {
@@ -1748,7 +1787,6 @@ a:hover {
 .damage-message:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 /*
 #settings button {
@@ -1789,12 +1827,14 @@ button:hover {
   border-color: #00e5ff;
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
   outline: none;
   box-shadow: 0 0 5px #29aae1 !important;
 }
 
-form .notes, form .hint {
+form .notes,
+form .hint {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
@@ -1802,7 +1842,9 @@ form .notes, form .hint {
   margin: 3px 0;
 }
 
-#module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
+#module-management .package-list .package-title,
+#module-management .package-list .package-metadata,
+#module-management .package-list .package-description {
   color: #bfbfbf;
 }
 
@@ -1864,26 +1906,30 @@ option {
   border-radius: 4px 0 0 0;
 }
 
-div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
+div.app.window-app.twodsix.sheet.actor header h4.window-title,
+div.app.window-app.twodsix.ship.actor header h4.window-title {
   margin-top: 0.25em !important;
   margin-left: 3em !important;
   position: relative;
   flex: none;
 }
 
-div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
+div.app.window-app.twodsix.sheet.actor header a.configure-sheet,
+div.app.window-app.twodsix.ship.actor header a.configure-sheet {
   position: absolute;
   left: 22em;
   top: 0.8em;
 }
 
-div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-app.twodsix.ship.actor header a.configure-token {
+div.app.window-app.twodsix.sheet.actor header a.configure-token,
+div.app.window-app.twodsix.ship.actor header a.configure-token {
   position: absolute;
   left: 38.5em;
   top: 0.8em;
 }
 
-div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsix.ship.actor header a.close {
+div.app.window-app.twodsix.sheet.actor header a.close,
+div.app.window-app.twodsix.ship.actor header a.close {
   position: absolute;
   left: 50.5em;
   top: 0.7em;
@@ -1910,7 +1956,8 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   color: #00e5ff;
 }
 
-.sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
+.sidebar-tab .directory-list .directory-item.context,
+.sidebar-tab .directory-list .directory-item.active {
   border-color: #29aae1;
 }
 
@@ -1954,14 +2001,18 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   border: 1px groove #19181300 !important;
 }
 
-#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover {
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
   color: #fff;
   border: 1px solid #00e5ff;
   border-bottom: 1px solid #29aae1;
   box-shadow: 0 0 10px #29aae1;
 }
 
-#navigation #scene-list .scene.view, #navigation #scene-list .scene.context {
+#navigation #scene-list .scene.view,
+#navigation #scene-list .scene.context {
   cursor: default;
   color: #fff;
   border: 1px solid #00e5ff;
@@ -2022,7 +2073,9 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   color: #29aae1;
 }
 
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
   background-color: #000 !important;
 }
 
@@ -2035,7 +2088,9 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   fill: #00e5ff !important;
 }
 
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
   background: #000 none !important;
   display: flex;
   flex: 0 0 auto;
