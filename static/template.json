@@ -10,9 +10,9 @@
         "min": 0
       },
       "hits": {
-        "value": 0,
+        "value": 21,
         "min": 0,
-        "max": 0
+        "max": 21
       },
       "gender": "",
       "radiationDose": {
