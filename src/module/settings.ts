@@ -1,4 +1,5 @@
 import {TWODSIX} from "./config";
+import TwodsixActor from "./entities/TwodsixActor";
 
 export const registerSettings = function ():void {
 
@@ -36,8 +37,7 @@ export const registerSettings = function ():void {
 
   _booleanSetting('ExperimentalFeatures', false);
 
-  _booleanSetting('hideUntrainedSkills', false);
-  _numberSetting('untrainedSkillValue', -3, 'client');
+  _booleanSetting('hideUntrainedSkills', false, "world", _onHideUntrainedSkillsChange);
 
   _stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
 
@@ -102,5 +102,13 @@ export const registerSettings = function ():void {
       type: String,
       onChange: onChange
     });
+  }
+
+  function _onHideUntrainedSkillsChange (setting:boolean) {
+    if (!setting) {
+      TwodsixActor.resetUntrainedSkill();
+    } else {
+      TwodsixActor.setUntrainedSkillForWeapons();
+    }
   }
 };

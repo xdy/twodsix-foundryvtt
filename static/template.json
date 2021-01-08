@@ -32,6 +32,7 @@
       "contacts": "",
       "allies": "",
       "enemies": "",
+      "untrainedSkill": "",
       "description": "",
       "bio": "",
       "notes": "",
@@ -335,7 +336,6 @@
     },
     "skills": {
       "templates": ["skillsTemplate"],
-      "name": "Skill Name",
       "value": -3,
       "characteristic": "STR",
       "type": "skills",

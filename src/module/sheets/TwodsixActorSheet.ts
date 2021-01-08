@@ -20,13 +20,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     // Prepare items.
     if (this.actor.data.type == 'traveller') {
       TwodsixActorSheet._prepareItemContainers(data);
+      const untrainedSkill = this.actor.getUntrainedSkill();
+      if (untrainedSkill) {
+        data.untrainedSkill = this.actor.getUntrainedSkill();
+        data.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(data.untrainedSkill.data.data.value);
+      }
     }
 
     // Add relevant data from system settings
     data.data.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
-      untrainedSkillValue: game.settings.get('twodsix', 'untrainedSkillValue'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed')
     };
     data.config = TWODSIX;
@@ -59,6 +63,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find('.roll-damage').on('click', (this._onRollDamage.bind(this)));
 
+    html.find('#joat-skill-input').on('input', (this._updateJoatSkill.bind(this)));
+    html.find('#joat-skill-input').on('blur', (this._onJoatSkillBlur.bind(this)));
+    html.find('#joat-skill-input').on('click', (event) => {
+      $(event.currentTarget).trigger("select");
+    });
   }
 
 
@@ -77,6 +86,36 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
       func.bind(this)(event, showTrowDiag);
     };
+  }
+
+
+  /**
+   * Handle when the joat skill is changed.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _updateJoatSkill(event:Event):Promise<void> {
+    const joatValue = parseInt(event.currentTarget["value"], 10);
+    const skillValue = TwodsixActorSheet.joatToUndrained(joatValue);
+
+    if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
+      const untrainedSkill = this.actor.getUntrainedSkill();
+      untrainedSkill.update({"data.value": skillValue});
+    } else if (event.currentTarget["value"] !== "")  {
+      event.currentTarget["value"] = "";
+    }
+  }
+
+  /**
+   * Handle when user tabs out and leaves blank value.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onJoatSkillBlur(event:Event):Promise<void> {
+    if (isNaN(parseInt(event.currentTarget["value"], 10))) {
+      const skillValue = this.actor.getUntrainedSkill().data.data.value;
+      event.currentTarget["value"] = TwodsixActorSheet.untrainedToJoat(skillValue);
+    }
   }
 
   /**
@@ -133,5 +172,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     }
 
     rollDamage.call(this);
+  }
+
+  private static untrainedToJoat(skillValue:number):number {
+    return skillValue - game.system.template.Item.skills.value;
+  }
+
+  private static joatToUndrained(joatValue:number):number {
+    return joatValue + game.system.template.Item.skills.value;
   }
 }

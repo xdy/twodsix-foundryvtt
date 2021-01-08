@@ -77,7 +77,8 @@
         "Total": "Total",
         "Untrained": "Untrained",
         "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
-        "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog"
+        "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
+        "JOAT": "Jack of all trades"
       },
       "Species": "Species",
       "Tabs": {
@@ -293,11 +294,11 @@
       },
       "hideUntrainedSkills": {
         "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
-        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value."
-      },
-      "untrainedSkillValue": {
-        "hint": "Change this to match the character's level of the 'Jack of All Trades' (JOAT) skill. If you have JOAT 1, set the value to -2, etc.",
-        "name": "The value that is used for untrained skills."
+        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
+        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
+        "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone.",
+        "continue": "Do you want to continue?",
+        "warning": "Warning!"
       },
       "invertSkillRollShiftClick": {
         "hint": "When clicking on a skill a dialog for the skill roll typically appears. Shift-clicking is a shortcut for rolling without modifiers witth a dificulty of 8. Checking this box swaps this behavior.",
@@ -319,6 +320,7 @@
       "skill": "skill"
     },
     "Errors": {
+      "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
       "NoCharacteristicForRoll": "You tried to perform a characteristics roll without specifying a characteristic",
       "NoROFForAttack": "Rate of fire must be specified for this attack",
       "NoDamageForWeapon": "This weapon has not specified the damage it does"

@@ -251,7 +251,7 @@
         "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
         "name": "Banda de Alcance"
       },
-	  "autofireRulesUsed": {
+      "autofireRulesUsed": {
         "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
         "name": "Variante disparo automático"
       },
@@ -270,10 +270,6 @@
       "hideUntrainedSkills": {
         "hint": "Marca=Utilizar habilidad 'Sin Entrenamiento' unificada. SinMarca=Mantener habilidades individuales.",
         "name": "Unificar 'Sin Entrenamiento'"
-      },
-      "untrainedSkillValue": {
-        "hint": "Cambiar el modificador por habilidad 'Polivalencia'. Para Nivel 1 utilizar -2.",
-        "name": "Mod. con Polivalencia:"
       }
     },
     "Yes": "Si",

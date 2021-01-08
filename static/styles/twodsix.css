@@ -54,7 +54,7 @@ select {
   border-radius: 0px !important;
 }
 
-input[type='text']:focus, input[type='number'], input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
   box-shadow: 0 0 10px #207ab7;
   background: #000000a6;
@@ -657,6 +657,15 @@ a.notes-tab.active {
   background-color: #29aae1;
   color: #0d0d0d;
   font-weight: bold;
+}
+
+#joat-skill {
+  position: absolute;
+}
+
+#joat-skill-input {
+  height: 20px;
+  width: 25px;
 }
 
 .add-skill {

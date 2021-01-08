@@ -266,10 +266,6 @@
       "hideUntrainedSkills": {
         "hint": "checked=Zeige Pseudo-Fähigkeit 'Ungeübt' statt aller untrainierten Fähigkeiten. unchecked=Zeige alle untrainierten Fähigkeiten",
         "name": "Blenden Sie alle untrainierten Fähigkeiten aus, zeigen Sie stattdessen eine einzige Pseudo-Fähigkeit namens 'Ungeübt' an. Dies führt auch dazu, dass neue Fertigkeiten bei 0 anstelle des Wertes der untrainierten Fertigkeiten hinzugefügt werden."
-      },
-      "untrainedSkillValue": {
-        "hint": "Ändern Sie dies, um die Stufe des Charakters an die Stufe der Fertigkeit 'Jack of all Trades' (JOAT) anzupassen. Wenn Sie JOAT 1 haben, setzen Sie den Wert auf -2, usw.",
-        "name": "Der Wert, der für untrainierte Fähigkeiten verwendet wird."
       }
     },
     "Yes": "Ja",
