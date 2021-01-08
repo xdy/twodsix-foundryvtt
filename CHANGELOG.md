@@ -1,3 +1,10 @@
+## [0.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.0...v0.7.1) (2021-01-08)
+
+
+### Bug Fixes
+
+* deal damage to unlinked tokens ([f7010d5](https://github.com/xdy/twodsix-foundryvtt/commit/f7010d52d3bf1bbf96b075e3c69d59b17710fb46)), closes [#232](https://github.com/xdy/twodsix-foundryvtt/issues/232)
+
 # [0.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.83...v0.7.0) (2021-01-08)
 
 
