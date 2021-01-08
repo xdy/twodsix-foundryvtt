@@ -1,0 +1,45 @@
+{{#if data.isOwned}}
+<div class="form-section">
+  {{localize "TWODSIX.Actor.Items.CONSUMABLES"}}: <br>
+  <table>
+    <thead>
+      <tr>
+        <td>{{localize "TWODSIX.Actor.Items.Name"}}</td>
+        <td>{{localize "TWODSIX.Actor.Items.Subtype"}}</td>
+        <td>{{localize "TWODSIX.Actor.Items.Qty"}}</td>
+        <td>{{localize "TWODSIX.Actor.Items.Count"}}</td>
+        <td class="centre">
+          <a class="consumable-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}'>
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data.consumableData as |consumable|}}
+      <tr class="consumable" data-consumable-id="{{consumable._id}}">
+        <td>{{consumable.name}}</td>
+        <td>{{twodsix_localizeConsumable consumable.data.subtype}}</td>
+        <td>{{consumable.data.quantity}}</td>
+        <td>{{consumable.data.currentCount}}/{{consumable.data.max}}</td>
+        <td class="centre">
+          <a class="consumable-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'>
+            <i class="fas fa-edit"></i>
+          </a>
+          <a class="consumable-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'>
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      {{/each}}
+      {{#unless data.consumableData}}
+      <tr>
+        <td colspan="5">
+          {{localize "TWODSIX.Items.Consumable.DropConsumablesHere"}}
+        </td>
+      </tr>
+      {{/unless}}
+    </tbody>
+  </table>
+</div>
+{{/if}}

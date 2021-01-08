@@ -36,6 +36,15 @@ export default function registerHandlebarsHelpers():void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_localizeConsumable', (type) => {
+    return game.i18n.localize(`TWODSIX.Items.Consumable.Types.${type}`);
+  });
+
+  Handlebars.registerHelper('twodsix_refillText', (subtype, quantity) => {
+    const refillWord = ["magazine", "power_cell"].includes(subtype) ? "Reload" : "Refill";
+    return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
+  });
+
   Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
@@ -107,32 +116,43 @@ export default function registerHandlebarsHelpers():void {
   });
 
   //From https://discord.com/channels/732325252788387980/732328233630171188/790507540818690068
-  //Not used yet
-  // Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
-  //   switch (operator) {
-  //     case '==':
-  //       return (v1 == v2) ? options.fn(this) : options.inverse(this);
-  //     case '===':
-  //       return (v1 === v2) ? options.fn(this) : options.inverse(this);
-  //     case '!=':
-  //       return (v1 != v2) ? options.fn(this) : options.inverse(this);
-  //     case '!==':
-  //       return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-  //     case '<':
-  //       return (v1 < v2) ? options.fn(this) : options.inverse(this);
-  //     case '<=':
-  //       return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-  //     case '>':
-  //       return (v1 > v2) ? options.fn(this) : options.inverse(this);
-  //     case '>=':
-  //       return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-  //     case '&&':
-  //       return (v1 && v2) ? options.fn(this) : options.inverse(this);
-  //     case '||':
-  //       return (v1 || v2) ? options.fn(this) : options.inverse(this);
-  //     default:
-  //       return options.inverse(this);
-  //   }
-  // });
+  Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
+    let expression:boolean;
+    switch (operator) {
+      case '==':
+        expression = v1 == v2;
+        break;
+      case '===':
+        expression = v1 === v2;
+        break;
+      case '!=':
+        expression = v1 != v2;
+        break;
+      case '!==':
+        expression = v1 !== v2;
+        break;
+      case '<':
+        expression = v1 < v2;
+        break;
+      case '<=':
+        expression = v1 <= v2;
+        break;
+      case '>':
+        expression = v1 > v2;
+        break;
+      case '>=':
+        expression = v1 >= v2;
+        break;
+      case '&&':
+        expression = v1 && v2;
+        break;
+      case '||':
+        expression = v1 || v2;
+        break;
+      default:
+        return options.inverse(this);
+    }
+    return expression ? options.fn(this) : options.inverse(this);
+  });
 
 }

@@ -610,7 +610,7 @@ a.notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1em 12em 1.5em 1.5em 3.5em 3em 4em 3em 3em;
+  grid-template-columns: 1em 14em 1.5em 1.5em 3.5em 3em 5em 3em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -644,6 +644,13 @@ a.notes-tab.active {
 .items-equipment {
   display: grid;
   grid-template-columns: 1em 12em 1.5em 2.5em 13em 3em;
+  gap: 1px 1px;
+  grid-template-areas: '. . . . .';
+}
+
+.items-consumable {
+  display: grid;
+  grid-template-columns: 1em 15em 5em 2.5em 6.5em 3em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -1580,6 +1587,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.form-section {
+  margin-top: 0.5em;
+}
+
 .item-range {
   margin-top: 0.5em;
 }
@@ -1627,6 +1638,66 @@ a:hover {
 
 .tabs .item.active {
   text-shadow: 0 0 10px #00e5ff !important;
+}
+
+/* ------ Item page - Consumables ------ */
+.consumable-row {
+  width: 100%;
+  height: 30px;
+}
+
+.consumable-row .wrapper {
+  float: right;
+}
+
+.consumable-row .refill-button {
+  width: 100px;
+  height: 20px;
+  border-radius: 10px;
+  line-height: normal;
+  cursor: pointer;
+  margin-top: 0;
+  margin-left: 5px;
+}
+
+.consumable-row .consumable-count {
+  margin-left: 5px;
+}
+
+.consumable-row .refill-button[disabled], .combined-buttons button[disabled]  {
+  cursor: default;
+}
+
+.consumable-row .combined-buttons {
+  width: 40px;
+  font-size: 0;
+}
+
+.consumable-row .combined-buttons button {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.consumable-row .left-button {
+  border-radius: 10px 0 0 10px;
+}
+
+.consumable-row .right-button {
+  border-left: 0 solid #000;
+  border-radius: 0 10px 10px 0;
+}
+
+.item-sheet .form-consumable-count {
+  width: 50px;
+  text-align: center;
+}
+
+.remove-consumable {
+  text-align: center;
 }
 
 /*--- Chat Log ---*/

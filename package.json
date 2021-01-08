@@ -10,7 +10,7 @@
     "data:copy": "ts-node src/scripts/data_copy.ts",
     "data:reset": "npm run build && ts-node src/scripts/data_reset.ts -f",
     "data:license": "cp foundry/foundry_dev_data/Config/license.json foundry/license.json",
-    "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data"
+    "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data --adminKey=foundry"
   },
   "author": "",
   "license": "",

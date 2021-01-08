@@ -92,6 +92,10 @@ const ROLLTYPES = Object.freeze({
   Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
 });
 
+const CONSUMABLES = Object.freeze([
+  "air", "drugs", "food", "fuel", "magazine", "power_cell", "other"
+]);
+
 const DIFFICULTIES = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
@@ -114,6 +118,7 @@ const DIFFICULTIES = Object.freeze({
 
 export const TWODSIX = {
   CHARACTERISTICS: CHARACTERISTICS,
+  CONSUMABLES: CONSUMABLES,
   VARIANTS: VARIANTS,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
