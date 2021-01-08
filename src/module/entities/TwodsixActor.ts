@@ -78,7 +78,7 @@ export default class TwodsixActor extends Actor {
     const  characteristic = characteristics[chrName];
     if (characteristic.current > 0) {
       let handledDamage = 0;
-      let totalDamage = 0;
+      let totalDamage = characteristic.damage;
       if (damage + characteristic.damage > characteristic.value) {
         handledDamage = characteristic.value - characteristic.damage;
         totalDamage = characteristic.value;
