@@ -22,4 +22,3 @@ async function createItemMacro(item, slot):Promise<void> {
     await game.user.assignHotbarMacro(macro, slot);
   }
 }
-

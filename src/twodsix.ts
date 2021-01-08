@@ -97,4 +97,3 @@ Hooks.once('init', async function () {
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
 });
-
