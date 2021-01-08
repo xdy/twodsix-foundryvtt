@@ -3,7 +3,6 @@
  * @extends {Actor}
  */
 import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
-import {CharacteristicType, UpdateData} from "../../types/twodsix";
 import {TWODSIX} from "../config";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
@@ -57,19 +56,41 @@ export default class TwodsixActor extends Actor {
     const characteristics = this.data.data.characteristics;
     const armor = this.data.data.primaryArmor.value;
     let remaining:number = damage - armor;
-    remaining = characteristics['endurance'].current > 0 ? TwodsixActor.addDamage(remaining, characteristics['endurance']) : remaining;
+    let updateData = {};
+
+    [remaining, updateData] = this.addDamage(remaining, updateData, 'endurance');
     if (remaining > 0 && characteristics['strength'].current > characteristics['dexterity'].current) {
-      remaining = characteristics['strength'].current > 0 ? TwodsixActor.addDamage(remaining, characteristics['strength']) : remaining;
-      remaining = characteristics['dexterity'].current > 0 ? TwodsixActor.addDamage(remaining, characteristics['dexterity']) : remaining;
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
     } else {
-      remaining = characteristics['dexterity'].current > 0 ? TwodsixActor.addDamage(remaining, characteristics['dexterity']) : remaining;
-      remaining = characteristics['strength'].current > 0 ? TwodsixActor.addDamage(remaining, characteristics['strength']) : remaining;
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
     }
     if (remaining > 0) {
       console.log(`Twodsix | Actor ${this.name} was overkilled by ${remaining}`);
     }
-    await this.updateActor();
+    this.update(updateData);
     return remaining;
+  }
+
+  private addDamage(damage:number, updateData, chrName):[number,any] {
+    const characteristics = this.data.data.characteristics;
+    const  characteristic = characteristics[chrName];
+    if (characteristic.current > 0) {
+      let handledDamage = 0;
+      let totalDamage = characteristic.damage;
+      if (damage + characteristic.damage > characteristic.value) {
+        handledDamage = characteristic.value - characteristic.damage;
+        totalDamage = characteristic.value;
+      } else if (damage > 0) {
+        handledDamage = damage;
+        totalDamage = characteristic.damage + damage;
+      }
+      updateData[`data.characteristics.${chrName}.damage`] = totalDamage;
+      return [damage - handledDamage, updateData];
+    } else {
+      return [damage, updateData];
+    }
   }
 
   public getCharacteristicModifier(characteristic:string):number {
@@ -98,37 +119,5 @@ export default class TwodsixActor extends Actor {
     }
     console.log("DEBUG CHARACTERISTICS ROLL:", diceRoll);
     return diceRoll;
-  }
-
-  private static addDamage(damage:number, characteristic:CharacteristicType):number {
-    let handledDamage = 0;
-    if (damage + characteristic.damage > characteristic.value) {
-      handledDamage = characteristic.value - characteristic.damage;
-      characteristic.damage = characteristic.value;
-    } else if (damage > 0) {
-      handledDamage = damage;
-      characteristic.damage += damage;
-    }
-    characteristic.current = characteristic.value - characteristic.damage;
-    characteristic.mod = calcModFor(characteristic.current);
-    return damage - handledDamage;
-  }
-
-  async updateActor():Promise<void> {
-    const updateData = <UpdateData>{};
-    const characteristics = this.data.data.characteristics;
-
-    for (const cha of Object.values(characteristics as Record<any, any>)) {
-      cha.current = cha.value - cha.damage;
-      cha.mod = calcModFor(cha.current);
-      updateData[`data.characteristics.${cha.key}.current`] = cha.current;
-      updateData[`data.characteristics.${cha.key}.damage`] = cha.damage;
-    }
-
-    this.data.data.hits.value = characteristics["endurance"].current + characteristics["strength"].current + characteristics["dexterity"].current;
-    this.data.data.hits.max = characteristics["endurance"].value + characteristics["strength"].value + characteristics["dexterity"].value;
-    updateData['data.hits.value'] = this.data.data.hits.value;
-    updateData['data.hits.max'] = this.data.data.hits.max;
-    await this.update(updateData);
   }
 }
