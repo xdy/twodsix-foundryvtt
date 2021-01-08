@@ -89,4 +89,3 @@ export async function rollItemMacro(itemId:string):Promise<void> {
     await item.skillRoll(false);
   }
 }
-
