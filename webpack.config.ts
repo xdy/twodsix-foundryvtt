@@ -43,7 +43,8 @@ module.exports = (env, argv) => {
           ]
 
         },
-        {test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/, use: ['url-loader?limit=100000']}
+        {test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/, use: ['url-loader?limit=100000']},
+        {test: /\.html$/, use: ['file-loader']}
       ],
     },
     plugins: [

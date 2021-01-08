@@ -47,6 +47,8 @@
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "CONSUMABLES": "Consumables",
+        "Count": "Count",
         "CreateItem": "Create Item",
         "Damage": "Damage",
         "DeleteItem": "Delete Item",
@@ -57,7 +59,10 @@
         "Name": "Name",
         "Qty": "Qty",
         "Range": "Range",
+        "Refill": "Refill",
+        "Reload": "Reload",
         "ShortDescr": "Short Descr",
+        "Subtype": "Type",
         "TL": "TL",
         "WEAPONS": "WEAPONS",
         "Weight": "Wt"
@@ -99,6 +104,7 @@
         "Type": "Roll type"
       }
     },
+    "Create": "Create",
     "Handlebars": {
       "CantShowCharacteristic": "You need to reselect the characteristic for all skills marked with XXX. Sorry..."
     },
@@ -137,6 +143,7 @@
         "AssignJunk": "Assign Junk",
         "AssignTool": "Assign Tool",
         "AssignWeapon": "Assign Weapon",
+        "AssignConsumable": "Assign Consumable",
         "Inventory": "Inventory",
         "ItemType": "Type",
         "MoveStorage": "Move Storage",
@@ -159,6 +166,23 @@
       "Tool": {
         "Bonus": "Bonus"
       },
+      "Consumable": {
+        "Types": {
+          "air": "Air",
+          "drugs": "Drugs",
+          "food": "Food",
+          "fuel": "Fuel",
+          "magazine": "Magazine",
+          "power_cell": "Power Cell",
+          "other": "Other"
+        },
+        "Size": "Size",
+        "Subtype": "Type",
+        "Count": "Count",
+        "DropConsumablesHere": "You can drop consumables here.",
+        "RemoveConsumable": "Remove consumable",
+        "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
+      },
       "Weapon": {
         "Ammo": "Ammo",
         "Damage": "Damage",
@@ -168,7 +192,9 @@
         "weaponType": "Weapon Type",
         "damageType": "Damage Type",
         "rateOfFire": "Rate of Fire/Auto X",
-        "recoil": "Recoil"
+        "recoil": "Recoil",
+        "UseAsAmmunitionForAttack": "Use as ammunition for attack",
+        "MagazineCost": "Magazine/Power Cell Cost"
       }
     },
     "Migration": {
@@ -308,6 +334,7 @@
     "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
     "Yes": "Yes",
+    "Name": "Name",
     "itemTypes": {
       "equipment": "equipment",
       "weapon": "weapon",
@@ -317,13 +344,24 @@
       "tool": "tool",
       "junk": "junk",
       "skills": "skills",
-      "skill": "skill"
+      "skill": "skill",
+      "consumable": "consumable"
     },
     "Errors": {
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
       "NoCharacteristicForRoll": "You tried to perform a characteristics roll without specifying a characteristic",
       "NoROFForAttack": "Rate of fire must be specified for this attack",
-      "NoDamageForWeapon": "This weapon has not specified the damage it does"
+      "NoDamageForWeapon": "This weapon has not specified the damage it does",
+      "TooFewToReload": "Too few _NAME_ to _REFILL_ACTION_",
+      "NoAmmo": "You are out of ammunition. You need to reload before shooting!",
+      "OnlyOwnedItems": "Can only drop to items that are owned by an actor",
+      "SkillsConsumables": "Skills can't have consumables",
+      "DraggingSomething": "Dragging something that can't be dragged",
+      "OnlyDropItems": "You can only drop items",
+      "OnlyDropConsumables": "Only consumables can be dropped on an item.",
+      "DropFailedWith": "Drop failed with _ERROR_MSG_",
+      "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
     }
   },
   "VeryDifficult": "Very Difficult"

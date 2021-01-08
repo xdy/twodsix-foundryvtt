@@ -4,40 +4,45 @@
       data-actor-id="{{actor._id}}">
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
+    <div class="form-section">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.MagazineCost"}}
+        <input type="number" name="data.magazineCost" value="{{data.magazineCost}}">
+      </label>
+    </div>
 
     <div class="item-damage">
-      <label for="data.damage" class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}
-        <input id="data.damage" type="text" name="data.damage" value="{{data.damage}}">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}
+        <input type="text" name="data.damage" value="{{data.damage}}">
       </label>
     </div>
 
     <div class="item-range">
       {{#if data.settings.ShowRangeBandAndHideRange}}
-      <label for="data.rangeBand" class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}
-        <input id="data.rangeBand" type="text" name="data.rangeBand" value="{{data.rangeBand}}">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}
+        <input type="text" name="data.rangeBand" value="{{data.rangeBand}}">
       </label>
       {{else}}
-      <label for="data.range" class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}
-        <input id="data.range" type="text" name="data.range" value="{{data.range}}">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}
+        <input type="text" name="data.range" value="{{data.range}}">
       </label>
       {{/if}}
     </div>
 
     <div class="item-ammo">
-      <label for="data.ammo" class="resource-label">{{localize "TWODSIX.Items.Weapon.Ammo"}}
-        <input id="data.ammo" type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="Number"/>
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Ammo"}}
+        <input type="text" name="data.ammo" value="{{data.ammo}}">
       </label>
     </div>
 
     <div class="item-qty">
-      <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
-        <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
+        <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
       </label>
     </div>
 
     <div class="item-weight">
-      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
-        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
+        <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
       </label>
     </div>
 
@@ -77,8 +82,8 @@
     {{/if}}
 
     <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
+        <input type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
       </label>
     </div>
 
@@ -86,5 +91,20 @@
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
       <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
     </div>
+    {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
+    {{#if data.isOwned}}
+    <div class="item-form-section">
+      <label>{{localize "TWODSIX.Items.Weapon.UseAsAmmunitionForAttack"}}
+        <select class="consumable-use-consumable-for-attack">
+          <option value="">---</option>
+          {{#select data.useConsumableForAttack}}
+          {{#each data.consumableData as |consumable|}}
+          <option value="{{consumable._id}}">{{consumable.name}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    {{/if}}
   </div>
 </form>
