@@ -13,9 +13,7 @@
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.7.9",
   "description": "Twodsix: A system for use with the Cepheus Engine Core Rules, Traveller (unofficial), and other similar games. <br/>This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.<br/>Cepheus Engine and Samardan Press™ are the trademarks of Jason \"Flynn\" Kemp; we are not affiliated with Jason \"Flynn\" Kemp or Samardan Press™.<br/> See the files OpenGameLicense.md and LICENSE for license details.<br/>",
-  "esmodules": [
-    "twodsix.bundle.js"
-  ],
+  "esmodules": ["twodsix.bundle.js"],
   "gridDistance": 1.5,
   "gridUnits": "m",
   "initiative": "2d6 + @characteristics.dexterity.mod",
@@ -52,59 +50,11 @@
       "entity": "Item"
     },
     {
-      "name": "ce-skills",
-      "label": "ce skills",
+      "name": "cepheus-light-items",
+      "label": "cepheus light items",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-armor",
-      "label": "ce light-armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-augments",
-      "label": "ce light-augments",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-augments.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-equipment",
-      "label": "ce light-equipment",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-equipment.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-grenades",
-      "label": "ce light-grenades",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-grenades.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-pharma",
-      "label": "ce light-pharma",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-pharma.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-ranged-weapon-accessories",
-      "label": "ce light-ranged-weapon-accessories",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-ranged-weapon-accessories.db",
+      "path": "./packs/cepheus-light-items.db",
       "entity": "Item"
     },
     {
@@ -116,75 +66,11 @@
       "entity": "Actor"
     },
     {
-      "name": "ce-light-skills",
-      "label": "ce light-skills",
+      "name": "cepheus-faster-than-light-items",
+      "label": "cepheus faster than light items",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce-light-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-weapons",
-      "label": "ce light-weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-weapons.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-psionics",
-      "label": "ce light-psionics",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-psionics.db",
-      "entity": "Item"
-    },
-    {
-      "name": "expanded-ce-light-skills",
-      "label": "expanded ce light-skills",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/expanded-ce-light-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-armor",
-      "label": "ce ftl armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-equipment",
-      "label": "ce ftl equipment",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-equipment.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-explosives",
-      "label": "ce ftl explosives",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-explosives.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-skills",
-      "label": "ce ftl skills",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-weapons",
-      "label": "ce ftl weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-weapons.db",
+      "path": "./packs/cepheus-faster-than-light-items.db",
       "entity": "Item"
     },
     {
@@ -221,9 +107,7 @@
     }
   ],
   "primaryTokenAttribute": "hits",
-  "styles": [
-    "./styles/twodsix.css"
-  ],
+  "styles": ["./styles/twodsix.css"],
   "templateVersion": 2,
   "manifestPlusVersion": "1.0.0",
   "authors": [
