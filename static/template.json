@@ -275,7 +275,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "consumable"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -286,6 +286,7 @@
         "weight": 0,
         "price": "",
         "traits": [],
+        "consumables": [],
         "equipped": {
           "weight": 0
         },
@@ -305,6 +306,7 @@
       "damageBonus": 0,
       "magazineSize": 0,
       "ammo": 0,
+      "useConsumableForAttack": "",
       "magazineCost": 0,
       "type": "weapon",
       "location": ["inventory", "storage"],
@@ -346,6 +348,14 @@
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal"
+    },
+    "consumable": {
+      "templates": ["gearTemplate"],
+      "currentCount": 0,
+      "max": 0,
+      "type": "consumable",
+      "subtype": "other",
+      "location": ["inventory", "storage"]
     }
   }
 }

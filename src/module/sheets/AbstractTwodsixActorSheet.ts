@@ -1,3 +1,5 @@
+import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
@@ -77,6 +79,23 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
+  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string): void {
+    switch (type) {
+      case "skills":
+        if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+          itemData.data.value = game.system.template.Item.skills.value;
+        } else {
+          itemData.data.value = 0;
+        }
+        break;
+      case "weapon":
+        if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
+          itemData.data.skill = this.actor.getUntrainedSkill().id;
+        }
+        break;
+    }
+  }
+
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event
@@ -101,18 +120,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data.type;
-
-    if (itemData.type === 'skills') {
-      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        itemData.data.value = game.system.template.Item.skills.value;
-      } else {
-        itemData.data.value = 0;
-      }
-    }
-
-    if (game.settings.get('twodsix', 'hideUntrainedSkills') && type === "weapon") {
-      itemData.data.skill = this.actor.getUntrainedSkill().id;
-    }
+    this.updateWithItemSpecificValues(itemData, type);
 
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
@@ -125,16 +133,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
-    let data:any;
-    try {
-      if (!event.dataTransfer) {
-        return false;
-      }
-      data = JSON.parse(event.dataTransfer.getData('text/plain'));
-    } catch (err) {
-      console.log(`Twodsix | Drop failed with {err}`);
-      return false;
-    }
+    const data = getDataFromDropEvent(event);
 
     if (!data) {
       console.log(`Twodsix | Dragging something that can't be dragged`);
@@ -147,23 +146,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const actor = this.actor;
-    let itemData;
-
-    if (data.pack) {
-      // compendium
-      const pack = game.packs.find((p) => p.collection === data.pack);
-      if (pack.metadata.entity !== 'Item') {
-        return;
-      }
-      const item = await pack.getEntity(data.id);
-      itemData = duplicate(item.data);
-    } else if (data.data) {
-      // other actor
-      itemData = duplicate(data.data);
-    } else {
-      // items directory
-      itemData = duplicate(game.items.get(data.id).data);
-    }
+    const itemData = await getItemDataFromDropData(data);
 
 
     //If we get here, we're sorting things.
@@ -221,6 +204,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const tool:Item[] = [];
     const junk:Item[] = [];
     const skills:Item[] = [];
+    const consumable:Item[] = [];
 
     // Iterate through items, allocating to containers
     for (const i of sheetData.items) {
@@ -246,6 +230,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case 'skills':
           skills.push(i);
           break;
+        case 'consumable':
+          consumable.push(i);
+          break;
         default:
           break;
       }
@@ -258,6 +245,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     actorData.augment = augment;
     actorData.tool = tool;
     actorData.junk = junk;
+    actorData.consumable = consumable;
     actorData.skills = skills;
 
   }

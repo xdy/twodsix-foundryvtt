@@ -21,7 +21,37 @@ export default class TwodsixItem extends Item {
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
+    if (this.data.data.consumables) {
+      this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
+        // this is a bit hacky.. seems like the actor has not been initialized fully at this point.
+        return this.actor.data["items"].filter((item:TwodsixItem) => item._id === consumableId)[0];
+      });
+      this.data.data.consumableData.sort((a:TwodsixItem, b:TwodsixItem) => {
+        return ((a.name > b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
+      });
+    }
   }
+
+  public async addConsumable(consumableId:string):Promise<void> {
+    if (this.data.data.consumables.includes(consumableId)) {
+      console.error(`Twodsix | Consumable already exists for item ${this._id}`);
+      return;
+    }
+    await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
+  }
+
+  public async removeConsumable(consumableId: string):Promise<void> {
+    const updatedConsumables = this.data.data.consumables.filter((cId:string) => {
+      return cId !== consumableId;
+    });
+    const updateData = {"data.consumables": updatedConsumables};
+    if (this.data.data.useConsumableForAttack === consumableId) {
+      updateData["data.useConsumableForAttack"] = "";
+    }
+    await this.update(updateData, {});
+  }
+
+  //////// WEAPON ////////
 
   public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number = null, showInChat = true):Promise<void> {
     if (this.type !== "weapon") {
@@ -34,26 +64,31 @@ export default class TwodsixItem extends Item {
 
     let numberOfAttacks = 1;
     let bonusDamage = "0";
-    const rateOfFire = this.data.data.rateOfFire;
-
+    const rof = parseInt(this.data.data.rateOfFire, 10);
+    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 0);
     if (attackType && !rateOfFire) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
     const skill:TwodsixItem = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
     const tmpSettings = {"characteristic": skill?.data.data.characteristic || 'NONE'};
 
+    let usedAmmo = 1;
     switch (attackType) {
       case "auto-full":
-        numberOfAttacks = parseInt(rateOfFire, 10);
+        numberOfAttacks = rateOfFire;
+        usedAmmo = 3 * rateOfFire;
         break;
       case "auto-burst":
-        bonusDamage = rateOfFire;
+        bonusDamage = rateOfFire.toString();
+        usedAmmo = parseInt(this.data.data.rateOfFire, 10);
         break;
       case "burst-attack-dm":
         tmpSettings["diceModifier"] = TwodsixItem.burstAttackDM(rateOfFireCE);
+        usedAmmo = rateOfFireCE;
         break;
       case "burst-bonus-damage":
         bonusDamage = TwodsixItem.burstBonusDamage(rateOfFireCE);
+        usedAmmo = rateOfFireCE;
         break;
     }
 
@@ -63,6 +98,20 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    if (this.data.data.useConsumableForAttack) {
+      const magazine = this.actor.getOwnedItem(this.data.data.useConsumableForAttack) as TwodsixItem;
+      try {
+        await magazine.consume(usedAmmo);
+      } catch(err) {
+        if (err.name == "NoAmmoError") {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
+          return;
+        } else {
+          throw err;
+        }
+      }
+    }
+
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll.isSuccess()) {
@@ -70,7 +119,6 @@ export default class TwodsixItem extends Item {
       }
     }
   }
-
 
   public async skillRoll(showThrowDialog:boolean, tmpSettings:TwodsixRollSettings = null, showInChat = true):Promise<TwodsixDiceRoll> {
     let skill:TwodsixItem;
@@ -177,6 +225,27 @@ export default class TwodsixItem extends Item {
       return '1';
     } else {
       return '0';
+    }
+  }
+
+  //////// CONSUMABLE ////////
+  public async consume(quantity:number):Promise<void> {
+    const consumableLeft = this.data.data.currentCount - quantity;
+    if (consumableLeft >= 0) {
+      await this.update({"data.currentCount": consumableLeft}, {});
+    } else {
+      throw {name: 'NoAmmoError'};
+    }
+  }
+
+  public async refill():Promise<void> {
+    if (this.data.data.quantity > 1) {
+      await this.update({
+        "data.quantity": this.data.data.quantity - 1,
+        "data.currentCount": this.data.data.max
+      }, {});
+    } else {
+      throw {name: 'TooLowQuantityError'};
     }
   }
 }
