@@ -38,9 +38,9 @@
       <label for="data.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:
         <select id="data.skill" name="data.skill" value="{{data.skill}}">
           {{#select data.skill}}
-            <option>{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
+            <option value="{{data.owner.data.data.untrainedSkill}}" >{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
             {{#each data.owner.items as |skill|}}
-              {{#if (eq skill.type 'skills')}}
+              {{#if (twodsix_filterSkills skill)}}
                 {{#if (twodsix_hideUntrainedSkills item.data.value)}}
                   <!-- Hiding {{item.name}} -->
                 {{else}}

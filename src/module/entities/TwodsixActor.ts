@@ -6,8 +6,17 @@ import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
 import {TWODSIX} from "../config";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
+import TwodsixItem from "./TwodsixItem";
 
 export default class TwodsixActor extends Actor {
+  public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
+    const actor = await super.create(data, options) as TwodsixActor;
+    if (actor.data.type == "traveller") {
+      await actor.createUntrainedSkill();
+    }
+    return actor;
+  }
+
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -119,5 +128,26 @@ export default class TwodsixActor extends Actor {
     }
     console.log("DEBUG CHARACTERISTICS ROLL:", diceRoll);
     return diceRoll;
+  }
+
+  public getUntrainedSkill():TwodsixItem {
+    return this.getOwnedItem(this.data.data.untrainedSkill) as TwodsixItem;
+  }
+
+  private async createUntrainedSkill() {
+    const untrainedSkill = await this.buildUntrainedSkill();
+    await this.update({"data.untrainedSkill": untrainedSkill._id});
+  }
+
+  public async buildUntrainedSkill():Promise<TwodsixItem> {
+    if (this.data.data.untrainedSkill) {
+      return;
+    }
+    const data = {
+      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
+      "type": "skills",
+      "flags": {'twodsix.untrainedSkill': true}
+    };
+    return await this.createOwnedItem(data) as TwodsixItem;
   }
 }

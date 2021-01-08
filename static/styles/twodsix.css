@@ -227,6 +227,10 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.rollable-untrained:hover {
+  cursor: pointer;
+}
+
 .roll-damage:hover {
   cursor: pointer;
 }
@@ -657,6 +661,17 @@ a.notes-tab.active {
   background-color: #29aae1;
   color: #0d0d0d;
   font-weight: bold;
+}
+
+#joat-skill {
+  position: absolute;
+  top: 0em;
+  left: 0em;
+}
+
+#joat-skill-input {
+  height: 20px;
+  width: 25px;
 }
 
 .add-skill {

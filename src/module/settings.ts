@@ -37,7 +37,6 @@ export const registerSettings = function ():void {
   _booleanSetting('ExperimentalFeatures', false);
 
   _booleanSetting('hideUntrainedSkills', false);
-  _numberSetting('untrainedSkillValue', -3, 'client');
 
   _stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS);
 

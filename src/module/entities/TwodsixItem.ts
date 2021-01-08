@@ -78,6 +78,11 @@ export default class TwodsixItem extends Item {
       item = this;
     }
 
+    if (!skill) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      return;
+    }
+
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
     if (!tmpSettings) {
       tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
