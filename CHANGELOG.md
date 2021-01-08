@@ -1,3 +1,10 @@
+# [0.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.83...v0.7.0) (2021-01-08)
+
+
+### Features
+
+* Big change to how rolling is performed. ([f86bfcc](https://github.com/xdy/twodsix-foundryvtt/commit/f86bfccb75108abaf782c8d9646ebb4a37ea0455)), closes [#86](https://github.com/xdy/twodsix-foundryvtt/issues/86)
+
 ## [0.6.83](https://github.com/xdy/twodsix-foundryvtt/compare/v0.6.82...v0.6.83) (2021-01-05)
 
 
