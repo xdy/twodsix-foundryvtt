@@ -52,59 +52,11 @@
       "entity": "Item"
     },
     {
-      "name": "ce-skills",
-      "label": "ce skills",
+      "name": "cepheus-light-items",
+      "label": "cepheus light items",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-armor",
-      "label": "ce light-armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-augments",
-      "label": "ce light-augments",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-augments.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-equipment",
-      "label": "ce light-equipment",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-equipment.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-grenades",
-      "label": "ce light-grenades",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-grenades.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-pharma",
-      "label": "ce light-pharma",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-pharma.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-ranged-weapon-accessories",
-      "label": "ce light-ranged-weapon-accessories",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-ranged-weapon-accessories.db",
+      "path": "./packs/cepheus-light-items.db",
       "entity": "Item"
     },
     {
@@ -116,75 +68,11 @@
       "entity": "Actor"
     },
     {
-      "name": "ce-light-skills",
-      "label": "ce light-skills",
+      "name": "cepheus-faster-than-light-items",
+      "label": "cepheus faster than light items",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/ce-light-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-weapons",
-      "label": "ce light-weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-weapons.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-light-psionics",
-      "label": "ce light-psionics",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-light-psionics.db",
-      "entity": "Item"
-    },
-    {
-      "name": "expanded-ce-light-skills",
-      "label": "expanded ce light-skills",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/expanded-ce-light-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-armor",
-      "label": "ce ftl armor",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-equipment",
-      "label": "ce ftl equipment",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-equipment.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-explosives",
-      "label": "ce ftl explosives",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-explosives.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-skills",
-      "label": "ce ftl skills",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-skills.db",
-      "entity": "Item"
-    },
-    {
-      "name": "ce-ftl-weapons",
-      "label": "ce ftl weapons",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-ftl-weapons.db",
+      "path": "./packs/cepheus-faster-than-light-items.db",
       "entity": "Item"
     },
     {
