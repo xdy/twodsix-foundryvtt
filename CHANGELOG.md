@@ -1,3 +1,10 @@
+## [0.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.1...v0.7.2) (2021-01-08)
+
+
+### Bug Fixes
+
+* Move most item and skill compendiums into one compendium per rules variant courtesy of [@marvin9257](https://github.com/marvin9257). ([010c57f](https://github.com/xdy/twodsix-foundryvtt/commit/010c57f6667b4c66a85aaaa206eb070471e3a490))
+
 ## [0.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.0...v0.7.1) (2021-01-08)
 
 
