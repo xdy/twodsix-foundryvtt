@@ -33,11 +33,10 @@ export class TwodsixRollSettings {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
     if (showThrowDialog) {
       let title:string;
-      const skillName = skill?.data.name || 'Untrained';
       if (item) {
-        title = `${skillName} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.data.name}`;
-      } else if (skill || skillName === 'Untrained') {
-        title = skillName;
+        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.data.name}`;
+      } else if (skill) {
+        title = skill.data.name;
       } else {
         title = twodsixRollSettings.characteristic;
       }
@@ -58,7 +57,7 @@ export class TwodsixRollSettings {
       difficulties: this.difficulties,
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
-      skillModifier: this.diceModifier, // TODO: backward compability to old name..
+      diceModifier: this.diceModifier,
       characteristic: this.characteristic,
       skillRoll: this.skillRoll
     };
@@ -73,7 +72,7 @@ export class TwodsixRollSettings {
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
           this.characteristic = this.skillRoll ? buttonHtml.find('[name="characteristic"]').val() : this.characteristic;
-          this.diceModifier = parseInt(buttonHtml.find('[name="skillModifier"]').val(), 10); // TODO: backward compability to old name..
+          this.diceModifier = parseInt(buttonHtml.find('[name="diceModifier"]').val(), 10);
         }
       },
       cancel: {

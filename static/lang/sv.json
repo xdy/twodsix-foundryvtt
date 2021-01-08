@@ -295,10 +295,6 @@
         "hint": "ikryssat=Visa pseudo-färdigheten 'Otränad' istf alla otränade färdigheter. urkryssat=Visa alla otränade färdigheter",
         "name": "Dölj alla otränade färdigheter, visa istället en pseudo-färdighet some heter 'Otränad'."
       },
-      "untrainedSkillValue": {
-        "hint": "Ändra detta så det matchar karaktärens 'Jack of All Trades' (JOAT) färdighet, dvs om du har JOAT 1, sätt värdet till -2, etc.",
-        "name": "Värdet som används för otränade färdigheter."
-      },
       "invertSkillRollShiftClick": {
         "hint": "När man klickar på en färdighet kommer det vanligtvis upp ett fönster för att välja olika alternativ för rullningen. Att shift-klicka är en genväg för att rulla utan modifierare med svårighet 8. Genom att kryssa i denna inställning så inverterar man vad som sker när man shift-klickar.",
         "name": "Invertera beteendet av att shift-klicka när man vill göra en färdighetsrullning"
@@ -319,6 +315,7 @@
       "skill": "färdighet"
     },
     "Errors": {
+      "NoSkillForSkillRoll": "Du försökte göra ett färdighetsslag utan att välja en färdighet",
       "NoCharacteristicForRoll": "Du försökte göra ett atttributslag utan att välja ett attribut",
       "NoROFForAttack": "Eldhastighet måste anges för detta anfall",
       "NoDamageForWeapon": "Detta vapen har inte angett skadan det gör"

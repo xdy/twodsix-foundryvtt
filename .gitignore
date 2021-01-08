@@ -17,3 +17,5 @@ dist/
 #This project
 foundryconfig.json
 foundry.js
+foundry
+sample_data

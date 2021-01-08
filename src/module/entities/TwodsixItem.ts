@@ -18,10 +18,17 @@ export default class TwodsixItem extends Item {
    */
   prepareData():void {
     super.prepareData();
+    if (this.getFlag("twodsix", "untrainedSkill")) {
+      this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+    }
   }
 
   public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number = null, showInChat = true):Promise<void> {
     if (this.type !== "weapon") {
+      return;
+    }
+    if (!this.data.data.skill) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
     }
 
@@ -76,6 +83,11 @@ export default class TwodsixItem extends Item {
     } else if (this.data.data.skill) {
       skill = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
       item = this;
+    }
+
+    if (!skill) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      return;
     }
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.

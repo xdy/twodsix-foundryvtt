@@ -1,4 +1,12 @@
-<a class="add-skill item-control item-create" title="Create item" data-type="skills"><span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span></a>
+<div id="skill-top-row">
+  <div id="joat-skill">
+    {{localize "TWODSIX.Actor.Skills.JOAT"}}:<input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" maxlength="1">
+  </div>
+  <a class="add-skill item-control item-create" title="Create item" data-type="skills">
+    <span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span>
+  </a>
+</div>
+
 <div class="skill-list">
   <span class="skill-container">
     <span></span>
@@ -11,43 +19,45 @@
 </div>
 
 {{#each actor.skills as |item id|}}
-{{#if (twodsix_hideUntrainedSkills item.data.value)}}
-<!-- Hiding {{item.name}} -->
-{{else}}
-<div class="skill">
-  <span class="item skill-container">
-    <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{item._id}}">
-        <span class="skill-container">
-          <span class="mini-dice centre">
-            <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
-          </span>
-          <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-          <span class="item-name centre">{{data.value}}</span>
-          <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor data.characteristic}}</span>
-          <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor data.characteristic data.value}}</span>
-          <span class="item-controls centre">
-            <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
-            <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>
-          </span>
+    {{#if (twodsix_hideUntrainedSkills item.data.value)}}
+    <!-- Hiding {{item.name}} -->
+    {{else}}
+    <div class="skill">
+      {{#if (twodsix_filterSkills item)}}
+        <span class="item skill-container">
+          <ol class="ol-no-indent">
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <span class="skill-container">
+                <span class="mini-dice centre">
+                  <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
+                </span>
+                <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+                <span class="item-name centre">{{data.value}}</span>
+                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor data.characteristic}}</span>
+                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor data.characteristic data.value}}</span>
+                <span class="item-controls centre">
+                  <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
+                  <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>
+                </span>
+              </span>
+            </li>
+          </ol>
         </span>
-      </li>
-    </ol>
-  </span>
-</div>
-{{/if}}
+        {{/if}}
+    </div>
+  {{/if}}
 {{/each}}
 {{#if (twodsix_hideUntrainedSkills -1)}}
 <div class="skill">
   <span class="item skill-container">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{item._id}}">
+      <li class="item flexrow" data-item-id="{{untrainedSkill._id}}">
         <span class="skill-container">
-          <span class="mini-dice centre"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
-          <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="Untrained">{{localize "TWODSIX.Actor.Skills.Untrained"}}</span>
-          <span class="item-name centre">{{actor.data.settings.untrainedSkillValue}}</span>
+          <span class="mini-dice centre"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+          <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.data.name}}</span>
+          <span class="item-name centre">{{untrainedSkill.data.data.value}}</span>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
-          <span class="total-output flex1 skill-mod">{{actor.data.settings.untrainedSkillValue}}</span>
+          <span class="total-output flex1 skill-mod">{{untrainedSkill.data.data.value}}</span>
         </span>
       </li>
     </ol>

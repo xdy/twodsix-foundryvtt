@@ -36,7 +36,7 @@ export class TwodsixDiceRoll {
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
     const data = {} as {string:number};
 
-    let formula = `${rollType}`;
+    let formula = rollType;
 
     // Add characteristic modifier
     if (this.settings.characteristic !== "NONE") {
@@ -107,6 +107,10 @@ export class TwodsixDiceRoll {
     this.effect = effect;
   }
 
+  private static addSign(value:number):string {
+    return `${value <= 0 ? "" : "+"}${value}`;
+  }
+
   public async sendToChat():Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
@@ -117,6 +121,9 @@ export class TwodsixDiceRoll {
 
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
+    } else {
+      const difficultyMod = TwodsixDiceRoll.addSign(this.roll.data.difficultyMod);
+      flavor += `(${difficultyMod})`;
     }
 
     if (this.settings.rollType != TWODSIX.ROLLTYPES.Normal.key) {
@@ -125,8 +132,8 @@ export class TwodsixDiceRoll {
     }
 
     if (this.skill) {
-      const skillValue = this.skill.data.data.value;
-      flavor += ` ${this.skill.data.name}(${skillValue <= 0 ? "" : "+"}${skillValue})`;
+      const skillValue = TwodsixDiceRoll.addSign(this.roll.data.skill);
+      flavor += ` ${this.skill.data.name}(${skillValue})`;
     }
 
     if (this.item) {
@@ -134,12 +141,12 @@ export class TwodsixDiceRoll {
     }
 
     if (this.roll.data.DM) {
-      flavor += ` +DM(${this.roll.data.DM <= 0 ? "" : "+"}${this.roll.data.DM})`;
+      flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll.data.DM)})`;
     }
 
     if (this.settings.characteristic !== 'NONE') { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
-      const characteristicValue = this.roll.data[this.settings.characteristic];
-      flavor += ` ${usingString} ${this.settings.characteristic}(${characteristicValue <= 0 ? "" : "+"}${characteristicValue})`;
+      const characteristicValue = TwodsixDiceRoll.addSign(this.roll.data[this.settings.characteristic]);
+      flavor += ` ${usingString} ${this.settings.characteristic}(${characteristicValue})`;
     }
 
     await this.roll.toMessage(

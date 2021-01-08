@@ -88,7 +88,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Get the type of item to create.
     const {type} = header.dataset;
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    const data = duplicate(header.dataset) as Record<string, any>;
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
     data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
@@ -104,11 +104,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     if (itemData.type === 'skills') {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        itemData.data.value = game.settings.get('twodsix', 'untrainedSkillValue');
+        itemData.data.value = game.system.template.Item.skills.value;
       } else {
-        itemData.data.value = String(0);
+        itemData.data.value = 0;
       }
     }
+
+    if (game.settings.get('twodsix', 'hideUntrainedSkills') && type === "weapon") {
+      itemData.data.skill = this.actor.getUntrainedSkill().id;
+    }
+
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
   }
@@ -182,7 +187,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
 
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        itemData.data.value = game.settings.get('twodsix', 'untrainedSkillValue');
+        itemData.data.value = game.system.template.Item.skills.value;
       } else {
         itemData.data.value = 0;
       }
