@@ -32,7 +32,7 @@
             {{else}}
             <span class="item-name centre">{{data.range}}</span>
             {{/if}}
-            <span class="item-name centre roll-damage" data-roll="{{data.damage}}">{{twodsix_limitLength data.damage 5}}</span>
+            <span class="item-name centre roll-damage">{{twodsix_limitLength data.damage 5}}</span>
             <span class="item-name centre">{{data.ammo}}</span>
             <span class="item-controls centre">
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
@@ -43,16 +43,16 @@
             {{#each (twodsix_burstModes data) as |mode|}}
               <span class="items-weapons-abilities">
                 <span class="item-name">Burst {{mode}}</span>
-                <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-rof-bonus="{{twodsix_burstAttackDM mode}}" data-rof="{{mode}}" data-attack-type="burst-attack-dm">[+{{twodsix_burstAttackDM mode}} Attack DM]</span>
-                <span class="item-name item-ability perform-attack roll-damage" data-bonus-damage="{{twodsix_burstBonusDamage mode}}" title="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-bonus-damage">[+{{twodsix_burstBonusDamage mode}} Damage]</span>
+                <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-attack-dm">[+{{twodsix_burstAttackDM mode}} Attack DM]</span>
+                <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-bonus-damage">[+{{twodsix_burstBonusDamage mode}} Damage]</span>
               </span>
             {{/each}}
           {{/if}}
           {{#if (twodsix_useCELAutofireRules data)}}
             <span class="items-weapons-abilities">
               <span class="item-name">Auto {{data.rateOfFire}}</span>
-              <span class="item-name item-ability roll-damage perform-attack" data-bonus-damage="{{data.rateOfFire}}" title="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst">[Burst Damage]</span>
-              <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-num-attacks="{{data.rateOfFire}}" data-attack-type="auto-full">[Full Auto]</span>
+              <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst">[Burst Damage]</span>
+              <span class="item-name item-ability perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full">[Full Auto]</span>
             </span>
           {{/if}}
         </li>
