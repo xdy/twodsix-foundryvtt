@@ -1665,6 +1665,7 @@ a:hover {
   border-radius: 1px;
   box-shadow: 0 0 2px #0d0d0d inset;
   word-break: break-all;
+  font-size: inherit;
 }
 
 .dice-roll .dice-total.crit-fail-roll {
