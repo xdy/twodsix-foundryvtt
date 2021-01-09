@@ -16,12 +16,13 @@ export type CharacteristicType =
   }
 
 export type UpdateData = {
-  _id?: any;
+  _id?:any;
   items?:any;
   tokens?:any[];
 };
 
+//Success is not 0 to avoid falsiness.
 export const enum Crit {
-  success,
-  fail
+  success = 1,
+  fail = 2
 }

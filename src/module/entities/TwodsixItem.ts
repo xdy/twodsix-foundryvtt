@@ -89,7 +89,7 @@ export default class TwodsixItem extends Item {
     const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
 
     if (showInChat) {
-      diceRoll.sendToChat();
+      await diceRoll.sendToChat();
     }
     console.log("DEBUG ROLL:", diceRoll);
     return diceRoll;

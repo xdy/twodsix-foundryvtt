@@ -1,10 +1,10 @@
 import {Crit} from "../../types/twodsix";
-import { TWODSIX } from "../config";
+import {TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
-import { advantageDisadvantageTerm } from "../i18n";
-import { getKeyByValue } from "./sheetUtils";
-import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import {advantageDisadvantageTerm} from "../i18n";
+import {getKeyByValue} from "./sheetUtils";
+import {TwodsixRollSettings} from "./TwodsixRollSettings";
 
 export class TwodsixDiceRoll {
   settings: TwodsixRollSettings;
@@ -92,13 +92,13 @@ export class TwodsixDiceRoll {
   private calculateEffect():void {
     let effect = this.roll.total - this.settings.difficulty.target;
     if (this.isNaturalCritSuccess()) {
-      console.log(`Got a natural 2 with Effect ${effect}!`);
+      console.log(`Got a natural 12 with Effect ${effect}!`);
       if (effect >= 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
         console.log("Setting Effect to -1 due to natural 2!");
         effect = -1;
       }
     } else if (this.isNaturalCritFail()) {
-      console.log(`Got a natural 12 with Effect ${effect}!`);
+      console.log(`Got a natural 2 with Effect ${effect}!`);
       if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
         console.log("Setting Effect to 0 due to natural 12!");
         effect = 0;
@@ -107,7 +107,7 @@ export class TwodsixDiceRoll {
     this.effect = effect;
   }
 
-  public sendToChat():void {
+  public async sendToChat():Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
     const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
@@ -142,7 +142,7 @@ export class TwodsixDiceRoll {
       flavor += ` ${usingString} ${this.settings.characteristic}(${characteristicValue <= 0 ? "" : "+"}${characteristicValue})`;
     }
 
-    this.roll.toMessage(
+    await this.roll.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: flavor,
