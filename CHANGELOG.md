@@ -1,3 +1,10 @@
+## [0.7.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.2...v0.7.3) (2021-01-09)
+
+
+### Bug Fixes
+
+* Showing critical successes in green didn't work. ([3978d58](https://github.com/xdy/twodsix-foundryvtt/commit/3978d583268a5bb0e61f2a7122fa4aead746f8f1))
+
 ## [0.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.1...v0.7.2) (2021-01-08)
 
 
