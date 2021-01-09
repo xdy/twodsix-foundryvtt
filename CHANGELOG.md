@@ -1,3 +1,10 @@
+## [0.7.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.3...v0.7.4) (2021-01-09)
+
+
+### Bug Fixes
+
+* Allow resizing of chat result text courtesy of @Taleth ([c572c62](https://github.com/xdy/twodsix-foundryvtt/commit/c572c62783f6b140fe6d72a686a45f7f1a67d1a6))
+
 ## [0.7.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.2...v0.7.3) (2021-01-09)
 
 
