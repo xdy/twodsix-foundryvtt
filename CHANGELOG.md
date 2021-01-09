@@ -1,3 +1,10 @@
+## [0.7.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.4...v0.7.5) (2021-01-09)
+
+
+### Bug Fixes
+
+* change default value of hits ([59d9a15](https://github.com/xdy/twodsix-foundryvtt/commit/59d9a151c93e29b278704c72c19b257e16789f51))
+
 ## [0.7.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.3...v0.7.4) (2021-01-09)
 
 
