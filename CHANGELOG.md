@@ -1,3 +1,10 @@
+## [0.7.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.5...v0.7.6) (2021-01-09)
+
+
+### Bug Fixes
+
+* burst attack now only rolls damage once ([8b82d59](https://github.com/xdy/twodsix-foundryvtt/commit/8b82d59359ed62d76299bcc0890d52ef401e29ba))
+
 ## [0.7.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.4...v0.7.5) (2021-01-09)
 
 
