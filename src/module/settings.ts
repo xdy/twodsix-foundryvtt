@@ -21,7 +21,7 @@ export const registerSettings = function ():void {
   _stringSetting('termForDisadvantage', 'disadvantage');
 
   //Automation related settings
-  _booleanSetting('automateDamageRollOnHit', false);
+  _booleanSetting('automateDamageRollOnHit', false, 'client');
 
   //Cepheus weaponry related settings
   _booleanSetting('ShowLawLevel', false);
@@ -49,7 +49,7 @@ export const registerSettings = function ():void {
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
 
-  _booleanSetting('invertSkillRollShiftClick', false);
+  _booleanSetting('invertSkillRollShiftClick', false  );
 
   //Must be the last setting in the file
   _stringSetting('systemMigrationVersion', game.system.data.version);

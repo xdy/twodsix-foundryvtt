@@ -94,14 +94,14 @@ export class TwodsixDiceRoll {
     if (this.isNaturalCritSuccess()) {
       console.log(`Got a natural 12 with Effect ${effect}!`);
       if (effect >= 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
-        console.log("Setting Effect to -1 due to natural 2!");
-        effect = -1;
+        console.log("Setting Effect to 0 due to natural 12!");
+        effect = 0;
       }
     } else if (this.isNaturalCritFail()) {
       console.log(`Got a natural 2 with Effect ${effect}!`);
       if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
-        console.log("Setting Effect to 0 due to natural 12!");
-        effect = 0;
+        console.log("Setting Effect to -1 due to natural 2!");
+        effect = -1;
       }
     }
     this.effect = effect;
