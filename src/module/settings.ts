@@ -45,11 +45,15 @@ export const registerSettings = function ():void {
   _booleanSetting('criticalNaturalAffectsEffect', false);
   _numberSetting('absoluteCriticalEffectValue', 99);
 
+  //TODO This is not good enough, just for testing if it works.
+  //Should be *both* a setting to use this for all characters, and a flag of some sort on actors to use this
+  _booleanSetting('justHits', false);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
 
-  _booleanSetting('invertSkillRollShiftClick', false  );
+  _booleanSetting('invertSkillRollShiftClick', false);
 
   //Must be the last setting in the file
   _stringSetting('systemMigrationVersion', game.system.data.version);

@@ -58,14 +58,19 @@ export default class TwodsixActor extends Actor {
     let remaining:number = damage - armor;
     let updateData = {};
 
-    [remaining, updateData] = this.addDamage(remaining, updateData, 'endurance');
-    if (remaining > 0 && characteristics['strength'].current > characteristics['dexterity'].current) {
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
+    if (!game.settings.get("twodsix", "justHits")) {
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'endurance');
+      if (remaining > 0 && characteristics['strength'].current > characteristics['dexterity'].current) {
+        [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
+        [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
+      } else {
+        [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
+        [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
+      }
     } else {
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
+      [remaining, updateData] = this.addDamage(remaining, updateData, 'hits');
     }
+
     if (remaining > 0) {
       console.log(`Twodsix | Actor ${this.name} was overkilled by ${remaining}`);
     }
@@ -73,23 +78,32 @@ export default class TwodsixActor extends Actor {
     return remaining;
   }
 
-  private addDamage(damage:number, updateData, chrName):[number,any] {
+  private addDamage(damage:number, updateData, toDamage):[number, any] {
     const characteristics = this.data.data.characteristics;
-    const  characteristic = characteristics[chrName];
-    if (characteristic.current > 0) {
-      let handledDamage = 0;
-      let totalDamage = characteristic.damage;
-      if (damage + characteristic.damage > characteristic.value) {
-        handledDamage = characteristic.value - characteristic.damage;
-        totalDamage = characteristic.value;
-      } else if (damage > 0) {
-        handledDamage = damage;
-        totalDamage = characteristic.damage + damage;
+    const characteristic = characteristics[toDamage];
+    let handledDamage = 0;
+    if (characteristic) {
+      if (characteristic.current > 0) {
+        let totalDamage = characteristic.damage;
+        if (damage + characteristic.damage > characteristic.value) {
+          handledDamage = characteristic.value - characteristic.damage;
+          totalDamage = characteristic.value;
+        } else if (damage > 0) {
+          handledDamage = damage;
+          totalDamage = characteristic.damage + damage;
+        }
+        updateData[`data.characteristics.${toDamage}.damage`] = totalDamage;
+
+        return [damage - handledDamage, updateData];
+      } else {
+        return [damage, updateData];
       }
-      updateData[`data.characteristics.${chrName}.damage`] = totalDamage;
-      return [damage - handledDamage, updateData];
-    } else {
-      return [damage, updateData];
+    } else if (toDamage === 'hits') {
+      const hits = this.data.data.hits;
+      const origValue = hits.value;
+      hits.value = Math.max(Math.min(hits.value - damage, 0), hits.max);
+      updateData['data.hits.value'] = hits.value;
+      return [damage - (hits.value - origValue), updateData];
     }
   }
 

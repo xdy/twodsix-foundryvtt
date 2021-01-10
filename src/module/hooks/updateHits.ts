@@ -1,13 +1,15 @@
 import TwodsixActor from "../entities/TwodsixActor";
-import { mergeDeep } from "../utils/utils";
+import {mergeDeep} from "../utils/utils";
 
-function getCurrentHits(target: Record<string, any>, ...args: Record<string, any>[]) {
+function getCurrentHits(target:Record<string, any>, ...args:Record<string, any>[]) {
   const characteristics = mergeDeep(target, ...args);
   const hitsCharacteristics = ["strength", "dexterity", "endurance"];
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {
-      hits.value += chr.value-chr.damage;
+      if (!game.settings.get("twodsix", "justHits")) {
+        hits.value += chr.value - chr.damage;
+      }
       hits.max += chr.value;
     }
     return hits;
@@ -16,7 +18,7 @@ function getCurrentHits(target: Record<string, any>, ...args: Record<string, any
 
 Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
   if (update.data?.characteristics) {
-    update.data.hits =getCurrentHits(actor.data.data.characteristics, update.data.characteristics);
+    update.data.hits = getCurrentHits(actor.data.data.characteristics, update.data.characteristics);
   }
 });
 
