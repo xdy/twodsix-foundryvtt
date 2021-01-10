@@ -1,3 +1,10 @@
+## [0.7.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.6...v0.7.7) (2021-01-10)
+
+
+### Bug Fixes
+
+* Make automatic damage roll a user level setting. Fixes [#305](https://github.com/xdy/twodsix-foundryvtt/issues/305) ([48594ec](https://github.com/xdy/twodsix-foundryvtt/commit/48594ecbd0e4f626b9a532255fa77ae6c69011e6))
+
 ## [0.7.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.5...v0.7.6) (2021-01-09)
 
 
