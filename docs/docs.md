@@ -36,6 +36,7 @@ Reasonably complete compendiums for Cepheus Faster Than Light exist.
 ## MGT2
 To get the system closer to MGT2 change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
 
+* Choose the CE difficulty list.
 * Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)"
 * Change the modifier for a characteristic of 0 to -3 rather than -2
 * Switch to handling difficulties by changing the target number rather than adding/subtracting modifiers.
