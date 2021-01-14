@@ -75,7 +75,9 @@
         "Modifier": "Mod.",
         "SkillName": "Nombre",
         "Total": "Total",
-        "Untrained": "Sin Entrenar"
+        "Untrained": "Sin Entrenar",
+		"SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
+        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas "
       },
       "Species": "Especie",
       "Tabs": {
@@ -97,7 +99,7 @@
       }
     },
     "Handlebars": {
-      "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar la características en todas las habilidades marcadas con XXX."
+      "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar los atributos en todas las habilidades marcadas con XXX."
     },
     "Items": {
       "Armor": {
@@ -173,6 +175,12 @@
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
       "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
+	"Modules": {
+      "compendiumFolders": {
+        "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
+        "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
+      }
+    },
     "No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto)",
@@ -183,17 +191,29 @@
       "Rolling": "Tirada",
       "With": "con",
       "resultShows": "Resultado:",
-      "sum": "suma",
+      "sum": "total",
       "using": "de {characteristic}"
     },
     "Settings": {
+	  "ruleset": {
+        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
+        "name": "Reglamento"
+      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
         "name": "Bonus/penaliz. incrementar tarea:"
       },
+	  "absoluteCriticalEffectValue": {
+        "hint": "Por defecto 99, que ignora el efecto.",
+        "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
+      },
       "automateDamageRollOnHit": {
         "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
         "name": "Daño en tirada que impacte"
+      },
+	  "criticalNaturalAffectsEffect": {
+        "hint": "Marca=Sin importar éxito considerar un 2 natural como Efecto -1 y el 12 natural como Efecto 0, SinMarca=Utilizar reglas normales",
+        "name": "Las tiradas de resultado 2 ó 12 natural en los dados deben tener una gestión especial."
       },
       "defaultTokenSettings": {
         "hint": "Configuración automática del token en nuevos Actores.",
@@ -214,6 +234,10 @@
       "modifierForZeroCharacteristic": {
         "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
         "name": "Modificador Atributo nuevo:"
+      },
+	  "showMissingCompendiumWarnings": {
+        "hint": "Whether to show warnings for missing/disabled modules on world start.",
+        "name": "Show warnings about missing/disabled modules."
       },
       "systemMigrationVersion": {
         "hint": "Versión schema del sistema. (No modificar)",
@@ -251,7 +275,7 @@
         "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
         "name": "Banda de Alcance"
       },
-      "autofireRulesUsed": {
+	  "autofireRulesUsed": {
         "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
         "name": "Variante disparo automático"
       },
@@ -270,8 +294,18 @@
       "hideUntrainedSkills": {
         "hint": "Marca=Utilizar habilidad 'Sin Entrenamiento' unificada. SinMarca=Mantener habilidades individuales.",
         "name": "Unificar 'Sin Entrenamiento'"
+      },
+      "untrainedSkillValue": {
+        "hint": "Cambiar el modificador por habilidad 'Polivalencia'. Para Nivel 1 utilizar -2.",
+        "name": "Mod. con Polivalencia:"
+      },
+	  "invertSkillRollShiftClick": {
+        "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
+        "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
       }
     },
+	"CloseAndCreateNew": "Cerrar y crear nuevo",
+    "Copy": "Copiar",
     "Yes": "Si",
     "itemTypes": {
       "equipment": "equipo",
@@ -283,6 +317,11 @@
       "junk": "chatarra",
       "skills": "habilidades",
       "skill": "habilidad"
+    },
+	"Errors": {
+      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
+      "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
+      "NoDamageForWeapon": "Esta arma no tiene definida el daño que genera"
     }
   },
   "VeryDifficult": "Muy Difícil"
