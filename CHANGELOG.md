@@ -1,3 +1,10 @@
+## [0.7.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.7...v0.7.8) (2021-01-14)
+
+
+### Bug Fixes
+
+* add untrained skill ([d7135bb](https://github.com/xdy/twodsix-foundryvtt/commit/d7135bb30425030fd6c2ee65c85a4a485d460ab0))
+
 ## [0.7.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.6...v0.7.7) (2021-01-10)
 
 
