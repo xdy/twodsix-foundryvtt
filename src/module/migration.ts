@@ -12,10 +12,13 @@ export class Migration {
   private static async migrateActorData(actor:TwodsixActor):Promise<UpdateData> {
     const updateData:UpdateData = <UpdateData>{};
 
-    let untrainedSkill = actor.getUntrainedSkill();
-    if (!untrainedSkill) {
-      untrainedSkill = await actor.buildUntrainedSkill();
-      updateData['data.untrainedSkill'] = untrainedSkill.id;
+    let untrainedSkill;
+    if (actor.data.type == "traveller") {
+      untrainedSkill = actor.getUntrainedSkill();
+      if (!untrainedSkill) {
+        untrainedSkill = await actor.buildUntrainedSkill();
+        updateData['data.untrainedSkill'] = untrainedSkill._id;
+      }
     }
 
     //TODO Get rid of the untrainedSkill passing
@@ -44,10 +47,10 @@ export class Migration {
       }
     }
 
-    if (actor) {
+    if (actor &&  actor.data.type === "traveller") {
       if (item.type !== 'skills') {
         if (!item.data.skill) { //0.6.84
-          updateData['data.skill'] = untrainedSkill.id;
+          updateData['data.skill'] = untrainedSkill._id;
         }
       }
     }
