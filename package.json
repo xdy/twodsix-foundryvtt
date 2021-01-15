@@ -6,7 +6,11 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint ./src --fix",
+    "data:copy": "node src/scripts/data_copy.js",
+    "data:reset": "npm run build && node src/scripts/data_reset.js -f",
+    "data:license": "cp foundry/foundry_dev_data/Config/license.json foundry/license.json",
+    "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data"
   },
   "author": "",
   "license": "",

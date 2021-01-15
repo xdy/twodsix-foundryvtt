@@ -1,0 +1,17 @@
+{
+  "port": 30000,
+  "upnp": true,
+  "fullscreen": false,
+  "hostname": null,
+  "routePrefix": null,
+  "sslCert": null,
+  "sslKey": null,
+  "awsConfig": null,
+  "dataPath": "foundry_dev_data",
+  "proxySSL": false,
+  "proxyPort": null,
+  "minifyStaticFiles": false,
+  "updateChannel": "release",
+  "language": "en.core",
+  "world": "twodsix_dev"
+}
