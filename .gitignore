@@ -17,5 +17,8 @@ dist/
 #This project
 foundryconfig.json
 foundry.js
-foundry
-sample_data
+foundry/foundryvtt
+foundry/license.json
+foundry/foundry_dev_data
+sample_data/local/*
+!sample_data/local/.gitkeep
