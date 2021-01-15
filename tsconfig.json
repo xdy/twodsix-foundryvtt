@@ -3,15 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "Node",
     "target": "ES6",
-    "lib": [
-      "WebWorker",
-      "ScriptHost",
-      "ESNext",
-      "DOM",
-      "ES6",
-      "ES2017",
-      "ES2018"
-    ],
+    "lib": ["WebWorker", "ScriptHost", "ESNext", "DOM", "ES6", "ES2017", "ES2018"],
     "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
@@ -20,12 +12,8 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
-    "typeRoots": [ "./types" ],
-    "types": [
-      "jquery",
-      "webpack-env",
-      "foundry-vtt-types"
-    ],
+    "typeRoots": ["./types"],
+    "types": ["jquery", "webpack-env", "foundry-vtt-types", "@types/fs-extra"],
     "alwaysStrict": true
   }
 }
