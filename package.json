@@ -6,7 +6,11 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint ./src --fix",
+    "data:copy": "ts-node src/scripts/data_copy.ts",
+    "data:reset": "npm run build && ts-node src/scripts/data_reset.ts -f",
+    "data:license": "cp foundry/foundry_dev_data/Config/license.json foundry/license.json",
+    "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data"
   },
   "author": "",
   "license": "",
@@ -17,6 +21,7 @@
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.0",
     "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/fs-extra": "^9.0.6",
     "@types/jquery": "^3.5.5",
     "@types/node": "^14.14.21",
     "@types/webpack": "^4.41.26",
@@ -40,6 +45,7 @@
     "sass": "^1.32.4",
     "sass-loader": "^10.1.1",
     "semantic-release": "^17.3.4",
+    "simple-git": "^2.31.0",
     "source-map-loader": "^1.1.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
