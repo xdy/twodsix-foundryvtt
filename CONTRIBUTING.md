@@ -29,7 +29,7 @@ Or, if you prefer to do it as a separate module, make sure to mention it on the 
 ## How to set up for development
 1. Fork project in github
 1. Clone project to your local working directory
-1. Do one of the following: 
+1. Do one of the following:
     1. Copy the file foundryconfig.example.json to foundryconfig.json and edit the new file to point to the appropriate directory.
         1. Windows example of foundryconfig.json contents:
         ```
@@ -52,11 +52,11 @@ Or, if you prefer to do it as a separate module, make sure to mention it on the 
         ```
         1. Windows example (add /h to mklink to get a hard link rather than a soft link):
         ```
-        mklink /d C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix C:\Users\jk\foundryvtt\twodsix\dist 
+        mklink /d C:\Users\jk\AppData\Local\FoundryVTT\Data\systems\twodsix C:\Users\jk\foundryvtt\twodsix\dist
         ```
     1. Patrik's development setup
         1. Download the node version of foundry vtt and place it in a folder called `foundry/foundryvtt` in your project root
-        1. Copy the file foundryconfig.example.json to foundryconfig.json and edit the dataPath property to point to `foundry/foundry_dev_data` in your project root (use the full absolute path). 
+        1. Copy the file foundryconfig.example.json to foundryconfig.json and edit the dataPath property to point to `foundry/foundry_dev_data` in your project root (use the full absolute path).
         1. Run `npm install`
         1. Run `npm run data:reset` which will build the project and populate a development world with sample data
         1. Run `npm run server` and go to `http://localhost:30000`. It will ask you for your license details, so please fill those in. Default password is `foundry` and will be reset each time you use the reset command
