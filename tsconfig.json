@@ -24,7 +24,8 @@
     "types": [
       "jquery",
       "webpack-env",
-      "foundry-vtt-types"
+      "foundry-vtt-types",
+      "@types/fs-extra"
     ],
     "alwaysStrict": true
   }
