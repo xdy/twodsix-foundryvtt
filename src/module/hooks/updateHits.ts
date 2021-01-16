@@ -26,7 +26,7 @@ Hooks.on('preUpdateToken', async (scene, token:Record<string, any>, update:Recor
     const actor = TwodsixActor.collection.get(token.actorId);
     update.actorData.data.hits = getCurrentHits(
       actor.data.data.characteristics,
-      token.actorData.data.characteristics,
+      token.actorData?.data?.characteristics ?? {},
       update.actorData.data.characteristics
     );
   }
