@@ -9,14 +9,6 @@ import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 
 export default class TwodsixActor extends Actor {
-  public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
-    const actor = await super.create(data, options) as TwodsixActor;
-    if (actor.data.type == "traveller") {
-      await actor.createUntrainedSkill();
-    }
-    return actor;
-  }
-
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -134,7 +126,7 @@ export default class TwodsixActor extends Actor {
     return this.getOwnedItem(this.data.data.untrainedSkill) as TwodsixItem;
   }
 
-  private async createUntrainedSkill() {
+  public async createUntrainedSkill(): Promise<void> {
     const untrainedSkill = await this.buildUntrainedSkill();
     await this.update({"data.untrainedSkill": untrainedSkill._id});
   }

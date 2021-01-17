@@ -14,7 +14,9 @@ import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
-import "./module/hooks/index";
+require.context("./module/hooks", false, /\.ts$/).keys().forEach(fileName => {
+  import("./module/hooks/" + fileName.substring(2));
+});
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 
 Hooks.once('init', async function () {
