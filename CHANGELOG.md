@@ -1,3 +1,11 @@
+## [0.7.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.10...v0.7.11) (2021-01-19)
+
+
+### Bug Fixes
+
+* change so that Actor creates untrained skill ([f69f57f](https://github.com/xdy/twodsix-foundryvtt/commit/f69f57f5f69b56be176537560aac056d012511c2)), closes [#328](https://github.com/xdy/twodsix-foundryvtt/issues/328)
+* handle undefined values when giving damage ([f7155b7](https://github.com/xdy/twodsix-foundryvtt/commit/f7155b7298f3f5112e41ee665a556fb13e63ee88))
+
 ## [0.7.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.9...v0.7.10) (2021-01-15)
 
 
