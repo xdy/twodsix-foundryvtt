@@ -1,3 +1,10 @@
+## [0.7.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.11...v0.7.12) (2021-01-19)
+
+
+### Bug Fixes
+
+* Updated German translation courtesy of @Rico M[#8744](https://github.com/xdy/twodsix-foundryvtt/issues/8744) ([d7c590f](https://github.com/xdy/twodsix-foundryvtt/commit/d7c590f56e93e39ed887d598cc3056d0cc68ee2e))
+
 ## [0.7.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.10...v0.7.11) (2021-01-19)
 
 
