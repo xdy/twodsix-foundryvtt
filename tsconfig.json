@@ -20,7 +20,9 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
-    "typeRoots": [ "./types" ],
+    "typeRoots": [
+      "./types"
+    ],
     "types": [
       "jquery",
       "webpack-env",
