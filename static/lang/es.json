@@ -77,7 +77,8 @@
         "Total": "Total",
         "Untrained": "Sin Entrenar",
 		"SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
-        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas "
+        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
+		"JOAT": "Polivalencia"
       },
       "Species": "Especie",
       "Tabs": {
@@ -236,8 +237,8 @@
         "name": "Modificador Atributo nuevo:"
       },
 	  "showMissingCompendiumWarnings": {
-        "hint": "Whether to show warnings for missing/disabled modules on world start.",
-        "name": "Show warnings about missing/disabled modules."
+        "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
+        "name": "Mostrar aviso sobre módulos desactivados/faltan."
       },
       "systemMigrationVersion": {
         "hint": "Versión schema del sistema. (No modificar)",
@@ -292,12 +293,12 @@
         "name": "Mostrar funciones experimentales"
       },
       "hideUntrainedSkills": {
-        "hint": "Marca=Utilizar habilidad 'Sin Entrenamiento' unificada. SinMarca=Mantener habilidades individuales.",
-        "name": "Unificar 'Sin Entrenamiento'"
-      },
-      "untrainedSkillValue": {
-        "hint": "Cambiar el modificador por habilidad 'Polivalencia'. Para Nivel 1 utilizar -2.",
-        "name": "Mod. con Polivalencia:"
+        "hint": "Marca=Mostrar una habilidad 'Sin Entrenar' global en vez de muchas habilidades individuales. SinMarca=Mostrar todas las habilidades",
+        "name": "Ocultar las habilidades sin entrenamiento (Nuevas habilidades se añaden a nivel 0).",
+        "warningReset": "Después de guardar la configuración todas las habilidades que utilicen 'Sin Entrenar' serán reiniciadas. Esta acción no se podrá retroceder.",
+        "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder.",
+        "continue": "Quieres continuar?",
+        "warning": "Aviso!"
       },
 	  "invertSkillRollShiftClick": {
         "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
@@ -319,9 +320,10 @@
       "skill": "habilidad"
     },
 	"Errors": {
-      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
+      "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
+	  "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Esta arma no tiene definida el daño que genera"
+      "NoDamageForWeapon": "Falta definir el daño del arma"
     }
   },
   "VeryDifficult": "Muy Difícil"
