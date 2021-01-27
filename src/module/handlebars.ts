@@ -92,6 +92,14 @@ export default function registerHandlebarsHelpers():void {
     return skill!=null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
   });
 
+  Handlebars.registerHelper('each_sort_by_name', (array, options) => {
+    const sortedArray = array.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
+      const aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
+      return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);
+    });
+    return Handlebars.helpers.each(sortedArray, options);
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function(context) {
     console.log(context);
