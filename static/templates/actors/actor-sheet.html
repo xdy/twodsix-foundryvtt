@@ -4,7 +4,8 @@
     <div class="character-info">
       <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
       <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        {{#unless limited}}
         {{#if actor.data.settings.ExperimentalFeatures}}
         <div>
           <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}"
@@ -15,9 +16,11 @@
                                                        placeholder='0' onClick="this.select();"/></span>
         </div>
         {{/if}}
+        {{/unless}}
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
+      {{#unless limited}}
       <div class="character-bgi">
         <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value" value="{{data.age.value}}"
                                                                       placeholder="0"/></span>
@@ -28,115 +31,10 @@
         <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
                                                                                   placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/></span>
       </div>
-
-      <div class="character-characteristics">
-        <div class="stat strength" data-characteristic="strength">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.STR"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll strength"/></span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
-                                            data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.strength.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0"
-                                           name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}"
-                                           placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="stat dexterity" data-characteristic="dexterity">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.DEX"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll dexterity"/>
-          </span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value"
-                                            data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.dexterity.value}}" min="0"
-                                           name="data.characteristics.dexterity.damage" value="{{data.characteristics.dexterity.damage}}"
-                                           placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="stat endurance" data-characteristic="endurance">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.END"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll endurance"/>
-        </span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
-                                            data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0"
-                                           name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}"
-                                           placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="stat intelligence" data-characteristic="intelligence">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.INT"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll intelligence"/>
-        </span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value"
-                                            data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.intelligence.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.intelligence.value}}" min="0"
-                                           name="data.characteristics.intelligence.damage" value="{{data.characteristics.intelligence.damage}}"
-                                           placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="stat education" data-characteristic="education">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.EDU"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll education"/>
-        </span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value"
-                                            data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.education.value}}" min="0"
-                                           name="data.characteristics.education.damage" value="{{data.characteristics.education.damage}}"
-                                           placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="stat socialStanding" data-characteristic="socialStanding">
-          <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.SOC"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll socialStanding"/>
-        </span>
-
-          <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value"
-                                            data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}"
-                                            placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="stat-modifier"><input readonly type="text"
-                                             value="{{numberFormat data.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span>
-          <span class="stat-damage"><input type="number" max="{{data.characteristics.socialStanding.value}}" min="0"
-                                           name="data.characteristics.socialStanding.damage" value="{{data.characteristics.socialStanding.damage}}" placeholder="0"
-                                           data-dtype="Number" onClick="this.select();"/></span>
-        </div>
-
-        <div class="special psionicStrength" data-characteristic="psionicStrength">
-          <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-          >{{localize "TWODSIX.Actor.Characteristics.PSI"}} <img src="./systems/twodsix/assets/d6-icon.svg" alt="roll psionicStrength"/>
-        </span>
-
-          <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
-                                               data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
-                                               placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-damage"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
-                                              name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
-                                              placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-          <span class="special-modifier"><input readonly type="text"
-                                                value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
-
-        </div>
-      </div>
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+      {{/unless}}
     </div>
-
+    {{#unless limited}}
     {{!-- Sheet Body --}}
     <div class="character-tabs-info sheet-body">
 
@@ -177,5 +75,6 @@
       </div>
 
     </div>
+    {{/unless}}
   </div>
 </form>

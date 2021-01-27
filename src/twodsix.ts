@@ -78,6 +78,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/actor/actor-items.html",
     "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html",
     "systems/twodsix/templates/actors/ship-sheet.html",
     "systems/twodsix/templates/actors/parts/ship/ship-cargo.html",
     "systems/twodsix/templates/actors/parts/ship/ship-crew.html",
