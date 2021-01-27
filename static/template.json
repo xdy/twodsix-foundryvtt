@@ -1,9 +1,6 @@
 {
   "Actor": {
-    "types": [
-      "traveller",
-      "ship"
-    ],
+    "types": ["traveller", "ship"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -278,17 +275,7 @@
     }
   },
   "Item": {
-    "types": [
-      "equipment",
-      "weapon",
-      "armor",
-      "augment",
-      "storage",
-      "tool",
-      "junk",
-      "skills",
-      "consumable"
-    ],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "consumable"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -308,19 +295,12 @@
       }
     },
     "equipment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "type": "equipment",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -329,10 +309,7 @@
       "useConsumableForAttack": "",
       "magazineCost": 0,
       "type": "weapon",
-      "location": [
-        "inventory",
-        "storage"
-      ],
+      "location": ["inventory", "storage"],
       "lawLevel": 0,
       "rangeBand": "",
       "weaponType": "",
@@ -341,9 +318,7 @@
       "recoil": false
     },
     "armor": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "armor": 0,
       "secondaryArmor": {
         "value": 0
@@ -352,27 +327,17 @@
         "value": 0
       },
       "type": "armor",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "augment": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": [
-        "skillsTemplate"
-      ],
+      "templates": ["skillsTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
@@ -385,17 +350,12 @@
       "rolltype": "Normal"
     },
     "consumable": {
-      "templates": [
-        "gearTemplate"
-      ],
+      "templates": ["gearTemplate"],
       "currentCount": 0,
       "max": 0,
       "type": "consumable",
       "subtype": "other",
-      "location": [
-        "inventory",
-        "storage"
-      ]
+      "location": ["inventory", "storage"]
     }
   }
 }
