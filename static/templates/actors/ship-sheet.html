@@ -7,6 +7,7 @@
     <div class="ship-name">
       <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
     </div>
+    {{#unless limited}}
     <div class="ship-info">
       <div class="ship-state-grid">
         <div class="ship-hull"><span>Ship Hull</span><input type="text" value="{{data.ship.shipStats.hullCurrent}}" name="data.ship.shipStats.hullCurrent" placeholder="0"/>
@@ -33,8 +34,9 @@
         <div class="ship-weapons">Weapons<input type="text" value="{{data.ship.reqPower.weapons}}" name="data.ship.reqPower.weapons" placeholder="0"></div>
       </div>
     </div>
+    {{/unless}}
   </div>
-
+  {{#unless limited}}
   {{!-- Sheet Body --}}
   <div class="ship-tabs-info sheet-body">
 
@@ -68,4 +70,5 @@
       {{> "systems/twodsix/templates/actors/parts/ship/ship-notes.html"}}
     </div>
   </div>
+  {{/unless}}
 </form>
