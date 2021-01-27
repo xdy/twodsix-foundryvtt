@@ -153,7 +153,7 @@ export class TwodsixDiceRoll {
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: flavor,
-        rollType: this.settings.rollType,
+        rollMode: this.settings.rollMode,
         flags: {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),
