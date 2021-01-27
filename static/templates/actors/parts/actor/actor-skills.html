@@ -18,7 +18,7 @@
   </span>
 </div>
 
-{{#each actor.skills as |item id|}}
+{{#each_sort_by_name actor.skills as |item id|}}
     {{#if (twodsix_hideUntrainedSkills item.data.value)}}
     <!-- Hiding {{item.name}} -->
     {{else}}
@@ -46,7 +46,7 @@
         {{/if}}
     </div>
   {{/if}}
-{{/each}}
+{{/each_sort_by_name}}
 {{#if (twodsix_hideUntrainedSkills -1)}}
 <div class="skill">
   <span class="item skill-container">

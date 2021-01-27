@@ -21,7 +21,7 @@
   </div>
 
   <div class="grid-columns">
-    {{#each data.storage as |item id|}}
+    {{#each_sort_by_name data.storage as |item id|}}
     <div>
       <ol class="ol-no-indent">
         <li class="item storage-stored" data-item-id="{{item._id}}">
@@ -39,6 +39,6 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_by_name}}
   </div>
 </div>

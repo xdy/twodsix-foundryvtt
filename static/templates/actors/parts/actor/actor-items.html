@@ -17,7 +17,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each actor.weapon as |item id|}}
+    {{#each_sort_by_name actor.weapon as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
@@ -58,7 +58,7 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_by_name}}
   </div>
 
   <!---- ARMOR ---->
@@ -76,7 +76,7 @@
     </div>
 
 
-    {{#each actor.armor as |item id|}}
+    {{#each_sort_by_name actor.armor as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
@@ -95,7 +95,7 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_by_name}}
   </div>
 
   <!---- AUGMENTS ---->
@@ -112,7 +112,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each actor.augment as |item id|}}
+    {{#each_sort_by_name actor.augment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
@@ -131,7 +131,7 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_by_name}}
   </div>
 
   <!---- EQUIPMENT ---->
@@ -147,7 +147,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each actor.equipment as |item id|}}
+    {{#each_sort_by_name actor.equipment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
@@ -165,6 +165,6 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_by_name}}
   </div>
 </div>
