@@ -1,10 +1,10 @@
 name: Test and release
 
-# Run the workflow when a Pull Request is opened or when changes are pushed to master on 'xdy/twodsix' (i.e. don't run on forks)
+# Run the workflow when a Pull Request is opened or when changes are pushed to master or development on 'xdy/twodsix-foundryvtt' (i.e. don't run on forks)
 on:
   pull_request:
   push:
-    branches: [ master ]
+    branches: [ master, development]
 
 jobs:
   test:
@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       # Lint the code
-      - name: Install
+      - name: Lint
         run: npm run lint
 
       # Building is the only test right now (mainly tests if dependabot actually can update)
@@ -44,8 +44,8 @@ jobs:
       #run: npm test
 
   release:
-    # Only release on push to master of xdy/twodsix
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'xdy/twodsix-foundryvtt'
+    # Only release on push to master or development on xdy/twodsix-foundryvtt
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/development') && github.repository == 'xdy/twodsix-foundryvtt'
     runs-on: ubuntu-latest
     # Waits for test jobs for each Node.js version to complete
     needs: [test]
