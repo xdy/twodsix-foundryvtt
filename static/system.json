@@ -1,9 +1,9 @@
 {
-  "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
+"manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/vxxx$1/system.json"
   "name": "twodsix",
   "title": "Twodsix - Cepheus & Traveller (Unofficial)",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
-  "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/0.7.16-development.3/download/system.json",
+"manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/vxxx$1/system.json"
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/0.7.16-development.3/download/twodsix.zip",
   "version": "0.7.16-development.6",
@@ -109,7 +109,7 @@
   "primaryTokenAttribute": "hits",
   "styles": ["./styles/twodsix.css"],
   "templateVersion": 2,
-  "manifestPlusVersion": "1.0.0",
+"manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/vxxx$1/system.json"
   "authors": [
     {
       "name": "Jonas Karlsson",
@@ -141,7 +141,7 @@
     {
       "type": "module",
       "name": "compendium-folders",
-      "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/master/module.json"
+"manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/vxxx$1/system.json"
     }
   ]
 }
