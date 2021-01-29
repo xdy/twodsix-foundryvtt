@@ -1,1 +1,147 @@
-"manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v0.7.16-development.7/download/system.json"
+{
+  "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
+  "name": "twodsix",
+  "title": "Twodsix - Cepheus & Traveller (Unofficial)",
+  "url": "https://github.com/xdy/twodsix-foundryvtt/",
+  "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/0.7.16-development.3/download/system.json",
+  "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/0.7.16-development.3/download/twodsix.zip",
+  "version": "0.7.16-development.6",
+  "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
+  "bugs": "Plenty of them, this is an early alpha...",
+  "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
+  "minimumCoreVersion": "0.6.2",
+  "compatibleCoreVersion": "0.7.9",
+  "description": "Twodsix: A system for use with the Cepheus Engine Core Rules, Traveller (unofficial), and other similar games. <br/>This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.<br/>Cepheus Engine and Samardan Press™ are the trademarks of Jason \"Flynn\" Kemp; we are not affiliated with Jason \"Flynn\" Kemp or Samardan Press™.<br/> See the files OpenGameLicense.md and LICENSE for license details.<br/>",
+  "esmodules": ["twodsix.bundle.js"],
+  "gridDistance": 1.5,
+  "gridUnits": "m",
+  "initiative": "2d6 + @characteristics.dexterity.mod",
+  "languages": [
+    {
+      "lang": "de",
+      "name": "Deutsche",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "sv",
+      "name": "Svenska",
+      "path": "lang/sv.json"
+    }
+  ],
+  "license": "LICENSE",
+  "packs": [
+    {
+      "name": "twoe-skills",
+      "label": "2e skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/2e-skills.db",
+      "entity": "Item"
+    },
+    {
+      "name": "cepheus-light-items",
+      "label": "cepheus light items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-light-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-light-robots",
+      "label": "ce light-robots",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-robots.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "cepheus-faster-than-light-items",
+      "label": "cepheus faster than light items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-faster-than-light-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "ce-srd-gm-screen",
+      "label": "ce srd gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-gm-screen.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "ce-light-gm-screen",
+      "label": "ce light srd gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-light-gm-screen.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "ce-srd-roll-tables",
+      "label": "ce srd roll tables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-roll-tables.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "ce-srd-items",
+      "label": "ce srd items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-items.db",
+      "entity": "Item"
+    }
+  ],
+  "primaryTokenAttribute": "hits",
+  "styles": ["./styles/twodsix.css"],
+  "templateVersion": 2,
+  "manifestPlusVersion": "1.0.0",
+  "authors": [
+    {
+      "name": "Jonas Karlsson",
+      "url": "https://gnu.xdy.se/home",
+      "discord": "xdy#3735",
+      "twitter": "@xdy",
+      "reddit": "u/xdydxy"
+    },
+    {
+      "name": "Kevin Maree",
+      "discord": "Ultra Kev#9816"
+    }
+  ],
+  "media": [
+    {
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp"
+    },
+    {
+      "type": "screenshot",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp"
+    },
+    {
+      "type": "icon",
+      "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_icon.svg"
+    }
+  ],
+  "dependencies": [
+    {
+      "type": "module",
+      "name": "compendium-folders",
+      "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/master/module.json"
+    }
+  ]
+}
