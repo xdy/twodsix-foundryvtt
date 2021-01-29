@@ -1,3 +1,10 @@
+## [0.7.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.12...v0.7.13) (2021-01-29)
+
+
+### Bug Fixes
+
+* change renderChatMessage hook to obfuscate hidden rolls properly ([e639e01](https://github.com/xdy/twodsix-foundryvtt/commit/e639e01ea114e14774287f5a5566cfd78f141f1e)), closes [#321](https://github.com/xdy/twodsix-foundryvtt/issues/321)
+
 ## [0.7.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.11...v0.7.12) (2021-01-19)
 
 
