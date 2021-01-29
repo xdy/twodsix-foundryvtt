@@ -61,4 +61,3 @@ Font licenses:
 
 Asset licenses:
 * The icons in the assets/twodsix_icons/General folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) as well as  are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/)
-
