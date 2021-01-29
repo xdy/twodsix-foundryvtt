@@ -1,3 +1,10 @@
+## [0.7.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.13...v0.7.14) (2021-01-29)
+
+
+### Bug Fixes
+
+* add feature to automatically sort items ([9423d35](https://github.com/xdy/twodsix-foundryvtt/commit/9423d351f06872c06315fd087b278b6637f7abe7)), closes [#114](https://github.com/xdy/twodsix-foundryvtt/issues/114)
+
 ## [0.7.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.12...v0.7.13) (2021-01-29)
 
 
