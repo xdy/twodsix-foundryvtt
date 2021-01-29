@@ -1,3 +1,12 @@
+## [0.7.16-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.15...v0.7.16-development.1) (2021-01-29)
+
+
+### Bug Fixes
+
+* add consumables ([6da470e](https://github.com/xdy/twodsix-foundryvtt/commit/6da470ea4650d5466c10ebacfb558632af35fc51)), closes [#212](https://github.com/xdy/twodsix-foundryvtt/issues/212)
+* Not an interesting change at all, just trying out the release script ([a358be5](https://github.com/xdy/twodsix-foundryvtt/commit/a358be5f1dc7ac54eaa128437ef02c58f6263e08))
+* Not an interesting change at all, just trying out the release script ([7ecdaef](https://github.com/xdy/twodsix-foundryvtt/commit/7ecdaef3b3c73ebfc5aeb9065fdbdc08abbbf6ae))
+
 ## [0.7.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.14...v0.7.15) (2021-01-29)
 
 
