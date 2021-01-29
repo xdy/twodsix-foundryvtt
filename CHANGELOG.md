@@ -1,3 +1,10 @@
+## [0.7.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.14...v0.7.15) (2021-01-29)
+
+
+### Bug Fixes
+
+* character sheet can show limited info ([14b4ffd](https://github.com/xdy/twodsix-foundryvtt/commit/14b4ffd2a5974df58fb51f71cc54d0779a2266c8)), closes [#334](https://github.com/xdy/twodsix-foundryvtt/issues/334)
+
 ## [0.7.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.13...v0.7.14) (2021-01-29)
 
 
