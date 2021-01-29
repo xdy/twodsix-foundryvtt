@@ -1,3 +1,11 @@
+## [0.7.16-development.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16-development.7...v0.7.16-development.8) (2021-01-29)
+
+
+### Bug Fixes
+
+* Release script change to hack the system.json for development pre-releases ([0340322](https://github.com/xdy/twodsix-foundryvtt/commit/03403220031a409bfb8934e666e015fee54aae5c))
+* Release script change to hack the system.json for development pre-releases ([3a70c1b](https://github.com/xdy/twodsix-foundryvtt/commit/3a70c1b08df6815fc61e843636c4fbac47f8337f))
+
 ## [0.7.16-development.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16-development.6...v0.7.16-development.7) (2021-01-29)
 
 
