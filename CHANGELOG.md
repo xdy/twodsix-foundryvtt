@@ -1,3 +1,10 @@
+## [0.7.16-development.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16-development.8...v0.7.16-development.9) (2021-01-30)
+
+
+### Bug Fixes
+
+*  test if build works ([634cf74](https://github.com/xdy/twodsix-foundryvtt/commit/634cf74b4dba4e21ce8e99fedb6266b517bbf389))
+
 ## [0.7.16-development.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16-development.7...v0.7.16-development.8) (2021-01-29)
 
 
