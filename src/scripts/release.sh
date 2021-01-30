@@ -11,3 +11,4 @@ sed -i -e 's|\(.*"version"\): "\(.*\)",.*|\1: '"\"$1\",|" static/system.json &&
   cd dist || exit &&
   zip -r twodsix.zip ./* &&
   cd ..
+
