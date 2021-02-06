@@ -1,3 +1,10 @@
+## [0.7.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16...v0.7.17) (2021-02-06)
+
+
+### Bug Fixes
+
+* Fixed release.sh, it was missing part of the path for master. ([9439dd6](https://github.com/xdy/twodsix-foundryvtt/commit/9439dd6ecf9c725607ba653dab50541033bf02aa))
+
 ## [0.7.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.15...v0.7.16) (2021-02-06)
 
 
