@@ -27,3 +27,4 @@ export const enum Crit {
   success = 1,
   fail = 2
 }
+

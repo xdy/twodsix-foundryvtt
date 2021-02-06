@@ -62,7 +62,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.handleContentEditable(html);
   }
 
-  _onDragStart(event: DragEvent):void {
+  _onDragStart(event:DragEvent):void {
     const header = event.currentTarget;
     if (!header["dataset"]) {
       return;
@@ -101,7 +101,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onItemCreate(event:{ preventDefault:() => void; currentTarget: HTMLElement }):Promise<Item> {
+  private _onItemCreate(event:JQuery.ClickEvent) {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -130,7 +130,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Special handling of skills dropping.
    */
-  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
+  public async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
     const data = getDataFromDropEvent(event);

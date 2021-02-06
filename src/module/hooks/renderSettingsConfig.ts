@@ -8,7 +8,10 @@ function createWarningDialog(event:Event, message:string) {
     content: message,
     yes: async () => event.currentTarget["checked"] = !event.currentTarget["checked"],
     no: null,
-    defaultYes: true
+    defaultYes: true,
+    render: () => {
+      //Nothing
+    }
   });
 }
 

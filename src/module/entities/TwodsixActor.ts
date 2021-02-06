@@ -50,7 +50,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  protected async damageActor(damage:number):Promise<number> {
+  async damageActor(damage:number):Promise<number> {
     //TODO Naive implementation, assumes always choose current highest, assumes armor works
     //TODO Implement choice of primary/secondary/no armor, and full/half/double armor, as well as 'ignore first X points of armor'.
     //TODO Rewrite this...

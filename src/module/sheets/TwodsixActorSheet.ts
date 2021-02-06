@@ -1,6 +1,7 @@
 import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
 import {TWODSIX} from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixActor from "../entities/TwodsixActor";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -39,8 +40,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  static get defaultOptions():FormApplicationOptions {
-    return mergeObject(super.defaultOptions, {
+  static get defaultOptions(): BaseEntitySheet.Options {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore I don't think this is typed right. Everything should be optional in options...
+    return mergeObject<>(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 825,
@@ -52,7 +55,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  protected activateListeners(html:JQuery):void {
+  activateListeners(html:JQuery):void {
     super.activateListeners(html);
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
@@ -76,7 +79,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   private getItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    return this.actor.getOwnedItem(itemId);
+    return <TwodsixItem>this.actor.getOwnedItem(itemId);
   }
 
   private _onRollWrapper(func:(event:Event, showTrowDiag:boolean) => Promise<void>):(event:Event) => void {

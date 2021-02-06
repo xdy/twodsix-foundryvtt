@@ -7,9 +7,10 @@ import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 
 export default class TwodsixItem extends Item {
-  public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
-    const item = await super.create(data, options) as TwodsixItem;
-    item.setFlag('twodsix', 'newItem', true);
+
+  public static async create<T extends Entity>(data:DeepPartial<T['data']>, options?:Entity.CreateOptions):Promise<T | null> {
+    const item = await super.create(data, options);
+    await item.setFlag('twodsix', 'newItem', true);
     return item;
   }
 
@@ -146,7 +147,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
+    const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor><unknown>this.actor, skill, item);
 
     if (showInChat) {
       await diceRoll.sendToChat();
