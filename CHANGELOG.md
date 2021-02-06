@@ -1,3 +1,10 @@
+## [0.7.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.15...v0.7.16) (2021-02-06)
+
+
+### Bug Fixes
+
+* Updated items for cepheus light courtesy of [@marvin9257](https://github.com/marvin9257) ([54fb4c8](https://github.com/xdy/twodsix-foundryvtt/commit/54fb4c87340ef96a709241f54cb5485e082289bb))
+
 ## [0.7.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.14...v0.7.15) (2021-01-29)
 
 
