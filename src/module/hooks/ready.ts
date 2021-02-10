@@ -1,4 +1,4 @@
-import {Migration} from "../migration";
+import migrateWorld from "../migration";
 import {createItemMacro} from "../utils/createItemMacro";
 
 Hooks.once("ready", async function () {
@@ -19,20 +19,14 @@ Hooks.once("ready", async function () {
 
   // Determine whether a system migration is required and feasible
 
-  const systemVersion = game.system.data.version;
-  let worldVersion = null;
-  if (game.settings.settings.has("twodsix.systemMigrationVersion")) {
-    worldVersion = await game.settings.get("twodsix", "systemMigrationVersion");
-    if (worldVersion == "null" || worldVersion == "") {
-      worldVersion = null;
-    }
+  let worldVersion = await game.settings.get("twodsix", "systemMigrationVersion");
+  if (worldVersion == "null" || worldVersion == null) {
+    worldVersion = "";
   }
 
-  const needMigration = worldVersion === null || isNewerVersion(systemVersion, worldVersion);
-
   // Perform the migration
-  if (needMigration && game.user.isGM) {
-    await Migration.migrateWorld();
+  if (game.user.isGM) {
+    await migrateWorld(worldVersion);
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
