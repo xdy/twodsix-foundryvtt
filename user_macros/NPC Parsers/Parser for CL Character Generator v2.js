@@ -41,7 +41,11 @@ async function getInputText(){
 	
 	++line;
 	
-	//Process second line which is of the generic format "careers(terms)  Cr#"
+	//process second line which is the homeworld
+	let homeworld= processedText[line].slice(processedText[line].indexOf(`:`)+2);
+	++line; 
+	
+	//Process third line which is of the generic format "careers(terms)  Cr#"
 	let posCr = processedText[line].indexOf('Cr');
 	
 	let credits = parseInt(processedText[line].slice(posCr+2));
@@ -59,7 +63,8 @@ async function getInputText(){
 		'data.age.value': age,
 		'data.finances.cash' : cash,
 		'data.finances.debt' : debt,
-		'data.bio' : bio
+		'data.bio' : bio,
+		'data.homeWorld' : homeworld
 	});
 
 		
