@@ -21,10 +21,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        1,
-        1
-      ],
+      "range": [1, 1],
       "drawn": false
     },
     {
@@ -35,10 +32,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        2,
-        2
-      ],
+      "range": [2, 2],
       "drawn": false
     },
     {
@@ -49,10 +43,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        3,
-        3
-      ],
+      "range": [3, 3],
       "drawn": false
     },
     {
@@ -63,10 +54,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        4,
-        4
-      ],
+      "range": [4, 4],
       "drawn": false
     },
     {
@@ -77,10 +65,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        5,
-        5
-      ],
+      "range": [5, 5],
       "drawn": false
     },
     {
@@ -91,10 +76,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        6,
-        6
-      ],
+      "range": [6, 6],
       "drawn": false
     },
     {
@@ -105,10 +87,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        7,
-        7
-      ],
+      "range": [7, 7],
       "drawn": false
     },
     {
@@ -119,10 +98,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        8,
-        8
-      ],
+      "range": [8, 8],
       "drawn": false
     },
     {
@@ -133,10 +109,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        9,
-        9
-      ],
+      "range": [9, 9],
       "drawn": false
     },
     {
@@ -147,10 +120,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        10,
-        10
-      ],
+      "range": [10, 10],
       "drawn": false
     },
     {
@@ -161,10 +131,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        11,
-        11
-      ],
+      "range": [11, 11],
       "drawn": false
     },
     {
@@ -175,10 +142,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        12,
-        12
-      ],
+      "range": [12, 12],
       "drawn": false
     },
     {
@@ -189,10 +153,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        13,
-        13
-      ],
+      "range": [13, 13],
       "drawn": false
     },
     {
@@ -203,10 +164,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        14,
-        14
-      ],
+      "range": [14, 14],
       "drawn": false
     },
     {
@@ -217,10 +175,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        15,
-        15
-      ],
+      "range": [15, 15],
       "drawn": false
     },
     {
@@ -231,10 +186,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        16,
-        16
-      ],
+      "range": [16, 16],
       "drawn": false
     },
     {
@@ -245,10 +197,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        17,
-        17
-      ],
+      "range": [17, 17],
       "drawn": false
     },
     {
@@ -259,10 +208,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        18,
-        18
-      ],
+      "range": [18, 18],
       "drawn": false
     },
     {
@@ -273,10 +219,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        19,
-        19
-      ],
+      "range": [19, 19],
       "drawn": false
     },
     {
@@ -287,10 +230,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        20,
-        20
-      ],
+      "range": [20, 20],
       "drawn": false
     },
     {
@@ -301,10 +241,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        21,
-        21
-      ],
+      "range": [21, 21],
       "drawn": false
     },
     {
@@ -315,10 +252,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        22,
-        22
-      ],
+      "range": [22, 22],
       "drawn": false
     },
     {
@@ -329,10 +263,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        23,
-        23
-      ],
+      "range": [23, 23],
       "drawn": false
     },
     {
@@ -343,10 +274,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        24,
-        24
-      ],
+      "range": [24, 24],
       "drawn": false
     },
     {
@@ -357,10 +285,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        25,
-        25
-      ],
+      "range": [25, 25],
       "drawn": false
     },
     {
@@ -371,10 +296,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        26,
-        26
-      ],
+      "range": [26, 26],
       "drawn": false
     },
     {
@@ -385,10 +307,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        27,
-        27
-      ],
+      "range": [27, 27],
       "drawn": false
     },
     {
@@ -399,10 +318,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        28,
-        28
-      ],
+      "range": [28, 28],
       "drawn": false
     },
     {
@@ -413,10 +329,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        29,
-        29
-      ],
+      "range": [29, 29],
       "drawn": false
     },
     {
@@ -427,10 +340,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        30,
-        30
-      ],
+      "range": [30, 30],
       "drawn": false
     },
     {
@@ -441,10 +351,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        31,
-        31
-      ],
+      "range": [31, 31],
       "drawn": false
     },
     {
@@ -455,10 +362,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        32,
-        32
-      ],
+      "range": [32, 32],
       "drawn": false
     },
     {
@@ -469,10 +373,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        33,
-        33
-      ],
+      "range": [33, 33],
       "drawn": false
     },
     {
@@ -483,10 +384,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        34,
-        34
-      ],
+      "range": [34, 34],
       "drawn": false
     },
     {
@@ -497,10 +395,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        35,
-        35
-      ],
+      "range": [35, 35],
       "drawn": false
     }
   ],
