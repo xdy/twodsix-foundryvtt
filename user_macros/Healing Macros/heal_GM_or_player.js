@@ -30,7 +30,7 @@ async function healCharacter(healer, patient){
 	//Check that doctor has Medicine skill
 	const medSkill = healer.items.find(item => item.name == 'Medicine');
 	
-	//Check that doctor has Medkit
+	//Check that doctor has Medkit or Medical Kit
 	let medKit = healer.items.find(item => item.name == 'Medkit');
 	if (medKit==null){
 		 medKit = healer.items.find(item => item.name == "Medical Kit");
