@@ -1,0 +1,104 @@
+{
+  "_id": "6xSNKDeIlp2GMEg5",
+  "name": "Alien Vessel",
+  "sort": 100000,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Alien Vessel Encounter Type",
+  "results": [
+    {
+      "_id": "BY9vM1e31IMs2zGy",
+      "flags": {},
+      "type": 0,
+      "text": "Alien courier",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "or7o6ZvOBoyuqUlt",
+      "flags": {},
+      "type": 0,
+      "text": "Alien frontier trader",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "a2CAAGtkymLKU9L7",
+      "flags": {},
+      "type": 0,
+      "text": "Alien merchant freighter",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "4gmF09y8mCoISNze",
+      "flags": {},
+      "type": 0,
+      "text": "Alien military vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "MU0MwxJ3AcDstbEh",
+      "flags": {},
+      "type": 0,
+      "text": "Alien raider",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "64y2lsBVWUh7W9P4",
+      "flags": {},
+      "type": 0,
+      "text": "Alien research vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true
+}

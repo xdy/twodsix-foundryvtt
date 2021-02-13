@@ -1,0 +1,258 @@
+{
+  "_id": "iijiz6e6FxQ2I926",
+  "name": "Tech Level - CL",
+  "sort": 237500,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.7"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light",
+  "results": [
+    {
+      "_id": "2MYDiPNyDc33wo0V",
+      "flags": {},
+      "type": 0,
+      "text": "No technology, equivalent to the Stone age.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "sDfmz4m4G6CZRNHL",
+      "flags": {},
+      "type": 0,
+      "text": "Roughly on a par with Bronze or Iron age technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "BVjsaplgXxCZaueJ",
+      "flags": {},
+      "type": 0,
+      "text": "Renaissance technology. Simple black-powder firearms",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "BruHKIfju2rWia8o",
+      "flags": {},
+      "type": 0,
+      "text": "Mass production allows for product standardization, heralding the beginnings of industrial revolution and steam power.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "BhEENwWYzP80jA2C",
+      "flags": {},
+      "type": 0,
+      "text": "The transition to industrialization is complete, bringing plastics, radio, and other such inventions.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ymkueLlCdqqNa0wW",
+      "flags": {},
+      "type": 0,
+      "text": "Widespread electrification, telecommunications, and internal combustion engines.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "9a0a9CGHFHnmqJqz",
+      "flags": {},
+      "type": 0,
+      "text": "Development of fission power and more advanced computing.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "aY7TqSy4PrJQcYUU",
+      "flags": {},
+      "type": 0,
+      "text": "Can reach orbit reliably and has telecommunications satellites.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "RfsLLryego3RsGWt",
+      "flags": {},
+      "type": 0,
+      "text": "Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture’s capacity.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "6boK0Qj3gNo6sBaO",
+      "flags": {},
+      "type": 0,
+      "text": "Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "NnsYs5YevxCXDVZT",
+      "flags": {},
+      "type": 0,
+      "text": "With the advent of Jump, nearby systems are opened up.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "wJ8WsHxKzFGLigdG",
+      "flags": {},
+      "type": 0,
+      "text": "The first primitive (non-creative) artificial intelligences become possible in the form of “low autonomous” interfaces, as computers begin to model synaptic networks.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "e5HbauCo7IEwfAKp",
+      "flags": {},
+      "type": 0,
+      "text": "Weather control revolutionizes terraforming and agriculture.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "NDqsQRcvhYDrrj0c",
+      "flags": {},
+      "type": 0,
+      "text": "Powered Armor appears on the battlefield in response to the new weapons. “High autonomous” interfaces allow computers to become self-actuating and self-teaching.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "PohuNYormDx0Givi",
+      "flags": {},
+      "type": 0,
+      "text": "Fusion weapons become man-portable.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "GyZ1z25yQk3mb3g2",
+      "flags": {},
+      "type": 0,
+      "text": "The development of synthetic anagathics means that the human lifespan is now vastly increased.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "lC1PepLfXqvWBk8g",
+      "flags": {},
+      "type": 0,
+      "text": "Plasma weapons become handheld and no longer require a backpack power pack",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d17-1",
+  "replacement": true,
+  "displayRoll": true
+}

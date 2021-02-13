@@ -1,0 +1,244 @@
+{
+  "_id": "5ZYFQurIrOVmkWJS",
+  "name": "Law Level (2)",
+  "sort": 137500,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.7"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "https://travellermap.com/doc/secondsurvey#uwp",
+  "results": [
+    {
+      "_id": "EANEMLmp7Tiw4iFg",
+      "flags": {},
+      "type": 0,
+      "text": "No prohibitions.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "NsgQ7oQMeb3pIZR7",
+      "flags": {},
+      "type": 0,
+      "text": "Body pistols, explosives, and poison gas prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "f0lncsQiyUe5aoe6",
+      "flags": {},
+      "type": 0,
+      "text": "Portable energy weapons prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "TVQm3ZPMqQaMciOM",
+      "flags": {},
+      "type": 0,
+      "text": "Machine guns, automatic rifles prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "kb9hIXH8L8br5560",
+      "flags": {},
+      "type": 0,
+      "text": "Light assault weapons prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "KEjP3rlWF1g9C5xR",
+      "flags": {},
+      "type": 0,
+      "text": "Personal concealable weapons prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "nwK6mul2nu9dG7OF",
+      "flags": {},
+      "type": 0,
+      "text": "All firearms except shotguns prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "315op0CyaiNWOpdF",
+      "flags": {},
+      "type": 0,
+      "text": "Shotguns prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "6mZ8pyIWCt8oi5WI",
+      "flags": {},
+      "type": 0,
+      "text": "Long bladed weapons controlled; open possession prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "m7PnTYnyY7ijwhMy",
+      "flags": {},
+      "type": 0,
+      "text": "Possession of weapons outside the home prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "KbyYUBTMVocD6t7k",
+      "flags": {},
+      "type": 0,
+      "text": "Weapon possession prohibited.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "gR8WxNjrWO9Wxmpb",
+      "flags": {},
+      "type": 0,
+      "text": "Rigid control of civilian movement.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "CFTqMkHznKn23Ioi",
+      "flags": {},
+      "type": 0,
+      "text": "Unrestricted invasion of privacy.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "pIBHziB9ispJq9te",
+      "flags": {},
+      "type": 0,
+      "text": "Paramilitary law enforcement.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "xNo1NGldFpJEgnSA",
+      "flags": {},
+      "type": 0,
+      "text": "Full-fledged police state.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "7eFP2GwVbD5KLs2i",
+      "flags": {},
+      "type": 0,
+      "text": "All facets of daily life regularly legislated and controlled.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true
+}

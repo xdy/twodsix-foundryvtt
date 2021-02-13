@@ -1,0 +1,411 @@
+// Take text block from
+// http://members.ozemail.com.au/~jonoreita/SupplementOne/Cepheus_Engine_1001_characters.html
+// and translate into a character skills must be separated by commas
+
+let compendium = "";
+
+await getInputText();
+
+// Get text block and process
+async function getInputText() {
+  // Get Input
+  let raw_text = await new Promise((resolve) => {
+    new Dialog({
+      modal : true,
+      title : `Copy and paste text for a single character`,
+      content :
+          `<label>Must select comma separated skills</label><textarea type="text" name="input" cols="40" rows="5"></textarea>`,
+      buttons : {
+        CE : {
+          label : `Cepheus Engine`,
+          callback : (html) => {
+            resolve(html.find('[name="input"]')[0].value);
+            compendium = "CE";
+          }
+        },
+        CEL : {
+          label : `Cepheus Light`,
+          callback : (html) => {
+            resolve(html.find('[name="input"]')[0].value);
+            compendium = "CL";
+          }
+        }
+      }
+    }).render(true);
+  });
+
+  // Abort if no text entered
+  if (raw_text.length === 0) {
+    return;
+  }
+
+  // split input into lines of text
+  let processedText = raw_text.split(`\n`);
+  let line = 0;
+
+  // Process first line which is of the generic format "#. honorific name(s)
+  // (gender, species) UPP Age #"
+
+  // locate key positions on first line
+  let startName = 0;
+
+  if (processedText[line].indexOf('.') !== -1) {
+    startName =
+        processedText[line].indexOf(`.`) + 2; // Adjust for numbered character
+  }
+  let posOpenParen = processedText[line].indexOf(`(`);
+  let posCloseParen = processedText[line].indexOf(`)`);
+  let posAge = processedText[line].indexOf(`Age`);
+
+  // break up first line
+  let fullName = processedText[line].slice(startName, posOpenParen - 1);
+  let genderSpecies =
+      processedText[line].slice(posOpenParen + 1, posCloseParen).split(" ");
+  let upp = processedText[line].slice(posCloseParen + 2, posAge - 1);
+  upp = upp.replace('-', ''); // remove dash if psionic
+  let age = processedText[line].slice(posAge + 4);
+
+  // create new actor
+  let actor = await Actor.create({name : fullName, type : 'traveller'});
+
+  ++line;
+
+  // Process second line which is of the generic format "careers(terms)  Cr#"
+  let posCr = processedText[line].indexOf('Cr');
+
+  let credits = processedText[line].slice(posCr + 2);
+  let cash = 0;
+  let debt = 0;
+  if (credits >= 0) {
+    cash = credits;
+  } else {
+    debt = -credits;
+  }
+
+  let bio = '<p>Career(s): ' + processedText[line].slice(0, posCr - 3) + '</p>';
+
+  // Enter basic character data
+  await actor.update({
+    'data.name' : fullName,
+    'name' : fullName,
+    'data.age.value' : age,
+    'data.gender' : genderSpecies[0],
+    'data.species' : genderSpecies[1],
+    'data.finances.cash' : cash,
+    'data.finances.debt' : debt
+  });
+
+  ++line;
+
+  // Check for traits for non-humans and add to bio
+  if (genderSpecies[1] !== 'Human') {
+    bio += '<p>' + processedText[line] + '</p>';
+    ++line;
+  }
+
+  // define characteristic order for UPP
+  let upp_order = [
+    'strength', 'dexterity', 'endurance', 'intelligence', 'education',
+    'socialStanding', 'psionicStrength'
+  ];
+
+  let char_id = '';
+  // enter characteristic values
+  for (let i = 0; i < Math.min(upp.length, upp_order.length); ++i) {
+    char_id = 'data.characteristics.' + upp_order[i] + '.value';
+    await actor.update({[char_id] : hexToBase10(upp[i])});
+  }
+
+  // generate array of skill-level pairs
+  let cleanSkills = processedText[line].trim(); // get rid of extra whitespace
+  if (cleanSkills[cleanSkills.length - 1] ===
+      ',') { // Get rid of end of string ',' if present
+    cleanSkills = cleanSkills.slice(0, -1);
+  }
+  let skillsList = cleanSkills.split(
+      ', '); // make an array of individual skill-level entries
+
+  // Open Compendium
+  let packName = '';
+  switch (compendium) {
+  case 'CE':
+    packName = 'twodsix.ce-srd-items';
+    break;
+  case 'CL':
+    packName = 'twodsix.cepheus-light-items';
+    break;
+  }
+  const pack = await game.packs.get(packName).getContent();
+
+  // Process skills list
+  for (let i = 0; i < skillsList.length; ++i) {
+
+    let lastDash = skillsList[i].lastIndexOf(
+        '-'); // Some skills have dash in name, so last one is the marker
+    let skillName = skillsList[i].slice(0, lastDash);
+    let skillLevel = skillsList[i].slice(lastDash + 1);
+
+    let adjName = translateSkillName(skillName);
+
+    let skillItem = await pack.find(s => s.name === adjName);
+
+    // Try to correct a null skillItem
+    if (skillItem === null || skillItem === undefined) {
+      adjName = compendiumErrors(skillName);
+      skillItem = await pack.find(s => s.name === adjName);
+    }
+
+    // Add new skill if it doesn't exist, pick higher level to add if it does
+    if (skillItem != null) {
+      let newSkill = await actor.items.find(item => item.data.name === adjName);
+
+      if (newSkill == null) {
+        await actor.createOwnedItem(skillItem);
+        newSkill = await actor.items.find(item => item.data.name === adjName);
+      } else {
+        skillLevel = Math.max(skillLevel, newSkill.data.data.value);
+      }
+
+      await newSkill.update(
+          {'data.value' : skillLevel, 'data.characteristic' : 'NONE'});
+    } else {
+      bio += '<p>Unknown skill: ' + skillsList[i] + '</p>';
+    }
+  }
+
+  ++line;
+
+  // Process rest of bio
+
+  // Check for muster out benefits, optional line
+  if (processedText[line] !== 'Character Event Log:') {
+    // Try to add items from benefits
+    let itemList = processedText[line].split(', ');
+
+    for (let i = 0; i < itemList.length; ++i) {
+      let newItem = await pack.find(s => s.name === itemList[i]);
+      if (newItem != null) {
+        await actor.createOwnedItem(newItem);
+      }
+    }
+
+    bio += '<p>Muster Out Benefits: ' + processedText[line] + '</p>';
+    ++line;
+  }
+
+  // Add character event log to bio
+  for (let i = line; i < processedText.length; ++i) {
+    bio += '<p>' + processedText[i] + '</p>';
+  }
+  await actor.update({'data.bio' : bio});
+
+  // Show new actor
+  actor.sheet.render(true);
+}
+
+// Convert hex value to base10
+function hexToBase10(value) {
+  switch (value.toUpperCase()) {
+  case 'A':
+    return ('10');
+  case 'B':
+    return ('11');
+  case 'C':
+    return ('12');
+  case 'D':
+    return ('13');
+  case 'E':
+    return ('14');
+  case 'F':
+    return ('15');
+  case 'G':
+    return ('16');
+  default:
+    return (value);
+  }
+}
+
+// Convert Abbreviated Skill Name to Full Compendium Name
+function translateSkillName(skillName) {
+  switch (skillName) {
+  case 'Grav Vehicle':
+  case 'Rotor Aircraft':
+  case 'Winged Aircraft':
+    switch (compendium) {
+    case 'CE':
+      return ('Aircraft (' + skillName + ')');
+    case 'CL':
+      return ('Aircraft');
+    }
+    break;
+  case 'Farming':
+  case 'Riding':
+  case 'Veterinary Medicine':
+    switch (compendium) {
+    case 'CE':
+      return ('Animals (' + skillName + ')');
+    case 'CL':
+      return ('Animals');
+    }
+    break;
+  // case 'Survival':
+  case 'Archery':
+  case 'Energy Pistol':
+  case 'Energy Rifle':
+  case 'Shotguns':
+  case 'Slug Pistol':
+  case 'Slug Rifle':
+    switch (compendium) {
+    case 'CE':
+      return ('Gun Combat (' + skillName + ')');
+    case 'CL':
+      return ('Gun Combat');
+    }
+    break;
+  case 'Bay Weapons':
+  case 'Heavy Weapons':
+  case 'Screens':
+  case 'Spinal Mounts':
+  case 'Turret Weapons':
+    switch (compendium) {
+    case 'CE':
+      return ('Gunnery (' + skillName + ')');
+    case 'CL':
+      if (skillName === 'Heavy Weapons') {
+        return (skillName);
+      } else {
+        return ('Gunnery');
+      }
+    }
+    break;
+  case 'Bludgeoning Weapons':
+  case 'Natural Weapons':
+  case 'Slashing Weapons':
+  case 'Piercing Weapons':
+    switch (compendium) {
+    case 'CE':
+      return ('Melee Combat (' + skillName + ')');
+    case 'CL':
+      return ('Melee');
+    }
+    break;
+  case 'Life Sciences':
+  case 'Physical Sciences':
+  case 'Social Sciences':
+  case 'Space Sciences':
+    switch (compendium) {
+    case 'CE':
+      return ('Science (' + skillName + ')');
+    case 'CL':
+      return ('Science');
+    }
+    break;
+  case 'Mole':
+  case 'Tracked Vehicle':
+  case 'Wheeled Vehicle':
+    switch (compendium) {
+    case 'CE':
+      return ('Vehicle (' + skillName + ')');
+    case 'CL':
+      return ('Driving');
+    }
+    break;
+  case 'Motorboats':
+  case 'Ocean Ships':
+  case 'Sailing Ships':
+  case 'Submarine':
+    switch (compendium) {
+    case 'CE':
+      return ('Watercraft (' + skillName + ')');
+    case 'CL':
+      return ('Watercraft');
+    }
+    break;
+  case 'Battle Dress':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Zero-G');
+    }
+    break;
+  case 'Gambling':
+  case 'Carousing':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Carouse');
+    }
+    break;
+  case 'Computer':
+  case 'Comms':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Computers');
+    }
+    break;
+  case 'Electronics':
+  case 'Mechanics':
+  case 'Gravitics':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Repair');
+    }
+    break;
+  case 'Navigation':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Piloting');
+    }
+    break;
+  case 'Broker':
+  case 'Bribery':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Liaison');
+    }
+    break;
+  case 'Advocate':
+    switch (compendium) {
+    case 'CE':
+      return (skillName);
+    case 'CL':
+      return ('Admin');
+    }
+    break;
+  default:
+    return (skillName);
+  }
+}
+
+function compendiumErrors(skillName) {
+  switch (skillName) {
+  case 'Leader':
+    return ('Leadership');
+  case 'Survival':
+    return ('Survival ');
+  case 'Piercing Weapons':
+    return ('Melee Weapons (Piercing Weapons)');
+  case 'Jack o\' Trades':
+    switch (compendium) {
+    case 'CE':
+      return ('Jack of All Trades');
+    case 'CL':
+      return ('Jack-of-All-Trades');
+    }
+    break;
+  case 'Melee Combat':
+    return ('Melee');
+  case 'Demolitions':
+    return ('Demolition / Explosives');
+  }
+}

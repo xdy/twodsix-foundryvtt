@@ -1,0 +1,244 @@
+{
+  "_id": "kWHpt0k1JHP6Xu0v",
+  "name": "Tech Level - CE",
+  "sort": 187500,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.7"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Engine SRD",
+  "results": [
+    {
+      "_id": "9EyY1jLu4l2DsZ93",
+      "flags": {},
+      "type": 0,
+      "text": "Primitive - No technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "cdcxq8w4ahIwJ2H2",
+      "flags": {},
+      "type": 0,
+      "text": "Primitive - Roughly on a par with Bronze or Iron age technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "QhDzODFBMoFKFiOu",
+      "flags": {},
+      "type": 0,
+      "text": "Primitive - Renaissance technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "AZX32Qa3K6PFwsC3",
+      "flags": {},
+      "type": 0,
+      "text": "Primitive - Mass production allows for product standardization, bringing the germ of industrial revolution and steam power.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "h3lu4GBIJD3pwOpI",
+      "flags": {},
+      "type": 0,
+      "text": "Industrial - Transition to industrial revolution is complete, bringing plastics, radio and other such inventions.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "SvSn4mbozZU78Nhx",
+      "flags": {},
+      "type": 0,
+      "text": "Industrial - Widespread electrification, tele-communications and internal combustion.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "sNrj2J8NZt4rAJ5Z",
+      "flags": {},
+      "type": 0,
+      "text": "Industrial - Development of fission power and more advanced computing.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "cQbD8LJ4pPOQ9akp",
+      "flags": {},
+      "type": 0,
+      "text": "Pre-Stellar - Can reach orbit reliably and has telecommunications satellites.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "6b8WMdnfX589YNxb",
+      "flags": {},
+      "type": 0,
+      "text": "Pre-Stellar - Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture's capacity.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "0Bm0N06Kw3E5qMNg",
+      "flags": {},
+      "type": 0,
+      "text": "Pre-Stellar - Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "U6avKsyDMBb0R3Xh",
+      "flags": {},
+      "type": 0,
+      "text": "Early Stellar - With the advent of Jump, nearby systems are opened up.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "U73vcrEksjOfHXqu",
+      "flags": {},
+      "type": 0,
+      "text": "Early Stellar - The first primitive (non-creative) artificial intelligences become possible in the form of \"low autonomous\" interfaces, as computers begin to model synaptic networks.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "jhpM35dPpuPYLdPl",
+      "flags": {},
+      "type": 0,
+      "text": "Average Stellar - Weather control revolutionizes terraforming and agriculture.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "0NiF3TObb5fGLbVr",
+      "flags": {},
+      "type": 0,
+      "text": "Average Stellar - The battle dress appears on the battlefield in response to the new weapons. \"High autonomous\" interfaces allow computers to become self-actuating and self-teaching.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "f406BJ4EofYs80GK",
+      "flags": {},
+      "type": 0,
+      "text": "Average Stellar - Fusion weapons become man-portable.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "k6HxLwlt7B3PLmGD",
+      "flags": {},
+      "type": 0,
+      "text": "High Stellar - Black globe generators suggest a new direction for defensive technologies, while the development of synthetic anagathics means that the human lifespan is now vastly increased.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d17-1",
+  "replacement": true,
+  "displayRoll": true
+}

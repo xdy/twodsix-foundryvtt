@@ -1,0 +1,104 @@
+{
+  "_id": "9qZd3Kg6tWL2bt74",
+  "name": "Derelict Encounter Type",
+  "sort": 300000,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Derelict Encounter Type Subtable",
+  "results": [
+    {
+      "_id": "XXnEFSSHgF2lM36b",
+      "flags": {},
+      "type": 0,
+      "text": "Escape pod or life boat",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "uSrB4FgVZ8tWN1dT",
+      "flags": {},
+      "type": 0,
+      "text": "Merchant vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "viSggYVTb7hSdrt9",
+      "flags": {},
+      "type": 0,
+      "text": "Military vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "YLToYeJkIxohIVRQ",
+      "flags": {},
+      "type": 0,
+      "text": "Personal vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "wew7DCKngGlmW0ui",
+      "flags": {},
+      "type": 0,
+      "text": "Research vessel",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "XzcsCcxxCpWnojka",
+      "flags": {},
+      "type": 0,
+      "text": "Space habitat",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true
+}

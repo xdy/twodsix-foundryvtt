@@ -1,0 +1,244 @@
+{
+  "_id": "nuHE3q0XGPr7JTwB",
+  "name": "World Size",
+  "sort": 0,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.7"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "fhzPtwJfJNUiFaHu",
+      "flags": {},
+      "type": 0,
+      "text": "Asteroid Belt",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "MKF5IJ7rmpUgNkUP",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 1,600km; Grav = 0.122G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "vKeI0pdzZDfB3oOa",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 3,200km; Grav = 0.240G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "nt9TvoWRmMhgVOVj",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 4,800km; Grav = 0.377G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "yNOE6K7N4nEli7Hm",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 6,400km; Grav = 0.500G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "3M1ubfBLrRrDp1aW",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 8,000km; Grav = 0.625G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "A77fr9Zxi18zBl6W",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 9,600km; Grav = 0.840G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ZCzpJncWpl77DGH3",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 11,200km; Grav= 0.875G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "So4wt9mP1NDaJDCS",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 12,800km; Grav = 1.000G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "S0mq8KdIxbqHfymj",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 14,400km; Grav = 1.120G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "g9o9FmtI7Iwd6EmU",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 16,000km; Grav = 1.250G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "pXwn4ZXaMr5uYEy5",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 18,800km; Grav = 1.375G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ChUETYpT3SDwPIak",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 19,200km; Grav = 1.500G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "uI37ymYCXTCtUsSx",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 20,800km; Grav = 1.625G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "mXDXfkZyB4hLTF3c",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 22,400km; Grav = 1.750G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "af0AXHPQdvA5FNU2",
+      "flags": {},
+      "type": 0,
+      "text": "Diam = 24,000km; Grav = 1.875G",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d15",
+  "replacement": true,
+  "displayRoll": true
+}
