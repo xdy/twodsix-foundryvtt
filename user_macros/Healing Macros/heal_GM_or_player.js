@@ -70,4 +70,4 @@ async function healCharacter(healer, patient) {
       }
     }
   }
-};
+}
