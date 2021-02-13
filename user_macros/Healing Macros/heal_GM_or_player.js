@@ -34,7 +34,7 @@ async function healCharacter(healer, patient) {
   // Check that doctor has Medicine skill
   const medSkill = healer.items.find(item => item.name === 'Medicine');
 
-  //Check that doctor has Medkit or Medical Kit
+  // Check that doctor has Medkit or Medical Kit
   let medKit = healer.items.find(item => item.name === 'Medkit');
   if (medKit == null) {
     medKit = healer.items.find(item => item.name === "Medical Kit");
@@ -47,7 +47,7 @@ async function healCharacter(healer, patient) {
     let pointsToHeal = healRoll.effect * MULTIPLIER;
 
     // define characteristic healing order
-    let heal_order = ['endurance', 'strength', 'dexterity'];
+    let heal_order = [ 'endurance', 'strength', 'dexterity' ];
 
     let char_id = '';
 
@@ -60,7 +60,7 @@ async function healCharacter(healer, patient) {
         let new_damage = Math.max(0, cur_damage - pointsToHeal);
         char_id = 'data.characteristics.' + heal_order[i] + '.damage';
 
-        await patient.update({[char_id]: new_damage});
+        await patient.update({[char_id] : new_damage});
 
         pointsToHeal -= cur_damage - new_damage;
       }

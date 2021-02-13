@@ -3,7 +3,7 @@
 
 const DEBUG = false; // Display debuggin info to console
 const RANDOM =
-  true; // Whether trade goods for player to buy are seelcted at random
+    true; // Whether trade goods for player to buy are seelcted at random
 // (true).  Otherwise, goods available are determined by trade codes.
 
 generateTable();
@@ -12,34 +12,33 @@ async function generateTable() {
   let uwp = 0;
   let traderDM = 0;
   let compendium = "";
-  await new Promise(
-    (resolve) => {
-      new Dialog({
-        content: `
+  await new Promise((resolve) => {
+    new Dialog({
+      content : `
 			<input placeholder = "World UWP" type="text" name="uwp"/>
 			<input placeholder = "Trader DM" type="number" name="traderDM"/>`,
-        title: "Generate Trade Table",
-        buttons: {
-          CE: {
-            label: "Cepheus Engine",
-            callback: btn => {
-              resolve(uwp = btn.find("[name='uwp']").val(),
-                traderDM = btn.find("[name='traderDM']").val(),
-                compendium = "CE");
-            }
-          },
-          CL: {
-            label: "Cepheus Light",
-            callback: btn => {
-              resolve(uwp = btn.find("[name='uwp']").val(),
-                traderDM = btn.find("[name='traderDM']").val(),
-                compendium = "CL");
-            }
+      title : "Generate Trade Table",
+      buttons : {
+        CE : {
+          label : "Cepheus Engine",
+          callback : btn => {
+            resolve(uwp = btn.find("[name='uwp']").val(),
+                    traderDM = btn.find("[name='traderDM']").val(),
+                    compendium = "CE");
+          }
+        },
+        CL : {
+          label : "Cepheus Light",
+          callback : btn => {
+            resolve(uwp = btn.find("[name='uwp']").val(),
+                    traderDM = btn.find("[name='traderDM']").val(),
+                    compendium = "CL");
           }
         }
+      }
 
-      }).render(true);
-    });
+    }).render(true);
+  });
 
   const tcodes = get_TradeC(uwp);
   const starBase = uwp[0];
@@ -53,17 +52,17 @@ async function generateTable() {
 
   let trade_table = ``;
   trade_table +=
-    process_tradeTable('Advanced Trade Goods - ' + compendium, tcodes,
-      parseInt(traderDM), compendium, starBase);
+      process_tradeTable('Advanced Trade Goods - ' + compendium, tcodes,
+                         parseInt(traderDM), compendium, starBase);
 
   trade_table += process_tradeTable("Basic Goods - " + compendium, tcodes,
-    parseInt(traderDM), compendium, starBase);
+                                    parseInt(traderDM), compendium, starBase);
 
   await new Promise((resolve) => {
     new Dialog({
-      modal: false,
-      title: `Trade Table for: ${uwp}`,
-      content: `<table><tbody><tr>
+      modal : false,
+      title : `Trade Table for: ${uwp}`,
+      content : `<table><tbody><tr>
 			<th style="text-align:left">Good</th>
 			<th style="text-align:center">Available to Buy (tons)</th>
 			<th style="text-align:center">Player Buys (Cr)</th>
@@ -71,18 +70,16 @@ async function generateTable() {
 			${trade_table}
 			</tbody></table>`,
 
-      buttons: {
-        Ok: {
-          label: `Ok`,
-          callback: (html) => {
-            resolve(html.find("input").val());
-          },
-          height: `12px`
+      buttons : {
+        Ok : {
+          label : `Ok`,
+          callback : (html) => { resolve(html.find("input").val()); },
+          height : `12px`
         }
       }
     },
-    {width: 700, height: 600})
-      .render(true);
+               {width : 700, height : 600})
+        .render(true);
   });
 }
 
@@ -113,14 +110,14 @@ function process_tradeTable(tableName, trcodes, offset, compendium, starBase) {
 
     // Determine planet trade code price DM's
     switch (compendium) {
-      case 'CL':
-        pSellMod = getMod(trcodes, details[4]);
-        pBuyMod = getMod(trcodes, details[3]);
-        break;
-      case 'CE':
-        pSellMod = getMod(trcodes, details[4]) - getMod(trcodes, details[3]);
-        pBuyMod = getMod(trcodes, details[3]) - getMod(trcodes, details[4]);
-        break;
+    case 'CL':
+      pSellMod = getMod(trcodes, details[4]);
+      pBuyMod = getMod(trcodes, details[3]);
+      break;
+    case 'CE':
+      pSellMod = getMod(trcodes, details[4]) - getMod(trcodes, details[3]);
+      pBuyMod = getMod(trcodes, details[3]) - getMod(trcodes, details[4]);
+      break;
     }
 
     if (DEBUG) {
@@ -135,14 +132,14 @@ function process_tradeTable(tableName, trcodes, offset, compendium, starBase) {
 
     // Determine tons available for player to buy
     if (RANDOM) {
-      tons = new Roll("@dice", {dice: details[2]}).evaluate().total;
+      tons = new Roll("@dice", {dice : details[2]}).evaluate().total;
       if (tableName.indexOf('Basic') === -1) {
         tons *= isAvailable[row];
       }
     } else {
       if ((tableName.indexOf('Basic') !== -1) ||
-        (availableGood(trcodes, details[3]))) {
-        tons = new Roll("@dice", {dice: details[2]}).evaluate().total;
+          (availableGood(trcodes, details[3]))) {
+        tons = new Roll("@dice", {dice : details[2]}).evaluate().total;
       }
     }
 
@@ -153,7 +150,7 @@ function process_tradeTable(tableName, trcodes, offset, compendium, starBase) {
 
     } else {
       pBuyPr = Math.round(details[1] *
-        rollPriceAdjust(pBuyMod + offset, "buy", compendium));
+                          rollPriceAdjust(pBuyMod + offset, "buy", compendium));
       // if (tableName.indexOf('Basic') === -1) {
       //   pSellPr = `---`;
       // }
@@ -161,13 +158,13 @@ function process_tradeTable(tableName, trcodes, offset, compendium, starBase) {
 
     // Determine Player Sells price
     pSellPr = Math.round(
-      details[1] * rollPriceAdjust(pSellMod + offset, "sell", compendium));
+        details[1] * rollPriceAdjust(pSellMod + offset, "sell", compendium));
 
     // generate buy-sell table row in html
     if (row === table.data.results.length - 1) {
       ret_text +=
-        `<tr style="border-bottom:1px solid red"><td style="padding-right:5px">${
-          details[0]}</td>`;
+          `<tr style="border-bottom:1px solid red"><td style="padding-right:5px">${
+              details[0]}</td>`;
     } else {
       ret_text += `<tr><td style="padding-right:5px">${details[0]}</td>`;
     }
@@ -192,25 +189,25 @@ function determineGoods(table, compendium, starBase) {
   // Calculate starport roll bonus if Cepheus Light
   if (compendium === 'CL') {
     switch (starBase.toUpperCase()) {
-      case 'A':
-        baseAdj = 4;
-        break;
-      case 'B':
-        baseAdj = 2;
-        break;
-      case 'C':
-        baseAdj = 1;
-        break;
-      case 'D':
-        baseAdj = 0;
-        break;
-      case 'E':
-        baseAdj = -2;
-        break;
+    case 'A':
+      baseAdj = 4;
+      break;
+    case 'B':
+      baseAdj = 2;
+      break;
+    case 'C':
+      baseAdj = 1;
+      break;
+    case 'D':
+      baseAdj = 0;
+      break;
+    case 'E':
+      baseAdj = -2;
+      break;
     }
   }
 
-  let numDraws = new Roll("1D6 + @adj", {adj: baseAdj}).evaluate().total;
+  let numDraws = new Roll("1D6 + @adj", {adj : baseAdj}).evaluate().total;
   if (DEBUG) {
     console.log('Number of Draws: ', numDraws);
   }
@@ -220,7 +217,7 @@ function determineGoods(table, compendium, starBase) {
   }
 
   for (let i = 0; i < numDraws; ++i) {
-    let item = new Roll("1D @num", {num: numItems}).evaluate().total;
+    let item = new Roll("1D @num", {num : numItems}).evaluate().total;
     ++availList[item - 1];
   }
   return (availList);
@@ -256,11 +253,11 @@ function rollPriceAdjust(offset, type, compendium) {
 
   const table = game.tables.entities.find(t => t.name === tableName);
 
-  let r = new Roll("2D6+@mod", {mod: offset}).evaluate().total;
+  let r = new Roll("2D6+@mod", {mod : offset}).evaluate().total;
   let details =
-    table.data
-      .results[Math.min(Math.max(r - 2, 0), table.data.results.length - 1)]
-      .text;
+      table.data
+          .results[Math.min(Math.max(r - 2, 0), table.data.results.length - 1)]
+          .text;
 
   if (DEBUG) {
     console.log('Roll on Adj Table: ', r);
@@ -318,7 +315,7 @@ function get_TradeC(UWPprofile) {
     }
 
     if ((atmo === 5 || atmo === 6 || atmo === 8) && hydro > 3 && hydro < 10 &&
-      pop > 3 && pop < 9) {
+        pop > 3 && pop < 9) {
       ret_text.push(`Ga`);
     }
 
@@ -376,21 +373,21 @@ function get_TradeC(UWPprofile) {
 // Convert hex value to base10
 function hexToBase10(value) {
   switch (value.toUpperCase()) {
-    case 'A':
-      return ('10');
-    case 'B':
-      return ('11');
-    case 'C':
-      return ('12');
-    case 'D':
-      return ('13');
-    case 'E':
-      return ('14');
-    case 'F':
-      return ('15');
-    case 'G':
-      return ('16');
-    default:
-      return (value);
+  case 'A':
+    return ('10');
+  case 'B':
+    return ('11');
+  case 'C':
+    return ('12');
+  case 'D':
+    return ('13');
+  case 'E':
+    return ('14');
+  case 'F':
+    return ('15');
+  case 'G':
+    return ('16');
+  default:
+    return (value);
   }
 }
