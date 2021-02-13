@@ -1,3 +1,10 @@
+## [0.7.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.17...v0.7.18) (2021-02-13)
+
+
+### Bug Fixes
+
+* add consumables ([93130df](https://github.com/xdy/twodsix-foundryvtt/commit/93130dff98fa22c2e26237d250ffb249f26a9854)), closes [#212](https://github.com/xdy/twodsix-foundryvtt/issues/212)
+
 ## [0.7.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.16...v0.7.17) (2021-02-06)
 
 
