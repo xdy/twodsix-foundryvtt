@@ -21,10 +21,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        1,
-        2
-      ],
+      "range": [1, 2],
       "drawn": false
     },
     {
@@ -35,10 +32,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        3,
-        3
-      ],
+      "range": [3, 3],
       "drawn": false
     },
     {
@@ -49,10 +43,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        4,
-        4
-      ],
+      "range": [4, 4],
       "drawn": false
     },
     {
@@ -63,10 +54,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        5,
-        6
-      ],
+      "range": [5, 6],
       "drawn": false
     }
   ],

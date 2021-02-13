@@ -21,10 +21,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        1,
-        1
-      ],
+      "range": [1, 1],
       "drawn": false
     },
     {
@@ -35,10 +32,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        2,
-        3
-      ],
+      "range": [2, 3],
       "drawn": false
     },
     {
@@ -49,10 +43,7 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [
-        4,
-        6
-      ],
+      "range": [4, 6],
       "drawn": false
     }
   ],
