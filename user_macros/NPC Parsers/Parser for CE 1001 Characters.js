@@ -145,7 +145,7 @@ async function getInputText() {
     let skillName = skillsList[i].slice(0, lastDash);
     let skillLevel = skillsList[i].slice(lastDash + 1);
 
-    let adjName = translateSkillName(skillName, compendium);
+    let adjName = translateSkillName(skillName);
 
     let skillItem = await pack.find(s => s.name === adjName);
 
