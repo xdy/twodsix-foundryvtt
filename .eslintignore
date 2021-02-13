@@ -17,4 +17,4 @@ dist/
 #This project
 foundryconfig.json
 foundry.js
-
+*.json
