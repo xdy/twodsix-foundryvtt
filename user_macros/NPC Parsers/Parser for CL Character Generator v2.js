@@ -142,8 +142,7 @@ async function getInputText() {
     // Add new skill
     if (skillItem != null) {
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let created = await actor.createOwnedItem(skillItem);
+      await actor.createOwnedItem(skillItem);
       let newSkill =
         await actor.items.find(item => item.data.name === skillName);
 
