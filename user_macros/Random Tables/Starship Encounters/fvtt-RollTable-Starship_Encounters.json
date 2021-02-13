@@ -22,7 +22,10 @@
       "collection": "RollTable",
       "resultId": "6xSNKDeIlp2GMEg5",
       "weight": 1,
-      "range": [2, 2],
+      "range": [
+        2,
+        2
+      ],
       "drawn": false
     },
     {
@@ -34,7 +37,10 @@
       "collection": "RollTable",
       "resultId": "9qZd3Kg6tWL2bt74",
       "weight": 1,
-      "range": [3, 3],
+      "range": [
+        3,
+        3
+      ],
       "drawn": false
     },
     {
@@ -46,7 +52,10 @@
       "collection": "RollTable",
       "resultId": "Rf7e5FnQp8IYQyrW",
       "weight": 1,
-      "range": [4, 4],
+      "range": [
+        4,
+        4
+      ],
       "drawn": false
     },
     {
@@ -58,7 +67,10 @@
       "collection": "RollTable",
       "resultId": "bIMKrUyjKBbb8awx",
       "weight": 1,
-      "range": [5, 5],
+      "range": [
+        5,
+        5
+      ],
       "drawn": false
     },
     {
@@ -70,7 +82,10 @@
       "collection": "RollTable",
       "resultId": "fBQdRcdNu88RTFsS",
       "weight": 1,
-      "range": [6, 6],
+      "range": [
+        6,
+        6
+      ],
       "drawn": false
     },
     {
@@ -82,7 +97,10 @@
       "collection": "RollTable",
       "resultId": "DERKwOuoNbikvRHu",
       "weight": 1,
-      "range": [7, 7],
+      "range": [
+        7,
+        7
+      ],
       "drawn": false
     },
     {
@@ -94,7 +112,10 @@
       "collection": "RollTable",
       "resultId": "rYCJVeQAYKhbEGIq",
       "weight": 1,
-      "range": [8, 8],
+      "range": [
+        8,
+        8
+      ],
       "drawn": false
     },
     {
@@ -106,7 +127,10 @@
       "collection": "RollTable",
       "resultId": "oyCY1WgXVolPfHrn",
       "weight": 1,
-      "range": [9, 9],
+      "range": [
+        9,
+        9
+      ],
       "drawn": false
     },
     {
@@ -118,7 +142,10 @@
       "collection": "RollTable",
       "resultId": "oGXaEMmPDpVvq84z",
       "weight": 1,
-      "range": [10, 10],
+      "range": [
+        10,
+        10
+      ],
       "drawn": false
     },
     {
@@ -130,7 +157,10 @@
       "collection": "RollTable",
       "resultId": "LqlrMH0WbVql6wDo",
       "weight": 1,
-      "range": [11, 11],
+      "range": [
+        11,
+        11
+      ],
       "drawn": false
     },
     {
@@ -141,7 +171,10 @@
       "img": "icons/svg/d20-black.svg",
       "resultId": "",
       "weight": 1,
-      "range": [12, 12],
+      "range": [
+        12,
+        12
+      ],
       "drawn": false
     }
   ],
