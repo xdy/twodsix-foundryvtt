@@ -47,7 +47,7 @@ async function healCharacter(healer, patient) {
     let pointsToHeal = healRoll.effect * MULTIPLIER;
 
     // define characteristic healing order
-    let heal_order = ['endurance', 'strength', 'dexterity'];
+    let heal_order = [ 'endurance', 'strength', 'dexterity' ];
 
     let char_id = '';
 
@@ -60,7 +60,7 @@ async function healCharacter(healer, patient) {
         let new_damage = Math.max(0, cur_damage - pointsToHeal);
         char_id = 'data.characteristics.' + heal_order[i] + '.damage';
 
-        await patient.update({[char_id]: new_damage});
+        await patient.update({[char_id] : new_damage});
 
         pointsToHeal -= cur_damage - new_damage;
       }

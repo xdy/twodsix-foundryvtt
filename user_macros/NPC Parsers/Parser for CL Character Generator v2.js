@@ -7,17 +7,15 @@ async function getInputText() {
   // Get Input
   let raw_text = await new Promise((resolve) => {
     new Dialog({
-      modal: true,
-      title: `Copy and paste text for a single character`,
-      content:
-        `<label>Must select just the character block</label><textarea type="text" name="input" cols="40" rows="5"></textarea>`,
-      buttons: {
-        OK: {
-          label: `Process`,
-          callback:
-            (html) => {
-              resolve(html.find('[name="input"]')[0].value);
-            }
+      modal : true,
+      title : `Copy and paste text for a single character`,
+      content :
+          `<label>Must select just the character block</label><textarea type="text" name="input" cols="40" rows="5"></textarea>`,
+      buttons : {
+        OK : {
+          label : `Process`,
+          callback :
+              (html) => { resolve(html.find('[name="input"]')[0].value); }
         }
       }
     }).render(true);
@@ -42,13 +40,13 @@ async function getInputText() {
   // console.log('Age: ', age, ', UPP: ', upp, 'Full Name: ', fullName);
 
   // create new actor
-  let actor = await Actor.create({name: fullName, type: 'traveller'});
+  let actor = await Actor.create({name : fullName, type : 'traveller'});
 
   ++line;
 
   // process second line which is the homeworld
   let homeworld =
-    processedText[line].slice(processedText[line].indexOf(`:`) + 2);
+      processedText[line].slice(processedText[line].indexOf(`:`) + 2);
   ++line;
 
   // Process third line which is of the generic format "careers(terms)  Cr#"
@@ -67,13 +65,13 @@ async function getInputText() {
 
   // Enter basic character data
   await actor.update({
-    'data.name': fullName,
-    'name': fullName,
-    'data.age.value': age,
-    'data.finances.cash': cash,
-    'data.finances.debt': debt,
-    'data.bio': bio,
-    'data.homeWorld': homeworld
+    'data.name' : fullName,
+    'name' : fullName,
+    'data.age.value' : age,
+    'data.finances.cash' : cash,
+    'data.finances.debt' : debt,
+    'data.bio' : bio,
+    'data.homeWorld' : homeworld
   });
 
   // define characteristic order for UPP
@@ -86,7 +84,7 @@ async function getInputText() {
   // enter characteristic values
   for (let i = 0; i < Math.min(upp.length, upp_order.length); ++i) {
     char_id = 'data.characteristics.' + upp_order[i] + '.value';
-    await actor.update({[char_id]: hexToBase10(upp[i])});
+    await actor.update({[char_id] : hexToBase10(upp[i])});
   }
 
   // Open Compendium
@@ -109,7 +107,7 @@ async function getInputText() {
         let quant = parseInt(itemList[i].slice(itemList[i].indexOf('x') + 1));
         newItem = await actor.items.find(item => item.data.name === benefit);
 
-        await newItem.update({'data.quantity': quant});
+        await newItem.update({'data.quantity' : quant});
       }
     }
   }
@@ -119,11 +117,11 @@ async function getInputText() {
   // generate array of skill-level pairs
   let cleanSkills = processedText[line].trim(); // get rid of extra whitespace
   if (cleanSkills[cleanSkills.length - 1] ===
-    ',') { // Get rid of end of string ',' if present
+      ',') { // Get rid of end of string ',' if present
     cleanSkills = cleanSkills.slice(0, -1);
   }
   let skillsList = cleanSkills.split(
-    ', '); // make an array of individual skill-level entries
+      ', '); // make an array of individual skill-level entries
 
   // Process skills list
   for (let i = 0; i < skillsList.length; ++i) {
@@ -145,16 +143,16 @@ async function getInputText() {
 
       await actor.createOwnedItem(skillItem);
       let newSkill =
-        await actor.items.find(item => item.data.name === skillName);
+          await actor.items.find(item => item.data.name === skillName);
 
       await newSkill.update(
-        {'data.value': skillLevel, 'data.characteristic': 'NONE'});
+          {'data.value' : skillLevel, 'data.characteristic' : 'NONE'});
     } else {
       bio += '<p>Unknown skill: ' + skillsList[i] + '</p>';
     }
   }
 
-  await actor.update({'data.bio': bio});
+  await actor.update({'data.bio' : bio});
 
   // Show new actor
   actor.sheet.render(true);
@@ -163,52 +161,52 @@ async function getInputText() {
 // Convert hex value to base10
 function hexToBase10(value) {
   switch (value.toUpperCase()) {
-    case 'A':
-      return ('10');
-    case 'B':
-      return ('11');
-    case 'C':
-      return ('12');
-    case 'D':
-      return ('13');
-    case 'E':
-      return ('14');
-    case 'F':
-      return ('15');
-    case 'G':
-      return ('16');
-    default:
-      return (value);
+  case 'A':
+    return ('10');
+  case 'B':
+    return ('11');
+  case 'C':
+    return ('12');
+  case 'D':
+    return ('13');
+  case 'E':
+    return ('14');
+  case 'F':
+    return ('15');
+  case 'G':
+    return ('16');
+  default:
+    return (value);
   }
 }
 
 function compendiumErrors(skillName) {
   switch (skillName) {
-    case 'Leader':
-      return ('Leadership');
-    case 'Survival':
-      return ('Survival ');
-    case 'Piercing Weapons':
-      return ('Melee Weapons (Piercing Weapons)');
-    case 'Jack-o-Trades':
-      return ('Jack-of-All-Trades');
-    case 'Jack o\' Trades':
-      return ('Jack-of-All-Trades');
-    case 'Melee Combat':
-      return ('Melee');
-    case 'Demolitions':
-      return ('Demolition / Explosives');
-    case 'Autopistol':
-      return ('Auto Pistol');
-    case 'Carousing':
-      return ('Carouse');
-    case 'Computer':
-      return ('Computers');
-    case 'Administration':
-      return ('Admin');
-    case 'Investigation':
-      return ('Investigate');
-    default:
-      return (skillName);
+  case 'Leader':
+    return ('Leadership');
+  case 'Survival':
+    return ('Survival ');
+  case 'Piercing Weapons':
+    return ('Melee Weapons (Piercing Weapons)');
+  case 'Jack-o-Trades':
+    return ('Jack-of-All-Trades');
+  case 'Jack o\' Trades':
+    return ('Jack-of-All-Trades');
+  case 'Melee Combat':
+    return ('Melee');
+  case 'Demolitions':
+    return ('Demolition / Explosives');
+  case 'Autopistol':
+    return ('Auto Pistol');
+  case 'Carousing':
+    return ('Carouse');
+  case 'Computer':
+    return ('Computers');
+  case 'Administration':
+    return ('Admin');
+  case 'Investigation':
+    return ('Investigate');
+  default:
+    return (skillName);
   }
 }
