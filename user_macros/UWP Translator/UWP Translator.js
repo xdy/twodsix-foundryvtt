@@ -7,17 +7,15 @@ let UWPprofile = translate_code("text", "Enter UWP Code");
 async function translate_code(type, text) {
   let value = await new Promise((resolve) => {
     new Dialog({
-      modal: true,
-      title: `Input UWP Code`,
-      content: `<table style="width:100%"><tr><th style="width:50%"><label>${
-        text}</label></th><td style="width:50%"><input type="${
-        type}" name="input"/></td></tr></table>`,
-      buttons: {
-        Ok: {
-          label: `Ok`,
-          callback: (html) => {
-            resolve(html.find("input").val());
-          }
+      modal : true,
+      title : `Input UWP Code`,
+      content : `<table style="width:100%"><tr><th style="width:50%"><label>${
+          text}</label></th><td style="width:50%"><input type="${
+          type}" name="input"/></td></tr></table>`,
+      buttons : {
+        Ok : {
+          label : `Ok`,
+          callback : (html) => { resolve(html.find("input").val()); }
         }
       }
     }).render(true);
@@ -27,17 +25,15 @@ async function translate_code(type, text) {
 
   await new Promise((resolve) => {
     new Dialog({
-      modal: true,
-      title: `UWP Translation for: ${value}`,
-      content:
-        `<table style="width:100%;"><tbody><tr><th>Characteristic</th><th>Description</th></tr>${
-          parse}</tbody></table>`,
-      buttons: {
-        Ok: {
-          label: `Ok`,
-          callback: (html) => {
-            resolve(html.find("input").val());
-          }
+      modal : true,
+      title : `UWP Translation for: ${value}`,
+      content :
+          `<table style="width:100%;"><tbody><tr><th>Characteristic</th><th>Description</th></tr>${
+              parse}</tbody></table>`,
+      buttons : {
+        Ok : {
+          label : `Ok`,
+          callback : (html) => { resolve(html.find("input").val()); }
         }
       }
     }).render(true);
@@ -55,7 +51,7 @@ function parse_code(profile) {
 
   // parse starport, this is non-numeric
   let message = `<tr><td style="padding-right:5px">${UWPtables[0]} (${
-    profile[0]})</td><td>${starport_code(profile[0])}</td></tr>`;
+      profile[0]})</td><td>${starport_code(profile[0])}</td></tr>`;
 
   // process rest of UWP
   for (let i = 1; i < Math.min(profile.length, UWPtables.length); i++) {
@@ -74,34 +70,34 @@ function getUWPparameter(value, tableName) {
   const table = game.tables.entities.find(t => t.name === tableName);
   if (item < table.data.results.length) {
     const r = new Roll(item);
-    let details = table.roll({roll: r}).results[0].text;
+    let details = table.roll({roll : r}).results[0].text;
     return (`<td style="padding-right:5px">${tableName} (${value})</td><td>${
-      details}</td>`);
+        details}</td>`);
   } else {
     return (`<td style="padding-right:5px">${tableName} (${
-      value})</td><td>UNKNOWN TABLE ITEM</td>`);
+        value})</td><td>UNKNOWN TABLE ITEM</td>`);
   }
 }
 
 // Convert hex value to base10
 function hexToBase10(value) {
   switch (value.toUpperCase()) {
-    case 'A':
-      return ('10');
-    case 'B':
-      return ('11');
-    case 'C':
-      return ('12');
-    case 'D':
-      return ('13');
-    case 'E':
-      return ('14');
-    case 'F':
-      return ('15');
-    case 'G':
-      return ('16');
-    default:
-      return (value);
+  case 'A':
+    return ('10');
+  case 'B':
+    return ('11');
+  case 'C':
+    return ('12');
+  case 'D':
+    return ('13');
+  case 'E':
+    return ('14');
+  case 'F':
+    return ('15');
+  case 'G':
+    return ('16');
+  default:
+    return (value);
   }
 }
 
@@ -109,31 +105,31 @@ function hexToBase10(value) {
 function starport_code(value) {
   let rtext = ``;
   switch (value.toUpperCase()) {
-    case 'A':
-      rtext =
+  case 'A':
+    rtext =
         `Excellent Quality. Refined fuel and annual maintenance overhaul available. Shipyard capable of constructing starships and non-starships present.`;
-      break;
-    case 'B':
-      rtext =
+    break;
+  case 'B':
+    rtext =
         `Good Quality. Refined fuel and annual maintenance overhaul available. Shipyard capable of constructing non-starships present.`;
-      break;
-    case 'C':
-      rtext =
+    break;
+  case 'C':
+    rtext =
         `Routine Quality. Only unrefined fuel available. Reasonable repair facilities present.`;
-      break;
-    case 'D':
-      rtext =
+    break;
+  case 'D':
+    rtext =
         `Poor Quality. Only unrefined fuel available. No repair facilities present.`;
-      break;
-    case 'E':
-      rtext =
+    break;
+  case 'E':
+    rtext =
         `Frontier Installation. Essentially a marked spot of bedrock with no fuel, facilities, or bases present.`;
-      break;
-    case 'X':
-      rtext = `No Starport. No provision is made for any ship landings.`;
-      break;
-    default:
-      rtext = `Unknown`;
+    break;
+  case 'X':
+    rtext = `No Starport. No provision is made for any ship landings.`;
+    break;
+  default:
+    rtext = `Unknown`;
   }
   return (rtext);
 }
