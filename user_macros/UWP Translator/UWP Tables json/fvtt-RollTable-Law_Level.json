@@ -1,0 +1,174 @@
+{
+  "_id": "qjn2FmCYJAINEcOa",
+  "name": "Law Level",
+  "sort": 134375,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.7"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light",
+  "results": [
+    {
+      "_id": "hqElHtB23SzkvIOy",
+      "flags": {},
+      "type": 0,
+      "text": "Lawless. All weapons allowed. Candidate for Amber Zone status.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "3TyQSQAaHJkh0ASg",
+      "flags": {},
+      "type": 0,
+      "text": "Poison gas, explosives, undetectable weapons, weapons of mass destruction",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "6waJ5UKjMHuary88",
+      "flags": {},
+      "type": 0,
+      "text": "Portable energy weapons (unless mounted on ships)",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Asog7NGCBBCe3nNV",
+      "flags": {},
+      "type": 0,
+      "text": "Heavy Weapons",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "UdB4b2mEdkKps5Hg",
+      "flags": {},
+      "type": 0,
+      "text": "All automatic weapons",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "GI6KgJhmJ3SmSKhd",
+      "flags": {},
+      "type": 0,
+      "text": "Personal concealed weapons",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "vIyVz4m1K1rsX1EB",
+      "flags": {},
+      "type": 0,
+      "text": "All firearms except for shotguns and stunners. Carrying weapons is discouraged.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "l96PJq1brz8rbVW5",
+      "flags": {},
+      "type": 0,
+      "text": "Shotguns.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "fPRpc4c8MtE4K03Q",
+      "flags": {},
+      "type": 0,
+      "text": "All bladed weapons, stunners.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "TJzltj2o4PrBT8yA",
+      "flags": {},
+      "type": 0,
+      "text": "Any weapons outside one’s residence. Candidate for Amber Zone status.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "E4myxxNXzishmX9u",
+      "flags": {},
+      "type": 0,
+      "text": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        10,
+        15
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true
+}

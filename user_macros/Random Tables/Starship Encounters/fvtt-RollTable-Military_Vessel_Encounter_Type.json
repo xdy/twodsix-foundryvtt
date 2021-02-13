@@ -1,0 +1,105 @@
+{
+  "_id": "oGXaEMmPDpVvq84z",
+  "name": "Military Vessel Encounter Type",
+  "sort": 600000,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Military Vessel Encounter Type",
+  "results": [
+    {
+      "_id": "N3j2RMMb7pziNQcb",
+      "flags": {},
+      "type": 0,
+      "text": "Corvette",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "3Ql9tGMQPs96IOZi",
+      "flags": {},
+      "type": 0,
+      "text": "Destroyer",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ZusbkmQ4lrUXEywk",
+      "flags": {},
+      "type": 0,
+      "text": "Patrol frigate",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "MDvNo8pjyzQPo1pT",
+      "flags": {},
+      "type": 0,
+      "text": "System defense boat",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "fij4akNRDNEN0HL1",
+      "flags": {},
+      "type": 0,
+      "text": "System monitor",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "lUcVVq1ilz5szHiY",
+      "flags": {},
+      "type": 1,
+      "text": "Warship Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "tKw5Di1cRj14QbUa",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true
+}

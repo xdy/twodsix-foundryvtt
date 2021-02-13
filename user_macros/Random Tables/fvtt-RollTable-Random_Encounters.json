@@ -1,0 +1,524 @@
+{
+  "_id": "0axzKN3IoHMXFnRM",
+  "name": "Random Encounters",
+  "sort": 1300001,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "iconizer/PVP_Rune_Random.png",
+  "description": "Based on Cepheus Engine Rules.",
+  "results": [
+    {
+      "_id": "82j9tBzFP0bv90Fl",
+      "flags": {},
+      "type": 0,
+      "text": "Adventurers",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "mg0syMUHeDRoBb01",
+      "flags": {},
+      "type": 0,
+      "text": "Alien Starship Crew",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ZvTIHvPOIpjcGA5m",
+      "flags": {},
+      "type": 0,
+      "text": "Ambushing Brigands",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "34zU0gW2G5EOqyoz",
+      "flags": {},
+      "type": 0,
+      "text": "Bandits",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "HhjJF053IcpGC2fg",
+      "flags": {},
+      "type": 0,
+      "text": "Beggars",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "zyYLdeV4p8E1417S",
+      "flags": {},
+      "type": 0,
+      "text": "Belters",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Pryci3dNz1h6z18c",
+      "flags": {},
+      "type": 0,
+      "text": "Drunken Crew",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ZiYjgLoo2wCNsgu5",
+      "flags": {},
+      "type": 0,
+      "text": "Fugitives",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "OuSeOcQUWtMyj97n",
+      "flags": {},
+      "type": 0,
+      "text": "Government Officials",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "1q99aQOqq3DvfbuA",
+      "flags": {},
+      "type": 0,
+      "text": "Guards",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "IAHusOsNqZ0CJQeS",
+      "flags": {},
+      "type": 0,
+      "text": "Hunters and Guides",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "aMkIV8hN9zvww9uH",
+      "flags": {},
+      "type": 0,
+      "text": "Law Enforcers on Patrol",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "BR5QLcCG4OAWufab",
+      "flags": {},
+      "type": 0,
+      "text": "Local Performers",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "NvWGUMnvz6Ofm3kp",
+      "flags": {},
+      "type": 0,
+      "text": "Maintenance Robots",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "KeTzyiKqQzBXwynW",
+      "flags": {},
+      "type": 0,
+      "text": "Merchants",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "6EDMwP5wrgGi8UX0",
+      "flags": {},
+      "type": 0,
+      "text": "Military Personnel on Leave",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Yf18Wlq89txrNuSl",
+      "flags": {},
+      "type": 0,
+      "text": "Noble with Retinue",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "NA0JStvzoZzXwGNZ",
+      "flags": {},
+      "type": 0,
+      "text": "Peasants",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Hiwow3VyBeVK6s9d",
+      "flags": {},
+      "type": 0,
+      "text": "Political Dissident",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        41,
+        41
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "x87fG9vXKAOYWi6k",
+      "flags": {},
+      "type": 0,
+      "text": "Potential Patron",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        42,
+        42
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "R0l329WA7XSUAT7I",
+      "flags": {},
+      "type": 0,
+      "text": "Public Demonstration",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        43,
+        43
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "DJ6IordpBayxPKoO",
+      "flags": {},
+      "type": 0,
+      "text": "Religious Pilgrims",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        44,
+        44
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "DaogRkJoKONUOXc3",
+      "flags": {},
+      "type": 0,
+      "text": "Reporters",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        45,
+        45
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "CbIhSceX9gVuqAVX",
+      "flags": {},
+      "type": 0,
+      "text": "Researchers",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        46,
+        46
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "eF9N04gVeRLN2juU",
+      "flags": {},
+      "type": 0,
+      "text": "Riotous Mob",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        51,
+        51
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "m38e0r3xWocCu2G2",
+      "flags": {},
+      "type": 0,
+      "text": "Security Troops",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        52,
+        52
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "VpEAVfcIIugeEImH",
+      "flags": {},
+      "type": 0,
+      "text": "Servant Robots",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        53,
+        53
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Ci0oy25QZB9P2Ubz",
+      "flags": {},
+      "type": 0,
+      "text": "Soldiers on Patrol",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        54,
+        54
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Spu2bcvKkbuCCHuD",
+      "flags": {},
+      "type": 0,
+      "text": "Street Vendors",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        55,
+        55
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "PDaJGh9Eq5XoETEq",
+      "flags": {},
+      "type": 0,
+      "text": "Technicians",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        56,
+        56
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "3AvZUoi0Ef89ysTz",
+      "flags": {},
+      "type": 0,
+      "text": "Thugs",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        61,
+        61
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "u0iCyiY1IuJ3zYtM",
+      "flags": {},
+      "type": 0,
+      "text": "Tourists",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        62,
+        62
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "uxXRR0EpyBnthiSP",
+      "flags": {},
+      "type": 0,
+      "text": "Traders",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        63,
+        63
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "swDKnVZtNtVCVEoq",
+      "flags": {},
+      "type": 0,
+      "text": "Vigilantes",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        64,
+        64
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "rXYsPdjmPKmgfTWX",
+      "flags": {},
+      "type": 0,
+      "text": "Workers",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        65,
+        65
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "zhS6EYdppG4MvidJ",
+      "flags": {},
+      "type": 0,
+      "text": "Referee's Choice",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        66,
+        66
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6*10 + 1d6",
+  "replacement": true,
+  "displayRoll": false
+}

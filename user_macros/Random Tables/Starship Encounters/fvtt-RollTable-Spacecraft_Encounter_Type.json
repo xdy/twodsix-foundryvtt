@@ -1,0 +1,104 @@
+{
+  "_id": "LqlrMH0WbVql6wDo",
+  "name": "Spacecraft Encounter Type",
+  "sort": 1000000,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Spacecraft Encounter Type Sub table",
+  "results": [
+    {
+      "_id": "DYZ2AyP9FWXoiI7s",
+      "flags": {},
+      "type": 0,
+      "text": "Cutter",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "DR30tyPySXdJ2n2u",
+      "flags": {},
+      "type": 0,
+      "text": "Launch or life boat",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "Ra16wiEU7gzzMKln",
+      "flags": {},
+      "type": 0,
+      "text": "Fighter",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "ie9tCvKMK9CiwTSc",
+      "flags": {},
+      "type": 0,
+      "text": "Pinnace",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "5CDQslWzlmhTsWPU",
+      "flags": {},
+      "type": 0,
+      "text": "Ship's boat",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "g3dMkKqC7mcw2Irn",
+      "flags": {},
+      "type": 0,
+      "text": "Shuttle",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true
+}

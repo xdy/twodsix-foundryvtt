@@ -1,0 +1,76 @@
+{
+  "_id": "DERKwOuoNbikvRHu",
+  "name": "Merchant Vessel Encounter Type",
+  "sort": 500000,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Merchant Vessel Encounter Type Subtable",
+  "results": [
+    {
+      "_id": "lTi9bbFbaTE5k21J",
+      "flags": {},
+      "type": 0,
+      "text": "Frontier trader",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        1,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "cbFm05J8uPPpP8Rp",
+      "flags": {},
+      "type": 0,
+      "text": "Merchant freighter",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "yFPj64iuMxKzSEY2",
+      "flags": {},
+      "type": 0,
+      "text": "Merchant liner",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "tZj6tuHUCmFQjAEs",
+      "flags": {},
+      "type": 0,
+      "text": "Merchant trader",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        5,
+        6
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true
+}

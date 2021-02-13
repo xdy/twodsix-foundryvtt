@@ -1,0 +1,184 @@
+{
+  "_id": "BPkRk40T7bF0JS5v",
+  "name": "Starship Encounters",
+  "sort": 1200001,
+  "flags": {
+    "exportSource": {
+      "world": "on_the_run",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.15"
+    }
+  },
+  "img": "spaceship.svg",
+  "description": "Starship Encounters",
+  "results": [
+    {
+      "_id": "07h2Als4PzZL76CE",
+      "flags": {},
+      "type": 1,
+      "text": "Alien Vessel",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "6xSNKDeIlp2GMEg5",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "7sRrT4VgmLjajcc2",
+      "flags": {},
+      "type": 1,
+      "text": "Derelict Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "9qZd3Kg6tWL2bt74",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "LgVKLi2SkXbqcxKs",
+      "flags": {},
+      "type": 1,
+      "text": "Space Habitat Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "Rf7e5FnQp8IYQyrW",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "1ZWENCtvvd4PTrne",
+      "flags": {},
+      "type": 1,
+      "text": "Astrogation Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "bIMKrUyjKBbb8awx",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "4u27l4vxwUMVc1xY",
+      "flags": {},
+      "type": 1,
+      "text": "Space Junk Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "fBQdRcdNu88RTFsS",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "kZtdKSzEbJUVF1tA",
+      "flags": {},
+      "type": 1,
+      "text": "Merchant Vessel Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "DERKwOuoNbikvRHu",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "jFUMYP73UfeWLhGD",
+      "flags": {},
+      "type": 1,
+      "text": "Personal Vessel Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "rYCJVeQAYKhbEGIq",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "LmP37N2SjOHCoA46",
+      "flags": {},
+      "type": 1,
+      "text": "Hostile Vessel Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "oyCY1WgXVolPfHrn",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "xiI7Fm6wRSXj22XL",
+      "flags": {},
+      "type": 1,
+      "text": "Military Vessel Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "oGXaEMmPDpVvq84z",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "4Ei3kFdHEZxCkK9y",
+      "flags": {},
+      "type": 1,
+      "text": "Spacecraft Encounter Type",
+      "img": "icons/svg/d20-grey.svg",
+      "collection": "RollTable",
+      "resultId": "LqlrMH0WbVql6wDo",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false
+    },
+    {
+      "_id": "31JsKIqW1LqlZuF1",
+      "flags": {},
+      "type": 0,
+      "text": "Referee's Choice",
+      "img": "icons/svg/d20-black.svg",
+      "resultId": "",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": false
+}
