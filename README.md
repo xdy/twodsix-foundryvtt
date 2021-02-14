@@ -10,6 +10,8 @@
 
 A Foundry VTT system for running games using various 2d6-based role-playing games.
 
+Install it from within the Foundry client (search for Twodsix in systems).
+
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 System settings and compendiums are available that make it compatible with Cepheus Light and Cepheus Faster Than Light. (See pinned post in #general in the discord for details).
 Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc. (The Cepheus Engine compendiums are as yet incomplete.)
