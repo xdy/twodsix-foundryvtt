@@ -22,7 +22,7 @@ if (doctor == null) {
 // Heal if doctor and patients are defined
 if (doctor !== null && patients !== null) {
   for (let patient of patients) {
-    await healCharacter(doctor, game.actors.get(patient.data.actorId));
+    healCharacter(doctor, game.actors.get(patient.data.actorId));
   }
 }
 
