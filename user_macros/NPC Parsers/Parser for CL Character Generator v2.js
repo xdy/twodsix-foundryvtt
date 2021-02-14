@@ -206,6 +206,8 @@ function compendiumErrors(skillName) {
     return ('Admin');
   case 'Investigation':
     return ('Investigate');
+  case 'Grav Vehicle':
+    return ('Grav Vehicles');  
   default:
     return (skillName);
   }
