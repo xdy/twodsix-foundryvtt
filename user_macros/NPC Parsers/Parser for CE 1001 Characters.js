@@ -4,7 +4,7 @@
 
 let compendium = "";
 
-await getInputText();
+getInputText();
 
 // Get text block and process
 async function getInputText() {
