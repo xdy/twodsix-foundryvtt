@@ -11,7 +11,7 @@
 A Foundry VTT system for running games using various 2d6-based role-playing games.
 
 Install it from within the Foundry client (search for Twodsix in systems).
-In play it can look something like this:
+In play - using a number of Foundry modules - it can look something like this:
 
 ![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)
 
