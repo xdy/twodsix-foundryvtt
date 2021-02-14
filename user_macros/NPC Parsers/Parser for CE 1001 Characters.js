@@ -147,12 +147,12 @@ async function getInputText() {
 
     let adjName = translateSkillName(skillName);
 
-    let skillItem = await pack.find(s => s.name === adjName);
+    let skillItem = await pack.find(s => s.name === adjName && s.type==='skills');
 
     // Try to correct a null skillItem
     if (skillItem === null || skillItem === undefined) {
       adjName = compendiumErrors(skillName);
-      skillItem = await pack.find(s => s.name === adjName);
+      skillItem = await pack.find(s => s.name === adjName && s.type==='skills');
     }
 
     // Add new skill if it doesn't exist, pick higher level to add if it does
@@ -253,6 +253,7 @@ function translateSkillName(skillName) {
   case 'Energy Pistol':
   case 'Energy Rifle':
   case 'Shotguns':
+  case 'Shotgun':
   case 'Slug Pistol':
   case 'Slug Rifle':
     switch (compendium) {
@@ -407,5 +408,7 @@ function compendiumErrors(skillName) {
     return ('Melee');
   case 'Demolitions':
     return ('Demolition / Explosives');
+  case 'Shotgun':
+			return ('Gun Combat (Shotguns)');
   }
 }
