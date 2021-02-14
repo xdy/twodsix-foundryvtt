@@ -46,7 +46,7 @@ function parse_code(profile) {
 
   let UWPtables = [
     "Starport Type", "World Size - CL", "Atmosphere", "Hydrographics",
-    "Population", "Government", "Law Level", "Tech Level - CL"
+    "Population", "Government", "Law Level - CL", "Tech Level - CL"
   ];
 
   // parse starport, this is non-numeric
