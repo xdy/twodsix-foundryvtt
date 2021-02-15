@@ -66,4 +66,4 @@ Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
 
 Asset licenses:
-* The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were were created by numerous creators. The full list of those can be found at: https://game-icons.net/about.html#authors
+* The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous creators. The full list of those can be found at: https://game-icons.net/about.html#authors
