@@ -10,7 +10,8 @@
 
 A Foundry VTT system for running games using various 2d6-based role-playing games.
 
-Install it from within the Foundry client (search for Twodsix in systems).
+Install by either searching for Twodsix in in FoundryVTT's Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+
 In play - using a number of Foundry modules - it can look something like this:
 
 ![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)
