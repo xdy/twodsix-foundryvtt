@@ -65,6 +65,7 @@ Twodsix has been translated by users of the system into the following languages:
 
 ## Other sources of information
 [The Wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) contains some guides on how to actually use the system.
+
 [The user_macros folder](https://github.com/xdy/twodsix-foundryvtt/tree/master/user_macros) contains several useful macros.
 
 ## The settings I (xdy) use
