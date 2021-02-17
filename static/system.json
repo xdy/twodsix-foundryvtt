@@ -8,7 +8,6 @@
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
   "version": "0.7.18",
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
-  "bugs": "Plenty of them, this is an early alpha...",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.7.9",
@@ -110,6 +109,8 @@
   "styles": ["./styles/twodsix.css"],
   "templateVersion": 2,
   "manifestPlusVersion": "1.0.0",
+  "allowBugReporter": true,
+  "bugs": "https://github.com/xdy/twodsix-foundryvtt/issues",
   "authors": [
     {
       "name": "Jonas Karlsson",
