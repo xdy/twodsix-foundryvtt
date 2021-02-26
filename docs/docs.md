@@ -49,21 +49,21 @@ Compendiums with skills and gear cannot be included for licensing reasons, so yo
 ## Cepheus Atom
 To get the system closer to Cepheus Atom change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
 * Choose the CEL difficulty list.
-* Give every character JOAT-3
+* Give every character JOAT-3.
 * Set skills to not use any characteristic for modifiers.
 * Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
-* Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
+* Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 * Ignore attributes, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
 * Track Contamination using, say, the PSI attribute field.
 * Handle Mutations as equipment, the majority could be handled as Skills, most of the rest as Weapons or Augments. Any effects on the character, or any targets (beyond doing damage) would be handled manually.
-* Add Mutations to compendium(s) (or straight to each character, as needed)
-* Add the six skills to a compendium (or straight to each character, as needed)
-* Add the gear to a compendium (or straight to each character, as needed)
+* Add Mutations to compendium(s) (or straight to each character, as needed).
+* Add the six skills to a compendium (or straight to each character, as needed).
+* Add the gear to a compendium (or straight to each character, as needed).
 * For extra credit, using something like the Custom CSS module, change the theming to suit Cepheus Atom Nigh impossible for me, possibly easy for someone who actually has design skills. :)
 
 ## Barbaric!
 To get the system closer to Barbaric! change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
-* See Cepheus Atom, above
+* See Cepheus Atom, above.
 * Races and Traits can be handled like Mutations in Cepheus Atom.
 
 ## General features that really should be documented somewhere:
