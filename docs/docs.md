@@ -67,8 +67,9 @@ No compendiums for Cepheus Atom yet exist, though the ones from Cepheus FTL migh
 ## Barbaric!
 To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
 
-* See Cepheus Atom, above.
+* See Cepheus Atom, above for most needed changes
 * Races and Traits can be handled like Mutations in Cepheus Atom.
+* Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
 
 No compendiums for Barbaric! yet exist, though the ones from Cepheus FTL might be at least *somewhat* useful, as examples if nothing else.
 
