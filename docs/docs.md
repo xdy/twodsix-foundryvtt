@@ -46,6 +46,26 @@ To get the system closer to MGT2 change the following in the system settings (af
 
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
+##Cepheus Atom
+To get the system closer to Cepheus Atom change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+* Choose the CEL difficulty list.
+* Give every character JOAT-3
+* Set skills to not use any characteristic for modifiers.
+* Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
+* Ignore attributes, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
+* Track Contamination using, say, the PSI attribute field.
+* Handle Mutations as equipment, the majority could be handled as Skills, most of the rest as Weapons or Augments. Any effects on the character, or any targets (beyond doing damage) would be handled manually.
+* Add Mutations to compendium(s) (or straight to each character, as needed)
+* Add the six skills to a compendium (or straight to each character, as needed)
+* Add the gear to a compendium (or straight to each character, as needed)
+* For extra credit, using something like the Custom CSS module, change the theming to suit Cepheus Atom Nigh impossible for me, possibly easy for someone who actually has design skills. :)
+
+#Barbaric!
+To get the system closer to Barbaric! change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+* See Cepheus Atom, above
+* Races and Traits can be handled like Mutations in Cepheus Atom.
+
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll without modifiers with a difficulty of 8. This can be set as the default behavior in the settings.
 * A feature I like (and thus added) but most people seem to not like is to in system settings change to show the Effect of the roll rather than the raw result (by subtracting the target number.)
