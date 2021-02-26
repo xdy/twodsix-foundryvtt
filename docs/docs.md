@@ -34,7 +34,7 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
 ## MGT2
-To get the system closer to MGT2 change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+To get the system closer to MGT2 change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
 
 * Choose the CE difficulty list.
 * Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)"
@@ -47,7 +47,8 @@ To get the system closer to MGT2 change the following in the system settings (af
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
 
 ## Cepheus Atom
-To get the system closer to Cepheus Atom change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+To get the system closer to Cepheus Atom change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
 * Choose the CEL difficulty list.
 * Give every character JOAT-3.
 * Set skills to not use any characteristic for modifiers.
@@ -61,10 +62,15 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Add the gear to a compendium (or straight to each character, as needed).
 * For extra credit, using something like the Custom CSS module, change the theming to suit Cepheus Atom Nigh impossible for me, possibly easy for someone who actually has design skills. :)
 
+No compendiums for Cepheus Atom yet exist, though the ones from Cepheus FTL might be useful.
+
 ## Barbaric!
-To get the system closer to Barbaric! change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
 * See Cepheus Atom, above.
 * Races and Traits can be handled like Mutations in Cepheus Atom.
+
+No compendiums for Barbaric! yet exist, though the ones from Cepheus FTL might be at least *somewhat* useful, as examples if nothing else.
 
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll without modifiers with a difficulty of 8. This can be set as the default behavior in the settings.
