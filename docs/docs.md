@@ -4,6 +4,8 @@ _Not a lot of ducks either._
 # Twodsix System
 A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) for more information.)
 
+Some basic instructions on how to set up your game for some of the most common variants can be found below:
+
 ## Cepheus Engine
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
@@ -34,7 +36,7 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
 ## MGT2
-To get the system closer to MGT2 change the following in the system settings (after switching to 'Other' in the dropdown near the top of the system settings:
+To get the system closer to MGT2 change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
 
 * Choose the CE difficulty list.
 * Change the initiative formula to "2d6 -8  + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)"
@@ -45,6 +47,33 @@ To get the system closer to MGT2 change the following in the system settings (af
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 6.
 
 Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
+
+## Cepheus Atom
+To get the system closer to Cepheus Atom change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
+* Choose the CEL difficulty list.
+* Give every character JOAT-3.
+* Set skills to not use any characteristic for modifiers.
+* Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
+* Ignore attributes, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
+* Track Contamination using, say, the PSI attribute field.
+* Handle Mutations as equipment, the majority could be handled as Skills, most of the rest as Weapons or Augments. Any effects on the character, or any targets (beyond doing damage) would be handled manually.
+* Add Mutations to compendium(s) (or straight to each character, as needed).
+* Add the six skills to a compendium (or straight to each character, as needed).
+* Add the gear to a compendium (or straight to each character, as needed).
+* For extra credit, using something like the Custom CSS module, change the theming to suit Cepheus Atom Nigh impossible for me, possibly easy for someone who actually has design skills. :)
+
+No compendiums for Cepheus Atom yet exist, though the ones from Cepheus FTL might be useful.
+
+## Barbaric!
+To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
+* See Cepheus Atom, above for most needed changes
+* Races and Traits can be handled like Mutations in Cepheus Atom.
+* Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
+
+No compendiums for Barbaric! yet exist, though the ones from Cepheus FTL might be at least *somewhat* useful, as examples if nothing else.
 
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll without modifiers with a difficulty of 8. This can be set as the default behavior in the settings.
@@ -62,6 +91,10 @@ Twodsix has been translated by users of the system into the following languages:
 * German (included)
 * Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
 * If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.) See [CONTRIBUTING.MD](../CONTRIBUTING.md)
+
+## Other sources of information
+* [The Wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) contains some guides on how to actually use the system.
+* [The user_macros folder](https://github.com/xdy/twodsix-foundryvtt/tree/master/user_macros) contains several useful macros.
 
 ## The settings I (xdy) use
 Fwiw, this is how I have set up the system - i.e. the setting combination that is the most tested by me... (Showing the system setting key, and the value I have changed it to. Any setting not mentioned has the default value.)

@@ -107,7 +107,7 @@ async function getInputText() {
       }
 
       // look for skill in compendium
-      let skillItem = await com_pack.find(s => s.name === adjName);
+      let skillItem = await com_pack.find(s => s.name === adjName && s.type==='skills');
 
       if (skillItem == null) {
         const skillData = {name : adjName, type : "skills"};

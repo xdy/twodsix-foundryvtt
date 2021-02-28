@@ -130,12 +130,12 @@ async function getInputText() {
     let skillName = skillPair.slice(0, skillPair.length - 2).trim();
     let skillLevel = parseInt(skillPair.slice(skillPair.length - 2));
 
-    let skillItem = await pack.find(s => s.name === skillName);
+    let skillItem = await pack.find(s => s.name === skillName && s.type==='skills');
 
     // Try to correct a null skillItem
     if (skillItem === null || skillItem === undefined) {
       skillName = compendiumErrors(skillName);
-      skillItem = await pack.find(s => s.name === skillName);
+      skillItem = await pack.find(s => s.name === skillName && s.type==='skills');
     }
 
     // Add new skill
@@ -206,6 +206,8 @@ function compendiumErrors(skillName) {
     return ('Admin');
   case 'Investigation':
     return ('Investigate');
+  case 'Grav Vehicle':
+    return ('Grav Vehicles');  
   default:
     return (skillName);
   }

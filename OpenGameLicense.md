@@ -8,7 +8,7 @@
 Cepheus Engine and Samardan Press™ are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press™.    
 </p>
 
-Open Content: Everything in this foundry vtt system that is not covered under another license is Open Gaming Content. (See README.md for license details) 
+Open Content: Everything in this foundry vtt system that is not covered under another license is Open Gaming Content. (See [README.md](README.md) for license details) 
 
 <h2>Publishing Your Own Material</h2>
 <p>
@@ -120,4 +120,5 @@ and Richard Hazlewood.
 Cepheus Light © 2018, Stellagama Publishing; Authors Omer Golan-Joel and Josh Peters.
 Cepheus: Faster Than Light © 2019, Stellagama Publishing; Author Omer Golan-Joel.
 2d6 Science Fiction System Reference Document (‘2d6 SF SRD’) © 2017, 2d6 Science Fiction System Reference Document.
+Twodsix © 2020-2021, The developers of Twodsix (including but not necessarily limited to those listed in https://github.com/xdy/twodsix-foundryvtt/blob/master/CONTRIBUTORS.md)
 </pre>

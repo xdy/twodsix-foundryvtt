@@ -10,14 +10,15 @@
 
 A Foundry VTT system for running games using various 2d6-based role-playing games.
 
-Install it from within the Foundry client (search for Twodsix in systems).
+Install by either searching for Twodsix in in FoundryVTT's Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+
 In play - using a number of Foundry modules - it can look something like this:
 
 ![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 System settings and compendiums are available that make it compatible with Cepheus Light and Cepheus Faster Than Light. (See pinned post in #general in the discord for details).
-Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc. (The Cepheus Engine compendiums are as yet incomplete.)
+Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc.
 
 Note:
 * This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.
@@ -65,5 +66,4 @@ Font licenses:
 * [Omnibus-Type/Asap](https://github.com/Omnibus-Type/Asap) Copyright (c) 2019, Omnibus-Type (www.omnibus-type.com | omnibus.type@gmail.com): [This Font Software is licensed under the SIL Open Font License, Version 1.1.](http://scripts.sil.org/OFL)
 
 Asset licenses:
-* The icons in the assets/twodsix_icons/General folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) as well as  are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/)
-
+* The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous creators. The full list of those can be found at: https://game-icons.net/about.html#authors

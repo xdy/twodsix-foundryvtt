@@ -5,11 +5,11 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * [UltraKev](https://github.com/UltraKev/) - Convinced xdy to do it properly, makes the bugs look pretty.
 * RobCubed - Helped out in the beginning.
 * ForjaSalvaje - Spanish translation.
-* [marvin9257](https://github.com/marvin9257) - Compendiums for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
+* [marvin9257](https://github.com/marvin9257) - Compendiums and Macros for Cepheus Engine, Cepheus Light, Cepheus Faster Than Light.
 * RicoM - German translation.
 * [Meldinov](https://github.com/Meldinov) - Additional Spanish translation.
 * [shammond42](https://github.com/shammond42/) - Added automatic weapons fire.
-* [pajon](https://github.com/jonepatr) - Started with making it easier to mass produce items, and has since added a bunch of other stuff.
+* [pajon](https://github.com/jonepatr) - Started with making it easier to mass produce items, and has since added a lot more features.
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
 

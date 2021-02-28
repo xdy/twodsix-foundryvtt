@@ -1,5 +1,8 @@
 # Contributor Covenant Code of Conduct
 
+## TL/DR
+[Be excellent to each other!](https://www.youtube.com/watch?v=rph_1DODXDU) :)
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
