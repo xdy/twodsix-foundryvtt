@@ -8,7 +8,7 @@ extends:
   - 'plugin:@typescript-eslint/recommended'
   - 'eslint-config-prettier'
   - 'plugin:prettier/recommended'
-  - './node_modules/@typhonjs-fvtt/eslint-foundry.js/config/latest/.eslintrc'
+  - '@typhonjs-fvtt/eslint-config-foundry.js'
   #- 'plugin:@typescript-eslint/recommended'
 
 parser: '@typescript-eslint/parser'
@@ -30,7 +30,7 @@ rules:
   #Personal preferences
   prettier/prettier: error
   semi: warn
-  curly: warn
+  curly: warn§
   brace-style: 1
   indent: [ "warn", 2, { "SwitchCase": 1 } ]
   'no-trailing-spaces': ["error"]
