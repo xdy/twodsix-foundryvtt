@@ -1,3 +1,11 @@
+## [0.7.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.18...v0.7.19) (2021-02-28)
+
+
+### Bug Fixes
+
+* make ship hull avaialble as token bar ([e9fbf4b](https://github.com/xdy/twodsix-foundryvtt/commit/e9fbf4b6debefb51c03257f6e51da7078ce0f85b)), closes [#289](https://github.com/xdy/twodsix-foundryvtt/issues/289)
+* Set minimum supported foundry version to 0.7.9 ([bcf9759](https://github.com/xdy/twodsix-foundryvtt/commit/bcf97593f3d4639fc8c9205d4a06ac3b220cdc60))
+
 ## [0.7.19-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.18...v0.7.19-development.1) (2021-02-28)
 
 
