@@ -114,23 +114,32 @@
       },
       "notes": "",
       "cargo": "",
-      "maintenance_cost": "",
-      "ship_value": "",
+      "maintenanceCost": 0,
+      "shipValue": "",
       "reqPower": {
-        "systems": "",
-        "m-drive": "",
-        "j-drive": "",
-        "sensors": "",
-        "weapons": ""
+        "systems": 0,
+        "m-drive": 0,
+        "j-drive": 0,
+        "sensors": 0,
+        "weapons": 0
       },
       "other": "",
       "shipStats": {
-        "hull": "0",
-        "hullCurrent": "0",
-        "fuel": "0",
-        "fuelCurrent": "0",
-        "power": "0",
-        "powerCurrent": "0",
+        "hull": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "fuel": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "power": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
         "armor": {
           "name": "",
           "weight": "",
