@@ -45,7 +45,7 @@
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
     "semantic-release": "^17.4.0",
-    "simple-git": "^2.34.2",
+    "simple-git": "^2.35.2",
     "source-map-loader": "^1.1.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.17",
