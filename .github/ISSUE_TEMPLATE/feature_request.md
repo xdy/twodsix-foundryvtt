@@ -18,3 +18,4 @@ A clear and concise description of any alternative solutions or features you've 
 
 **Additional context**
 Add any other context or screenshots about the feature request here.
+If the feature request relates to rules, quotes from and/or links to **OGL** rules (such as Cepheus Engine) are very helpful as we cannot implement features for non-OGL rulesets.
