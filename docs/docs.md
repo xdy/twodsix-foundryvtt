@@ -15,7 +15,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
-* Use the skills and gear from the various 'ce light-something' compendiums (supplied by @marvin9257).
+* Use the skills, items, etc from the various 'ce light-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
@@ -28,7 +28,7 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
-* Use the skills and gear from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
+* Use the skills, items, etc from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set skills to not use any characteristic for modifiers.
 * Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
@@ -40,6 +40,7 @@ To get the system closer to Cepheus Atom change the following in the system sett
 
 * Choose the CEL difficulty list.
 * Set skills to not use any characteristic for modifiers.
+* Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
@@ -49,7 +50,7 @@ In play, handle the differences to Cepheus Engine as follow:
 * Track Contamination using, say, the PSI attribute field. (Or just note it as text in the journal field).
 * Mutations exist in a compendum as items (augmentations). Any effects on the character will need to be handled manually.
 
-Compendiums for items, mutations and robots are included, additionally the various compendiums from Cepheus FTL might be useful.
+Compendiums containing skills, items, mutations and robots are included, additionally the various compendiums from Cepheus FTL might be useful.
 
 ## Barbaric!
 To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
@@ -63,7 +64,7 @@ No compendiums for Barbaric! yet exist, though the ones from Cepheus Atom are so
 ## MGT1
 To get the system closer to MGT1 switch to 'Cepheus Engine' in the dropdown near the top of the system settings.
 
-Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, except that the various Cepheus Engine compendium are sufficiently close that they should be useful, even though they are note for MTG1. (Cepheus Engine is pretty much the Open Gaming License version of MTG1.)
+Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, but the various Cepheus Engine compendium are sufficiently close that they should be useful, even though they are not for MTG1. (Cepheus Engine is pretty much the Open Gaming License version of MTG1.)
 
 ## MGT2
 To get the system closer to MGT2 change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
