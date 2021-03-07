@@ -35,6 +35,36 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 
 Reasonably complete compendiums for Cepheus Faster Than Light exist.
 
+## Cepheus Atom
+To get the system closer to Cepheus Atom change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
+* Choose the CEL difficulty list.
+* Set skills to not use any characteristic for modifiers.
+* Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
+
+In play, handle the differences to Cepheus Engine as follow:
+* Give every character JOAT-3.
+* Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
+* Track Contamination using, say, the PSI attribute field. (Or just note it as text in the journal field).
+* Mutations exist in a compendum as items (augmentations). Any effects on the character will need to be handled manually.
+
+Compendiums for items, mutations and robots are included, additionally the various compendiums from Cepheus FTL might be useful.
+
+## Barbaric!
+To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
+* See Cepheus Atom, above for most needed changes
+* Races and Traits can be handled like Mutations in Cepheus Atom.
+* Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
+
+No compendiums for Barbaric! yet exist, though the ones from Cepheus Atom are somewhat useful, as examples if nothing else.
+
+## MGT1
+To get the system closer to MGT1 switch to 'Cepheus Engine' in the dropdown near the top of the system settings.
+
+Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, except that the various Cepheus Engine compendium are sufficiently close that they should be useful, even though they are note for MTG1. (Cepheus Engine is pretty much the Open Gaming License version of MTG1.)
+
 ## MGT2
 To get the system closer to MGT2 change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
 
@@ -46,41 +76,14 @@ To get the system closer to MGT2 change the following in the system settings aft
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 6.
 
-Compendiums with skills and gear cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MGT1E - that provides a skill list that is very similar to the one in MGT2.)
+Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MTG1 - that provides a skill list that is very similar to the one in MGT2.)
 
-## Cepheus Atom
-To get the system closer to Cepheus Atom change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
-
-* Choose the CEL difficulty list.
-* Give every character JOAT-3.
-* Set skills to not use any characteristic for modifiers.
-* Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling until I or someone else figures out how to do it automatically).
-* Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
-* Ignore attributes, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
-* Track Contamination using, say, the PSI attribute field.
-* Handle Mutations as equipment, the majority could be handled as Skills, most of the rest as Weapons or Augments. Any effects on the character, or any targets (beyond doing damage) would be handled manually.
-* Add Mutations to compendium(s) (or straight to each character, as needed).
-* Add the six skills to a compendium (or straight to each character, as needed).
-* Add the gear to a compendium (or straight to each character, as needed).
-* For extra credit, using something like the Custom CSS module, change the theming to suit Cepheus Atom Nigh impossible for me, possibly easy for someone who actually has design skills. :)
-
-No compendiums for Cepheus Atom yet exist, though the ones from Cepheus FTL might be useful.
-
-## Barbaric!
-To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
-
-* See Cepheus Atom, above for most needed changes
-* Races and Traits can be handled like Mutations in Cepheus Atom.
-* Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
-
-No compendiums for Barbaric! yet exist, though the ones from Cepheus FTL might be at least *somewhat* useful, as examples if nothing else.
 
 ## General features that really should be documented somewhere:
-* A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll without modifiers with a difficulty of 8. This can be set as the default behavior in the settings.
-* A feature I like (and thus added) but most people seem to not like is to in system settings change to show the Effect of the roll rather than the raw result (by subtracting the target number.)
+* A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
 * You can connect a skill to any item on a character, with an optional permanent bonus, so you can do 'skill rolls' (often enough weapon attacks) by clicking the item rather than the skill, and get that bonus added automatically.
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)
-* A recently added feature is that you can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.)
+* You can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.)
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
