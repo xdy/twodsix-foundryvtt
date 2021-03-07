@@ -8,7 +8,7 @@
 
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
-A Foundry VTT system for running games using various 2d6-based role-playing games.
+A Foundry VTT system for running games using various 2d6-based role-playing games, specifically those based on the Cepheus Engine.
 
 Install by either searching for Twodsix in in FoundryVTT's Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 
