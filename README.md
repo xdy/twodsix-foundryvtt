@@ -17,7 +17,7 @@ In play - using a number of Foundry modules - it can look something like this:
 ![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
-System settings and compendiums are available that make it compatible with Cepheus Light and Cepheus Faster Than Light. (See pinned post in #general in the discord for details).
+System settings and compendiums are available that make it compatible with Cepheus Light, Cepheus Faster Than Light, Cepheus Atom and to some extent Barbaric!. (See [docs.md](docs/docs.md) for more information on how to set up Twodsix.)
 Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc.
 
 Note:
@@ -25,14 +25,13 @@ Note:
 * Cepheus Engine and Samardan Press:tm: are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press:tm:.    
 * Cepheus Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing.
 * Cepheus Faster Than Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
+* Barbaric!, Sword of Cepheus, Cepheus Light, and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
 
 This system may eventually claim compatibility with other specific rules sets once it:
 * actually has said compatibility 
 * actually has the license to do so
 
-Note that this system is *very* early in its development.
-
-See [docs.md](docs/docs.md) for what little documentation exists.
+See [docs.md](docs/docs.md) for documentation, or ask on the [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv).
 
 ## The Programmer's Mantra
 ```
