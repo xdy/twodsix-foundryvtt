@@ -1,3 +1,10 @@
+## [0.7.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.19...v0.7.20) (2021-03-07)
+
+
+### Bug Fixes
+
+* Improved Cepheus Atom support, compendiums included, documentation improved ([5e2d010](https://github.com/xdy/twodsix-foundryvtt/commit/5e2d0108fe334023cb0986796dce552db299dad5))
+
 ## [0.7.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.18...v0.7.19) (2021-02-28)
 
 
