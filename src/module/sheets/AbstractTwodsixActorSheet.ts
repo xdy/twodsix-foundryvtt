@@ -1,5 +1,6 @@
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 
+// @ts-ignore
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
@@ -35,6 +36,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           <br>
         </div>
       </form>`;
+      // @ts-ignore
       await Dialog.confirm({
         title: title,
         content: template,
@@ -90,6 +92,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         break;
       case "weapon":
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
+          // @ts-ignore
           itemData.data.skill = this.actor.getUntrainedSkill().id;
         }
         break;
@@ -123,6 +126,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.updateWithItemSpecificValues(itemData, type);
 
     // Finally, create the item!
+    // @ts-ignore
     return this.actor.createOwnedItem(itemData);
   }
 
@@ -141,6 +145,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (data.type === 'damageItem') {
+      // @ts-ignore
       await this.actor.damageActor(data.payload["damage"]);
       return;
     }
@@ -153,34 +158,42 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     //Special for skills
     if (itemData.type === 'skills') {
       const matching = actor.data.items.filter(x => {
+        // @ts-ignore
         return x.name === itemData.name;
       });
 
       // Handle item sorting within the same Actor
       const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
+        // @ts-ignore
         console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+        // @ts-ignore
         return this._onSortItem(event, itemData);
       }
 
       if (matching.length > 0) {
+        // @ts-ignore
         console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
         //TODO Maybe this should mean increase skill value?
         return false;
       }
 
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        // @ts-ignore
         itemData.data.value = game.system.template.Item.skills.value;
       } else {
+        // @ts-ignore
         itemData.data.value = 0;
       }
 
       await actor.createOwnedItem(itemData);
+      // @ts-ignore
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
       // Handle item sorting within the same Actor
       const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
+        // @ts-ignore
         return this._onSortItem(event, itemData);
       }
 

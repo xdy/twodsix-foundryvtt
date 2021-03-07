@@ -1,5 +1,5 @@
 import TwodsixItem from "../module/entities/TwodsixItem";
-import { TwodsixItemData, UpdateData } from "src/types/twodsix";
+import {TwodsixItemData, UpdateData} from "src/types/twodsix";
 import TwodsixActor from "../module/entities/TwodsixActor";
 
 /**
@@ -40,28 +40,33 @@ class Migration {
     return updateData;
   }
 
-  private static async migrateActorItems(actor:TwodsixActor, untrainedSkill:TwodsixItem=null) {
+  private static async migrateActorItems(actor:TwodsixActor, untrainedSkill:TwodsixItem = null) {
     //Handle any items that are on the actor
     const actorItems = actor.data["items"];
     const toUpdate = [];
     for (const i of actorItems) {
+      // @ts-ignore
       toUpdate.push(mergeObject(i, this.migrateItemData(i, actor, untrainedSkill)));
     }
     await actor.updateEmbeddedEntity("OwnedItem", toUpdate);
   }
 
-  private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor = null, untrainedSkill:TwodsixItem=null):UpdateData {
+  private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor = null, untrainedSkill:TwodsixItem = null):UpdateData {
     const updateData:UpdateData = <UpdateData>{};
 
     if (item.type === 'skills') { //0.6.82
+      // @ts-ignore
       updateData['data.rolltype'] = item.data.rolltype || 'Normal';
-      if (typeof item.data.value ===  "string") { // 0.7.8
+      // @ts-ignore
+      if (typeof item.data.value === "string") { // 0.7.8
+        // @ts-ignore
         updateData['data.value'] = parseInt(item.data.value, 10);
       }
     }
 
-    if (actor &&  actor.data.type === "traveller") {
+    if (actor && actor.data.type === "traveller") {
       if (item.type !== 'skills') {
+        // @ts-ignore
         if (!item.data.skill) { //0.6.84
           updateData['data.skill'] = untrainedSkill._id;
         }
@@ -72,6 +77,7 @@ class Migration {
   }
 
 
+  // @ts-ignore
   private static async migrateSceneData(scene:EntityData):Promise<{ tokens }> {
     const tokens = duplicate(scene["tokens"]);
     return {
@@ -82,6 +88,7 @@ class Migration {
           t.actorData = {};
         } else if (!t.actorLink) {
           const updateData = Migration.migrateActorData(<TwodsixActor>token.actor);
+          // @ts-ignore
           t.actorData = mergeObject(token.data.actorData, updateData);
         }
         return t;
@@ -138,6 +145,7 @@ class Migration {
    * @private
    */
   static _migrateRemoveDeprecated(itemData:TwodsixItemData, updateData:UpdateData):void {
+    // @ts-ignore
     const flat = flattenObject(itemData.data);
     // console.warn('flat', flat);
     // Identify objects to deprecate
@@ -181,6 +189,7 @@ class Migration {
 
     game.items.entities.map(async item => {
       try {
+        // @ts-ignore
         const updateData = await Migration.migrateItemData(<TwodsixItemData>item.data);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Item ${item.name}`);

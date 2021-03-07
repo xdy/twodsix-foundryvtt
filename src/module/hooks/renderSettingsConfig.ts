@@ -3,6 +3,7 @@ import {TWODSIX} from "../config";
 function createWarningDialog(event:Event, message:string) {
   event.preventDefault();
   event.stopPropagation();
+  // @ts-ignore
   Dialog.confirm({
     title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning"),
     content: message,

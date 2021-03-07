@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "target": "ES6",
     "lib": ["WebWorker", "ScriptHost", "ESNext", "DOM", "ES6", "ES2017", "ES2018"],
     "allowUmdGlobalAccess": true,
@@ -13,7 +13,7 @@
     "removeComments": false,
     "resolveJsonModule": true,
     "typeRoots": ["./types"],
-    "types": ["jquery", "webpack-env", "foundry-vtt-types", "@types/fs-extra"],
+    "types": ["jquery", "webpack-env", "@league-of-foundry-developers/foundry-vtt-types", "@types/fs-extra"],
     "alwaysStrict": true
   }
 }

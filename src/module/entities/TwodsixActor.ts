@@ -40,7 +40,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareTravellerData(actorData:ActorData):void {
+  _prepareTravellerData(actorData:any):void {
     // Get the Actor's data object
     const {data} = actorData;
 
@@ -140,13 +140,16 @@ export default class TwodsixActor extends Actor {
       "type": "skills",
       "flags": {'twodsix.untrainedSkill': true}
     };
-    return await this.createOwnedItem(data) as TwodsixItem;
+    return await this.createOwnedItem(data) as unknown as TwodsixItem;
   }
 
   private static _applyToAllActorItems(func: (actor:TwodsixActor, item:TwodsixItem) => void):void {
     TwodsixActor.collection.forEach(actor => {
+      // @ts-ignore
       actor.data.items.forEach((itemData:Record<string,any>) => {
+        // @ts-ignore
         const item = actor.getOwnedItem(itemData._id);
+        // @ts-ignore
         func(actor, item);
       });
     });

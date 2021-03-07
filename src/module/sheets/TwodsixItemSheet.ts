@@ -10,7 +10,9 @@ import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUti
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
+  // @ts-ignore
   static get defaultOptions():FormApplicationOptions {
+    // @ts-ignore
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
@@ -29,6 +31,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
+  // @ts-ignore
   getData():ItemSheetData {
     const data = super.getData();
 
@@ -50,6 +53,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
+  // @ts-ignore
   setPosition(options:ApplicationPosition = {}):any {
     const position = super.setPosition(options);
     const sheetBody = (this.element as JQuery).find(".sheet-body");
@@ -78,6 +82,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   private getConsumable(event:Event):TwodsixItem {
     const li = $(event.currentTarget).parents(".consumable");
+    // @ts-ignore
     return this.item.actor.getOwnedItem(li.data("consumableId"));
   }
 
@@ -91,9 +96,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const consumableNameString = `"<strong>${consumable.name}</strong>"`;
     const body = bodyTextTemplate.replace("_CONSUMABLE_NAME_", consumableNameString).replace("_ITEM_NAME_", this.item.name);
 
+    // @ts-ignore
     await Dialog.confirm({
       title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
       content: `<div class="remove-consumable">${body}<br><br></div>`,
+      // @ts-ignore
       yes: async () => this.item.removeConsumable(consumable._id),
       no: () => {
         //Nothing
@@ -128,7 +135,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 max: max,
               }
             };
+            // @ts-ignore
             const newConsumable = await this.item.actor.createOwnedItem(data) as TwodsixItem;
+            // @ts-ignore
             await this.item.addConsumable(newConsumable._id);
           }
         },
@@ -173,6 +182,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         const newItem = await this.item.actor.createEmbeddedEntity("OwnedItem", itemData);
         itemId = newItem._id;
       }
+      // @ts-ignore
       await this.item.addConsumable(itemId);
     } catch (err) {
       console.error(`Twodsix | ${err}`);

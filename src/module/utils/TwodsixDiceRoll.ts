@@ -122,6 +122,7 @@ export class TwodsixDiceRoll {
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
     } else {
+      // @ts-ignore
       const difficultyMod = TwodsixDiceRoll.addSign(this.roll.data.difficultyMod);
       flavor += `(${difficultyMod})`;
     }
@@ -132,6 +133,7 @@ export class TwodsixDiceRoll {
     }
 
     if (this.skill) {
+      // @ts-ignore
       const skillValue = TwodsixDiceRoll.addSign(this.roll.data.skill);
       flavor += ` ${this.skill.data.name}(${skillValue})`;
     }
@@ -140,7 +142,9 @@ export class TwodsixDiceRoll {
       flavor += ` ${usingString} ${this.item.data.name}`;
     }
 
+    // @ts-ignore
     if (this.roll.data.DM) {
+      // @ts-ignore
       flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll.data.DM)})`;
     }
 
@@ -160,6 +164,7 @@ export class TwodsixDiceRoll {
           "twodsix.effect": this.effect
         }
       },
+      // @ts-ignore
       {rollMode: this.settings.rollMode}
     );
   }

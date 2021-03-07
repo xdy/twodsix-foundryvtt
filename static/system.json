@@ -114,7 +114,7 @@
     },
     {
       "name": "cepheus-atom-actors",
-      "label": "cepehus atom actors",
+      "label": "cepheus atom actors",
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-atom-actors.db",

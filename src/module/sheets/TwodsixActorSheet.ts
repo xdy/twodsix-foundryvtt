@@ -20,8 +20,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     // Prepare items.
     if (this.actor.data.type == 'traveller') {
       TwodsixActorSheet._prepareItemContainers(data);
+      // @ts-ignore
       const untrainedSkill = this.actor.getUntrainedSkill();
       if (untrainedSkill) {
+        // @ts-ignore
         data.untrainedSkill = this.actor.getUntrainedSkill();
         data.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(data.untrainedSkill.data.data.value);
       }
@@ -39,7 +41,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
+  // @ts-ignore
   static get defaultOptions():FormApplicationOptions {
+    // @ts-ignore
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
@@ -76,6 +80,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   private getItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
+    // @ts-ignore
     return this.actor.getOwnedItem(itemId);
   }
 
@@ -102,6 +107,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const skillValue = TwodsixActorSheet.joatToUndrained(joatValue);
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
+      // @ts-ignore
       const untrainedSkill = this.actor.getUntrainedSkill();
       untrainedSkill.update({"data.value": skillValue});
     } else if (event.currentTarget["value"] !== "")  {
@@ -116,6 +122,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onJoatSkillBlur(event:Event):Promise<void> {
     if (isNaN(parseInt(event.currentTarget["value"], 10))) {
+      // @ts-ignore
       const skillValue = this.actor.getUntrainedSkill().data.data.value;
       event.currentTarget["value"] = TwodsixActorSheet.untrainedToJoat(skillValue);
     }
@@ -153,6 +160,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollChar(event:Event, showTrowDiag:boolean):Promise<void> {
+    // @ts-ignore
     await this.actor.characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
   }
 

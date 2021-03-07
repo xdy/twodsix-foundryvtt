@@ -1,3 +1,4 @@
+// @ts-ignore
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
   protected handleContentEditable(html:JQuery):void {
@@ -12,8 +13,10 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     super.activateListeners(html);
   }
 
+  // @ts-ignore
   getData():ItemSheetData {
     const data = super.getData();
+    // @ts-ignore
     data.data.owner = this.actor;
 
     return data;

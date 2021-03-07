@@ -42,11 +42,13 @@ Hooks.once('init', async function () {
   CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
 
+  // @ts-ignore
   Actors.registerSheet('twodsix', TwodsixActorSheet, {
     types: ["traveller"],
     makeDefault: true
   });
 
+  // @ts-ignore
   Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
     makeDefault: true,

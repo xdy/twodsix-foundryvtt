@@ -16,6 +16,7 @@
   "author": "",
   "license": "",
   "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^0.7.9-0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
@@ -39,7 +40,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
     "file-loader": "^6.0.0",
-    "foundry-vtt-types": "git+https://github.com/kmoschcau/foundry-vtt-types.git",
     "fs-extra": "^9.1.0",
     "mini-css-extract-plugin": "^1.3.9",
     "prettier": "^2.2.1",

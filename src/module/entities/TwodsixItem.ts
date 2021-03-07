@@ -6,6 +6,7 @@ import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 
+// @ts-ignore
 export default class TwodsixItem extends Item {
   public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
     const item = await super.create(data, options) as TwodsixItem;
@@ -24,6 +25,7 @@ export default class TwodsixItem extends Item {
     if (this.data.data.consumables) {
       this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
         // this is a bit hacky.. seems like the actor has not been initialized fully at this point.
+        // @ts-ignore
         return this.actor.data["items"].filter((item:TwodsixItem) => item._id === consumableId)[0];
       });
       this.data.data.consumableData.sort((a:TwodsixItem, b:TwodsixItem) => {
@@ -146,6 +148,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    // @ts-ignore
     const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
 
     if (showInChat) {

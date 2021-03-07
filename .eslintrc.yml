@@ -36,3 +36,4 @@ rules:
   'no-trailing-spaces': ["error"]
   'eol-last': ["error", "always"]
   'key-spacing': ["error"]
+  '@typescript-eslint/ban-ts-comment': ["warn"]
