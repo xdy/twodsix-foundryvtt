@@ -120,5 +120,8 @@ and Richard Hazlewood.
 Cepheus Light © 2018, Stellagama Publishing; Authors Omer Golan-Joel and Josh Peters.
 Cepheus: Faster Than Light © 2019, Stellagama Publishing; Author Omer Golan-Joel.
 2d6 Science Fiction System Reference Document (‘2d6 SF SRD’) © 2017, 2d6 Science Fiction System Reference Document.
+Cepheus Quantum © 2019, Stellagama Publishing; Author Omer Golan-Joel
+Cepheus Atom © 2020, Stellagama Publishing; Author Omer Golan-Joel
+Barbaric! © 2021, Stellagama Publishing; Author Omer Golan-Joel
 Twodsix © 2020-2021, The developers of Twodsix (including but not necessarily limited to those listed in https://github.com/xdy/twodsix-foundryvtt/blob/master/CONTRIBUTORS.md)
 </pre>
