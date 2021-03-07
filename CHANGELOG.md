@@ -1,3 +1,10 @@
+## [0.7.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.20...v0.7.21) (2021-03-07)
+
+
+### Bug Fixes
+
+* Update OpenGameLicense.md ([52c77aa](https://github.com/xdy/twodsix-foundryvtt/commit/52c77aa1c54cad5ef40231f22fcb50c0fc307e1b))
+
 ## [0.7.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.19...v0.7.20) (2021-03-07)
 
 
