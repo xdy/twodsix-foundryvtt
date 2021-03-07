@@ -103,6 +103,22 @@
       "module": "twodsix",
       "path": "./packs/ce-srd-items.db",
       "entity": "Item"
+    },
+    {
+      "name": "cepheus-atom-items",
+      "label": "cepheus atom items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-atom-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "cepheus-atom-actors",
+      "label": "cepehus atom actors",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-atom-actors.db",
+      "entity": "Actor"
     }
   ],
   "primaryTokenAttribute": "hits",
