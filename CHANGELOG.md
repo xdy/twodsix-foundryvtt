@@ -1,3 +1,10 @@
+## [0.7.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.21...v0.7.22) (2021-03-08)
+
+
+### Bug Fixes
+
+* Typo fix in ship sheet courtesy of [@pajon](https://github.com/pajon)[#5031](https://github.com/xdy/twodsix-foundryvtt/issues/5031)  ([9821678](https://github.com/xdy/twodsix-foundryvtt/commit/982167855a035cce50a3b63eb2af97a21e79f67e))
+
 ## [0.7.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.20...v0.7.21) (2021-03-07)
 
 
