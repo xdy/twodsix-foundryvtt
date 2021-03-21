@@ -11,6 +11,18 @@
   "Routine": "Routine",
   "Simple": "Simple",
   "TWODSIX": {
+    "Damage": {
+      "DealDamage": "Deal damage",
+      "Damage": "Damage",
+      "TotalDamage": "Total damage",
+      "Characteristics": "Characteristics",
+      "Max": "Max",
+      "Current": "Current",
+      "ResultingStat": "Resulting stat",
+      "UnallocatedDamage": "Unallocated damage",
+      "CharacterIsDead": "Character is dead",
+      "DealDamageTo": "Deal damage to _ACTOR_NAME_"
+    },
     "Actor": {
       "Age": "Age",
       "CharacterImage": "Character Image",
@@ -362,6 +374,12 @@
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
+    },
+    "Warnings": {
+      "AutoDamageForMultipleTargetsNotImplemented": "Automatically damaging multiple targets (using Auto X) is currently not supported",
+      "MaxStatVal": "The value exceededs the maximum stat value",
+      "StatValBelowZero": "The value cannot be below zero",
+      "DecreaseEnduranceFirst": "Endurance should be decreased before other stats"
     }
   },
   "VeryDifficult": "Very Difficult"
