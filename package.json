@@ -48,6 +48,7 @@
     "semantic-release": "^17.4.2",
     "simple-git": "^2.37.0",
     "source-map-loader": "^1.1.0",
+    "ssri": ">=8.0.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.18",
     "ts-node": "^9.1.1",
