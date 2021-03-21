@@ -1,3 +1,10 @@
+## [0.7.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.22...v0.7.23) (2021-03-21)
+
+
+### Bug Fixes
+
+*  Adding the new Cepheus Atom actor and item packs from Marvin. Monsters and associated items use tokens are from dnd5e (needs to be installed). ([ec6b775](https://github.com/xdy/twodsix-foundryvtt/commit/ec6b775303107e76db94932e422a30503346806d))
+
 ## [0.7.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.21...v0.7.22) (2021-03-08)
 
 
