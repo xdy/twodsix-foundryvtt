@@ -117,7 +117,12 @@ export default class TwodsixItem extends Item {
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll.isSuccess()) {
-        await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat);
+        const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat);
+        if (game.user.targets.size === 1) {
+          game.user.targets.values().next().value.actor.damageActor(damage.total);
+        } else if (game.user.targets.size > 1){
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
+        }
       }
     }
   }
@@ -197,8 +202,8 @@ export default class TwodsixItem extends Item {
 
       ChatMessage.create(messageData, {rollMode: rollMode});
     }
-    console.log("DEBUG DAMAGE ROLL:", damageRoll);
-    return damageRoll;
+    console.log("DEBUG DAMAGE ROLL:", damage);
+    return damage;
   }
 
   public static burstAttackDM(number:number):number {
