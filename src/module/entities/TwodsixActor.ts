@@ -7,6 +7,7 @@ import {TWODSIX} from "../config";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
+import { Stats } from "../utils/actorDamage";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -50,47 +51,23 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  protected async damageActor(damage:number):Promise<number> {
-    //TODO Naive implementation, assumes always choose current highest, assumes armor works
-    //TODO Implement choice of primary/secondary/no armor, and full/half/double armor, as well as 'ignore first X points of armor'.
-    //TODO Rewrite this...
-    const characteristics = this.data.data.characteristics;
-    const armor = this.data.data.primaryArmor.value;
-    let remaining:number = damage - armor;
-    let updateData = {};
+  protected async damageActor(damage:number, showDamageDialog=true):Promise<void> {
+    if (showDamageDialog) {
+      const damageData = {
+        damage: damage,
+        damageId: "damage-" + Math.random().toString(36).substring(2, 15)
+      };
 
-    [remaining, updateData] = this.addDamage(remaining, updateData, 'endurance');
-    if (remaining > 0 && characteristics['strength'].current > characteristics['dexterity'].current) {
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
-    } else {
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'dexterity');
-      [remaining, updateData] = this.addDamage(remaining, updateData, 'strength');
-    }
-    if (remaining > 0) {
-      console.log(`Twodsix | Actor ${this.name} was overkilled by ${remaining}`);
-    }
-    this.update(updateData);
-    return remaining;
-  }
-
-  private addDamage(damage:number, updateData, chrName):[number,any] {
-    const characteristics = this.data.data.characteristics;
-    const  characteristic = characteristics[chrName];
-    if (characteristic.current > 0) {
-      let handledDamage = 0;
-      let totalDamage = characteristic.damage;
-      if (damage + characteristic.damage > characteristic.value) {
-        handledDamage = characteristic.value - characteristic.damage;
-        totalDamage = characteristic.value;
-      } else if (damage > 0) {
-        handledDamage = damage;
-        totalDamage = characteristic.damage + damage;
+      if (this.isToken) {
+        damageData["tokenId"] = this.token.id;
+      } else {
+        damageData["actorId"] = this.id;
       }
-      updateData[`data.characteristics.${chrName}.damage`] = totalDamage;
-      return [damage - handledDamage, updateData];
+      game.socket.emit("system.twodsix", ["createDamageDialog", damageData]);
+      Hooks.call('createDamageDialog', damageData);
     } else {
-      return [damage, updateData];
+      const stats = new Stats(this, damage);
+      stats.applyDamage();
     }
   }
 

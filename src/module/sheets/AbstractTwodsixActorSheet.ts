@@ -145,8 +145,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (data.type === 'damageItem') {
+      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
       // @ts-ignore
-      await this.actor.damageActor(data.payload["damage"]);
+      await this.actor.damageActor(data.payload["damage"], showDamageDialog);
       return;
     }
 
