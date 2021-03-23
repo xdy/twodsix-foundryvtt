@@ -329,6 +329,10 @@
       "invertSkillRollShiftClick": {
         "hint": "When clicking on a skill a dialog for the skill roll typically appears. Shift-clicking is a shortcut for rolling without modifiers witth a dificulty of 8. Checking this box swaps this behavior.",
         "name": "Invert behavior for shift-clicking for skill rolls"
+      },
+      "defaultSkillCompendium": {
+        "hint": "This skill compendium will be used to populate newly created actors so that they will have all of those skills. Using the twodsix-custom-skills option uses the twodsix-custom-skills compendium, which is meant for a custom skill set. Please note that if 'Hide all untrained skills' is checked the skills will not be populated.",
+        "name": "Skill list to use for new actors"
       }
     },
     "CloseAndCreateNew": "Close and create new",

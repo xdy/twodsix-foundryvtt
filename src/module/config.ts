@@ -116,11 +116,17 @@ const DIFFICULTIES = Object.freeze({
   }
 });
 
+const DEFAULT_SKILL_COMPENDIUM = Object.freeze({
+  "none": "---",
+  "twodsix.twodsix-custom-skills": "twodsix-custom-skills"
+})
+
 export const TWODSIX = {
   CHARACTERISTICS: CHARACTERISTICS,
   CONSUMABLES: CONSUMABLES,
   VARIANTS: VARIANTS,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
-  RULESETS: RULESETS
+  RULESETS: RULESETS,
+  DEFAULT_SKILL_COMPENDIUM: DEFAULT_SKILL_COMPENDIUM
 };
