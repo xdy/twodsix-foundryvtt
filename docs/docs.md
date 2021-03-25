@@ -2,7 +2,7 @@
 _Not a lot of ducks either._
 
 # Twodsix System
-A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) for more information.)
+A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) and the [WIKI](https://github.com/xdy/twodsix-foundryvtt/wiki) for more information.)
 
 Some basic instructions on how to set up your game for some of the most common variants can be found below:
 
