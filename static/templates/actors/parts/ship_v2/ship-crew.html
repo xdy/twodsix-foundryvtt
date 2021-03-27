@@ -1,0 +1,23 @@
+<div class="crew-list">
+  <div class="ship-grid">
+    {{#each data.crewPositions as |crewPosition|}}
+      <div class="drag crew-position" data-id="{{crewPosition._id}}">
+        <div class="item-title">
+          {{crewPosition.name}}
+        </div>
+        <div style="width: 14.8em; min-height: 50px; border: 1px groove #00e5ff; border-radius: 0;">
+          {{log crewPosition}}
+          {{#each crewPosition.data.actors as |actor|}}
+            <img src="{{actor.img}}" class="crew-actor-token" data-id="{{actor.id}}" style="cursor: pointer" width="40" height="40" alt="{{actor.name}}" title="{{actor.name}}">
+          {{/each}}
+          <span class="fa fa-wrench crew_position-edit" style="float: right; margin-top: 4px; margin-right: 4px; cursor: pointer;"></span>
+        </div>
+        <div style="width: 14.8em; min-height: 50px; border: 1px groove #00e5ff; border-radius: 0;">
+        {{#each crewPosition.data.actions as |action|}}
+            <span class="fa {{action.icon}} crew-action" data-value="{{action.value}}" style="width: 40px; height: 40px; border: 1px solid #fff"></span>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
