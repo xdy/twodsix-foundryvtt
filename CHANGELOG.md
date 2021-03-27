@@ -1,3 +1,10 @@
+## [0.7.24-development.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24-development.1...v0.7.24-development.2) (2021-03-27)
+
+
+### Bug Fixes
+
+* Improve setting text ([b660729](https://github.com/xdy/twodsix-foundryvtt/commit/b6607291440eed767d66f2e6be7bdf5ddaa667dc))
+
 ## [0.7.24-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.23...v0.7.24-development.1) (2021-03-27)
 
 
