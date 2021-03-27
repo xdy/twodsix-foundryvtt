@@ -114,7 +114,7 @@ export class TwodsixDiceRoll {
   public async sendToChat():Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
+    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
     let flavor = `${rollingString}: ${difficulty}`;

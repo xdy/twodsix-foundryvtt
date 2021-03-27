@@ -85,7 +85,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          itemData.data.value = game.system.template.Item.skills.value;
+          itemData.data.value = game.system.template.Item.skills["value"];
         } else {
           itemData.data.value = 0;
         }

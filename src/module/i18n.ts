@@ -3,9 +3,9 @@
 export function advantageDisadvantageTerm(rollType:string):string {
   switch (rollType.toLowerCase()) {
     case "advantage":
-      return game.settings.get('twodsix', 'termForAdvantage');
+      return (<string>game.settings.get('twodsix', 'termForAdvantage'));
     case "disadvantage":
-      return game.settings.get('twodsix', 'termForDisadvantage');
+      return (<string>game.settings.get('twodsix', 'termForDisadvantage'));
     default:
       return rollType;
   }

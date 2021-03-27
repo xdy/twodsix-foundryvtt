@@ -173,7 +173,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 export function calcModFor(characteristic:number):number {
   let modifier = Math.floor((characteristic - 6) / 3);
   if (characteristic === 0) {
-    modifier = game.settings.get('twodsix', 'modifierForZeroCharacteristic');
+    modifier = (<number>game.settings.get('twodsix', 'modifierForZeroCharacteristic'));
   }
   return modifier;
 }

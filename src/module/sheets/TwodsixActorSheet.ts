@@ -89,7 +89,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       event.preventDefault();
       event.stopPropagation();
 
-      const useInvertedShiftClick:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick');
+      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
 
       func.bind(this)(event, showTrowDiag);
@@ -104,7 +104,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _updateJoatSkill(event:Event):Promise<void> {
     const joatValue = parseInt(event.currentTarget["value"], 10);
-    const skillValue = TwodsixActorSheet.joatToUndrained(joatValue);
+    const skillValue = TwodsixActorSheet.joatToUntrained(joatValue);
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
       // @ts-ignore
@@ -179,18 +179,18 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
     async function rollDamage(this:TwodsixActorSheet):Promise<Roll> {
-      return item.rollDamage(game.settings.get('core', 'rollMode'), bonusDamageFormula);
+      return item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula);
     }
 
     rollDamage.call(this);
   }
 
   private static untrainedToJoat(skillValue:number):number {
-    return skillValue - game.system.template.Item.skills.value;
+    return skillValue - game.system.template.Item.skills["value"];
   }
 
-  private static joatToUndrained(joatValue:number):number {
-    return joatValue + game.system.template.Item.skills.value;
+  private static joatToUntrained(joatValue:number):number {
+    return joatValue + game.system.template.Item.skills["value"];
   }
 
   private getConsumableItem(event:Event):TwodsixItem {
