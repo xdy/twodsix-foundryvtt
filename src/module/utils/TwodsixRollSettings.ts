@@ -15,7 +15,7 @@ export class TwodsixRollSettings {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:any, skill?:TwodsixItem, item?:TwodsixItem) {
-    this.difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
+    this.difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = skill?.data?.data?.difficulty ? this.difficulties[skill.data.data.difficulty] : this.difficulties.Average;
     const skillModifier = item?.data?.data?.skillModifier ?? 0;
     const characteristic = skill ? skill.data.data.characteristic : "NONE";

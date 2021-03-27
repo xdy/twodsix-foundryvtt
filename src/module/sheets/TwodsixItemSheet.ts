@@ -43,7 +43,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]
+      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
     data.data.config = TWODSIX;
     data.data.isOwned = this.item.isOwned;
