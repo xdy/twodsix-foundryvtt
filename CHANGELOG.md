@@ -1,3 +1,10 @@
+## [0.7.24-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.23...v0.7.24-development.1) (2021-03-27)
+
+
+### Bug Fixes
+
+* improve deal damage to actors ([ac47ecc](https://github.com/xdy/twodsix-foundryvtt/commit/ac47eccb7db341452abe6c3774eab9482a9db2c6)), closes [#222](https://github.com/xdy/twodsix-foundryvtt/issues/222)
+
 ## [0.7.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.22...v0.7.23) (2021-03-21)
 
 
