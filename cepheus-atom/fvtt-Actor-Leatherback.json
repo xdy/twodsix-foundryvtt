@@ -130,8 +130,8 @@
       "intensity": 5
     },
     "actorId": "eBCaA1IWc2aZcSDj",
-    "actorLink": true,
-    "disposition": 1,
+    "actorLink": false,
+    "disposition": -1,
     "displayBars": 50,
     "bar1": {
       "attribute": "hits"
@@ -264,7 +264,7 @@
           "weight": 0
         },
         "skillModifier": 0,
-        "skill": "",
+        "skill": "kEVklC2zUx4UWSfY",
         "range": "5/20",
         "damage": "2d6",
         "damageBonus": 0,
