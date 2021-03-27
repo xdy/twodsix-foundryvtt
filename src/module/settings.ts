@@ -45,11 +45,17 @@ export const registerSettings = function ():void {
   _booleanSetting('criticalNaturalAffectsEffect', false);
   _numberSetting('absoluteCriticalEffectValue', 99);
 
+  _stringChoiceSetting(
+    'defaultSkillCompendium',
+    TWODSIX.DEFAULT_SKILL_COMPENDIUM["none"],
+    TWODSIX.DEFAULT_SKILL_COMPENDIUM
+  );
+
+  _booleanSetting('invertSkillRollShiftClick', false);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
-
-  _booleanSetting('invertSkillRollShiftClick', false  );
 
   //Must be the last setting in the file
   _stringSetting('systemMigrationVersion', game.system.data.version);

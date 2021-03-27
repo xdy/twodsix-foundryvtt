@@ -37,6 +37,23 @@ export default class TwodsixActor extends Actor {
 
   }
 
+  async _onCreate(data: any, options: any, userId: string) {
+    super._onCreate(data, options, userId);
+    if (this.data.type == "traveller") {
+
+      if (!options.noSkillImport && !game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        const compendium = game.packs.get(game.settings.get('twodsix', 'defaultSkillCompendium'));
+        if (compendium) {
+          const content = await compendium.getContent();
+          // @ts-ignore
+          await this.createEmbeddedEntity("OwnedItem", content.map(skill=>skill.data));
+        }
+      }
+
+      await this.createUntrainedSkill();
+    }
+  }
+
   /**
    * Prepare Character type specific data
    */

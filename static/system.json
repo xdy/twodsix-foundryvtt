@@ -119,6 +119,13 @@
       "module": "twodsix",
       "path": "./packs/cepheus-atom-actors.db",
       "entity": "Actor"
+    }, {
+      "name": "twodsix-custom-skills",
+      "label": "twodsix-custom-skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/twodsix-custom-skills.db",
+      "entity": "Item"
     }
   ],
   "primaryTokenAttribute": "hits",
