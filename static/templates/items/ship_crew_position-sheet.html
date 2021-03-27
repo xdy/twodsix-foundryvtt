@@ -1,0 +1,49 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="item-sheet">
+        <div class="item-name">
+            <label for="data.name" class="resource-label">Position name
+                <input id="data.name" type="text" name="name" value="{{item.name}}" data-dtype="Text" />
+            </label>
+        </div>
+        <div class="item-name">
+            <label for="data.order" class="resource-label">Order
+                <input id="data.order" type="number" name="data.order" value="{{data.order}}" data-dtype="Number" />
+            </label>
+        </div>
+
+        <div class="form-section">
+        Actions: <br>
+        <table>
+            <thead>
+            <tr>
+                <td>Icon</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td></td>
+                <td class="centre">
+                    <a class="crew_position-action-create" title='Add Action'>
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each data.actions as |action|}}
+            <tr class="crew_position-action" data-index="{{@index}}">
+                <td><input class="crew_position-action-field" data-field="icon" type="text" value="{{action.icon}}"></td>
+                <td><input class="crew_position-action-field" data-field="name" type="text" value="{{action.name}}"></td>
+                <td>{{action.type}}</td>
+                <td><input class="crew_position-action-field" data-field="value" type="text" value="{{action.value}}"></td>
+                <td class="centre">
+                <a class="crew_position-action-delete" title='Delete action'>
+                    <i class="fas fa-trash"></i>
+                </a>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+</form>
