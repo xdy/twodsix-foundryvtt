@@ -1,0 +1,61 @@
+<div class="damage-dialog">
+  {{#with stats}}
+  <table class="center-table-text">
+    <thead>
+      <tr>
+        <td>{{localize "TWODSIX.Damage.Damage"}}</td>
+        <td>{{localize "TWODSIX.Actor.Items.Armor"}}</td>
+        <td>{{localize "TWODSIX.Damage.TotalDamage"}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="number" value="{{damage}}" class="damage"></td>
+        <td><input type="number" value="{{armor}}" class="armor"></td>
+        <td class="applied-damage"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <b>{{localize "TWODSIX.Damage.Characteristics"}}:</b><br>
+  <table class="center-table-text">
+    <thead>
+      <tr>
+        <td class="attribute-name-column"></td>
+        <td>{{localize "TWODSIX.Damage.Max"}}</td>
+        <td>{{localize "TWODSIX.Damage.Current"}}</td>
+        <td>{{localize "TWODSIX.Damage.Damage"}}</td>
+        <td>{{localize "TWODSIX.Damage.ResultingStat"}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="strength">
+        <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.STR"}}</td>
+        <td class="original-value">{{originalCharacteristics.strength.value}}</td>
+        <td><span class="original-current">{{originalCharacteristics.strength.current}}</span> <span class="current-mod"></span></td>
+        <td><input class="damage-input" data-stat="strength" type="number" value="{{strength}}"></td>
+        <td><span class="result-value"></span> <span class="mod"></span></td>
+      </tr>
+      <tr class="dexterity">
+        <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.DEX"}}</td>
+        <td class="original-value">{{originalCharacteristics.dexterity.value}}</td>
+        <td><span class="original-current">{{originalCharacteristics.dexterity.current}}</span> <span class="current-mod"></span></td>
+        <td><input class="damage-input" data-stat="dexterity" type="number" value="{{dexterity}}"></td>
+        <td><span class="result-value"></span> <span class="mod"></span></td>
+      </tr>
+      <tr class="endurance">
+        <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.END"}}</td>
+        <td class="original-value">{{originalCharacteristics.endurance.value}}</td>
+        <td><span class="original-current">{{originalCharacteristics.endurance.current}}</span> <span class="current-mod"></span></td>
+        <td><input class="damage-input" data-stat="endurance" type="number" value="{{endurance}}"></td>
+        <td><span class="result-value"></span> <span class="mod"></span></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <span class="unalocated-damage-text">{{localize "TWODSIX.Damage.UnallocatedDamage"}}: <span class="unalocated-damage"></span></span><br><br>
+  <span class="character-dead red">{{localize "TWODSIX.Damage.CharacterIsDead"}}</span>
+  
+  <br><br>
+  {{/with}}
+</div>

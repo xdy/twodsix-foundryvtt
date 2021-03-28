@@ -11,6 +11,18 @@
   "Routine": "Routine",
   "Simple": "Simple",
   "TWODSIX": {
+    "Damage": {
+      "DealDamage": "Deal damage",
+      "Damage": "Damage",
+      "TotalDamage": "Total damage",
+      "Characteristics": "Characteristics",
+      "Max": "Max",
+      "Current": "Current",
+      "ResultingStat": "Resulting stat",
+      "UnallocatedDamage": "Unallocated damage",
+      "CharacterIsDead": "Character is dead",
+      "DealDamageTo": "Deal damage to _ACTOR_NAME_"
+    },
     "Actor": {
       "Age": "Age",
       "CharacterImage": "Character Image",
@@ -327,8 +339,8 @@
         "warning": "Warning!"
       },
       "invertSkillRollShiftClick": {
-        "hint": "When clicking on a skill a dialog for the skill roll typically appears. Shift-clicking is a shortcut for rolling without modifiers witth a dificulty of 8. Checking this box swaps this behavior.",
-        "name": "Invert behavior for shift-clicking for skill rolls"
+        "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
+        "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -362,6 +374,12 @@
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
+    },
+    "Warnings": {
+      "AutoDamageForMultipleTargetsNotImplemented": "Automatically damaging multiple targets (using Auto X) is currently not supported",
+      "MaxStatVal": "The value exceededs the maximum stat value",
+      "StatValBelowZero": "The value cannot be below zero",
+      "DecreaseEnduranceFirst": "Endurance should be decreased before other stats"
     }
   },
   "VeryDifficult": "Very Difficult"

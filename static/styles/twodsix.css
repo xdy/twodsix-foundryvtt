@@ -2170,3 +2170,39 @@ div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsi
   background: none !important;
   border: none !important;
 }
+
+/* ------ Damage Dialog ------ */
+
+.damage-dialog .red {
+  color: #f00;
+}
+
+.damage-dialog .orange {
+  color: rgb(255, 153, 0);
+}
+
+.damage-dialog .orange-border {
+  border: 1px solid rgb(255, 153, 0);
+}
+
+.damage-dialog .mod, .damage-dialog .current-mod {
+  font-size: 12px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.damage-dialog .damage-input {
+  width: 30px;
+}
+
+.damage-dialog .damage, .damage-dialog .armor{
+  width: 50px;
+}
+
+.damage-dialog .center-table-text {
+  text-align: center;
+}
+
+.damage-dialog .attribute-name-column {
+  text-align: left;
+}

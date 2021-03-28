@@ -1,3 +1,12 @@
+## [0.7.25-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24...v0.7.25-development.1) (2021-03-28)
+
+
+### Bug Fixes
+
+* improve deal damage to actors ([b5822ac](https://github.com/xdy/twodsix-foundryvtt/commit/b5822ac69b97d3829dbed359639d62bb34f5cd35)), closes [#222](https://github.com/xdy/twodsix-foundryvtt/issues/222)
+* Improve setting text ([f3ef1c4](https://github.com/xdy/twodsix-foundryvtt/commit/f3ef1c49f680ddbf3d0f8c0f4f1add421660a93b))
+* Rebase on master, update package-lock.json, make a new development release. ([c701982](https://github.com/xdy/twodsix-foundryvtt/commit/c7019826581848ee3dc89855485558b1dcf0e0e6))
+
 ## [0.7.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24...v0.7.25) (2021-03-28)
 
 
@@ -11,6 +20,20 @@
 ### Bug Fixes
 
 * Adds roll tables, gm screen and a missing monster to Cepheus Atom, courtesy of [@marvin9257](https://github.com/marvin9257) ([e16a9e4](https://github.com/xdy/twodsix-foundryvtt/commit/e16a9e49bb42be0d5f565d03e331857934186f3b))
+
+## [0.7.24-development.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24-development.1...v0.7.24-development.2) (2021-03-27)
+
+
+### Bug Fixes
+
+* Improve setting text ([b660729](https://github.com/xdy/twodsix-foundryvtt/commit/b6607291440eed767d66f2e6be7bdf5ddaa667dc))
+
+## [0.7.24-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.23...v0.7.24-development.1) (2021-03-27)
+
+
+### Bug Fixes
+
+* improve deal damage to actors ([ac47ecc](https://github.com/xdy/twodsix-foundryvtt/commit/ac47eccb7db341452abe6c3774eab9482a9db2c6)), closes [#222](https://github.com/xdy/twodsix-foundryvtt/issues/222)
 
 ## [0.7.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.22...v0.7.23) (2021-03-21)
 
