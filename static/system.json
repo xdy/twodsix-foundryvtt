@@ -119,6 +119,14 @@
       "module": "twodsix",
       "path": "./packs/cepheus-atom-actors.db",
       "entity": "Actor"
+    },
+    {
+      "name": "cepheus-atom-rolltables",
+      "label": "cepheus atom rolltables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-atom-rolltables.db",
+      "entity": "RollTable"
     }
   ],
   "primaryTokenAttribute": "hits",
