@@ -1,3 +1,10 @@
+## [0.7.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.23...v0.7.24) (2021-03-28)
+
+
+### Bug Fixes
+
+* Adds roll tables, gm screen and a missing monster to Cepheus Atom, courtesy of [@marvin9257](https://github.com/marvin9257) ([e16a9e4](https://github.com/xdy/twodsix-foundryvtt/commit/e16a9e49bb42be0d5f565d03e331857934186f3b))
+
 ## [0.7.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.22...v0.7.23) (2021-03-21)
 
 
