@@ -84,7 +84,8 @@ Compendiums with skills, items, etc cannot be included for licensing reasons, so
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
 * You can connect a skill to any item on a character, with an optional permanent bonus, so you can do 'skill rolls' (often enough weapon attacks) by clicking the item rather than the skill, and get that bonus added automatically.
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)
-* You can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.)
+* You can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.) Or, by clicking shift when dragging you get a dialog that allows you to spread the damage manually.
+
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
