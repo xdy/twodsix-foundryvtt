@@ -127,6 +127,14 @@
       "module": "twodsix",
       "path": "./packs/cepheus-atom-rolltables.db",
       "entity": "RollTable"
+    },
+    {
+      "name": "cepheus-atom-gm-screen",
+      "label": "cepheus atom gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-atom-gm-screen.db",
+      "entity": "JournalEntry"
     }
   ],
   "primaryTokenAttribute": "hits",
