@@ -1,3 +1,10 @@
+## [0.7.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24...v0.7.25) (2021-03-28)
+
+
+### Bug Fixes
+
+* Actually include the gm screen journal entries... ([2ebc1e4](https://github.com/xdy/twodsix-foundryvtt/commit/2ebc1e4f755f7cfec96af50735802976cb9b7842))
+
 ## [0.7.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.23...v0.7.24) (2021-03-28)
 
 
