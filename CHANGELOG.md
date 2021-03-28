@@ -1,3 +1,12 @@
+## [0.7.25-development.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24...v0.7.25-development.1) (2021-03-28)
+
+
+### Bug Fixes
+
+* improve deal damage to actors ([b5822ac](https://github.com/xdy/twodsix-foundryvtt/commit/b5822ac69b97d3829dbed359639d62bb34f5cd35)), closes [#222](https://github.com/xdy/twodsix-foundryvtt/issues/222)
+* Improve setting text ([f3ef1c4](https://github.com/xdy/twodsix-foundryvtt/commit/f3ef1c49f680ddbf3d0f8c0f4f1add421660a93b))
+* Rebase on master, update package-lock.json, make a new development release. ([c701982](https://github.com/xdy/twodsix-foundryvtt/commit/c7019826581848ee3dc89855485558b1dcf0e0e6))
+
 ## [0.7.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.24...v0.7.25) (2021-03-28)
 
 
