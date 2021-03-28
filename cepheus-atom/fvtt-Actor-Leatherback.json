@@ -1,0 +1,409 @@
+{
+  "_id": "eBCaA1IWc2aZcSDj",
+  "name": "Leatherback",
+  "type": "traveller",
+  "data": {
+    "name": "",
+    "homeWorld": "",
+    "species": "Monster",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "hits": {
+      "value": 29,
+      "min": 0,
+      "max": 29
+    },
+    "gender": "",
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "primaryArmor": {
+      "value": "3"
+    },
+    "secondaryArmor": {
+      "value": "0"
+    },
+    "radiationProtection": {
+      "value": "0"
+    },
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "untrainedSkill": "RauDiqt8Edz5rTCP",
+    "description": "",
+    "bio": "",
+    "notes": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 9,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR"
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 10,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX"
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 10,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END"
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT"
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU"
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC"
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 7,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI"
+      }
+    }
+  },
+  "sort": 5300000,
+  "flags": {
+    "exportSource": {
+      "world": "test-world",
+      "system": "twodsix",
+      "coreVersion": "0.7.9",
+      "systemVersion": "0.7.23"
+    }
+  },
+  "token": {
+    "flags": {},
+    "name": "Leatherback",
+    "displayName": 40,
+    "img": "systems/dnd5e/tokens/humanoid/Gnoll.png",
+    "tint": null,
+    "width": 1,
+    "height": 1,
+    "scale": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "vision": true,
+    "dimSight": 0,
+    "brightSight": 30,
+    "dimLight": 0,
+    "brightLight": 0,
+    "sightAngle": 360,
+    "lightAngle": 360,
+    "lightAlpha": 1,
+    "lightAnimation": {
+      "speed": 5,
+      "intensity": 5
+    },
+    "actorId": "eBCaA1IWc2aZcSDj",
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {},
+    "randomImg": false
+  },
+  "items": [
+    {
+      "_id": "RauDiqt8Edz5rTCP",
+      "name": "Untrained",
+      "type": "skills",
+      "data": {
+        "value": -3,
+        "characteristic": "STR",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "reference": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal"
+      },
+      "sort": 100000,
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "effects": []
+    },
+    {
+      "_id": "kEVklC2zUx4UWSfY",
+      "name": "Combat",
+      "type": "skills",
+      "data": {
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Combat: this skill covers actions that involve committing violence. Anything from spears and guns to artillery and demolitions.<br><br>",
+        "shortdescr": "actions that involve committing violence",
+        "subtype": "",
+        "reference": "",
+        "key": "key",
+        "difficulty": "Difficult",
+        "rolltype": "Normal"
+      },
+      "sort": 200000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/melee.svg",
+      "effects": []
+    },
+    {
+      "_id": "QmCEiO4k2olBB43h",
+      "name": "Physical",
+      "type": "skills",
+      "data": {
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Physical: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.",
+        "shortdescr": "athleticism, stealth, and acrobatics",
+        "subtype": "",
+        "reference": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal"
+      },
+      "sort": 300000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun",
+          "path": "cepheus atom#/CF_SEP/CA - Skills",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+      "effects": []
+    },
+    {
+      "_id": "4fx6g7nCJRaXOBUt",
+      "name": "Survival",
+      "type": "skills",
+      "data": {
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Survival: this is the skill used for surviving the Wastes, and includes foraging, tracking, scouting, and avoiding Contamination.",
+        "shortdescr": "foraging, tracking, scouting, and avoiding contamination",
+        "subtype": "",
+        "reference": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal"
+      },
+      "sort": 400000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun",
+          "path": "cepheus atom#/CF_SEP/CA - Skills",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/survival.svg",
+      "effects": []
+    },
+    {
+      "_id": "e30BgUJaSr5T3T2m",
+      "name": "Spear",
+      "type": "weapon",
+      "data": {
+        "name": "Spear",
+        "techLevel": 0,
+        "description": "May be thrown<br>",
+        "shortdescr": "Spear - melee",
+        "quantity": 1,
+        "weight": 1,
+        "price": 10,
+        "traits": [],
+        "consumables": [],
+        "equipped": {
+          "weight": 0
+        },
+        "skillModifier": 0,
+        "skill": "kEVklC2zUx4UWSfY",
+        "range": "5/20",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "location": "",
+        "lawLevel": "8",
+        "rangeBand": "reach",
+        "weaponType": "melee",
+        "damageType": "P",
+        "rateOfFire": "",
+        "recoil": "false"
+      },
+      "sort": 500000,
+      "flags": {
+        "cf": {
+          "id": "temp_a1oz7op7s0j",
+          "path": "cepheus atom#/CF_SEP/CA - Common Weapons",
+          "color": "#000000"
+        },
+        "twodsix": {}
+      },
+      "img": "./systems/twodsix/assets/icons/spear.svg",
+      "effects": []
+    },
+    {
+      "_id": "UVncHJZs5WKhS8sa",
+      "name": "Thick Hide",
+      "type": "augment",
+      "data": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Natural armor rating of 3. Cumulative with worn armor. Disfiguring.<br>",
+        "shortdescr": "Natural Armor of 3",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": {
+          "weight": 0
+        },
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "type": "augment",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 600000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_w34pcq0hfyl",
+          "path": "cepheus atom#/CF_SEP/CA - Mutations",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/Thick%20Hide.svg",
+      "effects": []
+    },
+    {
+      "_id": "ePK5eXVLZHXtz9Zb",
+      "name": "Nervous Spasms",
+      "type": "augment",
+      "data": {
+        "name": "",
+        "techLevel": 0,
+        "description": "DM-1 to Combat and Physical throws",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": {
+          "weight": 0
+        },
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "type": "augment",
+        "bonus": "minor detrimental",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 700000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_w34pcq0hfyl",
+          "path": "cepheus atom#/CF_SEP/CA - Mutations",
+          "color": "#000000"
+        }
+      },
+      "img": "icons/svg/mystery-man.svg",
+      "effects": []
+    },
+    {
+      "_id": "Z7GEBdmaAz1xjwFu",
+      "name": "Quick Reflexes",
+      "type": "augment",
+      "data": {
+        "name": "New augment",
+        "techLevel": 0,
+        "description": "DM-1 to all ranged attack throws against the character.",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": {
+          "weight": 0
+        },
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "type": "augment",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 800000,
+      "flags": {},
+      "effects": [],
+      "img": "icons/svg/mystery-man.svg"
+    }
+  ],
+  "effects": [],
+  "img": "systems/dnd5e/tokens/humanoid/Gnoll.png"
+}
