@@ -136,6 +136,30 @@
       "module": "twodsix",
       "path": "./packs/cepheus-atom-gm-screen.db",
       "entity": "JournalEntry"
+    },
+    {
+      "name": "cepheus-quantum-items",
+      "label": "cepheus quantum items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-quantum-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "cepheus-quantum-careers",
+      "label": "cepheus quantum careers",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-quantum-careers.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "cepheus-quantum-gm-screen",
+      "label": "cepheus quantum gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-quantum-gm-screen.db",
+      "entity": "JournalEntry"
     }
   ],
   "primaryTokenAttribute": "hits",
