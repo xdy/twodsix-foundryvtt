@@ -1,3 +1,10 @@
+## [0.7.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.26...v0.7.27) (2021-04-05)
+
+
+### Bug Fixes
+
+* Career and item compendiums and gm screen for Cepheus Quantum added, courtesy of [@marvin9257](https://github.com/marvin9257) ([f5971f8](https://github.com/xdy/twodsix-foundryvtt/commit/f5971f8af479ae3c4ea73335086576e985a62951))
+
 ## [0.7.26](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.25...v0.7.26) (2021-03-28)
 
 
