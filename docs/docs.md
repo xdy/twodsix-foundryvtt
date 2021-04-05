@@ -22,6 +22,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 * Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
 Reasonably complete compendiums for Cepheus Light exist.
+There is also a gm screen compendium suitable for use with the https://foundryvtt.com/packages/gm-screen module.
 
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Than Light' in the dropdown near the top of the system settings, that will set the following settings:
@@ -45,12 +46,13 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
 In play, handle the differences to Cepheus Engine as follow:
-* Give every character JOAT-3.
+* Give every character JOAT-3 on the skills tab.
 * Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
 * Track Contamination using, say, the PSI attribute field. (Or just note it as text in the journal field).
 * Mutations exist in a compendum as items (augmentations). Any effects on the character will need to be handled manually.
 
-Compendiums containing skills, items, mutations and robots are included, additionally the various compendiums from Cepheus FTL might be useful.
+Compendiums containing skills, items, mutations, robots and monsters are included, additionally the various compendiums from Cepheus FTL might be useful.
+There is also a gm screen compendium suitable for use with the https://foundryvtt.com/packages/gm-screen module.
 
 ## Barbaric!
 To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
@@ -60,6 +62,23 @@ To get the system closer to Barbaric! change the following in the system setting
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
 
 No compendiums for Barbaric! yet exist, though the ones from Cepheus Atom are somewhat useful, as examples if nothing else.
+
+## Cepheus Quantum
+To get the system closer to Cepheus Quantum change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
+
+* Choose the CEL difficulty list.
+* Set skills to not use any characteristic for modifiers.
+* Use the careers, items, etc from the 'cepheus quantum-something' compendiums (supplied by @marvin9257).
+* Change the initiative formula to just 1d1
+
+In play, handle the differences to Cepheus Engine as follow:
+* Create a character by importing one of the careers from the career compendium and renaming it to your character's name, then changing the attributes.
+* Give every character JOAT-3 on the skills tab.
+* Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
+* Ignore the initiative that gets rolled, everyone gets the same initative (optionally, you might want to take a look at the https://foundryvtt.com/packages/Popcorn module if you want some structure to the initative)
+
+Reasonably complete compendiums for Cepheus Quantum exist., additionally the various compendiums from Cepheus FTL might be useful.
+There is also a gm screen compendium suitable for use with the https://foundryvtt.com/packages/gm-screen module.
 
 ## MGT1
 To get the system closer to MGT1 switch to 'Cepheus Engine' in the dropdown near the top of the system settings.
