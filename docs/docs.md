@@ -4,7 +4,8 @@ _Not a lot of ducks either._
 # Twodsix System
 A Foundry VTT system for running games using various 2d6-based role-playing games. (See [README.md](../README.md) and the [WIKI](https://github.com/xdy/twodsix-foundryvtt/wiki) for more information.)
 
-Some basic instructions on how to set up your game for some of the most common variants can be found below:
+Some basic instructions on how to set up your game for some of the most common variants can be found below.
+Also, see the [PUBLISHERS.md](../PUBLISHERS.md) for details of the rpg publishers that have explicitly granted us permission to support their products.
 
 ## Cepheus Engine
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
