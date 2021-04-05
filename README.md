@@ -18,7 +18,7 @@ In play - using a number of Foundry modules - it can look something like this:
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 
-System settings and compendiums are available that make it compatible with Cepheus Light, Cepheus Faster Than Light, Cepheus Atom and to some extent Barbaric!. (See [docs.md](docs/docs.md) for more information on how to set up Twodsix.)
+System settings and compendiums are available that make it compatible with Cepheus Light, Cepheus Faster Than Light, Cepheus Atom, Cepheus Quantum and to some extent Barbaric!. (See [docs.md](docs/docs.md) for more information on how to set up Twodsix.)
 
 Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc.
 
