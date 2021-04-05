@@ -16,7 +16,7 @@ To get the system closer to Cepheus Light (which should also work fairly well fo
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
 * Use the skills, items, etc from the various 'ce light-something' compendiums (supplied by @marvin9257).
-* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling until I or someone else figures out how to do it automatically).
+* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling , or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros)
 * Set skills to not use any characteristic for modifiers.
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
 * Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
@@ -30,7 +30,7 @@ To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Tha
 * Choose the CEL difficulty list.
 * Select the setting to handle difficulties by changing the target number rather than adding/subtracting modifiers.
 * Use the skills, items, etc from the various 'ce ftl-something' compendiums (supplied by @marvin9257).
-* Change the initiative formula to just 2d6, then use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros
+* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling, or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros)
 * Set skills to not use any characteristic for modifiers.
 * Sets a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
@@ -42,7 +42,7 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Choose the CEL difficulty list.
 * Set skills to not use any characteristic for modifiers.
 * Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
-* Change the initiative formula to just 2d6, then use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros (except that you need to change it to use the 'Combat' skill rather than the 'Tactics' skill).
+* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 
 In play, handle the differences to Cepheus Engine as follow:
