@@ -1,4 +1,4 @@
-The following publishers have graciously given us permission to support their products, so please support them and buy stuff from them!
+The following publishers have explicitly given us permission to support their products, so please support them and buy stuff from them!
 
 * [Stellagama Publishing](https://www.stellagamapublishing.com/)
     * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/browse/pub/9571/Stellagama-Publishing)
