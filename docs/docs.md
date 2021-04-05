@@ -75,7 +75,7 @@ In play, handle the differences to Cepheus Engine as follow:
 * Create a character by importing one of the careers from the career compendium and renaming it to your character's name, then changing the attributes.
 * Give every character JOAT-3 on the skills tab.
 * Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
-* Ignore the initiative that gets rolled, everyone gets the same initative (optionally, you might want to take a look at the https://foundryvtt.com/packages/Popcorn module if you want some structure to the initative)
+* Ignore the initiative that gets rolled, everyone gets the same initiative (optionally, you might want to take a look at the https://foundryvtt.com/packages/Popcorn module if you want some structure to the initiative)
 
 Reasonably complete compendiums for Cepheus Quantum exist., additionally the various compendiums from Cepheus FTL might be useful.
 There is also a gm screen compendium suitable for use with the https://foundryvtt.com/packages/gm-screen module.
