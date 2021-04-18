@@ -304,6 +304,14 @@ img.character-info-mask {
   z-index: -1;
 }
 
+.character-armor {
+  position: absolute;
+  top: 21.25em;
+  background: black;
+  width: 100%;
+  padding-bottom: .5em;
+}
+
 .helper {
   display: inline-block;
   vertical-align: middle;

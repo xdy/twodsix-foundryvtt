@@ -7,7 +7,7 @@
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         {{#unless limited}}
         {{#if actor.data.settings.ExperimentalFeatures}}
-        <div>
+        <div class="character-armor">
           <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}"
                                                                                   placeholder='0' onClick="this.select();"/></span>
           <span class="bgi-armor">/<input name="data.secondaryArmor.value" type="text" value="{{data.secondaryArmor.value}}"
