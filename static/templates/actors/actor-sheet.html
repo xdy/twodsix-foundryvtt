@@ -6,7 +6,6 @@
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         {{#unless limited}}
-        {{#if actor.data.settings.ExperimentalFeatures}}
         <div class="character-armor">
           <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}"
                                                                                   placeholder='0' onClick="this.select();"/></span>
@@ -15,7 +14,6 @@
           <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}"
                                                        placeholder='0' onClick="this.select();"/></span>
         </div>
-        {{/if}}
         {{/unless}}
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
