@@ -6,14 +6,14 @@ Hooks.on('renderChatMessage', (app, html) => {
     damageMessage.setAttribute("draggable", "true");
 
     damageMessage.addEventListener('dragstart', ev => {
-      return ev.dataTransfer.setData("text/plain", app.data.flags.transfer);
+      return ev.dataTransfer.setData("text/plain", <string>app.data.flags.transfer);
     });
   }
 
   const diceTotal = html.find(".dice-total");
   if (!damageMessage && diceTotal.length > 0 && app.isContentVisible) {
-    const effect = app.getFlag("twodsix", "effect");
-    if (!isNaN(effect)) {
+    const effect:string = <string>app.getFlag("twodsix", "effect");
+    if (!isNaN(Number(effect))) {
       const sumString = game.i18n.localize('TWODSIX.Rolls.sum').capitalize();
       const effectString = game.i18n.localize('TWODSIX.Rolls.Effect');
       diceTotal.text(`${sumString}: ${diceTotal.text()} ${effectString}: ${effect}`);
