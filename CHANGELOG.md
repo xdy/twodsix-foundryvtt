@@ -1,3 +1,11 @@
+## [0.7.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.27...v0.7.28) (2021-04-23)
+
+
+### Bug Fixes
+
+* Armor fields always visible courtesy of [@coastal](https://github.com/coastal). ([ac8eaa8](https://github.com/xdy/twodsix-foundryvtt/commit/ac8eaa88fd047576232b3e88c09609fa3b1447cd))
+* Armor fields always visible courtesy of [@coastal](https://github.com/coastal). ([d49250a](https://github.com/xdy/twodsix-foundryvtt/commit/d49250a344f49a1ab8fee2fe9c56fc4570c5a988))
+
 ## [0.7.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.26...v0.7.27) (2021-04-05)
 
 
