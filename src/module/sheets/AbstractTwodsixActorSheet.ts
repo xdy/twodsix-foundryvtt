@@ -18,14 +18,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
+      const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     }));
 
     // Delete Item
     html.find('.item-delete').on('click', async (ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
+      const ownedItem = this.actor.items.get(li.data('itemId'));
       const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
       const template = `
       <form>

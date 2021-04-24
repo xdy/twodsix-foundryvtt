@@ -71,7 +71,7 @@ export default class TwodsixItem extends Item {
     if (attackType && !rateOfFire) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
-    const skill:TwodsixItem = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
+    const skill:TwodsixItem = this.actor.items.get(this.data.data.skill) as TwodsixItem;
     const tmpSettings = {"characteristic": skill?.data.data.characteristic || 'NONE'};
 
     let usedAmmo = 1;
@@ -101,7 +101,7 @@ export default class TwodsixItem extends Item {
     }
 
     if (this.data.data.useConsumableForAttack) {
-      const magazine = this.actor.getOwnedItem(this.data.data.useConsumableForAttack) as TwodsixItem;
+      const magazine = this.actor.items.get(this.data.data.useConsumableForAttack) as TwodsixItem;
       try {
         await magazine.consume(usedAmmo);
       } catch(err) {
@@ -136,7 +136,7 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = null;
     } else if (this.data.data.skill) {
-      skill = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
+      skill = this.actor.items.get(this.data.data.skill) as TwodsixItem;
       item = this;
     }
 

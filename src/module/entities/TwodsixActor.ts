@@ -100,7 +100,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill():TwodsixItem {
-    return this.getOwnedItem(this.data.data.untrainedSkill) as TwodsixItem;
+    return this.items.get(this.data.data.untrainedSkill) as TwodsixItem;
   }
 
   public async createUntrainedSkill(): Promise<void> {
@@ -125,7 +125,7 @@ export default class TwodsixActor extends Actor {
       // @ts-ignore
       actor.data.items.forEach((itemData:Record<string,any>) => {
         // @ts-ignore
-        const item = actor.getOwnedItem(itemData._id);
+        const item = actor.items.get(itemData._id);
         // @ts-ignore
         func(actor, item);
       });
@@ -137,7 +137,7 @@ export default class TwodsixActor extends Actor {
       if (item.type === "skills") {
         return;
       }
-      const skill = actor.getOwnedItem(item.data.data.skill);
+      const skill = actor.items.get(item.data.data.skill);
       if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
         item.update({ "data.skill": "" }, {});
       }

@@ -27,7 +27,7 @@ class Migration {
 
     let untrainedSkill;
     if (actor.data.type == "traveller") {
-      untrainedSkill = actor.getOwnedItem(actor.data.data.untrainedSkill) as TwodsixItem;
+      untrainedSkill = actor.items.get(actor.data.data.untrainedSkill) as TwodsixItem;
       if (!untrainedSkill) {
         untrainedSkill = await Migration.buildUntrainedSkill(actor);
         updateData['data.untrainedSkill'] = untrainedSkill._id;
