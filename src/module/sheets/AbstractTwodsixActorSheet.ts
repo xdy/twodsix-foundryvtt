@@ -207,8 +207,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected static _prepareItemContainers(sheetData:{ actor; items; }):void {
-    const actorData = sheetData.actor;
+  protected static _prepareItemContainers(sheetData):void {
+    const actorData = sheetData;
 
     // Initialize containers.
     const storage:Item[] = [];

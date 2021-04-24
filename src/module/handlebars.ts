@@ -12,7 +12,12 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
-    return typeof str === 'string' ? '' : str.charAt(0).toUpperCase() + str.slice(1);
+    if (typeof str === 'string') {
+      return '';
+    } else {
+      const thing:string = str;
+      return str.charAt(0).toUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+    }
   });
 
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
@@ -100,11 +105,11 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
-    return skill!=null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
+    return skill != null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
   });
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
-    const sortedArray = array.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
+    const sortedArray = array?.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
       const aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
       return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);
     });
@@ -112,7 +117,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   // Handy for debugging
-  Handlebars.registerHelper('debug', function(context) {
+  Handlebars.registerHelper('debug', function (context) {
     console.log(context);
     return JSON.stringify(context);
   });
