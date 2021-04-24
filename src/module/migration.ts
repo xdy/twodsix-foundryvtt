@@ -1,15 +1,8 @@
-
-
 const migrations = {};
 
-// this is a way of importing att of the files in the migrations folder and assign them to a property of an object.
-require.context("../migrations", false, /\.ts$/).keys().forEach((fileName => {
-  const newFileName = fileName.substring(2);
-  import("../migrations/" + newFileName).then((migration) => {
-    migrations[newFileName.split("-")[0]] = migration;
-  });
-}));
-
+//I wish rollup had require.context. But, as it doesn't, follow this pattern when you add new migrations or they won't take effect.
+migrations["2021_02_10_10_10"]= "../migrations/2021_02_10_10_10-old_migrations.ts";
+migrations["2021_02_10_10_20"]= "../migrations/2021_02_10_10_20-ship_stats.ts";
 
 export default async function migrateWorld(version:string):Promise<void> {
   await Promise.all(Object.keys(migrations).sort().map(async migrationName => {

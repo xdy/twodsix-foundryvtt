@@ -37,3 +37,8 @@ rules:
   'eol-last': ["error", "always"]
   'key-spacing': ["error"]
   '@typescript-eslint/ban-ts-comment': ["warn"]
+
+#overrides:
+#  - files: ['./*.js]
+#    rules:
+#      '@typescript-eslint/no-var-requires': 'off'
