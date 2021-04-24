@@ -70,16 +70,16 @@ module.exports = (env, argv) => {
     },
   };
 
-
-  if (argv.mode !== 'production') {
-    const foundryConfig:FoundryConfig = getFoundryConfig();
-    if (foundryConfig !== undefined) {
-      config.output.path = path.join(foundryConfig.dataPath, 'Data', 'systems', foundryConfig.systemName);
-    }
-
-    config.devtool = 'inline-source-map';
-    config.watch = true;
+  // if (argv.mode !== 'production') {
+  const foundryConfig:FoundryConfig = getFoundryConfig();
+  if (foundryConfig !== undefined) {
+    config.output.path = path.join(foundryConfig.dataPath, 'Data', 'systems', foundryConfig.systemName);
+    console.log(config.output.path);
   }
+
+  config.devtool = 'inline-source-map';
+  config.watch = true;
+  // }
 
   return config;
 };

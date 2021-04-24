@@ -83,7 +83,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private getConsumable(event:Event):TwodsixItem {
     const li = $(event.currentTarget).parents(".consumable");
     // @ts-ignore
-    return this.item.actor.getOwnedItem(li.data("consumableId"));
+    return this.item.actor.items.get(li.data("consumableId"));
   }
 
   private _onEditConsumable(event:Event):void {
@@ -176,7 +176,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
       // If the dropped item has the same actor as the current item let's just use the same id.
       let itemId: string;
-      if (this.item.actor.getOwnedItem(itemData._id)) {
+      if (this.item.actor.items.get(itemData._id)) {
         itemId = itemData._id;
       } else {
         const newItem = await this.item.actor.createEmbeddedEntity("OwnedItem", itemData);

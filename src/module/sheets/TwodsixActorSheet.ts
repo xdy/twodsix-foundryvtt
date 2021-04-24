@@ -83,7 +83,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private getItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
     // @ts-ignore
-    return this.actor.getOwnedItem(itemId);
+    return this.actor.items.get(itemId);
   }
 
   private _onRollWrapper(func:(event:Event, showTrowDiag:boolean) => Promise<void>):(event:Event) => void {
@@ -175,7 +175,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     event.preventDefault();
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
+    const item = this.actor.items.get(itemId) as TwodsixItem;
 
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
@@ -197,7 +197,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   private getConsumableItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.consumable-row').data('consumable-id');
-    return this.actor.getOwnedItem(itemId) as TwodsixItem;
+    return this.actor.items.get(itemId) as TwodsixItem;
   }
 
   private async _onAdjustConsumableCount(event:Event): Promise<void> {
