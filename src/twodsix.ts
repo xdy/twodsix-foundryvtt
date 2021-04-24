@@ -38,7 +38,8 @@ Hooks.once('init', async function () {
   };
 
   // Actor
-  CONFIG.Actor.entityClass = TwodsixActor;
+  // @ts-ignore Until fvtt-types goes to 0.8
+  CONFIG.Actor.documentClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
 
   // @ts-ignore
@@ -54,7 +55,9 @@ Hooks.once('init', async function () {
   });
 
   // Items
-  CONFIG.Item.entityClass = TwodsixItem;
+  // @ts-ignore Until fvtt-types goes to 0.8
+  CONFIG.Item.documentClass = TwodsixItem;
+  // CONFIG.Item.entityClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
 
@@ -74,6 +77,9 @@ Hooks.once('init', async function () {
   const templatePaths = [
     //TODO Set up so the templates are instead loaded during build (or possibly during startup?), using all html files in the templates folder
     "systems/twodsix/templates/actors/actor-sheet.html",
+    "systems/twodsix/templates/actors/damage-dialog.html",
+    "systems/twodsix/templates/actors/ship-sheet.html",
+    //
     "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html",
     "systems/twodsix/templates/actors/parts/actor/actor-consumable.html",
     "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
@@ -83,19 +89,18 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
     "systems/twodsix/templates/actors/parts/actor/actor-ucf.html",
     //
-    "systems/twodsix/templates/actors/parts/actor/damage-dialog.html",
-    "systems/twodsix/templates/actors/parts/actor/trow-dialog.html",
-    //
-    "systems/twodsix/templates/actors/ship-sheet.html",
     "systems/twodsix/templates/actors/parts/ship/ship-cargo.html",
     "systems/twodsix/templates/actors/parts/ship/ship-crew.html",
     "systems/twodsix/templates/actors/parts/ship/ship-notes.html",
     "systems/twodsix/templates/actors/parts/ship/ship-storage.html",
     //
+    "systems/twodsix/templates/chat/damage-message.html",
+    "systems/twodsix/templates/chat/throw-dialog.html",
+    //
     "systems/twodsix/templates/items/dialogs/create-consumable.html",
     //
     "systems/twodsix/templates/items/parts/common-parts.html",
-    "systems/twodsix/templates/items/parts/consumables-parts.html",
+    "systems/twodsix/templates/items/parts/consumables-part.html",
     //
     "systems/twodsix/templates/items/armor-sheet.html",
     "systems/twodsix/templates/items/augment-sheet.html",
