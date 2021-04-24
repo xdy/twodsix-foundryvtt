@@ -100,7 +100,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill():TwodsixItem {
-    return this.items.get(this.data.data.untrainedSkill) as TwodsixItem;
+    return this.data.items[this.data.data.untrainedSkill]?.data as TwodsixItem;
   }
 
   public async createUntrainedSkill(): Promise<void> {
@@ -117,7 +117,12 @@ export default class TwodsixActor extends Actor {
       "type": "skills",
       "flags": {'twodsix.untrainedSkill': true}
     };
-    return await this.createOwnedItem(data) as unknown as TwodsixItem;
+
+
+    const data1 = await this.createOwnedItem(data) as unknown as TwodsixItem;
+    // TODO Something like the below, but actually working... (I still get collection.set is not a function)
+    // const data1 = await this.createEmbeddedDocuments("Item", [ { "type": "skills", "data": data } ]);
+    return data1;
   }
 
   private static _applyToAllActorItems(func: (actor:TwodsixActor, item:TwodsixItem) => void):void {
@@ -125,7 +130,7 @@ export default class TwodsixActor extends Actor {
       // @ts-ignore
       actor.data.items.forEach((itemData:Record<string,any>) => {
         // @ts-ignore
-        const item = actor.items.get(itemData._id);
+        const item = actor.getOwnedItem(itemData._id);
         // @ts-ignore
         func(actor, item);
       });
@@ -137,7 +142,7 @@ export default class TwodsixActor extends Actor {
       if (item.type === "skills") {
         return;
       }
-      const skill = actor.items.get(item.data.data.skill);
+      const skill = actor.getOwnedItem(item.data.data.skill);
       if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
         item.update({ "data.skill": "" }, {});
       }
