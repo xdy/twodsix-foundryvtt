@@ -593,10 +593,6 @@ a.notes-tab.active {
   text-shadow: none !important;
 }
 
-.hidden {
-  display: none;
-}
-
 .tab[data-tab].active {
   display: block;
   position: relative;
