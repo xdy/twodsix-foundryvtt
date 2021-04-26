@@ -26,7 +26,7 @@ export default class TwodsixItem extends Item {
       this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
         // this is a bit hacky.. seems like the actor has not been initialized fully at this point.
         // @ts-ignore
-        return this.actor.data["items"].filter((item:TwodsixItem) => item._id === consumableId)[0];
+        return this.actor.data["items"].filter((item:TwodsixItem) => item.id === consumableId)[0];
       });
       this.data.data.consumableData.sort((a:TwodsixItem, b:TwodsixItem) => {
         return ((a.name > b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
@@ -36,7 +36,7 @@ export default class TwodsixItem extends Item {
 
   public async addConsumable(consumableId:string):Promise<void> {
     if (this.data.data.consumables.includes(consumableId)) {
-      console.error(`Twodsix | Consumable already exists for item ${this._id}`);
+      console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       return;
     }
     await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
@@ -184,7 +184,7 @@ export default class TwodsixItem extends Item {
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
 
       const messageData = {
-        user: game.user._id,
+        user: game.user.id,
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         content: html,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,

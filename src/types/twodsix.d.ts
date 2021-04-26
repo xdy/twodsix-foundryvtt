@@ -5,7 +5,7 @@ export type TwodsixItemType = "equipment" | "weapon" | "armor" | "augment" | "st
 export interface TwodsixItemData extends ItemData {
   type:TwodsixItemType;
   hasOwner:boolean;
-  _id:string;
+  id:string;
 }
 
 export type CharacteristicType =
@@ -18,7 +18,7 @@ export type CharacteristicType =
   }
 
 export type UpdateData = {
-  _id?:any;
+  id?:any;
   items?:any;
   tokens?:any[];
 };

@@ -105,7 +105,7 @@ export default class TwodsixActor extends Actor {
 
   public async createUntrainedSkill(): Promise<void> {
     const untrainedSkill = await this.buildUntrainedSkill();
-    await this.update({"data.untrainedSkill": untrainedSkill._id});
+    await this.update({"data.untrainedSkill": untrainedSkill.id});
   }
 
   public async buildUntrainedSkill():Promise<TwodsixItem> {
@@ -123,11 +123,7 @@ export default class TwodsixActor extends Actor {
     // TODO Something like the below, but actually working... (I still get collection.set is not a function)
     // const data1 = await this.createEmbeddedDocument("Item", [ { "data": data } ]);
     // @ts-ignore Until 0.8 types
-    const data1 = await (this.createEmbeddedDocuments("Item",[{
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-      "type": "skills",
-      "flags": {'twodsix.untrainedSkill': true}
-    }]));
+    const data1 = await (this.createEmbeddedDocuments("Item",[data]));
     return data1;
   }
 
@@ -136,7 +132,7 @@ export default class TwodsixActor extends Actor {
       // @ts-ignore
       actor.data.items.forEach((itemData:Record<string,any>) => {
         // @ts-ignore
-        const item = actor.getOwnedItem(itemData._id);
+        const item = actor.getOwnedItem(itemData.id);
         // @ts-ignore
         func(actor, item);
       });
