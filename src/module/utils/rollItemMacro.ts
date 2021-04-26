@@ -15,7 +15,7 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   if (!actor) {
     actor = game.actors.get(speaker.actor);
   }
-  const item: TwodsixItem = actor ? actor.items.find((i) => i._id === itemId) : null;
+  const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
   if (!item) {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorMissingItem").replace("_ITEM_ID_", itemId));
   } else {

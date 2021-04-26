@@ -41,7 +41,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         title: title,
         content: template,
         yes: async () => {
-          await this.actor.deleteOwnedItem(ownedItem.id);
+          // await this.actor.deleteOwnedItem(ownedItem.id);
           li.slideUp(200, () => this.render(false));
         },
         no: () => {
@@ -123,12 +123,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data.type;
+    // delete itemData.data.type;
     this.updateWithItemSpecificValues(itemData, type);
 
     // Finally, create the item!
     // @ts-ignore
-    return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
 
@@ -166,7 +166,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
 
       // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
         // @ts-ignore
         console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
@@ -194,7 +194,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
       // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
         // @ts-ignore
         return this._onSortItem(event, itemData);
