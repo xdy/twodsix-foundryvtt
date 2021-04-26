@@ -119,9 +119,15 @@ export default class TwodsixActor extends Actor {
     };
 
 
-    const data1 = await this.createOwnedItem(data) as unknown as TwodsixItem;
+    //const data1 = await this.createOwnedItem(data) as unknown as TwodsixItem;
     // TODO Something like the below, but actually working... (I still get collection.set is not a function)
-    // const data1 = await this.createEmbeddedDocuments("Item", [ { "type": "skills", "data": data } ]);
+    // const data1 = await this.createEmbeddedDocument("Item", [ { "data": data } ]);
+    // @ts-ignore Until 0.8 types
+    const data1 = await (this.createEmbeddedDocuments("Item",[{
+      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
+      "type": "skills",
+      "flags": {'twodsix.untrainedSkill': true}
+    }]));
     return data1;
   }
 

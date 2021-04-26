@@ -34,6 +34,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   // @ts-ignore
   getData():ItemSheetData {
     const data = super.getData();
+    const actorData = data.data;
+    data.actor = actorData;
+    data.data = actorData.data;
 
     // Add relevant data from system settings
     data.data.settings = {
