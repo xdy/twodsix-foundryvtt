@@ -104,7 +104,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
       content: `<div class="remove-consumable">${body}<br><br></div>`,
       // @ts-ignore
-      yes: async () => this.item.removeConsumable(consumable._id),
+      yes: async () => this.item.removeConsumable(consumable.id),
       no: () => {
         //Nothing
       },
@@ -141,7 +141,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             // @ts-ignore
             const newConsumable = await this.item.actor.createOwnedItem(data) as TwodsixItem;
             // @ts-ignore
-            await this.item.addConsumable(newConsumable._id);
+            await this.item.addConsumable(newConsumable.id);
           }
         },
         cancel: {
@@ -179,11 +179,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
       // If the dropped item has the same actor as the current item let's just use the same id.
       let itemId: string;
-      if (this.item.actor.items.get(itemData._id)) {
-        itemId = itemData._id;
+      if (this.item.actor.items.get(itemData.id)) {
+        itemId = itemData.id;
       } else {
         const newItem = await this.item.actor.createEmbeddedEntity("OwnedItem", itemData);
-        itemId = newItem._id;
+        itemId = newItem["id"];
       }
       // @ts-ignore
       await this.item.addConsumable(itemId);
