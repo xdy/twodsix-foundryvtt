@@ -15,7 +15,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   /** @override */
   getData():any {
     // @ts-ignore
-    const data:any = super.getData().data;
+    const data:any = super.getData();
+    const actorData = data.data;
+    data.actor = actorData;
+    data.data = actorData.data;
+
     data.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.

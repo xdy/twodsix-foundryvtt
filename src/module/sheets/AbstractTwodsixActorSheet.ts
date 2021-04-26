@@ -50,7 +50,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
     });
     // Drag events for macros.
-    if (this.actor.owner) {
+    // @ts-ignore Until 0.8
+    if (this.actor.isOwner) {
       const handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
