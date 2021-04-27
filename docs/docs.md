@@ -45,11 +45,11 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
+* Turn on"'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
 
 In play, handle the differences to Cepheus Engine as follow:
 * Give every character JOAT-3 on the skills tab.
 * Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
-* Track Contamination using, say, the PSI attribute field. (Or just note it as text in the journal field).
 * Mutations exist in a compendum as items (augmentations). Any effects on the character will need to be handled manually.
 
 Compendiums containing skills, items, mutations, robots and monsters are included, additionally the various compendiums from Cepheus FTL might be useful.
@@ -59,8 +59,10 @@ There is also a gm screen compendium suitable for use with the https://foundryvt
 To get the system closer to Barbaric! change the following in the system settings after switching to 'Other' in the dropdown near the top of the system settings:
 
 * See Cepheus Atom, above for most needed changes
-* Races and Traits can be handled like Mutations in Cepheus Atom.
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
+* Turn off "Show Contamination below Lifeblood"
+* Races and Traits can be handled like Mutations in Cepheus Atom.
+
 
 No compendiums for Barbaric! yet exist, though the ones from Cepheus Atom are somewhat useful, as examples if nothing else.
 
@@ -71,6 +73,8 @@ To get the system closer to Cepheus Quantum change the following in the system s
 * Set skills to not use any characteristic for modifiers.
 * Use the careers, items, etc from the 'cepheus quantum-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 1d1
+* Turn on"'Show END and 'Lifeblood' (STR) as characteristics"
+* Turn off "Show Contamination below Lifeblood"
 
 In play, handle the differences to Cepheus Engine as follow:
 * Create a character by importing one of the careers from the career compendium and renaming it to your character's name, then changing the attributes.
