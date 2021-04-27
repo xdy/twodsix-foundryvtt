@@ -45,11 +45,10 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
-* Turn on"'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
+* Turn on "'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
 
 In play, handle the differences to Cepheus Engine as follow:
 * Give every character JOAT-3 on the skills tab.
-* Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
 * Mutations exist in a compendum as items (augmentations). Any effects on the character will need to be handled manually.
 
 Compendiums containing skills, items, mutations, robots and monsters are included, additionally the various compendiums from Cepheus FTL might be useful.
@@ -73,13 +72,12 @@ To get the system closer to Cepheus Quantum change the following in the system s
 * Set skills to not use any characteristic for modifiers.
 * Use the careers, items, etc from the 'cepheus quantum-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 1d1
-* Turn on"'Show END and 'Lifeblood' (STR) as characteristics"
+* Turn on "'Show END and 'Lifeblood' (STR) as characteristics"
 * Turn off "Show Contamination below Lifeblood"
 
 In play, handle the differences to Cepheus Engine as follow:
 * Create a character by importing one of the careers from the career compendium and renaming it to your character's name, then changing the attributes.
 * Give every character JOAT-3 on the skills tab.
-* Ignore attributes other than END, except under the covers treat STR+DEX as Lifeblood. (I.e. the player splits Lifeblood between those two fields so that the the automatic damage code can handle it). (I guess 0 in one of them would work, but I'm not sure.)
 * Ignore the initiative that gets rolled, everyone gets the same initiative (optionally, you might want to take a look at the https://foundryvtt.com/packages/Popcorn module if you want some structure to the initiative)
 
 Reasonably complete compendiums for Cepheus Quantum exist., additionally the various compendiums from Cepheus FTL might be useful.
