@@ -1,3 +1,10 @@
+## [0.7.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.28...v0.7.29) (2021-04-27)
+
+
+### Bug Fixes
+
+* A bit more support for Cepheus Atom (and friends), there is now a system setting to enable showing only END, Lifeblood and (optionally) Contamination instead of the regular characteristics. (Actually uses STR for Lifeblood and PSI for Contamination). ([9a20e66](https://github.com/xdy/twodsix-foundryvtt/commit/9a20e66ade2970958219850d8e3ac79d16a3f09b))
+
 ## [0.7.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.27...v0.7.28) (2021-04-23)
 
 
