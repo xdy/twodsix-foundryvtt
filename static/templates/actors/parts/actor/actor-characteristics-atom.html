@@ -1,0 +1,51 @@
+<div class="character-characteristics">
+  <div class="stat endurance" data-characteristic="endurance">
+    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
+    >{{localize "TWODSIX.Actor.Characteristics.END"}} <img src="./systems/twodsix/assets/icons/sword.svg" alt="endurance"/>
+  </span>
+
+    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
+                                      data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
+                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="stat-modifier"><input readonly type="text"
+                                       value="-"/></span>
+    <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0"
+                                     name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}"
+                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+  </div>
+
+  <div class="stat strength" data-characteristic="strength">
+    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
+    >{{localize "TWODSIX.Actor.Lifeblood"}} <img src="./systems/twodsix/assets/icons/bleeding-wound.svg" alt="lifeblood"/></span>
+
+    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
+                                      data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
+                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="stat-modifier"><input readonly type="text"
+                                       value="-"/></span>
+    <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0"
+                                     name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}"
+                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+  </div>
+
+  <div>
+  </div>
+
+{{#if actor.data.settings.showContaminationBelowLifeblood}}
+  <div class="stat psionicStrength" data-characteristic="intelligence">
+    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
+    >{{localize "TWODSIX.Actor.Contamination"}} <img src="./systems/twodsix/assets/icons/radioactive.svg" alt="contamination"/>
+  </span>
+
+    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
+                                      data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
+                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="stat-modifier"><input readonly type="text"
+                                       value="-"/></span>
+    <span class="stat-damage"><input readonly type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
+                                     name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
+                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+  </div>
+  {{/if}}
+
+</div>

@@ -46,6 +46,8 @@
         "SHIP_PAYMENTS_MONTHLY": "SHIP PAYMENTS MONTHLY"
       },
       "Gender": "Gender",
+      "Contamination": "Contamination",
+      "Lifeblood": "Lifeblood",
       "HomeWorld": "Home world",
       "Info": {
         "ALLIES": "ALLIES",
@@ -341,6 +343,14 @@
       "invertSkillRollShiftClick": {
         "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
         "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Show END and 'Lifeblood' (uses STR below the covers) as characteristics. Useful for Cepheus Atom, Barbaric!, etc.",
+        "name": "Show END and 'Lifeblood' (STR) as characteristics."
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
+        "name": "Show Contamination below Lifeblood. "
       }
     },
     "CloseAndCreateNew": "Close and create new",

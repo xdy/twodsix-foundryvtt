@@ -33,7 +33,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     data.data.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
-      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed')
+      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
+      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
+      showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood')
     };
     data.config = TWODSIX;
 

@@ -19,17 +19,21 @@
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
       {{#unless limited}}
-      <div class="character-bgi">
-        <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value" value="{{data.age.value}}"
-                                                                      placeholder="0"/></span>
-        <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="data.gender" type="text" value="{{data.gender}}"
-                                                                            placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
-        <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text" value="{{data.species}}"
-                                                                              placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/></span>
-        <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
-                                                                                  placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/></span>
-      </div>
-      {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+        <div class="character-bgi">
+          <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value" value="{{data.age.value}}"
+                                                                        placeholder="0"/></span>
+          <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="data.gender" type="text" value="{{data.gender}}"
+                                                                              placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
+          <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text" value="{{data.species}}"
+                                                                                placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/></span>
+          <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text" value="{{data.homeWorld}}"
+                                                                                    placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/></span>
+        </div>
+        {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
+          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
+        {{else}}
+          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+        {{/if}}
       {{/unless}}
     </div>
     {{#unless limited}}

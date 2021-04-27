@@ -45,11 +45,14 @@ export const registerSettings = function ():void {
   _booleanSetting('criticalNaturalAffectsEffect', false);
   _numberSetting('absoluteCriticalEffectValue', 99);
 
+  _booleanSetting('invertSkillRollShiftClick', false);
+  _booleanSetting('lifebloodInsteadOfCharacteristics', false);
+  _booleanSetting('showContaminationBelowLifeblood', true);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);
 
-  _booleanSetting('invertSkillRollShiftClick', false  );
 
   //Must be the last setting in the file
   _stringSetting('systemMigrationVersion', game.system.data.version);
@@ -104,7 +107,7 @@ export const registerSettings = function ():void {
     });
   }
 
-  function _onHideUntrainedSkillsChange (setting:boolean) {
+  function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {
       TwodsixActor.resetUntrainedSkill();
     } else {
