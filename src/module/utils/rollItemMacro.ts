@@ -40,9 +40,8 @@ function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
 }
 
 async function promptForROF(): Promise<string> {
-  return await new Promise((resolve) => {
+  return new Promise((resolve) => {
     new Dialog({
-      modal: true,
       title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
       content: "",
       buttons: {
@@ -61,7 +60,8 @@ async function promptForROF(): Promise<string> {
             resolve('auto-full');
           }
         }
-      }
+      },
+      default: 'single',
     }).render(true);
   });
 }
