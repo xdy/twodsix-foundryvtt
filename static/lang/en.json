@@ -23,6 +23,12 @@
       "CharacterIsDead": "Character is dead",
       "DealDamageTo": "Deal damage to _ACTOR_NAME_"
     },
+    "Dialogs": {
+      "ROFPickerTitle": "Select a rate of fire",
+      "ROFSingle": "Single Fire",
+      "ROFBurst": "Burst Fire",
+      "ROFFull": "Full Auto"
+    },
     "Actor": {
       "Age": "Age",
       "CharacterImage": "Character Image",
@@ -386,6 +392,7 @@
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
     },
     "Warnings": {
+      "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
       "AutoDamageForMultipleTargetsNotImplemented": "Automatically damaging multiple targets (using Auto X) is currently not supported",
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
