@@ -7,8 +7,6 @@ A Foundry VTT system for running games using various 2d6-based role-playing game
 Some basic instructions on how to set up your game for some of the most common variants can be found below.
 Also, see the [PUBLISHERS.md](../PUBLISHERS.md) for details of the rpg publishers that have explicitly granted us permission to support their products.
 
-Note that the following documentation assumes that you use the not yet released version 0.7.30 or later of Twodsix, but the only real difference is that fewer rulesets have preset configurations, if your ruleset is not available in the system settings dropdown, select 'Oter' and then simply set the indicated settings manually.
-
 ## Cepheus Engine
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
