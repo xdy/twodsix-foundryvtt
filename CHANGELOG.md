@@ -1,3 +1,20 @@
+## [0.7.30](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.29...v0.7.30) (2021-05-16)
+
+
+### Bug Fixes
+
+* Add more rulesets to the system settings ruleset dropdown. ([728448f](https://github.com/xdy/twodsix-foundryvtt/commit/728448f9c3b9d4ca4854652db439960e9e826b0f))
+* Add more rulesets to the system settings ruleset dropdown.  ([5ffecaa](https://github.com/xdy/twodsix-foundryvtt/commit/5ffecaae36e788992a878453f6e009f901fc0b9d))
+* Another release attempt ([3b678e1](https://github.com/xdy/twodsix-foundryvtt/commit/3b678e1b37e23e6a448e5d3734eca5f8a4e56695))
+* Another release attempt ([1a7eb79](https://github.com/xdy/twodsix-foundryvtt/commit/1a7eb79ba160992eb11f6f147179c88922bd3c41))
+* Another release attempt ([b58d197](https://github.com/xdy/twodsix-foundryvtt/commit/b58d1973d1009870a9678bc620380ecf3754998d))
+* Fix and enhance weapon hotbar macro ([#489](https://github.com/xdy/twodsix-foundryvtt/issues/489)) ([720ee22](https://github.com/xdy/twodsix-foundryvtt/commit/720ee22c56e75fa3a0ac780e3405694ca94773bc))
+* Ok, one more try at a release ([deeafbc](https://github.com/xdy/twodsix-foundryvtt/commit/deeafbc71111515e94bd26b9e4446df157212bba))
+* One last try at a release tonight ([0ff3c53](https://github.com/xdy/twodsix-foundryvtt/commit/0ff3c5367655f6d0277662e0134b78b5192d9b41))
+* Possibly fixes skill rolls with the setting difficultiesAsTargetNumber unchecked. ([c654d7f](https://github.com/xdy/twodsix-foundryvtt/commit/c654d7f261fb6575a86c4436cfc53e5b0c9a2386))
+* Release attempt, dummy commit ([9944337](https://github.com/xdy/twodsix-foundryvtt/commit/99443377b41b52848312702263018b1d204962f3))
+* try to force a release ([de3d331](https://github.com/xdy/twodsix-foundryvtt/commit/de3d331657e3d5c6627c9f42e201d298165639fe)), closes [marvin9257#8916](https://github.com/marvin9257/issues/8916) [coastal#8845](https://github.com/coastal/issues/8845)
+
 ## [0.7.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.28...v0.7.29) (2021-04-27)
 
 
