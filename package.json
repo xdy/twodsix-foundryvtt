@@ -33,7 +33,7 @@
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
     "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^6.3.1",
-    "css-loader": "^4.2.1",
+    "css-loader": "^5.2.4",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^8.3.0",
