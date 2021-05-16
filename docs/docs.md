@@ -43,7 +43,7 @@ To get the system closer to Cepheus Atom change the following in the system sett
 * Choose the CEL difficulty list.
 * Set skills to not use any characteristic for modifiers.
 * Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
-* Change the initiative formula to just 2d6 (i.e. you need to add the Tactics skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
+* Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 * Turn on "'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
 
