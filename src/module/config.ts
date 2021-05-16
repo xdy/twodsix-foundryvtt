@@ -77,6 +77,59 @@ const RULESETS = Object.freeze({
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99
+    },
+  },
+  CEATOM: {
+    key: "CEATOM",
+    name: "Cepheus Atom",
+    settings: {
+      initiativeFormula: "2d6",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      lifebloodInsteadOfCharacteristics: true
+    }
+  },
+  BARBARIC: {
+    key: "BARBARIC",
+    name: "Barbaric!",
+    settings: {
+      initiativeFormula: "2d6",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 4,
+      lifebloodInsteadOfCharacteristics: true,
+      showContaminationBelowLifeblood: false
+    },
+  },
+  CEQ: {
+    key: "CEQ",
+    name: "Cepheus Quantum",
+    settings: {
+      initiativeFormula: "1d1",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      lifebloodInsteadOfCharacteristics: true,
+      showContaminationBelowLifeblood: false
     }
   },
   OTHER: {
@@ -84,7 +137,8 @@ const RULESETS = Object.freeze({
     name: "Other",
     settings: {}
   }
-});
+})
+;
 
 const ROLLTYPES = Object.freeze({
   Advantage: {key: 'Advantage', formula: "3d6kh2"},

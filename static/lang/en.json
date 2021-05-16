@@ -243,7 +243,7 @@
     },
     "Settings": {
       "ruleset": {
-        "hint": "This will configure the below settings with the best options for the given ruleset.",
+        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details.",
         "name": "Ruleset"
       },
       "absoluteBonusValueForEachTimeIncrement": {
