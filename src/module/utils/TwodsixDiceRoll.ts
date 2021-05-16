@@ -7,16 +7,16 @@ import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 
 export class TwodsixDiceRoll {
-  settings: TwodsixRollSettings;
-  actor: TwodsixActor;
-  skill?: TwodsixItem;
-  item?: TwodsixItem;
-  target: number;
-  naturalTotal: number;
-  effect: number;
-  roll: Roll;
+  settings:TwodsixRollSettings;
+  actor:TwodsixActor;
+  skill?:TwodsixItem;
+  item?:TwodsixItem;
+  target:number;
+  naturalTotal:number;
+  effect:number;
+  roll:Roll;
 
-  constructor (settings: TwodsixRollSettings, actor: TwodsixActor, skill: TwodsixItem=null, item: TwodsixItem=null) {
+  constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem = null, item:TwodsixItem = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
@@ -31,10 +31,10 @@ export class TwodsixDiceRoll {
     this.calculateEffect();
   }
 
-  private createRoll(): void {
+  private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as {string:number};
+    const data = {} as { string:number };
 
     let formula = rollType;
 
@@ -65,7 +65,7 @@ export class TwodsixDiceRoll {
     this.roll = new Roll(formula, data).roll();
   }
 
-  public getCrit(): Crit {
+  public getCrit():Crit {
     const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
     if (this.isNaturalCritSuccess()) {
       return Crit.success;
@@ -81,6 +81,7 @@ export class TwodsixDiceRoll {
   private isNaturalCritSuccess():boolean {
     return this.naturalTotal == 12;
   }
+
   private isNaturalCritFail():boolean {
     return this.naturalTotal == 2;
   }
@@ -90,7 +91,13 @@ export class TwodsixDiceRoll {
   }
 
   private calculateEffect():void {
-    let effect = this.roll.total - this.settings.difficulty.target;
+    let effect;
+    if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+      effect = this.roll.total - this.settings.difficulty.target;
+    } else {
+      effect = this.roll.total - TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))].Average.target;
+    }
+
     if (this.isNaturalCritSuccess()) {
       console.log(`Got a natural 12 with Effect ${effect}!`);
       if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
