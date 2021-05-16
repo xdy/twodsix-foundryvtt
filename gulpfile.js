@@ -20,7 +20,7 @@ const semver = require('semver');
 /********************/
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
-const name = path.basename(path.resolve('.'));
+const name = "twodsix"
 const sourceDirectory = './src';
 const staticDirectory = './static';
 const distDirectory = './dist';
@@ -132,6 +132,7 @@ async function linkUserData() {
   }
 
   const linkDirectory = path.resolve(getDataPath(), destinationDirectory, name);
+  console.log(linkDirectory)
 
   if (argv.clean || argv.c) {
     console.log(chalk.yellow(`Removing build in ${chalk.blueBright(linkDirectory)}.`));
