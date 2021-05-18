@@ -18,7 +18,7 @@
   </span>
 </div>
 
-{{#each_sort_by_name actor.skills as |item id|}}
+{{#each_sort_by_name actor.data.skills as |item id|}}
     {{#if (twodsix_hideUntrainedSkills item.data.value)}}
     <!-- Hiding {{item.name}} -->
     {{else}}
@@ -51,7 +51,7 @@
 <div class="skill">
   <span class="item skill-container">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{untrainedSkill._id}}">
+      <li class="item flexrow" data-item-id="{{untrainedSkill.id}}">
         <span class="skill-container">
           <span class="mini-dice centre"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
           <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.data.name}}</span>
