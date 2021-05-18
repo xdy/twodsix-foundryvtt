@@ -1,3 +1,4 @@
+import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 
 // @ts-ignore
@@ -223,47 +224,46 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const consumable:Item[] = [];
 
     // Iterate through items, allocating to containers
-    for (const i of sheetData.items) {
-      i.img = i.img || CONST.DEFAULT_TOKEN;
-      switch (i.type) {
+    sheetData.items.forEach((item:TwodsixItem) => {
+      // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
+      switch (item.type) {
         case 'storage':
-          storage.push(i);
+          storage.push(item);
           break;
         case 'equipment':
         case 'tool':
         case 'junk':
-          equipment.push(i);
+          equipment.push(item);
           break;
         case 'weapon':
-          weapon.push(i);
+          weapon.push(item);
           break;
         case 'armor':
-          armor.push(i);
+          armor.push(item);
           break;
         case 'augment':
-          augment.push(i);
+          augment.push(item);
           break;
         case 'skills':
-          skills.push(i);
+          skills.push(item);
           break;
         case 'consumable':
-          consumable.push(i);
+          consumable.push(item);
           break;
         default:
           break;
       }
-    }
+    });
+
     // Assign and return
-    actorData.storage = storage;
-    actorData.equipment = equipment;
-    actorData.weapon = weapon;
-    actorData.armor = armor;
-    actorData.augment = augment;
-    actorData.tool = tool;
-    actorData.junk = junk;
-    actorData.consumable = consumable;
-    actorData.skills = skills;
-
+    actorData.data.storage = storage;
+    actorData.data.equipment = equipment;
+    actorData.data.weapon = weapon;
+    actorData.data.armor = armor;
+    actorData.data.augment = augment;
+    actorData.data.tool = tool;
+    actorData.data.junk = junk;
+    actorData.data.consumable = consumable;
+    actorData.data.skills = skills;
   }
-
 }

@@ -1,5 +1,4 @@
 //NOTE! *Every* hook must be imported here, or they won't be used!
-import './addUntrainedSkill';
 import './deleteItem';
 import './hooks';
 import './preCreateActor';
