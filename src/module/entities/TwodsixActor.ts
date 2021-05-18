@@ -20,10 +20,6 @@ export default class TwodsixActor extends Actor {
     // const data = actorData.data;
     // const flags = actorData.flags;
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    this.data.items = Array.from(this.items.values()).map(i => duplicate(i.data));
-
     // Make separate methods for each Actor type (traveller, npc, etc.) to keep
     // things organized.
     switch (actorData.type) {
@@ -48,6 +44,12 @@ export default class TwodsixActor extends Actor {
     for (const cha of Object.values(data.characteristics as Record<any, any>)) {
       cha.current = cha.value - cha.damage;
       cha.mod = calcModFor(cha.current);
+    }
+  }
+
+  protected async _onCreate(data, options, user) {
+    if (this.data.type == "traveller") {
+      await this.createUntrainedSkill();
     }
   }
 
@@ -100,7 +102,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill():TwodsixItem {
-    return this.data.items[this.data.data.untrainedSkill]?.data as TwodsixItem;
+    return this.items.get(this.data.data.untrainedSkill) as TwodsixItem;
   }
 
   public async createUntrainedSkill(): Promise<void> {
@@ -124,15 +126,13 @@ export default class TwodsixActor extends Actor {
     // const data1 = await this.createEmbeddedDocument("Item", [ { "data": data } ]);
     // @ts-ignore Until 0.8 types
     const data1 = await (this.createEmbeddedDocuments("Item",[data]));
-    return data1;
+    return data1[0];
   }
 
   private static _applyToAllActorItems(func: (actor:TwodsixActor, item:TwodsixItem) => void):void {
-    TwodsixActor.collection.forEach(actor => {
+    game.actors.forEach(actor => {
       // @ts-ignore
-      actor.data.items.forEach((itemData:Record<string,any>) => {
-        // @ts-ignore
-        const item = actor.getOwnedItem(itemData.id);
+      actor.items.forEach((item:TwodsixItem) => {
         // @ts-ignore
         func(actor, item);
       });
@@ -144,7 +144,7 @@ export default class TwodsixActor extends Actor {
       if (item.type === "skills") {
         return;
       }
-      const skill = actor.getOwnedItem(item.data.data.skill);
+      const skill = actor.items.get(item.data.data.skill);
       if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
         item.update({ "data.skill": "" }, {});
       }
