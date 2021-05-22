@@ -62,7 +62,8 @@ export class TwodsixDiceRoll {
       data["difficultyMod"] = this.settings.difficulty.mod;
     }
 
-    this.roll = new Roll(formula, data).roll();
+    // @ts-ignore
+    this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {
