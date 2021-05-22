@@ -257,8 +257,8 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
     // @ts-ignore
     actor = canvas.tokens.placeables.find((t:Token) => t.id === damageData.tokenId).actor;
   }
-
-  const actorUsers = actor.getUsers(3).filter(x=>x.active);
+  // @ts-ignore
+  const actorUsers = game.users.filter(user=>user.active && actor.testUserPermission(user, 3));
   if ((game.user.isGM && actorUsers.length > 1) || (!game.user.isGM && !actor.owner)) {
     return;
   }
