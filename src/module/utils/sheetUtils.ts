@@ -203,7 +203,8 @@ export async function getItemDataFromDropData(data:Record<string,any>): Promise<
     if (pack.metadata.entity !== 'Item') {
       throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
     }
-    const item = await pack.getEntity(data.id);
+    // @ts-ignore
+    const item = await pack.getDocument(data.id);
     // @ts-ignore
     return duplicate(item.data);
   } else if (data.data) {
