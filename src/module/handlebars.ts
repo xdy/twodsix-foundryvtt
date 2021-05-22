@@ -12,7 +12,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
-    if (typeof str === 'string') {
+    if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';
     } else {
       const thing:string = str;
