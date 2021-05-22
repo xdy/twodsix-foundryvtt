@@ -37,6 +37,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const actorData = data.data;
     data.actor = actorData;
 
+    // @ts-ignore
+    this.item.prepareConsumable();
     // Add relevant data from system settings
     data.data.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),

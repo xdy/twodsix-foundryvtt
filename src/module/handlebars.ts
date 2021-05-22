@@ -105,7 +105,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
-    return skill != null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
+    return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
