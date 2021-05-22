@@ -45,10 +45,10 @@
             {{/if}}
             {{#each data.owner.items as |skill|}}
               {{#if (twodsix_filterSkills skill.data)}}
-                {{#if (twodsix_hideUntrainedSkills data.value)}}
+                {{#if (twodsix_hideUntrainedSkills data.data.value)}}
                   <!-- Hiding {{name}} -->
                 {{else}}
-                  <option value="{{skill.data._id}}">{{skill.name}}</option>
+                  <option value="{{skill.id}}">{{skill.name}}</option>
                 {{/if}}
               {{/if}}
             {{/each}}

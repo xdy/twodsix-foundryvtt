@@ -138,9 +138,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
               }
             };
             // @ts-ignore
-            const newConsumable = await this.item.actor.createOwnedItem(data) as TwodsixItem;
+            const newConsumable = await this.item.actor.createEmbeddedDocuments("Item", [data]);
             // @ts-ignore
-            await this.item.addConsumable(newConsumable.id);
+            await this.item.addConsumable(newConsumable[0].id);
           }
         },
         cancel: {
