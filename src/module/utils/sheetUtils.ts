@@ -211,7 +211,7 @@ export async function getItemDataFromDropData(data:Record<string,any>): Promise<
     return duplicate(data.data);
   } else {
     // items directory
-    const item = TwodsixItem.collection.get(data.id);
+    const item = game.items.get(data.id);
     if (!item) {
       throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
     }
