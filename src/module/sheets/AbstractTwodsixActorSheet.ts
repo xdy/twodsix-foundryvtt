@@ -211,8 +211,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected static _prepareItemContainers(sheetData):void {
-    const actorData = sheetData;
+  protected static _prepareItemContainers(items, sheetData:any):void {
 
     // Initialize containers.
     const storage:Item[] = [];
@@ -226,8 +225,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const consumable:Item[] = [];
 
     // Iterate through items, allocating to containers
-    sheetData.items.forEach((item:TwodsixItem) => {
+    items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
+      if (item.type !== "skills") {
+        item.prepareConsumable();
+      }
       switch (item.type) {
         case 'storage':
           storage.push(item);
@@ -258,14 +260,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     });
 
     // Assign and return
-    actorData.data.storage = storage;
-    actorData.data.equipment = equipment;
-    actorData.data.weapon = weapon;
-    actorData.data.armor = armor;
-    actorData.data.augment = augment;
-    actorData.data.tool = tool;
-    actorData.data.junk = junk;
-    actorData.data.consumable = consumable;
-    actorData.data.skills = skills;
+    sheetData.data.storage = storage;
+    sheetData.data.equipment = equipment;
+    sheetData.data.weapon = weapon;
+    sheetData.data.armor = armor;
+    sheetData.data.augment = augment;
+    sheetData.data.tool = tool;
+    sheetData.data.junk = junk;
+    sheetData.data.consumable = consumable;
+    sheetData.data.skills = skills;
   }
 }

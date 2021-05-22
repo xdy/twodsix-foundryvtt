@@ -18,7 +18,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     // Prepare items.
     if (this.actor.data.type == 'ship') {
       data.data.storage = data.actor.items;
-      AbstractTwodsixActorSheet._prepareItemContainers(data);
+      AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, data);
     }
 
     return data;
