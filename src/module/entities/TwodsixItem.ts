@@ -182,25 +182,21 @@ export default class TwodsixItem extends Item {
       };
 
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
-
-      const messageData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        content: html,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-        roll: damage,
-        rollMode: rollMode,
-        flags: {"core.canPopout": true}
-      };
-
-      messageData["flags.transfer"] = JSON.stringify(
+      const transfer = JSON.stringify(
         {
           type: 'damageItem',
           payload: contentData
         }
       );
-
-      ChatMessage.create(messageData, {rollMode: rollMode});
+      const messageData = await damage.toMessage({
+        speaker: ChatMessage.getSpeaker({actor: this.actor}),
+        content: html,
+        flags: {
+          "core.canPopout": true,
+          "transfer": transfer
+        }
+      // @ts-ignore
+      }, { rollMode: rollMode });
     }
     console.log("DEBUG DAMAGE ROLL:", damage);
     return damage;
