@@ -42,7 +42,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         title: title,
         content: template,
         yes: async () => {
-          // await this.actor.deleteOwnedItem(ownedItem.id);
+          // @ts-ignore
+          await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
           li.slideUp(200, () => this.render(false));
         },
         no: () => {
@@ -190,7 +191,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.data.value = 0;
       }
 
-      await actor.createOwnedItem(itemData);
+      // @ts-ignore
+      await actor.createEmbeddedDocuments("Item", [itemData]);
       // @ts-ignore
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
