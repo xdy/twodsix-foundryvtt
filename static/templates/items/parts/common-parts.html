@@ -44,8 +44,8 @@
             <option value="{{data.owner.data.data.untrainedSkill}}" >{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
             {{/if}}
             {{#each data.owner.items as |skill|}}
-              {{#if (twodsix_filterSkills skill.data)}}
-                {{#if (twodsix_hideUntrainedSkills data.data.value)}}
+              {{#if (twodsix_filterSkills skill)}}
+                {{#if (twodsix_hideUntrainedSkills skill.data.data.value)}}
                   <!-- Hiding {{name}} -->
                 {{else}}
                   <option value="{{skill.id}}">{{skill.name}}</option>

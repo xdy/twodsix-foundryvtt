@@ -22,11 +22,12 @@ export default class TwodsixItem extends Item {
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
-    if (this.data.data.consumables) {
+  }
+
+  prepareConsumable():void {
+    if (this.data.data.consumables !== undefined && this.data.data.consumables.length > 0) {
       this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
-        // this is a bit hacky.. seems like the actor has not been initialized fully at this point.
-        // @ts-ignore
-        return this.actor.data["items"].filter((item:TwodsixItem) => item.id === consumableId)[0];
+        return this.actor.items.filter((item) => item.id === consumableId)[0];
       });
       this.data.data.consumableData.sort((a:TwodsixItem, b:TwodsixItem) => {
         return ((a.name > b.name) ? -1 : ((a.name > b.name) ? 1 : 0));

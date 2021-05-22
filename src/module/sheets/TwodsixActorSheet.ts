@@ -14,7 +14,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   getData():any {
-    // @ts-ignore
     const data:any = super.getData();
     const actorData = data.data;
     data.actor = actorData;
@@ -24,7 +23,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Prepare items.
     if (this.actor.data.type == 'traveller') {
-      TwodsixActorSheet._prepareItemContainers(data);
+      TwodsixActorSheet._prepareItemContainers(this.actor.items, data);
       // @ts-ignore
       const untrainedSkill = this.actor.getUntrainedSkill();
       if (untrainedSkill) {
