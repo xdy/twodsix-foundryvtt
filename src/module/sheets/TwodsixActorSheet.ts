@@ -176,7 +176,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onRollDamage(event:Event):void {
+  private async _onRollDamage(event:Event):Promise<void> {
     event.preventDefault();
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
@@ -185,11 +185,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    async function rollDamage(this:TwodsixActorSheet):Promise<Roll> {
-      return item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula);
-    }
+    await item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula)
 
-    rollDamage.call(this);
   }
 
   private static untrainedToJoat(skillValue:number):number {
