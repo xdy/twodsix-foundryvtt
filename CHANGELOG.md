@@ -1,3 +1,10 @@
+## [0.7.31](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.30...v0.7.31) (2021-05-23)
+
+
+### Bug Fixes
+
+* Quick and dirty hack to temporarily replace development branch with foundry-0.8.1 for beta releases. ([c9d7d2c](https://github.com/xdy/twodsix-foundryvtt/commit/c9d7d2c085c1c5d4a06bbcf86ba445e6f60cbd8b))
+
 ## [0.7.30](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.29...v0.7.30) (2021-05-16)
 
 
