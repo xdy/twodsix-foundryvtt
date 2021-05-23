@@ -252,7 +252,7 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
   const {damageId, damage} = damageData;
   let actor:TwodsixActor;
   if (damageData.actorId) {
-    actor = Actor.collection.get(damageData.actorId) as TwodsixActor;
+    actor = game.actors.get(damageData.actorId);
   } else {
     // @ts-ignore
     actor = canvas.tokens.placeables.find((t:Token) => t.id === damageData.tokenId).actor;
