@@ -1,10 +1,10 @@
-import {Crit} from "../../types/twodsix";
 import {TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
+import {Crit} from "./crit";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;

@@ -13,6 +13,7 @@ const migrations = {};
 
 export default async function migrateWorld(version:string):Promise<void> {
   console.log("MIGRATIONS ARE BROKEN due to switch to rollup.");
+  console.log("TODO Look into https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars to fix this.");
   await Promise.all(Object.keys(migrations).sort().map(async migrationName => {
     if (migrationName > version) {
       console.log("Migrating", migrationName);
