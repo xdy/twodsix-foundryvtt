@@ -1,3 +1,10 @@
+## [0.7.32](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.31...v0.7.32) (2021-05-26)
+
+
+### Bug Fixes
+
+* Just setting Foundry compatibility to 0.7.10 ([0d90cd6](https://github.com/xdy/twodsix-foundryvtt/commit/0d90cd6e2d47e3154a19e39c8afcf87152545159))
+
 ## [0.7.31](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.30...v0.7.31) (2021-05-23)
 
 
