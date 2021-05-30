@@ -50,7 +50,6 @@ function parse_code(UWPprofile){
 	return(message);
 };
 
-
 //Lookup a hex digit from a roll table
 function getUWPparameter (value, tableName) {
 	let item = hexToBase10(value);
@@ -127,6 +126,70 @@ function get_TradeC(UWPprofile){
 			rtext +=`Asteroid, `;
 		}
 		
+		if(pop==0){
+			rtext+=`Ba - Barren, `;
+		}
+		
+		if (atmo>1&&hydro==0){
+			rtext+=`De - Desert, `;
+		}
+		
+		if (atmo>9 && hydro >0){
+			rtext+=`Fl - Non-water Fluid Oceans, `;
+		}
+		
+		if ((atmo==5||atmo==6||atmo==8)&&hydro>3&&hydro<10&&pop>3&&pop<9){
+			rtext+=`Ga - Garden, `;
+		}
+		
+		if (pop>8){
+			rtext+=`Hi - High Population, `;
+		}
+		
+		if (techL>11){
+			rtext+=`Ht - High Technology, `;
+		}
+		
+		if (atmo<2 && hydro>0){
+			rtext+=`Ic - Ice Capped, `;
+		}
+		
+		if ((atmo<3||atmo==4||atmo==7||atmo==9)&&pop>8){
+			rtext+=`In - Industrial, `;
+		}
+		
+		if (pop>0&&pop<4){
+			rtext+=`Lo - Low Population, `;
+		}
+		
+		if (techL<6){
+			rtext+=`Lt - Low Technology, `;
+		}
+		
+		if (atmo<4&&hydro<4&&pop>5){
+			rtext+=`Na - Non Agricultural, `;
+		}
+		
+		if (pop>3&&pop<7){
+			rtext+=`Ni - Non Industrial, `;
+		}
+		
+		if (atmo>1&&atmo<6&&hydro<4){
+			rtext+=`Po - Poor, `;
+		}
+		
+		if ( (atmo==6||atmo==8) && pop>5 && pop<9){
+			rtext+=`Ri - Rich, `;
+		}
+		
+		if (hydro==10){
+			rtext+=`Wa - Water World, `;
+		}
+		
+		if(atmo==0) {
+			rtext+=`Va - Vacuum, `;
+		}
+
 		//Get rid of extra coma and space
 		if (rtext.length > 0) {
 			rtext = rtext.slice(0,-2);
