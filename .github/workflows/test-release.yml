@@ -1,10 +1,10 @@
 name: Test and release
 
-# Run the workflow when a Pull Request is opened or when changes are pushed to master or development on 'xdy/twodsix-foundryvtt' (i.e. don't run on forks)
+# Run the workflow when a Pull Request is opened or when changes are pushed to master or foundry-0.8.1 on 'xdy/twodsix-foundryvtt' (i.e. don't run on forks)
 on:
   pull_request:
   push:
-    branches: [ master, development]
+    branches: [ master, foundry-0.8.1]
 
 jobs:
   test:
@@ -44,8 +44,8 @@ jobs:
       #run: npm test
 
   release:
-    # Only release on push to master or development on xdy/twodsix-foundryvtt
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/development') && github.repository == 'xdy/twodsix-foundryvtt'
+    # Only release on push to master or foundry-0.8.1 on xdy/twodsix-foundryvtt
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/foundry-0.8.1') && github.repository == 'xdy/twodsix-foundryvtt'
     runs-on: ubuntu-latest
     # Waits for test jobs for each Node.js version to complete
     needs: [test]
