@@ -145,7 +145,7 @@ function get_TradeC(profile) {
     let atmo = hexToBase10(profile[2]);
     let hydro = hexToBase10(profile[3]);
     let pop = hexToBase10(profile[4]);
-    // let techL = hexToBase10(profile[7]);
+    let techL = hexToBase10(profile[7]);
 
     if (atmo > 3 && atmo < 10 && hydro > 3 && hydro < 9 && pop > 4 && pop < 8) {
       rtext += `Ag - Agricultural, `;
