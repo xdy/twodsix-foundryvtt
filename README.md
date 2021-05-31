@@ -5,12 +5,14 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)
 
-
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
 A [Foundry VTT](https://foundryvtt.com/) system for running games using various 2d6-based role-playing games, specifically those based on the Cepheus Engine.
 
 Install by either searching for Twodsix in in [FoundryVTT's](https://foundryvtt.com/) Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+
+**IMPORTANT NOTICE!**
+If you are upgrading from version 0.7.x of Twodsix, **BACK UP YOUR WORLD** before upgrading to version 0.8.x. *We* don't know of any showstopping, world-destroying bugs. But, what do we know? :)
 
 In play - using a number of Foundry modules - it can look something like this:
 
