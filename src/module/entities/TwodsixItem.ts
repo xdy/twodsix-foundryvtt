@@ -190,7 +190,7 @@ export default class TwodsixItem extends Item {
           payload: contentData
         }
       );
-      const messageData = await damage.toMessage({
+      await damage.toMessage({
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         content: html,
         flags: {
