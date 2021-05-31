@@ -1,3 +1,11 @@
+# [0.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.32...v0.8.0) (2021-05-31)
+
+
+### Features
+
+* Support for Foundry 0.8.6 ([7c2db1e](https://github.com/xdy/twodsix-foundryvtt/commit/7c2db1e09bd7fdf1e820a5bc409de33bac5fe716))
+* Support for Foundry 0.8.6 ([e9956e7](https://github.com/xdy/twodsix-foundryvtt/commit/e9956e7588bd4117fa99e1670b0c6927f3115050)), closes [#489](https://github.com/xdy/twodsix-foundryvtt/issues/489) [marvin9257#8916](https://github.com/marvin9257/issues/8916) [coastal#8845](https://github.com/coastal/issues/8845)
+
 ## [0.7.33-foundry-0.81.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.33-foundry-0.81.1...v0.7.33-foundry-0.81.2) (2021-05-31)
 
 
