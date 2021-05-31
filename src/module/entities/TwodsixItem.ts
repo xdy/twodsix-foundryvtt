@@ -22,11 +22,12 @@ export default class TwodsixItem extends Item {
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
-    if (this.data.data.consumables) {
+  }
+
+  prepareConsumable():void {
+    if (this.data.data.consumables !== undefined && this.data.data.consumables.length > 0) {
       this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
-        // this is a bit hacky.. seems like the actor has not been initialized fully at this point.
-        // @ts-ignore
-        return this.actor.data["items"].filter((item:TwodsixItem) => item._id === consumableId)[0];
+        return this.actor.items.filter((item) => item.id === consumableId)[0];
       });
       this.data.data.consumableData.sort((a:TwodsixItem, b:TwodsixItem) => {
         return ((a.name > b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
@@ -36,7 +37,7 @@ export default class TwodsixItem extends Item {
 
   public async addConsumable(consumableId:string):Promise<void> {
     if (this.data.data.consumables.includes(consumableId)) {
-      console.error(`Twodsix | Consumable already exists for item ${this._id}`);
+      console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       return;
     }
     await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
@@ -71,7 +72,7 @@ export default class TwodsixItem extends Item {
     if (attackType && !rateOfFire) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
-    const skill:TwodsixItem = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
+    const skill:TwodsixItem = this.actor.items.get(this.data.data.skill) as TwodsixItem;
     const tmpSettings = {"characteristic": skill?.data.data.characteristic || 'NONE'};
 
     let usedAmmo = 1;
@@ -101,7 +102,7 @@ export default class TwodsixItem extends Item {
     }
 
     if (this.data.data.useConsumableForAttack) {
-      const magazine = this.actor.getOwnedItem(this.data.data.useConsumableForAttack) as TwodsixItem;
+      const magazine = this.actor.items.get(this.data.data.useConsumableForAttack) as TwodsixItem;
       try {
         await magazine.consume(usedAmmo);
       } catch(err) {
@@ -136,7 +137,7 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = null;
     } else if (this.data.data.skill) {
-      skill = this.actor.getOwnedItem(this.data.data.skill) as TwodsixItem;
+      skill = this.actor.items.get(this.data.data.skill) as TwodsixItem;
       item = this;
     }
 
@@ -171,7 +172,8 @@ export default class TwodsixItem extends Item {
 
     const damageFormula = this.data.data.damage + (bonusDamage ? "+" + bonusDamage : "");
     const damageRoll = new Roll(damageFormula, {});
-    const damage:Roll = damageRoll.roll();
+    // @ts-ignore
+    const damage:Roll = await damageRoll.evaluate({async: true}); // async: true will be default in foundry 0.10
     if (showInChat) {
       const results = damage.terms[0]["results"];
       const contentData = {
@@ -182,25 +184,21 @@ export default class TwodsixItem extends Item {
       };
 
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
-
-      const messageData = {
-        user: game.user._id,
-        speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        content: html,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-        roll: damage,
-        rollMode: rollMode,
-        flags: {"core.canPopout": true}
-      };
-
-      messageData["flags.transfer"] = JSON.stringify(
+      const transfer = JSON.stringify(
         {
           type: 'damageItem',
           payload: contentData
         }
       );
-
-      ChatMessage.create(messageData, {rollMode: rollMode});
+      await damage.toMessage({
+        speaker: ChatMessage.getSpeaker({actor: this.actor}),
+        content: html,
+        flags: {
+          "core.canPopout": true,
+          "transfer": transfer
+        }
+      // @ts-ignore
+      }, { rollMode: rollMode });
     }
     console.log("DEBUG DAMAGE ROLL:", damage);
     return damage;

@@ -6,7 +6,7 @@
  * @returns {Promise}
  */
 export async function createItemMacro(item, slot):Promise<void> {
-  const command = `game.twodsix.rollItemMacro("${item._id ? item._id : item.data._id}");`;
+  const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data.id}");`;
   let macro = game.macros.entities.find((m) => (m.name === item.name) /*&& (m.data.command === command)*/);
   if (!macro) {
     const itemName = item.name ? item.name : item.data.name;

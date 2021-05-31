@@ -1,3 +1,40 @@
+## [0.7.33-foundry-0.81.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.33-foundry-0.81.1...v0.7.33-foundry-0.81.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* Update to foundry 0.8.6 ([f3ba112](https://github.com/xdy/twodsix-foundryvtt/commit/f3ba11244a464fd37ec84506fc2cae901ee07022))
+
+## [0.7.33-foundry-0.81.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.32...v0.7.33-foundry-0.81.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* consumables are now added and displayed properly ([a4ecdd1](https://github.com/xdy/twodsix-foundryvtt/commit/a4ecdd10227cb8ce58d46096ed1895bd9250f313))
+* create new characters and show items in sheet ([0aa2396](https://github.com/xdy/twodsix-foundryvtt/commit/0aa2396dee1c13871cbff0e73f2cfd6f5659d0e0))
+* drag and drop items&skills and deleting of skills from actor ([246864f](https://github.com/xdy/twodsix-foundryvtt/commit/246864fa6142ec156617ff3481c379c3e2eaca6a))
+* drag-and-drop damage ([b33cf0d](https://github.com/xdy/twodsix-foundryvtt/commit/b33cf0d3c7eb91796c98874cb099ad0627d54e45))
+* dragging things from compendiums ([3570ea5](https://github.com/xdy/twodsix-foundryvtt/commit/3570ea517c962ace65c7e7d80e066c3df341fbf0))
+* make so that consumables load properly and start using full Item objects in templates ([8622191](https://github.com/xdy/twodsix-foundryvtt/commit/862219177fa189738ac139a21b7e5c88f1e61010))
+* rolling for damage ([261fda1](https://github.com/xdy/twodsix-foundryvtt/commit/261fda15d27409fb29a93418eed885200539cc49))
+* set rolls to be async or not since async:true will be default in foundry 0.10 ([d6915e7](https://github.com/xdy/twodsix-foundryvtt/commit/d6915e78f20b1064caf2f3def25cba5b563ea09c))
+* ship data is now visible and editable ([5c39e75](https://github.com/xdy/twodsix-foundryvtt/commit/5c39e75a5363b9f6ce0fb03b6920bd1ceba04caa))
+
+## [0.7.32-foundry-0.81.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.31...v0.7.32-foundry-0.81.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* consumables are now added and displayed properly ([41f6e90](https://github.com/xdy/twodsix-foundryvtt/commit/41f6e9082a3088bffe6a55ba1dc03d4dcb5c5579))
+* create new characters and show items in sheet ([0f79afd](https://github.com/xdy/twodsix-foundryvtt/commit/0f79afd60eb16976a137cd37d3964c2513166c42))
+* drag and drop items&skills and deleting of skills from actor ([d36fde0](https://github.com/xdy/twodsix-foundryvtt/commit/d36fde09f5f0b1b6b01c18fe0be301ccb2b25b8a))
+* drag-and-drop damage ([48f9846](https://github.com/xdy/twodsix-foundryvtt/commit/48f9846149f10bfe88c2332a6f2cabd7df2b4c2b))
+* dragging things from compendiums ([867819b](https://github.com/xdy/twodsix-foundryvtt/commit/867819bb4961f9e8d73e46918fbc0a038800e641))
+* make so that consumables load properly and start using full Item objects in templates ([a99590f](https://github.com/xdy/twodsix-foundryvtt/commit/a99590fccf453c410e3e16cae909c4b9fbd9e199))
+* rolling for damage ([931e4f7](https://github.com/xdy/twodsix-foundryvtt/commit/931e4f786a624bd1930b2b266103227a7b5c8018))
+* set rolls to be async or not since async:true will be default in foundry 0.10 ([33ddf19](https://github.com/xdy/twodsix-foundryvtt/commit/33ddf196c7bd5924e022bc96b8fc194bb7dcff59))
+* ship data is now visible and editable ([4e6f317](https://github.com/xdy/twodsix-foundryvtt/commit/4e6f31718e35e98c6e62364dce7fd430c3890184))
+
 ## [0.7.32](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.31...v0.7.32) (2021-05-26)
 
 
@@ -28,6 +65,28 @@
 * Possibly fixes skill rolls with the setting difficultiesAsTargetNumber unchecked. ([c654d7f](https://github.com/xdy/twodsix-foundryvtt/commit/c654d7f261fb6575a86c4436cfc53e5b0c9a2386))
 * Release attempt, dummy commit ([9944337](https://github.com/xdy/twodsix-foundryvtt/commit/99443377b41b52848312702263018b1d204962f3))
 * try to force a release ([de3d331](https://github.com/xdy/twodsix-foundryvtt/commit/de3d331657e3d5c6627c9f42e201d298165639fe)), closes [marvin9257#8916](https://github.com/marvin9257/issues/8916) [coastal#8845](https://github.com/coastal/issues/8845)
+
+## [0.7.30-foundry-0.81.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.29...v0.7.30-foundry-0.81.1) (2021-05-23)
+
+### Bug Fixes
+
+* Add more rulesets to the system settings ruleset dropdown. ([728448f](https://github.com/xdy/twodsix-foundryvtt/commit/728448f9c3b9d4ca4854652db439960e9e826b0f))
+* Attempt at preview release ([ee864a6](https://github.com/xdy/twodsix-foundryvtt/commit/ee864a620d7ea3825c717e69e75b48e1c5db25bd))
+* consumables are now added and displayed properly ([5aed702](https://github.com/xdy/twodsix-foundryvtt/commit/5aed7028ec12517b371d63b054c34b0aef89d2c3))
+* create new characters and show items in sheet ([105d281](https://github.com/xdy/twodsix-foundryvtt/commit/105d281d7f665a80d26d0293731c8c01502ac2c4))
+* drag and drop items&skills and deleting of skills from actor ([3501aad](https://github.com/xdy/twodsix-foundryvtt/commit/3501aada9319cb163dd491b9abe789dd2145f255))
+* drag-and-drop damage ([8073a49](https://github.com/xdy/twodsix-foundryvtt/commit/8073a496153a0c748109acee8f361a8124d8dee8))
+* dragging things from compendiums ([89a2903](https://github.com/xdy/twodsix-foundryvtt/commit/89a2903dd52060e7d15f926fda0a8d6e2548fd14))
+* Fix and enhance weapon hotbar macro ([#489](https://github.com/xdy/twodsix-foundryvtt/issues/489)) ([720ee22](https://github.com/xdy/twodsix-foundryvtt/commit/720ee22c56e75fa3a0ac780e3405694ca94773bc))
+* make so that consumables load properly and start using full Item objects in templates ([7f06021](https://github.com/xdy/twodsix-foundryvtt/commit/7f06021864b8988fa660beb5ac7bea1b0a9d91f2))
+* Possibly fixes skill rolls with the setting difficultiesAsTargetNumber unchecked. ([c654d7f](https://github.com/xdy/twodsix-foundryvtt/commit/c654d7f261fb6575a86c4436cfc53e5b0c9a2386))
+* Quick and dirty hack to temporarily replace development branch with foundry-0.8.1 for beta releases. ([a0419be](https://github.com/xdy/twodsix-foundryvtt/commit/a0419be6ffda2cbd2512777ee20333cf8f970fe1))
+* rolling for damage ([77386e3](https://github.com/xdy/twodsix-foundryvtt/commit/77386e36341af03482e15b30e58935a0a8f15e09))
+* set rolls to be async or not since async:true will be default in foundry 0.10 ([36d587e](https://github.com/xdy/twodsix-foundryvtt/commit/36d587eb36ba9e34a4e7eb4ba88d3da0a1ddb4e8))
+* ship data is now visible and editable ([7e83cf0](https://github.com/xdy/twodsix-foundryvtt/commit/7e83cf079b671752fb64d13d71332c1a05777a2f))
+* Try to do a preview release ([1a94733](https://github.com/xdy/twodsix-foundryvtt/commit/1a94733dd44a3969bc5be13dd4c3634b487a9476))
+* try to force a release ([de3d331](https://github.com/xdy/twodsix-foundryvtt/commit/de3d331657e3d5c6627c9f42e201d298165639fe)), closes [marvin9257#8916](https://github.com/marvin9257/issues/8916) [coastal#8845](https://github.com/coastal/issues/8845)
+* Try to put out a preview release of Twodsix that supports Foundry 0.8.5 ([74e7505](https://github.com/xdy/twodsix-foundryvtt/commit/74e7505b97754c815a54a046c1046b25283ea98f))
 
 ## [0.7.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.28...v0.7.29) (2021-04-27)
 

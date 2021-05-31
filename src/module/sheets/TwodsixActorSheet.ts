@@ -15,11 +15,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   /** @override */
   getData():any {
     const data:any = super.getData();
+    const actorData = data.data;
+    data.actor = actorData;
+    data.data = actorData.data;
+
     data.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
     if (this.actor.data.type == 'traveller') {
-      TwodsixActorSheet._prepareItemContainers(data);
+      TwodsixActorSheet._prepareItemContainers(this.actor.items, data);
       // @ts-ignore
       const untrainedSkill = this.actor.getUntrainedSkill();
       if (untrainedSkill) {
@@ -83,7 +87,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private getItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
     // @ts-ignore
-    return this.actor.getOwnedItem(itemId);
+    return this.actor.items.get(itemId);
   }
 
   private _onRollWrapper(func:(event:Event, showTrowDiag:boolean) => Promise<void>):(event:Event) => void {
@@ -171,20 +175,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private _onRollDamage(event:Event):void {
+  private async _onRollDamage(event:Event):Promise<void> {
     event.preventDefault();
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    const item = this.actor.getOwnedItem(itemId) as TwodsixItem;
+    const item = this.actor.items.get(itemId) as TwodsixItem;
 
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    async function rollDamage(this:TwodsixActorSheet):Promise<Roll> {
-      return item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula);
-    }
+    await item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula)
 
-    rollDamage.call(this);
   }
 
   private static untrainedToJoat(skillValue:number):number {
@@ -197,7 +198,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   private getConsumableItem(event:Event):TwodsixItem {
     const itemId = $(event.currentTarget).parents('.consumable-row').data('consumable-id');
-    return this.actor.getOwnedItem(itemId) as TwodsixItem;
+    return this.actor.items.get(itemId) as TwodsixItem;
   }
 
   private async _onAdjustConsumableCount(event:Event): Promise<void> {

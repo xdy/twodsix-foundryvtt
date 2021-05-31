@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off"
-      data-item-id="{{item._id}}"
+      data-item-id="{{_id}}"
       data-has-owner="{{hasOwner}}"
       data-actor-id="{{actor._id}}">
   <div class="item-sheet">
@@ -99,7 +99,7 @@
           <option value="">---</option>
           {{#select data.useConsumableForAttack}}
           {{#each data.consumableData as |consumable|}}
-          <option value="{{consumable._id}}">{{consumable.name}}</option>
+          <option value="{{consumable.id}}">{{consumable.name}}</option>
           {{/each}}
           {{/select}}
         </select>

@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["DOM", "ES2020"],
+    "types": ["jquery", "@league-of-foundry-developers/foundry-vtt-types", "@types/fs-extra"],
+    "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "ES6",
-    "lib": ["WebWorker", "ScriptHost", "ESNext", "DOM", "ES6", "ES2017", "ES2018"],
+    "forceConsistentCasingInFileNames": true,
+//    "strict": true,
+    "sourceMap": true,
     "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
     "typeRoots": ["./types"],
-    "types": ["jquery", "webpack-env", "@league-of-foundry-developers/foundry-vtt-types", "@types/fs-extra"],
     "alwaysStrict": true
-  }
+  },
+  "include": ["src"]
 }
