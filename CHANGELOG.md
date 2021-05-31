@@ -1,3 +1,10 @@
+## [0.7.33-foundry-0.81.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.33-foundry-0.81.1...v0.7.33-foundry-0.81.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* Update to foundry 0.8.6 ([f3ba112](https://github.com/xdy/twodsix-foundryvtt/commit/f3ba11244a464fd37ec84506fc2cae901ee07022))
+
 ## [0.7.33-foundry-0.81.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.32...v0.7.33-foundry-0.81.1) (2021-05-31)
 
 
