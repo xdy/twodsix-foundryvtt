@@ -35,7 +35,7 @@ This system may eventually claim compatibility with other specific rules sets on
 * actually has said compatibility 
 * actually has the license to do so
 
-See [docs.md](docs/docs.md) for documentation, check the [wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) or ask on [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv).
+See [docs.md](docs/docs.md) for documentation, check the [wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) or ask on [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/KUAwPrj).
 
 ## The Programmer's Mantra
 ```
