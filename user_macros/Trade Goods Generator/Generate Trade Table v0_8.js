@@ -149,9 +149,6 @@ function processTradeTable (tableName, trcodes, offset, compendium, starBase) {
       pBuyPr = '---';
     } else {
       pBuyPr = Math.round(details[1] * rollPriceAdjust(pBuyMod + offset, 'buy', compendium));
-      if (tableName.indexOf('Basic') === -1) {
-        pSellPr = '---';
-      }
     }
 
     // Determine Player Sells price
