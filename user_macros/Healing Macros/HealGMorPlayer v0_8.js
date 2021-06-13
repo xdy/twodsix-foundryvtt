@@ -15,12 +15,9 @@ if (game.user.isGM !== true) {
   }
 } else {
   // For GM, select doctor as the selected token
-  if (doctor == null) {
-    // eslint-disable-next-line no-undef
-    if (token !== undefined) {
+  if (token !== undefined) {
       // eslint-disable-next-line no-undef
       doctor = token.actor;
-    }
   }
 }
 
