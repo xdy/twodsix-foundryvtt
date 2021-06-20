@@ -48,8 +48,20 @@ export default class TwodsixActor extends Actor {
   }
 
   protected async _onCreate(data, options, user) {
-    if (this.data.type == "traveller") {
-      await this.createUntrainedSkill();
+    switch (this.data.type) {
+      case "traveller":
+        await this.createUntrainedSkill();
+        await this.update({
+          'img': 'systems/twodsix/assets/icons/default_actor.png',
+          'token.img': 'systems/twodsix/assets/icons/default_actor.png'
+        });
+        break;
+      case "ship":
+        await this.update({
+          'img': 'systems/twodsix/assets/icons/default_ship.png',
+          'token.img': 'systems/twodsix/assets/icons/default_ship.png'
+        });
+        break;
     }
   }
 
