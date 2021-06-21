@@ -24,12 +24,12 @@
     {{#each_sort_by_name data.storage as |item id|}}
     <div>
       <ol class="ol-no-indent">
-        <li class="item storage-stored" data-item-id="{{item._id}}">
+        <li class="item storage-stored" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{twodsix_capitalize item.type}}</span>
-          <span class="item-name centre">{{data.techLevel}}</span>
-          <span class="item-name centre">{{data.weight}}</span>
-          <span class="item-name centre">{{data.price}}</span>
+          <span class="item-name centre">{{item.data.data.techLevel}}</span>
+          <span class="item-name centre">{{item.data.data.weight}}</span>
+          <span class="item-name centre">{{item.data.data.price}}</span>
           <span class="item-controls centre">
             <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
               class="fas fa-edit"></i></a>

@@ -27,10 +27,10 @@ class Migration {
 
     let untrainedSkill;
     if (actor.data.type == "traveller") {
-      untrainedSkill = actor.getOwnedItem(actor.data.data.untrainedSkill) as TwodsixItem;
+      untrainedSkill = actor.items.get(actor.data.data.untrainedSkill) as TwodsixItem;
       if (!untrainedSkill) {
         untrainedSkill = await Migration.buildUntrainedSkill(actor);
-        updateData['data.untrainedSkill'] = untrainedSkill._id;
+        updateData['data.untrainedSkill'] = untrainedSkill.id;
       }
     }
 
@@ -68,7 +68,7 @@ class Migration {
       if (item.type !== 'skills') {
         // @ts-ignore
         if (!item.data.skill) { //0.6.84
-          updateData['data.skill'] = untrainedSkill._id;
+          updateData['data.skill'] = untrainedSkill.id;
         }
       }
     }
@@ -127,7 +127,7 @@ class Migration {
         }
         if (updateData && !isObjectEmpty(updateData)) {
           expandObject(updateData);
-          updateData._id = actor._id;
+          updateData.id = actor.id;
           promises.push(pack.updateEntity(updateData));
           console.log(`Migrating ${entity} entity ${actor.name} in Compendium ${pack.collection}`);
         }
@@ -193,6 +193,7 @@ class Migration {
         const updateData = await Migration.migrateItemData(<TwodsixItemData>item.data);
         if (!isObjectEmpty(updateData)) {
           console.log(`Migrating Item ${item.name}`);
+          // @ts-ignore
           await item.update(updateData, {enforceTypes: false});
         }
       } catch (err) {

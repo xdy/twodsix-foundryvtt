@@ -93,7 +93,7 @@ class ActorUpdater {
 }
 
 export async function migrate():Promise<void> {
-  await Promise.all(TwodsixActor.collection.map(async (actor:TwodsixActor) => {
+  await Promise.all(game.actors.map(async (actor:TwodsixActor) => {
     if (actor.data.type == "ship") {
       const actorUpdater = new ActorUpdater(actor);
       const ship = actor.data.data.ship;
