@@ -119,7 +119,7 @@ export class Stats {
       if (!isDead) {
         const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
         // @ts-ignore
-        this.actor.token.toggleEffect(deadEffect, {active: true});
+        this.actor.token.data.document._object.toggleEffect(deadEffect, {active: true});
       }
     }
     this.actor.update({
