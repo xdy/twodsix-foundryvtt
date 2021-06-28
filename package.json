@@ -47,7 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
-    "esbuild": "^0.12.8",
+    "esbuild": "^0.12.10",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^8.3.0",
