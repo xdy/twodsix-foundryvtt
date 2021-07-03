@@ -1,4 +1,3 @@
-import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 
 // @ts-ignore
@@ -19,14 +18,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.items.get(li.data("itemId"));
+      const item = this.actor.getOwnedItem(li.data("itemId"));
       item.sheet.render(true);
     }));
 
     // Delete Item
     html.find('.item-delete').on('click', async (ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const ownedItem = this.actor.items.get(li.data('itemId'));
+      const ownedItem = this.actor.getOwnedItem(li.data('itemId'));
       const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
       const template = `
       <form>
@@ -42,8 +41,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         title: title,
         content: template,
         yes: async () => {
-          // @ts-ignore
-          await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
+          await this.actor.deleteOwnedItem(ownedItem.id);
           li.slideUp(200, () => this.render(false));
         },
         no: () => {
@@ -52,8 +50,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
     });
     // Drag events for macros.
-    // @ts-ignore Until 0.8
-    if (this.actor.isOwner) {
+    if (this.actor.owner) {
       const handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
@@ -107,7 +104,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onItemCreate(event:{ preventDefault:() => void; currentTarget: HTMLElement }):Promise<void> {
+  private _onItemCreate(event:{ preventDefault:() => void; currentTarget: HTMLElement }):Promise<Item> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -125,12 +122,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
-    // delete itemData.data.type;
+    delete itemData.data.type;
     this.updateWithItemSpecificValues(itemData, type);
 
     // Finally, create the item!
     // @ts-ignore
-    await this.actor.createEmbeddedDocuments("Item", [itemData]);
+    return this.actor.createOwnedItem(itemData);
   }
 
 
@@ -168,7 +165,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
 
       // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
         // @ts-ignore
         console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
@@ -191,13 +188,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.data.value = 0;
       }
 
-      // @ts-ignore
-      await actor.createEmbeddedDocuments("Item", [itemData]);
+      await actor.createOwnedItem(itemData);
       // @ts-ignore
       console.log(`Twodsix | Added Skill ${itemData.name} to character`);
     } else {
       // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+      const sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor) {
         // @ts-ignore
         return this._onSortItem(event, itemData);
@@ -211,7 +207,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected static _prepareItemContainers(items, sheetData:any):void {
+  protected static _prepareItemContainers(sheetData:{ actor; items; }):void {
+    const actorData = sheetData.actor;
 
     // Initialize containers.
     const storage:Item[] = [];
@@ -225,49 +222,47 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const consumable:Item[] = [];
 
     // Iterate through items, allocating to containers
-    items.forEach((item:TwodsixItem) => {
-      // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (item.type !== "skills") {
-        item.prepareConsumable();
-      }
-      switch (item.type) {
+    for (const i of sheetData.items) {
+      i.img = i.img || CONST.DEFAULT_TOKEN;
+      switch (i.type) {
         case 'storage':
-          storage.push(item);
+          storage.push(i);
           break;
         case 'equipment':
         case 'tool':
         case 'junk':
-          equipment.push(item);
+          equipment.push(i);
           break;
         case 'weapon':
-          weapon.push(item);
+          weapon.push(i);
           break;
         case 'armor':
-          armor.push(item);
+          armor.push(i);
           break;
         case 'augment':
-          augment.push(item);
+          augment.push(i);
           break;
         case 'skills':
-          skills.push(item);
+          skills.push(i);
           break;
         case 'consumable':
-          consumable.push(item);
+          consumable.push(i);
           break;
         default:
           break;
       }
-    });
-
+    }
     // Assign and return
-    sheetData.data.storage = storage;
-    sheetData.data.equipment = equipment;
-    sheetData.data.weapon = weapon;
-    sheetData.data.armor = armor;
-    sheetData.data.augment = augment;
-    sheetData.data.tool = tool;
-    sheetData.data.junk = junk;
-    sheetData.data.consumable = consumable;
-    sheetData.data.skills = skills;
+    actorData.storage = storage;
+    actorData.equipment = equipment;
+    actorData.weapon = weapon;
+    actorData.armor = armor;
+    actorData.augment = augment;
+    actorData.tool = tool;
+    actorData.junk = junk;
+    actorData.consumable = consumable;
+    actorData.skills = skills;
+
   }
+
 }

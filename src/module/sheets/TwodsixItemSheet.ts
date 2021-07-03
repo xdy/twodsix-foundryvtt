@@ -34,11 +34,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   // @ts-ignore
   getData():ItemSheetData {
     const data = super.getData();
-    const actorData = data.data;
-    data.actor = actorData;
 
-    // @ts-ignore
-    this.item.prepareConsumable();
     // Add relevant data from system settings
     data.data.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
@@ -87,7 +83,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private getConsumable(event:Event):TwodsixItem {
     const li = $(event.currentTarget).parents(".consumable");
     // @ts-ignore
-    return this.item.actor.items.get(li.data("consumableId"));
+    return this.item.actor.getOwnedItem(li.data("consumableId"));
   }
 
   private _onEditConsumable(event:Event):void {
@@ -105,7 +101,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
       content: `<div class="remove-consumable">${body}<br><br></div>`,
       // @ts-ignore
-      yes: async () => this.item.removeConsumable(consumable.id),
+      yes: async () => this.item.removeConsumable(consumable._id),
       no: () => {
         //Nothing
       },
@@ -140,9 +136,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
               }
             };
             // @ts-ignore
-            const newConsumable = await this.item.actor.createEmbeddedDocuments("Item", [data]);
+            const newConsumable = await this.item.actor.createOwnedItem(data) as TwodsixItem;
             // @ts-ignore
-            await this.item.addConsumable(newConsumable[0].id);
+            await this.item.addConsumable(newConsumable._id);
           }
         },
         cancel: {
@@ -180,11 +176,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
       // If the dropped item has the same actor as the current item let's just use the same id.
       let itemId: string;
-      if (this.item.actor.items.get(itemData.id)) {
-        itemId = itemData.id;
+      if (this.item.actor.getOwnedItem(itemData._id)) {
+        itemId = itemData._id;
       } else {
         const newItem = await this.item.actor.createEmbeddedEntity("OwnedItem", itemData);
-        itemId = newItem["id"];
+        itemId = newItem._id;
       }
       // @ts-ignore
       await this.item.addConsumable(itemId);

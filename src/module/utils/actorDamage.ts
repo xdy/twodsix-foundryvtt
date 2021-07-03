@@ -252,13 +252,13 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
   const {damageId, damage} = damageData;
   let actor:TwodsixActor;
   if (damageData.actorId) {
-    actor = game.actors.get(damageData.actorId);
+    actor = Actor.collection.get(damageData.actorId) as TwodsixActor;
   } else {
     // @ts-ignore
     actor = canvas.tokens.placeables.find((t:Token) => t.id === damageData.tokenId).actor;
   }
-  // @ts-ignore
-  const actorUsers = game.users.filter(user=>user.active && actor.testUserPermission(user, 3));
+
+  const actorUsers = actor.getUsers(3).filter(x=>x.active);
   if ((game.user.isGM && actorUsers.length > 1) || (!game.user.isGM && !actor.owner)) {
     return;
   }

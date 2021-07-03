@@ -14,8 +14,9 @@ import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
-import "./module/hooks/index";
-import "./module/migration";
+require.context("./module/hooks", false, /\.ts$/).keys().forEach(fileName => {
+  import("./module/hooks/" + fileName.substring(2));
+});
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 
 Hooks.once('init', async function () {
@@ -38,8 +39,7 @@ Hooks.once('init', async function () {
   };
 
   // Actor
-  // @ts-ignore Until fvtt-types goes to 0.8
-  CONFIG.Actor.documentClass = TwodsixActor;
+  CONFIG.Actor.entityClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
 
   // @ts-ignore
@@ -55,9 +55,7 @@ Hooks.once('init', async function () {
   });
 
   // Items
-  // @ts-ignore Until fvtt-types goes to 0.8
-  CONFIG.Item.documentClass = TwodsixItem;
-  // CONFIG.Item.entityClass = TwodsixItem;
+  CONFIG.Item.entityClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
 
@@ -74,46 +72,10 @@ Hooks.once('init', async function () {
 
   registerSettings();
 
-  const templatePaths = [
-    //TODO Set up so the templates are instead loaded during build (or possibly during startup?), using all html files in the templates folder
-    "systems/twodsix/templates/actors/actor-sheet.html",
-    "systems/twodsix/templates/actors/damage-dialog.html",
-    "systems/twodsix/templates/actors/ship-sheet.html",
-    //
-    "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-consumable.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-info.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-items.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
-    "systems/twodsix/templates/actors/parts/actor/actor-ucf.html",
-    //
-    "systems/twodsix/templates/actors/parts/ship/ship-cargo.html",
-    "systems/twodsix/templates/actors/parts/ship/ship-crew.html",
-    "systems/twodsix/templates/actors/parts/ship/ship-notes.html",
-    "systems/twodsix/templates/actors/parts/ship/ship-storage.html",
-    //
-    "systems/twodsix/templates/chat/damage-message.html",
-    "systems/twodsix/templates/chat/throw-dialog.html",
-    //
-    "systems/twodsix/templates/items/dialogs/create-consumable.html",
-    //
-    "systems/twodsix/templates/items/parts/common-parts.html",
-    "systems/twodsix/templates/items/parts/consumables-part.html",
-    //
-    "systems/twodsix/templates/items/armor-sheet.html",
-    "systems/twodsix/templates/items/augment-sheet.html",
-    "systems/twodsix/templates/items/consumable-sheet.html",
-    "systems/twodsix/templates/items/equipment-sheet.html",
-    "systems/twodsix/templates/items/item-sheet.html",
-    "systems/twodsix/templates/items/junk-sheet.html",
-    "systems/twodsix/templates/items/skills-sheet.html",
-    "systems/twodsix/templates/items/storage-sheet.html",
-    "systems/twodsix/templates/items/tool-sheet.html",
-    "systems/twodsix/templates/items/weapon-sheet.html"
-  ];
+  const templatePaths = require.context("../static/templates", true, /\.html$/).keys().map(fileName => {
+    return "systems/twodsix/templates" + fileName.substring(1);
+  });
+
   await loadTemplates(templatePaths);
 
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
