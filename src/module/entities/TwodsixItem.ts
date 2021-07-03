@@ -25,7 +25,7 @@ export default class TwodsixItem extends Item {
   }
 
   prepareConsumable():void {
-    if (this.data.data.consumables !== undefined && this.data.data.consumables.length > 0) {
+    if (this.data.data.consumables !== undefined && this.data.data.consumables.length > 0 && this.actor != null) {
       this.data.data.consumableData = this.data.data.consumables.map((consumableId:string) => {
         return this.actor.items.filter((item) => item.id === consumableId)[0];
       });
@@ -45,7 +45,7 @@ export default class TwodsixItem extends Item {
 
   public async removeConsumable(consumableId: string):Promise<void> {
     const updatedConsumables = this.data.data.consumables.filter((cId:string) => {
-      return cId !== consumableId;
+      return (cId !== consumableId && cId!==null && this.actor.items.get(cId) !== undefined);
     });
     const updateData = {"data.consumables": updatedConsumables};
     if (this.data.data.useConsumableForAttack === consumableId) {
