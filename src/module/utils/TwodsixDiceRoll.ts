@@ -1,10 +1,10 @@
-import {Crit} from "../../types/twodsix";
 import {TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
+import {Crit} from "./crit";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
@@ -62,7 +62,8 @@ export class TwodsixDiceRoll {
       data["difficultyMod"] = this.settings.difficulty.mod;
     }
 
-    this.roll = new Roll(formula, data).roll();
+    // @ts-ignore
+    this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {

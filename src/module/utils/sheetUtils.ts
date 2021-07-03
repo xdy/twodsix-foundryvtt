@@ -1,7 +1,6 @@
 //Assorted utility functions likely to be helpful when displaying characters
 
-import { TwodsixItemData } from "src/types/twodsix";
-import TwodsixItem from "../entities/TwodsixItem";
+import {TwodsixItemData} from "src/types/twodsix";
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -183,12 +182,12 @@ export function calcModFor(characteristic:number):number {
 //   return calcModFor(characteristic);
 // }
 
-export function getKeyByValue(object: { [x: string]: unknown; }, value:unknown):string {
+export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string {
   //TODO This assumes I always find the value. Bad form really.
   return <string>Object.keys(object).find(key => object[key] === value);
 }
 
-export function getDataFromDropEvent(event:DragEvent):Record<string,any> {
+export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
     return JSON.parse(event.dataTransfer.getData('text/plain'));
   } catch (err) {
@@ -196,14 +195,15 @@ export function getDataFromDropEvent(event:DragEvent):Record<string,any> {
   }
 }
 
-export async function getItemDataFromDropData(data:Record<string,any>): Promise<TwodsixItemData> {
+export async function getItemDataFromDropData(data:Record<string, any>):Promise<TwodsixItemData> {
   if (data.pack) {
     // compendium
     const pack = game.packs.find((p) => p.collection === data.pack);
     if (pack.metadata.entity !== 'Item') {
       throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
     }
-    const item = await pack.getEntity(data.id);
+    // @ts-ignore
+    const item = await pack.getDocument(data.id);
     // @ts-ignore
     return duplicate(item.data);
   } else if (data.data) {
@@ -211,7 +211,7 @@ export async function getItemDataFromDropData(data:Record<string,any>): Promise<
     return duplicate(data.data);
   } else {
     // items directory
-    const item = TwodsixItem.collection.get(data.id);
+    const item = game.items.get(data.id);
     if (!item) {
       throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
     }

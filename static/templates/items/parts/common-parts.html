@@ -3,13 +3,13 @@
     <tr>
       <th>
         <div class="item-img">
-          <img class="item-img" src="{{item.img}}" title="{{item.img}}" alt="{{item.name}}" data-edit="img" width="128"
+          <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
                height="128"/></div>
       </th>
       <th>
         <div class="item-name">
           <label for="data.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-          <input id="data.name" name="name" type="text" value="{{item.name}}"/>
+          <input id="data.name" name="name" type="text" value="{{name}}"/>
         </div>
       </th>
     </tr>
@@ -20,7 +20,7 @@
   <div class="item-type">
     <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}}
       <select id="type" name="type" value={{data.type}}>
-        {{#select item.type}}
+        {{#select type}}
           <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
           <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
           <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
@@ -44,11 +44,11 @@
             <option value="{{data.owner.data.data.untrainedSkill}}" >{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
             {{/if}}
             {{#each data.owner.items as |skill|}}
-              {{#if (twodsix_filterSkills skill.data)}}
-                {{#if (twodsix_hideUntrainedSkills item.data.value)}}
-                  <!-- Hiding {{item.name}} -->
+              {{#if (twodsix_filterSkills skill)}}
+                {{#if (twodsix_hideUntrainedSkills skill.data.data.value)}}
+                  <!-- Hiding {{name}} -->
                 {{else}}
-                  <option value="{{skill.data._id}}">{{skill.name}}</option>
+                  <option value="{{skill.id}}">{{skill.name}}</option>
                 {{/if}}
               {{/if}}
             {{/each}}

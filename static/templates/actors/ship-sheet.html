@@ -10,28 +10,27 @@
     {{#unless limited}}
     <div class="ship-info">
       <div class="ship-state-grid">
-        <div class="ship-hull"><span>Ship Hull</span><input type="number" value="{{data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/>
-          <input type="number" value="{{data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></div>
-        <div class="ship-fuel"><span>Fuel</span><input type="number" value="{{data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/>
-          <input type="number" value="{{data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></div>
+        <div class="ship-hull"><span>Ship Hull</span><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/>
+          <input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></div>
+        <div class="ship-fuel"><span>Fuel</span><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/>
+          <input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></div>
         <div class="ship-maintenance"><span>Maintenance P/M</span>
-          <input type="number" value="{{data.maintenanceCost}}" name="data.maintenanceCost" placeholder="0"/>
+          <input type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" placeholder="0"/>
         </div>
-
       </div>
     </div>
     <div class="ship-power-management"><h3>Power Management</h3>
       <div class="ship-power"><label>Power</label>
         <span class="power-now">USED</span>
-        <input class="power-current" type="number" value="{{data.shipStats.power.value}}" name="data.shipStats.power.value" placeholder="0"/>
-        <input class="power-total" type="number" value="{{data.shipStats.power.max}}" name="data.shipStats.power.max" placeholder="0"/><span class="power-max">MAX</span>
+        <input class="power-current" type="number" value="{{data.data.shipStats.power.value}}" name="data.shipStats.power.value" placeholder="0"/>
+        <input class="power-total" type="number" value="{{data.data.shipStats.power.max}}" name="data.shipStats.power.max" placeholder="0"/><span class="power-max">MAX</span>
       </div>
       <div class="power-grid">
-        <div class="ship-systems"><label>Systems</label><input type="number" value="{{data.reqPower.systems}}" name="data.reqPower.systems" placeholder="0"/></div>
-        <div class="ship-m-drive"><label>M-Drive</label><input type="number" value="{{data.reqPower.m-drive}}" name="data.reqPower.m-drive" placeholder="0"/></div>
-        <div class="ship-j-drive"><label>J-Drive</label><input type="number" value="{{data.reqPower.j-drive}}" name="data.reqPower.j-drive" placeholder="0"/></div>
-        <div class="ship-sensors"><label>Sensors</label><input type="number" value="{{data.reqPower.sensors}}" name="data.reqPower.sensors" placeholder="0"/></div>
-        <div class="ship-weapons">Weapons<input type="number" value="{{data.reqPower.weapons}}" name="data.reqPower.weapons" placeholder="0"></div>
+        <div class="ship-systems"><label>Systems</label><input type="number" value="{{data.data.reqPower.systems}}" name="data.reqPower.systems" placeholder="0"/></div>
+        <div class="ship-m-drive"><label>M-Drive</label><input type="number" value="{{data.data.reqPower.m-drive}}" name="data.reqPower.m-drive" placeholder="0"/></div>
+        <div class="ship-j-drive"><label>J-Drive</label><input type="number" value="{{data.data.reqPower.j-drive}}" name="data.reqPower.j-drive" placeholder="0"/></div>
+        <div class="ship-sensors"><label>Sensors</label><input type="number" value="{{data.data.reqPower.sensors}}" name="data.reqPower.sensors" placeholder="0"/></div>
+        <div class="ship-weapons">Weapons<input type="number" value="{{data.data.reqPower.weapons}}" name="data.reqPower.weapons" placeholder="0"></div>
       </div>
     </div>
     {{/unless}}

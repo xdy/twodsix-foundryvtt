@@ -17,11 +17,11 @@
     </thead>
     <tbody>
       {{#each data.consumableData as |consumable|}}
-      <tr class="consumable" data-consumable-id="{{consumable._id}}">
+      <tr class="consumable" data-consumable-id="{{consumable.id}}">
         <td>{{consumable.name}}</td>
-        <td>{{twodsix_localizeConsumable consumable.data.subtype}}</td>
-        <td>{{consumable.data.quantity}}</td>
-        <td>{{consumable.data.currentCount}}/{{consumable.data.max}}</td>
+        <td>{{twodsix_localizeConsumable consumable.data.data.subtype}}</td>
+        <td>{{consumable.data.data.quantity}}</td>
+        <td>{{consumable.data.data.currentCount}}/{{consumable.data.data.max}}</td>
         <td class="centre">
           <a class="consumable-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'>
             <i class="fas fa-edit"></i>

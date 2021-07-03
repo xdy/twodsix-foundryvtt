@@ -10,7 +10,7 @@ Hooks.on('preCreateActor', async (actor) => {
       disposition = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
     }
 
-    mergeObject(actor, {
+    mergeObject(actor.data, {
       'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER,
       'token.displayBars': CONST.TOKEN_DISPLAY_MODES.ALWAYS,
       'token.vision': true,

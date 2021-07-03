@@ -12,7 +12,12 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
-    return typeof str === 'string' ? '' : str.charAt(0).toUpperCase() + str.slice(1);
+    if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
+      return '';
+    } else {
+      const thing:string = str;
+      return str.charAt(0).toUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+    }
   });
 
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
@@ -29,6 +34,8 @@ export default function registerHandlebarsHelpers():void {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore If ui is null, we're not in foundry. So, meh
         ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
         showedError = true;
       }
@@ -98,11 +105,11 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
-    return skill!=null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
+    return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
-    const sortedArray = array.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
+    const sortedArray = array?.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
       const aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
       return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);
     });
@@ -110,7 +117,7 @@ export default function registerHandlebarsHelpers():void {
   });
 
   // Handy for debugging
-  Handlebars.registerHelper('debug', function(context) {
+  Handlebars.registerHelper('debug', function (context) {
     console.log(context);
     return JSON.stringify(context);
   });
