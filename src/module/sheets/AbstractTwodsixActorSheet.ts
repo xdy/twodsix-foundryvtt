@@ -43,6 +43,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         content: template,
         yes: async () => {
           // @ts-ignore
+          // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
+          if (ownedItem.type === "consumable") {
+            let tempItems = this.actor.items.filter(i => i.type !== "skills");
+            tempItems.forEach( i => {
+              if (i.data.data.consumables.includes(ownedItem.id)  || i.data.data.useConsumableForAttack === ownedItem.id) {
+                 i.removeConsumable(ownedItem.id);
+              }
+            });
+          }
+          
           await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
           li.slideUp(200, () => this.render(false));
         },
