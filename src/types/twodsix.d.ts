@@ -5,7 +5,7 @@ export type TwodsixItemType = "equipment" | "weapon" | "armor" | "augment" | "st
 export interface TwodsixItemData extends ItemData {
   type:TwodsixItemType;
   hasOwner:boolean;
-  id:string;
+  _id:string;
 }
 
 export type CharacteristicType =
@@ -18,10 +18,13 @@ export type CharacteristicType =
   }
 
 export type UpdateData = {
-  id?:any;
+  _id?:any;
   items?:any;
   tokens?:any[];
 };
 
-
-
+//Success is not 0 to avoid falsiness.
+export const enum Crit {
+  success = 1,
+  fail = 2
+}

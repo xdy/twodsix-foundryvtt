@@ -1,4 +1,4 @@
-import {Crit} from "../utils/crit";
+import {Crit} from "../../types/twodsix";
 
 Hooks.on('renderChatMessage', (app, html) => {
   const damageMessage = html.find(".damage-message")[0];
