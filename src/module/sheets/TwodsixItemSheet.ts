@@ -96,20 +96,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   private async _onDeleteConsumable(event:Event):Promise<void> {
     const consumable = this.getConsumable(event);
-    const bodyTextTemplate = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom");
-    const consumableNameString = `"<strong>${consumable.name}</strong>"`;
-    const body = bodyTextTemplate.replace("_CONSUMABLE_NAME_", consumableNameString).replace("_ITEM_NAME_", this.item.name);
+    if(!consumable) {
+      this.item.removeConsumable("");
+    } else {
+      const bodyTextTemplate = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom");
+      const consumableNameString = `"<strong>${consumable.name}</strong>"`;
+      const body = bodyTextTemplate.replace("_CONSUMABLE_NAME_", consumableNameString).replace("_ITEM_NAME_", this.item.name);
 
-    // @ts-ignore
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
-      content: `<div class="remove-consumable">${body}<br><br></div>`,
       // @ts-ignore
-      yes: async () => this.item.removeConsumable(consumable.id),
-      no: () => {
-        //Nothing
-      },
-    });
+      await Dialog.confirm({
+        title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
+        content: `<div class="remove-consumable">${body}<br><br></div>`,
+        // @ts-ignore
+        yes: async () => this.item.removeConsumable(consumable.id),
+        no: () => {
+          //Nothing
+        },
+      });
+    }
   }
 
   private async _onCreateConsumable():Promise<void> {
@@ -183,8 +187,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       if (this.item.actor.items.get(itemData.id)) {
         itemId = itemData.id;
       } else {
-        const newItem = await this.item.actor.createEmbeddedEntity("OwnedItem", itemData);
-        itemId = newItem["id"];
+        const newItem = await this.item.actor.createEmbeddedDocuments("Item", [itemData]);
+        itemId = newItem[0].id;
       }
       // @ts-ignore
       await this.item.addConsumable(itemId);

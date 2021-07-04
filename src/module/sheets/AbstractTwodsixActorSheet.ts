@@ -43,6 +43,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         content: template,
         yes: async () => {
           // @ts-ignore
+          // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
+          if (ownedItem.type === "consumable") {
+            let tempItems = this.actor.items.filter(i => i.type !== "skills");
+            tempItems.forEach( i => {
+              if (i.data.data.consumables.includes(ownedItem.id)  || i.data.data.useConsumableForAttack === ownedItem.id) {
+                 i.removeConsumable(ownedItem.id);
+              }
+            });
+          }
+          
           await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
           li.slideUp(200, () => this.render(false));
         },
@@ -203,6 +213,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         return this._onSortItem(event, itemData);
       }
 
+      //Remove any attached consumables
+      // @ts-ignore
+      if(itemData.data.consumables.length > 0) {
+        // @ts-ignore
+        itemData.data.consumables = [];
+      }
+      
       // Create the owned item (TODO Add to type and remove the two lines below...)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
