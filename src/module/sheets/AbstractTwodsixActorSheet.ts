@@ -215,9 +215,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
       //Remove any attached consumables
       // @ts-ignore
-      if(itemData.data.consumables.length>0) {
+      if(itemData.data.consumables.length > 0) {
         // @ts-ignore
-        itemData.data.consumables =[];
+        itemData.data.consumables = [];
       }
       
       // Create the owned item (TODO Add to type and remove the two lines below...)
