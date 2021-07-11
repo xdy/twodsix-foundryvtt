@@ -1,13 +1,13 @@
 // Namespace TWODSIX Configuration Values
 
 const CHARACTERISTICS = Object.freeze({
-  "strength": "STR",
-  "dexterity": "DEX",
-  "endurance": "END",
-  "intelligence": "INT",
-  "education": "EDU",
-  "socialStanding": "SOC",
-  "psionicStrength": "PSI"
+  'strength': 'STR',
+  'dexterity': 'DEX',
+  'endurance': 'END',
+  'intelligence': 'INT',
+  'education': 'EDU',
+  'socialStanding': 'SOC',
+  'psionicStrength': 'PSI'
 });
 
 /**
@@ -16,8 +16,8 @@ const CHARACTERISTICS = Object.freeze({
  * @type {Object}
  */
 const VARIANTS = Object.freeze({
-  "CE": "CE",
-  "CEL": "CEL",
+  'CE': 'CE',
+  'CEL': 'CEL',
 });
 
 //TODO VARIANTS and RULESETS should really be combined/refactored.
@@ -26,16 +26,16 @@ const VARIANTS = Object.freeze({
  */
 const RULESETS = Object.freeze({
   CE: {
-    key: "CE",
-    name: "Cepheus Engine",
+    key: 'CE',
+    name: 'Cepheus Engine',
     settings: {
-      initiativeFormula: "2d6 + @characteristics.dexterity.mod",
-      difficultyListUsed: "CE",
+      initiativeFormula: '2d6 + @characteristics.dexterity.mod',
+      difficultyListUsed: 'CE',
       difficultiesAsTargetNumber: false,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: 'CE',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
@@ -48,48 +48,48 @@ const RULESETS = Object.freeze({
     }
   },
   CEL: {
-    key: "CEL",
-    name: "Cepheus Light",
+    key: 'CEL',
+    name: 'Cepheus Light',
     settings: {
-      initiativeFormula: "2d6",
-      difficultyListUsed: "CEL",
+      initiativeFormula: '2d6',
+      difficultyListUsed: 'CEL',
       difficultiesAsTargetNumber: true,
-      autofireRulesUsed: "CEL",
+      autofireRulesUsed: 'CEL',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99
     }
   },
   CEFTL: {
-    key: "CEFTL",
-    name: "Cepheus Faster Than Light",
+    key: 'CEFTL',
+    name: 'Cepheus Faster Than Light',
     settings: {
-      initiativeFormula: "2d6",
-      difficultyListUsed: "CEL",
+      initiativeFormula: '2d6',
+      difficultyListUsed: 'CEL',
       difficultiesAsTargetNumber: true,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: 'CE',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99
     },
   },
   CEATOM: {
-    key: "CEATOM",
-    name: "Cepheus Atom",
+    key: 'CEATOM',
+    name: 'Cepheus Atom',
     settings: {
-      initiativeFormula: "2d6",
-      difficultyListUsed: "CEL",
+      initiativeFormula: '2d6',
+      difficultyListUsed: 'CEL',
       difficultiesAsTargetNumber: true,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: 'CE',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99,
@@ -97,16 +97,16 @@ const RULESETS = Object.freeze({
     }
   },
   BARBARIC: {
-    key: "BARBARIC",
-    name: "Barbaric!",
+    key: 'BARBARIC',
+    name: 'Barbaric!',
     settings: {
-      initiativeFormula: "2d6",
-      difficultyListUsed: "CEL",
+      initiativeFormula: '2d6',
+      difficultyListUsed: 'CEL',
       difficultiesAsTargetNumber: true,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: 'CE',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 4,
@@ -115,16 +115,16 @@ const RULESETS = Object.freeze({
     },
   },
   CEQ: {
-    key: "CEQ",
-    name: "Cepheus Quantum",
+    key: 'CEQ',
+    name: 'Cepheus Quantum',
     settings: {
-      initiativeFormula: "1d1",
-      difficultyListUsed: "CEL",
+      initiativeFormula: '1d1',
+      difficultyListUsed: 'CEL',
       difficultiesAsTargetNumber: true,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: 'CE',
       modifierForZeroCharacteristic: -2,
-      termForAdvantage: "advantage",
-      termForDisadvantage: "disadvantage",
+      termForAdvantage: 'advantage',
+      termForDisadvantage: 'disadvantage',
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
@@ -133,21 +133,21 @@ const RULESETS = Object.freeze({
     }
   },
   OTHER: {
-    key: "OTHER",
-    name: "Other",
+    key: 'OTHER',
+    name: 'Other',
     settings: {}
   }
 })
 ;
 
 const ROLLTYPES = Object.freeze({
-  Advantage: {key: 'Advantage', formula: "3d6kh2"},
-  Normal: {key: 'Normal', formula: "2d6"},
-  Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
+  Advantage: {key: 'Advantage', formula: '3d6kh2'},
+  Normal: {key: 'Normal', formula: '2d6'},
+  Disadvantage: {key: 'Disadvantage', formula: '3d6kl2'}
 });
 
 const CONSUMABLES = Object.freeze([
-  "air", "drugs", "food", "fuel", "magazine", "power_cell", "other"
+  'air', 'drugs', 'food', 'fuel', 'magazine', 'power_cell', 'other'
 ]);
 
 const DIFFICULTIES = Object.freeze({

@@ -1,4 +1,4 @@
-import TwodsixActor from "../module/entities/TwodsixActor";
+import TwodsixActor from '../module/entities/TwodsixActor';
 
 class ActorUpdater {
   needsConfirmation = false;
@@ -14,7 +14,7 @@ class ActorUpdater {
 
   public updateFieldWithNumber(key: string, value: any): void {
     this.originalValues[key] = value;
-    this.fieldType[key] = "number";
+    this.fieldType[key] = 'number';
     let bestGuess = parseFloat(value);
 
     if (isNaN(bestGuess)) {
@@ -28,12 +28,12 @@ class ActorUpdater {
 
   public updateFieldWithText(key:string, value:string):void {
     this.updateData[key] = value;
-    this.fieldType[key] = "text";
+    this.fieldType[key] = 'text';
   }
 
   public updateFieldWithObject(key:string, value:any):void {
     this.updateData[key] = value;
-    this.fieldType[key] = "object";
+    this.fieldType[key] = 'object';
   }
 
 
@@ -44,27 +44,27 @@ class ActorUpdater {
 
   private showDialog(resolve: (arg0: Record<string,any>) => void) {
     const inputFields = Object.entries(this.updateData).map(([key, value]) => {
-      if (this.fieldType[key] === "object") {
-        return "";
+      if (this.fieldType[key] === 'object') {
+        return '';
       }
-      const originalValue = [undefined, ""].includes(this.originalValues[key])  ? "not set" : this.originalValues[key];
+      const originalValue = [undefined, ''].includes(this.originalValues[key])  ? 'not set' : this.originalValues[key];
       return `<label>${key.substring(5)} (previous value: ${originalValue})<input type="${this.fieldType[key]}" name="${key}" value="${value}"></label>`;
-    }).join("");
+    }).join('');
     let confirmed = false;
     new Dialog({
-      title: "Please confirm the data migration",
+      title: 'Please confirm the data migration',
       content: `<div>Some data could not be automatically migrated to the new version, please confirm and/or modify the data.</div><br><br><h3>${this.actor.name}</h3>` + inputFields,
       buttons: {
         ok: {
-          label: "ok",
+          label: 'ok',
           callback: (buttonHtml) => {
             confirmed = true;
-            $(buttonHtml).find("input").each((i, html) => {
+            $(buttonHtml).find('input').each((i, html) => {
               switch(this.fieldType[html.name]) {
-                case "number":
+                case 'number':
                   this.updateData[html.name] = Number(html.value);
                   break;
-                case "text":
+                case 'text':
                 default:
                   this.updateData[html.name] = html.value;
                   break;
@@ -93,35 +93,35 @@ class ActorUpdater {
 }
 
 export async function migrate():Promise<void> {
-  await Promise.all(game.actors.map(async (actor:TwodsixActor) => {
-    if (actor.data.type == "ship") {
+  await Promise.all(getGame().actors?.map(async (actor:TwodsixActor) => {
+    if (actor.data.type == 'ship') {
       const actorUpdater = new ActorUpdater(actor);
       const ship = actor.data.data.ship;
       if (ship) {
-        actorUpdater.updateFieldWithNumber("data.maintenanceCost", ship.maintenance_cost);
-        actorUpdater.updateFieldWithText("data.cargo", ship.cargo);
-        actorUpdater.updateFieldWithText("data.notes", ship.notes);
-        actorUpdater.updateFieldWithObject("data.crew", ship.crew);
+        actorUpdater.updateFieldWithNumber('data.maintenanceCost', ship.maintenance_cost);
+        actorUpdater.updateFieldWithText('data.cargo', ship.cargo);
+        actorUpdater.updateFieldWithText('data.notes', ship.notes);
+        actorUpdater.updateFieldWithObject('data.crew', ship.crew);
 
-        actorUpdater.updateFieldWithNumber("data.reqPower.systems", ship.reqPower["systems"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.m-drive", ship.reqPower["m-drive"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.j-drive", ship.reqPower["j-drive"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.sensors", ship.reqPower["sensors"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.weapons", ship.reqPower["weapons"]);
+        actorUpdater.updateFieldWithNumber('data.reqPower.systems', ship.reqPower['systems']);
+        actorUpdater.updateFieldWithNumber('data.reqPower.m-drive', ship.reqPower['m-drive']);
+        actorUpdater.updateFieldWithNumber('data.reqPower.j-drive', ship.reqPower['j-drive']);
+        actorUpdater.updateFieldWithNumber('data.reqPower.sensors', ship.reqPower['sensors']);
+        actorUpdater.updateFieldWithNumber('data.reqPower.weapons', ship.reqPower['weapons']);
 
-        actorUpdater.updateFieldWithNumber("data.shipStats.hull.value", ship.shipStats.hullCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.hull.max", ship.shipStats.hull);
-        actorUpdater.updateFieldWithNumber("data.shipStats.fuel.value", ship.shipStats.fuelCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.fuel.max", ship.shipStats.fuel);
-        actorUpdater.updateFieldWithNumber("data.shipStats.power.value", ship.shipStats.powerCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.power.max", ship.shipStats.power);
+        actorUpdater.updateFieldWithNumber('data.shipStats.hull.value', ship.shipStats.hullCurrent);
+        actorUpdater.updateFieldWithNumber('data.shipStats.hull.max', ship.shipStats.hull);
+        actorUpdater.updateFieldWithNumber('data.shipStats.fuel.value', ship.shipStats.fuelCurrent);
+        actorUpdater.updateFieldWithNumber('data.shipStats.fuel.max', ship.shipStats.fuel);
+        actorUpdater.updateFieldWithNumber('data.shipStats.power.value', ship.shipStats.powerCurrent);
+        actorUpdater.updateFieldWithNumber('data.shipStats.power.max', ship.shipStats.power);
 
-        actorUpdater.removeField("ship");
+        actorUpdater.removeField('ship');
       }
 
       if (actor.data.data.ship_value !== undefined) {
-        actorUpdater.updateFieldWithText("data.shipValue", actor.data.data.ship_value);
-        actorUpdater.removeField("ship_value");
+        actorUpdater.updateFieldWithText('data.shipValue', actor.data.data.ship_value);
+        actorUpdater.removeField('ship_value');
       }
 
       const updateData = await actorUpdater.getUpdateData();

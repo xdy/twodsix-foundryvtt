@@ -1,7 +1,8 @@
-import {AbstractTwodsixItemSheet} from "./AbstractTwodsixItemSheet";
-import {TWODSIX} from "../config";
-import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import {AbstractTwodsixItemSheet} from './AbstractTwodsixItemSheet';
+import {TWODSIX} from '../config';
+import TwodsixItem from '../entities/TwodsixItem';
+import { getDataFromDropEvent, getItemDataFromDropData } from '../utils/sheetUtils';
+import {getGame, getUi} from '../utils/utils';
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -10,21 +11,19 @@ import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUti
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
-  // @ts-ignore
-  static get defaultOptions():FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions():DocumentSheet.Options {
     return mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "item"],
+      classes: ['twodsix', 'sheet', 'item'],
       submitOnClose: true,
       submitOnChange: true,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
+      tabs: [{navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'description'}],
       dragDrop: [{dropSelector: null}]
     });
   }
 
   /** @override */
   get template():string {
-    const path = "systems/twodsix/templates/items";
+    const path = 'systems/twodsix/templates/items';
     return `${path}/${this.item.data.type}-sheet.html`;
   }
 
@@ -41,13 +40,13 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     this.item.prepareConsumable();
     // Add relevant data from system settings
     data.data.settings = {
-      ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
-      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
-      ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
-      ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
-      ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
-      ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
+      ShowLawLevel: getGame().settings.get('twodsix', 'ShowLawLevel'),
+      ShowRangeBandAndHideRange: getGame().settings.get('twodsix', 'ShowRangeBandAndHideRange'),
+      ShowWeaponType: getGame().settings.get('twodsix', 'ShowWeaponType'),
+      ShowDamageType: getGame().settings.get('twodsix', 'ShowDamageType'),
+      ShowRateOfFire: getGame().settings.get('twodsix', 'ShowRateOfFire'),
+      ShowRecoil: getGame().settings.get('twodsix', 'ShowRecoil'),
+      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>getGame().settings.get('twodsix', 'difficultyListUsed'))]
     };
     data.data.config = TWODSIX;
     data.data.isOwned = this.item.isOwned;
@@ -60,9 +59,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   // @ts-ignore
   setPosition(options:ApplicationPosition = {}):any {
     const position = super.setPosition(options);
-    const sheetBody = (this.element as JQuery).find(".sheet-body");
+    const sheetBody = (this.element as JQuery).find('.sheet-body');
     const bodyHeight = position.height - 192;
-    sheetBody.css("height", bodyHeight);
+    sheetBody.css('height', bodyHeight);
     return position;
   }
 
@@ -85,27 +84,26 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private getConsumable(event:Event):TwodsixItem {
-    const li = $(event.currentTarget).parents(".consumable");
+    const li = $(event.currentTarget).parents('.consumable');
     // @ts-ignore
-    return this.item.actor.items.get(li.data("consumableId"));
+    return this.item.actor.items.get(li.data('consumableId'));
   }
 
   private _onEditConsumable(event:Event):void {
-    this.getConsumable(event).sheet.render(true);
+    this.getConsumable(event).sheet?.render(true);
   }
 
   private async _onDeleteConsumable(event:Event):Promise<void> {
     const consumable = this.getConsumable(event);
     if(!consumable) {
-      this.item.removeConsumable("");
+      this.item.removeConsumable('');
     } else {
-      const bodyTextTemplate = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom");
+      const bodyTextTemplate = getGame().i18n.localize('TWODSIX.Items.Consumable.RemoveConsumableFrom');
       const consumableNameString = `"<strong>${consumable.name}</strong>"`;
-      const body = bodyTextTemplate.replace("_CONSUMABLE_NAME_", consumableNameString).replace("_ITEM_NAME_", this.item.name);
+      const body = bodyTextTemplate.replace('_CONSUMABLE_NAME_', consumableNameString).replace('_ITEM_NAME_', this.item.name);
 
-      // @ts-ignore
       await Dialog.confirm({
-        title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
+        title: getGame().i18n.localize('TWODSIX.Items.Consumable.RemoveConsumable'),
         content: `<div class="remove-consumable">${body}<br><br></div>`,
         // @ts-ignore
         yes: async () => this.item.removeConsumable(consumable.id),
@@ -118,7 +116,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   private async _onCreateConsumable():Promise<void> {
     if (!this.item.isOwned) {
-      console.error(`Twodsix | Consumables can only be created for owned items`);
+      console.error('Twodsix | Consumables can only be created for owned items');
       return;
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
@@ -126,16 +124,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       consumables: TWODSIX.CONSUMABLES
     });
     new Dialog({
-      title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
+      title: `${getGame().i18n.localize('TWODSIX.Items.Items.New')} ${getGame().i18n.localize('TWODSIX.itemTypes.consumable')}`,
       content: html,
       buttons: {
         ok: {
-          label: game.i18n.localize("TWODSIX.Create"),
+          label: getGame().i18n.localize('TWODSIX.Create'),
           callback: async (buttonHtml:JQuery) => {
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             const data = {
               name: buttonHtml.find('.consumable-name').val(),
-              type: "consumable",
+              type: 'consumable',
               data: {
                 subtype: buttonHtml.find('.consumable-subtype').val(),
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
@@ -144,13 +142,13 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
               }
             };
             // @ts-ignore
-            const newConsumable = await this.item.actor.createEmbeddedDocuments("Item", [data]);
+            const newConsumable = await this.item.actor.createEmbeddedDocuments('Item', [data]);
             // @ts-ignore
             await this.item.addConsumable(newConsumable[0].id);
           }
         },
         cancel: {
-          label: game.i18n.localize("Cancel")
+          label: getGame().i18n.localize('Cancel')
         }
       },
       default: 'ok',
@@ -158,43 +156,43 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private _onChangeUseConsumableForAttack(event:Event):void {
-    this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+    this.item.update({'data.useConsumableForAttack': $(event.currentTarget).val()});
   }
 
   private static check(cond:boolean, err:string) {
     if(cond) {
-      throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
+      throw new Error(getGame().i18n.localize(`TWODSIX.Errors.${err}`));
     }
   }
 
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
     try {
-      TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-      TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
+      TwodsixItemSheet.check(!this.item.isOwned, 'OnlyOwnedItems');
+      TwodsixItemSheet.check(this.item.type === 'skills', 'SkillsConsumables');
 
       const data = getDataFromDropEvent(event);
 
-      TwodsixItemSheet.check(!data, "DraggingSomething");
-      TwodsixItemSheet.check(data.type !== "Item", "OnlyDropItems");
+      TwodsixItemSheet.check(!data, 'DraggingSomething');
+      TwodsixItemSheet.check(data.type !== 'Item', 'OnlyDropItems');
 
       const itemData = await getItemDataFromDropData(data);
 
-      TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
+      TwodsixItemSheet.check(itemData.type !== 'consumable', 'OnlyDropConsumables');
 
       // If the dropped item has the same actor as the current item let's just use the same id.
       let itemId: string;
       if (this.item.actor.items.get(itemData.id)) {
         itemId = itemData.id;
       } else {
-        const newItem = await this.item.actor.createEmbeddedDocuments("Item", [itemData]);
+        const newItem = await this.item.actor.createEmbeddedDocuments('Item', [itemData]);
         itemId = newItem[0].id;
       }
       // @ts-ignore
       await this.item.addConsumable(itemId);
     } catch (err) {
       console.error(`Twodsix | ${err}`);
-      ui.notifications.error(err);
+      getUi().notifications?.error(err);
     }
   }
 }

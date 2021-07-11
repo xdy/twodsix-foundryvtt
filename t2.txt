@@ -1,0 +1,1286 @@
+[TSD-JSDoc] foundry.js:734:0 Failed to find parent of doclet 'String#stripScripts' using memberof 'String', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:753:0 Failed to find parent of doclet 'String#slugify' using memberof 'String', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:812:0 Failed to find parent of doclet 'Number#toNearest' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:826:0 Failed to find parent of doclet 'Number.between' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:840:0 Failed to find parent of doclet 'Number.isNumeric' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:866:0 Failed to find parent of doclet 'Array#equals' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:878:0 Failed to find parent of doclet 'Array#partition' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:891:0 Failed to find parent of doclet 'Array#filterJoin' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:902:0 Failed to find parent of doclet 'Array#findSplice' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:925:0 Failed to find parent of doclet 'Date#isValid' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:933:0 Failed to find parent of doclet 'Date#toDateInputString' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:944:0 Failed to find parent of doclet 'Date#toTimeInputString' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:2185:2 Failed to find parent of doclet 'Collection#Symbol.iterator' using memberof 'Collection#Symbol', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:3759:2 Failed to find parent of doclet 'SocketInterface.dispatch' using memberof 'SocketInterface', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:11260:2 Failed to find parent of doclet '{PlaceableObject.layer}' using memberof '{PlaceableObject', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24812:4 Failed to find parent of doclet 'ChatPopout#message' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24821:1 Failed to find parent of doclet 'ChatPopout.defaultOptions' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24832:2 Failed to find parent of doclet 'ChatPopout#id' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24839:2 Failed to find parent of doclet 'ChatPopout#title' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24847:2 Failed to find parent of doclet 'ChatPopout#_renderInner' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:27965:2 Failed to find parent of doclet '{Collection#entries}' using memberof '{Collection', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29106:2 Failed to find parent of doclet '{Entity.collection}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29130:1 Failed to find parent of doclet '{Entity.entity}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29147:1 Failed to find parent of doclet '{Entity#id}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31282:2 Failed to find parent of doclet 'ActorTokenHelpers#update' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31293:2 Failed to find parent of doclet 'ActorTokenHelpers#createEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31311:2 Failed to find parent of doclet 'ActorTokenHelpers#updateEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31328:2 Failed to find parent of doclet 'ActorTokenHelpers#deleteEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35340:2 Failed to find parent of doclet 'UserTargets#ids' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35345:2 Failed to find parent of doclet 'UserTargets#add' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35351:2 Failed to find parent of doclet 'UserTargets#clear' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35358:2 Failed to find parent of doclet 'UserTargets#delete' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35366:2 Failed to find parent of doclet 'UserTargets#_hook' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:46181:0 Failed to find parent of doclet 'BLEND_MODES.MAX_COLOR' using memberof 'BLEND_MODES', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:46194:0 Failed to find parent of doclet 'BLEND_MODES.MIN_COLOR' using memberof 'BLEND_MODES', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:50459:2 Failed to find parent of doclet 'AVSettings#users' using memberof 'AVSettings', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:50504:0 Failed to find parent of doclet 'AVSettings.AV_MODES' using memberof 'AVSettings', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51388:2 Failed to find parent of doclet 'window.CONFIG.debug' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51402:2 Failed to find parent of doclet 'window.CONFIG.ActiveEffect' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51410:2 Failed to find parent of doclet 'window.CONFIG.Actor' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51422:2 Failed to find parent of doclet 'window.CONFIG.Canvas' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51522:2 Failed to find parent of doclet 'window.CONFIG.ChatMessage' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51533:2 Failed to find parent of doclet 'window.CONFIG.Combat' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51548:2 Failed to find parent of doclet 'window.CONFIG.Dice' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51567:2 Failed to find parent of doclet 'window.CONFIG.Folder' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51575:2 Failed to find parent of doclet 'window.CONFIG.Item' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51587:2 Failed to find parent of doclet 'window.CONFIG.JournalEntry' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51626:2 Failed to find parent of doclet 'window.CONFIG.Macro' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51636:2 Failed to find parent of doclet 'window.CONFIG.MeasuredTemplate' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51652:2 Failed to find parent of doclet 'window.CONFIG.Playlist' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51662:2 Failed to find parent of doclet 'window.CONFIG.RollTable' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51674:2 Failed to find parent of doclet 'window.CONFIG.Scene' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51684:2 Failed to find parent of doclet 'window.CONFIG.User' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51695:2 Failed to find parent of doclet 'window.CONFIG.canvasTextStyle' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51715:2 Failed to find parent of doclet 'window.CONFIG.controlIcons' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51735:2 Failed to find parent of doclet 'window.CONFIG.fontFamilies' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51749:2 Failed to find parent of doclet 'window.CONFIG.defaultFontFamily' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51755:2 Failed to find parent of doclet 'window.CONFIG.statusEffects' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51922:2 Failed to find parent of doclet 'window.CONFIG.sounds' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51933:2 Failed to find parent of doclet 'window.CONFIG.supportedLanguages' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51941:2 Failed to find parent of doclet 'window.CONFIG.time' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51950:2 Failed to find parent of doclet 'window.CONFIG.TinyMCE' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51978:2 Failed to find parent of doclet 'window.CONFIG.ui' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:52005:2 Failed to find parent of doclet 'window.CONFIG.weatherEffects' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:52015:2 Failed to find parent of doclet 'window.CONFIG.WebRTC' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:734:0 Failed to find parent of doclet 'String#stripScripts' using memberof 'String', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:753:0 Failed to find parent of doclet 'String#slugify' using memberof 'String', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:812:0 Failed to find parent of doclet 'Number#toNearest' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:826:0 Failed to find parent of doclet 'Number.between' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:840:0 Failed to find parent of doclet 'Number.isNumeric' using memberof 'Number', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:866:0 Failed to find parent of doclet 'Array#equals' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:878:0 Failed to find parent of doclet 'Array#partition' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:891:0 Failed to find parent of doclet 'Array#filterJoin' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:902:0 Failed to find parent of doclet 'Array#findSplice' using memberof 'Array', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:925:0 Failed to find parent of doclet 'Date#isValid' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:933:0 Failed to find parent of doclet 'Date#toDateInputString' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:944:0 Failed to find parent of doclet 'Date#toTimeInputString' using memberof 'Date', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:2185:2 Failed to find parent of doclet 'Collection#Symbol.iterator' using memberof 'Collection#Symbol', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:3759:2 Failed to find parent of doclet 'SocketInterface.dispatch' using memberof 'SocketInterface', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:11260:2 Failed to find parent of doclet '{PlaceableObject.layer}' using memberof '{PlaceableObject', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24812:4 Failed to find parent of doclet 'ChatPopout#message' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24821:1 Failed to find parent of doclet 'ChatPopout.defaultOptions' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24832:2 Failed to find parent of doclet 'ChatPopout#id' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24839:2 Failed to find parent of doclet 'ChatPopout#title' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:24847:2 Failed to find parent of doclet 'ChatPopout#_renderInner' using memberof 'ChatPopout', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:27965:2 Failed to find parent of doclet '{Collection#entries}' using memberof '{Collection', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29106:2 Failed to find parent of doclet '{Entity.collection}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29130:1 Failed to find parent of doclet '{Entity.entity}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:29147:1 Failed to find parent of doclet '{Entity#id}' using memberof '{Entity', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31282:2 Failed to find parent of doclet 'ActorTokenHelpers#update' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31293:2 Failed to find parent of doclet 'ActorTokenHelpers#createEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31311:2 Failed to find parent of doclet 'ActorTokenHelpers#updateEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:31328:2 Failed to find parent of doclet 'ActorTokenHelpers#deleteEmbeddedEntity' using memberof 'ActorTokenHelpers', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35340:2 Failed to find parent of doclet 'UserTargets#ids' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35345:2 Failed to find parent of doclet 'UserTargets#add' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35351:2 Failed to find parent of doclet 'UserTargets#clear' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35358:2 Failed to find parent of doclet 'UserTargets#delete' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:35366:2 Failed to find parent of doclet 'UserTargets#_hook' using memberof 'UserTargets', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:46181:0 Failed to find parent of doclet 'BLEND_MODES.MAX_COLOR' using memberof 'BLEND_MODES', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:46194:0 Failed to find parent of doclet 'BLEND_MODES.MIN_COLOR' using memberof 'BLEND_MODES', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:50459:2 Failed to find parent of doclet 'AVSettings#users' using memberof 'AVSettings', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:50504:0 Failed to find parent of doclet 'AVSettings.AV_MODES' using memberof 'AVSettings', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51388:2 Failed to find parent of doclet 'window.CONFIG.debug' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51402:2 Failed to find parent of doclet 'window.CONFIG.ActiveEffect' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51410:2 Failed to find parent of doclet 'window.CONFIG.Actor' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51422:2 Failed to find parent of doclet 'window.CONFIG.Canvas' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51522:2 Failed to find parent of doclet 'window.CONFIG.ChatMessage' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51533:2 Failed to find parent of doclet 'window.CONFIG.Combat' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51548:2 Failed to find parent of doclet 'window.CONFIG.Dice' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51567:2 Failed to find parent of doclet 'window.CONFIG.Folder' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51575:2 Failed to find parent of doclet 'window.CONFIG.Item' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51587:2 Failed to find parent of doclet 'window.CONFIG.JournalEntry' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51626:2 Failed to find parent of doclet 'window.CONFIG.Macro' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51636:2 Failed to find parent of doclet 'window.CONFIG.MeasuredTemplate' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51652:2 Failed to find parent of doclet 'window.CONFIG.Playlist' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51662:2 Failed to find parent of doclet 'window.CONFIG.RollTable' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51674:2 Failed to find parent of doclet 'window.CONFIG.Scene' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51684:2 Failed to find parent of doclet 'window.CONFIG.User' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51695:2 Failed to find parent of doclet 'window.CONFIG.canvasTextStyle' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51715:2 Failed to find parent of doclet 'window.CONFIG.controlIcons' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51735:2 Failed to find parent of doclet 'window.CONFIG.fontFamilies' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51749:2 Failed to find parent of doclet 'window.CONFIG.defaultFontFamily' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51755:2 Failed to find parent of doclet 'window.CONFIG.statusEffects' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51922:2 Failed to find parent of doclet 'window.CONFIG.sounds' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51933:2 Failed to find parent of doclet 'window.CONFIG.supportedLanguages' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51941:2 Failed to find parent of doclet 'window.CONFIG.time' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51950:2 Failed to find parent of doclet 'window.CONFIG.TinyMCE' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:51978:2 Failed to find parent of doclet 'window.CONFIG.ui' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:52005:2 Failed to find parent of doclet 'window.CONFIG.weatherEffects' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] foundry.js:52015:2 Failed to find parent of doclet 'window.CONFIG.WebRTC' using memberof 'window.CONFIG', this is likely due to invalid JSDoc.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:306:6 Unable to resolve type for PASSWORD_SAFE_STRING, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:373:6 Unable to resolve type for TOKEN_DISPOSITIONS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Collection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Collection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2714:2 Unable to resolve type for KeyboardManager#moveKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2724:2 Unable to resolve type for KeyboardManager#digitKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2734:2 Unable to resolve type for KeyboardManager#zoomKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2744:2 Unable to resolve type for KeyboardManager#hasFocus, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2714:2 Unable to resolve type for KeyboardManager#moveKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2724:2 Unable to resolve type for KeyboardManager#digitKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2734:2 Unable to resolve type for KeyboardManager#zoomKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2744:2 Unable to resolve type for KeyboardManager#hasFocus, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3321:4 Unable to resolve type for ClientSettings#storage, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3333:2 Unable to resolve type for ClientSettings#sheet, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3321:4 Unable to resolve type for ClientSettings#storage, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3333:2 Unable to resolve type for ClientSettings#sheet, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3566:2 Unable to resolve type for SetupConfiguration.setupURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3566:2 Unable to resolve type for SetupConfiguration.setupURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3931:2 Unable to resolve type for GameTime#serverTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3944:2 Unable to resolve type for GameTime#worldTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3931:2 Unable to resolve type for GameTime#serverTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3944:2 Unable to resolve type for GameTime#worldTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4361:1 Unable to resolve type for Application.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4361:1 Unable to resolve type for Application.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Application#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Application#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:5116:1 Unable to resolve type for FormApplication.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:5116:1 Unable to resolve type for FormApplication.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for FormApplication#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:5580:1 Unable to resolve type for BaseEntitySheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:5580:1 Unable to resolve type for BaseEntitySheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for BaseEntitySheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7571:2 Unable to resolve type for Roll#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7585:2 Unable to resolve type for Roll#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7595:2 Unable to resolve type for Roll#result, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8329:2 Unable to resolve type for Roll#parts, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7571:2 Unable to resolve type for Roll#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7585:2 Unable to resolve type for Roll#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7595:2 Unable to resolve type for Roll#result, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8329:2 Unable to resolve type for Roll#parts, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8857:0 Unable to resolve type for DiceTerm.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8857:0 Unable to resolve type for DiceTerm.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9511:2 Unable to resolve type for Die#rolls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9518:0 Unable to resolve type for Die.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9521:0 Unable to resolve type for Die.MODIFIERS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9511:2 Unable to resolve type for Die#rolls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9518:0 Unable to resolve type for Die.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9521:0 Unable to resolve type for Die.MODIFIERS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9676:2 Unable to resolve type for DicePool#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9686:2 Unable to resolve type for DicePool#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9676:2 Unable to resolve type for DicePool#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9686:2 Unable to resolve type for DicePool#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for PlaceableObject#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for PlaceableObject#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for PlaceablesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for PlaceablesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for PlaceablesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for PlaceablesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for PlaceablesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for PlaceablesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12863:2 Unable to resolve type for ContextMenu#menu, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12863:2 Unable to resolve type for ContextMenu#menu, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:13063:1 Unable to resolve type for Dialog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:13063:1 Unable to resolve type for Dialog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14244:1 Unable to resolve type for FilePicker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14369:2 Unable to resolve type for FilePicker#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14380:2 Unable to resolve type for FilePicker#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14390:2 Unable to resolve type for FilePicker#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14400:2 Unable to resolve type for FilePicker#canUpload, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14411:2 Unable to resolve type for FilePicker.uploadURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14244:1 Unable to resolve type for FilePicker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14369:2 Unable to resolve type for FilePicker#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14380:2 Unable to resolve type for FilePicker#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14390:2 Unable to resolve type for FilePicker#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14400:2 Unable to resolve type for FilePicker#canUpload, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14411:2 Unable to resolve type for FilePicker.uploadURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15302:1 Unable to resolve type for Notifications.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15302:1 Unable to resolve type for Notifications.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Notifications#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15600:1 Unable to resolve type for Sidebar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15600:1 Unable to resolve type for Sidebar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Sidebar#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15818:1 Unable to resolve type for SidebarTab.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15818:1 Unable to resolve type for SidebarTab.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15973:1 Unable to resolve type for SidebarDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16013:2 Unable to resolve type for SidebarDirectory.cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15973:1 Unable to resolve type for SidebarDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16013:2 Unable to resolve type for SidebarDirectory.cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16729:2 Unable to resolve type for ActorSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16746:2 Unable to resolve type for ActorSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16756:2 Unable to resolve type for ActorSheet#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16729:2 Unable to resolve type for ActorSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16746:2 Unable to resolve type for ActorSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16756:2 Unable to resolve type for ActorSheet#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17169:2 Unable to resolve type for CombatantConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17169:2 Unable to resolve type for CombatantConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17195:2 Unable to resolve type for ActiveEffectConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17195:2 Unable to resolve type for ActiveEffectConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17300:2 Unable to resolve type for FolderConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17300:2 Unable to resolve type for FolderConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17311:2 Unable to resolve type for FolderConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17382:2 Unable to resolve type for GridConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17382:2 Unable to resolve type for GridConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for GridConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17652:1 Unable to resolve type for ImagePopout.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17652:1 Unable to resolve type for ImagePopout.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for ImagePopout#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17846:2 Unable to resolve type for ItemSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17861:2 Unable to resolve type for ItemSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17846:2 Unable to resolve type for ItemSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17861:2 Unable to resolve type for ItemSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17980:1 Unable to resolve type for JournalSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17980:1 Unable to resolve type for JournalSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17995:1 Unable to resolve type for JournalSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18169:2 Unable to resolve type for MacroConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18169:2 Unable to resolve type for MacroConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18182:2 Unable to resolve type for MacroConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18261:1 Unable to resolve type for MeasuredTemplateConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18261:1 Unable to resolve type for MeasuredTemplateConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for MeasuredTemplateConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18303:1 Unable to resolve type for PermissionControl.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18303:1 Unable to resolve type for PermissionControl.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PermissionControl#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PlaylistConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18576:2 Unable to resolve type for PlaylistSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18587:2 Unable to resolve type for PlaylistSoundConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18576:2 Unable to resolve type for PlaylistSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18587:2 Unable to resolve type for PlaylistSoundConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18663:2 Unable to resolve type for RollTableConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18663:2 Unable to resolve type for RollTableConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19096:2 Unable to resolve type for SceneConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19096:2 Unable to resolve type for SceneConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19108:2 Unable to resolve type for SceneConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19526:2 Unable to resolve type for ChatBubbles#container, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19526:2 Unable to resolve type for ChatBubbles#container, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19714:1 Unable to resolve type for HeadsUpDisplay.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19714:1 Unable to resolve type for HeadsUpDisplay.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19782:1 Unable to resolve type for SceneControls.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19782:1 Unable to resolve type for SceneControls.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for SceneControls#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20374:1 Unable to resolve type for Hotbar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20374:1 Unable to resolve type for Hotbar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Hotbar#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20728:1 Unable to resolve type for BasePlaceableHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20728:1 Unable to resolve type for BasePlaceableHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20928:2 Unable to resolve type for MainMenu#items, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20928:2 Unable to resolve type for MainMenu#items, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21023:2 Unable to resolve type for SceneNavigation#scenes, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21023:2 Unable to resolve type for SceneNavigation#scenes, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21346:1 Unable to resolve type for PlayerList.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21346:1 Unable to resolve type for PlayerList.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PlayerList#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21528:2 Unable to resolve type for AVConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21528:2 Unable to resolve type for AVConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21730:2 Unable to resolve type for CameraPopoutAppWrapper#position, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21730:2 Unable to resolve type for CameraPopoutAppWrapper#position, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21799:2 Unable to resolve type for CameraViews.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21799:2 Unable to resolve type for CameraViews.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22299:2 Unable to resolve type for DrawingConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22299:2 Unable to resolve type for DrawingConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22414:1 Unable to resolve type for DrawingHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22414:1 Unable to resolve type for DrawingHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22465:1 Unable to resolve type for LightConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22465:1 Unable to resolve type for LightConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22569:1 Unable to resolve type for NoteConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22569:1 Unable to resolve type for NoteConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22638:1 Unable to resolve type for AmbientSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22638:1 Unable to resolve type for AmbientSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for AmbientSoundConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22692:1 Unable to resolve type for TileConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22692:1 Unable to resolve type for TileConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for TileConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22756:1 Unable to resolve type for TileHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22756:1 Unable to resolve type for TileHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22802:1 Unable to resolve type for TokenConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22815:2 Unable to resolve type for TokenConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22845:2 Unable to resolve type for TokenConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22802:1 Unable to resolve type for TokenConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22815:2 Unable to resolve type for TokenConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22845:2 Unable to resolve type for TokenConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23098:2 Unable to resolve type for TokenHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23098:2 Unable to resolve type for TokenHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23491:2 Unable to resolve type for EULA#licenseURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23491:2 Unable to resolve type for EULA#licenseURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23604:1 Unable to resolve type for InstallPackage.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23604:1 Unable to resolve type for InstallPackage.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for InstallPackage#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23896:1 Unable to resolve type for SetupConfigurationForm.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23896:1 Unable to resolve type for SetupConfigurationForm.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24497:1 Unable to resolve type for UpdateNotes.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24508:2 Unable to resolve type for UpdateNotes#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24497:1 Unable to resolve type for UpdateNotes.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24508:2 Unable to resolve type for UpdateNotes#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24543:1 Unable to resolve type for UserManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24543:1 Unable to resolve type for UserManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for UserManagement#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24730:2 Unable to resolve type for WorldConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24730:2 Unable to resolve type for WorldConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24863:1 Unable to resolve type for SettingsConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24863:1 Unable to resolve type for SettingsConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for SettingsConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for InvitationLinks#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25082:2 Unable to resolve type for ModuleManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25082:2 Unable to resolve type for ModuleManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25290:1 Unable to resolve type for PermissionConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25290:1 Unable to resolve type for PermissionConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PermissionConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25422:1 Unable to resolve type for ActorDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25429:2 Unable to resolve type for ActorDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25422:1 Unable to resolve type for ActorDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25429:2 Unable to resolve type for ActorDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25593:2 Unable to resolve type for ChatLog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25593:2 Unable to resolve type for ChatLog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26303:1 Unable to resolve type for CombatTracker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26303:1 Unable to resolve type for CombatTracker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26741:1 Unable to resolve type for CompendiumDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26741:1 Unable to resolve type for CompendiumDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26984:1 Unable to resolve type for ItemDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26991:2 Unable to resolve type for ItemDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26984:1 Unable to resolve type for ItemDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26991:2 Unable to resolve type for ItemDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27043:1 Unable to resolve type for JournalDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27053:2 Unable to resolve type for JournalDirectory#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27060:1 Unable to resolve type for JournalDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27067:2 Unable to resolve type for JournalDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27043:1 Unable to resolve type for JournalDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27053:2 Unable to resolve type for JournalDirectory#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27060:1 Unable to resolve type for JournalDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27067:2 Unable to resolve type for JournalDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27115:1 Unable to resolve type for MacroDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27122:2 Unable to resolve type for MacroDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27115:1 Unable to resolve type for MacroDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27122:2 Unable to resolve type for MacroDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27170:2 Unable to resolve type for PlaylistDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27180:2 Unable to resolve type for PlaylistDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27187:2 Unable to resolve type for PlaylistDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27197:2 Unable to resolve type for PlaylistDirectory#playing, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27170:2 Unable to resolve type for PlaylistDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27180:2 Unable to resolve type for PlaylistDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27187:2 Unable to resolve type for PlaylistDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27197:2 Unable to resolve type for PlaylistDirectory#playing, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27633:1 Unable to resolve type for SceneDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27640:2 Unable to resolve type for SceneDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27633:1 Unable to resolve type for SceneDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27640:2 Unable to resolve type for SceneDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27754:1 Unable to resolve type for Settings.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27754:1 Unable to resolve type for Settings.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27845:1 Unable to resolve type for FrameViewer.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27845:1 Unable to resolve type for FrameViewer.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27899:1 Unable to resolve type for RollTableDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27909:2 Unable to resolve type for RollTableDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27899:1 Unable to resolve type for RollTableDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27909:2 Unable to resolve type for RollTableDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for EntityCollection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28216:1 Unable to resolve type for Compendium.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28232:2 Unable to resolve type for Compendium#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28242:2 Unable to resolve type for Compendium#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28262:2 Unable to resolve type for Compendium#cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28216:1 Unable to resolve type for Compendium.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28232:2 Unable to resolve type for Compendium#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28242:2 Unable to resolve type for Compendium#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28262:2 Unable to resolve type for Compendium#cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Entity#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Entity#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Entity#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Entity#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Actors#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30629:2 Unable to resolve type for Actor.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30687:2 Unable to resolve type for Actor#temporaryEffects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31267:2 Unable to resolve type for Actor#isPC, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30629:2 Unable to resolve type for Actor.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30687:2 Unable to resolve type for Actor#temporaryEffects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31267:2 Unable to resolve type for Actor#isPC, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Actor#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Actor#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31345:2 Unable to resolve type for CombatEncounters#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31355:2 Unable to resolve type for CombatEncounters#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31377:2 Unable to resolve type for CombatEncounters#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31387:2 Unable to resolve type for CombatEncounters#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31394:2 Unable to resolve type for CombatEncounters.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31345:2 Unable to resolve type for CombatEncounters#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31355:2 Unable to resolve type for CombatEncounters#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31377:2 Unable to resolve type for CombatEncounters#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31387:2 Unable to resolve type for CombatEncounters#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31394:2 Unable to resolve type for CombatEncounters.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31487:2 Unable to resolve type for Combat.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31623:2 Unable to resolve type for Combat#scene, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31633:2 Unable to resolve type for Combat#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31487:2 Unable to resolve type for Combat.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31623:2 Unable to resolve type for Combat#scene, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31633:2 Unable to resolve type for Combat#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Combat#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Combat#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Folders#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32090:2 Unable to resolve type for Folder.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32135:2 Unable to resolve type for Folder#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32145:2 Unable to resolve type for Folder#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32090:2 Unable to resolve type for Folder.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32135:2 Unable to resolve type for Folder#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32145:2 Unable to resolve type for Folder#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Folder#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Folder#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32295:2 Unable to resolve type for Items#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32295:2 Unable to resolve type for Items#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32350:2 Unable to resolve type for Item.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32477:2 Unable to resolve type for Item#limited, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32488:2 Unable to resolve type for Item#isOwned, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32350:2 Unable to resolve type for Item.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32477:2 Unable to resolve type for Item#limited, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32488:2 Unable to resolve type for Item#isOwned, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Journal#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32602:2 Unable to resolve type for JournalEntry.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32620:2 Unable to resolve type for JournalEntry#visible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32602:2 Unable to resolve type for JournalEntry.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32620:2 Unable to resolve type for JournalEntry#visible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for JournalEntry#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for JournalEntry#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32729:2 Unable to resolve type for Macros.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32729:2 Unable to resolve type for Macros.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Macros#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32779:2 Unable to resolve type for Macro.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32779:2 Unable to resolve type for Macro.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Macro#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Macro#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32858:2 Unable to resolve type for Messages#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32858:2 Unable to resolve type for Messages#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32931:4 Unable to resolve type for ChatMessage#user, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32936:4 Unable to resolve type for ChatMessage#_roll, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32948:2 Unable to resolve type for ChatMessage.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32931:4 Unable to resolve type for ChatMessage#user, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32936:4 Unable to resolve type for ChatMessage#_roll, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32948:2 Unable to resolve type for ChatMessage.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for ChatMessage#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for ChatMessage#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Playlists#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33513:2 Unable to resolve type for Playlist.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33513:2 Unable to resolve type for Playlist.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Playlist#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Playlist#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33859:2 Unable to resolve type for Scenes#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33869:2 Unable to resolve type for Scenes#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33879:2 Unable to resolve type for Scenes#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33859:2 Unable to resolve type for Scenes#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33869:2 Unable to resolve type for Scenes#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33879:2 Unable to resolve type for Scenes#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33976:2 Unable to resolve type for Scene.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34048:2 Unable to resolve type for Scene#journal, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33976:2 Unable to resolve type for Scene.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34048:2 Unable to resolve type for Scene#journal, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Scene#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Scene#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34417:2 Unable to resolve type for RollTables.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34417:2 Unable to resolve type for RollTables.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for RollTables#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34458:2 Unable to resolve type for RollTable.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34458:2 Unable to resolve type for RollTable.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34876:2 Unable to resolve type for Users#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34886:2 Unable to resolve type for Users#players, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34876:2 Unable to resolve type for Users#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34886:2 Unable to resolve type for Users#players, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35014:2 Unable to resolve type for User.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35055:2 Unable to resolve type for User#isTrusted, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35065:2 Unable to resolve type for User#isGM, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35075:2 Unable to resolve type for User#isSelf, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35014:2 Unable to resolve type for User.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35055:2 Unable to resolve type for User#isTrusted, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35065:2 Unable to resolve type for User#isGM, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35075:2 Unable to resolve type for User#isSelf, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35433:2 Unable to resolve type for ActiveEffect#duration, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35523:2 Unable to resolve type for ActiveEffect#sourceName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35433:2 Unable to resolve type for ActiveEffect#duration, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35523:2 Unable to resolve type for ActiveEffect#sourceName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35891:0 Unable to resolve type for CanvasAnimation.animations, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35891:0 Unable to resolve type for CanvasAnimation.animations, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36337:2 Unable to resolve type for MouseInteractionManager#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36404:2 Unable to resolve type for MouseInteractionManager#states, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36337:2 Unable to resolve type for MouseInteractionManager#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36404:2 Unable to resolve type for MouseInteractionManager#states, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36880:2 Unable to resolve type for Quadtree#all, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36880:2 Unable to resolve type for Quadtree#all, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37806:2 Unable to resolve type for BackgroundLayer#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37818:2 Unable to resolve type for BackgroundLayer#isVideo, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37806:2 Unable to resolve type for BackgroundLayer#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37818:2 Unable to resolve type for BackgroundLayer#isVideo, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37916:2 Unable to resolve type for DrawingsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37947:2 Unable to resolve type for DrawingsLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37916:2 Unable to resolve type for DrawingsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37947:2 Unable to resolve type for DrawingsLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38204:2 Unable to resolve type for EffectsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38204:2 Unable to resolve type for EffectsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38320:2 Unable to resolve type for LightingLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38320:2 Unable to resolve type for LightingLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for LightingLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for LightingLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for LightingLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38670:2 Unable to resolve type for NotesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38670:2 Unable to resolve type for NotesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38854:2 Unable to resolve type for SightLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38854:2 Unable to resolve type for SightLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39761:2 Unable to resolve type for SoundsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39761:2 Unable to resolve type for SoundsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for SoundsLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for SoundsLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for SoundsLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39922:2 Unable to resolve type for TemplateLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39922:2 Unable to resolve type for TemplateLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for TemplateLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for TemplateLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for TemplateLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40079:2 Unable to resolve type for TilesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40079:2 Unable to resolve type for TilesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for TilesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for TilesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for TilesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40231:2 Unable to resolve type for TokenLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40250:2 Unable to resolve type for TokenLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40231:2 Unable to resolve type for TokenLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40250:2 Unable to resolve type for TokenLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40594:2 Unable to resolve type for WallsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40594:2 Unable to resolve type for WallsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for WallsLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for WallsLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:41226:2 Unable to resolve type for Drawing.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:41226:2 Unable to resolve type for Drawing.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Drawing#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42180:2 Unable to resolve type for AmbientLight.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42208:2 Unable to resolve type for AmbientLight#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42219:2 Unable to resolve type for AmbientLight#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42230:2 Unable to resolve type for AmbientLight#isVisible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42303:2 Unable to resolve type for AmbientLight#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42180:2 Unable to resolve type for AmbientLight.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42208:2 Unable to resolve type for AmbientLight#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42219:2 Unable to resolve type for AmbientLight#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42230:2 Unable to resolve type for AmbientLight#isVisible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42303:2 Unable to resolve type for AmbientLight#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42187:2 Unable to resolve type for AmbientLight#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42462:2 Unable to resolve type for Note.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42462:2 Unable to resolve type for Note.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Note#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42705:2 Unable to resolve type for AmbientSound.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42717:2 Unable to resolve type for AmbientSound#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42727:2 Unable to resolve type for AmbientSound#radius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42705:2 Unable to resolve type for AmbientSound.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42717:2 Unable to resolve type for AmbientSound#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42727:2 Unable to resolve type for AmbientSound#radius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for AmbientSound#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42976:2 Unable to resolve type for MeasuredTemplate.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42988:2 Unable to resolve type for MeasuredTemplate#borderColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42998:2 Unable to resolve type for MeasuredTemplate#fillColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43005:2 Unable to resolve type for MeasuredTemplate#owner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42976:2 Unable to resolve type for MeasuredTemplate.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42988:2 Unable to resolve type for MeasuredTemplate#borderColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42998:2 Unable to resolve type for MeasuredTemplate#fillColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43005:2 Unable to resolve type for MeasuredTemplate#owner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for MeasuredTemplate#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43410:2 Unable to resolve type for Tile.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43410:2 Unable to resolve type for Tile.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Tile#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43900:2 Unable to resolve type for Token.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43952:2 Unable to resolve type for Token#hasActiveHUD, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44084:2 Unable to resolve type for Token#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44095:2 Unable to resolve type for Token#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44107:2 Unable to resolve type for Token#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43900:2 Unable to resolve type for Token.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43952:2 Unable to resolve type for Token#hasActiveHUD, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44084:2 Unable to resolve type for Token#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44095:2 Unable to resolve type for Token#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44107:2 Unable to resolve type for Token#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Token#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45573:2 Unable to resolve type for Wall.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45603:2 Unable to resolve type for Wall#midpoint, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45621:2 Unable to resolve type for Wall#direction, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45573:2 Unable to resolve type for Wall.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45603:2 Unable to resolve type for Wall#midpoint, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45621:2 Unable to resolve type for Wall#direction, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45592:2 Unable to resolve type for Wall#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47632:4 Unable to resolve type for ControlsLayer#effects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47659:2 Unable to resolve type for ControlsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47632:4 Unable to resolve type for ControlsLayer#effects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47659:2 Unable to resolve type for ControlsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47945:2 Unable to resolve type for Ruler#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47945:2 Unable to resolve type for Ruler#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for BaseGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for BaseGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for BaseGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for BaseGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48922:2 Unable to resolve type for HexagonalGrid#hexPoints, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48922:2 Unable to resolve type for HexagonalGrid#hexPoints, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for HexagonalGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for HexagonalGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49386:2 Unable to resolve type for GridLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49413:2 Unable to resolve type for GridLayer#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49420:2 Unable to resolve type for GridLayer#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49386:2 Unable to resolve type for GridLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49413:2 Unable to resolve type for GridLayer#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49420:2 Unable to resolve type for GridLayer#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:306:6 Unable to resolve type for PASSWORD_SAFE_STRING, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:373:6 Unable to resolve type for TOKEN_DISPOSITIONS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Collection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Collection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2714:2 Unable to resolve type for KeyboardManager#moveKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2724:2 Unable to resolve type for KeyboardManager#digitKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2734:2 Unable to resolve type for KeyboardManager#zoomKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2744:2 Unable to resolve type for KeyboardManager#hasFocus, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2714:2 Unable to resolve type for KeyboardManager#moveKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2724:2 Unable to resolve type for KeyboardManager#digitKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2734:2 Unable to resolve type for KeyboardManager#zoomKeys, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2744:2 Unable to resolve type for KeyboardManager#hasFocus, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3321:4 Unable to resolve type for ClientSettings#storage, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3333:2 Unable to resolve type for ClientSettings#sheet, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3321:4 Unable to resolve type for ClientSettings#storage, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3333:2 Unable to resolve type for ClientSettings#sheet, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3566:2 Unable to resolve type for SetupConfiguration.setupURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3566:2 Unable to resolve type for SetupConfiguration.setupURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3931:2 Unable to resolve type for GameTime#serverTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3944:2 Unable to resolve type for GameTime#worldTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3931:2 Unable to resolve type for GameTime#serverTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:3944:2 Unable to resolve type for GameTime#worldTime, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Application#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Application#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for FormApplication#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for BaseEntitySheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7571:2 Unable to resolve type for Roll#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7585:2 Unable to resolve type for Roll#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7595:2 Unable to resolve type for Roll#result, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8329:2 Unable to resolve type for Roll#parts, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7571:2 Unable to resolve type for Roll#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7585:2 Unable to resolve type for Roll#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:7595:2 Unable to resolve type for Roll#result, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8329:2 Unable to resolve type for Roll#parts, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8857:0 Unable to resolve type for DiceTerm.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:8857:0 Unable to resolve type for DiceTerm.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9511:2 Unable to resolve type for Die#rolls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9518:0 Unable to resolve type for Die.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9521:0 Unable to resolve type for Die.MODIFIERS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9511:2 Unable to resolve type for Die#rolls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9518:0 Unable to resolve type for Die.DENOMINATION, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9521:0 Unable to resolve type for Die.MODIFIERS, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9676:2 Unable to resolve type for DicePool#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9686:2 Unable to resolve type for DicePool#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9676:2 Unable to resolve type for DicePool#dice, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:9686:2 Unable to resolve type for DicePool#formula, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for PlaceableObject#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for PlaceableObject#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for PlaceablesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for PlaceablesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for PlaceablesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for PlaceablesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for PlaceablesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for PlaceablesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12863:2 Unable to resolve type for ContextMenu#menu, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12863:2 Unable to resolve type for ContextMenu#menu, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:13063:1 Unable to resolve type for Dialog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:13063:1 Unable to resolve type for Dialog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14244:1 Unable to resolve type for FilePicker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14369:2 Unable to resolve type for FilePicker#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14380:2 Unable to resolve type for FilePicker#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14390:2 Unable to resolve type for FilePicker#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14400:2 Unable to resolve type for FilePicker#canUpload, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14411:2 Unable to resolve type for FilePicker.uploadURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14244:1 Unable to resolve type for FilePicker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14369:2 Unable to resolve type for FilePicker#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14380:2 Unable to resolve type for FilePicker#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14390:2 Unable to resolve type for FilePicker#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14400:2 Unable to resolve type for FilePicker#canUpload, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:14411:2 Unable to resolve type for FilePicker.uploadURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15302:1 Unable to resolve type for Notifications.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15302:1 Unable to resolve type for Notifications.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Notifications#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15600:1 Unable to resolve type for Sidebar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:15600:1 Unable to resolve type for Sidebar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Sidebar#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16729:2 Unable to resolve type for ActorSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16746:2 Unable to resolve type for ActorSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16756:2 Unable to resolve type for ActorSheet#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16729:2 Unable to resolve type for ActorSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16746:2 Unable to resolve type for ActorSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:16756:2 Unable to resolve type for ActorSheet#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17169:2 Unable to resolve type for CombatantConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17169:2 Unable to resolve type for CombatantConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17195:2 Unable to resolve type for ActiveEffectConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17195:2 Unable to resolve type for ActiveEffectConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17300:2 Unable to resolve type for FolderConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17300:2 Unable to resolve type for FolderConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17311:2 Unable to resolve type for FolderConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17382:2 Unable to resolve type for GridConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17382:2 Unable to resolve type for GridConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for GridConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17652:1 Unable to resolve type for ImagePopout.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17652:1 Unable to resolve type for ImagePopout.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for ImagePopout#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17846:2 Unable to resolve type for ItemSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17861:2 Unable to resolve type for ItemSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17846:2 Unable to resolve type for ItemSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17861:2 Unable to resolve type for ItemSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17980:1 Unable to resolve type for JournalSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17980:1 Unable to resolve type for JournalSheet.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:17995:1 Unable to resolve type for JournalSheet#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18169:2 Unable to resolve type for MacroConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18169:2 Unable to resolve type for MacroConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18182:2 Unable to resolve type for MacroConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18261:1 Unable to resolve type for MeasuredTemplateConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18261:1 Unable to resolve type for MeasuredTemplateConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for MeasuredTemplateConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18303:1 Unable to resolve type for PermissionControl.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18303:1 Unable to resolve type for PermissionControl.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PermissionControl#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PlaylistConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18576:2 Unable to resolve type for PlaylistSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18587:2 Unable to resolve type for PlaylistSoundConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18576:2 Unable to resolve type for PlaylistSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18587:2 Unable to resolve type for PlaylistSoundConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18663:2 Unable to resolve type for RollTableConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:18663:2 Unable to resolve type for RollTableConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19096:2 Unable to resolve type for SceneConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19096:2 Unable to resolve type for SceneConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19108:2 Unable to resolve type for SceneConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19526:2 Unable to resolve type for ChatBubbles#container, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19526:2 Unable to resolve type for ChatBubbles#container, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19714:1 Unable to resolve type for HeadsUpDisplay.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19714:1 Unable to resolve type for HeadsUpDisplay.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19782:1 Unable to resolve type for SceneControls.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:19782:1 Unable to resolve type for SceneControls.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for SceneControls#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20374:1 Unable to resolve type for Hotbar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20374:1 Unable to resolve type for Hotbar.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for Hotbar#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20928:2 Unable to resolve type for MainMenu#items, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:20928:2 Unable to resolve type for MainMenu#items, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21023:2 Unable to resolve type for SceneNavigation#scenes, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21023:2 Unable to resolve type for SceneNavigation#scenes, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21346:1 Unable to resolve type for PlayerList.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21346:1 Unable to resolve type for PlayerList.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PlayerList#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21528:2 Unable to resolve type for AVConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21528:2 Unable to resolve type for AVConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21730:2 Unable to resolve type for CameraPopoutAppWrapper#position, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21730:2 Unable to resolve type for CameraPopoutAppWrapper#position, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21799:2 Unable to resolve type for CameraViews.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:21799:2 Unable to resolve type for CameraViews.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22299:2 Unable to resolve type for DrawingConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22299:2 Unable to resolve type for DrawingConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22414:1 Unable to resolve type for DrawingHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22414:1 Unable to resolve type for DrawingHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22465:1 Unable to resolve type for LightConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22465:1 Unable to resolve type for LightConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22569:1 Unable to resolve type for NoteConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22569:1 Unable to resolve type for NoteConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22638:1 Unable to resolve type for AmbientSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22638:1 Unable to resolve type for AmbientSoundConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for AmbientSoundConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22692:1 Unable to resolve type for TileConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22692:1 Unable to resolve type for TileConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for TileConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22756:1 Unable to resolve type for TileHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22756:1 Unable to resolve type for TileHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22802:1 Unable to resolve type for TokenConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22815:2 Unable to resolve type for TokenConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22845:2 Unable to resolve type for TokenConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22802:1 Unable to resolve type for TokenConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22815:2 Unable to resolve type for TokenConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:22845:2 Unable to resolve type for TokenConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23098:2 Unable to resolve type for TokenHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23098:2 Unable to resolve type for TokenHUD.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23491:2 Unable to resolve type for EULA#licenseURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23491:2 Unable to resolve type for EULA#licenseURL, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23604:1 Unable to resolve type for InstallPackage.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23604:1 Unable to resolve type for InstallPackage.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for InstallPackage#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23896:1 Unable to resolve type for SetupConfigurationForm.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:23896:1 Unable to resolve type for SetupConfigurationForm.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24497:1 Unable to resolve type for UpdateNotes.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24508:2 Unable to resolve type for UpdateNotes#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24497:1 Unable to resolve type for UpdateNotes.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24508:2 Unable to resolve type for UpdateNotes#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24543:1 Unable to resolve type for UserManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24543:1 Unable to resolve type for UserManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for UserManagement#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24730:2 Unable to resolve type for WorldConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24730:2 Unable to resolve type for WorldConfig#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24863:1 Unable to resolve type for SettingsConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:24863:1 Unable to resolve type for SettingsConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for SettingsConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for InvitationLinks#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25082:2 Unable to resolve type for ModuleManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25082:2 Unable to resolve type for ModuleManagement.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25290:1 Unable to resolve type for PermissionConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25290:1 Unable to resolve type for PermissionConfig.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:4387:2 Unable to resolve type for PermissionConfig#id, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25422:1 Unable to resolve type for ActorDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25429:2 Unable to resolve type for ActorDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25422:1 Unable to resolve type for ActorDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25429:2 Unable to resolve type for ActorDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25593:2 Unable to resolve type for ChatLog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:25593:2 Unable to resolve type for ChatLog.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26303:1 Unable to resolve type for CombatTracker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26303:1 Unable to resolve type for CombatTracker.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26741:1 Unable to resolve type for CompendiumDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26741:1 Unable to resolve type for CompendiumDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26984:1 Unable to resolve type for ItemDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26991:2 Unable to resolve type for ItemDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26984:1 Unable to resolve type for ItemDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:26991:2 Unable to resolve type for ItemDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27043:1 Unable to resolve type for JournalDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27053:2 Unable to resolve type for JournalDirectory#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27060:1 Unable to resolve type for JournalDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27067:2 Unable to resolve type for JournalDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27043:1 Unable to resolve type for JournalDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27053:2 Unable to resolve type for JournalDirectory#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27060:1 Unable to resolve type for JournalDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27067:2 Unable to resolve type for JournalDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27115:1 Unable to resolve type for MacroDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27122:2 Unable to resolve type for MacroDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27115:1 Unable to resolve type for MacroDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27122:2 Unable to resolve type for MacroDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27170:2 Unable to resolve type for PlaylistDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27180:2 Unable to resolve type for PlaylistDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27187:2 Unable to resolve type for PlaylistDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27197:2 Unable to resolve type for PlaylistDirectory#playing, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27170:2 Unable to resolve type for PlaylistDirectory.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27180:2 Unable to resolve type for PlaylistDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27187:2 Unable to resolve type for PlaylistDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27197:2 Unable to resolve type for PlaylistDirectory#playing, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27633:1 Unable to resolve type for SceneDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27640:2 Unable to resolve type for SceneDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27633:1 Unable to resolve type for SceneDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27640:2 Unable to resolve type for SceneDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27754:1 Unable to resolve type for Settings.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27754:1 Unable to resolve type for Settings.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27845:1 Unable to resolve type for FrameViewer.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27845:1 Unable to resolve type for FrameViewer.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27899:1 Unable to resolve type for RollTableDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27909:2 Unable to resolve type for RollTableDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27899:1 Unable to resolve type for RollTableDirectory.entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:27909:2 Unable to resolve type for RollTableDirectory.collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for EntityCollection#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28216:1 Unable to resolve type for Compendium.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28232:2 Unable to resolve type for Compendium#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28242:2 Unable to resolve type for Compendium#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28262:2 Unable to resolve type for Compendium#cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28216:1 Unable to resolve type for Compendium.defaultOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28232:2 Unable to resolve type for Compendium#title, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28242:2 Unable to resolve type for Compendium#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:28262:2 Unable to resolve type for Compendium#cls, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Entity#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Entity#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Entity#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Entity#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Actors#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30629:2 Unable to resolve type for Actor.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30687:2 Unable to resolve type for Actor#temporaryEffects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31267:2 Unable to resolve type for Actor#isPC, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30629:2 Unable to resolve type for Actor.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:30687:2 Unable to resolve type for Actor#temporaryEffects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31267:2 Unable to resolve type for Actor#isPC, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Actor#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Actor#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31345:2 Unable to resolve type for CombatEncounters#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31355:2 Unable to resolve type for CombatEncounters#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31377:2 Unable to resolve type for CombatEncounters#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31387:2 Unable to resolve type for CombatEncounters#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31394:2 Unable to resolve type for CombatEncounters.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31345:2 Unable to resolve type for CombatEncounters#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31355:2 Unable to resolve type for CombatEncounters#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31377:2 Unable to resolve type for CombatEncounters#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31387:2 Unable to resolve type for CombatEncounters#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31394:2 Unable to resolve type for CombatEncounters.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31487:2 Unable to resolve type for Combat.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31623:2 Unable to resolve type for Combat#scene, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31633:2 Unable to resolve type for Combat#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31487:2 Unable to resolve type for Combat.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31623:2 Unable to resolve type for Combat#scene, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:31633:2 Unable to resolve type for Combat#settings, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Combat#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Combat#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Folders#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32090:2 Unable to resolve type for Folder.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32135:2 Unable to resolve type for Folder#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32145:2 Unable to resolve type for Folder#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32090:2 Unable to resolve type for Folder.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32135:2 Unable to resolve type for Folder#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32145:2 Unable to resolve type for Folder#collection, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Folder#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Folder#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32295:2 Unable to resolve type for Items#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32295:2 Unable to resolve type for Items#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32350:2 Unable to resolve type for Item.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32477:2 Unable to resolve type for Item#limited, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32488:2 Unable to resolve type for Item#isOwned, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32350:2 Unable to resolve type for Item.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32477:2 Unable to resolve type for Item#limited, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32488:2 Unable to resolve type for Item#isOwned, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Journal#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32602:2 Unable to resolve type for JournalEntry.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32620:2 Unable to resolve type for JournalEntry#visible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32602:2 Unable to resolve type for JournalEntry.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32620:2 Unable to resolve type for JournalEntry#visible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for JournalEntry#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for JournalEntry#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32729:2 Unable to resolve type for Macros.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32729:2 Unable to resolve type for Macros.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Macros#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32779:2 Unable to resolve type for Macro.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32779:2 Unable to resolve type for Macro.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Macro#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Macro#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32858:2 Unable to resolve type for Messages#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32858:2 Unable to resolve type for Messages#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32931:4 Unable to resolve type for ChatMessage#user, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32936:4 Unable to resolve type for ChatMessage#_roll, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32948:2 Unable to resolve type for ChatMessage.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32931:4 Unable to resolve type for ChatMessage#user, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32936:4 Unable to resolve type for ChatMessage#_roll, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:32948:2 Unable to resolve type for ChatMessage.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for ChatMessage#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for ChatMessage#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for Playlists#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33513:2 Unable to resolve type for Playlist.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33513:2 Unable to resolve type for Playlist.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Playlist#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Playlist#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33859:2 Unable to resolve type for Scenes#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33869:2 Unable to resolve type for Scenes#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33879:2 Unable to resolve type for Scenes#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33859:2 Unable to resolve type for Scenes#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33869:2 Unable to resolve type for Scenes#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33879:2 Unable to resolve type for Scenes#viewed, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33976:2 Unable to resolve type for Scene.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34048:2 Unable to resolve type for Scene#journal, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:33976:2 Unable to resolve type for Scene.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34048:2 Unable to resolve type for Scene#journal, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Invalid object key type. It must be `string` or `number`, but got: Application. Defaulting to `string`.
+[TSD-JSDoc] Unable to resolve object value type, this is likely due to invalid JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29015:2 Unable to resolve type for Scene#link, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:29369:2 Unable to resolve type for Scene#hasPlayerOwner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34417:2 Unable to resolve type for RollTables.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34417:2 Unable to resolve type for RollTables.instance, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:2195:2 Unable to resolve type for RollTables#entries, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34458:2 Unable to resolve type for RollTable.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34458:2 Unable to resolve type for RollTable.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34876:2 Unable to resolve type for Users#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34886:2 Unable to resolve type for Users#players, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34876:2 Unable to resolve type for Users#entity, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:34886:2 Unable to resolve type for Users#players, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35014:2 Unable to resolve type for User.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35055:2 Unable to resolve type for User#isTrusted, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35065:2 Unable to resolve type for User#isGM, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35075:2 Unable to resolve type for User#isSelf, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35014:2 Unable to resolve type for User.config, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35055:2 Unable to resolve type for User#isTrusted, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35065:2 Unable to resolve type for User#isGM, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35075:2 Unable to resolve type for User#isSelf, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35433:2 Unable to resolve type for ActiveEffect#duration, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35523:2 Unable to resolve type for ActiveEffect#sourceName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35433:2 Unable to resolve type for ActiveEffect#duration, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35523:2 Unable to resolve type for ActiveEffect#sourceName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35891:0 Unable to resolve type for CanvasAnimation.animations, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:35891:0 Unable to resolve type for CanvasAnimation.animations, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36337:2 Unable to resolve type for MouseInteractionManager#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36404:2 Unable to resolve type for MouseInteractionManager#states, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36337:2 Unable to resolve type for MouseInteractionManager#target, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36404:2 Unable to resolve type for MouseInteractionManager#states, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36880:2 Unable to resolve type for Quadtree#all, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:36880:2 Unable to resolve type for Quadtree#all, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37806:2 Unable to resolve type for BackgroundLayer#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37818:2 Unable to resolve type for BackgroundLayer#isVideo, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37806:2 Unable to resolve type for BackgroundLayer#source, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37818:2 Unable to resolve type for BackgroundLayer#isVideo, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37916:2 Unable to resolve type for DrawingsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37947:2 Unable to resolve type for DrawingsLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37916:2 Unable to resolve type for DrawingsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:37947:2 Unable to resolve type for DrawingsLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38204:2 Unable to resolve type for EffectsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38204:2 Unable to resolve type for EffectsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38320:2 Unable to resolve type for LightingLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38320:2 Unable to resolve type for LightingLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for LightingLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for LightingLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for LightingLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38670:2 Unable to resolve type for NotesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38670:2 Unable to resolve type for NotesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38854:2 Unable to resolve type for SightLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:38854:2 Unable to resolve type for SightLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39761:2 Unable to resolve type for SoundsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39761:2 Unable to resolve type for SoundsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for SoundsLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for SoundsLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for SoundsLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39922:2 Unable to resolve type for TemplateLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:39922:2 Unable to resolve type for TemplateLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for TemplateLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for TemplateLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for TemplateLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40079:2 Unable to resolve type for TilesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40079:2 Unable to resolve type for TilesLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for TilesLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12122:2 Unable to resolve type for TilesLayer#gridPrecision, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for TilesLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40231:2 Unable to resolve type for TokenLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40250:2 Unable to resolve type for TokenLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40231:2 Unable to resolve type for TokenLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40250:2 Unable to resolve type for TokenLayer#hud, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40594:2 Unable to resolve type for WallsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:40594:2 Unable to resolve type for WallsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12025:4 Unable to resolve type for WallsLayer#preview, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:12153:2 Unable to resolve type for WallsLayer#controlled, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:41226:2 Unable to resolve type for Drawing.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:41226:2 Unable to resolve type for Drawing.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Drawing#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42180:2 Unable to resolve type for AmbientLight.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42208:2 Unable to resolve type for AmbientLight#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42219:2 Unable to resolve type for AmbientLight#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42230:2 Unable to resolve type for AmbientLight#isVisible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42303:2 Unable to resolve type for AmbientLight#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42180:2 Unable to resolve type for AmbientLight.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42208:2 Unable to resolve type for AmbientLight#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42219:2 Unable to resolve type for AmbientLight#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42230:2 Unable to resolve type for AmbientLight#isVisible, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42303:2 Unable to resolve type for AmbientLight#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42187:2 Unable to resolve type for AmbientLight#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42462:2 Unable to resolve type for Note.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42462:2 Unable to resolve type for Note.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Note#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42705:2 Unable to resolve type for AmbientSound.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42717:2 Unable to resolve type for AmbientSound#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42727:2 Unable to resolve type for AmbientSound#radius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42705:2 Unable to resolve type for AmbientSound.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42717:2 Unable to resolve type for AmbientSound#type, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42727:2 Unable to resolve type for AmbientSound#radius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for AmbientSound#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42976:2 Unable to resolve type for MeasuredTemplate.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42988:2 Unable to resolve type for MeasuredTemplate#borderColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42998:2 Unable to resolve type for MeasuredTemplate#fillColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43005:2 Unable to resolve type for MeasuredTemplate#owner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42976:2 Unable to resolve type for MeasuredTemplate.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42988:2 Unable to resolve type for MeasuredTemplate#borderColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:42998:2 Unable to resolve type for MeasuredTemplate#fillColor, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43005:2 Unable to resolve type for MeasuredTemplate#owner, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for MeasuredTemplate#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43410:2 Unable to resolve type for Tile.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43410:2 Unable to resolve type for Tile.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Tile#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43900:2 Unable to resolve type for Token.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43952:2 Unable to resolve type for Token#hasActiveHUD, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44084:2 Unable to resolve type for Token#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44095:2 Unable to resolve type for Token#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44107:2 Unable to resolve type for Token#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43900:2 Unable to resolve type for Token.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:43952:2 Unable to resolve type for Token#hasActiveHUD, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44084:2 Unable to resolve type for Token#dimRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44095:2 Unable to resolve type for Token#brightRadius, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:44107:2 Unable to resolve type for Token#sourceId, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:11202:2 Unable to resolve type for Token#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45573:2 Unable to resolve type for Wall.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45603:2 Unable to resolve type for Wall#midpoint, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45621:2 Unable to resolve type for Wall#direction, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45573:2 Unable to resolve type for Wall.embeddedName, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45603:2 Unable to resolve type for Wall#midpoint, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45621:2 Unable to resolve type for Wall#direction, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:45592:2 Unable to resolve type for Wall#bounds, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47632:4 Unable to resolve type for ControlsLayer#effects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47659:2 Unable to resolve type for ControlsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47632:4 Unable to resolve type for ControlsLayer#effects, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47659:2 Unable to resolve type for ControlsLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47945:2 Unable to resolve type for Ruler#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:47945:2 Unable to resolve type for Ruler#active, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for BaseGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for BaseGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for BaseGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for BaseGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48922:2 Unable to resolve type for HexagonalGrid#hexPoints, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48922:2 Unable to resolve type for HexagonalGrid#hexPoints, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48724:4 Unable to resolve type for HexagonalGrid#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:48729:4 Unable to resolve type for HexagonalGrid#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49386:2 Unable to resolve type for GridLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49413:2 Unable to resolve type for GridLayer#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49420:2 Unable to resolve type for GridLayer#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49386:2 Unable to resolve type for GridLayer.layerOptions, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49413:2 Unable to resolve type for GridLayer#w, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] foundry.js:49420:2 Unable to resolve type for GridLayer#h, none specified in JSDoc. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.
+[TSD-JSDoc] Unable to resolve type for an unnamed item, this is likely due to invalid JSDoc. Often this is caused by invalid JSDoc on a parameter. Defaulting to `any`.

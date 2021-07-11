@@ -1,5 +1,6 @@
-import TwodsixActor from "../entities/TwodsixActor";
-import { calcModFor } from "../utils/sheetUtils";
+import TwodsixActor from '../entities/TwodsixActor';
+import { calcModFor } from './sheetUtils';
+import {getGame, getUi} from './utils';
 
 
 /**
@@ -41,9 +42,9 @@ export class Stats {
   actor: TwodsixActor;
 
   constructor(actor: TwodsixActor, damage:number) {
-    this.strength = new Attribute("strength", actor);
-    this.dexterity = new Attribute("dexterity", actor);
-    this.endurance = new Attribute("endurance", actor);
+    this.strength = new Attribute('strength', actor);
+    this.dexterity = new Attribute('dexterity', actor);
+    this.endurance = new Attribute('endurance', actor);
     this.actor = actor;
     this.damage = damage;
     this.armor = actor.data.data.primaryArmor.value;
@@ -96,7 +97,7 @@ export class Stats {
 
   private reduceStats(): void {
     let remaining = this.totalDamage();
-    for (const characteristic of ["endurance", "strength", "dexterity"])  {
+    for (const characteristic of ['endurance', 'strength', 'dexterity'])  {
       this[characteristic].damage = 0;
       if (remaining > 0) {
         if (remaining <= this[characteristic].current()) {
@@ -113,29 +114,27 @@ export class Stats {
   public async applyDamage(): Promise<void> {
     if (this.actor.token && this.totalCurrent() === 0) {
       const isDead = this.actor.effects.map((e: ActiveEffect) => {
-        return e.getFlag("core", "statusId") === "dead";
+        return e.getFlag('core', 'statusId') === 'dead';
       }).includes(true);
 
       if (!isDead) {
         //toggle dead condition on
-        const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
+        const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === 'dead'));
         // @ts-ignore
         await this.actor.token._object.toggleEffect(deadEffect, {active: true, overlay: true});
 
         //toggle defeated if in combat
-        const fighters = game.combats.active.data.combatants;
-        // @ts-ignore
-        let combatant =  fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
+        const fighters = getGame().combats?.active?.data.combatants;
+        const combatant =  fighters?.find((f: Combatant) => f.data.tokenId === this.actor.token?.data._id);
         if (combatant !== undefined) {
-          // @ts-ignore
           await combatant.update({defeated: true});
         }
       }
     }
     await this.actor.update({
-      "data.characteristics.strength.damage": this.strength.totalDamage(),
-      "data.characteristics.dexterity.damage": this.dexterity.totalDamage(),
-      "data.characteristics.endurance.damage": this.endurance.totalDamage(),
+      'data.characteristics.strength.damage': this.strength.totalDamage(),
+      'data.characteristics.dexterity.damage': this.dexterity.totalDamage(),
+      'data.characteristics.endurance.damage': this.endurance.totalDamage(),
     });
   }
 }
@@ -152,8 +151,8 @@ class DamageDialogHandler {
 
   constructor(stats: Stats) {
     this.stats = stats;
-    this.hooks["updateActor"] = Hooks.on("updateActor", this.hookUpdate.bind(this));
-    this.hooks["updateToken"] = Hooks.on("updateToken", this.hookUpdate.bind(this));
+    this.hooks['updateActor'] = Hooks.on('updateActor', this.hookUpdate.bind(this));
+    this.hooks['updateToken'] = Hooks.on('updateToken', this.hookUpdate.bind(this));
   }
 
   private hookUpdate():void {
@@ -168,41 +167,41 @@ class DamageDialogHandler {
   }
 
   private refresh():void {
-    this.html.find(".applied-damage").html(this.stats.totalDamage().toString());
+    this.html.find('.applied-damage').html(this.stats.totalDamage().toString());
 
-    for (const characteristic of ["strength", "dexterity", "endurance"])  {
+    for (const characteristic of ['strength', 'dexterity', 'endurance'])  {
       const chrHtml = this.html.find(`.${characteristic}`);
       const stat = this.stats[characteristic];
 
       if (!this.stats.edited) {
-        chrHtml.find(`.damage-input`).val(stat.damage);
+        chrHtml.find('.damage-input').val(stat.damage);
       }
 
-      if (characteristic === "endurance" && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
-        if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
-          chrHtml.find(`.damage-input`).addClass("orange-border");
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+      if (characteristic === 'endurance' && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
+        if (!chrHtml.find('.damage-input').hasClass('orange-border')) {
+          chrHtml.find('.damage-input').addClass('orange-border');
+          getUi().notifications?.warn(getGame().i18n.localize('TWODSIX.Warnings.DecreaseEnduranceFirst'));
         }
       } else {
-        chrHtml.find(`.damage-input`).removeClass("orange-border");
+        chrHtml.find('.damage-input').removeClass('orange-border');
       }
 
-      chrHtml.find(`.original-value`).html(stat.original.value.toString());
-      chrHtml.find(`.original-current`).html(stat.original.current.toString());
-      chrHtml.find(`.result-value`).html(stat.current().toString());
-      chrHtml.find(`.result-total-damage`).html(stat.totalDamage().toString());
-      chrHtml.find(`.current-mod`).html(stat.original.mod.toString());
-      chrHtml.find(`.mod`).html(stat.mod().toString());
+      chrHtml.find('.original-value').html(stat.original.value.toString());
+      chrHtml.find('.original-current').html(stat.original.current.toString());
+      chrHtml.find('.result-value').html(stat.current().toString());
+      chrHtml.find('.result-total-damage').html(stat.totalDamage().toString());
+      chrHtml.find('.current-mod').html(stat.original.mod.toString());
+      chrHtml.find('.mod').html(stat.mod().toString());
     }
 
     if (this.stats.unallocatedDamage() !== 0) {
-      this.html.find(".unalocated-damage-text").addClass("orange");
+      this.html.find('.unalocated-damage-text').addClass('orange');
     } else {
-      this.html.find(".unalocated-damage-text").removeClass("orange");
+      this.html.find('.unalocated-damage-text').removeClass('orange');
     }
-    this.html.find(".unalocated-damage").html(this.stats.unallocatedDamage().toString());
+    this.html.find('.unalocated-damage').html(this.stats.unallocatedDamage().toString());
 
-    const characterDead = this.html.find(".character-dead");
+    const characterDead = this.html.find('.character-dead');
     if (this.stats.totalCurrent() === 0){
       characterDead.show();
     } else {
@@ -211,19 +210,19 @@ class DamageDialogHandler {
   }
 
   private registerEventListeners() {
-    this.html.on('input', ".damage", (event:Event) => {
+    this.html.on('input', '.damage', (event:Event) => {
       this.stats.setDamage(this.getNumericValueFromEvent(event));
       this.refresh();
     });
 
-    this.html.on('input', ".armor", (event:Event) => {
+    this.html.on('input', '.armor', (event:Event) => {
       this.stats.setArmor(this.getNumericValueFromEvent(event));
       this.refresh();
     });
 
-    this.html.on('input', ".damage-input", (event:Event) => {
+    this.html.on('input', '.damage-input', (event:Event) => {
       const value = this.getNumericValueFromEvent(event, true);
-      const stat = this.stats[$(event.currentTarget).data("stat")];
+      const stat = this.stats[$(event.currentTarget).data('stat')];
 
       this.stats.edited = true;
       stat.damage = value;
@@ -236,16 +235,16 @@ class DamageDialogHandler {
     const value = parseInt($(event.currentTarget).val() as string, 10);
     const newVal = isNaN(value) ? 0 : value;
     if (newVal < 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.StatValBelowZero"));
+      getUi().notifications?.warn(getGame().i18n.localize('TWODSIX.Warnings.StatValBelowZero'));
       $(event.currentTarget).val(0);
       return 0;
     }
     if (upper) {
-      const stat = this.stats[$(event.currentTarget).data("stat")];
+      const stat = this.stats[$(event.currentTarget).data('stat')];
       const current = stat.original.current;
       if (value > current) {
         $(event.currentTarget).val(current);
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MaxStatVal"));
+        getUi().notifications?.warn(getGame().i18n.localize('TWODSIX.Warnings.MaxStatVal'));
         return current;
       }
     }
@@ -254,7 +253,7 @@ class DamageDialogHandler {
 
   public unRegisterListeners() {
     Object.entries(this.hooks).forEach(([hookName, hook]:[string,number]) => Hooks.off(hookName, hook));
-    this.html.off('change', "**");
+    this.html.off('change', '**');
   }
 }
 
@@ -262,14 +261,13 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
   const {damageId, damage} = damageData;
   let actor:TwodsixActor;
   if (damageData.actorId) {
-    actor = game.actors.get(damageData.actorId);
+    actor = getGame().actors?.get(damageData.actorId);
   } else {
     // @ts-ignore
     actor = canvas.tokens.placeables.find((t:Token) => t.id === damageData.tokenId).actor;
   }
-  // @ts-ignore
-  const actorUsers = game.users.filter(user=>user.active && actor.testUserPermission(user, 3));
-  if ((game.user.isGM && actorUsers.length > 1) || (!game.user.isGM && !actor.owner)) {
+  const actorUsers = getGame().users?.filter(user=>user.active && actor.testUserPermission(user, 3));
+  if ((getGame().user?.isGM && actorUsers!=undefined && actorUsers.length > 1) || (!getGame().user?.isGM && !actor.owner)) {
     return;
   }
 
@@ -278,25 +276,25 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
   const stats = new Stats(actor, damage);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
-  const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
+  const title = getGame().i18n.localize('TWODSIX.Damage.DealDamageTo').replace('_ACTOR_NAME_', actor.name);
 
   new Dialog({
     title: title,
     content: renderedHtml,
     buttons: {
       ok: {
-        label: game.i18n.localize("TWODSIX.Damage.DealDamage"),
+        label: getGame().i18n.localize('TWODSIX.Damage.DealDamage'),
         icon: '<i class="fas fa-fist-raised"></i>',
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
-          game.socket.emit("system.twodsix", ["destroyDamageDialog", damageId]);
-          Hooks.call("destroyDamageDialog", damageId);
+          getGame().socket.emit('system.twodsix', ['destroyDamageDialog', damageId]);
+          Hooks.call('destroyDamageDialog', damageId);
         }
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize("Cancel"),
+        label: getGame().i18n.localize('Cancel'),
         callback: () => {
           //pass
         }
@@ -309,7 +307,7 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
 }
 
 export function destroyDamageDialog(damageId:string): void {
-  Object.values(ui.windows).forEach(foundryWindow => {
+  Object.values(getUi().windows).forEach(foundryWindow => {
     if (foundryWindow instanceof Dialog && foundryWindow.id === damageId) {
       foundryWindow.close();
     }

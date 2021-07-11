@@ -1,9 +1,9 @@
-import TwodsixActor from "../entities/TwodsixActor";
-import { mergeDeep } from "../utils/utils";
+import TwodsixActor from '../entities/TwodsixActor';
+import {getGame, mergeDeep} from '../utils/utils';
 
 function getCurrentHits(...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
-  const hitsCharacteristics = ["strength", "dexterity", "endurance"];
+  const hitsCharacteristics = ['strength', 'dexterity', 'endurance'];
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {
@@ -23,7 +23,7 @@ Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 Hooks.on('preUpdateToken', async (scene, token:Record<string, any>, update:Record<string, any>) => {
   if (update.actorData?.data?.characteristics) {
-    const actor = game.actors.get(token.actorId);
+    const actor = getGame().actors?.get(token.actorId);
     update.actorData.data.hits = getCurrentHits(
       // @ts-ignore
       actor.data.data.characteristics,

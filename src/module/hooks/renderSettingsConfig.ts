@@ -1,14 +1,13 @@
-import {TWODSIX} from "../config";
+import {TWODSIX} from '../config';
+import {getGame} from '../utils/utils';
 
-function createWarningDialog(event:Event, message:string) {
+function createWarningDialog(event: Event, message: string) {
   event.preventDefault();
   event.stopPropagation();
-  // @ts-ignore
   Dialog.confirm({
-    title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning"),
+    title: getGame().i18n.localize('TWODSIX.Settings.hideUntrainedSkills.warning'),
     content: message,
-    yes: async () => event.currentTarget["checked"] = !event.currentTarget["checked"],
-    no: null,
+    yes: async () => event.currentTarget ? event.currentTarget['checked'] = !event.currentTarget['checked'] : false,
     defaultYes: true
   });
 }
@@ -30,14 +29,14 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
     });
   });
 
-  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event:Event) => {
-    const continueText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.continue");
+  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event: Event) => {
+    const continueText = getGame().i18n.localize('TWODSIX.Settings.hideUntrainedSkills.continue');
 
-    if (game.settings.get('twodsix', 'hideUntrainedSkills') && !event.currentTarget["checked"]) {
-      const warningResetText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningReset");
+    if (getGame().settings.get('twodsix', 'hideUntrainedSkills') && event.currentTarget != null && !event.currentTarget['checked']) {
+      const warningResetText = getGame().i18n.localize('TWODSIX.Settings.hideUntrainedSkills.warningReset');
       createWarningDialog(event, `${warningResetText}<br><br>${continueText}<br><br>`);
-    } else if (!game.settings.get('twodsix', 'hideUntrainedSkills') && event.currentTarget["checked"]) {
-      const warningUpdateWeaponText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningUpdateWeapon");
+    } else if (!getGame().settings.get('twodsix', 'hideUntrainedSkills') && event.currentTarget != null && event.currentTarget['checked']) {
+      const warningUpdateWeaponText = getGame().i18n.localize('TWODSIX.Settings.hideUntrainedSkills.warningUpdateWeapon');
       createWarningDialog(event, `${warningUpdateWeaponText}<br><br>${continueText}<br><br>`);
     }
   });

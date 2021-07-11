@@ -4,10 +4,11 @@
  * @param {Object} item     The item data
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
- */
+ */ import {getGame} from './utils';
+
 export async function createItemMacro(item, slot):Promise<void> {
-  const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
-  let macro = game.macros.entities.find((m) => (m.name === item.name) /*&& (m.data.command === command)*/);
+  const command = `getGame().twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
+  let macro = getGame().macros?.entities.find((m) => (m.name === item.name) /*&& (m.data.command === command)*/);
   if (!macro) {
     const itemName = item.name ? item.name : item.data.name;
     const img = item.img ? item.img : item.data.img;
@@ -19,6 +20,6 @@ export async function createItemMacro(item, slot):Promise<void> {
       flags: {'twodsix.itemMacro': true},
     }, {displaySheet: false}) as Macro;
 
-    await game.user.assignHotbarMacro(macro, slot);
+    await getGame().user?.assignHotbarMacro(macro, slot);
   }
 }

@@ -1,0 +1,7 @@
+image: 'restyled/restyler-clang-format:v10.0.0-2'
+command:
+  - clang-format
+  - '-i'
+arguments: []
+include:
+interpreters: []

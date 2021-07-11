@@ -1,22 +1,23 @@
-import {TWODSIX} from "../config";
-import TwodsixActor from "../entities/TwodsixActor";
-import TwodsixItem from "../entities/TwodsixItem";
-import {advantageDisadvantageTerm} from "../i18n";
-import {getKeyByValue} from "./sheetUtils";
-import {TwodsixRollSettings} from "./TwodsixRollSettings";
-import {Crit} from "./crit";
+import {TWODSIX} from '../config';
+import TwodsixActor from '../entities/TwodsixActor';
+import TwodsixItem from '../entities/TwodsixItem';
+import {advantageDisadvantageTerm} from '../i18n';
+import {getKeyByValue} from './sheetUtils';
+import {TwodsixRollSettings} from './TwodsixRollSettings';
+import {Crit} from './crit';
+import {getGame} from './utils';
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
   actor:TwodsixActor;
-  skill?:TwodsixItem;
-  item?:TwodsixItem;
+  skill?:TwodsixItem | null;
+  item?:TwodsixItem| null;
   target:number;
   naturalTotal:number;
   effect:number;
   roll:Roll;
 
-  constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem = null, item:TwodsixItem = null) {
+  constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem|null = null, item: TwodsixItem | null = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
@@ -25,57 +26,56 @@ export class TwodsixDiceRoll {
     this.createRoll();
 
     this.naturalTotal = this.roll.dice[0].results.reduce((total:number, dice) => {
-      return dice["active"] ? total + dice["result"] : total;
+      return dice['active'] ? total + dice['result'] : total;
     }, 0);
 
     this.calculateEffect();
   }
 
   private createRoll():void {
-    const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
+    const difficultiesAsTargetNumber = getGame().settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
     const data = {} as { string:number };
 
     let formula = rollType;
 
     // Add characteristic modifier
-    if (this.settings.characteristic !== "NONE") {
+    if (this.settings.characteristic !== 'NONE') {
       formula += ` + @${this.settings.characteristic}`;
       data[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
     }
 
     // Add skill modifier
     if (this.skill) {
-      formula += "+ @skill";
-      data["skill"] = this.skill.data.data.value;
+      formula += '+ @skill';
+      data['skill'] = this.skill.data.data.value;
     }
 
     // Add dice modifier
     if (this.settings.diceModifier) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
-      formula += "+ @DM";
-      data["DM"] = this.settings.diceModifier;
+      formula += '+ @DM';
+      data['DM'] = this.settings.diceModifier;
     }
 
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
-      formula += "+ @difficultyMod";
-      data["difficultyMod"] = this.settings.difficulty.mod;
+      formula += '+ @difficultyMod';
+      data['difficultyMod'] = this.settings.difficulty.mod;
     }
 
-    // @ts-ignore
     this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {
-    const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
+    const CRITICAL_EFFECT_VALUE: number = <number>getGame().settings.get('twodsix', 'absoluteCriticalEffectValue');
     if (this.isNaturalCritSuccess()) {
-      return Crit.success;
+      return Crit.Success;
     } else if (this.isNaturalCritFail()) {
-      return Crit.fail;
+      return Crit.Fail;
     } else if (this.effect >= CRITICAL_EFFECT_VALUE) {
-      return Crit.success;
+      return Crit.Success;
     } else if (this.effect <= -CRITICAL_EFFECT_VALUE) {
-      return Crit.fail;
+      return Crit.Fail;
     }
   }
 
@@ -93,22 +93,22 @@ export class TwodsixDiceRoll {
 
   private calculateEffect():void {
     let effect;
-    if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+    if (getGame().settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       effect = this.roll.total - this.settings.difficulty.target;
     } else {
-      effect = this.roll.total - TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))].Average.target;
+      effect = this.roll.total - TWODSIX.DIFFICULTIES[(<number>getGame().settings.get('twodsix', 'difficultyListUsed'))].Average.target;
     }
 
     if (this.isNaturalCritSuccess()) {
       console.log(`Got a natural 12 with Effect ${effect}!`);
-      if (effect < 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
-        console.log("Setting Effect to 0 due to natural 12!");
+      if (effect < 0 && getGame().settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
+        console.log('Setting Effect to 0 due to natural 12!');
         effect = 0;
       }
     } else if (this.isNaturalCritFail()) {
       console.log(`Got a natural 2 with Effect ${effect}!`);
-      if (effect >= 0 && game.settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
-        console.log("Setting Effect to -1 due to natural 2!");
+      if (effect >= 0 && getGame().settings.get('twodsix', 'criticalNaturalAffectsEffect')) {
+        console.log('Setting Effect to -1 due to natural 2!');
         effect = -1;
       }
     }
@@ -116,18 +116,18 @@ export class TwodsixDiceRoll {
   }
 
   private static addSign(value:number):string {
-    return `${value <= 0 ? "" : "+"}${value}`;
+    return `${value <= 0 ? '' : '+'}${value}`;
   }
 
   public async sendToChat():Promise<void> {
-    const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
-    const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
+    const rollingString = getGame().i18n.localize('TWODSIX.Rolls.Rolling');
+    const usingString = getGame().i18n.localize('TWODSIX.Actor.using');
+    const difficulties = TWODSIX.DIFFICULTIES[(<number>getGame().settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulty = getGame().i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
     let flavor = `${rollingString}: ${difficulty}`;
 
-    if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
+    if (getGame().settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
     } else {
       // @ts-ignore
@@ -137,7 +137,7 @@ export class TwodsixDiceRoll {
 
     if (this.settings.rollType != TWODSIX.ROLLTYPES.Normal.key) {
       const rollType = advantageDisadvantageTerm(this.settings.rollType);
-      flavor += ` ${game.i18n.localize("TWODSIX.Rolls.With")} ${rollType}`;
+      flavor += ` ${getGame().i18n.localize('TWODSIX.Rolls.With')} ${rollType}`;
     }
 
     if (this.skill) {
@@ -167,9 +167,9 @@ export class TwodsixDiceRoll {
         flavor: flavor,
         rollMode: this.settings.rollMode,
         flags: {
-          "core.canPopout": true,
-          "twodsix.crit": this.getCrit(),
-          "twodsix.effect": this.effect
+          'core.canPopout': true,
+          'twodsix.crit': this.getCrit(),
+          'twodsix.effect': this.effect
         }
       },
       // @ts-ignore

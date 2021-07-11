@@ -1,6 +1,7 @@
-import {TWODSIX} from "../config";
-import type TwodsixItem from "../entities/TwodsixItem";
-import {getKeyByValue} from "./sheetUtils";
+import {TWODSIX} from '../config';
+import type TwodsixItem from '../entities/TwodsixItem';
+import {getKeyByValue} from './sheetUtils';
+import {getGame} from './utils';
 
 
 export class TwodsixRollSettings {
@@ -15,15 +16,15 @@ export class TwodsixRollSettings {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:any, skill?:TwodsixItem, item?:TwodsixItem) {
-    this.difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    this.difficulties = TWODSIX.DIFFICULTIES[(<number>getGame().settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = skill?.data?.data?.difficulty ? this.difficulties[skill.data.data.difficulty] : this.difficulties.Average;
     const skillModifier = item?.data?.data?.skillModifier ?? 0;
-    const characteristic = skill ? skill.data.data.characteristic : "NONE";
+    const characteristic = skill ? skill.data.data.characteristic : 'NONE';
 
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
-    this.rollType = settings?.rollType ?? "Normal";
-    this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
+    this.rollType = settings?.rollType ?? 'Normal';
+    this.rollMode = settings?.rollMode ?? getGame().settings.get('core', 'rollMode');
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
     this.characteristic = settings?.characteristic ?? characteristic;
     this.skillRoll = !!(settings?.skillRoll ?? skill);
@@ -34,7 +35,7 @@ export class TwodsixRollSettings {
     if (showThrowDialog) {
       let title:string;
       if (item) {
-        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.data.name}`;
+        title = `${skill.data.name} ${getGame().i18n.localize('TWODSIX.Actor.using')} ${item.data.data.name}`;
       } else if (skill) {
         title = skill.data.name;
       } else {
@@ -64,7 +65,7 @@ export class TwodsixRollSettings {
 
     const buttons = {
       ok: {
-        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
+        label: getGame().i18n.localize('TWODSIX.Rolls.Roll'),
         icon: '<i class="fas fa-dice"></i>',
         callback: (buttonHtml) => {
           this.shouldRoll = true;
@@ -77,7 +78,7 @@ export class TwodsixRollSettings {
       },
       cancel: {
         icon: '<i class="fas fa-times"></i>',
-        label: game.i18n.localize("Cancel"),
+        label: getGame().i18n.localize('Cancel'),
         callback: () => {
           this.shouldRoll = false;
         }

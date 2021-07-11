@@ -1,4 +1,3 @@
-// @ts-ignore
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
   protected handleContentEditable(html:JQuery):void {
@@ -9,7 +8,7 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
   }
 
 
-  protected activateListeners(html:JQuery):void {
+  public activateListeners(html:JQuery):void {
     super.activateListeners(html);
   }
 

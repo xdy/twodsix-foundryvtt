@@ -1,6 +1,6 @@
-import TwodsixItem from "../module/entities/TwodsixItem";
-import {TwodsixItemData, UpdateData} from "src/types/twodsix";
-import TwodsixActor from "../module/entities/TwodsixActor";
+import TwodsixItem from '../module/entities/TwodsixItem';
+import {TwodsixItemData, UpdateData} from 'src/types/twodsix';
+import TwodsixActor from '../module/entities/TwodsixActor';
 
 /**
  * New style migrations should look at the object instead of the version to figure out what needs to be done.
@@ -15,9 +15,9 @@ class Migration {
       return;
     }
     const data = {
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-      "type": "skills",
-      "flags": {'twodsix.untrainedSkill': true}
+      'name': getGame().i18n.localize('TWODSIX.Actor.Skills.Untrained'),
+      'type': 'skills',
+      'flags': {'twodsix.untrainedSkill': true}
     };
     return await actor.createOwnedItem(data) as TwodsixItem;
   }
@@ -26,7 +26,7 @@ class Migration {
     const updateData:UpdateData = <UpdateData>{};
 
     let untrainedSkill;
-    if (actor.data.type == "traveller") {
+    if (actor.data.type == 'traveller') {
       untrainedSkill = actor.items.get(actor.data.data.untrainedSkill) as TwodsixItem;
       if (!untrainedSkill) {
         untrainedSkill = await Migration.buildUntrainedSkill(actor);
@@ -42,13 +42,13 @@ class Migration {
 
   private static async migrateActorItems(actor:TwodsixActor, untrainedSkill:TwodsixItem = null) {
     //Handle any items that are on the actor
-    const actorItems = actor.data["items"];
+    const actorItems = actor.data['items'];
     const toUpdate = [];
     for (const i of actorItems) {
       // @ts-ignore
       toUpdate.push(mergeObject(i, this.migrateItemData(i, actor, untrainedSkill)));
     }
-    await actor.updateEmbeddedEntity("OwnedItem", toUpdate);
+    await actor.updateEmbeddedEntity('OwnedItem', toUpdate);
   }
 
   private static migrateItemData(item:TwodsixItemData, actor:TwodsixActor = null, untrainedSkill:TwodsixItem = null):UpdateData {
@@ -58,13 +58,13 @@ class Migration {
       // @ts-ignore
       updateData['data.rolltype'] = item.data.rolltype || 'Normal';
       // @ts-ignore
-      if (typeof item.data.value === "string") { // 0.7.8
+      if (typeof item.data.value === 'string') { // 0.7.8
         // @ts-ignore
         updateData['data.value'] = parseInt(item.data.value, 10);
       }
     }
 
-    if (actor && actor.data.type === "traveller") {
+    if (actor && actor.data.type === 'traveller') {
       if (item.type !== 'skills') {
         // @ts-ignore
         if (!item.data.skill) { //0.6.84
@@ -79,7 +79,7 @@ class Migration {
 
   // @ts-ignore
   private static async migrateSceneData(scene:EntityData):Promise<{ tokens }> {
-    const tokens = duplicate(scene["tokens"]);
+    const tokens = duplicate(scene['tokens']);
     return {
       tokens: tokens.map(t => {
         const token = new Token(t);
@@ -102,7 +102,7 @@ class Migration {
       return;
     }
 
-    if (pack["locked"]) {
+    if (pack['locked']) {
       //Not much we can, or probably should, do.
       return;
     }
@@ -169,13 +169,13 @@ class Migration {
   }
 
   static async migrateWorld():Promise<void> {
-    game.packs.filter(p => {
+    getGame().packs.filter(p => {
       return (p.metadata.package === 'twodsix') && ['Actor', 'Item', 'Scene'].includes(p.metadata.entity);
     });
 
-    ui.notifications.info(game.i18n.format("TWODSIX.Migration.DoNotClose", {version: game.system.data.version}), {permanent: true});
+    getUi().notifications?.info(getGame().i18n.format('TWODSIX.Migration.DoNotClose', {version: getGame().system.data.version}), {permanent: true});
 
-    game.actors.entities.map(async actor => {
+    getGame().actors?.entities.map(async actor => {
       try {
         const updateData = await Migration.migrateActorData(<TwodsixActor>actor);
         if (!isObjectEmpty(updateData)) {
@@ -187,7 +187,7 @@ class Migration {
       }
     });
 
-    game.items.entities.map(async item => {
+    getGame().items.entities.map(async item => {
       try {
         // @ts-ignore
         const updateData = await Migration.migrateItemData(<TwodsixItemData>item.data);
@@ -202,7 +202,7 @@ class Migration {
     });
 
     let scene:any;
-    for (scene of game.scenes) {
+    for (scene of getGame().scenes) {
       try {
         const updateData = await Migration.migrateSceneData(scene.data);
         if (!isObjectEmpty(updateData)) {

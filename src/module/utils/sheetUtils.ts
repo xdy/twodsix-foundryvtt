@@ -1,6 +1,7 @@
 //Assorted utility functions likely to be helpful when displaying characters
 
-import {TwodsixItemData} from "src/types/twodsix";
+import {getGame} from './utils';
+import {TwodsixItemData} from '../../types/twodsix';
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -64,7 +65,7 @@ import {TwodsixItemData} from "src/types/twodsix";
 //     case 33:
 //       return "Z";
 //     default:
-//       throw new Error(game.i18n.localize("TWODSIX.SheetUtils.ValueNotUsable"));
+//       throw new Error(getGame().i18n.localize("TWODSIX.SheetUtils.ValueNotUsable"));
 //   }
 // }
 
@@ -139,7 +140,7 @@ import {TwodsixItemData} from "src/types/twodsix";
 //     case "Z":
 //       return 33;
 //     default:
-//       throw new Error(game.i18n.localize("TWODSIX.SheetUtils.NotPseudoHexa"));
+//       throw new Error(getGame().i18n.localize("TWODSIX.SheetUtils.NotPseudoHexa"));
 //       throw new Error(`value ${value} is not a pseudo-hexadecimal value`);
 //   }
 // }
@@ -172,7 +173,7 @@ import {TwodsixItemData} from "src/types/twodsix";
 export function calcModFor(characteristic:number):number {
   let modifier = Math.floor((characteristic - 6) / 3);
   if (characteristic === 0) {
-    modifier = (<number>game.settings.get('twodsix', 'modifierForZeroCharacteristic'));
+    modifier = (<number>getGame().settings.get('twodsix', 'modifierForZeroCharacteristic'));
   }
   return modifier;
 }
@@ -191,29 +192,27 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
     return JSON.parse(event.dataTransfer.getData('text/plain'));
   } catch (err) {
-    throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
+    throw new Error(getGame().i18n.localize('TWODSIX.Errors.DropFailedWith').replace('_ERROR_MSG_', err));
   }
 }
 
 export async function getItemDataFromDropData(data:Record<string, any>):Promise<TwodsixItemData> {
   if (data.pack) {
     // compendium
-    const pack = game.packs.find((p) => p.collection === data.pack);
-    if (pack.metadata.entity !== 'Item') {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
+    const pack = getGame().packs.find((p) => p.collection === data.pack);
+    if (pack?.metadata.entity !== 'Item') {
+      throw new Error(getGame().i18n.localize('TWODSIX.Errors.DraggedCompendiumIsNotItem'));
     }
-    // @ts-ignore
     const item = await pack.getDocument(data.id);
-    // @ts-ignore
     return duplicate(item.data);
   } else if (data.data) {
     // other actor
     return duplicate(data.data);
   } else {
     // items directory
-    const item = game.items.get(data.id);
+    const item = getGame().items?.get(data.id);
     if (!item) {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
+      throw new Error(getGame().i18n.localize('TWODSIX.Errors.CouldNotFindItem').replace('_ITEM_ID_', data.id));
     }
     return duplicate(item.data) as TwodsixItemData;
   }

@@ -1,4 +1,4 @@
-import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
+import {AbstractTwodsixActorSheet} from './AbstractTwodsixActorSheet';
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
@@ -13,7 +13,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   /** @override */
   getData():any {
     const data:any = super.getData();
-    data.dtypes = ["String", "Number", "Boolean"];
+    data.dtypes = ['String', 'Number', 'Boolean'];
 
     // Prepare items.
     if (this.actor.data.type == 'ship') {
@@ -25,17 +25,15 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  // @ts-ignore
-  static get defaultOptions():FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions():DocumentSheet.Options {
     return mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "ship", "actor"],
-      template: "systems/twodsix/templates/actors/ship-sheet.html",
+      classes: ['twodsix', 'ship', 'actor'],
+      template: 'systems/twodsix/templates/actors/ship-sheet.html',
       width: 825,
       height: 648,
       resizable: false,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew"}],
-      scrollY: [".ship-crew", ".ship-storage", ".storage-wrapper", ".ship-notes"]
+      tabs: [{navSelector: '.sheet-tabs', contentSelector: '.sheet-body', initial: 'crew'}],
+      scrollY: ['.ship-crew', '.ship-storage', '.storage-wrapper', '.ship-notes']
     });
   }
 }
