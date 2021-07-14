@@ -110,19 +110,29 @@ export class Stats {
     }
   }
 
-  public applyDamage(): void {
+  public async applyDamage(): Promise<void> {
     if (this.actor.token && this.totalCurrent() === 0) {
-      const isDead = this.actor.effects.map((e:ActiveEffect) => {
+      const isDead = this.actor.effects.map((e: ActiveEffect) => {
         return e.getFlag("core", "statusId") === "dead";
       }).includes(true);
 
       if (!isDead) {
+        //toggle dead condition on
         const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
         // @ts-ignore
-        this.actor.token.toggleEffect(deadEffect, {active: true});
+        await this.actor.token._object.toggleEffect(deadEffect, {active: true, overlay: true});
+
+        //toggle defeated if in combat
+        const fighters = game.combats.active.data.combatants;
+        // @ts-ignore
+        let combatant =  fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
+        if (combatant !== undefined) {
+          // @ts-ignore
+          await combatant.update({defeated: true});
+        }
       }
     }
-    this.actor.update({
+    await this.actor.update({
       "data.characteristics.strength.damage": this.strength.totalDamage(),
       "data.characteristics.dexterity.damage": this.dexterity.totalDamage(),
       "data.characteristics.endurance.damage": this.endurance.totalDamage(),
