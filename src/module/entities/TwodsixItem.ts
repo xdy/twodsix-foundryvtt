@@ -174,7 +174,7 @@ export default class TwodsixItem extends Item {
     }
 
     const damageFormula = this.data.data.damage + (bonusDamage ? "+" + bonusDamage : "");
-    const damageRoll = new Roll(damageFormula, {});
+    const damageRoll = Roll.create(damageFormula, this.actor.data.data);
     // @ts-ignore
     const damage:Roll = await damageRoll.evaluate({async: true}); // async: true will be default in foundry 0.10
     if (showInChat) {
