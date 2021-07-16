@@ -1,3 +1,10 @@
+## [0.8.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.2...v0.8.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* Release 0.8.3 ([05ca233](https://github.com/xdy/twodsix-foundryvtt/commit/05ca233297b82c646bdace45370d4c8b74b43d99))
+
 ## [0.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.1...v0.8.2) (2021-07-16)
 
 
