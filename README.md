@@ -70,4 +70,3 @@ Font licenses:
 
 Asset licenses:
 * The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous authors. The full list of those can be found at: https://game-icons.net/about.html#authors
-
