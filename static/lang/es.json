@@ -11,6 +11,24 @@
   "Routine": "Rutinaria",
   "Simple": "Sencilla",
   "TWODSIX": {
+    "Damage": {
+      "DealDamage": "Infligir daño",
+      "Damage": "Daños",
+      "TotalDamage": "Daños totales",
+      "Characteristics": "Características",
+      "Max": "Máx.",
+      "Current": "Actual",
+      "ResultingStat": "Estadísticas resultantes",
+      "UnallocatedDamage": "Daños no asignados",
+      "CharacterIsDead": "El personaje está muerto",
+      "DealDamageTo": "Infligir daño a _ACTOR_NAME_"
+    },
+    "Dialogs": {
+      "ROFPickerTitle": "Seleccione una velocidad de disparo",
+      "ROFSingle": "Fuego único",
+      "ROFBurst": "Ráfaga de fuego",
+      "ROFFull": "Automático completo"
+    },
     "Actor": {
       "Age": "Edad",
       "CharacterImage": "Imagen Personaje",
@@ -99,6 +117,7 @@
         "Type": "Tipo tirada"
       }
     },
+    "Create": "Crear",
     "Handlebars": {
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar los atributos en todas las habilidades marcadas con XXX."
     },
@@ -159,6 +178,23 @@
       "Tool": {
         "Bonus": "Bono"
       },
+      "Consumable": {
+        "Types": {
+          "air": "Aire",
+          "drugs": "Drogas",
+          "food": "Comida",
+          "fuel": "Combustible",
+          "magazine": "Revista",
+          "power_cell": "Celda de potencia",
+          "other": "Otros"
+        },
+        "Size": "Talla",
+        "Subtype": "Tipo",
+        "Count": "Contar",
+        "DropConsumablesHere": "Puedes soltar consumibles aquí.",
+        "RemoveConsumable": "Eliminar consumibles",
+        "RemoveConsumableFrom": "¿Quitar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
+      },
       "Weapon": {
         "Ammo": "Cargador",
         "Damage": "Daño",
@@ -168,7 +204,9 @@
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
         "rateOfFire": "Cadencia de Tiro/Auto X",
-        "recoil": "Retroceso"
+        "recoil": "Retroceso",
+        "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
+        "MagazineCost": "Costo de la revista/célula eléctrica"
       }
     },
     "Migration": {
@@ -176,7 +214,7 @@
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
       "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-	"Modules": {
+    "Modules": {
       "compendiumFolders": {
         "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
         "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
@@ -196,7 +234,7 @@
       "using": "de {characteristic}"
     },
     "Settings": {
-	  "ruleset": {
+      "ruleset": {
         "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
         "name": "Reglamento"
       },
@@ -204,7 +242,7 @@
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
         "name": "Bonus/penaliz. incrementar tarea:"
       },
-	  "absoluteCriticalEffectValue": {
+      "absoluteCriticalEffectValue": {
         "hint": "Por defecto 99, que ignora el efecto.",
         "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
       },
@@ -212,7 +250,7 @@
         "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
         "name": "Daño en tirada que impacte"
       },
-	  "criticalNaturalAffectsEffect": {
+      "criticalNaturalAffectsEffect": {
         "hint": "Marca=Sin importar éxito considerar un 2 natural como Efecto -1 y el 12 natural como Efecto 0, SinMarca=Utilizar reglas normales",
         "name": "Las tiradas de resultado 2 ó 12 natural en los dados deben tener una gestión especial."
       },
@@ -236,7 +274,7 @@
         "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
         "name": "Modificador Atributo nuevo:"
       },
-	  "showMissingCompendiumWarnings": {
+      "showMissingCompendiumWarnings": {
         "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
         "name": "Mostrar aviso sobre módulos desactivados/faltan."
       },
@@ -276,7 +314,7 @@
         "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
         "name": "Banda de Alcance"
       },
-	  "autofireRulesUsed": {
+      "autofireRulesUsed": {
         "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
         "name": "Variante disparo automático"
       },
@@ -300,14 +338,23 @@
         "continue": "Quieres continuar?",
         "warning": "Aviso!"
       },
-	  "invertSkillRollShiftClick": {
+      "invertSkillRollShiftClick": {
         "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
         "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Mostrar END y 'Lifeblood' (utiliza STR debajo de las cubiertas) como características. Útil para el átomo de cefeo, bárbaro! , etc.",
+        "name": "Mostrar END y 'Lifeblood' (STR) como características."
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Mostrar contaminación debajo de Sangre vital. Únicamente útil junto con el ajuste 'show END y sangre'.",
+        "name": "Mostrar contaminación debajo de Sangre vital."
       }
     },
 	"CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
-    "Yes": "Si",
+    "Yes": "Sí",
+    "Name": "Nombre",
     "itemTypes": {
       "equipment": "equipo",
       "weapon": "arma",
@@ -317,13 +364,31 @@
       "tool": "herramienta",
       "junk": "chatarra",
       "skills": "habilidades",
-      "skill": "habilidad"
+      "skill": "habilidad",
+      "consumable": "consumibles"
     },
-	"Errors": {
+    "Errors": {
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
-	  "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
+      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Falta definir el daño del arma"
+      "NoDamageForWeapon": "Falta definir el daño del arma",
+      "TooFewToReload": "Demasiado pocos _NAME_ a _REFILL_ACTION_",
+      "NoAmmo": "Se te acabó la munición. ¡Necesitas recargar antes de disparar!",
+      "OnlyOwnedItems": "Sólo se puede colocar en los elementos que son propiedad de un actor",
+      "SkillsConsumables": "Las habilidades no pueden tener consumibles",
+      "DraggingSomething": "Arrastrar algo que no se puede arrastrar",
+      "OnlyDropItems": "Solo puedes soltar elementos",
+      "OnlyDropConsumables": "Solo se pueden colocar consumibles en un artículo.",
+      "DropFailedWith": "Error de caída con _ERROR_MSG_",
+      "CouldNotFindItem": "No se pudo encontrar un elemento con id: _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "El objeto de compendio arrastrado no es un elemento."
+    },
+    "Warnings": {
+      "ActorMissingItem": "El Actor controlado no tiene un elemento con id: _ITEM_ID_",
+      "AutoDamageForMultipleTargetsNotImplemented": "Actualmente no se admite dañar automáticamente varios objetivos (usando Auto X)",
+      "MaxStatVal": "El valor supera el valor máximo de estadística",
+      "StatValBelowZero": "El valor no puede estar por debajo de cero",
+      "DecreaseEnduranceFirst": "La resistencia debe reducirse antes de que otras estadísticas"
     }
   },
   "VeryDifficult": "Muy Difícil"

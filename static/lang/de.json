@@ -11,6 +11,24 @@
   "Routine": "Routine",
   "Simple": "Leicht",
   "TWODSIX": {
+    "Damage": {
+      "DealDamage": "Verursacht Schaden",
+      "Damage": "Schaden",
+      "TotalDamage": "Gesamter Schaden",
+      "Characteristics": "Eigenschaften",
+      "Max": "Max.",
+      "Current": "Aktuell",
+      "ResultingStat": "Resultierender Wert",
+      "UnallocatedDamage": "Nicht zugewiesener Schaden",
+      "CharacterIsDead": "Charakter ist tot",
+      "DealDamageTo": "Fügt _ACTOR_NAME_ Schaden zu"
+    },
+    "Dialogs": {
+      "ROFPickerTitle": "Wählen Sie eine Feuerrate",
+      "ROFSingle": "Einzelnes Feuer",
+      "ROFBurst": "Burst Feuer",
+      "ROFFull": "Vollständige Automatik"
+    },
     "Actor": {
       "Age": "Alter",
       "CharacterImage": "Charakter Bild",
@@ -34,6 +52,8 @@
         "SHIP_PAYMENTS_MONTHLY": "SCHIFFSZAHLUNGEN MONATLICH"
       },
       "Gender": "Geschlecht",
+      "Contamination": "Kontamination",
+      "Lifeblood": "Lebensblut",
       "HomeWorld": "Heimatwelt",
       "Info": {
         "ALLIES": "VERBÜNDETE",
@@ -47,6 +67,8 @@
         "AUGMENTS": "ANPASSUNGEN",
         "Ammo": "Mun",
         "Armor": "Rüstung",
+        "CONSUMABLES": "Verbrauchsmaterialien",
+        "Count": "Zählen",
         "CreateItem": "Gegenstand erschaffen",
         "Damage": "DMG",
         "DeleteItem": "Lösche Gegenstand",
@@ -75,7 +97,10 @@
         "Modifier": "Mod",
         "SkillName": "Fertigkeits Name",
         "Total": "Total",
-        "Untrained": "Untrainiert"
+        "Untrained": "Untrainiert",
+        "SkillRollTooltip": "Zeigt den Skill-Roll-Dialog an. Wenn Sie bei gedrückter Umschalttaste klicken, wird eine Fertigkeitsprüfung ohne Modifikator ausgeführt und eine Schwierigkeit von 8",
+        "InvertedSkillRollTooltip": "Führt eine Fertigkeitsprüfung ohne Modifikator aus und nimmt einen Schwierigkeitsgrad von 8 an. Wenn Sie bei gedrückter Umschalttaste klicken, wird der",
+        "JOAT": "Jack aller Gewerke"
       },
       "Species": "Spezies",
       "Tabs": {
@@ -96,6 +121,7 @@
         "Type": "Wurf Typ"
       }
     },
+    "Create": "Erstellen",
     "Handlebars": {
       "CantShowCharacteristic": "Sie müssen das Merkmal für alle mit XXX markierten Fähigkeiten erneut auswählen. Entschuldigung..."
     },
@@ -156,6 +182,23 @@
       "Tool": {
         "Bonus": "Bonus"
       },
+      "Consumable": {
+        "Types": {
+          "air": "Luft",
+          "drugs": "Drogen",
+          "food": "Essen",
+          "fuel": "Kraftstoff",
+          "magazine": "Magazin",
+          "power_cell": "Power-Zelle",
+          "other": "Sonstiges"
+        },
+        "Size": "Größe",
+        "Subtype": "Typ",
+        "Count": "Zählen",
+        "DropConsumablesHere": "Sie können Verbrauchsmaterialien hier fallen lassen.",
+        "RemoveConsumable": "Verbrauchsmaterial entfernen",
+        "RemoveConsumableFrom": "Verbrauchsmaterial _CONSUBABLE_NAME_ aus _ITEM_NAME_ entfernen?"
+      },
       "Weapon": {
         "Ammo": "Munition",
         "Damage": "Schaden",
@@ -165,7 +208,9 @@
         "weaponType": "Waffen Typ",
         "damageType": "Schaden Typ",
         "rateOfFire": "Dauerfeuer/Auto X",
-        "recoil": "Rückstoss"
+        "recoil": "Rückstoss",
+        "UseAsAmmunitionForAttack": "Verwenden Sie als Munition für Angriffe",
+        "MagazineCost": "Kosten für Magazin/Power Cell"
       }
     },
     "Migration": {
@@ -173,113 +218,174 @@
       "DoNotClose": "Migration von Twodsix zu {Version}. Schließen Sie Ihr Spiel nicht und fahren Sie Ihren Server nicht herunter.",
       "MigrationError0.6.25": "Migrationsfehler: Konnte Preis für ${name} nicht analysieren, er war ${price}, ist aber jetzt 0."
     },
-    "No": "Nein",
-    "Rolls": {
-      "AdjustedDamage": "Schaden durch Wirkung angepasst",
-      "Cancel": "Abbrechen",
-      "DamageUsing": "Schaden verwenden",
-      "Effect": "Effekt",
-      "Roll": "Wurf",
-      "Rolling": "Würfeln",
-      "With": "mit",
-      "resultShows": "Resultat zeigt",
-      "sum": "Summe",
-      "using": "benutzt {characteristic}"
-    },
-    "Settings": {
-      "absoluteBonusValueForEachTimeIncrement": {
-        "hint": "Leer lassen, um die Standardeinstellung (+/-1) zu verwenden. Wird derzeit nicht verwendet.",
-        "name": "Welchen Bonus/Strafe ist bei jeder schrittweisen Änderung einer Aufgabe zu gewähren?"
+    "Modules": {
+      "compendiumFolders": {
+        "missing": "Die mitgelieferten Kompendien für die verschiedenen Cepheus Varianten verwenden oft das Modul „Compendium Folders“. Wenn Sie diese verwenden, installieren Sie bitte das Modul „Compendium Folders“ in Foundry VTT. Oder deaktivieren Sie diese Warnung in den Systemeinstellungen.",
+        "disabled": "Bitte aktivieren Sie das Modul „Compendium Folders“ in dieser Welt, wenn Sie beabsichtigen, die mitgelieferten Kompendien zu verwenden. Oder deaktivieren Sie diese Warnung in den Systemeinstellungen."
       },
-      "automateDamageRollOnHit": {
-        "hint": "angekreuzt=Schadenswurf, modifiziert durch die Wirkung des Fertigkeitswurfs. nicht angekreuzt=Schaden nicht auswürfeln.",
-        "name": "Automatisch Schaden auf Fertigkeitswürfe würfeln, die mit Gegenständen, die Schaden verursachen, treffen (d.h. Wirkung > 0 erhalten)?"
+      "No": "Nein",
+      "Rolls": {
+        "AdjustedDamage": "Schaden durch Wirkung angepasst",
+        "Cancel": "Abbrechen",
+        "DamageUsing": "Schaden verwenden",
+        "Effect": "Effekt",
+        "Roll": "Wurf",
+        "Rolling": "Würfeln",
+        "With": "mit",
+        "resultShows": "Resultat zeigt",
+        "sum": "Summe",
+        "using": "benutzt {characteristic}"
       },
-      "defaultTokenSettings": {
-        "hint": "Automatisches Setzen der empfohlenen Prototyp-Token-Einstellungen für neu erstellte Akteure.",
-        "name": "Standard-Prototyp-Token-Einstellungen"
+      "Settings": {
+        "ruleset": {
+          "hint": "Dadurch werden die folgenden Einstellungen mit den besten Optionen für den angegebenen Regelsatz konfiguriert. Beachten Sie, dass die Regelsätze oben am besten unterstützt werden. Weitere Informationen finden Sie unter https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md.",
+          "name": "Regelsatz"
+        },
+        "absoluteBonusValueForEachTimeIncrement": {
+          "hint": "Leer lassen, um die Standardeinstellung (+/-1) zu verwenden. Wird derzeit nicht verwendet.",
+          "name": "Welchen Bonus/Strafe ist bei jeder schrittweisen Änderung einer Aufgabe zu gewähren?"
+        },
+        "automateDamageRollOnHit": {
+          "hint": "angekreuzt=Schadenswurf, modifiziert durch die Wirkung des Fertigkeitswurfs. nicht angekreuzt=Schaden nicht auswürfeln.",
+          "name": "Automatisch Schaden auf Fertigkeitswürfe würfeln, die mit Gegenständen, die Schaden verursachen, treffen (d.h. Wirkung > 0 erhalten)?"
+        },
+        "defaultTokenSettings": {
+          "hint": "Automatisches Setzen der empfohlenen Prototyp-Token-Einstellungen für neu erstellte Akteure.",
+          "name": "Standard-Prototyp-Token-Einstellungen"
+        },
+        "effectOrTotal": {
+          "hint": "angekreuzt=Zeige Effekt (d.h. Rolle+Modifikatoren-Zielnummer, normalerweise 8), nicht angekreuzt=Zeige Gesamt (d.h. Rolle+Modifikatoren)",
+          "name": "Show effect or total roll value for skill and characteristic rolls."
+        },
+        "initiativeFormula": {
+          "hint": "Beispiel: \"2d6 + @characteristics.dexterity.mod\"",
+          "name": "Initiative Formel"
+        },
+        "maxSkillLevel": {
+          "hint": "Leer lassen, um Standard zu verwenden (9).",
+          "name": "Fertigkeits Stufe maximum."
+        },
+        "modifierForZeroCharacteristic": {
+          "hint": "Leer lassen, um die Voreinstellung zu verwenden (-2). Berechnet Modifikatoren für vorhandene Charaktere nicht automatisch neu.",
+          "name": "Modifikator für Charakteristik Null."
+        },
+        "showMissingCompendiumWarnings": {
+          "hint": "Ob Warnungen für fehlend/deaktivierte Module am Weltstart angezeigt werden sollen.",
+          "name": "Zeigt Warnungen zu fehlen/deaktivierten Modulen an."
+        },
+        "systemMigrationVersion": {
+          "hint": "Zeichnet die Schemaversion für das Twodsix-System auf. (Ändern Sie dies nicht, wenn Sie nicht wissen, was Sie tun)",
+          "name": "System Schema Version"
+        },
+        "termForAdvantage": {
+          "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Nachteil...",
+          "name": "Wie Sie Würfe mit Vorteil nennen wollen (3d6kh2)."
+        },
+        "termForDisadvantage": {
+          "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Vorteil...",
+          "name": "Wie Sie Würfe mit Nachteil nennen wollen (3d6kl2)."
+        },
+        "ShowLawLevel": {
+          "hint": "angekreuzt=Feld 'Justizgrad' anzeigen, nicht angekreuzt=Ausblenden",
+          "name": "Das Feld 'Justizgrad' auf Waffen Eintrag anzeigen"
+        },
+        "ShowRecoil": {
+          "hint": "angekreuzt=Zeige das Feld 'Rückstoß' an, nicht angekreuzt=Verstecke es",
+          "name": "Das Feld 'Rückstoss' auf Waffeneintrag anzeigen"
+        },
+        "ShowRateOfFire": {
+          "name": "Zeigen Sie das Feld 'Dauerfeuer' auf den Waffeneinträgen",
+          "hint": "angekreuzt=Zeigt das Feld 'Dauerfeuer' an, nicht angekreuzt=Ausblenden"
+        },
+        "ShowDamageType": {
+          "hint": "angekreuzt=Feld 'Schaden Typ' anzeigen, nicht angekreuzt=Ausblenden",
+          "name": "Das Feld 'Schadentyp' auf Waffenblättern anzeigen"
+        },
+        "ShowWeaponType": {
+          "hint": "angekreuzt=Feld 'Waffentyp' anzeigen, nicht angekreuzt=Ausblenden",
+          "name": "Zeigen Sie das Feld 'Waffentyp' auf den Waffeneinträgen"
+        },
+        "ShowRangeBandAndHideRange": {
+          "hint": "angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
+          "name": "Zeigt 'Reichweite Band' und *verbergt* 'Reichweite' auf den Waffeneinträgen und dem Charakterblatt"
+        },
+        "autofireRulesUsed": {
+          "hint": "Wählen Sie aus, welche Auto/Burst-Feuerregeln der Variante verwendet werden sollen.",
+          "name": "Wählen Sie aus, welche Auto/Burst-Feuerregeln der Variante verwendet werden sollen."
+        },
+        "difficultyListUsed": {
+          "hint": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll.",
+          "name": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll."
+        },
+        "difficultiesAsTargetNumber": {
+          "hint": "angekreuzt=Zielnummer statt Modifikator für Schwierigkeiten verwenden, nicht angekreuzt=Modifikatoren verwenden,angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
+          "name": "Verwenden Sie bei Schwierigkeiten eher Zielnummern als Modifikatoren."
+        },
+        "ExperimentalFeatures": {
+          "hint": "angekreuzt=Sichern Sie hässliche und fehlerhafte experimentelle Funktionen, die Ihre Spielwelt vielleicht einfach nicht löschen, nicht angekreuzt=Verstecken Sie sie, wie es jeder vernünftige Mensch tun würde",
+          "name": "Hässliche, fehlerhafte und unfertige Funktionen anzeigen. D.h., so wie alle anderen Funktionen, die nicht durch diese Flagge verdeckt werden. :)"
+        },
+        "hideUntrainedSkills": {
+          "hint": "checked=Zeige Pseudo-Fähigkeit 'Ungeübt' statt aller untrainierten Fähigkeiten. unchecked=Zeige alle untrainierten Fähigkeiten",
+          "name": "Blenden Sie alle untrainierten Fähigkeiten aus, zeigen Sie stattdessen eine einzige Pseudo-Fähigkeit namens 'Ungeübt' an. Dies führt auch dazu, dass neue Fertigkeiten bei 0 anstelle des Wertes der untrainierten Fertigkeiten hinzugefügt werden.",
+          "warningReset": "Nach dem Speichern der Systemeinstellungen werden alle Fertigkeiten, die die Pseudo-Skills Untrainiert verwenden, dauerhaft auf „Keine Fähigkeiten“ zurückgesetzt. Diese Aktion kann nicht rückgängig gemacht werden.",
+          "warningUpdateWeapon": "Nach dem Speichern der Systemeinstellungen werden alle Waffen der Akteure, die keine Fertigkeit besitzen, aktualisiert, um die Pseudo-Skills Untrained.Diese Aktion kann nicht rückgängig gemacht werden.",
+          "continue": "Möchten Sie fortfahren?",
+          "warning": "Warnung!"
+        },
+        "invertSkillRollShiftClick": {
+          "hint": "Wenn Sie auf eine Fertigkeitsrolle klicken oder Schaden an einen Charakter ziehen, wird normalerweise ein Dialogfeld angezeigt, bei gedrückter Umschalttaste werden Standardwerte angewendet (Durchschnittliche Fertigkeitsrolle oder automatische Schadensverteilung). Wenn Sie dieses Kontrollkästchen aktivieren, tauscht dieses Verhalten aus.",
+          "name": "Verhalten umkehren für Umschalttaste klicken auf Fertigkeitsrollen und Umschalttaste ziehen, um Schaden zu erleiden"
+        },
+        "lifebloodInsteadOfCharacteristics": {
+          "hint": "Zeige END und 'Lifeblood' (verwendet STR unterhalb der Abdeckungen) als Eigenschaften. Nützlich für Cepheus Atom, Barbarisch! usw.",
+          "name": "Zeige END und 'Lifeblood' (STR) als Merkmale."
+        },
+        "showContaminationBelowLifeblood": {
+          "hint": "Kontamination unterhalb des Lebensbluts anzeigen. Nur nützlich zusammen mit der Einstellung „END und Lebenserwartung anzeigen“.",
+          "name": "Kontamination unterhalb des Lebensbluts anzeigen."
+        }
       },
-      "effectOrTotal": {
-        "hint": "angekreuzt=Zeige Effekt (d.h. Rolle+Modifikatoren-Zielnummer, normalerweise 8), nicht angekreuzt=Zeige Gesamt (d.h. Rolle+Modifikatoren)",
-        "name": "Show effect or total roll value for skill and characteristic rolls."
+      "CloseAndCreateNew": "Schließen und neue erstellen",
+      "Copy": "Kopieren",
+      "Yes": "Ja",
+      "Name": "Name",
+      "itemTypes": {
+        "equipment": "Ausrüstung",
+        "weapon": "waffen",
+        "armor": "rüstung",
+        "augment": "anpassung",
+        "storage": "aufbewahrung",
+        "tool": "werkzeug",
+        "junk": "junk",
+        "skills": "fertigkeiten",
+        "skill": "fertigkeit",
+        "consumable": "Verbrauchsmaterial"
       },
-      "initiativeFormula": {
-        "hint": "Beispiel: \"2d6 + @characteristics.dexterity.mod\"",
-        "name": "Initiative Formel"
+      "Errors": {
+        "NoSkillForSkillRoll": "Sie haben versucht, eine Skill-Rolle durchzuführen, ohne eine Fertigkeit anzugeben",
+        "NoCharacteristicForRoll": "Sie haben versucht, eine Merkmalsrolle auszuführen, ohne ein Merkmal anzugeben",
+        "NoROFForAttack": "Feuerrate muss für diesen Angriff angegeben werden",
+        "NoDamageForWeapon": "Diese Waffe hat den Schaden nicht angegeben, den sie verursacht",
+        "TooFewToReload": "Zu wenige _NAME_ bis _REFILL_ACTION_",
+        "NoAmmo": "Du hast keine Munition mehr. Sie müssen vor dem Fotografieren neu laden!",
+        "OnlyOwnedItems": "Kann nur auf Elemente abgelegt werden, die im Besitz eines Akteurs sind",
+        "SkillsConsumables": "Fertigkeiten dürfen keine Verbrauchsmaterialien haben",
+        "DraggingSomething": "Ziehen Sie etwas, das nicht gezogen werden kann",
+        "OnlyDropItems": "Sie können nur Elemente ablegen",
+        "OnlyDropConsumables": "Nur Verbrauchsmaterialien können auf einem Artikel fallen gelassen werden.",
+        "DropFailedWith": "Löschen fehlgeschlagen mit _ERROR_MSG_",
+        "CouldNotFindItem": "Ein Element mit der ID konnte nicht gefunden werden: _ITEM_ID_",
+        "DraggedCompendiumIsNotItem": "Das gezogene Kompendiumobjekt ist kein Element."
       },
-      "maxSkillLevel": {
-        "hint": "Leer lassen, um Standard zu verwenden (9).",
-        "name": "Fertigkeits Stufe maximum."
-      },
-      "modifierForZeroCharacteristic": {
-        "hint": "Leer lassen, um die Voreinstellung zu verwenden (-2). Berechnet Modifikatoren für vorhandene Charaktere nicht automatisch neu.",
-        "name": "Modifikator für Charakteristik Null."
-      },
-      "systemMigrationVersion": {
-        "hint": "Zeichnet die Schemaversion für das Twodsix-System auf. (Ändern Sie dies nicht, wenn Sie nicht wissen, was Sie tun)",
-        "name": "System Schema Version"
-      },
-      "termForAdvantage": {
-        "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Nachteil...",
-        "name": "Wie Sie Würfe mit Vorteil nennen wollen (3d6kh2)."
-      },
-      "termForDisadvantage": {
-        "hint": "Verwenden Sie nicht dasselbe wie für den Begriff Vorteil...",
-        "name": "Wie Sie Würfe mit Nachteil nennen wollen (3d6kl2)."
-      },
-      "ShowLawLevel": {
-        "hint": "angekreuzt=Feld 'Justizgrad' anzeigen, nicht angekreuzt=Ausblenden",
-        "name": "Das Feld 'Justizgrad' auf Waffen Eintrag anzeigen"
-      },
-      "ShowRecoil": {
-        "hint": "angekreuzt=Zeige das Feld 'Rückstoß' an, nicht angekreuzt=Verstecke es",
-        "name": "Das Feld 'Rückstoss' auf Waffeneintrag anzeigen"
-      },
-      "ShowRateOfFire": {
-        "name": "Zeigen Sie das Feld 'Dauerfeuer' auf den Waffeneinträgen",
-        "hint": "angekreuzt=Zeigt das Feld 'Dauerfeuer' an, nicht angekreuzt=Ausblenden"
-      },
-      "ShowDamageType": {
-        "hint": "angekreuzt=Feld 'Schaden Typ' anzeigen, nicht angekreuzt=Ausblenden",
-        "name": "Das Feld 'Schadentyp' auf Waffenblättern anzeigen"
-      },
-      "ShowWeaponType": {
-        "hint": "angekreuzt=Feld 'Waffentyp' anzeigen, nicht angekreuzt=Ausblenden",
-        "name": "Zeigen Sie das Feld 'Waffentyp' auf den Waffeneinträgen"
-      },
-      "ShowRangeBandAndHideRange": {
-        "hint": "angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
-        "name": "Zeigt 'Reichweite Band' und *verbergt* 'Reichweite' auf den Waffeneinträgen und dem Charakterblatt"
-      },
-      "difficultyListUsed": {
-        "hint": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll.",
-        "name": "Wählen Sie die Schwierigkeitsliste der Variante aus, die verwendet werden soll."
-      },
-      "difficultiesAsTargetNumber": {
-        "hint": "angekreuzt=Zielnummer statt Modifikator für Schwierigkeiten verwenden, nicht angekreuzt=Modifikatoren verwenden,angekreuzt=Zeigt 'Reichweite Band', nicht angekreuzt=Zeigt 'Reichweite'",
-        "name": "Verwenden Sie bei Schwierigkeiten eher Zielnummern als Modifikatoren."
-      },
-      "ExperimentalFeatures": {
-        "hint": "angekreuzt=Sichern Sie hässliche und fehlerhafte experimentelle Funktionen, die Ihre Spielwelt vielleicht einfach nicht löschen, nicht angekreuzt=Verstecken Sie sie, wie es jeder vernünftige Mensch tun würde",
-        "name": "Hässliche, fehlerhafte und unfertige Funktionen anzeigen. D.h., so wie alle anderen Funktionen, die nicht durch diese Flagge verdeckt werden. :)"
-      },
-      "hideUntrainedSkills": {
-        "hint": "checked=Zeige Pseudo-Fähigkeit 'Ungeübt' statt aller untrainierten Fähigkeiten. unchecked=Zeige alle untrainierten Fähigkeiten",
-        "name": "Blenden Sie alle untrainierten Fähigkeiten aus, zeigen Sie stattdessen eine einzige Pseudo-Fähigkeit namens 'Ungeübt' an. Dies führt auch dazu, dass neue Fertigkeiten bei 0 anstelle des Wertes der untrainierten Fertigkeiten hinzugefügt werden."
+      "Warnings": {
+        "ActorMissingItem": "Ihr kontrollierter Akteur hat kein Element mit der ID: _ITEM_ID_",
+        "AutoDamageForMultipleTargetsNotImplemented": "Automatisches Beschädigen mehrerer Ziele (mit Auto X) wird derzeit nicht unterstützt",
+        "MaxStatVal": "Der Wert überschreitet den Maximalwert",
+        "StatValBelowZero": "Der Wert darf nicht unter Null liegen",
+        "DecreaseEnduranceFirst": "Die Ausdauer sollte vor anderen Statistiken verringert werden"
       }
     },
-    "Yes": "Ja",
-    "itemTypes": {
-      "equipment": "Ausrüstung",
-      "weapon": "waffen",
-      "armor": "rüstung",
-      "augment": "anpassung",
-      "storage": "aufbewahrung",
-      "tool": "werkzeug",
-      "junk": "junk",
-      "skills": "fertigkeiten",
-      "skill": "fertigkeit"
-    }
-  },
-  "VeryDifficult": "Sehr schwierig"
+    "VeryDifficult": "Sehr schwierig"
+  }
 }
