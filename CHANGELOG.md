@@ -5,6 +5,10 @@
 
 * eliminate bug with toggling condition and add toggle for defeated in combat tracker ([5cfa6d7](https://github.com/xdy/twodsix-foundryvtt/commit/5cfa6d7cfa4082e1b1032ac00e805ad3ed34e8d4))
 
+### Other changes
+Several fixes from @marvin9257 New and fancy default icons for travellers, ships and weapons, unlinked travellers can now be properly killed, consumables that are deleted from a traveller are now also deleted from any items that have them equipped, damage formulas that took attributes into account now actually do that, several new and fixes macros.
+Added missing strings to german and spanish localizations (machine translated, so blame AWS Translate if they're bad. :slight_smile:
+
 ## [0.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.0...v0.8.1) (2021-07-16)
 
 
