@@ -1,3 +1,11 @@
+## [0.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.0...v0.8.1) (2021-07-16)
+
+
+### Bug Fixes
+
+* consumable bugs ([01ccfdd](https://github.com/xdy/twodsix-foundryvtt/commit/01ccfdd27e2aad13afef2fabd8da89351b2f95d5))
+* delete any attached consumables ([f12fb33](https://github.com/xdy/twodsix-foundryvtt/commit/f12fb336eb2e435909ae6e9ab469add0357de382))
+
 # [0.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.7.32...v0.8.0) (2021-05-31)
 
 
