@@ -1,3 +1,10 @@
+## [0.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.1...v0.8.2) (2021-07-16)
+
+
+### Bug Fixes
+
+* eliminate bug with toggling condition and add toggle for defeated in combat tracker ([5cfa6d7](https://github.com/xdy/twodsix-foundryvtt/commit/5cfa6d7cfa4082e1b1032ac00e805ad3ed34e8d4))
+
 ## [0.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.0...v0.8.1) (2021-07-16)
 
 
