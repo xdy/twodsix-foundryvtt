@@ -4,6 +4,9 @@
 ### Bug Fixes
 
 * Release 0.8.3 ([05ca233](https://github.com/xdy/twodsix-foundryvtt/commit/05ca233297b82c646bdace45370d4c8b74b43d99))
+* Several fixes from @marvin9257 New and fancy default icons for travellers, ships and weapons, unlinked travellers can now be properly killed, consumables that are deleted from a traveller are now also deleted from any items that have them equipped, damage formulas that took attributes into account now actually do that, several new and fixes macros.
+* Added missing strings to german and spanish localizations (machine translated, so blame AWS Translate if they're bad. :)
+* Compatible with Foundry VTT 0.8.8
 
 ## [0.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.1...v0.8.2) (2021-07-16)
 
