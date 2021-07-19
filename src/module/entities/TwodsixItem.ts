@@ -11,7 +11,7 @@ export default class TwodsixItem extends Item {
   public static async create(data:Record<string, unknown>, options?:Record<string, unknown>):Promise<Entity> {
     const item = await super.create(data, options) as TwodsixItem;
     item.setFlag('twodsix', 'newItem', true);
-    if (item.data.type ==='weapon' && (item.data.img === "" || item.data.img === "icons/svg/item-bag.svg")) {
+    if (item.data.type ==='weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
       await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
     }
     return item;
