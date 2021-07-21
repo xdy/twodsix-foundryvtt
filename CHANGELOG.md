@@ -1,3 +1,12 @@
+## [0.8.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.3...v0.8.4) (2021-07-21)
+
+
+### Bug Fixes
+
+* bug on delete consumables when none exist ([8ce2a47](https://github.com/xdy/twodsix-foundryvtt/commit/8ce2a47f306c5d4a70fca8d3c9c2e05050822f3b))
+* default icon overwrites custom icon on drop ([4ea685e](https://github.com/xdy/twodsix-foundryvtt/commit/4ea685e3adb6607a676465c756baf87c6a6176a3))
+* keep custom weapon icon on drop ([0091769](https://github.com/xdy/twodsix-foundryvtt/commit/0091769b3b607be72ba6dc421cd61bec67fa3a4a))
+
 ## [0.8.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.2...v0.8.3) (2021-07-16)
 
 
