@@ -1,3 +1,11 @@
+## [0.8.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.4...v0.8.5) (2021-07-22)
+
+
+### Bug Fixes
+
+* Another attempt at a release with a new pause icon ([c96e8f8](https://github.com/xdy/twodsix-foundryvtt/commit/c96e8f874c0b547d11354602c796323f09e4c204))
+* Sunburst as pause icon. Fixes [#342](https://github.com/xdy/twodsix-foundryvtt/issues/342) ([3197d69](https://github.com/xdy/twodsix-foundryvtt/commit/3197d6947f4a2e74939b7a90aef842df63f6f0ad))
+
 ## [0.8.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.3...v0.8.4) (2021-07-21)
 
 
