@@ -5,6 +5,7 @@ import './preCreateActor';
 import './ready';
 import './renderChatMessage';
 import './renderItemSheet';
+import './renderPause';
 import './renderSettingsConfig';
 import './setup';
 import './updateHits';
