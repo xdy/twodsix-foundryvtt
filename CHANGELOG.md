@@ -1,3 +1,10 @@
+## [0.8.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.5...v0.8.6) (2021-07-22)
+
+
+### Bug Fixes
+
+* This time with the actual sunburst included... ([1a84dce](https://github.com/xdy/twodsix-foundryvtt/commit/1a84dceddabd0d4ce9d1162e69c773662ea840e7))
+
 ## [0.8.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.4...v0.8.5) (2021-07-22)
 
 
