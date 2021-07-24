@@ -97,7 +97,7 @@ function hexToBase10(value) {
   case 'G':
     return ('16');
   default:
-    return (value);
+    return (Number(value));
   }
 }
 
