@@ -71,7 +71,7 @@ function parseCode (profile) {
 
 // Lookup a hex digit from a roll table
 function getUWPparameter (value, tableName) {
-  let item = Number(hexToBase10(value));
+  let item = hexToBase10(value);
   const table = game.tables.contents.find(t => t.name === tableName);
   if (item < table.data.results.size) {
     let details = table.data.results._source[item].text;
@@ -99,7 +99,7 @@ function hexToBase10 (value) {
     case 'G':
       return ('16');
     default:
-      return (value);
+      return (Number(value));
   }
 }
 
