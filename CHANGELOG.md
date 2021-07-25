@@ -1,3 +1,10 @@
+## [0.8.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.6...v0.8.7) (2021-07-25)
+
+
+### Bug Fixes
+
+* Fix trade codes error ([d710a3f](https://github.com/xdy/twodsix-foundryvtt/commit/d710a3f4d69eafbbc89f1de5713d7a43b75a471e))
+
 ## [0.8.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.5...v0.8.6) (2021-07-22)
 
 
