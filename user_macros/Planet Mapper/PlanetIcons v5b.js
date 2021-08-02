@@ -43,9 +43,11 @@ async function translateCode () {
     const newNotes = [];
     let newDrawings = [];
     let newTiles = [];
+    let maxX = 0;
+    let maxY = 0;
 
     // create new folder to hold planet journal entries
-    newFolder = await Folder.create({ name: 'Export Folder', type: 'JournalEntry' });
+    const newFolder = await Folder.create({ name: 'Export Folder', type: 'JournalEntry' });
 
     // add new journal entries, notes, and drawing text for each planet
     for (let i = 0; i < processedText.length; ++i) {
@@ -54,6 +56,9 @@ async function translateCode () {
       newNotes.push(planetData.note);
       newTiles = newTiles.concat(planetData.returnTiles);
       newDrawings = newDrawings.concat(planetData.returnDrawing);
+      // adjust initial display position
+      if (planetData.note.x > maxX) { maxX = planetData.note.x;}
+      if (planetData.note.y > maxY) { maxY = planetData.note.y;}
     }
 
     Scene.create({
@@ -66,6 +71,7 @@ async function translateCode () {
       gridType: CONST.GRID_TYPES.HEXEVENQ,
       notes: newNotes,
       drawings: newDrawings,
+      initial: {x: maxX / 2, y: maxY / 2, scale: 0.8},
       tiles: newTiles
     });
   }
