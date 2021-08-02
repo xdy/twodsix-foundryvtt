@@ -50,7 +50,7 @@ async function translateCode () {
     // add new journal entries, notes, and drawing text for each planet
     for (let i = 0; i < processedText.length; ++i) {
       const parse = parseCode(processedText[i]);
-      planetData = await newPlanet(parse, newFolder.data._id, topLabel);
+      let planetData = await newPlanet(parse, newFolder.data._id, topLabel);
       newNotes.push(planetData.note);
       newTiles = newTiles.concat(planetData.returnTiles);
       newDrawings = newDrawings.concat(planetData.returnDrawing);
@@ -136,7 +136,7 @@ async function newPlanet (parse, folderID, topLabel) {
 
   // add gas giant or base markers if applicable
   const returnTiles = [];
-  for (i = 0; i < parse.markers.length; ++i) {
+  for (let i = 0; i < parse.markers.length; ++i) {
     returnTiles.push({
       x: iconPos.x + iconSize / 2 + smFontSize / 4,
       y: iconPos.y + smFontSize * (i - 0.5 * parse.markers.length),
