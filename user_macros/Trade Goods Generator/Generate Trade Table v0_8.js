@@ -360,19 +360,19 @@ function getTradeCode (UWPprofile) {
 function hexToBase10 (value) {
   switch (value.toUpperCase()) {
     case 'A':
-      return ('10');
+      return (10);
     case 'B':
-      return ('11');
+      return (11);
     case 'C':
-      return ('12');
+      return (12);
     case 'D':
-      return ('13');
+      return (13);
     case 'E':
-      return ('14');
+      return (14);
     case 'F':
-      return ('15');
+      return (15);
     case 'G':
-      return ('16');
+      return (16);
     default:
       return (Number(value));
   }
