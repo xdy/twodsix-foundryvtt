@@ -1,3 +1,13 @@
+## [0.8.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.7...v0.8.8) (2021-08-07)
+
+
+### Bug Fixes
+
+* adjust initial position ([52af031](https://github.com/xdy/twodsix-foundryvtt/commit/52af031a0d9eab24e7b163083c6ad41318f39c6a))
+* correct hex to number conversion ([286af04](https://github.com/xdy/twodsix-foundryvtt/commit/286af04a08a717d9cbec2187d08b0f91aaa6614e))
+* DeepScan errors fixed ([37d8f81](https://github.com/xdy/twodsix-foundryvtt/commit/37d8f81816fa8e879a5db34f1d837133b914466d))
+* set characteristic to none for gunnery skill for CL compendium ([dc30c7c](https://github.com/xdy/twodsix-foundryvtt/commit/dc30c7c5f6e27cb7661726ad98a3ef37bd63a822))
+
 ## [0.8.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.6...v0.8.7) (2021-07-25)
 
 
