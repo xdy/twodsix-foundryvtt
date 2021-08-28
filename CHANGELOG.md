@@ -1,3 +1,10 @@
+## [0.8.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.10...v0.8.11) (2021-08-28)
+
+
+### Bug Fixes
+
+* No strength value set for Quantum Army guy (found by @Varstahl) ([43f9b01](https://github.com/xdy/twodsix-foundryvtt/commit/43f9b01e60634bc65a93af4582147d04080e6934))
+
 ## [0.8.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.9...v0.8.10) (2021-08-28)
 
 
