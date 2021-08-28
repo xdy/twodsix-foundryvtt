@@ -1,3 +1,10 @@
+## [0.8.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.8...v0.8.9) (2021-08-28)
+
+
+### Bug Fixes
+
+* wrong file for starportE.svg ([4e30002](https://github.com/xdy/twodsix-foundryvtt/commit/4e30002b35faa8748984273fe567cabc88c01925))
+
 ## [0.8.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.7...v0.8.8) (2021-08-07)
 
 
