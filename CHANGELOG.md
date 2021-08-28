@@ -1,3 +1,10 @@
+## [0.8.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.9...v0.8.10) (2021-08-28)
+
+
+### Bug Fixes
+
+* Set compatible version to 0.8.9 ([a54352f](https://github.com/xdy/twodsix-foundryvtt/commit/a54352f175910e95a06d707b5442cb00ed19f043))
+
 ## [0.8.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.8...v0.8.9) (2021-08-28)
 
 
