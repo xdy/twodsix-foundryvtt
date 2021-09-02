@@ -47,8 +47,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           if (ownedItem.type === "consumable") {
             let tempItems = this.actor.items.filter(i => i.type !== "skills");
             tempItems.forEach( i => {
-              if (i.data.data.consumables.includes(ownedItem.id)  || i.data.data.useConsumableForAttack === ownedItem.id) {
-                 i.removeConsumable(ownedItem.id);
+              if (i.data.data.consumables != undefined) {
+                 if (i.data.data.consumables.includes(ownedItem.id)  || i.data.data.useConsumableForAttack === ownedItem.id) {
+                    i.removeConsumable(ownedItem.id);
+                 }
               }
             });
           }
