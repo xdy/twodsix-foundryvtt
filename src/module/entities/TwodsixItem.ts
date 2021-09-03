@@ -46,7 +46,7 @@ export default class TwodsixItem extends Item {
           await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
        }
     } else {
-      console.error(`Twodsix | Consumable can't be added to item ${this.id}`);
+      ui.notifications.error(`Twodsix | Consumable can't be added to item ${this.id}`);
     }
   }
 
