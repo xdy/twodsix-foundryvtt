@@ -12,22 +12,22 @@
   "Simple": "Sencilla",
   "TWODSIX": {
     "Damage": {
-      "DealDamage": "Infligir daño",
-      "Damage": "Daños",
-      "TotalDamage": "Daños totales",
-      "Characteristics": "Características",
+      "DealDamage": "Aplicar daño",
+      "Damage": "Daño",
+      "TotalDamage": "Daño total",
+      "Characteristics": "Atributos",
       "Max": "Máx.",
       "Current": "Actual",
-      "ResultingStat": "Estadísticas resultantes",
-      "UnallocatedDamage": "Daños no asignados",
-      "CharacterIsDead": "El personaje está muerto",
-      "DealDamageTo": "Infligir daño a _ACTOR_NAME_"
+      "ResultingStat": "Atributo final",
+      "UnallocatedDamage": "Daño no asignado",
+      "CharacterIsDead": "El PJ ha muerto",
+      "DealDamageTo": "Aplicar daño en _ACTOR_NAME_"
     },
     "Dialogs": {
-      "ROFPickerTitle": "Seleccione una velocidad de disparo",
-      "ROFSingle": "Fuego único",
-      "ROFBurst": "Ráfaga de fuego",
-      "ROFFull": "Automático completo"
+      "ROFPickerTitle": "Seleccionar modo disparo",
+      "ROFSingle": "Simple",
+      "ROFBurst": "Ráfaga",
+      "ROFFull": "Automático"
     },
     "Actor": {
       "Age": "Edad",
@@ -94,9 +94,9 @@
         "SkillName": "Nombre",
         "Total": "Total",
         "Untrained": "Sin Entrenar",
-		"SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
+        "SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
         "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
-		"JOAT": "Polivalencia"
+        "JOAT": "Polivalencia"
       },
       "Species": "Especie",
       "Tabs": {
@@ -184,16 +184,16 @@
           "drugs": "Drogas",
           "food": "Comida",
           "fuel": "Combustible",
-          "magazine": "Revista",
+          "magazine": "Cargador",
           "power_cell": "Celda de potencia",
           "other": "Otros"
         },
-        "Size": "Talla",
-        "Subtype": "Tipo",
-        "Count": "Contar",
-        "DropConsumablesHere": "Puedes soltar consumibles aquí.",
-        "RemoveConsumable": "Eliminar consumibles",
-        "RemoveConsumableFrom": "¿Quitar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
+        "Size": "Tamaño",
+        "Subtype": "SubCat.",
+        "Count": "Cant.",
+        "DropConsumablesHere": "Puedes arrastrar consumibles aquí.",
+        "RemoveConsumable": "Eliminar consumible",
+        "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
       },
       "Weapon": {
         "Ammo": "Cargador",
@@ -206,7 +206,7 @@
         "rateOfFire": "Cadencia de Tiro/Auto X",
         "recoil": "Retroceso",
         "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
-        "MagazineCost": "Costo de la revista/célula eléctrica"
+        "MagazineCost": "Coste del cargador/celda"
       }
     },
     "Migration": {
@@ -343,17 +343,17 @@
         "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
       },
       "lifebloodInsteadOfCharacteristics": {
-        "hint": "Mostrar END y 'Lifeblood' (utiliza STR debajo de las cubiertas) como características. Útil para el átomo de cefeo, bárbaro! , etc.",
-        "name": "Mostrar END y 'Lifeblood' (STR) como características."
+        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
+        "name": "Mostrar RES y Vitalidad (FUE) como atributos."
       },
       "showContaminationBelowLifeblood": {
-        "hint": "Mostrar contaminación debajo de Sangre vital. Únicamente útil junto con el ajuste 'show END y sangre'.",
-        "name": "Mostrar contaminación debajo de Sangre vital."
+        "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
+        "name": "Mostrar Contaminación bajo Vitalidad."
       }
     },
-	"CloseAndCreateNew": "Cerrar y crear nuevo",
+    "CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
-    "Yes": "Sí",
+    "Yes": "Si",
     "Name": "Nombre",
     "itemTypes": {
       "equipment": "equipo",
@@ -365,30 +365,30 @@
       "junk": "chatarra",
       "skills": "habilidades",
       "skill": "habilidad",
-      "consumable": "consumibles"
+      "consumable": "consumible"
     },
     "Errors": {
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
       "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
       "NoDamageForWeapon": "Falta definir el daño del arma",
-      "TooFewToReload": "Demasiado pocos _NAME_ a _REFILL_ACTION_",
-      "NoAmmo": "Se te acabó la munición. ¡Necesitas recargar antes de disparar!",
-      "OnlyOwnedItems": "Sólo se puede colocar en los elementos que son propiedad de un actor",
+      "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
+      "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
+      "OnlyOwnedItems": "Sólo se pueden colocar en objetos propiedad del Actor",
       "SkillsConsumables": "Las habilidades no pueden tener consumibles",
-      "DraggingSomething": "Arrastrar algo que no se puede arrastrar",
-      "OnlyDropItems": "Solo puedes soltar elementos",
-      "OnlyDropConsumables": "Solo se pueden colocar consumibles en un artículo.",
-      "DropFailedWith": "Error de caída con _ERROR_MSG_",
-      "CouldNotFindItem": "No se pudo encontrar un elemento con id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "El objeto de compendio arrastrado no es un elemento."
+      "DraggingSomething": "Arrastrando algo que no se puede mover",
+      "OnlyDropItems": "Solo puedes arrastrar objetos",
+      "OnlyDropConsumables": "Solo es posible asignar consumibles en el objeto.",
+      "DropFailedWith": "Error de asignación _ERROR_MSG_",
+      "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto."
     },
     "Warnings": {
-      "ActorMissingItem": "El Actor controlado no tiene un elemento con id: _ITEM_ID_",
-      "AutoDamageForMultipleTargetsNotImplemented": "Actualmente no se admite dañar automáticamente varios objetivos (usando Auto X)",
-      "MaxStatVal": "El valor supera el valor máximo de estadística",
-      "StatValBelowZero": "El valor no puede estar por debajo de cero",
-      "DecreaseEnduranceFirst": "La resistencia debe reducirse antes de que otras estadísticas"
+      "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
+      "AutoDamageForMultipleTargetsNotImplemented": "Todavía no se puede asignar daño automáticamente a varios objetivos",
+      "MaxStatVal": "El valor supera el máximo del atributo",
+      "StatValBelowZero": "El valor no puede ser inferior a cero",
+      "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos"
     }
   },
   "VeryDifficult": "Muy Difícil"
