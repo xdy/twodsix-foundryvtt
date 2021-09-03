@@ -39,11 +39,15 @@ export default class TwodsixItem extends Item {
   }
 
   public async addConsumable(consumableId:string):Promise<void> {
-    if (this.data.data.consumables.includes(consumableId)) {
-      console.error(`Twodsix | Consumable already exists for item ${this.id}`);
-      return;
+    if (this.data.data.consumables != undefined) {
+       if (this.data.data.consumables.includes(consumableId)) {
+         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
+       } else {
+          await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
+       }
+    } else {
+      console.error(`Twodsix | Consumable can't be added to item ${this.id}`);
     }
-    await this.update({"data.consumables": this.data.data.consumables.concat(consumableId)}, {});
   }
 
   public async removeConsumable(consumableId: string):Promise<void> {
