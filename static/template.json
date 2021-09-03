@@ -308,6 +308,11 @@
       "type": "equipment",
       "location": ["inventory", "storage"]
     },
+    "tool": {
+      "templates": ["gearTemplate"],
+      "type": "equipment",
+      "location": ["inventory", "storage"]
+    },
     "weapon": {
       "templates": ["gearTemplate"],
       "range": 0,
