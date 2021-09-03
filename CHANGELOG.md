@@ -1,3 +1,14 @@
+## [0.8.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.11...v0.8.12) (2021-09-03)
+
+
+### Bug Fixes
+
+* don't try to add consumables if consumables array does not exist ([b2c6cbe](https://github.com/xdy/twodsix-foundryvtt/commit/b2c6cbe15b8f9c8d8fe046eb36c76c0f7e9bf142))
+* don't try to add consumables if consumables array does not exist ([0401219](https://github.com/xdy/twodsix-foundryvtt/commit/04012199c11f9d57b1f85dfb558715a217bb9da7))
+* Inability to delete consumable ([eca0353](https://github.com/xdy/twodsix-foundryvtt/commit/eca0353aa3ab2bdb9da57e0b57a43a491dd59e10))
+* New Spanish translation from @ForjaSalvaje ([e7df315](https://github.com/xdy/twodsix-foundryvtt/commit/e7df315f54cb9ea60a81fbc1060bab444a76db38))
+* tools couldn't have consumables ([310c4d1](https://github.com/xdy/twodsix-foundryvtt/commit/310c4d19eac0a08af760776421519b1467c18d91))
+
 ## [0.8.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.10...v0.8.11) (2021-08-28)
 
 
