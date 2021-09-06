@@ -86,6 +86,8 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
     "systems/twodsix/templates/actors/parts/actor/actor-info.html",
     "systems/twodsix/templates/actors/parts/actor/actor-items.html",
+    
+
     "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
     "systems/twodsix/templates/actors/parts/actor/actor-ucf.html",
@@ -111,6 +113,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/items/junk-sheet.html",
     "systems/twodsix/templates/items/skills-sheet.html",
     "systems/twodsix/templates/items/storage-sheet.html",
+    "systems/twodsix/templates/items/traits-sheet.html",
     "systems/twodsix/templates/items/tool-sheet.html",
     "systems/twodsix/templates/items/weapon-sheet.html"
   ];
