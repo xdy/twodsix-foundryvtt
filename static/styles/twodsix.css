@@ -956,7 +956,7 @@ span.total-output {
       "char-description char-description char-description"
       "char-contacts char-allies char-enemies"
       "char-bio char-bio char-bio";
-  padding: 0em;
+  /*padding: 0em;*/
   position: relative;
   margin-top: 4em;
 }
