@@ -243,6 +243,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const tool:Item[] = [];
     const junk:Item[] = [];
     const skills:Item[] = [];
+    const traits:Item[] = [];
     const consumable:Item[] = [];
 
     // Iterate through items, allocating to containers
@@ -272,6 +273,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case 'skills':
           skills.push(item);
           break;
+        case "trait":
+            traits.push(item);
+            break;
         case 'consumable':
           consumable.push(item);
           break;
@@ -290,5 +294,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.data.junk = junk;
     sheetData.data.consumable = consumable;
     sheetData.data.skills = skills;
+    sheetData.data.traits = traits;
   }
 }

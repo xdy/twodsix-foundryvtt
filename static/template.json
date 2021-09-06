@@ -284,7 +284,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "consumable"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "traits", "consumable"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -362,6 +362,17 @@
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal"
+    },
+    "trait": {
+      "templates": ["skillsTemplate"],
+      "value": 0,
+      "type": "trait",
+      "description": "",
+      "prereq": "",
+      "shortdescr": "",
+      "subtype": "",
+      "reference": "",
+      "key": "key"
     },
     "consumable": {
       "templates": ["gearTemplate"],

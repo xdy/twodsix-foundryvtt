@@ -1,0 +1,40 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="skill-container-small">
+    <div>
+      <table>
+        <tr>
+          <th>
+            <div class="item-img">
+              <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
+                   height="128"/></div>
+          </th>
+          <th>
+            <div class="item-name">
+              <label for="data.name">{{localize "TWODSIX.Items.Traits.TraitName"}}</label>
+              <input id="data.name" name="name" type="text" value="{{name}}"/>
+            </div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="item-lvl">
+      <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
+        <input id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/></label>
+    </div>
+    <div class="item-prereq">
+      <label for="data.prereq" class="resource-label">{{localize "TWODSIX.Items.Traits.Prerequisite"}}
+        <input id="data.prereq" type="text" name="data.prereq" value="{{data.prereq}}"/>
+      </label>
+    </div>
+    <div class="item-short">
+      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
+        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+      </label>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    </div>
+  </div>
+</form>

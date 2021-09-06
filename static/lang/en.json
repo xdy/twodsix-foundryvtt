@@ -67,7 +67,7 @@
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
-        "CONSUMABLES": "Consumables",
+        "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
         "CreateItem": "Create Item",
         "Damage": "Damage",
@@ -83,6 +83,7 @@
         "Reload": "Reload",
         "ShortDescr": "Short Descr",
         "Subtype": "Type",
+        "TRAITS": "TRAITS",
         "TL": "TL",
         "WEAPONS": "WEAPONS",
         "Weight": "Wt"
@@ -182,6 +183,10 @@
         "SOC": "SOC",
         "STR": "STR",
         "SkillName": "Skill Name"
+      },
+      "Traits": {
+              "Prerequisite": "Prerequisite",
+              "TraitName": "Trait Name"
       },
       "Tool": {
         "Bonus": "Bonus"
