@@ -937,7 +937,7 @@ span.total-output {
 .item-title-short {
   background-image: url(../assets/actor/header.svg);
   height: 22px;
-  width: 9.8em;
+  width: 10.4em;
   display: block;
   color: #000;
   font-weight: bold;
@@ -949,16 +949,16 @@ span.total-output {
 
 .info-container {
   display: grid;
-  grid-template-columns: 10.5em 10.5em 10.5em;
+  grid-template-columns: 11.2em 11.2em 11.2em;
   grid-template-rows: 8em 8em 19em;
   gap: 1px 1px;
   grid-template-areas:
       "char-description char-description char-description"
       "char-contacts char-allies char-enemies"
       "char-bio char-bio char-bio";
-  padding: 1em;
+  padding: 0em;
   position: relative;
-  margin-top: 2em;
+  margin-top: 4em;
 }
 
 .tab.info {

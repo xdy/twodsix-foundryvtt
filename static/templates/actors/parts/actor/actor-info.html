@@ -1,3 +1,39 @@
+<!---- TRAITS ---->
+<div><span class="pusher"></span>
+  <span class="item-title">{{localize "TWODSIX.Actor.Items.TRAITS"}}</span>
+  <div class="items-equipment gear-header">
+    <span></span>
+    <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+    <span></span>
+    <span class="item-name">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
+    <span class="item-name centre"><a class="item-control item-create"
+        title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fas fa-plus"></i></a></span>
+  </div>
+
+  {{#each_sort_by_name data.traits as |item id|}}
+  <div class="item gear">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item.id}}">
+        <span class="items-equipment">
+          <span></span>
+          <span class="item-name">{{item.name}}</span>
+          <span></span>
+          <span class="item-name centre">{{item.data.data.value}}</span>
+          <span class="item-name centre">{{item.data.data.shortdescr}}</span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
+                class="fas fa-trash"></i></a>
+          </span>
+        </span>
+      </li>
+    </ol>
+  </div>
+  {{/each_sort_by_name}}
+</div>
+
 <div class="info-container">
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
