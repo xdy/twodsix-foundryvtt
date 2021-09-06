@@ -113,7 +113,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/items/junk-sheet.html",
     "systems/twodsix/templates/items/skills-sheet.html",
     "systems/twodsix/templates/items/storage-sheet.html",
-    "systems/twodsix/templates/items/traits-sheet.html",
+    "systems/twodsix/templates/items/trait-sheet.html",
     "systems/twodsix/templates/items/tool-sheet.html",
     "systems/twodsix/templates/items/weapon-sheet.html"
   ];
