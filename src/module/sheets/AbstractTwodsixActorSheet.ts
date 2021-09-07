@@ -274,8 +274,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           skills.push(item);
           break;
         case "trait":
-            traits.push(item);
-            break;
+          traits.push(item);
+          break;
         case 'consumable':
           consumable.push(item);
           break;
