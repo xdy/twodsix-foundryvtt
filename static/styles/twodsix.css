@@ -652,6 +652,13 @@ a.notes-tab.active {
   grid-template-areas: '. . . . .';
 }
 
+.items-traits {
+  display: grid;
+  grid-template-columns: 14em 2em 14em 3em;
+  gap: 1px 1px;
+  grid-template-areas: '. . . .';
+}
+
 .items-consumable {
   display: grid;
   grid-template-columns: 1em 15em 5em 2.5em 6.5em 3em;
