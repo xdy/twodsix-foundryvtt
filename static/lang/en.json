@@ -357,6 +357,10 @@
       "showContaminationBelowLifeblood": {
         "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
         "name": "Show Contamination below Lifeblood. "
+      },
+      "useSystemDefaultTokenIcon": {
+        "hint": "Use system default token icon (mystery man) when creating new actor.  Check when using custom images so system automatically sets token image to the actor image.",
+        "name": "Use the system default token icon for new actors."
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -53,15 +53,18 @@ export default class TwodsixActor extends Actor {
         await this.createUntrainedSkill();
         await this.update({
           'img': 'systems/twodsix/assets/icons/default_actor.png',
-          'token.img': 'systems/twodsix/assets/icons/default_actor.png'
         });
         break;
       case "ship":
         await this.update({
           'img': 'systems/twodsix/assets/icons/default_ship.png',
-          'token.img': 'systems/twodsix/assets/icons/default_ship.png'
         });
         break;
+    }
+    if(game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
+      await this.update({
+        'token.img': CONST.DEFAULT_TOKEN //'icons/svg/mystery-man.svg'
+      });
     }
   }
 

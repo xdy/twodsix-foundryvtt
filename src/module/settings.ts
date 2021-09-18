@@ -48,6 +48,7 @@ export const registerSettings = function ():void {
   _booleanSetting('invertSkillRollShiftClick', false);
   _booleanSetting('lifebloodInsteadOfCharacteristics', false);
   _booleanSetting('showContaminationBelowLifeblood', true);
+  _booleanSetting('useSystemDefaultTokenIcon', false);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
