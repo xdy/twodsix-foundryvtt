@@ -1,3 +1,16 @@
+## [0.8.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.13...v0.8.14) (2021-09-25)
+
+
+### Bug Fixes
+
+* Add trait to en.json ([0b0fab2](https://github.com/xdy/twodsix-foundryvtt/commit/0b0fab29e1081a48eae5a93483f3e2b446ed7891))
+* clean-up lazy formatting ([1967f0e](https://github.com/xdy/twodsix-foundryvtt/commit/1967f0e445387b4229cd3f2d40abab0a3f7f9cd3))
+* indent error ([55e2f4e](https://github.com/xdy/twodsix-foundryvtt/commit/55e2f4e3e985a50619e001fcf9e0354d55356ce3))
+* missing link to new sheet ([5f0339f](https://github.com/xdy/twodsix-foundryvtt/commit/5f0339faf89ae71805ce66500d32aaa9abdadbde))
+* style error from LGTM ([54f076e](https://github.com/xdy/twodsix-foundryvtt/commit/54f076e371da882bbe1cf3842869ea7a93635846))
+* typo found ([dc65203](https://github.com/xdy/twodsix-foundryvtt/commit/dc65203f9b827359d039dd500b41f8d64a99a94c))
+* typos for traits ([a5a7bcf](https://github.com/xdy/twodsix-foundryvtt/commit/a5a7bcf2fa9c1189ff2815fc4c4035fca75629d9))
+
 ## [0.8.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.12...v0.8.13) (2021-09-25)
 
 
