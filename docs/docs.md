@@ -7,6 +7,9 @@ A Foundry VTT system for running games using various 2d6-based role-playing game
 Some basic instructions on how to set up your game for some of the most common variants can be found below.
 Also, see the [PUBLISHERS.md](../PUBLISHERS.md) for details of the rpg publishers that have explicitly granted us permission to support their products.
 
+# Supported variants
+Listed in order of me adding notes about them. I.e. the newest ones are towards the end.
+
 ## Cepheus Engine
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
@@ -111,6 +114,11 @@ Compendiums with skills, items, etc cannot be included for licensing reasons, so
 ## Classic Traveller
 Can probably be done, but, I haven't tried it. If you have, tell us on the Discord what you needed to change!
 
+## Cepheus Deluxe
+To quote Marvin on the discord: "CE will probably get you closer to the correct settings.  At least it gets the difficulty settings to match.  The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
+Support for Traits was added to the system with version 0.8.14
+Watch #615 for any progress on Lifeblood and Stamina.
+
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
 * You can connect a skill to any item on a character, with an optional permanent bonus, so you can do 'skill rolls' (often enough weapon attacks) by clicking the item rather than the skill, and get that bonus added automatically.
@@ -143,9 +151,9 @@ Fwiw, this is how I have set up the system - i.e. the setting combination that i
 * termForDisadvantage:Bane
 
 ## The modules I consider essential
-Dice So Nice!, Compendium Folders, DF Settings Clarity, Dice Tray, Forien's Quest Log, Hey, Listen!, Hidden Initiative, Illandril's Chat Enhancements, Inline Web Viewer, PDFoundry, Permission Viewer, PopOut!, Popout Resizer, Tidy UI
+Dice So Nice!, Compendium Folders, DF Settings Clarity, Dice Tray, Forien's Quest Log, Illandril's Chat Enhancements, Inline Web Viewer, PDFoundry, Permission Viewer, PopOut!, Tidy UI
 
 ## The modules I really like, but guess I could do without
-Autocomplete Whispers, Combat Numbers, DF Scene Enhancement, Forien's Copy Enviromment, FX Master, GM Notes, GM Screen, ModBox, Not Your Turn!, Token Mold.
+Autocomplete Whispers, Combat Numbers, DF Scene Enhancement, Forien's Copy Enviromment, FX Master, GM Notes, GM Screen, ModBox, Token Mold.
 
 Also, on our discord (https://discord.gg/VNFUvjv) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
