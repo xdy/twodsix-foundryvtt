@@ -1,3 +1,10 @@
+## [0.8.13](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.12...v0.8.13) (2021-09-25)
+
+
+### Bug Fixes
+
+* add setting to set new actor prototype icons to FVTT system default ([879c0f4](https://github.com/xdy/twodsix-foundryvtt/commit/879c0f42bb19a3879af97273a3914e2236a8d784))
+
 ## [0.8.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.11...v0.8.12) (2021-09-03)
 
 
