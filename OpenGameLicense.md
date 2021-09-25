@@ -97,24 +97,28 @@ breach within 30 days of becoming aware of the breach. All sublicenses shall sur
 extent necessary to make it enforceable.
 15. COPYRIGHT NOTICE
 Open Game License v 1.0a Copyright 2000, Wizards of the Coast, Inc.
+System Reference Document, Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, based on original material by E. Gary Gygax and Dave Arneson.
+System Reference Document Copyright 2000-2003, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, Rich Baker, Andy Collins, David Noonan, Rich Redman, Bruce R. Cordell, John D. Rateliff, Thomas Reid, James Wyatt, based on original material by E. Gary Gygax and Dave Arneson.
 High Guard System Reference Document Copyright © 2008, Mongoose Publishing.
 Mercenary System Reference Document Copyright © 2008, Mongoose Publishing.
-Modern System Reference Document Copyright 2002-2004, Wizards of the Coast, Inc.; Authors Bill Slavicsek, Jeff Grubb,
-Rich Redman, Charles Ryan, Eric Cagle, David Noonan, Stan!, Christopher Perkins, Rodney Thompson, and JD Wiker, based
-on material by Jonathan Tweet, Monte Cook, Skip Williams, Richard Baker, Peter Adkison, Bruce R. Cordell, John Tynes,
-Andy Collins, and JD Wiker.
+Modern System Reference Document Copyright 2002-2004, Wizards of the Coast, Inc.; Authors Bill Slavicsek, Jeff Grubb, Rich Redman, Charles Ryan, Eric Cagle, David Noonan, Stan!, Christopher Perkins, Rodney Thompson, and JD Wiker, based on material by Jonathan Tweet, Monte Cook, Skip Williams, Richard Baker, Peter Adkison, Bruce R. Cordell, John Tynes, Andy Collins, and JD Wiker.
 Swords & Wizardry Core Rules, Copyright 2008, Matthew J. Finch
-System Reference Document, Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip
-Williams, based on original material by E. Gary Gygax and Dave Arneson.
 T20 - The Traveller's Handbook Copyright 2002, Quiklink Interactive, Inc. Traveller is a trademark of Far Future Enterprises
 and is used under license.
 Traveller System Reference Document Copyright © 2008, Mongoose Publishing.
 Traveller is © 2008 Mongoose Publishing. Traveller and related logos, character, names, and distinctive likenesses thereof
 are trademarks of Far Future Enterprises unless otherwise noted. All Rights Reserved. Mongoose Publishing Ltd Authorized
 User.
+Thousand Suns, Copyright 2008-2011 ©, James Maliszewski; Author James Maliszewski.
+Thousand Suns: Starships, Copyright 2015 ©, James Maliszewski; Author Greg Videll.
+Outer Veil, Copyright 2011 © Spica Publishing: Authors Omer Golan-Joel and Richard Hazlewood.
 Cepheus Engine System Reference Document, Copyright © 2016 Samardan Press; Author Jason "Flynn" Kemp
 Cepheus Engine’s ‘70s 2D6 Retro Rules’, Copyright ©2017 Zozer Games, author Paul Elliott
 Clement Sector Core Setting Book 2.0 Copyright 2016, Gypsy Knights Games LLC
+The Anderson and Felix Guide to Naval Architecture Copyright 2015 ©, Gypsy Knights Games LLC.
+The Anderson and Felix Optional Components Guide, Copyright 2018 ©, Gypsy Knights Games LLC, Author Michael Johnson
+Spacecraft Design Guide for Cepheus Engine, Copyright © 2018 Moon Toad Publications; Author Michael Johnson.
+Artificial: Robots in Clement Sector, Copyright 2018, Gypsy Knights Games LLC, Author Michael Johnson
 These Stars Are Ours! Copyright © 2016, Stellagama Publishing; Authors Omer Golan-Joel, Josh Peters, and Richard Hazlewood.
 Cepheus Light © 2018, Stellagama Publishing; Authors Omer Golan-Joel and Josh Peters.
 Cepheus: Faster Than Light © 2019, Stellagama Publishing; Author Omer Golan-Joel.
