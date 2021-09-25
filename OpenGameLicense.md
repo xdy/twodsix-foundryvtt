@@ -115,13 +115,18 @@ User.
 Cepheus Engine System Reference Document, Copyright © 2016 Samardan Press; Author Jason "Flynn" Kemp
 Cepheus Engine’s ‘70s 2D6 Retro Rules’, Copyright ©2017 Zozer Games, author Paul Elliott
 Clement Sector Core Setting Book 2.0 Copyright 2016, Gypsy Knights Games LLC
-These Stars Are Ours! Copyright © 2016, Stellagama Publishing; Authors Omer Golan-Joel, Josh Peters,
-and Richard Hazlewood.
+These Stars Are Ours! Copyright © 2016, Stellagama Publishing; Authors Omer Golan-Joel, Josh Peters, and Richard Hazlewood.
 Cepheus Light © 2018, Stellagama Publishing; Authors Omer Golan-Joel and Josh Peters.
 Cepheus: Faster Than Light © 2019, Stellagama Publishing; Author Omer Golan-Joel.
 2d6 Science Fiction System Reference Document (‘2d6 SF SRD’) © 2017, 2d6 Science Fiction System Reference Document.
 Cepheus Quantum © 2019, Stellagama Publishing; Author Omer Golan-Joel
 Cepheus Atom © 2020, Stellagama Publishing; Author Omer Golan-Joel
 Barbaric! © 2021, Stellagama Publishing; Author Omer Golan-Joel
+Zaibatsu Copyright © 2018 Zozer Games; author Paul Elliott
+Vehicle Design Guide for Cepheus Engine, Copyright © 2018 Moon Toad Publications; Author Michael Johnson.
+Quick Robots, Copyright © 2019; Author: Michael Brown.
+Modern War © 2020 Zozer Games; Author Paul Elliott.
+Modern War – Gun Conversion © 2020 Zozer Games; Author Paul Elliott.
+Cepheus Deluxe © 2021 Stellagama Publishing; authors Omer Golan-Joel, Josh Peters, Richard Hazlewood, and Robert L. S. Weaver.
 Twodsix © 2020-2021, The developers of Twodsix (including but not necessarily limited to those listed in https://github.com/xdy/twodsix-foundryvtt/blob/master/CONTRIBUTORS.md)
 </pre>
