@@ -382,7 +382,8 @@
       "junk": "junk",
       "skills": "skills",
       "skill": "skill",
-      "consumable": "consumable"
+      "consumable": "consumable",
+      "trait": "trait"
     },
     "Errors": {
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
