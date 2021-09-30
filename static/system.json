@@ -160,6 +160,22 @@
       "module": "twodsix",
       "path": "./packs/cepheus-quantum-gm-screen.db",
       "entity": "JournalEntry"
+    },
+    {
+      "name": "cepheus-deluxe-items",
+      "label": "cepheus deluxe items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "cepheus-deluxe-gm-screen",
+      "label": "cepheus deluxe gm screen",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-gm-screen.db",
+      "entity": "JournalEntry"
     }
   ],
   "primaryTokenAttribute": "hits",
