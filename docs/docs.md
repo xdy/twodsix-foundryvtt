@@ -118,6 +118,7 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 To quote Marvin on the discord: "CE will probably get you closer to the correct settings.  At least it gets the difficulty settings to match.  The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
 Support for Traits was added to the system with version 0.8.14
 Watch #615 for any progress on Lifeblood and Stamina.
+Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
