@@ -126,7 +126,6 @@ Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information ar
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)
 * You can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.) Or, by clicking shift when dragging you get a dialog that allows you to spread the damage manually.
 
-
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
 Twodsix has been translated by users of the system into the following languages:
