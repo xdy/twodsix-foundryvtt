@@ -1,3 +1,10 @@
+## [0.8.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.14...v0.8.15) (2021-10-02)
+
+
+### Bug Fixes
+
+* Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system. ([fa02423](https://github.com/xdy/twodsix-foundryvtt/commit/fa024239233b83864e2b3182697c3ded08e70b65))
+
 ## [0.8.14](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.13...v0.8.14) (2021-09-25)
 
 
