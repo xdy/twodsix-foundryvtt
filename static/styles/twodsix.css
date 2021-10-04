@@ -737,7 +737,7 @@ a:hover, a.active {
 }
 
 input.skill-level-edit {
-  padding: 0em;
+  padding: initial;
   text-align: right;
   height: auto;
 }
