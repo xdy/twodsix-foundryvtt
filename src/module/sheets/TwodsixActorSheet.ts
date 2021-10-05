@@ -81,6 +81,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find(".adjust-consumable").on("click", this._onAdjustConsumableCount.bind(this));
     html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
+
+    html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
   }
 
 
@@ -220,6 +222,33 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       } else {
         throw err;
       }
+    }
+  }
+
+  /**
+   * Handle auto add of weapons consumables.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onAutoAddConsumable(event: Event): Promise<void> {
+    const li = $(event.currentTarget).parents(".item");
+    const weaponSelected = this.actor.items.get(li.data("itemId"));
+
+    const max = weaponSelected.data.data.ammo;
+    if (max > 0 && weaponSelected.data.data.consumables.length === 0) {
+      const data = {
+        name: "Magazine for " + weaponSelected.data.name,
+        type: "consumable",
+        data: {
+          subtype: "other",
+          quantity: 1,
+          currentCount: max,
+          max
+        }
+      };
+      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
+      await weaponSelected.addConsumable(newConsumable[0].id);
+      await weaponSelected.update({ "data.useConsumableForAttack": newConsumable[0].id });
     }
   }
 }
