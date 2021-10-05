@@ -168,7 +168,7 @@ export default class TwodsixActor extends Actor {
 
   public static setUntrainedSkillForWeapons():void {
     TwodsixActor._applyToAllActorItems((actor:TwodsixActor, item:TwodsixItem) => {
-      if (item.type === "weapon" && !item.data.data.skill) {
+      if (item.type === "weapon" && !item.data.data.skill && actor.type === "traveller") {
         item.update({"data.skill": actor.getUntrainedSkill().id}, {});
       }
     });
