@@ -260,12 +260,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case 'tool':
         case 'junk':
           equipment.push(item);
+          storage.push(item);
           break;
         case 'weapon':
           weapon.push(item);
+          storage.push(item);
           break;
         case 'armor':
           armor.push(item);
+          storage.push(item);
           break;
         case 'augment':
           augment.push(item);
@@ -278,6 +281,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           break;
         case 'consumable':
           consumable.push(item);
+          storage.push(item);
           break;
         default:
           break;
