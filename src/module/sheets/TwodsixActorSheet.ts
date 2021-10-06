@@ -243,7 +243,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const max = weaponSelected.data.data.ammo;
     if (max > 0 && weaponSelected.data.data.consumables.length === 0) {
       const data = {
-        name: "Magazine for " + weaponSelected.data.name,
+        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine")+ ": " + weaponSelected.data.name,
         type: "consumable",
         data: {
           subtype: "other",
