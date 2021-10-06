@@ -47,7 +47,13 @@ export class TwodsixDiceRoll {
     // Add skill modifier
     if (this.skill) {
       formula += "+ @skill";
-      data["skill"] = this.skill.data.data.value;
+      /*Check for "Untrained" value and use if better to account for JOAT*/
+      const joat = this.actor.getUntrainedSkill().data.data.value;
+      if (joat > this.skill.data.data.value) {
+        data["skill"] = joat;
+      } else {
+        data["skill"] = this.skill.data.data.value;
+      }
     }
 
     // Add dice modifier
