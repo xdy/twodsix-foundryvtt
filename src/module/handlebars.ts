@@ -55,15 +55,22 @@ export default function registerHandlebarsHelpers():void {
   Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    let adjValue = value;
+
+    /* only modify if hideUntrained is false and skill value is untrained (-3) */
+    if (value === game.system.template.Item.skills.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+      adjValue = actor.items.find((i) =>  i._id === actorData.untrainedSkill).data.value;
+    }
+
     if (characteristicElement) {
       if (!characteristicElement.current) {
         characteristicElement.current = characteristicElement.value - characteristicElement.damage;
       }
 
       const mod = calcModFor(characteristicElement.current);
-      return Number(value) + mod;
+      return Number(adjValue) + mod;
     } else {
-      return value;
+      return adjValue;
     }
   });
 
