@@ -83,6 +83,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
 
     html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
+    //add hooks to allow skill levels to be updates on skill tab
+    html.find(".skill-level-edit").on("input", this._onSkillLevelEdit.bind(this));
+    html.find(".skill-level-edit").on("click", (event) => {
+      $(event.currentTarget).trigger("select");
+    });
   }
 
 
@@ -250,5 +255,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       await weaponSelected.addConsumable(newConsumable[0].id);
       await weaponSelected.update({ "data.useConsumableForAttack": newConsumable[0].id });
     }
+  /**
+   * Update skill level when edited on skill tab.
+   * @param {Event} event   The originating input event
+   * @private
+   */
+  private async _onSkillLevelEdit(event:Event): Promise<void> {
+    const newValue = parseInt(event.currentTarget["value"], 10);
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+    itemSelected.update({'data.value': newValue});
   }
 }

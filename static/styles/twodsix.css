@@ -736,6 +736,12 @@ a:hover, a.active {
   width: 2em;
 }
 
+input.skill-level-edit {
+  padding: initial;
+  text-align: right;
+  height: auto;
+}
+
 .skill-box-name.inlineblock-left {
   width: 16em;
 }
