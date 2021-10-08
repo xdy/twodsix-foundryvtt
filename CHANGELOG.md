@@ -1,3 +1,11 @@
+## [0.8.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.15...v0.8.16) (2021-10-08)
+
+
+### Bug Fixes
+
+* allow skill levels to be changed directly on skill tab ([b866354](https://github.com/xdy/twodsix-foundryvtt/commit/b866354f5cc128543a6a444c6efcbdf0fa861d09))
+* screeners don't like values being set to zero ([c8dc342](https://github.com/xdy/twodsix-foundryvtt/commit/c8dc3428a1bd6d136daf372db83855e970e41bc5))
+
 ## [0.8.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.14...v0.8.15) (2021-10-02)
 
 
