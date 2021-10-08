@@ -5,7 +5,7 @@ import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUti
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
-  protected activateListeners(html:JQuery):void {
+  protected activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
@@ -45,16 +45,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           // @ts-ignore
           // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
           if (ownedItem.type === "consumable") {
-            let tempItems = this.actor.items.filter(i => i.type !== "skills");
-            tempItems.forEach( i => {
+            const tempItems = this.actor.items.filter(i => i.type !== "skills");
+            tempItems.forEach(i => {
               if (i.data.data.consumables != undefined) {
-                 if (i.data.data.consumables.includes(ownedItem.id)  || i.data.data.useConsumableForAttack === ownedItem.id) {
-                    i.removeConsumable(ownedItem.id);
-                 }
+                if (i.data.data.consumables.includes(ownedItem.id) || i.data.data.useConsumableForAttack === ownedItem.id) {
+                  i.removeConsumable(ownedItem.id);
+                }
               }
             });
           }
-          
+
           await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
           li.slideUp(200, () => this.render(false));
         },
@@ -79,7 +79,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.handleContentEditable(html);
   }
 
-  _onDragStart(event: DragEvent):void {
+  _onDragStart(event: DragEvent): void {
     const header = event.currentTarget;
     if (!header["dataset"]) {
       return;
@@ -88,7 +88,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return super._onDragStart(event);
   }
 
-  private handleContentEditable(html:JQuery) {
+  private handleContentEditable(html: JQuery) {
     html.find('div[contenteditable="true"][data-edit]').on(
       'focusout',
       this._onSubmit.bind(this)
@@ -96,7 +96,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
-  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string): void {
+  private updateWithItemSpecificValues(itemData: Record<string, any>, type: string): void {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -119,7 +119,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onItemCreate(event:{ preventDefault:() => void; currentTarget: HTMLElement }):Promise<void> {
+  private async _onItemCreate(event: { preventDefault: () => void; currentTarget: HTMLElement }): Promise<void> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -149,7 +149,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Special handling of skills dropping.
    */
-  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
+  protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
 
     const data = getDataFromDropEvent(event);
@@ -160,7 +160,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (data.type === 'damageItem') {
-      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
       // @ts-ignore
       await this.actor.damageActor(data.payload["damage"], showDamageDialog);
@@ -217,13 +217,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
       //Remove any attached consumables
       // @ts-ignore
-      if(itemData.data.consumables !== undefined) {
-        if(itemData.data.consumables.length > 0) {
+      if (itemData.data.consumables !== undefined) {
+        if (itemData.data.consumables.length > 0) {
           // @ts-ignore
           itemData.data.consumables = [];
         }
       }
-      
+
       // Create the owned item (TODO Add to type and remove the two lines below...)
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -232,22 +232,22 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   }
 
-  protected static _prepareItemContainers(items, sheetData:any):void {
+  protected static _prepareItemContainers(items, sheetData: any): void {
 
     // Initialize containers.
-    const storage:Item[] = [];
-    const equipment:Item[] = [];
-    const weapon:Item[] = [];
-    const armor:Item[] = [];
-    const augment:Item[] = [];
-    const tool:Item[] = [];
-    const junk:Item[] = [];
-    const skills:Item[] = [];
-    const traits:Item[] = [];
-    const consumable:Item[] = [];
+    const storage: Item[] = [];
+    const equipment: Item[] = [];
+    const weapon: Item[] = [];
+    const armor: Item[] = [];
+    const augment: Item[] = [];
+    const tool: Item[] = [];
+    const junk: Item[] = [];
+    const skills: Item[] = [];
+    const traits: Item[] = [];
+    const consumable: Item[] = [];
 
     // Iterate through items, allocating to containers
-    items.forEach((item:TwodsixItem) => {
+    items.forEach((item: TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
       if (item.type !== "skills") {
         item.prepareConsumable();
