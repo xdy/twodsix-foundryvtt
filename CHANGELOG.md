@@ -1,3 +1,11 @@
+## [0.8.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.17...v0.8.18) (2021-10-08)
+
+
+### Bug Fixes
+
+* add ability to quick add weapon consumable on actor-items tab ([ca87481](https://github.com/xdy/twodsix-foundryvtt/commit/ca87481cac1dfd8c85ae35f542609549b14a69ef))
+* add localization ([7bb138c](https://github.com/xdy/twodsix-foundryvtt/commit/7bb138cb3d42603b9db756e11718149ebf80a4cc))
+
 ## [0.8.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.16...v0.8.17) (2021-10-08)
 
 
