@@ -1,3 +1,10 @@
+## [0.8.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.18...v0.8.19) (2021-10-08)
+
+
+### Bug Fixes
+
+* Minor bugfix around untrained skill (might avoid a onetime exception on some characters) ([9102e15](https://github.com/xdy/twodsix-foundryvtt/commit/9102e157999844f786a6927d061740c44316db2d))
+
 ## [0.8.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.17...v0.8.18) (2021-10-08)
 
 
