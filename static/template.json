@@ -93,6 +93,22 @@
           "damage": 0,
           "label": "Psionic Strength",
           "shortLabel": "PSI"
+        },
+        "stamina": {
+          "key": "stamina",
+          "value": 7,
+          "inputCurrent": 7,
+          "damage": 0,
+          "label": "Stamina",
+          "shortLabel": "STA"
+        },
+        "lifeblood": {
+          "key": "lifeblood",
+          "value": 14,
+          "inputCurrent": 14,
+          "damage": 0,
+          "label": "Lifeblood",
+          "shortLabel": "LFB"
         }
       }
     },

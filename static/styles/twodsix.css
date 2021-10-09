@@ -341,7 +341,7 @@ img.character-info-mask {
   margin-left: 2.6em;
   margin-right: 0;
   position: relative;
-  margin-top: 0.3em;
+  margin-top: 0.15em;
   width: 19em;
   z-index: 9;
   color: #29aae1 !important;
@@ -353,17 +353,17 @@ img.character-info-mask {
 }
 
 .bgi-age input {
-  width: 2.5em;
+  width: 2em;
   border: none;
 }
 
 .bgi-gender input {
-  width: 4em;
+  width: 7em;
   border: none;
 }
 
 .bgi-species input {
-  width: 9.1em;
+  width: 8em;
   border: none;
 }
 
@@ -372,8 +372,26 @@ img.character-info-mask {
   border: none;
 }
 
+.bgi-char-narrow {
+  font-size: 16px;
+}
+.bgi-char-narrow input {
+  width: 1.5em;
+  text-align: right;
+}
+
+.bgi-char-wide {
+  font-size: 16px;
+}
+
+.bgi-char-wide input {
+  width: 2.2em;
+  border: none;
+  text-align: left;
+}
+
 span.bgi-age {
-  margin-right: 4em;
+  margin-right: 0em;
 }
 
 span.bgi-armor {
@@ -385,7 +403,7 @@ span.bgi-armor {
 
 .bgi-armor input {
   position: relative;
-  alignment: center;
+  text-align: center;
   margin-bottom: -0.5em;
   width: 2.5em;
   border: none;
@@ -397,7 +415,7 @@ span.bgi-armor {
 
 .character-characteristics {
   width: 17.5em;
-  margin-top: 2em;
+  margin-top: 1.5em;
   margin-left: 3.3em;
   position: relative;
   z-index: 6;
