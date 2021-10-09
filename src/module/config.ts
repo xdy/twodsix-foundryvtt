@@ -7,7 +7,9 @@ const CHARACTERISTICS = Object.freeze({
   "intelligence": "INT",
   "education": "EDU",
   "socialStanding": "SOC",
-  "psionicStrength": "PSI"
+  "psionicStrength": "PSI",
+  "stamina": "STA",
+  "lifeblood": "LFB"
 });
 
 /**

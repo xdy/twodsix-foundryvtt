@@ -54,6 +54,8 @@
       "Gender": "Gender",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
+      "Stamina": "Stamina",
+      "RadiationExposure": "Radiation Exposure",
       "HomeWorld": "Home world",
       "Info": {
         "ALLIES": "ALLIES",
@@ -366,6 +368,10 @@
       "useSystemDefaultTokenIcon": {
         "hint": "Use system default token icon (mystery man) when creating new actor.  Check when using custom images so system automatically sets token image to the actor image.",
         "name": "Use the system default token icon for new actors."
+      },
+      "showLifebloodStamina": {
+        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Useful for Cepheus Deluxe.",
+        "name": "Show Lifeblood and Stamina characteristics."
       }
     },
     "CloseAndCreateNew": "Close and create new",
