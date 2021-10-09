@@ -32,9 +32,9 @@
                   <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
                 </span>
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <span class="item-name centre">{{data.value}}</span>
-                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor data.characteristic}}</span>
-                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor data.characteristic data.value}}</span>
+                <input class= "skill-level-edit" type="number" value="{{item.data.data.value}}"/>
+                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.data.data.characteristic}}</span>
+                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item.data.data.characteristic item.data.data.value}}</span>
                 <span class="item-controls centre">
                   <a class="skl item-control item-edit" title='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fas fa-edit"></i></a>
                   <a class="skl item-control item-delete" title='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fas fa-trash"></i></a>

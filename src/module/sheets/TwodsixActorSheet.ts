@@ -77,6 +77,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find(".adjust-consumable").on("click", this._onAdjustConsumableCount.bind(this));
     html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
+
+    html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
+
+    //add hooks to allow skill levels to be updates on skill tab
+    html.find(".skill-level-edit").on("input", this._onSkillLevelEdit.bind(this));
+    html.find(".skill-level-edit").on("click", (event) => {
+      $(event.currentTarget).trigger("select");
+    });
   }
 
 
@@ -220,5 +228,44 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         throw err;
       }
     }
+  }
+
+  /**
+   * Handle auto add of weapons consumables.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onAutoAddConsumable(event: Event): Promise<void> {
+    const li = $(event.currentTarget).parents(".item");
+    const weaponSelected: any = this.actor.items.get(li.data("itemId"));
+
+    const max = weaponSelected.data.data.ammo;
+    if (max > 0 && weaponSelected.data.data.consumables.length === 0) {
+      const data = {
+        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine")+ ": " + weaponSelected.data.name,
+        type: "consumable",
+        data: {
+          subtype: "other",
+          quantity: 1,
+          currentCount: max,
+          max
+        }
+      };
+      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
+      await weaponSelected.addConsumable(newConsumable[0].id);
+      await weaponSelected.update({ "data.useConsumableForAttack": newConsumable[0].id });
+    }
+  }
+
+  /**
+   * Update skill level when edited on skill tab.
+   * @param {Event} event   The originating input event
+   * @private
+   */
+  private async _onSkillLevelEdit(event:Event): Promise<void> {
+    const newValue = parseInt(event.currentTarget["value"], 10);
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+    itemSelected.update({'data.value': newValue});
   }
 }

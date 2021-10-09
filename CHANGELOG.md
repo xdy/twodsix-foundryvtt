@@ -1,3 +1,35 @@
+## [0.8.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.18...v0.8.19) (2021-10-08)
+
+
+### Bug Fixes
+
+* Minor bugfix around untrained skill (might avoid a onetime exception on some characters) ([9102e15](https://github.com/xdy/twodsix-foundryvtt/commit/9102e157999844f786a6927d061740c44316db2d))
+
+## [0.8.18](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.17...v0.8.18) (2021-10-08)
+
+
+### Bug Fixes
+
+* add ability to quick add weapon consumable on actor-items tab ([ca87481](https://github.com/xdy/twodsix-foundryvtt/commit/ca87481cac1dfd8c85ae35f542609549b14a69ef))
+* add localization ([7bb138c](https://github.com/xdy/twodsix-foundryvtt/commit/7bb138cb3d42603b9db756e11718149ebf80a4cc))
+
+## [0.8.17](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.16...v0.8.17) (2021-10-08)
+
+
+### Bug Fixes
+
+* allow JOAT to work with rolls ([c4b0864](https://github.com/xdy/twodsix-foundryvtt/commit/c4b08648932f70c20b313f5e298ae6b470917f1e))
+* Allow non storage items to be seen in ship's locker ([0069501](https://github.com/xdy/twodsix-foundryvtt/commit/0069501f76e06529fa01d5aeb7df0e2411dccf0b))
+* fix setting unskilled for non-traveller actors that store weapons ([4a6b010](https://github.com/xdy/twodsix-foundryvtt/commit/4a6b010b450265f442357d458eb70185433af43e))
+
+## [0.8.16](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.15...v0.8.16) (2021-10-08)
+
+
+### Bug Fixes
+
+* allow skill levels to be changed directly on skill tab ([b866354](https://github.com/xdy/twodsix-foundryvtt/commit/b866354f5cc128543a6a444c6efcbdf0fa861d09))
+* screeners don't like values being set to zero ([c8dc342](https://github.com/xdy/twodsix-foundryvtt/commit/c8dc3428a1bd6d136daf372db83855e970e41bc5))
+
 ## [0.8.15](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.14...v0.8.15) (2021-10-02)
 
 
