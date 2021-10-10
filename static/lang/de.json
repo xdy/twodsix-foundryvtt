@@ -126,6 +126,7 @@
       "CantShowCharacteristic": "Sie müssen das Merkmal für alle mit XXX markierten Fähigkeiten erneut auswählen. Entschuldigung..."
     },
     "Items": {
+      "Encumbrance": "Belastung",
       "Armor": {
         "Armor": "Rüstung",
         "SecondaryArmor": "Zweite Rüstung",

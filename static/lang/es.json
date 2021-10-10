@@ -122,6 +122,7 @@
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar los atributos en todas las habilidades marcadas con XXX."
     },
     "Items": {
+      "Encumbrance": "Encumbrance",
       "Armor": {
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",

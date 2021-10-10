@@ -245,12 +245,27 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const skills:Item[] = [];
     const traits:Item[] = [];
     const consumable:Item[] = [];
+    var encumbrance = 0;
+    var primaryArmor = 0;
+    var secondaryArmor = 0;
+    var radiationProtection = 0;
 
     // Iterate through items, allocating to containers
     items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
       if (item.type !== "skills") {
         item.prepareConsumable();
+      }
+      if (item.equipped !== "ship") {
+          const q = i.data.quantity || 0;
+          var w = i.data.weight || 0;
+          if (item.type === "armor" && item.equipped === "equipped") {
+            w *= 0.25;
+            primaryArmor += item.data.armor.value;
+            secondaryArmor += item.data.secondaryArmor.value;
+            radiationProtection += item.data.radiationProtection.value;
+          }
+          encumbrance += (q * w)
       }
       switch (item.type) {
         case 'storage':
@@ -299,5 +314,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.data.consumable = consumable;
     sheetData.data.skills = skills;
     sheetData.data.traits = traits;
+    sheetData.data.primaryArmor = primaryArmor;
+    sheetData.data.secondaryArmor = secondaryArmor;
+    sheetData.data.radiationProtection = radiationProtection;
+    sheetData.data.encumbrance = encumbrance;
   }
 }

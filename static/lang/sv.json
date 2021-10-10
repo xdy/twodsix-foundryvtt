@@ -102,6 +102,7 @@
       "CantShowCharacteristic": "Du måste återigen välja attribut för alla färdigheter som är markerade med XXX. Ledsen..."
     },
     "Items": {
+      "Encumbrance": "Encumbrance",
       "Armor": {
         "Armor": "Rustning",
         "SecondaryArmor": "Sekundär rustning",
