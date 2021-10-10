@@ -268,7 +268,7 @@ h2 {
 
 .content-container {
   display: grid;
-  grid-template-columns: 22em 34.5em;
+  grid-template-columns: 21.8em 35em;
   gap: 1px 1px;
   position: relative;
   top: -2.4em;
@@ -632,12 +632,12 @@ a.notes-tab.active {
 }
 
 .tab.inventory {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
 }
 
 .character-inventory {
-  width: 34em;
   overflow-x: hidden;
 }
 
@@ -647,7 +647,7 @@ a.notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1em 14em 1.5em 1.5em 2.5em 3em 5em 4em;
+  grid-template-columns: 1em 14em 1.6em 1.6em 1.6em 3em 5em 5.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -666,21 +666,21 @@ a.notes-tab.active {
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1em 14em 4em 3.5em 3.5em 4em 3em;
+  grid-template-columns: 1em 14em 3.5em 3.5em 3.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1em 13em 3.5em 3.5em 4em 5em 3em;
+  grid-template-columns: 1em 12em 1.6em 1.6em 10.5em 4em 3em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1em 12em 1.5em 2.5em 13em 3em;
+  grid-template-columns: 1em 12em 1.6em 1.6em 13em 4.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -694,7 +694,7 @@ a.notes-tab.active {
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1em 15em 5em 2.5em 6.5em 3em;
+  grid-template-columns: 1em 15em 5em 2.5em 5.8em 4.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -798,13 +798,21 @@ input.item-value-edit {
 }
 
 .tab.skills {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
 }
 
 .skl.item-control.item-edit {
   padding-right: 1.5em;
 }
+
+.item-controls .item-toggle i { display: none; }
+.item-controls .item-toggle .fa-hiking { display: inline; }
+.item-controls .item-toggle.ship .fa-hiking,
+.item-controls .item-toggle.equipped .fa-hiking { display: none; }
+.item-controls .item-toggle.ship .fa-space-shuttle,
+.item-controls .item-toggle.equipped .fa-child { display: inline; }
 
 .skill:nth-of-type(even) {
   background: #0d0d0dbb;
@@ -1008,14 +1016,9 @@ span.total-output {
 }
 
 .tab.info {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
-}
-
-.info {
-  margin-top: 2em;
-  overflow-x: hidden;
-  margin-bottom: -2em;
 }
 
 .info-container .editor {
@@ -1718,6 +1721,7 @@ a:hover {
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
+  padding-right: 3px;
   width: 100%;
   height: 30px;
 }

@@ -300,6 +300,7 @@
   },
   "Item": {
     "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component"],
+    "equipped": ["equipped", "ship", "backpack"],
     "templates": {
       "gearTemplate": {
         "name": "",
