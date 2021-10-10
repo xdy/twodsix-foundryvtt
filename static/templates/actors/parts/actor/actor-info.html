@@ -33,7 +33,7 @@
 <div class="info-container">
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
-    <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    {{{editor content=data.description target="data.description" button=true owner=owner editable=editable}}}
   </div>
   <div class="char-contacts">
     <span class="item-title-short">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>

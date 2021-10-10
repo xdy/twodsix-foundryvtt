@@ -93,6 +93,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       'focusout',
       this._onSubmit.bind(this)
     );
+    // do the same for the default editors.
+    html.find('div[class="editor"]').on(
+      'focusout',
+      this._onSubmit.bind(this)
+    );
   }
 
 

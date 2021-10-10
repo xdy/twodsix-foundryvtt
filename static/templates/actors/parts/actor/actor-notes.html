@@ -1,4 +1,4 @@
 <div class="notes-container">
   <span class="item-title">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
-  <div contenteditable="true" data-edit="data.notes">{{{data.notes}}}</div>
+  {{{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}}
 </div>
