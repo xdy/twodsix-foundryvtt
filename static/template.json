@@ -306,11 +306,13 @@
     "equipment": {
       "templates": ["gearTemplate"],
       "type": "equipment",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "tool": {
       "templates": ["gearTemplate"],
       "type": "equipment",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "weapon": {
@@ -341,6 +343,7 @@
         "value": 0
       },
       "type": "armor",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "augment": {
@@ -376,7 +379,7 @@
     },
     "consumable": {
       "templates": ["gearTemplate"],
-      "currentCount": 0,
+      "currentCount": 1,
       "max": 0,
       "type": "consumable",
       "subtype": "other",
