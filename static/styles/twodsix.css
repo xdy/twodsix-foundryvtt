@@ -38,6 +38,13 @@ input[type='text'], input[type='number'], input[type='password'], input[type='da
   border-radius: 0px !important;
 }
 
+*[contenteditable] * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 select {
   height: 25px;
   background: #00000073 !important;
