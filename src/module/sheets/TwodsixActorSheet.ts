@@ -83,6 +83,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
 
     html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
+    // Item State toggling
+    html.find(".item-toggle").on("click", this._onToggleItem.bind(this));
 
     //add hooks to allow skill levels to be updates on skill tab
     html.find(".skill-level-edit").on("input", this._onSkillLevelEdit.bind(this));
@@ -255,6 +257,29 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
       await weaponSelected.addConsumable(newConsumable[0].id);
       await weaponSelected.update({ "data.useConsumableForAttack": newConsumable[0].id });
+    }
+  }
+
+  /**
+   * Handle toggling the state of an Owned Item within the Actor.
+   * @param {Event} event   The originating click event.
+   * @private
+   */
+   private async _onToggleItem(event): Promise<void> {
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected: any = this.actor.items.get(li.data("itemId"));
+
+    switch (itemSelected.data.equipped) {
+      case "equipped":
+        await itemSelected.update({["data.equipped"]: "ship"});
+        break;
+      case "ship":
+        await itemSelected.update({["data.equipped"]: "backpack"});
+        break;
+      case "backpack":
+      default:
+        await itemSelected.update({["data.equipped"]: "equipped"});
+        break;
     }
   }
 

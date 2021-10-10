@@ -780,6 +780,11 @@ input.skill-level-edit {
   padding-right: 1.5em;
 }
 
+.item-controls .item-toggle i { display: none; }
+.item-controls .item-toggle.ship .fa-space-shuttle,
+.item-controls .item-toggle.backpack .fa-suitcase,
+.item-controls .item-toggle.equipped .fa-child { display: block; }
+
 .skill:nth-of-type(even) {
   background: #0d0d0dbb;
 }
