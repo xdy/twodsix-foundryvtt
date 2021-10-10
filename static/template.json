@@ -20,6 +20,10 @@
         "max": 0,
         "min": 0
       },
+      "encumbrance": {
+        "value": 0,
+        "max": 0
+      },
       "primaryArmor": {
         "value": 0
       },

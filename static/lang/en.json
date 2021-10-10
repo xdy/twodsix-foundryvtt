@@ -136,6 +136,7 @@
       "CantShowCharacteristic": "You need to reselect the characteristic for all skills marked with XXX. Sorry..."
     },
     "Items": {
+      "Encumbrance": "Encumbrance",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
