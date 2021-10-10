@@ -220,7 +220,7 @@
         "damageType": "Damage Type",
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
-        "UseAsAmmunitionForAttack": "Use as ammunition for attack",
+        "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost"
       }
     },
@@ -398,6 +398,7 @@
       "NoDamageForWeapon": "This weapon has not specified the damage it does",
       "TooFewToReload": "Too few _NAME_ to _REFILL_ACTION_",
       "NoAmmo": "You are out of ammunition. You need to reload before shooting!",
+      "EmptyConsumable": "There is no consumable supply left.  You need to refill!",
       "OnlyOwnedItems": "Can only drop to items that are owned by an actor",
       "SkillsConsumables": "Skills can't have consumables",
       "DraggingSomething": "Dragging something that can't be dragged",
