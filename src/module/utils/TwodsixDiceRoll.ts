@@ -1,22 +1,22 @@
-import {TWODSIX} from "../config";
+import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
-import {advantageDisadvantageTerm} from "../i18n";
-import {getKeyByValue} from "./sheetUtils";
-import {TwodsixRollSettings} from "./TwodsixRollSettings";
-import {Crit} from "./crit";
+import { advantageDisadvantageTerm } from "../i18n";
+import { getKeyByValue } from "./sheetUtils";
+import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { Crit } from "./crit";
 
 export class TwodsixDiceRoll {
-  settings:TwodsixRollSettings;
-  actor:TwodsixActor;
-  skill?:TwodsixItem;
-  item?:TwodsixItem;
-  target:number;
-  naturalTotal:number;
-  effect:number;
-  roll:Roll;
+  settings: TwodsixRollSettings;
+  actor: TwodsixActor;
+  skill?: TwodsixItem;
+  item?: TwodsixItem;
+  target: number;
+  naturalTotal: number;
+  effect: number;
+  roll: Roll;
 
-  constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem = null, item:TwodsixItem = null) {
+  constructor(settings: TwodsixRollSettings, actor: TwodsixActor, skill: TwodsixItem = null, item: TwodsixItem = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
@@ -24,17 +24,17 @@ export class TwodsixDiceRoll {
 
     this.createRoll();
 
-    this.naturalTotal = this.roll.dice[0].results.reduce((total:number, dice) => {
+    this.naturalTotal = this.roll.dice[0].results.reduce((total: number, dice) => {
       return dice["active"] ? total + dice["result"] : total;
     }, 0);
 
     this.calculateEffect();
   }
 
-  private createRoll():void {
+  private createRoll(): void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as { string:number };
+    const data = {} as { string: number };
 
     let formula = rollType;
 
@@ -48,7 +48,7 @@ export class TwodsixDiceRoll {
     if (this.skill) {
       formula += "+ @skill";
       /*Check for "Untrained" value and use if better to account for JOAT*/
-      const joat = this.actor.getUntrainedSkill().data.data.value;
+      const joat = this.actor.getUntrainedSkill().data.data.value ?? game.system.template.Item.skills.value;
       if (joat > this.skill.data.data.value) {
         data["skill"] = joat;
       } else {
@@ -72,7 +72,7 @@ export class TwodsixDiceRoll {
     this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
-  public getCrit():Crit {
+  public getCrit(): Crit {
     const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
     if (this.isNaturalCritSuccess()) {
       return Crit.success;
@@ -85,19 +85,19 @@ export class TwodsixDiceRoll {
     }
   }
 
-  private isNaturalCritSuccess():boolean {
+  private isNaturalCritSuccess(): boolean {
     return this.naturalTotal == 12;
   }
 
-  private isNaturalCritFail():boolean {
+  private isNaturalCritFail(): boolean {
     return this.naturalTotal == 2;
   }
 
-  public isSuccess():boolean {
+  public isSuccess(): boolean {
     return this.effect >= 0;
   }
 
-  private calculateEffect():void {
+  private calculateEffect(): void {
     let effect;
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       effect = this.roll.total - this.settings.difficulty.target;
@@ -121,11 +121,11 @@ export class TwodsixDiceRoll {
     this.effect = effect;
   }
 
-  private static addSign(value:number):string {
+  private static addSign(value: number): string {
     return `${value <= 0 ? "" : "+"}${value}`;
   }
 
-  public async sendToChat():Promise<void> {
+  public async sendToChat(): Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
