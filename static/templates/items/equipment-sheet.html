@@ -25,19 +25,6 @@
       <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
-    {{#if data.isOwned}}
-    <div class="item-form-section">
-      <label>{{localize "TWODSIX.Items.Weapon.UseAsAmmunitionForAttack"}}
-        <select class="consumable-use-consumable-for-attack">
-          <option value="">---</option>
-          {{#select data.useConsumableForAttack}}
-          {{#each data.consumableData as |consumable|}}
-          <option value="{{consumable.id}}">{{consumable.name}}</option>
-          {{/each}}
-          {{/select}}
-        </select>
-      </label>
-    </div>
-    {{/if}}
+    {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.html"}}
   </div>
 </form>
