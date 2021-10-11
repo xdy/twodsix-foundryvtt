@@ -191,7 +191,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         }
       }
 
-      //Link an actor skill with name defined by item.associatedSkillName 
+      //Link an actor skill with name defined by item.associatedSkillName
       if (itemData.data.associatedSkillName !== "") {
         itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
       }
