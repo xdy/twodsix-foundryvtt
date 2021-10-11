@@ -1,5 +1,6 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { TwodsixItemData } from "../../types/twodsix";
 
 // @ts-ignore
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -171,42 +172,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = await getItemDataFromDropData(data);
 
 
-    //If we get here, we're sorting things.
-    //Special for skills
     if (itemData.type === 'skills') {
-      const matching = actor.data.items.filter(x => {
-        // @ts-ignore
-        return x.name === itemData.name;
-      });
-
-      // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
-      if (sameActor) {
-        // @ts-ignore
-        console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-        // @ts-ignore
-        return this._onSortItem(event, itemData);
-      }
-
-      if (matching.length > 0) {
-        // @ts-ignore
-        console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
-        //TODO Maybe this should mean increase skill value?
-        return false;
-      }
-
-      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        // @ts-ignore
-        itemData.data.value = game.system.template.Item.skills.value;
-      } else {
-        // @ts-ignore
-        itemData.data.value = 0;
-      }
-
-      // @ts-ignore
-      await actor.createEmbeddedDocuments("Item", [itemData]);
-      // @ts-ignore
-      console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+      return await this.handleDroppedSkills(actor, itemData, data, event);
     } else {
       // Handle item sorting within the same Actor
       const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
@@ -230,6 +197,42 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return this._onDropItemCreate(itemData);
     }
 
+  }
+
+  private async handleDroppedSkills(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+    const matching = actor.data.items.filter(x => {
+      // @ts-ignore
+      return x.name === itemData.name;
+    });
+
+    // Handle item sorting within the same Actor
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    if (sameActor) {
+      // @ts-ignore
+      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+      // @ts-ignore
+      return this._onSortItem(event, itemData);
+    }
+
+    if (matching.length > 0) {
+      // @ts-ignore
+      console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+      //TODO Maybe this should mean increase skill value?
+      return false;
+    }
+
+    if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      // @ts-ignore
+      itemData.data.value = game.system.template.Item.skills.value;
+    } else {
+      // @ts-ignore
+      itemData.data.value = 0;
+    }
+
+    // @ts-ignore
+    await actor.createEmbeddedDocuments("Item", [itemData]);
+    // @ts-ignore
+    console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
   protected static _prepareItemContainers(items, sheetData: any): void {
