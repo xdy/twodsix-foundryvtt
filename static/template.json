@@ -316,7 +316,8 @@
           "weight": 0
         },
         "skillModifier": 0,
-        "skill": ""
+        "skill": "",
+        "associatedSkillName": ""
       }
     },
     "equipment": {
