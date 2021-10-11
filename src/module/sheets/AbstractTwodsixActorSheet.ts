@@ -173,7 +173,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
 
     if (itemData.type === 'skills') {
-      return await this.handleDroppedSkills(actor, itemData, data, event);
+      return this.handleDroppedSkills(actor, itemData, data, event);
     } else {
       // Handle item sorting within the same Actor
       const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
