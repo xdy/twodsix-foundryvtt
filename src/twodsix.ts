@@ -104,6 +104,7 @@ Hooks.once('init', async function () {
     //
     "systems/twodsix/templates/items/parts/common-parts.html",
     "systems/twodsix/templates/items/parts/consumables-part.html",
+    "systems/twodsix/templates/items/parts/useConsumableForRole.html",
     //
     "systems/twodsix/templates/items/armor-sheet.html",
     "systems/twodsix/templates/items/augment-sheet.html",
