@@ -1,3 +1,14 @@
+## [0.8.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.20...v0.8.21) (2021-10-13)
+
+
+### Bug Fixes
+
+* Allow more items to use consumables when rolling ([30ececb](https://github.com/xdy/twodsix-foundryvtt/commit/30ececbd5503726a58ac46eeb7fd16cc5cde34ba))
+* fix typo ([6eee08f](https://github.com/xdy/twodsix-foundryvtt/commit/6eee08f8c770fd8afd8204d49186ca53df0856fb))
+* missing tools ([0db43c5](https://github.com/xdy/twodsix-foundryvtt/commit/0db43c5f99be0437379ecca0346b26812d154506))
+* simplify items sheets using new part for consumable rolls ([1a26fa3](https://github.com/xdy/twodsix-foundryvtt/commit/1a26fa389e125b22d660489d181109b4e9fe0ccb))
+* Yet another type for roll ([ffd31e4](https://github.com/xdy/twodsix-foundryvtt/commit/ffd31e46b5bbb9b42e7a7b6103e40472b572c335))
+
 ## [0.8.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.19...v0.8.20) (2021-10-13)
 
 
