@@ -1,3 +1,10 @@
+## [0.8.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.19...v0.8.20) (2021-10-13)
+
+
+### Bug Fixes
+
+* zero values can't have units ([c570886](https://github.com/xdy/twodsix-foundryvtt/commit/c5708868f69ae190588f6c80f7128db9ab18979c))
+
 ## [0.8.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.18...v0.8.19) (2021-10-08)
 
 
