@@ -54,6 +54,8 @@
       "Gender": "Gender",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
+      "Stamina": "Stamina",
+      "RadiationExposure": "Radiation Exposure",
       "HomeWorld": "Home world",
       "Info": {
         "ALLIES": "ALLIES",
@@ -219,7 +221,7 @@
         "damageType": "Damage Type",
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
-        "UseAsAmmunitionForAttack": "Use as ammunition for attack",
+        "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost"
       }
     },
@@ -367,6 +369,10 @@
       "useSystemDefaultTokenIcon": {
         "hint": "Use system default token icon (mystery man) when creating new actor.  Check when using custom images so system automatically sets token image to the actor image.",
         "name": "Use the system default token icon for new actors."
+      },
+      "showLifebloodStamina": {
+        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Useful for Cepheus Deluxe.",
+        "name": "Show Lifeblood and Stamina characteristics."
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -393,6 +399,7 @@
       "NoDamageForWeapon": "This weapon has not specified the damage it does",
       "TooFewToReload": "Too few _NAME_ to _REFILL_ACTION_",
       "NoAmmo": "You are out of ammunition. You need to reload before shooting!",
+      "EmptyConsumable": "There is no consumable supply left.  You need to refill!",
       "OnlyOwnedItems": "Can only drop to items that are owned by an actor",
       "SkillsConsumables": "Skills can't have consumables",
       "DraggingSomething": "Dragging something that can't be dragged",
