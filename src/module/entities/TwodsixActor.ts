@@ -44,6 +44,11 @@ export default class TwodsixActor extends Actor {
     for (const cha of Object.values(data.characteristics as Record<any, any>)) {
       cha.current = cha.value - cha.damage;
       cha.mod = calcModFor(cha.current);
+      
+      //Check to see if inputCurrent is defined and synced
+      if (cha.inputCurrent === undefined || cha.inputCurrent === "") {
+        cha.inputCurrent = cha.current;
+      }
     }
   }
 

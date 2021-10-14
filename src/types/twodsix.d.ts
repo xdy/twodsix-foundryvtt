@@ -11,6 +11,7 @@ export interface TwodsixItemData extends ItemData {
 export type CharacteristicType =
   {
     value:number;
+    inputCurrent:number;
     damage:number;
     current:number;
     mod:number;

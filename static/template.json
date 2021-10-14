@@ -93,6 +93,22 @@
           "damage": 0,
           "label": "Psionic Strength",
           "shortLabel": "PSI"
+        },
+        "stamina": {
+          "key": "stamina",
+          "value": 7,
+          "inputCurrent": 7,
+          "damage": 0,
+          "label": "Stamina",
+          "shortLabel": "STA"
+        },
+        "lifeblood": {
+          "key": "lifeblood",
+          "value": 14,
+          "inputCurrent": 14,
+          "damage": 0,
+          "label": "Lifeblood",
+          "shortLabel": "LFB"
         }
       }
     },
@@ -306,11 +322,13 @@
     "equipment": {
       "templates": ["gearTemplate"],
       "type": "equipment",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "tool": {
       "templates": ["gearTemplate"],
       "type": "equipment",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "weapon": {
@@ -341,6 +359,7 @@
         "value": 0
       },
       "type": "armor",
+      "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "augment": {
@@ -376,7 +395,7 @@
     },
     "consumable": {
       "templates": ["gearTemplate"],
-      "currentCount": 0,
+      "currentCount": 1,
       "max": 0,
       "type": "consumable",
       "subtype": "other",
