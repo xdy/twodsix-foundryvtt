@@ -62,7 +62,12 @@
     <input id="data.skillModifier" type="text" name="data.skillModifier" value="{{data.skillModifier}}"
            data-dtype="Number"/>
   </div>
-{{/if}}
+  {{else}}
+    <div class="item-skill">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</span>
+      <input type="text" name="data.associatedSkillName" value="{{data.associatedSkillName}}" />
+    </div>
+  {{/if}}
 
 
 <div class="item-tl">

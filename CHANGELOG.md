@@ -1,3 +1,19 @@
+## [0.8.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.21...v0.8.22) (2021-10-16)
+
+
+### Bug Fixes
+
+* Add associated skills for CE weapons ([2b57c43](https://github.com/xdy/twodsix-foundryvtt/commit/2b57c4321cb20bd6aa65b92ccd185c1c76cb50f4))
+* add cepheus atom too ([ff275cf](https://github.com/xdy/twodsix-foundryvtt/commit/ff275cfcbe0379081feb6e51241f6bdeb05a4889))
+* add missing ammo information for CE weapons compendium ([58a2758](https://github.com/xdy/twodsix-foundryvtt/commit/58a27582970dbbe68660bd1bafd841ad54e11650))
+* Allow actor items to have an associated skill on item sheet ([20dd894](https://github.com/xdy/twodsix-foundryvtt/commit/20dd8947b4b4559779a69262a87d7b26ff518cb1))
+* and while I'm at it - quantum ([4301f0e](https://github.com/xdy/twodsix-foundryvtt/commit/4301f0e0c91e104ece72947d2a2d73f2cc43a5ec))
+* check for existence of skill ([30fd99f](https://github.com/xdy/twodsix-foundryvtt/commit/30fd99f8cdbb3a98b92afc81ba48aef24b8e984b))
+* delete trailing space ([d4022b2](https://github.com/xdy/twodsix-foundryvtt/commit/d4022b2d09fe8361874c40e5248d3580bf945877))
+* missed one weapon ([c12d143](https://github.com/xdy/twodsix-foundryvtt/commit/c12d143d10c65ae638486ec161118fa481603627))
+* modify CL, CFL and CD compendium weapon items to have an associated skill ([729a215](https://github.com/xdy/twodsix-foundryvtt/commit/729a215f4b75636d44d55e362fcfd0b2a8fa282e))
+* refactor _onDrop per [@xdy](https://github.com/xdy) advice ([d430794](https://github.com/xdy/twodsix-foundryvtt/commit/d430794e1b861b038efe8cd240ca5d8e162ac72a))
+
 ## [0.8.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.20...v0.8.21) (2021-10-13)
 
 

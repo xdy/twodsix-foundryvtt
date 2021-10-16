@@ -173,30 +173,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
 
     if (itemData.type === 'skills') {
-      return await this.handleDroppedSkills(actor, itemData, data, event);
+      return this.handleDroppedSkills(actor, itemData, data, event);
     } else {
-      // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
-      if (sameActor) {
-        // @ts-ignore
-        return this._onSortItem(event, itemData);
-      }
-
-      //Remove any attached consumables
-      // @ts-ignore
-      if (itemData.data.consumables !== undefined) {
-        if (itemData.data.consumables.length > 0) {
-          // @ts-ignore
-          itemData.data.consumables = [];
-        }
-      }
-
-      // Create the owned item (TODO Add to type and remove the two lines below...)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      return this._onDropItemCreate(itemData);
+      return this.handleDroppedItem(actor, itemData, data, event);
     }
-
   }
 
   private async handleDroppedSkills(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
@@ -234,7 +214,35 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // @ts-ignore
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
+  
+  private async handleDroppedItem(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+    // Handle item sorting within the same Actor
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    if (sameActor) {
+      // @ts-ignore
+      return this._onSortItem(event, itemData);
+    }
 
+    //Remove any attached consumables
+    // @ts-ignore
+    if (itemData.data.consumables !== undefined) {
+      if (itemData.data.consumables.length > 0) {
+        // @ts-ignore
+        itemData.data.consumables = [];
+      }
+    }
+
+    //Link an actor skill with name defined by item.associatedSkillName
+    if (itemData.data.associatedSkillName !== "") {
+      itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
+    }
+
+    // Create the owned item (TODO Add to type and remove the two lines below...)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return this._onDropItemCreate(itemData);
+  }
+  
   protected static _prepareItemContainers(items, sheetData: any): void {
 
     // Initialize containers.

@@ -125,7 +125,7 @@ export class Stats {
         //toggle defeated if in combat
         const fighters = game.combats.active.data.combatants;
         // @ts-ignore
-        let combatant =  fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
+        const combatant =  fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
         if (combatant !== undefined) {
           // @ts-ignore
           await combatant.update({defeated: true});
