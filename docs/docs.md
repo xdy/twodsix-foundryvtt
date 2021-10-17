@@ -18,8 +18,11 @@ All system settings default to Cepheus Engine rules, but you may want to turn on
 To get the system closer to Cepheus Deluxe select 'Cepheus Deluxe' in the dropdown near the top of the system settings.
 
 To quote Marvin on the discord: "The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
+
 Support for Traits was added to the system with version 0.8.14
+
 Watch #615 for any progress on Lifeblood and Stamina.
+
 Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
 ## Cepheus Light
