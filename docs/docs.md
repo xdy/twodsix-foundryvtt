@@ -14,6 +14,14 @@ Listed in order of me adding notes about them. I.e. the newest ones are towards 
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
 
+## Cepheus Deluxe
+To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Deluxe' in the dropdown near the top of the system settings.
+
+To quote Marvin on the discord: "The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
+Support for Traits was added to the system with version 0.8.14
+Watch #615 for any progress on Lifeblood and Stamina.
+Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
+
 ## Cepheus Light
 To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Light' in the dropdown near the top of the system settings, that will set the following settings:
 * Choose the CEL difficulty list.
@@ -26,8 +34,8 @@ In play, handle the differences to Cepheus Engine as follows:
 * Use the skills, items, etc from the various 'ce light-something' compendiums (supplied by @marvin9257).
 * Set skills to not use any characteristic for modifiers.
 
-Reasonably complete compendiums for Cepheus Light exist.
-There is also a gm screen compendium suitable for use with the https://foundryvtt.com/packages/gm-screen module.
+## Cepheus Light Upgraded
+As Cepheus Light above, but choose 'Cepheus Light Upgraded' instead.
 
 ## Cepheus Faster Than Light
 To get the system closer to Cepheus Faster Than Light select 'Cepheus Faster Than Light' in the dropdown near the top of the system settings, that will set the following settings:
@@ -113,12 +121,6 @@ Compendiums with skills, items, etc cannot be included for licensing reasons, so
 
 ## Classic Traveller
 Can probably be done, but, I haven't tried it. If you have, tell us on the Discord what you needed to change!
-
-## Cepheus Deluxe
-To quote Marvin on the discord: "CE will probably get you closer to the correct settings.  At least it gets the difficulty settings to match.  The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
-Support for Traits was added to the system with version 0.8.14
-Watch #615 for any progress on Lifeblood and Stamina.
-Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
 ## General features that really should be documented somewhere:
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
