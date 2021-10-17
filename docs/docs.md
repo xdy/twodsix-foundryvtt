@@ -15,7 +15,7 @@ Complete skill and personal equipment compendiums are available (supplied by @ma
 All system settings default to Cepheus Engine rules, but you may want to turn on some automation in the system settings (see General Features below).
 
 ## Cepheus Deluxe
-To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Deluxe' in the dropdown near the top of the system settings.
+To get the system closer to Cepheus Deluxe select 'Cepheus Deluxe' in the dropdown near the top of the system settings.
 
 To quote Marvin on the discord: "The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
 Support for Traits was added to the system with version 0.8.14
