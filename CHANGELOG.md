@@ -1,3 +1,10 @@
+## [0.8.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.23...v0.8.24) (2021-10-17)
+
+
+### Bug Fixes
+
+* I had indeed not gotten all the options right. Added showLifebloodStamina: true to Cepheus Light Upgraded ([10fa8ae](https://github.com/xdy/twodsix-foundryvtt/commit/10fa8ae0fabed4453949971494b45ecea778d7c5))
+
 ## [0.8.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.22...v0.8.23) (2021-10-17)
 
 
