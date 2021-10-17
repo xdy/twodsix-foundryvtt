@@ -8,7 +8,6 @@ Some basic instructions on how to set up your game for some of the most common v
 Also, see the [PUBLISHERS.md](../PUBLISHERS.md) for details of the rpg publishers that have explicitly granted us permission to support their products.
 
 # Supported variants
-Listed in order of me adding notes about them. I.e. the newest ones are towards the end.
 
 ## Cepheus Engine
 Complete skill and personal equipment compendiums are available (supplied by @marvin9257).
