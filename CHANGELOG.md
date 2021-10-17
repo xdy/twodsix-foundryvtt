@@ -1,3 +1,10 @@
+## [0.8.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.22...v0.8.23) (2021-10-17)
+
+
+### Bug Fixes
+
+* Added 'Cepheus Deluxe' and 'Cepheus Light Upgraded' to the system Ruleset menu. Sorted the menu alphabetically while I was at it. ([e42b773](https://github.com/xdy/twodsix-foundryvtt/commit/e42b7734f8ad5db4bfde829ce8eabc2fd3eb580e))
+
 ## [0.8.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.21...v0.8.22) (2021-10-16)
 
 
