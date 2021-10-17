@@ -171,6 +171,7 @@ const RULESETS = Object.freeze({
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
       ShowLawLevel: false,
       ShowRangeBandAndHideRange: false,
       ShowWeaponType: true,
