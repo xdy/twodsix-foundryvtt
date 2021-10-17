@@ -24,6 +24,8 @@ Watch #615 for any progress on Lifeblood and Stamina.
 
 Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
+To handle initiative you need to add the Tactics skill yourself after rolling, or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros.
+
 ## Cepheus Light
 To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Light' in the dropdown near the top of the system settings, that will set the following settings:
 * Choose the CEL difficulty list.
