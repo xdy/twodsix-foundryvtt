@@ -1,3 +1,11 @@
+## [0.8.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.24...v0.8.25) (2021-10-17)
+
+
+### Bug Fixes
+
+* Do a release ([d75478a](https://github.com/xdy/twodsix-foundryvtt/commit/d75478a4e4d1a42843c619d3b6312719b46398e1))
+* Three booleans, not one. Maybe it's right this time? ([835a03d](https://github.com/xdy/twodsix-foundryvtt/commit/835a03dded78a8e8da9db6a61760c861457bdfc3))
+
 ## [0.8.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.23...v0.8.24) (2021-10-17)
 
 
