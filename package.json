@@ -34,7 +34,7 @@
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^0.7.10-0",
     "@rollup/plugin-commonjs": "^21.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-node-resolve": "^13.0.6",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/commit-analyzer": "^9.0.1",
     "@semantic-release/exec": "^6.0.1",
