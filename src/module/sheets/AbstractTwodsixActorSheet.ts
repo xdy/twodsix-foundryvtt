@@ -1,5 +1,6 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { TwodsixItemData } from "../../types/twodsix";
 
 // @ts-ignore
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -176,65 +177,75 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = await getItemDataFromDropData(data);
 
 
-    //If we get here, we're sorting things.
-    //Special for skills
     if (itemData.type === 'skills') {
-      const matching = actor.data.items.filter(x => {
-        // @ts-ignore
-        return x.name === itemData.name;
-      });
-
-      // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
-      if (sameActor) {
-        // @ts-ignore
-        console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-        // @ts-ignore
-        return this._onSortItem(event, itemData);
-      }
-
-      if (matching.length > 0) {
-        // @ts-ignore
-        console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
-        //TODO Maybe this should mean increase skill value?
-        return false;
-      }
-
-      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        // @ts-ignore
-        itemData.data.value = game.system.template.Item.skills.value;
-      } else {
-        // @ts-ignore
-        itemData.data.value = 0;
-      }
-
-      // @ts-ignore
-      await actor.createEmbeddedDocuments("Item", [itemData]);
-      // @ts-ignore
-      console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+      return this.handleDroppedSkills(actor, itemData, data, event);
     } else {
-      // Handle item sorting within the same Actor
-      const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
-      if (sameActor) {
-        // @ts-ignore
-        return this._onSortItem(event, itemData);
-      }
+      return this.handleDroppedItem(actor, itemData, data, event);
+    }
+  }
 
-      //Remove any attached consumables
+  private async handleDroppedSkills(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+    const matching = actor.data.items.filter(x => {
       // @ts-ignore
-      if (itemData.data.consumables !== undefined) {
-        if (itemData.data.consumables.length > 0) {
-          // @ts-ignore
-          itemData.data.consumables = [];
-        }
-      }
+      return x.name === itemData.name;
+    });
 
-      // Create the owned item (TODO Add to type and remove the two lines below...)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // Handle item sorting within the same Actor
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    if (sameActor) {
       // @ts-ignore
-      return this._onDropItemCreate(itemData);
+      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+      // @ts-ignore
+      return this._onSortItem(event, itemData);
     }
 
+    if (matching.length > 0) {
+      // @ts-ignore
+      console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+      //TODO Maybe this should mean increase skill value?
+      return false;
+    }
+
+    if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      // @ts-ignore
+      itemData.data.value = game.system.template.Item.skills.value;
+    } else {
+      // @ts-ignore
+      itemData.data.value = 0;
+    }
+
+    // @ts-ignore
+    await actor.createEmbeddedDocuments("Item", [itemData]);
+    // @ts-ignore
+    console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+  }
+
+  private async handleDroppedItem(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+    // Handle item sorting within the same Actor
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    if (sameActor) {
+      // @ts-ignore
+      return this._onSortItem(event, itemData);
+    }
+
+    //Remove any attached consumables
+    // @ts-ignore
+    if (itemData.data.consumables !== undefined) {
+      if (itemData.data.consumables.length > 0) {
+        // @ts-ignore
+        itemData.data.consumables = [];
+      }
+    }
+
+    //Link an actor skill with name defined by item.associatedSkillName
+    if (itemData.data.associatedSkillName !== "") {
+      itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
+    }
+
+    // Create the owned item (TODO Add to type and remove the two lines below...)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return this._onDropItemCreate(itemData);
   }
 
   protected static _prepareItemContainers(items, sheetData: any): void {

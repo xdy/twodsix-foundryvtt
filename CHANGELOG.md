@@ -1,3 +1,59 @@
+## [0.8.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.24...v0.8.25) (2021-10-17)
+
+
+### Bug Fixes
+
+* Do a release ([d75478a](https://github.com/xdy/twodsix-foundryvtt/commit/d75478a4e4d1a42843c619d3b6312719b46398e1))
+* Three booleans, not one. Maybe it's right this time? ([835a03d](https://github.com/xdy/twodsix-foundryvtt/commit/835a03dded78a8e8da9db6a61760c861457bdfc3))
+
+## [0.8.24](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.23...v0.8.24) (2021-10-17)
+
+
+### Bug Fixes
+
+* I had indeed not gotten all the options right. Added showLifebloodStamina: true to Cepheus Light Upgraded ([10fa8ae](https://github.com/xdy/twodsix-foundryvtt/commit/10fa8ae0fabed4453949971494b45ecea778d7c5))
+
+## [0.8.23](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.22...v0.8.23) (2021-10-17)
+
+
+### Bug Fixes
+
+* Added 'Cepheus Deluxe' and 'Cepheus Light Upgraded' to the system Ruleset menu. Sorted the menu alphabetically while I was at it. ([e42b773](https://github.com/xdy/twodsix-foundryvtt/commit/e42b7734f8ad5db4bfde829ce8eabc2fd3eb580e))
+
+## [0.8.22](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.21...v0.8.22) (2021-10-16)
+
+
+### Bug Fixes
+
+* Add associated skills for CE weapons ([2b57c43](https://github.com/xdy/twodsix-foundryvtt/commit/2b57c4321cb20bd6aa65b92ccd185c1c76cb50f4))
+* add cepheus atom too ([ff275cf](https://github.com/xdy/twodsix-foundryvtt/commit/ff275cfcbe0379081feb6e51241f6bdeb05a4889))
+* add missing ammo information for CE weapons compendium ([58a2758](https://github.com/xdy/twodsix-foundryvtt/commit/58a27582970dbbe68660bd1bafd841ad54e11650))
+* Allow actor items to have an associated skill on item sheet ([20dd894](https://github.com/xdy/twodsix-foundryvtt/commit/20dd8947b4b4559779a69262a87d7b26ff518cb1))
+* and while I'm at it - quantum ([4301f0e](https://github.com/xdy/twodsix-foundryvtt/commit/4301f0e0c91e104ece72947d2a2d73f2cc43a5ec))
+* check for existence of skill ([30fd99f](https://github.com/xdy/twodsix-foundryvtt/commit/30fd99f8cdbb3a98b92afc81ba48aef24b8e984b))
+* delete trailing space ([d4022b2](https://github.com/xdy/twodsix-foundryvtt/commit/d4022b2d09fe8361874c40e5248d3580bf945877))
+* missed one weapon ([c12d143](https://github.com/xdy/twodsix-foundryvtt/commit/c12d143d10c65ae638486ec161118fa481603627))
+* modify CL, CFL and CD compendium weapon items to have an associated skill ([729a215](https://github.com/xdy/twodsix-foundryvtt/commit/729a215f4b75636d44d55e362fcfd0b2a8fa282e))
+* refactor _onDrop per [@xdy](https://github.com/xdy) advice ([d430794](https://github.com/xdy/twodsix-foundryvtt/commit/d430794e1b861b038efe8cd240ca5d8e162ac72a))
+
+## [0.8.21](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.20...v0.8.21) (2021-10-13)
+
+
+### Bug Fixes
+
+* Allow more items to use consumables when rolling ([30ececb](https://github.com/xdy/twodsix-foundryvtt/commit/30ececbd5503726a58ac46eeb7fd16cc5cde34ba))
+* fix typo ([6eee08f](https://github.com/xdy/twodsix-foundryvtt/commit/6eee08f8c770fd8afd8204d49186ca53df0856fb))
+* missing tools ([0db43c5](https://github.com/xdy/twodsix-foundryvtt/commit/0db43c5f99be0437379ecca0346b26812d154506))
+* simplify items sheets using new part for consumable rolls ([1a26fa3](https://github.com/xdy/twodsix-foundryvtt/commit/1a26fa389e125b22d660489d181109b4e9fe0ccb))
+* Yet another type for roll ([ffd31e4](https://github.com/xdy/twodsix-foundryvtt/commit/ffd31e46b5bbb9b42e7a7b6103e40472b572c335))
+
+## [0.8.20](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.19...v0.8.20) (2021-10-13)
+
+
+### Bug Fixes
+
+* zero values can't have units ([c570886](https://github.com/xdy/twodsix-foundryvtt/commit/c5708868f69ae190588f6c80f7128db9ab18979c))
+
 ## [0.8.19](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.18...v0.8.19) (2021-10-08)
 
 

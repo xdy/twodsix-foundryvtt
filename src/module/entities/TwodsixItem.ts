@@ -161,6 +161,20 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
+    if (this.data.data.useConsumableForAttack && item.data.data.type != "weapon") {
+      const magazine = this.actor.items.get(this.data.data.useConsumableForAttack);
+      try {
+        await magazine.consume(1);
+      } catch (err) {
+        if (err.name == "NoAmmoError") {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.EmptyConsumable"));
+          return;
+        } else {
+          throw err;
+        }
+      }
+    }
     // @ts-ignore
     const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
 

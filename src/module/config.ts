@@ -7,7 +7,9 @@ const CHARACTERISTICS = Object.freeze({
   "intelligence": "INT",
   "education": "EDU",
   "socialStanding": "SOC",
-  "psionicStrength": "PSI"
+  "psionicStrength": "PSI",
+  "stamina": "STA",
+  "lifeblood": "LFB"
 });
 
 /**
@@ -132,6 +134,57 @@ const RULESETS = Object.freeze({
       showContaminationBelowLifeblood: false
     }
   },
+  CD: {
+    key: "CD",
+    name: "Cepheus Deluxe",
+    settings: {
+      initiativeFormula: "2d6",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      ShowRangeBandAndHideRange: false,
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true
+    }
+  },
+  CLU: {
+    key: "CLU",
+    name: "Cepheus Light Upgraded",
+    settings: {
+      initiativeFormula: "2d6",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      ShowRangeBandAndHideRange: false,
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true
+    }
+  },
+
   OTHER: {
     key: "OTHER",
     name: "Other",

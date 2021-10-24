@@ -8,7 +8,16 @@ export const registerSettings = function ():void {
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
+  }).sort(function (a, b) {
+    if (a[1] < b[1]) {
+      return -1;
+    }
+    if (a[1] > b[1]) {
+      return 1;
+    }
+    return 0;
   });
+
   _stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].name, Object.fromEntries(rulesetOptions));
 
   //House rules/variant related settings
@@ -49,6 +58,7 @@ export const registerSettings = function ():void {
   _booleanSetting('lifebloodInsteadOfCharacteristics', false);
   _booleanSetting('showContaminationBelowLifeblood', true);
   _booleanSetting('useSystemDefaultTokenIcon', false);
+  _booleanSetting('showLifebloodStamina', false);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);

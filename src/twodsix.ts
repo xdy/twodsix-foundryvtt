@@ -86,7 +86,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
     "systems/twodsix/templates/actors/parts/actor/actor-info.html",
     "systems/twodsix/templates/actors/parts/actor/actor-items.html",
-    
+
 
     "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
@@ -105,6 +105,7 @@ Hooks.once('init', async function () {
     //
     "systems/twodsix/templates/items/parts/common-parts.html",
     "systems/twodsix/templates/items/parts/consumables-part.html",
+    "systems/twodsix/templates/items/parts/useConsumableForRoll.html",
     //
     "systems/twodsix/templates/items/armor-sheet.html",
     "systems/twodsix/templates/items/augment-sheet.html",
