@@ -214,7 +214,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // @ts-ignore
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
-  
+
   private async handleDroppedItem(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
     // Handle item sorting within the same Actor
     const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
@@ -242,7 +242,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // @ts-ignore
     return this._onDropItemCreate(itemData);
   }
-  
+
   protected static _prepareItemContainers(items, sheetData: any): void {
 
     // Initialize containers.
