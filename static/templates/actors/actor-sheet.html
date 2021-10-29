@@ -32,14 +32,17 @@
           <span class="bgi-gender"><i class="fas fa-venus-mars"></i>:<input name="data.gender" type="text" value="{{data.gender}}"
               placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"
               title='{{localize "TWODSIX.Actor.Gender"}}' /></span>
+          
           <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'><i class="fas fa-battery-half"></i>:<input
-              type="number" name="data.characteristics.stamina.inputCurrent" value="{{data.characteristics.stamina.inputCurrent}}"/> /</span>
-          <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
-              name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}" /> </span>
+                type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}"/>-</span>
+          <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number" 
+                name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}"/> </span>
+            
           <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fas fa-heartbeat"></i>: <input
-              type="number" name="data.characteristics.lifeblood.inputCurrent" value="{{data.characteristics.lifeblood.inputCurrent}}"/> /</span>
+                type="number" name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}"/>-</span>
           <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><input type="number"
-              name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}" /> </span>
+                name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}"/> </span>
+          
           <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:
             <input name="data.radiationDose.value" value={{data.radiationDose.value}} type="text" /></span>
           {{else}}
