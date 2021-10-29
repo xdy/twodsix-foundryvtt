@@ -35,23 +35,41 @@ export class Stats {
   strength: Attribute;
   dexterity: Attribute;
   endurance: Attribute;
+  stamina: Attribute;
+  lifeblood: Attribute;
   damage: number;
   armor: number;
   edited = false;
   actor: TwodsixActor;
+  damageCharacteristics: string[] = [];
+  useLifebloodStamina = false;
 
   constructor(actor: TwodsixActor, damage:number) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
+    this.stamina = new Attribute("stamina", actor);
+    this.lifeblood = new Attribute("lifeblood", actor);
     this.actor = actor;
     this.damage = damage;
     this.armor = actor.data.data.primaryArmor.value;
+    
+    if (game.settings.get("twodsix", "showLifebloodStamina")) {
+      this.damageCharacteristics = ["stamina", "lifeblood"];
+      this.useLifebloodStamina = true;
+    } else {
+      this.damageCharacteristics = ["endurance", "strength", "dexterity"];
+    }
+
     this.reduceStats();
   }
 
   currentDamage(): number {
-    return this.strength.damage + this.dexterity.damage + this.endurance.damage;
+    let retValue: number = 0;
+    for (const characteristic of this.damageCharacteristics) {
+      retValue += this[characteristic].damage;
+    }
+    return retValue;
   }
 
   remaining(): number {
@@ -59,7 +77,11 @@ export class Stats {
   }
 
   totalCurrent(): number {
-    return this.strength.current() + this.dexterity.current() + this.endurance.current();
+    let retValue: number = 0;
+    for (const characteristic of this.damageCharacteristics) {
+      retValue += this[characteristic].current();
+    }
+    return retValue;
   }
 
   public setDamage(damage:number): void {
@@ -77,7 +99,11 @@ export class Stats {
   }
 
   unallocatedDamage(): number {
-    return this.totalDamage() - this.strength.damage - this.dexterity.damage - this.endurance.damage;
+    let retValue: number = this.totalDamage();
+    for (const characteristic of this.damageCharacteristics) {
+      retValue -= this[characteristic].damage;
+    }
+    return retValue;
   }
 
   totalDamage():number {
@@ -86,9 +112,9 @@ export class Stats {
 
   public updateActor(): void {
     this.actor.prepareData();
-    this.strength.original = this.actor.data.data.characteristics.strength;
-    this.dexterity.original = this.actor.data.data.characteristics.dexterity;
-    this.endurance.original = this.actor.data.data.characteristics.endurance;
+    for (const characteristic of this.damageCharacteristics) {
+      this[characteristic].original = this.actor.data.data.characteristics[characteristic];
+    }
     if (!this.edited) {
       this.reduceStats();
     }
@@ -96,7 +122,8 @@ export class Stats {
 
   private reduceStats(): void {
     let remaining = this.totalDamage();
-    for (const characteristic of ["endurance", "strength", "dexterity"])  {
+    
+    for (const characteristic of this.damageCharacteristics) {
       this[characteristic].damage = 0;
       if (remaining > 0) {
         if (remaining <= this[characteristic].current()) {
@@ -120,23 +147,24 @@ export class Stats {
         //toggle dead condition on
         const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
         // @ts-ignore
-        await this.actor.token._object.toggleEffect(deadEffect, {active: true, overlay: true});
+        await this.actor.token._object.toggleEffect(deadEffect, { active: true, overlay: true });
 
         //toggle defeated if in combat
         const fighters = game.combats.active.data.combatants;
         // @ts-ignore
-        const combatant =  fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
+        const combatant = fighters.find((f: Combatant) => f.data.tokenId === this.actor.token.data._id);
         if (combatant !== undefined) {
           // @ts-ignore
-          await combatant.update({defeated: true});
+          await combatant.update({ defeated: true });
         }
       }
     }
-    await this.actor.update({
-      "data.characteristics.strength.damage": this.strength.totalDamage(),
-      "data.characteristics.dexterity.damage": this.dexterity.totalDamage(),
-      "data.characteristics.endurance.damage": this.endurance.totalDamage(),
-    });
+
+    let charName: string = '';
+    for (const characteristic of this.damageCharacteristics) {
+      charName = 'data.characteristics.' + characteristic + '.damage';
+      await this.actor.update({ [charName]: this[characteristic].totalDamage() });
+    }
   }
 }
 
@@ -170,15 +198,15 @@ class DamageDialogHandler {
   private refresh():void {
     this.html.find(".applied-damage").html(this.stats.totalDamage().toString());
 
-    for (const characteristic of ["strength", "dexterity", "endurance"])  {
+    for (const characteristic of this.stats.damageCharacteristics)  {
       const chrHtml = this.html.find(`.${characteristic}`);
       const stat = this.stats[characteristic];
 
       if (!this.stats.edited) {
         chrHtml.find(`.damage-input`).val(stat.damage);
       }
-
-      if (characteristic === "endurance" && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
+      console.log(this.stats.damageCharacteristics[0]);
+      if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));

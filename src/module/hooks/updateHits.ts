@@ -3,7 +3,13 @@ import { mergeDeep } from "../utils/utils";
 
 function getCurrentHits(...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
-  const hitsCharacteristics = ["strength", "dexterity", "endurance"];
+  let hitsCharacteristics: string[] = [];
+
+  if (game.settings.get("twodsix", "showLifebloodStamina")) {
+    hitsCharacteristics = ["stamina", "lifeblood"];
+  } else {
+    hitsCharacteristics = ["endurance", "strength", "dexterity"];
+  }
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {
