@@ -375,8 +375,8 @@
         "name": "Use the system default token icon for new actors."
       },
       "showLifebloodStamina": {
-        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Useful for Cepheus Deluxe.",
-        "name": "Show Lifeblood and Stamina characteristics."
+        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
+        "name": "Show Lifeblood and Stamina characteristics and use for damage."
       }
     },
     "CloseAndCreateNew": "Close and create new",
