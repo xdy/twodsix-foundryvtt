@@ -43,6 +43,7 @@ export class Stats {
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
   useLifebloodStamina = false;
+  useLifebloodEndurance = false;
 
   constructor(actor: TwodsixActor, damage:number) {
     this.strength = new Attribute("strength", actor);
@@ -57,7 +58,11 @@ export class Stats {
     if (game.settings.get("twodsix", "showLifebloodStamina")) {
       this.damageCharacteristics = ["stamina", "lifeblood"];
       this.useLifebloodStamina = true;
-    } else {
+    } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+      this.damageCharacteristics = ["endurance", "strength"];
+      this.useLifebloodEndurance = true;
+    }
+    else {
       this.damageCharacteristics = ["endurance", "strength", "dexterity"];
     }
 

@@ -7,6 +7,8 @@ function getCurrentHits(...args: Record<string, any>[]) {
 
   if (game.settings.get("twodsix", "showLifebloodStamina")) {
     hitsCharacteristics = ["stamina", "lifeblood"];
+  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    hitsCharacteristics = ["endurance", "strength"];
   } else {
     hitsCharacteristics = ["endurance", "strength", "dexterity"];
   }
