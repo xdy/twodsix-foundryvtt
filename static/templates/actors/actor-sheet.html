@@ -34,7 +34,7 @@
               title='{{localize "TWODSIX.Actor.Gender"}}' /></span>
           
           <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
-            {{#if data.characteristics.stamina.current}} <i class="fas fa-battery-half"></i>{{else}}<i class="fas fa-battery-empty" style="color:brown;"></i> {{/if}}:
+            {{#iff data.characteristics.stamina.value ">" data.characteristics.stamina.damage}} <i class="fas fa-battery-half"></i> {{else}} <i class="fas fa-battery-empty" style="color:brown;"></i> {{/iff}}:
             <input type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}"/>-</span>
           <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number" 
                 name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}"/> </span>
