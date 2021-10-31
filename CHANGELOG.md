@@ -1,3 +1,12 @@
+## [0.8.26](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.25...v0.8.26) (2021-10-31)
+
+
+### Bug Fixes
+
+* a more robust way to check stamina is zero ([51fdee9](https://github.com/xdy/twodsix-foundryvtt/commit/51fdee98122823d0c07f5e969141b87244cd8356))
+* delete unneeded code ([5879c08](https://github.com/xdy/twodsix-foundryvtt/commit/5879c0870cca1814148cee6e02b9e4a866a319a0))
+* make damage dialog work when lifebloodInsteadOfCharacterisitcs option is chosen ([bd33857](https://github.com/xdy/twodsix-foundryvtt/commit/bd33857ae03da7cb438f0ed533ffe882e224b307))
+
 ## [0.8.25](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.24...v0.8.25) (2021-10-17)
 
 
