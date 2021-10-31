@@ -388,6 +388,7 @@ img.character-info-mask {
   width: 2.2em;
   border: none;
   text-align: left;
+  color:#b52c2c !important;
 }
 
 span.bgi-age {
