@@ -1,3 +1,10 @@
+## [0.8.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.26...v0.8.27) (2021-10-31)
+
+
+### Bug Fixes
+
+* New Spanish translation courtesy of 𝕱𝖔𝖗𝖏𝖆𝕾𝖆𝖑𝖛𝖆𝖏𝖊 ([191b81c](https://github.com/xdy/twodsix-foundryvtt/commit/191b81c37ed206771a832bf396e01662db498b1e))
+
 ## [0.8.26](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.25...v0.8.26) (2021-10-31)
 
 
