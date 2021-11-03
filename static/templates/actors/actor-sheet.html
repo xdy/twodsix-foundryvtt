@@ -5,59 +5,15 @@
       <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
-        {{#unless limited}}
-        <div class="character-armor">
-          <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}"
-                placeholder='0' onClick="this.select();"/>/<input name="data.secondaryArmor.value" type="text" value="{{data.secondaryArmor.value}}" 
-                placeholder='0' onClick="this.select();"/></span>
-          <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}"
-                placeholder='0' onClick="this.select();"/></span>
-          {{#if actor.data.settings.showLifebloodStamina}}
-          <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" 
-            value= "{{data.heroPoints}}" min="0" step="1" placeholder="2"/></span>
-          {{/if}}
-        </div>
-        {{/unless}}
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
       {{#unless limited}}
         <div class="character-bgi">
           {{#if actor.data.settings.showLifebloodStamina}}
-          <span class="bgi-homeWorld" title='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fas fa-globe"></i>:<input
-              name="data.homeWorld" type="text" value="{{data.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}'
-              onClick="this.select();" /> </span>
-          <span class="bgi-age"><i class="fas fa-calendar-alt"></i>:<input type="text" name="data.age.value"
-              value="{{data.age.value}}" placeholder="0" title='{{localize "TWODSIX.Actor.Age"}}' /></span>
-          <span class="bgi-species"><i class="fas fa-dna"></i>:<input name="data.species" type="text" value="{{data.species}}"
-              placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"
-              title='{{localize "TWODSIX.Actor.Species"}}' /></span>
-          <span class="bgi-gender"><i class="fas fa-venus-mars"></i>:<input name="data.gender" type="text" value="{{data.gender}}"
-              placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"
-              title='{{localize "TWODSIX.Actor.Gender"}}' /></span>
-          
-          <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
-            {{#iff data.characteristics.stamina.value ">" data.characteristics.stamina.damage}} <i class="fas fa-battery-half"></i> {{else}} <i class="fas fa-battery-empty" style="color:brown;"></i> {{/iff}}:
-            <input type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}"/>-</span>
-          <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number" 
-                name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}"/> </span>
-            
-          <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fas fa-heartbeat"></i>: <input
-                type="number" name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}"/>-</span>
-          <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><input type="number"
-                name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}"/> </span>
-          
-          <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:
-            <input name="data.radiationDose.value" value={{data.radiationDose.value}} type="text" /></span>
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           {{else}}
-          <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value"
-              value="{{data.age.value}}" placeholder="0" /></span>
-          <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="data.gender" type="text"
-              value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();" /></span>
-          <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text"
-              value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span>
-          <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text"
-              value="{{data.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span>
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
           {{/if}}
         </div>
         {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}

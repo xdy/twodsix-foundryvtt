@@ -86,7 +86,8 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/actor/actor-finances.html",
     "systems/twodsix/templates/actors/parts/actor/actor-info.html",
     "systems/twodsix/templates/actors/parts/actor/actor-items.html",
-
+    "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html",
+    "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html",
 
     "systems/twodsix/templates/actors/parts/actor/actor-notes.html",
     "systems/twodsix/templates/actors/parts/actor/actor-skills.html",
