@@ -339,7 +339,6 @@ img.character-info-mask {
 
 .character-bgi {
   margin-left: 2.4em;
-  margin-right: 0em;
   position: relative;
   margin-top: 0.15em;
   width: 19em;
@@ -398,7 +397,6 @@ span.bgi-age {
 }
 
 span.bgi-armor {
-  margin-left: 0em;
   margin-right: 1.9em;
   height: 26px;
   font-size: 16px;
