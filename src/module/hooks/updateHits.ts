@@ -1,17 +1,10 @@
 import TwodsixActor from "../entities/TwodsixActor";
+import { getDamageCharacteristics } from "../utils/actorDamage";
 import { mergeDeep } from "../utils/utils";
 
 function getCurrentHits(...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
-  let hitsCharacteristics: string[] = [];
-
-  if (game.settings.get("twodsix", "showLifebloodStamina")) {
-    hitsCharacteristics = ["stamina", "lifeblood"];
-  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-    hitsCharacteristics = ["endurance", "strength"];
-  } else {
-    hitsCharacteristics = ["endurance", "strength", "dexterity"];
-  }
+  let hitsCharacteristics: string[] = getDamageCharacteristics();
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {
