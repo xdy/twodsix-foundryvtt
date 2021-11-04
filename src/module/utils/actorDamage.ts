@@ -54,18 +54,16 @@ export class Stats {
     this.actor = actor;
     this.damage = damage;
     this.armor = actor.data.data.primaryArmor.value;
-    
+    this.damageCharacteristics = getDamageCharacteristics();
+
     if (game.settings.get("twodsix", "showLifebloodStamina")) {
-      this.damageCharacteristics = ["stamina", "lifeblood"];
       this.useLifebloodStamina = true;
+      this.useLifebloodEndurance = false;
     } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-      this.damageCharacteristics = ["endurance", "strength"];
+      this.useLifebloodStamina = false;
       this.useLifebloodEndurance = true;
     }
-    else {
-      this.damageCharacteristics = ["endurance", "strength", "dexterity"];
-    }
-
+    
     this.reduceStats();
   }
 
@@ -347,4 +345,14 @@ export function destroyDamageDialog(damageId:string): void {
       foundryWindow.close();
     }
   });
+}
+
+export function getDamageCharacteristics(): string[] {
+  if (game.settings.get("twodsix", "showLifebloodStamina")) {
+    return ["stamina", "lifeblood"];
+  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    return ["endurance", "strength"];
+  } else {
+    return ["endurance", "strength", "dexterity"];
+  }
 }
