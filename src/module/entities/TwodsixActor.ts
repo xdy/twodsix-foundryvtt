@@ -132,6 +132,7 @@ export default class TwodsixActor extends Actor {
     const data = {
       "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
       "type": "skills",
+      "data": {"characteristic": "NONE"},
       "flags": {'twodsix.untrainedSkill': true}
     };
 
