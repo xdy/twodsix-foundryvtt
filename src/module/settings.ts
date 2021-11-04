@@ -59,6 +59,7 @@ export const registerSettings = function ():void {
   _booleanSetting('showContaminationBelowLifeblood', true);
   _booleanSetting('useSystemDefaultTokenIcon', false);
   _booleanSetting('showLifebloodStamina', false);
+  _booleanSetting('showHeroPoints', false);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
