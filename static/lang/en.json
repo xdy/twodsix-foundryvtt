@@ -372,8 +372,8 @@
         "name": "Show Contamination below Lifeblood. "
       },
       "useSystemDefaultTokenIcon": {
-        "hint": "Use system default token icon (mystery man) when creating new actor.  Check when using custom images so system automatically sets token image to the actor image.",
-        "name": "Use the system default token icon for new actors."
+        "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",
+        "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
       "showLifebloodStamina": {
         "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",

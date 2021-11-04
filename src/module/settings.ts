@@ -5,6 +5,7 @@ export const registerSettings = function ():void {
 
   //Foundry default behaviour related settings
   _booleanSetting('defaultTokenSettings', true);
+  _booleanSetting('useSystemDefaultTokenIcon', false);
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
@@ -57,7 +58,6 @@ export const registerSettings = function ():void {
   _booleanSetting('invertSkillRollShiftClick', false);
   _booleanSetting('lifebloodInsteadOfCharacteristics', false);
   _booleanSetting('showContaminationBelowLifeblood', true);
-  _booleanSetting('useSystemDefaultTokenIcon', false);
   _booleanSetting('showLifebloodStamina', false);
   _booleanSetting('showHeroPoints', false);
 
