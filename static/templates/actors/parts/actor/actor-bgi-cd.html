@@ -19,9 +19,12 @@
         <input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}" placeholder='0'
             onClick="this.select();" /></span>
 <!-- Hero Points Information-->
+{{#if actor.data.settings.showHeroPoints}}
 <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i
         class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
-        step="1" placeholder="2" /></span><br>
+        step="1" placeholder="2" /></span>
+{{/if}}      
+<br>
 <!-- Damage Stats Information-->
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
     {{#iff data.characteristics.stamina.value ">" data.characteristics.stamina.damage}} 

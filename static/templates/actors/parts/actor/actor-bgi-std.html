@@ -12,3 +12,8 @@
       placeholder='0' onClick="this.select();"/></span>
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}"
       placeholder='0' onClick="this.select();"/></span>
+{{#if actor.data.settings.showHeroPoints}}
+    <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i
+              class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
+              step="1" placeholder="2" /></span>
+{{/if}}
