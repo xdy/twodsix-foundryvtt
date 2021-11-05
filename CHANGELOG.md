@@ -1,3 +1,15 @@
+## [0.8.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.27...v0.8.28) (2021-11-05)
+
+
+### Bug Fixes
+
+* can not have zero values in style sheet ([85dade7](https://github.com/xdy/twodsix-foundryvtt/commit/85dade71e31820a9a253f57af100b354df732e2c))
+* clarify default token icon setting and move after other token setting ([8b7345c](https://github.com/xdy/twodsix-foundryvtt/commit/8b7345c375f25c999b7f2ec39a8925c3ca37d8fa))
+* clean up poor coding style ([6e6c66a](https://github.com/xdy/twodsix-foundryvtt/commit/6e6c66a09a43e55f8c6ff054623ab7ffb347fa5e))
+* create option to show hero points ([e4c6997](https://github.com/xdy/twodsix-foundryvtt/commit/e4c6997b0ccbe32f01255ec8792696dacdd57916))
+* Move JOAT line to inside skills list ([e2d1ebf](https://github.com/xdy/twodsix-foundryvtt/commit/e2d1ebf26826b51556a1a9eb836ff78d8c4e0c39))
+* zero value not allowed ([004c7fa](https://github.com/xdy/twodsix-foundryvtt/commit/004c7fa1af469e5e347dec4fe5e15cdfee7b98bd))
+
 ## [0.8.27](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.26...v0.8.27) (2021-10-31)
 
 
