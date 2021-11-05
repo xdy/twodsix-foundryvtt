@@ -206,7 +206,7 @@
             </span>
             <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
             <span class="item-name centre">{{twodsix_localizeConsumable item.data.data.subtype}}</span>
-            <span class="item-name centre">{{item.data.data.quantity}}</span>
+            <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.data.data.quantity}}"/>
             <span class="item-name centre">{{item.data.data.currentCount}}/{{item.data.data.max}}</span>
             <span class="item-controls centre">
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
