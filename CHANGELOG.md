@@ -1,3 +1,10 @@
+## [0.8.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.28...v0.8.29) (2021-11-05)
+
+
+### Bug Fixes
+
+* update comment field ([f9f9773](https://github.com/xdy/twodsix-foundryvtt/commit/f9f9773e4bc7d145f5c0351bb5dc21d863c1b045))
+
 ## [0.8.28](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.27...v0.8.28) (2021-11-05)
 
 
