@@ -15,12 +15,11 @@ All system settings default to Cepheus Engine rules, but you may want to turn on
 
 ## Cepheus Deluxe
 To get the system closer to Cepheus Deluxe select 'Cepheus Deluxe' in the dropdown near the top of the system settings.
-
-To quote Marvin on the discord: "The system will need to be changed to have lifeblood and stamina work correctly.  Right now those two scores use strength and endurance.  So, damage will affect your ability / roll modifiers.  We are working to get traits added and an updated compendium made for CD.  Please let us know what other issues you discover."
+* Turn on "Show 'Lifeblood' and 'Stamina' characteristics and use for damage."  This option displays lifeblood and stamina inputs at the bottom of the biography section of the actor sheet.  The battery icon is stamina and the heart-beat icon is lifeblood.  For each pair, the blue number is the maximum value and the red is the corresponding damage.  So, a blue value of 7 and a red value of 3 means that the current value is 4.  Note that this setting also overrides how damage is implemented - applying it to LFB and STA rather than the standard characteristics.
 
 Support for Traits was added to the system with version 0.8.14
 
-Watch #615 for any progress on Lifeblood and Stamina.
+Basic support for new Lifeblood and Stamina characteristics added in version 0.8.26.  Still left to implement is a way to automatically roll for unconsciousness and DM modifiers when wounded.  Watch #615 for any further progress on Lifeblood and Stamina.
 
 Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
@@ -60,7 +59,7 @@ To get the system closer to Cepheus Atom select 'Cepheus Atom' in the dropdown n
 * Choose the CEL difficulty list.
 * Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
-* Turn on "'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
+* Turn on "Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
 
 In play, handle the differences to Cepheus Engine as follows:
 * Use the skills, items, etc from the various 'cepheus atom-something' compendiums (supplied by @marvin9257).
@@ -77,7 +76,7 @@ To get the system closer to Barbaric! select 'Barbaric!' in the dropdown near th
 * Change the initiative formula to just 2d6 (i.e. you need to add the Combat skill yourself after rolling ,or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros - though you need to change line 5 of the macro to use the 'Combat' skill rather than the 'Tactics' skill).
 * Set a natural 2/12 to be considered a failure/success regardless of actual Effect.
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 4. (Actually only relevant for Spellcasting).
-* Turn on "'Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
+* Turn on "Show END and 'Lifeblood' (STR) as characteristics" (which also makes Contamination show)
 * Turn off "Show Contamination below Lifeblood"
 
 In play, handle the differences to Cepheus Engine as follows:
@@ -94,7 +93,7 @@ To get the system closer to Cepheus Quantum select 'Cepheus Quantum' in the drop
 * Set skills to not use any characteristic for modifiers.
 * Use the careers, items, etc from the 'cepheus quantum-something' compendiums (supplied by @marvin9257).
 * Change the initiative formula to just 1d1
-* Turn on "'Show END and 'Lifeblood' (STR) as characteristics"
+* Turn on "Show END and 'Lifeblood' (STR) as characteristics"
 * Turn off "Show Contamination below Lifeblood"
 
 In play, handle the differences to Cepheus Engine as follows:

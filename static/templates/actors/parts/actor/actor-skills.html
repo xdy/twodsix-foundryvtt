@@ -1,7 +1,4 @@
 <div id="skill-top-row">
-  <div id="joat-skill">
-    {{localize "TWODSIX.Actor.Skills.JOAT"}}:<input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" maxlength="1">
-  </div>
   <a class="add-skill item-control item-create" title="Create item" data-type="skills">
     <span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span>
   </a>
@@ -18,8 +15,22 @@
   </span>
 </div>
 
-{{#each_sort_by_name actor.skills as |item id|}}
-    {{#if (twodsix_hideUntrainedSkills item.data.value)}}
+<div class="skill">
+  <span class="item skill-container">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{joat-skill-input}}" style="margin-bottom: 0.01px;">
+        <span class="skill-container">
+          <span></span>
+          <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
+          <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: right; width: 4ch;"/>
+        </span>
+      </li>
+    </ol>
+  </span>
+</div>
+
+{{#each_sort_by_name data.skills as |item id|}}
+    {{#if (twodsix_hideUntrainedSkills item.data.data.value)}}
     <!-- Hiding {{item.name}} -->
     {{else}}
     <div class="skill">
@@ -32,7 +43,7 @@
                   <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
                 </span>
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input class= "skill-level-edit" type="number" value="{{item.data.data.value}}"/>
+                <input class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>
                 <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.data.data.characteristic}}</span>
                 <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item.data.data.characteristic item.data.data.value}}</span>
                 <span class="item-controls centre">

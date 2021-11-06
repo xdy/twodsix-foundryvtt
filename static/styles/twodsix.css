@@ -320,7 +320,7 @@ img.character-info-mask {
 
 .character-name {
   position: relative;
-  margin-top: 25.3em;
+  margin-top: 22em;
   text-align: center;
   z-index: 6;
   left: 2.5em;
@@ -338,11 +338,12 @@ img.character-info-mask {
 }
 
 .character-bgi {
-  margin-left: 2.6em;
-  margin-right: 0;
+  margin-left: 2.4em;
   position: relative;
   margin-top: 0.15em;
   width: 19em;
+  height: 7.5em;
+  font-size: 16px;
   z-index: 9;
   color: #29aae1 !important;
 }
@@ -396,8 +397,9 @@ span.bgi-age {
 }
 
 span.bgi-armor {
-  margin-left: 1em;
-  font-size: 14px;
+  margin-right: 1.9em;
+  height: 26px;
+  font-size: 16px;
   font-weight: bold;
   color: #29aae1 !important;
 }
@@ -406,7 +408,7 @@ span.bgi-armor {
   position: relative;
   text-align: center;
   margin-bottom: -0.5em;
-  width: 2.5em;
+  width: 3ch;
   border: none;
 }
 
@@ -416,7 +418,7 @@ span.bgi-armor {
 
 .character-characteristics {
   width: 17.5em;
-  margin-top: 1.5em;
+  margin-top: 2em;
   margin-left: 3.3em;
   position: relative;
   z-index: 6;
@@ -755,7 +757,7 @@ a:hover, a.active {
   width: 2em;
 }
 
-input.skill-level-edit {
+input.item-value-edit {
   padding: initial;
   text-align: right;
   height: auto;

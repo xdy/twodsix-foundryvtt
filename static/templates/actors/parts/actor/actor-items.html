@@ -206,9 +206,9 @@
               <img data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
             </span>
             <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-            <span class="item-name centre">{{twodsix_localizeConsumable data.subtype}}</span>
-            <span class="item-name centre">{{data.quantity}}</span>
-            <span class="item-name centre">{{data.currentCount}}/{{data.max}}</span>
+            <span class="item-name centre">{{twodsix_localizeConsumable item.data.data.subtype}}</span>
+            <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.data.data.quantity}}"/>
+            <span class="item-name centre">{{item.data.data.currentCount}}/{{item.data.data.max}}</span>
             <span class="item-controls centre">
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
               <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
