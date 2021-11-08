@@ -6,7 +6,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
-  "version": "0.8.29",
+  "version": "0.8.30",
   "socket": true,
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -168,6 +168,22 @@
       "module": "twodsix",
       "path": "./packs/cepheus-deluxe-items.db",
       "entity": "Item"
+    },
+    {
+      "name": "cepheus-deluxe-actors",
+      "label": "cepheus deluxe actors",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-actors.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "cepheus-deluxe-tables",
+      "label": "cepheus deluxe tables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-tables.db",
+      "entity": "RollTable"
     },
     {
       "name": "cepheus-deluxe-gm-screen",
