@@ -170,6 +170,22 @@
       "entity": "Item"
     },
     {
+      "name": "cepheus-deluxe-actors",
+      "label": "cepheus deluxe actors",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-actors.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "cepheus-deluxe-tables",
+      "label": "cepheus deluxe tables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-tables.db",
+      "entity": "RollTable"
+    },
+    {
       "name": "cepheus-deluxe-gm-screen",
       "label": "cepheus deluxe gm screen",
       "system": "twodsix",
