@@ -1,3 +1,15 @@
+## [0.8.30](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.29...v0.8.30) (2021-11-08)
+
+
+### Bug Fixes
+
+* add new Cepheus Deluxe Compendium ([cec61b4](https://github.com/xdy/twodsix-foundryvtt/commit/cec61b488407d9975ee2b0b0ff2779812b96026c))
+* add new icons ([8f2c4b7](https://github.com/xdy/twodsix-foundryvtt/commit/8f2c4b7a3ca3eec1c14f4f95feaa84c17ee9fd7e))
+* better coding style ([234939e](https://github.com/xdy/twodsix-foundryvtt/commit/234939ed1a565c24ba2bbd4ae2c08799e6046a85))
+* correct error when trying to create an untrained skill that exists ([fdc7281](https://github.com/xdy/twodsix-foundryvtt/commit/fdc7281427e31bf5793df3c0e19384ec11a93292))
+* missing associated skill for pulse rifle ([6e74e23](https://github.com/xdy/twodsix-foundryvtt/commit/6e74e2369159b148be85afe9b669c4762bb48ddc))
+* update compendium manifest ([e306244](https://github.com/xdy/twodsix-foundryvtt/commit/e3062445d04a3cf79a5d5ddc2be31c9406e8b725))
+
 ## [0.8.29](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.28...v0.8.29) (2021-11-05)
 
 
