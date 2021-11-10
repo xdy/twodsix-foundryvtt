@@ -109,6 +109,7 @@ Hooks.once('init', async function () {
     //
     "systems/twodsix/templates/items/armor-sheet.html",
     "systems/twodsix/templates/items/augment-sheet.html",
+    "systems/twodsix/templates/items/component-sheet.html",
     "systems/twodsix/templates/items/consumable-sheet.html",
     "systems/twodsix/templates/items/equipment-sheet.html",
     "systems/twodsix/templates/items/item-sheet.html",

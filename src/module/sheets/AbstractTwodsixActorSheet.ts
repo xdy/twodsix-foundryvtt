@@ -256,6 +256,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const skills: Item[] = [];
     const traits: Item[] = [];
     const consumable: Item[] = [];
+    const component: Item[] = [];
 
     // Iterate through items, allocating to containers
     items.forEach((item: TwodsixItem) => {
@@ -294,6 +295,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           consumable.push(item);
           storage.push(item);
           break;
+        case "component":
+          component.push(item);
+          break;
         default:
           break;
       }
@@ -310,5 +314,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.data.consumable = consumable;
     sheetData.data.skills = skills;
     sheetData.data.traits = traits;
+    sheetData.data.component = component;
   }
 }

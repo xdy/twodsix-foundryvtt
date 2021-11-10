@@ -150,6 +150,25 @@
         "Torso": "Torso",
         "ValueCr": "Value in Cr"
       },
+      "Component": {
+        "accomodations": "accomodations",
+        "armament": "armament",
+        "armor": "armor",
+        "computer": "computer",
+        "drive": "drive",
+        "electronics": "electronics",
+        "hull": "hull",
+        "power": "power",
+        "shield": "shield",
+        "software": "software", 
+        "other": "other",
+        "operational": "operational",
+        "damaged": "damaged", 
+        "destroyed": "destroyed",
+        "off": "off",
+        "powerDraw": "Power Draw",
+        "status": "System Status"
+      },
       "Equipment": {
         "AssignSkill": "Assign Skill",
         "AssociatedSkillName": "Associated Skill Name",

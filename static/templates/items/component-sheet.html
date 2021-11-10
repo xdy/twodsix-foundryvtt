@@ -1,0 +1,93 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="item-sheet">
+    <div>
+      <table>
+        <tr>
+          <th>
+            <div class="item-img">
+              <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
+                   height="128"/></div>
+          </th>
+          <th>
+            <div class="item-name">
+              <label for="data.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
+              <input id="data.name" name="name" type="text" value="{{name}}"/>
+            </div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    
+    <div class="item-tl">
+      <label for="data.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
+        <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/>
+    </div>
+    
+    
+
+    <div class="item-skill">
+      <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}:</label>
+      <select id="data.subtype" name="data.subtype" value={{data.subtype}}>
+        {{#select data.subtype}}
+        <option value="accomodations">{{localize "TWODSIX.Items.Component.accomodations"}}</option>
+        <option value="armament">{{localize "TWODSIX.Items.Component.armament"}}</option>
+        <option value="armor">{{localize "TWODSIX.Items.Component.armor"}}</option>
+        <option value="computer">{{localize "TWODSIX.Items.Component.computer"}}</option>
+        <option value="drive">{{localize "TWODSIX.Items.Component.drive"}}</option>
+        <option value="electronics">{{localize "TWODSIX.Items.Component.electronics"}}</option>
+        <option value="hull">{{localize "TWODSIX.Items.Component.hull"}}</option>
+        <option value="power">{{localize "TWODSIX.Items.Component.power"}}</option>
+        <option value="shield">{{localize "TWODSIX.Items.Component.shield"}}</option>
+        <option value="software">{{localize "TWODSIX.Items.Component.software"}}</option>
+        <option value="other">{{localize "TWODSIX.Items.Component.other"}}</option>
+        {{/select}}
+      </select>
+    </div>
+
+    <div class="item-skill">
+      <label for="data.status" class="resource-label">{{localize "TWODSIX.Items.Component.status"}}:</label>
+      <select class="select-color" id="data.status" name="data.status" value={{data.status}}>
+        {{#select data.status}}
+        <option value="operational" style="color: green !important;">{{localize "TWODSIX.Items.Component.operational"}}</option>
+        <option value="damaged" style="color: yellow !important;">{{localize "TWODSIX.Items.Component.damaged"}}</option>
+        <option value="destroyed" style="color: red !important;">{{localize "TWODSIX.Items.Component.destroyed"}}</option>
+        <option value="off" style="color: gray !important;">{{localize "TWODSIX.Items.Component.off"}}</option>
+        {{/select}}
+      </select>
+    </div>
+    
+    <div class="item-qty">
+      <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
+        <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-weight">
+      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
+        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      </label>
+    </div>
+
+    <div class="item-weight">
+      <label for="data.powerDraw" class="resource-label">{{localize "TWODSIX.Items.Component.powerDraw"}}
+        <input id="data.powerDraw" type="text" name="data.powerDraw" value="{{data.powerDraw}}" data-dtype="Number"/>
+      </label>
+    </div>
+    
+    <div class="item-price">
+      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
+        <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-short">
+      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
+        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+      </label>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    </div>
+  </div>
+</form>
