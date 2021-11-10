@@ -299,7 +299,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -400,6 +400,13 @@
       "type": "consumable",
       "subtype": "other",
       "location": ["inventory", "storage"]
+    },
+    "component": {
+      "templates": ["gearTemplate"],
+      "subtype": ["accomodations", "armament", "armor", "computer", "drive", "electronics", "hull", "power", "shield", "software", "other"],
+      "powerDraw": 0,
+      "rating": "", 
+      "status": ["operational", "damaged", "destroyed", "off"]
     }
   }
 }
