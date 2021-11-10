@@ -2010,9 +2010,15 @@ div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-
   top: 0.8em;
 }
 
-div.app.window-app.twodsix.sheet.actor header a.close, div.app.window-app.twodsix.ship.actor header a.close {
+div.app.window-app.twodsix.sheet.actor header a.close {
   position: absolute;
   left: 50.5em;
+  top: 0.7em;
+}
+
+div.app.window-app.twodsix.ship.actor header a.close {
+  position: absolute;
+  left: 51.5em;
   top: 0.7em;
 }
 
