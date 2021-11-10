@@ -442,7 +442,9 @@
       "AutoDamageForMultipleTargetsNotImplemented": "Automatically damaging multiple targets (using Auto X) is currently not supported",
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
-      "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats"
+      "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
+      "CantAutoDamageShip": "Automatic damage of ship is not supported",
+      "CantDragOntoActor": "This item can't be dragged onto this actor"
     }
   },
   "VeryDifficult": "Very Difficult"
