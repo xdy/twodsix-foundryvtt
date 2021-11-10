@@ -167,7 +167,8 @@
         "destroyed": "destroyed",
         "off": "off",
         "powerDraw": "Power Draw",
-        "status": "System Status"
+        "status": "System Status",
+        "rating": "Rating"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

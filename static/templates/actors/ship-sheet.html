@@ -43,6 +43,7 @@
     <div class="ship-tabs">
       <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item ship-crew-tab" data-tab="ship-crew">Crew</a>
+        <a class="item ship-storage-tab" data-tab="ship-component" style="padding-left: 1ch;padding-right: 1ch;">Components</a>
         <a class="item ship-storage-tab" data-tab="ship-storage">Locker</a>
         <a class="item ship-cargo-tab" data-tab="ship-cargo">Cargo</a>
         <a class="item ship-notes-tab" data-tab="ship-notes">Notes</a>
@@ -52,6 +53,11 @@
     {{!-- Crew Tab --}}
     <div class="tab ship-crew" data-group="primary" data-tab="ship-crew">
       {{> "systems/twodsix/templates/actors/parts/ship/ship-crew.html"}}
+    </div>
+
+    {{!-- Component Tab --}}
+    <div class="tab ship-storage" data-group="primary" data-tab="ship-component">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-components.html"}}
     </div>
 
     {{!-- Storage Tab --}}

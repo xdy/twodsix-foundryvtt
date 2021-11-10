@@ -1339,7 +1339,7 @@ input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 389px;
+  width: 398px;
   display: block;
   margin-left: 20.5em;
   margin-top: -2.3em;
@@ -1487,6 +1487,14 @@ a.ship-notes-tab.active {
   border: 2px solid #29aae1;
   background-color: #29aae1;
   color: #000;
+}
+
+.components-stored {
+  display: grid;
+  grid-template-columns: 8.5em 7em 2em 3em 3em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . . .";
 }
 
 .cargo-wrapper {

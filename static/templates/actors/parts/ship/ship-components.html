@@ -1,0 +1,49 @@
+<div class="storage-wrapper">
+  <div class="grid-columns">
+    <div class="components-stored storage-header">
+      <span class="item-name">Item Name</span>
+      <span class="item-name centre">Category</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Ra</span>
+      <span class="item-name centre">Status</span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
+        class="fas fa-plus"></i></a></span>
+    </div>
+    <div class="components-stored storage-header">
+      <span class="item-name">Item Name</span>
+      <span class="item-name centre">Category</span>
+      <span class="item-name centre">TL</span>
+      <span class="item-name centre">Ra</span>
+      <span class="item-name centre">Status</span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
+        class="fas fa-plus"></i></a></span>
+    </div>
+  </div>
+
+  <div class="grid-columns">
+    {{#each_sort_by_name data.component as |item id|}}
+    <div>
+      <ol class="ol-no-indent">
+        <li class="item components-stored" data-item-id="{{item.id}}">
+          <span class="item-name">{{item.name}}</span>
+          <span class="item-name centre">{{twodsix_capitalize item.data.data.subtype}}</span>
+          <span class="item-name centre">{{item.data.data.techLevel}}</span>
+          <span class="item-name centre">{{item.data.data.rating}}</span>
+          <span class="item-name centre">
+            {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;"></i>{{/iff}}
+            {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;"></i>{{/iff}}
+            {{#iff item.data.data.status "===" 'destroyed'}} <i class="fas fa-times-circle" style="color: red;"></i>{{/iff}}
+            {{#iff item.data.data.status "===" 'off'}} <i class="fas fa-power-off" style="color: grey;"></i>{{/iff}}
+          </span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+              class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
+              class="fas fa-trash"></i></a>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each_sort_by_name}}
+  </div>
+</div>
