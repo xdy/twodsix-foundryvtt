@@ -151,6 +151,7 @@
         "ValueCr": "Value in Cr"
       },
       "Component": {
+        "componentName": "Component",
         "accomodations": "accomodations",
         "armament": "armament",
         "armor": "armor",
@@ -167,7 +168,7 @@
         "destroyed": "destroyed",
         "off": "off",
         "powerDraw": "Power Draw",
-        "status": "System Status",
+        "status": "Status",
         "rating": "Rating"
       },
       "Equipment": {

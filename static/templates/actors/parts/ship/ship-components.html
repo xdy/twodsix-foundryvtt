@@ -1,20 +1,20 @@
 <div class="storage-wrapper">
   <div class="grid-columns">
     <div class="components-stored storage-header">
-      <span class="item-name">Item Name</span>
-      <span class="item-name centre">Category</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Ra</span>
-      <span class="item-name centre">Status</span>
+      <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
         class="fas fa-plus"></i></a></span>
     </div>
     <div class="components-stored storage-header">
-      <span class="item-name">Item Name</span>
-      <span class="item-name centre">Category</span>
-      <span class="item-name centre">TL</span>
-      <span class="item-name centre">Ra</span>
-      <span class="item-name centre">Status</span>
+      <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
         class="fas fa-plus"></i></a></span>
     </div>
@@ -26,14 +26,41 @@
       <ol class="ol-no-indent">
         <li class="item components-stored" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{twodsix_capitalize item.data.data.subtype}}</span>
+          <span class="item-name centre">
+            {{#iff item.data.data.subtype "==" 'accomodations'}}<i class="fas fa-bed" title='{{localize "TWODSIX.Items.Component.accomodations"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'armament'}}<i class="fas fa-crosshairs" title='{{localize "TWODSIX.Items.Component.armament"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'armor'}}<i class="fas fa-grip-vertical" title='{{localize "TWODSIX.Items.Component.armor"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'computer'}}<i class="fas fa-microchip" title='{{localize "TWODSIX.Items.Component.computer"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'drive'}}<i class="fas fa-arrows-alt" title='{{localize "TWODSIX.Items.Component.drive"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'electronics'}}<i class="fas fa-satellite-dish" title='{{localize "TWODSIX.Items.Component.electronics"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'hull'}}<i class="fas fa-rocket" title='{{localize "TWODSIX.Items.Component.hull"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'power'}}<i class="fas fa-atom" title='{{localize "TWODSIX.Items.Component.power"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'shield'}}<i class="fas fa-shield-alt" title='{{localize "TWODSIX.Items.Component.shield"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'software'}}<i class="fas fa-code" title='{{localize "TWODSIX.Items.Component.software"}}'></i>
+            {{else}}
+              {{#iff item.data.data.subtype "===" 'other'}}<i class="fas fa-question-circle" title='{{localize "TWODSIX.Items.Component.other"}}'></i>
+            {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+          </span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
           <span class="item-name centre">
-            {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;"></i>{{/iff}}
-            {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;"></i>{{/iff}}
-            {{#iff item.data.data.status "===" 'destroyed'}} <i class="fas fa-times-circle" style="color: red;"></i>{{/iff}}
-            {{#iff item.data.data.status "===" 'off'}} <i class="fas fa-power-off" style="color: grey;"></i>{{/iff}}
+            {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
+            {{else}}
+              {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
+            {{else}}
+              {{#iff item.data.data.status "===" 'destroyed'}} <i class="fas fa-times-circle" style="color: red;" title='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
+            {{else}}
+              {{#iff item.data.data.status "===" 'off'}} <i class="fas fa-power-off" style="color: grey;" title='{{localize "TWODSIX.Items.Component.off"}}'></i>
+            {{/iff}} {{/iff}} {{/iff}} {{/iff}}
           </span>
           <span class="item-controls centre">
             <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i

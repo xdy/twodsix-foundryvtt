@@ -1491,7 +1491,7 @@ a.ship-notes-tab.active {
 
 .components-stored {
   display: grid;
-  grid-template-columns: 8.5em 7em 2em 3em 3em 3em;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". . . . . .";
