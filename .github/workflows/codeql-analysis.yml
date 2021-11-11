@@ -22,6 +22,7 @@ on:
 
 jobs:
   analyze:
+    if: github.repository == 'xdy/twodsix-foundryvtt'
     name: Analyze
     runs-on: ubuntu-latest
 
