@@ -90,6 +90,7 @@
         "Subtype": "Type",
         "TRAITS": "TRAITS",
         "TL": "TL",
+        "Value": "Value",
         "WEAPONS": "WEAPONS",
         "Weight": "Wt"
       },
@@ -249,6 +250,43 @@
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost"
+      }
+    },
+    "Ship": {
+      "ShipHull": "Ship Hull",
+      "Fuel": "Fuel",
+      "MaintPM": "Maintenance P/M",
+      "PowerManagement": "Power Management",
+      "Power": "Power",
+      "USED": "USED",
+      "MAX": "MAX",
+      "Systems": "Systems",
+      "MDrive": "M-Drive",
+      "JDrive": "J-Drive",
+      "Sensors": "Sensors",
+      "Weapons": "Weapons",
+      "SHIPCARGO": "SHIP CARGO",
+      "SHIPNOTES": "SHIP NOTES",
+      "Tabs": {
+        "Crew": "Crew",
+        "Components": "Components",
+        "Locker": "Locker",
+        "Cargo": "Cargo",
+        "Notes": "Notes"
+      },
+      "Crew": {
+        "CAPTAIN": "CAPTAIN",
+        "MAINTENANCE": "MAINTENANCE",
+        "ADMIN": "ADMINISTRATION",
+        "ENGINEERS": "ENGINEER(S)",
+        "PILOT": "PILOT",
+        "MEDIC": "MEDIC",
+        "BROKER": "BROKER",
+        "GUNNERS": "GUNNER(S)",
+        "ASTROGATOR": "ASTROGATOR",
+        "STEWARD": "STEWARD",
+        "OTHER": "OTHER",
+        "MARINES": "MARINE(S)"
       }
     },
     "Migration": {
@@ -420,7 +458,8 @@
       "skills": "skills",
       "skill": "skill",
       "consumable": "consumable",
-      "trait": "trait"
+      "trait": "trait",
+      "component": "component"
     },
     "Errors": {
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
