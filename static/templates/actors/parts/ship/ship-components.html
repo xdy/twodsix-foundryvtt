@@ -33,6 +33,8 @@
             {{else}}
               {{#iff item.data.data.subtype "===" 'armor'}}<i class="fas fa-grip-vertical" title='{{localize "TWODSIX.Items.Component.armor"}}'></i>
             {{else}}
+              {{#iff item.data.data.subtype "===" 'cargo'}}<i class="fas fa-boxes" title='{{localize "TWODSIX.Items.Component.cargo"}}'></i>
+            {{else}}
               {{#iff item.data.data.subtype "===" 'computer'}}<i class="fas fa-microchip" title='{{localize "TWODSIX.Items.Component.computer"}}'></i>
             {{else}}
               {{#iff item.data.data.subtype "===" 'drive'}}<i class="fas fa-arrows-alt" title='{{localize "TWODSIX.Items.Component.drive"}}'></i>
@@ -47,8 +49,10 @@
             {{else}}
               {{#iff item.data.data.subtype "===" 'software'}}<i class="fas fa-code" title='{{localize "TWODSIX.Items.Component.software"}}'></i>
             {{else}}
-              {{#iff item.data.data.subtype "===" 'other'}}<i class="fas fa-question-circle" title='{{localize "TWODSIX.Items.Component.other"}}'></i>
-            {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+              {{#iff item.data.data.subtype "===" 'vehicle'}}<i class="fas fa-space-shuttle" title='{{localize "TWODSIX.Items.Component.vehicle"}}'></i>
+            {{else}}
+              <i class="fas fa-question-circle" title='{{localize "TWODSIX.Items.Component.other"}}'></i>
+            {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
           </span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
