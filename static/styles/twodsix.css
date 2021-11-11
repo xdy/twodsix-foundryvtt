@@ -252,7 +252,7 @@ form .form-group span.units {
   color: #00e5ff !important;
 }
 
-.app .window-app .twodsix .sheet .actor .window-content {
+.app.window-app.twodsix.sheet.actor .window-content {
   overflow: hidden !important;
 }
 
@@ -619,6 +619,11 @@ a.notes-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: #000;
   text-shadow: none !important;
+}
+
+.tab, div{
+  scrollbar-width: thin;
+  scrollbar-color: #29aae1 #111;
 }
 
 .tab[data-tab].active {
