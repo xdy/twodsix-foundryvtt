@@ -403,7 +403,7 @@
     },
     "component": {
       "templates": ["gearTemplate"],
-      "subtype": ["accomodations", "armament", "armor", "computer", "drive", "electronics", "hull", "power", "shield", "software", "other"],
+      "subtype": ["accomodations", "armament", "armor", "cargo", "computer", "drive", "electronics", "hull", "power", "shield", "software", "vehicle", "other"],
       "powerDraw": 0,
       "rating": "", 
       "status": ["operational", "damaged", "destroyed", "off"]
