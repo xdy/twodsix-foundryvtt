@@ -1,3 +1,14 @@
+## [0.8.32](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.31...v0.8.32) (2021-11-12)
+
+
+### Bug Fixes
+
+* add localization to ship sheet ([1450db0](https://github.com/xdy/twodsix-foundryvtt/commit/1450db05258b8994c0c8da9bcc05b5af4c6f19f9))
+* clean up component list and add localization ([298c780](https://github.com/xdy/twodsix-foundryvtt/commit/298c780155b1554700725ede7fcb6da00b3a2807))
+* close button location move on revised actor sheet ([231c322](https://github.com/xdy/twodsix-foundryvtt/commit/231c322909477ff9b380e255777403666c8e377b))
+* restrict the item types that can be dropped on actor sheet ([1bf2226](https://github.com/xdy/twodsix-foundryvtt/commit/1bf2226115c9ead0e6a5763c27d3026baab64864))
+* show quantity rather than value on ship locker ([c36a7d9](https://github.com/xdy/twodsix-foundryvtt/commit/c36a7d98acd7840be1eec092abaa816ecd2397fa))
+
 ## [0.8.31](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.30...v0.8.31) (2021-11-08)
 
 
