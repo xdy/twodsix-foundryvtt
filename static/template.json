@@ -405,7 +405,9 @@
       "templates": ["gearTemplate"],
       "subtype": ["accomodations", "armament", "armor", "cargo", "computer", "drive", "electronics", "hull", "power", "shield", "software", "vehicle", "other"],
       "powerDraw": 0,
-      "rating": "", 
+      "rating": "",
+      "availableQuantity": "",
+      "damage": "",
       "status": ["operational", "damaged", "destroyed", "off"]
     }
   }
