@@ -9,6 +9,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.powerDraw"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
         class="fas fa-plus"></i></a></span>
@@ -55,6 +56,7 @@
           <span class="item-name centre">{{item.data.data.weight}}</span>
           <span class="item-name centre">{{item.data.data.powerDraw}}</span>
           <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
+          <span class="item-name centre">{{item.data.data.damage}}</span>
           <span class="item-name centre">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
