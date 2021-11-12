@@ -21,7 +21,11 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
-    return a.length > b ? '(...)' : a;
+    if (!a) {
+      return '';
+    } else {
+      return a.length > b ? '(...)' : a;
+    }
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
