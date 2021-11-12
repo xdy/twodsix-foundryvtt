@@ -1465,12 +1465,22 @@ a.ship-notes-tab.active {
   height: 21em;
 }
 
-.grid-columns {
+.grid-columns-double {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". .";
+  margin-left: 1em;
+  width: 54.4em;
+}
+
+.grid-columns-single {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ".";
   margin-left: 1em;
   width: 54.4em;
 }
@@ -1489,12 +1499,20 @@ a.ship-notes-tab.active {
   color: #000;
 }
 
-.components-stored {
+.components-stored-double {
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". . . . . .";
+}
+
+.components-stored-single {
+  display: grid;
+  grid-template-columns: 12em 12em 4em 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ". . . . . . . . . .";
 }
 
 .cargo-wrapper {

@@ -446,6 +446,10 @@
       "showHeroPoints": {
         "hint": "Show Hero Points counter on actor sheet.",
         "name": "Show Hero Points"
+      },
+      "showSingleComponentColumn": {
+        "hint": "Show the ship components list as a single row.",
+        "name": "Ship components listed as single row"
       }
     },
     "CloseAndCreateNew": "Close and create new",

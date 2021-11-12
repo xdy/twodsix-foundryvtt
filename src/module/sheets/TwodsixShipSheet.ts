@@ -20,7 +20,11 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       data.data.storage = data.actor.items;
       AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, data);
     }
-
+    
+    // Add relevant data from system settings
+    data.data.settings = {
+      showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
+    };
     return data;
   }
 
