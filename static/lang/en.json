@@ -172,7 +172,10 @@
         "off": "off",
         "powerDraw": "Power Draw",
         "status": "Status",
-        "rating": "Rating"
+        "rating": "Rating",
+        "totalQuantity": "Total Quantity",
+        "availableQuantity": "Available Quantity",
+        "damage": "Damage / Hits"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
