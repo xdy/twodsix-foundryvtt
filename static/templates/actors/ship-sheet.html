@@ -57,12 +57,16 @@
 
     {{!-- Component Tab --}}
     <div class="tab ship-storage" data-group="primary" data-tab="ship-component">
-      {{> "systems/twodsix/templates/actors/parts/ship/ship-components.html"}}
+      {{#if data.settings.showSingleComponentColumn}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-single.html"}}
+      {{else}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-double.html"}}
+      {{/if}}
     </div>
 
     {{!-- Storage Tab --}}
     <div class="tab ship-storage" data-group="primary" data-tab="ship-storage">
-      {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
     </div>
 
     {{!-- Cargo Tab --}}
