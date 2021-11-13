@@ -26,7 +26,7 @@
       <ol class="ol-no-indent">
         <li class="item storage-stored" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{twodsix_capitalize item.type}}</span>
+          <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.weight}}</span>
           <span class="item-name centre">{{item.data.data.quantity}}</span>
