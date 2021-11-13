@@ -90,6 +90,7 @@
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
         "TL": "NT",
+        "Value": "Precio",
         "WEAPONS": "ARMAS",
         "Weight": "KG"
       },
@@ -107,9 +108,9 @@
         "SkillName": "Nombre",
         "Total": "Total",
         "Untrained": "Sin Entrenar",
-        "SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
+		"SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
         "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
-        "JOAT": "Polivalencia"
+		"JOAT": "Polivalencia"
       },
       "Species": "Especie",
       "Tabs": {
@@ -149,6 +150,32 @@
         "Legs": "Piernas",
         "Torso": "Torso",
         "ValueCr": "Valor en Cr"
+      },
+      "Component": {
+        "componentName": "Componente",
+        "accomodations": "habitáculos",
+        "armament": "armamento",
+        "armor": "armadura",
+        "cargo": "bodega carga",
+        "computer": "computadora",
+        "drive": "motor",
+        "electronics": "electrónica",
+        "hull": "casco",
+        "power": "energía",
+        "shield": "escudo",
+        "software": "software",
+        "vehicle": "vehículo",
+        "other": "otro",
+        "operational": "operativo",
+        "damaged": "dañado", 
+        "destroyed": "destruido",
+        "off": "apagado",
+        "powerDraw": "Consumo Energía",
+        "status": "Estado",
+        "rating": "Valor",
+        "totalQuantity": "Cantidad Total",
+        "availableQuantity": "Cantidad Disponible",
+        "damage": "Daño / Impactos"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -193,13 +220,13 @@
         "STA": "AGU"
       },
       "Traits": {
-        "Prerequisite": "Prerequisito",
-        "TraitName": "Nombre"
+              "Prerequisite": "Prerequisito",
+              "TraitName": "Nombre"
       },
       "Tool": {
         "Bonus": "Bono"
       },
-      "Consumable": {
+       "Consumable": {
         "Types": {
           "air": "Aire",
           "drugs": "Drogas",
@@ -230,12 +257,49 @@
         "MagazineCost": "Coste del cargador/celda"
       }
     },
+    "Ship": {
+      "ShipHull": "Casco",
+      "Fuel": "Combustible",
+      "MaintPM": "Mantenimiento",
+      "PowerManagement": "Gestión Energía",
+      "Power": "Energía",
+      "USED": "USO",
+      "MAX": "MAX",
+      "Systems": "Sistemas",
+      "MDrive": "MotorM",
+      "JDrive": "MotorS",
+      "Sensors": "Sensores",
+      "Weapons": "Armas",
+      "SHIPCARGO": "BODEGA DE CARGA",
+      "SHIPNOTES": "CUADERNO DE BITÁCORA",
+      "Tabs": {
+        "Crew": "Dotación",
+        "Components": "Componentes",
+        "Locker": "Consigna",
+        "Cargo": "Bodega",
+        "Notes": "Notas"
+      },
+      "Crew": {
+        "CAPTAIN": "CAPITÁN",
+        "MAINTENANCE": "MANTENIMIENTO",
+        "ADMIN": "ADMINISTRADOR",
+        "ENGINEERS": "INGENIERO(S)",
+        "PILOT": "PILOTO",
+        "MEDIC": "DOCTOR",
+        "BROKER": "FINANCIERO",
+        "GUNNERS": "ARTILLERO(S)",
+        "ASTROGATOR": "ASTRONAVEGADOR",
+        "STEWARD": "AUXILIAR",
+        "OTHER": "OTRO",
+        "MARINES": "MARINE(S)"
+      }
+    },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
       "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-    "Modules": {
+	"Modules": {
       "compendiumFolders": {
         "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
         "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
@@ -255,7 +319,7 @@
       "using": "de {characteristic}"
     },
     "Settings": {
-      "ruleset": {
+	  "ruleset": {
         "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
         "name": "Reglamento"
       },
@@ -263,7 +327,7 @@
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
         "name": "Bonus/penaliz. incrementar tarea:"
       },
-      "absoluteCriticalEffectValue": {
+	  "absoluteCriticalEffectValue": {
         "hint": "Por defecto 99, que ignora el efecto.",
         "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
       },
@@ -271,7 +335,7 @@
         "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
         "name": "Daño en tirada que impacte"
       },
-      "criticalNaturalAffectsEffect": {
+	  "criticalNaturalAffectsEffect": {
         "hint": "Marca=Sin importar éxito considerar un 2 natural como Efecto -1 y el 12 natural como Efecto 0, SinMarca=Utilizar reglas normales",
         "name": "Las tiradas de resultado 2 ó 12 natural en los dados deben tener una gestión especial."
       },
@@ -295,7 +359,7 @@
         "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
         "name": "Modificador Atributo nuevo:"
       },
-      "showMissingCompendiumWarnings": {
+	  "showMissingCompendiumWarnings": {
         "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
         "name": "Mostrar aviso sobre módulos desactivados/faltan."
       },
@@ -335,7 +399,7 @@
         "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
         "name": "Banda de Alcance"
       },
-      "autofireRulesUsed": {
+	  "autofireRulesUsed": {
         "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
         "name": "Variante disparo automático"
       },
@@ -359,7 +423,7 @@
         "continue": "Quieres continuar?",
         "warning": "Aviso!"
       },
-      "invertSkillRollShiftClick": {
+	  "invertSkillRollShiftClick": {
         "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
         "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
       },
@@ -370,7 +434,7 @@
       "showContaminationBelowLifeblood": {
         "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
         "name": "Mostrar Contaminación bajo Vitalidad."
-      },
+     },
       "useSystemDefaultTokenIcon": {
         "hint": "Utilizar el icono de token por defecto de Foundry VTT (mystery man) en vez del de Twodsix  al crear nuevos actores. Seleccionar para que al utilizar imágenes propias el token coincida con la imagen del actor automáticamente.",
         "name": "Utilizar el token por defecto de Foundry VTT en vez del de Twodsix."
@@ -378,13 +442,13 @@
       "showLifebloodStamina": {
         "hint": "Mostrar Aguante y Vitalidad en la hoja de personaje. Necesario con Cepheus Deluxe.",
         "name": "Mostrar las características derivadas Aguante y Vitalidad."
-      },
+     },
       "showHeroPoints": {
         "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
         "name": "Mostrar Puntos Heroe"
       }
     },
-    "CloseAndCreateNew": "Cerrar y crear nuevo",
+	"CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
     "Yes": "Si",
     "Name": "Nombre",
@@ -399,11 +463,12 @@
       "skills": "habilidades",
       "skill": "habilidad",
       "consumable": "consumible",
-      "trait": "rasgo"
+      "trait": "rasgo",
+      "component": "componente"
     },
-    "Errors": {
+	"Errors": {
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
-      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
+	  "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
       "NoDamageForWeapon": "Falta definir el daño del arma",
       "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
@@ -423,8 +488,10 @@
       "AutoDamageForMultipleTargetsNotImplemented": "Todavía no se puede asignar daño automáticamente a varios objetivos",
       "MaxStatVal": "El valor supera el máximo del atributo",
       "StatValBelowZero": "El valor no puede ser inferior a cero",
-      "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos"
-    }
+      "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos",
+      "CantAutoDamageShip": "Daño automático a una nave no soportado.",
+      "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor"
+    }    
   },
   "VeryDifficult": "Muy Difícil"
 }
