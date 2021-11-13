@@ -1,3 +1,10 @@
+## [0.8.35](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.34...v0.8.35) (2021-11-13)
+
+
+### Bug Fixes
+
+* Updated Swedish translation ([8f73e6d](https://github.com/xdy/twodsix-foundryvtt/commit/8f73e6dc396fb75b83146482dfe623756f88b29b))
+
 ## [0.8.34](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.33...v0.8.34) (2021-11-13)
 
 
