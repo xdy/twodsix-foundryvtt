@@ -1,3 +1,15 @@
+## [0.8.34](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.33...v0.8.34) (2021-11-13)
+
+
+### Bug Fixes
+
+* "twodsix_limitlength" handlebar did not work with empty string ([8810849](https://github.com/xdy/twodsix-foundryvtt/commit/88108490902ee9d234eb8e5667dba5494334e052))
+* add missing localization on ship storage tab ([e952a14](https://github.com/xdy/twodsix-foundryvtt/commit/e952a14f103ddcf2b1cdccc0025cec7d352ab9dd))
+* forgot to reformat grid for ship storage ([749e3d7](https://github.com/xdy/twodsix-foundryvtt/commit/749e3d7cb36adf94f2000387e0b6c88868f4f103))
+* refactor component icon selection to be handlebar helper ([c48b1cf](https://github.com/xdy/twodsix-foundryvtt/commit/c48b1cf6935607091c011a967293e747194136b6))
+* show damage field on single row component list ([d958c4f](https://github.com/xdy/twodsix-foundryvtt/commit/d958c4f1303cba7fee6663fc871e1781987faa1f))
+* tab bar not wide enough ([df4f8ac](https://github.com/xdy/twodsix-foundryvtt/commit/df4f8acd7f1bc258cebd1f16ba05d61cbb6ec727))
+
 ## [0.8.33](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.32...v0.8.33) (2021-11-13)
 
 
