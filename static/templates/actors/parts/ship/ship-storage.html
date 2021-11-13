@@ -1,5 +1,5 @@
 <div class="storage-wrapper">
-  <div class="grid-columns">
+  <div class="grid-columns-double">
     <div class="storage-stored storage-header">
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
@@ -20,13 +20,13 @@
     </div>
   </div>
 
-  <div class="grid-columns">
+  <div class="grid-columns-double">
     {{#each_sort_by_name data.storage as |item id|}}
     <div>
       <ol class="ol-no-indent">
         <li class="item storage-stored" data-item-id="{{item._id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{twodsix_capitalize item.type}}</span>
+          <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.weight}}</span>
           <span class="item-name centre">{{item.data.data.quantity}}</span>

@@ -16,7 +16,11 @@ export default function registerHandlebarsHelpers():void {
   });
 
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
-    return a.length > b ? '(...)' : a;
+    if (!a) {
+      return '';
+    } else {
+      return a.length > b ? '(...)' : a;
+    }
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
@@ -107,6 +111,51 @@ export default function registerHandlebarsHelpers():void {
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {
     return skill!=null && !skill.flags?.twodsix?.untrainedSkill && skill.type === "skills";
   });
+
+  Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
+    switch (componentType) {
+      case 'accomodations':
+        return "fas fa-bed";
+        break;
+      case 'armament':
+        return "fas fa-crosshairs";
+        break;
+      case 'armor':
+        return "fas fa-grip-vertical";
+        break;
+      case 'cargo':
+        return "fas fa-boxes";
+        break;
+      case 'computer':
+        return "fas fa-microchip";
+        break;
+      case 'drive':
+        return "fas fa-arrows-alt";
+        break;
+      case 'electronics':
+        return "fas fa-satellite-dish";
+        break;
+      case 'hull':
+        return "fas fa-rocket";
+        break;
+      case 'power':
+        return "fas fa-atom";
+        break;
+      case 'shield':
+        return "fas fa-shield-alt";
+        break;
+      case 'software':
+        return "fas fa-code";
+        break;
+      case 'vehicle':
+        return "fas fa-space-shuttle";
+        break;
+      default:
+        return "fas fa-question-circle";
+    }
+  });
+  
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
     const sortedArray = array.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {

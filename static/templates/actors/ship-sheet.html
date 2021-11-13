@@ -44,7 +44,7 @@
     <div class="ship-tabs">
       <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item ship-crew-tab" data-tab="ship-crew">{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
-        <a class="item ship-storage-tab" data-tab="ship-component" style="padding-left: 1ch;padding-right: 1ch;">{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
+        <a class="item ship-storage-tab" data-tab="ship-component">{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
         <a class="item ship-storage-tab" data-tab="ship-storage">{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
         <a class="item ship-cargo-tab" data-tab="ship-cargo">{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
         <a class="item ship-notes-tab" data-tab="ship-notes">{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
@@ -58,12 +58,16 @@
 
     {{!-- Component Tab --}}
     <div class="tab ship-storage" data-group="primary" data-tab="ship-component">
-      {{> "systems/twodsix/templates/actors/parts/ship/ship-components.html"}}
+      {{#if data.settings.showSingleComponentColumn}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-single.html"}}
+      {{else}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-double.html"}}
+      {{/if}}
     </div>
 
     {{!-- Storage Tab --}}
     <div class="tab ship-storage" data-group="primary" data-tab="ship-storage">
-      {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
     </div>
 
     {{!-- Cargo Tab --}}
