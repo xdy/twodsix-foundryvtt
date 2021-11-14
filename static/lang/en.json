@@ -444,6 +444,10 @@
         "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
         "name": "Show Lifeblood and Stamina characteristics and use for damage."
       },
+      "weightModifierForWornArmor": {
+        "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
+        "name": "Factor to multiply the weight value of a equipped armor."
+      },
       "showHeroPoints": {
         "hint": "Show Hero Points counter on actor sheet.",
         "name": "Show Hero Points"

@@ -290,7 +290,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
             const q = item.data.data.quantity || 0;
             let w = item.data.data.weight || 0;
             if (item.type === "armor" && item.data.data.equipped === "equipped") {
-              w *= 0.25;
+              w *= sheetData.actor.data.settings.weightModifierForWornArmor;
               primaryArmor += item.data.data.armor;
               secondaryArmor += item.data.data.secondaryArmor.value;
               radiationProtection += item.data.data.radiationProtection.value;
