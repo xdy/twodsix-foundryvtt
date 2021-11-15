@@ -257,6 +257,22 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return this._onDropItemCreate(itemData);
   }
 
+  private static _getWeight(item): number{
+    if ((item.type === "weapon") || (item.type === "armor") ||
+        (item.type === "equipment") || (item.type === "tool") ||
+        (item.type === "junk") || (item.type === "consumable")) {
+      if (item.data.data.equipped !== "ship") {
+        const q = item.data.data.quantity || 0;
+        let w = item.data.data.weight || 0;
+        if (item.type === "armor" && item.data.data.equipped === "equipped") {
+          w *= Number(game.settings.get("twodsix", "weightModifierForWornArmor"));
+        }
+        return (q * w);
+      }
+    }
+    return 0;
+  }
+
   protected static _prepareItemContainers(items, sheetData: any): void {
 
     // Initialize containers.
@@ -271,12 +287,24 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const traits: Item[] = [];
     const consumable: Item[] = [];
     const component: Item[] = [];
+    let encumbrance = 0;
+    let primaryArmor = 0;
+    let secondaryArmor = 0;
+    let radiationProtection = 0;
 
     // Iterate through items, allocating to containers
     items.forEach((item: TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
       if (item.type !== "skills") {
         item.prepareConsumable();
+      }
+      if (sheetData.actor.type === "traveller") {
+        encumbrance += AbstractTwodsixActorSheet._getWeight(item);
+        if (item.type === "armor" && item.data.data.equipped === "equipped") {
+          primaryArmor += item.data.data.armor;
+          secondaryArmor += item.data.data.secondaryArmor.value;
+          radiationProtection += item.data.data.radiationProtection.value;
+        }
       }
       switch (item.type) {
         case 'storage':
@@ -329,5 +357,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.data.skills = skills;
     sheetData.data.traits = traits;
     sheetData.data.component = component;
+    if (sheetData.actor.type === "traveller") {
+      sheetData.data.primaryArmor.value = primaryArmor;
+      sheetData.data.secondaryArmor.value = secondaryArmor;
+      sheetData.data.radiationProtection.value = radiationProtection;
+      sheetData.data.encumbrance.value = encumbrance;
+    }
   }
 }

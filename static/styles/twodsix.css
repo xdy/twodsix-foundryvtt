@@ -38,6 +38,13 @@ input[type='text'], input[type='number'], input[type='password'], input[type='da
   border-radius: 0px !important;
 }
 
+*[contenteditable] * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 select {
   height: 25px;
   background: #00000073 !important;
@@ -82,6 +89,19 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/*** Fix link backgrounds and table colors to TWODSIX Style ***/
+a.entity-link,
+a.inline-roll {
+  background: rgba(0, 0, 0, 0.05);
+}
+a.entity-link i,
+a.inline-roll i {
+  color: #29aae1;
+}
+table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /******************************/
@@ -245,7 +265,7 @@ form .form-group span.units {
   color: #00e5ff !important;
 }
 
-.app .window-app .twodsix .sheet .actor .window-content {
+.app.window-app.twodsix.sheet.actor .window-content {
   overflow: hidden !important;
 }
 
@@ -261,7 +281,7 @@ h2 {
 
 .content-container {
   display: grid;
-  grid-template-columns: 22em 34.5em;
+  grid-template-columns: 21.8em 35em;
   gap: 1px 1px;
   position: relative;
   top: -2.4em;
@@ -397,7 +417,7 @@ span.bgi-age {
 }
 
 span.bgi-armor {
-  margin-right: 1.9em;
+  margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
   font-weight: bold;
@@ -408,7 +428,7 @@ span.bgi-armor {
   position: relative;
   text-align: center;
   margin-bottom: -0.5em;
-  width: 3ch;
+  width: 4ch;
   border: none;
 }
 
@@ -614,18 +634,23 @@ a.notes-tab.active {
   text-shadow: none !important;
 }
 
+.tab, div{
+  scrollbar-width: thin;
+  scrollbar-color: #29aae1 #111;
+}
+
 .tab[data-tab].active {
   display: block;
   position: relative;
 }
 
 .tab.inventory {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
 }
 
 .character-inventory {
-  width: 34em;
   overflow-x: hidden;
 }
 
@@ -635,7 +660,7 @@ a.notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1em 14em 1.5em 1.5em 2.5em 3em 5em 4em;
+  grid-template-columns: 1em 14em 1.6em 1.6em 1.6em 3em 5em 5.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -654,21 +679,21 @@ a.notes-tab.active {
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1em 14em 4em 3.5em 3.5em 4em 3em;
+  grid-template-columns: 1em 14em 3.5em 3.5em 3.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1em 13em 3.5em 3.5em 4em 5em 3em;
+  grid-template-columns: 1em 12em 1.6em 1.6em 10.5em 4em 3em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1em 12em 1.5em 2.5em 13em 3em;
+  grid-template-columns: 1em 12em 1.6em 1.6em 13em 4.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -682,7 +707,7 @@ a.notes-tab.active {
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1em 15em 5em 2.5em 6.5em 3em;
+  grid-template-columns: 1em 15em 5em 2.5em 5.8em 4.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -786,13 +811,21 @@ input.item-value-edit {
 }
 
 .tab.skills {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
 }
 
 .skl.item-control.item-edit {
   padding-right: 1.5em;
 }
+
+.item-controls .item-toggle i { display: none; }
+.item-controls .item-toggle .fa-hiking { display: inline; }
+.item-controls .item-toggle.ship .fa-hiking,
+.item-controls .item-toggle.equipped .fa-hiking { display: none; }
+.item-controls .item-toggle.ship .fa-space-shuttle,
+.item-controls .item-toggle.equipped .fa-child { display: inline; }
 
 .skill:nth-of-type(even) {
   background: #0d0d0dbb;
@@ -996,14 +1029,9 @@ span.total-output {
 }
 
 .tab.info {
-  height: 39.4em;
+  top: 2em;
+  height: 39em;
   overflow-x: hidden;
-}
-
-.info {
-  margin-top: 2em;
-  overflow-x: hidden;
-  margin-bottom: -2em;
 }
 
 .info-container .editor {
@@ -1122,6 +1150,9 @@ img.ship-img {
 .ship-name input[type="text"] {
   height: 1.3em;
   border: none;
+  position: relative;
+  top: -0.35em;
+  width: auto;
 }
 
 .ship-info {
@@ -1193,9 +1224,11 @@ img.ship-img {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.ship-maintenance input {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
 
 .ship-maintenance input[type="text"] {
-  background-color: #000000bd !important;
   width: 4.5em;
   border: 1px solid #29aae1;
   left: -1em;
@@ -1267,9 +1300,13 @@ img.ship-img {
   grid-area: ship-weapons;
 }
 
-.ship-systems, .ship-m-drive, .ship-j-drive, .ship-sensors, .ship-weapons {
+.ship-systems input[type="number"], .ship-m-drive input[type="number"], .ship-j-drive input[type="number"],
+.ship-sensors input[type="number"], .ship-weapons input[type="number"] {
   text-align: center;
   width: 3.8em;
+  background-color: transparent !important;
+  border: none;
+  margin-top: 6px;
 }
 
 .power-grid input[type="text"] {
@@ -1298,37 +1335,37 @@ span.power-now {
   font-size: 10px;
   position: relative;
   display: block;
-  width: 7.5em;
-  top: -3.0em;
+  width: auto;
+  top: -2.8em;
 }
 
 span.power-max {
   font-size: 10px;
   position: relative;
   display: block;
-  width: 7.5em;
-  top: -4em;
+  width: auto;
+  top: -4.2em;
 }
 
 /*--- Input Fields ---*/
 
 input.power-current {
-  font-size: 21px;
+  font-size: 18px;
   position: relative;
   left: 0;
-  top: -1.65em;
-  width: 3.6em;
+  top: -1.9em;
+  width: inherit;
   display: block;
   border: none;
   background-color: transparent !important;
 }
 
 input.power-total {
-  font-size: 21px;
+  font-size: 18px;
   position: relative;
   left: 0;
-  top: -1.65em;
-  width: 3.6em;
+  top: -2em;
+  width: inherit;
   display: block;
   border: none;
   background-color: transparent !important;
@@ -1497,6 +1534,8 @@ a.ship-notes-tab.active {
   border: 2px solid #29aae1;
   background-color: #29aae1;
   color: #000;
+  position: sticky;
+  top:0%;
 }
 
 .components-stored-double {
@@ -1706,6 +1745,7 @@ a:hover {
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
+  padding-right: 3px;
   width: 100%;
   height: 30px;
 }
