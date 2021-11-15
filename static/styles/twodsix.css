@@ -1221,9 +1221,11 @@ img.ship-img {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.ship-maintenance input {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
 
 .ship-maintenance input[type="text"] {
-  background-color: #000000bd !important;
   width: 4.5em;
   border: 1px solid #29aae1;
   left: -1em;
