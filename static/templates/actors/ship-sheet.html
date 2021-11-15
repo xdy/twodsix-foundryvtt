@@ -46,6 +46,7 @@
         <a class="item ship-storage-tab" data-tab="ship-component">{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
         <a class="item ship-storage-tab" data-tab="ship-storage">{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
         <a class="item ship-cargo-tab" data-tab="ship-cargo">{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
+        <a class="item ship-finance-tab" data-tab="ship-finance">{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
         <a class="item ship-notes-tab" data-tab="ship-notes">{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
       </nav>
     </div>
@@ -72,6 +73,11 @@
     {{!-- Cargo Tab --}}
     <div class="tab ship-cargo" data-group="primary" data-tab="ship-cargo">
       {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo.html"}}
+    </div>
+
+    {{!-- Finance Tab --}}
+    <div class="tab ship-finance" data-group="primary" data-tab="ship-finance">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-finance.html"}}
     </div>
 
     {{!-- Notes Tab --}}
