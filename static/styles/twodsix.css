@@ -1408,14 +1408,14 @@ a.ship-crew-tab.active {
   height: 20px;
 }
 
-a.ship-storage-tab, a.ship-cargo-tab {
+a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
   background-image: url(../assets/ship/ship-tabs.svg);
   background-position: -99px;
   display: block;
   height: 20px;
 }
 
-a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
+a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
   background-image: url(../assets/ship/ship-tabs-hover.svg);
   background-position: -99px;
   display: block;
@@ -1423,7 +1423,7 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover {
   color: #fff;
 }
 
-a.ship-storage-tab.active, a.ship-cargo-tab.active {
+a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
   background-image: url(../assets/ship/ship-tabs-active.svg);
   background-position: -99px;
   display: block;
