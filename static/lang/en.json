@@ -137,6 +137,7 @@
     },
     "Items": {
       "Encumbrance": "Encumbrance",
+      "Enc": "Enc",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
