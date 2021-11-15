@@ -1150,6 +1150,9 @@ img.ship-img {
 .ship-name input[type="text"] {
   height: 1.3em;
   border: none;
+  position: relative;
+  top: -0.35em;
+  width: auto;
 }
 
 .ship-info {
