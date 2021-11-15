@@ -20,6 +20,10 @@
         "max": 0,
         "min": 0
       },
+      "encumbrance": {
+        "value": 0,
+        "max": 0
+      },
       "primaryArmor": {
         "value": 0
       },
@@ -300,6 +304,7 @@
   },
   "Item": {
     "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component"],
+    "equipped": ["equipped", "ship", "backpack"],
     "templates": {
       "gearTemplate": {
         "name": "",
