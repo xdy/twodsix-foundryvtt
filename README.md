@@ -11,9 +11,6 @@ A [Foundry VTT](https://foundryvtt.com/) system for running games using various 
 
 Install by either searching for Twodsix in in [FoundryVTT's](https://foundryvtt.com/) Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 
-**IMPORTANT NOTICE!**
-If you are upgrading from version 0.7.x of Twodsix, **BACK UP YOUR WORLD** before upgrading to version 0.8.x. *We* don't know of any showstopping, world-destroying bugs. But, what do we know? :)
-
 In play - using a number of Foundry modules - it can look something like this:
 
 ![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)

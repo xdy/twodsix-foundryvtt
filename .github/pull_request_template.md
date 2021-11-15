@@ -1,5 +1,5 @@
 * **Please check if the PR fulfills these requirements**
-- [ ] We use semantic versioning (https://github.com/semantic-release/semantic-release to be specific), so follow https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines *EXCEPT*, don't use 'feat:' if you're not me. Stepping major versions until 1.0 is a deliberate decision (after that, it'll be full semantic versioning.) 
+- [ ] We use semantic versioning (https://github.com/semantic-release/semantic-release to be specific), so follow https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
 - [ ] Docs have been added / updated (for bug fixes / features)
 
 

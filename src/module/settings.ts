@@ -62,6 +62,8 @@ export const registerSettings = function ():void {
   _booleanSetting('showHeroPoints', false);
   _booleanSetting('showSingleComponentColumn', false);
 
+  _numberSetting('weightModifierForWornArmor', 1.0);
+
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
   _numberSetting('absoluteBonusValueForEachTimeIncrement', -1);

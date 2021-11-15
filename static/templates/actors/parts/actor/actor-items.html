@@ -33,6 +33,7 @@
             <span class="item-name centre roll-damage">{{twodsix_limitLength item.data.data.damage 8}}</span>
             <span class="item-controls centre">
               <a class="item-control item-fill-consumable" title='{{localize "TWODSIX.Actor.Items.Refill"}}'><i class="fas fa-battery-full"></i></a>
+              <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
               <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
@@ -89,6 +90,7 @@
             <span class="item-name centre">{{item.data.data.weight}}</span>
             <span class="item-name centre">{{item.data.data.armor}}</span>
             <span class="item-controls centre">
+              <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
               <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
@@ -165,6 +167,7 @@
               <span class="item-name centre">{{item.data.data.quantity}}</span>
               <span class="item-name centre">{{item.data.data.shortdescr}}</span>
               <span class="item-controls centre">
+                <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>
                 <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
               </span>
@@ -209,6 +212,7 @@
             <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.data.data.quantity}}"/>
             <span class="item-name centre">{{item.data.data.currentCount}}/{{item.data.data.max}}</span>
             <span class="item-controls centre">
+              <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
               <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
             </span>
