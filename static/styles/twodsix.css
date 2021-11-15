@@ -1300,9 +1300,13 @@ img.ship-img {
   grid-area: ship-weapons;
 }
 
-.ship-systems, .ship-m-drive, .ship-j-drive, .ship-sensors, .ship-weapons {
+.ship-systems input[type="number"], .ship-m-drive input[type="number"], .ship-j-drive input[type="number"],
+.ship-sensors input[type="number"], .ship-weapons input[type="number"] {
   text-align: center;
   width: 3.8em;
+  background-color: transparent !important;
+  border: none;
+  margin-top: 6px;
 }
 
 .power-grid input[type="text"] {
@@ -1346,7 +1350,7 @@ span.power-max {
 /*--- Input Fields ---*/
 
 input.power-current {
-  font-size: 21px;
+  font-size: 18px;
   position: relative;
   left: 0;
   top: -1.9em;
@@ -1357,7 +1361,7 @@ input.power-current {
 }
 
 input.power-total {
-  font-size: 21px;
+  font-size: 18px;
   position: relative;
   left: 0;
   top: -2em;
