@@ -257,6 +257,22 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return this._onDropItemCreate(itemData);
   }
 
+  private static _getWeight(item, weightModifierForWornArmor): number{
+    if ((item.type === "weapon") || (item.type === "armor") ||
+        (item.type === "equipment") || (item.type === "tool") ||
+        (item.type === "junk") || (item.type === "consumable")) {
+      if (item.data.data.equipped !== "ship") {
+        const q = item.data.data.quantity || 0;
+        let w = item.data.data.weight || 0;
+        if (item.type === "armor" && item.data.data.equipped === "equipped") {
+          w *= weightModifierForWornArmor;
+        }
+        return (q * w);
+      }
+    }
+    return 0;
+  }
+
   protected static _prepareItemContainers(items, sheetData: any): void {
 
     // Initialize containers.
@@ -283,20 +299,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         item.prepareConsumable();
       }
       if (sheetData.actor.type === "traveller") {
-        if ((item.type === "weapon") || (item.type === "armor") ||
-            (item.type === "equipment") || (item.type === "tool") ||
-            (item.type === "junk") || (item.type === "consumable")) {
-          if (item.data.data.equipped !== "ship") {
-            const q = item.data.data.quantity || 0;
-            let w = item.data.data.weight || 0;
-            if (item.type === "armor" && item.data.data.equipped === "equipped") {
-              w *= sheetData.actor.data.settings.weightModifierForWornArmor;
-              primaryArmor += item.data.data.armor;
-              secondaryArmor += item.data.data.secondaryArmor.value;
-              radiationProtection += item.data.data.radiationProtection.value;
-            }
-            encumbrance += (q * w);
-          }
+        encumbrance += AbstractTwodsixActorSheet._getWeight(item, sheetData.actor.data.settings.weightModifierForWornArmor);
+        if (item.type === "armor" && item.data.data.equipped === "equipped") {
+          primaryArmor += item.data.data.armor;
+          secondaryArmor += item.data.data.secondaryArmor.value;
+          radiationProtection += item.data.data.radiationProtection.value;
         }
       }
       switch (item.type) {
