@@ -257,7 +257,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return this._onDropItemCreate(itemData);
   }
 
-  private static _getWeight(item, weightModifierForWornArmor): number{
+  private static _getWeight(item): number{
     if ((item.type === "weapon") || (item.type === "armor") ||
         (item.type === "equipment") || (item.type === "tool") ||
         (item.type === "junk") || (item.type === "consumable")) {
@@ -265,7 +265,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         const q = item.data.data.quantity || 0;
         let w = item.data.data.weight || 0;
         if (item.type === "armor" && item.data.data.equipped === "equipped") {
-          w *= weightModifierForWornArmor;
+          w *= Number(game.settings.get("twodsix", "weightModifierForWornArmor"));
         }
         return (q * w);
       }
@@ -299,7 +299,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         item.prepareConsumable();
       }
       if (sheetData.actor.type === "traveller") {
-        encumbrance += AbstractTwodsixActorSheet._getWeight(item, sheetData.actor.data.settings.weightModifierForWornArmor);
+        encumbrance += AbstractTwodsixActorSheet._getWeight(item);
         if (item.type === "armor" && item.data.data.equipped === "equipped") {
           primaryArmor += item.data.data.armor;
           secondaryArmor += item.data.data.secondaryArmor.value;
