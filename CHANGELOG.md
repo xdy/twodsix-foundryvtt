@@ -1,3 +1,14 @@
+## [0.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.1...v0.9.2) (2021-11-15)
+
+
+### Bug Fixes
+
+* background for ship maintenance per month input ([18bdfc0](https://github.com/xdy/twodsix-foundryvtt/commit/18bdfc00737bc46fffbc9fc0918bafa80467b518))
+* center power grid inputs and remove border ([3c57b84](https://github.com/xdy/twodsix-foundryvtt/commit/3c57b84f3623d206bd7eda7a04d0c71091b56108))
+* make power used and power max easier to read ([f8bbae4](https://github.com/xdy/twodsix-foundryvtt/commit/f8bbae4e8403e11dad5196737c22bc0a6a6c3c09))
+* restyle links and table shading for journal entries ([7b0eeea](https://github.com/xdy/twodsix-foundryvtt/commit/7b0eeea85b8d6c8071f069bd44e1489a0ae3b60d))
+* ship name position ([0da1c3b](https://github.com/xdy/twodsix-foundryvtt/commit/0da1c3b07c62d9eded14d92175340e29b10b68d8))
+
 ## [0.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.0...v0.9.1) (2021-11-15)
 
 
