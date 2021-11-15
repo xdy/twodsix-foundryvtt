@@ -1512,6 +1512,8 @@ a.ship-notes-tab.active {
   border: 2px solid #29aae1;
   background-color: #29aae1;
   color: #000;
+  position: sticky;
+  top:0%;
 }
 
 .components-stored-double {
