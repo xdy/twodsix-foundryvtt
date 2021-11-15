@@ -1,3 +1,10 @@
+## [0.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.0...v0.9.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* component and storage headers don't scroll ([9b03a54](https://github.com/xdy/twodsix-foundryvtt/commit/9b03a54352ea03fc36e5a217495b0cdfd549be15))
+
 # [0.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.35...v0.9.0) (2021-11-15)
 
 
