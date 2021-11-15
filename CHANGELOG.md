@@ -1,3 +1,18 @@
+# [0.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.35...v0.9.0) (2021-11-15)
+
+
+### Bug Fixes
+
+* addapt some stylings(inventory width's, scrollbar color/width) ([566b0bb](https://github.com/xdy/twodsix-foundryvtt/commit/566b0bb1e4312536727adf174c580a0082cb3668))
+* Change default weight modifier for worn armor to 1.0 (i.e. unchanged) to match Cepheus Engine rules. ([e71d583](https://github.com/xdy/twodsix-foundryvtt/commit/e71d58392c7606ff9f493d565baacbca96a8dbee))
+* error reading (game.settings.get("twodsix", "weightModifierForWornArmor") ([6b6701e](https://github.com/xdy/twodsix-foundryvtt/commit/6b6701ef7b98e02aa7a5382b80f241e32e04835d))
+
+
+### Features
+
+* Add encumbrance to the character sheet and auto calculate encumbrance & armor values. ([b97dabc](https://github.com/xdy/twodsix-foundryvtt/commit/b97dabc2acc3ca71b8aea9535a1d6732bc7065bb))
+* Add icons in the character inventory to symbolize where the item currently is(equipped/on ship/somewhere in your bags) ([91df5c4](https://github.com/xdy/twodsix-foundryvtt/commit/91df5c4a544dc51ddfddc2a266382183b3a144f3))
+
 ## [0.8.35](https://github.com/xdy/twodsix-foundryvtt/compare/v0.8.34...v0.8.35) (2021-11-13)
 
 
