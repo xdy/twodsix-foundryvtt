@@ -1331,16 +1331,16 @@ span.power-now {
   font-size: 10px;
   position: relative;
   display: block;
-  width: 7.5em;
-  top: -3.0em;
+  width: auto;
+  top: -2.8em;
 }
 
 span.power-max {
   font-size: 10px;
   position: relative;
   display: block;
-  width: 7.5em;
-  top: -4em;
+  width: auto;
+  top: -4.2em;
 }
 
 /*--- Input Fields ---*/
@@ -1349,8 +1349,8 @@ input.power-current {
   font-size: 21px;
   position: relative;
   left: 0;
-  top: -1.65em;
-  width: 3.6em;
+  top: -1.9em;
+  width: inherit;
   display: block;
   border: none;
   background-color: transparent !important;
@@ -1360,8 +1360,8 @@ input.power-total {
   font-size: 21px;
   position: relative;
   left: 0;
-  top: -1.65em;
-  width: 3.6em;
+  top: -2em;
+  width: inherit;
   display: block;
   border: none;
   background-color: transparent !important;
