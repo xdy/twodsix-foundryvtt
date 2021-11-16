@@ -1,7 +1,11 @@
 <span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="text" name="data.age.value"
     value="{{data.age.value}}" placeholder="0" /></span>
 <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="data.gender" type="text"
-    value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();" /></span>
+    value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
+{{#if actor.data.settings.showHeroPoints}}
+    <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i class="fas fa-medal"></i>:<input type="number" 
+        name="data.heroPoints" value="{{data.heroPoints}}" min="0" step="1" placeholder="2" /></span>
+{{/if}}
 <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text"
     value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span>
 <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text"
@@ -12,10 +16,7 @@
       placeholder='0' onClick="this.select();"/></span>
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}"
       placeholder='0' onClick="this.select();"/></span>
-{{#if actor.data.settings.showHeroPoints}}
-    <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i class="fas fa-medal"></i>:<input type="number" 
-        name="data.heroPoints" value="{{data.heroPoints}}" min="0" step="1" placeholder="2" /></span>
-{{/if}}
+
 <span class="bgi-encumbrance" title="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="data.encumbrance.value" style="text-align: right;" 
     type="text" value="{{data.encumbrance.value}}" placeholder='0' disabled/>/<input name="data.encumbrance.max" type="text" value="{{data.encumbrance.max}}"
     placeholder='0' onClick="this.select();"/></span>

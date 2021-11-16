@@ -3,26 +3,28 @@
         name="data.homeWorld" type="text" value="{{data.homeWorld}}"
         placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
 <span class="bgi-age"><i class="fas fa-calendar-alt"></i>:<input type="text" name="data.age.value"
-        value="{{data.age.value}}" placeholder="0" title='{{localize "TWODSIX.Actor.Age"}}' /></span><br>
+        value="{{data.age.value}}" placeholder="0" title='{{localize "TWODSIX.Actor.Age"}}' /></span>
+<!-- Hero Points Information-->
+{{#if actor.data.settings.showHeroPoints}}
+<span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i
+        class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
+        step="1" placeholder="2" /></span>
+{{/if}}
+<br>
 <span class="bgi-species"><i class="fas fa-dna"></i>:<input name="data.species" type="text" value="{{data.species}}"
         placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"
         title='{{localize "TWODSIX.Actor.Species"}}' /></span>
 <span class="bgi-gender"><i class="fas fa-venus-mars"></i>:<input name="data.gender" type="text" value="{{data.gender}}"
         placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"
-        title='{{localize "TWODSIX.Actor.Gender"}}' /></span><br>
+        title='{{localize "TWODSIX.Actor.Gender"}}' /></span>
+<br>
 <!-- Protection Information-->
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fas fa-user-shield"></i>:<input
         style="text-align: right;" name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}" placeholder='0'
         onClick="this.select();" />/<input name="data.secondaryArmor.value" type="text"
         value="{{data.secondaryArmor.value}}" placeholder='0' onClick="this.select();" /></span>
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fas fa-radiation-alt"></i>:<input 
-        name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}" placeholder='0' onClick="this.select();" /></span>
-<!-- Hero Points Information-->
-{{#if actor.data.settings.showHeroPoints}}
-<span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i
-        class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
-        step="1" placeholder="2" /></span>
-{{/if}}      
+        name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}" placeholder='0' onClick="this.select();" /></span>     
 <span class="bgi-encumbrance" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:<input
       name="data.encumbrance.value" style="text-align: right;" type="text" value="{{data.encumbrance.value}}" placeholder='0' disabled/>
       /<input name="data.encumbrance.max" type="text" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
