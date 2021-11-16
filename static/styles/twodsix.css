@@ -416,7 +416,7 @@ span.bgi-age {
   margin-right: 0;
 }
 
-span.bgi-armor {
+span.bgi-armor, span.bgi-encumbrance {
   margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
@@ -426,7 +426,13 @@ span.bgi-armor {
 
 .bgi-armor input {
   position: relative;
-  text-align: center;
+  margin-bottom: -0.5em;
+  width: 3ch;
+  border: none;
+}
+
+.bgi-encumbrance input {
+  position: relative;
   margin-bottom: -0.5em;
   width: 4ch;
   border: none;
