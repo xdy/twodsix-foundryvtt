@@ -24,8 +24,10 @@
         class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
         step="1" placeholder="2" /></span>
 {{/if}} 
-<span class="bgi-armor" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:&nbsp<b>{{data.encumbrance.value}}</b>&nbsp/
-        <input name="data.encumbrance.max" type="text" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
+<span class="bgi-armor" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:
+        <input name="data.encumbrance.value" type="text" value="{{data.encumbrance.value}}" placeholder='0' disabled/>/
+        <input name="data.encumbrance.max" type="text" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/>
+</span>
 <br>    
 <!-- Damage Stats Information-->
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
