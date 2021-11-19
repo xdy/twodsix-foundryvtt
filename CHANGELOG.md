@@ -1,3 +1,17 @@
+## [0.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.2...v0.9.3) (2021-11-19)
+
+
+### Bug Fixes
+
+* actually disable fields this time ([2bd23dc](https://github.com/xdy/twodsix-foundryvtt/commit/2bd23dcb92c39a9558d70d8f08a85c66dbe09e5d))
+* Automatic release failed, trying this ([eef2f74](https://github.com/xdy/twodsix-foundryvtt/commit/eef2f74f9e7f8c74ec6fc8266477ca8c0834db79))
+* bold value ([cc045e9](https://github.com/xdy/twodsix-foundryvtt/commit/cc045e9925f553f3aacf4938806a0493e3409fca))
+* disable calc values for input ([d258283](https://github.com/xdy/twodsix-foundryvtt/commit/d2582838c57f6e8a8d1a7d8c3d394c58ec2f9f02))
+* minor style changes ([7a1f65e](https://github.com/xdy/twodsix-foundryvtt/commit/7a1f65eefbdb6193e80815e475c9eda3eda2e092))
+* One more try at releasing ([03c6d58](https://github.com/xdy/twodsix-foundryvtt/commit/03c6d58f4b79a1c22056b85f3678c61d57bcbf57))
+* shift hero points to upper right corner ([94448e7](https://github.com/xdy/twodsix-foundryvtt/commit/94448e7348f4798de3cd47c5e4818892f24f1c86))
+* shorten encumbrance title and change icon ([adbb506](https://github.com/xdy/twodsix-foundryvtt/commit/adbb506649719f82d9a8be5f080ba62c0ac88281))
+
 ## [0.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.1...v0.9.2) (2021-11-15)
 
 
