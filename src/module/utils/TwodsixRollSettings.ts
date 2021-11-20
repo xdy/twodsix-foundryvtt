@@ -34,7 +34,7 @@ export class TwodsixRollSettings {
     if (showThrowDialog) {
       let title:string;
       if (item) {
-        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.data.name}`;
+        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
       } else if (skill) {
         title = skill.data.name;
       } else {
