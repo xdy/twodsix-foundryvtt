@@ -273,11 +273,13 @@
       "Weapons": "Weapons",
       "SHIPCARGO": "SHIP CARGO",
       "SHIPNOTES": "SHIP NOTES",
+      "FINANCES": "FINANCES",
       "Tabs": {
         "Crew": "Crew",
         "Components": "Components",
         "Locker": "Locker",
         "Cargo": "Cargo",
+        "Finance": "Finance",
         "Notes": "Notes"
       },
       "Crew": {

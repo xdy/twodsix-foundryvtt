@@ -39,7 +39,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       height: 648,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew"}],
-      scrollY: [".ship-crew", ".ship-storage", ".storage-wrapper", ".ship-notes"]
+      scrollY: [".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"]
     });
   }
 }

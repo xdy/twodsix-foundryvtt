@@ -99,6 +99,7 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/ship/ship-storage.html",
     "systems/twodsix/templates/actors/parts/ship/ship-components-single.html",
     "systems/twodsix/templates/actors/parts/ship/ship-components-double.html",
+    "systems/twodsix/templates/actors/parts/ship/ship-finance.html",
     //
     "systems/twodsix/templates/chat/damage-message.html",
     "systems/twodsix/templates/chat/throw-dialog.html",
