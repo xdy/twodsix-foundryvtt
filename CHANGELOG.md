@@ -1,3 +1,14 @@
+## [0.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.3...v0.9.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* add shading to item lists on ship sheet ([0fc00f8](https://github.com/xdy/twodsix-foundryvtt/commit/0fc00f8564d7127ce3fbaeafa2f30565fc9b912d))
+* format problem on ship sheet image ([9cf6efe](https://github.com/xdy/twodsix-foundryvtt/commit/9cf6efeec4a6850cae08be320a930465a176e9b8))
+* make text area editable ([a49334e](https://github.com/xdy/twodsix-foundryvtt/commit/a49334e7e46fcc997496e9d4643b8d0fde90061d))
+* revert weapon sheet fields to normal input ([bd02b65](https://github.com/xdy/twodsix-foundryvtt/commit/bd02b65543582fb635633a5659892303283f04fe))
+* use var for colors rather than static values ([d317f1b](https://github.com/xdy/twodsix-foundryvtt/commit/d317f1bdf874d9c938615a84ef5cfd88cd97f442))
+
 ## [0.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.2...v0.9.3) (2021-11-19)
 
 
