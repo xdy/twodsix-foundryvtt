@@ -1149,7 +1149,7 @@ span.total-output {
   grid-template-columns: 28em 28em;
   grid-template-rows: 2.4em 8.5em 9em;
   gap: 1px 1px;
-  grid-template-areas: "ship_image ship-name" "ship_image ship-info" "ship_image ship-requirements";
+  grid-template-areas: "ship-image ship-name" "ship-image ship-info" "ship-image ship-requirements";
 }
 
 img.ship-mask-bg {
@@ -1160,20 +1160,18 @@ img.ship-mask-bg {
   pointer-events: none;
 }
 
-.ship_image {
-  grid-area: ship_image;
-  margin-top: 0.55em;
-  position: absolute;
-  width: 29em;
+.ship-image {
+  grid-area: ship-image;
+  text-align: center;
   height: 100%;
   z-index: 0;
 }
 
-img.ship-img {
-  width: 100%;
+.ship-image img {
+  max-width: 100%;
   vertical-align: middle;
   z-index: -1;
-  max-height: 19em;
+  max-height: 100%;
 }
 
 .ship-name {
