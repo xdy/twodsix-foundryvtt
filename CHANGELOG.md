@@ -1,3 +1,10 @@
+## [0.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.4...v0.9.5) (2021-11-23)
+
+
+### Bug Fixes
+
+* weapon input field can't be forced to a single number ([5a728e5](https://github.com/xdy/twodsix-foundryvtt/commit/5a728e508535a8abb66091f0f12d6ed057b049eb))
+
 ## [0.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.3...v0.9.4) (2021-11-23)
 
 
