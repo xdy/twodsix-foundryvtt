@@ -1581,12 +1581,20 @@ a.ship-notes-tab.active {
   grid-template-areas: ". . . . . .";
 }
 
+.grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
+  background: var(--skill-list-even);
+}
+
 .components-stored-single {
   display: grid;
   grid-template-columns: 10em 12em 3em 3em 3.5em 3em 3.5em 3.5em 4.5em 3.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas: ". . . . . . . . . . .";
+}
+
+.grid-columns-single-row:nth-of-type(even) {
+  background: var(--skill-list-even);
 }
 
 .cargo-wrapper {
