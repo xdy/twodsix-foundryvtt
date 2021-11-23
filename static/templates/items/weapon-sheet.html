@@ -49,28 +49,28 @@
     {{#if data.settings.ShowLawLevel}}
     <div class="item-lawLevel">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
-      <div contenteditable="true" data-edit="data.lawLevel">{{{data.lawLevel}}}</div>
+      <input type="text" name="data.lawLevel" value="{{data.lawLevel}}">
     </div>
     {{/if}}
 
     {{#if data.settings.ShowWeaponType}}
     <div class="item-weaponType">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.weaponType"}}</span>
-      <div contenteditable="true" data-edit="data.weaponType">{{{data.weaponType}}}</div>
+      <input type= "text" name="data.weaponType" value="{{data.weaponType}}">
     </div>
     {{/if}}
 
     {{#if data.settings.ShowDamageType}}
     <div class="item-damageType">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</span>
-      <div contenteditable="true" data-edit="data.damageType">{{{data.damageType}}}</div>
+      <input type="text" name="data.damageType" value= "{{data.damageType}}"></div>
     </div>
     {{/if}}
 
     {{#if data.settings.ShowRateOfFire}}
     <div class="item-rateOfFire">
       <span class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</span>
-      <div contenteditable="true" data-edit="data.rateOfFire">{{{data.rateOfFire}}}</div>
+      <input type="text" name="data.rateOfFire" value="{{data.rateOfFire}}" data-dtype="Number">
     </div>
     {{/if}}
 
