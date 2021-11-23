@@ -1210,26 +1210,41 @@ img.ship-mask-bg {
 
 .ship-info input {
   text-align: center;
-  padding: 2px;
+  /*padding: 2px;
   margin-top: -0.2em;
-  margin-left: 1.7em;
+  margin-left: 1.7em;*/
   font-size: 22px;
-  width: 2.5em;
+  /*width: 2.5em;*/
   border: none;
   background-color: transparent !important;
 }
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 9.33em 9.33em 9.33em;
+  grid-template-columns: 7em 7em 7em 7em;
   grid-template-rows: 8em;
   gap: 1px 1px;
-  grid-template-areas: "ship-hull ship-fuel ship-maintenance";
+  grid-template-areas: "ship-hull ship-fuel ship-armor ship-maintenance";
 }
 
 .ship-state-grid span {
   margin-top: 0.5em;
   text-align: center;
+}
+
+.ship-armor {
+  grid-area: ship-armor;
+  display: grid;
+  padding-right: 1ch;
+}
+
+.ship-armor-name textarea {
+  border: solid;
+  border-radius: 1ch;
+  border-color: var(--default-color);
+  text-align: center;
+  display: grid;
+  resize: none;
 }
 
 .ship-hull {
@@ -1271,9 +1286,9 @@ img.ship-mask-bg {
   border: none;
 }
 
-.ship-maintenance span {
+/*.ship-maintenance span {
   margin-left: -0.8em;
-}
+}*/
 
 .ship-power-management {
   grid-area: ship-requirements;

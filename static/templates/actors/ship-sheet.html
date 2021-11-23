@@ -14,6 +14,10 @@
           <input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></div>
         <div class="ship-fuel"><span>{{localize "TWODSIX.Ship.Fuel"}}</span><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/>
           <input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></div>
+          <div class="ship-armor">
+            <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
+            <span class="ship-armor-name"><textarea name="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea></span>
+          </div>
         <div class="ship-maintenance"><span>{{localize "TWODSIX.Ship.MaintPM"}}</span>
           <input type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" placeholder="0"/>
         </div>
