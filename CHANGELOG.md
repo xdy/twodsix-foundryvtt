@@ -1,3 +1,35 @@
+## [0.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.4...v0.9.5) (2021-11-23)
+
+
+### Bug Fixes
+
+* weapon input field can't be forced to a single number ([5a728e5](https://github.com/xdy/twodsix-foundryvtt/commit/5a728e508535a8abb66091f0f12d6ed057b049eb))
+
+## [0.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.3...v0.9.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* add shading to item lists on ship sheet ([0fc00f8](https://github.com/xdy/twodsix-foundryvtt/commit/0fc00f8564d7127ce3fbaeafa2f30565fc9b912d))
+* format problem on ship sheet image ([9cf6efe](https://github.com/xdy/twodsix-foundryvtt/commit/9cf6efeec4a6850cae08be320a930465a176e9b8))
+* make text area editable ([a49334e](https://github.com/xdy/twodsix-foundryvtt/commit/a49334e7e46fcc997496e9d4643b8d0fde90061d))
+* revert weapon sheet fields to normal input ([bd02b65](https://github.com/xdy/twodsix-foundryvtt/commit/bd02b65543582fb635633a5659892303283f04fe))
+* use var for colors rather than static values ([d317f1b](https://github.com/xdy/twodsix-foundryvtt/commit/d317f1bdf874d9c938615a84ef5cfd88cd97f442))
+
+## [0.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.2...v0.9.3) (2021-11-19)
+
+
+### Bug Fixes
+
+* actually disable fields this time ([2bd23dc](https://github.com/xdy/twodsix-foundryvtt/commit/2bd23dcb92c39a9558d70d8f08a85c66dbe09e5d))
+* Automatic release failed, trying this ([eef2f74](https://github.com/xdy/twodsix-foundryvtt/commit/eef2f74f9e7f8c74ec6fc8266477ca8c0834db79))
+* bold value ([cc045e9](https://github.com/xdy/twodsix-foundryvtt/commit/cc045e9925f553f3aacf4938806a0493e3409fca))
+* disable calc values for input ([d258283](https://github.com/xdy/twodsix-foundryvtt/commit/d2582838c57f6e8a8d1a7d8c3d394c58ec2f9f02))
+* minor style changes ([7a1f65e](https://github.com/xdy/twodsix-foundryvtt/commit/7a1f65eefbdb6193e80815e475c9eda3eda2e092))
+* One more try at releasing ([03c6d58](https://github.com/xdy/twodsix-foundryvtt/commit/03c6d58f4b79a1c22056b85f3678c61d57bcbf57))
+* shift hero points to upper right corner ([94448e7](https://github.com/xdy/twodsix-foundryvtt/commit/94448e7348f4798de3cd47c5e4818892f24f1c86))
+* shorten encumbrance title and change icon ([adbb506](https://github.com/xdy/twodsix-foundryvtt/commit/adbb506649719f82d9a8be5f080ba62c0ac88281))
+
 ## [0.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.1...v0.9.2) (2021-11-15)
 
 
