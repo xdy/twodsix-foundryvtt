@@ -92,7 +92,7 @@ export default function registerHandlebarsHelpers():void {
 
   Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
     // Parse rates of fire, and ignore the first number (usually 1, but can be 0, which means no single fire)
-    const modes = weapon.rateOfFire.split(/[-/]/);
+    const modes = (weapon.rateOfFire ?? "").split(/[-/]/);
     modes.shift();
     return modes;
   });
