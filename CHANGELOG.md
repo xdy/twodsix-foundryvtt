@@ -1,3 +1,10 @@
+## [0.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.5...v0.9.6) (2021-11-24)
+
+
+### Bug Fixes
+
+* null rate of fire value ([#702](https://github.com/xdy/twodsix-foundryvtt/issues/702)) ([87e8889](https://github.com/xdy/twodsix-foundryvtt/commit/87e8889d091a7106aaa09415407c8e3be242b008))
+
 ## [0.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.4...v0.9.5) (2021-11-23)
 
 
