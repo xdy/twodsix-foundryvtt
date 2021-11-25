@@ -119,6 +119,10 @@ export default function registerHandlebarsHelpers():void {
     return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
+  Handlebars.registerHelper('twodsix_useFoundryStyle', () => {
+    return game.settings.get('twodsix', 'useFoundryStandardStyle');
+  });
+
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
     switch (componentType) {
       case 'accomodations':

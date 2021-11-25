@@ -14,6 +14,7 @@ import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
+import {switchCss} from "./module/settings";
 import "./module/hooks/index";
 import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
@@ -73,6 +74,8 @@ Hooks.once('init', async function () {
   registerHandlebarsHelpers();
 
   registerSettings();
+
+  switchCss();
 
   const templatePaths = [
     //TODO Set up so the templates are instead loaded during build (or possibly during startup?), using all html files in the templates folder
