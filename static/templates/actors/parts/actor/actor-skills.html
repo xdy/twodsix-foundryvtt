@@ -8,7 +8,7 @@
   <span class="skill-container">
     <span></span>
     <span class="skill-title">{{localize "TWODSIX.Actor.Skills.SkillName"}}</span>
-    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="skill-level left">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
     <span class="skill-mod centre">{{localize "TWODSIX.Actor.Skills.Modifier"}}</span>
     <span class="skill-total centre">{{localize "TWODSIX.Actor.Skills.Total"}}</span>
     <span class="skill-edit-remove centre">{{localize "TWODSIX.Actor.Skills.EditOrRemove"}}</span>
@@ -39,8 +39,8 @@
           <ol class="ol-no-indent">
             <li class="item flexrow" data-item-id="{{item.id}}">
               <span class="skill-container">
-                <span class="mini-dice centre">
-                  <img class="rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
+                <span class="mini-dice centre rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">
+                  <i class="fas fa-dice" alt="d6"></i>
                 </span>
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
                 <input class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>
@@ -64,7 +64,7 @@
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{untrainedSkill.id}}">
         <span class="skill-container">
-          <span class="mini-dice centre"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+          <span class="mini-dice centre rollable" title="{{twodsix_invertSkillRollShiftClick}}"><i class="fas fa-dice" alt="d6"></i></span>
           <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.name}}</span>
           <span class="item-name centre">{{untrainedSkill.data.data.value}}</span>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>

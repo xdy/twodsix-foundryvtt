@@ -195,7 +195,7 @@
     }
   ],
   "primaryTokenAttribute": "hits",
-  "styles": ["./styles/twodsix.css"],
+  "styles": [],
   "templateVersion": 2,
   "manifestPlusVersion": "1.0.0",
   "allowBugReporter": true,

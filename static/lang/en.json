@@ -42,7 +42,8 @@
         "SOC": "SOC",
         "STR": "STR",
         "LFB": "LFB",
-        "STA": "STA"
+        "STA": "STA",
+        "CTM": "CTM"
       },
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
@@ -458,6 +459,12 @@
       "showSingleComponentColumn": {
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
+      },
+      "useFoundryStandardStyle": {
+        "hint": "Use Foundry's default style for user interface.  This should make some modules more compatible with TWODSIX",
+        "name": "Use Foundry Standard Style",
+        "default": "Default Twodsix Style",
+        "foundry": "Standard Foundry VTT style"
       }
     },
     "CloseAndCreateNew": "Close and create new",
