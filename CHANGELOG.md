@@ -1,3 +1,10 @@
+# [0.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.6...v0.10.0) (2021-11-25)
+
+
+### Features
+
+* add foundry default styling option ([#703](https://github.com/xdy/twodsix-foundryvtt/issues/703)) ([ebd6015](https://github.com/xdy/twodsix-foundryvtt/commit/ebd60158c3c4bf70f22103b10653eb9226992d2b))
+
 ## [0.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.5...v0.9.6) (2021-11-24)
 
 
