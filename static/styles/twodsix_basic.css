@@ -476,7 +476,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 /*-------Skill Tab-----------*/
 
 .skill-list {
-  padding: 0.3em 0 0 0;
+  padding: 0.3em 0 0;
   height: 2em;
   border: 1px groove var(--background-opaque);
   border-radius: 1ch 0 0;
@@ -882,7 +882,7 @@ span.total-output {
 
 img.ship-mask-bg {
   top: 0.1em;
-  left: 0.0em;
+  left: 0;
   position: absolute;
   z-index: 2;
   pointer-events: none;
