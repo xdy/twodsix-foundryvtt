@@ -146,7 +146,7 @@ export const registerSettings = function ():void {
   }
 
   function switchCssWReset() {
-    switchCss();
+    /*switchCss();*/
     window.location.reload();
   }
 }
