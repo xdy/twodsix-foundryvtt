@@ -1227,7 +1227,7 @@ a.ship-crew-tab.active, a.ship-storage-tab.active, a.ship-cargo-tab.active, a.sh
 
 .ship-grid input[type="text"] {
   width: 14.8em;
-  border: 1px groove var(--light-color);
+  border: 1px groove;
   border-radius: 0;
 
 }
@@ -1312,9 +1312,9 @@ a.ship-crew-tab.active, a.ship-storage-tab.active, a.ship-cargo-tab.active, a.sh
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid var(--default-color);
+  border: 1px solid;
   height: 18em;
-  color: var(--light-color) !important;
+  /*color: var(--light-color) !important;*/
   padding: 0.2em;
   overflow-y: auto;
 }
