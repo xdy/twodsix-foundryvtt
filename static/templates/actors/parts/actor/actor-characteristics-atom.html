@@ -34,9 +34,8 @@
 {{#if actor.data.settings.showContaminationBelowLifeblood}}
   <div class="stat psionicStrength" data-characteristic="intelligence">
     <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-    >{{localize "TWODSIX.Actor.Contamination"}} <img src="./systems/twodsix/assets/icons/radioactive.svg" alt="contamination"/>
+    style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.CTM"}}
   </span>
-
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
                                       data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>

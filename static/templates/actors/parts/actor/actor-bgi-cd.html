@@ -6,8 +6,12 @@
         value="{{data.age.value}}" placeholder="0" title='{{localize "TWODSIX.Actor.Age"}}' /></span>
 <!-- Hero Points Information-->
 {{#if actor.data.settings.showHeroPoints}}
-<span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"><i
-        class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
+   {{#if (twodsix_useFoundryStyle)}}
+     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'> 
+   {{else}}
+     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"> 
+   {{/if}}  
+   <i class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
         step="1" placeholder="2" /></span>
 {{/if}}
 <br>

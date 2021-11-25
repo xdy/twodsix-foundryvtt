@@ -42,7 +42,8 @@
         "SOC": "SOC",
         "STR": "STR",
         "LFB": "LFB",
-        "STA": "STA"
+        "STA": "STA",
+        "CTM": "CTM"
       },
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
