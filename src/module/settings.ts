@@ -64,7 +64,7 @@ export const registerSettings = function ():void {
 
   _numberSetting('weightModifierForWornArmor', 1.0);
 
-  _booleanSetting('useFoundryStandardStyle', false, 'world', switchCssWReset);
+  _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
   /*game.settings.register('twodsix', 'useFoundryStandardStyle', {
     name: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.name'),
     hint: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.hint'),
@@ -145,7 +145,7 @@ export const registerSettings = function ():void {
     }
   }
 
-  function switchCssWReset() {
+  function refreshWindow() {
     /*switchCss();*/
     window.location.reload();
   }
