@@ -381,7 +381,7 @@ svg:hover {
   width: 90px;
   display: block;
   border: solid;
-  border-radius: 2ch 2ch 2ch 2ch;
+  border-radius: 2ch;
 }
 
 a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.notes-tab:hover {
@@ -479,7 +479,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   padding: 0.3em 0 0 0;
   height: 2em;
   border: 1px groove var(--background-opaque);
-  border-radius: 1ch 0 0 0;
+  border-radius: 1ch 0 0;
   background-color: var(--background-nearly-opaque);
   color: var(--app-color);
   font-weight: bold;
@@ -932,7 +932,7 @@ img.ship-mask-bg {
 }
 
 .ship-info ul {
-  padding: 0 0 0 0 !important;
+  padding: 0 !important;
 }
 
 .ship-info input {
@@ -993,7 +993,7 @@ img.ship-mask-bg {
   border: solid;
   text-align: center;
   display: grid;
-  border-radius: 0ch 0ch 5ch 5ch;
+  border-radius: 0 0 5ch 5ch;
 }
 
 .ship-fuel {
@@ -1012,7 +1012,7 @@ img.ship-mask-bg {
   border: solid;
   text-align: center;
   display: grid;
-  border-radius: 0ch 0ch 1ch 1ch;
+  border-radius: 0 0 1ch 1ch;
 }
 
 .ship-maintenance {
@@ -1026,10 +1026,9 @@ img.ship-mask-bg {
 
 .ship-maintenance input[type="text"] {
   width: 4.5em;
-  border: 1px solid var(--default-color);
+  border: 1px solid;
   left: -1em;
   position: relative;
-  border: none;
 }
 
 .ship-power-management {
@@ -1043,7 +1042,7 @@ img.ship-mask-bg {
 .ship-power-management h3 {
   color: var(--app-color);
   background-color: var(--background-opaque);
-  border-radius: 0ch 0ch 1ch 1ch;
+  border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   position: relative;
   width: 16.5em;
@@ -1306,7 +1305,7 @@ a.ship-crew-tab.active, a.ship-storage-tab.active, a.ship-cargo-tab.active, a.sh
 }
 
 .cargo-wrapper {
-  padding: 0 2em 0 2em;
+  padding: 0 2em;
   margin-top: 0;
   position: relative;
   top: 1em;
