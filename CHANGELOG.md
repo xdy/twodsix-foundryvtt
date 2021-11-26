@@ -1,3 +1,10 @@
+## [0.10.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.1...v0.10.2) (2021-11-26)
+
+
+### Bug Fixes
+
+* wrong table name for Law Level - CE.json ([18344f2](https://github.com/xdy/twodsix-foundryvtt/commit/18344f2047ac7e3f5b60792ca68b48a71c80aa8a))
+
 ## [0.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.0...v0.10.1) (2021-11-26)
 
 
