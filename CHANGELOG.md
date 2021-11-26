@@ -1,3 +1,24 @@
+## [0.10.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.1...v0.10.2) (2021-11-26)
+
+
+### Bug Fixes
+
+* wrong table name for Law Level - CE.json ([18344f2](https://github.com/xdy/twodsix-foundryvtt/commit/18344f2047ac7e3f5b60792ca68b48a71c80aa8a))
+
+## [0.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.0...v0.10.1) (2021-11-26)
+
+
+### Bug Fixes
+
+* traveller image format ([#704](https://github.com/xdy/twodsix-foundryvtt/issues/704)) ([790f4e7](https://github.com/xdy/twodsix-foundryvtt/commit/790f4e73ba270419428def8e64852a72a0807b62))
+
+# [0.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.6...v0.10.0) (2021-11-25)
+
+
+### Features
+
+* add foundry default styling option ([#703](https://github.com/xdy/twodsix-foundryvtt/issues/703)) ([ebd6015](https://github.com/xdy/twodsix-foundryvtt/commit/ebd60158c3c4bf70f22103b10653eb9226992d2b))
+
 ## [0.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.5...v0.9.6) (2021-11-24)
 
 

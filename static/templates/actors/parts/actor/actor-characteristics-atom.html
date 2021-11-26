@@ -1,7 +1,7 @@
 <div class="character-characteristics">
   <div class="stat endurance" data-characteristic="endurance">
     <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
-    >{{localize "TWODSIX.Actor.Characteristics.END"}} <img src="./systems/twodsix/assets/icons/sword.svg" alt="endurance"/>
+    style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.END"}}
   </span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
@@ -16,7 +16,7 @@
 
   <div class="stat strength" data-characteristic="strength">
     <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
-    >{{localize "TWODSIX.Actor.Lifeblood"}} <img src="./systems/twodsix/assets/icons/bleeding-wound.svg" alt="lifeblood"/></span>
+    style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.LFB"}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
                                       data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
@@ -34,9 +34,8 @@
 {{#if actor.data.settings.showContaminationBelowLifeblood}}
   <div class="stat psionicStrength" data-characteristic="intelligence">
     <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-    >{{localize "TWODSIX.Actor.Contamination"}} <img src="./systems/twodsix/assets/icons/radioactive.svg" alt="contamination"/>
+    style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.CTM"}}
   </span>
-
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
                                       data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>

@@ -21,13 +21,13 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-weapons">
-            <span class="mini-dice perform-attack" title="{{twodsix_invertSkillRollShiftClick}}"><img class="perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
-            <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-            <span class="item-name centre">{{data.techLevel}}</span>
-            <span class="item-name centre">{{data.quantity}}</span>
-            <span class="item-name centre">{{data.weight}}</span>
-            {{#if actor.data.settings.ShowRangeBandAndHideRange}}
-            <span class="item-name centre">{{data.rangeBand}}</span>
+            <span class="mini-dice perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fas fa-dice" alt="d6" ></i></span>
+            <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>
+            <span class="item-name centre">{{item.data.data.techLevel}}</span>
+            <span class="item-name centre">{{item.data.data.quantity}}</span>
+            <span class="item-name centre">{{item.data.data.weight}}</span>
+            {{#if data.settings.ShowRangeBandAndHideRange}}
+            <span class="item-name centre">{{item.data.data.rangeBand}}</span>
             {{else}}
             <span class="item-name centre">{{data.range}}</span>
             {{/if}}
@@ -84,12 +84,12 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-armor">
-            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
-            <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-            <span class="item-name centre">{{data.techLevel}}</span>
-            <span class="item-name centre">{{data.quantity}}</span>
-            <span class="item-name centre">{{data.weight}}</span>
-            <span class="item-name centre">{{data.armor}}</span>
+            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fas fa-dice" alt="d6" ></i></span>
+            <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.data.name}}</span>
+            <span class="item-name centre">{{item.data.data.techLevel}}</span>
+            <span class="item-name centre">{{item.data.data.quantity}}</span>
+            <span class="item-name centre">{{item.data.data.weight}}</span>
+            <span class="item-name centre">{{item.data.data.armor}}</span>
             <span class="item-controls centre">
               <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>
               <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fas fa-edit"></i></a>
@@ -124,7 +124,7 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-augments">
-            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}"data-label="{{item.name}}"><i class="fas fa-dice" alt="d6" ></i></span>
             <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
             <span class="item-name centre">{{data.techLevel}}</span>
             <span class="item-name centre">{{data.quantity}}</span>
@@ -162,7 +162,7 @@
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item._id}}">
             <span class="items-equipment">
-              <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}"><img class="rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/></span>
+              <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fas fa-dice" alt="d6" ></i></span>
               <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
               <span class="item-name centre">{{data.techLevel}}</span>
               <span class="item-name centre">{{data.quantity}}</span>
@@ -205,8 +205,8 @@
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item._id}}">
           <span class="items-consumable">
-            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}">
-              <img data-label="{{item.name}}" src="./systems/twodsix/assets/d6-icon.svg" alt="d6"/>
+            <span class="mini-dice rollable" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">
+              <i class="fas fa-dice" alt="d6" ></i>
             </span>
             <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
             <span class="item-name centre">{{twodsix_localizeConsumable item.data.data.subtype}}</span>

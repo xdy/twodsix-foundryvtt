@@ -20,7 +20,7 @@ const semver = require('semver');
 /********************/
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
-const name = "twodsix";
+const name = "twodsix*";
 const sourceDirectory = './src';
 const staticDirectory = './static';
 const distDirectory = './dist';

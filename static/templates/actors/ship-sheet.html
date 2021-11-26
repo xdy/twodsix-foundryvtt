@@ -1,5 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-  <img class="ship-mask-bg" src="./systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+  {{#unless (twodsix_useFoundryStyle)}}
+    <img class="ship-mask-bg" src="./systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+  {{/unless}}
   <div class="ship-container">
     <div class="ship-image">
       <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
@@ -10,11 +12,24 @@
     {{#unless limited}}
     <div class="ship-info">
       <div class="ship-state-grid">
-        <div class="ship-hull"><span>{{localize "TWODSIX.Ship.ShipHull"}}</span><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/>
-          <input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></div>
-        <div class="ship-fuel"><span>{{localize "TWODSIX.Ship.Fuel"}}</span><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/>
-          <input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></div>
-          <div class="ship-armor">
+        {{#if (twodsix_useFoundryStyle)}}
+          <div class="ship-state-labels">
+            <span>&nbsp</span>
+            <span>{{localize "TWODSIX.Damage.Current"}}</span>
+            <span>{{localize "TWODSIX.Damage.Max"}}</span>
+          </div>
+        {{/if}}
+        <div class="ship-hull">
+          <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
+          <span class="ship-hull-value"><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/></span>
+          <span class="ship-hull-max"><input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></span>
+        </div>
+        <div class="ship-fuel">
+          <span>{{localize "TWODSIX.Ship.Fuel"}}</span>
+          <span class="ship-fuel-value"><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/></span>
+          <span class="ship-fuel-max"><input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></span>
+        </div>
+        <div class="ship-armor">
             <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
             <span class="ship-armor-name"><textarea name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea></span>
           </div>
