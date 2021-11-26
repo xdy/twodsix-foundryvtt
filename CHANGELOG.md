@@ -1,3 +1,10 @@
+## [0.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.0...v0.10.1) (2021-11-26)
+
+
+### Bug Fixes
+
+* traveller image format ([#704](https://github.com/xdy/twodsix-foundryvtt/issues/704)) ([790f4e7](https://github.com/xdy/twodsix-foundryvtt/commit/790f4e73ba270419428def8e64852a72a0807b62))
+
 # [0.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.9.6...v0.10.0) (2021-11-25)
 
 
