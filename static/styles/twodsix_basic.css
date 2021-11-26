@@ -91,10 +91,12 @@ img.character-info-mask {
   border: solid;
   border-color: inherit;
   border-radius: 1ch 1ch 0 0;
+  text-align: center;
 }
 
 .character-photo img {
-  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
   vertical-align: middle;
   z-index: -1;
 }
