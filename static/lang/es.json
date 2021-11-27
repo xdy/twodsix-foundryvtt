@@ -42,7 +42,8 @@
         "SOC": "SOC",
         "STR": "FUE",
         "LFB": "VIT",
-        "STA": "AGU"
+        "STA": "AGU",
+        "CTM": "CTM"
       },
       "DeleteOwnedItem": "Borrar objeto",
       "Finances": {
@@ -136,6 +137,8 @@
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar los atributos en todas las habilidades marcadas con XXX."
     },
     "Items": {
+      "Encumbrance": "Impedimento",
+      "Enc": "Imp",
       "Armor": {
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
@@ -272,11 +275,13 @@
       "Weapons": "Armas",
       "SHIPCARGO": "BODEGA DE CARGA",
       "SHIPNOTES": "CUADERNO DE BITÁCORA",
+      "FINANCES": "FINANZAS",
       "Tabs": {
         "Crew": "Dotación",
         "Components": "Componentes",
         "Locker": "Consigna",
         "Cargo": "Bodega",
+        "Finance": "Finanzas",
         "Notes": "Notas"
       },
       "Crew": {
@@ -286,7 +291,7 @@
         "ENGINEERS": "INGENIERO(S)",
         "PILOT": "PILOTO",
         "MEDIC": "DOCTOR",
-        "BROKER": "FINANCIERO",
+        "BROKER": "BRÓKER",
         "GUNNERS": "ARTILLERO(S)",
         "ASTROGATOR": "ASTRONAVEGADOR",
         "STEWARD": "AUXILIAR",
@@ -443,9 +448,23 @@
         "hint": "Mostrar Aguante y Vitalidad en la hoja de personaje. Necesario con Cepheus Deluxe.",
         "name": "Mostrar las características derivadas Aguante y Vitalidad."
      },
+     "weightModifierForWornArmor": {
+        "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
+        "name": "Factor multiplicador del peso armadura equipada."
+      },
       "showHeroPoints": {
         "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
         "name": "Mostrar Puntos Heroe"
+     },
+      "showSingleComponentColumn": {
+        "hint": "Mostrar lista componentes de la nave en una sola columna.",
+        "name": "Lista de componentes de la nave a una columna"
+      },
+      "useFoundryStandardStyle": {
+        "hint": "Utilizar el estilo por defecto de Foundry VTT para IU. Esto mejora la compatibilidad de los módulos con el sistema Twodsix",
+        "name": "Usar IU Estilo Estandar Foundry VTT",
+        "default": "Por Defecto Twodsix",
+        "foundry": "Estandar Foundry VTT"
       }
     },
 	"CloseAndCreateNew": "Cerrar y crear nuevo",
