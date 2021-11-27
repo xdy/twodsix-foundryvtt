@@ -1,3 +1,10 @@
+## [0.10.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.2...v0.10.3) (2021-11-27)
+
+
+### Bug Fixes
+
+* Updated es.json courtesy of @ForjaSalvaje ([a2d94bd](https://github.com/xdy/twodsix-foundryvtt/commit/a2d94bdcf8eb72a96a3707a4106a25ffd5220276))
+
 ## [0.10.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.1...v0.10.2) (2021-11-26)
 
 
