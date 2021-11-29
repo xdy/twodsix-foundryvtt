@@ -470,6 +470,13 @@ span.bgi-armor, span.bgi-encumbrance {
   border: none;
 }
 
+.bgi-radExposure input{
+  position: relative;
+  margin-bottom: -0.5em;
+  width: 4ch;
+  border: none;
+}
+
 .character-bgi span {
   display: inline-block;
 }
