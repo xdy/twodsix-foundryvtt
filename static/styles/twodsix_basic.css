@@ -198,7 +198,7 @@ span.bgi-age {
   margin-right: 0;
 }
 
-span.bgi-armor, span.bgi-encumbrance {
+span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
@@ -214,6 +214,13 @@ span.bgi-armor, span.bgi-encumbrance {
 }
 
 .bgi-encumbrance input {
+  position: relative;
+  margin-bottom: -0.5em;
+  width: 4ch;
+  border: none;
+}
+
+.bgi-radExposure input{
   position: relative;
   margin-bottom: -0.5em;
   width: 4ch;
