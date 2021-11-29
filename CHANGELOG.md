@@ -1,3 +1,10 @@
+## [0.10.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.3...v0.10.4) (2021-11-29)
+
+
+### Bug Fixes
+
+* add radiation exposure to default actor sheet ([#706](https://github.com/xdy/twodsix-foundryvtt/issues/706)) ([a8070e1](https://github.com/xdy/twodsix-foundryvtt/commit/a8070e1922b341fe980800cf15d3c148f0d8755c))
+
 ## [0.10.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.2...v0.10.3) (2021-11-27)
 
 
