@@ -23,7 +23,11 @@
         {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
         {{else}}
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+          {{#if (twodsix_useFoundryStyle)}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+          {{else}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+          {{/if}}
         {{/if}}
       {{/unless}}
     </div>
