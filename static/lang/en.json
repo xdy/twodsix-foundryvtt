@@ -17,6 +17,8 @@
       "TotalDamage": "Total damage",
       "Characteristics": "Characteristics",
       "Max": "Max",
+      "Mod": "Mod",
+      "Dmg": "Dmg",
       "Current": "Current",
       "ResultingStat": "Resulting stat",
       "UnallocatedDamage": "Unallocated damage",

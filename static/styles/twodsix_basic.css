@@ -243,6 +243,12 @@ span.bgi-armor, span.bgi-encumbrance {
   margin-bottom: 1.5em;
 }
 
+.stat-table {
+  font-size: 0.8em;
+  max-width: 25em;
+  margin-left: 0.7em;
+}
+
 span.stat-name {
   position: relative;
   left: 0.5em;
@@ -251,6 +257,15 @@ span.stat-name {
   display: block;
   width: 4em;
   cursor: pointer;
+}
+
+span.stat-name-table {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  text-align: center !important;
+  width: 5ch;
+  transform: rotate(-45deg);
 }
 
 .stat input, .special input {
@@ -304,6 +319,11 @@ span.stat-ability {
   border-radius: 15%;
 }
 
+span.stat-ability-table {
+  text-align: center !important;
+  position: relative; 
+}
+
 span.stat-modifier {
   margin: -5px;
   position: relative;
@@ -312,6 +332,15 @@ span.stat-modifier {
   border: solid;
   border-width: thin;
   border-radius: 15%;
+}
+
+span.stat-modifier-table {
+  text-align: center !important;
+  position: relative;
+}
+
+span.stat-ability-table input, span.stat-modifier-table input {
+  width: 5ch;
 }
 
 span.stat-damage {
@@ -324,9 +353,22 @@ span.stat-damage {
   border-radius: 15%;
 }
 
+span.stat-damage-table {
+  position: relative;
+  text-align: center !important;
+}
+
 span.stat-damage input, span.special-damage input {
   color:var(--damage-stat-color) !important;
   border: none;
+}
+
+span.stat-damage-table input {
+  color:var(--damage-stat-color) !important;
+  border: solid;
+  border-width: thin !important;
+  border-radius: 15%;
+  width: 5ch;
 }
 
 span.special-ability {
