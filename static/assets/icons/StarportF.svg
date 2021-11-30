@@ -1,1 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 512px; width: 512px;"><g class="" transform="translate(0,0)" style=""><path d="M256 23.05C127.5 23.05 23.05 127.5 23.05 256S127.5 488.9 256 488.9 488.9 384.5 488.9 256 384.5 23.05 256 23.05z" fill="#fff" fill-opacity="1"></path></g><g font-family="Arial, Helvetica, sans-serif" font-size="240" font-style="normal" font-weight="bold" text-anchor="middle" text-decoration=" rgba(0, 0, 0, 1)" class="" transform="translate(260,336)" style=""><g><text stroke="rgba(255, 255, 255, 1)" stroke-width="60"><tspan x="0" y="0">F</tspan></text><text fill="rgba(0, 0, 0, 1)"><tspan x="0" y="0">F</tspan></text></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 465.85001 465.85001"
+   version="1.1"
+   id="svg840"
+   sodipodi:docname="StarportF.svg"
+   width="465.85001"
+   height="465.85001"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs844" />
+  <sodipodi:namedview
+     id="namedview842"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.7050781"
+     inkscape:cx="57.768614"
+     inkscape:cy="240.16495"
+     inkscape:window-width="1312"
+     inkscape:window-height="1081"
+     inkscape:window-x="80"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg840" />
+  <g
+     class=""
+     id="g826"
+     transform="translate(-23.05,-23.05)">
+    <path
+       d="M 256,23.05 C 127.5,23.05 23.05,127.5 23.05,256 23.05,384.5 127.5,488.9 256,488.9 384.5,488.9 488.9,384.5 488.9,256 488.9,127.5 384.5,23.05 256,23.05 Z"
+       fill="#ffffff"
+       fill-opacity="1"
+       id="path824" />
+  </g>
+  <g
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="240px"
+     font-style="normal"
+     font-weight="bold"
+     text-anchor="middle"
+     text-decoration=" rgba(0, 0, 0, 1)"
+     class=""
+     transform="translate(236.95,312.95)"
+     id="g838">
+    <g
+       id="g836">
+      <text
+         stroke="rgba(255, 255, 255, 1)"
+         stroke-width="60"
+         id="text830"><tspan
+           x="0"
+           y="0"
+           id="tspan828">F</tspan></text>
+      <text
+         fill="rgba(0, 0, 0, 1)"
+         id="text834"><tspan
+           x="0"
+           y="0"
+           id="tspan832">F</tspan></text>
+    </g>
+  </g>
+</svg>
