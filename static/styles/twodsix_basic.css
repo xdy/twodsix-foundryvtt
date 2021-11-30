@@ -1547,12 +1547,12 @@ button.flexrow.flex-group-center.toggle-skills {
 .consumable-row {
   padding-right: 3px;
   width: 100%;
-  height: 30px;
+  text-align: right;
 }
 
-.consumable-row .wrapper {
+/*.consumable-row .wrapper {
   float: right;
-}
+}*/
 
 .consumable-row .refill-button {
   width: 100px;
