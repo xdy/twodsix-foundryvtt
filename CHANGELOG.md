@@ -1,3 +1,10 @@
+## [0.10.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.5...v0.10.6) (2021-11-30)
+
+
+### Bug Fixes
+
+* encumbrance, armor and rads should be numbers and not text ([#709](https://github.com/xdy/twodsix-foundryvtt/issues/709)) ([44f720d](https://github.com/xdy/twodsix-foundryvtt/commit/44f720df885bde935a6862c19640e4060b00456a))
+
 ## [0.10.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.4...v0.10.5) (2021-11-30)
 
 
