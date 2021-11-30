@@ -1,3 +1,10 @@
+## [0.10.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.6...v0.10.7) (2021-11-30)
+
+
+### Bug Fixes
+
+* sector mapping icons ([#711](https://github.com/xdy/twodsix-foundryvtt/issues/711)) ([49b001c](https://github.com/xdy/twodsix-foundryvtt/commit/49b001c79349d13984a8ceebe50ec91167aad3e7))
+
 ## [0.10.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.5...v0.10.6) (2021-11-30)
 
 
