@@ -1,3 +1,10 @@
+## [0.10.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.4...v0.10.5) (2021-11-30)
+
+
+### Bug Fixes
+
+* vertical alignment of consumables row ([#710](https://github.com/xdy/twodsix-foundryvtt/issues/710)) ([d500528](https://github.com/xdy/twodsix-foundryvtt/commit/d500528afbbb4992a1cf9e5ad5f74946ad3b6aa4))
+
 ## [0.10.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.3...v0.10.4) (2021-11-29)
 
 
