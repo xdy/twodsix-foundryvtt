@@ -33,7 +33,7 @@ export default function registerHandlebarsHelpers():void {
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod:number = calcModFor(characteristicElement.current);
-      let abbreviatedCharName = characteristic;
+      let abbreviatedCharName = "";
       if (characteristic === "ALT1") {
         abbreviatedCharName = game.settings.get('twodsix', 'alternativeShort1');
       } else if (characteristic === "ALT2") {
