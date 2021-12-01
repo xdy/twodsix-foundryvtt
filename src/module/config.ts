@@ -9,7 +9,9 @@ const CHARACTERISTICS = Object.freeze({
   "socialStanding": "SOC",
   "psionicStrength": "PSI",
   "stamina": "STA",
-  "lifeblood": "LFB"
+  "lifeblood": "LFB",
+  "alternative1": "ALT1",
+  "alternative2": "ALT2"
 });
 
 /**

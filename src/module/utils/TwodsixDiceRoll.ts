@@ -164,7 +164,13 @@ export class TwodsixDiceRoll {
 
     if (this.settings.characteristic !== 'NONE') { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
       const characteristicValue = TwodsixDiceRoll.addSign(this.roll.data[this.settings.characteristic]);
-      flavor += ` ${usingString} ${this.settings.characteristic}(${characteristicValue})`;
+      let charShortName:string = this.settings.characteristic;
+      if(this.settings.characteristic === 'ALT1') {
+        charShortName = game.settings.get('twodsix', 'alternativeShort1');
+      } else if (this.settings.characteristic === 'ALT2') {
+        charShortName = game.settings.get('twodsix', 'alternativeShort2');
+      }
+      flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
     }
 
     await this.roll.toMessage(
