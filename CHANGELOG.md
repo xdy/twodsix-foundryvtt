@@ -1,3 +1,10 @@
+## [0.10.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.7...v0.10.8) (2021-12-01)
+
+
+### Bug Fixes
+
+* round encumbrance value ([#712](https://github.com/xdy/twodsix-foundryvtt/issues/712)) ([f4644c2](https://github.com/xdy/twodsix-foundryvtt/commit/f4644c22c4e6257163102c3ae3c5904fd5d8b78b))
+
 ## [0.10.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.6...v0.10.7) (2021-11-30)
 
 
