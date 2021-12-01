@@ -346,22 +346,26 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     });
 
     // Assign and return
-    sheetData.data.storage = storage;
-    sheetData.data.equipment = equipment;
-    sheetData.data.weapon = weapon;
-    sheetData.data.armor = armor;
-    sheetData.data.augment = augment;
-    sheetData.data.tool = tool;
-    sheetData.data.junk = junk;
-    sheetData.data.consumable = consumable;
-    sheetData.data.skills = skills;
-    sheetData.data.traits = traits;
-    sheetData.data.component = component;
     if (sheetData.actor.type === "traveller") {
+      sheetData.data.equipment = equipment;
+      sheetData.data.weapon = weapon;
+      sheetData.data.armor = armor;
+      sheetData.data.augment = augment;
+      sheetData.data.tool = tool;
+      sheetData.data.junk = junk;
+      sheetData.data.consumable = consumable;
+      sheetData.data.skills = skills;
+      sheetData.data.traits = traits;
       sheetData.data.primaryArmor.value = primaryArmor;
       sheetData.data.secondaryArmor.value = secondaryArmor;
       sheetData.data.radiationProtection.value = radiationProtection;
-      sheetData.data.encumbrance.value = encumbrance;
+      sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
+    } else if (sheetData.actor.type === "ship") {
+      sheetData.data.component = component;
+      sheetData.data.storage = storage;
+    }
+    else {
+      console.log("Unrecognized Actor in AbstractActorSheet");
     }
   }
 }
