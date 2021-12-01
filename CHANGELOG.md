@@ -1,3 +1,24 @@
+## [0.10.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.6...v0.10.7) (2021-11-30)
+
+
+### Bug Fixes
+
+* sector mapping icons ([#711](https://github.com/xdy/twodsix-foundryvtt/issues/711)) ([49b001c](https://github.com/xdy/twodsix-foundryvtt/commit/49b001c79349d13984a8ceebe50ec91167aad3e7))
+
+## [0.10.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.5...v0.10.6) (2021-11-30)
+
+
+### Bug Fixes
+
+* encumbrance, armor and rads should be numbers and not text ([#709](https://github.com/xdy/twodsix-foundryvtt/issues/709)) ([44f720d](https://github.com/xdy/twodsix-foundryvtt/commit/44f720df885bde935a6862c19640e4060b00456a))
+
+## [0.10.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.4...v0.10.5) (2021-11-30)
+
+
+### Bug Fixes
+
+* vertical alignment of consumables row ([#710](https://github.com/xdy/twodsix-foundryvtt/issues/710)) ([d500528](https://github.com/xdy/twodsix-foundryvtt/commit/d500528afbbb4992a1cf9e5ad5f74946ad3b6aa4))
+
 ## [0.10.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.3...v0.10.4) (2021-11-29)
 
 

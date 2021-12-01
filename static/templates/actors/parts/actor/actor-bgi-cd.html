@@ -24,14 +24,13 @@
 <br>
 <!-- Protection Information-->
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fas fa-user-shield"></i>:<input
-        style="text-align: right;" name="data.primaryArmor.value" type="text" value="{{data.primaryArmor.value}}" placeholder='0'
-        onClick="this.select();" />/<input name="data.secondaryArmor.value" type="text"
-        value="{{data.secondaryArmor.value}}" placeholder='0' onClick="this.select();" /></span>
+        style="text-align: right;" name="data.primaryArmor.value" type="number" value="{{data.primaryArmor.value}}" placeholder='0'
+       readonly />/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}" placeholder='0' readonly /></span>
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fas fa-radiation-alt"></i>:<input 
-        name="data.radiationProtection.value" type="text" value="{{data.radiationProtection.value}}" placeholder='0' onClick="this.select();" /></span>     
+        name="data.radiationProtection.value" type="number" value="{{data.radiationProtection.value}}" placeholder='0' readonly /></span>     
 <span class="bgi-encumbrance" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:<input
-      name="data.encumbrance.value" style="text-align: right;" type="text" value="{{data.encumbrance.value}}" placeholder='0' disabled/>
-      /<input name="data.encumbrance.max" type="text" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
+      name="data.encumbrance.value" style="text-align: right;" type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>
+      /<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
 <br>
 <!-- Damage Stats Information-->
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
@@ -48,4 +47,4 @@
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Lifeblood"}}'>
     <input type="number" name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}"/></span>
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:<input 
-        name="data.radiationDose.value" value={{data.radiationDose.value}} type="text"/></span><br>
+        name="data.radiationDose.value" value={{data.radiationDose.value}} type="number"/></span><br>
