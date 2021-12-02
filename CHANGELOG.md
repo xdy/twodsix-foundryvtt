@@ -1,3 +1,10 @@
+## [0.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.0...v0.11.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* adjust for short alternative names ([#714](https://github.com/xdy/twodsix-foundryvtt/issues/714)) ([cab8a83](https://github.com/xdy/twodsix-foundryvtt/commit/cab8a831700a3675a3702616dfe7d88b5133e7c0))
+
 # [0.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.8...v0.11.0) (2021-12-02)
 
 
