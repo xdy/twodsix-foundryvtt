@@ -65,6 +65,7 @@ export const registerSettings = function ():void {
   _numberSetting('weightModifierForWornArmor', 1.0);
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
+  
   /*game.settings.register('twodsix', 'useFoundryStandardStyle', {
     name: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.name'),
     hint: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.hint'),
@@ -78,6 +79,9 @@ export const registerSettings = function ():void {
     default: 'awesomeOldStyle',
     onChange: () => switchCss(),
   });*/
+  _booleanSetting('showAlternativeCharacteristics', false);
+  _stringSetting("alternativeShort1", "ALT1");
+  _stringSetting("alternativeShort2", "ALT2");
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);

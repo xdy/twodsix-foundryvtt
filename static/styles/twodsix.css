@@ -484,7 +484,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
 .character-characteristics {
   width: 17.5em;
   margin-top: 2em;
-  margin-left: 3.3em;
+  margin-left: 3em;
   position: relative;
   z-index: 6;
   height: 7.5em;
@@ -530,6 +530,14 @@ span.stat-name {
   left: -0.85em;
 }
 
+.special {
+  background-image: url(../assets/actor/Stat-Psi.svg);
+  height: 55px;
+  width: 44px;
+  background-size: cover;
+  position: relative;
+}
+
 .special img {
   position: relative;
   height: 1.2em;
@@ -538,14 +546,19 @@ span.stat-name {
   display: inline-block;
 }
 
-.special {
-  background-image: url(../assets/actor/Stat-Psi.svg);
-  height: 55px;
-  width: 44px;
-  background-size: cover;
-  position: relative;
+.special.psionicStrength {
   left: 13.7em;
   top: -7.9em;
+}
+
+.special.alternative1 {
+  left: 13.7em;
+  top: -10.2em;
+}
+
+.special.alternative2 {
+  left: 13.7em;
+  top: -9em;
 }
 
 span.special-name {

@@ -1,3 +1,10 @@
+# [0.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.8...v0.11.0) (2021-12-02)
+
+
+### Features
+
+* add alternative skill characteristics ([#713](https://github.com/xdy/twodsix-foundryvtt/issues/713)) ([65ff928](https://github.com/xdy/twodsix-foundryvtt/commit/65ff9281db8f923fd8ce8e5a058b091ea5348dde))
+
 ## [0.10.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.7...v0.10.8) (2021-12-01)
 
 

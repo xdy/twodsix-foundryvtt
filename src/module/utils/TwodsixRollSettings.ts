@@ -38,9 +38,17 @@ export class TwodsixRollSettings {
       } else if (skill) {
         title = skill.data.name;
       } else {
-        title = twodsixRollSettings.characteristic;
+        switch (twodsixRollSettings.characteristic) {
+          case "ALT1":
+            title = game.settings.get('twodsix', 'alternativeShort1');
+            break;
+          case "ALT2":
+            title = game.settings.get('twodsix', 'alternativeShort2');
+            break;
+          default:
+            title = twodsixRollSettings.characteristic;
+        }
       }
-
       await twodsixRollSettings._throwDialog(title);
     } else {
       twodsixRollSettings.shouldRoll = true;

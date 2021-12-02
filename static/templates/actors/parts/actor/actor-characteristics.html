@@ -83,6 +83,32 @@
                                      data-dtype="Number" onClick="this.select();"/></span>
   </div>
 
+  {{#if (showAlternativeCharacteristics)}}
+  <div class="special alternative1" data-characteristic="alternative1">
+    <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}"
+      >{{alternativeShort1}}</span>
+    <span class="special-ability"><input type="number" min="0" name="data.characteristics.alternative1.value"
+      data-label="data.characteristics.alternative1.value" value="{{data.characteristics.alternative1.value}}"
+      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="special-damage"><input type="number" max="{{data.characteristics.alternative1.value}}" min="0"
+      name="data.characteristics.alternative1.damage" value="{{data.characteristics.alternative1.damage}}"
+      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="special-modifier"><input readonly type="text"
+      value="{{numberFormat data.characteristics.alternative1.mod decimals=0 sign=true}}"/></span>
+    </div>
+  <div class="special alternative2" data-characteristic="alternative2">
+    <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}"
+      >{{alternativeShort2}}</span>                               
+    <span class="special-ability"><input type="number" min="0" name="data.characteristics.alternative2.value"
+      data-label="data.characteristics.alternative2.value" value="{{data.characteristics.alternative2.value}}"
+      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="special-damage"><input type="number" max="{{data.characteristics.alternative2.value}}" min="0"
+      name="data.characteristics.alternative2.damage" value="{{data.characteristics.alternative2.damage}}"
+      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    <span class="special-modifier"><input readonly type="text"
+      value="{{numberFormat data.characteristics.alternative2.mod decimals=0 sign=true}}"/></span>
+  </div>
+  {{else}}
   <div class="special psionicStrength" data-characteristic="psionicStrength">
     <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
     >{{localize "TWODSIX.Actor.Characteristics.PSI"}}<i class="fas fa-dice" alt="roll psionicStrength"></i></span>
@@ -95,6 +121,6 @@
                                         placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="special-modifier"><input readonly type="text"
                                           value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
-
   </div>
+  {{/if}}
 </div>
