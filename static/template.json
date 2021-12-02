@@ -112,6 +112,20 @@
           "damage": 0,
           "label": "Lifeblood",
           "shortLabel": "LFB"
+        },
+        "alternative1": {
+          "key": "alternative1",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 1",
+          "shortLabel": "ALT1"
+        },
+        "alternative2": {
+          "key": "alternative2",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 2",
+          "shortLabel": "ALT2"
         }
       }
     },

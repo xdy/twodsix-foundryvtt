@@ -33,8 +33,13 @@
           <option value="INT" for="skill-modifier">{{localize "TWODSIX.Items.Skills.INT"}}</option>
           <option value="EDU" for="skill-modifier">{{localize "TWODSIX.Items.Skills.EDU"}}</option>
           <option value="SOC" for="skill-modifier">{{localize "TWODSIX.Items.Skills.SOC"}}</option>
+        {{#if (showAlternativeCharacteristics)}}
+          <option value="ALT1" for="skill-modifier">{{alternativeShort1}}</option>
+          <option value="ALT2" for="skill-modifier">{{alternativeShort2}}</option>
+        {{else}}
           <option value="PSI" for="skill-modifier">{{localize "TWODSIX.Items.Skills.PSI"}}</option>
-          <option value="NONE" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</option>
+        {{/if}}
+        <option value="NONE" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</option>
         {{/select}}
       </select>
     </label>

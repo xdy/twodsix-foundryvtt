@@ -33,7 +33,15 @@ export default function registerHandlebarsHelpers():void {
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod:number = calcModFor(characteristicElement.current);
-      return game.i18n.localize("TWODSIX.Items.Skills." + characteristic) + "(" + (mod < 0 ? "" : "+") + mod + ")";
+      let abbreviatedCharName = "";
+      if (characteristic === "ALT1") {
+        abbreviatedCharName = game.settings.get('twodsix', 'alternativeShort1');
+      } else if (characteristic === "ALT2") {
+        abbreviatedCharName = game.settings.get('twodsix', 'alternativeShort2');
+      } else {
+        abbreviatedCharName = game.i18n.localize("TWODSIX.Items.Skills." + characteristic);
+      }
+      return  abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
@@ -121,6 +129,18 @@ export default function registerHandlebarsHelpers():void {
 
   Handlebars.registerHelper('twodsix_useFoundryStyle', () => {
     return game.settings.get('twodsix', 'useFoundryStandardStyle');
+  });
+
+  Handlebars.registerHelper('showAlternativeCharacteristics', () => {
+    return game.settings.get('twodsix', 'showAlternativeCharacteristics');
+  });
+
+  Handlebars.registerHelper('alternativeShort1', () => {
+    return game.settings.get('twodsix', 'alternativeShort1');
+  });
+
+  Handlebars.registerHelper('alternativeShort2', () => {
+    return game.settings.get('twodsix', 'alternativeShort2');
   });
 
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {

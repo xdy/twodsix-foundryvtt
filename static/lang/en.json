@@ -45,7 +45,9 @@
         "STR": "STR",
         "LFB": "LFB",
         "STA": "STA",
-        "CTM": "CTM"
+        "CTM": "CTM",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
@@ -222,7 +224,9 @@
         "STR": "STR",
         "SkillName": "Skill Name",
         "LFB": "LFB",
-        "STA": "STA"
+        "STA": "STA",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
@@ -467,6 +471,18 @@
         "name": "Use Foundry Standard Style",
         "default": "Default Twodsix Style",
         "foundry": "Standard Foundry VTT style"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
+        "name": "Show alternative characteristics"
+      },
+      "alternativeShort1": {
+        "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 1"
+      },
+      "alternativeShort2": {
+        "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 2"
       }
     },
     "CloseAndCreateNew": "Close and create new",

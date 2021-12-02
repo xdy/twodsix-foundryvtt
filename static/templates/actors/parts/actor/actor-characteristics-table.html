@@ -15,9 +15,16 @@
         data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}">{{localize "TWODSIX.Actor.Characteristics.EDU"}}</span></td>
       <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" 
         data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}">{{localize "TWODSIX.Actor.Characteristics.SOC"}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" 
-        data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">{{localize "TWODSIX.Actor.Characteristics.PSI"}}</span></td>
       
+      {{#if (showAlternativeCharacteristics)}}
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" 
+          data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}">{{alternativeShort1}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" 
+          data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}">{{alternativeShort2}}</span></td>
+      {{else}}  
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" 
+          data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">{{localize "TWODSIX.Actor.Characteristics.PSI"}}</span></td>
+      {{/if}}
     </tr>
   </thead>
   <tbody>
@@ -41,9 +48,19 @@
         <td><span class="stat-ability-table"><input type="number" min="0" name="data.characteristics.socialStanding.value"
           data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}"
           placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
-          data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+        
+          {{#if (showAlternativeCharacteristics)}}
+            <td><span class="stat-ability-table"><input type="number" min="0" name="data.characteristics.alternative1.value"
+              data-label="data.characteristics.alternative1.value" value="{{data.characteristics.alternative1.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+            <td><span class="stat-ability-table"><input type="number" min="0" name="data.characteristics.alternative2.value"
+              data-label="data.characteristics.alternative2.value" value="{{data.characteristics.alternative2.value}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+          {{else}}
+            <td><span class="stat-ability-table"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
+            data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
+            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+          {{/if}}
       </tr>
 
       <tr>
@@ -60,8 +77,16 @@
           value="{{numberFormat data.characteristics.education.mod decimals=0 sign=true}}"/></span></td>
         <td><span class="stat-modifier-table"><input readonly type="text"
           value="{{numberFormat data.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text"
+        
+        {{#if (showAlternativeCharacteristics)}}
+          <td><span class="stat-modifier-table"><input readonly type="text"
+            value="{{numberFormat data.characteristics.alternative1.mod decimals=0 sign=true}}"/></span></td>
+          <td><span class="stat-modifier-table"><input readonly type="text"
+            value="{{numberFormat data.characteristics.alternative2.mod decimals=0 sign=true}}"/></span></td>
+        {{else}}
+          <td><span class="stat-modifier-table"><input readonly type="text"
           value="{{numberFormat data.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span></td>
+        {{/if}}
       </tr>
       
      <tr>
@@ -84,9 +109,19 @@
         <td><span class="stat-damage-table"><input type="number" max="{{data.characteristics.socialStanding.value}}" min="0"
           name="data.characteristics.socialStanding.damage" value="{{data.characteristics.socialStanding.damage}}" placeholder="0"
           data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
-          name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+
+        {{#if (showAlternativeCharacteristics)}}
+          <td><span class="stat-damage-table"><input type="number" max="{{data.characteristics.alternative1.value}}" min="0"
+            name="data.characteristics.alternative1.damage" value="{{data.characteristics.alternative1.damage}}"
+            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+          <td><span class="stat-damage-table"><input type="number" max="{{data.characteristics.alternative2.value}}" min="0"
+            name="data.characteristics.alternative2.damage" value="{{data.characteristics.alternative2.damage}}"
+            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+        {{else}}
+          <td><span class="stat-damage-table"><input type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
+            name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
+            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+        {{/if}}
       </tr>
   </tbody>
   </table>
