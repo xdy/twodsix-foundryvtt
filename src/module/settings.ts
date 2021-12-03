@@ -170,3 +170,16 @@ export function switchCss() {
   mainCss.setAttribute("media", "all")
   head.insertBefore(mainCss, head.lastChild);
 }
+
+export function getCharShortName(char: string): string {
+  switch (char) {
+    case "ALT1":
+      return game.settings.get('twodsix', 'alternativeShort1');
+      break;
+    case "ALT2":
+      return game.settings.get('twodsix', 'alternativeShort2');
+      break;
+    default:
+      return game.i18n.localize("TWODSIX.Items.Skills." + char);
+  }
+}
