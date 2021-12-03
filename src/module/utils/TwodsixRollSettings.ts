@@ -39,7 +39,7 @@ export class TwodsixRollSettings {
       } else if (skill) {
         title = skill.data.name;
       } else {
-        title = getCharShortName(twodsixRollSettings.characteristic); 
+        title = getCharShortName(twodsixRollSettings.characteristic);
       }
       await twodsixRollSettings._throwDialog(title);
     } else {
