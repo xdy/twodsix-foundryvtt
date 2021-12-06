@@ -73,11 +73,11 @@ jobs:
         run: npx semantic-release
         
       # Publish the release to FoundryVTT's package repository
-      #- name: FoundryVTT AutoPublish
-        #uses: Varriount/fvtt-autopublish@v1.0.6
-        #with:
-          #username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          #password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          #module-id: 468
-          #manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
-          # TODO This path is wrong manifest-file: ./dist/system.json
+      - name: FoundryVTT AutoPublish
+        uses: Varriount/fvtt-autopublish@v1.0.6
+        with:
+          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+          module-id: 468
+          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+          manifest-file: ./system.json
