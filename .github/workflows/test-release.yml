@@ -72,7 +72,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
         
-      # Publish the release to FoundryVTT's package repository.
+      # Publish the release to FoundryVTT's package repository
       - name: FoundryVTT AutoPublish
         uses: Varriount/fvtt-autopublish@v1.0.6
         with:
