@@ -1,3 +1,10 @@
+## [0.11.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.5...v0.11.6) (2021-12-06)
+
+
+### Bug Fixes
+
+* Fifth attempt at automatic releases ([e03d854](https://github.com/xdy/twodsix-foundryvtt/commit/e03d854e3530ecc09ecf6bd3c116ccf0f6b01679))
+
 ## [0.11.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.4...v0.11.5) (2021-12-06)
 
 
