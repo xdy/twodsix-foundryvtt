@@ -1,3 +1,10 @@
+## [0.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.1...v0.11.2) (2021-12-06)
+
+
+### Bug Fixes
+
+* First try at automatic release announcements ([a6c4cd9](https://github.com/xdy/twodsix-foundryvtt/commit/a6c4cd98445009fa43ef00556ead3521512d44fb))
+
 ## [0.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.0...v0.11.1) (2021-12-02)
 
 
