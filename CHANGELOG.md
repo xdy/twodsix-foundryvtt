@@ -1,3 +1,10 @@
+## [0.11.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.7...v0.11.8) (2021-12-09)
+
+
+### Bug Fixes
+
+* compress mapping icons ([#718](https://github.com/xdy/twodsix-foundryvtt/issues/718)) ([f02b3d6](https://github.com/xdy/twodsix-foundryvtt/commit/f02b3d6fc257c92febb46971f328dc394f42ae3e))
+
 ## [0.11.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.6...v0.11.7) (2021-12-09)
 
 
