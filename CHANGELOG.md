@@ -1,3 +1,52 @@
+## [0.11.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.6...v0.11.7) (2021-12-09)
+
+
+### Bug Fixes
+
+* cleanup coding ([#715](https://github.com/xdy/twodsix-foundryvtt/issues/715)) ([f123806](https://github.com/xdy/twodsix-foundryvtt/commit/f1238060ff63b7f7e519588c0e91dad65d77934a))
+
+## [0.11.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.5...v0.11.6) (2021-12-06)
+
+
+### Bug Fixes
+
+* Fifth attempt at automatic releases ([e03d854](https://github.com/xdy/twodsix-foundryvtt/commit/e03d854e3530ecc09ecf6bd3c116ccf0f6b01679))
+
+## [0.11.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.4...v0.11.5) (2021-12-06)
+
+
+### Bug Fixes
+
+* Fourth attempt at automatic release announcements ([60235d6](https://github.com/xdy/twodsix-foundryvtt/commit/60235d672fb79ef29af92e13ab14f13b8a07c3a0))
+
+## [0.11.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.3...v0.11.4) (2021-12-06)
+
+
+### Bug Fixes
+
+* Third attempt at automatic release announcements ([605a3bc](https://github.com/xdy/twodsix-foundryvtt/commit/605a3bcfa63cf425359e864176f9e3671f9be266))
+
+## [0.11.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.2...v0.11.3) (2021-12-06)
+
+
+### Bug Fixes
+
+* Second try at automatic release announcement ([37b59c2](https://github.com/xdy/twodsix-foundryvtt/commit/37b59c22067ee23d2e24e9523a1cb3df036cb274))
+
+## [0.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.1...v0.11.2) (2021-12-06)
+
+
+### Bug Fixes
+
+* First try at automatic release announcements ([a6c4cd9](https://github.com/xdy/twodsix-foundryvtt/commit/a6c4cd98445009fa43ef00556ead3521512d44fb))
+
+## [0.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.0...v0.11.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* adjust for short alternative names ([#714](https://github.com/xdy/twodsix-foundryvtt/issues/714)) ([cab8a83](https://github.com/xdy/twodsix-foundryvtt/commit/cab8a831700a3675a3702616dfe7d88b5133e7c0))
+
 # [0.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.10.8...v0.11.0) (2021-12-02)
 
 
