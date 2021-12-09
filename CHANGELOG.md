@@ -1,3 +1,10 @@
+## [0.11.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.6...v0.11.7) (2021-12-09)
+
+
+### Bug Fixes
+
+* cleanup coding ([#715](https://github.com/xdy/twodsix-foundryvtt/issues/715)) ([f123806](https://github.com/xdy/twodsix-foundryvtt/commit/f1238060ff63b7f7e519588c0e91dad65d77934a))
+
 ## [0.11.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.5...v0.11.6) (2021-12-06)
 
 
