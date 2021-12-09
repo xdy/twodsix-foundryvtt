@@ -1,5 +1,6 @@
 import {TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
+import { getCharShortName } from "../settings";
 import {getKeyByValue} from "./sheetUtils";
 
 
@@ -38,16 +39,7 @@ export class TwodsixRollSettings {
       } else if (skill) {
         title = skill.data.name;
       } else {
-        switch (twodsixRollSettings.characteristic) {
-          case "ALT1":
-            title = game.settings.get('twodsix', 'alternativeShort1');
-            break;
-          case "ALT2":
-            title = game.settings.get('twodsix', 'alternativeShort2');
-            break;
-          default:
-            title = twodsixRollSettings.characteristic;
-        }
+        title = getCharShortName(twodsixRollSettings.characteristic);
       }
       await twodsixRollSettings._throwDialog(title);
     } else {

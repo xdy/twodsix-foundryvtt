@@ -65,7 +65,7 @@ input[type='text'], input[type='number'], input[type='password'], input[type='da
   -ms-user-select: text;
   user-select: text;
   border: 1px solid var(--background-opaque);
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 
 *[contenteditable] * {
@@ -88,7 +88,7 @@ select {
   -ms-user-select: text;
   user-select: text;
   border: 1px solid var(--background-opaque);
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 
 input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
@@ -518,7 +518,6 @@ span.stat-name {
   background-color: transparent !important;
   border: none;
   color: var(--stat-input);
-  border: none;
   -moz-appearance: textfield;
 }
 
@@ -1175,7 +1174,7 @@ span.total-output {
 
 img.ship-mask-bg {
   top: 0.1em;
-  left: 0.0em;
+  left: 0;
   position: absolute;
   z-index: 2;
   pointer-events: none;
@@ -1226,7 +1225,7 @@ img.ship-mask-bg {
 }
 
 .ship-info ul {
-  padding: 0 0 0 0 !important;
+  padding: 0 !important;
 }
 
 .ship-info input {
@@ -1301,7 +1300,7 @@ img.ship-mask-bg {
 
 .ship-maintenance input[type="text"] {
   width: 4.5em;
-  border: 1px solid var(--default-color);
+  /*border: 1px solid var(--default-color);*/
   left: -1em;
   position: relative;
   border: none;
@@ -1634,7 +1633,7 @@ a.ship-notes-tab.active {
 }
 
 .cargo-wrapper {
-  padding: 0 2em 0 2em;
+  padding: 0 2em;
   margin-top: 0;
   position: relative;
   top: 1em;
@@ -1893,11 +1892,6 @@ a:hover {
   color: var(--background-opaque);
 }
 
-#sidebar-tabs.tabs .item.active {
-  text-shadow: 0 0 2em var(--default-color);
-  text-decoration: none;
-}
-
 #sidebar-tabs.tabs a:hover {
   text-shadow: 0 0 0.8em var(--light-color);
 }
@@ -1978,20 +1972,6 @@ background: var(--sidebar-background);
   color: var(--default-color);
   font-weight: bold;
   text-align: center;
-}
-
-.dice-roll .dice-formula, .dice-roll .dice-total {
-  flex: 0 0 100%;
-  position: relative;
-  margin: 0;
-  line-height: 24px;
-  text-align: center;
-  background: var(--background-transparent);
-  color: var(--default-color);
-  border: 1px solid var(--default-color);
-  border-radius: 0;
-  box-shadow: 0 0 2px var(--background-opaque) inset;
-  word-break: break-all;
 }
 
 #chat-form textarea {
@@ -2301,7 +2281,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 .token-sheet .notes {
   font-size: 13px;
-  padding: 0.5em 0.5em;
+  padding: 0.5em;
   margin-bottom: 0.5em;
   border-bottom: 1px solid var(--form-light);
   margin-top: 1.5em;
@@ -2313,10 +2293,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
   height: calc(75px);
   background: var(--background-semi-opaque);
   color: var(--default-color);
-}
-
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background-color: var(--item-active) !important;
 }
 
 .tox .tox-tbtn svg {
@@ -2334,7 +2310,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   flex: 0 0 auto;
   flex-shrink: 0;
   flex-wrap: wrap;
-  padding: 0 0;
+  padding: 0;
   border-bottom: 1px solid var(--header-border);
 }
 
@@ -2377,7 +2353,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
   align-items: baseline;
   z-index: 60;
   background: none;
-  border: none;
   box-shadow: none;
   pointer-events: none;
   background: none !important;
