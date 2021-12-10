@@ -1,3 +1,10 @@
+## [0.11.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.8...v0.11.9) (2021-12-10)
+
+
+### Bug Fixes
+
+* getKeyByValue ([#720](https://github.com/xdy/twodsix-foundryvtt/issues/720)) ([45d53f0](https://github.com/xdy/twodsix-foundryvtt/commit/45d53f016a335ea29762f211a6be4fb79b7be73b))
+
 ## [0.11.8](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.7...v0.11.8) (2021-12-09)
 
 
