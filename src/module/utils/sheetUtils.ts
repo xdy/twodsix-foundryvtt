@@ -184,7 +184,7 @@ export function calcModFor(characteristic:number):number {
 
 export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string {
   //TODO This assumes I always find the value. Bad form really.
-  return <string>Object.keys(object).find(key => object[key] === value);
+  return <string>Object.keys(object).find(key => JSON.stringify(object[key]) === JSON.stringify(value));
 }
 
 export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
