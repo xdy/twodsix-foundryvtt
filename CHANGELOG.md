@@ -1,3 +1,10 @@
+## [0.11.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.10...v0.11.11) (2021-12-10)
+
+
+### Bug Fixes
+
+* Error in wound code ([b209500](https://github.com/xdy/twodsix-foundryvtt/commit/b209500d3fd34a53d3ee0e9d52496c11763c23d9))
+
 ## [0.11.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.9...v0.11.10) (2021-12-10)
 
 
