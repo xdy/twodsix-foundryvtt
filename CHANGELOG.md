@@ -1,3 +1,10 @@
+## [0.11.10](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.9...v0.11.10) (2021-12-10)
+
+
+### Bug Fixes
+
+* add CD specific macros ([#721](https://github.com/xdy/twodsix-foundryvtt/issues/721)) ([d60617d](https://github.com/xdy/twodsix-foundryvtt/commit/d60617d3c3902ad8f1ffebfba4a9eb94ec943097))
+
 ## [0.11.9](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.8...v0.11.9) (2021-12-10)
 
 
