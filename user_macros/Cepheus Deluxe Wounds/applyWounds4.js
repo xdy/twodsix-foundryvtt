@@ -47,7 +47,7 @@ async function applyWoundedEffect (selectedToken) {
       if (oldEffect?.data.tint !== seriousWoundTint && tintToApply === seriousWoundTint) {
         const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
         if (returnRoll.effect < 0) {
-          setEffectState(unconsciousEffectLabel, selectedToken, true);
+          await setEffectState(unconsciousEffectLabel, selectedToken, true);
         }
       }
 
