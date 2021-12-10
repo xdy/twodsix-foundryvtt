@@ -1,3 +1,10 @@
+## [0.11.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.11...v0.11.12) (2021-12-10)
+
+
+### Bug Fixes
+
+* don't overwrite compendium img ([#722](https://github.com/xdy/twodsix-foundryvtt/issues/722)) ([496ce05](https://github.com/xdy/twodsix-foundryvtt/commit/496ce0501d872f08c8195b226e077a2df390186d))
+
 ## [0.11.11](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.10...v0.11.11) (2021-12-10)
 
 
