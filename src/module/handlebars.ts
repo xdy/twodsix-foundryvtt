@@ -34,7 +34,7 @@ export default function registerHandlebarsHelpers():void {
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod:number = calcModFor(characteristicElement.current);
-      let abbreviatedCharName:string = getCharShortName(characteristic);
+      const abbreviatedCharName:string = getCharShortName(characteristic);
       return  abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
@@ -179,7 +179,7 @@ export default function registerHandlebarsHelpers():void {
         return "fas fa-question-circle";
     }
   });
-  
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
