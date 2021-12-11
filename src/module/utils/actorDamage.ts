@@ -63,12 +63,12 @@ export class Stats {
       this.useLifebloodStamina = false;
       this.useLifebloodEndurance = true;
     }
-    
+
     this.reduceStats();
   }
 
   currentDamage(): number {
-    let retValue: number = 0;
+    let retValue = 0;
     for (const characteristic of this.damageCharacteristics) {
       retValue += this[characteristic].damage;
     }
@@ -80,7 +80,7 @@ export class Stats {
   }
 
   totalCurrent(): number {
-    let retValue: number = 0;
+    let retValue = 0;
     for (const characteristic of this.damageCharacteristics) {
       retValue += this[characteristic].current();
     }
@@ -125,7 +125,7 @@ export class Stats {
 
   private reduceStats(): void {
     let remaining = this.totalDamage();
-    
+
     for (const characteristic of this.damageCharacteristics) {
       this[characteristic].damage = 0;
       if (remaining > 0) {
@@ -163,7 +163,7 @@ export class Stats {
       }
     }
 
-    let charName: string = '';
+    let charName = '';
     for (const characteristic of this.damageCharacteristics) {
       charName = 'data.characteristics.' + characteristic + '.damage';
       await this.actor.update({ [charName]: this[characteristic].totalDamage() });
@@ -208,7 +208,7 @@ class DamageDialogHandler {
       if (!this.stats.edited) {
         chrHtml.find(`.damage-input`).val(stat.damage);
       }
-      
+
       if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");

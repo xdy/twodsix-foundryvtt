@@ -47,7 +47,7 @@ async function applyWoundedEffect (selectedToken) {
       if (oldEffect?.data.tint !== seriousWoundTint && tintToApply === seriousWoundTint) {
         const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
         if (returnRoll.effect < 0) {
-          setEffectState(unconsciousEffectLabel, selectedToken, true);
+          await setEffectState(unconsciousEffectLabel, selectedToken, true);
         }
       }
 
@@ -59,7 +59,7 @@ async function applyWoundedEffect (selectedToken) {
 }
 
 async function setEffectState (effectLabel, targetToken, state) {
-  const isAlreadySet = targetToken.actor.effects.find(eff => eff.data.label === effectLabel);
+  const isAlreadySet = await targetToken.actor.effects.find(eff => eff.data.label === effectLabel);
   if ((typeof isAlreadySet !== 'undefined') !== state) {
     const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLowerCase()));
     await targetToken.toggleEffect(targetEffect);

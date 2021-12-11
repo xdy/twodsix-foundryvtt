@@ -65,7 +65,7 @@ export const registerSettings = function ():void {
   _numberSetting('weightModifierForWornArmor', 1.0);
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
-  
+
   /*game.settings.register('twodsix', 'useFoundryStandardStyle', {
     name: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.name'),
     hint: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.hint'),
@@ -153,7 +153,7 @@ export const registerSettings = function ():void {
     /*switchCss();*/
     window.location.reload();
   }
-}
+};
 
 export function switchCss() {
   const head = document.getElementsByTagName("head")[0];
@@ -164,10 +164,10 @@ export function switchCss() {
   } else {
     sheetName += "twodsix.css";
   }
-  mainCss.setAttribute("rel", "stylesheet")
-  mainCss.setAttribute("type", "text/css")
-  mainCss.setAttribute("href", sheetName)
-  mainCss.setAttribute("media", "all")
+  mainCss.setAttribute("rel", "stylesheet");
+  mainCss.setAttribute("type", "text/css");
+  mainCss.setAttribute("href", sheetName);
+  mainCss.setAttribute("media", "all");
   head.insertBefore(mainCss, head.lastChild);
 }
 

@@ -4,7 +4,7 @@ import { mergeDeep } from "../utils/utils";
 
 function getCurrentHits(...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
-  let hitsCharacteristics: string[] = getDamageCharacteristics();
+  const hitsCharacteristics: string[] = getDamageCharacteristics();
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {

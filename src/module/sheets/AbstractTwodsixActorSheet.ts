@@ -363,8 +363,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (sheetData.actor.type === "ship") {
       sheetData.data.component = component;
       sheetData.data.storage = storage;
-    }
-    else {
+    } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
     }
   }

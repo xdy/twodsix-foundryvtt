@@ -51,14 +51,18 @@ export default class TwodsixActor extends Actor {
     switch (this.data.type) {
       case "traveller":
         await this.createUntrainedSkill();
-        await this.update({
-          'img': 'systems/twodsix/assets/icons/default_actor.png',
-        });
+        if (this.data.img === CONST.DEFAULT_TOKEN) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/default_actor.png'
+          });
+        }
         break;
       case "ship":
-        await this.update({
-          'img': 'systems/twodsix/assets/icons/default_ship.png',
-        });
+        if (this.data.img === CONST.DEFAULT_TOKEN) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/default_ship.png'
+          });
+        }
         break;
     }
     if(game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
