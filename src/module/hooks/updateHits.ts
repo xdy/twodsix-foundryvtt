@@ -35,7 +35,7 @@ Hooks.on('preUpdateToken', async (scene, token:Record<string, any>, update:Recor
 });
 
 Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
-  if (update.data?.characteristics?.lifeblood && game.settings.get('twodsix', 'useCDWoundedStatusIndicators')){
+  if (checkForWounds(update.data)) {
     if (actor.isToken) {
       applyWoundedEffect(canvas.tokens.ownedTokens.find(t => t.id === actor.token.id));
     } else {
@@ -45,26 +45,37 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
 });
 
 Hooks.on('updateToken', async (scene, token:Record<string, any>, update:Record<string, any>) => {
-  if (update.actorData?.data?.characteristics?.lifeblood && game.settings.get('twodsix', 'useCDWoundedStatusIndicators')) {
+  if (checkForWounds(update.actorData?.data)) {
     applyWoundedEffect(canvas.tokens.ownedTokens.find(t => t.id === token._id));
   }
 });
 
-async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<void> {
-  const minorWoundTint = '#FFFF00' // Yellow
-  const seriousWoundTint = '#FF0000' // Red
-  const deadTint = '#FFFFFF' // White
+function checkForWounds (data: Record<string, any>):boolean {
+  if (!game.settings.get('twodsix', 'useCDWoundedStatusIndicators') || data === undefined) {
+    return false;
+  } else {
+    switch (game.settings.get('twodsix', 'ruleset')) {
+      case "CD":
+      case "CEQ":
+        return (data.characteristics?.lifeblood ? true : false);
+      case "CEL":
+      case "CEFTL":
+      case "CE":
+        return (data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity) ? true : false;
+      default:
+        return false;
+    }
+  }
+}
 
-  let tintToApply: string;
-  if (selectedToken.actor.data.data.characteristics.lifeblood.current < selectedToken.actor.data.data.characteristics.lifeblood.value) {
-    tintToApply = minorWoundTint;
-  }
-  if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
-    tintToApply = seriousWoundTint;
-  }
-  if (selectedToken.actor.data.data.characteristics.lifeblood.current === 0) {
-    tintToApply = deadTint;
-  }
+async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<void> {
+  const damageColorTints = {
+    minorWoundTint: '#FFFF00', // Yellow
+    seriousWoundTint: '#FF0000', // Red
+    deadTint: '#FFFFFF'  // White
+  };
+
+  let tintToApply = getIconTint(damageColorTints, selectedToken);
 
   const woundedEffectLabel = 'Bleeding';
   const deadEffectLabel = 'Dead';
@@ -74,7 +85,7 @@ async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<vo
     await setEffectState(deadEffectLabel, selectedToken, false);
     await setEffectState(woundedEffectLabel, selectedToken, false);
   } else {
-    if (tintToApply === deadTint) {
+    if (tintToApply === damageColorTints.deadTint) {
       await setEffectState(deadEffectLabel, selectedToken, true);
       await setEffectState(woundedEffectLabel, selectedToken, false);
       await setEffectState(unconsciousEffectLabel, selectedToken, false);
@@ -83,7 +94,7 @@ async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<vo
       const oldWoundState = await selectedToken.actor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
       const isAlreadyUnconscious = await selectedToken.actor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
 
-      if (oldWoundState?.data.tint !== seriousWoundTint && tintToApply === seriousWoundTint && !isAlreadyUnconscious) {
+      if (oldWoundState?.data.tint !== damageColorTints.seriousWoundTint && oldWoundState?.data.tint !== damageColorTints.deadTint && tintToApply === damageColorTints.seriousWoundTint && !isAlreadyUnconscious) {
         const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
         if (returnRoll.effect < 0) {
           await setEffectState(unconsciousEffectLabel, selectedToken, true);
@@ -103,4 +114,42 @@ async function setEffectState (effectLabel: string, targetToken:Record<string, a
     const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLowerCase()));
     await targetToken.toggleEffect(targetEffect);
   }
+}
+
+function getIconTint (tintMap: object, selectedToken: Record<string, any>):string {
+  let returnVal = "";
+  switch (game.settings.get('twodsix', 'ruleset')) {
+    case "CD":
+    case "CEQ":
+      if (selectedToken.actor.data.data.characteristics.lifeblood.current < selectedToken.actor.data.data.characteristics.lifeblood.value) {
+        returnVal = tintMap.minorWoundTint;
+      }
+      if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
+        returnVal = tintMap.seriousWoundTint;
+      }
+      if (selectedToken.actor.data.data.characteristics.lifeblood.current === 0) {
+        returnVal = tintMap.deadTint;
+      }
+      break;
+    case "CEL":
+    case "CEFTL":
+    case "CE":
+      if (selectedToken.actor.data.data.characteristics.strength.damage > 0 || selectedToken.actor.data.data.characteristics.dexterity.damage > 0 ||
+        selectedToken.actor.data.data.characteristics.endurance.damage > 0 ) {
+        returnVal = tintMap.minorWoundTint;
+      }
+      if ((selectedToken.actor.data.data.characteristics.strength.current === 0 && (selectedToken.actor.data.data.characteristics.dexterity.current === 0 ||
+        selectedToken.actor.data.data.characteristics.endurance.current === 0)) || (selectedToken.actor.data.data.characteristics.dexterity.current === 0 &&
+          selectedToken.actor.data.data.characteristics.endurance.current === 0) ) {
+        returnVal = tintMap.seriousWoundTint;
+      }
+      if (selectedToken.actor.data.data.characteristics.strength.current === 0 && selectedToken.actor.data.data.characteristics.dexterity.current === 0 &&
+        selectedToken.actor.data.data.characteristics.endurance.current === 0 ) {
+        returnVal = tintMap.deadTint;
+      }
+      break;
+    default:
+      returnVal = "";
+  }
+  return returnVal;
 }
