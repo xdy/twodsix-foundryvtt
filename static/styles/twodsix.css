@@ -331,7 +331,7 @@ h2 {
   position: relative;
 }
 
-img.character-info-mask {
+object.character-info-mask {
   z-index: 4;
   position: absolute;
   pointer-events: none;
@@ -492,7 +492,6 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
 }
 
 .stat {
-  background-image: url(../assets/actor/Stat-1.svg);
   background-size: cover !important;
   height: 48px;
   width: 61px;
@@ -530,7 +529,6 @@ span.stat-name {
 }
 
 .special {
-  background-image: url(../assets/actor/Stat-Psi.svg);
   height: 55px;
   width: 44px;
   background-size: cover;
@@ -631,8 +629,6 @@ svg:hover {
 }
 
 .skill-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: -2px;
   width: 90px;
   padding-top: 0.15em;
   display: block;
@@ -640,19 +636,15 @@ svg:hover {
 }
 
 a.skill-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: var(--item-hover);
 }
 
 a.skill-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: var(--item-active);
   text-shadow: none !important;
 }
 
 .item-tab, .finances-tab, .info-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: -97px;
   padding-top: 0.15em;
   width: 90px;
   display: block;
@@ -660,18 +652,15 @@ a.skill-tab.active {
 }
 
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: var(--item-hover);
 }
 
 a.item-tab.active, a.finances-tab.active, a.info-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: var(--item-active);
   text-shadow: none !important;
 }
 
 .notes-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
   background-position-x: 93px;
   padding-top: 0.15em;
   width: 93px;
@@ -680,13 +669,11 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
 }
 
 a.notes-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: var(--item-hover);
   background-color: unset !important;
 }
 
 a.notes-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: var(--item-active);
   text-shadow: none !important;
 }
@@ -790,8 +777,6 @@ a.notes-tab.active {
 }
 
 .add-skill {
-  background-image: url(../assets/actor/sheet-button1.svg);
-  background-size: cover;
   width: 108px;
   height: 22px;
   display: block;
@@ -804,8 +789,6 @@ a.notes-tab.active {
 }
 
 .add-skill:hover {
-  background-image: url(../assets/actor/sheet-button1-hover.svg);
-  background-size: cover;
   color: var(--item-hover);
 }
 
@@ -1048,7 +1031,6 @@ span.total-output {
 }
 
 .item-title {
-  background-image: url(../assets/actor/header.svg);
   height: 22px;
   width: 207px;
   display: block;
