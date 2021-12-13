@@ -65,6 +65,14 @@ export const registerSettings = function ():void {
   _numberSetting('weightModifierForWornArmor', 1.0);
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
+  _stringSetting('colorScheme', JSON.stringify({
+    "hover": "#BB0000",
+    "active": "#FF0000",
+    "#27AAE1": "#FF0000",
+    "#26A9E0": "#FF0000",
+    "#29AAE1": "#FF0000",
+    "#27A9E1": "#FF0000"
+  }));
 
   /*game.settings.register('twodsix', 'useFoundryStandardStyle', {
     name: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.name'),
