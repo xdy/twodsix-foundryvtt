@@ -71,15 +71,15 @@ async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<vo
   const unconsciousEffectLabel = 'Unconscious';
 
   if (!tintToApply) {
-    setEffectState(deadEffectLabel, selectedToken, false);
-    setEffectState(woundedEffectLabel, selectedToken, false);
+    await setEffectState(deadEffectLabel, selectedToken, false);
+    await setEffectState(woundedEffectLabel, selectedToken, false);
   } else {
     if (tintToApply === deadTint) {
-      setEffectState(deadEffectLabel, selectedToken, true);
-      setEffectState(woundedEffectLabel, selectedToken, false);
-      setEffectState(unconsciousEffectLabel, selectedToken, false);
+      await setEffectState(deadEffectLabel, selectedToken, true);
+      await setEffectState(woundedEffectLabel, selectedToken, false);
+      await setEffectState(unconsciousEffectLabel, selectedToken, false);
     } else {
-      setEffectState(deadEffectLabel, selectedToken, false);
+      await setEffectState(deadEffectLabel, selectedToken, false);
       const oldWoundState = await selectedToken.actor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
       const isAlreadyUnconscious = await selectedToken.actor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
 
@@ -100,7 +100,7 @@ async function applyWoundedEffect (selectedToken:Record<string, any>):Promise<vo
 async function setEffectState (effectLabel: string, targetToken:Record<string, any>, state: boolean):Promise<void> {
   const isAlreadySet = await targetToken.actor.effects.find(eff => eff.data.label === effectLabel);
   if ((typeof isAlreadySet !== 'undefined') !== state) {
-    const targetEffect = await CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLowerCase()));
+    const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLowerCase()));
     await targetToken.toggleEffect(targetEffect);
   }
 }
