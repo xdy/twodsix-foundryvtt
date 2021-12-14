@@ -484,8 +484,8 @@
         "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
         "name": "Short name for alternative characteristic 2"
       },
-      "useCDWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves.",
+      "useWoundedStatusIndicators": {
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
         "name": "Display wounded status indicators"
       }
     },

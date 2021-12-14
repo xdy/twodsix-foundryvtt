@@ -69,7 +69,7 @@ export const registerSettings = function ():void {
   _booleanSetting('showAlternativeCharacteristics', false);
   _stringSetting("alternativeShort1", "ALT1");
   _stringSetting("alternativeShort2", "ALT2");
-  _booleanSetting('useCDWoundedStatusIndicators', false);
+  _booleanSetting('useWoundedStatusIndicators', false);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);
