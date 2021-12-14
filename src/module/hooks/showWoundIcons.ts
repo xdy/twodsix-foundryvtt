@@ -129,19 +129,21 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
       case 'CEQ':
       case 'CEATOM':
       case 'BARBARIC':
-        const lfbCharacteristic:string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
-        const endCharacteristic:string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
+        {
+          const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
+          const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
-        if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
-          returnVal = DAMAGECOLORS.minorWoundTint;
+          if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
+            returnVal = DAMAGECOLORS.minorWoundTint;
+          }
+          if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
+            returnVal = DAMAGECOLORS.seriousWoundTint;
+          }
+          if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current <= 0) {
+            returnVal = DAMAGECOLORS.deadTint;
+          }
+          break;
         }
-        if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
-          returnVal = DAMAGECOLORS.seriousWoundTint;
-        }
-        if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current <= 0) {
-          returnVal = DAMAGECOLORS.deadTint;
-        }
-        break;
       default:
         returnVal = '';
     }
