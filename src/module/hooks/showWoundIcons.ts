@@ -34,8 +34,6 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
             return (data.characteristics?.endurance || data.characteristics?.strength ? true : false);
           } else if (game.settings.get('twodsix', 'showLifebloodStamina')) {
             return (data.characteristics?.stamina || data.characteristics?.lifeblood ? true : false);
-          } else {
-            return false;
           }
         default:
           return false;
@@ -99,31 +97,27 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
     let returnVal = '';
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
-        if (selectedToken.actor.data.data.characteristics.lifeblood.current < selectedToken.actor.data.data.characteristics.lifeblood.value) {
-          returnVal = DAMAGECOLORS.minorWoundTint;
-        }
-        if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
-          returnVal = DAMAGECOLORS.seriousWoundTint;
-        }
         if (selectedToken.actor.data.data.characteristics.lifeblood.current <= 0) {
           returnVal = DAMAGECOLORS.deadTint;
+        } else if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
+          returnVal = DAMAGECOLORS.seriousWoundTint;
+        } else if (selectedToken.actor.data.data.characteristics.lifeblood.current < selectedToken.actor.data.data.characteristics.lifeblood.value) {
+          returnVal = DAMAGECOLORS.minorWoundTint;
         }
         break;
       case 'CEL':
       case 'CEFTL':
       case 'CE':
-        if (selectedToken.actor.data.data.characteristics.strength.damage > 0 || selectedToken.actor.data.data.characteristics.dexterity.damage > 0 ||
-          selectedToken.actor.data.data.characteristics.endurance.damage > 0) {
-          returnVal = DAMAGECOLORS.minorWoundTint;
-        }
-        if ((selectedToken.actor.data.data.characteristics.strength.current <= 0 && (selectedToken.actor.data.data.characteristics.dexterity.current <= 0 ||
-          selectedToken.actor.data.data.characteristics.endurance.current <= 0)) || (selectedToken.actor.data.data.characteristics.dexterity.current <= 0 &&
-            selectedToken.actor.data.data.characteristics.endurance.current <= 0)) {
-          returnVal = DAMAGECOLORS.seriousWoundTint;
-        }
         if (selectedToken.actor.data.data.characteristics.strength.current <= 0 && selectedToken.actor.data.data.characteristics.dexterity.current <= 0 &&
           selectedToken.actor.data.data.characteristics.endurance.current <= 0) {
           returnVal = DAMAGECOLORS.deadTint;
+        } else if ((selectedToken.actor.data.data.characteristics.strength.current <= 0 && (selectedToken.actor.data.data.characteristics.dexterity.current <= 0 ||
+          selectedToken.actor.data.data.characteristics.endurance.current <= 0)) || (selectedToken.actor.data.data.characteristics.dexterity.current <= 0 &&
+            selectedToken.actor.data.data.characteristics.endurance.current <= 0)) {
+          returnVal = DAMAGECOLORS.seriousWoundTint;
+        } else if (selectedToken.actor.data.data.characteristics.strength.damage > 0 || selectedToken.actor.data.data.characteristics.dexterity.damage > 0 ||
+          selectedToken.actor.data.data.characteristics.endurance.damage > 0) {
+          returnVal = DAMAGECOLORS.minorWoundTint;
         }
         break;
       case 'CEQ':
@@ -133,14 +127,12 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
           const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
           const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
-          if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
-            returnVal = DAMAGECOLORS.minorWoundTint;
-          }
-          if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
-            returnVal = DAMAGECOLORS.seriousWoundTint;
-          }
           if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current <= 0) {
             returnVal = DAMAGECOLORS.deadTint;
+          } else if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
+            returnVal = DAMAGECOLORS.seriousWoundTint;
+          } else if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
+            returnVal = DAMAGECOLORS.minorWoundTint;
           }
           break;
         }
