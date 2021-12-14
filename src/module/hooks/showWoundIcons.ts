@@ -35,6 +35,7 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
           } else if (game.settings.get('twodsix', 'showLifebloodStamina')) {
             return (data.characteristics?.stamina || data.characteristics?.lifeblood ? true : false);
           }
+          return false;
         default:
           return false;
       }
