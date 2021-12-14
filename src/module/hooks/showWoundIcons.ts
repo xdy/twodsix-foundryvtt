@@ -129,8 +129,8 @@ Hooks.on('updateActor', async (actor:TwodsixActor, update:Record<string, any>) =
       case 'CEQ':
       case 'CEATOM':
       case 'BARBARIC':
-        const lfbCharacteristic = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
-        const endCharacteristic = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
+        const lfbCharacteristic:string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
+        const endCharacteristic:string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
         if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
           returnVal = DAMAGECOLORS.minorWoundTint;
