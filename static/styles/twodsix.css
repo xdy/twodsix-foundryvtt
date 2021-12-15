@@ -7,8 +7,8 @@
 }
 
 :root {
-  --default-color: rgba(41, 170, 225, 1);
-  --light-color: rgba(0, 229, 255, 1);
+  --default-color: rgba(41, 170, 225, 1); /*#29aae1*/
+  --light-color: rgba(0, 229, 255, 1); /*#00e5ff*/
   --window-color: rgba(86, 148, 175, 1);
   --background-transparent: rgba(0, 0, 0, 0);
   --background-nearly-transparent: rgba(0, 0, 0, 0.25);
@@ -530,7 +530,7 @@ span.stat-name {
 
 .special {
   height: 55px;
-  width: 44px;
+  width: 49px;
   background-size: cover;
   position: relative;
 }
@@ -592,21 +592,21 @@ span.stat-damage input, span.special-damage input {
 
 span.special-ability {
   position: relative;
-  top: -1.4em;
+  top: -1.2em;
   left: 0.7em;
 }
 
 span.special-modifier {
   margin: -5px;
   position: relative;
-  /* left: 1em; */
-  top: -2.4em;
+  left: 3em;
+  top: -4.9em;
 }
 
 span.special-damage {
   position: relative;
-  padding-left: 0.6em;
-  top: -1.4em;
+  padding-left: 1.8em;
+  top: -1.5em;
 }
 
 svg:hover {
@@ -774,6 +774,7 @@ a.notes-tab.active {
 #joat-skill-input {
   height: 20px;
   width: 25px;
+  text-align: center;
 }
 
 .add-skill {

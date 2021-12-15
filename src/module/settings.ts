@@ -65,14 +65,14 @@ export const registerSettings = function ():void {
   _numberSetting('weightModifierForWornArmor', 1.0);
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
-  _stringSetting('colorScheme', JSON.stringify({
-    "hover": "#BB0000",
-    "active": "#FF0000",
-    "#27AAE1": "#FF0000",
-    "#26A9E0": "#FF0000",
-    "#29AAE1": "#FF0000",
-    "#27A9E1": "#FF0000"
-  }));
+  /*_stringSetting('colorScheme', JSON.stringify({
+    "hover": getComputedStyle(document.documentElement).getPropertyValue('--light-color'),
+    "active": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
+    "#27AAE1": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
+    "#26A9E0": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
+    "#29AAE1": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
+    "#27A9E1": getComputedStyle(document.documentElement).getPropertyValue('--default-color')
+  }));*/
 
   _booleanSetting('showAlternativeCharacteristics', false);
   _stringSetting("alternativeShort1", "ALT1");
@@ -170,10 +170,10 @@ export function switchCss() {
 export function getCharShortName(char: string): string {
   switch (char) {
     case "ALT1":
-      return game.settings.get('twodsix', 'alternativeShort1');
+      return game.settings.get('twodsix', 'alternativeShort1').toString();
       break;
     case "ALT2":
-      return game.settings.get('twodsix', 'alternativeShort2');
+      return game.settings.get('twodsix', 'alternativeShort2').toString();
       break;
     default:
       return game.i18n.localize("TWODSIX.Items.Skills." + char);
