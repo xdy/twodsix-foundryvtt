@@ -2118,7 +2118,7 @@ option {
   padding: 2px;
   border: 1px solid var(--header-border) !important;
   color: var(--window-color);
-  border-radius: 4px 0 0 0;
+  border-radius: 4px 0 0;
 }
 
 div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
@@ -2352,7 +2352,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
   padding: 0;
   align-items: baseline;
   z-index: 60;
-  background: none;
   box-shadow: none;
   pointer-events: none;
   background: none !important;

@@ -48,7 +48,9 @@ const RULESETS = Object.freeze({
       ShowWeaponType: true,
       ShowDamageType: true,
       ShowRateOfFire: true,
-      ShowRecoil: true
+      ShowRecoil: true,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false
     }
   },
   CEL: {
@@ -64,7 +66,9 @@ const RULESETS = Object.freeze({
       termForDisadvantage: "disadvantage",
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
-      absoluteCriticalEffectValue: 99
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false
     }
   },
   CEFTL: {
@@ -80,7 +84,9 @@ const RULESETS = Object.freeze({
       termForDisadvantage: "disadvantage",
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
-      absoluteCriticalEffectValue: 99
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false
     },
   },
   CEATOM: {
@@ -97,7 +103,9 @@ const RULESETS = Object.freeze({
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99,
-      lifebloodInsteadOfCharacteristics: true
+      lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
+      showContaminationBelowLifeblood: true
     }
   },
   BARBARIC: {
@@ -115,6 +123,7 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 4,
       lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
       showContaminationBelowLifeblood: false
     },
   },
@@ -133,6 +142,7 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
       lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
       showContaminationBelowLifeblood: false
     }
   },
