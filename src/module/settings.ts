@@ -65,6 +65,7 @@ export const registerSettings = function ():void {
   _numberSetting('weightModifierForWornArmor', 1.0);
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
+
   /*_stringSetting('colorScheme', JSON.stringify({
     "hover": getComputedStyle(document.documentElement).getPropertyValue('--light-color'),
     "active": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
@@ -73,6 +74,7 @@ export const registerSettings = function ():void {
     "#29AAE1": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
     "#27A9E1": getComputedStyle(document.documentElement).getPropertyValue('--default-color')
   }));*/
+
 
   _booleanSetting('showAlternativeCharacteristics', false);
   _stringSetting("alternativeShort1", "ALT1");
