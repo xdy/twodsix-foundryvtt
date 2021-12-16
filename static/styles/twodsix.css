@@ -34,6 +34,96 @@
   --damage-red: rgba(255, 0, 0, 1);
   --damage-stat-color: rgba(181, 44, 44, 1);
   --damage-orange: rgba(255, 153, 0, 1);
+  --color1: #26A9E0;
+  --color2: #231F20;
+  --color3: #27AAE1;
+  --color4: #1C75BC;
+  --color5: #5ECAE7;
+  --color6: #AEDFE9;
+  --color7: #60CAE6; /* hover */
+  --color8: var(--background-opaque);
+  --color9: #010101;
+  --color10: #27A9E1;
+}
+
+.stroke-color-1 {
+  stroke: var(--color1);
+}
+
+.fill-color-1 {
+  fill: var(--color1);
+}
+
+.stroke-color-2 {
+  stroke: var(--color2);
+}
+
+.fill-color-2 {
+  fill: var(--color2);
+}
+
+.stroke-color-3 {
+  stroke: var(--color3);
+}
+
+.fill-color-3 {
+  fill: var(--color3);
+}
+
+.stroke-color-4 {
+  stroke: var(--color4);
+}
+
+.fill-color-4 {
+  fill: var(--color4);
+}
+
+.stroke-color-5 {
+  stroke: var(--color5);
+}
+
+.fill-color-5 {
+  fill: var(--color5);
+}
+
+.stroke-color-6 {
+  stroke: var(--color6);
+}
+
+.fill-color-6 {
+  fill: var(--color6);
+}
+
+.stroke-color-7 {
+  stroke: var(--color7);
+}
+
+.fill-color-7 {
+  fill: var(--color7);
+}
+
+.stroke-color-8 {
+  stroke: var(--color8);
+}
+
+.fill-color-8 {
+  fill: var(--color8);
+}
+
+.stroke-color-9 {
+  stroke: var(--color9);
+}
+
+.fill-color-9 {
+  fill: var(--color9);
+}
+
+.stroke-color-10 {
+  stroke: var(--color10);
+}
+
+.fill-color-10 {
+  fill: var(--color10);
 }
 
 body {
@@ -331,8 +421,8 @@ h2 {
   position: relative;
 }
 
-object.character-info-mask {
-  z-index: 4;
+.character-info-mask {
+  z-index: 0;
   position: absolute;
   pointer-events: none;
   margin-top: 1.65em;
@@ -609,9 +699,10 @@ span.special-damage {
   top: -1.5em;
 }
 
+/* Needs to be more specific
 svg:hover {
   fill: var(--damage-red);
-}
+} */
 
 /* TABS */
 
@@ -633,6 +724,20 @@ svg:hover {
   padding-top: 0.15em;
   display: block;
   background-color: unset !important;
+}
+
+.svg-span {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+a.item.active path {
+  fill: var(--default-color);
+}
+
+a.item:not(.active):hover path {
+  fill: var(--color7);
 }
 
 a.skill-tab:hover {

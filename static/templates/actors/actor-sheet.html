@@ -1,34 +1,35 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{#unless (twodsix_useFoundryStyle)}}
-  <object class="content-background svg-remake" data="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?"></object>
+  {{> "systems/twodsix/templates/svg/header.svg.html"}}
   {{/unless}}
   <div class="content-container">
     <div class="character-info">
       {{#unless (twodsix_useFoundryStyle)}}
-      <object class="character-info-mask svg-remake" data="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"></object>
+      {{> "systems/twodsix/templates/svg/Interface-Bg.svg.html"}}
       {{/unless}}
       <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img" {{/unless}}
+          title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
       </div>
-      <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
-                                         onClick="this.select();"/></div>
+      <div class="character-name"><input name="name" type="text" value="{{actor.name}}"
+          placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" /></div>
       {{#unless limited}}
-        <div class="character-bgi">
-          {{#if actor.data.settings.showLifebloodStamina}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
-          {{else}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
-          {{/if}}
-        </div>
-        {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
+      <div class="character-bgi">
+        {{#if actor.data.settings.showLifebloodStamina}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
         {{else}}
-          {{#if (twodsix_useFoundryStyle)}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-          {{else}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
-          {{/if}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
         {{/if}}
+      </div>
+      {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
+      {{else}}
+      {{#if (twodsix_useFoundryStyle)}}
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+      {{else}}
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+      {{/if}}
+      {{/if}}
       {{/unless}}
     </div>
     {{#unless limited}}
@@ -39,26 +40,37 @@
       <div class="character-tabs">
         <nav class="sheet-tabs tabs" data-group="primary">
           <a class="item skill-tab" style="position: relative" data-tab="skills">
-            <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Interface-Tabs-left.svg"></object>
+            <span class="svg-span">
+              {{> "systems/twodsix/templates/svg/Interface-Tabs-left.svg.html"}}
+            </span>
+
             <div style="position: absolute; width: 100%;">{{localize "TWODSIX.Actor.Tabs.Skills"}}</div>
           </a>
 
           <a class="item item-tab" style="position: relative" data-tab="inventory">
-            <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Interface-Tabs-middle.svg"></object>
+            <span class="svg-span">
+              {{> "systems/twodsix/templates/svg/Interface-Tabs-middle.svg.html"}}
+            </span>
             <div style="position: absolute; width: 100%;">{{localize "TWODSIX.Actor.Tabs.Inventory"}}</div>
           </a>
 
           <a class="item finances-tab" style="position: relative" data-tab="finances">
-            <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Interface-Tabs-middle.svg"></object>
+            <span class="svg-span">
+              {{> "systems/twodsix/templates/svg/Interface-Tabs-middle.svg.html"}}
+            </span>
             <div style="position: absolute; width: 100%;">{{localize "TWODSIX.Actor.Tabs.Finances"}}</div>
           </a>
           <a class="item info-tab" style="position: relative" data-tab="info">
-            <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Interface-Tabs-middle.svg"></object>
+            <span class="svg-span">
+              {{> "systems/twodsix/templates/svg/Interface-Tabs-middle.svg.html"}}
+            </span>
             <div style="position: absolute; width: 100%;">{{localize "TWODSIX.Actor.Tabs.Info"}}</div>
           </a>
 
           <a class="item notes-tab" style="position: relative" data-tab="notes">
-            <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Interface-Tabs-right.svg"></object>
+            <span class="svg-span">
+              {{> "systems/twodsix/templates/svg/Interface-Tabs-right.svg.html"}}
+            </span>
             <div style="position: absolute; width: 100%;">{{localize "TWODSIX.Actor.Tabs.Notes"}}</div>
           </a>
         </nav>

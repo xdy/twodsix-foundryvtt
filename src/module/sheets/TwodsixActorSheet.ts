@@ -64,79 +64,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  private static setHoverColor(el, color) {
-    $(el.currentTarget).find(".svg-remake").get(0).contentDocument.querySelectorAll("path").forEach((element) => {
-      element.setAttribute("fill", color);
-    });
-  }
-
-  private static updateTabColors(el, colorMap) {
-    $(el.currentTarget).siblings().each((_, tab) => {
-      $(tab).find(".svg-remake").get(0).contentDocument.querySelectorAll("path").forEach((element) => {
-        if (el.currentTarget == tab) {
-          element.setAttribute("fill", colorMap["active"]);
-        } else {
-          element.setAttribute("fill", "");
-        }
-      });
-    });
-  }
-
-  private static updateAllSvgColors(el, colorMap) {
-    if ($(el.currentTarget).parent().hasClass("active")) {
-      el.currentTarget.contentDocument.querySelectorAll("path").forEach((element) => {
-        element.setAttribute("fill", colorMap["active"]);
-      });
-    }
-
-    function updateColor(element, attr) {
-      if (element.getAttribute(attr) && ! ["url(#a)", "none"].includes(element.getAttribute(attr))) {
-        const color = colorMap[element.getAttribute(attr).toUpperCase()];
-        if (color) {
-          element.setAttribute(attr, color);
-        }
-      }
-    }
-
-    el.currentTarget.contentDocument.querySelectorAll("path, g").forEach((element) => {
-      updateColor(element, "fill");
-      updateColor(element, "stroke");
-    });
-  }
-
   protected activateListeners(html:JQuery):void {
+    
     super.activateListeners(html);
-
-    const colorMap = {
-      "hover": getComputedStyle(document.documentElement).getPropertyValue('--light-color'),
-      "active": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
-      "#27AAE1": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
-      "#26A9E0": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
-      "#29AAE1": getComputedStyle(document.documentElement).getPropertyValue('--default-color'),
-      "#27A9E1": getComputedStyle(document.documentElement).getPropertyValue('--default-color')
-    };
-
-    html.find(".sheet-tabs .item").on("mouseover", (el) =>{
-      if (!$(el.currentTarget).hasClass("active")) {
-        TwodsixActorSheet.setHoverColor(el, colorMap["hover"]);
-      }
-    });
-
-    html.find(".sheet-tabs .item").on("mouseout", (el) =>{
-      if (!$(el.currentTarget).hasClass("active")) {
-        TwodsixActorSheet.setHoverColor(el, "");
-      }
-
-    });
-
-    html.find(".sheet-tabs .item").on("click", (el) =>{
-      TwodsixActorSheet.updateTabColors(el, colorMap);
-    });
-
-    html.find('.svg-remake').on("load", (el) => {
-      TwodsixActorSheet.updateAllSvgColors(el, colorMap);
-    });
-
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
 
     html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));

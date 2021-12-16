@@ -79,6 +79,13 @@ Hooks.once('init', async function () {
 
   const templatePaths = [
     //TODO Set up so the templates are instead loaded during build (or possibly during startup?), using all html files in the templates folder
+    "systems/twodsix/templates/svg/header.svg.html",
+    "systems/twodsix/templates/svg/Interface-Bg.svg.html",
+    "systems/twodsix/templates/svg/Interface-Tabs-left.svg.html",
+    "systems/twodsix/templates/svg/Interface-Tabs-middle.svg.html",
+    "systems/twodsix/templates/svg/Interface-Tabs-right.svg.html",
+    "systems/twodsix/templates/svg/Stat-1.svg.html",
+
     "systems/twodsix/templates/actors/actor-sheet.html",
     "systems/twodsix/templates/actors/damage-dialog.html",
     "systems/twodsix/templates/actors/ship-sheet.html",

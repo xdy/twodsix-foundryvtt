@@ -1,6 +1,8 @@
 <div class="character-characteristics">
   <div class="stat strength" data-characteristic="strength">
-    <object class="svg-remake" style="position: absolute; left: 0; top: 0;" data="/systems/twodsix/assets/actor/Stat-1.svg"></object>
+    <span class="svg-span">
+      {{> "systems/twodsix/templates/svg/Stat-1.svg.html"}}
+    </span>
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
     ><i class="fas fa-dice" alt="roll strength"></i> {{localize "TWODSIX.Actor.Characteristics.STR"}}</span>
 
