@@ -18,7 +18,7 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
   if (!item) {
     const unattachedItem:TwodsixItem = game.items.get(itemId);
-    if (unattachedItem.type != "weapon") {
+    if (unattachedItem?.type != "weapon" && !actor && unattachedItem) {
       await unattachedItem.skillRoll(true);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorMissingItem").replace("_ITEM_ID_", itemId));
