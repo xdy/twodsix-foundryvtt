@@ -9,8 +9,16 @@ export async function createItemMacro(item, slot):Promise<void> {
   const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
   let macro = game.macros.entities.find((m) => (m.name === item.name) /*&& (m.data.command === command)*/);
   if (!macro) {
-    const itemName = item.name ? item.name : item.data.name;
-    const img = item.img ? item.img : item.data.img;
+    let itemName = item.name ? item.name : item.data?.name;
+    let img = item.img ? item.img : item.data?.img;
+
+    //handle case for unattached item
+    if (!itemName) {
+      const origItem = game.items.get(item.id);
+      itemName = origItem.name;
+      img = origItem.img;
+    }
+
     macro = await Macro.create({
       command: command,
       name: itemName,
