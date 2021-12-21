@@ -115,6 +115,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       case "component":
         itemData.data.subtype = "other";
         itemData.data.status = "operational";
+        break;
     }
   }
 
