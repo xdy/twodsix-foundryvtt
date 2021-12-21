@@ -1807,6 +1807,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection {
+  margin-top: 0.5em;
+}
+
 .item-descr div[contenteditable] {
   min-height: 140px;
   background: rgba(0, 0, 0, 0.22);
