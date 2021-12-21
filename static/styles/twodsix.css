@@ -1446,23 +1446,23 @@ input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 485px;
+  width: 388px;
   display: block;
-  margin-left: 20.5em;
+  margin-left: 21.5em;
   margin-top: -2.3em;
   z-index: 99;
   height: 20px;
 }
 
 a.ship-crew-tab {
-  background-image: url(../assets/ship/ship-tabs.svg);
+  /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 0.1em;
   display: block;
   height: 20px;
 }
 
 a.ship-crew-tab:hover {
-  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: 0.1em;
   color: var(--item-hover);
   display: block;
@@ -1470,23 +1470,24 @@ a.ship-crew-tab:hover {
 }
 
 a.ship-crew-tab.active {
-  background-image: url(../assets/ship/ship-tabs-active.svg);
+  /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 0.1em;
   color: var(--item-active);
   text-shadow: none !important;
   display: block;
   height: 20px;
+  background-color: var(--default-color);
 }
 
 a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
-  background-image: url(../assets/ship/ship-tabs.svg);
+  /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: -99px;
   display: block;
   height: 20px;
 }
 
 a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
-  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: -99px;
   display: block;
   height: 20px;
@@ -1494,23 +1495,24 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
 }
 
 a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
-  background-image: url(../assets/ship/ship-tabs-active.svg);
+  /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: -99px;
   display: block;
   height: 20px;
   color: var(--item-active);
   text-shadow: none !important;
+  background-color: var(--default-color);
 }
 
 a.ship-notes-tab {
-  background-image: url(../assets/ship/ship-tabs.svg);
+  /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 7.1em;
   display: block;
   height: 20px;
 }
 
 a.ship-notes-tab:hover {
-  background-image: url(../assets/ship/ship-tabs-hover.svg);
+  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: 7em;
   display: block;
   height: 20px;
@@ -1518,12 +1520,13 @@ a.ship-notes-tab:hover {
 }
 
 a.ship-notes-tab.active {
-  background-image: url(../assets/ship/ship-tabs-active.svg);
+  /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 7em;
   color: var(--item-active);
   text-shadow: none !important;
   display: block;
   height: 20px;
+  background-color: var(--default-color);
 }
 
 
@@ -1801,6 +1804,10 @@ a:hover {
 }
 
 .item-recoil {
+  margin-top: 0.5em;
+}
+
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection {
   margin-top: 0.5em;
 }
 
@@ -2194,7 +2201,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   position: fixed;
   right: 5px;
   top: 5px;
-  width: 300px;
+  width: 320px;
   height: 99vh;
   overflow: hidden;
   margin: 0;
@@ -2220,15 +2227,15 @@ div.app.window-app.twodsix.ship.actor header a.close {
 }
 
 #controls .scene-control, #controls .control-tool, #controls .control-tool.toggle {
-  background-color: var(--background-nearly-opaque);
+  background-color: var(--background-nearly-opaque)!important;
 }
 
 #controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover,#controls .control-tool.toggle.active,  #controls .control-tool.toggle:hover {
-  color: var(--item-hover);
-  border: 1px solid var(--light-color);
-  border-bottom: 1px solid var(--default-color);
-  box-shadow: 0 0 10px var(--default-color);
-  background-color: var(--background-opaque);
+  color: var(--item-hover) !important;
+  border: 1px solid var(--light-color)!important;
+  border-bottom: 1px solid var(--default-color)!important;
+  box-shadow: 0 0 10px var(--default-color)!important;
+  background-color: var(--background-opaque)!important;
 }
 
 #navigation #scene-list .scene.view, #navigation #scene-list .scene.context {
@@ -2246,7 +2253,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 }
 
 #controls {
-  position: fixed;
+  /*position: fixed;*/
   top: 60px;
   left: 10px;
   padding: 10px;
@@ -2254,6 +2261,11 @@ div.app.window-app.twodsix.ship.actor header a.close {
   box-shadow: none;
   background-image: none !important;
   background-color: none !important;
+  border: none !important;
+}
+
+#controls ol {
+  background-image: none !important;
   border: none !important;
 }
 
