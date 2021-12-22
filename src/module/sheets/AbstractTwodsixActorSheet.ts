@@ -112,6 +112,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           itemData.data.skill = this.actor.getUntrainedSkill().id;
         }
         break;
+      case "component":
+        itemData.data.subtype = "other";
+        itemData.data.status = "operational";
+        break;
     }
   }
 

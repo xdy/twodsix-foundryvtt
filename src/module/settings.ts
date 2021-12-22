@@ -66,22 +66,10 @@ export const registerSettings = function ():void {
 
   _booleanSetting('useFoundryStandardStyle', false, 'world', refreshWindow);
 
-  /*game.settings.register('twodsix', 'useFoundryStandardStyle', {
-    name: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.name'),
-    hint: game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.hint'),
-    scope: 'world',
-    config: true,
-    type: String,
-    choices: {
-      'twodsixStyle': game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.default'),
-      'foundryStyle': game.i18n.localize('TWODSIX.Settings.useFoundryStandardStyle.foundry'),
-    },
-    default: 'awesomeOldStyle',
-    onChange: () => switchCss(),
-  });*/
   _booleanSetting('showAlternativeCharacteristics', false);
   _stringSetting("alternativeShort1", "ALT1");
   _stringSetting("alternativeShort2", "ALT2");
+  _booleanSetting('useWoundedStatusIndicators', false);
 
   //As yet unused
   _numberSetting('maxSkillLevel', 9);

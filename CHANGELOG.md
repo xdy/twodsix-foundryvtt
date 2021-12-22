@@ -1,3 +1,17 @@
+## [0.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.0...v0.12.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* update to new FVTT v9 ([#737](https://github.com/xdy/twodsix-foundryvtt/issues/737)) ([d41c4dd](https://github.com/xdy/twodsix-foundryvtt/commit/d41c4dd6868fddb3328725bf9e935e62cc2978e5))
+
+# [0.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.12...v0.12.0) (2021-12-15)
+
+
+### Features
+
+* add optional status indicators for wounds ([#726](https://github.com/xdy/twodsix-foundryvtt/issues/726)) ([3eb5a07](https://github.com/xdy/twodsix-foundryvtt/commit/3eb5a07a83c57bdaa6e7d5f5a48f4b535fadf287))
+
 ## [0.11.12](https://github.com/xdy/twodsix-foundryvtt/compare/v0.11.11...v0.11.12) (2021-12-10)
 
 

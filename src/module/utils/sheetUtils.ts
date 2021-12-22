@@ -200,7 +200,7 @@ export async function getItemDataFromDropData(data:Record<string,any>): Promise<
   if (data.pack) {
     // compendium
     const pack = game.packs.find((p) => p.collection === data.pack);
-    if (pack.metadata.entity !== 'Item') {
+    if (pack.metadata.type !== 'Item') {
       throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
     }
     const item = await pack.getEntity(data.id);
