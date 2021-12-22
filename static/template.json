@@ -465,8 +465,9 @@
     "ship_crew_position": {
       "name": "",
       "icon": "",
-      "actions": [], 
+      "actionIds": [], 
       "actorIds": [],
+      "componentIds": [],
       "order": 0
     }
   }

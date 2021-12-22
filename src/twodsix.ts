@@ -68,8 +68,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = TwodsixItem;
   // CONFIG.Item.entityClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("twodsix", TwodsixShipCrewPositionSheet, {types: ["ship_crew_position"], makeDefault: true});
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+  Items.registerSheet("twodsix", TwodsixShipCrewPositionSheet, {types: ["ship_crew_position"], makeDefault: true});
   
 
   /**
