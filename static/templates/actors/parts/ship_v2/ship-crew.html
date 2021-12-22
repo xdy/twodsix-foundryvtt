@@ -6,7 +6,6 @@
           {{crewPosition.name}}
         </div>
         <div style="width: 14.8em; min-height: 50px; border: 1px groove #00e5ff; border-radius: 0;">
-          {{log crewPosition}}
           {{#each crewPosition.data.actors as |actor|}}
             <img src="{{actor.img}}" class="crew-actor-token" data-id="{{actor.id}}" style="cursor: pointer" width="40" height="40" alt="{{actor.name}}" title="{{actor.name}}">
           {{/each}}
@@ -14,8 +13,8 @@
         </div>
         <div style="width: 14.8em; min-height: 50px; border: 1px groove #00e5ff; border-radius: 0;">
         {{#each crewPosition.data.actions as |action|}}
-            <span class="fa {{action.icon}} crew-action" data-value="{{action.value}}" style="width: 40px; height: 40px; border: 1px solid #fff"></span>
-          {{/each}}
+        <img src="{{action.data.img}}" width="40" height="40">
+        {{/each}}
         </div>
       </div>
     {{/each}}

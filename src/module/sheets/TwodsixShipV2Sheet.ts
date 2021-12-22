@@ -7,6 +7,7 @@ export class TwodsixShipV2Sheet extends ActorSheet {
 
     data.data.crewPositions = data.items.filter(item=>item.type=="ship_crew_position").map(crewPosition => {
       crewPosition.data.actors = crewPosition.data.actorIds.map(actorId => game.actors.get(actorId));
+      crewPosition.data.actions = crewPosition.data.actionIds.map(actionId => game.macros.get(actionId));
       return crewPosition;
     })
     // console.log(data.data.crewPositions)
@@ -55,14 +56,11 @@ export class TwodsixShipV2Sheet extends ActorSheet {
     html.find('.crew-actor-token').on('click', this._onCrewActorClick.bind(this));
     html.find('.crew-actor-token').on('drop', this._onCrewActorDrop.bind(this));
     html.find('.crew-action').on('click', this._onCrewActionClick.bind(this));
-    $("html").on("drop", () => {
-      console.log("WAAAAa")
-    })
   }
 
   private _onCrewPositionEdit(event:Event):void {
     const crewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
-    this.actor.getOwnedItem(crewPositionId).sheet.render(true);
+    this.actor.items.get(crewPositionId).sheet.render(true);
   }
    
   private async _onCrewActionClick(event:Event) {
