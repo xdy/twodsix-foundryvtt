@@ -1,3 +1,10 @@
+## [0.12.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.2...v0.12.3) (2021-12-22)
+
+
+### Bug Fixes
+
+* allow unattached skill rolls ([#734](https://github.com/xdy/twodsix-foundryvtt/issues/734)) ([4d815eb](https://github.com/xdy/twodsix-foundryvtt/commit/4d815ebcf0109bfa1c9b2f57ea6355baf485cbdb))
+
 ## [0.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.1...v0.12.2) (2021-12-22)
 
 
