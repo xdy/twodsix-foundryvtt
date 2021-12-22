@@ -12,6 +12,8 @@ import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
+import {TwodsixShipV2Sheet} from "./module/sheets/TwodsixShipV2Sheet";
+import {TwodsixShipCrewPositionSheet} from "./module/sheets/TwodsixShipCrewPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
@@ -55,11 +57,18 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
+  // @ts-ignore
+  Actors.registerSheet("twodsix", TwodsixShipV2Sheet, {
+    types: ["ship_v2"],
+    makeDefault: true,
+  });
+
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
   // @ts-ignore
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+  Items.registerSheet("twodsix", TwodsixShipCrewPositionSheet, {types: ["ship_crew_position"], makeDefault: true});
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();

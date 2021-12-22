@@ -1,0 +1,81 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="item-sheet">
+        <div class="item-name">
+            <label for="data.name" class="resource-label">Position name
+                <input id="data.name" type="text" name="name" value="{{name}}" />
+            </label>
+        </div>
+        <div class="item-name">
+            <label for="data.order" class="resource-label">Order
+                <input id="data.order" type="number" name="data.order" value="{{data.order}}" data-dtype="Number" />
+            </label>
+        </div>
+        <div class="form-section">
+            Actions: <br>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Order</td>
+                        <td>Name</td>
+                        <td>Macro/Skill</td>
+                        <td>Type</td>
+                        <td class="centre">
+                            <a class="crew_position-action-create" title='Create action'>
+                              <i class="fas fa-plus"></i>
+                            </a>
+                          </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data.sortedActions as |action|}}                    
+                    <tr class="crew_position-action">
+                        <td><input type="number" style="width: 15px;" name="data.actions.{{action.id}}.order" value="{{action.order}}" data-dtype="Number"></td>
+                        <td data-id="{{action.id}}">
+                            <img src="{{action.icon}}" data-edit="data.actions.{{action.id}}.icon" width="20" height="20">
+                            <input type="text" style="width: 100px;" name="data.actions.{{id}}.name" value="{{action.name}}">
+                        </td>
+                        <td>
+                            <input type="text" placeholder="{{action.placeholder}}" name="data.actions.{{id}}.command" value="{{action.command}}">
+                        </td>
+                        <td>
+                            <select style="width: 100px;" name="data.actions.{{action.id}}.type" value={{action.type}}>
+                            {{#select action.type}}
+                            {{#each ../data.availableActions as |value key|}}
+                                <option value="{{key}}">{{value.name}}</option>
+                            {{/each}}
+                            {{/select}}
+                            </select>
+                        </td>
+                        <td class="centre">
+                            <a class="crew_position-action-delete" data-id="{{action.id}}"
+                                title='Delete action'>
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-section">
+            Components: <br>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>COMPONENT_ID</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data.components as |component|}}
+                    <tr class="crew_position-component">
+                        <td><img src="{{component.data.img}}" width="20" height="20"> {{component.name}}</td>
+                        <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
