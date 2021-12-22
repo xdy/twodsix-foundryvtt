@@ -1,3 +1,10 @@
+## [0.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.1...v0.12.2) (2021-12-22)
+
+
+### Bug Fixes
+
+* background image not displaying correctly ([#739](https://github.com/xdy/twodsix-foundryvtt/issues/739)) ([ccb9030](https://github.com/xdy/twodsix-foundryvtt/commit/ccb903008ee82a86403a293e4df911f4b8e353c2))
+
 ## [0.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.0...v0.12.1) (2021-12-21)
 
 
