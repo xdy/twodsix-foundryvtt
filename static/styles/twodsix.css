@@ -38,9 +38,9 @@
 
 body {
   background-image: url(../assets/workbg2.webp);
-  background-position: center;
+  /*background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
   font-family: "Asap-Regular";
 }
 
