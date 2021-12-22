@@ -1,3 +1,10 @@
+## [0.12.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.3...v0.12.4) (2021-12-22)
+
+
+### Bug Fixes
+
+* remove entity reference in createItemMacro ([#740](https://github.com/xdy/twodsix-foundryvtt/issues/740)) ([b86b05c](https://github.com/xdy/twodsix-foundryvtt/commit/b86b05c1430993a69f79e7b9ceb5180d7403808f))
+
 ## [0.12.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.2...v0.12.3) (2021-12-22)
 
 
