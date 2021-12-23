@@ -1,0 +1,108 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  {{#unless (twodsix_useFoundryStyle)}}
+    <img class="ship-mask-bg" src="./systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+  {{/unless}}
+  <div class="ship-container">
+    <div class="ship-image">
+      <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
+    </div>
+    <div class="ship-name">
+      <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
+    </div>
+    {{#unless limited}}
+    <div class="ship-info">
+      <div class="ship-state-grid">
+        {{#if (twodsix_useFoundryStyle)}}
+          <div class="ship-state-labels">
+            <span>&nbsp</span>
+            <span>{{localize "TWODSIX.Damage.Current"}}</span>
+            <span>{{localize "TWODSIX.Damage.Max"}}</span>
+          </div>
+        {{/if}}
+        <div class="ship-hull">
+          <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
+          <span class="ship-hull-value"><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/></span>
+          <span class="ship-hull-max"><input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></span>
+        </div>
+        <div class="ship-fuel">
+          <span>{{localize "TWODSIX.Ship.Fuel"}}</span>
+          <span class="ship-fuel-value"><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/></span>
+          <span class="ship-fuel-max"><input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></span>
+        </div>
+        <div class="ship-armor">
+            <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
+            <span class="ship-armor-name"><textarea name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea></span>
+          </div>
+        <div class="ship-maintenance"><span>{{localize "TWODSIX.Ship.MaintPM"}}</span>
+          <input type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" placeholder="0"/>
+        </div>
+      </div>
+    </div>
+    <div class="ship-power-management"><h3>{{localize "TWODSIX.Ship.PowerManagement"}}</h3>
+      <div class="ship-power"><label>{{localize "TWODSIX.Ship.Power"}}</label>
+        <span class="power-now">{{localize "TWODSIX.Ship.USED"}}</span>
+        <input class="power-current" type="number" value="{{data.data.shipStats.power.value}}" name="data.shipStats.power.value" placeholder="0"/>
+        <input class="power-total" type="number" value="{{data.data.shipStats.power.max}}" name="data.shipStats.power.max" placeholder="0"/><span class="power-max">{{localize "TWODSIX.Ship.MAX"}}</span>
+      </div>
+      <div class="power-grid">
+        <div class="ship-systems"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input type="number" value="{{data.data.reqPower.systems}}" name="data.reqPower.systems" placeholder="0"/></div>
+        <div class="ship-m-drive"><label>{{localize "TWODSIX.Ship.MDrive"}}</label><input type="number" value="{{data.data.reqPower.m-drive}}" name="data.reqPower.m-drive" placeholder="0"/></div>
+        <div class="ship-j-drive"><label>{{localize "TWODSIX.Ship.JDrive"}}</label><input type="number" value="{{data.data.reqPower.j-drive}}" name="data.reqPower.j-drive" placeholder="0"/></div>
+        <div class="ship-sensors"><label>{{localize "TWODSIX.Ship.Sensors"}}</label><input type="number" value="{{data.data.reqPower.sensors}}" name="data.reqPower.sensors" placeholder="0"/></div>
+        <div class="ship-weapons">{{localize "TWODSIX.Ship.Weapons"}}<input type="number" value="{{data.data.reqPower.weapons}}" name="data.reqPower.weapons" placeholder="0"></div>
+      </div>
+    </div>
+    {{/unless}}
+  </div>
+  {{#unless limited}}
+  {{!-- Sheet Body --}}
+  <div class="ship-tabs-info sheet-body">
+
+    {{!-- Sheet Tab Navigation --}}
+    <div class="ship-tabs">
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item ship-crew-tab" data-tab="ship-crew">{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
+        <a class="item ship-storage-tab" data-tab="ship-component">{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
+        <a class="item ship-storage-tab" data-tab="ship-storage">{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
+        <a class="item ship-cargo-tab" data-tab="ship-cargo">{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
+        <a class="item ship-finance-tab" data-tab="ship-finance">{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
+        <a class="item ship-notes-tab" data-tab="ship-notes">{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
+      </nav>
+    </div>
+
+    {{!-- Crew Tab --}}
+    <div class="tab ship-crew" data-group="primary" data-tab="ship-crew">
+      {{> "systems/twodsix/templates/actors/parts/ship_v2/ship-crew.html"}}
+    </div>
+
+    {{!-- Component Tab --}}
+    <div class="tab ship-component" data-group="primary" data-tab="ship-component">
+      {{#if data.settings.showSingleComponentColumn}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-single.html"}}
+      {{else}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-components-double.html"}}
+      {{/if}}
+    </div>
+
+    {{!-- Storage Tab --}}
+    <div class="tab ship-storage" data-group="primary" data-tab="ship-storage">
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.html"}}
+    </div>
+
+    {{!-- Cargo Tab --}}
+    <div class="tab ship-cargo" data-group="primary" data-tab="ship-cargo">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo.html"}}
+    </div>
+
+    {{!-- Finance Tab --}}
+    <div class="tab ship-finance" data-group="primary" data-tab="ship-finance">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-finance.html"}}
+    </div>
+
+    {{!-- Notes Tab --}}
+    <div class="tab ship-notes" data-group="primary" data-tab="ship-notes">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-notes.html"}}
+    </div>
+  </div>
+  {{/unless}}
+</form>

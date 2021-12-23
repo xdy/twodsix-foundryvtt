@@ -49,7 +49,7 @@ export class TwodsixDiceRoll {
     if (this.skill) {
       formula += "+ @skill";
       /*Check for "Untrained" value and use if better to account for JOAT*/
-      const joat = this.actor.getUntrainedSkill().data.data.value ?? game.system.template.Item.skills.value;
+      const joat = this.actor?.getUntrainedSkill().data.data.value ?? game.system.template.Item.skills.value;
       if (joat > this.skill.data.data.value) {
         data["skill"] = joat;
       } else {
