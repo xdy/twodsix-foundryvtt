@@ -14,11 +14,19 @@
           
         </div>
         <div style="width: 14.8em; min-height: 50px; border: 1px groove #00e5ff; border-radius: 0;">
-        {{#each crewPosition.data.sorted_actions as |action|}}
+        {{#each crewPosition.data.sortedActions as |action|}}
           <img src="{{action.icon}}" class="crew-action" data-id="{{action.id}}" title="{{action.name}}" width="40" height="40">
         {{/each}}
         </div>
       </div>
     {{/each}}
+    <div class="drag crew-position create-crew-position" style="cursor: pointer;">
+      <div class="item-title">
+      </div>
+      <div style="text-align: center; width: 14.8em; min-height: 100px; border: 1px groove #00e5ff; border-radius: 0;">
+          <i class="fa fa-plus" style="font-size: 40px; margin-top: 20px;"></i><br>
+          Add crew position
+      </div>
+    </div>
   </div>
 </div>

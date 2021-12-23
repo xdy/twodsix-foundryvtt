@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each data.sorted_actions as |action|}}                    
+                    {{#each data.sortedActions as |action|}}                    
                     <tr class="crew_position-action">
                         <td><input type="number" style="width: 15px;" name="data.actions.{{action.id}}.order" value="{{action.order}}" data-dtype="Number"></td>
                         <td data-id="{{action.id}}">
@@ -35,20 +35,16 @@
                             <input type="text" style="width: 100px;" name="data.actions.{{id}}.name" value="{{action.name}}">
                         </td>
                         <td>
-                            {{#iff action.type "===" "macro"}}
-                            <textarea cols="25" rows="10" name="data.actions.{{id}}.command">{{action.command}}</textarea>
-                            {{else}}
-                            <input type="text" placeholder="Skill/CHR 8+" name="data.actions.{{id}}.command" value="{{action.command}}">
-                            {{/iff}}
-                            
+                            <input type="text" placeholder="{{action.placeholder}}" name="data.actions.{{id}}.command" value="{{action.command}}">
                         </td>
                         <td>
-                            <select name="data.actions.{{action.id}}.type" value={{action.type}}>
-                                {{#select action.type}}
-                                <option value="simple">Simple</option>
-                                <option value="macro">Macro</option>
-                                {{/select}}
-                              </select>
+                            <select style="width: 100px;" name="data.actions.{{action.id}}.type" value={{action.type}}>
+                            {{#select action.type}}
+                            {{#each ../data.availableActions as |value key|}}
+                                <option value="{{key}}">{{value.name}}</option>
+                            {{/each}}
+                            {{/select}}
+                            </select>
                         </td>
                         <td class="centre">
                             <a class="crew_position-action-delete" data-id="{{action.id}}"
@@ -67,15 +63,15 @@
             <table>
                 <thead>
                     <tr>
-                        <td>Use</td>
                         <td>Name</td>
+                        <td>COMPONENT_ID</td>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each data.components as |component|}}
                     <tr class="crew_position-component">
-                        <td><input type="checkbox" {{#if component.checked}}checked{{/if}} class="component-checkbox" data-id="{{component.id}}" /></td>
                         <td><img src="{{component.data.img}}" width="20" height="20"> {{component.name}}</td>
+                        <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
                     </tr>
                     {{/each}}
                 </tbody>
