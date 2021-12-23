@@ -1538,7 +1538,6 @@ a.ship-notes-tab.active {
 .ship-grid {
   display: grid;
   grid-template-columns: 17em 17em 17em;
-  grid-template-rows: 4em 4em 4em;
   gap: 1em 1em;
   grid-template-areas: ". .";
 }

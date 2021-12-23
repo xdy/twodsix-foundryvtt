@@ -1,4 +1,7 @@
+import {TWODSIX} from "../config";
+import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
+import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 
 export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
@@ -50,7 +53,7 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "crew"}],
       scrollY: [".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        {dropSelector: null, dragSelector: ".drag"}, 
+        {dropSelector: null, dragSelector: ".drag"},
         {
           dropSelector: null,
           dragSelector: ".crew-actor-token"
@@ -60,7 +63,14 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
   }
 
   async _executeAction(event: DragEvent): Promise<boolean | any> {
-    const actorId = $(".crew-actor-token.force-border").data("id");
+    let actorId:string;
+    const crewPosEl = $(event.currentTarget).parents(".crew-position");
+    if ($(event.currentTarget).parents(".crew-position").find(".crew-actor-token").length === 1) {
+      actorId = crewPosEl.find(".crew-actor-token").data("id");
+    } else {
+      actorId = crewPosEl.find(".crew-actor-token.force-border").data("id");
+    }
+    
     if (!actorId) {
       ui.notifications.error(game.i18n.localize("TWODSIX.ShipV2.ActorMustBeSelectedForAction"));
       return null;
@@ -69,14 +79,35 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
     const shipCrewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
     const shipCrewPosition = this.actor.items.get(shipCrewPositionId);
     const action = shipCrewPosition.data.data.actions[actionId];
-    const code = `
-    const ship = game.actors.get("${this.actor.id}");
-    const components = ship.items.filter(item => ${JSON.stringify(shipCrewPosition.data.data.componentIds)}.includes(item.id));
-    const actor = game.actors.get("${actorId}");
-    ${action.command}
-    `;
-    console.debug(code);
-    new Macro({"name": "tmpMacro", "command": code, "type": "script"}).execute();
+    
+    if (action.type === "simple") {
+      const actor = game.actors.get(actorId);
+      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+      const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+      const re = new RegExp(/^(.+?)\/?([A-Z]*?) ?(\d*?)\+?$/);
+      const [_, parsedSkill, char, diff] = re.exec(action.command);
+      const skill = actor.items.filter(itm => itm.name === parsedSkill)[0] as TwodsixItem;
+      let settings = {
+        characteristic: char ? char : undefined
+      };
+      if (diff) {
+        settings["difficulty"] = Object.values(difficulties).filter(difficulty => difficulty.target === parseInt(diff, 10))[0];
+      }
+      
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, null)
+      skill.skillRoll(showTrowDiag, options);
+        
+    } else {
+      const code = `
+      const ship = game.actors.get("${this.actor.id}");
+      const components = ship.items.filter(item => ${JSON.stringify(shipCrewPosition.data.data.componentIds)}.includes(item.id));
+      const actor = game.actors.get("${actorId}");
+      ${action.command}
+      `;
+      console.debug(code);
+      new Macro({"name": "tmpMacro", "command": code, "type": "script"}).execute();
+    }
   }
 
   activateListeners(html:JQuery):void {
@@ -101,7 +132,7 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
 
   private _onCrewActorClick(event:Event) {
     const hasClass = $(event.currentTarget).hasClass("force-border")
-    $(".crew-actor-token").removeClass("force-border")
+    $(event.currentTarget).parents(".crew-position").find(".crew-actor-token").removeClass("force-border");
     if (!hasClass) {
       $(event.currentTarget).addClass("force-border")
     }

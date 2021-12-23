@@ -7,7 +7,7 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
   getData(): ItemSheetData {
     // @ts-ignore
     const data = super.getData();
-    data.data.components = this.item?.parent?.items.filter(component => component.type === "component") || [];
+    data.data.components = this.item?.parent?.items.filter(component => component.type === "component") ?? [];
     data.data.components.map(component => {
       component.checked = data.data.componentIds.includes(component.id);
     })
