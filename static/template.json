@@ -328,6 +328,7 @@
         "sensors": 0,
         "weapons": 0
       },
+      "shipCrewPositionActorIds": {},
       "components": [],
       "shipStats": {
         "hull": {
@@ -465,8 +466,7 @@
     "ship_crew_position": {
       "name": "",
       "icon": "",
-      "actionIds": [], 
-      "actorIds": [],
+      "actions": {},
       "componentIds": [],
       "order": 0
     }
