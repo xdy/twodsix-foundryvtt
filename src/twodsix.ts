@@ -11,8 +11,6 @@ import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
-import {TwodsixShipV2Sheet} from "./module/sheets/TwodsixShipV2Sheet";
-import {TwodsixShipCrewPositionSheet} from "./module/sheets/TwodsixShipCrewPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
@@ -57,20 +55,12 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
-  // @ts-ignore
-  Actors.registerSheet("twodsix", TwodsixShipV2Sheet, {
-    types: ["ship_v2"],
-    makeDefault: true,
-  });
-
   // Items
   // @ts-ignore Until fvtt-types goes to 0.8
   CONFIG.Item.documentClass = TwodsixItem;
   // CONFIG.Item.entityClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
-  Items.registerSheet("twodsix", TwodsixShipCrewPositionSheet, {types: ["ship_crew_position"], makeDefault: true});
-  
 
   /**
    * Set an initiative formula for the system
@@ -114,7 +104,6 @@ Hooks.once('init', async function () {
     "systems/twodsix/templates/actors/parts/ship/ship-components-single.html",
     "systems/twodsix/templates/actors/parts/ship/ship-components-double.html",
     "systems/twodsix/templates/actors/parts/ship/ship-finance.html",
-    "systems/twodsix/templates/actors/parts/ship_v2/ship-crew.html",
     //
     "systems/twodsix/templates/chat/damage-message.html",
     "systems/twodsix/templates/chat/throw-dialog.html",

@@ -1538,6 +1538,7 @@ a.ship-notes-tab.active {
 .ship-grid {
   display: grid;
   grid-template-columns: 17em 17em 17em;
+  grid-template-rows: 4em 4em 4em;
   gap: 1em 1em;
   grid-template-areas: ". .";
 }
@@ -2369,7 +2370,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
   border: none !important;
 }
 
-
 /* ------ Damage Dialog ------ */
 
 .damage-dialog .red {
@@ -2404,8 +2404,4 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 .damage-dialog .attribute-name-column {
   text-align: left;
-}
-
-.force-border {
-  border: 1px solid yellow !important;
 }

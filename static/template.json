@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship", "ship_v2"],
+    "types": ["traveller", "ship"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -315,42 +315,10 @@
         "weight": "",
         "cost": ""
       }
-    },
-    "ship_v2": {
-      "name": "",
-      "notes": "",
-      "maintenanceCost": 0,
-      "shipValue": 0,
-      "reqPower": {
-        "systems": 0,
-        "m-drive": 0,
-        "j-drive": 0,
-        "sensors": 0,
-        "weapons": 0
-      },
-      "shipCrewPositionActorIds": {},
-      "components": [],
-      "shipStats": {
-        "hull": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        },
-        "fuel": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        },
-        "power": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        }
-      }
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_crew_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component"],
     "equipped": ["equipped", "ship", "backpack"],
     "templates": {
       "gearTemplate": {
@@ -432,8 +400,7 @@
       "reference": "",
       "key": "key",
       "difficulty": "Average",
-      "rolltype": "Normal",
-      "skillName": ""
+      "rolltype": "Normal"
     },
     "trait": {
       "templates": ["skillsTemplate"],
@@ -462,13 +429,6 @@
       "availableQuantity": "",
       "damage": "",
       "status": ["operational", "damaged", "destroyed", "off"]
-    },
-    "ship_crew_position": {
-      "name": "",
-      "icon": "",
-      "actions": {},
-      "componentIds": [],
-      "order": 0
     }
   }
 }
