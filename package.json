@@ -14,7 +14,7 @@
     "data:reset": "npm run build && ts-node src/scripts/data_reset.ts -f",
     "data:license": "cp foundry/foundry_dev_data/Config/license.json foundry/license.json",
     "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data --adminKey=foundry",
-    "migration:create": "ts-node src/scripts/create_migration.ts"
+    "migration:create": "node src/scripts/create-migration.mjs"
   },
   "license": "",
   "homepage": "",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@league-of-foundry-developers/foundry-vtt-types": "^9.238.1",
     "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-dynamic-import-vars": "^1.4.1",
     "@rollup/plugin-node-resolve": "^13.1.2",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
@@ -54,6 +55,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "fs-extra": "^10.0.0",
+    "generate-source-map": "^0.0.5",
     "gulp": "^4.0.2",
     "prettier": "^2.5.1",
     "rollup": "^2.62.0",
