@@ -1,7 +1,5 @@
-import {TWODSIX} from "../config";
-import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 
 export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
@@ -24,12 +22,12 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
         crewPosition.data.actors = [];
       }
       
-      crewPosition.data.sorted_actions = Object.entries(crewPosition.data.actions).map((act) => {
+      crewPosition.data.sortedActions = Object.entries(crewPosition.data.actions).map((act) => {
         let ret = act[1]
         ret["id"] = act[0]
         return ret;
       })
-      crewPosition.data.sorted_actions.sort((a, b) => (a.order > b.order) ? 1 : -1)
+      crewPosition.data.sortedActions.sort((a, b) => (a.order > b.order) ? 1 : -1);
       return crewPosition;
     })
     data.data.crewPositions.sort((a,b) => a.data.order-b.data.order);
@@ -40,7 +38,6 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
 
     return data;
   }
-  
   // @ts-ignore
   static get defaultOptions():FormApplicationOptions {
     // @ts-ignore
@@ -72,42 +69,21 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
     }
     
     if (!actorId) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.ShipV2.ActorMustBeSelectedForAction"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
       return null;
     }
     const actionId = $(event.currentTarget).data("id");
     const shipCrewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
     const shipCrewPosition = this.actor.items.get(shipCrewPositionId);
     const action = shipCrewPosition.data.data.actions[actionId];
+    const ship = game.actors.get(this.actor.id);
     
-    if (action.type === "simple") {
-      const actor = game.actors.get(actorId);
-      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-      const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-      const re = new RegExp(/^(.+?)\/?([A-Z]*?) ?(\d*?)\+?$/);
-      const [_, parsedSkill, char, diff] = re.exec(action.command);
-      const skill = actor.items.filter(itm => itm.name === parsedSkill)[0] as TwodsixItem;
-      let settings = {
-        characteristic: char ? char : undefined
-      };
-      if (diff) {
-        settings["difficulty"] = Object.values(difficulties).filter(difficulty => difficulty.target === parseInt(diff, 10))[0];
-      }
-      
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, null)
-      skill.skillRoll(showTrowDiag, options);
-        
-    } else {
-      const code = `
-      const ship = game.actors.get("${this.actor.id}");
-      const components = ship.items.filter(item => ${JSON.stringify(shipCrewPosition.data.data.componentIds)}.includes(item.id));
-      const actor = game.actors.get("${actorId}");
-      ${action.command}
-      `;
-      console.debug(code);
-      new Macro({"name": "tmpMacro", "command": code, "type": "script"}).execute();
-    }
+    const extra = {
+      actor: game.actors.get(actorId),
+      ship: ship,
+      event: event
+    };
+    TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
   }
 
   activateListeners(html:JQuery):void {
@@ -116,6 +92,12 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
     html.find('.crew_position-delete').on('click', this._onCrewPositionDelete.bind(this));
     html.find('.crew-actor-token').on('click', this._onCrewActorClick.bind(this));
     html.find('.crew-action').on('click', this._executeAction.bind(this));
+    html.find('.create-crew-position').on('click', this._onCrewPositionCreate.bind(this));
+  }
+
+  private _onCrewPositionCreate(event:Event):void {
+    const shipCrewPositions = this.actor.items.filter(item => item.type === "ship_crew_position")
+    this.actor.createEmbeddedDocuments("Item", [{"type": "ship_crew_position", name: "New Position", order: shipCrewPositions.length}]);
   }
 
   private _onCrewPositionEdit(event:Event):void {

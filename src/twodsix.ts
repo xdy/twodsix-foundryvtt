@@ -70,7 +70,6 @@ Hooks.once('init', async function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
   Items.registerSheet("twodsix", TwodsixShipCrewPositionSheet, {types: ["ship_crew_position"], makeDefault: true});
-  
 
   /**
    * Set an initiative formula for the system

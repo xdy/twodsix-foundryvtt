@@ -1,4 +1,6 @@
+import { TWODSIX } from "../config";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
+import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 
 export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
@@ -8,15 +10,14 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
     // @ts-ignore
     const data = super.getData();
     data.data.components = this.item?.parent?.items.filter(component => component.type === "component") ?? [];
-    data.data.components.map(component => {
-      component.checked = data.data.componentIds.includes(component.id);
-    })
-    data.data.sorted_actions = Object.entries(data.data.actions).map((act) => {
+    data.data.availableActions = TwodsixShipActions.availableMethods;
+    data.data.sortedActions = Object.entries(data.data.actions).map((act) => {
       let ret = act[1]
       ret["id"] = act[0]
+      ret["placeholder"] = TwodsixShipActions.availableMethods[ret["type"]]["placeholder"];
       return ret;
-    })
-    data.data.sorted_actions.sort((a, b) => (a.order > b.order) ? 1 : -1)
+    });
+    data.data.sortedActions.sort((a, b) => (a.order > b.order) ? 1 : -1);
     return data;
   }
 
@@ -41,39 +42,25 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
 
     html.find('.crew_position-action-delete').on('click', this._onDeleteAction.bind(this));
     html.find('.crew_position-action-create').on('click', this._onCreateAction.bind(this));
-    html.find('.component-checkbox').on('change', this._selectComponent.bind(this));
-    
   }
 
-  async _selectComponent(event: DragEvent): Promise<boolean | any> {
-    const checked = $(event.currentTarget).val() === "on";
-    const componentId = $(event.currentTarget).data("id");
-    const componentIds = this.item.data.data.componentIds;
-
-    if (checked) {
-      if (componentIds.indexOf(componentId) === -1) {
-        this.item.update({ "data.componentIds":  componentIds.concat(componentId) })
-      }
-    } else {
-      this.item.update({ "data.componentIds": componentIds.filter(component => component.id !== componentId) })
-    }
-
-  }
 
   async _onDrop(event: DragEvent): Promise<boolean | any> {
     const data = getDataFromDropEvent(event);
-    if (data.type === "Macro") {
-        const macro = game.macros.get(data.id);
+    if (data.type === "Item" && (data.data?.type === "skills" || game.items.get(data.id).type === "skills")) { 
+        const skillData = data.data ?? game.items.get(data.id).data
         const actions = this.item.data.data.actions;
+        const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
         actions[randomID()] = {
           "order": Object.keys(actions).length,
-          "name": macro.name,
-          "icon": macro.data.img,
-          "command": macro.data.command
+          "name": "New action",
+          "icon": skillData.img,
+          "type": "skillRoll",
+          "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
         };
         this.item.update({ "data.actions": actions })
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.ShipV2.InvalidDocumentForCrewPosition"));
+        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForCrewPosition"));
     }
   }
 
@@ -88,7 +75,8 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
       "order": Object.keys(actions).length,
       "name": "New Action",
       "icon": "icons/svg/dice-target.svg",
-      "command": ""
+      "command": "",
+      "type": "chatMessage"
     };
     this.item.update({ "data.actions": actions })
   }

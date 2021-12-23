@@ -267,6 +267,8 @@
       }
     },
     "Ship": {
+      "InvalidDocumentForCrewPosition": "This document type is invalid for crew positions. Only skills can be dropped here.",
+      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
       "ShipHull": "Ship Hull",
       "Fuel": "Fuel",
       "MaintPM": "Maintenance P/M",
