@@ -11,12 +11,6 @@ Hooks.once("ready", async function () {
     }
   }
 
-  //Things that need to be done once settings have been set (and should probably be moved elsewhere...)
-  CONFIG.Combat.initiative = {
-    formula: (<string>game.settings.get("twodsix", "initiativeFormula")),
-    decimals: 0
-  };
-
   // Determine whether a system migration is required and feasible
 
   let worldVersion = <string>game.settings.get("twodsix", "systemMigrationVersion");
