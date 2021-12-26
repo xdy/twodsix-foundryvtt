@@ -138,6 +138,14 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'alternativeShort2');
   });
 
+  Handlebars.registerHelper('skillName', (skillName) => {
+    return TwodsixItem.simplifySkillName(skillName);
+  });
+
+  Handlebars.registerHelper('replace', (text, key, value) => {
+    return text.replaceAll(key, value);
+  });
+
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
     switch (componentType) {
       case 'accomodations':
