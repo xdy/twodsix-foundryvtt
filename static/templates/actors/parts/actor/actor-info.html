@@ -2,32 +2,43 @@
 <div><span class="pusher"></span>
   <span class="item-title">{{localize "TWODSIX.Actor.Items.TRAITS"}}</span>
   <div class="items-traits gear-header">
-    <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
-    <span class="item-name">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
-    <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
-    <span class="item-name centre"><a class="item-control item-create"
-        title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fas fa-plus"></i></a></span>
+    <span class="item-name">{{localize "TWODSIX.Items.Traits.TraitName"}}</span>
+    <span class="item-name">{{localize "TWODSIX.Items.Traits.Effects"}}</span>
+    <span class="item-name centre">
+      <a class="item-control item-create" title='{{localize "TWODSIX.Items.Traits.CreateTrait"}}' data-type="trait">
+        <i class="fas fa-plus"></i>
+      </a>
+    </span>
   </div>
-
-  {{#each_sort_by_name data.traits as |item id|}}
+  {{#each_sort_by_property "name" data.traits as |item|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
         <span class="items-traits">
-          <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{item.data.data.value}}</span>
-          <span class="item-name centre">{{item.data.data.shortdescr}}</span>
+          <span class="item-name trait-name">{{item.name}}</span>
+          <span class="item-name">
+            <ul>
+            {{#each item.data.data.effect.data.changes as |change|}}
+              <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
+            {{/each}}
+            </ul>
+          </span>
           <span class="item-controls centre">
-            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
-                class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
-                class="fas fa-trash"></i></a>
+            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'>
+              <i class="fas fa-edit"></i>
+            </a>
+            <a class="item-control effect-edit" data-effect-id="{{item.data.data.effect.data._id}}" title='{{localize "TWODSIX.Items.Traits.EditEffect"}}'>
+              <i class="fas fa-sliders-h"></i>
+            </a>
+            <a class="item-control item-delete" title='{{localize "TWODSIX.Items.Traits.DeleteTrait"}}'>
+              <i class="fas fa-trash"></i>
+            </a>
           </span>
         </span>
       </li>
     </ol>
   </div>
-  {{/each_sort_by_name}}
+  {{/each_sort_by_property}}
 </div>
 
 <div class="info-container">

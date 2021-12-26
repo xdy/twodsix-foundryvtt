@@ -282,7 +282,8 @@
       "shortdescr": "",
       "subtype": "",
       "reference": "",
-      "key": "key"
+      "effectId": "",
+      "changes": []
     },
     "consumable": {
       "templates": ["gearTemplate"],

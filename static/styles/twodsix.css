@@ -768,9 +768,18 @@ a.notes-tab.active {
 
 .items-traits {
   display: grid;
-  grid-template-columns: 14em 2em 14em 3em;
+  grid-template-columns: 7em 22em 4em;
   gap: 1px 1px;
-  grid-template-areas: '. . . .';
+  grid-template-areas: '. . .';
+}
+
+.trait-name {
+  display: inline-flex;
+  align-items: center;
+}
+
+.effect-edit {
+  width: 150%;
 }
 
 .items-consumable {

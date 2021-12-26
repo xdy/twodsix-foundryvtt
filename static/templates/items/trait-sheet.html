@@ -17,6 +17,54 @@
         </tr>
       </table>
     </div>
+    <table>
+      <thead>
+        <tr>
+          <td>{{localize "TWODSIX.Items.Traits.AttributeKey"}}</td>
+          <td>{{localize "TWODSIX.Items.Traits.Mode"}}</td>
+          <td>{{localize "TWODSIX.Items.Traits.EffectValue"}}</td>
+          <td class="centre">
+            {{#unless actor}}<a class="change-create" title='{{localize "TWODSIX.Items.Traits.CreateEffect"}}'>
+              <i class="fas fa-plus"></i>
+            </a>
+            {{/unless}}
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data.changes as |change|}}
+        <tr class="change-row" data-change-index="{{@index}}">
+          {{#if ../actor}}
+          <td>{{change.key}}</td>
+          <td>{{lookup @root.ACTIVE_EFFECT_MODES change.mode}}</td>
+          <td>{{change.value}}</td>
+          <td></td>
+          {{else}}
+          <td><input type="text" data-type="key" value="{{change.key}}" data-dtype="String"></td>
+          <td><select data-type="mode" value="{{change.mode}}">
+          {{#each @root.ACTIVE_EFFECT_MODES as |mode key|}}
+          {{#select change.mode}}
+            <option value="{{key}}">{{mode}}</option>
+          {{/select}}
+          {{/each}}
+          </select>
+            </td>
+          <td><input type="text" data-type="value" value="{{change.value}}" data-dtype="String"></td>
+          <td class="centre">
+            <a class="change-delete" data-index="{{@index}}" title='{{localize "TWODSIX.Items.Traits.DeleteEffect"}}'>
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+          {{/if}}
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{#if actor}}
+    <button class="item-control effect-edit" data-effect-id="{{data.effect.data._id}}" title='{{localize "TWODSIX.Items.Traits.EditEffects"}}'>
+      <i class="fas fa-sliders-h"></i> Edit effects
+    </button>
+    {{/if}}
     <div class="item-lvl">
       <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
         <input id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/></label>

@@ -2,6 +2,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import Trait = dataTwodsix.Trait;
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -31,7 +32,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /** @override */
   getData(): ItemSheet {
     const data = super.getData();
-    data.actor = data.data;
+    data.actor = this.item.actor;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
@@ -46,6 +47,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     };
     data.data.config = TWODSIX;
     data.data.isOwned = this.item.isOwned;
+
+    data.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
+      const [ key, value ] = entry;
+      ret[ value ] = key;
+      return ret;
+    }, {});
     return data;
   }
 
@@ -75,19 +82,64 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
+
+    //change-row
+    html.find('.change-row input, .change-row select').on('change', this._onEditChange.bind(this));
+    html.find('.change-create').on('click', this._onCreateChange.bind(this));
+    html.find('.change-delete').on('click', this._onDeleteChange.bind(this));
+
+    html.find(".effect-edit").on("click", this._onEditEffect.bind(this));
+
     this.handleContentEditable(html);
   }
 
-  private getConsumable(event) {
-    const li = $(event.currentTarget).parents(".consumable");
-    return this.item.actor?.items.get(li.data("consumableId"));
+  private _onEditEffect(event:Event): void {
+    if (event.currentTarget) {
+      const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
+      effect?.sheet.render(true);
+    }
   }
 
-  private _onEditConsumable(event): void {
+  private _onDeleteChange(event:Event): void {
+    if (event.currentTarget) {
+      const idx = parseInt($(event.currentTarget).data("index"), 10);
+      const changes = (<Trait>this.item.data.data).changes.filter((_, i) => i !== idx);
+      this.item.update({"data.changes": changes});
+    }
+  }
+
+  private _onEditChange(event:Event) : void{
+    if (event.currentTarget) {
+      const idx = parseInt($(event.currentTarget).parents(".change-row").data("change-index"), 10);
+      const changes = (<Trait>this.item.data.data).changes;
+      const type:string = $(event.currentTarget).data("type");
+      if (!isNaN(idx) && type) {
+        const val = $(event.currentTarget).val() as string;
+        changes[idx][type] = type === "mode" ? parseInt(val, 10) : val;
+        this.item.update({"data.changes": changes});
+      }
+    }
+  }
+
+  private _onCreateChange(): void {
+    const changes = (<Trait>this.item.data.data).changes ?? [];
+    this.item.update({"data.changes": changes.concat({key: "", value: "", mode: 0})});
+  }
+
+  private getConsumable(event:Event):TwodsixItem | undefined {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".consumable");
+      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+    } else {
+      return undefined;
+    }
+  }
+
+  private _onEditConsumable(event:Event): void {
     this.getConsumable(event)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event): Promise<void> {
+  private async _onDeleteConsumable(event:Event): Promise<void> {
     const consumable = this.getConsumable(event);
     if (!consumable) {
       (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?

@@ -8,7 +8,7 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Skills, Trait, Traveller, Weapon} from "../../types/template";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -133,7 +133,19 @@ export default class TwodsixActor extends Actor {
     return 0;
   }
 
-  protected async _onCreate() {
+
+  _onUpdateEmbeddedDocuments(embeddedName:string, documents): void {
+    if (embeddedName === "ActiveEffect") {
+      (<ActiveEffect[]>documents).forEach((element:ActiveEffect) => {
+        const item = <TwodsixItem>(<TwodsixActor>element.parent)?.items.find((itm:TwodsixItem) => (<Trait>itm.data.data).effectId === element.id);
+        item?.update({"data.changes": element.data.changes});
+      });
+    }
+    this.render();
+  }
+
+
+  protected async _onCreate(): Promise<void> {
     switch (this.data.type) {
       case "traveller":
         if (game.settings.get("twodsix", "defaultTokenSettings")) {

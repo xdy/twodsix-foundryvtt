@@ -15,7 +15,7 @@
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon"><i
         class="fas fa-plus"></i></a></span>
     </div>
-    {{#each_sort_by_name data.weapon as |item id|}}
+    {{#each_sort_by_property "name" data.weapon as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -60,7 +60,7 @@
       {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
       {{/each}}
     </div>
-    {{/each_sort_by_name}}
+    {{/each_sort_by_property}}
   </div>
 
   <!---- ARMOR ---->
@@ -78,7 +78,7 @@
     </div>
 
 
-    {{#each_sort_by_name data.armor as |item id|}}
+    {{#each_sort_by_property "name" data.armor as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -101,7 +101,7 @@
       {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
       {{/each}}
     </div>
-    {{/each_sort_by_name}}
+    {{/each_sort_by_property}}
   </div>
 
   <!---- AUGMENTS ---->
@@ -118,7 +118,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each_sort_by_name data.augment as |item id|}}
+    {{#each_sort_by_property "name" data.augment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -140,7 +140,7 @@
       {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
       {{/each}}
     </div>
-    {{/each_sort_by_name}}
+    {{/each_sort_by_property}}
   </div>
 
   <!---- EQUIPMENT ---->
@@ -156,7 +156,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each_sort_by_name data.equipment as |item id|}}
+    {{#each_sort_by_property "name" data.equipment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -178,7 +178,7 @@
       {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
       {{/each}}
     </div>
-    {{/each_sort_by_name}}
+    {{/each_sort_by_property}}
   </div>
 </div>
 

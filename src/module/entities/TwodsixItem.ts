@@ -28,6 +28,11 @@ export default class TwodsixItem extends Item {
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
+
+    if (this.data.data.effectId && this.actor?.data) {
+      const effect = this.actor.effects.get(this.data.data.effectId);
+      this.data.data.effect = effect;
+    }
   }
 
   prepareConsumable(gear: Gear = <Gear>this.data.data): void {

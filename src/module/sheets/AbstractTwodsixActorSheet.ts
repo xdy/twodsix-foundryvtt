@@ -1,7 +1,7 @@
 import TwodsixItem from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
+import {Armor, Skills, Trait, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 
 
@@ -141,13 +141,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       type,
       data
     };
-
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
     this.updateWithItemSpecificValues(itemData, <string>type);
 
-    // Finally, create the item!
-    await this.actor.createEmbeddedDocuments("Item", [itemData]);
+    const items = <TwodsixItem[]>await this.actor.createEmbeddedDocuments("Item", [itemData]);
+
+    if (type === "trait") {
+      const effects = await this.actor.createEmbeddedDocuments("ActiveEffect", [{
+        origin: items[0].uuid,
+        icon: "systems/twodsix/assets/icons/science.svg"
+      }]);
+      items[0].update({"data.effectId": effects[0].id});
+    }
   }
 
 
@@ -244,10 +250,18 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
     }
 
-    // Create the owned item (TODO Add to type and remove the two lines below...)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return this._onDropItemCreate(itemData);
+    const items = <TwodsixItem[]>await this._onDropItemCreate(itemData);
+
+    if (items[0].type === "trait") {
+      const effects = await actor.createEmbeddedDocuments("ActiveEffect", [{
+        origin: items[0].uuid,
+        icon: "systems/twodsix/assets/icons/science.svg",
+        changes: (<Trait>items[0].data.data).changes
+      }]);
+      await items[0].update({"data.effectId": effects[0].id});
+      actor.render();
+    }
+    return items;
   }
 
   private static _getWeight(item):number {

@@ -45,6 +45,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints")
     };
+
+    data.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
+      const [ key, value ] = entry;
+      ret[ value ] = key;
+      return ret;
+    }, {});
     data.config = TWODSIX;
 
     return data;
@@ -94,8 +100,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".item-value-edit").on("click", (event) => {
       $(event.currentTarget).trigger("select");
     });
+
+    html.find(".effect-edit").on("click", this._onTraitEdit.bind(this));
   }
 
+  private _onTraitEdit(event) {
+    const effect = this.actor.effects.get($(event.currentTarget).data('effectId'));
+    effect?.sheet.render(true);
+  }
 
   private getItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');

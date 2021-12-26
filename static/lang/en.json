@@ -241,7 +241,17 @@
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
-              "TraitName": "Trait Name"
+              "TraitName": "Trait Name",
+              "AttributeKey": "Attribute Key",
+              "ChangeMode": "Change Mode",
+              "EffectValue": "Effect Value",
+              "CreateEffect": "Create Effect",
+              "DeleteEffect": "Delete Effect",
+              "EditEffects": "Edit Effects",
+              "EditEffect": "Edit Effect",
+              "Effects": "Effects",
+              "CreateTrait": "Create Trait",
+              "DeleteTrait": "Delete Trait"
       },
       "Tool": {
         "Bonus": "Bonus"

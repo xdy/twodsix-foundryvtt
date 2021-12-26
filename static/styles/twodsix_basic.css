@@ -520,9 +520,18 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-traits {
   display: grid;
-  grid-template-columns: 14em 2em 14em 3em;
+  grid-template-columns: 7em 22em 4em;
   gap: 1px 1px;
-  grid-template-areas: '. . . .';
+  grid-template-areas: '. . .';
+}
+
+.trait-name {
+  display: inline-flex;
+  align-items: center;
+}
+
+.effect-edit {
+  width: 150%;
 }
 
 .items-consumable {
@@ -1516,6 +1525,7 @@ button.flexrow.flex-group-center.toggle-skills {
   color: var(--light-color);
   text-shadow: 0 0 5px /*var(--default-color);
 }*/
+
 
 .item-type {
   position: relative;
