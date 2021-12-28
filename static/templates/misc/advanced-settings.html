@@ -1,0 +1,39 @@
+<form>
+    {{{intro}}}
+    {{#each settings as |setting key|}}
+        <div class="form-group">
+            <label>{{{localize setting.name}}}</label>
+            <div class="form-fields">
+                {{#iff setting.htmlType "===" "Number"}}
+                <input type="number" name="{{key}}" value="{{setting.value}}" data-dtype="Number">
+                {{/iff}}
+                {{#iff setting.htmlType "===" "String"}}
+                <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
+                {{/iff}}
+
+                {{#iff setting.htmlType "===" "Select"}}
+                <select name="{{key}}" data-dtype="String" value="{{setting.value}}">
+                    {{#each setting.choices as |choice choiceKey|}}
+                        {{#select setting.value}}
+                        <option value="{{choiceKey}}">{{choice}}</option>
+                        {{/select}}
+                    {{/each}}
+                </select>
+                {{/iff}}
+
+                {{#iff setting.htmlType "===" "Boolean"}}
+                <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
+                {{/iff}}
+            </div>
+            <p class="notes">{{{localize setting.hint}}}</p>
+        </div>
+    {{/each}}
+    <footer class="sheet-footer flexrow">
+      <button type="submit" name="submit">
+          <i class="far fa-save"></i> Save Changes
+      </button>
+      <button type="button" name="reset">
+          <i class="fas fa-undo"></i> Reset Defaults
+      </button>
+    </footer>
+</form>
