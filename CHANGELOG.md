@@ -1,3 +1,10 @@
+## [0.12.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.6...v0.12.7) (2021-12-30)
+
+
+### Bug Fixes
+
+* update FVTT v9 compendium refences ([#742](https://github.com/xdy/twodsix-foundryvtt/issues/742)) ([cfd3ee4](https://github.com/xdy/twodsix-foundryvtt/commit/cfd3ee4973df6def16d4397877bb33b648528c46))
+
 ## [0.12.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.5...v0.12.6) (2021-12-30)
 
 
