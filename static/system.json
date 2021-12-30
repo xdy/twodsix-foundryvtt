@@ -47,7 +47,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/2e-skills.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "cepheus-light-items",
@@ -55,7 +56,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-light-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "ce-light-robots",
@@ -63,7 +65,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-light-robots.db",
-      "entity": "Actor"
+      "entity": "Actor",
+      "type": "Actor"
     },
     {
       "name": "cepheus-faster-than-light-items",
@@ -71,7 +74,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-faster-than-light-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "ce-srd-gm-screen",
@@ -79,7 +83,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-srd-gm-screen.db",
-      "entity": "JournalEntry"
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
     },
     {
       "name": "ce-light-gm-screen",
@@ -87,7 +92,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-light-gm-screen.db",
-      "entity": "JournalEntry"
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
     },
     {
       "name": "ce-srd-roll-tables",
@@ -95,7 +101,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-srd-roll-tables.db",
-      "entity": "RollTable"
+      "entity": "RollTable",
+      "type": "RollTable"
     },
     {
       "name": "ce-srd-items",
@@ -103,7 +110,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-srd-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "cepheus-atom-items",
@@ -111,7 +119,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-atom-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "cepheus-atom-actors",
@@ -119,7 +128,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-atom-actors.db",
-      "entity": "Actor"
+      "entity": "Actor",
+      "type": "Actor"
     },
     {
       "name": "cepheus-atom-rolltables",
@@ -127,7 +137,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-atom-rolltables.db",
-      "entity": "RollTable"
+      "entity": "RollTable",
+      "type": "RollTable"
     },
     {
       "name": "cepheus-atom-gm-screen",
@@ -135,7 +146,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-atom-gm-screen.db",
-      "entity": "JournalEntry"
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
     },
     {
       "name": "cepheus-quantum-items",
@@ -143,7 +155,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-quantum-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "cepheus-quantum-careers",
@@ -151,7 +164,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-quantum-careers.db",
-      "entity": "Actor"
+      "entity": "Actor",
+      "type": "Actor"
     },
     {
       "name": "cepheus-quantum-gm-screen",
@@ -159,7 +173,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-quantum-gm-screen.db",
-      "entity": "JournalEntry"
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
     },
     {
       "name": "cepheus-deluxe-items",
@@ -167,7 +182,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-deluxe-items.db",
-      "entity": "Item"
+      "entity": "Item",
+      "type": "Item"
     },
     {
       "name": "cepheus-deluxe-actors",
@@ -175,7 +191,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-deluxe-actors.db",
-      "entity": "Actor"
+      "entity": "Actor",
+      "type": "Actor"
     },
     {
       "name": "cepheus-deluxe-tables",
@@ -183,7 +200,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-deluxe-tables.db",
-      "entity": "RollTable"
+      "entity": "RollTable",
+      "type": "RollTable"
     },
     {
       "name": "cepheus-deluxe-gm-screen",
@@ -191,7 +209,8 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-deluxe-gm-screen.db",
-      "entity": "JournalEntry"
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
     }
   ],
   "primaryTokenAttribute": "hits",
