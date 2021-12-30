@@ -1,7 +1,10 @@
 import {TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import { getCharShortName } from "../settings";
+import { getCharShortName } from "./utils";
 import {getKeyByValue} from "./sheetUtils";
+import Skills = dataTwodsix.Skills;
+import Gear = dataTwodsix.Gear;
+import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 
 export class TwodsixRollSettings {
@@ -9,17 +12,19 @@ export class TwodsixRollSettings {
   diceModifier:number;
   shouldRoll:boolean;
   rollType:string;
-  rollMode:string;
+  rollMode:DICE_ROLL_MODES;
   characteristic:string;
   skillRoll:boolean;
   difficulties:any;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  constructor(settings?:any, skill?:TwodsixItem, item?:TwodsixItem) {
+  constructor(settings?:any, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
     this.difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const difficulty = skill?.data?.data?.difficulty ? this.difficulties[skill.data.data.difficulty] : this.difficulties.Average;
-    const skillModifier = item?.data?.data?.skillModifier ?? 0;
-    const characteristic = skill ? skill.data.data.characteristic : "NONE";
+    const skill = <Skills>aSkill?.data?.data;
+    const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
+    const gear = <Gear>anItem?.data?.data;
+    const skillModifier = gear?.skillModifier ?? 0;
+    const characteristic = aSkill ?skill.characteristic : "NONE";
 
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
@@ -27,14 +32,14 @@ export class TwodsixRollSettings {
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
     this.characteristic = settings?.characteristic ?? characteristic;
-    this.skillRoll = !!(settings?.skillRoll ?? skill);
+    this.skillRoll = !!(settings?.skillRoll ?? aSkill);
   }
 
   public static async create(showThrowDialog:boolean, settings?:unknown, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
     if (showThrowDialog) {
       let title:string;
-      if (item) {
+      if (item && skill) {
         title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
       } else if (skill) {
         title = skill.data.name;

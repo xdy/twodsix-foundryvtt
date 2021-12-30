@@ -1,3 +1,4 @@
+
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
@@ -12,11 +13,11 @@ export async function createItemMacro(item, slot):Promise<void> {
 
   //handle case for unattached item
   if (!itemName) {
-    const origItem = game.items.get(item.id);
-    itemName = origItem.name;
-    img = origItem.img;
+    const origItem = <Item>game.items?.get(item.id);
+    itemName = origItem?.name || "???";
+    img = origItem?.img || "icons/svg/mystery-man.svg";
   }
-  let macro = game.macros.getName(itemName);
+  let macro: Macro|undefined = game.macros?.get(itemName);
   if (!macro) {
     macro = await Macro.create({
       command: command,
@@ -24,8 +25,8 @@ export async function createItemMacro(item, slot):Promise<void> {
       type: 'script',
       img: img,
       flags: {'twodsix.itemMacro': true},
-    }, {displaySheet: false}) as Macro;
+    }, {renderSheet: false}) as Macro;
 
-    await game.user.assignHotbarMacro(macro, slot);
+    await game.user?.assignHotbarMacro(macro, slot);
   }
 }

@@ -6,7 +6,7 @@ Hooks.once("ready", async function () {
   if (game.settings.get('twodsix', 'showMissingCompendiumWarnings')) {
     if (game.modules.get("compendium-folders") === undefined) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Modules.compendiumFolders.missing"), {permanent: true});
-    } else if (game.modules.get("compendium-folders").active === false) {
+    } else if (game.modules.get("compendium-folders")?.active === false) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Modules.compendiumFolders.disabled"), {permanent: true});
     }
   }
@@ -25,12 +25,12 @@ Hooks.once("ready", async function () {
   }
 
   // Perform the migration
-  if (game.user.isGM) {
+  if (game.user?.isGM) {
     await migrateWorld(worldVersion);
   }
 
   // A socket hook proxy
-  game.socket.on("system.twodsix", (data) => {
+  game.socket?.on("system.twodsix", (data) => {
     Hooks.call(data[0], ...data.slice(1));
   });
 

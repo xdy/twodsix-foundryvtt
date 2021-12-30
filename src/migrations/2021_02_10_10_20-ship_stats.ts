@@ -93,41 +93,45 @@ class ActorUpdater {
 }
 
 export async function migrate():Promise<void> {
-  await Promise.all(game.actors.map(async (actor:TwodsixActor) => {
-    if (actor.data.type == "ship") {
-      const actorUpdater = new ActorUpdater(actor);
-      const ship = actor.data.data.ship;
-      if (ship) {
-        actorUpdater.updateFieldWithNumber("data.maintenanceCost", ship.maintenance_cost);
-        actorUpdater.updateFieldWithText("data.cargo", ship.cargo);
-        actorUpdater.updateFieldWithText("data.notes", ship.notes);
-        actorUpdater.updateFieldWithObject("data.crew", ship.crew);
+  const actors = game.actors;
+  if (actors) {
+    await Promise.all(actors.map(async (actor) => {
+      if (actor.data.type == "ship") {
+        const actorUpdater = new ActorUpdater(<TwodsixActor><unknown>actor);
+        const shipData = actor['data']['data'];
+        const ship = shipData['ship'];
+        if (ship) {
+          actorUpdater.updateFieldWithNumber("data.maintenanceCost", ship.maintenance_cost);
+          actorUpdater.updateFieldWithText("data.cargo", ship.cargo);
+          actorUpdater.updateFieldWithText("data.notes", ship.notes);
+          actorUpdater.updateFieldWithObject("data.crew", ship.crew);
 
-        actorUpdater.updateFieldWithNumber("data.reqPower.systems", ship.reqPower["systems"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.m-drive", ship.reqPower["m-drive"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.j-drive", ship.reqPower["j-drive"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.sensors", ship.reqPower["sensors"]);
-        actorUpdater.updateFieldWithNumber("data.reqPower.weapons", ship.reqPower["weapons"]);
+          actorUpdater.updateFieldWithNumber("data.reqPower.systems", ship.reqPower["systems"]);
+          actorUpdater.updateFieldWithNumber("data.reqPower.m-drive", ship.reqPower["m-drive"]);
+          actorUpdater.updateFieldWithNumber("data.reqPower.j-drive", ship.reqPower["j-drive"]);
+          actorUpdater.updateFieldWithNumber("data.reqPower.sensors", ship.reqPower["sensors"]);
+          actorUpdater.updateFieldWithNumber("data.reqPower.weapons", ship.reqPower["weapons"]);
 
-        actorUpdater.updateFieldWithNumber("data.shipStats.hull.value", ship.shipStats.hullCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.hull.max", ship.shipStats.hull);
-        actorUpdater.updateFieldWithNumber("data.shipStats.fuel.value", ship.shipStats.fuelCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.fuel.max", ship.shipStats.fuel);
-        actorUpdater.updateFieldWithNumber("data.shipStats.power.value", ship.shipStats.powerCurrent);
-        actorUpdater.updateFieldWithNumber("data.shipStats.power.max", ship.shipStats.power);
+          actorUpdater.updateFieldWithNumber("data.shipStats.hull.value", ship.shipStats.hullCurrent);
+          actorUpdater.updateFieldWithNumber("data.shipStats.hull.max", ship.shipStats.hull);
+          actorUpdater.updateFieldWithNumber("data.shipStats.fuel.value", ship.shipStats.fuelCurrent);
+          actorUpdater.updateFieldWithNumber("data.shipStats.fuel.max", ship.shipStats.fuel);
+          actorUpdater.updateFieldWithNumber("data.shipStats.power.value", ship.shipStats.powerCurrent);
+          actorUpdater.updateFieldWithNumber("data.shipStats.power.max", ship.shipStats.power);
 
-        actorUpdater.removeField("ship");
+          actorUpdater.removeField("ship");
+        }
+
+        if (shipData['ship_value'] !== undefined) {
+          actorUpdater.updateFieldWithText("data.shipValue", shipData['ship_value']);
+          actorUpdater.removeField("ship_value");
+        }
+
+        const updateData = await actorUpdater.getUpdateData();
+        if (Object.keys(updateData).length) {
+          await actor.update(updateData);
+        }
       }
-
-      if (actor.data.data.ship_value !== undefined) {
-        actorUpdater.updateFieldWithText("data.shipValue", actor.data.data.ship_value);
-        actorUpdater.removeField("ship_value");
-      }
-
-      const updateData = await actorUpdater.getUpdateData();
-      if (Object.keys(updateData).length) {
-        await actor.update(updateData);
-      }
-    }
-  }));
+    }));
+  }
 }

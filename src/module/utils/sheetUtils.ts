@@ -1,6 +1,5 @@
 //Assorted utility functions likely to be helpful when displaying characters
 
-import {TwodsixItemData} from "src/types/twodsix";
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -171,7 +170,7 @@ import {TwodsixItemData} from "src/types/twodsix";
 
 export function calcModFor(characteristic:number):number {
   let modifier = Math.floor((characteristic - 6) / 3);
-  if (characteristic === 0) {
+  if (characteristic <= 0) {
     modifier = (<number>game.settings.get('twodsix', 'modifierForZeroCharacteristic'));
   }
   return modifier;
@@ -189,32 +188,34 @@ export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):str
 
 export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
-    return JSON.parse(event.dataTransfer.getData('text/plain'));
+    return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
   } catch (err) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
   }
 }
 
-export async function getItemDataFromDropData(data:Record<string, any>):Promise<TwodsixItemData> {
+export async function getItemDataFromDropData(data:Record<string, any>) {
   if (data.pack) {
     // compendium
     const pack = game.packs.find((p) => p.collection === data.pack);
-    if (pack.metadata.type !== 'Item') {
+    // @ts-ignore Until foundry-vtt-types changes
+    if (!pack || pack.metadata.type !== 'Item') {
       throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
     }
-    // @ts-ignore
     const item = await pack.getDocument(data.id);
-    // @ts-ignore
+    if (!item) {
+      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
+    }
     return duplicate(item.data);
   } else if (data.data) {
     // other actor
     return duplicate(data.data);
   } else {
     // items directory
-    const item = game.items.get(data.id);
+    const item = game.items?.get(data.id);
     if (!item) {
       throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
     }
-    return duplicate(item.data) as TwodsixItemData;
+    return duplicate(item.data);
   }
 }

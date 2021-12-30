@@ -1,10 +1,11 @@
-import {advantageDisadvantageTerm} from "./i18n";
-import {calcModFor, getKeyByValue} from "./utils/sheetUtils";
-import {TWODSIX} from "./config";
+import { advantageDisadvantageTerm } from "./i18n";
+import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
+import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import { getCharShortName } from "./settings";
+import Skills = dataTwodsix.Skills;
+import { getCharShortName } from "./utils/utils";
 
-export default function registerHandlebarsHelpers():void {
+export default function registerHandlebarsHelpers(): void {
 
   let showedError = false;
 
@@ -16,7 +17,7 @@ export default function registerHandlebarsHelpers():void {
     if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';
     } else {
-      const thing:string = str;
+      const thing: string = str;
       return str.charAt(0).toUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
     }
   });
@@ -33,9 +34,9 @@ export default function registerHandlebarsHelpers():void {
     const actorData = actor.data;
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
-      const mod:number = calcModFor(characteristicElement.current);
-      const abbreviatedCharName:string = getCharShortName(characteristic);
-      return  abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
+      const mod: number = calcModFor(characteristicElement.current);
+      const abbreviatedCharName: string = getCharShortName(characteristic);
+      return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
@@ -64,8 +65,8 @@ export default function registerHandlebarsHelpers():void {
     let adjValue = value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (value === game.system.template.Item.skills.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
-      adjValue = actor.items.find((i) =>  i._id === actorData.untrainedSkill).data.value;
+    if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+      adjValue = actor.items.find((i) => i._id === actorData.untrainedSkill).data.value;
     }
 
     if (characteristicElement) {
@@ -107,7 +108,7 @@ export default function registerHandlebarsHelpers():void {
     return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && (weapon.rateOfFire > 1));
   });
 
-  Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize:string) => {
+  Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize: string) => {
     const number = Number(burstSize);
     return TwodsixItem.burstAttackDM(number);
   });
@@ -141,40 +142,28 @@ export default function registerHandlebarsHelpers():void {
     switch (componentType) {
       case 'accomodations':
         return "fas fa-bed";
-        break;
       case 'armament':
         return "fas fa-crosshairs";
-        break;
       case 'armor':
         return "fas fa-grip-vertical";
-        break;
       case 'cargo':
         return "fas fa-boxes";
-        break;
       case 'computer':
         return "fas fa-microchip";
-        break;
       case 'drive':
         return "fas fa-arrows-alt";
-        break;
       case 'electronics':
         return "fas fa-satellite-dish";
-        break;
       case 'hull':
         return "fas fa-rocket";
-        break;
       case 'power':
         return "fas fa-atom";
-        break;
       case 'shield':
         return "fas fa-shield-alt";
-        break;
       case 'software':
         return "fas fa-code";
-        break;
       case 'vehicle':
         return "fas fa-space-shuttle";
-        break;
       default:
         return "fas fa-question-circle";
     }
@@ -183,10 +172,23 @@ export default function registerHandlebarsHelpers():void {
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
-    const sortedArray = array?.slice(0).sort((a:TwodsixItem, b:TwodsixItem) => {
-      const aName = a.name.toLowerCase(), bName = b.name.toLowerCase();
-      return (aName > bName) ? 1 : ((bName > aName) ? -1 : 0);
-    });
+    let sortedArray: TwodsixItem[] = [];
+    const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
+    if (slice) {
+      sortedArray = slice.sort((a, b) => {
+        if (a.name?.toLowerCase() == null) {
+          return 1;
+        } else {
+          if (b.name?.toLowerCase() == null) {
+            return -1;
+          } else if (a.name === b.name) {
+            return 0;
+          } else {
+            return a.name?.toLowerCase().localeCompare(b.name?.toLowerCase());
+          }
+        }
+      });
+    }
     return Handlebars.helpers.each(sortedArray, options);
   });
 
@@ -198,7 +200,7 @@ export default function registerHandlebarsHelpers():void {
 
   //From https://discord.com/channels/732325252788387980/732328233630171188/790507540818690068
   Handlebars.registerHelper("iff", function (v1, operator, v2, options) {
-    let expression:boolean;
+    let expression: boolean;
     switch (operator) {
       case '==':
         expression = v1 == v2;

@@ -1,5 +1,6 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { TWODSIX } from "../config";
+import Weapon = dataTwodsix.Weapon;
 
 /**
  * Use a previously created macro.
@@ -10,16 +11,16 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) {
-    actor = game.actors.tokens[speaker.token];
+    actor = game.actors?.tokens[speaker.token];
   }
-  if (!actor) {
-    actor = game.actors.get(speaker.actor);
+  if (!actor && speaker.actor) {
+    actor = game.actors?.get(speaker.actor);
   }
   const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
   if (!item) {
-    const unattachedItem:TwodsixItem = game.items.get(itemId);
+    const unattachedItem = game.items?.get(itemId);
     if (unattachedItem?.type != "weapon" && !actor && unattachedItem) {
-      await unattachedItem.skillRoll(true);
+      await (<TwodsixItem><unknown>unattachedItem).skillRoll(true);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorMissingItem").replace("_ITEM_ID_", itemId));
     }
@@ -38,9 +39,10 @@ export async function rollItemMacro(itemId: string): Promise<void> {
 }
 
 function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
+  const rateOfFire: string = (<Weapon>weapon.data.data).rateOfFire;
   return (
     (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
-    (weapon.data.data.rateOfFire > 1)
+    (Number(rateOfFire) > 1)
   );
 }
 

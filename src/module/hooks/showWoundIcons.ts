@@ -3,16 +3,16 @@ import TwodsixActor from "../entities/TwodsixActor";
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (checkForWounds(update.data)) {
     if (actor.isToken) {
-      applyWoundedEffect(canvas.tokens.ownedTokens.find(t => t.id === actor.token.id));
+      applyWoundedEffect(<Token>canvas.tokens?.ownedTokens?.find(t => t.id === actor.token?.id));
     } else {
-      applyWoundedEffect(canvas.tokens.ownedTokens.find(t => t.data.actorId === actor.id));
+      applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === actor.id));
     }
   }
 });
 
 Hooks.on('updateToken', async (scene, token: Record<string, any>, update: Record<string, any>) => {
   if (checkForWounds(update.actorData?.data)) {
-    applyWoundedEffect(canvas.tokens.ownedTokens.find(t => t.id === token._id));
+    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token._id));
   }
 });
 
@@ -22,18 +22,18 @@ function checkForWounds(data: Record<string, any>): boolean {
   } else {
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
-        return (data.characteristics?.lifeblood ? true : false);
+        return (!!data.characteristics?.lifeblood);
       case 'CEL':
       case 'CEFTL':
       case 'CE':
-        return (data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity) ? true : false;
+        return !!(data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity);
       case 'CEQ':
       case 'CEATOM':
       case 'BARBARIC':
         if (game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')) {
-          return (data.characteristics?.endurance || data.characteristics?.strength ? true : false);
+          return (!!(data.characteristics?.endurance || data.characteristics?.strength));
         } else if (game.settings.get('twodsix', 'showLifebloodStamina')) {
-          return (data.characteristics?.stamina || data.characteristics?.lifeblood ? true : false);
+          return (!!(data.characteristics?.stamina || data.characteristics?.lifeblood));
         }
         return false;
       default:
