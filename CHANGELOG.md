@@ -1,3 +1,10 @@
+## [0.12.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.5...v0.12.6) (2021-12-30)
+
+
+### Bug Fixes
+
+* update to actor.isOwner for V9 ([#765](https://github.com/xdy/twodsix-foundryvtt/issues/765)) ([53126ce](https://github.com/xdy/twodsix-foundryvtt/commit/53126ce0c9cef80d8a532adda45f81fb8d1f91b1))
+
 ## [0.12.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.4...v0.12.5) (2021-12-29)
 
 
