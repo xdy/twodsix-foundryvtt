@@ -1,6 +1,10 @@
-import {AbstractTwodsixActorSheet} from "./AbstractTwodsixActorSheet";
-import {TWODSIX} from "../config";
+import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixActor from "../entities/TwodsixActor";
+import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+import Skills = dataTwodsix.Skills;
+import Consumable = dataTwodsix.Consumable;
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -8,13 +12,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * Return the type of the current Actor
    * @type {String}
    */
-  get actorType():string {
+  get actorType(): string {
     return this.actor.data.type;
   }
 
   /** @override */
-  getData():any {
-    const data:any = super.getData();
+  getData(): any {
+    const data: any = super.getData();
     const actorData = data.data;
     data.actor = actorData;
     data.data = actorData.data;
@@ -23,12 +27,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Prepare items.
     if (this.actor.data.type == 'traveller') {
-      TwodsixActorSheet._prepareItemContainers(this.actor.items, data);
-      // @ts-ignore
-      const untrainedSkill = this.actor.getUntrainedSkill();
+      const actor: TwodsixActor = <TwodsixActor>this.actor;
+      TwodsixActorSheet._prepareItemContainers(actor.items, data);
+      const untrainedSkill = actor.getUntrainedSkill();
       if (untrainedSkill) {
-        // @ts-ignore
-        data.untrainedSkill = this.actor.getUntrainedSkill();
+        data.untrainedSkill = actor.getUntrainedSkill();
         data.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(data.untrainedSkill.data.data.value);
       }
     }
@@ -48,10 +51,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     return data;
   }
 
+
   /** @override */
-  // @ts-ignore
-  static get defaultOptions():FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions(): ActorSheet.Options {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
@@ -64,7 +66,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  protected activateListeners(html:JQuery):void {
+  public activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     // Rollable abilities. Really should be in base class, but that will have to wait for issue 86
@@ -96,18 +98,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  private getItem(event:Event):TwodsixItem {
+  private getItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    // @ts-ignore
-    return this.actor.items.get(itemId);
+    return <TwodsixItem>this.actor.items.get(itemId);
   }
 
-  private _onRollWrapper(func:(event:Event, showTrowDiag:boolean) => Promise<void>):(event:Event) => void {
-    return (event:Event) => {
+  private _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
+    return (event) => {
       event.preventDefault();
       event.stopPropagation();
 
-      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
 
       func.bind(this)(event, showTrowDiag);
@@ -120,15 +121,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _updateJoatSkill(event:Event):Promise<void> {
+  private async _updateJoatSkill(event): Promise<void> {
     const joatValue = parseInt(event.currentTarget["value"], 10);
     const skillValue = TwodsixActorSheet.joatToUntrained(joatValue);
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
-      // @ts-ignore
-      const untrainedSkill = this.actor.getUntrainedSkill();
+      const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       untrainedSkill.update({"data.value": skillValue});
-    } else if (event.currentTarget["value"] !== "")  {
+    } else if (event.currentTarget["value"] !== "") {
       event.currentTarget["value"] = "";
     }
   }
@@ -138,10 +138,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onJoatSkillBlur(event:Event):Promise<void> {
+  private async _onJoatSkillBlur(event): Promise<void> {
     if (isNaN(parseInt(event.currentTarget["value"], 10))) {
-      // @ts-ignore
-      const skillValue = this.actor.getUntrainedSkill().data.data.value;
+      const skillValue = (<Skills>(<TwodsixActor>this.actor).getUntrainedSkill().data.data).value;
       event.currentTarget["value"] = TwodsixActorSheet.untrainedToJoat(skillValue);
     }
   }
@@ -152,7 +151,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onPerformAttack(event:Event, showTrowDiag:boolean):Promise<void> {
+  private async _onPerformAttack(event, showTrowDiag: boolean): Promise<void> {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
 
@@ -166,7 +165,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onSkillRoll(event:Event, showTrowDiag:boolean):Promise<void> {
+  private async _onSkillRoll(event, showTrowDiag: boolean): Promise<void> {
     const item = this.getItem(event);
     await item.skillRoll(showTrowDiag);
   }
@@ -177,9 +176,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onRollChar(event:Event, showTrowDiag:boolean):Promise<void> {
-    // @ts-ignore
-    await this.actor.characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
+  private async _onRollChar(event, showTrowDiag: boolean): Promise<void> {
+    await (<TwodsixActor>this.actor).characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
   }
 
   /**
@@ -187,7 +185,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onRollDamage(event:Event):Promise<void> {
+  private async _onRollDamage(event): Promise<void> {
     event.preventDefault();
     event.stopPropagation();
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
@@ -196,39 +194,39 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    await item.rollDamage((<string>game.settings.get('core', 'rollMode')), bonusDamageFormula);
+    await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula);
 
   }
 
-  private static untrainedToJoat(skillValue:number):number {
-    return skillValue - game.system.template.Item.skills["value"];
+  private static untrainedToJoat(skillValue: number): number {
+    return skillValue - (<Skills>game.system.template?.Item?.skills)?.value;
   }
 
-  private static joatToUntrained(joatValue:number):number {
-    return joatValue + game.system.template.Item.skills["value"];
+  private static joatToUntrained(joatValue: number): number {
+    return joatValue + (<Skills>game.system.template?.Item?.skills)?.value;
   }
 
-  private getConsumableItem(event:Event):TwodsixItem {
+  private getConsumableItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.consumable-row').data('consumable-id');
     return this.actor.items.get(itemId) as TwodsixItem;
   }
 
-  private async _onAdjustConsumableCount(event:Event): Promise<void> {
+  private async _onAdjustConsumableCount(event): Promise<void> {
     const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
     const item = this.getConsumableItem(event);
     await item.consume(modifier);
   }
 
-  private async _onRefillConsumable(event:Event): Promise<void> {
+  private async _onRefillConsumable(event): Promise<void> {
     const item = this.getConsumableItem(event);
     try {
       await item.refill();
     } catch (err) {
       if (err.name === "TooLowQuantityError") {
-        const refillAction = ["magazine", "power_cell"].includes(item.data.data.subtype) ? "Reload" : "Refill";
+        const refillAction = ["magazine", "power_cell"].includes((<Consumable>item.data.data).subtype) ? "Reload" : "Refill";
         const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLowerCase();
         const tooFewString = game.i18n.localize("TWODSIX.Errors.TooFewToReload");
-        ui.notifications.error(tooFewString.replace("_NAME_", item.name.toLowerCase()).replace("_REFILL_ACTION_", refillWord));
+        ui.notifications.error(tooFewString.replace("_NAME_", item.name?.toLowerCase() || "???").replace("_REFILL_ACTION_", refillWord));
       } else {
         throw err;
       }
@@ -240,14 +238,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onAutoAddConsumable(event: Event): Promise<void> {
+  private async _onAutoAddConsumable(event): Promise<void> {
     const li = $(event.currentTarget).parents(".item");
     const weaponSelected: any = this.actor.items.get(li.data("itemId"));
 
     const max = weaponSelected.data.data.ammo;
     if (max > 0 && weaponSelected.data.data.consumables.length === 0) {
       const data = {
-        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine")+ ": " + weaponSelected.data.name,
+        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.data.name,
         type: "consumable",
         data: {
           subtype: "other",
@@ -258,7 +256,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       };
       const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
       await weaponSelected.addConsumable(newConsumable[0].id);
-      await weaponSelected.update({ "data.useConsumableForAttack": newConsumable[0].id });
+      await weaponSelected.update({"data.useConsumableForAttack": newConsumable[0].id});
     }
   }
 
@@ -290,15 +288,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event  The originating input event
    * @private
    */
-  private async _onItemValueEdit(event:Event): Promise<void> {
+  private async _onItemValueEdit(event): Promise<void> {
     const newValue = parseInt(event.currentTarget["value"], 10);
     const li = $(event.currentTarget).parents(".item");
     const itemSelected = this.actor.items.get(li.data("itemId"));
 
-    if (itemSelected.type === "skills") {
-      itemSelected.update({ "data.value": newValue });
-    } else if (itemSelected.type === "consumable") {
-      itemSelected.update({ "data.quantity": newValue });
+    if (itemSelected) {
+      if (itemSelected.type === "skills") {
+        itemSelected.update({"data.value": newValue});
+      } else if (itemSelected.type === "consumable") {
+        itemSelected.update({"data.quantity": newValue});
+      }
     }
   }
 }

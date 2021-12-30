@@ -21,7 +21,7 @@ export default class RulesetSettings extends AdvancedSettings {
       return game.settings.get("twodsix", settingName) === value;
     });
     const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
-    const rulesetName = ruleset.name + (settings.every(v => v === true) ? "" : ` (${modified})`);
+    const rulesetName = ruleset.name + (settings.every(v => v) ? "" : ` (${modified})`);
 
     data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.intro`)}: ${rulesetName}</h2><br>`;
     return data;

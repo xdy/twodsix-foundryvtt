@@ -8,9 +8,7 @@ export default class AdvancedSettings extends FormApplication {
   }
 
   /** @override */
-  // @ts-ignore
-  static get defaultOptions(): FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions(): FormApplication.Options {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
@@ -23,11 +21,11 @@ export default class AdvancedSettings extends FormApplication {
     const data: any = super.getData();
     const settings = this.settings.map((settingName) => {
       const setting: any = game.settings.settings.get("twodsix." + settingName);
-      setting["value"] = game.settings.get(setting.namespace ?? setting.module, settingName);
+      setting.value = game.settings.get(setting.namespace ?? setting.module, settingName);
       if (setting.choices) {
-        setting["htmlType"] = "Select";
+        setting.htmlType = "Select";
       } else {
-        setting["htmlType"] = setting.type.name;
+        setting.htmlType = setting.type.name;
       }
       return [settingName, setting];
     });

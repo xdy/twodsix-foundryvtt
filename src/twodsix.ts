@@ -19,6 +19,8 @@ import "./module/hooks/index";
 import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 
+
+
 Hooks.once('init', async function () {
   console.log(
     `TWODSIX | Initializing Twodsix system\n${("\n" +
@@ -32,33 +34,28 @@ Hooks.once('init', async function () {
       "\n")}`,
   );
 
-  game.twodsix = {
+  game['twodsix'] = {
     TwodsixActor,
     TwodsixItem,
     rollItemMacro
   };
 
   // Actor
-  // @ts-ignore Until fvtt-types goes to 0.8
   CONFIG.Actor.documentClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
 
-  // @ts-ignore
   Actors.registerSheet('twodsix', TwodsixActorSheet, {
     types: ["traveller"],
     makeDefault: true
   });
 
-  // @ts-ignore
   Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
     makeDefault: true,
   });
 
   // Items
-  // @ts-ignore Until fvtt-types goes to 0.8
   CONFIG.Item.documentClass = TwodsixItem;
-  // CONFIG.Item.entityClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
 

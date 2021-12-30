@@ -1,16 +1,17 @@
 import { TWODSIX } from "../config";
 
-function createWarningDialog(event: Event, message: string) {
+function createWarningDialog(event, message: string) {
   event.preventDefault();
   event.stopPropagation();
-  // @ts-ignore
-  Dialog.confirm({
-    title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning"),
-    content: message,
-    yes: async () => event.currentTarget["checked"] = !event.currentTarget["checked"],
-    no: null,
-    defaultYes: true
-  });
+  const currentTarget = event.currentTarget;
+  if (currentTarget) {
+    Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning"),
+      content: message,
+      yes: async () => currentTarget["checked"] = !currentTarget["checked"],
+      defaultYes: true
+    });
+  }
 }
 
 Hooks.on('updateSetting', async (setting) => {
@@ -41,17 +42,20 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
     return game.settings.get("twodsix", settingName) === value;
   });
-  if (!settings.every(v => v === true)) {
+  if (!settings.every(v => v)) {
     const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
     html.find(`[name="twodsix.ruleset"] option[value="${ruleset}"]`).text(`${TWODSIX.RULESETS[ruleset].name} (${modified})`).addClass("modified-ruleset");
     html.find(`[name="twodsix.ruleset"] .modified-ruleset`).after(`<option value="${ruleset}">${TWODSIX.RULESETS[ruleset].name}</option>`);
   }
 
   html.find('[name="twodsix.ruleset"]').on('change', async ev => {
-    if (await Dialog.confirm({ title: "Change ruleset", content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone." })) {
+    if (await Dialog.confirm({
+      title: "Change ruleset",
+      content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone."
+    })) {
       const newRuleset = ev.target.value;
       const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
-      game.settings.set("twodsix", "ruleset", newRuleset);
+      game.settings.set("twodsix", "ruleset", newRuleset); //TODO Should have await?
       // Step through each option and update the corresponding field
       Object.entries(newRulesetSettings).forEach(([settingName, value]) => {
         game.settings.set("twodsix", settingName, value);
@@ -60,15 +64,18 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
     }
   });
 
-  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event: Event) => {
+  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event) => {
     const continueText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.continue");
 
-    if (game.settings.get('twodsix', 'hideUntrainedSkills') && !event.currentTarget["checked"]) {
-      const warningResetText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningReset");
-      createWarningDialog(event, `${warningResetText}<br><br>${continueText}<br><br>`);
-    } else if (!game.settings.get('twodsix', 'hideUntrainedSkills') && event.currentTarget["checked"]) {
-      const warningUpdateWeaponText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningUpdateWeapon");
-      createWarningDialog(event, `${warningUpdateWeaponText}<br><br>${continueText}<br><br>`);
+    const currentTarget = event.currentTarget;
+    if (currentTarget) {
+      if (game.settings.get('twodsix', 'hideUntrainedSkills') && !currentTarget["checked"]) {
+        const warningResetText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningReset");
+        createWarningDialog(event, `${warningResetText}<br><br>${continueText}<br><br>`);
+      } else if (!game.settings.get('twodsix', 'hideUntrainedSkills') && currentTarget["checked"]) {
+        const warningUpdateWeaponText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningUpdateWeapon");
+        createWarningDialog(event, `${warningUpdateWeaponText}<br><br>${continueText}<br><br>`);
+      }
     }
   });
 });

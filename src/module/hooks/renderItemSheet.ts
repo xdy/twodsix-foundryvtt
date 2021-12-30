@@ -2,7 +2,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 Hooks.on('renderItemSheet', async (app, html, data) => {
-  const item = game.items.get(data.id);
+  const item = game.items?.get(data.id);
 
   // Check if item was just created
   if (item && item.getFlag('twodsix', 'newItem')) {
@@ -16,11 +16,12 @@ Hooks.on('renderItemSheet', async (app, html, data) => {
 
     closeAndCreateBtn.on("click", async () => {
       // close current item sheet
-      item.sheet.close();
+      item.sheet?.close();
 
       // create new item of same type and show its sheet
-      const newItem = await TwodsixItem.create({name: `${item.name} (${copyText})`, type: item.type});
-      newItem.sheet.render(true);
+      const newItem:TwodsixItem = await TwodsixItem.create({name: `${item.name} (${copyText})`, type: item.type});
+
+      newItem.sheet?.render(true);
     });
 
     // insert the new button just before the close button
