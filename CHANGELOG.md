@@ -1,3 +1,10 @@
+# [0.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.7...v0.13.0) (2021-12-30)
+
+
+### Features
+
+* Forcing release related to settings sub menus ([4d9c621](https://github.com/xdy/twodsix-foundryvtt/commit/4d9c62100264d0de2107e97d6da9275053114432))
+
 ## [0.12.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.6...v0.12.7) (2021-12-30)
 
 
