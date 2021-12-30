@@ -328,7 +328,7 @@ span.stat-ability {
 
 span.stat-ability-table {
   text-align: center !important;
-  position: relative; 
+  position: relative;
 }
 
 span.stat-modifier {
@@ -1230,19 +1230,20 @@ input.power-total {
 a.ship-crew-tab, a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
   /*display: block;*/
   border: solid;
-  border-radius: 1ch;
+  border-radius: 2ch;
   vertical-align: middle;
+  padding: 0.2em 1em;
 }
 
 a.ship-crew-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
-  
+
   color: var(--item-hover);
   background-color: var(--background-semi-opaque);
   border-radius: 1ch;
 }
 
 a.ship-crew-tab.active, a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active, a.ship-notes-tab.active {
-  
+
   color: var(--item-hover);
   text-shadow: none !important;
   background-color: var(--background-nearly-opaque);
@@ -1539,9 +1540,9 @@ button.flexrow.flex-group-center.toggle-skills {
   height: 2em;
 }
 
-.tabs .item.active {
+/*.tabs .item.active {
   text-shadow: 0 0 10px !important;
-}
+}*/
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
@@ -1871,6 +1872,10 @@ div.app.window-app.twodsix.ship.actor header a.close {
   margin-top: 1.5em;
 }
 */
+form .form-group > label {
+  flex: 4;
+}
+
 /* EDITOR */
 
 .editor {

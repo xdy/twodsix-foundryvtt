@@ -1,11 +1,83 @@
+import AdvancedSettings from "./AdvancedSettings";
 import {TWODSIX} from "./config";
 import TwodsixActor from "./entities/TwodsixActor";
 
+class RulesetSettings extends AdvancedSettings {
+  static settings = ["initiativeFormula", "difficultyListUsed", "difficultiesAsTargetNumber", "autofireRulesUsed", "modifierForZeroCharacteristic", "termForAdvantage",
+    "termForDisadvantage", "absoluteBonusValueForEachTimeIncrement", 'maxSkillLevel', "criticalNaturalAffectsEffect", "absoluteCriticalEffectValue", "showLifebloodStamina",
+    "lifebloodInsteadOfCharacteristics", "showContaminationBelowLifeblood", 'showHeroPoints', 'showAlternativeCharacteristics', "alternativeShort1", "alternativeShort2"];
+  constructor() {
+    super();
+    const ruleset = TWODSIX.RULESETS[game.settings.get("twodsix", "ruleset")].name;
+    this.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.intro`)}: ${ruleset}</h2><br>`;
+    this.settings = RulesetSettings.settings;
+  }
+}
+
+class ItemSettings extends AdvancedSettings {
+  static settings = ["ShowLawLevel", "ShowRangeBandAndHideRange", "ShowWeaponType", "ShowDamageType", "ShowRateOfFire", "ShowRecoil"];
+  constructor() {
+    super();
+    this.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.intro`)}</h2><br>`;
+    this.settings = ItemSettings.settings;
+  }
+}
+
+class DisplaySettings extends AdvancedSettings {
+  static settings = ['defaultTokenSettings', 'useSystemDefaultTokenIcon', 'showMissingCompendiumWarnings', 'showSingleComponentColumn', 'useFoundryStandardStyle','useWoundedStatusIndicators' ];
+  constructor() {
+    super();
+    this.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.intro`)}</h2><br>`;
+    this.settings = DisplaySettings.settings;
+  }
+}
+class DebugSettings extends AdvancedSettings {
+  static settings = ['ExperimentalFeatures', 'systemMigrationVersion'];
+  constructor() {
+    super();
+    this.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.intro`)}</h2><br>`;
+    this.settings = DebugSettings.settings;
+  }
+}
 export const registerSettings = function ():void {
 
-  //Foundry default behaviour related settings
-  _booleanSetting('defaultTokenSettings', true);
-  _booleanSetting('useSystemDefaultTokenIcon', false);
+  const advancedSettings = RulesetSettings.settings.concat(ItemSettings.settings).concat(DisplaySettings.settings).concat(DebugSettings.settings);
+
+  game.settings.registerMenu("twodsix", "rulesetSettings", {
+    name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.name`),
+    label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.name`),
+    hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.hint`),
+    icon: "fas fa-gavel",
+    type: RulesetSettings,
+    restricted: true
+  });
+
+  game.settings.registerMenu("twodsix", "itemSettings", {
+    name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.name`),
+    label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.name`),
+    hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.hint`),
+    icon: "fas fa-bars",
+    type: ItemSettings,
+    restricted: true
+  });
+
+  game.settings.registerMenu("twodsix", "displaySettings", {
+    name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.name`),
+    label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.name`),
+    hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.hint`),
+    icon: "fas fa-tv",
+    type: DisplaySettings,
+    restricted: true
+  });
+
+  game.settings.registerMenu("twodsix", "debugSettings", {
+    name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.name`),
+    label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.name`),
+    hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.hint`),
+    icon: "fas fa-bug",
+    type: DebugSettings,
+    restricted: true
+  });
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
@@ -18,8 +90,11 @@ export const registerSettings = function ():void {
     }
     return 0;
   });
-
   _stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].name, Object.fromEntries(rulesetOptions));
+
+  //Foundry default behaviour related settings
+  _booleanSetting('defaultTokenSettings', true);
+  _booleanSetting('useSystemDefaultTokenIcon', false);
 
   //House rules/variant related settings
   const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
@@ -85,7 +160,7 @@ export const registerSettings = function ():void {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
       scope: scope,
-      config: true,
+      config: !advancedSettings.includes(key),
       default: defaultValue,
       type: Boolean,
       onChange: onChange
@@ -97,7 +172,7 @@ export const registerSettings = function ():void {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
       scope: scope,
-      config: true,
+      config: !advancedSettings.includes(key),
       default: defaultValue,
       type: Number,
       onChange: onChange
@@ -109,7 +184,7 @@ export const registerSettings = function ():void {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
       scope: scope,
-      config: true,
+      config: !advancedSettings.includes(key),
       default: defaultValue,
       type: String,
       onChange: onChange,
@@ -122,7 +197,7 @@ export const registerSettings = function ():void {
       name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
       scope: scope,
-      config: true,
+      config: !advancedSettings.includes(key),
       default: defaultValue,
       type: String,
       onChange: onChange

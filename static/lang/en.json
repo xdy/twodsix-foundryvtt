@@ -487,6 +487,28 @@
       "useWoundedStatusIndicators": {
         "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
         "name": "Display wounded status indicators"
+      },
+      "settingsInterface": {
+        "rulesetSettings": {
+          "intro": "Current Rules",
+          "name": "Advanced Ruleset Settings",
+          "hint": "Configure the ruleset settings."
+        },
+        "itemSettings": {
+          "intro": "Item Settings",
+          "name": "Item Settings",
+          "hint": "Configure the item fields that are shown."
+        },
+        "displaySettings": {
+          "intro": "Display Settings",
+          "name": "Display Settings",
+          "hint": "Configure the display settings."
+        },
+        "debugSettings": {
+          "intro": "Debug Settings",
+          "name": "Debug Settings",
+          "hint": "Configure/View the debug settings."
+        }
       }
     },
     "CloseAndCreateNew": "Close and create new",

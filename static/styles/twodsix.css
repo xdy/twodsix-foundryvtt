@@ -256,6 +256,10 @@ form .form-group, form .form-group-stacked {
   color: var(--light-color) !important;
 }
 
+form .form-group > label {
+  flex: 4;
+}
+
 form .form-group span.units {
   flex: 0;
   line-height: 28px;
