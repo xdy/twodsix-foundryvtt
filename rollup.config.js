@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     nodeResolve(),
     commonjs(),
-    esbuild({
+    esbuild.default({
       include: /\.[jt]sx?$/, // TODO Might have to include d.ts here
       sourceMap: true,
       minify: process.env.NODE_ENV === 'production',

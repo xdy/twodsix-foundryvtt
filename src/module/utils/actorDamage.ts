@@ -300,7 +300,7 @@ export async function renderDamageDialog(damageData:Record<string,any>): Promise
   }
   // @ts-ignore
   const actorUsers = game.users.filter(user=>user.active && actor.testUserPermission(user, 3));
-  if ((game.user.isGM && actorUsers.length > 1) || (!game.user.isGM && !actor.owner)) {
+  if ((game.user.isGM && actorUsers.length > 1) || (!game.user.isGM && !actor.isOwner)) {
     return;
   }
 
