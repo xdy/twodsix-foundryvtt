@@ -1,3 +1,10 @@
+## [0.12.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.4...v0.12.5) (2021-12-29)
+
+
+### Reverts
+
+* Revert "Ship crew positions (#745)" ([ec81cc3](https://github.com/xdy/twodsix-foundryvtt/commit/ec81cc35e99acee6efc719fd8c35103a2bf362b3)), closes [#745](https://github.com/xdy/twodsix-foundryvtt/issues/745)
+
 ## [0.12.4](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.3...v0.12.4) (2021-12-22)
 
 

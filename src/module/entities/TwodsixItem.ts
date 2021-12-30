@@ -36,7 +36,6 @@ export default class TwodsixItem extends Item {
         return ((a.name > b.name) ? -1 : ((a.name > b.name) ? 1 : 0));
       });
     }
-    // if ()
   }
 
   public async addConsumable(consumableId: string): Promise<void> {
