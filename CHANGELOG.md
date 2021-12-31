@@ -1,3 +1,10 @@
+## [0.13.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.1...v0.13.2) (2021-12-31)
+
+
+### Bug Fixes
+
+* show that a ruleset is modfied ([#768](https://github.com/xdy/twodsix-foundryvtt/issues/768)) ([5b1bca3](https://github.com/xdy/twodsix-foundryvtt/commit/5b1bca3b02bf99ce6803fefa28e96f3c4610b265))
+
 ## [0.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.0...v0.13.1) (2021-12-31)
 
 
