@@ -1,3 +1,10 @@
+## [0.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.0...v0.13.1) (2021-12-31)
+
+
+### Bug Fixes
+
+* fixes a v8 bug with the new settings sub pages ([#769](https://github.com/xdy/twodsix-foundryvtt/issues/769)) ([b174577](https://github.com/xdy/twodsix-foundryvtt/commit/b174577314f529fc81b1660b2df096f55e9cbb9d))
+
 # [0.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.7...v0.13.0) (2021-12-30)
 
 
