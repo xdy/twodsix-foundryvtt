@@ -733,6 +733,10 @@ a.notes-tab.active {
   padding-left: 0.5em;
 }
 
+.advanced-settings-checkbox-wrapper {
+  flex: 0 1 0 !important;
+}
+
 .gear {
   border: 1px solid var(--default-color);
   padding-left: 0.5em;

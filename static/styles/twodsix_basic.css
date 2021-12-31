@@ -484,6 +484,10 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   padding-left: 0.5em;
 }
 
+.advanced-settings-checkbox-wrapper {
+  flex: 0 1 0 !important;
+}
+
 .gear {
   border: 1px solid var(--background-semi-opaque);
   padding-left: 0.5em;

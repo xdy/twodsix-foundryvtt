@@ -1,6 +1,6 @@
-import {TWODSIX} from "../config";
+import { TWODSIX } from "../config";
 
-function createWarningDialog(event:Event, message:string) {
+function createWarningDialog(event: Event, message: string) {
   event.preventDefault();
   event.stopPropagation();
   // @ts-ignore
@@ -13,23 +13,54 @@ function createWarningDialog(event:Event, message:string) {
   });
 }
 
+Hooks.on('updateSetting', async (setting) => {
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.data.key.slice(8))) {
+    game.settings.sheet.render();
+  }
+});
+
+Hooks.on('renderAdvancedSettings', async (app, html) => {
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
+  Object.entries(rulesetSettings).forEach(([settingName, value]) => {
+    const el = html.find(`[name="${settingName}"]`);
+    if (game.settings.get("twodsix", settingName) !== value) {
+      el.filter(`:not([type="checkbox"])`).css("border", "1px solid orange");
+      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid orange");
+    } else {
+      el.filter(`:not([type="checkbox"])`).css("border", "1px solid green");
+      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid green");
+    }
+  });
+});
+
 Hooks.on('renderSettingsConfig', async (app, html) => {
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
+  const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
+    return game.settings.get("twodsix", settingName) === value;
+  });
+  if (!settings.every(v => v === true)) {
+    const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
+    html.find(`[name="twodsix.ruleset"] option[value="${ruleset}"]`).text(`${TWODSIX.RULESETS[ruleset].name} (${modified})`).addClass("modified-ruleset");
+    html.find(`[name="twodsix.ruleset"] .modified-ruleset`).after(`<option value="${ruleset}">${TWODSIX.RULESETS[ruleset].name}</option>`);
+  }
+
   html.find('[name="twodsix.ruleset"]').on('change', async ev => {
-    if (await Dialog.confirm({title: "Change ruleset", content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone."})) {
-      const ruleset = ev.target.value;
-      const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
-      game.settings.set("twodsix", "ruleset", ruleset);
-      if (ruleset !== "OTHER") {
-        // Step through each option and update the corresponding field
-        Object.entries(rulesetSettings).forEach(([settingName, value]) => {
-          game.settings.set("twodsix", settingName, value);
-          console.log(`${ruleset} ${settingName} = ${value}`);
-        });
-      }
+    if (await Dialog.confirm({ title: "Change ruleset", content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone." })) {
+      const newRuleset = ev.target.value;
+      const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
+      game.settings.set("twodsix", "ruleset", newRuleset);
+      // Step through each option and update the corresponding field
+      Object.entries(newRulesetSettings).forEach(([settingName, value]) => {
+        game.settings.set("twodsix", settingName, value);
+        console.log(`${newRuleset} ${settingName} = ${value}`);
+      });
     }
   });
 
-  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event:Event) => {
+  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event: Event) => {
     const continueText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.continue");
 
     if (game.settings.get('twodsix', 'hideUntrainedSkills') && !event.currentTarget["checked"]) {
