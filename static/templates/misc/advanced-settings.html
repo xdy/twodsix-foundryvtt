@@ -22,7 +22,9 @@
                 {{/iff}}
 
                 {{#iff setting.htmlType "===" "Boolean"}}
-                <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
+                <span class="advanced-settings-checkbox-wrapper">
+                    <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
+                </span>
                 {{/iff}}
             </div>
             <p class="notes">{{{localize setting.hint}}}</p>

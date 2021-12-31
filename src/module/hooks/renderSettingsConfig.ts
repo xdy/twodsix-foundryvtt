@@ -24,8 +24,13 @@ Hooks.on('renderAdvancedSettings', async (app, html) => {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   Object.entries(rulesetSettings).forEach(([settingName, value]) => {
+    const el = html.find(`[name="${settingName}"]`);
     if (game.settings.get("twodsix", settingName) !== value) {
-      html.find(`[name="${settingName}"]`).css("border", "1px solid orange");
+      el.filter(`:not([type="checkbox"])`).css("border", "1px solid orange");
+      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid orange");
+    } else {
+      el.filter(`:not([type="checkbox"])`).css("border", "1px solid green");
+      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid green");
     }
   });
 });
