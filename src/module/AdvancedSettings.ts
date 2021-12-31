@@ -19,7 +19,7 @@ export default class AdvancedSettings extends FormApplication {
 
         const settings = this.settings.map((settingName) => {
             const setting = game.settings.settings.get("twodsix." + settingName);
-            setting["value"] = game.settings.get(setting.namespace, settingName);
+            setting["value"] = game.settings.get(setting.namespace ?? setting.module, settingName);
             if (setting.choices) {
                 setting["htmlType"] = "Select";
             } else {
