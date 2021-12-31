@@ -485,7 +485,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 .advanced-settings-checkbox-wrapper {
-  flex: 0;
+  flex: 0 1 0 !important;
 }
 
 .gear {
