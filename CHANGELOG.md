@@ -1,3 +1,10 @@
+## [0.13.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.2...v0.13.3) (2022-01-02)
+
+
+### Bug Fixes
+
+* initial value of ruleset settings ([#772](https://github.com/xdy/twodsix-foundryvtt/issues/772)) ([8e67bc7](https://github.com/xdy/twodsix-foundryvtt/commit/8e67bc741c3f8caa06db3b861f3d297283e551e8))
+
 ## [0.13.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.1...v0.13.2) (2021-12-31)
 
 
