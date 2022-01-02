@@ -1,12 +1,14 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import { TwodsixItemData } from "../../types/twodsix";
+import Armor = dataTwodsix.Armor;
+import Skills = dataTwodsix.Skills;
+import UsesConsumables = dataTwodsix.UsesConsumables;
+import TwodsixActor from "../entities/TwodsixActor";
 
-// @ts-ignore
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
-  protected activateListeners(html: JQuery): void {
+  public activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
@@ -21,51 +23,50 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     html.find('.item-edit').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      item.sheet.render(true);
+      item?.sheet?.render(true);
     }));
 
     // Delete Item
     html.find('.item-delete').on('click', async (ev) => {
       const li = $(ev.currentTarget).parents('.item');
-      const ownedItem = this.actor.items.get(li.data('itemId'));
+      const ownedItem = this.actor.items.get(li.data('itemId')) || null;
       const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
       const template = `
       <form>
         <div>
           <div style="text-align: center;">${title}
-             "<strong>${ownedItem.name}</strong>"?
+             "<strong>${ownedItem?.name}</strong>"?
           </div>
           <br>
         </div>
       </form>`;
-      // @ts-ignore
-      await Dialog.confirm({
-        title: title,
-        content: template,
-        yes: async () => {
-          // @ts-ignore
-          // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
-          if (ownedItem.type === "consumable") {
-            const tempItems = this.actor.items.filter(i => i.type !== "skills");
-            tempItems.forEach(i => {
-              if (i.data.data.consumables != undefined) {
-                if (i.data.data.consumables.includes(ownedItem.id) || i.data.data.useConsumableForAttack === ownedItem.id) {
-                  i.removeConsumable(ownedItem.id);
+      if(ownedItem) {
+        await Dialog.confirm({
+          title: title,
+          content: template,
+          yes: async () => {
+            // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
+            if (ownedItem.type === "consumable") {
+              this.actor.items.filter(i => i.type !== "skills").forEach(i => {
+                const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;
+                if (usesConsumables.consumables != undefined) {
+                  if (usesConsumables.consumables.includes(ownedItem.id) || usesConsumables.useConsumableForAttack === ownedItem.id) {
+                    (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                  }
                 }
-              }
-            });
-          }
+              });
+            }
 
-          await this.actor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
-          li.slideUp(200, () => this.render(false));
-        },
-        no: () => {
-          //Nothing
-        },
-      });
+            await this.actor.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
+            li.slideUp(200, () => this.render(false));
+          },
+          no: () => {
+            //Nothing
+          },
+        });
+      }
     });
     // Drag events for macros.
-    // @ts-ignore Until 0.8
     if (this.actor.isOwner) {
       const handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
@@ -81,8 +82,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   _onDragStart(event: DragEvent): void {
-    const header = event.currentTarget;
-    if (!header["dataset"]) {
+    if (event.currentTarget && !(event.currentTarget)["dataset"]) {
       return;
     }
 
@@ -101,15 +101,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          itemData.data.value = game.system.template.Item.skills["value"];
+          const skills: dataTwodsix.Skills = <Skills>game.system.template?.Item?.skills;
+          itemData.data.value = skills?.value;
         } else {
           itemData.data.value = 0;
         }
         break;
       case "weapon":
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          // @ts-ignore
-          itemData.data.skill = this.actor.getUntrainedSkill().id;
+          itemData.data.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
         }
         break;
       case "component":
@@ -143,10 +143,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    this.updateWithItemSpecificValues(itemData, type);
+    this.updateWithItemSpecificValues(itemData, <string>type);
 
     // Finally, create the item!
-    // @ts-ignore
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
@@ -169,8 +168,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (actor.data.type === 'traveller') {
         const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-        // @ts-ignore
-        await this.actor.damageActor(data.payload["damage"], showDamageDialog);
+        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, showDamageDialog);
       } else {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamageShip"));
       }
@@ -197,55 +195,45 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return false;
   }
 
-  private async handleDroppedSkills(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+  private async handleDroppedSkills(actor, itemData, data: Record<string, any>, event: DragEvent) {
     const matching = actor.data.items.filter(x => {
-      // @ts-ignore
       return x.name === itemData.name;
     });
 
     // Handle item sorting within the same Actor
-    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
     if (sameActor) {
-      // @ts-ignore
       console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-      // @ts-ignore
       return this._onSortItem(event, itemData);
     }
 
     if (matching.length > 0) {
-      // @ts-ignore
       console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
       //TODO Maybe this should mean increase skill value?
       return false;
     }
 
     if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-      // @ts-ignore
-      itemData.data.value = game.system.template.Item.skills.value;
+      const skills: dataTwodsix.Skills = <Skills>game.system.template.Item?.skills;
+      itemData.data.value = skills?.value;
     } else {
-      // @ts-ignore
       itemData.data.value = 0;
     }
 
-    // @ts-ignore
     await actor.createEmbeddedDocuments("Item", [itemData]);
-    // @ts-ignore
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
-  private async handleDroppedItem(actor: ActorSheet.Data<Actor> extends ActorSheet.Data<infer T> ? T : Actor, itemData: TwodsixItemData, data: Record<string, any>, event: DragEvent) {
+  private async handleDroppedItem(actor: Actor, itemData, data: Record<string, any>, event: DragEvent) {
     // Handle item sorting within the same Actor
-    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
+    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
     if (sameActor) {
-      // @ts-ignore
       return this._onSortItem(event, itemData);
     }
 
     //Remove any attached consumables
-    // @ts-ignore
     if (itemData.data.consumables !== undefined) {
       if (itemData.data.consumables.length > 0) {
-        // @ts-ignore
         itemData.data.consumables = [];
       }
     }
@@ -304,10 +292,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
       if (sheetData.actor.type === "traveller") {
         encumbrance += AbstractTwodsixActorSheet._getWeight(item);
-        if (item.type === "armor" && item.data.data.equipped === "equipped") {
-          primaryArmor += item.data.data.armor;
-          secondaryArmor += item.data.data.secondaryArmor.value;
-          radiationProtection += item.data.data.radiationProtection.value;
+        const anArmor = <Armor>item.data.data;
+        if (item.type === "armor" && anArmor.equipped) {
+          primaryArmor += anArmor.armor;
+          secondaryArmor += anArmor.secondaryArmor.value;
+          radiationProtection += anArmor.radiationProtection.value;
         }
       }
       switch (item.type) {

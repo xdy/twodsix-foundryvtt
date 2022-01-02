@@ -2,21 +2,26 @@
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-import {calcModFor, getKeyByValue} from "../utils/sheetUtils";
-import {TWODSIX} from "../config";
-import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
-import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
+import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
+import { TWODSIX } from "../config";
+import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
+import Weapon = dataTwodsix.Weapon;
+import Gear = dataTwodsix.Gear;
+import Traveller = dataTwodsix.Traveller;
+import Skills = dataTwodsix.Skills;
+import Characteristic = dataTwodsix.Characteristic;
 
 export default class TwodsixActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData():void {
+  prepareData(): void {
     super.prepareData();
 
-    const actorData = this.data;
+    const actorData = <TwodsixActor><unknown>this.data;
     // const data = actorData.data;
     // const flags = actorData.flags;
 
@@ -37,17 +42,17 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareTravellerData(actorData:any):void {
-    // Get the Actor's data object
+  _prepareTravellerData(actorData): void {
     const {data} = actorData;
 
-    for (const cha of Object.values(data.characteristics as Record<any, any>)) {
-      cha.current = cha.value - cha.damage;
-      cha.mod = calcModFor(cha.current);
+    for (const cha of Object.keys(data.characteristics)) {
+      const characteristic: Characteristic = data.characteristics[cha];
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod = calcModFor(characteristic.current);
     }
   }
 
-  protected async _onCreate(data, options, user) {
+  protected async _onCreate() {
     switch (this.data.type) {
       case "traveller":
         await this.createUntrainedSkill();
@@ -65,35 +70,37 @@ export default class TwodsixActor extends Actor {
         }
         break;
     }
-    if(game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
+    if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
       await this.update({
         'token.img': CONST.DEFAULT_TOKEN //'icons/svg/mystery-man.svg'
       });
     }
   }
 
-  protected async damageActor(damage:number, showDamageDialog=true):Promise<void> {
+  public async damageActor(damage: number, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData = {
+      const damageData: { damage: number; damageId: string, tokenId?: string|null, actorId?: string|null } = {
         damage: damage,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
       if (this.isToken) {
-        damageData["tokenId"] = this.token.id;
+        damageData.tokenId = this.token?.id;
       } else {
-        damageData["actorId"] = this.id;
+        damageData.actorId = this.id;
       }
-      game.socket.emit("system.twodsix", ["createDamageDialog", damageData]);
+      game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
       const stats = new Stats(this, damage);
-      stats.applyDamage();
+      stats.applyDamage(); //TODO Should have await?
     }
   }
 
-  public getCharacteristicModifier(characteristic:string):number {
+  public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
+      return 0;
+    } else if (this.data.type === 'ship') {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
@@ -102,8 +109,8 @@ export default class TwodsixActor extends Actor {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public async characteristicRoll(tmpSettings:any, showThrowDialog:boolean, showInChat = true):Promise<TwodsixDiceRoll> {
-    if (!tmpSettings["characteristic"]) {
+  public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
+    if (!tmpSettings.characteristic) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
     }
@@ -116,23 +123,22 @@ export default class TwodsixActor extends Actor {
     if (showInChat) {
       await diceRoll.sendToChat();
     }
-    console.log("DEBUG CHARACTERISTICS ROLL:", diceRoll);
     return diceRoll;
   }
 
-  public getUntrainedSkill():TwodsixItem {
-    return this.items.get(this.data.data.untrainedSkill) as TwodsixItem;
+  public getUntrainedSkill(): TwodsixItem {
+    return <TwodsixItem>this.items.get((<Traveller>this.data.data).untrainedSkill);
   }
 
   public async createUntrainedSkill(): Promise<void> {
     const untrainedSkill = await this.buildUntrainedSkill();
     if (untrainedSkill) {
-      await this.update({ "data.untrainedSkill": untrainedSkill.id });
+      await this.update({"data.untrainedSkill": untrainedSkill['id']});
     }
   }
 
-  public async buildUntrainedSkill():Promise<TwodsixItem> {
-    if (this.data.data.untrainedSkill) {
+  public async buildUntrainedSkill(): Promise<Skills | void> {
+    if ((<Traveller>this.data.data).untrainedSkill) {
       return;
     }
     const data = {
@@ -143,40 +149,36 @@ export default class TwodsixActor extends Actor {
     };
 
 
-    //const data1 = await this.createOwnedItem(data) as unknown as TwodsixItem;
-    // TODO Something like the below, but actually working... (I still get collection.set is not a function)
-    // const data1 = await this.createEmbeddedDocument("Item", [ { "data": data } ]);
-    // @ts-ignore Until 0.8 types
-    const data1 = await (this.createEmbeddedDocuments("Item",[data]));
+    const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
     return data1[0];
   }
 
-  private static _applyToAllActorItems(func: (actor:TwodsixActor, item:TwodsixItem) => void):void {
-    game.actors.forEach(actor => {
-      // @ts-ignore
-      actor.items.forEach((item:TwodsixItem) => {
-        // @ts-ignore
-        func(actor, item);
+  private static _applyToAllActorItems(func: (actor: TwodsixActor, item: TwodsixItem) => void): void {
+    game.actors?.forEach(actor => {
+      actor.items.forEach((item: TwodsixItem) => {
+        func(<TwodsixActor><unknown>actor, item);
       });
     });
   }
 
-  public static resetUntrainedSkill():void {
-    TwodsixActor._applyToAllActorItems((actor:TwodsixActor, item:TwodsixItem) => {
+  public static resetUntrainedSkill(): void {
+    //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
+    TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
       if (item.type === "skills") {
         return;
       }
-      const skill = actor.items.get(item.data.data.skill);
+      const skill = actor.items.get((<Gear>item.data.data).skill);
       if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
-        item.update({ "data.skill": "" }, {});
+        item.update({"data.skill": ""}, {}); //TODO Should have await?
       }
     });
   }
 
-  public static setUntrainedSkillForWeapons():void {
-    TwodsixActor._applyToAllActorItems((actor:TwodsixActor, item:TwodsixItem) => {
-      if (item.type === "weapon" && !item.data.data.skill && actor.type === "traveller") {
-        item.update({"data.skill": actor.getUntrainedSkill().id}, {});
+  public static setUntrainedSkillForWeapons(): void {
+    //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
+    TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
+      if (item.type === "weapon" && !(<Weapon>item.data.data).skill && actor.type === "traveller") {
+        item.update({"data.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
       }
     });
   }

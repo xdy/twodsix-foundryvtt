@@ -1,3 +1,62 @@
+# [1.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.3...v1.0.0) (2022-01-02)
+
+
+### Code Refactoring
+
+* Twodsix only supports Foundry V9 ([1fd1173](https://github.com/xdy/twodsix-foundryvtt/commit/1fd11731099883b8f3cc906def637d156aa3c567))
+
+
+### BREAKING CHANGES
+
+* Twodsix only supports Foundry V9
+
+After a couple of days (and nights) of hard work by @xdy, @jonepatr and @marvin9257 Twodsix now switches to only supporting Foundry V9 for all future versions.
+As this is a breaking change we'll take the opportunity to go to version 1.0.0
+
+This does *not* mean the end of development for Twodsix. Quite the contrary. :)
+
+## [0.13.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.2...v0.13.3) (2022-01-02)
+
+
+### Bug Fixes
+
+* initial value of ruleset settings ([#772](https://github.com/xdy/twodsix-foundryvtt/issues/772)) ([8e67bc7](https://github.com/xdy/twodsix-foundryvtt/commit/8e67bc741c3f8caa06db3b861f3d297283e551e8))
+
+## [0.13.2](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.1...v0.13.2) (2021-12-31)
+
+
+### Bug Fixes
+
+* show that a ruleset is modfied ([#768](https://github.com/xdy/twodsix-foundryvtt/issues/768)) ([5b1bca3](https://github.com/xdy/twodsix-foundryvtt/commit/5b1bca3b02bf99ce6803fefa28e96f3c4610b265))
+
+## [0.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.0...v0.13.1) (2021-12-31)
+
+
+### Bug Fixes
+
+* fixes a v8 bug with the new settings sub pages ([#769](https://github.com/xdy/twodsix-foundryvtt/issues/769)) ([b174577](https://github.com/xdy/twodsix-foundryvtt/commit/b174577314f529fc81b1660b2df096f55e9cbb9d))
+
+# [0.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.7...v0.13.0) (2021-12-30)
+
+
+### Features
+
+* Forcing release related to settings sub menus ([4d9c621](https://github.com/xdy/twodsix-foundryvtt/commit/4d9c62100264d0de2107e97d6da9275053114432))
+
+## [0.12.7](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.6...v0.12.7) (2021-12-30)
+
+
+### Bug Fixes
+
+* update FVTT v9 compendium refences ([#742](https://github.com/xdy/twodsix-foundryvtt/issues/742)) ([cfd3ee4](https://github.com/xdy/twodsix-foundryvtt/commit/cfd3ee4973df6def16d4397877bb33b648528c46))
+
+## [0.12.6](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.5...v0.12.6) (2021-12-30)
+
+
+### Bug Fixes
+
+* update to actor.isOwner for V9 ([#765](https://github.com/xdy/twodsix-foundryvtt/issues/765)) ([53126ce](https://github.com/xdy/twodsix-foundryvtt/commit/53126ce0c9cef80d8a532adda45f81fb8d1f91b1))
+
 ## [0.12.5](https://github.com/xdy/twodsix-foundryvtt/compare/v0.12.4...v0.12.5) (2021-12-29)
 
 

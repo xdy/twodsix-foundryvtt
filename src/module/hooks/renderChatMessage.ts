@@ -6,7 +6,7 @@ Hooks.on('renderChatMessage', (app, html) => {
     damageMessage.setAttribute("draggable", "true");
 
     damageMessage.addEventListener('dragstart', ev => {
-      return ev.dataTransfer.setData("text/plain", <string>app.data.flags.transfer);
+      return ev.dataTransfer?.setData("text/plain", <string>app.data.flags.transfer);
     });
   }
 

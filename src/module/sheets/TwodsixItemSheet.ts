@@ -1,5 +1,5 @@
-import {AbstractTwodsixItemSheet} from "./AbstractTwodsixItemSheet";
-import {TWODSIX} from "../config";
+import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
+import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 
@@ -10,9 +10,7 @@ import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUti
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
-  // @ts-ignore
-  static get defaultOptions():FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions(): ItemSheet.Options {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
@@ -23,7 +21,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   /** @override */
-  get template():string {
+  get template(): string {
     const path = "systems/twodsix/templates/items";
     return `${path}/${this.item.data.type}-sheet.html`;
   }
@@ -31,14 +29,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  // @ts-ignore
-  getData():ItemSheetData {
+  getData(): ItemSheet {
     const data = super.getData();
-    const actorData = data.data;
-    data.actor = actorData;
+    data.actor = data.data;
 
-    // @ts-ignore
-    this.item.prepareConsumable();
+    (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
     data.data.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
@@ -57,19 +52,18 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  // @ts-ignore
-  setPosition(options:ApplicationPosition = {}):any {
-    const position = super.setPosition(options);
+  setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
+    const position: Application.Position = <Application.Position>super.setPosition(options);
     const sheetBody = (this.element as JQuery).find(".sheet-body");
-    const bodyHeight = position.height - 192;
+    const bodyHeight = <number>position.height - 192;
     sheetBody.css("height", bodyHeight);
-    return position;
+    return <(Application.Position & { height: number }) | void>position;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners(html:JQuery):void {
+  activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
@@ -84,31 +78,30 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     this.handleContentEditable(html);
   }
 
-  private getConsumable(event:Event):TwodsixItem {
+  private getConsumable(event) {
     const li = $(event.currentTarget).parents(".consumable");
-    // @ts-ignore
-    return this.item.actor.items.get(li.data("consumableId"));
+    return this.item.actor?.items.get(li.data("consumableId"));
   }
 
-  private _onEditConsumable(event:Event):void {
-    this.getConsumable(event).sheet.render(true);
+  private _onEditConsumable(event): void {
+    this.getConsumable(event)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event:Event):Promise<void> {
+  private async _onDeleteConsumable(event): Promise<void> {
     const consumable = this.getConsumable(event);
-    if(!consumable) {
-      this.item.removeConsumable("");
+    if (!consumable) {
+      (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?
     } else {
-      const bodyTextTemplate = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom");
-      const consumableNameString = `"<strong>${consumable.name}</strong>"`;
-      const body = bodyTextTemplate.replace("_CONSUMABLE_NAME_", consumableNameString).replace("_ITEM_NAME_", this.item.name);
+      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", `"<strong>${consumable.name}</strong>"`).replace("_ITEM_NAME_", <string>this.item.name);
 
-      // @ts-ignore
       await Dialog.confirm({
         title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
         content: `<div class="remove-consumable">${body}<br><br></div>`,
-        // @ts-ignore
-        yes: async () => this.item.removeConsumable(consumable.id),
+        yes: async () => {
+          if (consumable && consumable.id) {
+            (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
+          }
+        },
         no: () => {
           //Nothing
         },
@@ -116,7 +109,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private async _onCreateConsumable():Promise<void> {
+  private async _onCreateConsumable(): Promise<void> {
     if (!this.item.isOwned) {
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
@@ -131,7 +124,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       buttons: {
         ok: {
           label: game.i18n.localize("TWODSIX.Create"),
-          callback: async (buttonHtml:JQuery) => {
+          callback: async (buttonHtml: JQuery) => {
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             const data = {
               name: buttonHtml.find('.consumable-name').val(),
@@ -143,10 +136,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 max: max,
               }
             };
-            // @ts-ignore
-            const newConsumable = await this.item.actor.createEmbeddedDocuments("Item", [data]);
-            // @ts-ignore
-            await this.item.addConsumable(newConsumable[0].id);
+            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [data]) || {};
+            await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
           }
         },
         cancel: {
@@ -157,17 +148,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }).render(true);
   }
 
-  private _onChangeUseConsumableForAttack(event:Event):void {
+  private _onChangeUseConsumableForAttack(event): void {
     this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
   }
 
-  private static check(cond:boolean, err:string) {
-    if(cond) {
+  private static check(cond: boolean, err: string) {
+    if (cond) {
       throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
     }
   }
 
-  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
+  protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
       TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
@@ -184,14 +175,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
       // If the dropped item has the same actor as the current item let's just use the same id.
       let itemId: string;
-      if (this.item.actor.items.get(itemData.id)) {
+      if (this.item.actor?.items.get(itemData.id)) {
         itemId = itemData.id;
       } else {
-        const newItem = await this.item.actor.createEmbeddedDocuments("Item", [itemData]);
+        const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
+        if (!newItem) {
+          throw new Error(`Somehow could not create item ${itemData}`);
+        }
         itemId = newItem[0].id;
       }
-      // @ts-ignore
-      await this.item.addConsumable(itemId);
+      await (<TwodsixItem>this.item).addConsumable(itemId);
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);

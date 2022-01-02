@@ -331,7 +331,7 @@
     },
     "Settings": {
       "ruleset": {
-        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details.",
+        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details. Rules relating to the ruleset are marked with a green border. Any changes to settings set by the ruleset will be marked with an orange border.",
         "name": "Ruleset"
       },
       "absoluteBonusValueForEachTimeIncrement": {
@@ -487,6 +487,29 @@
       "useWoundedStatusIndicators": {
         "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
         "name": "Display wounded status indicators"
+      },
+      "settingsInterface": {
+        "rulesetSettings": {
+          "intro": "Current Rules",
+          "name": "Advanced Ruleset Settings",
+          "hint": "Configure the ruleset settings.",
+          "modified": "modified"
+        },
+        "itemSettings": {
+          "intro": "Item Settings",
+          "name": "Item Settings",
+          "hint": "Configure the item fields that are shown."
+        },
+        "displaySettings": {
+          "intro": "Display Settings",
+          "name": "Display Settings",
+          "hint": "Configure the display settings."
+        },
+        "debugSettings": {
+          "intro": "Debug Settings",
+          "name": "Debug Settings",
+          "hint": "Configure/View the debug settings."
+        }
       }
     },
     "CloseAndCreateNew": "Close and create new",

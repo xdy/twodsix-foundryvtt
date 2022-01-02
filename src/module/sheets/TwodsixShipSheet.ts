@@ -29,9 +29,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  // @ts-ignore
-  static get defaultOptions():FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions():ActorSheet.Options {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "ship", "actor"],
       template: "systems/twodsix/templates/actors/ship-sheet.html",
