@@ -26,7 +26,7 @@ export const registerSettings = function ():void {
     }
     return 0;
   });
-  stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].name, Object.fromEntries(rulesetOptions), true);
+  stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, Object.fromEntries(rulesetOptions), true);
 
   booleanSetting('automateDamageRollOnHit', false, true, 'client');
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
