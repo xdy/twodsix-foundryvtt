@@ -1,5 +1,7 @@
 // Add any additional hooks if necessary
-Hooks.on('preCreateActor', async (actor) => {
+import TwodsixActor from "../entities/TwodsixActor";
+
+Hooks.on('preCreateActor', async (actor:TwodsixActor) => {
 
   if (game.settings.get('twodsix', 'defaultTokenSettings')) {
     let link = false;
