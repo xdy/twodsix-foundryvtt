@@ -1,3 +1,20 @@
+# [1.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.3...v1.0.0) (2022-01-02)
+
+
+### Code Refactoring
+
+* Twodsix only supports Foundry V9 ([1fd1173](https://github.com/xdy/twodsix-foundryvtt/commit/1fd11731099883b8f3cc906def637d156aa3c567))
+
+
+### BREAKING CHANGES
+
+* Twodsix only supports Foundry V9
+
+After a couple of days (and nights) of hard work by @xdy, @jonepatr and @marvin9257 Twodsix now switches to only supporting Foundry V9 for all future versions.
+As this is a breaking change we'll take the opportunity to go to version 1.0.0
+
+This does *not* mean the end of development for Twodsix. Quite the contrary. :)
+
 ## [0.13.3](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.2...v0.13.3) (2022-01-02)
 
 
