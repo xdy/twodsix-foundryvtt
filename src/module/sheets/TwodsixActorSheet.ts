@@ -224,9 +224,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     } catch (err) {
       if (err.name === "TooLowQuantityError") {
         const refillAction = ["magazine", "power_cell"].includes((<Consumable>item.data.data).subtype) ? "Reload" : "Refill";
-        const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLowerCase();
+        const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLocaleLowerCase();
         const tooFewString = game.i18n.localize("TWODSIX.Errors.TooFewToReload");
-        ui.notifications.error(tooFewString.replace("_NAME_", item.name?.toLowerCase() || "???").replace("_REFILL_ACTION_", refillWord));
+        ui.notifications.error(tooFewString.replace("_NAME_", item.name?.toLocaleLowerCase() || "???").replace("_REFILL_ACTION_", refillWord));
       } else {
         throw err;
       }
