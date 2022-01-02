@@ -104,9 +104,9 @@ export class TwodsixDiceRoll {
   private calculateEffect(): void {
     let effect;
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
-      effect = this.roll?.total || 0 - this.settings.difficulty.target;
+      effect = (this.roll?.total || 0) - this.settings.difficulty.target;
     } else {
-      effect = this.roll?.total || 0 - TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))].Average.target;
+      effect = (this.roll?.total || 0) - TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))].Average.target;
     }
 
     if (this.isNaturalCritSuccess()) {
