@@ -1739,16 +1739,16 @@ background: var(--sidebar-background);
 .damage {
   border: var(--damage-stat-color);
 }
-
+*/
 .damage-message {
-  border-radius: 5px;
-  border: 1px outset var(--damage-stat-color);
-  margin: 3px 3px 3px 20px;
+  border-radius: 1ch;
+  border: 1px solid var(--damage-red);
+  margin: 3px;
   padding: 0.25em;
 }
 
 .damage-message:hover {
-  box-shadow: 0 4px 8px 0 var(--background-nearly-transparent), 0 6px 20px 0 var(--background-nearly-transparent);
+  box-shadow: 0 4px 8px 0 var(--damage-stat-color), 0 6px 16px 0 var(--damage-stat-color);
 }
 
 
