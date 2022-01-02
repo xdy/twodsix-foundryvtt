@@ -215,7 +215,9 @@ const CONSUMABLES = Object.freeze([
   "air", "drugs", "food", "fuel", "magazine", "power_cell", "other"
 ]);
 
-const DIFFICULTIES = Object.freeze({
+export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
+export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},

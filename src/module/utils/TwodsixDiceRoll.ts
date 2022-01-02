@@ -1,25 +1,25 @@
-import { TWODSIX } from "../config";
+import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
-import { advantageDisadvantageTerm } from "../i18n";
-import { getKeyByValue } from "./sheetUtils";
-import { TwodsixRollSettings } from "./TwodsixRollSettings";
-import { Crit } from "./crit";
-import { getCharShortName } from "./utils";
+import {advantageDisadvantageTerm} from "../i18n";
+import {getKeyByValue} from "./sheetUtils";
+import {TwodsixRollSettings} from "./TwodsixRollSettings";
+import {Crit} from "./crit";
+import {getCharShortName} from "./utils";
 import Skills = dataTwodsix.Skills;
 import Gear = dataTwodsix.Gear;
 
 export class TwodsixDiceRoll {
-  settings: TwodsixRollSettings;
-  actor: TwodsixActor;
-  skill?: TwodsixItem|null;
-  item?: TwodsixItem|null;
-  target: number;
-  naturalTotal: number;
-  effect: number;
-  roll: Roll|null=null;
+  settings:TwodsixRollSettings;
+  actor:TwodsixActor;
+  skill?:TwodsixItem | null;
+  item?:TwodsixItem | null;
+  target:number;
+  naturalTotal:number;
+  effect:number;
+  roll:Roll | null = null;
 
-  constructor(settings: TwodsixRollSettings, actor: TwodsixActor, skill: TwodsixItem|null = null, item: TwodsixItem|null = null) {
+  constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
@@ -27,17 +27,17 @@ export class TwodsixDiceRoll {
 
     this.createRoll();
 
-    this.naturalTotal = this.roll?.dice[0].results.reduce((total: number, dice) => {
+    this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
       return dice.active ? total + dice.result : total;
     }, 0) || 0;
 
     this.calculateEffect();
   }
 
-  private createRoll(): void {
+  private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as { skill: number, difficultyMod: number, DM: number };
+    const data = {} as { skill:number, difficultyMod:number, DM:number };
 
     let formula = rollType;
 
@@ -75,7 +75,7 @@ export class TwodsixDiceRoll {
     this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
-  public getCrit(): Crit {
+  public getCrit():Crit {
     const CRITICAL_EFFECT_VALUE = game.settings.get('twodsix', 'absoluteCriticalEffectValue');
     if (this.isNaturalCritSuccess()) {
       return Crit.success;
@@ -89,19 +89,19 @@ export class TwodsixDiceRoll {
     return Crit.neither;
   }
 
-  private isNaturalCritSuccess(): boolean {
+  private isNaturalCritSuccess():boolean {
     return this.naturalTotal == 12;
   }
 
-  private isNaturalCritFail(): boolean {
+  private isNaturalCritFail():boolean {
     return this.naturalTotal == 2;
   }
 
-  public isSuccess(): boolean {
+  public isSuccess():boolean {
     return this.effect >= 0;
   }
 
-  private calculateEffect(): void {
+  private calculateEffect():void {
     let effect;
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       effect = (this.roll?.total || 0) - this.settings.difficulty.target;
@@ -125,14 +125,14 @@ export class TwodsixDiceRoll {
     this.effect = effect;
   }
 
-  private static addSign(value: number): string {
+  private static addSign(value:number):string {
     return `${value <= 0 ? "" : "+"}${value}`;
   }
 
-  public async sendToChat(): Promise<void> {
+  public async sendToChat():Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const difficulties = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
     let flavor = `${rollingString}: ${difficulty}`;

@@ -23,7 +23,7 @@ Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>
 });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-Hooks.on('preUpdateToken', async (scene, token:Record<string, any>, update:Record<string, any>) => {
+Hooks.on('preUpdateToken', async (scene:Scene, token:Record<string, any>, update:Record<string, any>) => {
   if (update.actorData?.data?.characteristics) {
     const actor = <TwodsixActor><unknown>game.actors?.get(token.actorId);
     if (actor && actor.type === 'traveller') {
