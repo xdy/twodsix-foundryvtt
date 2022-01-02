@@ -89,7 +89,7 @@ async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<v
 async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean): Promise<void> {
   const isAlreadySet = await targetToken.actor.effects.find(eff => eff.data.label === effectLabel);
   if ((typeof isAlreadySet !== 'undefined') !== state) {
-    const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLowerCase()));
+    const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
     await targetToken.toggleEffect(targetEffect);
   }
 }

@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.0...v1.0.1) (2022-01-02)
+
+
+### Bug Fixes
+
+* wrongly calculated effect ([#774](https://github.com/xdy/twodsix-foundryvtt/issues/774)) ([be4df32](https://github.com/xdy/twodsix-foundryvtt/commit/be4df32015193763aba3ef585a1b59aba4de8ec2))
+
 # [1.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.3...v1.0.0) (2022-01-02)
 
 
