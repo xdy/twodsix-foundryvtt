@@ -18,7 +18,7 @@ export default function registerHandlebarsHelpers(): void {
       return '';
     } else {
       const thing: string = str;
-      return str.charAt(0).toUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+      return str.charAt(0).toLocaleUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
     }
   });
 
@@ -176,15 +176,15 @@ export default function registerHandlebarsHelpers(): void {
     const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
     if (slice) {
       sortedArray = slice.sort((a, b) => {
-        if (a.name?.toLowerCase() == null) {
+        if (a.name == null) {
           return 1;
         } else {
-          if (b.name?.toLowerCase() == null) {
+          if (b.name == null) {
             return -1;
           } else if (a.name === b.name) {
             return 0;
           } else {
-            return a.name?.toLowerCase().localeCompare(b.name?.toLowerCase());
+            return a.name?.toLocaleLowerCase().localeCompare(b.name?.toLocaleLowerCase());
           }
         }
       });
