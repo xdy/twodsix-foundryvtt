@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.1...v1.1.0) (2022-01-03)
+
+
+### Features
+
+* use two separate initiative formulas for ships and travellers ([#752](https://github.com/xdy/twodsix-foundryvtt/issues/752)) ([3a2e174](https://github.com/xdy/twodsix-foundryvtt/commit/3a2e174d70b1362794a3c293a097f5ee55b3c3f2)), closes [#380](https://github.com/xdy/twodsix-foundryvtt/issues/380)
+
 ## [1.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.0...v1.0.1) (2022-01-02)
 
 
