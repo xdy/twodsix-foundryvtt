@@ -7,7 +7,7 @@ VERSION="$(git describe --tags --abbrev=0)"
 # COMMIT_MESSAGE="$(git log -1 --skip 1 --pretty="%B" | sed 's/\r$//')" 
 # VERSION="$(git describe --tags --abbrev=0)"
 
-MESSAGE='@everyone Update '$VERSION'\n\n'$COMMIT_MESSAGE'\n\n'
+MESSAGE='@everyone Update '$VERSION'\n\n```'$COMMIT_MESSAGE'```\n\n'
 
 # AVATAR="https://github.com/xdy/twodsix-foundryvtt/blob/master/static/assets/twodsix_icon.webp"
 # \"avatar_url\": \"$AVATAR\",
