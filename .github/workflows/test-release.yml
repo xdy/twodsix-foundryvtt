@@ -71,7 +71,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-        - uses: actions/setup-ruby@v1
+      - uses: actions/setup-ruby@v1
       - name: Send Webhook Notification
         if: always()
         env:
