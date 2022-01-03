@@ -531,7 +531,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 .effect-edit {
-  width: 150%;
+  width: 100%;
 }
 
 .items-consumable {

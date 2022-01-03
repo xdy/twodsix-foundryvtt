@@ -146,11 +146,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.updateWithItemSpecificValues(itemData, <string>type);
 
     const items = <TwodsixItem[]>await this.actor.createEmbeddedDocuments("Item", [itemData]);
-
     if (type === "trait") {
       const effects = await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         origin: items[0].uuid,
-        icon: "systems/twodsix/assets/icons/science.svg"
+        icon: items[0].img
       }]);
       items[0].update({"data.effectId": effects[0].id});
     }
@@ -255,7 +254,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (items[0].type === "trait") {
       const effects = await actor.createEmbeddedDocuments("ActiveEffect", [{
         origin: items[0].uuid,
-        icon: "systems/twodsix/assets/icons/science.svg",
+        icon: items[0].img,
         changes: (<Trait>items[0].data.data).changes
       }]);
       await items[0].update({"data.effectId": effects[0].id});

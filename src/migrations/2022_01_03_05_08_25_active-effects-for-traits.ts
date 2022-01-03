@@ -4,7 +4,7 @@ async function applyActiveEffects(p, actor) {
     if (!item.data.data.effectId) {
       const effects = await actor.createEmbeddedDocuments("ActiveEffect", [{
         origin: item.uuid,
-        icon: "systems/twodsix/assets/icons/science.svg"
+        icon: item.img
       }]);
       await item.update({ "data.effectId": effects[0].id });
     }
