@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.5...v1.3.6) (2022-01-03)
+
+
+### Bug Fixes
+
+* sorry for all the spam. should hopefully be over soon ([1e091b8](https://github.com/xdy/twodsix-foundryvtt/commit/1e091b804317877c176244b3773d027c96c43524))
+
 ## [1.3.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.4...v1.3.5) (2022-01-03)
 
 
