@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.1...v1.3.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* use correct cepheus deluxe initiative formula ([16d065d](https://github.com/xdy/twodsix-foundryvtt/commit/16d065d1cb287dd0ea9ea13766720e8ed32792ae)), closes [jonepatr#5031](https://github.com/jonepatr/issues/5031)
+
 ## [1.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.0...v1.3.1) (2022-01-03)
 
 
