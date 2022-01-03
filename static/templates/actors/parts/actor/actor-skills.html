@@ -22,7 +22,7 @@
         <span class="skill-container">
           <span></span>
           <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
-          <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: right; width: 4ch;"/>
+          <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 4ch;"/>
         </span>
       </li>
     </ol>
@@ -66,7 +66,7 @@
         <span class="skill-container">
           <span class="mini-dice centre rollable" title="{{twodsix_invertSkillRollShiftClick}}"><i class="fas fa-dice" alt="d6"></i></span>
           <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.name}}</span>
-          <span class="item-name centre">{{untrainedSkill.data.data.value}}</span>
+          <input class="item-value-edit" type="number" value= "{{untrainedSkill.data.data.value}}" readonly/>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
           <span class="total-output flex1 skill-mod">{{untrainedSkill.data.data.value}}</span>
         </span>

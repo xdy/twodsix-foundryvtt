@@ -8,14 +8,14 @@
         <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
       </div>
 
-      <div class="item-skill">
+      <div class="item-augmentLoc">
         <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
       </div>
 
       <!-- Inputs -->
       <div class="item-bonus item-label"><input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></div>
 
-      <div class="item-skill">
+      <div class="item-augmentLoc">
         <select name="data.auglocation" value={{data.auglocation}}>
           {{#select data.auglocation}}
           <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
