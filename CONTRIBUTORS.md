@@ -1,7 +1,7 @@
 # Special thanks for all the people who have contributed to this project so far:
 The list is in chronological order - hopefully a correct one - with a Discord username, possibly a link to a Github profile followed by a brief and incomplete description of what this person has contributed.
 
-* [xdy](https://github.com/xdy/) - Started the project, has added most bugs, and keeps adding more bugs. Swedish translation.
+* [xdy](https://github.com/xdy/) - Started the project, has added most bugs, and keeps adding more bugs. Swedish translation. Not a python-kind-of-guy.
 * [UltraKev](https://github.com/UltraKev/) - Convinced xdy to do it properly, makes the bugs look pretty.
 * RobCubed - Helped out in the beginning.
 * ForjaSalvaje - Spanish translation.
