@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.2.0...v1.3.0) (2022-01-03)
+
+
+### Features
+
+* allow for skill in roll formulas ([#753](https://github.com/xdy/twodsix-foundryvtt/issues/753)) ([5c8bdf7](https://github.com/xdy/twodsix-foundryvtt/commit/5c8bdf7e7dae73f8498ec075d307a37e7ebab822))
+
 # [1.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.1...v1.2.0) (2022-01-03)
 
 
