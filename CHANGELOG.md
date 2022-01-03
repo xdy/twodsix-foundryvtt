@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.0...v1.3.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* style adjustments ([#780](https://github.com/xdy/twodsix-foundryvtt/issues/780)) ([fa4be25](https://github.com/xdy/twodsix-foundryvtt/commit/fa4be25ac5c68bcd025167b2400d9a930895414c))
+
 # [1.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.2.0...v1.3.0) (2022-01-03)
 
 
