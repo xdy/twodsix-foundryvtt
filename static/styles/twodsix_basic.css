@@ -600,8 +600,8 @@ a:hover, a.active {
 }
 
 input.item-value-edit {
-  padding: initial;
-  text-align: right;
+  /*padding: initial;*/
+  text-align: center;
   height: auto;
 }
 
@@ -1464,43 +1464,8 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-bottom: 0.4em;
 }
 
-.item-tl {
-  margin-top: 0.5em;
-}
-
-.item-price {
-  margin-top: 0.5em;
-}
-
-.item-skill {
-  margin-top: 0.5em;
-}
-
-.item-skillModifier {
-  margin-top: 0.5em;
-}
-
-.item-ammo {
-  margin-top: 0.5em;
-}
-
-.item-qty {
-  margin-top: 0.5em;
-}
-
-.item-weight {
-  margin-top: 0.5em;
-}
-
-.item-damage {
-  margin-top: 0.5em;
-}
-
-.form-section {
-  margin-top: 0.5em;
-}
-
-.item-range {
+.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .form-section  {
   margin-top: 0.5em;
 }
 
@@ -1535,8 +1500,10 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-descr div[contenteditable] {
   min-height: 140px;
   /*background: rgba(0, 0, 0, 0.22);*/
-  border: inherit; /*still not correct*/
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 3px;
   padding: 0.5em;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .pusher {

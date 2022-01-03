@@ -848,8 +848,8 @@ a:hover, a.active {
 }
 
 input.item-value-edit {
-  padding: initial;
-  text-align: right;
+  /*padding: initial;*/
+  text-align: center;
   height: auto;
 }
 
@@ -1822,7 +1822,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq {
   margin-top: 0.5em;
 }
 
