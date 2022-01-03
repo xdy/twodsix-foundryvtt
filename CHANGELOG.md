@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.3...v1.3.4) (2022-01-03)
+
+
+### Bug Fixes
+
+* Another test of automated foundry admin update ([d16e27f](https://github.com/xdy/twodsix-foundryvtt/commit/d16e27fd3bd26761a524bfd9f11c7da8956506f4))
+
 ## [1.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.2...v1.3.3) (2022-01-03)
 
 
