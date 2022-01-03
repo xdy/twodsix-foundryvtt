@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.1...v1.2.0) (2022-01-03)
+
+
+### Features
+
+* dynamically imports in rollup ([#757](https://github.com/xdy/twodsix-foundryvtt/issues/757)) ([ef28ca9](https://github.com/xdy/twodsix-foundryvtt/commit/ef28ca9f4f3d4acbfe4c6a8528a221e41678bf7e))
+
 ## [1.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.0...v1.1.1) (2022-01-03)
 
 
