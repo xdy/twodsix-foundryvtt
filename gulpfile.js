@@ -23,11 +23,17 @@ const semver = require('semver');
 const name = "twodsix*";
 const sourceDirectory = './src';
 const staticDirectory = './static';
+const templateDirectory = `${staticDirectory}/templates`;
 const distDirectory = './dist';
 const stylesDirectory = `${staticDirectory}/styles`;
 const stylesExtension = 'css';
 const sourceFileExtension = 'ts';
+const templateFileExtension = 'html';
 const staticFiles = ['assets', 'fonts', 'lang', 'packs', 'templates', 'system.json', 'template.json'];
+const buildFiles = [
+  `${sourceDirectory}/**/*.${sourceFileExtension}`,
+  `${templateDirectory}/**/*.${templateFileExtension}`
+];
 const getDownloadURL = (version) => `https://host/path/to/${version}.zip`;
 
 /********************/
@@ -39,8 +45,9 @@ const getDownloadURL = (version) => `https://host/path/to/${version}.zip`;
  * Build the distributable JavaScript code
  */
 async function buildCode() {
-  const build = await rollup({input: rollupConfig.input, plugins: rollupConfig.plugins});
-  return build.write(rollupConfig.output);
+  const config = rollupConfig();
+  const build = await rollup({input: config.input, plugins: config.plugins});
+  return build.write(config.output);
 }
 
 /**
@@ -66,7 +73,7 @@ async function copyStaticFiles() {
  * Watch for changes for each build step
  */
 function buildWatch() {
-  gulp.watch(`${sourceDirectory}/**/*.${sourceFileExtension}`, {ignoreInitial: false}, buildCode);
+  gulp.watch(buildFiles, {ignoreInitial: false}, buildCode);
   gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, {ignoreInitial: false}, buildStyles);
   gulp.watch(
     staticFiles.map((file) => `${staticDirectory}/${file}`),

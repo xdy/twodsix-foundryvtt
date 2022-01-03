@@ -11,7 +11,6 @@ import ActorTwodsixDataSource = dataTwodsix.ActorTwodsixDataSource;
 import { TwodsixItemSheet } from "src/module/sheets/TwodsixItemSheet";
 
 declare global {
-
   interface LenientGlobalVariableTypes {
     game: never;
     canvas: never;
