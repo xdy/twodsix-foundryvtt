@@ -29,12 +29,12 @@ export default class RulesetSettings extends AdvancedSettings {
 
   static registerSettings(): string[] {
     const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
-    const onChangeInitformula = (formula: string) => CONFIG.Combat.initiative = {
-      formula: formula,
-      decimals: 0
-    };
+    // TODO: With the new ship positions this should be changed to take the pilot's piloting skill into consideration.
+    const DEFAULT_SHIP_INITIATIVE_FORMULA = "2d6";
+
     const settings: string[] = [];
-    settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world', onChangeInitformula));
+    settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
+    settings.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
     settings.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS));
     settings.push(booleanSetting('difficultiesAsTargetNumber', false));
     settings.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS));

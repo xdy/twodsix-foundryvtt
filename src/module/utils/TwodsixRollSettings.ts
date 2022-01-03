@@ -1,10 +1,10 @@
-import {TWODSIX} from "../config";
+import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import { getCharShortName } from "./utils";
+import {getCharShortName} from "./utils";
 import {getKeyByValue} from "./sheetUtils";
+import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import Skills = dataTwodsix.Skills;
 import Gear = dataTwodsix.Gear;
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 
 export class TwodsixRollSettings {
@@ -15,7 +15,7 @@ export class TwodsixRollSettings {
   rollMode:DICE_ROLL_MODES;
   characteristic:string;
   skillRoll:boolean;
-  difficulties:any;
+  difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:any, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
@@ -24,7 +24,7 @@ export class TwodsixRollSettings {
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.data?.data;
     const skillModifier = gear?.skillModifier ?? 0;
-    const characteristic = aSkill ?skill.characteristic : "NONE";
+    const characteristic = aSkill ? skill.characteristic : "NONE";
 
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;

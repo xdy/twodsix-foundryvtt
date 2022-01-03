@@ -848,8 +848,8 @@ a:hover, a.active {
 }
 
 input.item-value-edit {
-  padding: initial;
-  text-align: right;
+  /*padding: initial;*/
+  text-align: center;
   height: auto;
 }
 
@@ -1075,6 +1075,13 @@ span.total-output {
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
+}
+
+.simplified-skill-description {
+  font-weight: normal;
+  font-size: 10px;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 /*-------Info Tab-----------*/
@@ -1815,7 +1822,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq {
   margin-top: 0.5em;
 }
 

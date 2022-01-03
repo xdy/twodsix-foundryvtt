@@ -1,3 +1,52 @@
+## [1.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.1...v1.3.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* use correct cepheus deluxe initiative formula ([16d065d](https://github.com/xdy/twodsix-foundryvtt/commit/16d065d1cb287dd0ea9ea13766720e8ed32792ae)), closes [jonepatr#5031](https://github.com/jonepatr/issues/5031)
+
+## [1.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.0...v1.3.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* style adjustments ([#780](https://github.com/xdy/twodsix-foundryvtt/issues/780)) ([fa4be25](https://github.com/xdy/twodsix-foundryvtt/commit/fa4be25ac5c68bcd025167b2400d9a930895414c))
+
+# [1.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.2.0...v1.3.0) (2022-01-03)
+
+
+### Features
+
+* allow for skill in roll formulas ([#753](https://github.com/xdy/twodsix-foundryvtt/issues/753)) ([5c8bdf7](https://github.com/xdy/twodsix-foundryvtt/commit/5c8bdf7e7dae73f8498ec075d307a37e7ebab822))
+
+# [1.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.1...v1.2.0) (2022-01-03)
+
+
+### Features
+
+* dynamically imports in rollup ([#757](https://github.com/xdy/twodsix-foundryvtt/issues/757)) ([ef28ca9](https://github.com/xdy/twodsix-foundryvtt/commit/ef28ca9f4f3d4acbfe4c6a8528a221e41678bf7e))
+
+## [1.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.0...v1.1.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* color damage card ([#775](https://github.com/xdy/twodsix-foundryvtt/issues/775)) ([aa38993](https://github.com/xdy/twodsix-foundryvtt/commit/aa3899363501b3b1189ed2e276116891b1dc3392))
+
+# [1.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.1...v1.1.0) (2022-01-03)
+
+
+### Features
+
+* use two separate initiative formulas for ships and travellers ([#752](https://github.com/xdy/twodsix-foundryvtt/issues/752)) ([3a2e174](https://github.com/xdy/twodsix-foundryvtt/commit/3a2e174d70b1362794a3c293a097f5ee55b3c3f2)), closes [#380](https://github.com/xdy/twodsix-foundryvtt/issues/380)
+
+## [1.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.0...v1.0.1) (2022-01-02)
+
+
+### Bug Fixes
+
+* wrongly calculated effect ([#774](https://github.com/xdy/twodsix-foundryvtt/issues/774)) ([be4df32](https://github.com/xdy/twodsix-foundryvtt/commit/be4df32015193763aba3ef585a1b59aba4de8ec2))
+
 # [1.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v0.13.3...v1.0.0) (2022-01-02)
 
 

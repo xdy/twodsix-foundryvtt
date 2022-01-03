@@ -71,7 +71,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-        
+
+      - name: Send Webhook Notification
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: bash src/scripts/discord.sh $WEBHOOK_URL
+        shell: bash
 #      # Publish the release to FoundryVTT's package repository
 #      - name: FoundryVTT AutoPublish
 #        uses: Varriount/fvtt-autopublish@v1.0.6
