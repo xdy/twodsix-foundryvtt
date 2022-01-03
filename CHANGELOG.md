@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.1.0...v1.1.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* color damage card ([#775](https://github.com/xdy/twodsix-foundryvtt/issues/775)) ([aa38993](https://github.com/xdy/twodsix-foundryvtt/commit/aa3899363501b3b1189ed2e276116891b1dc3392))
+
 # [1.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.0.1...v1.1.0) (2022-01-03)
 
 
