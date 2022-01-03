@@ -16,6 +16,13 @@
           </th>
         </tr>
       </table>
+      <div class="item-name">
+        <label for="data.name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
+        <input type="text" value="{{skillName name}}" readonly/>
+        <div class="simplified-skill-description">
+          {{{replace (localize "TWODSIX.Items.Skills.SimplifiedSkillNameDescription") "_SKILL_NAME_" (skillName name)}}}
+        </div>
+      </div>
     </div>
     <div class="item-lvl">
       <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}

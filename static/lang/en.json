@@ -223,6 +223,8 @@
         "SOC": "SOC",
         "STR": "STR",
         "SkillName": "Skill Name",
+        "SimplifiedSkillName": "Simplified Skill Name",
+        "SimplifiedSkillNameDescription": "Used in roll formulas as @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ defaults to zero if the skill is missing or below zero.",
         "LFB": "LFB",
         "STA": "STA",
         "ALT1": "ALT1",

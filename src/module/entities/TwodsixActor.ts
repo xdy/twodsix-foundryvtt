@@ -50,6 +50,27 @@ export default class TwodsixActor extends Actor {
       characteristic.current = characteristic.value - characteristic.damage;
       characteristic.mod = calcModFor(characteristic.current);
     }
+    const actorSkills = actorData.items.filter(
+      (item:TwodsixItem) => item.type === "skills"
+    ).map(
+      (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.data.data as Skills).value]
+    );
+
+    const handler = {
+      has: (target: Record<string,number>, property:string) => {
+        return property[property.length - 1] !== "_" ? true : property.slice(0, -1) in target;
+      },
+      get: (target: Record<string,number>, property:string) => {
+        if (property[property.length - 1] === "_") {
+          const newName = property[property.length - 1] === "_" ? property.slice(0, -1) : property;
+          return newName in target && target[newName] > 0 ? target[newName] : 0;
+        } else {
+          return property in target ? target[property] : (this.getUntrainedSkill().data.data as Skills).value;
+        }
+      }
+    };
+
+    data.skills = new Proxy(Object.fromEntries(actorSkills), handler);
   }
 
   protected async _onCreate() {
