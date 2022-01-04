@@ -149,7 +149,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (type === "trait") {
       const effects = await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         origin: items[0].uuid,
-        icon: items[0].img
+        icon: items[0].img,
+        tint: "#ffffff",
+        label: game.i18n.localize("TWODSIX.Items.Traits.DefaultName")
       }]);
       items[0].update({"data.effectId": effects[0].id});
     }

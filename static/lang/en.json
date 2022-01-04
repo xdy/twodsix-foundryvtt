@@ -252,7 +252,9 @@
               "Effects": "Effects",
               "CreateTrait": "Create Trait",
               "DeleteTrait": "Delete Trait",
-              "ShortDescAndEffects": "Short description and list of effects"
+              "ShortDescAndEffects": "Short description and list of effects",
+              "Mode": "Mode",
+              "DefaultName": "New Trait"
       },
       "Tool": {
         "Bonus": "Bonus"
