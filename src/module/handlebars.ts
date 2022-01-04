@@ -236,7 +236,7 @@ export default function registerHandlebarsHelpers(): void {
           } else if (a[property] === b[property]) {
             return 0;
           } else {
-            return a[property]?.toLocaleLowerCase().localeCompare(b[property]?.toLocaleLowerCase());
+            return a[property].toLocaleLowerCase().localeCompare(b[property].toLocaleLowerCase());
           }
         }
       });
