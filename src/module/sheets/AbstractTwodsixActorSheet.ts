@@ -257,6 +257,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       const effects = await actor.createEmbeddedDocuments("ActiveEffect", [{
         origin: items[0].uuid,
         icon: items[0].img,
+        tint: "#ffffff",
+        label: items[0].name,
         changes: (<Trait>items[0].data.data).changes
       }]);
       await items[0].update({"data.effectId": effects[0].id});
