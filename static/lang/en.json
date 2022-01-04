@@ -251,7 +251,8 @@
               "EditEffect": "Edit Effect",
               "Effects": "Effects",
               "CreateTrait": "Create Trait",
-              "DeleteTrait": "Delete Trait"
+              "DeleteTrait": "Delete Trait",
+              "ShortDescAndEffects": "Short description and list of effects"
       },
       "Tool": {
         "Bonus": "Bonus"

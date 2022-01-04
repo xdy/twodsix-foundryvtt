@@ -3,7 +3,7 @@
   <span class="item-title">{{localize "TWODSIX.Actor.Items.TRAITS"}}</span>
   <div class="items-traits gear-header">
     <span class="item-name">{{localize "TWODSIX.Items.Traits.TraitName"}}</span>
-    <span class="item-name">{{localize "TWODSIX.Items.Traits.Effects"}}</span>
+    <span class="item-name">{{localize "TWODSIX.Items.Traits.ShortDescAndEffects"}}</span>
     <span class="item-name centre">
       <a class="item-control item-create" title='{{localize "TWODSIX.Items.Traits.CreateTrait"}}' data-type="trait">
         <i class="fas fa-plus"></i>
@@ -17,10 +17,11 @@
         <span class="items-traits">
           <span class="item-name trait-name">{{item.name}}</span>
           <span class="item-name">
+            {{item.data.data.shortdescr}}
             <ul>
-            {{#each item.data.data.effect.data.changes as |change|}}
+              {{#each item.data.data.effect.data.changes as |change|}}
               <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
-            {{/each}}
+              {{/each}}
             </ul>
           </span>
           <span class="item-controls centre">
