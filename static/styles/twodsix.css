@@ -768,8 +768,8 @@ a.notes-tab.active {
 
 .items-traits {
   display: grid;
-  grid-template-columns: 7em 22em 4em;
-  gap: 1px 1px;
+  grid-template-columns: 8em 19em 4em;
+  gap: 0 1ch;
   grid-template-areas: '. . .';
 }
 
