@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.6...v1.3.7) (2022-01-05)
+
+
+### Bug Fixes
+
+* clean-up skill sheet ([#786](https://github.com/xdy/twodsix-foundryvtt/issues/786)) ([2cfa821](https://github.com/xdy/twodsix-foundryvtt/commit/2cfa8213bfb53f24c811b175815704b8202d0948))
+
 ## [1.3.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.5...v1.3.6) (2022-01-03)
 
 
