@@ -1465,7 +1465,7 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .form-section  {
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section  {
   margin-top: 0.5em;
 }
 
