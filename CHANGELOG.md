@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.7...v1.3.8) (2022-01-06)
+
+
+### Bug Fixes
+
+* drag and drop macro onto macro bar ([#788](https://github.com/xdy/twodsix-foundryvtt/issues/788)) ([3afcac0](https://github.com/xdy/twodsix-foundryvtt/commit/3afcac0aea23a9eab7f26441f3523c8236f2683c))
+
 ## [1.3.7](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.6...v1.3.7) (2022-01-05)
 
 
