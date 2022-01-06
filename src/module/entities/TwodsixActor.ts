@@ -81,7 +81,7 @@ export default class TwodsixActor extends Actor {
             "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
             "token.displayBars": CONST.TOKEN_DISPLAY_MODES.ALWAYS,
             "token.vision": true,
-            "token.brightSight": 30,
+            "token.brightSight": 1000,
             "token.dimSight": 0,
             "token.actorLink": true,
             "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
