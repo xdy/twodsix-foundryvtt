@@ -18,9 +18,9 @@ export async function createItemMacro(item, slot): Promise<void> {
     if (!itemName) {
       const origItem = <Item>game.items?.get(item.id);
       itemName = origItem?.name || "???";
-      img = origItem?.img || "icons/svg/mystery-man.svg";
+      img = origItem?.img || CONST.DEFAULT_MACRO_ICON;
     }
-    let macro: Macro | undefined = game.macros?.get(itemName);
+    let macro: Macro | undefined = game.macros?.getName(itemName);
     if (!macro) {
       macro = await Macro.create({
         command: command,
