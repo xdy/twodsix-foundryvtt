@@ -77,12 +77,17 @@ jobs:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         run: bash src/scripts/discord.sh $WEBHOOK_URL
         shell: bash
-#      # Publish the release to FoundryVTT's package repository
-#      - name: FoundryVTT AutoPublish
-#        uses: Varriount/fvtt-autopublish@v1.0.6
-#        with:
-#          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-#          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-#          module-id: 468
-#          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
-#          manifest-file: ./system.json
+
+      - name: Get tag
+        run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      
+      # Publish the release to FoundryVTT's package repository
+      - name: Publish to Foundry Admin
+        uses: Varriount/fvtt-autopublish@v1.0.6
+        with:
+          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+          module-id: 468
+          #manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/download/${{ env.TWODSIX_VERSION }}/system.json
+          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+          manifest-file: static/system.json

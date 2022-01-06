@@ -1,3 +1,66 @@
+## [1.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.10...v1.3.11) (2022-01-06)
+
+
+### Bug Fixes
+
+* Go back to using latest as the path to system.json ([00d7522](https://github.com/xdy/twodsix-foundryvtt/commit/00d7522e8cd77d99698265bdcdc4a5d6598ae80d))
+
+## [1.3.10](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.9...v1.3.10) (2022-01-06)
+
+
+### Bug Fixes
+
+* Try to fix release by reverting... ([d2d85ee](https://github.com/xdy/twodsix-foundryvtt/commit/d2d85ee4231fa785b1fac01b571277110a9da640))
+
+## [1.3.9](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.8...v1.3.9) (2022-01-06)
+
+
+### Bug Fixes
+
+* allow defaultTokenSettings to function again ([#789](https://github.com/xdy/twodsix-foundryvtt/issues/789)) ([d863f3c](https://github.com/xdy/twodsix-foundryvtt/commit/d863f3cbd903213e99d15a12f13bbbdbc5e3f808))
+
+## [1.3.8](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.7...v1.3.8) (2022-01-06)
+
+
+### Bug Fixes
+
+* drag and drop macro onto macro bar ([#788](https://github.com/xdy/twodsix-foundryvtt/issues/788)) ([3afcac0](https://github.com/xdy/twodsix-foundryvtt/commit/3afcac0aea23a9eab7f26441f3523c8236f2683c))
+
+## [1.3.7](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.6...v1.3.7) (2022-01-05)
+
+
+### Bug Fixes
+
+* clean-up skill sheet ([#786](https://github.com/xdy/twodsix-foundryvtt/issues/786)) ([2cfa821](https://github.com/xdy/twodsix-foundryvtt/commit/2cfa8213bfb53f24c811b175815704b8202d0948))
+
+## [1.3.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.5...v1.3.6) (2022-01-03)
+
+
+### Bug Fixes
+
+* sorry for all the spam. should hopefully be over soon ([1e091b8](https://github.com/xdy/twodsix-foundryvtt/commit/1e091b804317877c176244b3773d027c96c43524))
+
+## [1.3.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.4...v1.3.5) (2022-01-03)
+
+
+### Bug Fixes
+
+* Another try at automated foundry admin update ([287f291](https://github.com/xdy/twodsix-foundryvtt/commit/287f291acd3c942eeade16895aa2003c98886b7c))
+
+## [1.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.3...v1.3.4) (2022-01-03)
+
+
+### Bug Fixes
+
+* Another test of automated foundry admin update ([d16e27f](https://github.com/xdy/twodsix-foundryvtt/commit/d16e27fd3bd26761a524bfd9f11c7da8956506f4))
+
+## [1.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.2...v1.3.3) (2022-01-03)
+
+
+### Bug Fixes
+
+* Testing automated foundry admin update ([1a34b4c](https://github.com/xdy/twodsix-foundryvtt/commit/1a34b4c9bf6a1c7799e10feb6e801161f376af61))
+
 ## [1.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.1...v1.3.2) (2022-01-03)
 
 
