@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.8...v1.3.9) (2022-01-06)
+
+
+### Bug Fixes
+
+* allow defaultTokenSettings to function again ([#789](https://github.com/xdy/twodsix-foundryvtt/issues/789)) ([d863f3c](https://github.com/xdy/twodsix-foundryvtt/commit/d863f3cbd903213e99d15a12f13bbbdbc5e3f808))
+
 ## [1.3.8](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.7...v1.3.8) (2022-01-06)
 
 
