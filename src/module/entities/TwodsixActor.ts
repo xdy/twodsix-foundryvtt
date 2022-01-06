@@ -76,6 +76,20 @@ export default class TwodsixActor extends Actor {
   protected async _onCreate() {
     switch (this.data.type) {
       case "traveller":
+        if (game.settings.get("twodsix", "defaultTokenSettings")) {
+          this.update( {
+            "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
+            "token.displayBars": CONST.TOKEN_DISPLAY_MODES.ALWAYS,
+            "token.vision": true,
+            "token.brightSight": 1000,
+            "token.dimSight": 0,
+            "token.actorLink": true,
+            "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+            "token.bar1": {
+              attribute: "hits"
+            }
+          });
+        }
         await this.createUntrainedSkill();
         if (this.data.img === CONST.DEFAULT_TOKEN) {
           await this.update({
