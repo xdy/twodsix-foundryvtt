@@ -293,7 +293,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (sheetData.actor.type === "traveller") {
         encumbrance += AbstractTwodsixActorSheet._getWeight(item);
         const anArmor = <Armor>item.data.data;
-        if (item.type === "armor" && anArmor.equipped) {
+        if (item.type === "armor" && anArmor.equipped === "equipped") {
           primaryArmor += anArmor.armor;
           secondaryArmor += anArmor.secondaryArmor.value;
           radiationProtection += anArmor.radiationProtection.value;
