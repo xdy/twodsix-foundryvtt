@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.10...v1.3.11) (2022-01-06)
+
+
+### Bug Fixes
+
+* Go back to using latest as the path to system.json ([00d7522](https://github.com/xdy/twodsix-foundryvtt/commit/00d7522e8cd77d99698265bdcdc4a5d6598ae80d))
+
 ## [1.3.10](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.9...v1.3.10) (2022-01-06)
 
 
