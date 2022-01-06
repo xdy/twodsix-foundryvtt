@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.11...v1.3.12) (2022-01-06)
+
+
+### Bug Fixes
+
+* calculate armor correctly ([#790](https://github.com/xdy/twodsix-foundryvtt/issues/790)) ([81d17eb](https://github.com/xdy/twodsix-foundryvtt/commit/81d17eb3f371a28b8455f9c99f07b945754b7c0c))
+
 ## [1.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.10...v1.3.11) (2022-01-06)
 
 
