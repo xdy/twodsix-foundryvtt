@@ -15,7 +15,7 @@ async function applyActiveEffects(actor:TwodsixActor) {
 }
 
 export async function migrate(): Promise<void> {
-  const allActors = game.actors?.filter(actor => actor.type === 'traveller') as unknown as TwodsixActor[];
+  const allActors = (game.actors?.filter(actor => actor.type === 'traveller') ?? []) as unknown as TwodsixActor[];
 	
 	for (const scene of game.scenes ?? []) {
 		for (const token of scene.tokens ?? []) {
