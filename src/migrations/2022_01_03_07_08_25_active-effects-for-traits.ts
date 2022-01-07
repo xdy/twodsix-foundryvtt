@@ -16,26 +16,26 @@ async function applyActiveEffects(actor:TwodsixActor) {
 
 export async function migrate(): Promise<void> {
   const allActors = (game.actors?.filter(actor => actor.type === 'traveller') ?? []) as unknown as TwodsixActor[];
-	
-	for (const scene of game.scenes ?? []) {
-		for (const token of scene.tokens ?? []) {
-			if (token.actor && !token.data.actorLink && token.actor.type === 'traveller') {
-				allActors.push(token.actor as TwodsixActor);
-			}
-		}
-	}
 
-	// @ts-expect-error The type definitions for metadata must be updated to support "type"
-	const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && !pack.locked);
-	for (const pack of actorPacks) {
+  for (const scene of game.scenes ?? []) {
+    for (const token of scene.tokens ?? []) {
+      if (token.actor && !token.data.actorLink && token.actor.type === 'traveller') {
+        allActors.push(token.actor as TwodsixActor);
+      }
+    }
+  }
+
+  // @ts-expect-error The type definitions for metadata must be updated to support "type"
+  const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && !pack.locked);
+  for (const pack of actorPacks) {
     for (const actor of await pack.getDocuments()) {
       allActors.push(actor as unknown as TwodsixActor);
     }
-	}
+  }
 
-	for (const actor of allActors) {
-		await applyActiveEffects(actor);
-	}
+  for (const actor of allActors) {
+    await applyActiveEffects(actor);
+  }
 
-	return Promise.resolve();
+  return Promise.resolve();
 }
