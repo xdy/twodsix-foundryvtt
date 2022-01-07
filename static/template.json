@@ -319,7 +319,6 @@
   },
   "Item": {
     "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component"],
-    "equipped": ["equipped", "ship", "backpack"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -331,12 +330,10 @@
         "price": "",
         "traits": [],
         "consumables": [],
-        "equipped": {
-          "weight": 0
-        },
         "skillModifier": 0,
         "skill": "",
-        "associatedSkillName": ""
+        "associatedSkillName": "",
+        "equipped": ["equipped", "ship", "backpack"]
       }
     },
     "equipment": {

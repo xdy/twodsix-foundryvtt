@@ -2,8 +2,8 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import Skills = dataTwodsix.Skills;
 import { getCharShortName } from "./utils/utils";
+import {Skills} from "../types/template";
 
 export default function registerHandlebarsHelpers(): void {
 

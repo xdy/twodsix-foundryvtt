@@ -3,8 +3,7 @@ import type TwodsixItem from "../entities/TwodsixItem";
 import {getCharShortName} from "./utils";
 import {getKeyByValue} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import Skills = dataTwodsix.Skills;
-import Gear = dataTwodsix.Gear;
+import {Gear, Skills} from "../../types/template";
 
 
 export class TwodsixRollSettings {

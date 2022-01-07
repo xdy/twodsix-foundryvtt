@@ -6,8 +6,7 @@ import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import {Crit} from "./crit";
 import {getCharShortName} from "./utils";
-import Skills = dataTwodsix.Skills;
-import Gear = dataTwodsix.Gear;
+import {Gear, Skills} from "../../types/template";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
