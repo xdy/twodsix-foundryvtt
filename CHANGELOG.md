@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.12...v1.4.0) (2022-01-07)
+
+
+### Features
+
+* one contact field instead of contacts, allies, and enemies ([#782](https://github.com/xdy/twodsix-foundryvtt/issues/782)) ([4a11d4a](https://github.com/xdy/twodsix-foundryvtt/commit/4a11d4a9cc3b6de3ed5a0d2f4ba3836205cdc06b)), closes [#269](https://github.com/xdy/twodsix-foundryvtt/issues/269)
+
 ## [1.3.12](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.11...v1.3.12) (2022-01-06)
 
 
