@@ -1,4 +1,3 @@
-import { TWODSIX } from "../module/config";
 import RulesetSettings from "../module/settings/RulsetSettings";
 import DisplaySettings from "../module/settings/DisplaySettings";
 import ItemSettings from "../module/settings/ItemSettings";
@@ -6,9 +5,9 @@ import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import {rollItemMacro} from "../module/utils/rollItemMacro";
-import ItemTwodsixDataSource = dataTwodsix.ItemTwodsixDataSource;
-import ActorTwodsixDataSource = dataTwodsix.ActorTwodsixDataSource;
 import { TwodsixItemSheet } from "src/module/sheets/TwodsixItemSheet";
+import {ActorTwodsixDataSource, ItemTwodsixDataSource} from "./template";
+import {TWODSIX} from "../module/config";
 
 declare global {
   interface LenientGlobalVariableTypes {

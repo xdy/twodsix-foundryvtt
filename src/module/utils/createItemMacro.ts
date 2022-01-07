@@ -8,6 +8,7 @@
  */
 export async function createItemMacro(item, slot): Promise<void> {
   if (item.type === "Macro") {
+    // @ts-ignore
     await game.user?.assignHotbarMacro(game.macros.get(item.id), slot);
   } else {
     const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;

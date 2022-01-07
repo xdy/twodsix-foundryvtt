@@ -1,5 +1,6 @@
 // Namespace TWODSIX Configuration Values
 
+
 const CHARACTERISTICS = Object.freeze({
   "strength": "STR",
   "dexterity": "DEX",
@@ -268,3 +269,6 @@ export const TWODSIX = {
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS
 };
+
+export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
+
