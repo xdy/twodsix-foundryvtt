@@ -835,13 +835,13 @@ span.total-output {
 
 .info-container {
   display: grid;
-  grid-template-columns: 11.2em 11.2em 11.2em;
-  grid-template-rows: 8em 8em 19em;
+  grid-template-columns: 33.6em;
+  grid-template-rows: 8em 13em 19em;
   gap: 1px 1px;
   grid-template-areas:
-      "char-description char-description char-description"
-      "char-contacts char-allies char-enemies"
-      "char-bio char-bio char-bio";
+      "char-description"
+      "char-contacts"
+      "char-bio";
   /*padding: 0em;*/
   position: relative;
   margin-top: 4em;
@@ -876,24 +876,16 @@ span.total-output {
   top: -2em;
 }
 
-.char-allies {
-  grid-area: char-allies;
-  position: relative;
-  top: -2em;
-}
-
-.char-enemies {
-  grid-area: char-enemies;
-  position: relative;
-  top: -2em;
-}
-
-.char-description div[contenteditable], .char-contacts div[contenteditable], .char-allies div[contenteditable], .char-enemies div[contenteditable] {
+.char-description div[contenteditable], .char-contacts div[contenteditable] {
   border: 2px solid;
   height: 5em;
   overflow-y: auto;
   background-color: var(--background-nearly-transparent) !important;
   padding: 0.2em;
+}
+
+.char-contacts div[contenteditable] {
+  height: 10em;
 }
 
 .char-bio div[contenteditable] {
