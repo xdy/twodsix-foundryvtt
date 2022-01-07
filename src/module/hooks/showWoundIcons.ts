@@ -48,7 +48,7 @@ export const DAMAGECOLORS = Object.freeze({
 });
 
 async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<void> {
-  const tintToApply = getIconTint(selectedToken.actor);
+  const tintToApply = getIconTint(selectedToken?.actor);
 
   const woundedEffectLabel = 'Bleeding';
   const deadEffectLabel = 'Dead';
