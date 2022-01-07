@@ -8,6 +8,8 @@ import {rollItemMacro} from "../module/utils/rollItemMacro";
 import { TwodsixItemSheet } from "src/module/sheets/TwodsixItemSheet";
 import {ActorTwodsixDataSource, ItemTwodsixDataSource} from "./template";
 import {TWODSIX} from "../module/config";
+import { TwodsixShipV2Sheet } from "src/module/sheets/TwodsixShipV2Sheet";
+import { TwodsixShipPositionSheet } from "src/module/sheets/TwodsixShipPositionSheet";
 
 declare global {
   interface LenientGlobalVariableTypes {
@@ -99,6 +101,15 @@ declare interface TwodsixItemSheetData {
   }
 }
 
+declare interface TwodsixShipPositionSheetData {
+  'twodsix.TwodsixShipPositionSheet': {
+    id: 'twodsix.TwodsixShipPositionSheet';
+    default: boolean;
+    cls: TwodsixShipPositionSheet;
+    label: string;
+  }
+}
+
 declare interface Game {
   twodsix: {
     applications: {
@@ -135,6 +146,14 @@ declare interface Game {
             cls: TwodsixShipSheet;
             label: string;
           };
+          ship_v2: {
+            'twodsix.TwodsixShipV2Sheet': {
+              id: 'twodsix.TwodsixShipV2Sheet';
+              default: boolean;
+              cls: TwodsixShipV2Sheet;
+              label: string;
+            };
+          };
         };
       };
     };
@@ -153,6 +172,7 @@ declare interface Game {
         trait: TwodsixItemSheetData;
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
+        shipPosition: TwodsixShipPositionSheetData;
       };
     };
   };

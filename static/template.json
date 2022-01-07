@@ -202,7 +202,7 @@
         "sensors": 0,
         "weapons": 0
       },
-      "shipCrewPositionActorIds": {},
+      "shipPositionActorIds": {},
       "components": [],
       "shipStats": {
         "hull": {
@@ -224,7 +224,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_crew_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_position"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -333,7 +333,7 @@
       "damage": "",
       "status": ["operational", "damaged", "destroyed", "off"]
     },
-    "ship_crew_position": {
+    "ship_position": {
       "name": "",
       "icon": "",
       "actions": {},

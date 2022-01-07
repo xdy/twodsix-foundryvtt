@@ -12,7 +12,12 @@ export interface ShipDataSource {
   data:Ship;
 }
 
-export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource;
+export interface ShipV2DataSource {
+  type: 'ship_v2';
+  data: ShipV2;
+}
+
+export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | ShipV2DataSource;
 
 // Items
 export interface EquipmentDataSource {
@@ -70,6 +75,11 @@ export interface WeaponDataSource {
   data:Weapon;
 }
 
+export interface ShipPositionDataSource {
+  type: 'ship_position';
+  data: ShipPosition;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -81,6 +91,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | StorageDataSource
   | TraitDataSource
   | WeaponDataSource
+  | ShipPositionDataSource
   ;
 
 export type Gear = Armor
@@ -106,6 +117,7 @@ export interface Actor {
   types:string[];
   traveller:Traveller;
   ship:Ship;
+  ship_v2: Ship;
 }
 
 export interface Ship {
@@ -120,6 +132,25 @@ export interface Ship {
   other:string;
   shipStats:ShipStats;
 }
+
+export interface ShipV2 {
+  name: string;
+  crew: Crew;
+  notes: string;
+  cargo: string;
+  finances: string;
+  maintenanceCost: number;
+  shipValue: string;
+  reqPower: ReqPower;
+  other: string;
+  shipStats: ShipStats;
+  systems: Systems;
+  staterooms: Staterooms;
+  software: Software;
+  commonAreas: CommonAreas;
+  shipPositionActorIds: Record<string, string>;
+}
+
 
 export interface CommonAreas {
   number:string;
@@ -250,8 +281,29 @@ export interface PrimaryArmor {
   value:number;
 }
 
+export enum ShipActionType {
+  skillRoll = "skillRoll",
+  chatMessage = "chatMessage",
+  fireEnergyWeapons = "fireEnergyWeapons"
+}
+export interface ShipAction {
+  order: number,
+  name: string,
+  icon: string,
+  type: ShipActionType,
+  command: string
+}
+
+export interface ShipPosition {
+  name: string,
+  icon: string,
+  actions: Record<string, ShipAction>,
+  order: number;
+}
+
 export interface Item {
   types:string[];
+  equipped: string[];
   templates:Templates;
   equipment:Equipment;
   tool:Equipment;
@@ -337,10 +389,14 @@ export interface GearTemplate {
   price:string;
   traits:any[];
   consumables:any[];
+  equipped: Equipped;
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:string;
+}
+
+export interface Equipped {
+  weight: number;
 }
 
 export interface Trait {

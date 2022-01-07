@@ -2,8 +2,12 @@ import { TWODSIX } from "../config";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
+import ShipPosition = dataTwodsix.ShipPosition;
+import ShipAction = dataTwodsix.ShipAction;
+import ShipActionType = dataTwodsix.ShipActionType;
 
-export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
+
+export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   // @ts-ignore
   getData(): ItemSheetData {
@@ -12,8 +16,8 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
     data.data.components = this.item?.parent?.items.filter(component => component.type === "component") ?? [];
     data.data.availableActions = TwodsixShipActions.availableMethods;
     data.data.sortedActions = Object.entries(data.data.actions).map((act) => {
-      let ret = act[1]
-      ret["id"] = act[0]
+      const ret = act[1];
+      ret["id"] = act[0];
       ret["placeholder"] = TwodsixShipActions.availableMethods[ret["type"]]["placeholder"];
       return ret;
     });
@@ -26,7 +30,7 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
     // @ts-ignore
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
-      template: "systems/twodsix/templates/items/ship_crew_position-sheet.html",
+      template: "systems/twodsix/templates/items/ship_position-sheet.html",
       submitOnClose: true,
       submitOnChange: true,
       dragDrop: [{ dropSelector: null }]
@@ -47,37 +51,37 @@ export class TwodsixShipCrewPositionSheet extends AbstractTwodsixItemSheet {
 
   async _onDrop(event: DragEvent): Promise<boolean | any> {
     const data = getDataFromDropEvent(event);
-    if (data.type === "Item" && (data.data?.type === "skills" || game.items.get(data.id).type === "skills")) { 
-        const skillData = data.data ?? game.items.get(data.id).data
-        const actions = this.item.data.data.actions;
-        const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-        actions[randomID()] = {
-          "order": Object.keys(actions).length,
-          "name": "New action",
-          "icon": skillData.img,
-          "type": "skillRoll",
-          "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
-        };
-        this.item.update({ "data.actions": actions })
-      } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForCrewPosition"));
+    if (data.type === "Item" && (data.data?.type === "skills" || game.items.get(data.id).type === "skills")) {
+      const skillData = data.data ?? game.items.get(data.id).data;
+      const actions = (this.item.data.data as ShipPosition).actions;
+      const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+      actions[randomID()] = {
+        "order": Object.keys(actions).length,
+        "name": "New action",
+        "icon": skillData.img,
+        "type": ShipActionType.skillRoll,
+        "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
+      };
+      this.item.update({ "data.actions": actions });
+    } else {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForCrewPosition"));
     }
   }
 
   private _onDeleteAction(event: Event) {
     const deleteId = $(event.currentTarget).data("id");
-    this.item.update({ [`data.actions.-=${deleteId}`]:  null});
+    this.item.update({ [`data.actions.-=${deleteId}`]: null });
   }
 
   private _onCreateAction(event: Event) {
-    const actions = this.item.data.data.actions;
+    const actions = (this.item.data.data as ShipPosition).actions;
     actions[randomID()] = {
       "order": Object.keys(actions).length,
       "name": "New Action",
       "icon": "icons/svg/dice-target.svg",
       "command": "",
-      "type": "chatMessage"
-    };
-    this.item.update({ "data.actions": actions })
+      "type": ShipActionType.chatMessage
+    } as ShipAction;
+    this.item.update({ "data.actions": actions });
   }
 }

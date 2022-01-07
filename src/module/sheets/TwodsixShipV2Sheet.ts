@@ -8,28 +8,28 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
   getData():any {
     const data:any = super.getData();
     data.dtypes = ["String", "Number", "Boolean"];
-    if (this.actor.data.type == 'ship_v2') {
+    if (this.actor.type === 'ship_v2') {
       data.data.storage = data.actor.items;
       AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, data);
     }
-    
-    data.data.crewPositions = data.items.filter(item=>item.type==="ship_crew_position").map(crewPosition => {
-      const shipCrewPositionActorIds = Object.entries(data.data.data.shipCrewPositionActorIds).filter(([_, shipCrewPositionId]) => shipCrewPositionId === crewPosition._id)
-      if (shipCrewPositionActorIds.length > 0) {
-        const actorIds = shipCrewPositionActorIds.map(([actorId, _]) => actorId);
-        crewPosition.data.actors = actorIds.map(actorId => game.actors.get(actorId));
+
+    data.data.crewPositions = data.items.filter(item=>item.type==="ship_position").map(crewPosition => {
+      const shipPositionActorIds = Object.entries(data.data.data.shipPositionActorIds).filter(([_, shipPositionId]) => shipPositionId === crewPosition._id);
+      if (shipPositionActorIds.length > 0) {
+        const actorIds = shipPositionActorIds.map(([actorId, _]) => actorId);
+        crewPosition.data.actors = actorIds.map(actorId => game.actors?.get(actorId));
       } else {
         crewPosition.data.actors = [];
       }
-      
+
       crewPosition.data.sortedActions = Object.entries(crewPosition.data.actions).map((act) => {
-        let ret = act[1]
-        ret["id"] = act[0]
+        const ret = act[1];
+        ret["id"] = act[0];
         return ret;
-      })
+      });
       crewPosition.data.sortedActions.sort((a, b) => (a.order > b.order) ? 1 : -1);
       return crewPosition;
-    })
+    });
     data.data.crewPositions.sort((a,b) => a.data.order-b.data.order);
 
     data.data.settings = {
@@ -70,17 +70,17 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
     } else {
       actorId = crewPosEl.find(".crew-actor-token.force-border").data("id");
     }
-    
+
     if (!actorId) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
       return null;
     }
     const actionId = $(event.currentTarget).data("id");
-    const shipCrewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
-    const shipCrewPosition = this.actor.items.get(shipCrewPositionId);
-    const action = shipCrewPosition.data.data.actions[actionId];
+    const shipPositionId = $(event.currentTarget).parents(".crew-position").data("id");
+    const shipPosition = this.actor.items.get(shipPositionId);
+    const action = shipPosition.data.data.actions[actionId];
     const ship = game.actors.get(this.actor.id);
-    
+
     const extra = {
       actor: game.actors.get(actorId),
       ship: ship,
@@ -99,8 +99,8 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
   }
 
   private _onCrewPositionCreate(event:Event):void {
-    const shipCrewPositions = this.actor.items.filter(item => item.type === "ship_crew_position")
-    this.actor.createEmbeddedDocuments("Item", [{"type": "ship_crew_position", name: "New Position", order: shipCrewPositions.length}]);
+    const shipPositions = this.actor.items.filter(item => item.type === "ship_position");
+    this.actor.createEmbeddedDocuments("Item", [{"type": "ship_position", name: "New Position", order: shipPositions.length}]);
   }
 
   private _onCrewPositionEdit(event:Event):void {
@@ -116,29 +116,28 @@ export class TwodsixShipV2Sheet extends AbstractTwodsixActorSheet {
   }
 
   private _onCrewActorClick(event:Event) {
-    const hasClass = $(event.currentTarget).hasClass("force-border")
+    const hasClass = $(event.currentTarget).hasClass("force-border");
     $(event.currentTarget).parents(".crew-position").find(".crew-actor-token").removeClass("force-border");
     if (!hasClass) {
-      $(event.currentTarget).addClass("force-border")
+      $(event.currentTarget).addClass("force-border");
     }
   }
 
   _onDragStart(event: DragEvent):void {
-    event.dataTransfer.setData("text/plain", JSON.stringify({"type": "Actor", "id": $(event.target).data("id")}))
+    event.dataTransfer.setData("text/plain", JSON.stringify({"type": "Actor", "id": $(event.target).data("id")}));
   }
 
-   async _onDrop(event:DragEvent):Promise<boolean | any> {
+  async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
     const data = getDataFromDropEvent(event);
-    console.log(event, data)
     if ((data.type === "Actor" && game.actors.get(data.id).type === "traveller")) {
       const actorId = data.id;
       if ($(event.target).parents(".crew-position").length === 1) {
-        const shipCrewPositionId = $(event.target).parents(".crew-position").data("id");
-        this.actor.update({[`data.shipCrewPositionActorIds.${actorId}`]: shipCrewPositionId})
+        const shipPositionId = $(event.target).parents(".crew-position").data("id");
+        this.actor.update({[`data.shipPositionActorIds.${actorId}`]: shipPositionId});
       } else {
-        this.actor.update({[`data.shipCrewPositionActorIds.-=${actorId}`]: null})
+        this.actor.update({[`data.shipPositionActorIds.-=${actorId}`]: null});
       }
     } else {
       return super._onDrop(event);
