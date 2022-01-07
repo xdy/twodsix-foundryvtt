@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.0...v1.4.1) (2022-01-07)
+
+
+### Bug Fixes
+
+* Attempt to fix that equipped was wrong in template.json led to a lot of other changes. ([e68d570](https://github.com/xdy/twodsix-foundryvtt/commit/e68d570620c973ed25e9244e8d268471649afda7))
+
 # [1.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.12...v1.4.0) (2022-01-07)
 
 
