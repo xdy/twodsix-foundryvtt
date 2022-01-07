@@ -1,14 +1,14 @@
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import Armor = dataTwodsix.Armor;
-import Skills = dataTwodsix.Skills;
-import UsesConsumables = dataTwodsix.UsesConsumables;
+import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
+import {Armor, Skills, UsesConsumables} from "../../types/template";
+
+
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
-  public activateListeners(html: JQuery): void {
+  public activateListeners(html:JQuery):void {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
@@ -40,7 +40,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           <br>
         </div>
       </form>`;
-      if(ownedItem) {
+      if (ownedItem) {
         await Dialog.confirm({
           title: title,
           content: template,
@@ -81,7 +81,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     this.handleContentEditable(html);
   }
 
-  _onDragStart(event: DragEvent): void {
+  _onDragStart(event:DragEvent):void {
     if (event.currentTarget && !(event.currentTarget)["dataset"]) {
       return;
     }
@@ -89,7 +89,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return super._onDragStart(event);
   }
 
-  private handleContentEditable(html: JQuery) {
+  private handleContentEditable(html:JQuery) {
     html.find('div[contenteditable="true"][data-edit]').on(
       'focusout',
       this._onSubmit.bind(this)
@@ -97,11 +97,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
-  private updateWithItemSpecificValues(itemData: Record<string, any>, type: string): void {
+  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string):void {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          const skills: dataTwodsix.Skills = <Skills>game.system.template?.Item?.skills;
+          const skills:Skills = <Skills>game.system.template?.Item?.skills;
           itemData.data.value = skills?.value;
         } else {
           itemData.data.value = 0;
@@ -124,7 +124,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onItemCreate(event: { preventDefault: () => void; currentTarget: HTMLElement }): Promise<void> {
+  private async _onItemCreate(event:{ preventDefault:() => void; currentTarget:HTMLElement }):Promise<void> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -153,7 +153,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Special handling of skills dropping.
    */
-  protected async _onDrop(event: DragEvent): Promise<boolean | any> {
+  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
     const data = getDataFromDropEvent(event);
@@ -166,7 +166,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     if (data.type === 'damageItem') {
       if (actor.data.type === 'traveller') {
-        const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+        const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
         await (<TwodsixActor>this.actor).damageActor(data.payload.damage, showDamageDialog);
       } else {
@@ -195,7 +195,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return false;
   }
 
-  private async handleDroppedSkills(actor, itemData, data: Record<string, any>, event: DragEvent) {
+  private async handleDroppedSkills(actor, itemData, data:Record<string, any>, event:DragEvent) {
     const matching = actor.data.items.filter(x => {
       return x.name === itemData.name;
     });
@@ -214,7 +214,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-      const skills: dataTwodsix.Skills = <Skills>game.system.template.Item?.skills;
+      const skills:Skills = <Skills>game.system.template.Item?.skills;
       itemData.data.value = skills?.value;
     } else {
       itemData.data.value = 0;
@@ -224,7 +224,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
-  private async handleDroppedItem(actor: Actor, itemData, data: Record<string, any>, event: DragEvent) {
+  private async handleDroppedItem(actor:Actor, itemData, data:Record<string, any>, event:DragEvent) {
     // Handle item sorting within the same Actor
     const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
     if (sameActor) {
@@ -249,10 +249,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return this._onDropItemCreate(itemData);
   }
 
-  private static _getWeight(item): number{
+  private static _getWeight(item):number {
     if ((item.type === "weapon") || (item.type === "armor") ||
-        (item.type === "equipment") || (item.type === "tool") ||
-        (item.type === "junk") || (item.type === "consumable")) {
+      (item.type === "equipment") || (item.type === "tool") ||
+      (item.type === "junk") || (item.type === "consumable")) {
       if (item.data.data.equipped !== "ship") {
         const q = item.data.data.quantity || 0;
         let w = item.data.data.weight || 0;
@@ -265,27 +265,27 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return 0;
   }
 
-  protected static _prepareItemContainers(items, sheetData: any): void {
+  protected static _prepareItemContainers(items, sheetData:any):void {
 
     // Initialize containers.
-    const storage: Item[] = [];
-    const equipment: Item[] = [];
-    const weapon: Item[] = [];
-    const armor: Item[] = [];
-    const augment: Item[] = [];
-    const tool: Item[] = [];
-    const junk: Item[] = [];
-    const skills: Item[] = [];
-    const traits: Item[] = [];
-    const consumable: Item[] = [];
-    const component: Item[] = [];
+    const storage:Item[] = [];
+    const equipment:Item[] = [];
+    const weapon:Item[] = [];
+    const armor:Item[] = [];
+    const augment:Item[] = [];
+    const tool:Item[] = [];
+    const junk:Item[] = [];
+    const skills:Item[] = [];
+    const traits:Item[] = [];
+    const consumable:Item[] = [];
+    const component:Item[] = [];
     let encumbrance = 0;
     let primaryArmor = 0;
     let secondaryArmor = 0;
     let radiationProtection = 0;
 
     // Iterate through items, allocating to containers
-    items.forEach((item: TwodsixItem) => {
+    items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
       if (item.type !== "skills") {
         item.prepareConsumable();

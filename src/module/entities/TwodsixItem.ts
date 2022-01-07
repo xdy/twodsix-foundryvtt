@@ -6,11 +6,8 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import Gear = dataTwodsix.Gear;
-import Weapon = dataTwodsix.Weapon;
-import Skills = dataTwodsix.Skills;
-import Consumable = dataTwodsix.Consumable;
-import UsesConsumable = dataTwodsix.UsesConsumables;
+import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
+
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?): Promise<TwodsixItem> {
@@ -156,7 +153,7 @@ export default class TwodsixItem extends Item {
     let item: TwodsixItem | undefined;
 
     // Determine if this is a skill or an item
-    const usesConsumable = <UsesConsumable>this.data.data;
+    const usesConsumable = <UsesConsumables>this.data.data;
     if (this.type == "skills") {
       skill = this;
       item = undefined;

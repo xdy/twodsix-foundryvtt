@@ -1,6 +1,6 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
-import Traveller = dataTwodsix.Traveller;
+import {Traveller} from "../../types/template";
 
 
 /**
