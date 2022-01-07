@@ -83,10 +83,12 @@ declare global {
       'twodsix.systemMigrationVersion': string;
       'twodsix.termForAdvantage': string;
       'twodsix.termForDisadvantage': string;
-      'twodsix.debugSettings': RulesetSettings
-      'twodsix.displaySettings': DisplaySettings
-      'twodsix.itemSettings': ItemSettings
-      'twodsix.rulesetSettings': RulesetSettings
+      'twodsix.debugSettings': RulesetSettings;
+      'twodsix.displaySettings': DisplaySettings;
+      'twodsix.itemSettings': ItemSettings;
+      'twodsix.rulesetSettings': RulesetSettings;
+      'twodsix.minorWoundsRollModifier': number;
+      'twodsix.seriousWoundsRollModifier': number;
     }
   }
 }

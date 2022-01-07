@@ -41,14 +41,14 @@ function checkForWounds(data: Record<string, any>): boolean {
     }
   }
 }
-const DAMAGECOLORS = Object.freeze({
+export const DAMAGECOLORS = Object.freeze({
   minorWoundTint: '#FFFF00', // Yellow
   seriousWoundTint: '#FF0000', // Red
   deadTint: '#FFFFFF'  // White
 });
 
 async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<void> {
-  const tintToApply = getIconTint(selectedToken);
+  const tintToApply = getIconTint(selectedToken.actor);
 
   const woundedEffectLabel = 'Bleeding';
   const deadEffectLabel = 'Dead';
@@ -94,38 +94,38 @@ async function setEffectState(effectLabel: string, targetToken: Record<string, a
   }
 }
 
-function getIconTint(selectedToken: Record<string, any>): string {
+export function getIconTint(selectedActor: Record<string, any>): string {
   switch (game.settings.get('twodsix', 'ruleset')) {
     case 'CD':
-      return (getCDWoundTint(selectedToken));
+      return (getCDWoundTint(selectedActor));
     case 'CEL':
     case 'CEFTL':
     case 'CE':
-      return (getCEWoundTint(selectedToken));
+      return (getCEWoundTint(selectedActor));
     case 'CEQ':
     case 'CEATOM':
     case 'BARBARIC':
-      return (getCEAWoundTint(selectedToken));
+      return (getCEAWoundTint(selectedActor));
     default:
       return ('');
   }
 }
 
-function getCDWoundTint(selectedToken: Record<string, any>): string {
+export function getCDWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
-  if (selectedToken.actor.data.data.characteristics.lifeblood.current <= 0) {
+  if (selectedActor.data.data.characteristics.lifeblood.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
+  } else if (selectedActor.data.data.characteristics.lifeblood.current < (selectedActor.data.data.characteristics.lifeblood.value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedToken.actor.data.data.characteristics.lifeblood.damage > 0) {
+  } else if (selectedActor.data.data.characteristics.lifeblood.damage > 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
 
-function getCEWoundTint(selectedToken: Record<string, any>): string {
+export function getCEWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
-  const testArray = [selectedToken.actor.data.data.characteristics.strength, selectedToken.actor.data.data.characteristics.dexterity, selectedToken.actor.data.data.characteristics.endurance];
+  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
     case 0:
       if (testArray.filter(chr => chr.damage > 0).length > 0) {
@@ -147,16 +147,16 @@ function getCEWoundTint(selectedToken: Record<string, any>): string {
   return returnVal;
 }
 
-function getCEAWoundTint(selectedToken: Record<string, any>): string {
+export function getCEAWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
-  if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current <= 0) {
+  if (selectedActor.data.data.characteristics[lfbCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
+  } else if (selectedActor.data.data.characteristics[lfbCharacteristic].current < (selectedActor.data.data.characteristics[lfbCharacteristic].value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
+  } else if (selectedActor.data.data.characteristics[endCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;

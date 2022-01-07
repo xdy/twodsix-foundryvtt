@@ -329,7 +329,8 @@
       "With": "with",
       "resultShows": "result shows",
       "sum": "sum",
-      "using": "using {characteristic}"
+      "using": "using {characteristic}",
+      "Wounds": "Wounds"
     },
     "Settings": {
       "ruleset": {
@@ -487,8 +488,16 @@
         "name": "Short name for alternative characteristic 2"
       },
       "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
-        "name": "Display wounded status indicators"
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds. Roll modifiers below are applied to all rolls.",
+        "name": "Display wounded status indicators and apply roll modifiers"
+      },
+      "minorWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has minor wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for minor wounds"
+      },
+      "seriousWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has serious wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for minor wounds"
       },
       "settingsInterface": {
         "rulesetSettings": {
