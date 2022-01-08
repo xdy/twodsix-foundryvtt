@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.1...v1.4.2) (2022-01-08)
+
+
+### Bug Fixes
+
+* bugfix for note section not showing in traveller sheet ([#794](https://github.com/xdy/twodsix-foundryvtt/issues/794)) ([3ba1098](https://github.com/xdy/twodsix-foundryvtt/commit/3ba1098d89e2d337d9df663acc7992b776027ee2))
+
 ## [1.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.0...v1.4.1) (2022-01-07)
 
 
