@@ -1,3 +1,31 @@
+## [1.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.1...v1.4.2) (2022-01-08)
+
+
+### Bug Fixes
+
+* bugfix for note section not showing in traveller sheet ([#794](https://github.com/xdy/twodsix-foundryvtt/issues/794)) ([3ba1098](https://github.com/xdy/twodsix-foundryvtt/commit/3ba1098d89e2d337d9df663acc7992b776027ee2))
+
+## [1.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.0...v1.4.1) (2022-01-07)
+
+
+### Bug Fixes
+
+* Attempt to fix that equipped was wrong in template.json led to a lot of other changes. ([e68d570](https://github.com/xdy/twodsix-foundryvtt/commit/e68d570620c973ed25e9244e8d268471649afda7))
+
+# [1.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.12...v1.4.0) (2022-01-07)
+
+
+### Features
+
+* one contact field instead of contacts, allies, and enemies ([#782](https://github.com/xdy/twodsix-foundryvtt/issues/782)) ([4a11d4a](https://github.com/xdy/twodsix-foundryvtt/commit/4a11d4a9cc3b6de3ed5a0d2f4ba3836205cdc06b)), closes [#269](https://github.com/xdy/twodsix-foundryvtt/issues/269)
+
+## [1.3.12](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.11...v1.3.12) (2022-01-06)
+
+
+### Bug Fixes
+
+* calculate armor correctly ([#790](https://github.com/xdy/twodsix-foundryvtt/issues/790)) ([81d17eb](https://github.com/xdy/twodsix-foundryvtt/commit/81d17eb3f371a28b8455f9c99f07b945754b7c0c))
+
 ## [1.3.11](https://github.com/xdy/twodsix-foundryvtt/compare/v1.3.10...v1.3.11) (2022-01-06)
 
 

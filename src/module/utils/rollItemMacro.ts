@@ -1,6 +1,6 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { TWODSIX } from "../config";
-import Weapon = dataTwodsix.Weapon;
+import {Weapon} from "../../types/template";
 
 /**
  * Use a previously created macro.

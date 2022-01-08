@@ -3,8 +3,7 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import Skills = dataTwodsix.Skills;
-import Consumable = dataTwodsix.Consumable;
+import {Consumable, Skills} from "../../types/template";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 

@@ -1,7 +1,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 import { mergeDeep } from "../utils/utils";
-import Traveller = dataTwodsix.Traveller;
+import {Traveller} from "../../types/template";
 
 function getCurrentHits(...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
