@@ -7,33 +7,33 @@
 }
 
 :root {
-  --default-color: rgba(41, 170, 225, 1);
-  --light-color: rgba(0, 229, 255, 1);
-  --window-color: rgba(86, 148, 175, 1);
-  --background-transparent: rgba(0, 0, 0, 0);
-  --background-nearly-transparent: rgba(0, 0, 0, 0.25);
-  --background-semi-opaque: rgba(0, 0, 0, 0.5);
-  --background-nearly-opaque: rgba(0, 0, 0, 0.75);
-  --background-opaque: rgba(0, 0, 0, 1);
-  --nav-background: rgba(52, 52, 52, 0.95);
-  --dark-hover: var(--background-nearly-opaque);
-  --light-background-transparent: rgba(255, 255, 255, 0.09);
-  --stat-input: rgba(110, 129, 158, 1);
-  --item-active: var(--background-opaque);
-  --header-border: rgba(34, 80, 120, 1);
-  --form-light: rgb(175, 173, 160, 1);
-  --item-border: var(--stat-input);
-  --skill-list-even: var(--light-background-transparent);
-  --sidebar-background: var(--form-light); /*rgba(130, 129, 125, 1)*/
-  --crit-fail: rgba(170, 2, 0, 1);
-  --crit-success: rgba(47, 120, 34, 1);
-  --dialog-color: rgba(168, 184, 208, 1); /*rgba(162, 188, 228, 1)*/
-  --app-color: rgba(240, 240, 224, 1);
-  --item-hover: var(--app-color); /*rgba(255, 255, 255, 1)*/
-  --select-light: var(--item-hover);
-  --damage-red: rgba(255, 0, 0, 1);
-  --damage-stat-color: rgba(181, 44, 44, 1);
-  --damage-orange: rgba(255, 153, 0, 1);
+  --s2d6-default-color: rgba(41, 170, 225, 1);
+  --s2d6-light-color: rgba(0, 229, 255, 1);
+  --s2d6-window-color: rgba(86, 148, 175, 1);
+  --s2d6-background-transparent: rgba(0, 0, 0, 0);
+  --s2d6-background-nearly-transparent: rgba(0, 0, 0, 0.25);
+  --s2d6-background-semi-opaque: rgba(0, 0, 0, 0.5);
+  --s2d6-background-nearly-opaque: rgba(0, 0, 0, 0.75);
+  --s2d6-background-opaque: rgba(0, 0, 0, 1);
+  --s2d6-nav-background: rgba(52, 52, 52, 0.95);
+  --s2d6-dark-hover: var(--s2d6-background-nearly-opaque);
+  --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
+  --s2d6-stat-input: rgba(110, 129, 158, 1);
+  --s2d6-item-active: var(--s2d6-background-opaque);
+  --s2d6-header-border: rgba(34, 80, 120, 1);
+  --s2d6-form-light: rgb(175, 173, 160, 1);
+  --s2d6-item-border: var(--s2d6-stat-input);
+  --s2d6-skill-list-even: var(--s2d6-light-background-transparent);
+  --s2d6-sidebar-background: var(--s2d6-form-light); /*rgba(130, 129, 125, 1)*/
+  --s2d6-crit-fail: rgba(170, 2, 0, 1);
+  --s2d6-crit-success: rgba(47, 120, 34, 1);
+  --s2d6-dialog-color: rgba(168, 184, 208, 1); /*rgba(162, 188, 228, 1)*/
+  --s2d6-app-color: rgba(240, 240, 224, 1);
+  --s2d6-item-hover: var(--s2d6-app-color); /*rgba(255, 255, 255, 1)*/
+  --s2d6-select-light: var(--s2d6-item-hover);
+  --s2d6-damage-red: rgba(255, 0, 0, 1);
+  --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
+  --s2d6-damage-orange: rgba(255, 153, 0, 1);
 }
 
 body {
@@ -54,8 +54,8 @@ p span, p {
 }
 
 input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
-  background: var(--background-semi-opaque) !important;
-  color: var(--light-color) !important;
+  background: var(--s2d6-background-semi-opaque) !important;
+  color: var(--s2d6-light-color) !important;
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -64,7 +64,7 @@ input[type='text'], input[type='number'], input[type='password'], input[type='da
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  border: 1px solid var(--background-opaque);
+  border: 1px solid var(--s2d6-background-opaque);
   border-radius: 0 !important;
 }
 
@@ -77,8 +77,8 @@ input[type='text'], input[type='number'], input[type='password'], input[type='da
 
 select {
   height: 25px;
-  background: var(--background-semi-opaque) !important;
-  color: var(--light-color) !important;
+  background: var(--s2d6-background-semi-opaque) !important;
+  color: var(--s2d6-light-color) !important;
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -87,14 +87,14 @@ select {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  border: 1px solid var(--background-opaque);
+  border: 1px solid var(--s2d6-background-opaque);
   border-radius: 0 !important;
 }
 
 input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 10px var(--header-border);
-  background: var(--background-semi-opaque);
+  box-shadow: 0 0 10px var(--s2d6-header-border);
+  background: var(--s2d6-background-semi-opaque);
 }
 
 input::-webkit-inner-spin-button {
@@ -124,14 +124,14 @@ input[type=number] {
 /*** Fix link backgrounds and table colors to TWODSIX Style ***/
 a.entity-link,
 a.inline-roll {
-  background: var(--background-transparent);
+  background: var(--s2d6-background-transparent);
 }
 a.entity-link i,
 a.inline-roll i {
-  color: var(--default-color);
+  color: var(--s2d6-default-color);
 }
 table tr:nth-child(even) {
-  background-color: var(--light-background-transparent);
+  background-color: var(--s2d6-light-background-transparent);
 }
 
 /******************************/
@@ -244,7 +244,7 @@ table tr:nth-child(even) {
 .macro-sheet .form-group.command div[contenteditable] {
   height: calc(100% - 24px);
   resize: none;
-  color: var(--light-color);
+  color: var(--s2d6-light-color);
 }
 
 form .form-group, form .form-group-stacked {
@@ -253,7 +253,7 @@ form .form-group, form .form-group-stacked {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 3px 0;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
 }
 
 form .form-group > label {
@@ -264,13 +264,13 @@ form .form-group span.units {
   flex: 0;
   line-height: 28px;
   font-size: 12px;
-  color:var(--form-light) !important;
+  color:var(--s2d6-form-light) !important;
 }
 
 #player-config label {
   font-size: 14px;
   font-weight: bold;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
 }
 
 .rollable:hover {
@@ -296,7 +296,7 @@ form .form-group span.units {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   font-family: inherit;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
@@ -310,7 +310,7 @@ form .form-group span.units {
 
 h2 {
   font-size: 1.5em;
-  border-bottom: 1px solid var(--header-border);
+  border-bottom: 1px solid var(--s2d6-header-border);
 }
 
 .content-container {
@@ -362,7 +362,7 @@ img.character-info-mask {
 .character-armor {
   position: absolute;
   top: 21.25em;
-  background: var(--background-semi-opaque);
+  background: var(--s2d6-background-semi-opaque);
   width: 100%;
   padding-bottom: .5em;
 }
@@ -388,7 +388,7 @@ img.character-info-mask {
   width: 15.55em;
   font-size: 1.2em;
   text-align: center;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
   border: none;
 }
 
@@ -400,7 +400,7 @@ img.character-info-mask {
   height: 7.5em;
   font-size: 16px;
   z-index: 9;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
 }
 
 .character-bgi input {
@@ -445,7 +445,7 @@ img.character-info-mask {
   width: 2.2em;
   border: none;
   text-align: left;
-  color: var(--damage-stat-color) !important;
+  color: var(--s2d6-damage-stat-color) !important;
 }
 
 span.bgi-age {
@@ -457,7 +457,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   height: 26px;
   font-size: 16px;
   font-weight: bold;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
 }
 
 .bgi-armor input {
@@ -492,7 +492,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   position: relative;
   z-index: 6;
   height: 7.5em;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
 }
 
 .stat {
@@ -521,7 +521,7 @@ span.stat-name {
   margin-left: -0.25em;
   background-color: transparent !important;
   border: none;
-  color: var(--stat-input);
+  color: var(--s2d6-stat-input);
   -moz-appearance: textfield;
 }
 
@@ -592,7 +592,7 @@ span.stat-damage {
 }
 
 span.stat-damage input, span.special-damage input {
-  color: var(--damage-stat-color) !important;
+  color: var(--s2d6-damage-stat-color) !important;
   border: none;
 }
 
@@ -616,7 +616,7 @@ span.special-damage {
 }
 
 svg:hover {
-  fill: var(--damage-red);
+  fill: var(--s2d6-damage-red);
 }
 
 /* TABS */
@@ -645,12 +645,12 @@ svg:hover {
 
 a.skill-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
 }
 
 a.skill-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
 }
 
@@ -665,12 +665,12 @@ a.skill-tab.active {
 
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
 }
 
 a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
 }
 
@@ -685,19 +685,19 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
 
 a.notes-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
   background-color: unset !important;
 }
 
 a.notes-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
 }
 
 .tab, div{
   scrollbar-width: thin;
-  scrollbar-color: var(--default-color);
+  scrollbar-color: var(--s2d6-default-color);
 }
 
 .tab[data-tab].active {
@@ -727,9 +727,9 @@ a.notes-tab.active {
 }
 
 .gear-header {
-  border: 2px solid var(--default-color);
-  background-color: var(--default-color);
-  color: var(--item-active);
+  border: 2px solid var(--s2d6-default-color);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
   padding-left: 0.5em;
 }
 
@@ -738,7 +738,7 @@ a.notes-tab.active {
 }
 
 .gear {
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   padding-left: 0.5em;
 }
 
@@ -782,9 +782,9 @@ a.notes-tab.active {
 .skill-list {
   padding: 0.5em;
   width: 34.2em;
-  border: 1px groove var(--default-color);
-  background-color: var(--default-color);
-  color: var(--background-opaque);
+  border: 1px groove var(--s2d6-default-color);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-background-opaque);
   font-weight: bold;
 }
 
@@ -807,14 +807,14 @@ a.notes-tab.active {
   top: 0.1em;
   left: 26.5em;
   z-index: 51;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   font-weight: bold;
 }
 
 .add-skill:hover {
   background-image: url(../assets/actor/sheet-button1-hover.svg);
   background-size: cover;
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
 }
 
 span.add-skill-txt {
@@ -830,7 +830,7 @@ span.add-skill-txt {
 }
 
 a:hover, a.active {
-  text-shadow: 0 0 0.8em var(--light-color);
+  text-shadow: 0 0 0.8em var(--s2d6-light-color);
 }
 
 .item.flexrow.item-header {
@@ -893,14 +893,14 @@ input.item-value-edit {
 .item-controls .item-toggle.equipped .fa-child { display: inline; }
 
 .skill:nth-of-type(even) {
-  background: var(--skill-list-even);
+  background: var(--s2d6-skill-list-even);
 }
 
 .skill:hover {
-  border-left: 1px solid var(--light-color);
-  border-right: 1px solid var(--light-color);
-  background-color: var(--default-color) !important;
-  color: var(--dark-hover) !important;
+  border-left: 1px solid var(--s2d6-light-color);
+  border-right: 1px solid var(--s2d6-light-color);
+  background-color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-dark-hover) !important;
 }
 
 .skill-container {
@@ -950,7 +950,7 @@ span.total-output {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-top-color: var(--select-light);
+  border-top-color: var(--s2d6-select-light);
 }
 
 .select-difficulty:after {
@@ -961,7 +961,7 @@ span.total-output {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-top-color: var(--select-light);
+  border-top-color: var(--s2d6-select-light);
 }
 
 /*-------Finances Tab-----------*/
@@ -982,7 +982,7 @@ span.total-output {
 }
 
 .financial-notes div[contenteditable] {
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   width: 14.8em;
   height: 28.5em;
   border-radius: 0;
@@ -999,7 +999,7 @@ span.total-output {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1012,7 +1012,7 @@ span.total-output {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1025,7 +1025,7 @@ span.total-output {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1038,7 +1038,7 @@ span.total-output {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1051,7 +1051,7 @@ span.total-output {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1060,7 +1060,7 @@ span.total-output {
   height: 22px;
   width: 207px;
   display: block;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
@@ -1071,7 +1071,7 @@ span.total-output {
   height: 22px;
   width: 10.4em;
   display: block;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
@@ -1130,10 +1130,10 @@ span.total-output {
 }
 
 .char-description div[contenteditable], .char-contacts div[contenteditable] {
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   height: 5em;
   overflow-y: auto;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
   padding: 0.2em;
 }
 
@@ -1142,10 +1142,10 @@ span.total-output {
 }
 
 .char-bio div[contenteditable] {
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   height: 19.5em;
   overflow-y: auto;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
   padding: 0.2em;
 }
 
@@ -1162,10 +1162,10 @@ span.total-output {
 .notes-container > div[contenteditable] {
   min-height: 34em;
   width: 30.2em;
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
   font-size: 15px;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
   padding: 0.2em;
 }
 
@@ -1203,7 +1203,7 @@ img.ship-mask-bg {
 
 .ship-name {
   grid-area: ship-name;
-  border-bottom: 2px solid var(--default-color);
+  border-bottom: 2px solid var(--s2d6-default-color);
   z-index: 2;
   font-size: 27px;
   padding: 2px 2px 2px 4px;
@@ -1222,7 +1222,7 @@ img.ship-mask-bg {
   z-index: 3;
   position: relative;
   width: 29em;
-  color: var(--stat-input);
+  color: var(--s2d6-stat-input);
 }
 
 .ship-info li {
@@ -1268,7 +1268,7 @@ img.ship-mask-bg {
 .ship-armor-name textarea {
   border: solid;
   border-radius: 1ch;
-  border-color: var(--default-color);
+  border-color: var(--s2d6-default-color);
   text-align: center;
   display: grid;
   resize: none;
@@ -1302,7 +1302,7 @@ img.ship-mask-bg {
   background-size: contain;
 }
 .ship-maintenance input {
-  background-color: var(--background-nearly-opaque) !important;
+  background-color: var(--s2d6-background-nearly-opaque) !important;
 }
 
 .ship-maintenance input[type="text"] {
@@ -1471,7 +1471,7 @@ a.ship-crew-tab {
 a.ship-crew-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: 0.1em;
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
   display: block;
   height: 20px;
 }
@@ -1479,11 +1479,11 @@ a.ship-crew-tab:hover {
 a.ship-crew-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 0.1em;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
   height: 20px;
-  background-color: var(--default-color);
+  background-color: var(--s2d6-default-color);
 }
 
 a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
@@ -1498,7 +1498,7 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
   background-position: -99px;
   display: block;
   height: 20px;
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
 }
 
 a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
@@ -1506,9 +1506,9 @@ a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
   background-position: -99px;
   display: block;
   height: 20px;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
-  background-color: var(--default-color);
+  background-color: var(--s2d6-default-color);
 }
 
 a.ship-notes-tab {
@@ -1523,17 +1523,17 @@ a.ship-notes-tab:hover {
   background-position: 7em;
   display: block;
   height: 20px;
-  color: var(--item-hover);
+  color: var(--s2d6-item-hover);
 }
 
 a.ship-notes-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 7em;
-  color: var(--item-active);
+  color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
   height: 20px;
-  background-color: var(--default-color);
+  background-color: var(--s2d6-default-color);
 }
 
 
@@ -1564,14 +1564,14 @@ a.ship-notes-tab.active {
 
 .ship-grid input[type="text"] {
   width: 14.8em;
-  border: 1px groove var(--light-color);
+  border: 1px groove var(--s2d6-light-color);
   border-radius: 0;
 
 }
 
 .ship-grid > div > div[contenteditable] {
   width: 14.8em;
-  border: 1px groove var(--light-color) !important;
+  border: 1px groove var(--s2d6-light-color) !important;
   border-radius: 0;
   min-height: 3em;
 }
@@ -1611,9 +1611,9 @@ a.ship-notes-tab.active {
 }
 
 .storage-header {
-  border: 2px solid var(--default-color);
-  background-color: var(--default-color);
-  color: var(--item-active);
+  border: 2px solid var(--s2d6-default-color);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
   position: sticky;
   top:0%;
 }
@@ -1627,7 +1627,7 @@ a.ship-notes-tab.active {
 }
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
-  background: var(--skill-list-even);
+  background: var(--s2d6-skill-list-even);
 }
 
 .components-stored-single {
@@ -1639,7 +1639,7 @@ a.ship-notes-tab.active {
 }
 
 .grid-columns-single-row:nth-of-type(even) {
-  background: var(--skill-list-even);
+  background: var(--s2d6-skill-list-even);
 }
 
 .cargo-wrapper {
@@ -1650,9 +1650,9 @@ a.ship-notes-tab.active {
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid var(--default-color);
+  border: 1px solid var(--s2d6-default-color);
   height: 18em;
-  color: var(--light-color) !important;
+  color: var(--s2d6-light-color) !important;
   padding: 0.2em;
   overflow-y: auto;
 }
@@ -1675,8 +1675,8 @@ button.flexrow.flex-group-center.toggle-skills {
 ::-webkit-scrollbar-thumb {
   outline: none;
   border-radius: 3px;
-  background: var(--header-border);
-  border: 1px solid var(--default-color);
+  background: var(--s2d6-header-border);
+  border: 1px solid var(--s2d6-default-color);
 }
 
 .mini-dice img.rollable {
@@ -1702,7 +1702,7 @@ button.flexrow.flex-group-center.toggle-skills {
   min-height: 50px;
   padding: 5px;
   background: rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--stat-input);
+  border: 1px solid var(--s2d6-stat-input);
   border-radius: 1px;
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -1720,7 +1720,7 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .item-container.items-list {
   margin-bottom: 2em;
-  color: var(--stat-input);
+  color: var(--s2d6-stat-input);
   margin-left: 1em;
   margin-top: 2em;
 }
@@ -1736,8 +1736,8 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 a:hover {
-  color: var(--light-color);
-  text-shadow: 0 0 5px var(--default-color);
+  color: var(--s2d6-light-color);
+  text-shadow: 0 0 5px var(--s2d6-default-color);
 }
 
 .item-type {
@@ -1832,7 +1832,7 @@ a:hover {
 
 
 .tabs .item.active {
-  text-shadow: 0 0 10px var(--light-color) !important;
+  text-shadow: 0 0 10px var(--s2d6-light-color) !important;
 }
 
 /* ------ Item page - Consumables ------ */
@@ -1884,7 +1884,7 @@ a:hover {
 }
 
 .consumable-row .right-button {
-  border-left: 0 solid var(--item-active);
+  border-left: 0 solid var(--s2d6-item-active);
   border-radius: 0 10px 10px 0;
 }
 
@@ -1900,42 +1900,42 @@ a:hover {
 /*--- Chat Log ---*/
 
 #sidebar-tabs.tabs .item.active {
-  text-shadow: 0 0 2em var(--default-color);
+  text-shadow: 0 0 2em var(--s2d6-default-color);
   text-decoration: none;
-  background-color: var(--default-color);
-  color: var(--background-opaque);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-background-opaque);
 }
 
 #sidebar-tabs.tabs a:hover {
-  text-shadow: 0 0 0.8em var(--light-color);
+  text-shadow: 0 0 0.8em var(--s2d6-light-color);
 }
 
 #chat-log .message {
-  background: var(--background-semi-opaque) none !important;
-  border: 1px solid var(--item-border);
+  background: var(--s2d6-background-semi-opaque) none !important;
+  border: 1px solid var(--s2d6-item-border);
   border-radius: 0;
   margin: 3px;
   padding: 5px;
-  color: var(--default-color);
+  color: var(--s2d6-default-color);
   font-size: 14px;
-  box-shadow: 0 0 7px var(--dark-hover);
+  box-shadow: 0 0 7px var(--s2d6-dark-hover);
 }
 
 #chat-log .message .message-header {
   line-height: 20px;
-  color: var(--default-color) !important;
+  color: var(--s2d6-default-color) !important;
 }
 
 .table-description {
-  color: var(--stat-input) !important;
+  color: var(--s2d6-stat-input) !important;
 }
 
 .chat-message .table-draw .table-results .table-result .result-text {
-  color: var(--dialog-color);
+  color: var(--s2d6-dialog-color);
 }
 
 .chat-message .table-draw .table-results .table-result img.result-image {
-background: var(--sidebar-background);
+background: var(--s2d6-sidebar-background);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {
@@ -1944,20 +1944,20 @@ background: var(--sidebar-background);
   margin: 0;
   line-height: 24px;
   text-align: center;
-  background: var(--background-opaque);
-  border: 1px solid var(--default-color);
+  background: var(--s2d6-background-opaque);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 1px;
-  box-shadow: 0 0 2px var(--background-opaque) inset;
+  box-shadow: 0 0 2px var(--s2d6-background-opaque) inset;
   word-break: break-all;
   font-size: inherit;
 }
 
 .dice-roll .dice-total.crit-fail-roll {
-  color: var(--crit-fail);
+  color: var(--s2d6-crit-fail);
 }
 
 .dice-roll .dice-total.crit-success-roll {
-  color: var(--crit-success);
+  color: var(--s2d6-crit-success);
 }
 
 .dice-tooltip .dice-rolls .roll.d6 {
@@ -1965,12 +1965,12 @@ background: var(--sidebar-background);
 }
 
 .dice-tooltip .dice-rolls .roll.max {
-  color: var(--crit-success);
+  color: var(--s2d6-crit-success);
   filter: none !important;
 }
 
 .dice-tooltip .dice-rolls .roll.min {
-  color: var(--crit-fail);
+  color: var(--s2d6-crit-fail);
   filter: none !important;
 }
 
@@ -1983,7 +1983,7 @@ background: var(--sidebar-background);
   background-repeat: no-repeat;
   background-size: 24px 24px;
   font-size: 16px;
-  color: var(--default-color);
+  color: var(--s2d6-default-color);
   font-weight: bold;
   text-align: center;
 }
@@ -1992,9 +1992,9 @@ background: var(--sidebar-background);
   width: 100%;
   height: 100%;
   resize: none;
-  color: var(--light-color);
-  background: var(--background-opaque) !important;
-  border-color: var(--default-color) !important;
+  color: var(--s2d6-light-color);
+  background: var(--s2d6-background-opaque) !important;
+  border-color: var(--s2d6-default-color) !important;
 }
 
 #chat-controls div.roll-type-select select {
@@ -2002,22 +2002,22 @@ background: var(--sidebar-background);
   width: 200px;
   height: 24px;
   top: -3px;
-  border-color: var(--default-color) !important;
+  border-color: var(--s2d6-default-color) !important;
 }
 
 .damage {
-  border: var(--damage-stat-color);
+  border: var(--s2d6-damage-stat-color);
 }
 
 .damage-message {
   border-radius: 5px;
-  border: 1px outset var(--damage-stat-color);
+  border: 1px outset var(--s2d6-damage-stat-color);
   margin: 3px 3px 3px 20px;
   padding: 0.25em;
 }
 
 .damage-message:hover {
-  box-shadow: 0 4px 8px 0 var(--background-nearly-transparent), 0 6px 20px 0 var(--background-nearly-transparent);
+  box-shadow: 0 4px 8px 0 var(--s2d6-background-nearly-transparent), 0 6px 20px 0 var(--s2d6-background-nearly-transparent);
 }
 
 
@@ -2030,8 +2030,8 @@ background: var(--sidebar-background);
     color: #a8b8d0;
 }
 #settings button:hover {
-    color: var(--light-color);
-    border-color: var(--light-color);
+    color: var(--2d6-light-color);
+    border-color: var(--2d6-light-color);
 }
 form button {
     background: #000000a6 !important;
@@ -2044,54 +2044,54 @@ form button {
 button {
   position: relative;
   margin: 0.5em 0;
-  background-color: var(--background-opaque) !important;
-  border-color: var(--default-color) !important;
-  color: var(--form-light) !important;
+  background-color: var(--s2d6-background-opaque) !important;
+  border-color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-form-light) !important;
 }
 
 form button {
-  background: var(--background-opaque);
-  border: 2px groove var(--default-color);
+  background: var(--s2d6-background-opaque);
+  border: 2px groove var(--s2d6-default-color);
 }
 
 button:hover {
-  box-shadow: 0 0 5px var(--default-color);
-  color: var(--light-color);
-  border-color: var(--light-color);
+  box-shadow: 0 0 5px var(--s2d6-default-color);
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
 }
 
 button:hover, button:focus {
   outline: none;
-  box-shadow: 0 0 5px var(--default-color) !important;
+  box-shadow: 0 0 5px var(--s2d6-default-color) !important;
 }
 
 form .notes, form .hint {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
-  color: var(--form-light);
+  color: var(--s2d6-form-light);
   margin: 3px 0;
 }
 
 #module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
-  color: var(--form-light);
+  color: var(--s2d6-form-light);
 }
 
 .dialog .dialog-buttons button:last-child {
   margin-right: 0;
-  border: 2px groove var(--item-border);
-  color: var(--dialog-color);
-  background-color: var(--item-active);
+  border: 2px groove var(--s2d6-item-border);
+  color: var(--s2d6-dialog-color);
+  background-color: var(--s2d6-item-active);
 }
 
 .dialog .dialog-buttons button:last-child:hover {
   margin-right: 0;
-  color: var(--light-color);
-  border-color: var(--light-color);
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
 }
 
 option {
-  background-color: var(--item-active);
+  background-color: var(--s2d6-item-active);
 }
 
 .window-app .window-header {
@@ -2099,9 +2099,9 @@ option {
   overflow: hidden;
   padding: 0 8px;
   line-height: 30px;
-  background-color: var(--background-transparent);
+  background-color: var(--s2d6-background-transparent);
   border: none !important;
-  color: var(--default-color);
+  color: var(--s2d6-default-color);
   z-index: 99;
 }
 
@@ -2114,11 +2114,11 @@ option {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   border-radius: 5px;
-  box-shadow: 0 0 20px var(--item-active);
+  box-shadow: 0 0 20px var(--s2d6-item-active);
   margin: 3px 0;
   padding: 0.5em;
-  color: var(--app-color);
-  border: 1px solid var(--header-border) !important;
+  color: var(--s2d6-app-color);
+  border: 1px solid var(--s2d6-header-border) !important;
   z-index: 30;
 }
 
@@ -2128,10 +2128,10 @@ option {
   position: absolute;
   bottom: -1px;
   right: -1px;
-  background: var(--background-opaque);
+  background: var(--s2d6-background-opaque);
   padding: 2px;
-  border: 1px solid var(--header-border) !important;
-  color: var(--window-color);
+  border: 1px solid var(--s2d6-header-border) !important;
+  color: var(--s2d6-window-color);
   border-radius: 4px 0 0;
 }
 
@@ -2170,9 +2170,9 @@ div.app.window-app.twodsix.ship.actor header a.close {
   flex: 0 0 32px;
   box-sizing: border-box;
   margin: 0 0 5px;
-  border-bottom: 1px solid var(--default-color);
-  box-shadow: 0 0 10px var(--light-color);
-  background-color: var(--background-opaque);
+  border-bottom: 1px solid var(--s2d6-default-color);
+  box-shadow: 0 0 10px var(--s2d6-light-color);
+  background-color: var(--s2d6-background-opaque);
 }
 
 #sidebar-tabs > .item {
@@ -2181,23 +2181,23 @@ div.app.window-app.twodsix.ship.actor header a.close {
   line-height: 32px;
   border: 1px solid transparent;
   border-radius: 5px 5px 0 0;
-  color: var(--dialog-color);
+  color: var(--s2d6-dialog-color);
 }
 
 #sidebar-tabs > .item:hover {
-  color: var(--light-color);
+  color: var(--s2d6-light-color);
 }
 
 .sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
-  border-color: var(--default-color);
+  border-color: var(--s2d6-default-color);
   /*background-color: var(--sidebar-dark-background);*/
 }
 
 #sidebar-tabs > .item.active {
-  color: var(--light-color);
-  border: 1px solid var(--light-color);
+  color: var(--s2d6-light-color);
+  border: 1px solid var(--s2d6-light-color);
   border-bottom: none;
-  box-shadow: 0 0 6px inset var(--default-color);
+  box-shadow: 0 0 6px inset var(--s2d6-default-color);
 }
 
 #sidebar {
@@ -2215,7 +2215,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   padding: 0;
   background-image: none !important;
   /* border: none !important; */
-  background-color: var(--dark-hover)/*#0d0d0dad*/;
+  background-color: var(--s2d6-dark-hover)/*#0d0d0dad*/;
 }
 
 /* SCENE INTERFACE */
@@ -2228,35 +2228,35 @@ div.app.window-app.twodsix.ship.actor header a.close {
   margin: 0;
   padding: 0;
   box-shadow: none;
-  background-color: var(--background-transparent) !important;
+  background-color: var(--s2d6-background-transparent) !important;
   background-image: none !important;
-  border: 1px groove var(--background-transparent)/*#19181300*/ !important;
+  border: 1px groove var(--s2d6-background-transparent)/*#19181300*/ !important;
 }
 
 #controls .scene-control, #controls .control-tool, #controls .control-tool.toggle {
-  background-color: var(--background-nearly-opaque)!important;
+  background-color: var(--s2d6-background-nearly-opaque)!important;
 }
 
 #controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover,#controls .control-tool.toggle.active,  #controls .control-tool.toggle:hover {
-  color: var(--item-hover) !important;
-  border: 1px solid var(--light-color)!important;
-  border-bottom: 1px solid var(--default-color)!important;
-  box-shadow: 0 0 10px var(--default-color)!important;
-  background-color: var(--background-opaque)!important;
+  color: var(--s2d6-item-hover) !important;
+  border: 1px solid var(--s2d6-light-color)!important;
+  border-bottom: 1px solid var(--s2d6-default-color)!important;
+  box-shadow: 0 0 10px var(--s2d6-default-color)!important;
+  background-color: var(--s2d6-background-opaque)!important;
 }
 
 #navigation #scene-list .scene.view, #navigation #scene-list .scene.context {
   cursor: default;
-  color: var(--item-hover);
-  border: 1px solid var(--light-color);
-  background: var(--nav-background);
-  border-bottom: 1px solid var(--default-color);
-  box-shadow: 0 0 10px var(--default-color);
+  color: var(--s2d6-item-hover);
+  border: 1px solid var(--s2d6-light-color);
+  background: var(--s2d6-nav-background);
+  border-bottom: 1px solid var(--s2d6-default-color);
+  box-shadow: 0 0 10px var(--s2d6-default-color);
 }
 
 #navigation #scene-list .scene.gm {
-  background: var(--background-opaque);
-  border: 1px solid var(--nav-background) !important;
+  background: var(--s2d6-background-opaque);
+  border: 1px solid var(--s2d6-nav-background) !important;
 }
 
 #controls {
@@ -2278,22 +2278,22 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 /* MACRO BAR */
 #hotbar #macro-list{
-  background-color: var(--background-nearly-transparent);
+  background-color: var(--s2d6-background-nearly-transparent);
 }
 
 #hotbar .macro:hover {
-  box-shadow: 0 0 10px var(--default-color) inset;
+  box-shadow: 0 0 10px var(--s2d6-default-color) inset;
 }
 
 #hotbar .macro.active:hover {
-  border: 1px solid var(--light-color);
+  border: 1px solid var(--s2d6-light-color);
 }
 
 /* TOKEN SHEET */
 
 .token-sheet .sheet-tabs {
   flex: 0 0 32px;
-  border-bottom: 1px solid var(--form-light);
+  border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
   width: 32.5em;
 }
@@ -2302,7 +2302,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   font-size: 13px;
   padding: 0.5em;
   margin-bottom: 0.5em;
-  border-bottom: 1px solid var(--form-light);
+  border-bottom: 1px solid var(--s2d6-form-light);
   margin-top: 1.5em;
 }
 
@@ -2310,27 +2310,27 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 .editor {
   height: calc(75px);
-  background: var(--background-semi-opaque);
-  color: var(--default-color);
+  background: var(--s2d6-background-semi-opaque);
+  color: var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn svg {
   display: block;
-  fill: var(--default-color);
+  fill: var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn:hover svg {
-  fill: var(--light-color) !important;
+  fill: var(--s2d6-light-color) !important;
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background: var(--item-active) none !important;
+  background: var(--s2d6-item-active) none !important;
   display: flex;
   flex: 0 0 auto;
   flex-shrink: 0;
   flex-wrap: wrap;
   padding: 0;
-  border-bottom: 1px solid var(--header-border);
+  border-bottom: 1px solid var(--s2d6-header-border);
 }
 
 .tox .tox-edit-area {
@@ -2340,7 +2340,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   overflow: hidden;
   position: relative;
   padding-left: 0.5em;
-  background-color: var(--form-light);
+  background-color: var(--s2d6-form-light);
 }
 
 .editor-content p {
@@ -2352,7 +2352,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   flex: 1 1 auto;
   flex-direction: column;
   overflow: hidden;
-  background: var(--light-background-transparent)/*rgba(215, 246, 253, 0.35)*/;
+  background: var(--s2d6-light-background-transparent)/*rgba(215, 246, 253, 0.35)*/;
 }
 
 .ol-no-indent {
@@ -2380,20 +2380,20 @@ div.app.window-app.twodsix.ship.actor header a.close {
 /* ------ Damage Dialog ------ */
 
 .damage-dialog .red {
-  color: var(--damage-red);
+  color: var(--s2d6-damage-red);
 }
 
 .damage-dialog .orange {
-  color: var(--damage-orange);
+  color: var(--s2d6-damage-orange);
 }
 
 .damage-dialog .orange-border {
-  border: 1px solid var(--damage-orange);
+  border: 1px solid var(--s2d6-damage-orange);
 }
 
 .damage-dialog .mod, .damage-dialog .current-mod {
   font-size: 12px;
-  color: var(--stat-input);
+  color: var(--s2d6-stat-input);
   margin-left: 10px;
 }
 
