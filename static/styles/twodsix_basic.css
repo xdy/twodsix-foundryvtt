@@ -538,7 +538,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   border-radius: 1ch 0 0;
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 #joat-skill {
