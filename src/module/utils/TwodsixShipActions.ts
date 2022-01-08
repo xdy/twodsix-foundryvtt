@@ -31,26 +31,34 @@ export class TwodsixShipActions {
     const showTrowDiag = useInvertedShiftClick ? extra["event"]["shiftKey"] : !extra["event"]["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const re = new RegExp(/^(.+?)\/?([A-Z]*?) ?(\d*?)\+?$/);
-    const [_, parsedSkill, char, diff] = re.exec(text);
-    const skill = extra["actor"].items.filter(itm => itm.name === parsedSkill)[0] as TwodsixItem;
-    if (!skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra["actor"].name).replace("_SKILL_", parsedSkill));
+    const parsedResult: RegExpMatchArray | null = re.exec(text);
+
+    if (parsedResult !== null) {
+      const [, parsedSkill, char, diff] = parsedResult;
+      const skill = extra["actor"].items.filter((itm: TwodsixItem) => itm.name === parsedSkill)[0] as TwodsixItem;
+      if (!skill) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra["actor"].name).replace("_SKILL_", parsedSkill));
+        return false;
+      }
+      const settings = {
+        characteristic: char ? char : undefined
+      };
+      if (diff) {
+        settings["difficulty"] = Object.values(difficulties).filter((difficulty:Record<string,number>) => difficulty.target === parseInt(diff, 10))[0];
+      }
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill);
+      if (!options.shouldRoll) {
+        return false;
+      }
+      return skill.skillRoll(showTrowDiag, options);
+
+    } else {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
       return false;
     }
-    const settings = {
-      characteristic: char ? char : undefined
-    };
-    if (diff) {
-      settings["difficulty"] = Object.values(difficulties).filter(difficulty => difficulty.target === parseInt(diff, 10))[0];
-    }
-    const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, null);
-    if (!options.shouldRoll) {
-      return false;
-    }
-    return skill.skillRoll(showTrowDiag, options);
   }
 
-  public static async fireEnergyWeapons(text:string, extra) {
+  public static async fireEnergyWeapons(text: string, extra) {
     const [skilText, componentId] = text.split("=");
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {

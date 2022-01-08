@@ -117,7 +117,7 @@ export interface Actor {
   types:string[];
   traveller:Traveller;
   ship:Ship;
-  ship_v2: Ship;
+  ship_v2: ShipV2;
 }
 
 export interface Ship {
@@ -286,6 +286,7 @@ export enum ShipActionType {
   chatMessage = "chatMessage",
   fireEnergyWeapons = "fireEnergyWeapons"
 }
+
 export interface ShipAction {
   order: number,
   name: string,
