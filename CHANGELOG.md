@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.2...v1.4.3) (2022-01-08)
+
+
+### Bug Fixes
+
+* protect Twodsix style variables ([#796](https://github.com/xdy/twodsix-foundryvtt/issues/796)) ([dde76b4](https://github.com/xdy/twodsix-foundryvtt/commit/dde76b44b9e7156feb141fbb52a3f7a63c8d9b40))
+
 ## [1.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.1...v1.4.2) (2022-01-08)
 
 
