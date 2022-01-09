@@ -1,4 +1,4 @@
-import { applyToAllActors } from "src/migration-utils";
+import { applyToAllActors } from "../migration-utils";
 import TwodsixActor from "src/module/entities/TwodsixActor";
 import { Trait } from "../types/template";
 
