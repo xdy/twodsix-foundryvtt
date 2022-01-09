@@ -1,9 +1,8 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Armor, Skills, Trait, UsesConsumables, Component} from "../../types/template";
+import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
-
 
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -147,13 +146,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     const items = <TwodsixItem[]>await this.actor.createEmbeddedDocuments("Item", [itemData]);
     if (type === "trait") {
-      const effects = await this.actor.createEmbeddedDocuments("ActiveEffect", [{
-        origin: items[0].uuid,
-        icon: items[0].img,
-        tint: "#ffffff",
-        label: game.i18n.localize("TWODSIX.Items.Traits.DefaultName")
-      }]);
-      items[0].update({"data.effectId": effects[0].id});
+      await (<TwodsixActor>this.actor).createTraitActiveEffect(items[0]);
     }
   }
 
@@ -165,7 +158,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     event.preventDefault();
 
     const data = getDataFromDropEvent(event);
-    const actor = this.actor;
+    const actor = <TwodsixActor>this.actor;
 
     if (!data) {
       console.log(`Twodsix | Dragging something that can't be dragged`);
@@ -232,7 +225,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
-  private async handleDroppedItem(actor:Actor, itemData, data:Record<string, any>, event:DragEvent) {
+  private async handleDroppedItem(actor:TwodsixActor, itemData, data:Record<string, any>, event:DragEvent) {
     // Handle item sorting within the same Actor
     const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
     if (sameActor) {
@@ -254,14 +247,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const items = <TwodsixItem[]>await this._onDropItemCreate(itemData);
 
     if (items[0].type === "trait") {
-      const effects = await actor.createEmbeddedDocuments("ActiveEffect", [{
-        origin: items[0].uuid,
-        icon: items[0].img,
-        tint: "#ffffff",
-        label: items[0].name,
-        changes: (<Trait>items[0].data.data).changes
-      }]);
-      await items[0].update({"data.effectId": effects[0].id});
+      await actor.createTraitActiveEffect(items[0]);
       actor.render();
     }
     return items;

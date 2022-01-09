@@ -10,7 +10,7 @@ async function applyActiveEffects(actor:TwodsixActor): Promise<void> {
           origin: item.uuid,
           icon: item.img,
           tint: "#ffffff",
-          label: game.i18n.localize("TWODSIX.Items.Traits.DefaultName")
+          label: item.name
         }]);
         await item.update({ "data.effectId": effects[0].id });
       }

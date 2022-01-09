@@ -289,4 +289,15 @@ export default class TwodsixActor extends Actor {
       }
     });
   }
+
+  public async createTraitActiveEffect(trait: TwodsixItem): Promise<void> {
+    const effects = await this.createEmbeddedDocuments("ActiveEffect", [{
+      origin: trait.uuid,
+      icon: trait.img,
+      tint: "#ffffff",
+      label: trait.name,
+      changes: (<Trait>trait.data.data).changes
+    }]);
+    await trait.update({ "data.effectId": effects[0].id });
+  }
 }
