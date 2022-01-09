@@ -1,5 +1,5 @@
 import TwodsixActor from "src/module/entities/TwodsixActor";
-import Trait = dataTwodsix.Trait;
+import { Trait } from "../types/template";
 
 async function applyActiveEffects(actor:TwodsixActor) {
   for (const item of actor.items.filter((itm:TwodsixItem) => itm.type === "trait")) {

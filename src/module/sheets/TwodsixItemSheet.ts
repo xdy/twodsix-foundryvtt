@@ -2,7 +2,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import Trait = dataTwodsix.Trait;
+import { Trait } from "../../types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
