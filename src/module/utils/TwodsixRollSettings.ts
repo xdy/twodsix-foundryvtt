@@ -1,10 +1,9 @@
 import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
-import type TwodsixItem from "../entities/TwodsixItem";
 import {getCharShortName} from "./utils";
 import {getKeyByValue} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Gear, Skills} from "../../types/template";
-
+import {Gear, Skills, Traveller} from "../../types/template";
+import TwodsixItem from "../entities/TwodsixItem";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -27,7 +26,8 @@ export class TwodsixRollSettings {
 
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
-    this.rollType = settings?.rollType ?? "Normal";
+    const skillName = TwodsixItem.simplifySkillName(aSkill?.name ?? "");
+    this.rollType = (<Traveller>aSkill?.actor?.data?.data)?.skillRollTypes[skillName] ?? settings?.rollType ?? "Normal";
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
     this.characteristic = settings?.characteristic ?? characteristic;

@@ -192,6 +192,7 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
+  skillRollTypes:Record<string,string>;
 }
 
 export interface Age {
