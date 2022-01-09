@@ -943,6 +943,7 @@ img.ship-mask-bg {
   border: solid;
   border-radius: 2ch;
   text-align: center;
+  background-color: var(--s2d6-input-background);
 }
 
 .ship-image img{
