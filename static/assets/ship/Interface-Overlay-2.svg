@@ -4,44 +4,20 @@
    height="648"
    version="1.1"
    id="svg57"
-   sodipodi:docname="Interface-Overlay-2-new.svg"
-   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs61" />
-  <sodipodi:namedview
-     id="namedview59"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="1.4215531"
-     inkscape:cx="414.33556"
-     inkscape:cy="294.39632"
-     inkscape:window-width="2169"
-     inkscape:window-height="1081"
-     inkscape:window-x="75"
-     inkscape:window-y="25"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg57" />
   <path
      fill="#231f20"
      d="M 740.75919,14.593088 293,16 313,36 c 0,0 407.75919,0 380.32441,0 27.43478,0 47.43478,-21.406912 47.43478,-21.406912 z"
      id="path9"
-     style="stroke:#28a8e0;stroke-width:2;stroke-miterlimit:10"
-     sodipodi:nodetypes="ccccc" />
+     style="stroke:#28a8e0;stroke-width:2;stroke-miterlimit:10" />
   <path
      fill="#010101"
-     d="m 308,325 h -3 l 20,-20 370.43478,1.40691 L 719.02787,325 H 792.5 L 813,305 V 36.25 L 788,11 H 720.60078 L 693.32441,36 313,36 287.667,11 H 38 L 13,36 V 305.25 L 33,325 Z m 12,-45 -25,25 H 55 L 30,280 V 75 L 55,50 h 320 l 25,25 v 205 z"
+     d="m 308,325 h -3 l 20,-20 443.90691,1.40691 L 792.5,325 v 0 L 813,305 V 36.25 L 788,11 H 720.60078 L 693.32441,36 H 313 L 287.667,11 H 38 L 13,36 V 305.25 L 33,325 Z m 12,-45 -25,25 H 55 L 30,280 V 75 L 55,50 h 320 l 25,25 v 205 z"
      id="path11"
-     style="stroke:#28a8e0;stroke-width:2;stroke-miterlimit:10"
-     sodipodi:nodetypes="cccccccccccccccccccccccccccc" />
+     style="stroke:#28a8e0;stroke-width:2;stroke-miterlimit:10" />
   <path
      opacity=".5"
      d="M33 325l-13-12.75V620l20 20h745l20-20V312.827L792.5 325z"
@@ -120,10 +96,10 @@
      id="path51" />
   <path
      fill="none"
-     stroke="#28A8E0"
+     stroke="#28a8e0"
      stroke-width="2"
      stroke-miterlimit="10"
-     d="M33 325l-13-12.75V620l20 20h745l20-20V312.827L792.5 325z"
+     d="M 33,325 20,312.25 V 620 l 20,20 h 745 l 20,-20 V 312.827 L 792.5,325 Z"
      id="path53" />
   <path
      fill="#27AAE1"

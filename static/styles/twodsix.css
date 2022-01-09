@@ -1453,9 +1453,9 @@ input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 388px;
+  width: 27.5rem;
   display: block;
-  margin-left: 21.5em;
+  margin-left: 22em;
   margin-top: -2.3em;
   z-index: 99;
   height: 20px;
@@ -2296,6 +2296,10 @@ div.app.window-app.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
   width: 32.5em;
+}
+
+.sheet-tabs {
+  justify-content: space-between;
 }
 
 .token-sheet .notes {
