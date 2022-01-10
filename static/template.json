@@ -149,6 +149,7 @@
       "cargo": "",
       "finances": "",
       "maintenanceCost": 0,
+      "totalMass": 0,
       "shipValue": "",
       "reqPower": {
         "systems": 0,

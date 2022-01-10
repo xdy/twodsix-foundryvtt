@@ -1003,7 +1003,7 @@ img.ship-mask-bg {
   display: grid;
   grid-template-columns: 5em 5em 5em 6em 5em;
   gap: 1px 1px;
-  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-maintenance";
+  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass";
 }
 
 .ship-state-grid span {
@@ -1068,17 +1068,19 @@ img.ship-mask-bg {
   border-radius: 0 0 1ch 1ch;
 }
 
-.ship-maintenance {
-  grid-area: ship-maintenance;
-  display: grid;
+.ship-mass {
+  grid-area: ship-mass;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.ship-maintenance input {
+.ship-mass input {
   background-color: var(--s2d6-background-nearly-transparent) !important;
   border: 1px solid;
 }
 
-.ship-maintenance input[type="text"] {
+.ship-mass input[type="text"] {
   width: 4.5em;
   border: 1px solid;
   left: -1em;
@@ -1226,7 +1228,7 @@ input.power-total {
   width: 32.5rem;
   display: block;
   margin-left: 18.5em;
-  margin-top: -2.5em;
+  margin-top: -3.6em;
   z-index: 99;
   height: 28px;
   position: absolute;

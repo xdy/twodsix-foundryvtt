@@ -115,6 +115,7 @@ export interface Ship {
   cargo:string;
   finances:string;
   maintenanceCost:number;
+  totalMass:number;
   shipValue:string;
   reqPower:ReqPower;
   other:string;
