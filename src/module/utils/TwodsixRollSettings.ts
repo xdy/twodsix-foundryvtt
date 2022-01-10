@@ -27,7 +27,7 @@ export class TwodsixRollSettings {
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
     const skillName = TwodsixItem.simplifySkillName(aSkill?.name ?? "");
-    this.rollType = (<Traveller>aSkill?.actor?.data?.data)?.skillRollTypes[skillName] ?? settings?.rollType ?? "Normal";
+    this.rollType = (<Traveller>aSkill?.actor?.data?.data)?.skillRollTypes?.[skillName] ?? settings?.rollType ?? "Normal";
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
     this.characteristic = settings?.characteristic ?? characteristic;
