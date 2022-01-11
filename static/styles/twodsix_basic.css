@@ -1317,6 +1317,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 20.4em;
 }
 
+.force-border {
+  border: 1px solid yellow !important;
+}
+
 .ship-grid input[type="text"] {
   width: 14.8em;
   border: 1px groove;

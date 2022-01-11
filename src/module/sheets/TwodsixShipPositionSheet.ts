@@ -67,9 +67,12 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   private async _onDeleteAction(event: Event) {
     if (event.currentTarget !== null) {
       const deleteId = $(event.currentTarget).data("id");
+
+      // await this.item.update({ [`data.actions.-=${deleteId}`]: null });
+      // The code below is an ugly fix because of a bug in foundry: https://gitlab.com/foundrynet/foundryvtt/-/issues/6421
       const actions = duplicate((<ShipPosition>this.item.data.data).actions);
       delete actions[deleteId];
-      await this.item.update({"data.actions": null}, {noHook: true})
+      await this.item.update({"data.actions": null}, {noHook: true, render: false})
       await this.item.update({ 'data.actions': actions });
     }
   }

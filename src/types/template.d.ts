@@ -116,6 +116,7 @@ export interface Actor {
 export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
+  crew:Crew;
   notes:string;
   cargo:string;
   finances:string;
@@ -123,6 +124,21 @@ export interface Ship {
   reqPower:ReqPower;
   shipStats:ShipStats;
   shipPositionActorIds: ShipPositionActorIds;
+}
+
+export interface Crew {
+  captain:string;
+  pilot:string;
+  astrogator:string;
+  engineer:string;
+  maintenance:string;
+  gunner:string;
+  medic:string;
+  admin:string;
+  steward:string;
+  broker:string;
+  marine:string;
+  other:string;
 }
 export interface ReqPower {
   systems:number;
@@ -132,13 +148,6 @@ export interface ReqPower {
   weapons:number;
 }
 
-export interface Staterooms {
-  name:string;
-  weight:string;
-  cost:string;
-  power?:string;
-}
-
 export interface ShipStats {
   hull:Hits;
   fuel:Hits;
@@ -146,6 +155,13 @@ export interface ShipStats {
   armor:Staterooms;
   fuelTanks:Staterooms;
   mass:Staterooms;
+}
+
+export interface Staterooms {
+  name:string;
+  weight:string;
+  cost:string;
+  power?:string;
 }
 
 export interface Hits {

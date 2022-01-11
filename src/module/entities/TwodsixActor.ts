@@ -131,7 +131,7 @@ export default class TwodsixActor extends Actor {
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
-    } else if (this.data.type === "ship") {
+    } else if (this.data.type === 'ship') {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
