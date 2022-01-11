@@ -69,7 +69,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   private _onCreateAction() {
-    const actions = (this.item.data.data as ShipPosition).actions;
+    const actions = (<ShipPosition>this.item.data.data).actions;
     actions[randomID()] = {
       "order": Object.keys(actions).length,
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),

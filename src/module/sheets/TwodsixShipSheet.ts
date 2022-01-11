@@ -115,6 +115,14 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     })) {
       const crewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
       this.actor.deleteEmbeddedDocuments("Item", [crewPositionId]);
+
+      this.actor.items.filter((item:TwodsixItem) => item.type === "ship_position").forEach((itm:TwodsixItem) => {
+        (<ShipPosition>itm.data.data).actors?.forEach((actor:TwodsixActor) => {
+          if (actor.id && actor.id in (<Ship>this.actor.data.data).shipPositionActorIds) {
+            this.actor.update({[`data.shipPositionActorIds.-=${actor.id}`]: null});
+          }
+        });
+      });
     }
   }
 
