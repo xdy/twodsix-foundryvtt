@@ -46,16 +46,18 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     const data = getDataFromDropEvent(event);
     if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills")) {
       const skillData = data.data ?? game.items?.get(data.id)?.data;
-      const actions = (this.item.data.data as ShipPosition).actions;
-      const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-      actions[randomID()] = {
-        "order": Object.keys(actions).length,
-        "name": "New action",
-        "icon": skillData.img,
-        "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-        "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
-      };
-      this.item.update({ "data.actions": actions });
+      if (skillData) {
+        const actions = (<ShipPosition>this.item.data.data).actions;
+        const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+        actions[randomID()] = {
+          "order": Object.keys(actions).length,
+          "name": "New action",
+          "icon": skillData.img,
+          "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
+          "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
+        };
+        this.item.update({ "data.actions": actions });
+      }
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForCrewPosition"));
     }

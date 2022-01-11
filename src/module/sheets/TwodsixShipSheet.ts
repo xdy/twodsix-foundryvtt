@@ -76,14 +76,17 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       const shipPositionId = $(event.currentTarget).parents(".crew-position").data("id");
       const shipPosition = this.actor.items.get(shipPositionId);
       const action = (<ShipPosition>shipPosition?.data?.data)?.actions[actionId];
-      const ship = game.actors?.get(this.actor.id ?? "");
+      if (action) {
+        const ship = game.actors?.get(this.actor.id ?? "");
 
-      const extra = {
-        actor: game.actors?.get(actorId),
-        ship: ship,
-        event: event
-      };
-      TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
+        const extra = {
+          actor: game.actors?.get(actorId),
+          ship: ship,
+          event: event
+        };
+
+        TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
+      }
     }
   }
 
