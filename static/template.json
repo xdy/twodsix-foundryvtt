@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship", "ship_v2"],
+    "types": ["traveller", "ship"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -131,20 +131,6 @@
     },
     "ship": {
       "name": "",
-      "crew": {
-        "captain": "",
-        "pilot": "",
-        "astrogator": "",
-        "engineer": "",
-        "maintenance": "",
-        "gunner": "",
-        "medic": "",
-        "admin": "",
-        "steward": "",
-        "broker": "",
-        "marine": "",
-        "other": ""
-      },
       "notes": "",
       "cargo": "",
       "finances": "",
@@ -156,7 +142,7 @@
         "sensors": 0,
         "weapons": 0
       },
-      "other": "",
+      "shipPositionActorIds": {},
       "shipStats": {
         "hull": {
           "value": 0,
@@ -187,38 +173,6 @@
           "name": "",
           "weight": "",
           "cost": ""
-        }
-      }
-    },
-    "ship_v2": {
-      "name": "",
-      "notes": "",
-      "maintenanceCost": 0,
-      "shipValue": 0,
-      "reqPower": {
-        "systems": 0,
-        "m-drive": 0,
-        "j-drive": 0,
-        "sensors": 0,
-        "weapons": 0
-      },
-      "shipPositionActorIds": {},
-      "components": [],
-      "shipStats": {
-        "hull": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        },
-        "fuel": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        },
-        "power": {
-          "value": 0,
-          "min": 0,
-          "max": 0
         }
       }
     }

@@ -2,6 +2,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Armor, Skills, UsesConsumables} from "../../types/template";
+import { TwodsixShipSheetData } from "../../types/twodsix";
 
 
 
@@ -186,7 +187,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         }
         break;
       case 'ship':
-      case 'ship_v2':
         if (!["augment", "skills", "trait"].includes(itemData.type)) {
           return this.handleDroppedItem(actor, itemData, data, event);
         }
@@ -266,7 +266,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return 0;
   }
 
-  protected static _prepareItemContainers(items, sheetData:any):void {
+  protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
 
     // Initialize containers.
     const storage:Item[] = [];
@@ -354,7 +354,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.secondaryArmor.value = secondaryArmor;
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
-    } else if (["ship", "ship_v2"].includes(sheetData.actor.type)) {
+    } else if (sheetData.actor.type === "ship") {
       sheetData.component = component;
       sheetData.storage = storage;
     } else {

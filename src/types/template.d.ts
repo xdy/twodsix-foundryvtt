@@ -11,12 +11,7 @@ export interface ShipDataSource {
   data:Ship;
 }
 
-export interface ShipV2DataSource {
-  type: 'ship_v2';
-  data: ShipV2;
-}
-
-export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | ShipV2DataSource;
+export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource;
 
 // Items
 export interface EquipmentDataSource {
@@ -116,63 +111,19 @@ export interface Actor {
   types:string[];
   traveller:Traveller;
   ship:Ship;
-  ship_v2: ShipV2;
 }
 
+export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
-  crew:Crew;
   notes:string;
   cargo:string;
   finances:string;
   maintenanceCost:number;
-  shipValue:string;
   reqPower:ReqPower;
-  other:string;
   shipStats:ShipStats;
-}
-
-export type ShipPositionActorIds = Record<string, string>
-export interface ShipV2 {
-  name: string;
-  crew: Crew;
-  notes: string;
-  cargo: string;
-  finances: string;
-  maintenanceCost: number;
-  shipValue: string;
-  reqPower: ReqPower;
-  other: string;
-  shipStats: ShipStats;
-  systems: Systems;
-  staterooms: Staterooms;
-  software: Software;
-  commonAreas: CommonAreas;
   shipPositionActorIds: ShipPositionActorIds;
 }
-
-
-export interface CommonAreas {
-  number:string;
-  weight:string;
-  cost:string;
-}
-
-export interface Crew {
-  captain:string;
-  pilot:string;
-  astrogator:string;
-  engineer:string;
-  maintenance:string;
-  gunner:string;
-  medic:string;
-  admin:string;
-  steward:string;
-  broker:string;
-  marine:string;
-  other:string;
-}
-
 export interface ReqPower {
   systems:number;
   mDrive:number;
@@ -181,6 +132,14 @@ export interface ReqPower {
   weapons:number;
 }
 
+export interface Staterooms {
+  name:string;
+  weight:string;
+  cost:string;
+  power?:string;
+}
+
+
 export interface ShipStats {
   hull:Hits;
   fuel:Hits;
@@ -188,20 +147,6 @@ export interface ShipStats {
   armor:Staterooms;
   fuelTanks:Staterooms;
   mass:Staterooms;
-}
-
-export interface Staterooms {
-  name:Name;
-  weight:string;
-  cost:string;
-  power?:string;
-}
-
-export enum Name {
-  Empty = "",
-  JDrive = "J-Drive",
-  MDrive = "M-Drive",
-  PowerPlant = "Power-Plant",
 }
 
 export interface Hits {

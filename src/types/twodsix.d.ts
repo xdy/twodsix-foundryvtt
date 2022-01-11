@@ -8,7 +8,6 @@ import {rollItemMacro} from "../module/utils/rollItemMacro";
 import { TwodsixItemSheet } from "../module/sheets/TwodsixItemSheet";
 import {ActorTwodsixDataSource, ItemTwodsixDataSource, ShipAction} from "./template";
 import {TWODSIX} from "../module/config";
-import { TwodsixShipV2Sheet } from "../module/sheets/TwodsixShipV2Sheet";
 import { TwodsixShipPositionSheet } from "../module/sheets/TwodsixShipPositionSheet";
 
 declare global {
@@ -98,10 +97,8 @@ declare interface TwodsixShipSheetSettings {
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
-}
-
-declare interface TwodsixShipV2SheetData extends TwodsixShipSheetData {
   crewPositions: Item[];
+  storage: Collection<Item>;
 }
 
 declare interface ExtraData {
@@ -177,14 +174,6 @@ declare interface Game {
             default: boolean;
             cls: TwodsixShipSheet;
             label: string;
-          };
-          ship_v2: {
-            'twodsix.TwodsixShipV2Sheet': {
-              id: 'twodsix.TwodsixShipV2Sheet';
-              default: boolean;
-              cls: TwodsixShipV2Sheet;
-              label: string;
-            };
           };
         };
       };

@@ -1280,6 +1280,34 @@ a.ship-crew-tab.active, a.ship-storage-tab.active, a.ship-cargo-tab.active, a.sh
   overflow: auto;
 }
 
+.crew_position-delete, .crew_position-edit {
+  float: right;
+  margin-top: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.ship-position-box {
+  width: 14.8em;
+  min-height: 50px;
+  border: 1px groove #00e5ff;
+  border-radius: 0;
+}
+
+.ship-position-add-box {
+  text-align: center;
+  min-height: 100px;
+}
+
+.ship-position-add-position {
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+.crew-actor-token, .create-crew-position {
+  cursor: pointer
+}
+
 .crew-list {
   height: 20.4em;
 }

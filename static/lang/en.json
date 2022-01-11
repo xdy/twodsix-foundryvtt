@@ -273,6 +273,8 @@
       "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
       "NoActorsForAction": "No actor available for action",
       "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
+      "AddCrewPosition": "Add Crew Position",
+      "NewAction": "New Action",
       "ShipHull": "Ship Hull",
       "Fuel": "Fuel",
       "MaintPM": "Maintenance P/M",

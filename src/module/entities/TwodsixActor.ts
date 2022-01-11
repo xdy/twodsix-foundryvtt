@@ -28,7 +28,6 @@ export default class TwodsixActor extends Actor {
         this._prepareTravellerData(actorData);
         break;
       case 'ship':
-      case 'ship_v2':
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
@@ -132,7 +131,7 @@ export default class TwodsixActor extends Actor {
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
-    } else if (["ship", "ship_v2"].includes(this.data.type)) {
+    } else if (this.data.type === "ship") {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
