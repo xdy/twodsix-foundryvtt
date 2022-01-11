@@ -1453,16 +1453,17 @@ input.power-total {
   width: 27.5rem;
   display: block;
   margin-left: 22em;
-  margin-top: -2em;
+  margin-top: -3em;
   z-index: 99;
-  height: 34px;
+  height: 46px;
 }
 
 a.ship-crew-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 0.1em;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
 }
 
 a.ship-crew-tab:hover {
@@ -1470,7 +1471,8 @@ a.ship-crew-tab:hover {
   background-position: 0.1em;
   color: var(--s2d6-item-hover);
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
 }
 
 a.ship-crew-tab.active {
@@ -1479,7 +1481,8 @@ a.ship-crew-tab.active {
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
   background-color: var(--s2d6-default-color);
 }
 
@@ -1487,14 +1490,16 @@ a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: -99px;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
 }
 
 a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: -99px;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
   color: var(--s2d6-item-hover);
 }
 
@@ -1502,7 +1507,8 @@ a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: -99px;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color);
@@ -1512,14 +1518,16 @@ a.ship-notes-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 7.1em;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
 }
 
 a.ship-notes-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: 7em;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
   color: var(--s2d6-item-hover);
 }
 
@@ -1529,7 +1537,8 @@ a.ship-notes-tab.active {
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
-  height: 34px;
+  height: 46px;
+  padding: 1ch;
   background-color: var(--s2d6-default-color);
 }
 
