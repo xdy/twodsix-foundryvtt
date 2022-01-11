@@ -269,11 +269,11 @@
       }
     },
     "Ship": {
-      "InvalidDocumentForCrewPosition": "This document type is invalid for crew positions. Only skills can be dropped here.",
+      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
       "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
       "NoActorsForAction": "No actor available for action",
       "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
-      "AddCrewPosition": "Add Crew Position",
+      "AddShipPosition": "Add Ship Position",
       "NewAction": "New Action",
       "ShipHull": "Ship Hull",
       "Fuel": "Fuel",
@@ -294,6 +294,7 @@
       "SHIPNOTES": "SHIP NOTES",
       "FINANCES": "FINANCES",
       "Tabs": {
+        "ShipPositions": "Positions",
         "Crew": "Crew",
         "Components": "Components",
         "Locker": "Locker",

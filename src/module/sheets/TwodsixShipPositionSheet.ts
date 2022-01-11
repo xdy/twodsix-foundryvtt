@@ -11,7 +11,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     const context = <TwodsixShipPositionSheetData>super.getData();
     context.components = this.item.actor?.items.filter(component => component.type === "component") ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
-    context.sortedActions = Object.entries((<ShipPosition>this.item.data.data).actions).map(([id, ret]) => {
+    const actions = (<ShipPosition>this.item.data.data).actions ?? [];
+    context.sortedActions = Object.entries(actions).map(([id, ret]) => {
       ret.id = id;
       ret.placeholder = TwodsixShipActions.availableMethods[ret.type].placeholder;
       return ret;
@@ -59,7 +60,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         this.item.update({ "data.actions": actions });
       }
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForCrewPosition"));
+      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForShipPosition"));
     }
   }
 
@@ -76,7 +77,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   private _onCreateAction() {
     const actions = (<ShipPosition>this.item.data.data).actions;
     actions[randomID()] = {
-      "order": Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
+      "order": Object.values(actions).length === 0 ? 1 : Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",
       "command": "",
