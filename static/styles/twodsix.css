@@ -1251,7 +1251,7 @@ img.ship-mask-bg {
   grid-template-columns: 7em 7em 7em 7em;
   grid-template-rows: 8em;
   gap: 1px 1px;
-  grid-template-areas: "ship-hull ship-fuel ship-armor ship-maintenance";
+  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass";
 }
 
 .ship-state-grid span {
@@ -1293,19 +1293,16 @@ img.ship-mask-bg {
   background-size: contain;
 }
 
-.ship-maintenance {
-  grid-area: ship-maintenance;
+.ship-mass {
+  grid-area: ship-mass;
   display: grid;
-  background-image: url(../assets/ship/maintenance.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
 }
-.ship-maintenance input {
+
+.ship-mass input {
   background-color: var(--s2d6-background-nearly-opaque) !important;
 }
 
-.ship-maintenance input[type="text"] {
+.ship-mass input[type="text"] {
   width: 4.5em;
   /*border: 1px solid var(--default-color);*/
   left: -1em;
@@ -1453,19 +1450,19 @@ input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 388px;
+  width: 27.5rem;
   display: block;
-  margin-left: 21.5em;
-  margin-top: -2.3em;
+  margin-left: 22em;
+  margin-top: -2em;
   z-index: 99;
-  height: 20px;
+  height: 34px;
 }
 
 a.ship-crew-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 0.1em;
   display: block;
-  height: 20px;
+  height: 34px;
 }
 
 a.ship-crew-tab:hover {
@@ -1473,7 +1470,7 @@ a.ship-crew-tab:hover {
   background-position: 0.1em;
   color: var(--s2d6-item-hover);
   display: block;
-  height: 20px;
+  height: 34px;
 }
 
 a.ship-crew-tab.active {
@@ -1482,7 +1479,7 @@ a.ship-crew-tab.active {
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
-  height: 20px;
+  height: 34px;
   background-color: var(--s2d6-default-color);
 }
 
@@ -1490,14 +1487,14 @@ a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: -99px;
   display: block;
-  height: 20px;
+  height: 34px;
 }
 
 a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: -99px;
   display: block;
-  height: 20px;
+  height: 34px;
   color: var(--s2d6-item-hover);
 }
 
@@ -1505,7 +1502,7 @@ a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: -99px;
   display: block;
-  height: 20px;
+  height: 34px;
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color);
@@ -1515,14 +1512,14 @@ a.ship-notes-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 7.1em;
   display: block;
-  height: 20px;
+  height: 34px;
 }
 
 a.ship-notes-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
   background-position: 7em;
   display: block;
-  height: 20px;
+  height: 34px;
   color: var(--s2d6-item-hover);
 }
 
@@ -1532,7 +1529,7 @@ a.ship-notes-tab.active {
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   display: block;
-  height: 20px;
+  height: 34px;
   background-color: var(--s2d6-default-color);
 }
 
@@ -1546,7 +1543,7 @@ a.ship-notes-tab.active {
   display: grid;
   grid-template-columns: 17em 17em 17em;
   grid-template-rows: 4em 4em 4em;
-  gap: 1em 1em;
+  gap: 0.6em 1em;
   grid-template-areas: ". .";
 }
 
@@ -1559,7 +1556,7 @@ a.ship-notes-tab.active {
 }
 
 .crew-list {
-  height: 20.4em;
+  height: 18.4em;
 }
 
 .ship-grid input[type="text"] {
@@ -1577,9 +1574,9 @@ a.ship-notes-tab.active {
 }
 
 .storage-wrapper {
-  margin-top: 0.1em;
+  margin-top: 1.1em;
   overflow-y: auto;
-  height: 21em;
+  height: 20em;
 }
 
 .grid-columns-double {
@@ -2296,6 +2293,10 @@ div.app.window-app.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
   width: 32.5em;
+}
+
+.sheet-tabs {
+  justify-content: space-between;
 }
 
 .token-sheet .notes {

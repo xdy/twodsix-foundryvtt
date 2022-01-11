@@ -119,10 +119,6 @@ export interface Ship {
   reqPower:ReqPower;
   other:string;
   shipStats:ShipStats;
-  systems:Systems;
-  staterooms:Staterooms;
-  software:Software;
-  commonAreas:CommonAreas;
 }
 
 export interface CommonAreas {
@@ -159,15 +155,8 @@ export interface ShipStats {
   fuel:Hits;
   power:Hits;
   armor:Staterooms;
-  mDrive:Staterooms;
-  jDrive:Staterooms;
-  powerPlant:Staterooms;
   fuelTanks:Staterooms;
-  bridge:Staterooms;
-  computer:Staterooms;
-  sensors:Staterooms;
-  weapons:Weapons;
-  ammunition:string;
+  mass:Staterooms;
 }
 
 export interface Staterooms {
@@ -188,33 +177,6 @@ export interface Hits {
   value:number;
   min:number;
   max:number;
-}
-
-export interface Weapons {
-  weapon1:Staterooms;
-  weapon2:Staterooms;
-  weapon3:Staterooms;
-  weapon4:Staterooms;
-  weapon5:Staterooms;
-  weapon6:Staterooms;
-  weapon7:Staterooms;
-  weapon8:Staterooms;
-}
-
-export interface Software {
-  name:string;
-  cost:string;
-}
-
-export interface Systems {
-  system1:Staterooms;
-  system2:Staterooms;
-  system3:Staterooms;
-  system4:Staterooms;
-  system5:Staterooms;
-  system6:Staterooms;
-  system7:Staterooms;
-  system8:Staterooms;
 }
 
 export interface Traveller {

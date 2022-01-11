@@ -149,7 +149,6 @@
       "cargo": "",
       "finances": "",
       "maintenanceCost": 0,
-      "shipValue": "",
       "reqPower": {
         "systems": 0,
         "m-drive": 0,
@@ -179,141 +178,16 @@
           "weight": "",
           "cost": ""
         },
-        "m-drive": {
-          "name": "M-Drive",
-          "weight": "",
-          "cost": ""
-        },
-        "j-drive": {
-          "name": "J-Drive",
-          "weight": "",
-          "cost": ""
-        },
-        "power_plant": {
-          "name": "Power-Plant",
-          "power": "",
-          "weight": "",
-          "cost": ""
+        "mass": {
+          "value": 0,
+          "min": 0,
+          "max": 0
         },
         "fuel_tanks": {
           "name": "",
           "weight": "",
           "cost": ""
-        },
-        "bridge": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "computer": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "sensors": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "weapons": {
-          "weapon1": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon2": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon3": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon4": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon5": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon6": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon7": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          },
-          "weapon8": {
-            "name": "",
-            "weight": "",
-            "cost": ""
-          }
-        },
-        "ammunition": ""
-      },
-      "systems": {
-        "system1": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system2": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system3": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system4": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system5": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system6": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system7": {
-          "name": "",
-          "weight": "",
-          "cost": ""
-        },
-        "system8": {
-          "name": "",
-          "weight": "",
-          "cost": ""
         }
-      },
-      "staterooms": {
-        "name": "",
-        "weight": "",
-        "cost": ""
-      },
-      "software": {
-        "name": "",
-        "cost": ""
-      },
-      "common_areas": {
-        "number": "",
-        "weight": "",
-        "cost": ""
       }
     }
   },

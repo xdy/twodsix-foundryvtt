@@ -33,8 +33,10 @@
             <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
             <span class="ship-armor-name"><textarea name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea></span>
           </div>
-        <div class="ship-maintenance"><span>{{localize "TWODSIX.Ship.MaintPM"}}</span>
-          <input type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" placeholder="0"/>
+        <div class="ship-mass">
+          <span>{{localize "TWODSIX.Ship.TotalMass"}}</span>
+          <span><input type="number" value="{{data.data.shipStats.mass.max}}" name="data.shipStats.mass.max" placeholder="0"/></span>
+          <span>{{localize "TWODSIX.Ship.tons"}}</span>
         </div>
       </div>
     </div>
@@ -61,12 +63,12 @@
     {{!-- Sheet Tab Navigation --}}
     <div class="ship-tabs">
       <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item ship-crew-tab" data-tab="ship-crew">{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
-        <a class="item ship-storage-tab" data-tab="ship-component">{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
-        <a class="item ship-storage-tab" data-tab="ship-storage">{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
-        <a class="item ship-cargo-tab" data-tab="ship-cargo">{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
-        <a class="item ship-finance-tab" data-tab="ship-finance">{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
-        <a class="item ship-notes-tab" data-tab="ship-notes">{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
+        <a class="item ship-crew-tab" data-tab="ship-crew"><i class="fas fa-users"></i><br>{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
+        <a class="item ship-storage-tab" data-tab="ship-component"><i class="fas fa-cogs"></i><br>{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
+        <a class="item ship-storage-tab" data-tab="ship-storage"><i class="fas fa-warehouse"></i><br>{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
+        <a class="item ship-cargo-tab" data-tab="ship-cargo"><i class="fas fa-boxes"></i><br>{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
+        <a class="item ship-finance-tab" data-tab="ship-finance"><i class="fas fa-coins"></i><br>{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
+        <a class="item ship-notes-tab" data-tab="ship-notes"><i class="far fa-clipboard"></i><br>{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
       </nav>
     </div>
 
