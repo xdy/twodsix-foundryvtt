@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.4...v1.4.5) (2022-01-11)
+
+
+### Bug Fixes
+
+* make tabs large on ship sheet ([#802](https://github.com/xdy/twodsix-foundryvtt/issues/802)) ([f24d9e2](https://github.com/xdy/twodsix-foundryvtt/commit/f24d9e2ba10033809e8268f13af26e20391e29dc))
+
 ## [1.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.3...v1.4.4) (2022-01-11)
 
 
