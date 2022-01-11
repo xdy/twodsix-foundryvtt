@@ -62,14 +62,14 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       if ($(event.currentTarget).parents(".crew-position").find(".crew-actor-token").length === 1) {
         actorId = crewPosEl.find(".crew-actor-token").data("id");
       } else if ($(event.currentTarget).parents(".crew-position").find(".crew-actor-token").length === 0) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.NoActorsForAction"));
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.NoActorsForAction"));
         return null;
       } else {
         actorId = crewPosEl.find(".crew-actor-token.force-border").data("id");
       }
 
       if (!actorId) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
         return null;
       }
       const actionId = $(event.currentTarget).data("id");
@@ -145,6 +145,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
   async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
+
+    if (event.target !== null && $(event.target).hasClass("crew-position")) {
+      return false;
+    }
 
     const data = getDataFromDropEvent(event);
     if ((data.type === "Actor" && game.actors?.get(data.id)?.type === "traveller")) {
