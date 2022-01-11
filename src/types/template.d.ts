@@ -139,7 +139,6 @@ export interface Staterooms {
   power?:string;
 }
 
-
 export interface ShipStats {
   hull:Hits;
   fuel:Hits;

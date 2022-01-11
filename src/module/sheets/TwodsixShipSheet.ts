@@ -114,15 +114,13 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       content: "Are you sure you want to delete this position?"
     })) {
       const crewPositionId = $(event.currentTarget).parents(".crew-position").data("id");
-      this.actor.deleteEmbeddedDocuments("Item", [crewPositionId]);
 
-      this.actor.items.filter((item:TwodsixItem) => item.type === "ship_position").forEach((itm:TwodsixItem) => {
-        (<ShipPosition>itm.data.data).actors?.forEach((actor:TwodsixActor) => {
-          if (actor.id && actor.id in (<Ship>this.actor.data.data).shipPositionActorIds) {
-            this.actor.update({[`data.shipPositionActorIds.-=${actor.id}`]: null});
-          }
-        });
+      (<ShipPosition>(<TwodsixItem>this.actor.items.get(crewPositionId)).data.data).actors?.forEach((actor:TwodsixActor) => {
+        if (actor.id && actor.id in (<Ship>this.actor.data.data).shipPositionActorIds) {
+          this.actor.update({[`data.shipPositionActorIds.-=${actor.id}`]: null});
+        }
       });
+      this.actor.deleteEmbeddedDocuments("Item", [crewPositionId]);
     }
   }
 
