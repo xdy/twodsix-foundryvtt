@@ -1,6 +1,5 @@
 //Everything except the namespace is generated from template.json using https://app.quicktype.io/?l=ts
 
-
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
@@ -133,6 +132,7 @@ export interface Ship {
   shipStats:ShipStats;
 }
 
+export type ShipPositionActorIds = Record<string, string>
 export interface ShipV2 {
   name: string;
   crew: Crew;
@@ -148,7 +148,7 @@ export interface ShipV2 {
   staterooms: Staterooms;
   software: Software;
   commonAreas: CommonAreas;
-  shipPositionActorIds: Record<string, string>;
+  shipPositionActorIds: ShipPositionActorIds;
 }
 
 
@@ -281,30 +281,29 @@ export interface PrimaryArmor {
   value:number;
 }
 
-export enum ShipActionType {
-  skillRoll = "skillRoll",
-  chatMessage = "chatMessage",
-  fireEnergyWeapons = "fireEnergyWeapons"
+export interface ShipAction {
+  order: number;
+  name: string;
+  icon: string;
+  type: string;
+  command: string;
+  id?: string;
+  placeholder?: string;
 }
 
-export interface ShipAction {
-  order: number,
-  name: string,
-  icon: string,
-  type: ShipActionType,
-  command: string
-}
+export type ShipActions = Record<string, ShipAction>;
 
 export interface ShipPosition {
-  name: string,
-  icon: string,
-  actions: Record<string, ShipAction>,
+  name: string;
+  icon: string;
+  actions: ShipActions;
+  sortedActions?: ShipAction[];
   order: number;
+  actors?: TwodsixActor[];
 }
 
 export interface Item {
   types:string[];
-  equipped: string[];
   templates:Templates;
   equipment:Equipment;
   tool:Equipment;
@@ -390,14 +389,10 @@ export interface GearTemplate {
   price:string;
   traits:any[];
   consumables:any[];
-  equipped: Equipped;
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-}
-
-export interface Equipped {
-  weight: number;
+  equipped:string;
 }
 
 export interface Trait {

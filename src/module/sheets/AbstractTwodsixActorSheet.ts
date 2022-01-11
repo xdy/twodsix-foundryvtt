@@ -355,8 +355,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
     } else if (["ship", "ship_v2"].includes(sheetData.actor.type)) {
-      sheetData.data.component = component;
-      sheetData.data.storage = storage;
+      sheetData.component = component;
+      sheetData.storage = storage;
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
     }

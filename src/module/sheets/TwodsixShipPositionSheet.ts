@@ -2,32 +2,25 @@ import { TWODSIX } from "../config";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
-import ShipPosition = dataTwodsix.ShipPosition;
-import ShipAction = dataTwodsix.ShipAction;
-import ShipActionType = dataTwodsix.ShipActionType;
-
+import { ShipAction, ShipPosition } from "../../types/template";
+import { TwodsixShipPositionSheetData } from "src/types/twodsix";
 
 export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
-  // @ts-ignore
-  getData(): ItemSheetData {
-    // @ts-ignore
-    const data = super.getData();
-    data.data.components = this.item?.parent?.items.filter(component => component.type === "component") ?? [];
-    data.data.availableActions = TwodsixShipActions.availableMethods;
-    data.data.sortedActions = Object.entries(data.data.actions).map((act) => {
-      const ret = act[1];
-      ret["id"] = act[0];
-      ret["placeholder"] = TwodsixShipActions.availableMethods[ret["type"]]["placeholder"];
+  getData(): TwodsixShipPositionSheetData {
+    const context = <TwodsixShipPositionSheetData>super.getData();
+    context.components = this.item.actor?.items.filter(component => component.type === "component") ?? [];
+    context.availableActions = TwodsixShipActions.availableMethods;
+    context.sortedActions = Object.entries((<ShipPosition>this.item.data.data).actions).map(([id, ret]) => {
+      ret.id = id;
+      ret.placeholder = TwodsixShipActions.availableMethods[ret.type].placeholder;
       return ret;
     });
-    data.data.sortedActions.sort((a, b) => (a.order > b.order) ? 1 : -1);
-    return data;
+    context.sortedActions.sort((a: ShipAction, b: ShipAction) => (a.order > b.order) ? 1 : -1);
+    return context;
   }
 
-  // @ts-ignore
-  static get defaultOptions(): FormApplicationOptions {
-    // @ts-ignore
+  static get defaultOptions(): ActorSheet.Options {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       template: "systems/twodsix/templates/items/ship_position-sheet.html",
@@ -51,15 +44,15 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   async _onDrop(event: DragEvent): Promise<boolean | any> {
     const data = getDataFromDropEvent(event);
-    if (data.type === "Item" && (data.data?.type === "skills" || game.items.get(data.id).type === "skills")) {
-      const skillData = data.data ?? game.items.get(data.id).data;
+    if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills")) {
+      const skillData = data.data ?? game.items?.get(data.id)?.data;
       const actions = (this.item.data.data as ShipPosition).actions;
       const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
       actions[randomID()] = {
         "order": Object.keys(actions).length,
         "name": "New action",
         "icon": skillData.img,
-        "type": ShipActionType.skillRoll,
+        "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
         "command": `${skillData.name}/${skillData.data.characteristic} ${difficulties[skillData.data.difficulty].target}+`
       };
       this.item.update({ "data.actions": actions });
@@ -69,18 +62,20 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   private _onDeleteAction(event: Event) {
-    const deleteId = $(event.currentTarget).data("id");
-    this.item.update({ [`data.actions.-=${deleteId}`]: null });
+    if (event.currentTarget !== null) {
+      const deleteId = $(event.currentTarget).data("id");
+      this.item.update({ [`data.actions.-=${deleteId}`]: null });
+    }
   }
 
-  private _onCreateAction(event: Event) {
+  private _onCreateAction() {
     const actions = (this.item.data.data as ShipPosition).actions;
     actions[randomID()] = {
       "order": Object.keys(actions).length,
-      "name": "New Action",
+      "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",
       "command": "",
-      "type": ShipActionType.chatMessage
+      "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
     this.item.update({ "data.actions": actions });
   }

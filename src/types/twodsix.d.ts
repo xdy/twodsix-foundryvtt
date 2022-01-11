@@ -5,11 +5,11 @@ import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import {rollItemMacro} from "../module/utils/rollItemMacro";
-import { TwodsixItemSheet } from "src/module/sheets/TwodsixItemSheet";
-import {ActorTwodsixDataSource, ItemTwodsixDataSource} from "./template";
+import { TwodsixItemSheet } from "../module/sheets/TwodsixItemSheet";
+import {ActorTwodsixDataSource, ItemTwodsixDataSource, ShipAction} from "./template";
 import {TWODSIX} from "../module/config";
-import { TwodsixShipV2Sheet } from "src/module/sheets/TwodsixShipV2Sheet";
-import { TwodsixShipPositionSheet } from "src/module/sheets/TwodsixShipPositionSheet";
+import { TwodsixShipV2Sheet } from "../module/sheets/TwodsixShipV2Sheet";
+import { TwodsixShipPositionSheet } from "../module/sheets/TwodsixShipPositionSheet";
 
 declare global {
   interface LenientGlobalVariableTypes {
@@ -90,6 +90,38 @@ declare global {
       'twodsix.rulesetSettings': RulesetSettings
     }
   }
+}
+
+declare interface TwodsixShipSheetSettings {
+  showSingleComponentColumn: boolean;
+}
+declare interface TwodsixShipSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixShipSheetSettings;
+}
+
+declare interface TwodsixShipV2SheetData extends TwodsixShipSheetData {
+  crewPositions: Item[];
+}
+
+declare interface ExtraData {
+  actor?: TwodsixActor;
+  ship?: TwodsixActor;
+  event: Event;
+}
+
+declare interface AvailableShipActionData {
+  action: (text:string, extra:ExtraData) => Promise<void>;
+  name: string;
+  placeholder: string;
+}
+
+type AvailableShipActions = Record<string, AvailableShipActionData>;
+
+declare interface TwodsixShipPositionSheetData extends ItemSheet.Data {
+  availableActions: AvailableShipActions;
+  components: Item[];
+  sortedActions: ShipAction[];
 }
 
 declare interface TwodsixItemSheetData {

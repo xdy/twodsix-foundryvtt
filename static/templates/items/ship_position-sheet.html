@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each data.sortedActions as |action|}}                    
+                    {{#each sortedActions as |action|}}
                     <tr class="crew_position-action">
                         <td><input type="number" style="width: 15px;" name="data.actions.{{action.id}}.order" value="{{action.order}}" data-dtype="Number"></td>
                         <td data-id="{{action.id}}">
@@ -40,7 +40,7 @@
                         <td>
                             <select style="width: 100px;" name="data.actions.{{action.id}}.type" value={{action.type}}>
                             {{#select action.type}}
-                            {{#each ../data.availableActions as |value key|}}
+                            {{#each ../availableActions as |value key|}}
                                 <option value="{{key}}">{{value.name}}</option>
                             {{/each}}
                             {{/select}}
@@ -68,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each data.components as |component|}}
+                    {{#each components as |component|}}
                     <tr class="crew_position-component">
                         <td><img src="{{component.data.img}}" width="20" height="20"> {{component.name}}</td>
                         <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
