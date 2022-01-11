@@ -61,10 +61,28 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private _onDeleteAction(event: Event) {
+  private async _onDeleteAction(event: Event) {
     if (event.currentTarget !== null) {
       const deleteId = $(event.currentTarget).data("id");
-      this.item.update({ [`data.actions.-=${deleteId}`]: null });
+      // console.log("token?", this.item.actor?.token)
+      // console.log("delete id", deleteId)
+      console.log("actions (pre update):", JSON.parse(JSON.stringify(this.item.data.data.actions)));
+      // await this.item.update({ [`data.actions.${deleteId}.name`]: "NEW NAME" });
+      await this.actor.updateEmbeddedDocuments("Item", [{_id: this.item.id, [`data.actions.${deleteId}.name`]: "NEW NAME"}])
+      console.log("actions (post update):", JSON.parse(JSON.stringify(this.item.data.data.actions)));
+      // await this.item.update({ [`data.actions.${deleteId}.name`]: undefined });
+      // await this.actor.updateEmbeddedDocuments("Item", [{_id: this.item.id, [`data.actions.-=${deleteId}`]: null}])
+      console.log("actions (pre delete update):", JSON.parse(JSON.stringify(this.item.data.data.actions)));
+      // await this.item.actor?.items.get(this.item.id).update({ [`data.actions.-=${deleteId}`]: null }); //This should work, but for some reason doesn't work for tokens..
+      await this.actor.updateEmbeddedDocuments("Item", [{_id: this.item.id, [`data.actions.-=${deleteId}`]: null}])
+      console.log("actions (post delete update):", JSON.parse(JSON.stringify(this.item.data.data.actions)));
+
+      // const actions = JSON.parse(JSON.stringify(this.item.data.data.actions));
+      // delete actions[deleteId];
+      // this.item.update({ 'data.actions': actions });
+
+      // this.item.sheet?.render();
+      // this.item.actor?.sheet?.render();
     }
   }
 
