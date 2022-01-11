@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.3...v1.4.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* Ship sheet styling ([#798](https://github.com/xdy/twodsix-foundryvtt/issues/798)) ([a2eca92](https://github.com/xdy/twodsix-foundryvtt/commit/a2eca9203aa0c8d4cdf6680a0c878b6dc892b9f7))
+
 ## [1.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.2...v1.4.3) (2022-01-08)
 
 
