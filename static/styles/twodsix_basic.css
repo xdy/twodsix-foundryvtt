@@ -1273,8 +1273,11 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-positions-grid {
-  display: grid;
-  grid-template: ". ." 10em / 17em 17em 17em;
+  justify-content: space-evenly;
+  display: flex;
+  row-gap: 1em;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .tab.ship-crew, .tab.ship-positions {

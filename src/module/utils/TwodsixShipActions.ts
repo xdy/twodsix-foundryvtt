@@ -22,12 +22,12 @@ export class TwodsixShipActions {
     }
   };
 
-  public static chatMessage(msg:string) {
-    return ChatMessage.create({"content": msg});
+  public static chatMessage(msg: string, extra: ExtraData) {
+    return ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: extra.actor }) });
   }
 
-  public static async skillRoll(text:string, extra:ExtraData) {
-    const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+  public static async skillRoll(text: string, extra: ExtraData) {
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const re = new RegExp(/^(.+?)\/?([A-Z]*?) ?(\d*?)\+?$/);
@@ -44,7 +44,7 @@ export class TwodsixShipActions {
         characteristic: char ? char : undefined
       };
       if (diff) {
-        settings["difficulty"] = Object.values(difficulties).filter((difficulty:Record<string,number>) => difficulty.target === parseInt(diff, 10))[0];
+        settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
       const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill);
       if (!options.shouldRoll) {
@@ -58,7 +58,7 @@ export class TwodsixShipActions {
     }
   }
 
-  public static async fireEnergyWeapons(text: string, extra:ExtraData) {
+  public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {
@@ -67,9 +67,9 @@ export class TwodsixShipActions {
     const component = extra.ship?.items.find(item => item.id === componentId);
     const extraStr = component ? `while using ${component.name}` : '';
     if (result.effect >= 0) {
-      ChatMessage.create({"content": `Hit ${extraStr}`});
+      this.chatMessage(`Hit ${extraStr}`, extra);
     } else {
-      ChatMessage.create({"content": `Missed ${extraStr}`});
+      this.chatMessage(`Missed ${extraStr}`, extra);
     }
   }
 }

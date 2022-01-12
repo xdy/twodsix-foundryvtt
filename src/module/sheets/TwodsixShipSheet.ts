@@ -3,6 +3,7 @@ import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
@@ -139,29 +140,61 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   _onDragStart(event: DragEvent):void {
-    if (event.dataTransfer !== null && event.target !== null) {
-      event.dataTransfer.setData("text/plain", JSON.stringify({"type": "Actor", "id": $(event.target).data("id")}));
+    if (event.dataTransfer !== null && event.target !== null && $(event.target).data("drag") === "actor") {
+      const actor = game.actors?.get($(event.target).data("id"));
+      event.dataTransfer.setData("text/plain", JSON.stringify({
+        "type": "Actor",
+        "data": actor?.data,
+        "actorId": this.actor.id,
+        "id": $(event.target).data("id")
+      }));
+    } else if (event.target && $(event.target).hasClass("ship-position-action")) {
+      return;
+    } else {
+      super._onDragStart(event);
     }
   }
 
   async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
-
-    if (event.target !== null && $(event.target).hasClass("ship-position")) {
+    if (event.dataTransfer === null || event.target === null) {
       return false;
     }
 
-    const data = getDataFromDropEvent(event);
-    if ((data.type === "Actor" && game.actors?.get(data.id)?.type === "traveller")) {
-      const actorId = data.id;
-      if (event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-        const shipPositionId = $(event.target).parents(".ship-position").data("id");
-        this.actor.update({[`data.shipPositionActorIds.${actorId}`]: shipPositionId});
+
+    try {
+      const data = getDataFromDropEvent(event);
+
+      if (data.type === "Actor" && (data.data?.type === "traveller" || game.actors?.get(data.id)?.type === "traveller")) {
+        const actorId = data.id;
+        const currentShipPositionId = (<Ship>this.actor.data.data).shipPositionActorIds[actorId];
+        if (event.target !== null && $(event.target).parents(".ship-position").length === 1) {
+          const shipPositionId = $(event.target).parents(".ship-position").data("id");
+          await this.actor.update({[`data.shipPositionActorIds.${actorId}`]: shipPositionId});
+          this.actor.items.get(shipPositionId)?.sheet?.render();
+        } else {
+          await this.actor.update({[`data.shipPositionActorIds.-=${actorId}`]: null});
+        }
+        this.actor.items.get(currentShipPositionId)?.sheet?.render();
+      } else if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
+          const shipPositionId = $(event.target).parents(".ship-position").data("id");
+          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+
+          let skillData:TwodsixItem|undefined;
+          if (data.id) {
+            skillData = game.items?.get(data.id);
+          } else {
+            skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
+          }
+          if (skillData) {
+            await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
+          }
       } else {
-        this.actor.update({[`data.shipPositionActorIds.-=${actorId}`]: null});
+        return super._onDrop(event);
       }
-    } else {
-      return super._onDrop(event);
+    } catch (err) {
+      // console.warn(err); // uncomment when debugging
+      return false;
     }
   }
 }

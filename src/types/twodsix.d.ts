@@ -119,6 +119,8 @@ declare interface TwodsixShipPositionSheetData extends ItemSheet.Data {
   availableActions: AvailableShipActions;
   components: Item[];
   sortedActions: ShipAction[];
+  hasShipActor: boolean;
+  actors?: TwodsixActor[];
 }
 
 declare interface TwodsixItemSheetData {
