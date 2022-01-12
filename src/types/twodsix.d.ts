@@ -97,7 +97,7 @@ declare interface TwodsixShipSheetSettings {
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
-  crewPositions: Item[];
+  shipPositions: Item[];
   storage: Collection<Item>;
 }
 
