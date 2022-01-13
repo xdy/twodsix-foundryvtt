@@ -1,5 +1,5 @@
 import { applyToAllActors } from "../migration-utils";
-import Traveller = dataTwodsix.Traveller;
+import { Traveller } from "../types/template";
 
 async function mergeContacts(actor: TwodsixActor): Promise<void> {
   const actorData = actor.data.data as Traveller;

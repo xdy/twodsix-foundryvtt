@@ -1,0 +1,109 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="item-sheet">
+    <div class="item-name">
+      <label for="data.name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}
+        <input id="data.name" type="text" name="name" value="{{name}}" />
+      </label>
+    </div>
+    <div class="item-name">
+      <label for="data.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}
+        <input id="data.order" type="number" name="data.order" value="{{data.order}}" data-dtype="Number" />
+      </label>
+    </div>
+    {{#if hasShipActor}}
+    <div class="form-section">
+      {{localize "TWODSIX.Ship.Travellers"}}: <br>
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td>{{localize "TWODSIX.Actor.Items.Name"}}</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each actors as |actor|}}
+          <tr class="ship-position-details-actor" data-id="{{actor.id}}" data-drag="actor">
+            <td><img src="{{actor.img}}" width="20" height="20"></td>
+            <td>{{actor.name}}</td>
+            <td class="centre">
+              <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" title='{{localize "TWODSIX.Ship.RemoveTraveller"}}'>
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
+    <div class="form-section">
+      {{localize "TWODSIX.Ship.Actions"}}: <br>
+      <table>
+        <thead>
+          <tr>
+            <td>{{localize "TWODSIX.Ship.Order"}}</td>
+            <td>{{localize "TWODSIX.Ship.Name"}}</td>
+            <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
+            <td>{{localize "TWODSIX.Ship.ActionType"}}</td>
+            <td class="centre">
+              <a class="ship-position-details-action-create" title='{{localize "TWODSIX.Ship.CreateAction"}}'>
+                <i class="fas fa-plus"></i>
+              </a>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedActions as |action|}}
+          <tr class="ship-position-details-action">
+            <td><input type="number" style="width: 15px;" name="data.actions.{{action.id}}.order"
+                value="{{action.order}}" data-dtype="Number"></td>
+            <td data-id="{{action.id}}">
+              <img src="{{action.icon}}" data-edit="data.actions.{{action.id}}.icon" width="20" height="20">
+              <input type="text" style="width: 100px;" name="data.actions.{{id}}.name" value="{{action.name}}">
+            </td>
+            <td>
+              <input type="text" placeholder="{{action.placeholder}}" name="data.actions.{{id}}.command"
+                value="{{action.command}}">
+            </td>
+            <td>
+              <select style="width: 100px;" name="data.actions.{{action.id}}.type" value={{action.type}}>
+                {{#select action.type}}
+                {{#each ../availableActions as |value key|}}
+                <option value="{{key}}">{{value.name}}</option>
+                {{/each}}
+                {{/select}}
+              </select>
+            </td>
+            <td class="centre">
+              <a class="ship-position-details-action-delete" data-id="{{action.id}}" title='{{localize "TWODSIX.Ship.DeleteAction"}}'>
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-section">
+      {{localize "TWODSIX.Ship.Tabs.Components"}}: <br>
+      <table>
+        <thead>
+          <tr>
+            <td>{{localize "TWODSIX.Ship.Name"}}</td>
+            <td>COMPONENT_ID</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each components as |component|}}
+          <tr class="ship-position-details-component">
+            <td><img src="{{component.data.img}}" width="20" height="20"> {{component.name}}</td>
+            <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

@@ -63,13 +63,19 @@
     {{!-- Sheet Tab Navigation --}}
     <div class="ship-tabs">
       <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item ship-positions-tab" data-tab="ship-positions"><i class="fas fa-street-view"></i><br>{{localize "TWODSIX.Ship.Tabs.ShipPositions"}}</a>
         <a class="item ship-crew-tab" data-tab="ship-crew"><i class="fas fa-users"></i><br>{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
-        <a class="item ship-storage-tab" data-tab="ship-component"><i class="fas fa-cogs"></i><br>{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
+        <a class="item ship-component-tab" data-tab="ship-component"><i class="fas fa-cogs"></i><br>{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
         <a class="item ship-storage-tab" data-tab="ship-storage"><i class="fas fa-warehouse"></i><br>{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
         <a class="item ship-cargo-tab" data-tab="ship-cargo"><i class="fas fa-boxes"></i><br>{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
         <a class="item ship-finance-tab" data-tab="ship-finance"><i class="fas fa-coins"></i><br>{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
         <a class="item ship-notes-tab" data-tab="ship-notes"><i class="far fa-clipboard"></i><br>{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
       </nav>
+    </div>
+
+    {{!-- Ship Position Tab --}}
+    <div class="tab ship-positions" data-group="primary" data-tab="ship-positions">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-positions.html"}}
     </div>
 
     {{!-- Crew Tab --}}
@@ -78,8 +84,8 @@
     </div>
 
     {{!-- Component Tab --}}
-    <div class="tab ship-storage" data-group="primary" data-tab="ship-component">
-      {{#if data.settings.showSingleComponentColumn}}
+    <div class="tab ship-component" data-group="primary" data-tab="ship-component">
+      {{#if settings.showSingleComponentColumn}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-components-single.html"}}
       {{else}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-components-double.html"}}

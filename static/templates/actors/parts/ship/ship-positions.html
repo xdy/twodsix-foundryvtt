@@ -1,0 +1,32 @@
+<div class="ship-positions-list">
+  <div class="ship-positions-grid">
+    {{#each shipPositions as |shipPosition|}}
+      <div class="drag ship-position" data-id="{{shipPosition.id}}">
+        <div class="item-title">
+          {{shipPosition.name}}
+        </div>
+        <div class="ship-position-box">
+          {{#each shipPosition.data.data.actors as |actor|}}
+            <img src="{{actor.img}}" draggable="true" class="ship-position-actor-token" data-drag="actor" data-id="{{actor.id}}" width="40" height="40" alt="{{actor.name}}" title="{{actor.name}}">
+          {{/each}}
+          <span class="fa fa-trash ship-position-delete"></span>
+          <span class="fa fa-wrench ship-position-edit"></span>
+
+        </div>
+        <div class="ship-position-box">
+        {{#each shipPosition.data.data.sortedActions as |action|}}
+          <img src="{{action.icon}}" class="ship-position-action" data-id="{{action.id}}" title="{{action.name}}" width="40" height="40">
+        {{/each}}
+        </div>
+      </div>
+    {{/each}}
+    <div class="drag ship-position create-ship-position">
+      <div class="item-title">
+      </div>
+      <div class="ship-position-box ship-position-add-box">
+          <i class="fa fa-plus ship-position-add-position"></i><br>
+          {{localize "TWODSIX.Ship.AddShipPosition"}}
+      </div>
+    </div>
+  </div>
+</div>

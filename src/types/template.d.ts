@@ -1,6 +1,5 @@
 //Everything except the namespace is generated from template.json using https://app.quicktype.io/?l=ts
 
-
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
@@ -70,6 +69,11 @@ export interface WeaponDataSource {
   data:Weapon;
 }
 
+export interface ShipPositionDataSource {
+  type: 'ship_position';
+  data: ShipPosition;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -81,6 +85,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | StorageDataSource
   | TraitDataSource
   | WeaponDataSource
+  | ShipPositionDataSource
   ;
 
 export type Gear = Armor
@@ -108,6 +113,7 @@ export interface Actor {
   ship:Ship;
 }
 
+export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
   crew:Crew;
@@ -115,16 +121,9 @@ export interface Ship {
   cargo:string;
   finances:string;
   maintenanceCost:number;
-  shipValue:string;
   reqPower:ReqPower;
-  other:string;
   shipStats:ShipStats;
-}
-
-export interface CommonAreas {
-  number:string;
-  weight:string;
-  cost:string;
+  shipPositionActorIds: ShipPositionActorIds;
 }
 
 export interface Crew {
@@ -141,7 +140,6 @@ export interface Crew {
   marine:string;
   other:string;
 }
-
 export interface ReqPower {
   systems:number;
   mDrive:number;
@@ -160,17 +158,10 @@ export interface ShipStats {
 }
 
 export interface Staterooms {
-  name:Name;
+  name:string;
   weight:string;
   cost:string;
   power?:string;
-}
-
-export enum Name {
-  Empty = "",
-  JDrive = "J-Drive",
-  MDrive = "M-Drive",
-  PowerPlant = "Power-Plant",
 }
 
 export interface Hits {
@@ -248,6 +239,27 @@ export interface Finances {
 
 export interface PrimaryArmor {
   value:number;
+}
+
+export interface ShipAction {
+  order: number;
+  name: string;
+  icon: string;
+  type: string;
+  command: string;
+  id?: string;
+  placeholder?: string;
+}
+
+export type ShipActions = Record<string, ShipAction>;
+
+export interface ShipPosition {
+  name: string;
+  icon: string;
+  actions: ShipActions;
+  sortedActions?: ShipAction[];
+  order: number;
+  actors?: TwodsixActor[];
 }
 
 export interface Item {

@@ -2,6 +2,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Armor, Skills, UsesConsumables} from "../../types/template";
+import { TwodsixShipSheetData } from "../../types/twodsix";
 
 
 
@@ -265,7 +266,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return 0;
   }
 
-  protected static _prepareItemContainers(items, sheetData:any):void {
+  protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
 
     // Initialize containers.
     const storage:Item[] = [];
@@ -354,8 +355,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
     } else if (sheetData.actor.type === "ship") {
-      sheetData.data.component = component;
-      sheetData.data.storage = storage;
+      sheetData.component = component;
+      sheetData.storage = storage;
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
     }

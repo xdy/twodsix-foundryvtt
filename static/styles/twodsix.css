@@ -1458,7 +1458,7 @@ input.power-total {
   height: 46px;
 }
 
-a.ship-crew-tab {
+a.ship-positions-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 0.1em;
   display: block;
@@ -1466,27 +1466,27 @@ a.ship-crew-tab {
   padding: 1ch;
 }
 
-a.ship-crew-tab:hover {
-  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
+a.ship-crew-tab, a.ship-positions-tab {
+  /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: 0.1em;
-  color: var(--s2d6-item-hover);
   display: block;
   height: 46px;
   padding: 1ch;
 }
 
-a.ship-crew-tab.active {
+a.ship-crew-tab:hover, a.ship-positions-tab:hover {
+  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
+  color: var(--s2d6-item-hover);
+}
+
+a.ship-crew-tab.active, a.ship-positions-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
-  background-position: 0.1em;
   color: var(--s2d6-item-active);
   text-shadow: none !important;
-  display: block;
-  height: 46px;
-  padding: 1ch;
   background-color: var(--s2d6-default-color);
 }
 
-a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
+a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-component-tab {
   /*background-image: url(../assets/ship/ship-tabs.svg);*/
   background-position: -99px;
   display: block;
@@ -1494,21 +1494,13 @@ a.ship-storage-tab, a.ship-cargo-tab, a.ship-finance-tab {
   padding: 1ch;
 }
 
-a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover {
+a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-component-tab:hover {
   /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
-  background-position: -99px;
-  display: block;
-  height: 46px;
-  padding: 1ch;
   color: var(--s2d6-item-hover);
 }
 
-a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active {
+a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active, a.ship-component-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
-  background-position: -99px;
-  display: block;
-  height: 46px;
-  padding: 1ch;
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color);
@@ -1556,7 +1548,15 @@ a.ship-notes-tab.active {
   grid-template-areas: ". .";
 }
 
-.tab.ship-crew {
+.ship-positions-grid {
+  justify-content: space-evenly;
+  display: flex;
+  row-gap: 1em;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tab.ship-crew, .tab.ship-positions {
   width: 56.3em;
   padding-left: 2.5em;
   padding-right: 2em;
@@ -1564,7 +1564,35 @@ a.ship-notes-tab.active {
   overflow: auto;
 }
 
-.crew-list {
+.ship-position-delete, .ship-position-edit {
+  float: right;
+  margin-top: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.ship-position-box {
+  width: 14.8em;
+  min-height: 50px;
+  border: 1px groove #00e5ff;
+  border-radius: 0;
+}
+
+.ship-position-add-box {
+  text-align: center;
+  min-height: 100px;
+}
+
+.ship-position-add-position {
+  font-size: 40px;
+  margin-top: 20px;
+}
+
+.ship-position-actor-token, .create-ship-position {
+  cursor: pointer
+}
+
+.crew-list, .ship-positions-list {
   height: 18.4em;
 }
 
@@ -2421,4 +2449,8 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 .damage-dialog .attribute-name-column {
   text-align: left;
+}
+
+.force-border {
+  border: 1px solid yellow !important;
 }
