@@ -69,6 +69,7 @@ export default class TwodsixActor extends Actor {
     data.skills = new Proxy(Object.fromEntries(actorSkills), handler);
   }
 
+
   _prepareShipData(actorData): void {
 
     let calcPowerMax = 0;
@@ -134,14 +135,28 @@ export default class TwodsixActor extends Actor {
   }
 
 
-  _onUpdateEmbeddedDocuments(embeddedName:string, documents): void {
+  _onUpdateEmbeddedDocuments(embeddedName:string, documents, result): void {
     if (embeddedName === "ActiveEffect") {
-      (<ActiveEffect[]>documents).forEach((element:ActiveEffect) => {
-        const item = <TwodsixItem>(<TwodsixActor>element.parent)?.items.find((itm:TwodsixItem) => (<Trait>itm.data.data).effectId === element.id);
-        item?.update({"data.changes": element.data.changes});
+      (<ActiveEffect[]>documents).forEach(async (element:ActiveEffect, i) => {
+        const activeEffectId = element.getFlag("twodsix", "sourceId")
+        if (activeEffectId) {
+          const match = element.data.origin.match(/Item\.(.+)/)
+          if (match) {
+            const item = element.parent?.items.get(match[1])
+            delete result[0]._id
+            const newEffects = item.effects.map(effect => {
+              if (effect.id === activeEffectId) {
+                return foundry.utils.mergeObject(effect.toObject(), result[0]);
+              }
+              else {
+                return effect.toObject();
+              }
+            })
+            item?.update({"effects": newEffects}, {recursive: true});
+          }
+        }
       });
     }
-    this.render();
   }
 
 

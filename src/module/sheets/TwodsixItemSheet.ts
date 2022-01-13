@@ -83,48 +83,35 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
 
-    //change-row
-    html.find('.change-row input, .change-row select').on('change', this._onEditChange.bind(this));
-    html.find('.change-create').on('click', this._onCreateChange.bind(this));
-    html.find('.change-delete').on('click', this._onDeleteChange.bind(this));
-
-    html.find(".effect-edit").on("click", this._onEditEffect.bind(this));
+    html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
+    html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
+    html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
 
     this.handleContentEditable(html);
   }
 
-  private _onEditEffect(event:Event): void {
-    if (event.currentTarget) {
-      const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
-      effect?.sheet.render(true);
-    }
+  private async _onCreateEffect(): Promise<void> {
+    const effects = [new ActiveEffect({
+      origin: this.item.uuid,
+      icon: this.item.img,
+      tint: "#ffffff"
+    }).toObject()];
+    await this.item.update({effects: effects }, {recursive: true});
+    this.item.effects.contents[0].sheet?.render(true);
+  }
+  private _onEditEffect(event): void {
+      (this.actor ?? this.item).effects.contents[0].sheet?.render(true);
+      // const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
+      // effect?.sheet.render(true);
   }
 
-  private _onDeleteChange(event:Event): void {
-    if (event.currentTarget) {
-      const idx = parseInt($(event.currentTarget).data("index"), 10);
-      const changes = (<Trait>this.item.data.data).changes.filter((_, i) => i !== idx);
-      this.item.update({"data.changes": changes});
-    }
+  private async _onDeleteEffect(): Promise<void> {
+    // await this.item.update({effects: null }, {noHook: true, render: false});
+    await this.item.update({effects: [] }, {recursive: false});
+    // const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
+    // effect?.sheet.render(true);
   }
 
-  private _onEditChange(event:Event) : void{
-    if (event.currentTarget) {
-      const idx = parseInt($(event.currentTarget).parents(".change-row").data("change-index"), 10);
-      const changes = (<Trait>this.item.data.data).changes;
-      const type:string = $(event.currentTarget).data("type");
-      if (!isNaN(idx) && type) {
-        const val = $(event.currentTarget).val() as string;
-        changes[idx][type] = type === "mode" ? parseInt(val, 10) : val;
-        this.item.update({"data.changes": changes});
-      }
-    }
-  }
-
-  private _onCreateChange(): void {
-    const changes = (<Trait>this.item.data.data).changes ?? [];
-    this.item.update({"data.changes": changes.concat({key: "", value: "", mode: 0})});
-  }
 
   private getConsumable(event:Event):TwodsixItem | undefined {
     if (event.currentTarget) {

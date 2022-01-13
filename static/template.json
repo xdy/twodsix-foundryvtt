@@ -281,9 +281,7 @@
       "prereq": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
-      "effectId": "",
-      "changes": []
+      "reference": ""
     },
     "consumable": {
       "templates": ["gearTemplate"],
