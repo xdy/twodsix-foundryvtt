@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.5...v1.5.0) (2022-01-13)
+
+
+### Features
+
+* Ship positions ([#801](https://github.com/xdy/twodsix-foundryvtt/issues/801)) ([037670f](https://github.com/xdy/twodsix-foundryvtt/commit/037670ff67dc2a09d292f9e1647ab8afd9533424)), closes [#429](https://github.com/xdy/twodsix-foundryvtt/issues/429)
+
 ## [1.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.4...v1.4.5) (2022-01-11)
 
 
