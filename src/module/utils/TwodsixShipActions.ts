@@ -67,9 +67,9 @@ export class TwodsixShipActions {
     const component = extra.ship?.items.find(item => item.id === componentId);
     const extraStr = component ? `while using ${component.name}` : '';
     if (result.effect >= 0) {
-      this.chatMessage(`Hit ${extraStr}`, extra);
+      TwodsixShipActions.chatMessage(`Hit ${extraStr}`, extra);
     } else {
-      this.chatMessage(`Missed ${extraStr}`, extra);
+      TwodsixShipActions.chatMessage(`Missed ${extraStr}`, extra);
     }
   }
 }
