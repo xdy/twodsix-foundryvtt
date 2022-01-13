@@ -135,9 +135,9 @@ export default class TwodsixActor extends Actor {
   }
 
 
-  _onUpdateEmbeddedDocuments(embeddedName:string, documents, result): void {
+  _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[]): void {
     if (embeddedName === "ActiveEffect") {
-      (<ActiveEffect[]>documents).forEach(async (element:ActiveEffect, i) => {
+      documents.forEach(async (element:ActiveEffect, i) => {
         const activeEffectId = element.getFlag("twodsix", "sourceId");
         if (activeEffectId) {
           const match = element.data.origin?.match(/Item\.(.+)/);
@@ -151,6 +151,7 @@ export default class TwodsixActor extends Actor {
                 return effect.toObject();
               }
             });
+            // @ts-ignore
             item?.update({"effects": newEffects}, {recursive: true});
           }
         }

@@ -19,7 +19,7 @@
           <span class="item-name">
             {{item.data.data.shortdescr}}
             <ul>
-              {{#each item.data.data.effect.data.changes as |change|}}
+              {{#each item.effects.contents.[0].data.changes as |change|}}
               <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
               {{/each}}
             </ul>

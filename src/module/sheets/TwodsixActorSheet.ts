@@ -3,7 +3,7 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Consumable, Skills} from "../../types/template";
+import {Consumable, Gear, Skills} from "../../types/template";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -270,21 +270,38 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event.
    * @private
    */
-  private async _onToggleItem(event): Promise<void> {
-    const li = $(event.currentTarget).parents(".item");
-    const itemSelected: any = this.actor.items.get(li.data("itemId"));
+  private async _onToggleItem(event:Event): Promise<void> {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".item");
+      const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
+      (<Gear>itemSelected.data.data).equipped = "yay";
 
-    switch (itemSelected.data.data.equipped) {
-      case "equipped":
-        await itemSelected.update({["data.equipped"]: "ship"});
-        break;
-      case "ship":
-        await itemSelected.update({["data.equipped"]: "backpack"});
-        break;
-      case "backpack":
-      default:
-        await itemSelected.update({["data.equipped"]: "equipped"});
-        break;
+      let disableEffect: boolean;
+      switch ((<Gear>itemSelected.data.data).equipped) {
+        case "equipped":
+          await itemSelected.update({["data.equipped"]: "ship"});
+          disableEffect = true;
+          break;
+        case "ship":
+          await itemSelected.update({["data.equipped"]: "backpack"});
+          disableEffect = true;
+          break;
+        case "backpack":
+        default:
+          await itemSelected.update({["data.equipped"]: "equipped"});
+          disableEffect = false;
+          break;
+      }
+
+      if (itemSelected.effects.size > 0) {
+        const effect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
+        if (effect) {
+          if (effect.getFlag("twodsix", "lastSetDisable") === undefined || effect.getFlag("twodsix", "lastSetDisable") === effect.data.disabled) {
+            await effect.update({disabled: disableEffect});
+            effect.setFlag("twodsix", "lastSetDisable", disableEffect);
+          }
+        }
+      }
     }
   }
 

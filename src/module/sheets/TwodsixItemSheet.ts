@@ -2,6 +2,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { Gear } from "../../types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -86,7 +87,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const effects = [new ActiveEffect({
       origin: this.item.uuid,
       icon: this.item.img,
-      tint: "#ffffff"
+      tint: "#ffffff",
+      disabled: (<Gear>this.item.data.data).equipped !== undefined && (<Gear>this.item.data.data).equipped !== "equipped"
     }).toObject()];
     await this.item.update({effects: effects }, {recursive: true});
 

@@ -353,7 +353,13 @@ export interface GearTemplate {
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:string;
+  equipped:Equipped;
+}
+
+export enum Equipped {
+  equipped = "equipped",
+  ship = "ship",
+  backpack = "backpack"
 }
 
 export interface Trait {
