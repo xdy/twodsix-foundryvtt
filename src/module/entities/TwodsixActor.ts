@@ -138,20 +138,19 @@ export default class TwodsixActor extends Actor {
   _onUpdateEmbeddedDocuments(embeddedName:string, documents, result): void {
     if (embeddedName === "ActiveEffect") {
       (<ActiveEffect[]>documents).forEach(async (element:ActiveEffect, i) => {
-        const activeEffectId = element.getFlag("twodsix", "sourceId")
+        const activeEffectId = element.getFlag("twodsix", "sourceId");
         if (activeEffectId) {
-          const match = element.data.origin?.match(/Item\.(.+)/)
+          const match = element.data.origin?.match(/Item\.(.+)/);
           if (match) {
-            const item = (<TwodsixActor>element.parent)?.items.get(match[1])
-            delete result[0]._id
+            const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
+            delete result[i]._id;
             const newEffects = item?.effects.map(effect => {
               if (effect.id === activeEffectId) {
-                return foundry.utils.mergeObject(effect.toObject(), result[0]);
-              }
-              else {
+                return foundry.utils.mergeObject(effect.toObject(), result[i]);
+              } else {
                 return effect.toObject();
               }
-            })
+            });
             item?.update({"effects": newEffects}, {recursive: true});
           }
         }
