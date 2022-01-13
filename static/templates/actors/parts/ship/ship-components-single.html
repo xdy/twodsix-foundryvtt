@@ -20,7 +20,7 @@
     {{#each_sort_by_name component as |item id|}}
     <div class="grid-columns-single-row">
       <ol class="ol-no-indent">
-        <li class="item components-stored-single" data-item-id="{{item.id}}">
+        <li class="item components-stored-single " data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name">{{item.data.data.shortdescr}}</span>
           <span class="item-name centre">
@@ -32,7 +32,7 @@
           <span class="item-name centre">{{item.data.data.powerDraw}}</span>
           <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{twodsix_limitLength item.data.data.damage 7}}</span>
-          <span class="item-name centre">
+          <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
               {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
