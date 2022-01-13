@@ -135,7 +135,7 @@ export default class TwodsixActor extends Actor {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      return calcModFor(this.data.data.characteristics[keyByValue].current);
+      return calcModFor((<Traveller>this.data.data).characteristics[keyByValue].current);
     }
   }
 

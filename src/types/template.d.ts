@@ -1,6 +1,5 @@
 //Everything except the namespace is generated from template.json using https://app.quicktype.io/?l=ts
 
-
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
@@ -70,6 +69,11 @@ export interface WeaponDataSource {
   data:Weapon;
 }
 
+export interface ShipPositionDataSource {
+  type: 'ship_position';
+  data: ShipPosition;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -81,6 +85,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | StorageDataSource
   | TraitDataSource
   | WeaponDataSource
+  | ShipPositionDataSource
   ;
 
 export type Gear = Armor
@@ -108,6 +113,7 @@ export interface Actor {
   ship:Ship;
 }
 
+export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
   crew:Crew;
@@ -115,20 +121,9 @@ export interface Ship {
   cargo:string;
   finances:string;
   maintenanceCost:number;
-  shipValue:string;
   reqPower:ReqPower;
-  other:string;
   shipStats:ShipStats;
-  systems:Systems;
-  staterooms:Staterooms;
-  software:Software;
-  commonAreas:CommonAreas;
-}
-
-export interface CommonAreas {
-  number:string;
-  weight:string;
-  cost:string;
+  shipPositionActorIds: ShipPositionActorIds;
 }
 
 export interface Crew {
@@ -145,7 +140,6 @@ export interface Crew {
   marine:string;
   other:string;
 }
-
 export interface ReqPower {
   systems:number;
   mDrive:number;
@@ -159,62 +153,21 @@ export interface ShipStats {
   fuel:Hits;
   power:Hits;
   armor:Staterooms;
-  mDrive:Staterooms;
-  jDrive:Staterooms;
-  powerPlant:Staterooms;
   fuelTanks:Staterooms;
-  bridge:Staterooms;
-  computer:Staterooms;
-  sensors:Staterooms;
-  weapons:Weapons;
-  ammunition:string;
+  mass:Staterooms;
 }
 
 export interface Staterooms {
-  name:Name;
+  name:string;
   weight:string;
   cost:string;
   power?:string;
-}
-
-export enum Name {
-  Empty = "",
-  JDrive = "J-Drive",
-  MDrive = "M-Drive",
-  PowerPlant = "Power-Plant",
 }
 
 export interface Hits {
   value:number;
   min:number;
   max:number;
-}
-
-export interface Weapons {
-  weapon1:Staterooms;
-  weapon2:Staterooms;
-  weapon3:Staterooms;
-  weapon4:Staterooms;
-  weapon5:Staterooms;
-  weapon6:Staterooms;
-  weapon7:Staterooms;
-  weapon8:Staterooms;
-}
-
-export interface Software {
-  name:string;
-  cost:string;
-}
-
-export interface Systems {
-  system1:Staterooms;
-  system2:Staterooms;
-  system3:Staterooms;
-  system4:Staterooms;
-  system5:Staterooms;
-  system6:Staterooms;
-  system7:Staterooms;
-  system8:Staterooms;
 }
 
 export interface Traveller {
@@ -286,6 +239,27 @@ export interface Finances {
 
 export interface PrimaryArmor {
   value:number;
+}
+
+export interface ShipAction {
+  order: number;
+  name: string;
+  icon: string;
+  type: string;
+  command: string;
+  id?: string;
+  placeholder?: string;
+}
+
+export type ShipActions = Record<string, ShipAction>;
+
+export interface ShipPosition {
+  name: string;
+  icon: string;
+  actions: ShipActions;
+  sortedActions?: ShipAction[];
+  order: number;
+  actors?: TwodsixActor[];
 }
 
 export interface Item {

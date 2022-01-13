@@ -148,7 +148,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async skillRoll(showThrowDialog: boolean, tmpSettings: TwodsixRollSettings | null = null, showInChat = true): Promise<TwodsixDiceRoll | void> {
+  public async skillRoll(showThrowDialog: boolean, tmpSettings?: TwodsixRollSettings, showInChat = true): Promise<TwodsixDiceRoll | void> {
     let skill: TwodsixItem | null = null;
     let item: TwodsixItem | undefined;
 

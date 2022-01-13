@@ -238,13 +238,20 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Obje
   }
 });
 
+export const SHIP_ACTION_TYPE = Object.freeze({
+  skillRoll: "skillRoll",
+  chatMessage: "chatMessage",
+  fireEnergyWeapons: "fireEnergyWeapons"
+});
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
   VARIANTS: typeof VARIANTS,
   ROLLTYPES: typeof ROLLTYPES,
   DIFFICULTIES: typeof DIFFICULTIES,
-  RULESETS: typeof RULESETS
+  RULESETS: typeof RULESETS,
+  SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE
 };
 
 export const TWODSIX = {
@@ -253,7 +260,8 @@ export const TWODSIX = {
   VARIANTS: VARIANTS,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
-  RULESETS: RULESETS
+  RULESETS: RULESETS,
+  SHIP_ACTION_TYPE: SHIP_ACTION_TYPE
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

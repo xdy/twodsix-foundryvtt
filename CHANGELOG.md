@@ -1,3 +1,31 @@
+# [1.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.5...v1.5.0) (2022-01-13)
+
+
+### Features
+
+* Ship positions ([#801](https://github.com/xdy/twodsix-foundryvtt/issues/801)) ([037670f](https://github.com/xdy/twodsix-foundryvtt/commit/037670ff67dc2a09d292f9e1647ab8afd9533424)), closes [#429](https://github.com/xdy/twodsix-foundryvtt/issues/429)
+
+## [1.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.4...v1.4.5) (2022-01-11)
+
+
+### Bug Fixes
+
+* make tabs large on ship sheet ([#802](https://github.com/xdy/twodsix-foundryvtt/issues/802)) ([f24d9e2](https://github.com/xdy/twodsix-foundryvtt/commit/f24d9e2ba10033809e8268f13af26e20391e29dc))
+
+## [1.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.3...v1.4.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* Ship sheet styling ([#798](https://github.com/xdy/twodsix-foundryvtt/issues/798)) ([a2eca92](https://github.com/xdy/twodsix-foundryvtt/commit/a2eca9203aa0c8d4cdf6680a0c878b6dc892b9f7))
+
+## [1.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.2...v1.4.3) (2022-01-08)
+
+
+### Bug Fixes
+
+* protect Twodsix style variables ([#796](https://github.com/xdy/twodsix-foundryvtt/issues/796)) ([dde76b4](https://github.com/xdy/twodsix-foundryvtt/commit/dde76b44b9e7156feb141fbb52a3f7a63c8d9b40))
+
 ## [1.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.1...v1.4.2) (2022-01-08)
 
 

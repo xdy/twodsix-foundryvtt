@@ -12,6 +12,7 @@ import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
+import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
@@ -60,6 +61,7 @@ Hooks.once('init', async function () {
   Items.unregisterSheet("core", ItemSheet);
   // @ts-ignore
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true});
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();
