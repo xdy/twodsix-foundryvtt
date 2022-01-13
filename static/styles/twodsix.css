@@ -778,8 +778,12 @@ a.notes-tab.active {
   align-items: center;
 }
 
-.effect-edit {
-  width: 100%;
+.edit-active-effect {
+  width: 60%;
+}
+
+.delete-active-effect {
+  width: 40%; float: right
 }
 
 .items-consumable {

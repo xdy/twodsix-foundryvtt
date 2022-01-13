@@ -5,6 +5,7 @@ import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 
 
+
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /** @override */
@@ -140,14 +141,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       type,
       data
     };
+
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
     this.updateWithItemSpecificValues(itemData, <string>type);
 
-    const items = <TwodsixItem[]>await this.actor.createEmbeddedDocuments("Item", [itemData]);
-    if (type === "trait") {
-      await (<TwodsixActor>this.actor).createTraitActiveEffect(items[0]);
-    }
+    // Finally, create the item!
+    await this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
 
@@ -244,13 +244,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
     }
 
-    const items = <TwodsixItem[]>await this._onDropItemCreate(itemData);
-
-    if (items[0].type === "trait") {
-      await actor.createTraitActiveEffect(items[0]);
-      actor.render();
-    }
-    return items;
+    // Create the owned item
+    return this._onDropItemCreate(itemData);
   }
 
   private static _getWeight(item):number {

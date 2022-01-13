@@ -100,14 +100,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".item-value-edit").on("click", (event) => {
       $(event.currentTarget).trigger("select");
     });
-
-    html.find(".effect-edit").on("click", this._onTraitEdit.bind(this));
   }
 
-  private _onTraitEdit(event) {
-    const effect = this.actor.effects.get($(event.currentTarget).data('effectId'));
-    effect?.sheet.render(true);
-  }
 
   private getItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');

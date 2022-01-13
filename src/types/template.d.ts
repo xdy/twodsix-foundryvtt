@@ -356,12 +356,6 @@ export interface GearTemplate {
   equipped:string;
 }
 
-export interface TraitChange {
-  mode: number;
-  key: string;
-  value: string;
-}
-
 export interface Trait {
   templates:string[];
   value:number;
@@ -372,8 +366,6 @@ export interface Trait {
   subtype:string;
   reference:string;
   key:string;
-  changes: TraitChange[];
-  effectId: string;
 }
 
 export interface Weapon extends GearTemplate {
@@ -393,5 +385,4 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
-
 }

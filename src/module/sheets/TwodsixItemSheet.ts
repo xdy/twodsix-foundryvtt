@@ -2,7 +2,6 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import { Trait } from "../../types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -32,7 +31,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /** @override */
   getData(): ItemSheet {
     const data = super.getData();
-    data.actor = this.item.actor;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
@@ -47,12 +45,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     };
     data.data.config = TWODSIX;
     data.data.isOwned = this.item.isOwned;
-
-    data.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
-      const [ key, value ] = entry;
-      ret[ value ] = key;
-      return ret;
-    }, {});
     return data;
   }
 
@@ -97,19 +89,36 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       tint: "#ffffff"
     }).toObject()];
     await this.item.update({effects: effects }, {recursive: true});
-    this.item.effects.contents[0].sheet?.render(true);
+
+    if (this.actor) {
+      const newEffect = this.item.effects.contents[0].toObject();
+      newEffect.transfer = false;
+      newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+      const oldId = newEffect._id;
+      newEffect._id = "";
+      await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+    } else {
+      this.item.effects.contents[0].sheet?.render(true);
+    }
   }
-  private _onEditEffect(event): void {
-      (this.actor ?? this.item).effects.contents[0].sheet?.render(true);
-      // const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
-      // effect?.sheet.render(true);
+
+  private _onEditEffect(): void {
+    if (this.actor) {
+      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
+    } else {
+      this.item.effects.contents[0].sheet?.render(true);
+    }
   }
 
   private async _onDeleteEffect(): Promise<void> {
-    // await this.item.update({effects: null }, {noHook: true, render: false});
+    if (this.actor) {
+      const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+      if (id) {
+        this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+      }
+    }
     await this.item.update({effects: [] }, {recursive: false});
-    // const effect = (<TwodsixActor>this.actor).effects.get($(event.currentTarget).data('effectId'));
-    // effect?.sheet.render(true);
   }
 
 

@@ -7,7 +7,6 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
-import Document, { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 
 
 export default class TwodsixItem extends Item {
@@ -21,9 +20,9 @@ export default class TwodsixItem extends Item {
     return item;
   }
 
-  protected _onCreateEmbeddedDocuments(embeddedName: string, documents: Document<any, any>[]): void {
+  protected _onCreateEmbeddedDocuments(embeddedName: string, documents: foundry.abstract.Document<any, any>[]): void {
     if (embeddedName === "ActiveEffect") {
-      documents.forEach(document => document.setFlag("twodsix", "sourceId", document.id));
+      documents.forEach((document:ActiveEffect) => document.setFlag("twodsix", "sourceId", document.id));
     }
   }
 
@@ -34,11 +33,6 @@ export default class TwodsixItem extends Item {
     super.prepareData();
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
-    }
-
-    if (this.data.data.effectId && this.actor?.data) {
-      const effect = this.actor.effects.get(this.data.data.effectId);
-      this.data.data.effect = effect;
     }
   }
 

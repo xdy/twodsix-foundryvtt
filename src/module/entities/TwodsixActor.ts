@@ -140,11 +140,11 @@ export default class TwodsixActor extends Actor {
       (<ActiveEffect[]>documents).forEach(async (element:ActiveEffect, i) => {
         const activeEffectId = element.getFlag("twodsix", "sourceId")
         if (activeEffectId) {
-          const match = element.data.origin.match(/Item\.(.+)/)
+          const match = element.data.origin?.match(/Item\.(.+)/)
           if (match) {
-            const item = element.parent?.items.get(match[1])
+            const item = (<TwodsixActor>element.parent)?.items.get(match[1])
             delete result[0]._id
-            const newEffects = item.effects.map(effect => {
+            const newEffects = item?.effects.map(effect => {
               if (effect.id === activeEffectId) {
                 return foundry.utils.mergeObject(effect.toObject(), result[0]);
               }
@@ -157,6 +157,7 @@ export default class TwodsixActor extends Actor {
         }
       });
     }
+    this.render();
   }
 
 
@@ -303,16 +304,5 @@ export default class TwodsixActor extends Actor {
         item.update({"data.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
       }
     });
-  }
-
-  public async createTraitActiveEffect(trait: TwodsixItem): Promise<void> {
-    const effects = await this.createEmbeddedDocuments("ActiveEffect", [{
-      origin: trait.uuid,
-      icon: trait.img,
-      tint: "#ffffff",
-      label: trait.name,
-      changes: (<Trait>trait.data.data).changes
-    }]);
-    await trait.update({ "data.effectId": effects[0].id });
   }
 }
