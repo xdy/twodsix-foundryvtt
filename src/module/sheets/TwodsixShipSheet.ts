@@ -1,5 +1,5 @@
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
-import { ShipPosition, ShipPositionActorIds, Ship, SystemStaus, SystemStatus } from "../../types/template";
+import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
