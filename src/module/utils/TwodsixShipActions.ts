@@ -65,11 +65,11 @@ export class TwodsixShipActions {
       return false;
     }
     const component = extra.ship?.items.find(item => item.id === componentId);
-    const extraStr = component ? `while using ${component.name}` : '';
+    const extraStr = component ? `while using ${component.name} ` : '';
     if (result.effect >= 0) {
-      TwodsixShipActions.chatMessage(`Hit ${extraStr}`, extra);
+      TwodsixShipActions.chatMessage(`Hit ${extraStr}with effect ${result.effect}`, extra);
     } else {
-      TwodsixShipActions.chatMessage(`Missed ${extraStr}`, extra);
+      TwodsixShipActions.chatMessage(`Missed ${extraStr}with effect ${result.effect}`, extra);
     }
   }
 }
