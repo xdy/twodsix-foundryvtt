@@ -8,7 +8,7 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Skills, Trait, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
 
 export default class TwodsixActor extends Actor {
   /**
