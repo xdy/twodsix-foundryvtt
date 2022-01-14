@@ -296,7 +296,7 @@ export interface Augment extends GearTemplate {
 
 export interface Component extends GearTemplate {
   templates:string[];
-  subtype:string[];
+  subtype:string;
   powerDraw:number;
   rating:string;
   availableQuantity:string;

@@ -1,5 +1,5 @@
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
-import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
+import { ShipPosition, ShipPositionActorIds, Ship, Component } from "../../types/template";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
@@ -144,7 +144,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = this.actor.items.get(li.data("itemId"));
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-      itemSelected?.update({"data.status": stateTransitions[itemSelected.data.data.status]});
+      itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected?.data.data)?.status]});
     }
   }
 
