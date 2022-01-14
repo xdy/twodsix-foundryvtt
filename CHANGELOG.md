@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.1...v1.6.0) (2022-01-14)
+
+
+### Features
+
+* toggle ship component states on component list ([#810](https://github.com/xdy/twodsix-foundryvtt/issues/810)) ([4c78c62](https://github.com/xdy/twodsix-foundryvtt/commit/4c78c62f2d12882012797db83bc6a2c7a8941080))
+
 ## [1.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.0...v1.5.1) (2022-01-14)
 
 
