@@ -47,6 +47,9 @@
   text-align: left;
 }
 
+.component-toggle:hover {
+  cursor: pointer;
+}
 
 .content-container {
   display: grid;
