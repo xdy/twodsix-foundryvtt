@@ -144,7 +144,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = this.actor.items.get(li.data("itemId"));
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-      itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected?.data.data)?.status]});
+      itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
     }
   }
 
