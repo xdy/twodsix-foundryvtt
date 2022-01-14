@@ -301,7 +301,7 @@ export interface Component extends GearTemplate {
   rating:string;
   availableQuantity:string;
   damage:string;
-  status:string[];
+  status:string;
 }
 
 export interface Consumable extends GearTemplate {

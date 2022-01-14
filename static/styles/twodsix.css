@@ -289,6 +289,9 @@ form .form-group span.units {
   text-align: center;
 }
 
+.component-toggle:hover {
+  cursor: pointer;
+}
 /*div {border: thin dotted #FFF;}*/
 
 .window-content {

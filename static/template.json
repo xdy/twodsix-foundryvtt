@@ -294,12 +294,12 @@
     },
     "component": {
       "templates": ["gearTemplate"],
-      "subtype": ["accomodations", "armament", "armor", "cargo", "computer", "drive", "electronics", "hull", "power", "shield", "software", "vehicle", "other"],
+      "subtype": "other",
       "powerDraw": 0,
       "rating": "",
       "availableQuantity": "",
       "damage": "",
-      "status": ["operational", "damaged", "destroyed", "off"]
+      "status": "operational"
     },
     "ship_position": {
       "name": "",

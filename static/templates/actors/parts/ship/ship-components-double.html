@@ -31,7 +31,7 @@
           </span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
-          <span class="item-name centre">
+          <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
               {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>

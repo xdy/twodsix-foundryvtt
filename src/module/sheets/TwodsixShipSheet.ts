@@ -97,6 +97,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find('.ship-position-actor-token').on('click', this._onShipActorClick.bind(this));
     html.find('.ship-position-action').on('click', this._executeAction.bind(this));
     html.find('.create-ship-position').on('click', this._onShipPositionCreate.bind(this));
+    // component State toggling
+    html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -134,6 +136,28 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       if (!hasClass) {
         $(event.currentTarget).addClass("force-border");
       }
+    }
+  }
+
+  private _onToggleComponent(event:Event):void {
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+    switch (itemSelected?.data.data.status) {
+      case "operational":
+        itemSelected.update({"data.status": "damaged"});
+        break;
+      case "damaged":
+        itemSelected.update({"data.status": "destroyed"});
+        break;
+      case "destroyed":
+        itemSelected.update({"data.status": "off"});
+        break;
+      case "off":
+        itemSelected.update({"data.status": "operational"});
+        break;
+      default:
+        itemSelected?.update({"data.status": "off"});
+        break;
     }
   }
 
