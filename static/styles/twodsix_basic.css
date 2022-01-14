@@ -1298,7 +1298,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-position-box {
   width: 14.8em;
   min-height: 50px;
-  border: 1px groove #00e5ff;
+  border: 1px solid;
   border-radius: 0;
 }
 
