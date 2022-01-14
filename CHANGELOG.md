@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.0...v1.5.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* color issue ([#812](https://github.com/xdy/twodsix-foundryvtt/issues/812)) ([7edcbde](https://github.com/xdy/twodsix-foundryvtt/commit/7edcbdefeaea9d0514ba2c53fd49c624cf098895))
+
 # [1.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.5...v1.5.0) (2022-01-13)
 
 
