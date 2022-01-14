@@ -46,7 +46,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           title: title,
           content: template,
           yes: async () => {
-            // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
+            // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
               this.actor.items.filter(i => i.type !== "skills").forEach(i => {
                 const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;

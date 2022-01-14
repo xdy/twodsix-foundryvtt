@@ -1,5 +1,5 @@
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
-import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
+import { ShipPosition, ShipPositionActorIds, Ship, Component } from "../../types/template";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
@@ -140,24 +140,26 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   private _onToggleComponent(event:Event):void {
-    const li = $(event.currentTarget).parents(".item");
-    const itemSelected = this.actor.items.get(li.data("itemId"));
-    switch (itemSelected?.data.data.status) {
-      case "operational":
-        itemSelected.update({"data.status": "damaged"});
-        break;
-      case "damaged":
-        itemSelected.update({"data.status": "destroyed"});
-        break;
-      case "destroyed":
-        itemSelected.update({"data.status": "off"});
-        break;
-      case "off":
-        itemSelected.update({"data.status": "operational"});
-        break;
-      default:
-        itemSelected?.update({"data.status": "off"});
-        break;
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".item");
+      const itemSelected = this.actor.items.get(li.data("itemId"));
+      switch ((<Component>itemSelected?.data.data)?.status) {
+        case "operational":
+          itemSelected?.update({"data.status": "damaged"});
+          break;
+        case "damaged":
+          itemSelected?.update({"data.status": "destroyed"});
+          break;
+        case "destroyed":
+          itemSelected?.update({"data.status": "off"});
+          break;
+        case "off":
+          itemSelected?.update({"data.status": "operational"});
+          break;
+        default:
+          itemSelected?.update({"data.status": "off"});
+          break;
+      }
     }
   }
 
@@ -199,18 +201,18 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
       } else if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-          const shipPositionId = $(event.target).parents(".ship-position").data("id");
-          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+        const shipPositionId = $(event.target).parents(".ship-position").data("id");
+        const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
 
-          let skillData:TwodsixItem|undefined;
-          if (data.id) {
-            skillData = game.items?.get(data.id);
-          } else {
-            skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
-          }
-          if (skillData) {
-            await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
-          }
+        let skillData:TwodsixItem|undefined;
+        if (data.id) {
+          skillData = game.items?.get(data.id);
+        } else {
+          skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
+        }
+        if (skillData) {
+          await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
+        }
       } else {
         return super._onDrop(event);
       }
