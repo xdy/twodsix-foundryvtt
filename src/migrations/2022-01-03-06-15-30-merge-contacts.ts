@@ -23,7 +23,6 @@ async function mergeContacts(actor: TwodsixActor): Promise<void> {
     }
 
     await actor.update({ 'data.contacts': contactAddition, 'data.allies': '', 'data.enemies': '' });
-    return Promise.resolve();
   }
 
   return Promise.resolve();
