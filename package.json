@@ -9,13 +9,12 @@
     "link-project": "gulp link",
     "clean": "gulp clean",
     "bump-version": "gulp bumpVersion",
-    "lint": "eslint ./src --fix",
+    "lint": "eslint ./src --fix && tsc --project tsconfig.json --noEmit",
     "data:copy": "node src/scripts/data_copy.mjs",
     "data:reset": "npm run build && node src/scripts/data_reset.mjs -f",
     "data:license": "cp foundry/foundry_dev_data/Config/license.json foundry/license.json",
     "server": "node foundry/foundryvtt/resources/app/main.js --dataPath=foundry/foundry_dev_data --adminKey=foundry",
-    "migration:create": "node src/scripts/create-migration.mjs",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "migration:create": "node src/scripts/create-migration.mjs"
   },
   "license": "",
   "homepage": "",

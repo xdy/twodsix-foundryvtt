@@ -35,10 +35,6 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # Typecheck the code
-      - name: Type check
-        run: npm run typecheck
-
       # Building is the only test right now (mainly tests if dependabot actually can update)
       - name: Build
         run: npm run build
