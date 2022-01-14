@@ -154,6 +154,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-crosshairs";
       case 'armor':
         return "fas fa-grip-vertical";
+      case 'bridge':
+        return "fas fa-gamepad";
       case 'cargo':
         return "fas fa-boxes";
       case 'computer':
@@ -162,10 +164,18 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-arrows-alt";
       case 'electronics':
         return "fas fa-satellite-dish";
+      case 'fuel':
+        return "fas fa-gas-pump";
       case 'hull':
         return "fas fa-rocket";
+      case "otherExternal":
+        return "fas fa-sign-out-alt";
+      case "otherInternal":
+        return "fas fa-sign-in-alt";
       case 'power':
         return "fas fa-atom";
+      case "sensor":
+        return "fas fa-solar-panel";
       case 'shield':
         return "fas fa-shield-alt";
       case 'software':
