@@ -13,6 +13,10 @@ export default function registerHandlebarsHelpers(): void {
     return advantageDisadvantageTerm(str);
   });
 
+  Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
+    return (num % 2) == 1;
+  });
+
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
     if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';

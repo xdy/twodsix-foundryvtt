@@ -21,7 +21,19 @@
   </div>
 
   <div class="grid-columns-double">
-    {{#each_sort_by_name component as |item id|}}
+    {{#each component}}
+      <div class="grid-columns-double-row">
+        <ol class="ol-no-indent header-row" >
+          <li class="item components-stored-double"></li>--- {{twodsix_capitalize @key}} ---</li>
+        </ol>
+       </div>
+       <div class="grid-columns-double-row">
+        <ol class="ol-no-indent header-row" >
+          <li class="item components-stored-double"></li>--- {{twodsix_capitalize @key}} ---</li>
+        </ol>
+       </div>
+   
+    {{#each this as |item id|}}
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
@@ -50,6 +62,10 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_by_name}}
+    {{/each}}
+    {{#if (twodsix_isOdd this.length)}}
+      <div></div>
+    {{/if}}
+    {{/each}}
   </div>
 </div>
