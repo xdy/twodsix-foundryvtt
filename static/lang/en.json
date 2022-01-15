@@ -176,6 +176,7 @@
         "shield": "shield",
         "software": "software",
         "vehicle": "vehicle",
+        "other": "other",
         "otherExternal": "other - external",
         "otherInternal": "other - internal",
         "operational": "operational",

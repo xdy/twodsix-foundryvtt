@@ -168,6 +168,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-gas-pump";
       case 'hull':
         return "fas fa-rocket";
+      case 'mount':
+        return "far fa-dot-circle";
       case "otherExternal":
         return "fas fa-sign-out-alt";
       case "otherInternal":
