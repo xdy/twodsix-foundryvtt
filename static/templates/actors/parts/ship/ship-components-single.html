@@ -19,7 +19,7 @@
   <div class="grid-columns-single">
     {{#each component}}
     <div class="grid-columns-single-row">
-       <ol class="ol-no-indent header-row">--- {{twodsix_capitalize @key}} ---</ol>
+       <ol class="ol-no-indent header-row">--- {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}} ---</ol>
     </div>
     {{#each this as |item id|}}
     <div class="grid-columns-single-row">

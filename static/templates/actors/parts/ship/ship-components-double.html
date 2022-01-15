@@ -20,19 +20,14 @@
     </div>
   </div>
 
-  <div class="grid-columns-double">
+  <div class="grid-columns-single">
     {{#each component}}
-      <div class="grid-columns-double-row">
+      <div class="grid-columns-single-row">
         <ol class="ol-no-indent header-row" >
-          <li class="item components-stored-double"></li>--- {{twodsix_capitalize @key}} ---</li>
+          <li class="item components-stored-single"></li>--- {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}} ---</li>
         </ol>
        </div>
-       <div class="grid-columns-double-row">
-        <ol class="ol-no-indent header-row" >
-          <li class="item components-stored-double"></li>--- {{twodsix_capitalize @key}} ---</li>
-        </ol>
-       </div>
-   
+    <div class="grid-columns-double">
     {{#each this as |item id|}}
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
@@ -66,6 +61,7 @@
     {{#if (twodsix_isOdd this.length)}}
       <div></div>
     {{/if}}
+    </div>
     {{/each}}
   </div>
 </div>

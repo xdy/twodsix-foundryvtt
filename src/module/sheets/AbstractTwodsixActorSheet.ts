@@ -359,7 +359,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
     } else if (sheetData.actor.type === "ship") {
       sheetData.component = sortObj(component);
-      console.log(component);
       sheetData.storage = storage;
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
