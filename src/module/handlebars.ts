@@ -166,6 +166,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-microchip";
       case 'drive':
         return "fas fa-arrows-alt";
+      case 'drone':
+        return "fas fa-satellite";
       case 'electronics':
         return "fas fa-satellite-dish";
       case 'fuel':
@@ -192,6 +194,32 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-question-circle";
     }
   });
+
+  Handlebars.registerHelper('getComponentTypes', () => {
+    return ComponentTypes;
+  });
+
+  const ComponentTypes: string[] = [
+    'accomodations',
+    'armament',
+    'armor',
+    'bridge',
+    'cargo',
+    'computer',
+    'drive',
+    'drone',
+    'electronics',
+    'fuel',
+    'hull',
+    'mount',
+    "otherExternal",
+    "otherInternal",
+    'power',
+    "sensor",
+    'shield',
+    'software',
+    'vehicle'
+  ];
 
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 

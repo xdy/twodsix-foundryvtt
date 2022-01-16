@@ -32,24 +32,9 @@
       <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}:</label>
       <select id="data.subtype" name="data.subtype" value={{data.subtype}}>
         {{#select data.subtype}}
-        <option value="accomodations">{{localize "TWODSIX.Items.Component.accomodations"}}</option>
-        <option value="armament">{{localize "TWODSIX.Items.Component.armament"}}</option>
-        <option value="armor">{{localize "TWODSIX.Items.Component.armor"}}</option>
-        <option value="bridge">{{localize "TWODSIX.Items.Component.bridge"}}</option>
-        <option value="cargo">{{localize "TWODSIX.Items.Component.cargo"}}</option>
-        <option value="computer">{{localize "TWODSIX.Items.Component.computer"}}</option>
-        <option value="drive">{{localize "TWODSIX.Items.Component.drive"}}</option>
-        <option value="electronics">{{localize "TWODSIX.Items.Component.electronics"}}</option>
-        <option value="fuel">{{localize "TWODSIX.Items.Component.fuel"}}</option>
-        <option value="hull">{{localize "TWODSIX.Items.Component.hull"}}</option>
-        <option value="mount">{{localize "TWODSIX.Items.Component.mount"}}</option>
-        <option value="power">{{localize "TWODSIX.Items.Component.power"}}</option>
-        <option value="sensor">{{localize "TWODSIX.Items.Component.sensor"}}</option>
-        <option value="shield">{{localize "TWODSIX.Items.Component.shield"}}</option>
-        <option value="software">{{localize "TWODSIX.Items.Component.software"}}</option>
-        <option value="vehicle">{{localize "TWODSIX.Items.Component.vehicle"}}</option>
-        <option value="otherExternal">{{localize "TWODSIX.Items.Component.otherExternal"}}</option>
-        <option value="otherInternal">{{localize "TWODSIX.Items.Component.otherInternal"}}</option>
+          {{#each (getComponentTypes)}}
+            <option value='{{this}}'>{{localize (concat "TWODSIX.Items.Component." this)}}</option>
+          {{/each}}
         {{/select}}
       </select>
     </div>

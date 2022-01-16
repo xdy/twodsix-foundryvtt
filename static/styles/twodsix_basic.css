@@ -1956,7 +1956,7 @@ form .form-group > label {
 .header-row {
   text-align: center;
   color: var(--s2d6-item-hover);
-  background-color: var(--s2d6-background-opaque);
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 /* ------ WEBCAM Settings ------ */
 /*
