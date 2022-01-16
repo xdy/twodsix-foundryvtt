@@ -294,7 +294,7 @@
     },
     "component": {
       "templates": ["gearTemplate"],
-      "subtype": "other",
+      "subtype": "otherInternal",
       "powerDraw": 0,
       "rating": "",
       "availableQuantity": "",

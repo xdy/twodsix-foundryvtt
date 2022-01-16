@@ -19,9 +19,17 @@
         class="fas fa-plus"></i></a></span>
     </div>
   </div>
-
-  <div class="grid-columns-double">
-    {{#each_sort_by_name component as |item id|}}
+  
+    {{#each component}}
+    <div class="grid-columns-single">
+      <div class="grid-columns-single-row">
+        <ol class="ol-no-indent header-row" >
+          --- {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}} ---
+        </ol>
+      </div>
+    </div>
+    <div class="grid-columns-double">
+    {{#each this as |item id|}}
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
@@ -50,6 +58,11 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_by_name}}
-  </div>
+    {{/each}}
+    {{#if (twodsix_isOdd this.length)}}
+      <div></div>
+    {{/if}}
+    </div>
+    {{/each}}
+  
 </div>

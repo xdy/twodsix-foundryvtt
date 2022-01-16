@@ -17,7 +17,11 @@
   </div>
 
   <div class="grid-columns-single">
-    {{#each_sort_by_name component as |item id|}}
+    {{#each component}}
+    <div class="grid-columns-single-row">
+       <ol class="ol-no-indent header-row">--- {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}} ---</ol>
+    </div>
+    {{#each this as |item id|}}
     <div class="grid-columns-single-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-single " data-item-id="{{item.id}}">
@@ -51,6 +55,7 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_by_name}}
+    {{/each}}
+    {{/each}}
   </div>
 </div>

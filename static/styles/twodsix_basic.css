@@ -1953,6 +1953,11 @@ form .form-group > label {
   padding-left: 0;
 }
 
+.header-row {
+  text-align: center;
+  color: var(--s2d6-item-hover);
+  background-color: var(--s2d6-background-nearly-opaque);
+}
 /* ------ WEBCAM Settings ------ */
 /*
 #camera-views {
