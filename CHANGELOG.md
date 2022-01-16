@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.0...v1.6.1) (2022-01-16)
+
+
+### Bug Fixes
+
+* add missing ship components and organize them on ship sheet ([#815](https://github.com/xdy/twodsix-foundryvtt/issues/815)) ([8965ca3](https://github.com/xdy/twodsix-foundryvtt/commit/8965ca3b31513a37016b20904a2ecf630ee78883))
+
 # [1.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.1...v1.6.0) (2022-01-14)
 
 
