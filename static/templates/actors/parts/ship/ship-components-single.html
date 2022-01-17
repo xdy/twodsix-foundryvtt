@@ -3,7 +3,6 @@
     <div class="components-stored-single ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
@@ -19,7 +18,7 @@
   <div class="grid-columns-single">
     {{#each component}}
     <div class="grid-columns-single-row">
-       <ol class="ol-no-indent header-row">--- {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}} ---</ol>
+       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}</ol>
     </div>
     {{#each this as |item id|}}
     <div class="grid-columns-single-row">
@@ -27,9 +26,6 @@
         <li class="item components-stored-single " data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name">{{item.data.data.shortdescr}}</span>
-          <span class="item-name centre">
-            <i class= '{{twodsix_getComponentIcon item.data.data.subtype}}' title='{{localize (concat "TWODSIX.Items.Component." item.data.data.subtype)}}'></i>
-          </span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
           <span class="item-name centre">{{item.data.data.weight}}</span>

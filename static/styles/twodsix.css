@@ -1669,10 +1669,10 @@ a.ship-notes-tab.active {
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 10em 12em 3em 3em 3.5em 3em 3.5em 3.5em 4.5em 3.5em 3em;
+  grid-template-columns: 11em 14em 3em 3.5em 3em 3.5em 3.5em 4.5em 3.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . . . .";
+  grid-template-areas: ". . . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {
