@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.1...v1.6.2) (2022-01-17)
+
+
+### Bug Fixes
+
+* eliminate component icons from rows ([#816](https://github.com/xdy/twodsix-foundryvtt/issues/816)) ([917bf8f](https://github.com/xdy/twodsix-foundryvtt/commit/917bf8fb2ba670f77edcb1f153cc2d9a674fb3b0))
+
 ## [1.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.0...v1.6.1) (2022-01-16)
 
 
