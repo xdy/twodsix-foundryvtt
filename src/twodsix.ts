@@ -21,7 +21,7 @@ import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 
 // @ts-ignore
-hookScriptFiles.forEach((hookFile) => import(`./module/hooks/${hookFile}.ts`));
+hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
 
 Hooks.once('init', async function () {
   console.log(

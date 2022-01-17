@@ -57,23 +57,23 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   public static async createActionFromSkill(position:TwodsixItem, skill:TwodsixItem): Promise<void> {
-      const actions = (<ShipPosition>position.data.data).actions;
-      const skillData = (<Skills>skill.data.data);
-      const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-      let command = skill.name ?? "";
-      if (skillData.characteristic && skillData.characteristic !== "NONE"){
-        command += `/${skillData.characteristic}`;
-      }
-      command += ` ${difficulties[skillData.difficulty].target}+`;
+    const actions = (<ShipPosition>position.data.data).actions;
+    const skillData = (<Skills>skill.data.data);
+    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    let command = skill.name ?? "";
+    if (skillData.characteristic && skillData.characteristic !== "NONE"){
+      command += `/${skillData.characteristic}`;
+    }
+    command += ` ${difficulties[skillData.difficulty].target}+`;
 
-      actions[randomID()] = {
-        "order": Object.keys(actions).length,
-        "name": "New action",
-        "icon": skill.img ?? "",
-        "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-        "command": command
-      };
-      await position.update({ "data.actions": actions });
+    actions[randomID()] = {
+      "order": Object.keys(actions).length,
+      "name": "New action",
+      "icon": skill.img ?? "",
+      "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
+      "command": command
+    };
+    await position.update({ "data.actions": actions });
   }
 
   _onDragStart(event: DragEvent):void {
@@ -121,7 +121,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       // The code below is an ugly fix because of a bug in foundry: https://gitlab.com/foundrynet/foundryvtt/-/issues/6421
       const actions = duplicate((<ShipPosition>this.item.data.data).actions);
       delete actions[deleteId];
-      await this.item.update({"data.actions": null}, {noHook: true, render: false})
+      await this.item.update({"data.actions": null}, {noHook: true, render: false});
       await this.item.update({ 'data.actions': actions });
     }
   }

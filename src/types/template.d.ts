@@ -296,12 +296,12 @@ export interface Augment extends GearTemplate {
 
 export interface Component extends GearTemplate {
   templates:string[];
-  subtype:string[];
+  subtype:string;
   powerDraw:number;
   rating:string;
   availableQuantity:string;
   damage:string;
-  status:string[];
+  status:string;
 }
 
 export interface Consumable extends GearTemplate {

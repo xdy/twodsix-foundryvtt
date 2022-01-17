@@ -1,5 +1,7 @@
+#!/usr/bin/env node
+
 import fse from 'fs-extra';
-import readline from 'readline';
+import readline from 'node:readline';
 
 const args = process.argv.slice(2);
 let force = false;
@@ -17,7 +19,7 @@ const worldPath = destDir + "/Data/worlds/twodsix_dev";
 const systemPath = destDir + "/Data/systems/twodsix";
 const licenseFilePath = destDir + "/Config/license.json";
 
-function copy():void {
+function copy() {
   fse.rmdirSync(destDir, {recursive: true});
   fse.copySync(templateDir, destDir, {overwrite: true});
   fse.copySync(srcDir, worldPath, {overwrite: true});
@@ -29,7 +31,7 @@ function copy():void {
 }
 
 
-async function main(): Promise<void> {
+async function main() {
   if (fse.existsSync(srcDir)) {
     if (force) {
       copy();

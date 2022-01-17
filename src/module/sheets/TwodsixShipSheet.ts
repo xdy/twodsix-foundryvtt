@@ -1,5 +1,5 @@
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
-import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
+import { ShipPosition, ShipPositionActorIds, Ship, Component } from "../../types/template";
 import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
@@ -97,6 +97,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find('.ship-position-actor-token').on('click', this._onShipActorClick.bind(this));
     html.find('.ship-position-action').on('click', this._executeAction.bind(this));
     html.find('.create-ship-position').on('click', this._onShipPositionCreate.bind(this));
+    // component State toggling
+    html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -134,6 +136,15 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       if (!hasClass) {
         $(event.currentTarget).addClass("force-border");
       }
+    }
+  }
+
+  private _onToggleComponent(event:Event):void {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".item");
+      const itemSelected = this.actor.items.get(li.data("itemId"));
+      const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
+      itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
     }
   }
 
@@ -175,18 +186,18 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
       } else if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-          const shipPositionId = $(event.target).parents(".ship-position").data("id");
-          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+        const shipPositionId = $(event.target).parents(".ship-position").data("id");
+        const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
 
-          let skillData:TwodsixItem|undefined;
-          if (data.id) {
-            skillData = game.items?.get(data.id);
-          } else {
-            skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
-          }
-          if (skillData) {
-            await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
-          }
+        let skillData:TwodsixItem|undefined;
+        if (data.id) {
+          skillData = game.items?.get(data.id);
+        } else {
+          skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
+        }
+        if (skillData) {
+          await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
+        }
       } else {
         return super._onDrop(event);
       }

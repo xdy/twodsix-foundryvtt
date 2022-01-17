@@ -289,6 +289,9 @@ form .form-group span.units {
   text-align: center;
 }
 
+.component-toggle:hover {
+  cursor: pointer;
+}
 /*div {border: thin dotted #FFF;}*/
 
 .window-content {
@@ -2398,6 +2401,11 @@ div.app.window-app.twodsix.ship.actor header a.close {
   padding-left: 0;
 }
 
+.header-row{
+  text-align: center;
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-background-opaque);
+}
 /* ------ WEBCAM Settings ------ */
 
 #camera-views {

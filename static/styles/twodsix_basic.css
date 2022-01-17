@@ -47,6 +47,9 @@
   text-align: left;
 }
 
+.component-toggle:hover {
+  cursor: pointer;
+}
 
 .content-container {
   display: grid;
@@ -1298,7 +1301,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-position-box {
   width: 14.8em;
   min-height: 50px;
-  border: 1px groove #00e5ff;
+  border: 1px solid;
   border-radius: 0;
 }
 
@@ -1950,6 +1953,11 @@ form .form-group > label {
   padding-left: 0;
 }
 
+.header-row {
+  text-align: center;
+  color: var(--s2d6-item-hover);
+  background-color: var(--s2d6-background-nearly-opaque);
+}
 /* ------ WEBCAM Settings ------ */
 /*
 #camera-views {

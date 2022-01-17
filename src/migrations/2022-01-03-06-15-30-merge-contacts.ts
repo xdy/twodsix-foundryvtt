@@ -1,5 +1,5 @@
-import { applyToAllActors } from "../migration-utils";
 import { Traveller } from "../types/template";
+import { applyToAllActors } from "../migration-utils";
 
 async function mergeContacts(actor: TwodsixActor): Promise<void> {
   const actorData = actor.data.data as Traveller;
@@ -23,7 +23,6 @@ async function mergeContacts(actor: TwodsixActor): Promise<void> {
     }
 
     await actor.update({ 'data.contacts': contactAddition, 'data.allies': '', 'data.enemies': '' });
-    return Promise.resolve();
   }
 
   return Promise.resolve();
