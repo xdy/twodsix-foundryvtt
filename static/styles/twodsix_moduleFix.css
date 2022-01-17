@@ -1,0 +1,33 @@
+/* Custom CSS */
+
+/*fix in default fvtt for item images not preserving aspect ratio*/
+.item-img {
+	object-fit: contain;
+}
+
+/* fix for dice-tray input box shift for default mode*/
+input.dice-tray__input {
+    margin-top: 8px;
+}
+
+/* Fix GM Screen background for dark formats*/
+.gm-screen-app, .gm-screen-actions button  {
+  background: #0d0d0d !important;
+}
+
+/*Correct popOut auto resizing*/
+.ship-container {
+  min-height: 21.8em;
+  max-height: 21.8em;
+}
+
+/* Allow sidebar pop-outs to be resized*/
+.app.sidebar-popout {
+	resize: both;
+    overflow: auto;
+}
+
+/*Fix Advanced Macro Background Issue*/
+.macro-sheet .form-group.command .furnace-macro-command code {
+  background: var(--app-color);
+}

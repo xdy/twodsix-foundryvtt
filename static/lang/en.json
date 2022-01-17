@@ -518,6 +518,10 @@
         "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
         "name": "Display wounded status indicators"
       },
+      "useModuleFixStyle": {
+        "hint": "Modifies CSS style to correct idetified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
+        "name": "Correct some css style issues due to modules and default Twodsix style."
+      },
       "settingsInterface": {
         "rulesetSettings": {
           "intro": "Current Rules",
