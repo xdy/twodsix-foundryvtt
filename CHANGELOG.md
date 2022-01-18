@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.2...v1.7.0) (2022-01-18)
+
+
+### Features
+
+* Add experimental fix for module stlye issues ([#820](https://github.com/xdy/twodsix-foundryvtt/issues/820)) ([0820a68](https://github.com/xdy/twodsix-foundryvtt/commit/0820a68f8dabd3121c78e77ae365ac9bf0a1b063)), closes [#818](https://github.com/xdy/twodsix-foundryvtt/issues/818)
+
 ## [1.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.1...v1.6.2) (2022-01-17)
 
 
