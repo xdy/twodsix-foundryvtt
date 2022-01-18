@@ -68,7 +68,19 @@ Hooks.once('init', async function () {
 
   registerSettings();
 
-  switchCss();
+  /*Register CSS Styles*/
+  let sheetName = "systems/twodsix/styles/";
+  if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    sheetName += "twodsix_basic.css";
+  } else {
+    sheetName += "twodsix.css";
+  }
+  switchCss(sheetName);
+
+  if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
+  }
+
 
   //@ts-ignore
   await loadTemplates(handlebarsTemplateFiles);

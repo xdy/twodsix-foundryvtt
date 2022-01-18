@@ -1,5 +1,6 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, stringSetting} from "./settingsUtils";
+import {refreshWindow} from "./DisplaySettings";
 
 export default class DebugSettings extends AdvancedSettings {
   static create() {
@@ -22,6 +23,7 @@ export default class DebugSettings extends AdvancedSettings {
     const settings: string[] = [];
     settings.push(booleanSetting('ExperimentalFeatures', false));
     settings.push(stringSetting('systemMigrationVersion', game.system.data.version));
+    settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
     return settings;
   }
 }

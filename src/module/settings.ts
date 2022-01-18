@@ -42,18 +42,13 @@ export const registerSettings = function ():void {
   }
 };
 
-export function switchCss() {
+export function switchCss(fileName:string) {
   const head = document.getElementsByTagName("head")[0];
   const mainCss = document.createElement("link");
-  let sheetName = "systems/twodsix/styles/";
-  if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    sheetName += "twodsix_basic.css";
-  } else {
-    sheetName += "twodsix.css";
-  }
+
   mainCss.setAttribute("rel", "stylesheet");
   mainCss.setAttribute("type", "text/css");
-  mainCss.setAttribute("href", sheetName);
+  mainCss.setAttribute("href", fileName);
   mainCss.setAttribute("media", "all");
   head.insertBefore(mainCss, head.lastChild);
 }
