@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.1...v1.7.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* broken contenteditable div fields for Firefox. ([#822](https://github.com/xdy/twodsix-foundryvtt/issues/822)) ([4891612](https://github.com/xdy/twodsix-foundryvtt/commit/48916128035776e5b4b7c443285b321ea4170584))
+
 ## [1.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.0...v1.7.1) (2022-01-19)
 
 
