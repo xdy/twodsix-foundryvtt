@@ -1480,6 +1480,13 @@ button.flexrow.flex-group-center.toggle-skills {
   user-select: text;
 }
 
+*[contenteditable] * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 .item-container {
   display: grid;
   grid-template-columns: 15em 2em 2em 4em 6em 3em;
