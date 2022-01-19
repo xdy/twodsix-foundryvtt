@@ -945,6 +945,10 @@ span.total-output {
   padding-top: 0.2em;
 }
 
+.short-label input[type='text']{
+  width: 15em;
+}
+
 .select-mod:after {
   position: absolute;
   content: '';
@@ -1811,6 +1815,10 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.item-power {
+  margin-top: 0.5em;
+}
+
 .item-damage {
   margin-top: 0.5em;
 }
@@ -2405,6 +2413,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   text-align: center;
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
+  background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
 }
 /* ------ WEBCAM Settings ------ */
 

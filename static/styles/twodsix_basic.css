@@ -697,6 +697,10 @@ span.total-output {
   padding-top: 0.2em;
 }
 
+.short-label input[type='text']{
+  width: 15em;
+}
+
 .select-mod:after {
   position: absolute;
   content: '';
@@ -1004,7 +1008,7 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 5em 5em 5em 6em 5em;
+  grid-template-columns: 5em 5em 5em 6em 6em;
   gap: 1px 1px;
   grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass";
 }
@@ -1512,7 +1516,7 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-bottom: 0.4em;
 }
 
-.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
+.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section  {
   margin-top: 0.5em;
 }
@@ -1957,6 +1961,7 @@ form .form-group > label {
   text-align: center;
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-nearly-opaque);
+  background-image: radial-gradient(circle farthest-side, var(--s2d6-background-nearly-opaque), var(--s2d6-input-background));
 }
 /* ------ WEBCAM Settings ------ */
 /*

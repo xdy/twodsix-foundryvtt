@@ -299,7 +299,8 @@
       "rating": "",
       "availableQuantity": "",
       "damage": "",
-      "status": "operational"
+      "status": "operational",
+      "isPercentage": false
     },
     "ship_position": {
       "name": "",
