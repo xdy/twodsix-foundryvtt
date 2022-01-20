@@ -9,9 +9,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
   private static _getPowerNeeded(item: Component): number{
     if ((item.status === "operational") || (item.status === "damaged")) {
-      const q = item.availableQuantity || item.quantity || 1;
+      const q = item.quantity || 1;
       const p = item.powerDraw || 0;
-      if (item.subtype == "power"){
+      if (item.subtype === "power"){
         return -(q * p);
       }
       return (q * p);
@@ -45,7 +45,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     let powerMax = 0;
     let powerUsed = 0;
-    context.data.component.forEach((item: TwodsixItem) => {
+    this.actor.items.filter((item:TwodsixItem)=>item.type==="component").forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.data.data;
       const powerItem = TwodsixShipSheet._getPowerNeeded(anComponent);
       if(powerItem < 0){
@@ -56,8 +56,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     });
 
     if((powerUsed>0) || (powerMax>0)){
-      context.data.shipStats.power.value = powerUsed;
-      context.data.shipStats.power.max = powerMax;
+      (<Ship>context.data.data).shipStats.power.value = powerUsed;
+      (<Ship>context.data.data).shipStats.power.max = powerMax;
     }
 
     context.settings = <TwodsixShipSheetSettings>{
