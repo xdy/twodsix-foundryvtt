@@ -299,7 +299,7 @@ export interface Component extends GearTemplate {
   subtype:string;
   powerDraw:number;
   rating:string;
-  availableQuantity:string;
+  availableQuantity:number;
   damage:string;
   status:string;
 }

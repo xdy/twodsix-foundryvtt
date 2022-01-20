@@ -7,6 +7,18 @@ import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
+  private static _getPowerNeeded(item: Component): number{
+    if ((item.status === "operational") || (item.status === "damaged")) {
+      const q = item.availableQuantity || item.quantity || 1;
+      const p = item.powerDraw || 0;
+      if (item.subtype == "power"){
+        return -(q * p);
+      }
+      return (q * p);
+    }
+    return 0;
+  }
+
   /** @override */
   getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
@@ -30,6 +42,21 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       return shipPosition;
     });
     context.shipPositions.sort((a:TwodsixItem,b:TwodsixItem) => (<ShipPosition>a.data.data).order-(<ShipPosition>b.data.data).order);
+
+    let powerMax = 0;
+    let powerUsed = 0;
+    context.data.component.forEach((item: TwodsixItem) => {
+      const anComponent = <Component>item.data.data;
+      const powerItem = TwodsixShipSheet._getPowerNeeded(anComponent);
+      if(powerItem < 0){
+        powerMax -= powerItem;
+      } else{
+        powerUsed += powerItem;
+      }
+    });
+
+    context.data.shipStats.power.value = powerUsed;
+    context.data.shipStats.power.max = powerMax;
 
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
