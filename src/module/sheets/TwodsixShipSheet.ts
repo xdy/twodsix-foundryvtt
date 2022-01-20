@@ -55,8 +55,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       }
     });
 
-    context.data.shipStats.power.value = powerUsed;
-    context.data.shipStats.power.max = powerMax;
+    if((powerUsed>0) || (powerMax>0)){
+      context.data.shipStats.power.value = powerUsed;
+      context.data.shipStats.power.max = powerMax;
+    }
 
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
