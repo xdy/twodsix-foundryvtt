@@ -1,3 +1,87 @@
+## [1.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.1...v1.7.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* broken contenteditable div fields for Firefox. ([#822](https://github.com/xdy/twodsix-foundryvtt/issues/822)) ([4891612](https://github.com/xdy/twodsix-foundryvtt/commit/48916128035776e5b4b7c443285b321ea4170584))
+
+## [1.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.0...v1.7.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* small changes to ship and component sheets ([#823](https://github.com/xdy/twodsix-foundryvtt/issues/823)) ([bac3411](https://github.com/xdy/twodsix-foundryvtt/commit/bac341150f2cb624af60a65ce0a1906c13d68cd5))
+
+# [1.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.2...v1.7.0) (2022-01-18)
+
+
+### Features
+
+* Add experimental fix for module stlye issues ([#820](https://github.com/xdy/twodsix-foundryvtt/issues/820)) ([0820a68](https://github.com/xdy/twodsix-foundryvtt/commit/0820a68f8dabd3121c78e77ae365ac9bf0a1b063)), closes [#818](https://github.com/xdy/twodsix-foundryvtt/issues/818)
+
+## [1.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.1...v1.6.2) (2022-01-17)
+
+
+### Bug Fixes
+
+* eliminate component icons from rows ([#816](https://github.com/xdy/twodsix-foundryvtt/issues/816)) ([917bf8f](https://github.com/xdy/twodsix-foundryvtt/commit/917bf8fb2ba670f77edcb1f153cc2d9a674fb3b0))
+
+## [1.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.0...v1.6.1) (2022-01-16)
+
+
+### Bug Fixes
+
+* add missing ship components and organize them on ship sheet ([#815](https://github.com/xdy/twodsix-foundryvtt/issues/815)) ([8965ca3](https://github.com/xdy/twodsix-foundryvtt/commit/8965ca3b31513a37016b20904a2ecf630ee78883))
+
+# [1.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.1...v1.6.0) (2022-01-14)
+
+
+### Features
+
+* toggle ship component states on component list ([#810](https://github.com/xdy/twodsix-foundryvtt/issues/810)) ([4c78c62](https://github.com/xdy/twodsix-foundryvtt/commit/4c78c62f2d12882012797db83bc6a2c7a8941080))
+
+## [1.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.5.0...v1.5.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* color issue ([#812](https://github.com/xdy/twodsix-foundryvtt/issues/812)) ([7edcbde](https://github.com/xdy/twodsix-foundryvtt/commit/7edcbdefeaea9d0514ba2c53fd49c624cf098895))
+
+# [1.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.5...v1.5.0) (2022-01-13)
+
+
+### Features
+
+* Ship positions ([#801](https://github.com/xdy/twodsix-foundryvtt/issues/801)) ([037670f](https://github.com/xdy/twodsix-foundryvtt/commit/037670ff67dc2a09d292f9e1647ab8afd9533424)), closes [#429](https://github.com/xdy/twodsix-foundryvtt/issues/429)
+
+## [1.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.4...v1.4.5) (2022-01-11)
+
+
+### Bug Fixes
+
+* make tabs large on ship sheet ([#802](https://github.com/xdy/twodsix-foundryvtt/issues/802)) ([f24d9e2](https://github.com/xdy/twodsix-foundryvtt/commit/f24d9e2ba10033809e8268f13af26e20391e29dc))
+
+## [1.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.3...v1.4.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* Ship sheet styling ([#798](https://github.com/xdy/twodsix-foundryvtt/issues/798)) ([a2eca92](https://github.com/xdy/twodsix-foundryvtt/commit/a2eca9203aa0c8d4cdf6680a0c878b6dc892b9f7))
+
+## [1.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.2...v1.4.3) (2022-01-08)
+
+
+### Bug Fixes
+
+* protect Twodsix style variables ([#796](https://github.com/xdy/twodsix-foundryvtt/issues/796)) ([dde76b4](https://github.com/xdy/twodsix-foundryvtt/commit/dde76b44b9e7156feb141fbb52a3f7a63c8d9b40))
+
+## [1.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.1...v1.4.2) (2022-01-08)
+
+
+### Bug Fixes
+
+* bugfix for note section not showing in traveller sheet ([#794](https://github.com/xdy/twodsix-foundryvtt/issues/794)) ([3ba1098](https://github.com/xdy/twodsix-foundryvtt/commit/3ba1098d89e2d337d9df663acc7992b776027ee2))
+
 ## [1.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.4.0...v1.4.1) (2022-01-07)
 
 

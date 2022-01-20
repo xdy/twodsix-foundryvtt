@@ -12,6 +12,7 @@ import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
 import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
+import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
 import {registerSettings} from "./module/settings";
@@ -20,7 +21,7 @@ import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 
 // @ts-ignore
-hookScriptFiles.forEach((hookFile) => import(`./module/hooks/${hookFile}.ts`));
+hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
 
 Hooks.once('init', async function () {
   console.log(
@@ -60,13 +61,26 @@ Hooks.once('init', async function () {
   Items.unregisterSheet("core", ItemSheet);
   // @ts-ignore
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
+  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true});
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();
 
   registerSettings();
 
-  switchCss();
+  /*Register CSS Styles*/
+  let sheetName = "systems/twodsix/styles/";
+  if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    sheetName += "twodsix_basic.css";
+  } else {
+    sheetName += "twodsix.css";
+  }
+  switchCss(sheetName);
+
+  if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
+  }
+
 
   //@ts-ignore
   await loadTemplates(handlebarsTemplateFiles);

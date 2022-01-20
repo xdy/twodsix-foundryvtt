@@ -80,7 +80,7 @@ jobs:
 
       - name: Get tag
         run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
-      
+
       # Publish the release to FoundryVTT's package repository
       - name: Publish to Foundry Admin
         uses: Varriount/fvtt-autopublish@v1.0.6

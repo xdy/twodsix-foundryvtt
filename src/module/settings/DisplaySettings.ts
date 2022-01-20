@@ -20,10 +20,7 @@ export default class DisplaySettings extends AdvancedSettings {
   }
 
   static registerSettings(): string[] {
-    const refreshWindow = function () {
-      /*switchCss();*/
-      window.location.reload();
-    };
+
     const settings: string[] = [];
     settings.push(booleanSetting('defaultTokenSettings', true));
     settings.push(booleanSetting('useSystemDefaultTokenIcon', false));
@@ -36,3 +33,7 @@ export default class DisplaySettings extends AdvancedSettings {
     return settings;
   }
 }
+export const refreshWindow = function () {
+  /*switchCss();*/
+  window.location.reload();
+};

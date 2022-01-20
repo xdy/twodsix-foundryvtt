@@ -2,7 +2,7 @@
   <div class="grid-columns-double storage-header">
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
@@ -11,7 +11,7 @@
     </div>
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
@@ -20,18 +20,22 @@
     </div>
   </div>
 
-  <div class="grid-columns-double">
-    {{#each_sort_by_name data.component as |item id|}}
+    {{#each component}}
+    <div class="grid-columns-single">
+        <div class="grid-columns-single-row">
+          <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}</ol>
+      </div>
+    </div>
+    <div class="grid-columns-double">
+    {{#each this as |item id|}}
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">
-            <i class= '{{twodsix_getComponentIcon item.data.data.subtype}}' title='{{localize (concat "TWODSIX.Items.Component." item.data.data.subtype)}}'></i>
-          </span>
+          <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
-          <span class="item-name centre">
+          <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
               {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
@@ -50,6 +54,11 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_by_name}}
-  </div>
+    {{/each}}
+    {{#if (twodsix_isOdd this.length)}}
+      <div></div>
+    {{/if}}
+    </div>
+    {{/each}}
+
 </div>

@@ -1,7 +1,8 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Armor, Skills, UsesConsumables} from "../../types/template";
+import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
+import { TwodsixShipSheetData } from "../../types/twodsix";
 
 
 
@@ -45,7 +46,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           title: title,
           content: template,
           yes: async () => {
-            // somehow on hooks isn't wokring when a consumable is deleted  - force the issue
+            // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
               this.actor.items.filter(i => i.type !== "skills").forEach(i => {
                 const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;
@@ -113,7 +114,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         }
         break;
       case "component":
-        itemData.data.subtype = "other";
+        itemData.data.subtype = "otherInternal";
         itemData.data.status = "operational";
         break;
     }
@@ -265,7 +266,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return 0;
   }
 
-  protected static _prepareItemContainers(items, sheetData:any):void {
+  protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
 
     // Initialize containers.
     const storage:Item[] = [];
@@ -278,7 +279,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const skills:Item[] = [];
     const traits:Item[] = [];
     const consumable:Item[] = [];
-    const component:Item[] = [];
+    const component = {};
     let encumbrance = 0;
     let primaryArmor = 0;
     let secondaryArmor = 0;
@@ -331,7 +332,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           storage.push(item);
           break;
         case "component":
-          component.push(item);
+          if(component[(<Component>item.data.data).subtype] === undefined) {
+            component[(<Component>item.data.data).subtype] = [];
+          }
+          component[(<Component>item.data.data).subtype].push(item);
           break;
         default:
           break;
@@ -354,10 +358,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
     } else if (sheetData.actor.type === "ship") {
-      sheetData.data.component = component;
-      sheetData.data.storage = storage;
+      sheetData.component = sortObj(component);
+      sheetData.storage = storage;
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
     }
   }
+}
+
+function sortObj(obj) {
+  return Object.keys(obj).sort().reduce(function (result, key) {
+    result[key] = obj[key];
+    return result;
+  }, {});
 }

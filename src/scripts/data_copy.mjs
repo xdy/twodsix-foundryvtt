@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 import fse from 'fs-extra';
-import simpleGit, {SimpleGit} from 'simple-git';
+import simpleGit from 'simple-git';
 
 async function main() {
-  const git: SimpleGit = simpleGit();
+  const git = simpleGit();
   const tagString = (await git.tags()).latest;
   const branchString = (await git.branch()).current;
   const dateString = (new Date()).toISOString().replaceAll(":", "_");
