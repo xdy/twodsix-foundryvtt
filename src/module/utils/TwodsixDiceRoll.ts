@@ -24,7 +24,7 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    this.woundedEffect = this.actor.data.data.woundedEffect;
+    this.woundedEffect = this.actor.data.data?.woundedEffect;
     console.log(this.woundedEffect);
 
     this.createRoll();

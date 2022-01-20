@@ -108,7 +108,7 @@ async function setEffectState(effectLabel: string, targetToken: Record<string, a
     }
     const changeData = { key: "data.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
     if (isAlreadySet === undefined && state === true) {
-      await targetToken.actor.createEmbeddedDocuments("ActiveEffect", [{
+      await targetToken?.actor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
         icon: "icons/svg/blood.svg",
         tint: tint,
