@@ -7,7 +7,6 @@ import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import {Crit} from "./crit";
 import {getCharShortName} from "./utils";
 import {Gear, Skills} from "../../types/template";
-import { DAMAGECOLORS, getIconTint } from "../hooks/showWoundIcons";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
@@ -18,14 +17,14 @@ export class TwodsixDiceRoll {
   naturalTotal:number;
   effect:number;
   roll:Roll | null = null;
-  woundedEffect:string;
+  woundedEffect:number;
 
   constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    this.woundedEffect = getIconTint(this.actor);
+    this.woundedEffect = this.actor.data.data.woundedEffect;
     console.log(this.woundedEffect);
 
     this.createRoll();
@@ -40,7 +39,7 @@ export class TwodsixDiceRoll {
   private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as { skill:number, difficultyMod:number, DM:number, woundModifier:number };
+    const data = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
 
     let formula = rollType;
 
@@ -76,21 +75,9 @@ export class TwodsixDiceRoll {
     }
 
     //Subtract Modifier for wound status
-    if(game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-      switch (this.woundedEffect) {
-        case DAMAGECOLORS.minorWoundTint:
-          data.woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
-          break;
-        case DAMAGECOLORS.seriousWoundTint:
-          data.woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
-          break;
-        default:
-          data.woundModifier = 0;
-          break;
-      }
-      if (data.woundModifier <0) {
-        formula += "+ @woundModifier";
-      }
+    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.woundedEffect < 0) {
+      formula += "+ @woundedEffect";
+      data.woundedEffect = this.woundedEffect;
     }
 
     this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -183,8 +170,8 @@ export class TwodsixDiceRoll {
       flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll?.data['DM'])})`;
     }
 
-    if (this.roll?.data['woundModifier']) {
-      flavor += ` +${game.i18n.localize("TWODSIX.Rolls.Wounds")}(${this.roll?.data['woundModifier']})`;
+    if (this.roll?.data['woundedEffect']) {
+      flavor += ` +${game.i18n.localize("TWODSIX.Rolls.Wounds")}(${this.roll?.data['woundedEffect']})`;
     }
 
     if (this.settings.characteristic !== 'NONE') { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...

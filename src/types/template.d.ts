@@ -192,6 +192,7 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
+  woundedEffect:number;
 }
 
 export interface Age {

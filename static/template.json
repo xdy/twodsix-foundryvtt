@@ -127,7 +127,8 @@
           "label": "Alternative 2",
           "shortLabel": "ALT2"
         }
-      }
+      },
+      "woundedEffect": 0
     },
     "ship": {
       "name": "",
