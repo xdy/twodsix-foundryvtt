@@ -278,10 +278,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const traits:Item[] = [];
     const consumable:Item[] = [];
     const component = {};
-    let encumbrance = 0;
-    let primaryArmor = 0;
-    let secondaryArmor = 0;
-    let radiationProtection = 0;
+    let encumbrance = sheetData.actor.data.encumbrance.value;
+    let primaryArmor = sheetData.actor.data.primaryArmor.value;
+    let secondaryArmor = sheetData.actor.data.secondaryArmor.value;
+    let radiationProtection = sheetData.actor.data.radiationProtection.value;
 
     // Iterate through items, allocating to containers
     items.forEach((item:TwodsixItem) => {
