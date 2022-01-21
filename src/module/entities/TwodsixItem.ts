@@ -20,12 +20,6 @@ export default class TwodsixItem extends Item {
     return item;
   }
 
-  protected _onCreateEmbeddedDocuments(embeddedName: string, documents: foundry.abstract.Document<any, any>[]): void {
-    if (embeddedName === "ActiveEffect") {
-      documents.forEach((effect:ActiveEffect) => effect.setFlag("twodsix", "sourceId", effect.id));
-    }
-  }
-
   /**
    * Augment the basic Item data model with additional dynamic data.
    */

@@ -91,11 +91,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       disabled: (<Gear>this.item.data.data).equipped !== undefined && (<Gear>this.item.data.data).equipped !== "equipped"
     }).toObject()];
     await this.item.update({effects: effects }, {recursive: true});
+    const newEffect = this.item.effects.contents[0].toObject();
+    newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+    await this.item.update({effects: [newEffect] }, {recursive: true});
 
     if (this.actor) {
-      const newEffect = this.item.effects.contents[0].toObject();
       newEffect.transfer = false;
-      newEffect.flags = {twodsix: {sourceId: newEffect._id}};
       const oldId = newEffect._id;
       newEffect._id = "";
       await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
