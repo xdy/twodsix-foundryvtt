@@ -15,6 +15,7 @@ export default class TwodsixActor extends Actor {
    * Augment the basic actor data with additional dynamic data.
    */
   prepareDerivedData(): void {
+    super.prepareDerivedData();
     const actorData = <TwodsixActor><unknown>this.data;
     // const data = actorData.data;
     // const flags = actorData.flags;
