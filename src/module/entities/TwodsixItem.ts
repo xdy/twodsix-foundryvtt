@@ -20,6 +20,23 @@ export default class TwodsixItem extends Item {
     return item;
   }
 
+
+  protected override async _onCreate(data): Promise<void> {
+    if (data.effects) {
+      const newEffects = data.effects.map((effect:Record<string, any>) => {
+        effect._id = randomID();
+        if (effect.flags.twodsix === undefined) {
+          effect.flags.twodsix = {};
+        }
+        effect.flags.twodsix.sourceId = effect._id
+        effect.origin = "";
+        return effect;
+      });
+      this.update({ "effects": newEffects });
+    }
+  }
+
+
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
