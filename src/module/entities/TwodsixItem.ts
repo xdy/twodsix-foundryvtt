@@ -6,11 +6,11 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
+import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 
 export default class TwodsixItem extends Item {
-  public static async create(data, options?): Promise<TwodsixItem> {
+  public static async create(data: ItemDataConstructorData, options?: DocumentModificationContext): Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
     if (item?.data.type === 'weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
