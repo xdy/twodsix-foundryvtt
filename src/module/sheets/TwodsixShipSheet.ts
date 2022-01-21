@@ -7,18 +7,6 @@ import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
-  private static _getPowerNeeded(item: Component): number{
-    if ((item.status === "operational") || (item.status === "damaged")) {
-      const q = item.quantity || 1;
-      const p = item.powerDraw || 0;
-      if (item.subtype === "power"){
-        return -(q * p);
-      }
-      return (q * p);
-    }
-    return 0;
-  }
-
   /** @override */
   getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
@@ -42,57 +30,6 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       return shipPosition;
     });
     context.shipPositions.sort((a:TwodsixItem,b:TwodsixItem) => (<ShipPosition>a.data.data).order-(<ShipPosition>b.data.data).order);
-
-    let powerMax = 0;
-    let powerUsed = 0;
-    /*let weight = 0;*/
-    let systems = 0;
-    let jDrive = 0;
-    let mDrive = 0;
-    let sensors = 0;
-    let weapons = 0;
-
-    this.actor.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
-      const anComponent = <Component>item.data.data;
-      const powerItem = TwodsixShipSheet._getPowerNeeded(anComponent);
-
-      switch (anComponent.subtype) {
-        case 'power':
-          powerMax -= powerItem;
-          break;
-        case 'drive':
-          if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
-            jDrive += powerItem;
-          } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
-            mDrive += powerItem;
-          } else {
-            systems += powerItem;
-          }
-          break;
-        case 'sensor':
-          sensors += powerItem;
-          break;
-        case 'armament':
-          weapons += powerItem;
-          break;
-        default:
-          systems += powerItem;
-          break;
-      }
-    });
-
-    powerUsed = jDrive + mDrive + sensors + weapons + systems;
-    if (context.actor.type === "ship") {
-      if((powerUsed>0) || (powerMax>0)){
-        (<Ship>context.data.data).shipStats.power.value = powerUsed;
-        (<Ship>context.data.data).shipStats.power.max = powerMax;
-        (<Ship>context.data.data).reqPower.systems = systems;
-        (<Ship>context.data.data).reqPower["m-drive"] = mDrive;
-        (<Ship>context.data.data).reqPower["j-drive"] = jDrive;
-        (<Ship>context.data.data).reqPower.sensors = sensors;
-        (<Ship>context.data.data).reqPower.weapons = weapons;
-      }
-    }
 
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
