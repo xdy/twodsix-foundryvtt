@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.2...v1.8.0) (2022-01-21)
+
+
+### Features
+
+* Autocalculate power used/power max based on the active compon… ([#824](https://github.com/xdy/twodsix-foundryvtt/issues/824)) ([f7c648a](https://github.com/xdy/twodsix-foundryvtt/commit/f7c648ac1b744e4fcfe647b372f7e2db5d3ee10e))
+
 ## [1.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.1...v1.7.2) (2022-01-19)
 
 
