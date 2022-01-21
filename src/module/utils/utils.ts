@@ -45,3 +45,7 @@ export function getCharShortName(char: string): string {
       return game.i18n.localize("TWODSIX.Items.Skills." + char);
   }
 }
+
+export function simplifySkillName(skillName:string): string {
+  return skillName.replace(/\W/g, "");
+}

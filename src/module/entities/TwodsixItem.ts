@@ -282,10 +282,6 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static simplifySkillName(skillName:string): string {
-    return skillName.replace(/\W/g, "");
-  }
-
   //////// CONSUMABLE ////////
   public async consume(quantity: number): Promise<void> {
     const consumableLeft = (<Consumable>this.data.data).currentCount - quantity;

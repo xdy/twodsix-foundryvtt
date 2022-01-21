@@ -6,9 +6,10 @@ import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
-import TwodsixItem from "./TwodsixItem";
+import type TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import { Characteristic, Component, Gear, Skills, Traveller, Weapon } from "../../types/template";
+import { simplifySkillName } from "../utils/utils";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -49,7 +50,7 @@ export default class TwodsixActor extends Actor {
     const actorSkills = actorData.items.filter(
       (item:TwodsixItem) => item.type === "skills"
     ).map(
-      (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.data.data as Skills).value]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), (skill.data.data as Skills).value]
     );
 
     const handler = {

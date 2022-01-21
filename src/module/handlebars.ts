@@ -2,7 +2,7 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import { getCharShortName } from "./utils/utils";
+import { getCharShortName, simplifySkillName } from "./utils/utils";
 import {Skills} from "../types/template";
 
 export default function registerHandlebarsHelpers(): void {
@@ -143,7 +143,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('skillName', (skillName) => {
-    return TwodsixItem.simplifySkillName(skillName);
+    return simplifySkillName(skillName);
   });
 
   Handlebars.registerHelper('replace', (text, key, value) => {
