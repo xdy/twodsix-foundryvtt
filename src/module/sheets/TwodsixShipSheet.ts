@@ -65,6 +65,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
             jDrive += powerItem;
           } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
             mDrive += powerItem;
+          } else {
+            systems += powerItem;
           }
           break;
         case 'sensor':
