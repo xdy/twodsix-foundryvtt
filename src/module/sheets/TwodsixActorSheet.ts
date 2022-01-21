@@ -274,7 +274,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
-      (<Gear>itemSelected.data.data).equipped = "yay";
 
       let disableEffect: boolean;
       switch ((<Gear>itemSelected.data.data).equipped) {
