@@ -43,15 +43,15 @@
     <div class="ship-power-management"><h3>{{localize "TWODSIX.Ship.PowerManagement"}}</h3>
       <div class="ship-power"><label>{{localize "TWODSIX.Ship.Power"}}</label>
         <span class="power-now">{{localize "TWODSIX.Ship.USED"}}</span>
-        <input class="power-current" type="number" value="{{data.data.shipStats.power.value}}" name="data.shipStats.power.value" placeholder="0"/>
-        <input class="power-total" type="number" value="{{data.data.shipStats.power.max}}" name="data.shipStats.power.max" placeholder="0"/><span class="power-max">{{localize "TWODSIX.Ship.MAX"}}</span>
+        <input readonly class="power-current" type="number" value="{{data.data.shipStats.power.value}}" name="data.shipStats.power.value" placeholder="0"/>
+        <input readonly class="power-total" type="number" value="{{data.data.shipStats.power.max}}" name="data.shipStats.power.max" placeholder="0"/><span class="power-max">{{localize "TWODSIX.Ship.MAX"}}</span>
       </div>
       <div class="power-grid">
-        <div class="ship-systems"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input type="number" value="{{data.data.reqPower.systems}}" name="data.reqPower.systems" placeholder="0"/></div>
-        <div class="ship-m-drive"><label>{{localize "TWODSIX.Ship.MDrive"}}</label><input type="number" value="{{data.data.reqPower.m-drive}}" name="data.reqPower.m-drive" placeholder="0"/></div>
-        <div class="ship-j-drive"><label>{{localize "TWODSIX.Ship.JDrive"}}</label><input type="number" value="{{data.data.reqPower.j-drive}}" name="data.reqPower.j-drive" placeholder="0"/></div>
-        <div class="ship-sensors"><label>{{localize "TWODSIX.Ship.Sensors"}}</label><input type="number" value="{{data.data.reqPower.sensors}}" name="data.reqPower.sensors" placeholder="0"/></div>
-        <div class="ship-weapons">{{localize "TWODSIX.Ship.Weapons"}}<input type="number" value="{{data.data.reqPower.weapons}}" name="data.reqPower.weapons" placeholder="0"></div>
+        <div class="ship-systems"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input readonly type="number" value="{{data.data.reqPower.systems}}" name="data.reqPower.systems" placeholder="0"/></div>
+        <div class="ship-m-drive"><label>{{localize "TWODSIX.Ship.MDrive"}}</label><input readonly type="number" value="{{data.data.reqPower.m-drive}}" name="data.reqPower.m-drive" placeholder="0"/></div>
+        <div class="ship-j-drive"><label>{{localize "TWODSIX.Ship.JDrive"}}</label><input readonly type="number" value="{{data.data.reqPower.j-drive}}" name="data.reqPower.j-drive" placeholder="0"/></div>
+        <div class="ship-sensors"><label>{{localize "TWODSIX.Ship.Sensors"}}</label><input readonly type="number" value="{{data.data.reqPower.sensors}}" name="data.reqPower.sensors" placeholder="0"/></div>
+        <div class="ship-weapons">{{localize "TWODSIX.Ship.Weapons"}}<input type="number" readonly value="{{data.data.reqPower.weapons}}" name="data.reqPower.weapons" placeholder="0"></div>
       </div>
     </div>
     {{/unless}}
