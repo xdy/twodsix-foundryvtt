@@ -7,6 +7,7 @@ import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import {Crit} from "./crit";
 import {getCharShortName} from "./utils";
 import {Gear, Skills} from "../../types/template";
+import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
@@ -24,8 +25,7 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    this.woundedEffect = this.actor.data.data?.woundedEffect;
-    console.log(this.woundedEffect);
+    this.woundedEffect = (<Traveller>this.actor.data.data)?.woundedEffect;
 
     this.createRoll();
 
