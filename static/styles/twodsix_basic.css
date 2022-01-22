@@ -1176,6 +1176,10 @@ img.ship-mask-bg {
   margin-bottom: 5px;
 }*/
 
+.small-font {
+  font-size: x-small;
+}
+
 .red {
   color: var(--s2d6-damage-red);
 }

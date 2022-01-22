@@ -1390,13 +1390,8 @@ img.ship-mask-bg {
   /*margin-top: 6px;*/
 }
 
-.ship-item5 .red input[type="number"] {
-  color: var(--s2d6-damage-red) !important;
-  text-align: center;
-  width: 3.8em;
-  background-color: transparent !important;
-  border: none;
-  margin-top: 6px;
+.small-font {
+  font-size: x-small;
 }
 
 .red {
