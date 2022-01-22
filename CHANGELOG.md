@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.0...v1.8.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* This commit fixes a bug with our discord announcments. ([#827](https://github.com/xdy/twodsix-foundryvtt/issues/827)) ([1d98fec](https://github.com/xdy/twodsix-foundryvtt/commit/1d98fec679a4b771aa149b20791bfb3a7341c33d))
+
 # [1.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.2...v1.8.0) (2022-01-21)
 
 
