@@ -122,6 +122,7 @@ export interface Ship {
   finances:string;
   maintenanceCost:number;
   reqPower:ReqPower;
+  weightStats: WeightStats;
   shipStats:ShipStats;
   shipPositionActorIds: ShipPositionActorIds;
 }
@@ -140,12 +141,21 @@ export interface Crew {
   marine:string;
   other:string;
 }
+
 export interface ReqPower {
   systems:number;
   mDrive:number;
   jDrive:number;
   sensors:number;
   weapons:number;
+}
+
+export interface WeightStats {
+  systems:number;
+  cargo:number;
+  fuel:number;
+  available:number;
+  vehicles:number;
 }
 
 export interface ShipStats {
@@ -302,6 +312,7 @@ export interface Component extends GearTemplate {
   availableQuantity:string;
   damage:string;
   status:string;
+  isPercentage:boolean;
 }
 
 export interface Consumable extends GearTemplate {
