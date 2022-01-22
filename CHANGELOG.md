@@ -1,3 +1,38 @@
+## [1.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.0...v1.8.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* This commit fixes a bug with our discord announcments. ([#827](https://github.com/xdy/twodsix-foundryvtt/issues/827)) ([1d98fec](https://github.com/xdy/twodsix-foundryvtt/commit/1d98fec679a4b771aa149b20791bfb3a7341c33d))
+
+# [1.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.2...v1.8.0) (2022-01-21)
+
+
+### Features
+
+* Autocalculate power used/power max based on the active compon… ([#824](https://github.com/xdy/twodsix-foundryvtt/issues/824)) ([f7c648a](https://github.com/xdy/twodsix-foundryvtt/commit/f7c648ac1b744e4fcfe647b372f7e2db5d3ee10e))
+
+## [1.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.1...v1.7.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* broken contenteditable div fields for Firefox. ([#822](https://github.com/xdy/twodsix-foundryvtt/issues/822)) ([4891612](https://github.com/xdy/twodsix-foundryvtt/commit/48916128035776e5b4b7c443285b321ea4170584))
+
+## [1.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.0...v1.7.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* small changes to ship and component sheets ([#823](https://github.com/xdy/twodsix-foundryvtt/issues/823)) ([bac3411](https://github.com/xdy/twodsix-foundryvtt/commit/bac341150f2cb624af60a65ce0a1906c13d68cd5))
+
+# [1.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.2...v1.7.0) (2022-01-18)
+
+
+### Features
+
+* Add experimental fix for module stlye issues ([#820](https://github.com/xdy/twodsix-foundryvtt/issues/820)) ([0820a68](https://github.com/xdy/twodsix-foundryvtt/commit/0820a68f8dabd3121c78e77ae365ac9bf0a1b063)), closes [#818](https://github.com/xdy/twodsix-foundryvtt/issues/818)
+
 ## [1.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.6.1...v1.6.2) (2022-01-17)
 
 

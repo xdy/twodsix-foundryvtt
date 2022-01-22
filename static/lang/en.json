@@ -185,11 +185,13 @@
         "destroyed": "destroyed",
         "off": "off",
         "powerDraw": "Power Draw",
+        "powerGenerated": "Power Generated",
         "status": "Status",
         "rating": "Rating",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
-        "damage": "Damage / Hits"
+        "damage": "Damage / Hits",
+        "isPercentage": "Percentage?"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -296,7 +298,7 @@
       "ShipHull": "Ship Hull",
       "Fuel": "Fuel",
       "MaintPM": "Maintenance P/M",
-      "TotalMass": "Total Mass",
+      "Displacement": "Displacement",
       "tons": "tons",
       "PowerManagement": "Power Management",
       "Power": "Power",

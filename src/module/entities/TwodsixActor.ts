@@ -8,15 +8,14 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
-import {Characteristic, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
 
 export default class TwodsixActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData(): void {
-    super.prepareData();
-
+  prepareDerivedData(): void {
+    super.prepareDerivedData();
     const actorData = <TwodsixActor><unknown>this.data;
     // const data = actorData.data;
     // const flags = actorData.flags;
@@ -28,6 +27,7 @@ export default class TwodsixActor extends Actor {
         this._prepareTravellerData(actorData);
         break;
       case 'ship':
+        this._prepareShipData(actorData);
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
@@ -67,6 +67,70 @@ export default class TwodsixActor extends Actor {
     };
 
     data.skills = new Proxy(Object.fromEntries(actorSkills), handler);
+  }
+
+  _prepareShipData(actorData): void {
+
+    let calcPowerMax = 0;
+    let calcPowerUsed = 0;
+    /*let weight = 0;*/
+    let calcSystemsPower = 0;
+    let calcjDrivePower = 0;
+    let calcmDrivePower = 0;
+    let calcSensorsPower = 0;
+    let calcWeaponsPower = 0;
+
+    actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
+      const anComponent = <Component>item.data.data;
+      const powerForItem = TwodsixActor._getPowerNeeded(anComponent);
+
+      switch (anComponent.subtype) {
+        case 'power':
+          calcPowerMax -= powerForItem;
+          break;
+        case 'drive':
+          if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
+            calcjDrivePower += powerForItem;
+          } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
+            calcmDrivePower += powerForItem;
+          } else {
+            calcSystemsPower += powerForItem;
+          }
+          break;
+        case 'sensor':
+          calcSensorsPower += powerForItem;
+          break;
+        case 'armament':
+          calcWeaponsPower += powerForItem;
+          break;
+        default:
+          calcSystemsPower += powerForItem;
+          break;
+      }
+    });
+
+    calcPowerUsed = calcjDrivePower + calcmDrivePower + calcSensorsPower + calcWeaponsPower + calcSystemsPower;
+    if ((calcPowerUsed > 0) || (calcPowerMax > 0)) {
+      actorData.data.shipStats.power.value = calcPowerUsed;
+      actorData.data.shipStats.power.max = calcPowerMax;
+      actorData.data.reqPower.systems = calcSystemsPower;
+      actorData.data.reqPower["m-drive"] = calcmDrivePower;
+      actorData.data.reqPower["j-drive"] = calcjDrivePower;
+      actorData.data.reqPower.sensors = calcSensorsPower;
+      actorData.data.reqPower.weapons = calcWeaponsPower;
+    }
+  }
+
+  private static _getPowerNeeded(item: Component): number{
+    if ((item.status === "operational") || (item.status === "damaged")) {
+      const q = item.quantity || 1;
+      const p = item.powerDraw || 0;
+      if (item.subtype === "power"){
+        return -(q * p);
+      }
+      return (q * p);
+    }
+    return 0;
   }
 
   protected async _onCreate() {

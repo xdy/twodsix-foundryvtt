@@ -64,13 +64,21 @@
     </div>
 
     <div class="item-weight">
-      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
-        <input id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      <label for="data.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
+        <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      </label>
+      <label for="data.isPercentage" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPercentage"}}
+        <input type="checkbox" class="checkbox" name="data.isPercentage" {{checked data.isPercentage}} data-dtype="Boolean" />
       </label>
     </div>
 
-    <div class="item-weight">
-      <label for="data.powerDraw" class="resource-label">{{localize "TWODSIX.Items.Component.powerDraw"}}
+    <div class="item-power">
+      <label for="data.powerDraw" class="resource-label">
+      {{#iff data.subtype '==' "power"}}
+        {{localize "TWODSIX.Items.Component.powerGenerated"}}
+      {{else}}
+        {{localize "TWODSIX.Items.Component.powerDraw"}}
+      {{/iff}}
         <input id="data.powerDraw" type="text" name="data.powerDraw" value="{{data.powerDraw}}" data-dtype="Number"/>
       </label>
     </div>
