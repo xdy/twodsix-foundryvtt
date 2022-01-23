@@ -143,7 +143,7 @@ export default class TwodsixActor extends Actor {
     calcShipStats.weight.available = actorData.data.shipStats.mass.max - calcShipStats.weight.vehicles - calcShipStats.weight.cargo
       - calcShipStats.weight.fuel -calcShipStats.weight.systems;
 
-    /*Assing values to ship actor*/
+    /*Push values to ship actor*/
     actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
     actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
     actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
