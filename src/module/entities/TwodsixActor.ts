@@ -144,19 +144,19 @@ export default class TwodsixActor extends Actor {
       - calcShipStats.weight.fuel -calcShipStats.weight.systems;
 
     /*Assing values to ship actor*/
-    actorData.data.shipStats.power.value = calcShipStats.power.used;
-    actorData.data.shipStats.power.max = calcShipStats.power.max;
-    actorData.data.reqPower.systems = calcShipStats.power.systems;
-    actorData.data.reqPower["m-drive"] = calcShipStats.power.mDrive;
-    actorData.data.reqPower["j-drive"] = calcShipStats.power.jDrive;
-    actorData.data.reqPower.sensors = calcShipStats.power.sensors;
-    actorData.data.reqPower.weapons = calcShipStats.power.weapons;
+    actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
+    actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
+    actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
+    actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
+    actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
+    actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
+    actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
 
-    actorData.data.weightStats.vehicles = calcShipStats.weight.vehicles;
-    actorData.data.weightStats.cargo = calcShipStats.weight.cargo;
-    actorData.data.weightStats.fuel = calcShipStats.weight.fuel;
-    actorData.data.weightStats.systems = calcShipStats.weight.systems;
-    actorData.data.weightStats.available = calcShipStats.weight.available;
+    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
+    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
+    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
+    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
+    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
   }
 
   private static _getPowerNeeded(item: Component): number{

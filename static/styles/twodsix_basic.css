@@ -1127,7 +1127,7 @@ img.ship-mask-bg {
   grid-template-columns: 4.2em 4.2em 4.2em 4.2em 4.2em;
   grid-template-rows: 1fr;
   gap: 2px 2px;
-  grid-template-areas: "ship-item1 ship-item2 ship-item3 ship-item4 ship-item5";
+  grid-template-areas: ". . . . .";
   position: relative;
   left: 6.7em;
   top: -4.4em;
@@ -1135,46 +1135,19 @@ img.ship-mask-bg {
   height: 4em;*/
 }
 
-.ship-item1 {
-  grid-area: ship-item1;
+.ship-stat {
   border: solid;
   border-width: thin;
   border-radius: 1ch;
 }
 
-.ship-item2 {
-  grid-area: ship-item2;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+.ship-stat .red input[type="number"]{
+  color: var(--s2d6-damage-red);
 }
 
-.ship-item3 {
-  grid-area: ship-item3;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+#ship-stat-red {
+  color: var(--s2d6-damage-red);
 }
-
-.ship-item4 {
-  grid-area: ship-item4;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
-}
-
-.ship-item5 {
-  grid-area: ship-item5;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
-}
-
-/*.ship-item1 input[type="number"], .ship-item2 input[type="number"], .ship-item3 input[type="number"],
-.ship-item4 input[type="number"], .ship-item5 input[type="number"] {
-  margin-top: 8px;
-  margin-bottom: 5px;
-}*/
 
 .small-font {
   font-size: x-small;
