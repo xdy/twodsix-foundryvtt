@@ -530,14 +530,6 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   align-items: center;
 }
 
-.edit-active-effect {
-  width: 60%;
-}
-
-.delete-active-effect {
-  width: 40%; float: right
-}
-
 .items-consumable {
   display: grid;
   grid-template-columns: 1.7em 12.5em 5em 2.5em 5.8em 4.5em;
@@ -1647,6 +1639,16 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .remove-consumable {
   text-align: center;
+}
+
+.effects-footer {
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.edit-active-effect, .delete-active-effect, .create-active-effect {
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
 /*--- Chat Log ---*/
