@@ -88,6 +88,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       origin: this.item.uuid,
       icon: this.item.img,
       tint: "#ffffff",
+      label: this.item.name,
       disabled: (<Gear>this.item.data.data).equipped !== undefined && (<Gear>this.item.data.data).equipped !== "equipped"
     }).toObject()];
     await this.item.update({effects: effects }, {recursive: true});
