@@ -146,7 +146,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    this.updateWithItemSpecificValues(itemData, <string>type, <string>header.dataset?.subtype);
+    this.updateWithItemSpecificValues(itemData, <string>type, <string>header.dataset.subtype);
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
