@@ -98,7 +98,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
 
-  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string):void {
+  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -114,7 +114,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         }
         break;
       case "component":
-        itemData.data.subtype = "otherInternal";
+        itemData.data.subtype = subtype;
         itemData.data.status = "operational";
         break;
     }
@@ -130,8 +130,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const header = event.currentTarget;
     // Get the type of item to create.
     const {type} = header.dataset;
+
     // Grab any data associated with this control.
     const data = duplicate(header.dataset) as Record<string, any>;
+
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
     data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
@@ -144,7 +146,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    this.updateWithItemSpecificValues(itemData, <string>type);
+    this.updateWithItemSpecificValues(itemData, <string>type, <string>header.dataset?.subtype);
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
