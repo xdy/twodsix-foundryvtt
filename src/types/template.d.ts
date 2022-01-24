@@ -314,6 +314,8 @@ export interface Component extends GearTemplate {
   damage:string;
   status:string;
   isPercentage:boolean;
+  isIllegal:boolean;
+  purchasePrice:string;
 }
 
 export interface Consumable extends GearTemplate {

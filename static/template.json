@@ -310,7 +310,9 @@
       "availableQuantity": "",
       "damage": "",
       "status": "operational",
-      "isPercentage": false
+      "isPercentage": false,
+      "isIllegal": false,
+      "purchasePrice": ""
     },
     "ship_position": {
       "name": "",

@@ -1467,6 +1467,19 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background: var(--s2d6-skill-list-even);
 }
 
+.cargo-all {
+  margin-top: 1.1em;
+  overflow-y: auto;
+  height: 20em;
+}
+
+.cargo-list {
+  margin-top: 1.1em;
+  overflow-y: auto;
+  height: 10em;
+  padding: 0 0.5em;
+}
+
 .cargo-wrapper {
   padding: 0 2em;
   margin-top: 0;
