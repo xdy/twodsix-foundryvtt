@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.1...v1.8.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* Advanced Macros Not working ([#835](https://github.com/xdy/twodsix-foundryvtt/issues/835)) ([371a6cd](https://github.com/xdy/twodsix-foundryvtt/commit/371a6cddec84203a6bae05d9346a0584feb85190))
+
 ## [1.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.0...v1.8.1) (2022-01-22)
 
 
