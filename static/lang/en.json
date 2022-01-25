@@ -176,6 +176,7 @@
         "sensor": "sensor",
         "shield": "shield",
         "software": "software",
+        "storage": "storage",
         "vehicle": "vehicle",
         "other": "other",
         "otherExternal": "other - external",
@@ -195,7 +196,9 @@
         "purchasePrice": "Purchase Price",
         "isIllegal": "Illegal?",
         "unitWeight": "Unit Weight",
-        "CargoItem": "Cargo Item"
+        "CargoItem": "Cargo Item",
+        "CargoLocation": "Cargo Location",
+        "Price": "Price"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -316,10 +319,12 @@
       "MDrive": "M-Drive",
       "JDrive": "J-Drive",
       "Sensors": "Sensors",
+      "Storage": "Storage",
       "Weapons": "Weapons",
       "Cargo": "Cargo",
       "Vehicles": "Vehicles",
       "COMPONENTS": "COMPONENTS",
+      "MANIFEST": "MANIFEST",
       "CARGONOTES": "CARGO NOTES",
       "SHIPNOTES": "SHIP NOTES",
       "FINANCES": "FINANCES",

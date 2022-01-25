@@ -315,6 +315,7 @@ export interface Component extends GearTemplate {
   isPercentage:boolean;
   isIllegal:boolean;
   purchasePrice:string;
+  cargoLocation:string;
 }
 
 export interface Consumable extends GearTemplate {

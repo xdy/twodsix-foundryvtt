@@ -114,7 +114,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         }
         break;
       case "component":
-        itemData.data.subtype = subtype;
+        itemData.data.subtype = subtype || "otherInternal";
         itemData.data.status = "operational";
         break;
     }
@@ -136,9 +136,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
-    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " "
+    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
     if (itemType === "component") {
-      data.name += game.i18n.localize("TWODSIX.Items.Component." + header.dataset.subtype);
+      data.name += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
     } else {
       data.name += game.i18n.localize("TWODSIX.itemTypes." + itemType);
     }

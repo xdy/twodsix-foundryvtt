@@ -188,6 +188,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-shield-alt";
       case 'software':
         return "fas fa-code";
+      case 'storage':
+        return "fas fa-boxes";
       case 'vehicle':
         return "fas fa-space-shuttle";
       default:
@@ -218,6 +220,7 @@ export default function registerHandlebarsHelpers(): void {
     "sensor",
     'shield',
     'software',
+    'storage',
     'vehicle'
   ];
 
