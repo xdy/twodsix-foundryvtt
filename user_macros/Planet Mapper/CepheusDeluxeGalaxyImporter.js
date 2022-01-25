@@ -163,6 +163,18 @@ async function newPlanet (parse, folderID, topLabel) {
       img: 'systems/twodsix/assets/icons/' + getMarkerIcon(parse.markers[i])
     });
   }
+  
+  // add planet icon again incase notes are turned off
+  returnTiles.push({
+    x: iconPos.x - iconSize / 2,
+    y: iconPos.y - iconSize / 2,
+    z: 20,
+    t: CONST.DRAWING_TYPES.RECTANGLE,
+    width: iconSize,
+    height: iconSize,
+    tint: parse.color,
+    img: planetIcon
+  });
 
   return ({ note: returnNote, returnDrawing: returnDrawing, returnTiles: returnTiles });
 }
