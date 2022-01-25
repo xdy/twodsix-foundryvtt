@@ -176,6 +176,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
+    // Handle dropped scene on ship sheet
+    if (data.type === "Scene") {
+      if (actor.data.type === 'ship') {
+        actor.update({"data.deckPlan": data.id});
+      }
+      return false;
+    }
+
     const itemData = await getItemDataFromDropData(data);
 
     switch (actor.data.type) {
