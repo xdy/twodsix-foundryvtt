@@ -312,7 +312,8 @@
       "status": "operational",
       "isPercentage": false,
       "isIllegal": false,
-      "purchasePrice": ""
+      "purchasePrice": "",
+      "cargoLocation": ""
     },
     "ship_position": {
       "name": "",

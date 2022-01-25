@@ -112,6 +112,13 @@
     <label for="data.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}
       <input type="checkbox" class="checkbox" name="data.isIllegal" {{checked data.isIllegal}} data-dtype="Boolean" />
     </label>
+
+    <div class="item-short">
+      <label for="data.cargoLocation" class="resource-label">{{localize "TWODSIX.Items.Component.CargoLocation"}}
+        <input id="data.cargoLocation" type="text" name="data.cargoLocation" value="{{data.cargoLocation}}"/>
+      </label>
+    </div>
+
     {{/iff}}
 
     <div class="item-short">
