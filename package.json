@@ -57,6 +57,7 @@
     "fs-extra": "^10.0.0",
     "generate-source-map": "^0.0.5",
     "gulp": "^4.0.2",
+    "marked": ">=4.0.10",
     "prettier": "^2.5.1",
     "rollup": "^2.66.1",
     "rollup-plugin-esbuild": "^4.6.0",
