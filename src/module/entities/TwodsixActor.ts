@@ -176,7 +176,7 @@ export default class TwodsixActor extends Actor {
 
   private static _getWeight(item: Component, actorData): number{
     let q = item.quantity || 1;
-    if (["cargo", "armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
+    if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
       q = parseInt(item.availableQuantity);
     }
     let w = 0;
