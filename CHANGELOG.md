@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.2...v1.9.0) (2022-01-26)
+
+
+### Features
+
+* add a deck plan hyperlink for ship ([#836](https://github.com/xdy/twodsix-foundryvtt/issues/836)) ([e680695](https://github.com/xdy/twodsix-foundryvtt/commit/e6806951f6843ec584a152100827ff6718ea2b78))
+
 ## [1.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.1...v1.8.2) (2022-01-25)
 
 
