@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.0...v1.9.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* FVTT v9 patch 2 style fix ([#839](https://github.com/xdy/twodsix-foundryvtt/issues/839)) ([aef3a5d](https://github.com/xdy/twodsix-foundryvtt/commit/aef3a5d1ed02564006c807c84b552a93b062a2ff))
+
 # [1.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.2...v1.9.0) (2022-01-26)
 
 
