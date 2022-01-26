@@ -97,7 +97,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     );
   }
 
-
   private updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
     switch (type) {
       case "skills":
@@ -112,10 +111,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
           itemData.data.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
         }
+        if (!itemData?.img) {
+          itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
+        }
         break;
       case "component":
         itemData.data.subtype = subtype || "otherInternal";
         itemData.data.status = "operational";
+        itemData.img = "systems/twodsix/assets/icons/components/" + itemData.data.subtype + ".svg";
         break;
     }
   }
@@ -137,6 +140,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
     data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
+
     if (itemType === "component") {
       data.name += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
     } else {
