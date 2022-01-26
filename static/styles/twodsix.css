@@ -1208,6 +1208,21 @@ img.ship-mask-bg {
   max-height: 100%;
 }
 
+.ship-deck {
+  width: 19em;
+  margin-left: 1.5em;
+  margin-top: 0.4em;
+  text-align: center;
+}
+
+.ship-deck-link {
+  color: var(--color-text-hyperlink);
+  border: solid;
+  border-radius: 1ch;
+  padding: 0.3ch;
+  border-style: outset;
+}
+
 .ship-name {
   grid-area: ship-name;
   border-bottom: 2px solid var(--s2d6-default-color);
