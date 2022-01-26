@@ -1210,10 +1210,17 @@ img.ship-mask-bg {
 
 .ship-deck {
   width: 19em;
-  color: var(--color-text-hyperlink);
   margin-left: 1.5em;
   margin-top: 0.4em;
   text-align: center;
+}
+
+.ship-deck-link {
+  color: var(--color-text-hyperlink);
+  border: solid;
+  border-radius: 1ch;
+  padding: 0.3ch;
+  border-style: outset;
 }
 
 .ship-name {

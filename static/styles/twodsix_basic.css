@@ -960,6 +960,21 @@ img.ship-mask-bg {
   border: none !important;
 }
 
+.ship-deck {
+  width: 14em;
+  margin-left: 6.5em;
+  margin-top: 0.4em;
+  text-align: center;
+}
+
+.ship-deck-link {
+  color: var(--color-text-hyperlink);
+  border: solid;
+  border-radius: 1ch;
+  padding: 0.2ch;
+  border-style: groove;
+}
+
 .ship-name {
   grid-area: ship-name;
   z-index: 2;
