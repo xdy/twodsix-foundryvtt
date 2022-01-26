@@ -208,6 +208,7 @@ table tr:nth-child(even) {
   top: 1.8em !important;
   /* margin-bottom: 1em; */
   border: none !important;
+  padding: 0;
 }
 
 .sheet footer.sheet-footer {
