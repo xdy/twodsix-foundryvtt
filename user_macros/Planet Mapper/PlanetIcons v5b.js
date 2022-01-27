@@ -1,6 +1,3 @@
-/* eslint-disable quotes */
-/* eslint-disable no-undef */
-/* eslint-disable semi */
 // Simple planet creator based on information from Cepheus Light, Cepheus Engine
 // SRD and https://travellermap.com/doc/secondsurvey#uwp
 // GEnie / SEC Format for input
@@ -73,9 +70,9 @@ async function translateCode () {
       drawings: newDrawings,
       initial: {x: Math.round(maxX / 2), y: Math.round(maxY / 2), scale: 0.7},
       tiles: newTiles,
-      padding: 0,
-      width: Math.round(maxX + gridSize),
-      height: Math.round(maxY + gridSize)
+      padding: 0.05,
+      width: maxX,
+      height: maxY
     });
   }
 }
@@ -147,8 +144,8 @@ async function newPlanet (parse, folderID, topLabel) {
   const returnTiles = [];
   for (let i = 0; i < parse.markers.length; ++i) {
     returnTiles.push({
-      x: iconPos.x + iconSize / 2 + smFontSize / 4,
-      y: iconPos.y + smFontSize * (i - 0.5 * parse.markers.length),
+      x: Math.round(iconPos.x + iconSize / 2 + smFontSize / 4),
+      y: Math.round(iconPos.y + smFontSize * (i - 0.5 * parse.markers.length)),
       z: 20,
       t: CONST.DRAWING_TYPES.RECTANGLE,
       width: smFontSize,
@@ -157,11 +154,11 @@ async function newPlanet (parse, folderID, topLabel) {
       img: 'systems/twodsix/assets/icons/' + getMarkerIcon(parse.markers[i])
     });
   }
-  
+
   // add planet icon again incase notes are turned off
   returnTiles.push({
-    x: iconPos.x - iconSize / 2,
-    y: iconPos.y - iconSize / 2,
+    x: Math.round(iconPos.x - iconSize / 2),
+    y: Math.round(iconPos.y - iconSize / 2),
     z: 20,
     t: CONST.DRAWING_TYPES.RECTANGLE,
     width: iconSize,
@@ -169,7 +166,7 @@ async function newPlanet (parse, folderID, topLabel) {
     tint: parse.color,
     img: planetIcon
   });
-  
+
   // add color for Zone
   let zoneColor = '#969696';
   switch (parse.zone) {
@@ -183,7 +180,7 @@ async function newPlanet (parse, folderID, topLabel) {
   // Add allegiance
   returnDrawing.push({
     text: parse.aleg,
-    x: iconPos.x - iconSize / 2 - smFontSize,
+    x: Math.round(iconPos.x - iconSize / 2 - smFontSize),
     y: iconPos.y,
     z: 20,
     t: CONST.DRAWING_TYPES.TEXT,
@@ -213,8 +210,9 @@ function getPixelFromHex (col, row) {
   const width = gridSize;
   const sqrt3 = Math.sqrt(3.0);
 
-  const xPixel = (0.75 * (col) + 0.5) * width;
-  const yPixel = ((row) + 0.5 * ((col) & 1) + 0.5) * sqrt3 / 2.0 * width;
+  // Add +1 offset due to needing non-zero padding
+  const xPixel = Math.round((0.75 * (col + 1) + 0.5) * width);
+  const yPixel = Math.round(((row + 1) + 0.5 * ((col + 1) & 1) + 0.5) * sqrt3 / 2.0 * width);
 
   return ({
     x: xPixel,
