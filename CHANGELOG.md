@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.1...v1.9.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* show skill roll dialog for macros & padding issues ([#842](https://github.com/xdy/twodsix-foundryvtt/issues/842)) ([b939ea2](https://github.com/xdy/twodsix-foundryvtt/commit/b939ea234e64c6306fe1443e580f65111013fee8))
+
 ## [1.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.0...v1.9.1) (2022-01-26)
 
 
