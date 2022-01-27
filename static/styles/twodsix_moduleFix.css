@@ -33,3 +33,8 @@ input.dice-tray__input {
   background: var(--s2d6-background-opaque) !important;
   color: var(--s2d6-default) !important;
 }
+
+/*Fix for Tidy UI */
+#client-settings nav.tabs {
+  flex-grow: 0 !important;
+}
