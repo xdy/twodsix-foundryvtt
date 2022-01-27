@@ -310,7 +310,7 @@
       "availableQuantity": "",
       "damage": "",
       "status": "operational",
-      "isPercentage": false,
+      "weightIsPct": false,
       "isIllegal": false,
       "purchasePrice": "",
       "cargoLocation": ""

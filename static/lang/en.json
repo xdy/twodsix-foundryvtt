@@ -195,13 +195,14 @@
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage / Hits",
-        "isPercentage": "Percentage?",
+        "weightIsPct": "Weight is Percentage?",
         "purchasePrice": "Purchase Price",
         "isIllegal": "Illegal?",
         "unitWeight": "Unit Weight",
         "CargoItem": "Cargo Item",
         "CargoLocation": "Cargo Location",
-        "Price": "Price"
+        "Price": "Price",
+        "Value": "Value"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
