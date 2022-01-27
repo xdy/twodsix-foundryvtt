@@ -180,12 +180,8 @@ export default class TwodsixActor extends Actor {
       q = parseInt(item.availableQuantity);
     }
     let w = 0;
-    if (item.isPercentage) {
-      if (item.weight > 1) {
-        w = item.weight / 100 * actorData.data.shipStats.mass.max;
-      } else {
-        w = item.weight * actorData.data.shipStats.mass.max;
-      }
+    if (item.weightIsPct) {
+      w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
     } else {
       w = item.weight || 0;
     }

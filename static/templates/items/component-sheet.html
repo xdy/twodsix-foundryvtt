@@ -73,8 +73,8 @@
         <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
       </label>
       {{#iff data.subtype "!==" "cargo" }}
-      <label for="data.isPercentage" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPercentage"}}
-        <input type="checkbox" class="checkbox" name="data.isPercentage" {{checked data.isPercentage}} data-dtype="Boolean" />
+      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
+        <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
       </label>
       {{/iff}}
     </div>
@@ -96,14 +96,18 @@
         <input id="data.damage" type="text" name="data.damage" value="{{data.damage}}"/>
       </label>
     </div>
-    {{/iff}}
 
     <div class="item-price">
       <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
         <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
     </div>
 
-    {{#iff data.subtype "===" "cargo" }}
+    {{else}}
+    <div class="item-price">
+      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Component.Value"}}</label>
+        <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
+    </div>
+
     <div class="item-price">
       <label for="data.purchasePrice" class="resource-label">{{localize "TWODSIX.Items.Component.purchasePrice"}}</label>
         <input id="data.purchasePrice" type="text" name="data.purchasePrice" value="{{data.purchasePrice}}" data-dtype="Number"/>
