@@ -208,6 +208,7 @@ table tr:nth-child(even) {
   top: 1.8em !important;
   /* margin-bottom: 1em; */
   border: none !important;
+  padding: 0;
 }
 
 .sheet footer.sheet-footer {
@@ -1206,6 +1207,21 @@ img.ship-mask-bg {
   vertical-align: middle;
   z-index: -1;
   max-height: 100%;
+}
+
+.ship-deck {
+  width: 19em;
+  margin-left: 1.5em;
+  margin-top: 0.4em;
+  text-align: center;
+}
+
+.ship-deck-link {
+  color: var(--color-text-hyperlink);
+  border: solid;
+  border-radius: 1ch;
+  padding: 0.3ch;
+  border-style: outset;
 }
 
 .ship-name {

@@ -116,6 +116,7 @@ export interface Actor {
 export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
+  deckPlan:string;
   crew:Crew;
   notes:string;
   cargo:string;

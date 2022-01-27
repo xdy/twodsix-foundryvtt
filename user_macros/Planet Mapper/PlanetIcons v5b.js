@@ -71,8 +71,11 @@ async function translateCode () {
       gridType: CONST.GRID_TYPES.HEXEVENQ,
       notes: newNotes,
       drawings: newDrawings,
-      initial: {x: maxX / 2, y: maxY / 2, scale: 0.8},
-      tiles: newTiles
+      initial: {x: Math.round(maxX / 2), y: Math.round(maxY / 2), scale: 0.7},
+      tiles: newTiles,
+      padding: 0,
+      width: Math.round(maxX + gridSize),
+      height: Math.round(maxY + gridSize)
     });
   }
 }

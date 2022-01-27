@@ -41,8 +41,8 @@ async function translateCode () {
     const newNotes = [];
     let newDrawings = [];
     let newTiles = [];
-    const maxX = 420;
-    const maxY = 600;
+    const maxX = 800;
+    const maxY = 1000;
 
     // create new folder to hold planet journal entries
     const newFolder = await Folder.create({ name: 'Export Folder', type: 'JournalEntry' });
@@ -66,10 +66,11 @@ async function translateCode () {
       gridType: CONST.GRID_TYPES.HEXEVENQ,
       notes: newNotes,
       drawings: newDrawings,
+      initial: {x: Math.round(maxX / 2), y: Math.round(maxY / 2), scale: 0.8},
+      tiles: newTiles,
+      padding: 0,
       width: maxX,
-      height: maxY,
-      initial: { x: maxX / 2, y: maxY / 2, scale: 0.8 },
-      tiles: newTiles
+      height: maxY
     });
   }
 }
