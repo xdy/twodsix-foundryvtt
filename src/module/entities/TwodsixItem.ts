@@ -246,7 +246,7 @@ export default class TwodsixItem extends Item {
       const actor = game.actors?.get(actorID);
       const magazine = actor?.items.get(weapon.useConsumableForAttack);
       if (magazine?.type === "consumable") {
-        returnValue += (<Consumable>magazine?.data.data).armorPiercing || 0;
+        returnValue += (<Consumable>magazine.data.data)?.armorPiercing || 0;
       }
     }
     return returnValue;
