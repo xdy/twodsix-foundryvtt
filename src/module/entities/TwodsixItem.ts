@@ -218,7 +218,8 @@ export default class TwodsixItem extends Item {
         flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`,
         roll: damage,
         damage: damage.total,
-        dice: results
+        dice: results,
+        armorPiercingValue: TwodsixItem.getApValue(weapon, this.actor?.id || "")
       };
 
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
@@ -238,6 +239,17 @@ export default class TwodsixItem extends Item {
       }, {rollMode: rollMode});
     }
     return damage;
+  }
+  public static getApValue(weapon: Weapon, actorID = ""): number {
+    let returnValue = weapon.armorPiercing;
+    if (weapon.useConsumableForAttack && actorID) {
+      const actor = game.actors?.get(actorID);
+      const magazine = actor?.items.get(weapon.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        returnValue += (<Consumable>magazine?.data.data).armorPiercing || 0;
+      }
+    }
+    return returnValue;
   }
 
   public static burstAttackDM(number: number | null): number {
