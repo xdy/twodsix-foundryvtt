@@ -225,7 +225,7 @@ function parseCode (profile) {
     'Starport Type', 'World Size - CL', 'Atmosphere', 'Hydrographics',
     'Population', 'Government', 'Law Level - CL', 'Tech Level - CL'
   ];
-  let planetDescrip = `<table style="width:100%;"><tbody><tr><th>Characteristic</th><th>Description</th></tr>`;
+  let planetDescrip = `<table style="width:100%;"><tbody><tr><th style="width:20%;">Characteristic</th><th style="width:70%;">Description</th></tr>`;
   // parse starport, this is non-numeric
   planetDescrip += `<tr><td style="padding-right:5px">${UWPtables[0]} (${UWP[0]})</td><td>${getStarportDescr(UWP[0])}</td></tr>`;
 

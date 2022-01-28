@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.2...v1.9.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* Tidy UI Module tab issue ([#843](https://github.com/xdy/twodsix-foundryvtt/issues/843)) ([c5538bd](https://github.com/xdy/twodsix-foundryvtt/commit/c5538bdf29473ad6401cb01dc8b22e9b80aa7613))
+
 ## [1.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.1...v1.9.2) (2022-01-27)
 
 
