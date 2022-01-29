@@ -54,8 +54,10 @@
         <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}
           <select class="select-difficulty" name="data.difficulty" value={{difficulty}}>
             {{#select data.difficulty}}
-            {{#each data.settings.DIFFICULTIES as |label difficulty|}}
-            <option value="{{difficulty}}">{{localize difficulty}}</option>
+            {{#each data.settings.DIFFICULTIES}}
+            <option value="{{@key}}">{{localize @key}} (
+              {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+            </option>
             {{/each}}
             {{/select}}
           </select>
@@ -73,7 +75,7 @@
         </select>
       </label>
     </div>
-    
+
     <div class="item-short">
       <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
         <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
