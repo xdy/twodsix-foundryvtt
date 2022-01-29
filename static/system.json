@@ -6,7 +6,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "socket": true,
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
