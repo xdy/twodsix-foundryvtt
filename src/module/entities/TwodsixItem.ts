@@ -140,7 +140,7 @@ export default class TwodsixItem extends Item {
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
         const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat) || null;
         if (game.user?.targets.size === 1) {
-          game.user?.targets.values().next().value.actor.damageActor(damage.total);
+          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
         }
@@ -212,14 +212,15 @@ export default class TwodsixItem extends Item {
     const damageFormula = weapon.damage + (bonusDamage ? "+" + bonusDamage : "");
     const damageRoll = new Roll(damageFormula, this.actor?.data.data);
     const damage: Roll = await damageRoll.evaluate({async: true}); // async: true will be default in foundry 0.10
+    const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
     if (showInChat) {
       const results = damage.terms[0]["results"];
       const contentData = {
-        flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`,
+        flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`,
         roll: damage,
         damage: damage.total,
         dice: results,
-        armorPiercingValue: TwodsixItem.getApValue(weapon, this.actor?.id || "")
+        armorPiercingValue: apValue
       };
 
       const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
