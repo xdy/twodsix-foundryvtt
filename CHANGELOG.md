@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.3...v1.10.0) (2022-01-29)
+
+
+### Features
+
+* show difficulty values along with text ([#848](https://github.com/xdy/twodsix-foundryvtt/issues/848)) ([b52d8e7](https://github.com/xdy/twodsix-foundryvtt/commit/b52d8e725c2819bb49711a181c82645b285da4bc))
+
 ## [1.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.2...v1.9.3) (2022-01-27)
 
 
