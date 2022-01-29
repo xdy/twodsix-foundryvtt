@@ -5,7 +5,9 @@
       <select name="difficulty">
         {{#select difficulty}}
           {{#each difficulties as |label difficulty|}}
-            <option value="{{difficulty}}">{{localize difficulty}}</option>
+            <option value="{{difficulty}}">{{localize difficulty}} (
+              {{if twodsix_difficultiesAsTargetNumber}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+            </option>
           {{/each}}
         {{/select}}
       </select>
