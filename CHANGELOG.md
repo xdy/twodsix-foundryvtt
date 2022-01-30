@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.11.0...v1.11.1) (2022-01-30)
+
+
+### Bug Fixes
+
+* allow Tokenizer module to work with ship sheet ([#851](https://github.com/xdy/twodsix-foundryvtt/issues/851)) ([78789df](https://github.com/xdy/twodsix-foundryvtt/commit/78789dfe9f3c39c218f3e7021160ffd8406e7de2))
+
 # [1.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.10.1...v1.11.0) (2022-01-30)
 
 
