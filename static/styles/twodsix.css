@@ -2005,7 +2005,7 @@ background: var(--s2d6-sidebar-background);
   margin: 0;
   line-height: 24px;
   text-align: center;
-  background: var(--s2d6-background-opaque);
+  background: var(--s2d6-background-nearly-transparent);
   border: 1px solid var(--s2d6-default-color);
   border-radius: 1px;
   box-shadow: 0 0 2px var(--s2d6-background-opaque) inset;

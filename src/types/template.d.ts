@@ -312,6 +312,7 @@ export interface Consumable extends GearTemplate {
   type:string;
   subtype:string;
   location:string[];
+  armorPiercing:number;
 }
 
 export interface Equipment extends GearTemplate {
@@ -385,4 +386,5 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
+  armorPiercing:number;
 }

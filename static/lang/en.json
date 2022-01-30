@@ -14,6 +14,7 @@
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",
+      "AP": "AP",
       "TotalDamage": "Total damage",
       "Characteristics": "Characteristics",
       "Max": "Max",
@@ -77,6 +78,7 @@
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
         "CreateItem": "Create Item",
@@ -259,6 +261,7 @@
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
+        "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
@@ -274,7 +277,8 @@
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
-        "MagazineCost": "Magazine/Power Cell Cost"
+        "MagazineCost": "Magazine/Power Cell Cost",
+        "ArmorPiercing": "Armor Piercing Value"
       }
     },
     "Ship": {
