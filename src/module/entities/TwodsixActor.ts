@@ -172,10 +172,11 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damage: number, showDamageDialog = true): Promise<void> {
+  public async damageActor(damage: number, armorPiercingValue: number, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damage: number; damageId: string, tokenId?: string|null, actorId?: string|null } = {
+      const damageData: { damage: number, armorPiercingValue: number, damageId: string, tokenId?: string|null, actorId?: string|null } = {
         damage: damage,
+        armorPiercingValue: armorPiercingValue,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
@@ -187,7 +188,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damage);
+      const stats = new Stats(this, damage, armorPiercingValue);
       stats.applyDamage(); //TODO Should have await?
     }
   }

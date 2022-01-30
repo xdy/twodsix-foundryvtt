@@ -1,3 +1,17 @@
+# [1.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.10.1...v1.11.0) (2022-01-30)
+
+
+### Features
+
+* add armor piercing feature on weapons and consumables ([#847](https://github.com/xdy/twodsix-foundryvtt/issues/847)) ([5694a34](https://github.com/xdy/twodsix-foundryvtt/commit/5694a34ee5b8afed8fc51237e4126e7e01ca8a72))
+
+## [1.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.10.0...v1.10.1) (2022-01-29)
+
+
+### Bug Fixes
+
+* error with if statement ([#849](https://github.com/xdy/twodsix-foundryvtt/issues/849)) ([c24cf7b](https://github.com/xdy/twodsix-foundryvtt/commit/c24cf7b3eea9e3fec7788c710870529cb448b888))
+
 # [1.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.3...v1.10.0) (2022-01-29)
 
 
