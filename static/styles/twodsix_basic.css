@@ -60,6 +60,54 @@
   left: -0.3em;
 }
 
+.npc-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 17em 8em 8em;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-skills"
+  "npc-weapons npc-weapons npc-weapons";
+}
+
+.npc-name-photo {
+  grid-area: npc-name-photo;
+}
+
+.npc-bgi-stats {
+  grid-area: npc-bgi-stats;
+}
+
+.npc-notes-container {
+  grid-area: npc-notes-container;
+  max-height: 18em;
+  border-style: solid;
+  border-radius: 2ch;
+}
+
+.npc-skills {
+  grid-area: npc-skills;
+  border: solid;
+  border-radius: 2ch 2ch 0 0;
+}
+
+.npc-weapons {
+  grid-area: npc-weapons;
+}
+
+.npc {
+  margin-top: inherit !important;
+  margin-left: inherit !important;
+  width: inherit !important;
+  height: inherit !important;
+  max-height: inherit !important;
+  padding-top: inherit !important;
+  left: inherit !important;
+  justify-self: center;
+}
+
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -96,6 +144,7 @@ img.character-info-mask {
   border-color: inherit;
   border-radius: 1ch 1ch 0 0;
   text-align: center;
+  object-fit: contain;
 }
 
 .character-photo img {
@@ -815,7 +864,7 @@ span.total-output {
   border-radius: 0;
 }
 
-.item-title {
+.item-title, .item-title-npc {
   height: 22px;
   width: 207px;
   display: block;
@@ -824,8 +873,15 @@ span.total-output {
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
+}
+.item-title {
   border-radius: 1ch 1ch 0 0;
 }
+
+.item-title-npc {
+  border-radius: 1ch 0 5ch;
+}
+
 
 .item-title-short {
   height: 22px;
