@@ -326,6 +326,58 @@ h2 {
   left: -0.3em;
 }
 
+.npc-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 1.5fr 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-skills"
+  "npc-weapons npc-weapons npc-weapons";
+}
+
+.npc-name-photo {
+  grid-area: npc-name-photo;
+}
+
+.npc-bgi-stats {
+  grid-area: npc-bgi-stats;
+}
+
+.npc-notes-container {
+  grid-area: npc-notes-container;
+  max-height: 18em;
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+}
+
+.npc-skills, .npc-weapons {
+  grid-area: npc-skills;
+  border: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+}
+
+.npc-weapons {
+  grid-area: npc-weapons;
+}
+
+.npc {
+  margin-top: inherit !important;
+  margin-left: inherit !important;
+  width: inherit !important;
+  height: inherit !important;
+  max-height: inherit !important;
+  padding-top: inherit !important;
+  left: inherit !important;
+  justify-self: center;
+  position: inherit !important;
+  display: inline-block;
+}
+
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -355,6 +407,7 @@ img.character-info-mask {
   height: 20em;
   text-align: center;
   z-index: 0;
+  object-fit: contain;
 }
 
 .character-photo img {
@@ -407,7 +460,16 @@ img.character-info-mask {
   color: var(--s2d6-default-color) !important;
 }
 
-.character-bgi input {
+.character-bgi-npc {
+  font-size: 16px;
+  z-index: 9;
+  border: solid;
+  border-radius: 2ch;
+  padding: 0 1ch;
+  color: var(--s2d6-default-color) !important;
+}
+
+.character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
 }
@@ -519,6 +581,15 @@ span.stat-name {
   cursor: pointer;
 }
 
+span.stat-name-table {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  text-align: center !important;
+  width: 4ch;
+  transform: rotate(-45deg);
+}
+
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
@@ -582,11 +653,24 @@ span.stat-ability {
   top: -1.2em;
 }
 
+span.stat-ability-table {
+  text-align: center !important;
+  position: relative;
+}
+
 span.stat-modifier {
   margin: -5px;
   position: relative;
   left: 1.95em;
   top: -1.2em;
+}
+span.stat-modifier-table {
+  text-align: center !important;
+  position: relative;
+}
+
+span.stat-ability-table input, span.stat-modifier-table input {
+  width: 4ch;
 }
 
 span.stat-damage {
@@ -594,6 +678,21 @@ span.stat-damage {
   padding-left: 0.1em;
   top: 0.25em;
 }
+
+span.stat-damage-table {
+  position: relative;
+  text-align: center !important;
+}
+
+span.stat-damage-table input {
+  color:var(--s2d6-damage-stat-color) !important;
+  border: solid;
+  border-width: thin !important;
+  border-radius: 15%;
+  width: 4ch;
+  border-color: var(--s2d6-default-color);
+}
+
 
 span.stat-damage input, span.special-damage input {
   color: var(--s2d6-damage-stat-color) !important;
@@ -1072,6 +1171,18 @@ span.total-output {
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
+}
+
+.item-title-npc {
+  height: 22px;
+  width: 207px;
+  display: block;
+  color: var(--s2d6-item-active);
+  background-color: var(--s2d6-default-color);
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0.2em 0.2em 0.2em 0.5em;
+  border-radius: 1ch 0 4ch;
 }
 
 .item-title-short {
@@ -1904,6 +2015,9 @@ a:hover {
   text-align: right;
 }
 
+.consumable-row-npc {
+  display: inline-block;
+}
 /*.consumable-row .wrapper {
   float: right;
 }*/

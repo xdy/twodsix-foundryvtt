@@ -7,10 +7,10 @@
 <!-- Hero Points Information-->
 {{#if actor.data.settings.showHeroPoints}}
    {{#if (twodsix_useFoundryStyle)}}
-     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'> 
+     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'>
    {{else}}
-     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"> 
-   {{/if}}  
+     <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">
+   {{/if}}
    <i class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
         step="1" placeholder="2" /></span>
 {{/if}}
@@ -26,25 +26,27 @@
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fas fa-user-shield"></i>:<input
         style="text-align: right;" name="data.primaryArmor.value" type="number" value="{{data.primaryArmor.value}}" placeholder='0'
        readonly />/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}" placeholder='0' readonly /></span>
-<span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fas fa-radiation-alt"></i>:<input 
-        name="data.radiationProtection.value" type="number" value="{{data.radiationProtection.value}}" placeholder='0' readonly /></span>     
+<span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fas fa-radiation-alt"></i>:<input
+        name="data.radiationProtection.value" type="number" value="{{data.radiationProtection.value}}" placeholder='0' readonly /></span>
 <span class="bgi-encumbrance" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:<input
       name="data.encumbrance.value" style="text-align: right;" type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>
       /<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
 <br>
 <!-- Damage Stats Information-->
+{{#if actor.data.settings.showLifebloodStamina}}
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
-    {{#iff data.characteristics.stamina.value ">" data.characteristics.stamina.damage}} 
+    {{#iff data.characteristics.stamina.value ">" data.characteristics.stamina.damage}}
         <i class="fas fa-battery-half"></i>
-    {{else}} 
+    {{else}}
         <i class="fas fa-battery-empty" style="color:brown;"></i>
-    {{/iff}}:<input 
+    {{/iff}}:<input
     type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}" />-</span>
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
         name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}" /></span>
-<span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fas fa-heartbeat"></i>:<input 
+<span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fas fa-heartbeat"></i>:<input
         type="number" name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}"/>-</span>
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Lifeblood"}}'>
     <input type="number" name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}"/></span>
-<span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:<input 
+{{/if}}
+<span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:<input
         name="data.radiationDose.value" value={{data.radiationDose.value}} type="number"/></span><br>

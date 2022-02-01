@@ -301,3 +301,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     }
   }
 }
+
+export class TwodsixNPCSheet extends TwodsixActorSheet {
+  static get defaultOptions(): ActorSheet.Options {
+    return mergeObject(super.defaultOptions, {
+      classes: ["twodsix", "sheet", "npc-actor"],
+      template: "systems/twodsix/templates/actors/npc-sheet.html",
+      width: 830,
+      height: 500,
+      resizable: true
+    });
+  }
+}
