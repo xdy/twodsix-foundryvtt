@@ -9,42 +9,55 @@
     </div>
     {{#unless limited}}
     <div class="npc-bgi-stats">
-      <div class="character-bgi npc">
-        {{#if actor.data.settings.showLifebloodStamina}}
+      <div class="character-bgi-npc">
           {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
-        {{else}}
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
-        {{/if}}
       </div>
         {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
     </div>
     {{/unless}}
     <div class="npc-notes-container">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
-      <div contenteditable="true" data-edit="data.notes" style="height: 90%;">{{{data.notes}}}</div>
+      <div contenteditable="true" data-edit="data.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important">{{{data.notes}}}</div>
     </div>
     <div class="npc-skills">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
-      <p>
+      <p style="margin: 1ch;">
+        <span class="item" data-item-id="{{joat-skill-input}}" >
+            <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
+            <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
+        </span>
       {{#each_sort_by_name data.skills as |item id|}}
         {{#if (twodsix_hideUntrainedSkills item.data.data.value)}}
           <!-- Hiding {{item.name}} -->
         {{else}}
           {{#if (twodsix_filterSkills item)}}
-
-              <span class="item" data-item-id="{{item.id}}">
-                <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>&nbsp;<input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>,
+              <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
+                <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>
+                {{#if @last}}{{else}}, {{/if}}
               </span>
           {{/if}}
        {{/if}}
       {{/each_sort_by_name}}
       {{#if (twodsix_hideUntrainedSkills -1)}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
-          <text class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.name}}</text>
+          <text class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">, {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.data.data.value}}" readonly/>
       </span>
       {{/if}}
       </p>
+    </div>
+    <div class="npc-weapons">
+      <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
+      {{#each_sort_by_name data.weapon as |item id|}}
+      <span class="item" data-item-id="{{item.id}}">
+        <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>
+            {{#each item.data.data.consumableData as |consumableData|}}
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}
+            {{/each}}
+        {{#if @last}}{{else}}, {{/if}}
+      </span>
+      {{/each_sort_by_name}}
     </div>
   </div>
 </form>

@@ -63,7 +63,7 @@
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 17em 8em 8em;
+  grid-template-rows: 1.5fr 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -87,10 +87,10 @@
   border-radius: 2ch;
 }
 
-.npc-skills {
+.npc-skills, .npc-weapons {
   grid-area: npc-skills;
   border: solid;
-  border-radius: 2ch 2ch 0 0;
+  border-radius: 2ch;
 }
 
 .npc-weapons {
@@ -106,6 +106,7 @@
   padding-top: inherit !important;
   left: inherit !important;
   justify-self: center;
+  display: inline-block;
 }
 
 .content-background {
@@ -202,7 +203,15 @@ img.character-info-mask {
   border-radius: 0 0 1ch 1ch;
 }
 
-.character-bgi input {
+.character-bgi-npc {
+  font-size: 16px;
+  z-index: 9;
+  border: solid;
+  border-radius: 2ch;
+  padding: 0 1ch;
+}
+
+.character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
 }
@@ -324,7 +333,7 @@ span.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 5ch;
+  width: 4ch;
   transform: rotate(-45deg);
 }
 
@@ -400,7 +409,7 @@ span.stat-modifier-table {
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 5ch;
+  width: 4ch;
 }
 
 span.stat-damage {
@@ -428,7 +437,7 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin !important;
   border-radius: 15%;
-  width: 5ch;
+  width: 4ch;
 }
 
 span.special-ability {
@@ -866,22 +875,17 @@ span.total-output {
 
 .item-title, .item-title-npc {
   height: 22px;
-  width: 207px;
   display: block;
   color: var(--s2d6-app-color);
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
-}
-.item-title {
   border-radius: 1ch 1ch 0 0;
 }
-
-.item-title-npc {
-  border-radius: 1ch 0 5ch;
+.item-title {
+  width: 207px;
 }
-
 
 .item-title-short {
   height: 22px;
@@ -1670,7 +1674,7 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-left: 5px;
 }
 
-.consumable-row .refill-button[disabled], .combined-buttons button[disabled]  {
+.consumable-row .refill-button[disabled], .combined-buttons button[disabled] {
   cursor: default;
 }
 

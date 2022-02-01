@@ -329,7 +329,7 @@ h2 {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 17em 8em 8em;
+  grid-template-rows: 1.5fr 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -354,10 +354,10 @@ h2 {
   border-color: var(--s2d6-default-color);
 }
 
-.npc-skills {
+.npc-skills, .npc-weapons {
   grid-area: npc-skills;
   border: solid;
-  border-radius: 2ch 2ch 0 0;
+  border-radius: 2ch;
   border-color: var(--s2d6-default-color);
 }
 
@@ -375,6 +375,7 @@ h2 {
   left: inherit !important;
   justify-self: center;
   position: inherit !important;
+  display: inline-block;
 }
 
 .content-background {
@@ -459,7 +460,16 @@ img.character-info-mask {
   color: var(--s2d6-default-color) !important;
 }
 
-.character-bgi input {
+.character-bgi-npc {
+  font-size: 16px;
+  z-index: 9;
+  border: solid;
+  border-radius: 2ch;
+  padding: 0 1ch;
+  color: var(--s2d6-default-color) !important;
+}
+
+.character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
 }
@@ -2005,6 +2015,9 @@ a:hover {
   text-align: right;
 }
 
+.consumable-row-npc {
+  display: inline-block;
+}
 /*.consumable-row .wrapper {
   float: right;
 }*/

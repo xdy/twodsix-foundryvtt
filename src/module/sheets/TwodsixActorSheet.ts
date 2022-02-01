@@ -304,12 +304,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
 export class TwodsixNPCSheet extends TwodsixActorSheet {
   static get defaultOptions(): ActorSheet.Options {
-    // @ts-ignore
     return mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "actor"],
+      classes: ["twodsix", "sheet", "npc-actor"],
       template: "systems/twodsix/templates/actors/npc-sheet.html",
-      width: 825,
-      height: 648,
+      width: 830,
+      height: 500,
       resizable: true
     });
   }
