@@ -4,7 +4,7 @@
       <div class="character-photo npc">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
       </div>
-      <div class="character-name npc"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+      <div class="character-name npc" style="width: 100% !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();" class="npc"/></div>
     </div>
     {{#unless limited}}
