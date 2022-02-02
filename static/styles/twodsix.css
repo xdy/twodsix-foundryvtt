@@ -329,7 +329,7 @@ h2 {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 1.5fr 0.5fr 0.5fr;
+  grid-template-rows: 18em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
