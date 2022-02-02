@@ -4,7 +4,7 @@
       <div class="character-photo npc">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
       </div>
-      <div class="character-name npc"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+      <div class="character-name npc" style="width: 100% !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();" class="npc"/></div>
     </div>
     {{#unless limited}}
@@ -33,8 +33,7 @@
           {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>
-                {{#if @last}}{{else}}, {{/if}}
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>{{#unless @last}}, {{/unless}}
               </span>
           {{/if}}
        {{/if}}
@@ -49,15 +48,17 @@
     </div>
     <div class="npc-weapons">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
-      {{#each_sort_by_name data.weapon as |item id|}}
-      <span class="item" data-item-id="{{item.id}}">
-        <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>
-            {{#each item.data.data.consumableData as |consumableData|}}
-              {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}
-            {{/each}}
-        {{#if @last}}{{else}}, {{/if}}
-      </span>
-      {{/each_sort_by_name}}
+      <div style="margin-left: 1ch">
+        <span >
+         {{#each_sort_by_name data.weapon as |item id|}}
+            <span class="item" data-item-id="{{item.id}}">
+              <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>
+              {{#each item.data.data.consumableData as |consumableData|}}
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}{{/each}}{{#unless @last}}, {{/unless}}
+            </span>
+         {{/each_sort_by_name}}
+        </span>
+      </div>
     </div>
   </div>
 </form>
