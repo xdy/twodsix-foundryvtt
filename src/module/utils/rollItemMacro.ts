@@ -38,7 +38,7 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   }
 }
 
-function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
+export function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
   const rateOfFire: string = (<Weapon>weapon.data.data).rateOfFire;
   return (
     (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
@@ -46,7 +46,7 @@ function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
   );
 }
 
-async function promptForROF(): Promise<string> {
+export async function promptForROF(): Promise<string> {
   return new Promise((resolve) => {
     new Dialog({
       title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),

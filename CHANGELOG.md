@@ -1,3 +1,17 @@
+## [1.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.0...v1.12.1) (2022-02-02)
+
+
+### Bug Fixes
+
+* npc sheet fixes ([#858](https://github.com/xdy/twodsix-foundryvtt/issues/858)) ([4549d61](https://github.com/xdy/twodsix-foundryvtt/commit/4549d61ee41c9bada5ac2f976bd3305f846e6fcb))
+
+# [1.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.11.1...v1.12.0) (2022-02-01)
+
+
+### Features
+
+* Add an NPC sheet ([#857](https://github.com/xdy/twodsix-foundryvtt/issues/857)) ([379bd85](https://github.com/xdy/twodsix-foundryvtt/commit/379bd8534184b0eb2be3450cd51f9dcc2525aafc))
+
 ## [1.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.11.0...v1.11.1) (2022-01-30)
 
 
