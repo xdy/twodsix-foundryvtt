@@ -4,7 +4,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Consumable, Skills} from "../../types/template";
-import { shouldShowCELAutoFireDialog, promptForROF} from "../utils/rollItemMacro";
+import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -152,16 +152,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onPerformAttack(event, showTrowDiag: boolean): Promise<void> {
-    let attackType = event.currentTarget["dataset"].attackType;
+    const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
-
     const item = this.getItem(event);
-    if (this.options.template.includes("npc-sheet") && !attackType) {
-      if (shouldShowCELAutoFireDialog(item)) {
-        attackType = await promptForROF();
-      }
+    if (this.options.template.includes("npc-sheet")) {
+      resolveUnknownAutoMode(item);
+    } else {
+      await item.performAttack(attackType, showTrowDiag, rof);
     }
-    await item.performAttack(attackType, showTrowDiag, rof);
   }
 
   /**

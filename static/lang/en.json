@@ -365,7 +365,9 @@
       "With": "with",
       "resultShows": "result shows",
       "sum": "sum",
-      "using": "using {characteristic}"
+      "using": "using {characteristic}",
+      "AttackDM": "Atack DM",
+      "BonusDamage": "Bonus Damage"
     },
     "Settings": {
       "ruleset": {

@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.1...v1.12.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* Make npc sheet work with ce autofire rules ([#864](https://github.com/xdy/twodsix-foundryvtt/issues/864)) ([6f439a7](https://github.com/xdy/twodsix-foundryvtt/commit/6f439a7f59704f2fc9245bd05bb8b2436173125f))
+
 ## [1.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.0...v1.12.1) (2022-02-02)
 
 
