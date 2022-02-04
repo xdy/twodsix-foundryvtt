@@ -24,6 +24,7 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(booleanSetting('ExperimentalFeatures', false));
     settings.push(stringSetting('systemMigrationVersion', game.system.data.version));
     settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
+    settings.push(booleanSetting('useShipAutoCalcs', false));
     return settings;
   }
 }

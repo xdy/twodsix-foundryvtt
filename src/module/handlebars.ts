@@ -142,6 +142,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'alternativeShort2');
   });
 
+  Handlebars.registerHelper('autoCalcStats', () => {
+    return game.settings.get('twodsix', 'useShipAutoCalcs');
+  });
+
   Handlebars.registerHelper('skillName', (skillName) => {
     return TwodsixItem.simplifySkillName(skillName);
   });
