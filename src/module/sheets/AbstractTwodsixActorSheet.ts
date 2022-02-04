@@ -97,8 +97,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     );
   }
 
-
-  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string):void {
+  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -112,10 +111,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
           itemData.data.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
         }
+        if (!itemData?.img) {
+          itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
+        }
         break;
       case "component":
-        itemData.data.subtype = "otherInternal";
+        itemData.data.subtype = subtype || "otherInternal";
         itemData.data.status = "operational";
+        itemData.img = "systems/twodsix/assets/icons/components/" + itemData.data.subtype + ".svg";
         break;
     }
   }
@@ -130,11 +133,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const header = event.currentTarget;
     // Get the type of item to create.
     const {type} = header.dataset;
+
     // Grab any data associated with this control.
     const data = duplicate(header.dataset) as Record<string, any>;
+
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
-    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " " + game.i18n.localize("TWODSIX.itemTypes." + itemType);
+    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
+
+    if (itemType === "component") {
+      data.name += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
+    } else {
+      data.name += game.i18n.localize("TWODSIX.itemTypes." + itemType);
+    }
     // Prepare the item object.
     const itemData = {
       name: data.name,
@@ -144,7 +155,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    this.updateWithItemSpecificValues(itemData, <string>type);
+    this.updateWithItemSpecificValues(itemData, <string>type, <string>header.dataset.subtype);
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -169,9 +180,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (actor.data.type === 'traveller') {
         const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, showDamageDialog);
+        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, data.payload.armorPiercingValue, showDamageDialog);
       } else {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamageShip"));
+      }
+      return false;
+    }
+
+    // Handle dropped scene on ship sheet
+    if (data.type === "Scene") {
+      if (actor.data.type === 'ship') {
+        actor.update({"data.deckPlan": data.id});
       }
       return false;
     }

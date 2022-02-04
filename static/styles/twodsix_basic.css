@@ -60,6 +60,55 @@
   left: -0.3em;
 }
 
+.npc-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 18em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-skills"
+  "npc-weapons npc-weapons npc-weapons";
+}
+
+.npc-name-photo {
+  grid-area: npc-name-photo;
+}
+
+.npc-bgi-stats {
+  grid-area: npc-bgi-stats;
+}
+
+.npc-notes-container {
+  grid-area: npc-notes-container;
+  max-height: 18em;
+  border-style: solid;
+  border-radius: 2ch;
+}
+
+.npc-skills, .npc-weapons {
+  grid-area: npc-skills;
+  border: solid;
+  border-radius: 2ch;
+}
+
+.npc-weapons {
+  grid-area: npc-weapons;
+}
+
+.npc {
+  margin-top: inherit !important;
+  margin-left: inherit !important;
+  width: inherit !important;
+  height: inherit !important;
+  max-height: inherit !important;
+  padding-top: inherit !important;
+  left: inherit !important;
+  justify-self: center;
+  display: inline-block;
+}
+
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -96,6 +145,7 @@ img.character-info-mask {
   border-color: inherit;
   border-radius: 1ch 1ch 0 0;
   text-align: center;
+  object-fit: contain;
 }
 
 .character-photo img {
@@ -153,7 +203,15 @@ img.character-info-mask {
   border-radius: 0 0 1ch 1ch;
 }
 
-.character-bgi input {
+.character-bgi-npc {
+  font-size: 16px;
+  z-index: 9;
+  border: solid;
+  border-radius: 2ch;
+  padding: 0 1ch;
+}
+
+.character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
 }
@@ -275,7 +333,7 @@ span.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 5ch;
+  width: 4ch;
   transform: rotate(-45deg);
 }
 
@@ -351,7 +409,7 @@ span.stat-modifier-table {
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 5ch;
+  width: 4ch;
 }
 
 span.stat-damage {
@@ -379,7 +437,7 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin !important;
   border-radius: 15%;
-  width: 5ch;
+  width: 4ch;
 }
 
 span.special-ability {
@@ -671,7 +729,7 @@ select.select-mod {
 }
 
 select.select-difficulty {
-  width: 10em;
+  width: 11em;
   margin-left: 1em;
 }
 
@@ -815,9 +873,8 @@ span.total-output {
   border-radius: 0;
 }
 
-.item-title {
+.item-title, .item-title-npc {
   height: 22px;
-  width: 207px;
   display: block;
   color: var(--s2d6-app-color);
   font-weight: bold;
@@ -825,6 +882,9 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 1ch 0 0;
+}
+.item-title {
+  width: 207px;
 }
 
 .item-title-short {
@@ -838,7 +898,9 @@ span.total-output {
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 1ch 0 0;
 }
-
+.manifest {
+  margin-left: 1em;
+}
 /*-------Info Tab-----------*/
 
 .info-container {
@@ -958,6 +1020,21 @@ img.ship-mask-bg {
   vertical-align: middle;
   z-index: 1;
   border: none !important;
+}
+
+.ship-deck {
+  width: 14em;
+  margin-left: 6.5em;
+  margin-top: 0.4em;
+  text-align: center;
+}
+
+.ship-deck-link {
+  color: var(--color-text-hyperlink);
+  border: solid;
+  border-radius: 1ch;
+  padding: 0.2ch;
+  border-style: groove;
 }
 
 .ship-name {
@@ -1127,7 +1204,7 @@ img.ship-mask-bg {
   grid-template-columns: 4.2em 4.2em 4.2em 4.2em 4.2em;
   grid-template-rows: 1fr;
   gap: 2px 2px;
-  grid-template-areas: "ship-systems ship-m-drive ship-j-drive ship-sensors ship-weapons";
+  grid-template-areas: ". . . . .";
   position: relative;
   left: 6.7em;
   top: -4.4em;
@@ -1135,45 +1212,26 @@ img.ship-mask-bg {
   height: 4em;*/
 }
 
-.ship-systems {
-  grid-area: ship-systems;
+.ship-stat {
   border: solid;
   border-width: thin;
   border-radius: 1ch;
 }
 
-.ship-m-drive {
-  grid-area: ship-m-drive;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+.ship-stat .red input[type="number"]{
+  color: var(--s2d6-damage-red);
 }
 
-.ship-j-drive {
-  grid-area: ship-j-drive;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+#ship-stat-red {
+  color: var(--s2d6-damage-red);
 }
 
-.ship-sensors {
-  grid-area: ship-sensors;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+.small-font {
+  font-size: x-small;
 }
 
-.ship-weapons {
-  grid-area: ship-weapons;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
-}
-
-.ship-systems input[type="number"], .ship-m-drive input[type="number"], .ship-j-drive input[type="number"],
-.ship-sensors input[type="number"], .ship-weapons input[type="number"] {
-  margin-top: 8px;
-  margin-bottom: 5px;
+.red {
+  color: var(--s2d6-damage-red);
 }
 
 .power-grid input[type="text"] {
@@ -1347,7 +1405,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .storage-wrapper {
-  margin-top: 0.1em;
+  margin-top: 1.0em;
   overflow-y: auto;
   height: 21em;
 }
@@ -1411,8 +1469,21 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background: var(--s2d6-skill-list-even);
 }
 
+.cargo-all {
+  margin-top: 1.1em;
+  overflow-y: auto;
+  height: 20em;
+}
+
+.cargo-list {
+  /*margin-top: 1.1em;*/
+  overflow-y: auto;
+  height: 12em;
+  /*padding: 0 0.5em;*/
+}
+
 .cargo-wrapper {
-  padding: 0 2em;
+  padding: 0 1em;
   margin-top: 0;
   position: relative;
   top: 1em;
@@ -1599,7 +1670,7 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-left: 5px;
 }
 
-.consumable-row .refill-button[disabled], .combined-buttons button[disabled]  {
+.consumable-row .refill-button[disabled], .combined-buttons button[disabled] {
   cursor: default;
 }
 

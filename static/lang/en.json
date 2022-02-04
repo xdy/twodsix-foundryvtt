@@ -14,6 +14,7 @@
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",
+      "AP": "AP",
       "TotalDamage": "Total damage",
       "Characteristics": "Characteristics",
       "Max": "Max",
@@ -77,6 +78,7 @@
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
         "CreateItem": "Create Item",
@@ -97,6 +99,7 @@
         "TL": "TL",
         "Value": "Value",
         "WEAPONS": "WEAPONS",
+        "Weapons": "Weapons",
         "Weight": "Wt"
       },
       "Notes": {
@@ -164,7 +167,7 @@
         "armament": "armament",
         "armor": "armor",
         "bridge": "bridge",
-        "cargo": "cargo-area",
+        "cargo": "cargo",
         "computer": "computer",
         "drive": "drive",
         "drone": "drone",
@@ -176,6 +179,7 @@
         "sensor": "sensor",
         "shield": "shield",
         "software": "software",
+        "storage": "storage",
         "vehicle": "vehicle",
         "other": "other",
         "otherExternal": "other - external",
@@ -184,14 +188,21 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Power Draw",
-        "powerGenerated": "Power Generated",
+        "powerDraw": "Unit Power Draw",
+        "powerGenerated": "Power Generated per Unit",
         "status": "Status",
         "rating": "Rating",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage / Hits",
-        "isPercentage": "Percentage?"
+        "weightIsPct": "Weight is Percentage?",
+        "purchasePrice": "Purchase Price",
+        "isIllegal": "Illegal?",
+        "unitWeight": "Unit Weight",
+        "CargoItem": "Cargo Item",
+        "CargoLocation": "Cargo Location",
+        "Price": "Price",
+        "Value": "Value"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -259,6 +270,7 @@
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
+        "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
@@ -274,7 +286,8 @@
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
-        "MagazineCost": "Magazine/Power Cell Cost"
+        "MagazineCost": "Magazine/Power Cell Cost",
+        "ArmorPiercing": "Armor Piercing Value"
       }
     },
     "Ship": {
@@ -286,6 +299,7 @@
       "AddShipPosition": "Add Ship Position",
       "Order": "Order",
       "Name": "Name",
+      "Deckplan": "Deck Plan",
       "Travellers": "Travellers",
       "RemoveTraveller": "Remove Traveller from ship",
       "Actions": "Actions",
@@ -300,17 +314,25 @@
       "MaintPM": "Maintenance P/M",
       "Displacement": "Displacement",
       "tons": "tons",
+      "PP": "PP",
       "PowerManagement": "Power Management",
+      "PowerWeightManagement": "Power & Weight Management",
       "Power": "Power",
       "USED": "USED",
       "MAX": "MAX",
+      "Avail": "Avail.",
+      "Available": "Available",
       "Systems": "Systems",
       "MDrive": "M-Drive",
       "JDrive": "J-Drive",
       "Sensors": "Sensors",
+      "Storage": "Storage",
       "Weapons": "Weapons",
+      "Cargo": "Cargo",
+      "Vehicles": "Vehicles",
       "COMPONENTS": "COMPONENTS",
-      "SHIPCARGO": "SHIP CARGO",
+      "MANIFEST": "MANIFEST",
+      "CARGONOTES": "CARGO NOTES",
       "SHIPNOTES": "SHIP NOTES",
       "FINANCES": "FINANCES",
       "Tabs": {
@@ -360,7 +382,9 @@
       "resultShows": "result shows",
       "sum": "sum",
       "using": "using {characteristic}",
-      "Wounds": "Wounds"
+      "Wounds": "Wounds",
+      "AttackDM": "Atack DM",
+      "BonusDamage": "Bonus Damage"
     },
     "Settings": {
       "ruleset": {
@@ -394,6 +418,10 @@
       "initiativeFormula": {
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula"
+      },
+      "shipInitiativeFormula": {
+        "hint": "Like: \"2d6",
+        "name": "Ship Initiative Formula"
       },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",
@@ -530,8 +558,16 @@
         "name": "Roll Modifier for minor wounds"
       },
       "useModuleFixStyle": {
-        "hint": "Modifies CSS style to correct idetified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
+        "hint": "Modifies CSS style to correct identified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
         "name": "Correct some css style issues due to modules and default Twodsix style."
+      },
+      "showWeightUsage": {
+        "hint": "Display ship weight values instead of power on ship sheet.",
+        "name": "Show Weight instead of Power management on Ship Sheet"
+      },
+      "useShipAutoCalcs": {
+        "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power and weight values"
       },
       "settingsInterface": {
         "rulesetSettings": {

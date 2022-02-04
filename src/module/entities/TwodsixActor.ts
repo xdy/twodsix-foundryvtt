@@ -8,15 +8,14 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
-import {Characteristic, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
 
 export default class TwodsixActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
    */
-  prepareData(): void {
-    super.prepareData();
-
+  prepareDerivedData(): void {
+    super.prepareDerivedData();
     const actorData = <TwodsixActor><unknown>this.data;
     // const data = actorData.data;
     // const flags = actorData.flags;
@@ -28,6 +27,9 @@ export default class TwodsixActor extends Actor {
         this._prepareTravellerData(actorData);
         break;
       case 'ship':
+        if (game.settings.get("twodsix", "useShipAutoCalcs")) {
+          this._prepareShipData(actorData);
+        }
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
@@ -69,6 +71,125 @@ export default class TwodsixActor extends Actor {
     data.skills = new Proxy(Object.fromEntries(actorSkills), handler);
   }
 
+  _prepareShipData(actorData): void {
+    const calcShipStats = {
+      power: {
+        max: 0,
+        used: 0,
+        systems: 0,
+        jDrive: 0,
+        mDrive: 0,
+        sensors: 0,
+        weapons: 0
+      },
+      weight: {
+        systems: 0,
+        cargo: 0,
+        vehicles: 0,
+        fuel: 0,
+        available: 0
+      }
+    };
+
+    actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
+      const anComponent = <Component>item.data.data;
+      const powerForItem = TwodsixActor._getPowerNeeded(anComponent);
+      const weightForItem = TwodsixActor._getWeight(anComponent, actorData);
+
+      /* Allocate Power */
+      switch (anComponent.subtype) {
+        case 'power':
+          calcShipStats.power.max -= powerForItem;
+          break;
+        case 'drive':
+          if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
+            calcShipStats.power.jDrive += powerForItem;
+          } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
+            calcShipStats.power.mDrive += powerForItem;
+          } else {
+            calcShipStats.power.systems += powerForItem;
+          }
+          break;
+        case 'sensor':
+          calcShipStats.power.sensors += powerForItem;
+          break;
+        case 'armament':
+          calcShipStats.power.weapons += powerForItem;
+          break;
+        default:
+          calcShipStats.power.systems += powerForItem;
+          break;
+      }
+
+      /* Allocate Weight*/
+      switch (anComponent.subtype) {
+        case "vehicle":
+          calcShipStats.weight.vehicles += weightForItem;
+          break;
+        case "cargo":
+          calcShipStats.weight.cargo += weightForItem;
+          break;
+        case "fuel":
+          calcShipStats.weight.fuel += weightForItem;
+          break;
+        default:
+          calcShipStats.weight.systems += weightForItem;
+          break;
+      }
+    });
+
+    /*Calculate implicit values*/
+    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
+      calcShipStats.power.weapons + calcShipStats.power.systems;
+
+    calcShipStats.weight.available = actorData.data.shipStats.mass.max - calcShipStats.weight.vehicles - calcShipStats.weight.cargo
+      - calcShipStats.weight.fuel -calcShipStats.weight.systems;
+
+    /*Push values to ship actor*/
+    actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
+    actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
+    actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
+    actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
+    actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
+    actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
+    actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+
+    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
+    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
+    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
+    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
+    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
+  }
+
+  private static _getPowerNeeded(item: Component): number{
+    if ((item.status === "operational") || (item.status === "damaged")) {
+      let q = item.quantity || 1;
+      if (item.subtype === "armament"  && item.availableQuantity) {
+        q = parseInt(item.availableQuantity);
+      }
+      const p = item.powerDraw || 0;
+      if (item.subtype === "power"){
+        return -(q * p);
+      }
+      return (q * p);
+    }
+    return 0;
+  }
+
+  private static _getWeight(item: Component, actorData): number{
+    let q = item.quantity || 1;
+    if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
+      q = parseInt(item.availableQuantity);
+    }
+    let w = 0;
+    if (item.weightIsPct) {
+      w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
+    } else {
+      w = item.weight || 0;
+    }
+    return (w * q);
+  }
+
   protected async _onCreate() {
     switch (this.data.type) {
       case "traveller":
@@ -108,10 +229,11 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damage: number, showDamageDialog = true): Promise<void> {
+  public async damageActor(damage: number, armorPiercingValue: number, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damage: number; damageId: string, tokenId?: string|null, actorId?: string|null } = {
+      const damageData: { damage: number, armorPiercingValue: number, damageId: string, tokenId?: string|null, actorId?: string|null } = {
         damage: damage,
+        armorPiercingValue: armorPiercingValue,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
@@ -123,7 +245,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damage);
+      const stats = new Stats(this, damage, armorPiercingValue);
       stats.applyDamage(); //TODO Should have await?
     }
   }

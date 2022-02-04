@@ -99,6 +99,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find('.create-ship-position').on('click', this._onShipPositionCreate.bind(this));
     // component State toggling
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
+    html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
+    html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -145,6 +147,17 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       const itemSelected = this.actor.items.get(li.data("itemId"));
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
       itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
+    }
+  }
+  private _onDeckplanClick() {
+    if ((<Ship>this.actor.data.data)?.deckPlan) {
+      game.scenes?.get((<Ship>this.actor.data.data).deckPlan)?.view();
+    }
+  }
+
+  private _onDeckplanUnlink() {
+    if ((<Ship>this.actor.data.data)?.deckPlan) {
+      this.actor.update({"data.deckPlan": ""});;
     }
   }
 

@@ -116,12 +116,14 @@ export interface Actor {
 export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
+  deckPlan:string;
   crew:Crew;
   notes:string;
   cargo:string;
   finances:string;
   maintenanceCost:number;
   reqPower:ReqPower;
+  weightStats: WeightStats;
   shipStats:ShipStats;
   shipPositionActorIds: ShipPositionActorIds;
 }
@@ -140,12 +142,21 @@ export interface Crew {
   marine:string;
   other:string;
 }
+
 export interface ReqPower {
   systems:number;
   mDrive:number;
   jDrive:number;
   sensors:number;
   weapons:number;
+}
+
+export interface WeightStats {
+  systems:number;
+  cargo:number;
+  fuel:number;
+  available:number;
+  vehicles:number;
 }
 
 export interface ShipStats {
@@ -303,6 +314,10 @@ export interface Component extends GearTemplate {
   availableQuantity:string;
   damage:string;
   status:string;
+  weightIsPct:boolean;
+  isIllegal:boolean;
+  purchasePrice:string;
+  cargoLocation:string;
 }
 
 export interface Consumable extends GearTemplate {
@@ -312,6 +327,7 @@ export interface Consumable extends GearTemplate {
   type:string;
   subtype:string;
   location:string[];
+  armorPiercing:number;
 }
 
 export interface Equipment extends GearTemplate {
@@ -385,4 +401,5 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
+  armorPiercing:number;
 }

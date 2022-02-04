@@ -28,6 +28,13 @@ input.dice-tray__input {
 }
 
 /*Fix Advanced Macro Background Issue*/
-.macro-sheet .form-group.command .furnace-macro-command code {
-  background: var(--app-color);
+.macro-sheet .form-group.command .furnace-macro-command code,  .macro-sheet .form-group.command .furnace-macro-command textarea{
+  -webkit-text-fill-color: inherit !important;
+  background: var(--s2d6-background-opaque) !important;
+  color: var(--s2d6-default) !important;
+}
+
+/*Fix for Tidy UI */
+#client-settings nav.tabs {
+  flex-grow: 0 !important;
 }

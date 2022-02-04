@@ -12,8 +12,11 @@
   "Simple": "Enkelt",
   "TWODSIX": {
       "Damage": {
+        "AP": "PV",
+        "Mod": "Mod",
+        "Dmg": "Skd",
         "DealDamage": "Gör skada",
-        "Damage": "Sakda",
+        "Damage": "Skada",
         "TotalDamage": "Total skada",
         "Characteristics": "Attribut",
         "Max": "Max",
@@ -27,7 +30,7 @@
         "ROFPickerTitle": "Välj eldhastighet",
         "ROFSingle": "Enkelskott",
         "ROFBurst": "Skottsalva",
-        "ROFFull": "Automatelld"
+        "ROFFull": "Automateld"
       },
     "Actor": {
       "Age": "Ålder",
@@ -42,7 +45,11 @@
         "SOC": "SOC",
         "STR": "STY",
         "LFB": "LIV",
-        "STA": "TÅL"
+        "STA": "TÅL",
+        "CTM": "CTM",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
+
       },
       "DeleteOwnedItem": "Ta bort ägd sak",
       "Finances": {
@@ -77,6 +84,7 @@
         "CreateItem": "Skapa Sak",
         "Damage": "Skada",
         "DeleteItem": "Ta bort Sak",
+        "EffectiveArmor": "Effektiv Rustning",
         "EQUIPMENT": "UTRUSTNING",
         "EditItem": "Ändra Sak",
         "Effect": "Effekt",
@@ -156,26 +164,34 @@
         "accomodations": "anpassningar",
         "armament": "beväpning",
         "armor": "rustning",
+        "bridge": "brygga",
         "cargo": "lastutrymme",
         "computer": "dator",
         "drive": "motor",
+        "drone": "drönare",
         "electronics": "elektronik",
+        "fuel": "bränsle",
         "hull": "skrov",
+        "mount": "monteringsplats",
         "power": "energi",
+        "sensor": "sensor",
         "shield": "skjöld",
         "software": "mjukvara",
         "vehicle": "fordon",
         "other": "annat",
+        "otherExternal": "annat - externt",
         "operational": "fungerande",
         "damaged": "skadad",
         "destroyed": "förstörd",
         "off": "av",
         "powerDraw": "Energiåtg.",
+        "powerGenerated": "Energiproduktion",
         "status": "Status",
         "rating": "Rang",
         "totalQuantity": "Totalantal",
         "availableQuantity": "Tillgänglig kvantitet",
-        "damage": "Skada / Träffar"
+        "damage": "Skada / Träffar",
+        "isPercentage": "Percentil?"
       },
       "Equipment": {
         "AssignSkill": "Tilldela Färdighet",
@@ -217,7 +233,11 @@
         "STR": "STY",
         "SkillName": "Färdighetsnamn",
         "LFB": "LIV",
-        "STA": "TÅL"
+        "STA": "TÅL",
+        "SimplifiedSkillName": "Förenklat färdighetsnamn",
+        "SimplifiedSkillNameDescription": "Används i rullformler som @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ är som standard noll om färdigheten saknas eller under noll.",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
       "Traits": {
         "Prerequisite": "Förutsättning",
@@ -234,7 +254,8 @@
           "fuel": "Bränsle",
           "magazine": "Magasin",
           "power_cell": "Kraftcell",
-          "other": "Annat"
+          "other": "Annat",
+          "ArmorPiercing": "Pansarvärnsvärde"
         },
         "Size": "Storlek",
         "Subtype": "Typ",
@@ -254,8 +275,8 @@
         "rateOfFire": "Eldhastighet/Auto X",
         "recoil": "Rekyl",
         "UseAsAmmunitionForAttack": "Använd som förbrukningsvara för slag",
-        "MagazineCost": "Kostnad för Magasin/Kraftcell"
-
+        "MagazineCost": "Kostnad för Magasin/Kraftcell",
+        "ArmorPiercing": "Pansarvärnsvärde"
       }
     },
     "Ship": {
@@ -278,7 +299,9 @@
         "Components": "Komponenter",
         "Locker": "Skeppsskåp",
         "Cargo": "Last",
-        "Notes": "Anteckningar"
+        "Notes": "Anteckningar",
+        "ShipPositions": "Skeppspositioner",
+        "Finance": "Finanser"
       },
       "Crew": {
         "CAPTAIN": "KAPTEN",
@@ -292,7 +315,29 @@
         "ASTROGATOR": "ASTROGATÖR",
         "STEWARD": "STEWARD",
         "OTHER": "ANNAN",
-        "MARINES": "MARINSOLDAT(ER)"
+        "MARINES": "MARINSOLDAT(ER)",
+        "InvalidDocumentForShipPosition": "Denna dokumenttyp är ogiltig för fartygspositioner. Endast färdigheter kan släppas här.",
+        "ActorMustBeSelectedForAction": "Eftersom det finns flera aktörer måste en väljas för att utföra åtgärden",
+        "NoActorsForAction": "Ingen aktör tillgänglig för action",
+        "CantDropActorIfPositionIsNotOnShip": "Du kan inte släppa en karaktär på en fartygsposition som inte är på ett fartyg",
+        "ActorLacksSkill": "_ACTOR_NAME_ saknar färdigheten _SKILL_",
+        "AddShipPosition": "Lägg till skeppsposition",
+        "Order": "Order",
+        "Namn": "Namn",
+        "Deckplan": "Däcksplan",
+        "Travellers": "Karaktär",
+        "RemoveTraveller": "Ta bort karaktär från fartyget",
+        "Actions": "Handlingar",
+        "MacroSkill": "Makro/Skill",
+        "ActionType": "Åtgärdstyp",
+        "PositionName": "Positionsnamn",
+        "NewAction": "Ny åtgärd",
+        "CreateAction": "Skapa åtgärd",
+        "DeleteAction": "Ta bort åtgärd",
+        "Förskjutning": "Förskjutning",
+        "tons": "ton",
+        "COMPONENTS": "KOMPONENTER",
+        "FINANCES": "FINANSER"
       }
     },
     "Migration": {
@@ -351,6 +396,10 @@
       "initiativeFormula": {
         "hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiativformel"
+      },
+      "shipInitiativeFormula": {
+        "hint": "T ex: \"2d6\"",
+        "name": "Skeppsinitiativformel"
       },
       "maxSkillLevel": {
         "hint": "Lämna tomt för att använda default (9).",
@@ -451,7 +500,61 @@
       "showSingleComponentColumn": {
         "hint": "Visa skeppskomponenter som en enkelrad.",
         "name": "Skeppskomponenter visas som enkelrad"
-      }    },
+      },
+      "weightModifierForWornArmor": {
+        "hint": "Faktor att multiplicera viktvärdet för en rustning om den för närvarande är utrustad.",
+        "name": "Faktor att multiplicera viktvärdet för en utrustad rustning."
+      },
+      "useFoundryStandardStyle": {
+        "hint": "Använd Foundrys standardstil för användargränssnitt. Detta borde göra vissa moduler mer kompatibla med TWODSIX",
+        "name": "Använd Foundry Standard Style",
+        "default": "Standard Twodsix Style",
+        "foundry": "Standard Foundry VTT-stil"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Visa alternativa egenskaper istället för PSI. Fungerar bara för Foundrys standardstil.",
+        "name": "Visa alternativa egenskaper"
+      },
+      "alternativeShort1": {
+        "hint": "Kort namn för den första alternativa egenskapen. Det bör vara fyra tecken eller färre.",
+        "name": "Kort namn för alternativ egenskap 1"
+      },
+      "alternativeShort2": {
+        "hint": "Kort namn för den andra alternativa egenskapen. Det bör vara fyra tecken eller färre.",
+        "name": "Kort namn för alternativ egenskap 2"
+      },
+      "useWoundedStatusIndicators": {
+        "hint": "Använder statusindikatorer för att indikera skadad status och automatiskt rulla för att vakna från medvetslös vid allvarliga sår.",
+        "name": "Visa indikatorer för skadad status"
+      },
+      "useModuleFixStyle": {
+        "hint": "Ändrar CSS-stil för att korrigera identifierade stilproblem för vissa moduler när du använder Twodsix-stilen. Det fungerar inte när du använder Foundrys standardstil.",
+        "name": "Korrigera några css-stilproblem på grund av moduler och standard Twodsix-stil."
+      },
+      "settingsInterface": {
+        "rulesetSettings": {
+          "intro": "Nuvarande regler",
+          "name": "Avancerade regeluppsättningsinställningar",
+          "hint": "Konfigurera regeluppsättningsinställningarna.",
+          "modified": "modified"
+        },
+        "itemSettings": {
+          "intro": "Sakinställningar",
+          "name": "Sakinställningar",
+          "hint": "Konfigurera objektfälten som visas."
+        },
+        "displaySettings": {
+          "intro": "Skärminställningar",
+          "name": "Skärminställningar",
+          "hint": "Konfigurera skärminställningarna."
+        },
+        "debugSettings": {
+          "intro": "Felsökningsinställningar",
+          "name": "Felsökningsinställningar",
+          "hint": "Konfigurera/visa felsökningsinställningarna."
+        }
+      }
+    },
     "CloseAndCreateNew": "Stäng och skapa ny",
     "Copy": "Kopia",
     "Yes": "Ja",

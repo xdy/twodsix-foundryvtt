@@ -4,8 +4,10 @@
     <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
       <select name="difficulty">
         {{#select difficulty}}
-          {{#each difficulties as |label difficulty|}}
-            <option value="{{difficulty}}">{{localize difficulty}}</option>
+          {{#each difficulties}}
+            <option value="{{@key}}">{{localize @key}} (
+              {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+            </option>
           {{/each}}
         {{/select}}
       </select>

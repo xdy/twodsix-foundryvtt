@@ -16,6 +16,12 @@
       </label>
     </div>
 
+    <div class="item-damage">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}
+        <input type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
+      </label>
+    </div>
+
     <div class="item-range">
       {{#if data.settings.ShowRangeBandAndHideRange}}
       <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}

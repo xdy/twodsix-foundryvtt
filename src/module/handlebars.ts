@@ -13,6 +13,10 @@ export default function registerHandlebarsHelpers(): void {
     return advantageDisadvantageTerm(str);
   });
 
+  Handlebars.registerHelper('twodsix_difficultiesAsTargetNumber', () => {
+    return game.settings.get('twodsix', 'difficultiesAsTargetNumber');
+  });
+
   Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
     return (num % 2) == 1;
   });
@@ -142,6 +146,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'alternativeShort2');
   });
 
+  Handlebars.registerHelper('autoCalcStats', () => {
+    return game.settings.get('twodsix', 'useShipAutoCalcs');
+  });
+
   Handlebars.registerHelper('skillName', (skillName) => {
     return TwodsixItem.simplifySkillName(skillName);
   });
@@ -188,6 +196,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fas fa-shield-alt";
       case 'software':
         return "fas fa-code";
+      case 'storage':
+        return "fas fa-boxes";
       case 'vehicle':
         return "fas fa-space-shuttle";
       default:
@@ -218,8 +228,13 @@ export default function registerHandlebarsHelpers(): void {
     "sensor",
     'shield',
     'software',
+    'storage',
     'vehicle'
   ];
+
+  Handlebars.registerHelper('twodsix_showWeightUsage', () => {
+    return (game.settings.get('twodsix', 'showWeightUsage'));
+  });
 
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
@@ -236,7 +251,7 @@ export default function registerHandlebarsHelpers(): void {
           } else if (a.name === b.name) {
             return 0;
           } else {
-            return a.name?.toLocaleLowerCase().localeCompare(b.name?.toLocaleLowerCase());
+            return a.name.toLocaleLowerCase().localeCompare(b.name.toLocaleLowerCase());
           }
         }
       });

@@ -30,6 +30,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.push(numberSetting('minorWoundsRollModifier', -1));
     settings.push(numberSetting('seriousWoundsRollModifier', -2));
+    settings.push(booleanSetting('showWeightUsage', false));
     return settings;
   }
 }

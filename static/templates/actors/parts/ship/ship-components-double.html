@@ -6,8 +6,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
     </div>
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
@@ -15,24 +14,28 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
     </div>
   </div>
 
     {{#each component}}
+    {{#iff @key "!==" "cargo"}}
     <div class="grid-columns-single">
-        <div class="grid-columns-single-row">
-          <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}</ol>
+      <div class="grid-columns-single-row">
+        <ol class="ol-no-indent header-row">
+          <i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
+          <a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a>
+        </ol>
       </div>
     </div>
     <div class="grid-columns-double">
     {{#each this as |item id|}}
+
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
+          <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
           <span class="item-name centre component-toggle">
@@ -55,10 +58,11 @@
       </ol>
     </div>
     {{/each}}
-    {{#if (twodsix_isOdd this.length)}}
-      <div></div>
-    {{/if}}
+      {{#if (twodsix_isOdd this.length)}}
+        <div></div>
+      {{/if}}
     </div>
+    {{/iff}}
     {{/each}}
 
 </div>

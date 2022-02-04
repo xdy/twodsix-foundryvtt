@@ -41,6 +41,7 @@ export class Stats {
   stamina: Attribute;
   lifeblood: Attribute;
   damage: number;
+  armorPiercingValue: number;
   armor: number;
   edited = false;
   actor: TwodsixActor;
@@ -48,7 +49,7 @@ export class Stats {
   useLifebloodStamina = false;
   useLifebloodEndurance = false;
 
-  constructor(actor: TwodsixActor, damage: number) {
+  constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
@@ -56,8 +57,9 @@ export class Stats {
     this.lifeblood = new Attribute("lifeblood", actor);
     this.actor = actor;
     this.damage = damage;
+    this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = (<Traveller>actor.data.data).primaryArmor.value;
+      this.armor = Math.max((<Traveller>actor.data.data).primaryArmor.value - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics();
 
@@ -293,7 +295,7 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damage} = damageData;
+  const {damageId, damage, armorPiercingValue} = damageData;
   let actor;
   if (damageData.actorId) {
     actor = game.actors?.get(damageData.actorId);
@@ -307,7 +309,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
 
-  const stats = new Stats(actor, damage);
+  const stats = new Stats(actor, damage, armorPiercingValue);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
