@@ -37,7 +37,7 @@
       {{#if (twodsix_filterSkills item)}}
         <span class="item skill-container">
           <ol class="ol-no-indent">
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" data-item-id="{{item._id}}">
               <span class="skill-container">
                 <span class="mini-dice centre rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">
                   <i class="fas fa-dice" alt="d6"></i>
@@ -62,7 +62,7 @@
 <div class="skill">
   <span class="item skill-container">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{untrainedSkill.id}}">
+      <li class="item flexrow" data-item-id="{{untrainedSkill._id}}">
         <span class="skill-container">
           <span class="mini-dice centre rollable" title="{{twodsix_invertSkillRollShiftClick}}"><i class="fas fa-dice" alt="d6"></i></span>
           <span class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">{{untrainedSkill.name}}</span>

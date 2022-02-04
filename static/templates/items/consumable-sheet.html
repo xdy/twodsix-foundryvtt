@@ -9,6 +9,12 @@
     </div>
 
     <div class="form-section">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.ArmorPiercing"}}
+        <input type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number" step ="1" oninput="this.value = Math.round(this.value);"/>
+      </label>
+    </div>
+
+    <div class="form-section">
       <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Count"}}
         <div>
           <input class="form-consumable-count" name="data.currentCount" type="number" value="{{data.currentCount}}" data-dtype="Number">

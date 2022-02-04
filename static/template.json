@@ -131,6 +131,7 @@
     },
     "ship": {
       "name": "",
+      "deckPlan": "",
       "crew": {
         "captain": "",
         "pilot": "",
@@ -245,7 +246,8 @@
       "weaponType": "",
       "damageType": "",
       "rateOfFire": "",
-      "recoil": false
+      "recoil": false,
+      "armorPiercing": 0
     },
     "armor": {
       "templates": ["gearTemplate"],
@@ -297,7 +299,8 @@
       "max": 0,
       "type": "consumable",
       "subtype": "other",
-      "location": ["inventory", "storage"]
+      "location": ["inventory", "storage"],
+      "armorPiercing": 0
     },
     "component": {
       "templates": ["gearTemplate"],

@@ -24,7 +24,7 @@
     {{#each_sort_by_name storage as |item id|}}
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
-        <li class="item storage-stored" data-item-id="{{item.id}}">
+        <li class="item storage-stored" data-item-id="{{item._id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>

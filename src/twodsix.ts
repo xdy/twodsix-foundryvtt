@@ -10,7 +10,7 @@
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
-import {TwodsixActorSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixActorSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixActorSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
@@ -48,7 +48,14 @@ Hooks.once('init', async function () {
 
   Actors.registerSheet('twodsix', TwodsixActorSheet, {
     types: ["traveller"],
+    label: "Traveller Sheet",
     makeDefault: true
+  });
+
+  Actors.registerSheet('twodsix', TwodsixNPCSheet, {
+    types: ["traveller"],
+    label: "NPC Sheet",
+    makeDefault: false
   });
 
   Actors.registerSheet("twodsix", TwodsixShipSheet, {

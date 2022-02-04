@@ -4,8 +4,14 @@
   {{/unless}}
   <div class="ship-container">
     <div class="ship-image">
-      <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
+      <img class= "profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
     </div>
+    {{#iff data.data.deckPlan "!==" ""}}
+    <div class="ship-deck">
+      <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+      <a class="item-control ship-deck-unlink" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fas fa-trash"></i></a>
+    </div>
+    {{/iff}}
     <div class="ship-name">
       <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
     </div>
@@ -38,6 +44,7 @@
           <span><input type="number" value="{{data.data.shipStats.mass.max}}" name="data.shipStats.mass.max" placeholder="0"/></span>
           <span>{{localize "TWODSIX.Ship.tons"}}</span>
         </div>
+
       </div>
     </div>
     <div class="ship-power-management">

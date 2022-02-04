@@ -180,9 +180,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (actor.data.type === 'traveller') {
         const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, showDamageDialog);
+        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, data.payload.armorPiercingValue, showDamageDialog);
       } else {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamageShip"));
+      }
+      return false;
+    }
+
+    // Handle dropped scene on ship sheet
+    if (data.type === "Scene") {
+      if (actor.data.type === 'ship') {
+        actor.update({"data.deckPlan": data.id});
       }
       return false;
     }

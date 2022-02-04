@@ -13,6 +13,10 @@ export default function registerHandlebarsHelpers(): void {
     return advantageDisadvantageTerm(str);
   });
 
+  Handlebars.registerHelper('twodsix_difficultiesAsTargetNumber', () => {
+    return game.settings.get('twodsix', 'difficultiesAsTargetNumber');
+  });
+
   Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
     return (num % 2) == 1;
   });
@@ -247,7 +251,7 @@ export default function registerHandlebarsHelpers(): void {
           } else if (a.name === b.name) {
             return 0;
           } else {
-            return a.name?.toLocaleLowerCase().localeCompare(b.name?.toLocaleLowerCase());
+            return a.name.toLocaleLowerCase().localeCompare(b.name.toLocaleLowerCase());
           }
         }
       });

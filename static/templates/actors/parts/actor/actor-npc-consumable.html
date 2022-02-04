@@ -1,7 +1,6 @@
-<div class="consumable-row" data-consumable-id="{{_id}}">
+<div class="consumable-row npc" data-consumable-id="{{id}}">
   <div class="wrapper">
-    {{name}}:
-    {{#with data}}
+    {{#with data.data}}
     <span class="consumable-count">
       <span>{{currentCount}}/{{max}}</span>
       <span class="combined-buttons">
@@ -9,9 +8,6 @@
         <button class="right-button adjust-consumable" {{#iff currentCount "===" max}}disabled{{/iff}} data-value="-1">+</button>
       </span>
     </span>
-    <button {{#iff currentCount "===" max}}disabled{{/iff}} class="refill-button">
-      {{twodsix_refillText subtype quantity}}
-    </button>
     {{/with}}
   </div>
 </div>
