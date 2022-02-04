@@ -898,7 +898,9 @@ span.total-output {
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 1ch 0 0;
 }
-
+.manifest {
+  margin-left: 1em;
+}
 /*-------Info Tab-----------*/
 
 .info-container {
@@ -1403,7 +1405,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .storage-wrapper {
-  margin-top: 0.1em;
+  margin-top: 1.0em;
   overflow-y: auto;
   height: 21em;
 }
@@ -1467,8 +1469,21 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background: var(--s2d6-skill-list-even);
 }
 
+.cargo-all {
+  margin-top: 1.1em;
+  overflow-y: auto;
+  height: 20em;
+}
+
+.cargo-list {
+  /*margin-top: 1.1em;*/
+  overflow-y: auto;
+  height: 12em;
+  /*padding: 0 0.5em;*/
+}
+
 .cargo-wrapper {
-  padding: 0 2em;
+  padding: 0 1em;
   margin-top: 0;
   position: relative;
   top: 1em;

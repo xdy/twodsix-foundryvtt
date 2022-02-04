@@ -10,17 +10,20 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
     </div>
   </div>
 
   <div class="grid-columns-single">
     {{#each component}}
+    {{#iff @key "!==" "cargo"}}
     <div class="grid-columns-single-row">
-       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}</ol>
+       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
+         <a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a>
+       </ol>
     </div>
     {{#each this as |item id|}}
+
     <div class="grid-columns-single-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-single " data-item-id="{{item.id}}">
@@ -30,7 +33,7 @@
           <span class="item-name centre">{{item.data.data.rating}}</span>
           <span class="item-name centre">{{item.data.data.weight}}</span>
           <span class="item-name centre">{{item.data.data.powerDraw}}</span>
-          <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
+          <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{twodsix_limitLength item.data.data.damage 7}}</span>
           <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
@@ -52,6 +55,7 @@
       </ol>
     </div>
     {{/each}}
+    {{/iff}}
     {{/each}}
   </div>
 </div>

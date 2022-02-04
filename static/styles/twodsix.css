@@ -1195,7 +1195,9 @@ span.total-output {
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
-
+.manifest {
+  margin-left: 1em;
+}
 .simplified-skill-description {
   font-weight: normal;
   font-size: 10px;
@@ -1493,6 +1495,7 @@ img.ship-mask-bg {
   width: 3.8em;
   background-color: transparent !important;
   border: none;
+  height: auto;
   /*margin-top: 6px;*/
 }
 
@@ -1805,9 +1808,24 @@ a.ship-notes-tab.active {
   background: var(--s2d6-skill-list-even);
 }
 
+
+.cargo-all {
+  margin-top: 1.1em;
+  overflow-y: auto;
+  height: 20em;
+}
+
+.cargo-list {
+  /*margin-top: 1.1em;*/
+  overflow-y: auto;
+  height: 12em;
+  /*padding: 0 0.5em;*/
+  margin-bottom: 1em;
+}
+
 .cargo-wrapper {
-  padding: 0 2em;
-  margin-top: 0;
+  padding: 0 1em;
+  /*margin-top: 1em;*/
   position: relative;
   top: 1em;
 }

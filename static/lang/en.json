@@ -167,7 +167,7 @@
         "armament": "armament",
         "armor": "armor",
         "bridge": "bridge",
-        "cargo": "cargo-area",
+        "cargo": "cargo",
         "computer": "computer",
         "drive": "drive",
         "drone": "drone",
@@ -179,6 +179,7 @@
         "sensor": "sensor",
         "shield": "shield",
         "software": "software",
+        "storage": "storage",
         "vehicle": "vehicle",
         "other": "other",
         "otherExternal": "other - external",
@@ -187,14 +188,21 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Power Draw",
-        "powerGenerated": "Power Generated",
+        "powerDraw": "Unit Power Draw",
+        "powerGenerated": "Power Generated per Unit",
         "status": "Status",
         "rating": "Rating",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage / Hits",
-        "isPercentage": "Percentage?"
+        "weightIsPct": "Weight is Percentage?",
+        "purchasePrice": "Purchase Price",
+        "isIllegal": "Illegal?",
+        "unitWeight": "Unit Weight",
+        "CargoItem": "Cargo Item",
+        "CargoLocation": "Cargo Location",
+        "Price": "Price",
+        "Value": "Value"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -318,11 +326,13 @@
       "MDrive": "M-Drive",
       "JDrive": "J-Drive",
       "Sensors": "Sensors",
+      "Storage": "Storage",
       "Weapons": "Weapons",
       "Cargo": "Cargo",
       "Vehicles": "Vehicles",
       "COMPONENTS": "COMPONENTS",
-      "SHIPCARGO": "SHIP CARGO",
+      "MANIFEST": "MANIFEST",
+      "CARGONOTES": "CARGO NOTES",
       "SHIPNOTES": "SHIP NOTES",
       "FINANCES": "FINANCES",
       "Tabs": {
@@ -545,6 +555,10 @@
       "showWeightUsage": {
         "hint": "Display ship weight values instead of power on ship sheet.",
         "name": "Show Weight instead of Power management on Ship Sheet"
+      },
+      "useShipAutoCalcs": {
+        "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power and weight values"
       },
       "settingsInterface": {
         "rulesetSettings": {

@@ -27,7 +27,9 @@ export default class TwodsixActor extends Actor {
         this._prepareTravellerData(actorData);
         break;
       case 'ship':
-        this._prepareShipData(actorData);
+        if (game.settings.get("twodsix", "useShipAutoCalcs")) {
+          this._prepareShipData(actorData);
+        }
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
@@ -176,16 +178,12 @@ export default class TwodsixActor extends Actor {
 
   private static _getWeight(item: Component, actorData): number{
     let q = item.quantity || 1;
-    if (["cargo", "armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
+    if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
       q = parseInt(item.availableQuantity);
     }
     let w = 0;
-    if (item.isPercentage) {
-      if (item.weight > 1) {
-        w = item.weight / 100 * actorData.data.shipStats.mass.max;
-      } else {
-        w = item.weight * actorData.data.shipStats.mass.max;
-      }
+    if (item.weightIsPct) {
+      w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
     } else {
       w = item.weight || 0;
     }

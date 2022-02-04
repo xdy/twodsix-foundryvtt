@@ -313,7 +313,10 @@ export interface Component extends GearTemplate {
   availableQuantity:string;
   damage:string;
   status:string;
-  isPercentage:boolean;
+  weightIsPct:boolean;
+  isIllegal:boolean;
+  purchasePrice:string;
+  cargoLocation:string;
 }
 
 export interface Consumable extends GearTemplate {

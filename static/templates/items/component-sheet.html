@@ -23,10 +23,12 @@
         <input id="data.techLevel" type="text" name="data.techLevel" value="{{data.techLevel}}" data-dtype="Number"/>
     </div>
 
+    {{#iff data.subtype "!==" "cargo" }}
     <div class="item-tl">
         <label for="data.rating" class="resource-label">{{localize "TWODSIX.Items.Component.rating"}}</label>
         <input id="data.rating" type="text" name="data.rating" value="{{data.rating}}"/>
     </div>
+    {{/iff}}
 
     <div class="item-skill">
       <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}:</label>
@@ -39,6 +41,7 @@
       </select>
     </div>
 
+    {{#iff data.subtype "!==" "cargo" }}
     <div class="item-skill">
       <label for="data.status" class="resource-label">{{localize "TWODSIX.Items.Component.status"}}:</label>
       <select class="select-color" id="data.status" name="data.status" value={{data.status}}>
@@ -50,28 +53,33 @@
         {{/select}}
       </select>
     </div>
+    {{/iff}}
 
     <div class="item-qty">
       <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Component.totalQuantity"}}
         <input id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
       </label>
     </div>
-
+    {{#iff data.subtype "!==" "cargo" }}
     <div class="item-qty">
       <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Component.availableQuantity"}}
         <input id="data.availableQuantity" type="text" name="data.availableQuantity" value="{{data.availableQuantity}}" data-dtype="Number"/>
       </label>
     </div>
+    {{/iff}}
 
     <div class="item-weight">
-      <label for="data.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
+      <label for="data.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Component.unitWeight"}}
         <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
       </label>
-      <label for="data.isPercentage" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPercentage"}}
-        <input type="checkbox" class="checkbox" name="data.isPercentage" {{checked data.isPercentage}} data-dtype="Boolean" />
+      {{#iff data.subtype "!==" "cargo" }}
+      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
+        <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
       </label>
+      {{/iff}}
     </div>
 
+    {{#iff data.subtype "!==" "cargo" }}
     <div class="item-power">
       <label for="data.powerDraw" class="resource-label">
       {{#iff data.subtype '==' "power"}}
@@ -93,6 +101,29 @@
       <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
         <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
     </div>
+
+    {{else}}
+    <div class="item-price">
+      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Component.Value"}}</label>
+        <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-price">
+      <label for="data.purchasePrice" class="resource-label">{{localize "TWODSIX.Items.Component.purchasePrice"}}</label>
+        <input id="data.purchasePrice" type="text" name="data.purchasePrice" value="{{data.purchasePrice}}" data-dtype="Number"/>
+    </div>
+
+    <label for="data.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}
+      <input type="checkbox" class="checkbox" name="data.isIllegal" {{checked data.isIllegal}} data-dtype="Boolean" />
+    </label>
+
+    <div class="item-short">
+      <label for="data.cargoLocation" class="resource-label">{{localize "TWODSIX.Items.Component.CargoLocation"}}
+        <input id="data.cargoLocation" type="text" name="data.cargoLocation" value="{{data.cargoLocation}}"/>
+      </label>
+    </div>
+
+    {{/iff}}
 
     <div class="item-short">
       <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
