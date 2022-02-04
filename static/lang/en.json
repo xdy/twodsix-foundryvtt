@@ -556,6 +556,10 @@
         "hint": "Display ship weight values instead of power on ship sheet.",
         "name": "Show Weight instead of Power management on Ship Sheet"
       },
+      "useShipAutoCalcs": {
+        "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power and weight values"
+      },
       "settingsInterface": {
         "rulesetSettings": {
           "intro": "Current Rules",
