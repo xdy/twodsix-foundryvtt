@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.13.0...v1.14.0) (2022-02-04)
+
+
+### Features
+
+* add cargo management ([c3273a2](https://github.com/xdy/twodsix-foundryvtt/commit/c3273a2af98f7552975cb1f7d33d56a07c77d59e))
+
 # [1.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.2...v1.13.0) (2022-02-04)
 
 
