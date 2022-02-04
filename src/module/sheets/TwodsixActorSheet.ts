@@ -4,7 +4,6 @@ import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Consumable, Skills} from "../../types/template";
-import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -154,12 +153,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onPerformAttack(event, showTrowDiag: boolean): Promise<void> {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
+
     const item = this.getItem(event);
-    if (this.options.template.includes("npc-sheet")) {
-      resolveUnknownAutoMode(item);
-    } else {
-      await item.performAttack(attackType, showTrowDiag, rof);
-    }
+    await item.performAttack(attackType, showTrowDiag, rof);
   }
 
   /**
@@ -303,17 +299,5 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         itemSelected.update({"data.quantity": newValue});
       }
     }
-  }
-}
-
-export class TwodsixNPCSheet extends TwodsixActorSheet {
-  static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "npc-actor"],
-      template: "systems/twodsix/templates/actors/npc-sheet.html",
-      width: 830,
-      height: 500,
-      resizable: true
-    });
   }
 }

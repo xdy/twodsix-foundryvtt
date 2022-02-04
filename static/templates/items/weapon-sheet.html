@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off"
-      data-item-id="{{item._id}}"
+      data-item-id="{{_id}}"
       data-has-owner="{{hasOwner}}"
       data-actor-id="{{actor._id}}">
   <div class="item-sheet">
@@ -13,12 +13,6 @@
     <div class="item-damage">
       <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}
         <input type="text" name="data.damage" value="{{data.damage}}">
-      </label>
-    </div>
-
-    <div class="item-damage">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}
-        <input type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
       </label>
     </div>
 

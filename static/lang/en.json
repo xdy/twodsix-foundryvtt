@@ -14,7 +14,6 @@
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",
-      "AP": "AP",
       "TotalDamage": "Total damage",
       "Characteristics": "Characteristics",
       "Max": "Max",
@@ -78,7 +77,6 @@
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
-        "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
         "CreateItem": "Create Item",
@@ -99,7 +97,6 @@
         "TL": "TL",
         "Value": "Value",
         "WEAPONS": "WEAPONS",
-        "Weapons": "Weapons",
         "Weight": "Wt"
       },
       "Notes": {
@@ -270,7 +267,6 @@
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
-        "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
@@ -286,8 +282,7 @@
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
-        "MagazineCost": "Magazine/Power Cell Cost",
-        "ArmorPiercing": "Armor Piercing Value"
+        "MagazineCost": "Magazine/Power Cell Cost"
       }
     },
     "Ship": {
@@ -299,7 +294,6 @@
       "AddShipPosition": "Add Ship Position",
       "Order": "Order",
       "Name": "Name",
-      "Deckplan": "Deck Plan",
       "Travellers": "Travellers",
       "RemoveTraveller": "Remove Traveller from ship",
       "Actions": "Actions",
@@ -381,9 +375,7 @@
       "With": "with",
       "resultShows": "result shows",
       "sum": "sum",
-      "using": "using {characteristic}",
-      "AttackDM": "Atack DM",
-      "BonusDamage": "Bonus Damage"
+      "using": "using {characteristic}"
     },
     "Settings": {
       "ruleset": {
@@ -417,10 +409,6 @@
       "initiativeFormula": {
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula"
-      },
-      "shipInitiativeFormula": {
-        "hint": "Like: \"2d6",
-        "name": "Ship Initiative Formula"
       },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",
@@ -549,7 +537,7 @@
         "name": "Display wounded status indicators"
       },
       "useModuleFixStyle": {
-        "hint": "Modifies CSS style to correct identified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
+        "hint": "Modifies CSS style to correct idetified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
         "name": "Correct some css style issues due to modules and default Twodsix style."
       },
       "showWeightUsage": {

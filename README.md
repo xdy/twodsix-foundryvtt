@@ -5,7 +5,6 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)
 
-
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
 A [Foundry VTT](https://foundryvtt.com/) system for running games using various 2d6-based role-playing games, specifically those based on the Cepheus Engine.
@@ -33,7 +32,7 @@ This system may eventually claim compatibility with other specific rules sets on
 * actually has said compatibility 
 * actually has the license to do so
 
-See [docs.md](docs/docs.md) for documentation, check the [wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) or ask on [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv).
+See [docs.md](docs/docs.md) for documentation, check the [wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) or ask on [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/KUAwPrj).
 
 ## The Programmer's Mantra
 ```

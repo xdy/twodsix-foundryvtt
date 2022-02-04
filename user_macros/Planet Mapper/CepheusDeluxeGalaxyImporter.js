@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable no-undef */
+/* eslint-disable semi */
 // Simple subsector generator based on information from Cepheus Deluxe & Cepheus Deluxe Galaxy
 // using the generator https://www.drivethrurpg.com/product/377266/Cepheus-Deluxe-Galaxy
 // Fields used
@@ -38,8 +41,8 @@ async function translateCode () {
     const newNotes = [];
     let newDrawings = [];
     let newTiles = [];
-    const maxX = 700;
-    const maxY = 1000;
+    const maxX = 420;
+    const maxY = 600;
 
     // create new folder to hold planet journal entries
     const newFolder = await Folder.create({ name: 'Export Folder', type: 'JournalEntry' });
@@ -63,11 +66,10 @@ async function translateCode () {
       gridType: CONST.GRID_TYPES.HEXEVENQ,
       notes: newNotes,
       drawings: newDrawings,
-      initial: {x: Math.round(maxX / 2), y: Math.round(maxY / 2), scale: 0.8},
-      tiles: newTiles,
-      padding: 0.05,
       width: maxX,
-      height: maxY
+      height: maxY,
+      initial: { x: maxX / 2, y: maxY / 2, scale: 0.8 },
+      tiles: newTiles
     });
   }
 }
@@ -151,8 +153,8 @@ async function newPlanet (parse, folderID, topLabel) {
   const returnTiles = [];
   for (let i = 0; i < parse.markers.length; ++i) {
     returnTiles.push({
-      x: Math.round(iconPos.x + iconSize / 2 + smFontSize / 2),
-      y: Math.round(iconPos.y + lrgFontSize * (i - 0.5 * parse.markers.length)),
+      x: iconPos.x + iconSize / 2 + smFontSize / 2,
+      y: iconPos.y + lrgFontSize * (i - 0.5 * parse.markers.length),
       z: 20,
       t: CONST.DRAWING_TYPES.RECTANGLE,
       width: smFontSize,
@@ -161,18 +163,6 @@ async function newPlanet (parse, folderID, topLabel) {
       img: 'systems/twodsix/assets/icons/' + getMarkerIcon(parse.markers[i])
     });
   }
-
-  // add planet icon again incase notes are turned off
-  returnTiles.push({
-    x: Math.round(iconPos.x - iconSize / 2),
-    y: Math.round(iconPos.y - iconSize / 2),
-    z: 20,
-    t: CONST.DRAWING_TYPES.RECTANGLE,
-    width: iconSize,
-    height: iconSize,
-    tint: parse.color,
-    img: planetIcon
-  });
 
   return ({ note: returnNote, returnDrawing: returnDrawing, returnTiles: returnTiles });
 }
@@ -195,9 +185,9 @@ function getMarkerIcon (textSymbol) {
 function getPixelFromHex (col, row) {
   const width = gridSize;
   const sqrt3 = Math.sqrt(3.0);
-  //Add +1 offset due to needing non-zero Padding
-  const xPixel = Math.round((0.75 * (col + 1) + 0.5) * width);
-  const yPixel = Math.round(((row + 1) + 0.5 * ((col + 1) & 1) + 0.5) * sqrt3 / 2.0 * width);
+
+  const xPixel = (0.75 * (col) + 0.5) * width;
+  const yPixel = ((row) + 0.5 * ((col) & 1) + 0.5) * sqrt3 / 2.0 * width;
 
   return ({
     x: xPixel,
@@ -225,7 +215,7 @@ function parseCode (profile) {
     'Starport Type', 'World Size - CL', 'Atmosphere', 'Hydrographics',
     'Population', 'Government', 'Law Level - CL', 'Tech Level - CL'
   ];
-  let planetDescrip = `<table style="width:100%;"><tbody><tr><th style="width:20%;">Characteristic</th><th style="width:70%;">Description</th></tr>`;
+  let planetDescrip = `<table style="width:100%;"><tbody><tr><th>Characteristic</th><th>Description</th></tr>`;
   // parse starport, this is non-numeric
   planetDescrip += `<tr><td style="padding-right:5px">${UWPtables[0]} (${UWP[0]})</td><td>${getStarportDescr(UWP[0])}</td></tr>`;
 

@@ -116,7 +116,6 @@ export interface Actor {
 export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
-  deckPlan:string;
   crew:Crew;
   notes:string;
   cargo:string;
@@ -326,7 +325,6 @@ export interface Consumable extends GearTemplate {
   type:string;
   subtype:string;
   location:string[];
-  armorPiercing:number;
 }
 
 export interface Equipment extends GearTemplate {
@@ -400,5 +398,4 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
-  armorPiercing:number;
 }
