@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.2...v1.13.0) (2022-02-04)
+
+
+### Features
+
+* add weight management options ([#829](https://github.com/xdy/twodsix-foundryvtt/issues/829)) ([737c2ce](https://github.com/xdy/twodsix-foundryvtt/commit/737c2cec57d3488e0600277d24ae5c4c81ea55b0))
+
 ## [1.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.1...v1.12.2) (2022-02-03)
 
 
