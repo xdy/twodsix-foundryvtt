@@ -157,6 +157,13 @@
         "sensors": 0,
         "weapons": 0
       },
+      "weightStats": {
+        "systems": 0,
+        "cargo": 0,
+        "fuel": 0,
+        "vehicles": 0,
+        "available": 0
+      },
       "shipPositionActorIds": {},
       "shipStats": {
         "hull": {

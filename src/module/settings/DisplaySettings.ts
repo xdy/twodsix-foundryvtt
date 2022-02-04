@@ -27,7 +27,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showSingleComponentColumn', false));
     settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useWoundedStatusIndicators', false));
-
+    settings.push(booleanSetting('showWeightUsage', false));
     return settings;
   }
 }

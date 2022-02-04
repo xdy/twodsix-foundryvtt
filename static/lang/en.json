@@ -306,15 +306,21 @@
       "MaintPM": "Maintenance P/M",
       "Displacement": "Displacement",
       "tons": "tons",
+      "PP": "PP",
       "PowerManagement": "Power Management",
+      "PowerWeightManagement": "Power & Weight Management",
       "Power": "Power",
       "USED": "USED",
       "MAX": "MAX",
+      "Avail": "Avail.",
+      "Available": "Available",
       "Systems": "Systems",
       "MDrive": "M-Drive",
       "JDrive": "J-Drive",
       "Sensors": "Sensors",
       "Weapons": "Weapons",
+      "Cargo": "Cargo",
+      "Vehicles": "Vehicles",
       "COMPONENTS": "COMPONENTS",
       "SHIPCARGO": "SHIP CARGO",
       "SHIPNOTES": "SHIP NOTES",
@@ -535,6 +541,10 @@
       "useModuleFixStyle": {
         "hint": "Modifies CSS style to correct identified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
         "name": "Correct some css style issues due to modules and default Twodsix style."
+      },
+      "showWeightUsage": {
+        "hint": "Display ship weight values instead of power on ship sheet.",
+        "name": "Show Weight instead of Power management on Ship Sheet"
       },
       "settingsInterface": {
         "rulesetSettings": {

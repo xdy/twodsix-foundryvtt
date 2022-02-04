@@ -1202,7 +1202,7 @@ img.ship-mask-bg {
   grid-template-columns: 4.2em 4.2em 4.2em 4.2em 4.2em;
   grid-template-rows: 1fr;
   gap: 2px 2px;
-  grid-template-areas: "ship-systems ship-m-drive ship-j-drive ship-sensors ship-weapons";
+  grid-template-areas: ". . . . .";
   position: relative;
   left: 6.7em;
   top: -4.4em;
@@ -1210,45 +1210,26 @@ img.ship-mask-bg {
   height: 4em;*/
 }
 
-.ship-systems {
-  grid-area: ship-systems;
+.ship-stat {
   border: solid;
   border-width: thin;
   border-radius: 1ch;
 }
 
-.ship-m-drive {
-  grid-area: ship-m-drive;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+.ship-stat .red input[type="number"]{
+  color: var(--s2d6-damage-red);
 }
 
-.ship-j-drive {
-  grid-area: ship-j-drive;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+#ship-stat-red {
+  color: var(--s2d6-damage-red);
 }
 
-.ship-sensors {
-  grid-area: ship-sensors;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
+.small-font {
+  font-size: x-small;
 }
 
-.ship-weapons {
-  grid-area: ship-weapons;
-  border: solid;
-  border-width: thin;
-  border-radius: 1ch;
-}
-
-.ship-systems input[type="number"], .ship-m-drive input[type="number"], .ship-j-drive input[type="number"],
-.ship-sensors input[type="number"], .ship-weapons input[type="number"] {
-  margin-top: 8px;
-  margin-bottom: 5px;
+.red {
+  color: var(--s2d6-damage-red);
 }
 
 .power-grid input[type="text"] {

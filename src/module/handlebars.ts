@@ -225,6 +225,10 @@ export default function registerHandlebarsHelpers(): void {
     'vehicle'
   ];
 
+  Handlebars.registerHelper('twodsix_showWeightUsage', () => {
+    return (game.settings.get('twodsix', 'showWeightUsage'));
+  });
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
