@@ -1495,6 +1495,7 @@ img.ship-mask-bg {
   width: 3.8em;
   background-color: transparent !important;
   border: none;
+  height: auto;
   /*margin-top: 6px;*/
 }
 
