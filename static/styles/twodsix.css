@@ -460,6 +460,17 @@ img.character-info-mask {
   color: var(--s2d6-default-color) !important;
 }
 
+.character-bgi-std {
+  margin-left: 2.2em;
+  position: relative;
+  margin-top: 0.15em;
+  width: 17em;
+  height: 7.5em;
+  font-size: 16px;
+  z-index: 9;
+  color: var(--s2d6-default-color) !important;
+}
+
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
@@ -472,6 +483,12 @@ img.character-info-mask {
 .character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
+  height: 2.7ch;
+}
+.character-bgi-std input{
+  background-color: transparent !important;
+  border: none;
+  height: 2.4ch;
 }
 
 .bgi-age input {
@@ -491,6 +508,18 @@ img.character-info-mask {
 
 .bgi-homeWorld input {
   width: 8em;
+  border: none;
+}
+
+.bgi-movement input {
+  width: 5ch;
+  border: none;
+  text-align: right;
+}
+
+.bgi-movement select {
+  width: 7ch;
+  background-color: var(--s2d6-background-transparent) !important;
   border: none;
 }
 

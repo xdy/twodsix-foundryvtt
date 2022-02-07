@@ -32,6 +32,7 @@
       name="data.encumbrance.value" style="text-align: right;" type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>
       /<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
 <br>
+
 <!-- Damage Stats Information-->
 {{#if actor.data.settings.showLifebloodStamina}}
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Stamina"}}'>
@@ -50,3 +51,11 @@
 {{/if}}
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:<input
         name="data.radiationDose.value" value={{data.radiationDose.value}} type="number"/></span><br>
+
+<!-- Movement -->
+<span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}: {{localize "TWODSIX.Actor.Movement.MovementWalk"}}'><i class="fas fa-walking"></i>:
+  <input type="number" name="data.movement.walk" value="{{data.movement.walk}}"/>
+  <select name="data.movement.units" >
+    {{selectOptions config.MovementUnits selected=data.movement.units inverted=true}}
+  </select>
+</span>
