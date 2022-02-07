@@ -246,8 +246,6 @@ export const SHIP_ACTION_TYPE = Object.freeze({
 
 /**
  * The valid units of measure for movement distances in the game system.
- * By default this uses the imperial units of feet and miles.
- * @enum {string}
  */
 export const MovementTypes = {
   burrow: "TWODSIX.Actor.Movement.MovementBurrow",
@@ -259,8 +257,6 @@ export const MovementTypes = {
 
 /**
  * The valid units of measure for movement distances in the game system.
- * By default this uses the imperial units of feet and miles.
- * @enum {string}
  */
 export const MovementUnits = {
   ft: "TWODSIX.Actor.Movement.DistFt",
