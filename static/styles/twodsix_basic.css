@@ -203,6 +203,19 @@ img.character-info-mask {
   border-radius: 0 0 1ch 1ch;
 }
 
+.character-bgi-std {
+  margin-left: 0.5em;
+  padding-left: 1ch;
+  position: relative;
+  margin-top: 0.15em;
+  width: 17.5em;
+  max-height: 8em;
+  font-size: 16px;
+  z-index: 9;
+  border: solid;
+  border-radius: 0 0 1ch 1ch;
+}
+
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
@@ -215,6 +228,11 @@ img.character-info-mask {
   background-color: transparent !important;
   border: none;
   height: 2.7ch;
+}
+.character-bgi-std input{
+  background-color: transparent !important;
+  border: none;
+  height: 2.4ch;
 }
 
 .bgi-age input {
@@ -276,9 +294,9 @@ span.bgi-age {
 
 span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-right: 0.5em;
-  height: 26px;
+  /*height: 26px;
   font-size: 16px;
-  color: inherit !important;
+  color: inherit !important;*/
 }
 
 .bgi-armor input {

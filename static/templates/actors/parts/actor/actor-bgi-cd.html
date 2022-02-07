@@ -53,7 +53,7 @@
         name="data.radiationDose.value" value={{data.radiationDose.value}} type="number"/></span><br>
 
 <!-- Movement -->
-<span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fas fa-walking"></i>:
+<span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}: {{localize "TWODSIX.Actor.Movement.MovementWalk"}}'><i class="fas fa-walking"></i>:
   <input type="number" name="data.movement.walk" value="{{data.movement.walk}}"/>
   <select name="data.movement.units" >
     {{selectOptions config.MovementUnits selected=data.movement.units inverted=true}}
