@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.14.0...v1.15.0) (2022-02-07)
+
+
+### Features
+
+* Add movement rate to traveller sheet ([#869](https://github.com/xdy/twodsix-foundryvtt/issues/869)) ([e3d9439](https://github.com/xdy/twodsix-foundryvtt/commit/e3d943912ed580efbace0d60b91d33197400a9dc))
+
 # [1.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.13.0...v1.14.0) (2022-02-04)
 
 
