@@ -129,7 +129,23 @@
         "Skills": "Skills"
       },
       "UnknownActorType": "Unknown actor type",
-      "using": "using"
+      "using": "using",
+      "Movement": {
+        "MovementConfig": "Configure Movement Speed",
+        "MovementConfigHint": "Configure the movement speed and special movement attributes of this creature.",
+        "MovementWalk": "Walk",
+        "MovementBurrow": "Burrow",
+        "MovementClimb": "Climb",
+        "MovementHover": "Hover",
+        "MovementFly": "Fly",
+        "MovementSwim": "Swim",
+        "MovementUnits": "Units",
+        "DistFt": "Feet",
+        "DistKm": "Kilometers",
+        "DistM": "Meters",
+        "DistMi": "Miles",
+        "MovementRate": "Movement Rate"
+      }
     },
     "Chat": {
       "Roll": {

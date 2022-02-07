@@ -214,6 +214,7 @@ img.character-info-mask {
 .character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
   border: none;
+  height: 2.7ch;
 }
 
 .bgi-age input {
@@ -234,6 +235,19 @@ img.character-info-mask {
 .bgi-homeWorld input {
   width: 8em;
   border: none;
+}
+
+.bgi-movement input {
+  width: 4ch;
+  border: none;
+  text-align: right;
+}
+
+.bgi-movement select {
+  width: 7ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  height: 2.7ch;
 }
 
 .bgi-char-narrow {
@@ -264,7 +278,6 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
-  font-weight: bold;
   color: inherit !important;
 }
 
@@ -291,6 +304,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
 
 .character-bgi span {
   display: inline-block;
+  font-weight: bold;
 }
 
 .character-characteristics {

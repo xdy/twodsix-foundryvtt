@@ -127,6 +127,15 @@
           "label": "Alternative 2",
           "shortLabel": "ALT2"
         }
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
       }
     },
     "ship": {
