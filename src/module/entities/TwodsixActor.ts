@@ -97,28 +97,29 @@ export default class TwodsixActor extends Actor {
       const weightForItem = getWeight(anComponent, actorData);
 
       /* Allocate Power */
-      switch (anComponent.subtype) {
-        case 'power':
-          calcShipStats.power.max -= powerForItem;
-          break;
-        case 'drive':
-          if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
-            calcShipStats.power.jDrive += powerForItem;
-          } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
-            calcShipStats.power.mDrive += powerForItem;
-          } else {
+      if (powerForItem < 0) {
+        calcShipStats.power.max -= powerForItem;
+      } else {
+        switch (anComponent.subtype) {
+          case 'drive':
+            if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
+              calcShipStats.power.jDrive += powerForItem;
+            } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
+              calcShipStats.power.mDrive += powerForItem;
+            } else {
+              calcShipStats.power.systems += powerForItem;
+            }
+            break;
+          case 'sensor':
+            calcShipStats.power.sensors += powerForItem;
+            break;
+          case 'armament':
+            calcShipStats.power.weapons += powerForItem;
+            break;
+          default:
             calcShipStats.power.systems += powerForItem;
-          }
-          break;
-        case 'sensor':
-          calcShipStats.power.sensors += powerForItem;
-          break;
-        case 'armament':
-          calcShipStats.power.weapons += powerForItem;
-          break;
-        default:
-          calcShipStats.power.systems += powerForItem;
-          break;
+            break;
+        }
       }
 
       /* Allocate Weight*/
@@ -315,12 +316,14 @@ export function getPowerNeeded(item: Component): number{
       q = parseInt(item.availableQuantity);
     }
     const p = item.powerDraw || 0;
-    if (item.subtype === "power"){
+    if (item.subtype === "power"  && p > 0) {  //all power items generate power
       return -(q * p);
+    } else {
+      return (q * p);
     }
-    return (q * p);
+  } else {
+    return 0;
   }
-  return 0;
 }
 
 export function getWeight(item: Component, actorData): number{
