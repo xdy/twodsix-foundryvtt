@@ -2,6 +2,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { GearTemplate } from "src/types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -76,6 +77,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
     this.handleContentEditable(html);
+    html.find('.open-link').on('click', this._openPDFReference.bind(this));
   }
 
   private getConsumable(event) {
@@ -188,6 +190,22 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);
+    }
+  }
+
+  private _openPDFReference(event): void {
+    event.preventDefault();
+    const sourceString = (<GearTemplate>this.item.data.data).docReference;
+    if (sourceString) {
+      const [code, page] = sourceString.split(' ');
+      const selectedPage = parseInt(page);
+      if (ui["PDFoundry"]) {
+        ui["PDFoundry"].openPDFByCode(code, {page: selectedPage});
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFFoundryNotInstalled"));
+      }
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }
   }
 }

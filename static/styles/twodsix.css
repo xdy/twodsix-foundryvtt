@@ -2028,8 +2028,12 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference {
   margin-top: 0.5em;
+}
+
+.open-link {
+  color: var(--color-text-hyperlink);
 }
 
 .item-descr div[contenteditable] {
