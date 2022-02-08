@@ -93,8 +93,8 @@ export default class TwodsixActor extends Actor {
 
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.data.data;
-      const powerForItem = TwodsixActor._getPowerNeeded(anComponent);
-      const weightForItem = TwodsixActor._getWeight(anComponent, actorData);
+      const powerForItem = getPowerNeeded(anComponent);
+      const weightForItem = getWeight(anComponent, actorData);
 
       /* Allocate Power */
       switch (anComponent.subtype) {
@@ -159,35 +159,6 @@ export default class TwodsixActor extends Actor {
     actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
     actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
     actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
-  }
-
-  private static _getPowerNeeded(item: Component): number{
-    if ((item.status === "operational") || (item.status === "damaged")) {
-      let q = item.quantity || 1;
-      if (item.subtype === "armament"  && item.availableQuantity) {
-        q = parseInt(item.availableQuantity);
-      }
-      const p = item.powerDraw || 0;
-      if (item.subtype === "power"){
-        return -(q * p);
-      }
-      return (q * p);
-    }
-    return 0;
-  }
-
-  private static _getWeight(item: Component, actorData): number{
-    let q = item.quantity || 1;
-    if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
-      q = parseInt(item.availableQuantity);
-    }
-    let w = 0;
-    if (item.weightIsPct) {
-      w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
-    } else {
-      w = item.weight || 0;
-    }
-    return (w * q);
   }
 
   protected async _onCreate() {
@@ -335,4 +306,33 @@ export default class TwodsixActor extends Actor {
       }
     });
   }
+}
+
+export function getPowerNeeded(item: Component): number{
+  if ((item.status === "operational") || (item.status === "damaged")) {
+    let q = item.quantity || 1;
+    if (item.subtype === "armament"  && item.availableQuantity) {
+      q = parseInt(item.availableQuantity);
+    }
+    const p = item.powerDraw || 0;
+    if (item.subtype === "power"){
+      return -(q * p);
+    }
+    return (q * p);
+  }
+  return 0;
+}
+
+export function getWeight(item: Component, actorData): number{
+  let q = item.quantity || 1;
+  if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
+    q = parseInt(item.availableQuantity);
+  }
+  let w = 0;
+  if (item.weightIsPct) {
+    w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
+  } else {
+    w = item.weight || 0;
+  }
+  return (w * q);
 }

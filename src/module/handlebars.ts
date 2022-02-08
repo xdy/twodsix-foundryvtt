@@ -3,7 +3,8 @@ import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import { getCharShortName } from "./utils/utils";
-import {Skills} from "../types/template";
+import {Skills, Component} from "../types/template";
+import { getPowerNeeded, getWeight } from "./entities/TwodsixActor";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -261,6 +262,16 @@ export default function registerHandlebarsHelpers(): void {
       });
     }
     return Handlebars.helpers.each(sortedArray, options);
+  });
+
+  Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
+    const anComponent = <Component>item.data.data;
+    return getWeight(anComponent, item.actor?.data);
+  });
+
+  Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
+    const anComponent = <Component>item.data.data;
+    return getPowerNeeded(anComponent);
   });
 
   // Handy for debugging

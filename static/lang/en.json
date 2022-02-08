@@ -205,7 +205,7 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Unit Power Draw",
+        "powerDraw": "Power Draw",
         "powerGenerated": "Power Generated per Unit",
         "status": "Status",
         "rating": "Rating",
