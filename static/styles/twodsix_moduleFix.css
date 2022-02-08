@@ -38,3 +38,8 @@ input.dice-tray__input {
 #client-settings nav.tabs {
   flex-grow: 0 !important;
 }
+
+/*Fix for PDFoundry*/
+div.pdf-app section.window-content {
+  background: var(--s2d6-background-transparent) !important;
+}

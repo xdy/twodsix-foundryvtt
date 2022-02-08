@@ -162,6 +162,7 @@
     "Items": {
       "Encumbrance": "Encumbrance",
       "Enc": "Enc",
+      "DocumentReference": "Document Reference",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
@@ -576,6 +577,10 @@
         "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
         "name": "Automatically calculate summary ship power and weight values"
       },
+      "showItemReferences": {
+        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
+        "name": "Show reference field on item sheets."
+      },
       "settingsInterface": {
         "rulesetSettings": {
           "intro": "Current Rules",
@@ -642,7 +647,9 @@
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
       "CantAutoDamageShip": "Automatic damage of ship is not supported",
-      "CantDragOntoActor": "This item can't be dragged onto this actor"
+      "CantDragOntoActor": "This item can't be dragged onto this actor",
+      "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
+      "NoSpecfiedLink": "No document and page specified for document link."
     }
   },
   "VeryDifficult": "Very Difficult"

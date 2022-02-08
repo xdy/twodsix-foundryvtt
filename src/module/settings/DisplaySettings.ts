@@ -28,6 +28,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.push(booleanSetting('showWeightUsage', false));
+    settings.push(booleanSetting('showItemReferences', true));
     return settings;
   }
 }

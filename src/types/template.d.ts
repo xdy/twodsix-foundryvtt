@@ -369,6 +369,7 @@ export interface GearTemplate {
   skill:string;
   associatedSkillName:string;
   equipped:string;
+  docReference:string;
 }
 
 export interface Trait {
