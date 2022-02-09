@@ -265,13 +265,11 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    const anComponent = <Component>item.data.data;
-    return getWeight(anComponent, item.actor?.data);
+    return getWeight(<Component>item.data.data, item.actor?.data);
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    const anComponent = <Component>item.data.data;
-    return getPowerNeeded(anComponent);
+    return getPowerNeeded(<Component>item.data.data);
   });
 
   // Handy for debugging
