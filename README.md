@@ -4,6 +4,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)
+<a href="https://gitlocalize.com/repo/7105/es?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/es/badge.svg" alt="German translation percentage"/> </a>
+<a href="https://gitlocalize.com/repo/7105/de?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/de/badge.svg" alt="Spanish translation percentage"/> </a>
+<a href="https://gitlocalize.com/repo/7105/sv?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/sv/badge.svg" alt="Swedish translation percentage"/> </a>
 
 [![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
 
