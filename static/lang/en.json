@@ -268,8 +268,8 @@
         "ALT2": "ALT2"
       },
       "Traits": {
-              "Prerequisite": "Prerequisite",
-              "TraitName": "Trait Name"
+        "Prerequisite": "Prerequisite",
+        "TraitName": "Trait Name"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -308,73 +308,73 @@
       }
     },
     "Ship": {
-      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
-      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
-      "NoActorsForAction": "No actor available for action",
-      "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
-      "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
-      "AddShipPosition": "Add Ship Position",
-      "Order": "Order",
-      "Name": "Name",
-      "Deckplan": "Deck Plan",
-      "Travellers": "Travellers",
-      "RemoveTraveller": "Remove Traveller from ship",
       "Actions": "Actions",
-      "MacroSkill": "Macro/Skill",
       "ActionType": "Action Type",
-      "PositionName": "Position Name",
-      "NewAction": "New Action",
-      "CreateAction": "Create Action",
-      "DeleteAction": "Delete Action",
-      "ShipHull": "Ship Hull",
-      "Fuel": "Fuel",
-      "MaintPM": "Maintenance P/M",
-      "Displacement": "Displacement",
-      "tons": "tons",
-      "PP": "PP",
-      "PowerManagement": "Power Management",
-      "PowerWeightManagement": "Power & Weight Management",
-      "Power": "Power",
-      "USED": "USED",
-      "MAX": "MAX",
+      "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
+      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
+      "AddShipPosition": "Add Ship Position",
       "Avail": "Avail.",
       "Available": "Available",
-      "Systems": "Systems",
-      "MDrive": "M-Drive",
-      "JDrive": "J-Drive",
-      "Sensors": "Sensors",
-      "Storage": "Storage",
-      "Weapons": "Weapons",
+      "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
       "Cargo": "Cargo",
-      "Vehicles": "Vehicles",
-      "COMPONENTS": "COMPONENTS",
-      "MANIFEST": "MANIFEST",
       "CARGONOTES": "CARGO NOTES",
-      "SHIPNOTES": "SHIP NOTES",
-      "FINANCES": "FINANCES",
-      "Tabs": {
-        "ShipPositions": "Positions",
-        "Crew": "Crew",
-        "Components": "Components",
-        "Locker": "Locker",
-        "Cargo": "Cargo",
-        "Finance": "Finance",
-        "Notes": "Notes"
-      },
+      "COMPONENTS": "COMPONENTS",
+      "CreateAction": "Create Action",
       "Crew": {
-        "CAPTAIN": "CAPTAIN",
-        "MAINTENANCE": "MAINTENANCE",
         "ADMIN": "ADMINISTRATION",
-        "ENGINEERS": "ENGINEER(S)",
-        "PILOT": "PILOT",
-        "MEDIC": "MEDIC",
-        "BROKER": "BROKER",
-        "GUNNERS": "GUNNER(S)",
         "ASTROGATOR": "ASTROGATOR",
-        "STEWARD": "STEWARD",
+        "BROKER": "BROKER",
+        "CAPTAIN": "CAPTAIN",
+        "ENGINEERS": "ENGINEER(S)",
+        "GUNNERS": "GUNNER(S)",
+        "MAINTENANCE": "MAINTENANCE",
+        "MARINES": "MARINE(S)",
+        "MEDIC": "MEDIC",
         "OTHER": "OTHER",
-        "MARINES": "MARINE(S)"
-      }
+        "PILOT": "PILOT",
+        "STEWARD": "STEWARD"
+      },
+      "Deckplan": "Deck Plan",
+      "DeleteAction": "Delete Action",
+      "Displacement": "Displacement",
+      "FINANCES": "FINANCES",
+      "Fuel": "Fuel",
+      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
+      "JDrive": "J-Drive",
+      "MacroSkill": "Macro/Skill",
+      "MaintPM": "Maintenance P/M",
+      "MANIFEST": "MANIFEST",
+      "MAX": "MAX",
+      "MDrive": "M-Drive",
+      "Name": "Name",
+      "NewAction": "New Action",
+      "NoActorsForAction": "No actor available for action",
+      "Order": "Order",
+      "PositionName": "Position Name",
+      "Power": "Power",
+      "PowerManagement": "Power Management",
+      "PowerWeightManagement": "Power & Weight Management",
+      "PP": "PP",
+      "RemoveTraveller": "Remove Traveller from ship",
+      "Sensors": "Sensors",
+      "ShipHull": "Ship Hull",
+      "SHIPNOTES": "SHIP NOTES",
+      "Storage": "Storage",
+      "Systems": "Systems",
+      "Tabs": {
+        "Cargo": "Cargo",
+        "Components": "Components",
+        "Crew": "Crew",
+        "Finance": "Finance",
+        "Locker": "Locker",
+        "Notes": "Notes",
+        "ShipPositions": "Positions"
+      },
+      "tons": "tons",
+      "Travellers": "Travellers",
+      "USED": "USED",
+      "Vehicles": "Vehicles",
+      "Weapons": "Weapons"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -403,10 +403,6 @@
       "BonusDamage": "Bonus Damage"
     },
     "Settings": {
-      "ruleset": {
-        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details. Rules relating to the ruleset are marked with a green border. Any changes to settings set by the ruleset will be marked with an orange border.",
-        "name": "Ruleset"
-      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Leave empty to use default (+/-1). Not currently used.",
         "name": "What bonus/penalty to give per each time increment change in a task."
@@ -414,6 +410,18 @@
       "absoluteCriticalEffectValue": {
         "hint": "Defaults to 99, which means that effect is ignored.",
         "name": "What effect is required for a throw to be considered a critical success/failure (i.e. be colored green/red)."
+      },
+      "alternativeShort1": {
+        "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 1"
+      },
+      "alternativeShort2": {
+        "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 2"
+      },
+      "autofireRulesUsed": {
+        "hint": "Select which variant's auto/burst fire rules should be used.",
+        "name": "Select which variant's auto/burst fire rules should be used."
       },
       "automateDamageRollOnHit": {
         "hint": "checked=Roll damage, modified by effect of skill roll. unchecked=Don't roll damage.",
@@ -427,17 +435,41 @@
         "hint": "Automatically set advised prototype token settings to newly created Actors.",
         "name": "Default Prototype Token Settings"
       },
+      "difficultiesAsTargetNumber": {
+        "hint": "checked=Use target number rather than modifier for difficulties, unchecked=Use modifiers",
+        "name": "Use target numbers rather than modifiers for difficulties."
+      },
+      "difficultyListUsed": {
+        "hint": "Select which variant's difficulty list should be used.",
+        "name": "Select which variant's difficulty list should be used."
+      },
       "effectOrTotal": {
         "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 8), unchecked=Show total (i.e. roll+modifiers)",
         "name": "Show effect or total roll value for skill and characteristic rolls."
+      },
+      "ExperimentalFeatures": {
+        "hint": "checked=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, unchecked=Hide them like any sane person would",
+        "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
+      },
+      "hideUntrainedSkills": {
+        "continue": "Do you want to continue?",
+        "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
+        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
+        "warning": "Warning!",
+        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
+        "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone."
       },
       "initiativeFormula": {
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula"
       },
-      "shipInitiativeFormula": {
-        "hint": "Like: \"2d6",
-        "name": "Ship Initiative Formula"
+      "invertSkillRollShiftClick": {
+        "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
+        "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Show END and 'Lifeblood' (uses STR below the covers) as characteristics. Useful for Cepheus Atom, Barbaric!, etc.",
+        "name": "Show END and 'Lifeblood' (STR) as characteristics."
       },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",
@@ -447,9 +479,92 @@
         "hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
         "name": "Modifier for characteristic value of zero."
       },
+      "ruleset": {
+        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details. Rules relating to the ruleset are marked with a green border. Any changes to settings set by the ruleset will be marked with an orange border.",
+        "name": "Ruleset"
+      },
+      "settingsInterface": {
+        "debugSettings": {
+          "hint": "Configure/View the debug settings.",
+          "intro": "Debug Settings",
+          "name": "Debug Settings"
+        },
+        "displaySettings": {
+          "hint": "Configure the display settings.",
+          "intro": "Display Settings",
+          "name": "Display Settings"
+        },
+        "itemSettings": {
+          "hint": "Configure the item fields that are shown.",
+          "intro": "Item Settings",
+          "name": "Item Settings"
+        },
+        "rulesetSettings": {
+          "hint": "Configure the ruleset settings.",
+          "intro": "Current Rules",
+          "modified": "modified",
+          "name": "Advanced Ruleset Settings"
+        }
+      },
+      "shipInitiativeFormula": {
+        "hint": "Like: \"2d6",
+        "name": "Ship Initiative Formula"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
+        "name": "Show alternative characteristics"
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
+        "name": "Show Contamination below Lifeblood. "
+      },
+      "ShowDamageType": {
+        "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
+        "name": "Show the 'Damage Type' field on weapon sheets"
+      },
+      "showHeroPoints": {
+        "hint": "Show Hero Points counter on actor sheet.",
+        "name": "Show Hero Points"
+      },
+      "showItemReferences": {
+        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
+        "name": "Show reference field on item sheets."
+      },
+      "ShowLawLevel": {
+        "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
+        "name": "Show the 'Law Level' field on weapon sheets"
+      },
+      "showLifebloodStamina": {
+        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
+        "name": "Show Lifeblood and Stamina characteristics and use for damage."
+      },
       "showMissingCompendiumWarnings": {
         "hint": "Whether to show warnings for missing/disabled modules on world start.",
         "name": "Show warnings about missing/disabled modules."
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
+        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
+      },
+      "ShowRateOfFire": {
+        "hint": "checked=Show the 'Rate of Fire' field, unchecked=Hide it",
+        "name": "Show the 'Rate of Fire' field on weapon sheets"
+      },
+      "ShowRecoil": {
+        "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
+        "name": "Show the 'Recoil' field on weapon sheets"
+      },
+      "showSingleComponentColumn": {
+        "hint": "Show the ship components list as a single row.",
+        "name": "Ship components listed as single row"
+      },
+      "ShowWeaponType": {
+        "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
+        "name": "Show the 'Weapon Type' field on weapon sheets"
+      },
+      "showWeightUsage": {
+        "hint": "Display ship weight values instead of power on ship sheet.",
+        "name": "Show Weight instead of Power management on Ship Sheet"
       },
       "systemMigrationVersion": {
         "hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
@@ -463,146 +578,31 @@
         "hint": "Don't use the same as for termForAdvantage...",
         "name": "What you want to call rolls with disadvantage (3d6kl2)."
       },
-      "ShowLawLevel": {
-        "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
-        "name": "Show the 'Law Level' field on weapon sheets"
-      },
-      "ShowRecoil": {
-        "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
-        "name": "Show the 'Recoil' field on weapon sheets"
-      },
-      "ShowRateOfFire": {
-        "name": "Show the 'Rate of Fire' field on weapon sheets",
-        "hint": "checked=Show the 'Rate of Fire' field, unchecked=Hide it"
-      },
-      "ShowDamageType": {
-        "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
-        "name": "Show the 'Damage Type' field on weapon sheets"
-      },
-      "ShowWeaponType": {
-        "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
-        "name": "Show the 'Weapon Type' field on weapon sheets"
-      },
-      "ShowRangeBandAndHideRange": {
-        "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
-        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
-      },
-      "autofireRulesUsed": {
-        "hint": "Select which variant's auto/burst fire rules should be used.",
-        "name": "Select which variant's auto/burst fire rules should be used."
-      },
-      "difficultyListUsed": {
-        "hint": "Select which variant's difficulty list should be used.",
-        "name": "Select which variant's difficulty list should be used."
-      },
-      "difficultiesAsTargetNumber": {
-        "hint": "checked=Use target number rather than modifier for difficulties, unchecked=Use modifiers",
-        "name": "Use target numbers rather than modifiers for difficulties."
-      },
-      "ExperimentalFeatures": {
-        "hint": "checked=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, unchecked=Hide them like any sane person would",
-        "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
-      },
-      "hideUntrainedSkills": {
-        "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
-        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
-        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
-        "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone.",
-        "continue": "Do you want to continue?",
-        "warning": "Warning!"
-      },
-      "invertSkillRollShiftClick": {
-        "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
-        "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
-      },
-      "lifebloodInsteadOfCharacteristics": {
-        "hint": "Show END and 'Lifeblood' (uses STR below the covers) as characteristics. Useful for Cepheus Atom, Barbaric!, etc.",
-        "name": "Show END and 'Lifeblood' (STR) as characteristics."
-      },
-      "showContaminationBelowLifeblood": {
-        "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
-        "name": "Show Contamination below Lifeblood. "
-      },
-      "useSystemDefaultTokenIcon": {
-        "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",
-        "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
-      },
-      "showLifebloodStamina": {
-        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
-        "name": "Show Lifeblood and Stamina characteristics and use for damage."
-      },
-      "weightModifierForWornArmor": {
-        "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
-        "name": "Factor to multiply the weight value of a equipped armor."
-      },
-      "showHeroPoints": {
-        "hint": "Show Hero Points counter on actor sheet.",
-        "name": "Show Hero Points"
-      },
-      "showSingleComponentColumn": {
-        "hint": "Show the ship components list as a single row.",
-        "name": "Ship components listed as single row"
-      },
       "useFoundryStandardStyle": {
-        "hint": "Use Foundry's default style for user interface.  This should make some modules more compatible with TWODSIX",
-        "name": "Use Foundry Standard Style",
         "default": "Default Twodsix Style",
-        "foundry": "Standard Foundry VTT style"
-      },
-      "showAlternativeCharacteristics": {
-        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
-        "name": "Show alternative characteristics"
-      },
-      "alternativeShort1": {
-        "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
-        "name": "Short name for alternative characteristic 1"
-      },
-      "alternativeShort2": {
-        "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
-        "name": "Short name for alternative characteristic 2"
-      },
-      "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
-        "name": "Display wounded status indicators"
+        "foundry": "Standard Foundry VTT style",
+        "hint": "Use Foundry's default style for user interface.  This should make some modules more compatible with TWODSIX",
+        "name": "Use Foundry Standard Style"
       },
       "useModuleFixStyle": {
         "hint": "Modifies CSS style to correct identified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
         "name": "Correct some css style issues due to modules and default Twodsix style."
       },
-      "showWeightUsage": {
-        "hint": "Display ship weight values instead of power on ship sheet.",
-        "name": "Show Weight instead of Power management on Ship Sheet"
-      },
       "useShipAutoCalcs": {
         "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
         "name": "Automatically calculate summary ship power and weight values"
       },
-      "showItemReferences": {
-        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on item sheets."
+      "useSystemDefaultTokenIcon": {
+        "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",
+        "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
-      "settingsInterface": {
-        "rulesetSettings": {
-          "intro": "Current Rules",
-          "name": "Advanced Ruleset Settings",
-          "hint": "Configure the ruleset settings.",
-          "modified": "modified"
-        },
-        "itemSettings": {
-          "intro": "Item Settings",
-          "name": "Item Settings",
-          "hint": "Configure the item fields that are shown."
-        },
-        "displaySettings": {
-          "intro": "Display Settings",
-          "name": "Display Settings",
-          "hint": "Configure the display settings."
-        },
-        "debugSettings": {
-          "intro": "Debug Settings",
-          "name": "Debug Settings",
-          "hint": "Configure/View the debug settings."
-        }
+      "useWoundedStatusIndicators": {
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
+        "name": "Display wounded status indicators"
+      },
+      "weightModifierForWornArmor": {
+        "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
+        "name": "Factor to multiply the weight value of a equipped armor."
       }
     },
     "CloseAndCreateNew": "Close and create new",

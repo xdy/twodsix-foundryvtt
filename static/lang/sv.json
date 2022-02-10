@@ -11,46 +11,25 @@
   "Routine": "Rutin",
   "Simple": "Enkelt",
   "TWODSIX": {
-      "Damage": {
-        "AP": "PV",
-        "Mod": "Mod",
-        "Dmg": "Skd",
-        "DealDamage": "Gör skada",
-        "Damage": "Skada",
-        "TotalDamage": "Total skada",
-        "Characteristics": "Attribut",
-        "Max": "Max",
-        "Current": "Nuvarande",
-        "ResultingStat": "Resultat",
-        "UnallocatedDamage": "Ofördelad skada",
-        "CharacterIsDead": "Karaktären är död",
-        "DealDamageTo": "Gör skada på _ACTOR_NAME_"
-      },
-      "Dialogs": {
-        "ROFPickerTitle": "Välj eldhastighet",
-        "ROFSingle": "Enkelskott",
-        "ROFBurst": "Skottsalva",
-        "ROFFull": "Automateld"
-      },
     "Actor": {
       "Age": "Ålder",
       "CharacterImage": "Karaktärens bild",
-      "CharacterName": "Karaktärens namn",
       "Characteristics": {
+        "ALT1": "ALT1",
+        "ALT2": "ALT2",
+        "CTM": "CTM",
         "DEX": "SMI",
         "EDU": "UTB",
         "END": "UTH",
         "INT": "INT",
+        "LFB": "LIV",
         "PSI": "PSI",
         "SOC": "SOC",
-        "STR": "STY",
-        "LFB": "LIV",
         "STA": "TÅL",
-        "CTM": "CTM",
-        "ALT1": "ALT1",
-        "ALT2": "ALT2"
-
+        "STR": "STY"
       },
+      "CharacterName": "Karaktärens namn",
+      "Contamination": "Kontamination",
       "DeleteOwnedItem": "Ta bort ägd sak",
       "Finances": {
         "CASH_ON_HAND": "PENGAR I HANDEN",
@@ -62,10 +41,6 @@
       },
       "Gender": "Kön",
       "HeroPoints": "Hjältepoäng",
-      "Contamination": "Kontamination",
-      "Lifeblood": "Livsblod",
-      "Stamina": "Tålighet",
-      "RadiationExposure": "Strålningsexponering",
       "HomeWorld": "Hemvärld",
       "Info": {
         "ALLIES": "ALLIERADE",
@@ -75,19 +50,19 @@
         "ENEMIES": "FIENDER"
       },
       "Items": {
-        "ARMOR": "RUSTNING",
-        "AUGMENTS": "FÖRBÄTTRINGAR",
         "Ammo": "Ammo",
+        "ARMOR": "RUSTNING",
         "Armor": "Rustning",
+        "AUGMENTS": "FÖRBÄTTRINGAR",
         "CONSUMABLES": "FÖRBRUKNINGSVAROR",
         "Count": "Antal",
         "CreateItem": "Skapa Sak",
         "Damage": "Skada",
         "DeleteItem": "Ta bort Sak",
-        "EffectiveArmor": "Effektiv Rustning",
-        "EQUIPMENT": "UTRUSTNING",
         "EditItem": "Ändra Sak",
         "Effect": "Effekt",
+        "EffectiveArmor": "Effektiv Rustning",
+        "EQUIPMENT": "UTRUSTNING",
         "Location": "Plats",
         "Name": "Namn",
         "Qty": "Ant",
@@ -97,30 +72,33 @@
         "ShortDescr": "Kort Beskr",
         "Subtype": "Typ",
         "TL": "TN",
-        "Value": "Värde",
         "TRAITS": "EGENSKAPER",
+        "Value": "Värde",
         "WEAPONS": "VAPEN",
         "Weight": "Vikt"
       },
+      "Lifeblood": "Livsblod",
       "Notes": {
         "NOTES": "ANTECKNINGAR"
       },
+      "RadiationExposure": "Strålningsexponering",
       "Rolling": "Rullar",
       "Skills": {
         "AddSkill": "Ny färdighet",
         "DeleteItem": "Ta bort Sak",
         "EditItem": "Ändra Sak",
         "EditOrRemove": "Ändra el Sudda",
+        "InvertedSkillRollTooltip": "Rullar en färdighetsrullning utan modifiering och antar svårighet 8. Att shift-klicka visar fönstret för färdighetsrullning",
         "JOAT": "Jack of all trades",
         "Level": "Nivå",
         "Modifier": "Mod",
         "SkillName": "Färdighetsnamn",
-        "Total": "Totalt",
-        "Untrained": "Otränad",
         "SkillRollTooltip": "Visar fönstret för färdighetsrullning. Att shift-klicka rullar en färdighetsrullning utan modifiering och antar svårighet 8",
-        "InvertedSkillRollTooltip": "Rullar en färdighetsrullning utan modifiering och antar svårighet 8. Att shift-klicka visar fönstret för färdighetsrullning"
+        "Total": "Totalt",
+        "Untrained": "Otränad"
       },
       "Species": "Art",
+      "Stamina": "Tålighet",
       "Tabs": {
         "Finances": "Finanser",
         "Info": "Info",
@@ -139,15 +117,55 @@
         "Type": "Slagtyp"
       }
     },
+    "CloseAndCreateNew": "Stäng och skapa ny",
+    "Copy": "Kopia",
     "Create": "Skapa",
+    "Damage": {
+      "AP": "PV",
+      "CharacterIsDead": "Karaktären är död",
+      "Characteristics": "Attribut",
+      "Current": "Nuvarande",
+      "Damage": "Skada",
+      "DealDamage": "Gör skada",
+      "DealDamageTo": "Gör skada på _ACTOR_NAME_",
+      "Dmg": "Skd",
+      "Max": "Max",
+      "Mod": "Mod",
+      "ResultingStat": "Resultat",
+      "TotalDamage": "Total skada",
+      "UnallocatedDamage": "Ofördelad skada"
+    },
+    "Dialogs": {
+      "ROFBurst": "Skottsalva",
+      "ROFFull": "Automateld",
+      "ROFPickerTitle": "Välj eldhastighet",
+      "ROFSingle": "Enkelskott"
+    },
+    "Errors": {
+      "CouldNotFindItem": "Kan inte hitta någon sak med id: _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "Det som dras från kompendiet är inte en sak.",
+      "DraggingSomething": "Något dras som inte kan dras",
+      "DropFailedWith": "Släpp misslyckades med _ERROR_MSG_",
+      "EmptyConsumable": "Slut på förbrukningsvaror. Du måste fylla på!",
+      "NoAmmo": "Du har slut på ammunition. Du behöver ladda om före du skjuter!",
+      "NoCharacteristicForRoll": "Du försökte göra ett atttributslag utan att välja ett attribut",
+      "NoDamageForWeapon": "Detta vapen har inte angett skadan det gör",
+      "NoROFForAttack": "Eldhastighet måste anges för detta anfall",
+      "NoSkillForSkillRoll": "Du försökte göra ett färdighetsslag utan att välja en färdighet",
+      "OnlyDropConsumables": "Enbart förbrukningsvaror kan släppas på en sak.",
+      "OnlyDropItems": "Du bara släppa saker",
+      "OnlyOwnedItems": "Kan bara släppa saker som ägs av en aktör",
+      "SkillsConsumables": "Färdigheter kan inte ha förbrukningsvaror",
+      "TooFewToReload": "För få _NAME_ för att kunna _REFILL_ACTION_"
+    },
     "Handlebars": {
       "CantShowCharacteristic": "Du måste återigen välja attribut för alla färdigheter som är markerade med XXX. Ledsen..."
     },
     "Items": {
       "Armor": {
         "Armor": "Rustning",
-        "SecondaryArmor": "Sekundär rustning",
-        "RadProt": "Strålskydd"
+        "RadProt": "Strålskydd",
+        "SecondaryArmor": "Sekundär rustning"
       },
       "Augmentation": {
         "Arms": "Armar",
@@ -160,38 +178,56 @@
         "ValueCr": "Värde Cr"
       },
       "Component": {
-        "componentName": "Komponent",
         "accomodations": "anpassningar",
         "armament": "beväpning",
         "armor": "rustning",
+        "availableQuantity": "Tillgänglig kvantitet",
         "bridge": "brygga",
         "cargo": "lastutrymme",
+        "componentName": "Komponent",
         "computer": "dator",
+        "damage": "Skada / Träffar",
+        "damaged": "skadad",
+        "destroyed": "förstörd",
         "drive": "motor",
         "drone": "drönare",
         "electronics": "elektronik",
         "fuel": "bränsle",
         "hull": "skrov",
+        "isPercentage": "Percentil?",
         "mount": "monteringsplats",
+        "off": "av",
+        "operational": "fungerande",
+        "other": "annat",
+        "otherExternal": "annat - externt",
         "power": "energi",
+        "powerDraw": "Energiåtg.",
+        "powerGenerated": "Energiproduktion",
+        "rating": "Rang",
         "sensor": "sensor",
         "shield": "skjöld",
         "software": "mjukvara",
-        "vehicle": "fordon",
-        "other": "annat",
-        "otherExternal": "annat - externt",
-        "operational": "fungerande",
-        "damaged": "skadad",
-        "destroyed": "förstörd",
-        "off": "av",
-        "powerDraw": "Energiåtg.",
-        "powerGenerated": "Energiproduktion",
         "status": "Status",
-        "rating": "Rang",
         "totalQuantity": "Totalantal",
-        "availableQuantity": "Tillgänglig kvantitet",
-        "damage": "Skada / Träffar",
-        "isPercentage": "Percentil?"
+        "vehicle": "fordon"
+      },
+      "Consumable": {
+        "Count": "Antal",
+        "DropConsumablesHere": "Du kan släppa förbrukningsvaror här.",
+        "RemoveConsumable": "Ta bort förbrukningsvara",
+        "RemoveConsumableFrom": "Ta bort förbrukningsvara _CONSUMABLE_NAME_ från _ITEM_NAME_?",
+        "Size": "Storlek",
+        "Subtype": "Typ",
+        "Types": {
+          "air": "Luft",
+          "ArmorPiercing": "Pansarvärnsvärde",
+          "drugs": "Droger",
+          "food": "Mat",
+          "fuel": "Bränsle",
+          "magazine": "Magasin",
+          "other": "Annat",
+          "power_cell": "Kraftcell"
+        }
       },
       "Equipment": {
         "AssignSkill": "Tilldela Färdighet",
@@ -209,11 +245,11 @@
       "Items": {
         "AssignArmor": "Tilldela Rustning",
         "AssignAugment": "Tilldela Förbättring",
+        "AssignConsumable": "Tilldela Förbrukningsvara",
         "AssignEquipment": "Tilldela Utrustning",
         "AssignJunk": "Tilldela Skrot",
         "AssignTool": "Tilldela Verktyg",
         "AssignWeapon": "Tilldela Vapen",
-        "AssignConsumable": "Tilldela Förbrukningsvara",
         "Inventory": "Utrustningslista",
         "ItemType": "Typ",
         "MoveStorage": "Lägg i lager",
@@ -221,124 +257,59 @@
         "Storage": "Lager"
       },
       "Skills": {
+        "ALT1": "ALT1",
+        "ALT2": "ALT2",
         "DEX": "SMI",
         "EDU": "UTB",
         "END": "UTH",
         "INT": "INT",
         "Level": "Nivå",
+        "LFB": "LIV",
         "Modifier": "Modifierare",
         "NONE": "---",
         "PSI": "PSI",
-        "SOC": "SOC",
-        "STR": "STY",
-        "SkillName": "Färdighetsnamn",
-        "LFB": "LIV",
-        "STA": "TÅL",
         "SimplifiedSkillName": "Förenklat färdighetsnamn",
         "SimplifiedSkillNameDescription": "Används i rullformler som @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ är som standard noll om färdigheten saknas eller under noll.",
-        "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "SkillName": "Färdighetsnamn",
+        "SOC": "SOC",
+        "STA": "TÅL",
+        "STR": "STY"
+      },
+      "Tool": {
+        "Bonus": "Bonus"
       },
       "Traits": {
         "Prerequisite": "Förutsättning",
         "TraitName": "Egenskapsnamn"
       },
-      "Tool": {
-        "Bonus": "Bonus"
-      },
-      "Consumable": {
-        "Types": {
-          "air": "Luft",
-          "drugs": "Droger",
-          "food": "Mat",
-          "fuel": "Bränsle",
-          "magazine": "Magasin",
-          "power_cell": "Kraftcell",
-          "other": "Annat",
-          "ArmorPiercing": "Pansarvärnsvärde"
-        },
-        "Size": "Storlek",
-        "Subtype": "Typ",
-        "Count": "Antal",
-        "DropConsumablesHere": "Du kan släppa förbrukningsvaror här.",
-        "RemoveConsumable": "Ta bort förbrukningsvara",
-        "RemoveConsumableFrom": "Ta bort förbrukningsvara _CONSUMABLE_NAME_ från _ITEM_NAME_?"
-      },
       "Weapon": {
         "Ammo": "Ammo",
+        "ArmorPiercing": "Pansarvärnsvärde",
         "Damage": "Skada",
-        "Range": "Räckvidd",
-        "lawLevel": "Lagnivå",
-        "rangeBand": "Räckviddsband",
-        "weaponType": "Vapentyp",
         "damageType": "Skadetyp",
+        "lawLevel": "Lagnivå",
+        "MagazineCost": "Kostnad för Magasin/Kraftcell",
+        "Range": "Räckvidd",
+        "rangeBand": "Räckviddsband",
         "rateOfFire": "Eldhastighet/Auto X",
         "recoil": "Rekyl",
         "UseAsAmmunitionForAttack": "Använd som förbrukningsvara för slag",
-        "MagazineCost": "Kostnad för Magasin/Kraftcell",
-        "ArmorPiercing": "Pansarvärnsvärde"
+        "weaponType": "Vapentyp"
       }
     },
-    "Ship": {
-      "ShipHull": "Skeppsskrov",
-      "Fuel": "Bränsle",
-      "MaintPM": "Underhålls P/M",
-      "PowerManagement": "Energihantering",
-      "Power": "Energi",
-      "USED": "ANVÄND",
-      "MAX": "MAX",
-      "Systems": "System",
-      "MDrive": "M-Drive",
-      "JDrive": "J-Drive",
-      "Sensors": "Sensorer",
-      "Weapons": "Vapen",
-      "SHIPCARGO": "SKEPPSLAST",
-      "SHIPNOTES": "SKEPPSANTECKNINGAR",
-      "Tabs": {
-        "Crew": "Besättning",
-        "Components": "Komponenter",
-        "Locker": "Skeppsskåp",
-        "Cargo": "Last",
-        "Notes": "Anteckningar",
-        "ShipPositions": "Skeppspositioner",
-        "Finance": "Finanser"
-      },
-      "Crew": {
-        "CAPTAIN": "KAPTEN",
-        "MAINTENANCE": "UNDERHÅLL",
-        "ADMIN": "ADMINISTRATION",
-        "ENGINEERS": "INGENJÖR(ER)",
-        "PILOT": "PILOT",
-        "MEDIC": "SJUKVÅRDARE",
-        "BROKER": "Mäklare",
-        "GUNNERS": "SKYTT(AR)",
-        "ASTROGATOR": "ASTROGATÖR",
-        "STEWARD": "STEWARD",
-        "OTHER": "ANNAN",
-        "MARINES": "MARINSOLDAT(ER)",
-        "InvalidDocumentForShipPosition": "Denna dokumenttyp är ogiltig för fartygspositioner. Endast färdigheter kan släppas här.",
-        "ActorMustBeSelectedForAction": "Eftersom det finns flera aktörer måste en väljas för att utföra åtgärden",
-        "NoActorsForAction": "Ingen aktör tillgänglig för action",
-        "CantDropActorIfPositionIsNotOnShip": "Du kan inte släppa en karaktär på en fartygsposition som inte är på ett fartyg",
-        "ActorLacksSkill": "_ACTOR_NAME_ saknar färdigheten _SKILL_",
-        "AddShipPosition": "Lägg till skeppsposition",
-        "Order": "Order",
-        "Namn": "Namn",
-        "Deckplan": "Däcksplan",
-        "Travellers": "Karaktär",
-        "RemoveTraveller": "Ta bort karaktär från fartyget",
-        "Actions": "Handlingar",
-        "MacroSkill": "Makro/Skill",
-        "ActionType": "Åtgärdstyp",
-        "PositionName": "Positionsnamn",
-        "NewAction": "Ny åtgärd",
-        "CreateAction": "Skapa åtgärd",
-        "DeleteAction": "Ta bort åtgärd",
-        "Förskjutning": "Förskjutning",
-        "tons": "ton",
-        "COMPONENTS": "KOMPONENTER",
-        "FINANCES": "FINANSER"
-      }
+    "itemTypes": {
+      "armor": "rustning",
+      "augment": "förbättring",
+      "component": "komponent",
+      "consumable": "förbrukningsvara",
+      "equipment": "utrustning",
+      "junk": "skrot",
+      "skill": "färdighet",
+      "skills": "färdigheter",
+      "storage": "lager",
+      "tool": "verktyg",
+      "trait": "egenskap",
+      "weapon": "vapen"
     },
     "Migration": {
       "Completed": "Twodsix Systemmigrering till version {version} klar!",
@@ -347,28 +318,25 @@
     },
     "Modules": {
       "compendiumFolders": {
-        "missing": "Inkluderade kompendium för de olika Cepheus-varianterna använder ofta modulen 'Compendium Folders', om du vill använda dessa, installera 'Compendium Folders' modulen i Foundry VTT. Eller slå av denna varning i Systeminställningar.",
-        "disabled": "Aktivera modulen 'Compendium Folder' i denna värld om du har tänkt använda inkluderade kompendium. Eller slå av denna varning i Systeminställningar."
+        "disabled": "Aktivera modulen 'Compendium Folder' i denna värld om du har tänkt använda inkluderade kompendium. Eller slå av denna varning i Systeminställningar.",
+        "missing": "Inkluderade kompendium för de olika Cepheus-varianterna använder ofta modulen 'Compendium Folders', om du vill använda dessa, installera 'Compendium Folders' modulen i Foundry VTT. Eller slå av denna varning i Systeminställningar."
       }
     },
+    "Name": "Name",
     "No": "Nej",
     "Rolls": {
       "AdjustedDamage": "Skadan justerad av effekten",
       "Cancel": "Avbryt",
       "DamageUsing": "Skada med",
       "Effect": "Effekten",
+      "resultShows": "resultatet är",
       "Roll": "Rulla",
       "Rolling": "Rullar",
-      "With": "med",
-      "resultShows": "resultatet är",
       "sum": "summan",
-      "using": "med {characteristic}"
+      "using": "med {characteristic}",
+      "With": "med"
     },
     "Settings": {
-      "ruleset": {
-        "hint": "Detta kommer att ställa in nedanstående fält med de bästa inställningarna för angiven spelvariant.",
-        "name": "Spelvariant"
-      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Lämna tomt för att använda default (+/-1). Används inte för närvarande.",
         "name": "Vilken bonus/malus som ges för varje tidsintervallsteg."
@@ -376,6 +344,18 @@
       "absoluteCriticalEffectValue": {
         "hint": "Defaultvärde 99, vilket betyder att effekten ignoreras.",
         "name": "Den effekt som krävs för att ett slag ska räknas som kritiskt lyckad/misslyckad (dvs färgas röd eller grön)."
+      },
+      "alternativeShort1": {
+        "hint": "Kort namn för den första alternativa egenskapen. Det bör vara fyra tecken eller färre.",
+        "name": "Kort namn för alternativ egenskap 1"
+      },
+      "alternativeShort2": {
+        "hint": "Kort namn för den andra alternativa egenskapen. Det bör vara fyra tecken eller färre.",
+        "name": "Kort namn för alternativ egenskap 2"
+      },
+      "autofireRulesUsed": {
+        "hint": "Välj vilken variants regler för automateld/salva som ska användas.",
+        "name": "Välj vilken variants regler för automateld/salva som ska användas."
       },
       "automateDamageRollOnHit": {
         "hint": "ikryssat=Rulla skadan, modifierad av färdighetsslagets effekt. urkryssat=rulla inte skadan.",
@@ -389,17 +369,41 @@
         "hint": "Sätt automatiskt föreslagna defaults för nyskapade spelfigurer",
         "name": "Defaultprototypspelfigursinställningar"
       },
+      "difficultiesAsTargetNumber": {
+        "hint": "ikryssat=Använd målnummer istf modifierare för svårigheter, urkryssat=Använd modifierare",
+        "name": "Använd målnummer istf modifierare för svårigheter."
+      },
+      "difficultyListUsed": {
+        "hint": "Välj vilken variants svårighetslista som ska användas.",
+        "name": "Välj vilken variants svårighetslista som ska användas."
+      },
       "effectOrTotal": {
         "hint": "ikryssat=Visa effekten (dvs. resultat+modifierare-målnummer, normalt 8), urkryssat=Visa total (dvs. resultat+modifierare)",
         "name": "Visa effekten eller totalvärdet när färgdighet och grundförmågor rullas."
+      },
+      "ExperimentalFeatures": {
+        "hint": "ikryssat=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. urkryssat=Uppför dig normalt och göm dom",
+        "name": "Visa fula, buggiga och ej färdiggjorda funktioner. Dvs, typ som alla andra funktioner som inte döljs av denna flagga. :)"
+      },
+      "hideUntrainedSkills": {
+        "continue": "Vill du fortsätta?",
+        "hint": "ikryssat=Visa pseudofärdigheten 'Otränad' istf alla otränade färdigheter.",
+        "name": "Göm alla otränade färdigheter, visa istället bara pseudofärdigheten 'Otränad', gör också att nya färdigheter läggs till på 0 istf det otränade färdighetsvärdet.",
+        "warning": "Varning!",
+        "warningReset": "Efter att systeminställningar sparats kommer alla färdigheter som använder pseudofärdigheten Otränad att permanent ställas om till att inte använda någon färdiget. Detta val går inte att ångra.",
+        "warningUpdateWeapon": "Efter att systeminställningar sparats kommer alla karaktärers vapen som inte har en färdighet uppdaterras till att använda pseudofärdigheten Otränad. Detta val går inte att ångra."
       },
       "initiativeFormula": {
         "hint": "T ex: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiativformel"
       },
-      "shipInitiativeFormula": {
-        "hint": "T ex: \"2d6\"",
-        "name": "Skeppsinitiativformel"
+      "invertSkillRollShiftClick": {
+        "hint": "När man klickar på en färdighet kommer det vanligtvis upp ett fönster för att välja olika alternativ för rullningen. Att shift-klicka är en genväg för att rulla utan modifierare med svårighet 8. Genom att kryssa i denna inställning så inverterar man vad som sker när man shift-klickar.",
+        "name": "Invertera beteendet av att shift-klicka när man vill göra en färdighetsrullning"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Visa TÅL och Livsblod (använder STY) som attribut. Användbart för  Cepheus Atom, Barbaric!, etc.",
+        "name": "Visa TÅL och Livsblod (STY) som attribut."
       },
       "maxSkillLevel": {
         "hint": "Lämna tomt för att använda default (9).",
@@ -409,9 +413,84 @@
         "hint": "Lämna tomt för att använda default (-2). Räknas inte om automatiskt för existerande karaktärer",
         "name": "Modifierare for egenskapsvärde noll."
       },
+      "ruleset": {
+        "hint": "Detta kommer att ställa in nedanstående fält med de bästa inställningarna för angiven spelvariant.",
+        "name": "Spelvariant"
+      },
+      "settingsInterface": {
+        "debugSettings": {
+          "hint": "Konfigurera/visa felsökningsinställningarna.",
+          "intro": "Felsökningsinställningar",
+          "name": "Felsökningsinställningar"
+        },
+        "displaySettings": {
+          "hint": "Konfigurera skärminställningarna.",
+          "intro": "Skärminställningar",
+          "name": "Skärminställningar"
+        },
+        "itemSettings": {
+          "hint": "Konfigurera objektfälten som visas.",
+          "intro": "Sakinställningar",
+          "name": "Sakinställningar"
+        },
+        "rulesetSettings": {
+          "hint": "Konfigurera regeluppsättningsinställningarna.",
+          "intro": "Nuvarande regler",
+          "modified": "modified",
+          "name": "Avancerade regeluppsättningsinställningar"
+        }
+      },
+      "shipInitiativeFormula": {
+        "hint": "T ex: \"2d6\"",
+        "name": "Skeppsinitiativformel"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Visa alternativa egenskaper istället för PSI. Fungerar bara för Foundrys standardstil.",
+        "name": "Visa alternativa egenskaper"
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Visa Kontamination under Livsblod. Bara användbart tillsammans med inställningen 'Visa TÅL och Livsblod'.",
+        "name": "Visa Kontamination under Livsblod."
+      },
+      "ShowDamageType": {
+        "hint": "ikryssat=Visa 'Skadetyp' fältet, urkryssat=Göm det",
+        "name": "Visa 'Skadetyp' fältet på vapenblad"
+      },
+      "showHeroPoints": {
+        "hint": "Visa Hjältepoängräknare på karaktärsblad.",
+        "name": "Visa Hjältepoäng"
+      },
+      "ShowLawLevel": {
+        "hint": "ikryssat=Visa 'Lagnivå' fältet, urkryssat=Göm det",
+        "name": "Visa 'Lagnivå' fältet på vapenblad"
+      },
+      "showLifebloodStamina": {
+        "hint": "Visa Livsblod och Tålighet på karaktärspapperet. Skada kommer att läggas på dess attribut. Användbar för Cepheus Deluxe.",
+        "name": "Visa Livsblod och Tålighet på karaktärspapperet och använd dom för skada."
+      },
       "showMissingCompendiumWarnings": {
         "hint": "Anger om varningar om oinstallerade/avslagna moduler visas när världen startas.",
         "name": "Visa varningar om oinstallerade/avslagna moduler."
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "ikryssat=Visar 'Räckviddsband', urkryssat=Visar 'Räckvidd'",
+        "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad"
+      },
+      "ShowRateOfFire": {
+        "hint": "ikryssat=Visa 'Eldhastighet' fältet, urkryssat=Göm det",
+        "name": "Visa 'Eldhastighet' fältet på vapenblad"
+      },
+      "ShowRecoil": {
+        "hint": "ikryssat=Visa 'Rekyl' fältet, urkryssat=Göm det",
+        "name": "Visa 'Rekyl' fältet på vapenblad"
+      },
+      "showSingleComponentColumn": {
+        "hint": "Visa skeppskomponenter som en enkelrad.",
+        "name": "Skeppskomponenter visas som enkelrad"
+      },
+      "ShowWeaponType": {
+        "hint": "ikryssat=Visa 'Vapentyp' fältet, urkryssat=Göm det",
+        "name": "Visa 'Vapentyp' fältet på vapenblad"
       },
       "systemMigrationVersion": {
         "hint": "Innehåller schemaversionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",
@@ -425,180 +504,100 @@
         "hint": "Använd inte samma ord som för termForAdvantage...",
         "name": "Det du vill kalla tärningsslag med nackdel (3d6kl2)."
       },
-      "ShowLawLevel": {
-        "name": "Visa 'Lagnivå' fältet på vapenblad",
-        "hint": "ikryssat=Visa 'Lagnivå' fältet, urkryssat=Göm det"
-      },
-      "ShowRecoil": {
-        "name": "Visa 'Rekyl' fältet på vapenblad",
-        "hint": "ikryssat=Visa 'Rekyl' fältet, urkryssat=Göm det"
-      },
-      "ShowRateOfFire": {
-        "name": "Visa 'Eldhastighet' fältet på vapenblad",
-        "hint": "ikryssat=Visa 'Eldhastighet' fältet, urkryssat=Göm det"
-      },
-      "ShowDamageType": {
-        "name": "Visa 'Skadetyp' fältet på vapenblad",
-        "hint": "ikryssat=Visa 'Skadetyp' fältet, urkryssat=Göm det"
-      },
-      "ShowWeaponType": {
-        "name": "Visa 'Vapentyp' fältet på vapenblad",
-        "hint": "ikryssat=Visa 'Vapentyp' fältet, urkryssat=Göm det"
-      },
-      "ShowRangeBandAndHideRange": {
-        "name": "Visa 'Räckviddsband' och *göm* 'Räckvidd' på vapenblad och karaktärsblad",
-        "hint": "ikryssat=Visar 'Räckviddsband', urkryssat=Visar 'Räckvidd'"
-      },
-      "autofireRulesUsed": {
-        "hint": "Välj vilken variants regler för automateld/salva som ska användas.",
-        "name": "Välj vilken variants regler för automateld/salva som ska användas."
-      },
-      "difficultyListUsed": {
-        "hint": "Välj vilken variants svårighetslista som ska användas.",
-        "name": "Välj vilken variants svårighetslista som ska användas."
-      },
-      "difficultiesAsTargetNumber": {
-        "hint": "ikryssat=Använd målnummer istf modifierare för svårigheter, urkryssat=Använd modifierare",
-        "name": "Använd målnummer istf modifierare för svårigheter."
-      },
-      "ExperimentalFeatures": {
-        "hint": "ikryssat=Visa fula och buggiga funktioner som kanske inte ens suddar ut din spelvärld. urkryssat=Uppför dig normalt och göm dom",
-        "name": "Visa fula, buggiga och ej färdiggjorda funktioner. Dvs, typ som alla andra funktioner som inte döljs av denna flagga. :)"
-      },
-      "hideUntrainedSkills": {
-        "hint": "ikryssat=Visa pseudofärdigheten 'Otränad' istf alla otränade färdigheter.",
-        "name": "Göm alla otränade färdigheter, visa istället bara pseudofärdigheten 'Otränad', gör också att nya färdigheter läggs till på 0 istf det otränade färdighetsvärdet.",
-        "warningReset": "Efter att systeminställningar sparats kommer alla färdigheter som använder pseudofärdigheten Otränad att permanent ställas om till att inte använda någon färdiget. Detta val går inte att ångra.",
-        "warningUpdateWeapon": "Efter att systeminställningar sparats kommer alla karaktärers vapen som inte har en färdighet uppdaterras till att använda pseudofärdigheten Otränad. Detta val går inte att ångra.",
-        "continue": "Vill du fortsätta?",
-        "warning": "Varning!"
-      },
-      "invertSkillRollShiftClick": {
-        "hint": "När man klickar på en färdighet kommer det vanligtvis upp ett fönster för att välja olika alternativ för rullningen. Att shift-klicka är en genväg för att rulla utan modifierare med svårighet 8. Genom att kryssa i denna inställning så inverterar man vad som sker när man shift-klickar.",
-        "name": "Invertera beteendet av att shift-klicka när man vill göra en färdighetsrullning"
-      },
-      "lifebloodInsteadOfCharacteristics": {
-        "hint": "Visa TÅL och Livsblod (använder STY) som attribut. Användbart för  Cepheus Atom, Barbaric!, etc.",
-        "name": "Visa TÅL och Livsblod (STY) som attribut."
-      },
-      "showContaminationBelowLifeblood": {
-        "hint": "Visa Kontamination under Livsblod. Bara användbart tillsammans med inställningen 'Visa TÅL och Livsblod'.",
-        "name": "Visa Kontamination under Livsblod."
-      },
-      "useSystemDefaultTokenIcon": {
-        "hint": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas. Välj detta om du använder egna ikoner så att systemet automatiskt sätter spelfigursbilden till samma som aktörens bild.",
-        "name": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas."
-      },
-      "showLifebloodStamina": {
-        "hint": "Visa Livsblod och Tålighet på karaktärspapperet. Skada kommer att läggas på dess attribut. Användbar för Cepheus Deluxe.",
-        "name": "Visa Livsblod och Tålighet på karaktärspapperet och använd dom för skada."
-      },
-      "showHeroPoints": {
-        "hint": "Visa Hjältepoängräknare på karaktärsblad.",
-        "name": "Visa Hjältepoäng"
-      },
-      "showSingleComponentColumn": {
-        "hint": "Visa skeppskomponenter som en enkelrad.",
-        "name": "Skeppskomponenter visas som enkelrad"
-      },
-      "weightModifierForWornArmor": {
-        "hint": "Faktor att multiplicera viktvärdet för en rustning om den för närvarande är utrustad.",
-        "name": "Faktor att multiplicera viktvärdet för en utrustad rustning."
-      },
       "useFoundryStandardStyle": {
-        "hint": "Använd Foundrys standardstil för användargränssnitt. Detta borde göra vissa moduler mer kompatibla med TWODSIX",
-        "name": "Använd Foundry Standard Style",
         "default": "Standard Twodsix Style",
-        "foundry": "Standard Foundry VTT-stil"
-      },
-      "showAlternativeCharacteristics": {
-        "hint": "Visa alternativa egenskaper istället för PSI. Fungerar bara för Foundrys standardstil.",
-        "name": "Visa alternativa egenskaper"
-      },
-      "alternativeShort1": {
-        "hint": "Kort namn för den första alternativa egenskapen. Det bör vara fyra tecken eller färre.",
-        "name": "Kort namn för alternativ egenskap 1"
-      },
-      "alternativeShort2": {
-        "hint": "Kort namn för den andra alternativa egenskapen. Det bör vara fyra tecken eller färre.",
-        "name": "Kort namn för alternativ egenskap 2"
-      },
-      "useWoundedStatusIndicators": {
-        "hint": "Använder statusindikatorer för att indikera skadad status och automatiskt rulla för att vakna från medvetslös vid allvarliga sår.",
-        "name": "Visa indikatorer för skadad status"
+        "foundry": "Standard Foundry VTT-stil",
+        "hint": "Använd Foundrys standardstil för användargränssnitt. Detta borde göra vissa moduler mer kompatibla med TWODSIX",
+        "name": "Använd Foundry Standard Style"
       },
       "useModuleFixStyle": {
         "hint": "Ändrar CSS-stil för att korrigera identifierade stilproblem för vissa moduler när du använder Twodsix-stilen. Det fungerar inte när du använder Foundrys standardstil.",
         "name": "Korrigera några css-stilproblem på grund av moduler och standard Twodsix-stil."
       },
-      "settingsInterface": {
-        "rulesetSettings": {
-          "intro": "Nuvarande regler",
-          "name": "Avancerade regeluppsättningsinställningar",
-          "hint": "Konfigurera regeluppsättningsinställningarna.",
-          "modified": "modified"
-        },
-        "itemSettings": {
-          "intro": "Sakinställningar",
-          "name": "Sakinställningar",
-          "hint": "Konfigurera objektfälten som visas."
-        },
-        "displaySettings": {
-          "intro": "Skärminställningar",
-          "name": "Skärminställningar",
-          "hint": "Konfigurera skärminställningarna."
-        },
-        "debugSettings": {
-          "intro": "Felsökningsinställningar",
-          "name": "Felsökningsinställningar",
-          "hint": "Konfigurera/visa felsökningsinställningarna."
-        }
+      "useSystemDefaultTokenIcon": {
+        "hint": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas. Välj detta om du använder egna ikoner så att systemet automatiskt sätter spelfigursbilden till samma som aktörens bild.",
+        "name": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas."
+      },
+      "useWoundedStatusIndicators": {
+        "hint": "Använder statusindikatorer för att indikera skadad status och automatiskt rulla för att vakna från medvetslös vid allvarliga sår.",
+        "name": "Visa indikatorer för skadad status"
+      },
+      "weightModifierForWornArmor": {
+        "hint": "Faktor att multiplicera viktvärdet för en rustning om den för närvarande är utrustad.",
+        "name": "Faktor att multiplicera viktvärdet för en utrustad rustning."
       }
     },
-    "CloseAndCreateNew": "Stäng och skapa ny",
-    "Copy": "Kopia",
-    "Yes": "Ja",
-    "Name": "Name",
-    "itemTypes": {
-      "equipment": "utrustning",
-      "weapon": "vapen",
-      "armor": "rustning",
-      "augment": "förbättring",
-      "storage": "lager",
-      "tool": "verktyg",
-      "junk": "skrot",
-      "skills": "färdigheter",
-      "skill": "färdighet",
-      "consumable": "förbrukningsvara",
-      "trait": "egenskap",
-      "component": "komponent"
-    },
-    "Errors": {
-      "NoSkillForSkillRoll": "Du försökte göra ett färdighetsslag utan att välja en färdighet",
-      "NoCharacteristicForRoll": "Du försökte göra ett atttributslag utan att välja ett attribut",
-      "NoROFForAttack": "Eldhastighet måste anges för detta anfall",
-      "NoDamageForWeapon": "Detta vapen har inte angett skadan det gör",
-      "TooFewToReload": "För få _NAME_ för att kunna _REFILL_ACTION_",
-      "NoAmmo": "Du har slut på ammunition. Du behöver ladda om före du skjuter!",
-      "EmptyConsumable": "Slut på förbrukningsvaror. Du måste fylla på!",
-      "OnlyOwnedItems": "Kan bara släppa saker som ägs av en aktör",
-      "SkillsConsumables": "Färdigheter kan inte ha förbrukningsvaror",
-      "DraggingSomething": "Något dras som inte kan dras",
-      "OnlyDropItems": "Du bara släppa saker",
-      "OnlyDropConsumables": "Enbart förbrukningsvaror kan släppas på en sak.",
-      "DropFailedWith": "Släpp misslyckades med _ERROR_MSG_",
-      "CouldNotFindItem": "Kan inte hitta någon sak med id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "Det som dras från kompendiet är inte en sak."
+    "Ship": {
+      "Crew": {
+        "Actions": "Handlingar",
+        "ActionType": "Åtgärdstyp",
+        "ActorLacksSkill": "_ACTOR_NAME_ saknar färdigheten _SKILL_",
+        "ActorMustBeSelectedForAction": "Eftersom det finns flera aktörer måste en väljas för att utföra åtgärden",
+        "AddShipPosition": "Lägg till skeppsposition",
+        "ADMIN": "ADMINISTRATION",
+        "ASTROGATOR": "ASTROGATÖR",
+        "BROKER": "Mäklare",
+        "CantDropActorIfPositionIsNotOnShip": "Du kan inte släppa en karaktär på en fartygsposition som inte är på ett fartyg",
+        "CAPTAIN": "KAPTEN",
+        "COMPONENTS": "KOMPONENTER",
+        "CreateAction": "Skapa åtgärd",
+        "Deckplan": "Däcksplan",
+        "DeleteAction": "Ta bort åtgärd",
+        "ENGINEERS": "INGENJÖR(ER)",
+        "FINANCES": "FINANSER",
+        "Förskjutning": "Förskjutning",
+        "GUNNERS": "SKYTT(AR)",
+        "InvalidDocumentForShipPosition": "Denna dokumenttyp är ogiltig för fartygspositioner. Endast färdigheter kan släppas här.",
+        "MacroSkill": "Makro/Skill",
+        "MAINTENANCE": "UNDERHÅLL",
+        "MARINES": "MARINSOLDAT(ER)",
+        "MEDIC": "SJUKVÅRDARE",
+        "Namn": "Namn",
+        "NewAction": "Ny åtgärd",
+        "NoActorsForAction": "Ingen aktör tillgänglig för action",
+        "Order": "Order",
+        "OTHER": "ANNAN",
+        "PILOT": "PILOT",
+        "PositionName": "Positionsnamn",
+        "RemoveTraveller": "Ta bort karaktär från fartyget",
+        "STEWARD": "STEWARD",
+        "tons": "ton",
+        "Travellers": "Karaktär"
+      },
+      "Fuel": "Bränsle",
+      "JDrive": "J-Drive",
+      "MaintPM": "Underhålls P/M",
+      "MAX": "MAX",
+      "MDrive": "M-Drive",
+      "Power": "Energi",
+      "PowerManagement": "Energihantering",
+      "Sensors": "Sensorer",
+      "SHIPCARGO": "SKEPPSLAST",
+      "ShipHull": "Skeppsskrov",
+      "SHIPNOTES": "SKEPPSANTECKNINGAR",
+      "Systems": "System",
+      "Tabs": {
+        "Cargo": "Last",
+        "Components": "Komponenter",
+        "Crew": "Besättning",
+        "Finance": "Finanser",
+        "Locker": "Skeppsskåp",
+        "Notes": "Anteckningar",
+        "ShipPositions": "Skeppspositioner"
+      },
+      "USED": "ANVÄND",
+      "Weapons": "Vapen"
     },
     "Warnings": {
       "ActorMissingItem": "Den aktör du styr har ingen sak med id: _ITEM_ID_",
       "AutoDamageForMultipleTargetsNotImplemented": "Att auomatiskt skada flera mål (med Auto X) är för närvarande in te stött",
-      "MaxStatVal": "Värdet överstiger maxvärdet för attributet",
-      "StatValBelowZero": "Värdet kan inte vara under 0",
-      "DecreaseEnduranceFirst": "Uthållighet/Tålighet måste sänkas före andra attribut",
       "CantAutoDamageShip": "Automatisk skada på skepp stöds inte",
-      "CantDragOntoActor": "Denna sak kan inte dras till denna aktör"
-    }
+      "CantDragOntoActor": "Denna sak kan inte dras till denna aktör",
+      "DecreaseEnduranceFirst": "Uthållighet/Tålighet måste sänkas före andra attribut",
+      "MaxStatVal": "Värdet överstiger maxvärdet för attributet",
+      "StatValBelowZero": "Värdet kan inte vara under 0"
+    },
+    "Yes": "Ja"
   },
   "VeryDifficult": "Mycket Svårt"
 }
