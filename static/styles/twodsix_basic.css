@@ -787,8 +787,20 @@ span.total-output {
   padding-top: 0.2em;
 }
 
-.short-label input[type='text']{
-  width: 15em;
+.short-label input[type='text'], .short-label input[type='number'] {
+  width: 18ch;
+}
+
+.short-label input[type='checkbox'] {
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+.multi-line {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .select-mod:after {
@@ -1109,7 +1121,7 @@ img.ship-mask-bg {
   padding: 2px;
   margin-top: -0.2em;
   /*margin-left: 1.3em;*/
-  font-size: 22px;
+  font-size: 18px;
   /*width: 2.5em;*/
   border: none;
   background-color: transparent !important;
@@ -1117,9 +1129,11 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 5em 5em 5em 6em 6em;
-  gap: 1px 1px;
-  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass";
+  grid-template-columns: 5em 5em 5em 6em 6em 4em;
+  grid-template-rows: 8em;
+  gap: 1px 4px;
+  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  font-size: smaller;
 }
 
 .ship-state-grid span {
@@ -1134,15 +1148,20 @@ img.ship-mask-bg {
 }
 .ship-armor {
   grid-area: ship-armor;
-  display: grid;
-  padding-right: 1ch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ship-armor-name {
+  flex-grow: 1;
 }
 
 .ship-armor-name textarea {
   border: solid;
   border-radius: 1ch;
   text-align: center;
-  display: grid;
+  height: 100%;
   resize: none;
 }
 
@@ -1191,7 +1210,7 @@ img.ship-mask-bg {
   justify-content: space-between;
 }
 
-.ship-mass input {
+.ship-mass input, .ship-tl input {
   background-color: var(--s2d6-background-nearly-transparent) !important;
   border: 1px solid;
 }
@@ -1202,6 +1221,14 @@ img.ship-mask-bg {
   left: -1em;
   position: relative;
 }
+
+.ship-tl {
+  grid-area: ship-tl;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 .ship-power-management {
   grid-area: ship-requirements;
@@ -1214,7 +1241,7 @@ img.ship-mask-bg {
 
 .ship-power-management h3 {
   color: var(--s2d6-app-color);
-  background-color: var(--s2d6-background-opaque);
+  background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   position: relative;
@@ -1492,11 +1519,12 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 11em 14em 3em 3.5em 3em 3.5em 3.5em 4.5em 3.5em 3em;
+  grid-template-columns: 20em 4em 4em 4em 4em 4em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . . .";
+  grid-template-areas: ". . . . . . . . .";
 }
+
 .grid-columns-single-row:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
 }
@@ -2074,8 +2102,8 @@ form .form-group > label {
 .header-row {
   text-align: center;
   color: var(--s2d6-item-hover);
-  background-color: var(--s2d6-background-nearly-opaque);
-  background-image: radial-gradient(circle farthest-side, var(--s2d6-background-nearly-opaque), var(--s2d6-input-background));
+  background-color: var(--s2d6-backgroun-semi-opaque);
+  background-image: radial-gradient(circle farthest-side, var(--s2d6-background-opaque), var(--s2d6-input-background));
 }
 /* ------ WEBCAM Settings ------ */
 /*

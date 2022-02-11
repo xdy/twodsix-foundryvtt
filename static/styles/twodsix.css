@@ -1074,8 +1074,20 @@ span.total-output {
   padding-top: 0.2em;
 }
 
-.short-label input[type='text']{
-  width: 15em;
+.short-label input[type='text'], .short-label input[type='number'] {
+  width: 18ch;
+}
+
+.short-label input[type='checkbox'] {
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+.multi-line {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .select-mod:after {
@@ -1405,18 +1417,19 @@ img.ship-mask-bg {
   /*padding: 2px;
   margin-top: -0.2em;
   margin-left: 1.7em;*/
-  font-size: 22px;
-  /*width: 2.5em;*/
+  font-size: 18px;
+  width: 100%;
   border: none;
   background-color: transparent !important;
 }
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 7em 7em 7em 7em;
-  grid-template-rows: 8em;
-  gap: 1px 1px;
-  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass";
+  grid-template-columns: 7em 7em 7em 6em 5em;
+  grid-template-rows: 10em;
+  gap: 1px 6px;
+  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  font-size: smaller;
 }
 
 .ship-state-grid span {
@@ -1427,16 +1440,18 @@ img.ship-mask-bg {
 .ship-armor {
   grid-area: ship-armor;
   display: grid;
-  padding-right: 1ch;
+  grid-template-rows: max-content;
+  /*padding-right: 1ch;*/
 }
 
 .ship-armor-name textarea {
   border: solid;
-  border-radius: 1ch;
+  border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
   text-align: center;
-  display: grid;
+  /*display: grid;*/
   resize: none;
+  height: 100%;
 }
 
 .ship-hull {
@@ -1463,17 +1478,25 @@ img.ship-mask-bg {
   display: grid;
 }
 
-.ship-mass input {
-  background-color: var(--s2d6-background-nearly-opaque) !important;
+.ship-tl {
+  grid-area: ship-tl;
+  display: grid;
 }
 
-.ship-mass input[type="text"] {
-  width: 4.5em;
-  /*border: 1px solid var(--default-color);*/
+.ship-mass input, .ship-tl input {
+  background-color: var(--s2d6-background-nearly-opaque) !important;
+  border: solid;
+  border-color: var(--s2d6-default-color);
+  border-radius: 0.5ch !important;
+}
+
+/*.ship-mass input[type="number"], .ship-tl input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--default-color);
   left: -1em;
   position: relative;
   border: none;
-}
+}*/
 
 /*.ship-maintenance span {
   margin-left: -0.8em;
@@ -1827,10 +1850,10 @@ a.ship-notes-tab.active {
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 11em 14em 3em 3.5em 3em 3.5em 3.5em 4.5em 3.5em 3em;
+  grid-template-columns: 20em 4em 4em 4em 4em 4em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . . .";
+  grid-template-areas: ". . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {

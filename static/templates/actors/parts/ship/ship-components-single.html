@@ -2,11 +2,10 @@
   <div class="grid-columns-single storage-header">
     <div class="components-stored-single ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Items.Component.powerDraw"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.Power"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
@@ -28,11 +27,10 @@
       <ol class="ol-no-indent">
         <li class="item components-stored-single " data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name">{{item.data.data.shortdescr}}</span>
           <span class="item-name centre">{{item.data.data.techLevel}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
-          <span class="item-name centre">{{item.data.data.weight}}</span>
-          <span class="item-name centre">{{item.data.data.powerDraw}}</span>
+          <span class="item-name centre">{{getComponentWeight this}}</span>
+          <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{twodsix_limitLength item.data.data.damage 7}}</span>
           <span class="item-name centre component-toggle">

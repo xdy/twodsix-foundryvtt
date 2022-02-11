@@ -205,8 +205,9 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Unit Power Draw",
+        "powerDraw": "Power Draw per Unit",
         "powerGenerated": "Power Generated per Unit",
+        "Power": "Power",
         "status": "Status",
         "rating": "Rating",
         "totalQuantity": "Total Quantity",
@@ -216,10 +217,13 @@
         "purchasePrice": "Purchase Price",
         "isIllegal": "Illegal?",
         "unitWeight": "Unit Weight",
+        "pctDisplacement": "% Displacement Weight",
         "CargoItem": "Cargo Item",
         "CargoLocation": "Cargo Location",
         "Price": "Price",
-        "Value": "Value"
+        "Value": "Value",
+        "GeneratesPower": "Generates Power?",
+        "IsRefined": "Refined?"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

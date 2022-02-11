@@ -117,6 +117,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         break;
       case "component":
         itemData.data.subtype = subtype || "otherInternal";
+        if (subtype === "power") {
+          itemData.data.generatesPower = true;
+        }
         itemData.data.status = "operational";
         itemData.img = "systems/twodsix/assets/icons/components/" + itemData.data.subtype + ".svg";
         break;

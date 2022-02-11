@@ -68,28 +68,47 @@
     </div>
     {{/iff}}
 
-    <div class="item-weight">
-      <label for="data.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Component.unitWeight"}}
-        <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-      </label>
+    <div class="item-weight multi-line">
       {{#iff data.subtype "!==" "cargo" }}
-      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
-        <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
-      </label>
+      <span class="short-label">
+      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}} </label>
+      <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
+      </span>
       {{/iff}}
+      <label for="data.weight" class="resource-label short-label">
+       {{#if data.weightIsPct}}
+         {{localize "TWODSIX.Items.Component.pctDisplacement"}}
+       {{else}}
+         {{localize "TWODSIX.Items.Component.unitWeight"}}
+       {{/if}}
+      <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>{{#if data.weightIsPct}}%{{/if}}
+    </label>
     </div>
 
-    {{#iff data.subtype "!==" "cargo" }}
-    <div class="item-power">
-      <label for="data.powerDraw" class="resource-label">
-      {{#iff data.subtype '==' "power"}}
+    {{#iff data.subtype "===" "fuel" }}
+    <div class="refined">
+      <label for="data.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}
+        <input type="checkbox" class="checkbox" name="data.isRefined" {{checked data.isRefined}} data-dtype="Boolean" />
+      </label>
+    </div>
+    {{/iff}}
+
+    {{#iff data.subtype "!==" "cargo"}}
+    {{#iff data.subtype "!==" "fuel"}}
+    <div class="item-power multi-line">
+      <label for="data.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}
+        <input type="checkbox" class="checkbox" name="data.generatesPower" {{checked data.generatesPower}} data-dtype="Boolean" />
+      </label>
+      <label for="data.powerDraw" class="resource-label short-label">
+      {{#if data.generatesPower}}
         {{localize "TWODSIX.Items.Component.powerGenerated"}}
       {{else}}
         {{localize "TWODSIX.Items.Component.powerDraw"}}
-      {{/iff}}
-        <input id="data.powerDraw" type="text" name="data.powerDraw" value="{{data.powerDraw}}" data-dtype="Number"/>
-      </label>
+      {{/if}}
+      <input class="resource-label short-label" id="data.powerDraw" type="number" name="data.powerDraw" value="{{data.powerDraw}}" data-dtype="Number"/>
+    </label>
     </div>
+    {{/iff}}
 
     <div class="item-damage">
       <label for="data.damage" class="resource-label">{{localize "TWODSIX.Items.Component.damage"}}
