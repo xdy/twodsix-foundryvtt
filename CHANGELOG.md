@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.16.0...v1.17.0) (2022-02-11)
+
+
+### Features
+
+* revise ship component listing ([#877](https://github.com/xdy/twodsix-foundryvtt/issues/877)) ([962beff](https://github.com/xdy/twodsix-foundryvtt/commit/962beffc39a10a00e86d48b425054a2de458fd49))
+
 # [1.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.15.0...v1.16.0) (2022-02-08)
 
 
