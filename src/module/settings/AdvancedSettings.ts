@@ -8,7 +8,7 @@ export default class AdvancedSettings extends FormApplication {
   }
 
   /** @override */
-  static get defaultOptions(): FormApplication.Options {
+  static get defaultOptions(): FormApplicationOptions {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
