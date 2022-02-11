@@ -324,7 +324,9 @@
       "weightIsPct": false,
       "isIllegal": false,
       "purchasePrice": "",
-      "cargoLocation": ""
+      "cargoLocation": "",
+      "generatesPower": false,
+      "isRefined": false
     },
     "ship_position": {
       "name": "",

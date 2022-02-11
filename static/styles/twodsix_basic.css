@@ -787,8 +787,20 @@ span.total-output {
   padding-top: 0.2em;
 }
 
-.short-label input[type='text']{
-  width: 15em;
+.short-label input[type='text'], .short-label input[type='number'] {
+  width: 18ch;
+}
+
+.short-label input[type='checkbox'] {
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+.multi-line {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .select-mod:after {

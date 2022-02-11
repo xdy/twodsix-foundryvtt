@@ -318,6 +318,8 @@ export interface Component extends GearTemplate {
   isIllegal:boolean;
   purchasePrice:string;
   cargoLocation:string;
+  generatesPower:boolean;
+  isRefined:boolean;
 }
 
 export interface Consumable extends GearTemplate {

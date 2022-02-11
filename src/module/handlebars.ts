@@ -4,7 +4,7 @@ import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import { getCharShortName } from "./utils/utils";
 import {Skills, Component} from "../types/template";
-import { getPowerNeeded, getWeight } from "./entities/TwodsixActor";
+import { getPower, getWeight } from "./entities/TwodsixActor";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -269,7 +269,13 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    return getPowerNeeded(<Component>item.data.data);
+    const anComponent = <Component>item.data.data;
+    const retValue:number = getPower(anComponent);
+    if (anComponent.generatesPower) {
+      return "+" + retValue;
+    } else {
+      return retValue;
+    }
   });
 
   // Handy for debugging

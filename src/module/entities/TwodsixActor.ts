@@ -93,12 +93,12 @@ export default class TwodsixActor extends Actor {
 
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.data.data;
-      const powerForItem = getPowerNeeded(anComponent);
+      const powerForItem = getPower(anComponent);
       const weightForItem = getWeight(anComponent, actorData);
 
       /* Allocate Power */
-      if (powerForItem < 0) {
-        calcShipStats.power.max -= powerForItem;
+      if (anComponent.generatesPower) {
+        calcShipStats.power.max += powerForItem;
       } else {
         switch (anComponent.subtype) {
           case 'drive':
@@ -309,18 +309,14 @@ export default class TwodsixActor extends Actor {
   }
 }
 
-export function getPowerNeeded(item: Component): number{
+export function getPower(item: Component): number{
   if ((item.status === "operational") || (item.status === "damaged")) {
     let q = item.quantity || 1;
     if (item.subtype === "armament"  && item.availableQuantity) {
       q = parseInt(item.availableQuantity);
     }
     const p = item.powerDraw || 0;
-    if (item.subtype === "power"  && p > 0) {  //all power items generate power
-      return -(q * p);
-    } else {
-      return (q * p);
-    }
+    return (q * p);
   } else {
     return 0;
   }
