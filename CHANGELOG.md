@@ -1,3 +1,24 @@
+# [1.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.16.0...v1.17.0) (2022-02-11)
+
+
+### Features
+
+* revise ship component listing ([#877](https://github.com/xdy/twodsix-foundryvtt/issues/877)) ([962beff](https://github.com/xdy/twodsix-foundryvtt/commit/962beffc39a10a00e86d48b425054a2de458fd49))
+
+# [1.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.15.0...v1.16.0) (2022-02-08)
+
+
+### Features
+
+* add optional document references ([#876](https://github.com/xdy/twodsix-foundryvtt/issues/876)) ([8017593](https://github.com/xdy/twodsix-foundryvtt/commit/8017593ec832eca3c714d398e40d705c287ceb18))
+
+# [1.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.14.0...v1.15.0) (2022-02-07)
+
+
+### Features
+
+* Add movement rate to traveller sheet ([#869](https://github.com/xdy/twodsix-foundryvtt/issues/869)) ([e3d9439](https://github.com/xdy/twodsix-foundryvtt/commit/e3d943912ed580efbace0d60b91d33197400a9dc))
+
 # [1.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.13.0...v1.14.0) (2022-02-04)
 
 

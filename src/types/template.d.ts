@@ -117,6 +117,7 @@ export type ShipPositionActorIds = Record<string, string>
 export interface Ship {
   name:string;
   deckPlan:string;
+  techLevel:number;
   crew:Crew;
   notes:string;
   cargo:string;
@@ -318,6 +319,8 @@ export interface Component extends GearTemplate {
   isIllegal:boolean;
   purchasePrice:string;
   cargoLocation:string;
+  generatesPower:boolean;
+  isRefined:boolean;
 }
 
 export interface Consumable extends GearTemplate {
@@ -370,6 +373,7 @@ export interface GearTemplate {
   skill:string;
   associatedSkillName:string;
   equipped:string;
+  docReference:string;
 }
 
 export interface Trait {

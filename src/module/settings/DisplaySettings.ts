@@ -31,6 +31,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(numberSetting('minorWoundsRollModifier', -1));
     settings.push(numberSetting('seriousWoundsRollModifier', -2));
     settings.push(booleanSetting('showWeightUsage', false));
+    settings.push(booleanSetting('showItemReferences', true));
     return settings;
   }
 }

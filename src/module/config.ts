@@ -258,6 +258,28 @@ export const SHIP_ACTION_TYPE = Object.freeze({
   fireEnergyWeapons: "fireEnergyWeapons"
 });
 
+/**
+ * The valid units of measure for movement distances in the game system.
+ */
+export const MovementTypes = {
+  burrow: "TWODSIX.Actor.Movement.MovementBurrow",
+  climb: "TWODSIX.Actor.Movement.MovementClimb",
+  fly: "TWODSIX.Actor.Movement.MovementFly",
+  swim: "TWODSIX.Actor.Movement.MovementSwim",
+  walk: "TWODSIX.Actor.Movement.MovementWalk"
+};
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ */
+export const MovementUnits = {
+  ft: "TWODSIX.Actor.Movement.DistFt",
+  mi: "TWODSIX.Actor.Movement.DistMi",
+  m: "TWODSIX.Actor.Movement.DistM",
+  km: "TWODSIX.Actor.Movement.DistKm"
+};
+
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -265,7 +287,9 @@ export type TWODSIX = {
   ROLLTYPES: typeof ROLLTYPES,
   DIFFICULTIES: typeof DIFFICULTIES,
   RULESETS: typeof RULESETS,
-  SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE
+  SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
+  MovementUnits: typeof MovementUnits,
+  MovementType: typeof MovementTypes
 };
 
 export const TWODSIX = {
@@ -275,7 +299,9 @@ export const TWODSIX = {
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS,
-  SHIP_ACTION_TYPE: SHIP_ACTION_TYPE
+  SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
+  MovementUnits: MovementUnits,
+  MovementType: MovementTypes
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

@@ -4,27 +4,35 @@
     value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if actor.data.settings.showHeroPoints}}
     {{#if (twodsix_useFoundryStyle)}}
-      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'> 
+      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'>
     {{else}}
-      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important"> 
-    {{/if}}  
+      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">
+    {{/if}}
   <i class="fas fa-medal"></i>:<input type="number" name="data.heroPoints" value="{{data.heroPoints}}" min="0"
    step="1" placeholder="2" /></span>
-{{/if}}
+{{/if}}<br>
 <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="data.species" type="text"
-    value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span>
+    value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span><br>
 <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text"
-    value="{{data.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span>
+    value="{{data.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span><br>
 
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" style="text-align: right;" type="number" value="{{data.primaryArmor.value}}"
-      placeholder='0' readonly/>/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}" 
+      placeholder='0' readonly/>/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}"
       placeholder='0' readonly/></span>
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="data.radiationProtection.value" type="number" value="{{data.radiationProtection.value}}"
-      placeholder='0' readonly/></span>
+      placeholder='0' readonly/></span><br>
 
-<span class="bgi-encumbrance" title="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="data.encumbrance.value" style="text-align: right;" 
+<span class="bgi-encumbrance" title="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="data.encumbrance.value" style="text-align: right;"
     type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>/<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}"
     placeholder='0' onClick="this.select();"/></span>
 
-<span class="bgi-radExposure" title="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="data.radiationDose.value" style="text-align: right;" 
-      type="number" value="{{data.radiationDose.value}}" placeholder='0' onClick="this.select();"/></span>
+<span class="bgi-radExposure" title="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="data.radiationDose.value" style="text-align: right;"
+      type="number" value="{{data.radiationDose.value}}" placeholder='0' onClick="this.select();"/></span><br>
+
+<!-- Movement -->
+<span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
+  <input type="number" name="data.movement.walk" value="{{data.movement.walk}}"/>
+  <select name="data.movement.units" >
+    {{selectOptions config.MovementUnits selected=data.movement.units inverted=true}}
+  </select>
+</span>
