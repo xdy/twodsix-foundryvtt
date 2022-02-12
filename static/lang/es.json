@@ -11,21 +11,44 @@
   "Routine": "Rutinaria",
   "Simple": "Sencilla",
   "TWODSIX": {
+    "Damage": {
+      "DealDamage": "Aplicar daño",
+      "Damage": "Daño",
+      "AP": "PA",
+      "TotalDamage": "Daño total",
+      "Characteristics": "Atributos",
+      "Max": "Máx.",
+      "Mod": "Mod.",
+      "Dmg": "Daño",
+      "Current": "Actual",
+      "ResultingStat": "Atributo final",
+      "UnallocatedDamage": "Daño no asignado",
+      "CharacterIsDead": "El PJ ha muerto",
+      "DealDamageTo": "Aplicar daño en _ACTOR_NAME_"
+    },
+    "Dialogs": {
+      "ROFPickerTitle": "Seleccionar modo disparo",
+      "ROFSingle": "Simple",
+      "ROFBurst": "Ráfaga",
+      "ROFFull": "Automático"
+    },
     "Actor": {
       "Age": "Edad",
       "CharacterImage": "Imagen Personaje",
       "CharacterName": "Nombre Personaje",
       "Characteristics": {
-        "CTM": "CTM",
         "DEX": "DES",
         "EDU": "EDU",
         "END": "RES",
         "INT": "INT",
-        "LFB": "VIT",
         "PSI": "PSI",
         "SOC": "SOC",
+        "STR": "FUE",
+        "LFB": "VIT",
         "STA": "AGU",
-        "STR": "FUE"
+        "CTM": "CTM",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
       "DeleteOwnedItem": "Borrar objeto",
       "Finances": {
@@ -55,6 +78,7 @@
         "AUGMENTS": "AUMENTOS",
         "Ammo": "Cargador",
         "Armor": "Protección",
+        "EffectiveArmor": "Armadura Real",
         "CONSUMABLES": "CONSUMIBLES",
         "Count": "Cantidad",
         "CreateItem": "Crear Objeto",
@@ -75,6 +99,7 @@
         "TL": "NT",
         "Value": "Precio",
         "WEAPONS": "ARMAS",
+        "Weapons": "Armas",
         "Weight": "KG"
       },
       "Notes": {
@@ -104,7 +129,23 @@
         "Skills": "Habilidades"
       },
       "UnknownActorType": "Tipo actor desconocido",
-      "using": "utilizando"
+      "using": "utilizando",
+      "Movement": {
+        "MovementConfig": "Configurar Velocidad Movimiento",
+        "MovementConfigHint": "Configurar la velocidad y atributos especiales del movimiento de la criatura.",
+        "MovementWalk": "Andar",
+        "MovementBurrow": "Excavar",
+        "MovementClimb": "Escalar",
+        "MovementHover": "Flotar",
+        "MovementFly": "Volar",
+        "MovementSwim": "Nadar",
+        "MovementUnits": "Unidades",
+        "DistFt": "Pies",
+        "DistKm": "Kilómetros",
+        "DistM": "Metros",
+        "DistMi": "Millas",
+        "MovementRate": "Paso"
+      }
     },
     "Chat": {
       "Roll": {
@@ -114,50 +155,14 @@
         "Type": "Tipo tirada"
       }
     },
-    "CloseAndCreateNew": "Cerrar y crear nuevo",
-    "Copy": "Copiar",
     "Create": "Crear",
-    "Damage": {
-      "DealDamage": "Aplicar daño",
-      "Damage": "Daño",
-      "TotalDamage": "Daño total",
-      "Characteristics": "Atributos",
-      "Max": "Máx.",
-      "Current": "Actual",
-      "ResultingStat": "Atributo final",
-      "UnallocatedDamage": "Daño no asignado",
-      "CharacterIsDead": "El PJ ha muerto",
-      "DealDamageTo": "Aplicar daño en _ACTOR_NAME_"
-    },
-    "Dialogs": {
-      "ROFPickerTitle": "Seleccionar modo disparo",
-      "ROFSingle": "Simple",
-      "ROFBurst": "Ráfaga",
-      "ROFFull": "Automático"
-    },
-    "Errors": {
-      "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
-      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
-      "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Falta definir el daño del arma",
-      "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
-      "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
-      "EmptyConsumable": "Sin suministro, no te quedan consumibles. Neceistas recargar",
-      "OnlyOwnedItems": "Sólo se pueden colocar en objetos propiedad del Actor",
-      "SkillsConsumables": "Las habilidades no pueden tener consumibles",
-      "DraggingSomething": "Arrastrando algo que no se puede mover",
-      "OnlyDropItems": "Solo puedes arrastrar objetos",
-      "OnlyDropConsumables": "Solo es posible asignar consumibles en el objeto.",
-      "DropFailedWith": "Error de asignación _ERROR_MSG_",
-      "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto."
-    },
     "Handlebars": {
       "CantShowCharacteristic": "AVISO Necesitas volver a seleccionar los atributos en todas las habilidades marcadas con XXX."
     },
     "Items": {
       "Encumbrance": "Impedimento",
       "Enc": "Imp",
+      "DocumentReference": "Referencia",
       "Armor": {
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
@@ -178,26 +183,47 @@
         "accomodations": "habitáculos",
         "armament": "armamento",
         "armor": "armadura",
+        "bridge": "puente",
         "cargo": "bodega carga",
         "computer": "computadora",
         "drive": "motor",
+        "drone": "dron",
         "electronics": "electrónica",
+        "fuel": "combustible",
         "hull": "casco",
+        "mount": "montura",
         "power": "energía",
+        "sensor": "sensor",
         "shield": "escudo",
         "software": "software",
+        "storage": "bodega",
         "vehicle": "vehículo",
         "other": "otro",
+        "otherExternal": "otro - externo",
+        "otherInternal": "otro - interno",
         "operational": "operativo",
         "damaged": "dañado",
         "destroyed": "destruido",
         "off": "apagado",
         "powerDraw": "Consumo Energía",
+        "powerGenerated": "Energía Generada por Unidad",
+        "Power": "Energía",
         "status": "Estado",
         "rating": "Valor",
         "totalQuantity": "Cantidad Total",
         "availableQuantity": "Cantidad Disponible",
-        "damage": "Daño / Impactos"
+        "damage": "Daño / Impactos",
+        "weightIsPct": "¿Peso en Porcentaje?",
+        "purchasePrice": "Precio Compra",
+        "isIllegal": "¿Ilegal?",
+        "unitWeight": "Unidad Peso",
+        "pctDisplacement": "% Peso Desplazado",
+        "CargoItem": "Objeto Carga",
+        "CargoLocation": "Localización Carga",
+        "Price": "Precio",
+        "Value": "Valor",
+        "GeneratesPower": "¿Genera Energía?",
+        "IsRefined": "¿Refinado?"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -238,8 +264,12 @@
         "SOC": "SOC",
         "STR": "FUE",
         "SkillName": "Nombre Hab.",
+        "SimplifiedSkillName": "Nombre Habilidad Simple",
+        "SimplifiedSkillNameDescription": "Utilizado para fórmulas de tiradas estilo @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ por defecto es cero si la habilidad no existe o de valor negativo.",
         "LFB": "VIT",
-        "STA": "AGU"
+        "STA": "AGU",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
@@ -261,6 +291,7 @@
         "Size": "Tamaño",
         "Subtype": "SubCat.",
         "Count": "Cant.",
+        "ArmorPiercing": "Valor Penetración Armadura",
         "DropConsumablesHere": "Puedes arrastrar consumibles aquí.",
         "RemoveConsumable": "Eliminar consumible",
         "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
@@ -276,9 +307,313 @@
         "rateOfFire": "Cadencia de Tiro/Auto X",
         "recoil": "Retroceso",
         "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
-        "MagazineCost": "Coste del cargador/celda"
+        "MagazineCost": "Coste del cargador/celda",
+        "ArmorPiercing": "Valor Penetración Armadura"
       }
     },
+    "Ship": {
+      "Actions": "Acciones",
+      "ActionType": "Tipo Acción",
+      "ActorLacksSkill": "_ACTOR_NAME_ no dispone de habilidad _SKILL_",
+      "ActorMustBeSelectedForAction": "Ya que existen varios actores, uno debe ser seleccionado para realizar la acción.",
+      "AddShipPosition": "Añadir Puesto Nave",
+      "Avail": "Disp.",
+      "Available": "Disponible",
+      "CantDropActorIfPositionIsNotOnShip": "No puedes colocar un Traveller en el puesto que no se encuentra localizado en una nave.",
+      "Cargo": "Carga",
+      "CARGONOTES": "NOTAS CARGA",
+      "COMPONENTS": "COMPONENTES",
+      "CreateAction": "Crear Acción",
+      "Crew": {
+        "ADMIN": "ADMINISTRADOR",
+        "ASTROGATOR": "ASTRONAVEGADOR",
+        "BROKER": "BRÓKER",
+        "CAPTAIN": "CAPITÁN",
+        "ENGINEERS": "INGENIERO(S)",
+        "GUNNERS": "ARTILLERO(S)",
+        "MAINTENANCE": "MANTENIMIENTO",
+        "MARINES": "MARINE(S)",
+        "MEDIC": "DOCTOR",
+        "OTHER": "OTRO",
+        "PILOT": "PILOTO",
+        "STEWARD": "AUXILIAR"
+      },
+      "Deckplan": "Mapa Planta",
+      "DeleteAction": "Borrar Acción",
+      "Displacement": "Desplazamiento",
+      "FINANCES": "FINANZAS",
+      "Fuel": "Combustible",
+      "InvalidDocumentForShipPosition": "Este tipo de documento es inválido para el puesto de la nave. Sólo se pueden colocar habilidades.",
+      "JDrive": "MotorS",
+      "MacroSkill": "Macro/Hab.",
+      "MaintPM": "Mantenimiento",
+      "MANIFEST": "MANIFIESTO",
+      "MAX": "MAX",
+      "MDrive": "MotorM",
+      "Name": "Nombre",
+      "NewAction": "Nueva Acción",
+      "NoActorsForAction": "Sin actor disponible para la acción",
+      "Order": "Orden",
+      "PositionName": "Nombre Puesto",
+      "Power": "Energía",
+      "PowerManagement": "Gestión Energía",
+      "PowerWeightManagement": "Gestión de Energía y Peso",
+      "PP": "PE",
+      "RemoveTraveller": "Eliminar Traveller de la nave",
+      "Sensors": "Sensores",
+      "ShipHull": "Casco",
+      "SHIPNOTES": "CUADERNO DE BITÁCORA",
+      "Storage": "Bodega",
+      "Systems": "Sistemas",
+      "Tabs": {
+        "Cargo": "Carga",
+        "Components": "Componentes",
+        "Crew": "Dotación",
+        "Finance": "Finanzas",
+        "Locker": "Consigna",
+        "Notes": "Notas",
+        "ShipPositions": "Puestos"
+      },
+      "tons": "toneladas",
+      "Travellers": "Travellers",
+      "USED": "USO",
+      "Vehicles": "Vehículos",
+      "Weapons": "Armas",
+      "SHIPCARGO": "BODEGA DE CARGA"
+    },
+    "Migration": {
+      "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
+      "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
+      "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
+    },
+    "Modules": {
+      "compendiumFolders": {
+        "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
+        "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
+      }
+    },
+    "No": "No",
+    "Rolls": {
+      "AdjustedDamage": "Daño ajustado (+Efecto)",
+      "Cancel": "Cancelar",
+      "DamageUsing": "Daño utilizando",
+      "Effect": "Efecto",
+      "Roll": "Tirar",
+      "Rolling": "Tirada",
+      "With": "con",
+      "resultShows": "Resultado:",
+      "sum": "total",
+      "using": "de {characteristic}",
+      "AttackDM": "MD Ataque",
+      "BonusDamage": "Bono Daño"
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+        "hint": "Vacío por defecto (+/-1). Sin uso actual.",
+        "name": "Bonus/penaliz. incrementar tarea:"
+      },
+      "absoluteCriticalEffectValue": {
+        "hint": "Por defecto 99, que ignora el efecto.",
+        "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
+      },
+      "alternativeShort1": {
+        "hint": "Nombre abreviado para el primer atributo alternativo. Debe tener cuatro caracteres como máximo.",
+        "name": "Nombre abreviado para el atributo alternativo 1"
+      },
+      "alternativeShort2": {
+        "hint": "Nombre abreviado para el segundo atributo alternativo. Debe tener cuatro caracteres como máximo.",
+        "name": "Nombre abreviado para el atributo alternativo 2"
+      },
+      "autofireRulesUsed": {
+        "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
+        "name": "Variante disparo automático"
+      },
+      "automateDamageRollOnHit": {
+        "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
+        "name": "Daño en tirada que impacte"
+      },
+      "criticalNaturalAffectsEffect": {
+        "hint": "Marca=Sin importar éxito considerar un 2 natural como Efecto -1 y el 12 natural como Efecto 0, SinMarca=Utilizar reglas normales",
+        "name": "Las tiradas de resultado 2 ó 12 natural en los dados deben tener una gestión especial."
+      },
+      "defaultTokenSettings": {
+        "hint": "Configuración automática del token en nuevos Actores.",
+        "name": "Asignar un token por defecto"
+      },
+      "difficultiesAsTargetNumber": {
+        "hint": "Marca=Objetivo numérico; SinMarca=Modificadores.",
+        "name": "Dificultad por objetivo numérico"
+      },
+      "difficultyListUsed": {
+        "hint": "Variante del listado de dificultad.",
+        "name": "Listado dificultad:"
+      },
+      "effectOrTotal": {
+        "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
+        "name": "Estilo resultados por Efecto"
+      },
+      "ExperimentalFeatures": {
+        "hint": "Marca=Activar funciones experimentales sin testeo; SinMarca=Ocultas.",
+        "name": "Mostrar funciones experimentales"
+      },
+      "hideUntrainedSkills": {
+        "continue": "¿Quieres continuar?",
+        "hint": "Marca=Mostrar una habilidad 'Sin Entrenar' global en vez de muchas habilidades individuales. SinMarca=Mostrar todas las habilidades",
+        "name": "Ocultar las habilidades sin entrenamiento (Nuevas habilidades se añaden a nivel 0).",
+        "warning": "¡Aviso!",
+        "warningReset": "Después de guardar la configuración todas las habilidades que utilicen 'Sin Entrenar' serán reiniciadas. Esta acción no se podrá retroceder.",
+        "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder."
+      },
+      "initiativeFormula": {
+        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\".",
+        "name": "Fórmula para iniciativa:"
+      },
+      "invertSkillRollShiftClick": {
+        "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
+        "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
+        "name": "Mostrar RES y Vitalidad (FUE) como atributos."
+      },
+      "maxSkillLevel": {
+        "hint": "Vacío por defecto (9).",
+        "name": "Máximo nivel habilidad:"
+      },
+      "modifierForZeroCharacteristic": {
+        "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
+        "name": "Modificador Atributo nuevo:"
+      },
+      "ruleset": {
+        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
+        "name": "Reglamento"
+      },
+      "settingsInterface": {
+        "debugSettings": {
+          "hint": "Configurar/Ver las opciones de depuración.",
+          "intro": "Configuración Depuración",
+          "name": "Opciones Depuración"
+        },
+        "displaySettings": {
+          "hint": "Configurar las opciones de pantalla.",
+          "intro": "Configuración Pantalla",
+          "name": "Opciones Pantalla"
+        },
+        "itemSettings": {
+          "hint": "Configurar los campos a mostrar en los objetos.",
+          "intro": "Configuración Objetos",
+          "name": "Opciones Objeto"
+        },
+        "rulesetSettings": {
+          "hint": "Configurar las opciones del reglamento.",
+          "intro": "Reglamento Actual",
+          "modified": "modificado",
+          "name": "Configuración Avanzada del Reglamento"
+        }
+      },
+      "shipInitiativeFormula": {
+        "hint": "Ejemplo: \"2d6",
+        "name": "Fórmula Iniciativa Nave"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Mostrar los atributos alternativos en vez de PSI. Sólo funciona en el estilo por defecto de Foundry.",
+        "name": "Mostrar atributos alternativos"
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
+        "name": "Mostrar Contaminación bajo Vitalidad."
+      },
+      "ShowDamageType": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Tipo Daño' en armas"
+      },
+      "showHeroPoints": {
+        "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
+        "name": "Mostrar Puntos Heroe"
+      },
+      "showItemReferences": {
+        "hint": "Mostrar un campo de texto en la hoja de objetos para utilizar por PDFoundry o como referencia. Para PDFoundry, el formato debe ser '[nombre abreviado] [número página]'.",
+        "name": "Mostrar campo de referencia en los objetos."
+      },
+      "ShowLawLevel": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Nivel de Ley' en armas"
+      },
+      "showLifebloodStamina": {
+        "hint": "Mostrar Aguante y Vitalidad en la hoja de personaje. Necesario con Cepheus Deluxe.",
+        "name": "Mostrar las características derivadas Aguante y Vitalidad."
+      },
+      "showMissingCompendiumWarnings": {
+        "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
+        "name": "Mostrar aviso sobre módulos desactivados/faltan."
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
+        "name": "Banda de Alcance"
+      },
+      "ShowRateOfFire": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Cadencia de Tiro' en armas"
+      },
+      "ShowRecoil": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Retroceso' en armas"
+      },
+      "showSingleComponentColumn": {
+        "hint": "Mostrar lista componentes de la nave en una sola columna.",
+        "name": "Lista de componentes de la nave a una columna"
+      },
+      "ShowWeaponType": {
+        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "name": "Mostrar 'Tipo Arma' en armas"
+      },
+      "showWeightUsage": {
+        "hint": "Mostrar valores de carga en vez de energía en la hoja de la nave.",
+        "name": "Mostrar en la Hoja de la Nave la Carga en vez de la gestión Energía"
+      },
+      "systemMigrationVersion": {
+        "hint": "Versión schema del sistema. (No modificar)",
+        "name": "Versión Schema del sistema:"
+      },
+      "termForAdvantage": {
+        "hint": "No asignar igual a Desventaja.",
+        "name": "Nombre tirada Ventaja:"
+      },
+      "termForDisadvantage": {
+        "hint": "No asignar igual a Ventaja.",
+        "name": "Nombre tirada Desventaja:"
+      },
+      "useFoundryStandardStyle": {
+        "default": "Por Defecto Twodsix",
+        "foundry": "Estandar Foundry VTT",
+        "hint": "Utilizar el estilo por defecto de Foundry VTT para IU. Esto mejora la compatibilidad de los módulos con el sistema Twodsix",
+        "name": "Usar IU Estilo Estandar Foundry VTT"
+      },
+      "useModuleFixStyle": {
+        "hint": "Modifica el CSS para poder identificar los problemas de ciertos módulos al utilizar el estilo Twodsix.  No funciona en el estilo por defecto de Foundry.",
+        "name": "Corrige algunos problemas de estilo en css debidos a los módulos y el estilo por defecto Twodsix."
+      },
+      "useShipAutoCalcs": {
+        "hint": "Activado, el resumen de la energía y carga de la nave se calcula en base a los valores en componentes. En caso contrario, los valores deben ser entrados manualmente por el usuario.",
+        "name": "Cálculo automático de los valores de energía y carga de la nave"
+      },
+      "useSystemDefaultTokenIcon": {
+        "hint": "Utilizar el icono de token por defecto de Foundry VTT (mystery man) en vez del de Twodsix  al crear nuevos actores. Seleccionar para que al utilizar imágenes propias el token coincida con la imagen del actor automáticamente.",
+        "name": "Utilizar el token por defecto de Foundry VTT en vez del de Twodsix."
+      },
+      "useWoundedStatusIndicators": {
+        "hint": "Utiliza indicadores en las heridas para mostrar el estado y automáticamente realizar tiradas de salvación en heridas graves para evitar caer inconsciente.",
+        "name": "Mostrar indicador de heridas"
+      },
+      "weightModifierForWornArmor": {
+        "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
+        "name": "Factor multiplicador del peso armadura equipada."
+      }
+    },
+    "CloseAndCreateNew": "Cerrar y crear nuevo",
+    "Copy": "Copiar",
+    "Yes": "Si",
+    "Name": "Nombre",
     "itemTypes": {
       "equipment": "equipo",
       "weapon": "arma",
@@ -293,213 +628,22 @@
       "trait": "rasgo",
       "component": "componente"
     },
-    "Migration": {
-      "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
-      "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
-      "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
-    },
-    "Modules": {
-      "compendiumFolders": {
-        "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
-        "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
-      }
-    },
-    "Name": "Nombre",
-    "No": "No",
-    "Rolls": {
-      "AdjustedDamage": "Daño ajustado (+Efecto)",
-      "Cancel": "Cancelar",
-      "DamageUsing": "Daño utilizando",
-      "Effect": "Efecto",
-      "Roll": "Tirar",
-      "Rolling": "Tirada",
-      "With": "con",
-      "resultShows": "Resultado:",
-      "sum": "total",
-      "using": "de {characteristic}"
-    },
-    "Settings": {
-      "ruleset": {
-        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
-        "name": "Reglamento"
-      },
-      "absoluteBonusValueForEachTimeIncrement": {
-        "hint": "Vacío por defecto (+/-1). Sin uso actual.",
-        "name": "Bonus/penaliz. incrementar tarea:"
-      },
-      "absoluteCriticalEffectValue": {
-        "hint": "Por defecto 99, que ignora el efecto.",
-        "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
-      },
-      "automateDamageRollOnHit": {
-        "hint": "Marca=Tira daño mod. por efecto habilidad; SinMarca=No tira daño.",
-        "name": "Daño en tirada que impacte"
-      },
-      "criticalNaturalAffectsEffect": {
-        "hint": "Marca=Sin importar éxito considerar un 2 natural como Efecto -1 y el 12 natural como Efecto 0, SinMarca=Utilizar reglas normales",
-        "name": "Las tiradas de resultado 2 ó 12 natural en los dados deben tener una gestión especial."
-      },
-      "defaultTokenSettings": {
-        "hint": "Configuración automática del token en nuevos Actores.",
-        "name": "Asignar un token por defecto"
-      },
-      "effectOrTotal": {
-        "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
-        "name": "Estilo resultados por Efecto"
-      },
-      "initiativeFormula": {
-        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\".",
-        "name": "Fórmula para iniciativa:"
-      },
-      "maxSkillLevel": {
-        "hint": "Vacío por defecto (9).",
-        "name": "Máximo nivel habilidad:"
-      },
-      "modifierForZeroCharacteristic": {
-        "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
-        "name": "Modificador Atributo nuevo:"
-      },
-      "showMissingCompendiumWarnings": {
-        "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
-        "name": "Mostrar aviso sobre módulos desactivados/faltan."
-      },
-      "systemMigrationVersion": {
-        "hint": "Versión schema del sistema. (No modificar)",
-        "name": "Versión Schema del sistema:"
-      },
-      "termForAdvantage": {
-        "hint": "No asignar igual a Desventaja.",
-        "name": "Nombre tirada Ventaja:"
-      },
-      "termForDisadvantage": {
-        "hint": "No asignar igual a Ventaja.",
-        "name": "Nombre tirada Desventaja:"
-      },
-      "ShowLawLevel": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
-        "name": "Mostrar 'Nivel de Ley' en armas"
-      },
-      "ShowRecoil": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
-        "name": "Mostrar 'Retroceso' en armas"
-      },
-      "ShowRateOfFire": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
-        "name": "Mostrar 'Cadencia de Tiro' en armas"
-      },
-      "ShowDamageType": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
-        "name": "Mostrar 'Tipo Daño' en armas"
-      },
-      "ShowWeaponType": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
-        "name": "Mostrar 'Tipo Arma' en armas"
-      },
-      "ShowRangeBandAndHideRange": {
-        "hint": "Marca=Motrar 'Banda de Alcance', SinMarca=Mostrar 'Alcance'.",
-        "name": "Banda de Alcance"
-      },
-      "autofireRulesUsed": {
-        "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
-        "name": "Variante disparo automático"
-      },
-      "difficultyListUsed": {
-        "hint": "Variante del listado de dificultad.",
-        "name": "Listado dificultad:"
-      },
-      "difficultiesAsTargetNumber": {
-        "hint": "Marca=Objetivo numérico; SinMarca=Modificadores.",
-        "name": "Dificultad por objetivo numérico"
-      },
-      "ExperimentalFeatures": {
-        "hint": "Marca=Activar funciones experimentales sin testeo; SinMarca=Ocultas.",
-        "name": "Mostrar funciones experimentales"
-      },
-      "hideUntrainedSkills": {
-        "hint": "Marca=Mostrar una habilidad 'Sin Entrenar' global en vez de muchas habilidades individuales. SinMarca=Mostrar todas las habilidades",
-        "name": "Ocultar las habilidades sin entrenamiento (Nuevas habilidades se añaden a nivel 0).",
-        "warningReset": "Después de guardar la configuración todas las habilidades que utilicen 'Sin Entrenar' serán reiniciadas. Esta acción no se podrá retroceder.",
-        "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder.",
-        "continue": "Quieres continuar?",
-        "warning": "Aviso!"
-      },
-      "invertSkillRollShiftClick": {
-        "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
-        "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
-      },
-      "lifebloodInsteadOfCharacteristics": {
-        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
-        "name": "Mostrar RES y Vitalidad (FUE) como atributos."
-      },
-      "showContaminationBelowLifeblood": {
-        "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
-        "name": "Mostrar Contaminación bajo Vitalidad."
-      },
-      "useSystemDefaultTokenIcon": {
-        "hint": "Utilizar el icono de token por defecto de Foundry VTT (mystery man) en vez del de Twodsix  al crear nuevos actores. Seleccionar para que al utilizar imágenes propias el token coincida con la imagen del actor automáticamente.",
-        "name": "Utilizar el token por defecto de Foundry VTT en vez del de Twodsix."
-      },
-      "showLifebloodStamina": {
-        "hint": "Mostrar Aguante y Vitalidad en la hoja de personaje. Necesario con Cepheus Deluxe.",
-        "name": "Mostrar las características derivadas Aguante y Vitalidad."
-      },
-      "weightModifierForWornArmor": {
-        "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
-        "name": "Factor multiplicador del peso armadura equipada."
-      },
-      "showHeroPoints": {
-        "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
-        "name": "Mostrar Puntos Heroe"
-      },
-      "showSingleComponentColumn": {
-        "hint": "Mostrar lista componentes de la nave en una sola columna.",
-        "name": "Lista de componentes de la nave a una columna"
-      },
-      "useFoundryStandardStyle": {
-        "hint": "Utilizar el estilo por defecto de Foundry VTT para IU. Esto mejora la compatibilidad de los módulos con el sistema Twodsix",
-        "name": "Usar IU Estilo Estandar Foundry VTT",
-        "default": "Por Defecto Twodsix",
-        "foundry": "Estandar Foundry VTT"
-      }
-    },
-    "Ship": {
-      "ShipHull": "Casco",
-      "Fuel": "Combustible",
-      "MaintPM": "Mantenimiento",
-      "PowerManagement": "Gestión Energía",
-      "Power": "Energía",
-      "USED": "USO",
-      "MAX": "MAX",
-      "Systems": "Sistemas",
-      "MDrive": "MotorM",
-      "JDrive": "MotorS",
-      "Sensors": "Sensores",
-      "Weapons": "Armas",
-      "SHIPCARGO": "BODEGA DE CARGA",
-      "SHIPNOTES": "CUADERNO DE BITÁCORA",
-      "FINANCES": "FINANZAS",
-      "Tabs": {
-        "Crew": "Dotación",
-        "Components": "Componentes",
-        "Locker": "Consigna",
-        "Cargo": "Bodega",
-        "Finance": "Finanzas",
-        "Notes": "Notas"
-      },
-      "Crew": {
-        "CAPTAIN": "CAPITÁN",
-        "MAINTENANCE": "MANTENIMIENTO",
-        "ADMIN": "ADMINISTRADOR",
-        "ENGINEERS": "INGENIERO(S)",
-        "PILOT": "PILOTO",
-        "MEDIC": "DOCTOR",
-        "BROKER": "BRÓKER",
-        "GUNNERS": "ARTILLERO(S)",
-        "ASTROGATOR": "ASTRONAVEGADOR",
-        "STEWARD": "AUXILIAR",
-        "OTHER": "OTRO",
-        "MARINES": "MARINE(S)"
-      }
+    "Errors": {
+      "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
+      "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
+      "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
+      "NoDamageForWeapon": "Falta definir el daño del arma",
+      "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
+      "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
+      "EmptyConsumable": "Sin suministro, no te quedan consumibles. Neceistas recargar",
+      "OnlyOwnedItems": "Sólo se pueden colocar en objetos propiedad del Actor",
+      "SkillsConsumables": "Las habilidades no pueden tener consumibles",
+      "DraggingSomething": "Arrastrando algo que no se puede mover",
+      "OnlyDropItems": "Solo puedes arrastrar objetos",
+      "OnlyDropConsumables": "Solo es posible asignar consumibles en el objeto.",
+      "DropFailedWith": "Error de asignación _ERROR_MSG_",
+      "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -508,9 +652,10 @@
       "StatValBelowZero": "El valor no puede ser inferior a cero",
       "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos",
       "CantAutoDamageShip": "Daño automático a una nave no soportado.",
-      "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor"
-    },
-    "Yes": "Si"
+      "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
+      "PDFFoundryNotInstalled": "PDFoundry debe estar instalado para utilizar los enlaces.",
+      "NoSpecfiedLink": "Sin documento ni página especificada para el enlace."
+    }
   },
   "VeryDifficult": "Muy Difícil"
 }
