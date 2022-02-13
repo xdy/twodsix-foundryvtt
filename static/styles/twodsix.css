@@ -1895,7 +1895,7 @@ a.ship-notes-tab.active {
 
 .ship-notes-container .editor, .ship-finances-container .editor {
   border: 1px solid ;
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   width: 100%;
   height: 90%;
   overflow-y: auto;
@@ -1903,7 +1903,7 @@ a.ship-notes-tab.active {
 
 .ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable] {
   border: 1px solid ;
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
   color: var(--s2d6-background-opaque);

@@ -942,7 +942,7 @@ span.total-output {
 
 .info-container .editor {
   border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
 }
 
 .char-description {
@@ -959,7 +959,7 @@ span.total-output {
 
 .char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   height: 95%;
   overflow-y: auto;
   background-color: var(--s2d6-input-background) !important;
@@ -988,14 +988,14 @@ span.total-output {
 
 .notes-container .editor {
   border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
 }
 
 .notes-container > div[contenteditable] {
   min-height: 34em;
   width: 30.2em;
   border: 1px solid var(--color-border-light-tertiary) !important;
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
   color: var(--s2d6-background-opaque);
@@ -1524,14 +1524,13 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid;
   height: 18em;
   /*color: var(--light-color) !important;*/
   padding: 0.2em;
   overflow-y: auto;
   background-color: var(--s2d6-input-background);
   border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
 }
 
 /*.ship-notes-box {
@@ -1550,7 +1549,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .ship-notes-container .editor, .ship-finances-container .editor {
   border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   width: 100%;
   height: 90%;
   overflow-y: auto;
@@ -1558,7 +1557,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary) !important;
-  border-radius: 0 3px 3px 3px;
+  border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
   color: var(--s2d6-background-opaque);
