@@ -32,7 +32,7 @@
     }
   ],
   "devDependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "^9.249.0",
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.249.2",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-dynamic-import-vars": "^1.4.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
