@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.0...v1.17.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* NPC image aspect ratio ([#882](https://github.com/xdy/twodsix-foundryvtt/issues/882)) ([b15cd87](https://github.com/xdy/twodsix-foundryvtt/commit/b15cd8718fe86345a4e7aec69ca3e01ff845518c))
+
 # [1.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.16.0...v1.17.0) (2022-02-11)
 
 
