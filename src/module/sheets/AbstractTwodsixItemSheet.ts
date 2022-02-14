@@ -5,6 +5,10 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
       'focusout',
       this._onSubmit.bind(this)
     );
+    html.find('div[contenteditable="true"][data-edit]').on(
+      'paste',
+      onPasteStripFormatting.bind(this)
+    );
   }
 
 
@@ -18,5 +22,17 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     data.data.owner = this.actor;
 
     return data;
+  }
+}
+
+export function onPasteStripFormatting(event): void {
+  if (event.originalEvent && event.originalEvent.clipboardData && event.originalEvent.clipboardData.getData) {
+    event.preventDefault();
+    const text = event.originalEvent.clipboardData.getData('text/plain');
+    window.document.execCommand('insertText', false, text);
+  } else if (event.clipboardData && event.clipboardData.getData) {
+    event.preventDefault();
+    const text = event.clipboardData.getData('text/plain');
+    window.document.execCommand('insertText', false, text);
   }
 }
