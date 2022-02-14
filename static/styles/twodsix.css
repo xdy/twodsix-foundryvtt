@@ -340,6 +340,8 @@ h2 {
 
 .npc-name-photo {
   grid-area: npc-name-photo;
+  height: 95%;
+  width: 100%;
 }
 
 .npc-bgi-stats {
@@ -439,10 +441,15 @@ img.character-info-mask {
   width: 18.5em;
 }
 
+.character-name .npc {
+  height: 22px !important;
+  width: 100% !important
+}
+
 .character-name input[type='text'] {
   background-color: transparent;
   position: relative;
-  width: 15.55em;
+  /*width: 15.55em;*/
   font-size: 1.2em;
   text-align: center;
   color: var(--s2d6-default-color) !important;
@@ -1223,7 +1230,7 @@ span.total-output {
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  border-radius: 1ch 0 4ch;
+  border-radius: 2ch 0 4ch;
 }
 
 .item-title-short {

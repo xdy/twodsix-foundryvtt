@@ -74,6 +74,8 @@
 
 .npc-name-photo {
   grid-area: npc-name-photo;
+  height: 95%;
+  width: 100%;
 }
 
 .npc-bgi-stats {
@@ -181,10 +183,16 @@ img.character-info-mask {
   border-color: inherit;
 }
 
+.character-name .npc {
+  height: 22px !important;
+  width: 100% !important
+}
+
+
 .character-name input[type='text'] {
   background-color: transparent !important;
   position: relative;
-  width: 30ch;
+  /*width: 30ch;*/
   font-size: 1.2em;
   text-align: center;
   border: none;
