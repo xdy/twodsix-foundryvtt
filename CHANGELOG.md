@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.1...v1.17.2) (2022-02-15)
+
+
+### Bug Fixes
+
+* force cut and paste for contenteditables to be plain text ([#886](https://github.com/xdy/twodsix-foundryvtt/issues/886)) ([ce6c846](https://github.com/xdy/twodsix-foundryvtt/commit/ce6c846579172044f4cdda6bbfbd67edc33c0248))
+
 ## [1.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.0...v1.17.1) (2022-02-14)
 
 
