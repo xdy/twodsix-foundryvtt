@@ -155,7 +155,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
     const item = this.getItem(event);
-    if (this.options.template.includes("npc-sheet")) {
+    if (this.options.template?.includes("npc-sheet")) {
       resolveUnknownAutoMode(item);
     } else {
       await item.performAttack(attackType, showTrowDiag, rof);
