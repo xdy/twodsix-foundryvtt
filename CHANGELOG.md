@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.2...v1.18.0) (2022-02-15)
+
+
+### Features
+
+* Improvements to large text inputs ([#881](https://github.com/xdy/twodsix-foundryvtt/issues/881)) ([2c4648d](https://github.com/xdy/twodsix-foundryvtt/commit/2c4648def63d10027c86d48152defb4239b18299))
+
 ## [1.17.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.1...v1.17.2) (2022-02-15)
 
 
