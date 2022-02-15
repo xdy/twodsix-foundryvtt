@@ -989,10 +989,10 @@ span.total-output {
   font-size: larger;
 }
 
-.editor-content {
+/*.editor-content {
   background: var(--s2d6-input-background);
   color: var(--color-text-dark-primary);
-}
+}*/
 
 .notes-container .editor {
   border: 1px solid var(--color-border-light-tertiary);
@@ -1008,6 +1008,7 @@ span.total-output {
   background-color: var(--s2d6-input-background) !important;
   color: var(--s2d6-background-opaque);
   padding: 0.2em;
+  overflow-y: auto;
 }
 
 /*----------- Ship Sheet ---------*/
@@ -1454,7 +1455,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". .";
-  margin-left: 1em;
+  margin-left: 15px;
   width: 54.4em;
   border: solid 1px var(--s2d6-input-background);
 }
@@ -1529,6 +1530,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   margin-top: 0;
   position: relative;
   top: 1em;
+  height: 15em;
 }
 
 .cargo-wrapper > div[contenteditable] {
@@ -1555,15 +1557,16 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   overflow-x: hidden;
 }
 
-.ship-notes-container .editor, .ship-finances-container .editor {
+.ship-notes-container .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 100%;
   height: 90%;
   overflow-y: auto;
+  background-color: var(--s2d6-input-background) !important;
 }
 
-.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable] {
+.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable], .cargo-wrapper >div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary) !important;
   border-radius: 0 3px 3px;
   font-size: 15px;
@@ -2078,10 +2081,6 @@ form .form-group > label {
   fill: var(--light-color) !important;
 }
 */
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  width: 775px;
-  position: fixed;
-}
 
 .tox .tox-edit-area {
   display: flex;
@@ -2094,6 +2093,10 @@ form .form-group > label {
 
 .editor-content p {
   padding-left: 0.8em;
+}
+
+.editor-content {
+  height: 95%;
 }
 
 .tox .tox-editor-container {

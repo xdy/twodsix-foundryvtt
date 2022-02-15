@@ -45,6 +45,10 @@
 </div>
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
-  <div contenteditable="true" data-edit="data.cargo">{{{data.data.cargo}}}</div>
+  {{#if (twodsix_useTinyMCE)}}
+    {{editor content=data.data.cargo target="data.cargo" button=true owner=owner editable=editable}}
+  {{else}}
+    <div contenteditable="true" data-edit="data.cargo">{{#if data.data.cargo}}{{{data.data.cargo}}}{{/if}}</div>
+  {{/if}}
 </div>
 </div>
