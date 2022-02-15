@@ -1,4 +1,8 @@
-<div class="cargo-wrapper">
+<div class="ship-notes-container">
   <span class="item-title">{{localize "TWODSIX.Ship.SHIPNOTES"}}</span>
-  <div contenteditable="true" data-edit="data.notes">{{#if data.data.notes}}{{{data.data.notes}}}{{/if}}</div>
+  {{#if (twodsix_useTinyMCE)}}
+      {{{editor content=data.data.notes target="data.notes" button=true owner=owner editable=editable}}}
+    {{else}}
+      <div contenteditable="true" data-edit="data.notes">{{#if data.data.notes}}{{{data.data.notes}}}{{/if}}</div>
+  {{/if}}
 </div>

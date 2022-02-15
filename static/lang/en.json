@@ -607,6 +607,10 @@
       "weightModifierForWornArmor": {
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
         "name": "Factor to multiply the weight value of a equipped armor."
+      },
+      "useTinyMCEditor": {
+        "hint": "Use the embedded HTML editor for larger input blocks.",
+        "name": "Use TinyMCE editor for larger input blocks."
       }
     },
     "CloseAndCreateNew": "Close and create new",

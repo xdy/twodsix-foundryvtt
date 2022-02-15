@@ -43,6 +43,10 @@
   text-align: center;
 }
 
+.item-name {
+  align-self: center;
+}
+
 .left {
   text-align: left;
 }
@@ -580,10 +584,11 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 .gear-header {
-  border: 2px solid var(--s2d6-background-opaque);
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
   padding-left: 0.5em;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -851,10 +856,10 @@ span.total-output {
 }
 
 .financial-notes div[contenteditable] {
-  border: 2px solid;
+  border: 1px solid var(--color-border-light-tertiary);
   width: 14.8em;
   height: 28.5em;
-  border-radius: 0;
+  border-radius: 0 0 3px 3px;
   overflow-y: auto;
   padding: 0.2em;
   background-color: var(--s2d6-input-background) !important;
@@ -865,12 +870,12 @@ span.total-output {
   padding: 1em;
 }
 
-.cash input[type='text'] {
+.cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'] {
   width: 14.8em;
   padding: 0.5em;
   height: 31px;
-  border: 2px solid;
-  border-radius: 0;
+  /*border: 2px solid;*/
+  border-radius: 0 0 3px 3px;
 }
 
 .pension {
@@ -878,25 +883,9 @@ span.total-output {
   padding: 1em;
 }
 
-.pension input[type='text'] {
-  width: 14.8em;
-  padding: 0.5em;
-  height: 31px;
-  border: 2px solid;
-  border-radius: 0;
-}
-
 .debt {
   grid-area: debt;
   padding: 1em;
-}
-
-.debt input[type='text'] {
-  width: 14.8em;
-  padding: 0.5em;
-  height: 31px;
-  border: 2px solid;
-  border-radius: 0;
 }
 
 .ship-payments {
@@ -904,25 +893,9 @@ span.total-output {
   padding: 1em;
 }
 
-.ship-payments input[type='text'] {
-  width: 14.8em;
-  padding: 0.5em;
-  height: 31px;
-  border: 2px solid;
-  border-radius: 0;
-}
-
 .living-costs {
   grid-area: living-costs;
   padding: 1em;
-}
-
-.living-costs input[type='text'] {
-  width: 14.8em;
-  padding: 0.5em;
-  height: 31px;
-  border: 2px solid;
-  border-radius: 0;
 }
 
 .item-title, .item-title-npc {
@@ -958,15 +931,15 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 8em 13em 19em;
-  gap: 1px 1px;
+  grid-template-rows: 11em 12em 19em;
+  gap: 30px 1px;
   grid-template-areas:
       "char-description"
       "char-contacts"
       "char-bio";
   /*padding: 0em;*/
   position: relative;
-  margin-top: 4em;
+  margin-top: 1em;
 }
 
 .tab.info {
@@ -976,31 +949,26 @@ span.total-output {
 }
 
 .info-container .editor {
-  border: 2px solid;
-  border-radius: 2px;
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
 }
 
 .char-description {
   grid-area: char-description;
-  position: relative;
-  top: -2em;
 }
 
 .char-bio {
   grid-area: char-bio;
-  position: relative;
-  top: -2em;
 }
 
 .char-contacts {
   grid-area: char-contacts;
-  position: relative;
-  top: -2em;
 }
 
-.char-description div[contenteditable], .char-contacts div[contenteditable] {
-  border: 2px solid;
-  height: 5em;
+.char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable] {
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
+  height: 90%;
   overflow-y: auto;
   background-color: var(--s2d6-input-background) !important;
   padding: 0.2em;
@@ -1010,33 +978,37 @@ span.total-output {
   height: 10em;
 }
 
-.char-bio div[contenteditable] {
-  border: 2px solid;
-  height: 19.5em;
-  overflow-y: auto;
-  background-color: var(--s2d6-input-background) !important;
-  padding: 0.2em;
-}
-
 /*-------- Notes Tab ----*/
 
 .notes-container {
-  margin-left: 1em;
-  padding-top: 3em;
-  height: 48em;
+  margin-left: 1ch;
+  margin-top: 5ch;
+  height: 38em;
   margin-bottom: -3em;
-  overflow-x: hidden;
+  overflow: hidden;
+  font-size: larger;
+}
+
+/*.editor-content {
+  background: var(--s2d6-input-background);
+  color: var(--color-text-dark-primary);
+}*/
+
+.notes-container .editor {
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
 }
 
 .notes-container > div[contenteditable] {
-  min-height: 34em;
-  width: 30.2em;
-  border: 2px solid var(--s2d6-background-opaque) !important;
-  border-radius: 0;
+  height: 90%;
+  width: 32.2em;
+  border: 1px solid var(--color-border-light-tertiary) !important;
+  border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
   color: var(--s2d6-background-opaque);
   padding: 0.2em;
+  overflow-y: auto;
 }
 
 /*----------- Ship Sheet ---------*/
@@ -1483,8 +1455,9 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas: ". .";
-  margin-left: 1em;
+  margin-left: 15px;
   width: 54.4em;
+  border: solid 1px var(--s2d6-input-background);
 }
 
 .grid-columns-single {
@@ -1495,6 +1468,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-areas: ".";
   margin-left: 1em;
   width: 54.4em;
+  border: solid 1px var(--s2d6-input-background);
 }
 
 .storage-stored {
@@ -1511,6 +1485,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   color: var(--s2d6-app-color);
   position: sticky;
   top:0%;
+  min-height: 5ch;
 }
 
 .components-stored-double {
@@ -1547,6 +1522,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*margin-top: 1.1em;*/
   overflow-y: auto;
   height: 12em;
+  width: 56em;
   /*padding: 0 0.5em;*/
 }
 
@@ -1555,21 +1531,51 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   margin-top: 0;
   position: relative;
   top: 1em;
+  height: 15em;
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid;
   height: 18em;
   /*color: var(--light-color) !important;*/
   padding: 0.2em;
   overflow-y: auto;
   background-color: var(--s2d6-input-background);
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
 }
 
-.ship-notes-box {
+/*.ship-notes-box {
   z-index: 99;
   width: 10em;
   height: 10em;
+}*/
+
+.ship-notes-container, .ship-finances-container {
+  margin-left: 1ch;
+  padding-top: 2ch;
+  height: 21em;
+  width: 56em;
+  overflow-x: hidden;
+}
+
+.ship-notes-container .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
+  background-color: var(--s2d6-input-background) !important;
+}
+
+.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable], .cargo-wrapper >div[contenteditable] {
+  border: 1px solid var(--color-border-light-tertiary) !important;
+  border-radius: 0 3px 3px;
+  font-size: 15px;
+  background-color: var(--s2d6-input-background) !important;
+  color: var(--s2d6-background-opaque);
+  padding: 0.2em;
+  height: 90%;
+  overflow-y: auto;
 }
 
 /*-------------------------------------------------*/
@@ -1772,6 +1778,10 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-sheet .form-consumable-count {
   width: 50px;
   text-align: center;
+}
+
+.item-sheet table {
+  background-color: inherit;
 }
 
 .remove-consumable {
@@ -2052,7 +2062,8 @@ form .form-group > label {
 /* EDITOR */
 
 .editor {
-  height: calc(75px);
+  height: 95%;
+  overflow: hidden;
   /*background: var(--background-semi-opaque);
   color: var(--default-color);*/
 }
@@ -2070,16 +2081,7 @@ form .form-group > label {
 .tox .tox-tbtn:hover svg {
   fill: var(--light-color) !important;
 }
-
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background: var(--item-active) none !important;
-  display: flex;
-  flex: 0 0 auto;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  padding: 0 0;
-  border-bottom: 1px solid var(--header-border);
-}
+*/
 
 .tox .tox-edit-area {
   display: flex;
@@ -2093,7 +2095,10 @@ form .form-group > label {
 .editor-content p {
   padding-left: 0.8em;
 }
-*/
+
+.editor-content {
+  height: 95%;
+}
 
 .tox .tox-editor-container {
   display: flex;

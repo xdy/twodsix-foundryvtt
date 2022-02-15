@@ -235,11 +235,12 @@ table tr:nth-child(even) {
 .sheet footer.sheet-footer > .flex3 {
   flex: 3;
 }
-.sheet .editor-content {
+/*.sheet .editor-content {
   height: 100%;
   overflow-y: auto;
   word-break: break-word;
-}
+}*/
+
 /******************************************************/
 
 .macro-sheet .form-group.command div[contenteditable] {
@@ -1259,14 +1260,14 @@ span.total-output {
   display: grid;
   grid-template-columns: 33.6em;
   grid-template-rows: 8em 13em 19em;
-  gap: 1px 1px;
+  gap: 30px 1px;
   grid-template-areas:
       "char-description"
       "char-contacts"
       "char-bio";
   /*padding: 0em;*/
   position: relative;
-  margin-top: 4em;
+  margin-top: 2em;
 }
 
 .tab.info {
@@ -1282,37 +1283,27 @@ span.total-output {
 
 .char-description {
   grid-area: char-description;
-  position: relative;
-  top: -2em;
 }
 
 .char-bio {
   grid-area: char-bio;
-  position: relative;
-  top: -2em;
 }
 
 .char-contacts {
   grid-area: char-contacts;
-  position: relative;
-  top: -2em;
 }
 
 .char-description div[contenteditable], .char-contacts div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
-  height: 5em;
+  height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color) !important;
   padding: 0.2em;
 }
 
-.char-contacts div[contenteditable] {
-  height: 10em;
-}
-
 .char-bio div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
-  height: 19.5em;
+  height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color) !important;
   padding: 0.2em;
@@ -1321,21 +1312,28 @@ span.total-output {
 /*-------- Notes Tab ----*/
 
 .notes-container {
-  margin-left: 1em;
-  padding-top: 3em;
-  height: 48em;
+  margin-left: 1ch;
+  padding-top: 5ch;
+  height: 39em;
+  width: 32em;
   margin-bottom: -3em;
   overflow-x: hidden;
+  font-size: larger;
+}
+
+.notes-container .editor-content {
+  border: 1px solid var(--s2d6-default-color);
 }
 
 .notes-container > div[contenteditable] {
-  min-height: 34em;
+  height: 33em;
   width: 30.2em;
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
   font-size: 15px;
   color: var(--s2d6-light-color) !important;
   padding: 0.2em;
+  overflow-y: auto;
 }
 
 /*----------- Ship Sheet ---------*/
@@ -1765,7 +1763,7 @@ a.ship-notes-tab.active {
 .ship-position-box {
   width: 14.8em;
   min-height: 50px;
-  border: 1px groove #00e5ff;
+  border: 1px groove var(--s2d6-default-color);
   border-radius: 0;
 }
 
@@ -1789,7 +1787,7 @@ a.ship-notes-tab.active {
 
 .ship-grid input[type="text"] {
   width: 14.8em;
-  border: 1px groove var(--s2d6-light-color);
+  border: 1px groove var(--s2d6-default-color);
   border-radius: 0;
 
 }
@@ -1887,6 +1885,7 @@ a.ship-notes-tab.active {
   /*margin-top: 1em;*/
   position: relative;
   top: 1em;
+  height: 15em;
 }
 
 .cargo-wrapper > div[contenteditable] {
@@ -1896,13 +1895,32 @@ a.ship-notes-tab.active {
   padding: 0.2em;
   overflow-y: auto;
 }
-
-.ship-notes-box {
-  z-index: 99;
-  width: 10em;
-  height: 10em;
+.ship-notes-container, .ship-finances-container {
+  margin-left: 3ch;
+  padding-top: 2ch;
+  height: 21em;
+  width: 54em;
+  overflow-x: hidden;
 }
 
+.ship-notes-container .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
+  border: 1px solid var(--s2d6-default-color);
+  border-radius: 0 3px 3px;
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
+}
+
+.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable] {
+  border: 1px solid var(--s2d6-default-color);
+  border-radius: 0 3px 3px;
+  font-size: 15px;
+  background-color: var(--s2d6-input-background) !important;
+  color: var(--s2d6-background-opaque);
+  padding: 0.2em;
+  height: 90%;
+  overflow-y: auto;
+}
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
@@ -2564,18 +2582,22 @@ div.app.window-app.twodsix.ship.actor header a.close {
 /* EDITOR */
 
 .editor {
-  height: calc(75px);
+  height: 95%;
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn svg {
   display: block;
-  fill: var(--s2d6-default-color);
+  fill: var(--s2d6-default-color) !important;
 }
 
 .tox .tox-tbtn:hover svg {
   fill: var(--s2d6-light-color) !important;
+}
+
+.tox .tox-tbtn--bespoke .tox-tbtn__select-label {
+  color: var(--s2d6-default-color);
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
@@ -2600,6 +2622,10 @@ div.app.window-app.twodsix.ship.actor header a.close {
 
 .editor-content p {
   padding-left: 0.8em;
+}
+
+.editor-content {
+  height: 95%;
 }
 
 .tox .tox-editor-container {
