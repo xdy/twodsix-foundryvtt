@@ -13,22 +13,31 @@
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
       {{#unless limited}}
-          {{#if actor.data.settings.showLifebloodStamina}}
+        {{#if actor.data.settings.showLifebloodStamina}}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           </div>
-          {{else}}
+        {{else}}
           <div class="character-bgi-std">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
           </div>
-          {{/if}}
+        {{/if}}
         {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
         {{else}}
           {{#if (twodsix_useFoundryStyle)}}
+          <table class="stat-table">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+          </table>
           {{else}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+            {{#iff (showAlternativeCharacteristics) "!==" "all"}}
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+            {{/iff}}
+            {{#iff (showAlternativeCharacteristics) "===" "all"}}
+            <table class="stat-table-small">
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+            </table>
+            {{/iff}}
           {{/if}}
         {{/if}}
       {{/unless}}

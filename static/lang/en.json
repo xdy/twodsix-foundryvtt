@@ -145,6 +145,11 @@
         "DistM": "Meters",
         "DistMi": "Miles",
         "MovementRate": "Movement Rate"
+      },
+      "CharDisplay": {
+        "Base": "Base",
+        "Alternate": "Alternate",
+        "All": "All"
       }
     },
     "Chat": {
@@ -515,8 +520,8 @@
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
-        "name": "Show alternative characteristics"
+        "hint": "Base: core six plus PSI. Alternative: core six plus alternative. All: core six plus PSI plus Alternative",
+        "name": "Select characteristics to display"
       },
       "showContaminationBelowLifeblood": {
         "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",

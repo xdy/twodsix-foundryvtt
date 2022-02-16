@@ -265,6 +265,14 @@ export const MovementUnits = {
   km: "TWODSIX.Actor.Movement.DistKm"
 };
 
+/**
+ * The valid choices for characteristic displays in the game system.
+ */
+export const CharacteristicDisplayTypes = {
+  base: "Base",
+  alternate: "Alternate",
+  all: "All"
+};
 
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
@@ -275,7 +283,8 @@ export type TWODSIX = {
   RULESETS: typeof RULESETS,
   SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
   MovementUnits: typeof MovementUnits,
-  MovementType: typeof MovementTypes
+  MovementType: typeof MovementTypes,
+  CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes
 };
 
 export const TWODSIX = {
@@ -287,7 +296,8 @@ export const TWODSIX = {
   RULESETS: RULESETS,
   SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
   MovementUnits: MovementUnits,
-  MovementType: MovementTypes
+  MovementType: MovementTypes,
+  CharacteristicDisplayTypes: CharacteristicDisplayTypes
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
