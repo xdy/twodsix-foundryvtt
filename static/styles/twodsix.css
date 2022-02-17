@@ -610,8 +610,8 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
 
 .stat-table-small {
   background-color: var(--s2d6-nav-background);
-  font-size: 0.74em;
-  margin-left: 3.4em;
+  font-size: 11px;
+  margin-left: 3.2em;
   margin-top: 1.3em;
   width: 82%;
 }
