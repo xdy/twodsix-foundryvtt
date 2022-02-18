@@ -49,7 +49,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
     settings.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.push(booleanSetting('showHeroPoints', false));
-    settings.push(booleanSetting('showAlternativeCharacteristics', false));
+    settings.push(stringChoiceSetting('showAlternativeCharacteristics', "base", TWODSIX.CharacteristicDisplayTypes));
     settings.push(stringSetting("alternativeShort1", "ALT1"));
     settings.push(stringSetting("alternativeShort2", "ALT2"));
     return settings;

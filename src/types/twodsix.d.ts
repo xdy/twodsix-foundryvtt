@@ -60,7 +60,7 @@ declare global {
       'twodsix.hideUntrainedSkills': boolean;
       'twodsix.invertSkillRollShiftClick': boolean;
       'twodsix.lifebloodInsteadOfCharacteristics': boolean;
-      'twodsix.showAlternativeCharacteristics': boolean;
+      'twodsix.showAlternativeCharacteristics': string;
       'twodsix.showContaminationBelowLifeblood': boolean;
       'twodsix.showHeroPoints': boolean;
       'twodsix.showLifebloodStamina': boolean;

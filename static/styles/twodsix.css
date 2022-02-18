@@ -608,6 +608,14 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-bottom: 1.5em;
 }
 
+.stat-table-small {
+  background-color: var(--s2d6-nav-background);
+  font-size: 11px;
+  margin-left: 3.2em;
+  margin-top: 1.3em;
+  width: 82%;
+}
+
 span.stat-name {
   position: relative;
   /*left: 1.2em;*/
