@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
+
+
+### Features
+
+* alternative displays of characteristics ([#889](https://github.com/xdy/twodsix-foundryvtt/issues/889)) ([4c18d65](https://github.com/xdy/twodsix-foundryvtt/commit/4c18d65bf506254515abf14398ff9a96ba33c0c3))
+
 # [1.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.2...v1.18.0) (2022-02-15)
 
 
