@@ -3,7 +3,7 @@ import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils
 import TwodsixActor from "../entities/TwodsixActor";
 import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
-
+import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -94,6 +94,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     html.find('div[contenteditable="true"][data-edit]').on(
       'focusout',
       this._onSubmit.bind(this)
+    );
+    html.find('div[contenteditable="true"][data-edit]').on(
+      'paste',
+      onPasteStripFormatting.bind(this)
     );
   }
 

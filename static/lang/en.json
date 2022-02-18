@@ -145,6 +145,11 @@
         "DistM": "Meters",
         "DistMi": "Miles",
         "MovementRate": "Movement Rate"
+      },
+      "CharDisplay": {
+        "Base": "Base",
+        "Alternate": "Alternate",
+        "All": "All"
       }
     },
     "Chat": {
@@ -516,8 +521,8 @@
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
-        "name": "Show alternative characteristics"
+        "hint": "Base: core six plus PSI. Alternative: core six plus alternative. All: core six plus PSI plus Alternative",
+        "name": "Select characteristics to display"
       },
       "showContaminationBelowLifeblood": {
         "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
@@ -616,6 +621,10 @@
       "weightModifierForWornArmor": {
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
         "name": "Factor to multiply the weight value of a equipped armor."
+      },
+      "useTinyMCEditor": {
+        "hint": "Use the embedded HTML editor for larger input blocks.",
+        "name": "Use TinyMCE editor for larger input blocks."
       }
     },
     "CloseAndCreateNew": "Close and create new",

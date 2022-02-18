@@ -1,3 +1,31 @@
+# [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
+
+
+### Features
+
+* alternative displays of characteristics ([#889](https://github.com/xdy/twodsix-foundryvtt/issues/889)) ([4c18d65](https://github.com/xdy/twodsix-foundryvtt/commit/4c18d65bf506254515abf14398ff9a96ba33c0c3))
+
+# [1.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.2...v1.18.0) (2022-02-15)
+
+
+### Features
+
+* Improvements to large text inputs ([#881](https://github.com/xdy/twodsix-foundryvtt/issues/881)) ([2c4648d](https://github.com/xdy/twodsix-foundryvtt/commit/2c4648def63d10027c86d48152defb4239b18299))
+
+## [1.17.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.1...v1.17.2) (2022-02-15)
+
+
+### Bug Fixes
+
+* force cut and paste for contenteditables to be plain text ([#886](https://github.com/xdy/twodsix-foundryvtt/issues/886)) ([ce6c846](https://github.com/xdy/twodsix-foundryvtt/commit/ce6c846579172044f4cdda6bbfbd67edc33c0248))
+
+## [1.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.0...v1.17.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* NPC image aspect ratio ([#882](https://github.com/xdy/twodsix-foundryvtt/issues/882)) ([b15cd87](https://github.com/xdy/twodsix-foundryvtt/commit/b15cd8718fe86345a4e7aec69ca3e01ff845518c))
+
 # [1.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.16.0...v1.17.0) (2022-02-11)
 
 

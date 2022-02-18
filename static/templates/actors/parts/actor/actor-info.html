@@ -33,16 +33,26 @@
 <div class="info-container">
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
-    <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    {{#if (twodsix_useTinyMCE)}}
+      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    {{else}}
+      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+    {{/if}}
   </div>
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
-    <div contenteditable="true" data-edit="data.contacts">
-      {{{data.contacts}}}
-    </div>
+    {{#if (twodsix_useTinyMCE)}}
+      {{editor content=data.contacts target="data.contacts" button=true owner=owner editable=editable}}
+    {{else}}
+      <div contenteditable="true" data-edit="data.contacts">{{{data.contacts}}}</div>
+    {{/if}}
   </div>
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
-    <div contenteditable="true" data-edit="data.bio">{{{data.bio}}}</div>
+    {{#if (twodsix_useTinyMCE)}}
+      {{editor content=data.bio target="data.bio" button=true owner=owner editable=editable}}
+    {{else}}
+      <div contenteditable="true" data-edit="data.bio">{{{data.bio}}}</div>
+    {{/if}}
   </div>
 </div>
