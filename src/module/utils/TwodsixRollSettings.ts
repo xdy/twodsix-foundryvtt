@@ -1,6 +1,5 @@
 import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import {getCharShortName} from "./utils";
 import {getKeyByValue} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
@@ -15,6 +14,7 @@ export class TwodsixRollSettings {
   characteristic:string;
   skillRoll:boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
+  displayLabel:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
@@ -32,10 +32,12 @@ export class TwodsixRollSettings {
     this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
     this.characteristic = settings?.characteristic ?? characteristic;
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
+    this.displayLabel = settings?.displayLabel ?? "";
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
+    console.log(item, skill, showThrowDialog);
     if (showThrowDialog) {
       let title:string;
       if (item && skill) {
@@ -43,7 +45,7 @@ export class TwodsixRollSettings {
       } else if (skill) {
         title = skill.data.name;
       } else {
-        title = getCharShortName(twodsixRollSettings.characteristic);
+        title = settings?.displayLabel || "";
       }
       await twodsixRollSettings._throwDialog(title);
     } else {

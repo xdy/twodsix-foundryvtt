@@ -47,6 +47,9 @@ export default class TwodsixActor extends Actor {
       const characteristic: Characteristic = data.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
       characteristic.mod = calcModFor(characteristic.current);
+      if (characteristic.displayShortLabel === ""){
+        characteristic.displayShortLabel = game.i18n.localize("TWODSIX.Actor.Characteristics." + TWODSIX.CHARACTERISTICS[cha]);
+      }
     }
     const actorSkills = actorData.items.filter(
       (item:TwodsixItem) => item.type === "skills"

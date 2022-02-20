@@ -2,7 +2,6 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import { getCharShortName } from "./utils/utils";
 import {Skills, Component} from "../types/template";
 import { getPower, getWeight } from "./entities/TwodsixActor";
 
@@ -44,7 +43,7 @@ export default function registerHandlebarsHelpers(): void {
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod: number = calcModFor(characteristicElement.current);
-      const abbreviatedCharName: string = getCharShortName(characteristic);
+      const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");

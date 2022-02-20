@@ -6,7 +6,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
+import {Consumable, Gear, UsesConsumables, Weapon} from "../../types/template";
 
 
 export default class TwodsixItem extends Item {
@@ -68,7 +68,7 @@ export default class TwodsixItem extends Item {
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType: string, showThrowDialog: boolean, rateOfFireCE: number | null = null, showInChat = true, weapon: Weapon = <Weapon>this.data.data): Promise<void> {
+  public async performAttack(attackType: string, showThrowDialog: boolean, rateOfFireCE: number | null = null, shortChar?: string, displayLabel?: string, showInChat = true, weapon: Weapon = <Weapon>this.data.data): Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -85,12 +85,13 @@ export default class TwodsixItem extends Item {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
     const skill: TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
-    let tmpSettings: { characteristic?: string | undefined, diceModifier?: number | undefined } = {
+    let tmpSettings: { characteristic?: string | undefined, diceModifier?: number | undefined, displayLabel:string } = {
       characteristic: undefined,
-      diceModifier: undefined
+      diceModifier: undefined,
+      displayLabel: ""
     };
     if (skill) {
-      tmpSettings = {characteristic: (<Skills>skill.data.data).characteristic || 'NONE'};
+      tmpSettings = {characteristic: (shortChar || 'NONE'), displayLabel: displayLabel || ""};
     }
 
     let usedAmmo = 1;
@@ -154,21 +155,21 @@ export default class TwodsixItem extends Item {
 
     // Determine if this is a skill or an item
     const usesConsumable = <UsesConsumables>this.data.data;
-    if (this.type == "skills") {
+    if (this.type === "skills") {
       skill = this;
       item = undefined;
     } else if (usesConsumable.skill) {
       skill = this.actor?.items.get(usesConsumable.skill) as TwodsixItem;
       item = this;
     }
-
+    console.log("Skill Roll", "Skill: ", skill, "Item: ", item);
     if (!skill) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
     }
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
-    if (!tmpSettings) {
+    if (this.type === "weapon") {
       tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       if (!tmpSettings.shouldRoll) {
         return;

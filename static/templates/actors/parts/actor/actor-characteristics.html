@@ -1,7 +1,7 @@
 <div class="character-characteristics">
   <div class="stat strength" data-characteristic="strength">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll strength"></i> {{localize "TWODSIX.Actor.Characteristics.STR"}}</span>
+    ><i class="fas fa-dice" alt="roll strength"></i> {{data.characteristics.strength.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
                                       data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
@@ -15,7 +15,7 @@
 
   <div class="stat dexterity" data-characteristic="dexterity">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll dexterity"></i>{{localize "TWODSIX.Actor.Characteristics.DEX"}}</span>
+    ><i class="fas fa-dice" alt="roll dexterity"></i>{{data.characteristics.dexterity.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value"
                                       data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}"
@@ -29,7 +29,7 @@
 
   <div class="stat endurance" data-characteristic="endurance">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll endurance"></i>{{localize "TWODSIX.Actor.Characteristics.END"}}</span>
+    ><i class="fas fa-dice" alt="roll endurance"></i>{{data.characteristics.endurance.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
                                       data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
@@ -43,7 +43,7 @@
 
   <div class="stat intelligence" data-characteristic="intelligence">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll intelligence"></i>{{localize "TWODSIX.Actor.Characteristics.INT"}}</span>
+    ><i class="fas fa-dice" alt="roll intelligence"></i>{{data.characteristics.intelligence.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value"
                                       data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}"
@@ -57,7 +57,7 @@
 
   <div class="stat education" data-characteristic="education">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll education"></i>{{localize "TWODSIX.Actor.Characteristics.EDU"}}</span>
+    ><i class="fas fa-dice" alt="roll education"></i>{{data.characteristics.education.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value"
                                       data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}"
@@ -71,7 +71,7 @@
 
   <div class="stat socialStanding" data-characteristic="socialStanding">
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}"
-    ><i class="fas fa-dice" alt="roll socialStanding"></i>{{localize "TWODSIX.Actor.Characteristics.SOC"}}</span>
+    ><i class="fas fa-dice" alt="roll socialStanding"></i>{{data.characteristics.socialStanding.displayShortLabel}}</span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value"
                                       data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}"
@@ -112,7 +112,7 @@
   {{#iff (showAlternativeCharacteristics) "===" "base"}}
   <div class="special psionicStrength" data-characteristic="psionicStrength">
     <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-    >{{localize "TWODSIX.Actor.Characteristics.PSI"}}<i class="fas fa-dice" alt="roll psionicStrength"></i></span>
+    >{{data.characteristics.psionicStrength.displayShortLabel}}</span>
 
     <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
                                          data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
