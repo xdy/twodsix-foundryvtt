@@ -1,6 +1,7 @@
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
+import { getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
 
 export class TwodsixShipActions {
@@ -30,7 +31,7 @@ export class TwodsixShipActions {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const re = new RegExp(/^(.+?)\/?([A-Z]*?) ?(\d*?)\+?$/);
+    const re = new RegExp(/^(.+?)\/?([a-zA-Z]*?) ?(\d*?)\+?$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
 
     if (parsedResult !== null) {
@@ -40,8 +41,17 @@ export class TwodsixShipActions {
         ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
         return false;
       }
+      const charObject = extra.actor?.data.data["characteristics"];
+      const characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
+      let shortLabel = "NONE";
+      let displayLabel = "NONE";
+      if (charObject && characteristicKey) {
+        shortLabel = charObject[characteristicKey].shortLabel;
+        displayLabel = charObject[characteristicKey].displayShortLabel;
+      }
       const settings = {
-        characteristic: char ? char : undefined
+        characteristic: shortLabel,
+        displayLabel: displayLabel
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
@@ -72,4 +82,19 @@ export class TwodsixShipActions {
       TwodsixShipActions.chatMessage(`Missed ${extraStr}with effect ${result.effect}`, extra);
     }
   }
+}
+
+export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
+  let tempObject = {};
+  let charObject= {};
+  if (actor) {
+    charObject = actor.data.data["characteristics"];
+    for (const key in charObject) {
+      tempObject[key] = charObject[key].displayShortLabel;
+    }
+  } else {
+    tempObject = TWODSIX.CHARACTERISTICS;
+  }
+
+  return getKeyByValue(tempObject, char);
 }

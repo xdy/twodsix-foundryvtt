@@ -5,7 +5,6 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import {Crit} from "./crit";
-import {getCharShortName} from "./utils";
 import {Gear, Skills} from "../../types/template";
 
 export class TwodsixDiceRoll {
@@ -41,7 +40,7 @@ export class TwodsixDiceRoll {
     let formula = rollType;
 
     // Add characteristic modifier
-    if (this.settings.characteristic !== "NONE") {
+    if (this.settings.characteristic !== "NONE" && this.actor) {
       formula += ` + @${this.settings.characteristic}`;
       data[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
     }
@@ -161,9 +160,9 @@ export class TwodsixDiceRoll {
       flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll?.data['DM'])})`;
     }
 
-    if (this.settings.characteristic !== 'NONE') { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
+    if (this.settings.characteristic !== 'NONE'  && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
       const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data[this.settings.characteristic]);
-      const charShortName:string = getCharShortName(this.settings.characteristic);
+      const charShortName:string = this.settings.displayLabel;
       flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
     }
 

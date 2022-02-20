@@ -2,9 +2,9 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import { getCharShortName } from "./utils/utils";
 import {Skills, Component} from "../types/template";
-import { getPower, getWeight } from "./entities/TwodsixActor";
+import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
+import { _genTranslatedSkillList, _genUntranslatedSkillList } from "./utils/TwodsixRollSettings";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -44,7 +44,7 @@ export default function registerHandlebarsHelpers(): void {
     const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod: number = calcModFor(characteristicElement.current);
-      const abbreviatedCharName: string = getCharShortName(characteristic);
+      const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
@@ -280,6 +280,20 @@ export default function registerHandlebarsHelpers(): void {
     } else {
       return retValue;
     }
+  });
+
+  Handlebars.registerHelper('getComponentMaxHits', () => {
+    return game.settings.get("twodsix", "maxComponentHits");
+  });
+
+  Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
+    let returnValue = {};
+    if (actor) {
+      returnValue = _genTranslatedSkillList(actor);
+    } else {
+      returnValue = _genUntranslatedSkillList();
+    }
+    return returnValue;
   });
 
   Handlebars.registerHelper('getComponentMaxHits', () => {

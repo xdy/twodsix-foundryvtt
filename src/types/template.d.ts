@@ -204,6 +204,7 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
+  characteristicEdit:boolean;
 }
 
 export interface Age {
@@ -231,6 +232,7 @@ export interface Characteristic {
   damage:number;
   label:string;
   shortLabel:string;
+  displayShortLabel:string;
   current:number; //Not in template.json
   mod:number; //Not in template.json
 }

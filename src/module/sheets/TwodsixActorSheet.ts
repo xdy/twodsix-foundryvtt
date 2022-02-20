@@ -2,8 +2,9 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Consumable, Skills} from "../../types/template";
+import { Consumable, Skills } from "../../types/template";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
+import { getKeyByValue } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -151,14 +152,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onPerformAttack(event, showTrowDiag: boolean): Promise<void> {
+  private async _onPerformAttack(event, showThrowDiag: boolean): Promise<void> {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
     const item = this.getItem(event);
+    console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet")) {
       resolveUnknownAutoMode(item);
     } else {
-      await item.performAttack(attackType, showTrowDiag, rof);
+      await item.performAttack(attackType, showThrowDiag, rof);
     }
   }
 
@@ -168,19 +170,22 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onSkillRoll(event, showTrowDiag: boolean): Promise<void> {
+  private async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
     const item = this.getItem(event);
-    await item.skillRoll(showTrowDiag);
+    await item.skillRoll(showThrowDiag );
   }
 
   /**
    * Handle clickable characteristics rolls.
    * @param {Event} event   The originating click event
-   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onRollChar(event, showTrowDiag: boolean): Promise<void> {
-    await (<TwodsixActor>this.actor).characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
+  private async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
+    const shortChar = $(event.currentTarget).data("label");
+    const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+    const displayShortChar = (<TwodsixActor>this.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+    await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
   }
 
   private static untrainedToJoat(skillValue: number): number {

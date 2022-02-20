@@ -59,3 +59,8 @@
     {{selectOptions config.MovementUnits selected=data.movement.units inverted=true}}
   </select>
 </span>
+
+<!-- Characteristic Edit Mode -->
+<span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fas fa-edit"></i>:
+  <input type="checkbox" class="checkbox" name="data.characteristicEdit" {{checked data.characteristicEdit}} data-dtype="Boolean" />
+</span>

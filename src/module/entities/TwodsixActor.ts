@@ -9,6 +9,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import { getCharShortName } from "../utils/utils";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -47,6 +48,9 @@ export default class TwodsixActor extends Actor {
       const characteristic: Characteristic = data.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
       characteristic.mod = calcModFor(characteristic.current);
+      if (characteristic.displayShortLabel === "") {
+        characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
+      }
     }
     const actorSkills = actorData.items.filter(
       (item:TwodsixItem) => item.type === "skills"

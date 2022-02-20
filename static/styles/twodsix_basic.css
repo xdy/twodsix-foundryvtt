@@ -311,6 +311,10 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   color: inherit !important;*/
 }
 
+span.bgi-charEdit {
+  margin-left: 1em;
+}
+
 .bgi-armor input {
   position: relative;
   margin-bottom: -0.5em;
@@ -362,6 +366,14 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-left: 0.7em;
 }
 
+.table-header-row {
+  height: 5ch;
+}
+
+span.edit-char-toggle {
+  text-align: center;
+}
+
 span.stat-name {
   position: relative;
   left: 0.5em;
@@ -372,13 +384,23 @@ span.stat-name {
   cursor: pointer;
 }
 
-span.stat-name-table {
+span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
   text-align: center !important;
   width: 4ch;
   transform: rotate(-45deg);
+}
+
+input.stat-name-table {
+  cursor: inherit;
+  background-color: unset !important;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-light-highlight);
+  text-shadow: 1px 1px var(--color-shadow-dark);
 }
 
 .stat input, .special input {
@@ -420,6 +442,7 @@ span.special-name {
   right: -0.8em;
   font-size: 1.2em;
   width: 4em;
+  cursor: pointer;
 }
 
 span.stat-ability {
@@ -750,6 +773,10 @@ input.item-value-edit {
 .item-controls .item-toggle.equipped .fa-hiking { display: none; }
 .item-controls .item-toggle.ship .fa-space-shuttle,
 .item-controls .item-toggle.equipped .fa-child { display: inline; }
+
+.item-controls {
+  align-self: center;
+}
 
 .skill:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
@@ -1604,6 +1631,9 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-left: 0;
 }
 
+.mini-dice {
+ align-self: center;
+}
 /*--- Item Page ---*/
 
 .small-grid {

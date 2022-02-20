@@ -55,79 +55,91 @@
           "value": 7,
           "damage": 0,
           "label": "Strength",
-          "shortLabel": "STR"
+          "shortLabel": "STR",
+          "displayShortLabel": ""
         },
         "dexterity": {
           "key": "dexterity",
           "value": 7,
           "damage": 0,
           "label": "Dexterity",
-          "shortLabel": "DEX"
+          "shortLabel": "DEX",
+          "displayShortLabel": ""
         },
         "endurance": {
           "key": "endurance",
           "value": 7,
           "damage": 0,
           "label": "Endurance",
-          "shortLabel": "END"
+          "shortLabel": "END",
+          "displayShortLabel": ""
         },
         "intelligence": {
           "key": "intelligence",
           "value": 7,
           "damage": 0,
           "label": "Intelligence",
-          "shortLabel": "INT"
+          "shortLabel": "INT",
+          "displayShortLabel": ""
         },
         "education": {
           "key": "education",
           "value": 7,
           "damage": 0,
           "label": "Education",
-          "shortLabel": "EDU"
+          "shortLabel": "EDU",
+          "displayShortLabel": ""
         },
         "socialStanding": {
           "key": "socialStanding",
           "value": 7,
           "damage": 0,
           "label": "Social Standing",
-          "shortLabel": "SOC"
+          "shortLabel": "SOC",
+          "displayShortLabel": ""
         },
         "psionicStrength": {
           "key": "psionicStrength",
           "value": 7,
           "damage": 0,
           "label": "Psionic Strength",
-          "shortLabel": "PSI"
+          "shortLabel": "PSI",
+          "displayShortLabel": ""
         },
         "stamina": {
           "key": "stamina",
           "value": 7,
           "damage": 0,
           "label": "Stamina",
-          "shortLabel": "STA"
+          "shortLabel": "STA",
+          "displayShortLabel": ""
         },
         "lifeblood": {
           "key": "lifeblood",
           "value": 14,
           "damage": 0,
           "label": "Lifeblood",
-          "shortLabel": "LFB"
+          "shortLabel": "LFB",
+          "displayShortLabel": ""
         },
         "alternative1": {
           "key": "alternative1",
           "value": 7,
           "damage": 0,
           "label": "Alternative 1",
-          "shortLabel": "ALT1"
+          "shortLabel": "ALT1",
+          "displayShortLabel": ""
         },
         "alternative2": {
           "key": "alternative2",
           "value": 7,
           "damage": 0,
           "label": "Alternative 2",
-          "shortLabel": "ALT2"
+          "shortLabel": "ALT2",
+          "displayShortLabel": ""
         }
       },
+      "characteristicEdit": false,
       "movement": {
         "burrow": 0,
         "climb": 0,

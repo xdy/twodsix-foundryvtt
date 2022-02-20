@@ -51,6 +51,7 @@
         "ALT1": "ALT1",
         "ALT2": "ALT2"
       },
+      "CharacteristicEdit": "Toggle Edit Mode for Characteristic Short Names",
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
