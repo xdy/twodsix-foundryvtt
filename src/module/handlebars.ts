@@ -3,7 +3,8 @@ import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import {Skills, Component} from "../types/template";
-import { getPower, getWeight } from "./entities/TwodsixActor";
+import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
+import { _genTranslatedSkillList, _genUntranslatedSkillList } from "./utils/TwodsixRollSettings";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -279,6 +280,16 @@ export default function registerHandlebarsHelpers(): void {
     } else {
       return retValue;
     }
+  });
+
+  Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
+    let returnValue = {};
+    if (actor) {
+      returnValue = _genTranslatedSkillList(actor);
+    } else {
+      returnValue = _genUntranslatedSkillList();
+    }
+    return returnValue;
   });
 
   // Handy for debugging

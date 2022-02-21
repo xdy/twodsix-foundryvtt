@@ -3,6 +3,7 @@ import type TwodsixItem from "../entities/TwodsixItem";
 import {getKeyByValue} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
+import TwodsixActor from "../entities/TwodsixActor";
 
 
 export class TwodsixRollSettings {
@@ -49,13 +50,16 @@ export class TwodsixRollSettings {
         title = settings?.displayLabel || "";
       }
 
-      await twodsixRollSettings._throwDialog(title);
+      await twodsixRollSettings._throwDialog(title, skill);
 
       //Get display label
       if (skill && skill.actor) {
-        const shortChar = twodsixRollSettings.characteristic;
-        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-        twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+        if (twodsixRollSettings.characteristic === "NONE") {
+          twodsixRollSettings.displayLabel = "";
+        } else {
+          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.characteristic);
+          twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+        }
       } else if (skill) {
         twodsixRollSettings.displayLabel = ""; // for unattached skill roll
         twodsixRollSettings.characteristic = "NONE";
@@ -67,7 +71,7 @@ export class TwodsixRollSettings {
     return twodsixRollSettings;
   }
 
-  private async _throwDialog(title:string):Promise<void> {
+  private async _throwDialog(title:string, skill?: TwodsixItem):Promise<void> {
     const template = 'systems/twodsix/templates/chat/throw-dialog.html';
     const dialogData = {
       rollType: this.rollType,
@@ -77,7 +81,8 @@ export class TwodsixRollSettings {
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
       diceModifier: this.diceModifier,
-      characteristic: this.characteristic,
+      characteristicList: _genTranslatedSkillList(<TwodsixActor>skill?.actor),
+      initialChoice: this.characteristic,
       skillRoll: this.skillRoll
     };
 
@@ -116,4 +121,44 @@ export class TwodsixRollSettings {
       }).render(true);
     });
   }
+}
+
+export function _genTranslatedSkillList(actor:TwodsixActor):object {
+  const returnValue = {};
+  if (actor) {
+    returnValue["STR"] = actor.data.data["characteristics"].strength.displayShortLabel;
+    returnValue["DEX"] = actor.data.data["characteristics"].dexterity.displayShortLabel;
+    returnValue["END"] = actor.data.data["characteristics"].endurance.displayShortLabel;
+    returnValue["INT"] = actor.data.data["characteristics"].intelligence.displayShortLabel;
+    returnValue["EDU"] = actor.data.data["characteristics"].education.displayShortLabel;
+    returnValue["SOC"] = actor.data.data["characteristics"].socialStanding.displayShortLabel;
+    if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "base") {
+      returnValue["ALT1"] = actor.data.data["characteristics"].alternative1.displayShortLabel;
+      returnValue["ALT2"] =  actor.data.data["characteristics"].alternative2.displayShortLabel;
+    }
+    if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "alternate") {
+      returnValue["PSI"] =  actor.data.data["characteristics"].psionicStrength.displayShortLabel;
+    }
+  }
+  returnValue["NONE"] =  "---";
+  return returnValue;
+}
+
+export function _genUntranslatedSkillList(): object {
+  const returnValue = {};
+  returnValue["STR"] = game.i18n.localize("TWODSIX.Items.Skills.STR");
+  returnValue["DEX"] = game.i18n.localize("TWODSIX.Items.Skills.DEX");
+  returnValue["END"] = game.i18n.localize("TWODSIX.Items.Skills.END");
+  returnValue["INT"] = game.i18n.localize("TWODSIX.Items.Skills.INT");
+  returnValue["EDU"] = game.i18n.localize("TWODSIX.Items.Skills.EDU");
+  returnValue["SOC"] = game.i18n.localize("TWODSIX.Items.Skills.SOC");
+  if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "base") {
+    returnValue["ALT1"] = game.settings.get('twodsix', 'alternativeShort1');
+    returnValue["ALT2"] = game.settings.get('twodsix', 'alternativeShort2');
+  }
+  if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "alternate") {
+    returnValue["PSI"] = game.i18n.localize("TWODSIX.Items.Skills.PSI");
+  }
+  returnValue["NONE"] = "---";
+  return returnValue;
 }
