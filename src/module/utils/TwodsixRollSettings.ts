@@ -41,22 +41,26 @@ export class TwodsixRollSettings {
     if (showThrowDialog) {
       console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
       let title:string;
-      if (skill) {
-        //Get display label
-        const shortChar = skill.data?.data["characteristic"];
-        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-        twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
-
-        if (item) {
-          title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
-        } else {
-          title = skill.data.name;
-        }
+      if (item && skill) {
+        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
+      } else if (skill) {
+        title = skill.data.name;
       } else {
         title = settings?.displayLabel || "";
       }
 
       await twodsixRollSettings._throwDialog(title);
+
+      //Get display label
+      if (skill && skill.actor) {
+        const shortChar = twodsixRollSettings.characteristic;
+        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+        twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+      } else if (skill) {
+        twodsixRollSettings.displayLabel = ""; // for unattached skill roll
+        twodsixRollSettings.characteristic = "NONE";
+      }
+
     } else {
       twodsixRollSettings.shouldRoll = true;
     }

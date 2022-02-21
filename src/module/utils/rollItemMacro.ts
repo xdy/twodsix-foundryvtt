@@ -1,8 +1,6 @@
 import TwodsixItem from "../entities/TwodsixItem";
 import { TWODSIX } from "../config";
 import {Weapon} from "../../types/template";
-import { TwodsixRollSettings } from "./TwodsixRollSettings";
-import { getKeyByValue } from "./sheetUtils";
 
 /**
  * Use a previously created macro.
@@ -21,23 +19,17 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
   if (!item) {
     const unattachedItem = game.items?.get(itemId);
+    console.log(unattachedItem, actor);
     if (unattachedItem?.type != "weapon" && !actor && unattachedItem) {
       await (<TwodsixItem><unknown>unattachedItem).skillRoll(true);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorMissingItem").replace("_ITEM_ID_", itemId));
     }
   } else {
-    const showThrow = !game.settings.get("twodsix", "invertSkillRollShiftClick");
-    if (item.data.type === "skills") {
-      const shortChar = item.data.data.characteristic;
-      const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-      const displayShortChar = (<TwodsixActor>this.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
-      const settings: TwodsixRollSettings = await TwodsixRollSettings.create(showThrow, {"characteristic": shortChar, "displayLabel": displayShortChar});
-      await item.skillRoll(showThrow, settings);
-    } else if (item.data.type == "weapon"){
-      resolveUnknownAutoMode(item);
+    if (item.data.type != "weapon") {
+      await item.skillRoll(!game.settings.get("twodsix", "invertSkillRollShiftClick"));
     } else {
-      await item.skillRoll(showThrow);
+      resolveUnknownAutoMode(item);
     }
   }
 }
