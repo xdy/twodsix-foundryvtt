@@ -39,14 +39,23 @@ export class TwodsixRollSettings {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
     console.log(item, skill, showThrowDialog);
     if (showThrowDialog) {
+      console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
       let title:string;
-      if (item && skill) {
-        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
-      } else if (skill) {
-        title = skill.data.name;
+      if (skill) {
+        //Get display label
+        const shortChar = skill.data?.data["characteristic"];
+        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+        twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+
+        if (item) {
+          title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
+        } else {
+          title = skill.data.name;
+        }
       } else {
         title = settings?.displayLabel || "";
       }
+
       await twodsixRollSettings._throwDialog(title);
     } else {
       twodsixRollSettings.shouldRoll = true;

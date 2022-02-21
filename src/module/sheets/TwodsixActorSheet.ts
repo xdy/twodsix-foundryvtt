@@ -3,10 +3,9 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import { Consumable, Skills, Weapon } from "../../types/template";
+import { Consumable, Skills } from "../../types/template";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 import { getKeyByValue } from "../utils/sheetUtils";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -105,33 +104,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     return <TwodsixItem>this.actor.items.get(itemId);
   }
 
-  private _onRollWrapper(func: (event, shortChar: string, showTrowDiag: boolean, displayLabel: string) => Promise<void>): (event) => void {
+  private _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
     return (event) => {
       event.preventDefault();
       event.stopPropagation();
 
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-      const itemId = $(event.currentTarget).parents('.item').data('item-id');
-      let shortChar = "";
-      if (itemId === undefined) {
-        shortChar =  $(event.currentTarget).data("label");
-      } else {
-        const selectedItem= <TwodsixItem>this.actor.items.get(itemId);
-        console.log("Selected Item", selectedItem);
-        if (selectedItem.type === "skills") {
-          shortChar = selectedItem.data.data["characteristic"];
-        } else if (selectedItem.type === "weapon") {
-          const skillId = selectedItem.data.data["skill"];
-          shortChar = this.actor.items.get(skillId)?.data.data["characteristic"];
-        }
-      }
-      console.log("Label:", shortChar);
-      const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-      console.log("Actor Characteristics", (<TwodsixActor>this.actor).data.data["characteristics"], fullCharLabel);
-      const displayShortChar = (<TwodsixActor>this.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
-      console.log("Short Name Display:", displayShortChar);
-      func.bind(this)(event, shortChar, showTrowDiag, displayShortChar);
+
+      func.bind(this)(event, showTrowDiag);
     };
   }
 
@@ -171,7 +152,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onPerformAttack(event, shortChar: string, showThrowDiag: boolean, displayLabel: string): Promise<void> {
+  private async _onPerformAttack(event, showThrowDiag: boolean): Promise<void> {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
     const item = this.getItem(event);
@@ -179,7 +160,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (this.options.template?.includes("npc-sheet")) {
       resolveUnknownAutoMode(item);
     } else {
-      await item.performAttack(attackType, showThrowDiag, rof, shortChar, displayLabel, true);
+      await item.performAttack(attackType, showThrowDiag, rof);
     }
   }
 
@@ -189,10 +170,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onSkillRoll(event, shortChar: string, showThrowDiag: boolean, displayLabel: string): Promise<void> {
+  private async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
     const item = this.getItem(event);
-    const settings: TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, {"characteristic": shortChar, "displayLabel": displayLabel}, item);
-    await item.skillRoll(showThrowDiag, settings );
+    await item.skillRoll(showThrowDiag );
   }
 
   /**
@@ -201,8 +181,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onRollChar(event, shortChar: string, showThrowDiag: boolean, displayLabel: string): Promise<void> {
-    await (<TwodsixActor>this.actor).characteristicRoll({"characteristic": shortChar, "displayLabel": displayLabel}, showThrowDiag);
+  private async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
+    const shortChar = $(event.currentTarget).data("label");
+    const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+    const displayShortChar = (<TwodsixActor>this.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+    await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
   }
 
   /**

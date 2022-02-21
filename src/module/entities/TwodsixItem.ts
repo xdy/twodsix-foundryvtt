@@ -6,7 +6,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Consumable, Gear, UsesConsumables, Weapon} from "../../types/template";
+import { Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
 
 
 export default class TwodsixItem extends Item {
@@ -14,7 +14,7 @@ export default class TwodsixItem extends Item {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
     if (item?.data.type === 'weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
-      await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
+      await item.update({ 'img': 'systems/twodsix/assets/icons/default_weapon.png' });
     }
 
     return item;
@@ -48,7 +48,7 @@ export default class TwodsixItem extends Item {
       if (gear.consumables.includes(consumableId)) {
         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
-        await this.update({"data.consumables": gear.consumables.concat(consumableId)}, {});
+        await this.update({ "data.consumables": gear.consumables.concat(consumableId) }, {});
       }
     } else {
       ui.notifications.error(`Twodsix | Consumable can't be added to item ${this.id}`);
@@ -59,7 +59,7 @@ export default class TwodsixItem extends Item {
     const updatedConsumables = gear.consumables.filter((cId: string) => {
       return (cId !== consumableId && cId !== null && this.actor?.items.get(cId) !== undefined);
     });
-    const updateData = {"data.consumables": updatedConsumables};
+    const updateData = { "data.consumables": updatedConsumables };
     if (gear.useConsumableForAttack === consumableId) {
       updateData["data.useConsumableForAttack"] = "";
     }
@@ -68,7 +68,7 @@ export default class TwodsixItem extends Item {
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType: string, showThrowDialog: boolean, rateOfFireCE: number | null = null, shortChar?: string, displayLabel?: string, showInChat = true, weapon: Weapon = <Weapon>this.data.data): Promise<void> {
+  public async performAttack(attackType: string, showThrowDialog: boolean, rateOfFireCE: number | null = null, showInChat = true, weapon: Weapon = <Weapon>this.data.data): Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -85,13 +85,12 @@ export default class TwodsixItem extends Item {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
     const skill: TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
-    let tmpSettings: { characteristic?: string | undefined, diceModifier?: number | undefined, displayLabel:string } = {
+    let tmpSettings: { characteristic?: string | undefined, diceModifier?: number | undefined } = {
       characteristic: undefined,
-      diceModifier: undefined,
-      displayLabel: ""
+      diceModifier: undefined
     };
     if (skill) {
-      tmpSettings = {characteristic: (shortChar || 'NONE'), displayLabel: displayLabel || ""};
+      tmpSettings = { characteristic: (<Skills>skill.data.data).characteristic || 'NONE' };
     }
 
     let usedAmmo = 1;
@@ -155,21 +154,21 @@ export default class TwodsixItem extends Item {
 
     // Determine if this is a skill or an item
     const usesConsumable = <UsesConsumables>this.data.data;
-    if (this.type === "skills") {
+    if (this.type == "skills") {
       skill = this;
       item = undefined;
     } else if (usesConsumable.skill) {
       skill = this.actor?.items.get(usesConsumable.skill) as TwodsixItem;
       item = this;
     }
-    console.log("Skill Roll", "Skill: ", skill, "Item: ", item);
+
     if (!skill) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
     }
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
-    if (this.type === "weapon") {
+    if (!tmpSettings) {
       tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       if (!tmpSettings.shouldRoll) {
         return;
@@ -212,7 +211,7 @@ export default class TwodsixItem extends Item {
 
     const damageFormula = weapon.damage + (bonusDamage ? "+" + bonusDamage : "");
     const damageRoll = new Roll(damageFormula, this.actor?.data.data);
-    const damage: Roll = await damageRoll.evaluate({async: true}); // async: true will be default in foundry 0.10
+    const damage: Roll = await damageRoll.evaluate({ async: true }); // async: true will be default in foundry 0.10
     const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
     if (showInChat) {
       const results = damage.terms[0]["results"];
@@ -232,13 +231,13 @@ export default class TwodsixItem extends Item {
         }
       );
       await damage.toMessage({
-        speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : "???",
+        speaker: this.actor ? ChatMessage.getSpeaker({ actor: this.actor }) : "???",
         content: html,
         flags: {
           "core.canPopout": true,
           "transfer": transfer
         }
-      }, {rollMode: rollMode});
+      }, { rollMode: rollMode });
     }
     return damage;
   }
@@ -290,7 +289,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static simplifySkillName(skillName:string): string {
+  public static simplifySkillName(skillName: string): string {
     return skillName.replace(/\W/g, "");
   }
 
@@ -298,9 +297,9 @@ export default class TwodsixItem extends Item {
   public async consume(quantity: number): Promise<void> {
     const consumableLeft = (<Consumable>this.data.data).currentCount - quantity;
     if (consumableLeft >= 0) {
-      await this.update({"data.currentCount": consumableLeft}, {});
+      await this.update({ "data.currentCount": consumableLeft }, {});
     } else {
-      throw {name: 'NoAmmoError'};
+      throw { name: 'NoAmmoError' };
     }
   }
 
@@ -312,7 +311,7 @@ export default class TwodsixItem extends Item {
         "data.currentCount": consumable.max
       }, {});
     } else {
-      throw {name: 'TooLowQuantityError'};
+      throw { name: 'TooLowQuantityError' };
     }
   }
 }
