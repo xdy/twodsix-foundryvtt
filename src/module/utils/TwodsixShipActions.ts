@@ -43,9 +43,9 @@ export class TwodsixShipActions {
       }
       const charObject = extra.actor?.data.data["characteristics"];
       const characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
-      let shortLabel = "";
-      let displayLabel = "";
-      if (charObject) {
+      let shortLabel = "NONE";
+      let displayLabel = "NONE";
+      if (charObject && characteristicKey) {
         shortLabel = charObject[characteristicKey].shortLabel;
         displayLabel = charObject[characteristicKey].displayShortLabel;
       }
@@ -96,5 +96,5 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
     tempObject = TWODSIX.CHARACTERISTICS;
   }
 
-  return getKeyByValue(tempObject, char).toString();
+  return getKeyByValue(tempObject, char);
 }
