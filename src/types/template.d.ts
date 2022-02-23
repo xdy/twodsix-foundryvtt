@@ -204,6 +204,7 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
+  characteristicEdit:boolean;
 }
 
 export interface Age {

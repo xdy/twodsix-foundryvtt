@@ -1,29 +1,45 @@
   <thead>
-    <tr>
-      <td></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}">{{data.characteristics.strength.displayShortLabel}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}">{{data.characteristics.dexterity.displayShortLabel}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}">{{data.characteristics.endurance.displayShortLabel}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}">{{data.characteristics.intelligence.displayShortLabel}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}">{{data.characteristics.education.displayShortLabel}}</span></td>
-      <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-        data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}">{{data.characteristics.socialStanding.displayShortLabel}}</span></td>
-
-      {{#iff (showAlternativeCharacteristics) "!==" "base"}}
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-          data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}">{{alternativeShort1}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-          data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}">{{alternativeShort2}}</span></td>
-      {{/iff}}
-      {{#iff (showAlternativeCharacteristics) "!==" "alternate"}}
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}"
-          data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">{{data.characteristics.psionicStrength.displayShortLabel}}</span></td>
-      {{/iff}}
+    <tr class="table-header-row">
+      {{#if data.characteristicEdit}}
+        <td></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.strength.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.dexterity.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.endurance.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.intelligence.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.education.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.socialStanding.displayShortLabel}}</span></td>
+        {{#iff (showAlternativeCharacteristics) "!==" "base"}}
+        <td><span contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.alternative1.displayShortLabel}}</span></td>
+        <td><span contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.alternative2.displayShortLabel}}</span></td>
+        {{/iff}}
+        {{#iff (showAlternativeCharacteristics) "!==" "alternate"}}
+        <td><span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.psionicStrength.displayShortLabel}}</span></td>
+        {{/iff}}
+      {{else}}
+        <td></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}">
+          {{data.characteristics.strength.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}">
+          {{data.characteristics.dexterity.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}">
+          {{data.characteristics.endurance.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}">
+          {{data.characteristics.intelligence.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}">
+          {{data.characteristics.education.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}">
+          {{data.characteristics.socialStanding.displayShortLabel}}</span></td>
+        {{#iff (showAlternativeCharacteristics) "!==" "base"}}
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}">
+          {{data.characteristics.alternative1.displayShortLabel}}</span></td>
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}">
+          {{data.characteristics.alternative2.displayShortLabel}}</span></td>
+        {{/iff}}
+        {{#iff (showAlternativeCharacteristics) "!==" "alternate"}}
+        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">
+          {{data.characteristics.psionicStrength.displayShortLabel}}</span></td>
+        {{/iff}}
+      {{/if}}
     </tr>
   </thead>
   <tbody>

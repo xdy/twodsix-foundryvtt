@@ -139,6 +139,7 @@
           "displayShortLabel": ""
         }
       },
+      "characteristicEdit": false,
       "movement": {
         "burrow": 0,
         "climb": 0,

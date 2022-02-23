@@ -555,12 +555,16 @@ span.bgi-age {
   margin-right: 0;
 }
 
-span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
+span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
   margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
   font-weight: bold;
   color: var(--s2d6-default-color) !important;
+}
+
+span.bgi-charEdit {
+  margin-left: 1em;
 }
 
 .bgi-armor input {
@@ -598,6 +602,12 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   color: var(--s2d6-default-color) !important;
 }
 
+.edit-mode {
+  position: relative;
+  margin-top: -1.5em;
+  margin-left: -1em;
+}
+
 .stat {
   background-image: url(../assets/actor/Stat-1.svg);
   background-size: cover !important;
@@ -612,18 +622,26 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
   margin-left: 3.2em;
-  margin-top: 1.3em;
+  margin-top: 8px;
   width: 82%;
+}
+.table-header-row {
+  height: 5ch;
+}
+
+span.edit-char-toggle {
+  text-align: center;
 }
 
 span.stat-name {
   position: relative;
-  /*left: 1.2em;*/
+  left: 0.7em;
   top: -1.1em;
   font-size: 1.2em;
   display: block;
-  /*width: 2.4em;*/
+  width: 65%;
   cursor: pointer;
+  text-align: center;
 }
 
 span.stat-name-table {
@@ -656,7 +674,7 @@ span.stat-name-table {
 .special {
   background-image: url(../assets/actor/Stat-Psi.svg);
   height: 55px;
-  width: 44px;
+  width: 46px;
   background-size: cover;
   position: relative;
 }
@@ -687,8 +705,11 @@ span.stat-name-table {
 span.special-name {
   position: relative;
   top: -1.1em;
-  /*right: -0.15em;*/
+  right: -0.15em;
   font-size: 1.2em;
+  cursor: pointer;
+  display: inline-block;
+  min-width: 3ch;
 }
 
 span.stat-ability {
@@ -754,13 +775,13 @@ span.special-modifier {
   margin: -5px;
   position: relative;
   /* left: 1em; */
-  top: -2.4em;
+  top: -2.2em;
 }
 
 span.special-damage {
   position: relative;
-  padding-left: 0.6em;
-  top: -1.4em;
+  padding-left: 0.7em;
+  top: -1.3em;
 }
 
 svg:hover {
@@ -975,6 +996,7 @@ span.add-skill-txt {
 
 .skill {
   padding: 0.1em 0 0.1em 0.5em;
+  width: 34.2em;
 }
 
 a:hover, a.active {
