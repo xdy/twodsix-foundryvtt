@@ -19,7 +19,6 @@ export async function rollItemMacro(itemId: string): Promise<void> {
   const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
   if (!item) {
     const unattachedItem = game.items?.get(itemId);
-    console.log(unattachedItem, actor);
     if (unattachedItem?.type != "weapon" && !actor && unattachedItem) {
       await (<TwodsixItem><unknown>unattachedItem).skillRoll(true);
     } else {
