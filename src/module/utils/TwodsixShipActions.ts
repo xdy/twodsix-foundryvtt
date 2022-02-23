@@ -43,11 +43,15 @@ export class TwodsixShipActions {
       }
       const charObject = extra.actor?.data.data["characteristics"];
       const characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
-      const shortLabel = charObject[characteristicKey].shortLabel;
-      const displayLabel = charObject[characteristicKey].displayShortLabel;
+      let shortLabel = "";
+      let displayLabel = "";
+      if (charObject) {
+        shortLabel = charObject[characteristicKey].shortLabel;
+        displayLabel = charObject[characteristicKey].displayShortLabel;
+      }
       const settings = {
-        characteristic: shortLabel ? shortLabel : undefined,
-        displayLabel: displayLabel ? displayLabel : undefined
+        characteristic: shortLabel,
+        displayLabel: displayLabel
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
@@ -80,11 +84,17 @@ export class TwodsixShipActions {
   }
 }
 
-export function getCharacteristicFromDisplayLabel(char:string, actor:TwodsixActor):string {
-  const tempObject = {};
-  const charObject = actor.data.data["characteristics"];
-  for (const key in charObject) {
-    tempObject[key] = charObject[key].displayShortLabel;
+export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
+  let tempObject = {};
+  let charObject= {};
+  if (actor) {
+    charObject = actor.data.data["characteristics"];
+    for (const key in charObject) {
+      tempObject[key] = charObject[key].displayShortLabel;
+    }
+  } else {
+    tempObject = TWODSIX.CHARACTERISTICS;
   }
+
   return getKeyByValue(tempObject, char).toString();
 }
