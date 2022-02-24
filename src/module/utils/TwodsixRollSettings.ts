@@ -38,16 +38,20 @@ export class TwodsixRollSettings {
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item);
-    console.log(item, skill, showThrowDialog);
     if (showThrowDialog) {
-      console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
+      //console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
       let title:string;
       if (item && skill) {
         title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
       } else if (skill) {
         title = skill.data.name;
+        //check for characterisitc not on actor characteristic list
+        if (_genTranslatedSkillList(<TwodsixActor>skill?.actor)[twodsixRollSettings.characteristic] === undefined) {
+          twodsixRollSettings.characteristic = "NONE";
+        }
       } else {
-        title = settings?.displayLabel || "";
+        title = settings?.displayLabel ?? "";
+        //console.log("Here:", settings);
       }
 
       await twodsixRollSettings._throwDialog(title, skill);
@@ -68,6 +72,7 @@ export class TwodsixRollSettings {
     } else {
       twodsixRollSettings.shouldRoll = true;
     }
+    //console.log("Settings: ", twodsixRollSettings);
     return twodsixRollSettings;
   }
 
