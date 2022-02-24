@@ -46,7 +46,7 @@ export class TwodsixRollSettings {
       } else if (skill) {
         title = skill.data.name;
         //check for characterisitc not on actor characteristic list
-        if (_genTranslatedSkillList(<TwodsixActor>skill?.actor)[twodsixRollSettings.characteristic] === undefined) {
+        if (_genTranslatedSkillList(<TwodsixActor>skill.actor)[twodsixRollSettings.characteristic] === undefined) {
           twodsixRollSettings.characteristic = "NONE";
         }
       } else {
