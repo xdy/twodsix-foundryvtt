@@ -16,7 +16,7 @@
         <td><span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="stat-name-table" style="cursor: text;" >{{data.characteristics.psionicStrength.displayShortLabel}}</span></td>
         {{/iff}}
       {{else}}
-        <td></td>
+        <td><i class="fas fa-dice" alt="d6"></i></td>
         <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}">
           {{data.characteristics.strength.displayShortLabel}}</span></td>
         <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}">

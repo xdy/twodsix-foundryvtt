@@ -635,11 +635,11 @@ span.edit-char-toggle {
 
 span.stat-name {
   position: relative;
-  left: 0.7em;
+  /*left: 0.7em;*/
   top: -1.1em;
   font-size: 1.2em;
   display: block;
-  width: 65%;
+  /*width: 65%;*/
   cursor: pointer;
   text-align: center;
 }

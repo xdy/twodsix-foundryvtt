@@ -1,9 +1,12 @@
 <div class="character-characteristics">
   <div  class="stat strength" data-characteristic="strength">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}" {{/if}}
-    >{{data.characteristics.strength.displayShortLabel}}</span>
-
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.strength.displayShortLabel}}
+    </span>
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
                                       data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -15,10 +18,13 @@
   </div>
 
   <div class="stat dexterity" data-characteristic="dexterity">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}" {{/if}}
-    >{{data.characteristics.dexterity.displayShortLabel}}</span>
-
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.dexterity.displayShortLabel}}
+    </span>
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.dexterity.value"
                                       data-label="data.characteristics.dexterity.value" value="{{data.characteristics.dexterity.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -30,10 +36,13 @@
   </div>
 
   <div class="stat endurance" data-characteristic="endurance">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}" {{/if}}
-    >{{data.characteristics.endurance.displayShortLabel}}</span>
-
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.endurance.displayShortLabel}}
+    </span>
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
                                       data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -45,10 +54,13 @@
   </div>
 
   <div class="stat intelligence" data-characteristic="intelligence">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}" {{/if}}
-    >{{data.characteristics.intelligence.displayShortLabel}}</span>
-
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.intelligence.displayShortLabel}}
+    </span>
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.intelligence.value"
                                       data-label="data.characteristics.intelligence.value" value="{{data.characteristics.intelligence.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -60,9 +72,13 @@
   </div>
 
   <div class="stat education" data-characteristic="education">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}" {{/if}}
-    >{{data.characteristics.education.displayShortLabel}}</span>
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.education.displayShortLabel}}
+    </span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.education.value"
                                       data-label="data.characteristics.education.value" value="{{data.characteristics.education.value}}"
@@ -75,9 +91,13 @@
   </div>
 
   <div class="stat socialStanding" data-characteristic="socialStanding">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name" style="cursor: text;" {{else}} class="stat-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}" {{/if}}
-    >{{data.characteristics.socialStanding.displayShortLabel}}</span>
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name" style="cursor: text;">
+    {{else}}
+    <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}">
+    <i class="fas fa-dice" alt="d6" ></i>{{/if}}
+    {{data.characteristics.socialStanding.displayShortLabel}}
+    </span>
 
     <span class="stat-ability"><input type="number" min="0" name="data.characteristics.socialStanding.value"
                                       data-label="data.characteristics.socialStanding.value" value="{{data.characteristics.socialStanding.value}}"
@@ -91,9 +111,12 @@
 
   {{#iff (showAlternativeCharacteristics) "===" "alternate"}}
   <div class="special alternative1" data-characteristic="alternative1">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="special-name" style="cursor: text;" {{else}} class="special-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}" {{/if}}
-      >{{data.characteristics.alternative1.displayShortLabel}}</span><br>
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="special-name" style="cursor: text;">
+    {{else}}
+    <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}">
+    {{/if}}
+    {{data.characteristics.alternative1.displayShortLabel}}</span><br>
     <span class="special-ability"><input type="number" min="0" name="data.characteristics.alternative1.value"
       data-label="data.characteristics.alternative1.value" value="{{data.characteristics.alternative1.value}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -104,9 +127,12 @@
       value="{{numberFormat data.characteristics.alternative1.mod decimals=0 sign=true}}"/></span>
     </div>
   <div class="special alternative2" data-characteristic="alternative2">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="special-name" style="cursor: text;" {{else}} class="special-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}" {{/if}}
-      >{{data.characteristics.alternative2.displayShortLabel}}</span><br>
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="special-name" style="cursor: text;">
+    {{else}}
+    <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}">
+    {{/if}}
+    {{data.characteristics.alternative2.displayShortLabel}}</span><br>
     <span class="special-ability"><input type="number" min="0" name="data.characteristics.alternative2.value"
       data-label="data.characteristics.alternative2.value" value="{{data.characteristics.alternative2.value}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
@@ -119,9 +145,12 @@
   {{/iff}}
   {{#iff (showAlternativeCharacteristics) "===" "base"}}
   <div class="special psionicStrength" data-characteristic="psionicStrength">
-    <span {{#if data.characteristicEdit}} contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="special-name" style="cursor: text;" {{else}} class="special-name rollable-characteristic"
-    title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}" {{/if}}
-    >{{data.characteristics.psionicStrength.displayShortLabel}}</span>
+    {{#if data.characteristicEdit}}
+    <span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="special-name" style="cursor: text;">
+    {{else}}
+    <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">
+    {{/if}}
+    {{data.characteristics.psionicStrength.displayShortLabel}}</span>
 
     <span class="special-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
                                          data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
