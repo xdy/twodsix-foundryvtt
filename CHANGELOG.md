@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.0...v1.20.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* update pointer help text ([#898](https://github.com/xdy/twodsix-foundryvtt/issues/898)) ([ccbe2ee](https://github.com/xdy/twodsix-foundryvtt/commit/ccbe2ee75721ed90b26677f961716c10235a93ae))
+
 # [1.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.19.0...v1.20.0) (2022-02-25)
 
 
