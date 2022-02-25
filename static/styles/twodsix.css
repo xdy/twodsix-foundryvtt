@@ -209,6 +209,7 @@ table tr:nth-child(even) {
   /* margin-bottom: 1em; */
   border: none !important;
   padding: 0;
+  margin-left: 3px;
 }
 
 .sheet footer.sheet-footer {

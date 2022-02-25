@@ -44,7 +44,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
       showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
       showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
-      showHeroPoints: game.settings.get("twodsix", "showHeroPoints")
+      showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
+      showIcons: game.settings.get("twodsix", "showIcons")
     };
     data.config = TWODSIX;
 
