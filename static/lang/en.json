@@ -616,6 +616,10 @@
       "useTinyMCEditor": {
         "hint": "Use the embedded HTML editor for larger input blocks.",
         "name": "Use TinyMCE editor for larger input blocks."
+      },
+      "showIcons": {
+        "hint": "Use icons instead of text for biographical information.  Icons always shown when using lifeblood and stamina.",
+        "name": "Use icons for biographical information."
       }
     },
     "CloseAndCreateNew": "Close and create new",
