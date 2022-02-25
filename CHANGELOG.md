@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.19.0...v1.20.0) (2022-02-25)
+
+
+### Features
+
+* add option to show icons in bio ([#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)) ([08c475d](https://github.com/xdy/twodsix-foundryvtt/commit/08c475df85db298a081856b4bbfd55535453d077))
+
 # [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
 
 
