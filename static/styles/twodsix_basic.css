@@ -906,7 +906,7 @@ span.total-output {
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
-  border-radius: 1ch 1ch 0 0;
+  border-radius: 1.5ch 1.5ch 0 0;
 }
 .item-title {
   width: 207px;
