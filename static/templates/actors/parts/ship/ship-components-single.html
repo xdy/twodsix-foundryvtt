@@ -32,7 +32,7 @@
           <span class="item-name centre">{{getComponentWeight this}}</span>
           <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{twodsix_limitLength item.data.data.damage 7}}</span>
+          <span class="item-name centre roll-damage">{{twodsix_limitLength item.data.data.damage 7}}</span>
           <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}

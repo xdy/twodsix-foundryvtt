@@ -139,7 +139,7 @@ export default class TwodsixItem extends Item {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
         const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat) || null;
-        if (game.user?.targets.size === 1) {
+        if (game.user?.targets.size === 1 && damage) {
           game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
@@ -202,7 +202,7 @@ export default class TwodsixItem extends Item {
     return diceRoll;
   }
 
-  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true): Promise<Roll> {
+  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true): Promise<Roll | void>{
     const weapon = <Weapon>this.data.data;
     const doesDamage = weapon.damage != null;
     if (!doesDamage) {
@@ -210,36 +210,45 @@ export default class TwodsixItem extends Item {
     }
 
     const damageFormula = weapon.damage + (bonusDamage ? "+" + bonusDamage : "");
-    const damageRoll = new Roll(damageFormula, this.actor?.data.data);
-    const damage: Roll = await damageRoll.evaluate({async: true}); // async: true will be default in foundry 0.10
-    const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
-    if (showInChat) {
-      const results = damage.terms[0]["results"];
-      const contentData = {
-        flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`,
-        roll: damage,
-        damage: damage.total,
-        dice: results,
-        armorPiercingValue: apValue
-      };
 
-      const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
-      const transfer = JSON.stringify(
-        {
-          type: 'damageItem',
-          payload: contentData
+    if (Roll.validate(damageFormula)) {
+      const damageRoll = new Roll(damageFormula, this.actor?.data.data);
+      const damage: Roll = await damageRoll.evaluate({ async: true }); // async: true will be default in foundry 0.10
+      const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
+      if (showInChat) {
+        const results = damage.terms[0]["results"];
+        const contentData = {
+          flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`,
+          roll: damage,
+          damage: damage.total,
+          dice: results,
+          armorPiercingValue: apValue ?? 0
+        };
+
+        if (apValue !== undefined) {
+          contentData.flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
         }
-      );
-      await damage.toMessage({
-        speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : "???",
-        content: html,
-        flags: {
-          "core.canPopout": true,
-          "transfer": transfer
-        }
-      }, {rollMode: rollMode});
+
+        const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+        const transfer = JSON.stringify(
+          {
+            type: 'damageItem',
+            payload: contentData
+          }
+        );
+        await damage.toMessage({
+          speaker: this.actor ? ChatMessage.getSpeaker({ actor: this.actor }) : "???",
+          content: html,
+          flags: {
+            "core.canPopout": true,
+            "transfer": transfer
+          }
+        }, { rollMode: rollMode });
+      }
+      return damage;
+    } else {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
     }
-    return damage;
   }
   public static getApValue(weapon: Weapon, actorID = ""): number {
     let returnValue = weapon.armorPiercing;
