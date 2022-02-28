@@ -356,6 +356,7 @@ h2 {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
 .npc-skills, .npc-weapons {

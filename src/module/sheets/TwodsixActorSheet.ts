@@ -1,8 +1,7 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
-import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Consumable, Skills} from "../../types/template";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 
@@ -76,7 +75,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
     html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
 
-    html.find('.roll-damage').on('click', this._onRollDamage.bind(this));
+    html.find('.roll-damage').on('click', onRollDamage.bind(this));
 
     html.find('#joat-skill-input').on('input', this._updateJoatSkill.bind(this));
     html.find('#joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
@@ -182,24 +181,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onRollChar(event, showTrowDiag: boolean): Promise<void> {
     await (<TwodsixActor>this.actor).characteristicRoll({"characteristic": $(event.currentTarget).data("label")}, showTrowDiag);
-  }
-
-  /**
-   * Handle clickable damage rolls.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  private async _onRollDamage(event): Promise<void> {
-    event.preventDefault();
-    event.stopPropagation();
-    const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    const item = this.actor.items.get(itemId) as TwodsixItem;
-
-    const element = $(event.currentTarget);
-    const bonusDamageFormula = String(element.data('bonus-damage') || 0);
-
-    await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula);
-
   }
 
   private static untrainedToJoat(skillValue: number): number {
