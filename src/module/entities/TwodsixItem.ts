@@ -273,7 +273,7 @@ export default class TwodsixItem extends Item {
           `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value= ${initFormula}></input>`,
         buttons: {
           Roll: {
-            label: `Roll`,
+            label: `<i class="fas fa-dice" alt="d6" ></i> Roll`,
             callback:
               (html: JQuery) => {
                 resolve( html.find('[name="outputFormula"]')[0]["value"]);
