@@ -198,7 +198,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const element = $(event.currentTarget);
     const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-    await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula);
+    await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, true);
 
   }
 

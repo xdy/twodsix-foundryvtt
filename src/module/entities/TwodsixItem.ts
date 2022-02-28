@@ -138,7 +138,7 @@ export default class TwodsixItem extends Item {
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
-        const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat) || null;
+        const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat, false) || null;
         if (game.user?.targets.size === 1 && damage) {
           game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
@@ -202,14 +202,17 @@ export default class TwodsixItem extends Item {
     return diceRoll;
   }
 
-  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true): Promise<Roll | void>{
+  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false): Promise<Roll | void>{
     const weapon = <Weapon>this.data.data;
     const doesDamage = weapon.damage != null;
     if (!doesDamage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
     }
-
-    const damageFormula = weapon.damage + (bonusDamage ? "+" + bonusDamage : "");
+    let rollFormula = weapon.damage;
+    if (confirmFormula) {
+      rollFormula = await TwodsixItem.confirmRollFormula(rollFormula);
+    }
+    const damageFormula = rollFormula + (bonusDamage ? "+" + bonusDamage : "");
 
     if (Roll.validate(damageFormula)) {
       const damageRoll = new Roll(damageFormula, this.actor?.data.data);
@@ -260,6 +263,27 @@ export default class TwodsixItem extends Item {
       }
     }
     return returnValue;
+  }
+
+  public static async confirmRollFormula(initFormula):Promise<string> {
+    const returnText:string = await new Promise((resolve) => {
+      new Dialog({
+        title: `Damage Roll Formula`,
+        content:
+          `<label>Formula</label><input type="text" name="outputFormula" value= ${initFormula}></input>`,
+        buttons: {
+          Roll: {
+            label: `Roll`,
+            callback:
+              (html) => {
+                resolve( html.find('[name="outputFormula"]')[0].value );
+              }
+          }
+        },
+        default: `Roll`
+      }).render(true);
+    });
+    return (returnText ?? "");
   }
 
   public static burstAttackDM(number: number | null): number {
