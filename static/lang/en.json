@@ -24,7 +24,8 @@
       "ResultingStat": "Resulting stat",
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
-      "DealDamageTo": "Deal damage to _ACTOR_NAME_"
+      "DealDamageTo": "Deal damage to _ACTOR_NAME_",
+      "DamageFormula": "Damage Formula"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",

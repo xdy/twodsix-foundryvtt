@@ -268,12 +268,12 @@ export default class TwodsixItem extends Item {
   public static async confirmRollFormula(initFormula):Promise<string> {
     const returnText:string = await new Promise((resolve) => {
       new Dialog({
-        title: `Damage Roll Formula`,
+        title: game.i18n.localize("TWODSIX.Damage.DamageFormula"),
         content:
           `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value= ${initFormula}></input>`,
         buttons: {
           Roll: {
-            label: `<i class="fas fa-dice" alt="d6" ></i> Roll`,
+            label: `<i class="fas fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
             callback:
               (html: JQuery) => {
                 resolve( html.find('[name="outputFormula"]')[0]["value"]);
