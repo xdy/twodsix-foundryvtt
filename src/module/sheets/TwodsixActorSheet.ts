@@ -2,7 +2,6 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Consumable, Skills} from "../../types/template";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 
