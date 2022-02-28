@@ -24,7 +24,8 @@
       "ResultingStat": "Resulting stat",
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
-      "DealDamageTo": "Deal damage to _ACTOR_NAME_"
+      "DealDamageTo": "Deal damage to _ACTOR_NAME_",
+      "DamageFormula": "Damage Formula"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
@@ -617,6 +618,10 @@
       "useTinyMCEditor": {
         "hint": "Use the embedded HTML editor for larger input blocks.",
         "name": "Use TinyMCE editor for larger input blocks."
+      },
+      "showIcons": {
+        "hint": "Use icons instead of text for biographical information.  Icons always shown when using lifeblood and stamina.",
+        "name": "Use icons for biographical information."
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -652,7 +657,8 @@
       "OnlyDropConsumables": "Only consumables can be dropped on an item.",
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
+      "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
+      "InvalidRollFormula": "Not a valid damage roll formula."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",

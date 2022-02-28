@@ -1,3 +1,24 @@
+# [1.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.1...v1.21.0) (2022-02-28)
+
+
+### Features
+
+* add damage rolls from ship sheet and add prompt for all direct damage rolls ([#899](https://github.com/xdy/twodsix-foundryvtt/issues/899)) ([1b875e6](https://github.com/xdy/twodsix-foundryvtt/commit/1b875e6e37677b788f52db03cc6ba502aabecf90))
+
+## [1.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.0...v1.20.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* update pointer help text ([#898](https://github.com/xdy/twodsix-foundryvtt/issues/898)) ([ccbe2ee](https://github.com/xdy/twodsix-foundryvtt/commit/ccbe2ee75721ed90b26677f961716c10235a93ae))
+
+# [1.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.19.0...v1.20.0) (2022-02-25)
+
+
+### Features
+
+* add option to show icons in bio ([#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)) ([08c475d](https://github.com/xdy/twodsix-foundryvtt/commit/08c475df85db298a081856b4bbfd55535453d077))
+
 # [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
 
 

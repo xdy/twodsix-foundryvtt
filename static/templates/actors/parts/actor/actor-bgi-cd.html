@@ -2,8 +2,8 @@
 <span class="bgi-homeWorld" title='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fas fa-globe"></i>:<input
         name="data.homeWorld" type="text" value="{{data.homeWorld}}"
         placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
-<span class="bgi-age"><i class="fas fa-calendar-alt"></i>:<input type="text" name="data.age.value"
-        value="{{data.age.value}}" placeholder="0" title='{{localize "TWODSIX.Actor.Age"}}' /></span>
+<span class="bgi-age" title='{{localize "TWODSIX.Actor.Age"}}'>
+  <i class="fas fa-calendar-alt"></i>:<input type="text" name="data.age.value" value="{{data.age.value}}" placeholder="0"  /></span>
 <!-- Hero Points Information-->
 {{#if actor.data.settings.showHeroPoints}}
    {{#if (twodsix_useFoundryStyle)}}
@@ -15,12 +15,12 @@
         step="1" placeholder="2" /></span>
 {{/if}}
 <br>
-<span class="bgi-species"><i class="fas fa-dna"></i>:<input name="data.species" type="text" value="{{data.species}}"
-        placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"
-        title='{{localize "TWODSIX.Actor.Species"}}' /></span>
-<span class="bgi-gender"><i class="fas fa-venus-mars"></i>:<input name="data.gender" type="text" value="{{data.gender}}"
-        placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"
-        title='{{localize "TWODSIX.Actor.Gender"}}' /></span>
+<span class="bgi-species" title='{{localize "TWODSIX.Actor.Species"}}'><i class="fas fa-dna"></i>:
+  <input name="data.species" type="text" value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/>
+</span>
+<span class="bgi-gender" title='{{localize "TWODSIX.Actor.Gender"}}'><i class="fas fa-venus-mars"></i>:
+  <input name="data.gender" type="text" value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/>
+</span>
 <br>
 <!-- Protection Information-->
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fas fa-user-shield"></i>:<input

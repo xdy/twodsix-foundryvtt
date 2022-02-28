@@ -4,6 +4,7 @@ import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
+import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
@@ -101,6 +102,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
+    html.find('.roll-damage').on('click', onRollDamage.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -204,9 +206,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
         let skillData:TwodsixItem|undefined;
         if (data.id) {
-          skillData = game.items?.get(data.id);
+          skillData = <TwodsixItem><unknown>(game.items?.get(data.id));
         } else {
-          skillData = game.actors?.get(data.actorId)?.items.get(data.data._id);
+          skillData = <TwodsixItem><unknown>game.actors?.get(data.actorId)?.items.get(data.data._id);
         }
         if (skillData) {
           await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, skillData);
