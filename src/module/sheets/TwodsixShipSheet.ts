@@ -4,8 +4,7 @@ import { getDataFromDropEvent } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
-import TwodsixItem from "../entities/TwodsixItem";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
@@ -103,7 +102,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
-    html.find('.roll-damage').on('click', this._onRollDamage.bind(this));
+    html.find('.roll-damage').on('click', onRollDamage.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -221,25 +220,5 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       // console.warn(err); // uncomment when debugging
       return false;
     }
-  }
-  /**
-   * Handle clickable damage rolls.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  private async _onRollDamage(event): Promise<void> {
-    event.preventDefault();
-    event.stopPropagation();
-    const itemId = $(event.currentTarget).parents('.item').data('item-id');
-    const item = this.actor.items.get(itemId) as TwodsixItem;
-
-    const element = $(event.currentTarget);
-    const bonusDamageFormula = String(element.data('bonus-damage') || 0);
-
-    const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-    const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-
-    await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, showFormulaDialog);
-
   }
 }

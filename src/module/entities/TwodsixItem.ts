@@ -348,3 +348,24 @@ export default class TwodsixItem extends Item {
     }
   }
 }
+
+/**
+   * Handle clickable damage rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+export async function onRollDamage(event): Promise < void> {
+  event.preventDefault();
+  event.stopPropagation();
+  const itemId = $(event.currentTarget).parents('.item').data('item-id');
+  const item = this.actor.items.get(itemId) as TwodsixItem;
+
+  const element = $(event.currentTarget);
+  const bonusDamageFormula = String(element.data('bonus-damage') || 0);
+
+  const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+  const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+
+  await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, showFormulaDialog);
+
+}
