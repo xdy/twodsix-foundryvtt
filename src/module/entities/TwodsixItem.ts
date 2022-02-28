@@ -270,13 +270,13 @@ export default class TwodsixItem extends Item {
       new Dialog({
         title: `Damage Roll Formula`,
         content:
-          `<label>Formula</label><input type="text" name="outputFormula" value= ${initFormula}></input>`,
+          `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value= ${initFormula}></input>`,
         buttons: {
           Roll: {
             label: `Roll`,
             callback:
-              (html) => {
-                resolve( html.find('[name="outputFormula"]')[0].value );
+              (html: JQuery) => {
+                resolve( html.find('[name="outputFormula"]')[0]["value"]);
               }
           }
         },
