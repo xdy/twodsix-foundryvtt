@@ -33,7 +33,9 @@
           <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
           {{#iff item.data.data.subtype "===" "armament"}}
-          <span class="item-name centre"> <span class="roll-damage red">{{twodsix_limitLength item.data.data.damage 6}}</span> / {{item.data.data.hits}}</span>
+          <span class="item-name centre">
+            {{#iff item.data.data.damage "!==" ""}}<span class="roll-damage red">{{twodsix_limitLength item.data.data.damage 6}}</span> / {{/iff}}
+          {{item.data.data.hits}}</span>
           {{else}}
           <span class="item-name centre">{{item.data.data.hits}}</span>
           {{/iff}}
