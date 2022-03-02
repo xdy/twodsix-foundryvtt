@@ -22,7 +22,7 @@
   --s2d6-select-light: var(--s2d6-item-hover);
   --s2d6-damage-red: rgba(255, 0, 0, 1);
   --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
-  --s2d6-damage-orange: rgba(255, 153, 0, 1);
+  --s2d6-damage-orange: rgba(255, 90, 0, 1);
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
 }
 
@@ -1273,6 +1273,10 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
+.orange {
+  color: var(--s2d6-damage-orange);
+}
+
 .power-grid input[type="text"] {
   /*font-size: 28px;*/
   position: relative;
@@ -1668,7 +1672,7 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-bottom: 0.4em;
 }
 
-.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
+.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference {
   margin-top: 0.5em;
 }

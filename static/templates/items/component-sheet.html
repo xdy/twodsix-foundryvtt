@@ -109,10 +109,16 @@
     </label>
     </div>
     {{/iff}}
-
+    {{#iff data.subtype "===" "armament"}}
     <div class="item-damage">
       <label for="data.damage" class="resource-label">{{localize "TWODSIX.Items.Component.damage"}}
         <input id="data.damage" type="text" name="data.damage" value="{{data.damage}}"/>
+      </label>
+    </div>
+    {{/iff}}
+    <div class="item-hits">
+      <label for="data.hits" class="resource-label">{{localize "TWODSIX.Items.Component.hits"}}
+        <input id="data.hits" type="number" name="data.hits" value="{{data.hits}}" step = "1" min = "0"/>
       </label>
     </div>
 

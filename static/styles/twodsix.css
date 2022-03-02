@@ -1574,6 +1574,10 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
+.orange {
+  color: var(--s2d6-damage-orange);
+}
+
 .ship-stat .red input[type="number"]{
   color: var(--s2d6-damage-red);
 }
@@ -2086,7 +2090,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
   margin-top: 0.5em;
 }
 

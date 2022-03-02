@@ -7,7 +7,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Power"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.damageHits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
     </div>
@@ -32,7 +32,13 @@
           <span class="item-name centre">{{getComponentWeight this}}</span>
           <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
-          <span class="item-name centre roll-damage">{{twodsix_limitLength item.data.data.damage 7}}</span>
+          {{#iff item.data.data.subtype "===" "armament"}}
+          <span class="item-name centre">
+            {{#iff item.data.data.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.data.data.damage 6}}</span> / {{/iff}}
+          {{item.data.data.hits}}</span>
+          {{else}}
+          <span class="item-name centre">{{item.data.data.hits}}</span>
+          {{/iff}}
           <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
