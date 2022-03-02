@@ -319,6 +319,7 @@
       "powerDraw": 0,
       "rating": "",
       "availableQuantity": "",
+      "hits": 0,
       "damage": "",
       "status": "operational",
       "weightIsPct": false,

@@ -2086,7 +2086,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
   margin-top: 0.5em;
 }
 
