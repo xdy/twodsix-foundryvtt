@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.21.0...v1.22.0) (2022-03-02)
+
+
+### Features
+
+* split hits and damage for ship components ([#904](https://github.com/xdy/twodsix-foundryvtt/issues/904)) ([a07ff39](https://github.com/xdy/twodsix-foundryvtt/commit/a07ff39a01e4b19dbb5e9ca029ba36952d6b6d88))
+
 # [1.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.1...v1.21.0) (2022-02-28)
 
 
