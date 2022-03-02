@@ -1574,6 +1574,10 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
+.orange {
+  color: var(--s2d6-damage-orange);
+}
+
 .ship-stat .red input[type="number"]{
   color: var(--s2d6-damage-red);
 }
