@@ -1104,7 +1104,7 @@ img.ship-mask-bg {
   font-size: 18px;
   /*width: 2.5em;*/
   border: none;
-  background-color: transparent !important;
+  background-color: var(--s2d6-input-background);
 }
 
 .ship-state-grid {
@@ -1191,8 +1191,9 @@ img.ship-mask-bg {
 }
 
 .ship-mass input, .ship-tl input {
-  background-color: var(--s2d6-background-nearly-transparent) !important;
-  border: 1px solid;
+  background-color: var(--s2d6-input-background) !important;
+  border: 1px solid var(--color-text-dark-primary);
+  border-radius: 0.5ch;
 }
 
 .ship-mass input[type="text"] {
@@ -1756,25 +1757,29 @@ button.flexrow.flex-group-center.toggle-skills {
   cursor: default;
 }
 
-.consumable-row .combined-buttons {
+.combined-buttons {
   width: 40px;
   font-size: 0;
 }
 
-.consumable-row .combined-buttons button {
+.combined-buttons button {
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
   line-height: normal;
   cursor: pointer;
+  margin-top: -2px;
+}
+.consumable-row .combined-buttons button {
+  margin-top: 0;
 }
 
-.consumable-row .left-button {
+.left-button {
   border-radius: 10px 0 0 10px;
 }
 
-.consumable-row .right-button {
+.right-button {
   border-left: 0 solid var(--s2d6-item-active);
   border-radius: 0 10px 10px 0;
 }

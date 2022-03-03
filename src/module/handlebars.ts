@@ -282,6 +282,10 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('getComponentMaxHits', () => {
+    return game.settings.get("twodsix", "maxComponentHits");
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function (context) {
     console.log(context);

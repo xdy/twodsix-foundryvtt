@@ -1853,6 +1853,7 @@ a.ship-notes-tab.active {
   color: var(--s2d6-item-active);
   position: sticky;
   top:0%;
+  z-index: 20;
 }
 
 .components-stored-double {
@@ -2148,25 +2149,29 @@ a:hover {
   cursor: default;
 }
 
-.consumable-row .combined-buttons {
+.combined-buttons {
   width: 40px;
   font-size: 0;
 }
 
-.consumable-row .combined-buttons button {
+.combined-buttons button {
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
   line-height: normal;
   cursor: pointer;
+  margin-top: -2px;
+}
+.consumable-row .combined-buttons button {
+  margin-top: 0;
 }
 
-.consumable-row .left-button {
+.left-button {
   border-radius: 10px 0 0 10px;
 }
 
-.consumable-row .right-button {
+.right-button {
   border-left: 0 solid var(--s2d6-item-active);
   border-radius: 0 10px 10px 0;
 }

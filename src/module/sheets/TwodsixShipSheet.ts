@@ -103,6 +103,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
+    html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -160,6 +161,21 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   private _onDeckplanUnlink() {
     if ((<Ship>this.actor.data.data)?.deckPlan) {
       this.actor.update({"data.deckPlan": ""});;
+    }
+  }
+
+  private async _onAdjustHitsCount(event): Promise<void> {
+    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+    if (itemSelected) {
+      const newHits = (<Component>itemSelected.data.data)?.hits + modifier;
+      if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
+        await itemSelected.update({ "data.hits": newHits });
+      }
+      if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
+        await itemSelected.update({ "data.status": "destroyed" });
+      }
     }
   }
 

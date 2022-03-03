@@ -52,6 +52,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringChoiceSetting('showAlternativeCharacteristics', "base", TWODSIX.CharacteristicDisplayTypes));
     settings.push(stringSetting("alternativeShort1", "ALT1"));
     settings.push(stringSetting("alternativeShort2", "ALT2"));
+    settings.push(numberSetting('maxComponentHits', 3));
     return settings;
   }
 }

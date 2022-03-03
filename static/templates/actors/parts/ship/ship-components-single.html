@@ -35,10 +35,15 @@
           {{#iff item.data.data.subtype "===" "armament"}}
           <span class="item-name centre">
             {{#iff item.data.data.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.data.data.damage 6}}</span> / {{/iff}}
-          {{item.data.data.hits}}</span>
+          {{item.data.data.hits}}<br>
           {{else}}
-          <span class="item-name centre">{{item.data.data.hits}}</span>
+          <span class="item-name centre">{{item.data.data.hits}}
           {{/iff}}
+          <span class="combined-buttons">
+            <button class="left-button adjust-hits" {{#iff currentCount "===" 0}}disabled{{/iff}} data-value="-1">-</button>
+            <button class="right-button adjust-hits" {{#iff currentCount "===" 9}}disabled{{/iff}} data-value="1">+</button>
+          </span>
+          </span>
           <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}

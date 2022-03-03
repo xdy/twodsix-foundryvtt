@@ -623,6 +623,10 @@
       "showIcons": {
         "hint": "Use icons instead of text for biographical information.  Icons always shown when using lifeblood and stamina.",
         "name": "Use icons for biographical information."
+      },
+      "maxComponentHits": {
+        "hint": "The number of hits at which the component is destroyed",
+        "name": "Maximum hits for a component."
       }
     },
     "CloseAndCreateNew": "Close and create new",
