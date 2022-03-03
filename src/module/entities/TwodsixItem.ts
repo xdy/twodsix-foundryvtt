@@ -209,6 +209,7 @@ export default class TwodsixItem extends Item {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
     }
     let rollFormula = weapon.damage;
+    console.log(rollFormula);
     if (confirmFormula) {
       rollFormula = await TwodsixItem.confirmRollFormula(rollFormula);
     }
@@ -270,7 +271,7 @@ export default class TwodsixItem extends Item {
       new Dialog({
         title: game.i18n.localize("TWODSIX.Damage.DamageFormula"),
         content:
-          `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value= ${initFormula}></input>`,
+          `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
         buttons: {
           Roll: {
             label: `<i class="fas fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),

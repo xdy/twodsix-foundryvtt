@@ -290,6 +290,10 @@ export default function registerHandlebarsHelpers(): void {
       returnValue = _genUntranslatedSkillList();
     }
     return returnValue;
+   });
+    
+  Handlebars.registerHelper('getComponentMaxHits', () => {
+    return game.settings.get("twodsix", "maxComponentHits");
   });
 
   // Handy for debugging
