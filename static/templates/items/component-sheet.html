@@ -118,7 +118,7 @@
     {{/iff}}
     <div class="item-hits">
       <label for="data.hits" class="resource-label">{{localize "TWODSIX.Items.Component.hits"}}
-        <input id="data.hits" type="number" name="data.hits" value="{{data.hits}}" step = "1" min = "0"/>
+        <input id="data.hits" type="number" name="data.hits" value="{{data.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>
       </label>
     </div>
 
