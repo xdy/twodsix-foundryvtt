@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.22.0...v1.23.0) (2022-03-03)
+
+
+### Features
+
+* add buttons to component hits list ([#905](https://github.com/xdy/twodsix-foundryvtt/issues/905)) ([160b1e4](https://github.com/xdy/twodsix-foundryvtt/commit/160b1e4f99fed44aa390c2224a26d39677803eb2))
+
 # [1.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.21.0...v1.22.0) (2022-03-02)
 
 
