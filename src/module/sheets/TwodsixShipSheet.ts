@@ -170,10 +170,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     const itemSelected = this.actor.items.get(li.data("itemId"));
     if (itemSelected) {
       const newHits = (<Component>itemSelected.data.data)?.hits + modifier;
-      if (newHits <= <number>game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
+      if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
         await itemSelected?.update({ "data.hits": newHits });
       }
-      if (newHits === <number>game.settings.get('twodsix', 'maxComponentHits')) {
+      if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
         await itemSelected?.update({ "data.status": "destroyed" });
       }
     }
