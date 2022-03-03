@@ -171,10 +171,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     if (itemSelected) {
       const newHits = (<Component>itemSelected.data.data)?.hits + modifier;
       if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
-        await itemSelected?.update({ "data.hits": newHits });
+        await itemSelected.update({ "data.hits": newHits });
       }
       if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
-        await itemSelected?.update({ "data.status": "destroyed" });
+        await itemSelected.update({ "data.status": "destroyed" });
       }
     }
   }
