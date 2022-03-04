@@ -1,7 +1,7 @@
 <div class="character-characteristics">
   <div  class="stat strength" data-characteristic="strength">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -19,7 +19,7 @@
 
   <div class="stat dexterity" data-characteristic="dexterity">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.dexterity.mod}}" data-label="{{data.characteristics.dexterity.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -37,7 +37,7 @@
 
   <div class="stat endurance" data-characteristic="endurance">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -55,7 +55,7 @@
 
   <div class="stat intelligence" data-characteristic="intelligence">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.intelligence.mod}}" data-label="{{data.characteristics.intelligence.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -73,7 +73,7 @@
 
   <div class="stat education" data-characteristic="education">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.education.mod}}" data-label="{{data.characteristics.education.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -92,7 +92,7 @@
 
   <div class="stat socialStanding" data-characteristic="socialStanding">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="stat-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.socialStanding.mod}}" data-label="{{data.characteristics.socialStanding.shortLabel}}">
     <i class="fas fa-dice" alt="d6" ></i>{{/if}}
@@ -112,7 +112,7 @@
   {{#iff (showAlternativeCharacteristics) "===" "alternate"}}
   <div class="special alternative1" data-characteristic="alternative1">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="special-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="special-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative1.mod}}" data-label="{{data.characteristics.alternative1.shortLabel}}">
     {{/if}}
@@ -128,7 +128,7 @@
     </div>
   <div class="special alternative2" data-characteristic="alternative2">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="special-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="special-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.alternative2.mod}}" data-label="{{data.characteristics.alternative2.shortLabel}}">
     {{/if}}
@@ -146,7 +146,7 @@
   {{#iff (showAlternativeCharacteristics) "===" "base"}}
   <div class="special psionicStrength" data-characteristic="psionicStrength">
     {{#if data.characteristicEdit}}
-    <span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="special-name" style="cursor: text;">
+    <span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="special-name" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">
     {{else}}
     <span class="special-name rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}">
     {{/if}}
