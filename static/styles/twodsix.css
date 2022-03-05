@@ -654,6 +654,7 @@ span.stat-name-table, input.stat-name-table {
   width: 4ch;
   transform: rotate(-45deg);
 }
+
 input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
@@ -661,6 +662,7 @@ input.stat-name-table {
   margin: 0;
   padding: 0;
 }
+
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
