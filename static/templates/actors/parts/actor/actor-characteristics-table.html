@@ -2,18 +2,27 @@
     <tr class="table-header-row">
       {{#if data.characteristicEdit}}
         <td></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.strength.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.strength.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.dexterity.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.dexterity.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.endurance.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.endurance.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.intelligence.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.intelligence.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.education.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.education.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.socialStanding.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.socialStanding.displayShortLabel}}</span></td>
+        <td><input type = "text" name= "data.characteristics.strength.displayShortLabel" data-label = "data.characteristics.strength.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.strength.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.dexterity.displayShortLabel" data-label = "data.characteristics.dexterity.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.dexterity.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.endurance.displayShortLabel" data-label = "data.characteristics.endurance.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.endurance.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.intelligence.displayShortLabel" data-label = "data.characteristics.intelligence.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.intelligence.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.education.displayShortLabel" data-label = "data.characteristics.education.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.education.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.socialStanding.displayShortLabel" data-label = "data.characteristics.socialStanding.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.socialStanding.displayShortLabel}}" maxlength="3"/></td>
         {{#iff (showAlternativeCharacteristics) "!==" "base"}}
-        <td><span contenteditable ="true" data-edit= "data.characteristics.alternative1.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.alternative1.displayShortLabel}}</span></td>
-        <td><span contenteditable ="true" data-edit= "data.characteristics.alternative2.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.alternative2.displayShortLabel}}</span></td>
+        <td><input type = "text" name= "data.characteristics.alternative1.displayShortLabel" data-label = "data.characteristics.alternative1.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.alternative1.displayShortLabel}}" maxlength="3"/></td>
+        <td><input type = "text" name= "data.characteristics.alternative2.displayShortLabel" data-label = "data.characteristics.alternative2.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.alternative2.displayShortLabel}}" maxlength="3"/></td>
         {{/iff}}
         {{#iff (showAlternativeCharacteristics) "!==" "alternate"}}
-        <td><span contenteditable ="true" data-edit= "data.characteristics.psionicStrength.displayShortLabel" class="stat-name-table" style="cursor: text;" onkeypress="return (this.innerText.length <= 4)" onpaste="return false;">{{data.characteristics.psionicStrength.displayShortLabel}}</span></td>
+        <td><input type = "text" name= "data.characteristics.psionicStrength.displayShortLabel" data-label = "data.characteristics.psionicStrength.displayShortLabel"
+          class="stat-name-table" value="{{data.characteristics.psionicStrength.displayShortLabel}}" maxlength="3"/></td>
         {{/iff}}
       {{else}}
         <td><i class="fas fa-dice" alt="d6"></i></td>

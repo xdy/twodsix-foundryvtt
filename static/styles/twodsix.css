@@ -646,7 +646,7 @@ span.stat-name {
   text-align: center;
 }
 
-span.stat-name-table {
+span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
@@ -654,7 +654,13 @@ span.stat-name-table {
   width: 4ch;
   transform: rotate(-45deg);
 }
-
+input.stat-name-table {
+  cursor: inherit;
+  background-color: unset !important;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
@@ -663,6 +669,23 @@ span.stat-name-table {
   border: none;
   color: var(--s2d6-stat-input);
   -moz-appearance: textfield;
+}
+
+input.stat-name, input.special-name {
+  position: relative;
+  left: 0.7em;
+  top: -1.1em;
+  font-size: 1.2em;
+  display: block;
+  width: 75%;
+  cursor: pointer;
+  text-align: center;
+  height: 19px;
+}
+
+input.special-name {
+  left: -0.05em;
+  width: 90%;
 }
 
 .stat img {
@@ -712,6 +735,7 @@ span.special-name {
   cursor: pointer;
   display: inline-block;
   min-width: 3ch;
+  text-align: center;
 }
 
 span.stat-ability {

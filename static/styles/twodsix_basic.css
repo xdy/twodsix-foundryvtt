@@ -384,7 +384,7 @@ span.stat-name {
   cursor: pointer;
 }
 
-span.stat-name-table {
+span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
@@ -392,7 +392,15 @@ span.stat-name-table {
   width: 4ch;
   transform: rotate(-45deg);
 }
-
+input.stat-name-table {
+  cursor: inherit;
+  background-color: unset !important;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-light-highlight);
+  text-shadow: 1px 1px var(--color-shadow-dark);
+}
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
