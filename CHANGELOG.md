@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.23.0...v1.24.0) (2022-03-06)
+
+
+### Features
+
+* flexible skill names ([e206e0e](https://github.com/xdy/twodsix-foundryvtt/commit/e206e0e14cf0144e4f6ecb9e500ed1b3e9996d21)), closes [#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)
+
 # [1.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.22.0...v1.23.0) (2022-03-03)
 
 
