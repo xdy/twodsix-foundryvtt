@@ -205,6 +205,7 @@ export interface Traveller {
   finances:Finances;
   characteristics:Characteristics;
   woundedEffect:number;
+  characteristicEdit:boolean;
 }
 
 export interface Age {
@@ -232,6 +233,7 @@ export interface Characteristic {
   damage:number;
   label:string;
   shortLabel:string;
+  displayShortLabel:string;
   current:number; //Not in template.json
   mod:number; //Not in template.json
 }
@@ -314,6 +316,7 @@ export interface Component extends GearTemplate {
   rating:string;
   availableQuantity:string;
   damage:string;
+  hits: number;
   status:string;
   weightIsPct:boolean;
   isIllegal:boolean;

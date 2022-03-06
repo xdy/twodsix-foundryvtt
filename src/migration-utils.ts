@@ -9,7 +9,6 @@ export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void
     }
   }
 
-  // @ts-expect-error The type definitions for metadata must be updated to support "type"
   const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && !pack.locked);
   for (const pack of actorPacks) {
     for (const actor of await pack.getDocuments()) {
@@ -26,7 +25,6 @@ export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void
 
 export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>)): Promise<void> {
   const allItems = (game.items?.contents ?? []) as TwodsixItem[];
-  // @ts-expect-error The type definitions for metadata must be updated to support "type"
   const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && !pack.locked);
   for (const pack of itemPacks) {
     for (const item of await pack.getDocuments()) {

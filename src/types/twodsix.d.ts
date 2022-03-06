@@ -79,6 +79,7 @@ declare global {
       'twodsix.ruleset': string; //TODO Should be more specific, really
       'twodsix.alternativeShort1': string;
       'twodsix.alternativeShort2': string;
+      'twodsix.maxComponentHits':number;
       'twodsix.initiativeFormula': string;
       'twodsix.systemMigrationVersion': string;
       'twodsix.termForAdvantage': string;

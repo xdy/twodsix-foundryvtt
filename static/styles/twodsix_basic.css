@@ -22,7 +22,7 @@
   --s2d6-select-light: var(--s2d6-item-hover);
   --s2d6-damage-red: rgba(255, 0, 0, 1);
   --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
-  --s2d6-damage-orange: rgba(255, 153, 0, 1);
+  --s2d6-damage-orange: rgba(255, 90, 0, 1);
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
 }
 
@@ -311,6 +311,10 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   color: inherit !important;*/
 }
 
+span.bgi-charEdit {
+  margin-left: 1em;
+}
+
 .bgi-armor input {
   position: relative;
   margin-bottom: -0.5em;
@@ -362,6 +366,14 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   margin-left: 0.7em;
 }
 
+.table-header-row {
+  height: 5ch;
+}
+
+span.edit-char-toggle {
+  text-align: center;
+}
+
 span.stat-name {
   position: relative;
   left: 0.5em;
@@ -372,13 +384,23 @@ span.stat-name {
   cursor: pointer;
 }
 
-span.stat-name-table {
+span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
   text-align: center !important;
   width: 4ch;
   transform: rotate(-45deg);
+}
+
+input.stat-name-table {
+  cursor: inherit;
+  background-color: unset !important;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-light-highlight);
+  text-shadow: 1px 1px var(--color-shadow-dark);
 }
 
 .stat input, .special input {
@@ -420,6 +442,7 @@ span.special-name {
   right: -0.8em;
   font-size: 1.2em;
   width: 4em;
+  cursor: pointer;
 }
 
 span.stat-ability {
@@ -751,6 +774,10 @@ input.item-value-edit {
 .item-controls .item-toggle.ship .fa-space-shuttle,
 .item-controls .item-toggle.equipped .fa-child { display: inline; }
 
+.item-controls {
+  align-self: center;
+}
+
 .skill:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
 }
@@ -906,7 +933,7 @@ span.total-output {
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
-  border-radius: 1ch 1ch 0 0;
+  border-radius: 1.5ch 1.5ch 0 0;
 }
 .item-title {
   width: 207px;
@@ -1104,7 +1131,7 @@ img.ship-mask-bg {
   font-size: 18px;
   /*width: 2.5em;*/
   border: none;
-  background-color: transparent !important;
+  background-color: var(--s2d6-input-background);
 }
 
 .ship-state-grid {
@@ -1191,8 +1218,9 @@ img.ship-mask-bg {
 }
 
 .ship-mass input, .ship-tl input {
-  background-color: var(--s2d6-background-nearly-transparent) !important;
-  border: 1px solid;
+  background-color: var(--s2d6-input-background) !important;
+  border: 1px solid var(--color-text-dark-primary);
+  border-radius: 0.5ch;
 }
 
 .ship-mass input[type="text"] {
@@ -1271,6 +1299,10 @@ img.ship-mask-bg {
 
 .red {
   color: var(--s2d6-damage-red);
+}
+
+.orange {
+  color: var(--s2d6-damage-orange);
 }
 
 .power-grid input[type="text"] {
@@ -1599,6 +1631,9 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-left: 0;
 }
 
+.mini-dice {
+ align-self: center;
+}
 /*--- Item Page ---*/
 
 .small-grid {
@@ -1668,7 +1703,7 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-bottom: 0.4em;
 }
 
-.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-lvl, .item-armor, .item-range, .item-short,
+.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference {
   margin-top: 0.5em;
 }
@@ -1752,25 +1787,29 @@ button.flexrow.flex-group-center.toggle-skills {
   cursor: default;
 }
 
-.consumable-row .combined-buttons {
+.combined-buttons {
   width: 40px;
   font-size: 0;
 }
 
-.consumable-row .combined-buttons button {
+.combined-buttons button {
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
   line-height: normal;
   cursor: pointer;
+  margin-top: -2px;
+}
+.consumable-row .combined-buttons button {
+  margin-top: 0;
 }
 
-.consumable-row .left-button {
+.left-button {
   border-radius: 10px 0 0 10px;
 }
 
-.consumable-row .right-button {
+.right-button {
   border-left: 0 solid var(--s2d6-item-active);
   border-radius: 0 10px 10px 0;
 }

@@ -1,3 +1,45 @@
+# [1.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.23.0...v1.24.0) (2022-03-06)
+
+
+### Features
+
+* flexible skill names ([e206e0e](https://github.com/xdy/twodsix-foundryvtt/commit/e206e0e14cf0144e4f6ecb9e500ed1b3e9996d21)), closes [#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)
+
+# [1.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.22.0...v1.23.0) (2022-03-03)
+
+
+### Features
+
+* add buttons to component hits list ([#905](https://github.com/xdy/twodsix-foundryvtt/issues/905)) ([160b1e4](https://github.com/xdy/twodsix-foundryvtt/commit/160b1e4f99fed44aa390c2224a26d39677803eb2))
+
+# [1.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.21.0...v1.22.0) (2022-03-02)
+
+
+### Features
+
+* split hits and damage for ship components ([#904](https://github.com/xdy/twodsix-foundryvtt/issues/904)) ([a07ff39](https://github.com/xdy/twodsix-foundryvtt/commit/a07ff39a01e4b19dbb5e9ca029ba36952d6b6d88))
+
+# [1.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.1...v1.21.0) (2022-02-28)
+
+
+### Features
+
+* add damage rolls from ship sheet and add prompt for all direct damage rolls ([#899](https://github.com/xdy/twodsix-foundryvtt/issues/899)) ([1b875e6](https://github.com/xdy/twodsix-foundryvtt/commit/1b875e6e37677b788f52db03cc6ba502aabecf90))
+
+## [1.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.0...v1.20.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* update pointer help text ([#898](https://github.com/xdy/twodsix-foundryvtt/issues/898)) ([ccbe2ee](https://github.com/xdy/twodsix-foundryvtt/commit/ccbe2ee75721ed90b26677f961716c10235a93ae))
+
+# [1.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.19.0...v1.20.0) (2022-02-25)
+
+
+### Features
+
+* add option to show icons in bio ([#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)) ([08c475d](https://github.com/xdy/twodsix-foundryvtt/commit/08c475df85db298a081856b4bbfd55535453d077))
+
 # [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
 
 

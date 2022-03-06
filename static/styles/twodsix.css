@@ -209,6 +209,7 @@ table tr:nth-child(even) {
   /* margin-bottom: 1em; */
   border: none !important;
   padding: 0;
+  margin-left: 3px;
 }
 
 .sheet footer.sheet-footer {
@@ -355,6 +356,7 @@ h2 {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
 .npc-skills, .npc-weapons {
@@ -555,12 +557,16 @@ span.bgi-age {
   margin-right: 0;
 }
 
-span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
+span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
   margin-right: 0.5em;
   height: 26px;
   font-size: 16px;
   font-weight: bold;
   color: var(--s2d6-default-color) !important;
+}
+
+span.bgi-charEdit {
+  margin-left: 1em;
 }
 
 .bgi-armor input {
@@ -598,6 +604,12 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   color: var(--s2d6-default-color) !important;
 }
 
+.edit-mode {
+  position: relative;
+  margin-top: -1.5em;
+  margin-left: -1em;
+}
+
 .stat {
   background-image: url(../assets/actor/Stat-1.svg);
   background-size: cover !important;
@@ -612,27 +624,43 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
   margin-left: 3.2em;
-  margin-top: 1.3em;
+  margin-top: 8px;
   width: 82%;
+}
+.table-header-row {
+  height: 5ch;
+}
+
+span.edit-char-toggle {
+  text-align: center;
 }
 
 span.stat-name {
   position: relative;
-  /*left: 1.2em;*/
+  /*left: 0.7em;*/
   top: -1.1em;
   font-size: 1.2em;
   display: block;
-  /*width: 2.4em;*/
+  /*width: 65%;*/
   cursor: pointer;
+  text-align: center;
 }
 
-span.stat-name-table {
+span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
   text-align: center !important;
   width: 4ch;
   transform: rotate(-45deg);
+}
+
+input.stat-name-table {
+  cursor: inherit;
+  background-color: unset !important;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
 .stat input, .special input {
@@ -643,6 +671,23 @@ span.stat-name-table {
   border: none;
   color: var(--s2d6-stat-input);
   -moz-appearance: textfield;
+}
+
+input.stat-name, input.special-name {
+  position: relative;
+  left: 0.7em;
+  top: -1.1em;
+  font-size: 1.2em;
+  display: block;
+  width: 75%;
+  cursor: pointer;
+  text-align: center;
+  height: 19px;
+}
+
+input.special-name {
+  left: -0.05em;
+  width: 90%;
 }
 
 .stat img {
@@ -656,7 +701,7 @@ span.stat-name-table {
 .special {
   background-image: url(../assets/actor/Stat-Psi.svg);
   height: 55px;
-  width: 44px;
+  width: 46px;
   background-size: cover;
   position: relative;
 }
@@ -687,8 +732,12 @@ span.stat-name-table {
 span.special-name {
   position: relative;
   top: -1.1em;
-  /*right: -0.15em;*/
+  right: -0.15em;
   font-size: 1.2em;
+  cursor: pointer;
+  display: inline-block;
+  min-width: 3ch;
+  text-align: center;
 }
 
 span.stat-ability {
@@ -754,13 +803,13 @@ span.special-modifier {
   margin: -5px;
   position: relative;
   /* left: 1em; */
-  top: -2.4em;
+  top: -2.2em;
 }
 
 span.special-damage {
   position: relative;
-  padding-left: 0.6em;
-  top: -1.4em;
+  padding-left: 0.7em;
+  top: -1.3em;
 }
 
 svg:hover {
@@ -975,6 +1024,7 @@ span.add-skill-txt {
 
 .skill {
   padding: 0.1em 0 0.1em 0.5em;
+  width: 34.2em;
 }
 
 a:hover, a.active {
@@ -1572,6 +1622,10 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
+.orange {
+  color: var(--s2d6-damage-orange);
+}
+
 .ship-stat .red input[type="number"]{
   color: var(--s2d6-damage-red);
 }
@@ -1847,6 +1901,7 @@ a.ship-notes-tab.active {
   color: var(--s2d6-item-active);
   position: sticky;
   top:0%;
+  z-index: 20;
 }
 
 .components-stored-double {
@@ -2084,7 +2139,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
   margin-top: 0.5em;
 }
 
@@ -2142,25 +2197,29 @@ a:hover {
   cursor: default;
 }
 
-.consumable-row .combined-buttons {
+.combined-buttons {
   width: 40px;
   font-size: 0;
 }
 
-.consumable-row .combined-buttons button {
+.combined-buttons button {
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
   line-height: normal;
   cursor: pointer;
+  margin-top: -2px;
+}
+.consumable-row .combined-buttons button {
+  margin-top: 0;
 }
 
-.consumable-row .left-button {
+.left-button {
   border-radius: 10px 0 0 10px;
 }
 
-.consumable-row .right-button {
+.right-button {
   border-left: 0 solid var(--s2d6-item-active);
   border-radius: 0 10px 10px 0;
 }
