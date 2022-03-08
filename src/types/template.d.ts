@@ -407,5 +407,6 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
+  features:string;
   armorPiercing:number;
 }
