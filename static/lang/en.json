@@ -317,7 +317,8 @@
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost",
-        "ArmorPiercing": "Armor Piercing Value"
+        "ArmorPiercing": "Armor Piercing Value",
+        "Features": "Features / Traits"
       }
     },
     "Ship": {

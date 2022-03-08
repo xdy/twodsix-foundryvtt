@@ -270,6 +270,7 @@
       "damageType": "",
       "rateOfFire": "",
       "recoil": false,
+      "features": "",
       "armorPiercing": 0
     },
     "armor": {
