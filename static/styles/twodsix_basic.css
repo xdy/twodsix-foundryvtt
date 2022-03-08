@@ -2138,12 +2138,13 @@ form .form-group > label {
   padding-left: 0.5em;
 }
 
-.editor-content p {
+/*.editor-content p {
   padding-left: 0.8em;
-}
+}*/
 
 .editor-content {
   height: 95%;
+  padding-left: 4px;
 }
 
 .tox .tox-editor-container {
