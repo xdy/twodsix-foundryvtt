@@ -41,7 +41,7 @@ body {
   /*background-position: center;
   background-repeat: no-repeat;
   background-size: cover;*/
-  font-family: "Asap-Regular";
+  font-family: "Asap-Regular", sans-serif;
 }
 
 svg {
@@ -979,7 +979,7 @@ a.notes-tab.active {
 .skill-list {
   padding: 0.5em;
   width: 34.2em;
-  border: 1px groove var(--s2d6-default-color);
+  border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
   font-weight: bold;
@@ -1303,7 +1303,7 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
 .manifest {
-  margin-left: 1em;
+  margin-left: 0.9em;
 }
 .simplified-skill-description {
   font-weight: normal;
@@ -2139,7 +2139,8 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
+.item-features {
   margin-top: 0.5em;
 }
 
@@ -2687,12 +2688,17 @@ div.app.window-app.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-form-light);
 }
 
-.editor-content p {
+/*.editor-content p {
   padding-left: 0.8em;
-}
+}*/
 
 .editor-content {
   height: 95%;
+  padding-left: 4px;
+}
+
+.editor-content strong{
+  color: var(--s2d6-light-color);
 }
 
 .tox .tox-editor-container {

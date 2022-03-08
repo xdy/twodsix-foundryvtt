@@ -953,6 +953,13 @@ span.total-output {
 .manifest {
   margin-left: 1em;
 }
+
+.simplified-skill-description {
+  font-weight: normal;
+  font-size: 10px;
+  text-align: left;
+  margin-bottom: 10px;
+}
 /*-------Info Tab-----------*/
 
 .info-container {
@@ -1704,7 +1711,7 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference {
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference, .item-features {
   margin-top: 0.5em;
 }
 
@@ -2131,12 +2138,13 @@ form .form-group > label {
   padding-left: 0.5em;
 }
 
-.editor-content p {
+/*.editor-content p {
   padding-left: 0.8em;
-}
+}*/
 
 .editor-content {
   height: 95%;
+  padding-left: 4px;
 }
 
 .tox .tox-editor-container {
