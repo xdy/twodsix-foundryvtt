@@ -302,7 +302,12 @@ form .form-group span.units {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   font-family: inherit;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-default-color) !important;
+}
+
+.editor-content strong {
+  font-weight: bold;
+  color: var(--s2d6-light-color);
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
@@ -1475,15 +1480,24 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
-.ship-info input {
+.ship-info input, .ship-fuel-value input {
   text-align: center;
-  /*padding: 2px;
+  padding: 0;
   margin-top: -0.2em;
-  margin-left: 1.7em;*/
+  /*margin-left: 1.7em;*/
   font-size: 18px;
   width: 100%;
   border: none;
   background-color: transparent !important;
+}
+
+.ship-fuel-value input {
+  width: 40%;
+}
+
+.fuel-bar {
+  width: 90%;
+  height: 30px;
 }
 
 .ship-state-grid {
@@ -1491,7 +1505,7 @@ img.ship-mask-bg {
   grid-template-columns: 7em 7em 7em 6em 5em;
   grid-template-rows: 10em;
   gap: 1px 6px;
-  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  grid-template-areas: "ship-mass ship-tl ship-fuel ship-hull ship-armor";
   font-size: smaller;
 }
 
@@ -1529,11 +1543,11 @@ img.ship-mask-bg {
 
 .ship-fuel {
   grid-area: ship-fuel;
-  display: grid;
-  background-image: url(../assets/ship/fuel.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 0.5em;
+  justify-content: flex-start;
 }
 
 .ship-mass {

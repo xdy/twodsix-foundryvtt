@@ -1126,7 +1126,7 @@ img.ship-mask-bg {
 .ship-info input {
   text-align: center;
   padding: 2px;
-  margin-top: -0.2em;
+  /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
   font-size: 18px;
   /*width: 2.5em;*/
@@ -1134,17 +1134,24 @@ img.ship-mask-bg {
   background-color: var(--s2d6-input-background);
 }
 
+.fuel-bar {
+  width: 90%;
+  height: 30px;
+  vertical-align: middle;
+}
+
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 5em 5em 5em 6em 6em 4em;
+  grid-template-columns: 7em 5em 5em 6em 6em 4em;
   grid-template-rows: 8em;
   gap: 1px 4px;
-  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  grid-template-areas: "ship-mass ship-state-labels ship-hull ship-fuel ship-armor ";
   font-size: smaller;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .ship-state-grid span {
-  margin-top: 0.5em;
   text-align: center;
 }
 
@@ -1193,20 +1200,23 @@ img.ship-mask-bg {
 
 .ship-fuel {
   grid-area: ship-fuel;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .ship-fuel-value input {
-  border: solid;
+  border: solid 1px;
   text-align: center;
-  display: grid;
-  border-radius: 1ch 1ch 0 0;
+  border-radius: 1ch;
+  width: 40%;
 }
 
 .ship-fuel-max input {
   border: solid;
   text-align: center;
-  display: grid;
+  /*display: grid;*/
   border-radius: 0 0 1ch 1ch;
 }
 
