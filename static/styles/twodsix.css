@@ -1,29 +1,27 @@
+
 @font-face {
-  font-family: "Asap-Regular";
+  font-family: "Asap";
+  src: url("../fonts/Asap-Regular.woff2") format("woff2"), url("../fonts/Asap-Regular.ttf") format("truetype");
   font-weight: normal;
-  src: url("../fonts/Asap-VariableFont_wght.woff2") format("woff2"), url("../fonts/Asap-VariableFont_wght.woff") format("woff"), url("../fonts/Asap-VariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Asap";
+  src: url("../fonts/Asap-Bold.woff2") format("woff2"), url("../fonts/Asap-Bold.ttf") format("truetype");
+  font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-VariableFont_wght.woff2") format("woff2"), url("../fonts/Asap-VariableFont_wght.woff") format("woff"), url("../fonts/Asap-VariableFont_wght.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-Italic-VariableFont_wght.woff2") format("woff2"), url("../fonts/Asap-Italic-VariableFont_wght.woff") format("woff"), url("../fonts/Asap-Italic-VariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-Italic.woff2") format("woff2"), url("../fonts/Asap-Italic.ttf") format("truetype");
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-Italic-VariableFont_wght.woff2") format("woff2"), url("../fonts/Asap-Italic-VariableFont_wght.woff") format("woff"), url("../fonts/Asap-Italic-VariableFont_wght.ttf") format("truetype");
-  font-weight: 700;
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-BoldItalic.woff2") format("woff2"), url("../fonts/Asap-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
   font-style: italic;
 }
 
@@ -62,7 +60,7 @@ body {
   /*background-position: center;
   background-repeat: no-repeat;
   background-size: cover;*/
-  font-family: "Asap-Regular", sans-serif;
+  font-family: "Asap", sans-serif;
 }
 
 svg {
@@ -116,6 +114,10 @@ input[type='text']:focus, input[type='number']:focus, input[type='password']:foc
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
   background: var(--s2d6-background-semi-opaque);
+}
+
+input[type= 'checkbox'] {
+  vertical-align: middle;
 }
 
 input::-webkit-inner-spin-button {
@@ -323,7 +325,7 @@ form .form-group span.units {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   font-family: inherit;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-light-color) !important;
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
@@ -515,7 +517,9 @@ img.character-info-mask {
   background-color: transparent !important;
   border: none;
   height: 2.7ch;
+  /* vertical-align: middle; */
 }
+
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
@@ -639,6 +643,11 @@ span.bgi-charEdit {
   display: inline-block;
   position: relative;
   margin-bottom: 1.5em;
+}
+
+.stat-table {
+  margin: 0.1em 0 0 -0.2em;
+  /* width: 50%; */
 }
 
 .stat-table-small {
@@ -949,7 +958,6 @@ a.notes-tab.active {
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
   padding-left: 0.5em;
-  font-weight: bold;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -957,7 +965,9 @@ a.notes-tab.active {
 }
 
 .gear {
-  border: 1px solid var(--s2d6-default-color);
+  border: solid;
+  border-width: 1px;
+  border-color: var(--s2d6-default-color);
   padding-left: 0.5em;
 }
 
@@ -1001,10 +1011,10 @@ a.notes-tab.active {
 .skill-list {
   padding: 0.5em;
   width: 34.2em;
-  /*border: 1px solid var(--s2d6-default-color);*/
+  border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #joat-skill {
@@ -1027,7 +1037,7 @@ a.notes-tab.active {
   left: 26.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .add-skill:hover {
@@ -1167,8 +1177,8 @@ span.total-output {
 }
 
 .short-label input[type='checkbox'] {
-  vertical-align: text-bottom;
-  height: 16px;
+  /* vertical-align: text-bottom; */
+  /* height: 16px; */
 }
 
 .multi-line {
@@ -1599,7 +1609,7 @@ img.ship-mask-bg {
 
 .ship-power-management h3 {
   color: black;
-  font-weight: bold;
+  font-weight: medium;
   position: relative;
   width: 16.5em;
   left: 7em;
@@ -1896,7 +1906,7 @@ a.ship-notes-tab.active {
   gap: 1px 1px;
   grid-template-areas: ". .";
   margin-left: 1em;
-  width: 54em;
+  width: 54.4em;
 }
 
 .grid-columns-single {
@@ -1906,7 +1916,7 @@ a.ship-notes-tab.active {
   gap: 1px;
   grid-template-areas: ".";
   margin-left: 1em;
-  width: 54em;
+  width: 54.4em;
 }
 
 .storage-stored {
@@ -1924,7 +1934,6 @@ a.ship-notes-tab.active {
   position: sticky;
   top:0%;
   z-index: 20;
-  /*font-weight: bold;*/
 }
 
 .components-stored-double {
@@ -2718,6 +2727,11 @@ div.app.window-app.twodsix.ship.actor header a.close {
 .editor-content {
   height: 95%;
   padding-left: 4px;
+}
+
+.editor-content strong{
+  /* color: var(--s2d6-light-color); */
+  /* font-weight: bold; */
 }
 
 .tox .tox-editor-container {
