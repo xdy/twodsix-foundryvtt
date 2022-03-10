@@ -16,6 +16,7 @@
   font-family: "Asap-Italic";
   src: url("../fonts/Asap-Italic.woff2") format("woff2"), url("../fonts/Asap-Italic.ttf") format("truetype");
   font-style: italic;
+  font-weight: normal;
 }
 
 @font-face {
