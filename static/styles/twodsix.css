@@ -1,9 +1,29 @@
+
 @font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  font-family: "Asap";
+  src: url("../fonts/Asap-Regular.woff2") format("woff2"), url("../fonts/Asap-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: "Asap";
+  src: url("../fonts/Asap-Bold.woff2") format("woff2"), url("../fonts/Asap-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-Italic.woff2") format("woff2"), url("../fonts/Asap-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-BoldItalic.woff2") format("woff2"), url("../fonts/Asap-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 
 :root {
@@ -41,7 +61,7 @@ body {
   /*background-position: center;
   background-repeat: no-repeat;
   background-size: cover;*/
-  font-family: "Asap-Regular";
+  font-family: "Asap", sans-serif;
 }
 
 svg {
@@ -95,6 +115,10 @@ input[type='text']:focus, input[type='number']:focus, input[type='password']:foc
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
   background: var(--s2d6-background-semi-opaque);
+}
+
+input[type= 'checkbox'] {
+  vertical-align: middle;
 }
 
 input::-webkit-inner-spin-button {
@@ -499,7 +523,9 @@ img.character-info-mask {
   background-color: transparent !important;
   border: none;
   height: 2.7ch;
+  /* vertical-align: middle; */
 }
+
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
@@ -623,6 +649,11 @@ span.bgi-charEdit {
   display: inline-block;
   position: relative;
   margin-bottom: 1.5em;
+}
+
+.stat-table {
+  margin: 0.1em 0 0 -0.2em;
+  /* width: 50%; */
 }
 
 .stat-table-small {
@@ -940,7 +971,9 @@ a.notes-tab.active {
 }
 
 .gear {
-  border: 1px solid var(--s2d6-default-color);
+  border: solid;
+  border-width: 1px;
+  border-color: var(--s2d6-default-color);
   padding-left: 0.5em;
 }
 
@@ -984,10 +1017,10 @@ a.notes-tab.active {
 .skill-list {
   padding: 0.5em;
   width: 34.2em;
-  border: 1px groove var(--s2d6-default-color);
+  border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #joat-skill {
@@ -1010,7 +1043,7 @@ a.notes-tab.active {
   left: 26.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .add-skill:hover {
@@ -1150,8 +1183,8 @@ span.total-output {
 }
 
 .short-label input[type='checkbox'] {
-  vertical-align: text-bottom;
-  height: 16px;
+  /* vertical-align: text-bottom; */
+  /* height: 16px; */
 }
 
 .multi-line {
@@ -1308,7 +1341,7 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
 .manifest {
-  margin-left: 1em;
+  margin-left: 0.9em;
 }
 .simplified-skill-description {
   font-weight: normal;
@@ -2153,7 +2186,8 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
+.item-features {
   margin-top: 0.5em;
 }
 
@@ -2701,12 +2735,18 @@ div.app.window-app.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-form-light);
 }
 
-.editor-content p {
+/*.editor-content p {
   padding-left: 0.8em;
-}
+}*/
 
 .editor-content {
   height: 95%;
+  padding-left: 4px;
+}
+
+.editor-content strong{
+  /* color: var(--s2d6-light-color); */
+  /* font-weight: bold; */
 }
 
 .tox .tox-editor-container {

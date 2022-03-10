@@ -1,3 +1,17 @@
+## [1.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.1...v1.24.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* make bold and italics fonts work again ([#909](https://github.com/xdy/twodsix-foundryvtt/issues/909)) ([dd07ba3](https://github.com/xdy/twodsix-foundryvtt/commit/dd07ba3b38f309f1a2886d73f2e498511a3f7ec8))
+
+## [1.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.0...v1.24.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* adjust for missing bold font ([#910](https://github.com/xdy/twodsix-foundryvtt/issues/910)) ([5b764f6](https://github.com/xdy/twodsix-foundryvtt/commit/5b764f68e96d2a34e2188bd97c7b6595786a0f00))
+
 # [1.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.23.0...v1.24.0) (2022-03-06)
 
 
