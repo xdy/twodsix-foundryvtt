@@ -1182,11 +1182,6 @@ span.total-output {
   width: 18ch;
 }
 
-.short-label input[type='checkbox'] {
-  /* vertical-align: text-bottom; */
-  /* height: 16px; */
-}
-
 .multi-line {
   justify-content: space-between;
   display: flex;
@@ -1513,7 +1508,7 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
-.ship-info input, .ship-fuel-value input {
+.ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
   padding: 0;
   margin-top: -0.2em;
@@ -1524,7 +1519,7 @@ img.ship-mask-bg {
   background-color: transparent !important;
 }
 
-.ship-fuel-value input {
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   width: 40%;
 }
 
@@ -1535,10 +1530,11 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 7em 7em 7em 6em 5em;
+  grid-template-columns: 8em 4em 6em 6em 8em;
   grid-template-rows: 10em;
   gap: 1px 6px;
-  grid-template-areas: "ship-mass ship-tl ship-fuel ship-hull ship-armor";
+  grid-template-areas:
+    "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: smaller;
 }
 
@@ -1550,8 +1546,10 @@ img.ship-mask-bg {
 .ship-armor {
   grid-area: ship-armor;
   display: grid;
-  grid-template-rows: max-content;
-  /*padding-right: 1ch;*/
+  grid-template-rows: auto;
+  text-align: center;
+  /* padding-right: 1ch; */
+  /* align-self: center; */
 }
 
 .ship-armor-name textarea {
@@ -1559,9 +1557,13 @@ img.ship-mask-bg {
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
   text-align: center;
-  /*display: grid;*/
+  font-size: x-small;
+  overflow-wrap: break-word;
   resize: none;
-  height: 100%;
+  /* word-wrap: break-word; */
+  /* word-break: break-all; */
+  min-height: 20px;
+  max-height: 40px;
 }
 
 .ship-hull {
@@ -1588,16 +1590,16 @@ img.ship-mask-bg {
   display: grid;
 }
 
-.ship-tl {
-  grid-area: ship-tl;
+.ship-drives {
+  grid-area: ship-drives;
   display: grid;
 }
 
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-background-nearly-opaque) !important;
-  border: solid;
+  /*border: solid;
   border-color: var(--s2d6-default-color);
-  border-radius: 0.5ch !important;
+  border-radius: 0.5ch !important;*/
 }
 
 /*.ship-mass input[type="number"], .ship-tl input[type="number"] {
@@ -2742,11 +2744,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
 .editor-content {
   height: 95%;
   padding-left: 4px;
-}
-
-.editor-content strong{
-  /* color: var(--s2d6-light-color); */
-  /* font-weight: bold; */
 }
 
 .tox .tox-editor-container {
