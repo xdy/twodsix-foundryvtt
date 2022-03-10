@@ -1530,7 +1530,7 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 8em 4em 6em 6em 8em;
+  grid-template-columns: 8em 4em 6em 6em 7em;
   grid-template-rows: 10em;
   gap: 1px 6px;
   grid-template-areas:
