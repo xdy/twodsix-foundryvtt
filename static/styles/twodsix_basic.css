@@ -26,6 +26,9 @@
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
 }
 
+input[type="checkbox"] {
+  vertical-align: middle;
+}
 
 .rollable:hover {
   cursor: pointer;
@@ -831,11 +834,6 @@ span.total-output {
   width: 18ch;
 }
 
-.short-label input[type='checkbox'] {
-  vertical-align: text-bottom;
-  height: 16px;
-}
-
 .multi-line {
   justify-content: space-between;
   display: flex;
@@ -1465,7 +1463,12 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-position-actor-token, .create-ship-position {
-  cursor: pointer
+  cursor: pointer;
+  
+}
+
+.ship-position-actor-token, .ship-position-action {
+  background-color: var(--color-text-dark-inactive);
 }
 
 .crew-list, .ship-positions-list {
