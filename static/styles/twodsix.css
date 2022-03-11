@@ -121,6 +121,10 @@ input[type= 'checkbox'] {
   vertical-align: middle;
 }
 
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
 input::-webkit-inner-spin-button {
   display: none;
 }

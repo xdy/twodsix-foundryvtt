@@ -26,8 +26,12 @@
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
 }
 
-input[type="checkbox"] {
+input[type= 'checkbox'] {
   vertical-align: middle;
+}
+
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
 }
 
 .rollable:hover {
@@ -1147,7 +1151,7 @@ img.ship-mask-bg {
   width: 13px;
   height: 13px;
   text-align: center;
-  /* vertical-align: middle; */
+  vertical-align: middle;
 }
 
 .fuel-bar {
