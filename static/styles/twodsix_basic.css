@@ -1194,9 +1194,8 @@ img.ship-mask-bg {
   resize: none;
   /* word-wrap: break-word; */
   /* word-break: break-all; */
-  min-height: 20px;
-  max-height: 40px;
-  width: 95%;
+  min-height: 44px;
+  width: 90%;
   font-family: inherit;
 }
 
