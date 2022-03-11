@@ -1251,7 +1251,7 @@ img.ship-mask-bg {
 .ship-drives {
   grid-area: ship-drives;
   display: grid;
-  grid-template-rows: 15px 44px 16px 20px;
+  grid-template-rows: 15px 37px 18px 27px;
   /* margin-top: 0.5em; */
 }
 
