@@ -28,8 +28,8 @@
   </div>
   <div class="ship-hull">
     <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
-    <span class="ship-hull-value"><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/></span>
-    <span class="ship-hull-max"><input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></span>
+    <span class="ship-hull-value"><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0" min="0" max="{{data.data.shipStats.hull.max}}" step = "1"/></span>
+    <span class="ship-hull-max"><input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0" min="0" step="1"/></span>
   </div>
 
   <div class="ship-armor">
@@ -38,8 +38,8 @@
         <textarea type="text" name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{~data.data.shipStats.armor.name~}}</textarea>
       </span>
       <div class="ship-armor-value">
-        <input type="number" value="{{data.data.shipStats.armor.value}}" name="data.shipStats.armor.value" placeholder="0" max = "{{data.data.shipStats.armor.max}}" min = "0"/>/
-        <input type="number" value="{{data.data.shipStats.armor.max}}" name="data.shipStats.armor.max" placeholder="0"/>
+        <input type="number" value="{{data.data.shipStats.armor.value}}" name="data.shipStats.armor.value" placeholder="0" max = "{{data.data.shipStats.armor.max}}" min = "0" step="1"/>/
+        <input type="number" value="{{data.data.shipStats.armor.max}}" name="data.shipStats.armor.max" placeholder="0" min="0" step="1"/>
         <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
       </div>
   </div>
