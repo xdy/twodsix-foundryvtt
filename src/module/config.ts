@@ -58,7 +58,7 @@ const RULESETS = Object.freeze({
     key: "CEL",
     name: "Cepheus Light",
     settings: {
-      initiativeFormula: "2d6",
+      initiativeFormula: "2d6 + @skills.Tactics_",
       difficultyListUsed: "CEL",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
@@ -151,7 +151,7 @@ const RULESETS = Object.freeze({
     key: "CD",
     name: "Cepheus Deluxe",
     settings: {
-      initiativeFormula: "2d6 + @skills.Tactics_ + @characteristics.intelligence.mod",
+      initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
       difficultyListUsed: "CE",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",

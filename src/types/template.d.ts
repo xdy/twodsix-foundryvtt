@@ -183,6 +183,7 @@ export interface Staterooms {
 export interface Drives {
   jDrive:Propulsion;
   mDrive:Propulsion;
+  overdrive:boolean;
 }
 
 export interface Propulsion {

@@ -222,6 +222,7 @@
           "cost": ""
         },
         "drives": {
+          "overdrive": false,
           "jDrive": {
             "rating": 0
           },

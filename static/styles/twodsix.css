@@ -1494,7 +1494,7 @@ img.ship-mask-bg {
   grid-area: ship-info;
   z-index: 3;
   position: relative;
-  width: 29em;
+  width: 28.5em;
   color: var(--s2d6-stat-input);
 }
 
@@ -1511,7 +1511,7 @@ img.ship-mask-bg {
 .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
   padding: 0;
-  margin-top: -0.2em;
+  /* margin-top: -0.5em; */
   /*margin-left: 1.7em;*/
   font-size: 18px;
   width: 100%;
@@ -1523,24 +1523,33 @@ img.ship-mask-bg {
   width: 40%;
 }
 
+.overdrive-mode input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  /* vertical-align: middle; */
+}
+
 .fuel-bar {
-  width: 90%;
+  width: 95%;
   height: 30px;
+  align-self: center;
 }
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 8em 4em 6em 6em 7em;
+  grid-template-columns: 7em 5em 7em 6em 7em;
   grid-template-rows: 10em;
-  gap: 1px 6px;
+  gap: 1px 5px;
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: smaller;
 }
 
 .ship-state-grid span {
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
   text-align: center;
+  vertical-align: middle;
 }
 
 .ship-armor {
@@ -1548,6 +1557,7 @@ img.ship-mask-bg {
   display: grid;
   grid-template-rows: auto;
   text-align: center;
+  margin-top: 0.5em;
   /* padding-right: 1ch; */
   /* align-self: center; */
 }
@@ -1564,6 +1574,7 @@ img.ship-mask-bg {
   /* word-break: break-all; */
   min-height: 20px;
   max-height: 40px;
+  width: 90%;
 }
 
 .ship-hull {
@@ -1574,25 +1585,34 @@ img.ship-mask-bg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-top: 0.5em;
+}
+
+.ship-hull-value {
+  margin-top: 0.5em;
 }
 
 .ship-fuel {
   grid-area: ship-fuel;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  display: grid;
+  /* flex-direction: column; */
+  grid-template-rows: 15px 25px 47px 20px;
+  /* text-align: center; */
   margin-top: 0.5em;
-  justify-content: flex-start;
+  /* justify-content: space-between; */
+  /* vertical-align: middle; */
 }
 
 .ship-mass {
   grid-area: ship-mass;
   display: grid;
+  margin-top: 0.5em;
 }
 
 .ship-drives {
   grid-area: ship-drives;
   display: grid;
+  margin-top: 0.5em;
 }
 
 .ship-mass input, .ship-tl input {
@@ -1665,6 +1685,7 @@ img.ship-mask-bg {
 
 .small-font {
   font-size: x-small;
+  margin-top: -1em;
 }
 
 .red {

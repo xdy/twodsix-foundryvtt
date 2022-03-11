@@ -18,18 +18,13 @@
       {{localize "TWODSIX.Ship.Gs"}}
     </span>
   </div>
-  {{#if (twodsix_useFoundryStyle)}}
-    <div class="ship-state-labels">
-      <span>&nbsp</span>
-      <span>{{localize "TWODSIX.Damage.Current"}}</span>
-      <span>{{localize "TWODSIX.Damage.Max"}}</span>
-    </div>
-  {{/if}}
   <div class="ship-fuel">
-    <div>{{localize "TWODSIX.Ship.Fuel"}}</div>
-    <div><meter class = "fuel-bar" value="{{data.data.shipStats.fuel.value}}" max = "{{data.data.shipStats.fuel.max}}" min="0" low= "{{twodsix_product data.data.shipStats.fuel.max 0.25}}" high = "{{twodsix_product data.data.shipStats.fuel.max 0.5}}" optimum = "{{twodsix_product data.data.shipStats.fuel.max 0.95}}">{{data.data.shipStats.fuel.value}}</meter></div>
-    <div class="ship-fuel-value"><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0" max = "{{data.data.shipStats.fuel.max}}" min = "0"/>/<input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></div>
-    <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
+    <span>{{localize "TWODSIX.Ship.Fuel"}}</span>
+    <span><meter class = "fuel-bar" value="{{data.data.shipStats.fuel.value}}" max = "{{data.data.shipStats.fuel.max}}" min="0" low= "{{twodsix_product data.data.shipStats.fuel.max 0.25}}" high = "{{twodsix_product data.data.shipStats.fuel.max 0.5}}" optimum = "{{twodsix_product data.data.shipStats.fuel.max 0.95}}">{{data.data.shipStats.fuel.value}}</meter></span>
+    <span class="ship-fuel-value"><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0" max = "{{data.data.shipStats.fuel.max}}" min = "0"/>/<input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/>
+      <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
+    </span>
+    <span class="overdrive-mode">{{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="data.shipStats.drives.overdrive" {{checked data.data.shipStats.drives.overdrive}} data-dtype="Boolean"/></span>
   </div>
   <div class="ship-hull">
     <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
@@ -40,13 +35,12 @@
   <div class="ship-armor">
       <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
       <span class="ship-armor-name">
-        <textarea type="text" name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea>
+        <textarea type="text" name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{~data.data.shipStats.armor.name~}}</textarea>
       </span>
       <div class="ship-armor-value">
         <input type="number" value="{{data.data.shipStats.armor.value}}" name="data.shipStats.armor.value" placeholder="0" max = "{{data.data.shipStats.armor.max}}" min = "0"/>/
         <input type="number" value="{{data.data.shipStats.armor.max}}" name="data.shipStats.armor.max" placeholder="0"/>
+        <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
       </div>
-      <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
-
   </div>
 </div>
