@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.2...v1.25.0) (2022-03-12)
+
+
+### Features
+
+* Re-release ship sheet update ([839b13d](https://github.com/xdy/twodsix-foundryvtt/commit/839b13db97936de6b7a94eb005def120f0805385))
+
 ## [1.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.1...v1.24.2) (2022-03-10)
 
 
