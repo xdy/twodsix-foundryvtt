@@ -1537,7 +1537,7 @@ img.ship-mask-bg {
 .fuel-bar {
   width: 95%;
   height: 30px;
-  align-self: center;
+  /* align-self: center; */
 }
 
 .ship-state-grid {
@@ -1553,7 +1553,7 @@ img.ship-mask-bg {
 .ship-state-grid span {
   /* margin-top: 0.5em; */
   text-align: center;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .ship-armor {
@@ -1668,14 +1668,15 @@ img.ship-mask-bg {
 .power-grid {
   display: grid;
   grid-template-columns: 3.82em 3.82em 3.82em 3.82em 3.82em;
-  grid-template-rows: 1fr;
-  gap: 2px 2px;
-  grid-template-areas: ". . . . .";
+  /* grid-template-rows: 1fr; */
+  gap: 0 2px;
+  grid-template-areas:
+    ". . . . .";
   position: relative;
-  left: 7.35em;
-  top: -4.4em;
-  margin-bottom: -4em;
-  height: 4em;
+  left: 7.4em;
+  top: -66px;
+  /* margin-bottom: -4em; */
+  /* height: 4em; */
 }
 
 .ship-stat input[type="number"] {
@@ -1684,12 +1685,12 @@ img.ship-mask-bg {
   background-color: transparent !important;
   border: none;
   height: auto;
-  /*margin-top: 6px;*/
+  margin-top: 5px;
 }
 
 .small-font {
   font-size: x-small;
-  margin-top: -1em;
+  /* margin-top: -2em; */
 }
 
 .red {
@@ -1743,7 +1744,7 @@ span.power-max {
   position: relative;
   display: block;
   width: auto;
-  top: -4.2em;
+  top: -4.4em;
 }
 
 /*--- Input Fields ---*/
@@ -1763,7 +1764,7 @@ input.power-total {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -2em;
+  top: -2.1em;
   width: inherit;
   display: block;
   border: none;
