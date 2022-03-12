@@ -2763,10 +2763,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-form-light);
 }
 
-/*.editor-content p {
-  padding-left: 0.8em;
-}*/
-
 .editor-content {
   height: 95%;
   padding-left: 4px;
