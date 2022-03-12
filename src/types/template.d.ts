@@ -167,6 +167,7 @@ export interface ShipStats {
   armor:Staterooms;
   fuelTanks:Staterooms;
   mass:Staterooms;
+  drives: Drives;
 }
 
 export interface Staterooms {
@@ -174,6 +175,19 @@ export interface Staterooms {
   weight:string;
   cost:string;
   power?:string;
+  value?:number;
+  min?:number;
+  max?:number;
+}
+
+export interface Drives {
+  jDrive:Propulsion;
+  mDrive:Propulsion;
+  overdrive:boolean;
+}
+
+export interface Propulsion {
+  rating:number;
 }
 
 export interface Hits {

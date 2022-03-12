@@ -121,6 +121,10 @@ input[type= 'checkbox'] {
   vertical-align: middle;
 }
 
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
+}
+
 input::-webkit-inner-spin-button {
   display: none;
 }
@@ -326,7 +330,12 @@ form .form-group span.units {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   font-family: inherit;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-default-color) !important;
+}
+
+.editor-content strong {
+  font-weight: bold;
+  color: var(--s2d6-light-color);
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
@@ -1177,11 +1186,6 @@ span.total-output {
   width: 18ch;
 }
 
-.short-label input[type='checkbox'] {
-  /* vertical-align: text-bottom; */
-  /* height: 16px; */
-}
-
 .multi-line {
   justify-content: space-between;
   display: flex;
@@ -1494,7 +1498,7 @@ img.ship-mask-bg {
   grid-area: ship-info;
   z-index: 3;
   position: relative;
-  width: 29em;
+  width: 28.5em;
   color: var(--s2d6-stat-input);
 }
 
@@ -1508,36 +1512,58 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
-.ship-info input {
+.ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
-  /*padding: 2px;
-  margin-top: -0.2em;
-  margin-left: 1.7em;*/
+  padding: 0;
+  /* margin-top: -0.5em; */
+  /*margin-left: 1.7em;*/
   font-size: 18px;
   width: 100%;
   border: none;
   background-color: transparent !important;
 }
 
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
+  width: 40%;
+}
+
+.overdrive-mode input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  /* vertical-align: middle; */
+}
+
+.fuel-bar {
+  width: 95%;
+  height: 30px;
+  /* align-self: center; */
+}
+
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 7em 7em 7em 6em 5em;
+  grid-template-columns: 7em 5em 7em 6em 7em;
   grid-template-rows: 10em;
-  gap: 1px 6px;
-  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  gap: 1px 5px;
+  grid-template-areas:
+    "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: smaller;
 }
 
 .ship-state-grid span {
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
   text-align: center;
+  /* vertical-align: middle; */
 }
 
 .ship-armor {
   grid-area: ship-armor;
   display: grid;
-  grid-template-rows: max-content;
-  /*padding-right: 1ch;*/
+  grid-template-rows: auto;
+  text-align: center;
+  margin-top: 0.5em;
+  /* padding-right: 1ch; */
+  /* align-self: center; */
 }
 
 .ship-armor-name textarea {
@@ -1545,9 +1571,14 @@ img.ship-mask-bg {
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
   text-align: center;
-  /*display: grid;*/
+  font-size: x-small;
+  overflow-wrap: break-word;
   resize: none;
-  height: 100%;
+  /* word-wrap: break-word; */
+  /* word-break: break-all; */
+  min-height: 48px;
+  /* max-height: 100%; */
+  width: 90%;
 }
 
 .ship-hull {
@@ -1558,32 +1589,41 @@ img.ship-mask-bg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-top: 0.5em;
+}
+
+.ship-hull-value {
+  margin-top: 0.5em;
 }
 
 .ship-fuel {
   grid-area: ship-fuel;
   display: grid;
-  background-image: url(../assets/ship/fuel.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  /* flex-direction: column; */
+  grid-template-rows: 15px 25px 47px 20px;
+  /* text-align: center; */
+  margin-top: 0.5em;
+  /* justify-content: space-between; */
+  /* vertical-align: middle; */
 }
 
 .ship-mass {
   grid-area: ship-mass;
   display: grid;
+  margin-top: 0.5em;
 }
 
-.ship-tl {
-  grid-area: ship-tl;
+.ship-drives {
+  grid-area: ship-drives;
   display: grid;
+  margin-top: 0.5em;
 }
 
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-background-nearly-opaque) !important;
-  border: solid;
+  /*border: solid;
   border-color: var(--s2d6-default-color);
-  border-radius: 0.5ch !important;
+  border-radius: 0.5ch !important;*/
 }
 
 /*.ship-mass input[type="number"], .ship-tl input[type="number"] {
@@ -1628,14 +1668,15 @@ img.ship-mask-bg {
 .power-grid {
   display: grid;
   grid-template-columns: 3.82em 3.82em 3.82em 3.82em 3.82em;
-  grid-template-rows: 1fr;
-  gap: 2px 2px;
-  grid-template-areas: ". . . . .";
+  /* grid-template-rows: 1fr; */
+  gap: 0 2px;
+  grid-template-areas:
+    ". . . . .";
   position: relative;
-  left: 7.35em;
-  top: -4.4em;
-  margin-bottom: -4em;
-  height: 4em;
+  left: 7.4em;
+  top: -66px;
+  /* margin-bottom: -4em; */
+  /* height: 4em; */
 }
 
 .ship-stat input[type="number"] {
@@ -1644,11 +1685,12 @@ img.ship-mask-bg {
   background-color: transparent !important;
   border: none;
   height: auto;
-  /*margin-top: 6px;*/
+  margin-top: 5px;
 }
 
 .small-font {
   font-size: x-small;
+  /* margin-top: -2em; */
 }
 
 .red {
@@ -1702,7 +1744,7 @@ span.power-max {
   position: relative;
   display: block;
   width: auto;
-  top: -4.2em;
+  top: -4.4em;
 }
 
 /*--- Input Fields ---*/
@@ -1722,7 +1764,7 @@ input.power-total {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -2em;
+  top: -2.1em;
   width: inherit;
   display: block;
   border: none;
@@ -2728,11 +2770,6 @@ div.app.window-app.twodsix.ship.actor header a.close {
 .editor-content {
   height: 95%;
   padding-left: 4px;
-}
-
-.editor-content strong{
-  /* color: var(--s2d6-light-color); */
-  /* font-weight: bold; */
 }
 
 .tox .tox-editor-container {

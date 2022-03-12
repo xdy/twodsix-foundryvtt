@@ -22,6 +22,10 @@ export default function registerHandlebarsHelpers(): void {
     return (num % 2) == 1;
   });
 
+  Handlebars.registerHelper('twodsix_product', (num1:number, num2:number) => {
+    return num1 * num2;
+  });
+
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
     if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';

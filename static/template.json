@@ -206,7 +206,10 @@
         "armor": {
           "name": "",
           "weight": "",
-          "cost": ""
+          "cost": "",
+          "value": 0,
+          "max": 0,
+          "min": 0
         },
         "mass": {
           "value": 0,
@@ -217,6 +220,15 @@
           "name": "",
           "weight": "",
           "cost": ""
+        },
+        "drives": {
+          "overdrive": false,
+          "jDrive": {
+            "rating": 0
+          },
+          "mDrive": {
+            "rating": 0
+          }
         }
       }
     }

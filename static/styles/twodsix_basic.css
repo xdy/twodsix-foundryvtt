@@ -26,6 +26,13 @@
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
 }
 
+input[type= 'checkbox'] {
+  vertical-align: middle;
+}
+
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
+}
 
 .rollable:hover {
   cursor: pointer;
@@ -831,11 +838,6 @@ span.total-output {
   width: 18ch;
 }
 
-.short-label input[type='checkbox'] {
-  vertical-align: text-bottom;
-  height: 16px;
-}
-
 .multi-line {
   justify-content: space-between;
   display: flex;
@@ -1130,53 +1132,71 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
-.ship-info input {
+.ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
   padding: 2px;
-  margin-top: -0.2em;
+  /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
   font-size: 18px;
   /*width: 2.5em;*/
-  border: none;
-  background-color: var(--s2d6-input-background);
+  border: solid 1px;
+  border-radius: 1ch;
+}
+
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
+  width: 40%;
+}
+
+.overdrive-mode input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fuel-bar {
+  width: 95%;
+  height: 30px;
+  vertical-align: middle;
 }
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 5em 5em 5em 6em 6em 4em;
-  grid-template-rows: 8em;
-  gap: 1px 4px;
-  grid-template-areas: "ship-state-labels ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  grid-template-columns: 8em 5em 7em 5em 7em;
+  grid-template-rows: 8.5em;
+  gap: 1px 5px;
+  grid-template-areas:
+    "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: smaller;
+  /* margin-top: 0.5em; */
+  margin-left: 0.5em;
 }
 
 .ship-state-grid span {
-  margin-top: 0.5em;
   text-align: center;
+  vertical-align: middle;
 }
 
-.ship-state-labels {
-  grid-area: ship-state-labels;
-  display: grid;
-  text-align: center;
-}
 .ship-armor {
   grid-area: ship-armor;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.ship-armor-name {
-  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto;
+  text-align: center;
 }
 
 .ship-armor-name textarea {
   border: solid;
-  border-radius: 1ch;
+  border-radius: 1ch !important;
+  border-color: var(--s2d6-default-color);
   text-align: center;
-  height: 100%;
+  font-size: x-small;
+  overflow-wrap: break-word;
   resize: none;
+  /* word-wrap: break-word; */
+  /* word-break: break-all; */
+  min-height: 44px;
+  width: 90%;
+  font-family: inherit;
 }
 
 .ship-hull {
@@ -1184,6 +1204,7 @@ img.ship-mask-bg {
   display: grid;
   text-align: center;
 }
+
 .ship-hull-value input {
   border: solid;
   text-align: center;
@@ -1201,20 +1222,9 @@ img.ship-mask-bg {
 .ship-fuel {
   grid-area: ship-fuel;
   display: grid;
-}
-
-.ship-fuel-value input {
-  border: solid;
+  grid-template-rows: 15px 25px 42px 20px;
+  justify-content: space-between;
   text-align: center;
-  display: grid;
-  border-radius: 1ch 1ch 0 0;
-}
-
-.ship-fuel-max input {
-  border: solid;
-  text-align: center;
-  display: grid;
-  border-radius: 0 0 1ch 1ch;
 }
 
 .ship-mass {
@@ -1228,22 +1238,22 @@ img.ship-mask-bg {
   background-color: var(--s2d6-input-background) !important;
   border: 1px solid var(--color-text-dark-primary);
   border-radius: 0.5ch;
+  width: 7ch;
 }
 
-.ship-mass input[type="text"] {
-  width: 4.5em;
+.ship-mass input[type="text"], .ship-tl input[type="text"] {
+  width: 2.5em;
   border: 1px solid;
   left: -1em;
   position: relative;
 }
 
-.ship-tl {
-  grid-area: ship-tl;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.ship-drives {
+  grid-area: ship-drives;
+  display: grid;
+  grid-template-rows: 15px 37px 18px 27px;
+  /* margin-top: 0.5em; */
 }
-
 
 .ship-power-management {
   grid-area: ship-requirements;
@@ -1456,7 +1466,12 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-position-actor-token, .create-ship-position {
-  cursor: pointer
+  cursor: pointer;
+  
+}
+
+.ship-position-actor-token, .ship-position-action {
+  background-color: var(--color-text-dark-inactive);
 }
 
 .crew-list, .ship-positions-list {
