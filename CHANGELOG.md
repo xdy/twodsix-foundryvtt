@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.0...v1.25.1) (2022-03-12)
+
+
+### Bug Fixes
+
+* adjust ship image to fit within image frame ([778472b](https://github.com/xdy/twodsix-foundryvtt/commit/778472beb4ecfc46d1c107e00aa4ecae790500b8))
+
 # [1.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.2...v1.25.0) (2022-03-12)
 
 
