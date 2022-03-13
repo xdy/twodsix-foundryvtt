@@ -36,10 +36,13 @@ export class TwodsixShipActions {
 
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
-      const skill = extra.actor?.items.filter((itm: TwodsixItem) => itm.name === parsedSkill)[0] as TwodsixItem;
+      let skill = extra.actor?.items.filter((itm: TwodsixItem) => itm.name === parsedSkill && itm.type === "skills")[0] as TwodsixItem;
       if (!skill) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
-        return false;
+        skill = extra.actor?.items.filter((itm: TwodsixItem) => itm.name === "Untrained" && itm.type === "skills")[0] as TwodsixItem;
+        if (!skill) {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
+          return false;
+        }
       }
       const charObject = extra.actor?.data.data["characteristics"];
       const characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
