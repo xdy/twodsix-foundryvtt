@@ -1,3 +1,10 @@
+## [1.25.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.1...v1.25.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* Use Untrained skill for ship position rolls ([00ded01](https://github.com/xdy/twodsix-foundryvtt/commit/00ded013eec1e7a8517822c48ccf67c282dabdc8))
+
 ## [1.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.0...v1.25.1) (2022-03-12)
 
 
