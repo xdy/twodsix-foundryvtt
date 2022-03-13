@@ -1,4 +1,14 @@
 <div class = "cargo-all">
+  {{#unless (twodsix_showWeightUsage)}}
+  <div class="cargo-weight">
+    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.weightStats.cargo}}" name="data.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{#iff data.data.weightStats.available '>=' 0}}
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{else}}
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{/iff}}
+  </div>
+  {{/unless}}
 <div class="cargo-list">
   <span class="item-title manifest">{{localize "TWODSIX.Ship.MANIFEST"}}</span>
   <div class="grid-columns-double storage-header">
