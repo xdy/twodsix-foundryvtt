@@ -148,7 +148,7 @@ export default class TwodsixActor extends Actor {
       calcShipStats.power.weapons + calcShipStats.power.systems;
 
     calcShipStats.weight.available = actorData.data.shipStats.mass.max - calcShipStats.weight.vehicles - calcShipStats.weight.cargo
-      - calcShipStats.weight.fuel -calcShipStats.weight.systems;
+      - calcShipStats.weight.fuel - calcShipStats.weight.systems;
 
     /*Push values to ship actor*/
     actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
@@ -159,11 +159,11 @@ export default class TwodsixActor extends Actor {
     actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
     actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
 
-    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
-    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
-    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
-    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
-    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
+    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles) ?? 0;
+    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo) ?? 0;
+    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel) ?? 0;
+    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems) ?? 0;
+    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available) ?? 0;
   }
 
   protected async _onCreate() {
@@ -327,15 +327,15 @@ export function getPower(item: Component): number{
 }
 
 export function getWeight(item: Component, actorData): number{
-  let q = item.quantity || 1;
+  let q = item.quantity ?? 1;
   if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
     q = parseInt(item.availableQuantity);
   }
   let w = 0;
   if (item.weightIsPct) {
-    w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
+    w = (item.weight ?? 0) / 100 * actorData.data.shipStats.mass.max;
   } else {
-    w = item.weight || 0;
+    w = item.weight ?? 0;
   }
   return (w * q);
 }
