@@ -23,7 +23,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_product', (num1:number, num2:number) => {
-    return num1 * num2;
+    return (num1 ?? 0) * (num2 ?? 0);
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {

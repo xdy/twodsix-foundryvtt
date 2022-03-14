@@ -147,8 +147,8 @@ export default class TwodsixActor extends Actor {
     calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
       calcShipStats.power.weapons + calcShipStats.power.systems;
 
-    calcShipStats.weight.available = actorData.data.shipStats.mass.max - calcShipStats.weight.vehicles - calcShipStats.weight.cargo
-      - calcShipStats.weight.fuel -calcShipStats.weight.systems;
+    calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
+      - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
     /*Push values to ship actor*/
     actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
@@ -327,15 +327,15 @@ export function getPower(item: Component): number{
 }
 
 export function getWeight(item: Component, actorData): number{
-  let q = item.quantity || 1;
+  let q = item.quantity ?? 1;
   if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
     q = parseInt(item.availableQuantity);
   }
   let w = 0;
   if (item.weightIsPct) {
-    w = (item.weight || 0) / 100 * actorData.data.shipStats.mass.max;
+    w = (item.weight ?? 0) / 100 * actorData.data.shipStats.mass.max;
   } else {
-    w = item.weight || 0;
+    w = item.weight ?? 0;
   }
   return (w * q);
 }

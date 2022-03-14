@@ -1341,6 +1341,7 @@ span.total-output {
 }
 .manifest {
   margin-left: 0.9em;
+  width: 215px;
 }
 .simplified-skill-description {
   font-weight: normal;
@@ -2008,6 +2009,12 @@ a.ship-notes-tab.active {
   margin-top: 1.1em;
   overflow-y: auto;
   height: 20em;
+}
+
+.cargo-weight {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .cargo-list {
