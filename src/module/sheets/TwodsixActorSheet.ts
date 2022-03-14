@@ -304,7 +304,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const item = <TwodsixItem>this.getItem(event);
     const picture = item.data.img;
     if (item.type === "trait") {
-      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>${item.name}</strong></div><br>${item.data.data["description"]}`;
+      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.data.data["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
