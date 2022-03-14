@@ -352,7 +352,8 @@
       "purchasePrice": "",
       "cargoLocation": "",
       "generatesPower": false,
-      "isRefined": false
+      "isRefined": false,
+      "features": ""
     },
     "ship_position": {
       "name": "",

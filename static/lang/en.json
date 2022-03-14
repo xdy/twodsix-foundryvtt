@@ -233,7 +233,8 @@
         "Price": "Price",
         "Value": "Value",
         "GeneratesPower": "Generates Power?",
-        "IsRefined": "Refined?"
+        "IsRefined": "Refined?",
+        "Features": "Features / Traits"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

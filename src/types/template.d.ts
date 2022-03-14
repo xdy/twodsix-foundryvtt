@@ -337,6 +337,7 @@ export interface Component extends GearTemplate {
   cargoLocation:string;
   generatesPower:boolean;
   isRefined:boolean;
+  features:string;
 }
 
 export interface Consumable extends GearTemplate {

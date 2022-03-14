@@ -35,7 +35,7 @@
           {{#iff item.data.data.subtype "===" "armament"}}
           <span class="item-name centre">
             {{#iff item.data.data.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.data.data.damage 6}}</span> / {{/iff}}
-          {{item.data.data.hits}}<br>
+          {{item.data.data.hits}}{{#iff item.data.data.damage "!==" ""}}<br>{{/iff}}
           {{else}}
           <span class="item-name centre">{{item.data.data.hits}}
           {{/iff}}
