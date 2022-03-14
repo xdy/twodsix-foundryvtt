@@ -334,7 +334,7 @@
       "AvailableCargoWeight": "Available Cargo Weight",
       "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
       "Cargo": "Cargo",
-      "CargoWeight": "Cargo Weight",
+      "CargoWeight": "Total Cargo Weight",
       "CARGONOTES": "CARGO NOTES",
       "COMPONENTS": "COMPONENTS",
       "CreateAction": "Create Action",
