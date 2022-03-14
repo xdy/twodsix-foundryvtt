@@ -1015,6 +1015,9 @@ span.total-output {
   height: 10em;
 }
 
+.showChat {
+  cursor: pointer;
+}
 /*-------- Notes Tab ----*/
 
 .notes-container {

@@ -1404,6 +1404,10 @@ span.total-output {
   padding: 0.2em;
 }
 
+.showChat {
+  cursor: pointer;
+}
+
 /*-------- Notes Tab ----*/
 
 .notes-container {
