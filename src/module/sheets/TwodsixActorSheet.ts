@@ -96,6 +96,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".item-value-edit").on("click", (event) => {
       $(event.currentTarget).trigger("select");
     });
+
+    //display trait item to chat
+    html.find(".showChat").on("click", this._onSendToChat.bind(this));
   }
 
 
@@ -289,6 +292,20 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       } else if (itemSelected.type === "consumable") {
         itemSelected.update({"data.quantity": newValue});
       }
+    }
+  }
+
+  /**
+   * Handle send to chat.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onSendToChat(event): Promise<void> {
+    const item = <TwodsixItem>this.getItem(event);
+    const picture = item.data.img;
+    if (item.type === "trait") {
+      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.data.data["description"]}`;
+      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
 }
