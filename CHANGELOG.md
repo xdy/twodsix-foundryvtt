@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.3...v1.26.0) (2022-03-15)
+
+
+### Features
+
+* display trait info on name click ([#921](https://github.com/xdy/twodsix-foundryvtt/issues/921)) ([e775c41](https://github.com/xdy/twodsix-foundryvtt/commit/e775c41b33bef77b8a622753b95c04f1734b10de))
+
 ## [1.25.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.2...v1.25.3) (2022-03-14)
 
 
