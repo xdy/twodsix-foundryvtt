@@ -266,12 +266,58 @@ export const MovementUnits = {
 };
 
 /**
+ * The valid pricing bases for components.
+ */
+export const PricingOptions = {
+  perUnit: "TWODSIX.Items.Component.perUnit",
+  perTon: "TWODSIX.Items.Component.perTon",
+  pctHull: "TWODSIX.Items.Component.pctHull"
+};
+
+/**
  * The valid choices for characteristic displays in the game system.
  */
 export const CharacteristicDisplayTypes = {
   base: "Base",
   alternate: "Alternate",
   all: "All"
+};
+
+/**
+ * The valid states for components.
+ */
+export const ComponentStates = {
+  operational: "TWODSIX.Items.Component.operational",
+  damaged: "TWODSIX.Items.Component.damaged",
+  destroyed: "TWODSIX.Items.Component.destroyed",
+  off: "TWODSIX.Items.Component.off"
+};
+
+/**
+ * The valid states for components.
+ */
+export const ComponentTypes = {
+  accomodations: "TWODSIX.Items.Component.accomodations",
+  armament: "TWODSIX.Items.Component.armament",
+  armor: "TWODSIX.Items.Component.armor",
+  bridge: "TWODSIX.Items.Component.bridge",
+  cargo: "TWODSIX.Items.Component.cargo",
+  computer: "TWODSIX.Items.Component.computer",
+  drive: "TWODSIX.Items.Component.drive",
+  drone: "TWODSIX.Items.Component.drone",
+  electronics: "TWODSIX.Items.Component.electronics",
+  fuel: "TWODSIX.Items.Component.fuel",
+  hull: "TWODSIX.Items.Component.hull",
+  mount: "TWODSIX.Items.Component.mount",
+  other: "TWODSIX.Items.Component.other",
+  otherExternal: "TWODSIX.Items.Component.otherExternal",
+  otherInternal: "TWODSIX.Items.Component.otherInternal",
+  power: "TWODSIX.Items.Component.power",
+  sensor: "TWODSIX.Items.Component.sensor",
+  shield: "TWODSIX.Items.Component.shield",
+  software: "TWODSIX.Items.Component.software",
+  storage: "TWODSIX.Items.Component.storage",
+  vehicle: "TWODSIX.Items.Component.vehicle"
 };
 
 export type TWODSIX = {
@@ -284,6 +330,9 @@ export type TWODSIX = {
   SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
   MovementUnits: typeof MovementUnits,
   MovementType: typeof MovementTypes,
+  PricingOptions: typeof PricingOptions,
+  ComponentStates: typeof ComponentStates,
+  ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes
 };
 
@@ -297,6 +346,9 @@ export const TWODSIX = {
   SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
   MovementUnits: MovementUnits,
   MovementType: MovementTypes,
+  PricingOptions: PricingOptions,
+  ComponentStates: ComponentStates,
+  ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes
 };
 

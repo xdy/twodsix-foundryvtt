@@ -32,12 +32,8 @@
 
     <div class="item-skill">
       <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}:</label>
-      <select id="data.subtype" name="data.subtype" value={{data.subtype}}>
-        {{#select data.subtype}}
-          {{#each (getComponentTypes)}}
-            <option value='{{this}}'>{{localize (concat "TWODSIX.Items.Component." this)}}</option>
-          {{/each}}
-        {{/select}}
+      <select id="data.subtype" name="data.subtype">
+        {{selectOptions data.config.ComponentTypes selected = data.subtype localize = true}}
       </select>
     </div>
 
@@ -45,12 +41,7 @@
     <div class="item-skill">
       <label for="data.status" class="resource-label">{{localize "TWODSIX.Items.Component.status"}}:</label>
       <select class="select-color" id="data.status" name="data.status" value={{data.status}}>
-        {{#select data.status}}
-        <option value="operational" style="color: green !important;">{{localize "TWODSIX.Items.Component.operational"}}</option>
-        <option value="damaged" style="color: yellow !important;">{{localize "TWODSIX.Items.Component.damaged"}}</option>
-        <option value="destroyed" style="color: red !important;">{{localize "TWODSIX.Items.Component.destroyed"}}</option>
-        <option value="off" style="color: gray !important;">{{localize "TWODSIX.Items.Component.off"}}</option>
-        {{/select}}
+        {{selectOptions data.config.ComponentStates selected = data.status localize = true}}
       </select>
     </div>
     {{/iff}}
@@ -82,7 +73,13 @@
          {{localize "TWODSIX.Items.Component.unitWeight"}}
        {{/if}}
       <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>{{#if data.weightIsPct}}%{{/if}}
-    </label>
+      </label>
+      {{#iff data.subtype "===" "hull" }}
+        <span class="short-label">
+        <label for="data.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}} </label>
+        <input type="checkbox" class="checkbox" name="data.isBaseHull" {{checked data.isBaseHull}} data-dtype="Boolean" />
+        </span>
+      {{/iff}}
     </div>
 
     {{#iff data.subtype "===" "fuel" }}
@@ -117,7 +114,7 @@
     </div>
     <div class="item-features">
       <span class="resource-label">{{localize "TWODSIX.Items.Component.Features"}}</span>
-      <input type="text" name="data.features" value="{{data.features}}">
+      <input type="text" name="data.features" value="{{data.features}}"/>
     </div>
     {{/iff}}
     <div class="item-hits">
@@ -127,8 +124,10 @@
     </div>
 
     <div class="item-price">
-      <label for="data.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
-        <input id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
+      <label for = "data.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}: <input class="short-label" id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
+      <select id = "data.pricingBasis" name = "data.pricingBasis" >
+        {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
+      </select>
     </div>
 
     {{else}}

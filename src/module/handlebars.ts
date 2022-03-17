@@ -214,33 +214,6 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('getComponentTypes', () => {
-    return ComponentTypes;
-  });
-
-  const ComponentTypes: string[] = [
-    'accomodations',
-    'armament',
-    'armor',
-    'bridge',
-    'cargo',
-    'computer',
-    'drive',
-    'drone',
-    'electronics',
-    'fuel',
-    'hull',
-    'mount',
-    "otherExternal",
-    "otherInternal",
-    'power',
-    "sensor",
-    'shield',
-    'software',
-    'storage',
-    'vehicle'
-  ];
-
   Handlebars.registerHelper('twodsix_showWeightUsage', () => {
     return (game.settings.get('twodsix', 'showWeightUsage'));
   });

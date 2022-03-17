@@ -234,7 +234,12 @@
         "Value": "Value",
         "GeneratesPower": "Generates Power?",
         "IsRefined": "Refined?",
-        "Features": "Features / Traits"
+        "Features": "Features / Traits",
+        "PricingBasis": "Pricing of",
+        "perUnit": "MCr per unit",
+        "perTon": "MCr per component ton",
+        "pctHull": "Percent of base hull value",
+        "isBaseHull":"Is Baseline Hull?"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

@@ -353,7 +353,9 @@
       "cargoLocation": "",
       "generatesPower": false,
       "isRefined": false,
-      "features": ""
+      "features": "",
+      "pricingBasis": "perUnit",
+      "isBaseHull": false
     },
     "ship_position": {
       "name": "",
