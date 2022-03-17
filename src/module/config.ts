@@ -295,7 +295,7 @@ export const ComponentStates = {
 };
 
 /**
- * The valid states for components.
+ * The valid types of ship components.
  */
 export const ComponentTypes = {
   accomodations: "TWODSIX.Items.Component.accomodations",
