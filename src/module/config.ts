@@ -270,7 +270,8 @@ export const MovementUnits = {
  */
 export const PricingOptions = {
   perUnit: "TWODSIX.Items.Component.perUnit",
-  perTon: "TWODSIX.Items.Component.perTon",
+  perCompTon: "TWODSIX.Items.Component.perCompTon",
+  perHullTon: "TWODSIX.Items.Component.perHullTon",
   pctHull: "TWODSIX.Items.Component.pctHull"
 };
 
