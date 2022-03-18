@@ -91,7 +91,15 @@ export default class TwodsixActor extends Actor {
         cargo: 0,
         vehicles: 0,
         fuel: 0,
-        available: 0
+        available: 0,
+        baseHull: 0
+      },
+      cost: {
+        hullValue: 0,
+        percentHull: 0,
+        perHullTon: 0,
+        componentValue: 0,
+        total: 0
       }
     };
 
@@ -137,9 +145,39 @@ export default class TwodsixActor extends Actor {
         case "fuel":
           calcShipStats.weight.fuel += weightForItem;
           break;
+        case "hull":
+          //don't include hull displacment in weight calculations
+          if (anComponent.isBaseHull) {
+            calcShipStats.weight.baseHull += weightForItem;
+          } else {
+            calcShipStats.weight.systems += weightForItem;
+          }
+          break;
         default:
           calcShipStats.weight.systems += weightForItem;
           break;
+      }
+
+      /*Calculate Cost*/
+      if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
+        if (anComponent.subtype === "hull") {
+          calcShipStats.cost.hullValue += (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max) * Number(anComponent.price);
+        } else {
+          switch (anComponent.pricingBasis) {
+            case "perUnit":
+              calcShipStats.cost.componentValue += Number(anComponent.price) * anComponent.quantity;
+              break;
+            case "perCompTon":
+              calcShipStats.cost.componentValue += Number(anComponent.price) * weightForItem;
+              break;
+            case "pctHull":
+              calcShipStats.cost.percentHull += Number(anComponent.price);
+              break;
+            case "perHullTon":
+              calcShipStats.cost.perHullTon += Number(anComponent.price);
+              break;
+          }
+        }
       }
     });
 
@@ -149,6 +187,10 @@ export default class TwodsixActor extends Actor {
 
     calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
+
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 )
+      + calcShipStats.cost.perHullTon * (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max);
+    console.log(calcShipStats.cost.total);
 
     /*Push values to ship actor*/
     actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);

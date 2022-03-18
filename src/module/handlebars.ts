@@ -246,7 +246,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return getWeight(<Component>item.data.data, item.actor?.data);
+    return (Math.round(getWeight(<Component>item.data.data, item.actor?.data) * 10 ) / 10 ).toFixed(1);
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
