@@ -51,7 +51,9 @@ const RULESETS = Object.freeze({
       ShowRateOfFire: true,
       ShowRecoil: true,
       showLifebloodStamina: false,
-      lifebloodInsteadOfCharacteristics: false
+      lifebloodInsteadOfCharacteristics: false,
+      mortgagePayment: 240,
+      massProductionDiscount: 0.10
     }
   },
   CEL: {
@@ -69,7 +71,9 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
-      lifebloodInsteadOfCharacteristics: false
+      lifebloodInsteadOfCharacteristics: false,
+      mortgagePayment: 240,
+      massProductionDiscount: 0.10
     }
   },
   CEFTL: {
@@ -169,7 +173,9 @@ const RULESETS = Object.freeze({
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
-      ShowRecoil: true
+      ShowRecoil: true,
+      mortgagePayment: 320,
+      massProductionDiscount: 0.10
     }
   },
   CLU: {

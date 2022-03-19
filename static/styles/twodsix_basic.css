@@ -1231,12 +1231,19 @@ img.ship-mask-bg {
   text-align: center;
 }
 
-.ship-mass, .ship-value {
+.ship-mass {
   grid-area: ship-mass;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: max-content;
+}
+
+.ship-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 2ch;
 }
 
 .ship-mass input, .ship-tl input {
@@ -1643,7 +1650,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   overflow-y: auto;
 }
 
-.ship-finances-container >div[contenteditable] {
+.ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 63%;
 }
 /*-------------------------------------------------*/

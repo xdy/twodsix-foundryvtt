@@ -148,6 +148,9 @@ export default class TwodsixActor extends Actor {
     actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
 
     actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
+    actorData.data.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
+    actorData.data.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
+
 
     function _estimateDisplacement(): number {
       let returnValue = 0;

@@ -172,6 +172,7 @@
       "cargo": "",
       "finances": "",
       "maintenanceCost": 0,
+      "mortgageCost": 0,
       "shipValue": 0,
       "reqPower": {
         "systems": 0,

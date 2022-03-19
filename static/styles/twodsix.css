@@ -2071,12 +2071,15 @@ a.ship-notes-tab.active {
   overflow-y: auto;
 }
 
-.ship-finances-container >div[contenteditable] {
+.ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 75%;
 }
 
 .ship-value {
-  margin-bottom: 2ch;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 1ch;
 }
 
 /*-------------------------------------------------*/
