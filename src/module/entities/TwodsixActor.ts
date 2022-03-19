@@ -103,6 +103,10 @@ export default class TwodsixActor extends Actor {
       }
     };
 
+    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max < 0) {
+      actorData.data.shipStats.mass.max = _estimateDisplacement();
+    }
+
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.data.data;
       const powerForItem = getPower(anComponent);
@@ -144,6 +148,15 @@ export default class TwodsixActor extends Actor {
     actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
 
     actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
+
+    function _estimateDisplacement(): number {
+      let returnValue = 0;
+      actorData.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.data.data).isBaseHull).forEach((item: TwodsixItem) => {
+        const anComponent = <Component>item.data.data;
+        returnValue += getWeight(anComponent, actorData);
+      });
+      return Math.round(returnValue);
+    }
 
     function _calculateCost(anComponent: Component, weightForItem: number): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
