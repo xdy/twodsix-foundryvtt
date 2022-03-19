@@ -61,10 +61,9 @@
 
     <div class="item-weight multi-line">
       {{#iff data.subtype "!==" "cargo" }}
-      <span class="short-label">
-      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}} </label>
+      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
       <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
-      </span>
+      </label>
       {{/iff}}
       <label for="data.weight" class="resource-label short-label">
        {{#if data.weightIsPct}}
