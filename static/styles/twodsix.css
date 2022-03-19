@@ -1496,7 +1496,7 @@ img.ship-mask-bg {
   border: none;
   position: relative;
   top: -0.35em;
-  width: auto;
+  width: 100%;
 }
 
 .ship-info {
@@ -2070,6 +2070,15 @@ a.ship-notes-tab.active {
   height: 90%;
   overflow-y: auto;
 }
+
+.ship-finances-container >div[contenteditable] {
+  height: 75%;
+}
+
+.ship-value {
+  margin-bottom: 2ch;
+}
+
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {

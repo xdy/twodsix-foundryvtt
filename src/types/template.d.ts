@@ -122,6 +122,7 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
+  shipValue:number;
   maintenanceCost:number;
   reqPower:ReqPower;
   weightStats: WeightStats;

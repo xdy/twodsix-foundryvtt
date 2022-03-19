@@ -405,7 +405,9 @@
       "Travellers": "Travellers",
       "USED": "USED",
       "Vehicles": "Vehicles",
-      "Weapons": "Weapons"
+      "Weapons": "Weapons",
+      "MCr": "MCr",
+      "ShipValue": "Undiscounted Ship Value"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

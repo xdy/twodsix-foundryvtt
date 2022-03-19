@@ -1231,11 +1231,12 @@ img.ship-mask-bg {
   text-align: center;
 }
 
-.ship-mass {
+.ship-mass, .ship-value {
   grid-area: ship-mass;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: max-content;
 }
 
 .ship-mass input, .ship-tl input {
@@ -1642,6 +1643,9 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   overflow-y: auto;
 }
 
+.ship-finances-container >div[contenteditable] {
+  height: 63%;
+}
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
