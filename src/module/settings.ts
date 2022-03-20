@@ -32,8 +32,6 @@ export const registerSettings = function ():void {
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
   numberSetting('weightModifierForWornArmor', 1.0, true);
-  numberSetting('mortgagePayment', 240, true);
-  numberSetting('massProductionDiscount', 0.10, true);
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {
