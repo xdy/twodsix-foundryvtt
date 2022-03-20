@@ -125,6 +125,7 @@ export interface Ship {
   shipValue:number;
   maintenanceCost:number;
   mortgageCost:number;
+  isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
   shipStats:ShipStats;

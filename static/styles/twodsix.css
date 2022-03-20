@@ -2072,7 +2072,7 @@ a.ship-notes-tab.active {
 }
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
-  height: 75%;
+  height: 74%;
 }
 
 .ship-value {

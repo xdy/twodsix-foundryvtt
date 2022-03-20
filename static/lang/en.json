@@ -366,6 +366,7 @@
       "Fuel": "Fuel",
       "Gs": "G",
       "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
+      "IsMassProduced": "Ship is Mass Produced",
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
@@ -657,7 +658,7 @@
         "name": "Mortgage Payment Terms."
       },
       "massProductionDiscount": {
-        "hint": "The cost savings for ship construction due to being mass produced.",
+        "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
         "name": "Discount for ship being mass produced"
       }
     },

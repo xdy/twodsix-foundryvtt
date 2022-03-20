@@ -119,7 +119,7 @@ export default class TwodsixActor extends Actor {
       _allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
-      _calculateCost(anComponent, weightForItem);
+      _calculateComponentCost(anComponent, weightForItem);
     });
 
     /*Calculate implicit values*/
@@ -131,26 +131,11 @@ export default class TwodsixActor extends Actor {
 
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 )
       + calcShipStats.cost.perHullTon * (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max);
-
+    if(actorData.data.isMassProduced) {
+      calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
+    }
     /*Push values to ship actor*/
-    actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
-    actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
-    actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
-    actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
-    actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
-    actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
-    actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
-
-    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
-    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
-    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
-    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
-    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
-
-    actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
-    actorData.data.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
-    actorData.data.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
-
+    _updateShipData();
 
     function _estimateDisplacement(): number {
       let returnValue = 0;
@@ -161,7 +146,7 @@ export default class TwodsixActor extends Actor {
       return Math.round(returnValue);
     }
 
-    function _calculateCost(anComponent: Component, weightForItem: number): void {
+    function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
         if (anComponent.subtype === "hull") {
           calcShipStats.cost.hullValue += (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max) * Number(anComponent.price);
@@ -234,6 +219,26 @@ export default class TwodsixActor extends Actor {
             break;
         }
       }
+    }
+
+    function _updateShipData(): void {
+      actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
+      actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
+      actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
+      actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
+      actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
+      actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
+      actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+
+      actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
+      actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
+      actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
+      actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
+      actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
+
+      actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
+      actorData.data.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
+      actorData.data.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
     }
   }
 
