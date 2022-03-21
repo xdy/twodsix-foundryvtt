@@ -2071,15 +2071,28 @@ a.ship-notes-tab.active {
   overflow-y: auto;
 }
 
+.ship-finances-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.ship-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 74%;
 }
 
-.ship-value {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 1ch;
+.ship-financial-notes div[contenteditable] {
+  border: 1px solid var(--s2d6-default-color);
+  width: 36.8em;
+  height: 17.5em;
+  border-radius: 0;
+  overflow-y: auto;
+  padding: 0.2em;
 }
 
 /*-------------------------------------------------*/

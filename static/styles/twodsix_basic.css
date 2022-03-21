@@ -1649,10 +1649,31 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 90%;
   overflow-y: auto;
 }
+.ship-finances-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.ship-value {
+  display: flex;
+  flex-direction: column;
+}
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 63%;
 }
+
+.ship-financial-notes div[contenteditable] {
+  border: 1px solid var(--color-border-light-tertiary);
+  background-color: var(--s2d6-input-background) !important;
+  width: 36.8em;
+  height: 17.5em;
+  border-radius: 0 3px 3px;
+  overflow-y: auto;
+  padding: 0.2em;
+}
+
+
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {

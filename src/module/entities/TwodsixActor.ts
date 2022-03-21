@@ -130,7 +130,7 @@ export default class TwodsixActor extends Actor {
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 )
-      + calcShipStats.cost.perHullTon * (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max);
+      + calcShipStats.cost.perHullTon * (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull);
     if(actorData.data.isMassProduced) {
       calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
     }
@@ -149,7 +149,7 @@ export default class TwodsixActor extends Actor {
     function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
         if (anComponent.subtype === "hull") {
-          calcShipStats.cost.hullValue += (calcShipStats.weight.baseHull || actorData.data.shipStats.mass.max) * Number(anComponent.price);
+          calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
         } else {
           switch (anComponent.pricingBasis) {
             case "perUnit":
