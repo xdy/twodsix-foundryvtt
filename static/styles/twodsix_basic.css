@@ -1663,7 +1663,7 @@ div.ship-value {
   height: 63%;
 }
 
-.ship-financial-notes div[contenteditable] {
+.ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--color-border-light-tertiary);
   background-color: var(--s2d6-input-background) !important;
   width: 36.8em;
