@@ -83,10 +83,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
   private async _changeSubtype(event) {
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      console.log("Changing Image", this, event );
       await this.item.update({
         img: "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"
-      }) ;
+      });
     }
   }
 
