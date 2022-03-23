@@ -1,3 +1,10 @@
+## [1.27.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.0...v1.27.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* does not calc hull component as pct of hull value correctly ([755d35e](https://github.com/xdy/twodsix-foundryvtt/commit/755d35e773a8fb30952b370fb03cabc62ae7ca6f))
+
 # [1.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.26.0...v1.27.0) (2022-03-23)
 
 
