@@ -122,7 +122,10 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
+  shipValue:number;
   maintenanceCost:number;
+  mortgageCost:number;
+  isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
   shipStats:ShipStats;
@@ -167,6 +170,7 @@ export interface ShipStats {
   armor:Staterooms;
   fuelTanks:Staterooms;
   mass:Staterooms;
+  drives: Drives;
 }
 
 export interface Staterooms {
@@ -174,6 +178,19 @@ export interface Staterooms {
   weight:string;
   cost:string;
   power?:string;
+  value?:number;
+  min?:number;
+  max?:number;
+}
+
+export interface Drives {
+  jDrive:Propulsion;
+  mDrive:Propulsion;
+  overdrive:boolean;
+}
+
+export interface Propulsion {
+  rating:number;
 }
 
 export interface Hits {
@@ -324,6 +341,9 @@ export interface Component extends GearTemplate {
   cargoLocation:string;
   generatesPower:boolean;
   isRefined:boolean;
+  features:string;
+  pricingBasis:string;
+  isBaseHull:boolean;
 }
 
 export interface Consumable extends GearTemplate {
@@ -408,5 +428,6 @@ export interface Weapon extends GearTemplate {
   damageType:string;
   rateOfFire:string;
   recoil:boolean;
+  features:string;
   armorPiercing:number;
 }

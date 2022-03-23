@@ -1,10 +1,20 @@
 <div class = "cargo-all">
+  {{#unless (twodsix_showWeightUsage)}}
+  <div class="cargo-weight">
+    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.weightStats.cargo}}" name="data.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{#iff data.data.weightStats.available '>=' 0}}
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{else}}
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{/iff}}
+  </div>
+  {{/unless}}
 <div class="cargo-list">
   <span class="item-title manifest">{{localize "TWODSIX.Ship.MANIFEST"}}</span>
   <div class="grid-columns-double storage-header">
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Items.Component.unitWeight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Equipment.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
@@ -13,7 +23,7 @@
     </div>
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Items.Component.unitWeight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Equipment.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
@@ -27,7 +37,7 @@
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{item.data.data.weight}}</span>
+          <span class="item-name centre">{{getComponentWeight item}}</span>
           <span class="item-name centre">{{item.data.data.quantity}}</span>
           <span class="item-name centre">{{item.data.data.purchasePrice}}</span>
           <span class="item-name centre">{{#if item.data.data.isIllegal}}<i class="fas fa-skull-crossbones"></i>{{/if}}</span>

@@ -11,16 +11,32 @@ export async function createItemMacro(item, slot): Promise<void> {
     // @ts-ignore
     await game.user?.assignHotbarMacro(game.macros.get(item.id), slot);
   } else {
-    const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
-    let itemName = item.name ? item.name : item.data?.name;
-    let img = item.img ? item.img : item.data?.img;
+    let itemName = "";
+    let img = "";
+    let command = "";
+    if (item.type === "Item") {
+      command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
+      itemName = item.name ? item.name : item.data?.name;
+      img = item.img ? item.img : item.data?.img;
 
-    //handle case for unattached item
-    if (!itemName) {
-      const origItem = <Item>game.items?.get(item.id);
-      itemName = origItem?.name || "???";
-      img = origItem?.img || CONST.DEFAULT_MACRO_ICON;
+      //handle case for unattached item
+      if (!itemName) {
+        const origItem = <Item>game.items?.get(item.id);
+        itemName = origItem?.name || "???";
+        img = origItem?.img || CONST.DEFAULT_MACRO_ICON;
+      }
+
+    } else if (item.type === "RollTable") {
+      const newTable = game.tables?.get(item.id);
+      if (newTable) {
+        itemName = newTable.name ?? "???";
+        img = newTable.data.img ?? CONST.DEFAULT_MACRO_ICON;
+        command = `game.tables.get("${item.id}").draw();`;
+      }
+    } else {
+      return;
     }
+
     let macro: Macro | undefined = game.macros?.getName(itemName);
     if (!macro) {
       macro = await Macro.create({

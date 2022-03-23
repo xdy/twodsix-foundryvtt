@@ -173,6 +173,9 @@
       "cargo": "",
       "finances": "",
       "maintenanceCost": 0,
+      "mortgageCost": 0,
+      "shipValue": 0,
+      "isMassProduced": false,
       "reqPower": {
         "systems": 0,
         "m-drive": 0,
@@ -207,7 +210,10 @@
         "armor": {
           "name": "",
           "weight": "",
-          "cost": ""
+          "cost": "",
+          "value": 0,
+          "max": 0,
+          "min": 0
         },
         "mass": {
           "value": 0,
@@ -218,6 +224,15 @@
           "name": "",
           "weight": "",
           "cost": ""
+        },
+        "drives": {
+          "overdrive": false,
+          "jDrive": {
+            "rating": 0
+          },
+          "mDrive": {
+            "rating": 0
+          }
         }
       }
     }
@@ -271,6 +286,7 @@
       "damageType": "",
       "rateOfFire": "",
       "recoil": false,
+      "features": "",
       "armorPiercing": 0
     },
     "armor": {
@@ -340,7 +356,10 @@
       "purchasePrice": "",
       "cargoLocation": "",
       "generatesPower": false,
-      "isRefined": false
+      "isRefined": false,
+      "features": "",
+      "pricingBasis": "perUnit",
+      "isBaseHull": false
     },
     "ship_position": {
       "name": "",

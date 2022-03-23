@@ -90,6 +90,8 @@ declare global {
       'twodsix.rulesetSettings': RulesetSettings;
       'twodsix.minorWoundsRollModifier': number;
       'twodsix.seriousWoundsRollModifier': number;
+      'twodsix.mortgagePayment': number;
+      'twodsix.massProductionDiscount': number;
     }
   }
 }

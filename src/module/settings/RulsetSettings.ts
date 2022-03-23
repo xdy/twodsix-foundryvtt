@@ -53,6 +53,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringSetting("alternativeShort1", "ALT1"));
     settings.push(stringSetting("alternativeShort2", "ALT2"));
     settings.push(numberSetting('maxComponentHits', 3));
+    settings.push(numberSetting('mortgagePayment', 240, true));
+    settings.push(numberSetting('massProductionDiscount', 0.10, true));
     return settings;
   }
 }

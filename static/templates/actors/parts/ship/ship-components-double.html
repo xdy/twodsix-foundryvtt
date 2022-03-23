@@ -36,7 +36,7 @@
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{item.data.data.techLevel}}</span>
+          <span class="item-name centre">{{#iff item.data.data.techLevel ">" "0"}}{{item.data.data.techLevel}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{item.data.data.rating}}</span>
           <span class="item-name centre component-toggle">
             {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>

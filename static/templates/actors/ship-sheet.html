@@ -17,39 +17,7 @@
     </div>
     {{#unless limited}}
     <div class="ship-info">
-      <div class="ship-state-grid">
-        {{#if (twodsix_useFoundryStyle)}}
-          <div class="ship-state-labels">
-            <span>&nbsp</span>
-            <span>{{localize "TWODSIX.Damage.Current"}}</span>
-            <span>{{localize "TWODSIX.Damage.Max"}}</span>
-          </div>
-        {{/if}}
-        <div class="ship-hull">
-          <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
-          <span class="ship-hull-value"><input type="number" value="{{data.data.shipStats.hull.value}}" name="data.shipStats.hull.value" placeholder="0"/></span>
-          <span class="ship-hull-max"><input type="number" value="{{data.data.shipStats.hull.max}}" name="data.shipStats.hull.max" placeholder="0"/></span>
-        </div>
-        <div class="ship-fuel">
-          <span>{{localize "TWODSIX.Ship.Fuel"}}</span>
-          <span class="ship-fuel-value"><input type="number" value="{{data.data.shipStats.fuel.value}}" name="data.shipStats.fuel.value" placeholder="0"/></span>
-          <span class="ship-fuel-max"><input type="number" value="{{data.data.shipStats.fuel.max}}" name="data.shipStats.fuel.max" placeholder="0"/></span>
-        </div>
-        <div class="ship-armor">
-            <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
-            <span class="ship-armor-name"><textarea name="data.shipStats.armor.name" value="{{data.data.shipStats.armor.name}}">{{data.data.shipStats.armor.name}}</textarea></span>
-          </div>
-        <div class="ship-mass">
-          <span>{{localize "TWODSIX.Ship.Displacement"}}</span>
-          <span><input type="number" value="{{data.data.shipStats.mass.max}}" name="data.shipStats.mass.max" placeholder="0"/></span>
-          <span>{{localize "TWODSIX.Ship.tons"}}</span>
-        </div>
-        <div class ="ship-tl">
-          <span>{{localize "TWODSIX.Actor.Items.TL"}}</span>
-          <span><input type="number" value="{{data.data.techLevel}}" name="data.techLevel" placeholder="0"/></span>
-          <span>&nbsp</span>
-        </div>
-      </div>
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-state-grid.html"}}
     </div>
     <div class="ship-power-management">
     {{#if (twodsix_showWeightUsage)}}

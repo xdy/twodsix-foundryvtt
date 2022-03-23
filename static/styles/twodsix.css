@@ -1,9 +1,29 @@
+
 @font-face {
-  font-family: "Asap-Regular";
-  src: url("../fonts/Asap-M2Pr.eot"); /* IE9 Compat Modes */
-  src: url("../fonts/Asap-M2Pr.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/Asap-M2Pr.otf") format("opentype"), /* Open Type Font */ url("../fonts/Asap-M2Pr.svg") format("svg"), /* Legacy iOS */ url("../fonts/Asap-M2Pr.ttf") format("truetype"), /* Safari, Android, iOS */ url("../fonts/Asap-M2Pr.woff") format("woff"), /* Modern Browsers */ url("../fonts/Asap-M2Pr.woff2") format("woff2"); /* Modern Browsers */
+  font-family: "Asap";
+  src: url("../fonts/Asap-Regular.woff2") format("woff2"), url("../fonts/Asap-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+@font-face {
+  font-family: "Asap";
+  src: url("../fonts/Asap-Bold.woff2") format("woff2"), url("../fonts/Asap-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-Italic.woff2") format("woff2"), url("../fonts/Asap-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Asap-Italic";
+  src: url("../fonts/Asap-BoldItalic.woff2") format("woff2"), url("../fonts/Asap-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
 
 :root {
@@ -41,7 +61,7 @@ body {
   /*background-position: center;
   background-repeat: no-repeat;
   background-size: cover;*/
-  font-family: "Asap-Regular";
+  font-family: "Asap", sans-serif;
 }
 
 svg {
@@ -95,6 +115,14 @@ input[type='text']:focus, input[type='number']:focus, input[type='password']:foc
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
   background: var(--s2d6-background-semi-opaque);
+}
+
+input[type= 'checkbox'] {
+  vertical-align: middle;
+}
+
+label.checkbox > input[type="checkbox"] {
+  vertical-align: baseline;
 }
 
 input::-webkit-inner-spin-button {
@@ -302,7 +330,12 @@ form .form-group span.units {
   background-image: url(../assets/bg2.jpg) !important;
   background-repeat: repeat-x !important;
   font-family: inherit;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-default-color) !important;
+}
+
+.editor-content strong {
+  font-weight: bold;
+  color: var(--s2d6-light-color);
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
@@ -494,7 +527,9 @@ img.character-info-mask {
   background-color: transparent !important;
   border: none;
   height: 2.7ch;
+  /* vertical-align: middle; */
 }
+
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
@@ -618,6 +653,11 @@ span.bgi-charEdit {
   display: inline-block;
   position: relative;
   margin-bottom: 1.5em;
+}
+
+.stat-table {
+  margin: 0.1em 0 0 -0.2em;
+  /* width: 50%; */
 }
 
 .stat-table-small {
@@ -935,7 +975,9 @@ a.notes-tab.active {
 }
 
 .gear {
-  border: 1px solid var(--s2d6-default-color);
+  border: solid;
+  border-width: 1px;
+  border-color: var(--s2d6-default-color);
   padding-left: 0.5em;
 }
 
@@ -979,10 +1021,10 @@ a.notes-tab.active {
 .skill-list {
   padding: 0.5em;
   width: 34.2em;
-  border: 1px groove var(--s2d6-default-color);
+  border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #joat-skill {
@@ -1005,7 +1047,7 @@ a.notes-tab.active {
   left: 26.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .add-skill:hover {
@@ -1142,11 +1184,6 @@ span.total-output {
 
 .short-label input[type='text'], .short-label input[type='number'] {
   width: 18ch;
-}
-
-.short-label input[type='checkbox'] {
-  vertical-align: text-bottom;
-  height: 16px;
 }
 
 .multi-line {
@@ -1303,7 +1340,8 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
 .manifest {
-  margin-left: 1em;
+  margin-left: 0.9em;
+  width: 215px;
 }
 .simplified-skill-description {
   font-weight: normal;
@@ -1323,7 +1361,6 @@ span.total-output {
       "char-description"
       "char-contacts"
       "char-bio";
-  /*padding: 0em;*/
   position: relative;
   margin-top: 2em;
 }
@@ -1365,6 +1402,10 @@ span.total-output {
   overflow-y: auto;
   color: var(--s2d6-light-color) !important;
   padding: 0.2em;
+}
+
+.showChat {
+  cursor: pointer;
 }
 
 /*-------- Notes Tab ----*/
@@ -1415,15 +1456,16 @@ img.ship-mask-bg {
 .ship-image {
   grid-area: ship-image;
   text-align: center;
-  height: 100%;
+  width: 98%;
+  padding-left: 16px;
+  padding-top: 8px;
   z-index: 0;
 }
 
 .ship-image img {
-  max-width: 100%;
   vertical-align: middle;
   z-index: -1;
-  max-height: 100%;
+  max-height: 84%;
 }
 
 .ship-deck {
@@ -1454,14 +1496,14 @@ img.ship-mask-bg {
   border: none;
   position: relative;
   top: -0.35em;
-  width: auto;
+  width: 100%;
 }
 
 .ship-info {
   grid-area: ship-info;
   z-index: 3;
   position: relative;
-  width: 29em;
+  width: 28.5em;
   color: var(--s2d6-stat-input);
 }
 
@@ -1475,36 +1517,58 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
-.ship-info input {
+.ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
-  /*padding: 2px;
-  margin-top: -0.2em;
-  margin-left: 1.7em;*/
+  padding: 0;
+  /* margin-top: -0.5em; */
+  /*margin-left: 1.7em;*/
   font-size: 18px;
   width: 100%;
   border: none;
   background-color: transparent !important;
 }
 
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
+  width: 40%;
+}
+
+.overdrive-mode input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  /* vertical-align: middle; */
+}
+
+.fuel-bar {
+  width: 95%;
+  height: 30px;
+  /* align-self: center; */
+}
+
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 7em 7em 7em 6em 5em;
+  grid-template-columns: 7em 5em 7em 6em 7em;
   grid-template-rows: 10em;
-  gap: 1px 6px;
-  grid-template-areas: "ship-hull ship-fuel ship-armor ship-mass ship-tl";
+  gap: 1px 5px;
+  grid-template-areas:
+    "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: smaller;
 }
 
 .ship-state-grid span {
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
   text-align: center;
+  /* vertical-align: middle; */
 }
 
 .ship-armor {
   grid-area: ship-armor;
   display: grid;
-  grid-template-rows: max-content;
-  /*padding-right: 1ch;*/
+  grid-template-rows: auto;
+  text-align: center;
+  margin-top: 0.5em;
+  /* padding-right: 1ch; */
+  /* align-self: center; */
 }
 
 .ship-armor-name textarea {
@@ -1512,9 +1576,14 @@ img.ship-mask-bg {
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
   text-align: center;
-  /*display: grid;*/
+  font-size: x-small;
+  overflow-wrap: break-word;
   resize: none;
-  height: 100%;
+  /* word-wrap: break-word; */
+  /* word-break: break-all; */
+  min-height: 48px;
+  /* max-height: 100%; */
+  width: 90%;
 }
 
 .ship-hull {
@@ -1525,32 +1594,41 @@ img.ship-mask-bg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-top: 0.5em;
+}
+
+.ship-hull-value {
+  margin-top: 0.5em;
 }
 
 .ship-fuel {
   grid-area: ship-fuel;
   display: grid;
-  background-image: url(../assets/ship/fuel.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  /* flex-direction: column; */
+  grid-template-rows: 15px 25px 47px 20px;
+  /* text-align: center; */
+  margin-top: 0.5em;
+  /* justify-content: space-between; */
+  /* vertical-align: middle; */
 }
 
 .ship-mass {
   grid-area: ship-mass;
   display: grid;
+  margin-top: 0.5em;
 }
 
-.ship-tl {
-  grid-area: ship-tl;
+.ship-drives {
+  grid-area: ship-drives;
   display: grid;
+  margin-top: 0.5em;
 }
 
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-background-nearly-opaque) !important;
-  border: solid;
+  /*border: solid;
   border-color: var(--s2d6-default-color);
-  border-radius: 0.5ch !important;
+  border-radius: 0.5ch !important;*/
 }
 
 /*.ship-mass input[type="number"], .ship-tl input[type="number"] {
@@ -1595,14 +1673,15 @@ img.ship-mask-bg {
 .power-grid {
   display: grid;
   grid-template-columns: 3.82em 3.82em 3.82em 3.82em 3.82em;
-  grid-template-rows: 1fr;
-  gap: 2px 2px;
-  grid-template-areas: ". . . . .";
+  /* grid-template-rows: 1fr; */
+  gap: 0 2px;
+  grid-template-areas:
+    ". . . . .";
   position: relative;
-  left: 7.35em;
-  top: -4.4em;
-  margin-bottom: -4em;
-  height: 4em;
+  left: 7.4em;
+  top: -66px;
+  /* margin-bottom: -4em; */
+  /* height: 4em; */
 }
 
 .ship-stat input[type="number"] {
@@ -1611,11 +1690,12 @@ img.ship-mask-bg {
   background-color: transparent !important;
   border: none;
   height: auto;
-  /*margin-top: 6px;*/
+  margin-top: 5px;
 }
 
 .small-font {
   font-size: x-small;
+  /* margin-top: -2em; */
 }
 
 .red {
@@ -1669,7 +1749,7 @@ span.power-max {
   position: relative;
   display: block;
   width: auto;
-  top: -4.2em;
+  top: -4.4em;
 }
 
 /*--- Input Fields ---*/
@@ -1689,7 +1769,7 @@ input.power-total {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -2em;
+  top: -2.1em;
   width: inherit;
   display: block;
   border: none;
@@ -1935,6 +2015,12 @@ a.ship-notes-tab.active {
   height: 20em;
 }
 
+.cargo-weight {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .cargo-list {
   /*margin-top: 1.1em;*/
   overflow-y: auto;
@@ -1984,6 +2070,34 @@ a.ship-notes-tab.active {
   height: 90%;
   overflow-y: auto;
 }
+
+.ship-finances-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.ship-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 17.5em;
+  border: solid 1px;
+  width: 17em;
+}
+
+.ship-finances-container >div[contenteditable], .ship-finances-container .editor {
+  height: 74%;
+}
+
+.ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
+  border: 1px solid var(--s2d6-default-color);
+  width: 34.8em;
+  height: 17.5em;
+  border-radius: 0;
+  overflow-y: auto;
+  padding: 0.2em;
+}
+
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
@@ -2139,7 +2253,8 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits {
+.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
+.item-features, .item-subtype {
   margin-top: 0.5em;
 }
 
@@ -2687,12 +2802,9 @@ div.app.window-app.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-form-light);
 }
 
-.editor-content p {
-  padding-left: 0.8em;
-}
-
 .editor-content {
   height: 95%;
+  padding-left: 4px;
 }
 
 .tox .tox-editor-container {

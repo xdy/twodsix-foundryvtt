@@ -1,3 +1,59 @@
+# [1.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.26.0...v1.27.0) (2022-03-23)
+
+
+### Features
+
+* add pricing for components ([5470666](https://github.com/xdy/twodsix-foundryvtt/commit/54706666ed764cd1559a3d2e4e1d820db33de41e))
+
+# [1.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.3...v1.26.0) (2022-03-15)
+
+
+### Features
+
+* display trait info on name click ([#921](https://github.com/xdy/twodsix-foundryvtt/issues/921)) ([e775c41](https://github.com/xdy/twodsix-foundryvtt/commit/e775c41b33bef77b8a622753b95c04f1734b10de))
+
+## [1.25.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.2...v1.25.3) (2022-03-14)
+
+
+### Bug Fixes
+
+* Quality of life improvements ([#919](https://github.com/xdy/twodsix-foundryvtt/issues/919)) ([24a1900](https://github.com/xdy/twodsix-foundryvtt/commit/24a19009892d7a9bd1bac89562eca319988742a1))
+
+## [1.25.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.1...v1.25.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* Use Untrained skill for ship position rolls ([00ded01](https://github.com/xdy/twodsix-foundryvtt/commit/00ded013eec1e7a8517822c48ccf67c282dabdc8))
+
+## [1.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.0...v1.25.1) (2022-03-12)
+
+
+### Bug Fixes
+
+* adjust ship image to fit within image frame ([778472b](https://github.com/xdy/twodsix-foundryvtt/commit/778472beb4ecfc46d1c107e00aa4ecae790500b8))
+
+# [1.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.2...v1.25.0) (2022-03-12)
+
+
+### Features
+
+* Re-release ship sheet update ([839b13d](https://github.com/xdy/twodsix-foundryvtt/commit/839b13db97936de6b7a94eb005def120f0805385))
+
+## [1.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.1...v1.24.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* make bold and italics fonts work again ([#909](https://github.com/xdy/twodsix-foundryvtt/issues/909)) ([dd07ba3](https://github.com/xdy/twodsix-foundryvtt/commit/dd07ba3b38f309f1a2886d73f2e498511a3f7ec8))
+
+## [1.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.0...v1.24.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* adjust for missing bold font ([#910](https://github.com/xdy/twodsix-foundryvtt/issues/910)) ([5b764f6](https://github.com/xdy/twodsix-foundryvtt/commit/5b764f68e96d2a34e2188bd97c7b6595786a0f00))
+
 # [1.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.23.0...v1.24.0) (2022-03-06)
 
 

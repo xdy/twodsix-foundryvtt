@@ -22,6 +22,10 @@ export default function registerHandlebarsHelpers(): void {
     return (num % 2) == 1;
   });
 
+  Handlebars.registerHelper('twodsix_product', (num1:number, num2:number) => {
+    return (num1 ?? 0) * (num2 ?? 0);
+  });
+
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
     if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';
@@ -210,33 +214,6 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('getComponentTypes', () => {
-    return ComponentTypes;
-  });
-
-  const ComponentTypes: string[] = [
-    'accomodations',
-    'armament',
-    'armor',
-    'bridge',
-    'cargo',
-    'computer',
-    'drive',
-    'drone',
-    'electronics',
-    'fuel',
-    'hull',
-    'mount',
-    "otherExternal",
-    "otherInternal",
-    'power',
-    "sensor",
-    'shield',
-    'software',
-    'storage',
-    'vehicle'
-  ];
-
   Handlebars.registerHelper('twodsix_showWeightUsage', () => {
     return (game.settings.get('twodsix', 'showWeightUsage'));
   });
@@ -269,7 +246,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return getWeight(<Component>item.data.data, item.actor?.data);
+    return (Math.round(getWeight(<Component>item.data.data, item.actor?.data) * 10 ) / 10 ).toFixed(1);
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
