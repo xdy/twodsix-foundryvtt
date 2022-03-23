@@ -1496,7 +1496,7 @@ img.ship-mask-bg {
   border: none;
   position: relative;
   top: -0.35em;
-  width: auto;
+  width: 100%;
 }
 
 .ship-info {
@@ -2070,6 +2070,34 @@ a.ship-notes-tab.active {
   height: 90%;
   overflow-y: auto;
 }
+
+.ship-finances-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.ship-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 17.5em;
+  border: solid 1px;
+  width: 17em;
+}
+
+.ship-finances-container >div[contenteditable], .ship-finances-container .editor {
+  height: 74%;
+}
+
+.ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
+  border: 1px solid var(--s2d6-default-color);
+  width: 34.8em;
+  height: 17.5em;
+  border-radius: 0;
+  overflow-y: auto;
+  padding: 0.2em;
+}
+
 /*-------------------------------------------------*/
 
 button.flexrow.flex-group-center.toggle-skills {
@@ -2226,7 +2254,7 @@ a:hover {
 }
 
 .item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
-.item-features {
+.item-features, .item-subtype {
   margin-top: 0.5em;
 }
 

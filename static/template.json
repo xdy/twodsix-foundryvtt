@@ -172,6 +172,9 @@
       "cargo": "",
       "finances": "",
       "maintenanceCost": 0,
+      "mortgageCost": 0,
+      "shipValue": 0,
+      "isMassProduced": false,
       "reqPower": {
         "systems": 0,
         "m-drive": 0,
@@ -353,7 +356,9 @@
       "cargoLocation": "",
       "generatesPower": false,
       "isRefined": false,
-      "features": ""
+      "features": "",
+      "pricingBasis": "perUnit",
+      "isBaseHull": false
     },
     "ship_position": {
       "name": "",

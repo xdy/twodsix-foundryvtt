@@ -91,9 +91,21 @@ export default class TwodsixActor extends Actor {
         cargo: 0,
         vehicles: 0,
         fuel: 0,
-        available: 0
+        available: 0,
+        baseHull: 0
+      },
+      cost: {
+        hullValue: 0,
+        percentHull: 0,
+        perHullTon: 0,
+        componentValue: 0,
+        total: 0
       }
     };
+
+    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max < 0) {
+      actorData.data.shipStats.mass.max = _estimateDisplacement();
+    }
 
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.data.data;
@@ -101,6 +113,88 @@ export default class TwodsixActor extends Actor {
       const weightForItem = getWeight(anComponent, actorData);
 
       /* Allocate Power */
+      _allocatePower(anComponent, powerForItem, item);
+
+      /* Allocate Weight*/
+      _allocateWeight(anComponent, weightForItem);
+
+      /*Calculate Cost*/
+      _calculateComponentCost(anComponent, weightForItem);
+    });
+
+    /*Calculate implicit values*/
+    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
+      calcShipStats.power.weapons + calcShipStats.power.systems;
+
+    calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
+      - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
+
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 )
+      + calcShipStats.cost.perHullTon * (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull);
+    if(actorData.data.isMassProduced) {
+      calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
+    }
+    /*Push values to ship actor*/
+    _updateShipData();
+
+    function _estimateDisplacement(): number {
+      let returnValue = 0;
+      actorData.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.data.data).isBaseHull).forEach((item: TwodsixItem) => {
+        const anComponent = <Component>item.data.data;
+        returnValue += getWeight(anComponent, actorData);
+      });
+      return Math.round(returnValue);
+    }
+
+    function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
+      if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
+        if (anComponent.subtype === "hull") {
+          calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+        } else {
+          switch (anComponent.pricingBasis) {
+            case "perUnit":
+              calcShipStats.cost.componentValue += Number(anComponent.price) * anComponent.quantity;
+              break;
+            case "perCompTon":
+              calcShipStats.cost.componentValue += Number(anComponent.price) * weightForItem;
+              break;
+            case "pctHull":
+              calcShipStats.cost.percentHull += Number(anComponent.price);
+              break;
+            case "perHullTon":
+              calcShipStats.cost.perHullTon += Number(anComponent.price);
+              break;
+          }
+        }
+      }
+    }
+
+    function _allocateWeight(anComponent: Component, weightForItem: number): void {
+      switch (anComponent.subtype) {
+        case "vehicle":
+          calcShipStats.weight.vehicles += weightForItem;
+          break;
+        case "cargo":
+          calcShipStats.weight.cargo += weightForItem;
+          break;
+        case "fuel":
+          calcShipStats.weight.fuel += weightForItem;
+          break;
+        case "hull":
+          //don't include hull displacment in weight calculations
+          if (anComponent.isBaseHull) {
+            calcShipStats.weight.baseHull += weightForItem;
+          } else {
+            calcShipStats.weight.systems += weightForItem;
+          }
+          break;
+        default:
+          calcShipStats.weight.systems += weightForItem;
+          break;
+      }
+    }
+
+    function _allocatePower(anComponent: Component, powerForItem: number, item: TwodsixItem): void {
       if (anComponent.generatesPower) {
         calcShipStats.power.max += powerForItem;
       } else {
@@ -125,45 +219,27 @@ export default class TwodsixActor extends Actor {
             break;
         }
       }
+    }
 
-      /* Allocate Weight*/
-      switch (anComponent.subtype) {
-        case "vehicle":
-          calcShipStats.weight.vehicles += weightForItem;
-          break;
-        case "cargo":
-          calcShipStats.weight.cargo += weightForItem;
-          break;
-        case "fuel":
-          calcShipStats.weight.fuel += weightForItem;
-          break;
-        default:
-          calcShipStats.weight.systems += weightForItem;
-          break;
-      }
-    });
+    function _updateShipData(): void {
+      actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
+      actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
+      actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
+      actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
+      actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
+      actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
+      actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
 
-    /*Calculate implicit values*/
-    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
-      calcShipStats.power.weapons + calcShipStats.power.systems;
+      actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
+      actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
+      actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
+      actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
+      actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
 
-    calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
-      - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
-
-    /*Push values to ship actor*/
-    actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
-    actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
-    actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
-    actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
-    actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
-    actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
-    actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
-
-    actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
-    actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
-    actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
-    actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
-    actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
+      actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
+      actorData.data.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
+      actorData.data.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
+    }
   }
 
   protected async _onCreate() {

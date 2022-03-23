@@ -84,10 +84,12 @@ declare global {
       'twodsix.systemMigrationVersion': string;
       'twodsix.termForAdvantage': string;
       'twodsix.termForDisadvantage': string;
-      'twodsix.debugSettings': RulesetSettings
-      'twodsix.displaySettings': DisplaySettings
-      'twodsix.itemSettings': ItemSettings
-      'twodsix.rulesetSettings': RulesetSettings
+      'twodsix.debugSettings': RulesetSettings;
+      'twodsix.displaySettings': DisplaySettings;
+      'twodsix.itemSettings': ItemSettings;
+      'twodsix.rulesetSettings': RulesetSettings;
+      'twodsix.mortgagePayment': number;
+      'twodsix.massProductionDiscount': number;
     }
   }
 }

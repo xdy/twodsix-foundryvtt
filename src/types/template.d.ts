@@ -122,7 +122,10 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
+  shipValue:number;
   maintenanceCost:number;
+  mortgageCost:number;
+  isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
   shipStats:ShipStats;
@@ -338,6 +341,8 @@ export interface Component extends GearTemplate {
   generatesPower:boolean;
   isRefined:boolean;
   features:string;
+  pricingBasis:string;
+  isBaseHull:boolean;
 }
 
 export interface Consumable extends GearTemplate {

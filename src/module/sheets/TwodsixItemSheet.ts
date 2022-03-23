@@ -9,6 +9,7 @@ import { GearTemplate } from "src/types/template";
  * @extends {ItemSheet}
  */
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
+  data: any;
 
   /** @override */
   static get defaultOptions(): ItemSheet.Options {
@@ -78,6 +79,14 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
     this.handleContentEditable(html);
     html.find('.open-link').on('click', this._openPDFReference.bind(this));
+    html.find(`[name="data.subtype"]`).on('change', this._changeSubtype.bind(this));
+  }
+  private async _changeSubtype(event) {
+    if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
+      await this.item.update({
+        img: "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"
+      });
+    }
   }
 
   private getConsumable(event) {

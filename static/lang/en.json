@@ -234,7 +234,13 @@
         "Value": "Value",
         "GeneratesPower": "Generates Power?",
         "IsRefined": "Refined?",
-        "Features": "Features / Traits"
+        "Features": "Features / Traits",
+        "PricingBasis": "Pricing of",
+        "perUnit": "MCr per unit",
+        "perCompTon": "MCr per component ton",
+        "perHullTon": "MCr per hull ton",
+        "pctHull": "Percent of base hull value",
+        "isBaseHull":"Is Baseline Hull?"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -356,10 +362,12 @@
       "DeleteAction": "Delete Action",
       "Displacement": "Displacement",
       "Drives": "Drives",
-      "FINANCES": "FINANCES",
+      "FINANCENOTES": "FINANCE NOTES",
+      "SHIPVALUE": "SHIP VALUE",
       "Fuel": "Fuel",
       "Gs": "G",
       "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
+      "IsMassProduced": "Ship is Mass Produced",
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
@@ -399,7 +407,12 @@
       "Travellers": "Travellers",
       "USED": "USED",
       "Vehicles": "Vehicles",
-      "Weapons": "Weapons"
+      "Weapons": "Weapons",
+      "MCr": "MCr",
+      "ShipValue": "Ship Value",
+      "MortgagePerMonth": "Est. Mortgage Payment",
+      "MaintenancePerMonth": "Maintenance Cost",
+      "CrPerMonth": "Cr/month"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -640,6 +653,14 @@
       "maxComponentHits": {
         "hint": "The number of hits at which the component is destroyed",
         "name": "Maximum hits for a component."
+      },
+      "mortgagePayment": {
+        "hint": "The number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
+        "name": "Mortgage Payment Terms."
+      },
+      "massProductionDiscount": {
+        "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
+        "name": "Discount for ship being mass produced"
       }
     },
     "CloseAndCreateNew": "Close and create new",

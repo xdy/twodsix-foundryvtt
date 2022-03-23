@@ -1144,7 +1144,7 @@ img.ship-mask-bg {
   font-size: 18px;
   /*width: 2.5em;*/
   border: solid 1px;
-  border-radius: 1ch;
+  border-radius: 0.5ch;
 }
 
 .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
@@ -1236,6 +1236,14 @@ img.ship-mask-bg {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: max-content;
+}
+
+.ship-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 2ch;
 }
 
 .ship-mass input, .ship-tl input {
@@ -1641,6 +1649,36 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 90%;
   overflow-y: auto;
 }
+.ship-finances-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+div.ship-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 17.5em;
+  border: 1px solid var(--color-border-light-tertiary);
+  border-radius: 0 3px 3px;
+  width: 17em;
+  padding: 2ch;
+}
+
+.ship-finances-container >div[contenteditable], .ship-finances-container .editor {
+  height: 63%;
+}
+
+.ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
+  border: 1px solid var(--color-border-light-tertiary);
+  background-color: var(--s2d6-input-background) !important;
+  width: 34.8em;
+  height: 17.5em;
+  border-radius: 0 3px 3px;
+  overflow-y: auto;
+  padding: 0.2em;
+}
+
 
 /*-------------------------------------------------*/
 
@@ -1736,7 +1774,7 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference, .item-features {
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference, .item-features, .item-subtype {
   margin-top: 0.5em;
 }
 
