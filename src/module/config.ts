@@ -53,7 +53,7 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
       minorWoundsRollModifier: 0,
-      seriousWoundsRollModifier: 0
+      seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10
     }
@@ -75,7 +75,7 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
       minorWoundsRollModifier: 0,
-      seriousWoundsRollModifier: 0
+      seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10
     }
@@ -187,7 +187,7 @@ const RULESETS = Object.freeze({
       ShowRateOfFire: true,
       ShowRecoil: true,
       minorWoundsRollModifier: -1,
-      seriousWoundsRollModifier: -2
+      seriousWoundsRollModifier: -2,
       mortgagePayment: 320,
       massProductionDiscount: 0.10
     }
