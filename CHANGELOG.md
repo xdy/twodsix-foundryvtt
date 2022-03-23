@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.26.0...v1.27.0) (2022-03-23)
+
+
+### Features
+
+* add pricing for components ([5470666](https://github.com/xdy/twodsix-foundryvtt/commit/54706666ed764cd1559a3d2e4e1d820db33de41e))
+
 # [1.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.3...v1.26.0) (2022-03-15)
 
 
