@@ -2080,6 +2080,9 @@ div.ship-value {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 17.5em;
+  border: solid 1px;
+  width: 17em;
 }
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
@@ -2088,7 +2091,7 @@ div.ship-value {
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--s2d6-default-color);
-  width: 36.8em;
+  width: 34.8em;
   height: 17.5em;
   border-radius: 0;
   overflow-y: auto;
