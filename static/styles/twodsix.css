@@ -2254,7 +2254,7 @@ a:hover {
 }
 
 .item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
-.item-features {
+.item-features, .item-subtype {
   margin-top: 0.5em;
 }
 
