@@ -31,7 +31,7 @@
     {{/iff}}
 
     <div class="item-subtype">
-      <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}:</label>
+      <label for="data.subtype" class="resource-label">{{localize "TWODSIX.Actor.Items.Subtype"}}: </label>
       <select id="data.subtype" name="data.subtype">
         {{selectOptions data.config.ComponentTypes selected = data.subtype localize = true}}
       </select>
@@ -124,9 +124,13 @@
 
     <div class="item-price">
       <label for = "data.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}: <input class="short-label" id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
+      {{#if data.isBaseHull}}
+        {{localize "TWODSIX.Items.Component.perHullTon"}}
+      {{else}}
       <select id = "data.pricingBasis" name = "data.pricingBasis" >
         {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
       </select>
+      {{/if}}
     </div>
 
     {{else}}
