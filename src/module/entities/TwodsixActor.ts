@@ -96,7 +96,7 @@ export default class TwodsixActor extends Actor {
       },
       cost: {
         hullValue: 0,
-        hullOffset: 0,
+        hullOffset: 1.0,
         percentHull: 0,
         perHullTon: 0,
         componentValue: 0,
@@ -130,7 +130,7 @@ export default class TwodsixActor extends Actor {
     calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
-    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 ) * ( 1 + calcShipStats.cost.hullOffset / 100 )
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 ) * calcShipStats.cost.hullOffset
       + calcShipStats.cost.perHullTon * (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull);
     if(actorData.data.isMassProduced) {
       calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
@@ -161,7 +161,7 @@ export default class TwodsixActor extends Actor {
                 calcShipStats.cost.hullValue += Number(anComponent.price) * weightForItem;
                 break;
               case "pctHull":
-                calcShipStats.cost.hullOffset += Number(anComponent.price);
+                calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
                 break;
               case "perHullTon":
                 calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
