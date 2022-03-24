@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.1...v1.28.0) (2022-03-24)
+
+
+### Features
+
+* add traits to NPC sheet ([#930](https://github.com/xdy/twodsix-foundryvtt/issues/930)) ([0039b6d](https://github.com/xdy/twodsix-foundryvtt/commit/0039b6d536d637570dcdc9201d473f08b19aacc6))
+
 ## [1.27.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.0...v1.27.1) (2022-03-23)
 
 
