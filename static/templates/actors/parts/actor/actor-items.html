@@ -199,7 +199,7 @@
       </span>
     </div>
 
-  {{#each data.consumable as |item id|}}
+  {{#each_sort_by_name data.consumable as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
@@ -223,5 +223,5 @@
     {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
     {{/each}}
   </div>
-  {{/each}}
+  {{/each_sort_by_name}}
 </div>
