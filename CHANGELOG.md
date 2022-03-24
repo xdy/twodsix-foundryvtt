@@ -1,3 +1,10 @@
+## [1.28.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.0...v1.28.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* sort consumables on actor sheet by name ([#931](https://github.com/xdy/twodsix-foundryvtt/issues/931)) ([8e17ab8](https://github.com/xdy/twodsix-foundryvtt/commit/8e17ab84d82513eae36d164eee9e4f2c32e52563))
+
 # [1.28.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.1...v1.28.0) (2022-03-24)
 
 
