@@ -98,6 +98,7 @@
         "ShortDescr": "Short Descr",
         "Subtype": "Type",
         "TRAITS": "TRAITS",
+        "Traits": "Traits",
         "TL": "TL",
         "TechLevel": "Tech Level",
         "Value": "Value",
@@ -106,7 +107,8 @@
         "Weight": "Wt"
       },
       "Notes": {
-        "NOTES": "CHARACTER NOTES"
+        "NOTES": "CHARACTER NOTES",
+        "Notes": "Character Notes"
       },
       "Rolling": "Rolling",
       "Skills": {
