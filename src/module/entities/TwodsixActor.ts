@@ -31,11 +31,22 @@ export default class TwodsixActor extends Actor {
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
           this._prepareShipData(actorData);
         }
+        this._checkCrewTitles(actorData);
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
     }
 
+  }
+  /**
+  * Check Crew Titles for missing and set to localized default
+  */
+  _checkCrewTitles(actorData): void {
+    for (const pos in actorData.data.crewLabel) {
+      if (actorData.data.crewLabel[pos] === "") {
+        actorData.data.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
+      }
+    }
   }
 
   /**

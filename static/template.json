@@ -168,6 +168,20 @@
         "marine": "",
         "other": ""
       },
+      "crewLabel": {
+        "captain": "",
+        "pilot": "",
+        "astrogator": "",
+        "engineer": "",
+        "maintenance": "",
+        "gunner": "",
+        "medic": "",
+        "admin": "",
+        "steward": "",
+        "broker": "",
+        "marine": "",
+        "other": ""
+      },
       "notes": "",
       "cargo": "",
       "finances": "",
