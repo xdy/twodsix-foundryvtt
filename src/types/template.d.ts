@@ -119,6 +119,7 @@ export interface Ship {
   deckPlan:string;
   techLevel:number;
   crew:Crew;
+  crewLabel:Crew;
   notes:string;
   cargo:string;
   finances:string;

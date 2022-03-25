@@ -1313,7 +1313,7 @@ span.total-output {
   border-radius: 0;
 }
 
-.item-title {
+.item-title, .ship-grid .item-title input[type="text"]{
   background-image: url(../assets/actor/header.svg);
   height: 22px;
   width: 207px;
@@ -1883,7 +1883,7 @@ a.ship-notes-tab.active {
   grid-template-columns: 17em 17em 17em;
   grid-template-rows: 4em 4em 4em;
   gap: 0.6em 1em;
-  grid-template-areas: ". .";
+  grid-template-areas: ". . .";
 }
 
 .ship-positions-grid {
