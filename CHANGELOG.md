@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.1...v1.29.0) (2022-03-25)
+
+
+### Features
+
+* add editable crew titles ([#933](https://github.com/xdy/twodsix-foundryvtt/issues/933)) ([529706d](https://github.com/xdy/twodsix-foundryvtt/commit/529706de2387468deb5200cf4176f591e35d484d))
+
 ## [1.28.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.0...v1.28.1) (2022-03-24)
 
 
