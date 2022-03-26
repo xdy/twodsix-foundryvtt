@@ -3,7 +3,6 @@
 /* eslint-disable spaced-comment */
 // Simple UWP translator based on information from Cepheus Light, Cepheus Engine
 // SRD and https://travellermap.com/doc/secondsurvey#uwp
-// Updated to FVTT v0.8
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 translateCode('text', 'Enter UWP Code');
@@ -21,6 +20,10 @@ async function translateCode (type, text) {
           label: 'Ok',
           callback: (html) => { resolve(html.find('input').val()); }
         }
+      },
+      default: "Ok",
+      render: (html) => {
+        html.find("[name=input]").focus();
       }
     }).render(true);
   });
@@ -40,7 +43,8 @@ async function translateCode (type, text) {
             label: 'Ok',
             callback: (html) => { resolve(html.find('input').val()); }
           }
-        }
+        },
+      default: "Ok"
       }).render(true);
     });
   }
@@ -220,7 +224,7 @@ function getTradeCodes (profile) {
     if (atmo === 0) {
       rtext += 'Va - Vacuum, ';
     }
-    // Get rid of extra coma and space
+    // Get rid of extra comma and space
     if (rtext.length > 0) {
       rtext = rtext.slice(0, -2);
     }
