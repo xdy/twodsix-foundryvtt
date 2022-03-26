@@ -12,6 +12,8 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * [jonepatr](https://github.com/jonepatr) - Started with making it easier to mass produce items, and has since added a lot more features. A python-kind-of-guy.
 * [sheck](https://github.com/sheck) - Started with making the armor fields always show on the character sheet.
 * [Kampfzwerg42](https://github.com/Kampfzwerg42/) - Started with adding support for carrying capacity/encumbrance to the character sheet.
+* [decension](https://github.com/descention) - Updates to documentation
+* TheLaundry - Improvements to macros
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
 
