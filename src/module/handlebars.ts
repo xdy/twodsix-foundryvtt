@@ -63,6 +63,10 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_getLabel', (dataField, key) => {
+    return dataField[key];
+  });
+
   Handlebars.registerHelper('twodsix_localizeConsumable', (type) => {
     return game.i18n.localize(`TWODSIX.Items.Consumable.Types.${type}`);
   });
