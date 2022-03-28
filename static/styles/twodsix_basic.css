@@ -1511,10 +1511,12 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .ship-grid > div > div[contenteditable] {
   width: 14.8em;
+  height: 2ch;
   border: 1px groove !important;
   border-radius: 0;
   min-height: 3em;
   background-color: var(--s2d6-input-background);
+  overflow-y: auto;
 }
 
 .storage-wrapper {

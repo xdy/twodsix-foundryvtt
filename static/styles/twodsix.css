@@ -1944,9 +1944,11 @@ a.ship-notes-tab.active {
 
 .ship-grid > div > div[contenteditable] {
   width: 14.8em;
+  height: 2ch;
   border: 1px groove var(--s2d6-light-color) !important;
   border-radius: 0;
   min-height: 3em;
+  overflow-y: auto;
 }
 
 .storage-wrapper {
