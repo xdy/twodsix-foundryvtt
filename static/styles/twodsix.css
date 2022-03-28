@@ -1881,9 +1881,10 @@ a.ship-notes-tab.active {
 .ship-grid {
   display: grid;
   grid-template-columns: 17em 17em 17em;
-  grid-template-rows: 4em 4em 4em;
+  grid-template-rows: 4.5em 4.5em 4.5em;
   gap: 0.6em 1em;
-  grid-template-areas: ". . .";
+  grid-template-areas:
+    ". . .";
 }
 
 .ship-positions-grid {
@@ -1931,7 +1932,7 @@ a.ship-notes-tab.active {
 }
 
 .crew-list, .ship-positions-list {
-  height: 18.4em;
+  height: 20.4em;
 }
 
 .ship-grid input[type="text"] {

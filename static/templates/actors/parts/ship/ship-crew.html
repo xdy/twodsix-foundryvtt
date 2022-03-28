@@ -3,7 +3,7 @@
 {{#each data.data.crew as |crewSlot key|}}
     <div>
       <span class="item-title" contenteditable="true" data-edit="data.crewLabel.{{key}}">{{twodsix_getLabel ../data.data.crewLabel @key}}</span>
-      <input type="text" value="{{crewSlot}}" name="data.crew.{{key}}"/>
+      <div contenteditable="true" data-edit="data.crew.{{key}}">{{{crewSlot}}}</div>
     </div>
 {{/each}}
   </div>
