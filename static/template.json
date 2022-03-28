@@ -158,15 +158,15 @@
         "captain": "",
         "pilot": "",
         "astrogator": "",
-        "engineer": "",
         "maintenance": "",
-        "gunner": "",
         "medic": "",
-        "admin": "",
         "steward": "",
+        "admin": "",
         "broker": "",
-        "marine": "",
-        "other": ""
+        "other": "",
+        "engineer": "",
+        "gunner": "",
+        "marine": ""
       },
       "crewLabel": {
         "captain": "",
