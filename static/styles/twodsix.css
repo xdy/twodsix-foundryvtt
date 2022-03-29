@@ -1881,8 +1881,8 @@ a.ship-notes-tab.active {
 .ship-grid {
   display: grid;
   grid-template-columns: 17em 17em 17em;
-  grid-template-rows: 4.5em 4.5em 4.5em;
-  gap: 0.6em 1em;
+  grid-template-rows: 4.5em 4.5em 4.5em 5em;
+  /* gap: 0.6em 0; */
   grid-template-areas:
     ". . .";
 }
@@ -1944,11 +1944,14 @@ a.ship-notes-tab.active {
 
 .ship-grid > div > div[contenteditable] {
   width: 14.8em;
-  height: 2ch;
+  height: 1ch;
   border: 1px groove var(--s2d6-light-color) !important;
   border-radius: 0;
-  min-height: 3em;
+  min-height: 4ch;
   overflow-y: auto;
+}
+.ship-grid > div:nth-child(n+10) div[contenteditable]{
+  min-height: 6ch;
 }
 
 .storage-wrapper {
