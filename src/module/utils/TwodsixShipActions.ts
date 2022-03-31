@@ -1,3 +1,4 @@
+import { Skills } from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
@@ -37,6 +38,8 @@ export class TwodsixShipActions {
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
       let skill = extra.actor?.items.filter((itm: TwodsixItem) => itm.name === parsedSkill && itm.type === "skills")[0] as TwodsixItem;
+
+      /*if skill missing, try to use Untrained*/
       if (!skill) {
         skill = extra.actor?.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
         if (!skill) {
@@ -44,8 +47,16 @@ export class TwodsixShipActions {
           return false;
         }
       }
+
+      /*get characteristic key, default to skill key if none specificed in formula */
+      let characteristicKey = "";
+      if(!char) {
+        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.data.data).characteristic);
+      } else {
+        characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
+      }
+
       const charObject = extra.actor?.data.data["characteristics"];
-      const characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
       let shortLabel = "NONE";
       let displayLabel = "NONE";
       if (charObject && characteristicKey) {
