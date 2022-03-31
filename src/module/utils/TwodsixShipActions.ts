@@ -31,7 +31,7 @@ export class TwodsixShipActions {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const re = new RegExp(/^(.+?)\/?([a-zA-Z]*?) ?(\d*?)\+?$/);
+    const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
 
     if (parsedResult !== null) {
