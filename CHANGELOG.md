@@ -1,3 +1,10 @@
+## [1.29.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.0...v1.29.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* specifying skills for ship actions ([#942](https://github.com/xdy/twodsix-foundryvtt/issues/942)) ([466ae7a](https://github.com/xdy/twodsix-foundryvtt/commit/466ae7a75c0de6a569ee08e0f151f164ce72d856))
+
 # [1.29.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.1...v1.29.0) (2022-03-25)
 
 
