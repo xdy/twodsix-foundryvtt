@@ -4,7 +4,7 @@
       <div class="character-photo npc">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
       </div>
-      <div class="character-name npc" style="width: 100% !important; height: 24px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+      <div class="character-name npc" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
     </div>
     {{#unless limited}}
@@ -19,14 +19,14 @@
     {{/unless}}
     <div class="npc-notes-container">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Notes.Notes"}}</span>
-      <div contenteditable="true" data-edit="data.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important; overflow-y: hidden">{{{data.notes}}}</div>
+      <div contenteditable="true" data-edit="data.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto">{{{data.notes}}}</div>
     </div>
     <div class="npc-skills">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
-      <p style="margin: 1ch;">
+      <div style="margin-left: 1ch;">
         <span class="item" data-item-id="{{joat-skill-input}}" >
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
-            <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>
+            <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
       {{#each_sort_by_name data.skills as |item id|}}
         {{#if (twodsix_hideUntrainedSkills item.data.data.value)}}
@@ -34,8 +34,8 @@
         {{else}}
           {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
-                <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">, {{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>
+                <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>{{#unless @last}}, {{/unless}}
               </span>
           {{/if}}
        {{/if}}
@@ -46,7 +46,22 @@
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.data.data.value}}" readonly/>
       </span>
       {{/if}}
-      </p>
+    </div>
+    </div>
+    <div class="npc-armor">
+      <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
+      <div style="margin-left: 1ch">
+        <span >
+         {{#each_sort_by_name data.armor as |item id|}}
+            <span class="item" data-item-id="{{item.id}}">
+              <span class="item-name">{{item.name}} </span>
+              <span class="item-controls centre">
+                <a class="item-control item-toggle {{item.data.data.equipped}}" title='{{item.data.data.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>{{#unless @last}}, {{/unless}}
+              </span>
+            </span>
+         {{/each_sort_by_name}}
+        </span>
+      </div>
     </div>
     <div class="npc-weapons">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
@@ -70,8 +85,7 @@
          {{#each_sort_by_name data.traits as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
-              <span class="item-name centre">{{item.data.data.value}}</span>
-              {{#unless @last}}, {{/unless}}
+              <span class="item-name centre">{{item.data.data.value}}</span>{{#unless @last}}, {{/unless}}
             </span>
          {{/each_sort_by_name}}
         </span>

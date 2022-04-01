@@ -79,8 +79,8 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-skills npc-skills npc-skills"
-  "npc-weapons npc-weapons npc-traits";
+  "npc-skills npc-skills npc-traits"
+  "npc-weapons npc-weapons npc-armor";
 }
 
 .npc-name-photo {
@@ -100,7 +100,7 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
-.npc-skills, .npc-weapons, .npc-traits {
+.npc-skills, .npc-weapons, .npc-traits, .npc-armor {
 
   border: solid;
   border-radius: 2ch;
@@ -116,6 +116,10 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-traits {
   grid-area: npc-traits;
+}
+
+.npc-armor {
+  grid-area: npc-armor;
 }
 
 .npc {
