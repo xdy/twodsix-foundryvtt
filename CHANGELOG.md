@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.1...v1.30.0) (2022-04-01)
+
+
+### Features
+
+* add armor section to npc sheet ([#943](https://github.com/xdy/twodsix-foundryvtt/issues/943)) ([b7eb6f6](https://github.com/xdy/twodsix-foundryvtt/commit/b7eb6f6395333c82db7e6ec08653f46f3666483f))
+
 ## [1.29.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.0...v1.29.1) (2022-03-31)
 
 
