@@ -79,8 +79,8 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-skills npc-skills npc-armor"
-  "npc-weapons npc-weapons npc-traits";
+  "npc-skills npc-skills npc-traits"
+  "npc-weapons npc-weapons npc-armor";
 }
 
 .npc-name-photo {
