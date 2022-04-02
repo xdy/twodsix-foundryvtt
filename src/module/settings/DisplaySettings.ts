@@ -1,6 +1,5 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting} from "./settingsUtils";
-import {numberSetting} from "./settingsUtils";
 
 export default class DisplaySettings extends AdvancedSettings {
   static create() {
