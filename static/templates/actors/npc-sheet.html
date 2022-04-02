@@ -35,14 +35,14 @@
           {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>{{#unless @last}}, {{/unless}}
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>, 
               </span>
           {{/if}}
        {{/if}}
       {{/each_sort_by_name}}
       {{#if (twodsix_hideUntrainedSkills -1)}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
-          <text class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}">, {{untrainedSkill.name}}</text>
+          <text class="item-name rollable" title="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.data.data.value}}" readonly/>
       </span>
       {{/if}}
