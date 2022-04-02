@@ -1,3 +1,10 @@
+## [1.31.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.0...v1.31.1) (2022-04-02)
+
+
+### Bug Fixes
+
+* get rid of extra comma on npc skill list ([#945](https://github.com/xdy/twodsix-foundryvtt/issues/945)) ([ca34a79](https://github.com/xdy/twodsix-foundryvtt/commit/ca34a79e5afcadbc80eaa89d922824b0a614d0b9))
+
 # [1.31.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.30.0...v1.31.0) (2022-04-02)
 
 
