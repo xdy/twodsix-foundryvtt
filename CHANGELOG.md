@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.30.0...v1.31.0) (2022-04-02)
+
+
+### Features
+
+* add roll modifiers for wounded state ([#793](https://github.com/xdy/twodsix-foundryvtt/issues/793)) ([80a1831](https://github.com/xdy/twodsix-foundryvtt/commit/80a18313c1f4ef616c24fe91c33af3ebf5685e95))
+
 # [1.30.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.1...v1.30.0) (2022-04-01)
 
 
