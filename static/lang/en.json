@@ -645,7 +645,7 @@
       },
       "seriousWoundsRollModifier": {
         "hint": "The modifier for all rolls when actor has serious wounds (negative subtracts from roll or increases DM).",
-        "name": "Roll Modifier for minor wounds"
+        "name": "Roll Modifier for serious wounds"
       },
       "weightModifierForWornArmor": {
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",

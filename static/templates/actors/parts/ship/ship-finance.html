@@ -10,10 +10,10 @@
   <div class="financial-calcs">
     <span class="item-title">{{localize "TWODSIX.Ship.SHIPVALUE"}}</span>
     <div class="ship-value">
-      <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.IsMassProduced"}}:</label><br><input type="checkbox" class="checkbox" name="data.isMassProduced" {{checked data.data.isMassProduced}} data-dtype="Boolean" /></span>
-      <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.ShipValue"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.shipValue}}" name="data.shipValue" /> {{localize "TWODSIX.Ship.MCr"}}</span>
-      <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.MortgagePerMonth"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.mortgageCost}}" name="data.mortgageCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
-      <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.MaintenancePerMonth"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
+      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.IsMassProduced"}}:</label><br><input type="checkbox" class="checkbox" name="data.isMassProduced" {{checked data.data.isMassProduced}} data-dtype="Boolean" /></span>
+      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.ShipValue"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.shipValue}}" name="data.shipValue" /> {{localize "TWODSIX.Ship.MCr"}}</span>
+      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.MortgagePerMonth"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.mortgageCost}}" name="data.mortgageCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
+      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.MaintenancePerMonth"}}:</label><br><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.maintenanceCost}}" name="data.maintenanceCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
       </div>
   </div>
 </div>

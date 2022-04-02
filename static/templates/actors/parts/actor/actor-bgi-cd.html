@@ -40,14 +40,13 @@
         <i class="fas fa-battery-half"></i>
     {{else}}
         <i class="fas fa-battery-empty" style="color:brown;"></i>
-    {{/iff}}:<input
-    type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}" />-</span>
+    {{/iff}}:<input type="number" name="data.characteristics.stamina.value" value="{{data.characteristics.stamina.value}}" min="0"/>-</span>
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
-        name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}" /></span>
+        name="data.characteristics.stamina.damage" value="{{data.characteristics.stamina.damage}}" min="0" max="{{data.characteristics.stamina.value}}"/></span>
 <span class="bgi-char-narrow" title='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fas fa-heartbeat"></i>:<input
-        type="number" name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}"/>-</span>
+        type="number" name="data.characteristics.lifeblood.value" value="{{data.characteristics.lifeblood.value}}" min="0"/>-</span>
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.Lifeblood"}}'>
-    <input type="number" name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}"/></span>
+    <input type="number" name="data.characteristics.lifeblood.damage" value="{{data.characteristics.lifeblood.damage}}" min="0" max="{{data.characteristics.lifeblood.value}}"/></span>
 {{/if}}
 <span class="bgi-char-wide" title='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fas fa-radiation"></i>:<input
         name="data.radiationDose.value" value={{data.radiationDose.value}} type="number"/></span><br>
