@@ -6,6 +6,7 @@ import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import {Crit} from "./crit";
 import {Gear, Skills} from "../../types/template";
+import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
@@ -16,12 +17,14 @@ export class TwodsixDiceRoll {
   naturalTotal:number;
   effect:number;
   roll:Roll | null = null;
+  woundedEffect:number;
 
   constructor(settings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.settings = settings;
     this.actor = actor;
     this.skill = skill;
     this.item = item;
+    this.woundedEffect = (<Traveller>this.actor.data.data)?.woundedEffect;
 
     this.createRoll();
 
@@ -35,7 +38,7 @@ export class TwodsixDiceRoll {
   private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as { skill:number, difficultyMod:number, DM:number };
+    const data = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
 
     let formula = rollType;
 
@@ -68,6 +71,12 @@ export class TwodsixDiceRoll {
     if (!difficultiesAsTargetNumber) {
       formula += "+ @difficultyMod";
       data.difficultyMod = this.settings.difficulty.mod;
+    }
+
+    //Subtract Modifier for wound status
+    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.woundedEffect < 0) {
+      formula += "+ @woundedEffect";
+      data.woundedEffect = this.woundedEffect;
     }
 
     this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -160,7 +169,10 @@ export class TwodsixDiceRoll {
       flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll?.data['DM'])})`;
     }
 
-    if (this.settings.characteristic !== 'NONE'  && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
+    if (this.roll?.data['woundedEffect']) {
+      flavor += ` +${game.i18n.localize("TWODSIX.Rolls.Wounds")}(${this.roll?.data['woundedEffect']})`;
+    }
+    if (this.settings.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
       const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data[this.settings.characteristic]);
       const charShortName:string = this.settings.displayLabel;
       flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;

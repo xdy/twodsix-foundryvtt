@@ -41,91 +41,119 @@ function checkForWounds(data: Record<string, any>): boolean {
     }
   }
 }
-const DAMAGECOLORS = Object.freeze({
+export const DAMAGECOLORS = Object.freeze({
   minorWoundTint: '#FFFF00', // Yellow
   seriousWoundTint: '#FF0000', // Red
   deadTint: '#FFFFFF'  // White
 });
 
 async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<void> {
-  const tintToApply = getIconTint(selectedToken);
+  const tintToApply = getIconTint(selectedToken?.actor);
 
-  const woundedEffectLabel = 'Bleeding';
+  const woundedEffectLabel = 'woundEffect';
   const deadEffectLabel = 'Dead';
   const unconsciousEffectLabel = 'Unconscious';
 
   if (!tintToApply) {
-    await setEffectState(deadEffectLabel, selectedToken, false);
-    await setEffectState(woundedEffectLabel, selectedToken, false);
+    await setConditionState(deadEffectLabel, selectedToken, false);
+    await setEffectState(woundedEffectLabel, selectedToken, false, tintToApply);
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
-      await setEffectState(deadEffectLabel, selectedToken, true);
-      await setEffectState(woundedEffectLabel, selectedToken, false);
-      await setEffectState(unconsciousEffectLabel, selectedToken, false);
+      await setConditionState(deadEffectLabel, selectedToken, true);
+      await setEffectState(woundedEffectLabel, selectedToken, false, tintToApply);
+      await setConditionState(unconsciousEffectLabel, selectedToken, false);
     } else {
       const oldWoundState = await selectedToken.actor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
       const isAlreadyDead = await selectedToken.actor.data.effects.find(eff => eff.data.label === deadEffectLabel);
       const isAlreadyUnconscious = await selectedToken.actor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
-      await setEffectState(deadEffectLabel, selectedToken, false);
+      await setConditionState(deadEffectLabel, selectedToken, false);
 
       if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
         if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-          await setEffectState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
+          await setConditionState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
         } else {
           const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
           if (returnRoll.effect < 0) {
-            await setEffectState(unconsciousEffectLabel, selectedToken, true);
+            await setConditionState(unconsciousEffectLabel, selectedToken, true);
           }
         }
       }
 
-      await setEffectState(woundedEffectLabel, selectedToken, true);
-      const newEffect = await selectedToken.actor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
-      await selectedToken.actor.updateEmbeddedDocuments('ActiveEffect', [{ _id: newEffect.id, tint: tintToApply }]);
+      await setEffectState(woundedEffectLabel, selectedToken, true, tintToApply);
     }
   }
 }
 
-async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean): Promise<void> {
-  const isAlreadySet = await targetToken.actor.effects.find(eff => eff.data.label === effectLabel);
+async function setConditionState(effectLabel: string, targetToken: Record<string, any>, state: boolean): Promise<void> {
+  const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
   if ((typeof isAlreadySet !== 'undefined') !== state) {
     const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
     await targetToken.toggleEffect(targetEffect);
   }
 }
 
-function getIconTint(selectedToken: Record<string, any>): string {
+async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean, tint: string): Promise<void> {
+  const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
+  if (isAlreadySet != undefined && state === false) {
+    targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+  } else {
+    let woundModifier = 0;
+    switch (tint) {
+      case DAMAGECOLORS.minorWoundTint:
+        woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
+        break;
+      case DAMAGECOLORS.seriousWoundTint:
+        woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
+        break;
+    }
+    const changeData = { key: "data.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+    if (isAlreadySet === undefined && state === true) {
+      await targetToken?.actor.createEmbeddedDocuments("ActiveEffect", [{
+        label: effectLabel,
+        icon: "icons/svg/blood.svg",
+        tint: tint,
+        changes: [changeData]
+      }]);
+      const newEffect = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
+      newEffect.setFlag("core", "statusId", "bleeding"); /*FIX*/
+    } else if (isAlreadySet && state === true) {
+      await targetToken.actor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet.id, tint: tint, changes: [changeData] }]);
+    }
+  }
+}
+
+export function getIconTint(selectedActor: Record<string, any>): string {
   switch (game.settings.get('twodsix', 'ruleset')) {
     case 'CD':
-      return (getCDWoundTint(selectedToken));
+      return (getCDWoundTint(selectedActor));
     case 'CEL':
     case 'CEFTL':
     case 'CE':
-      return (getCEWoundTint(selectedToken));
+      return (getCEWoundTint(selectedActor));
     case 'CEQ':
     case 'CEATOM':
     case 'BARBARIC':
-      return (getCEAWoundTint(selectedToken));
+      return (getCEAWoundTint(selectedActor));
     default:
       return ('');
   }
 }
 
-function getCDWoundTint(selectedToken: Record<string, any>): string {
+export function getCDWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
-  if (selectedToken.actor.data.data.characteristics.lifeblood.current <= 0) {
+  if (selectedActor.data.data.characteristics.lifeblood.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedToken.actor.data.data.characteristics.lifeblood.current < (selectedToken.actor.data.data.characteristics.lifeblood.value / 2)) {
+  } else if (selectedActor.data.data.characteristics.lifeblood.current < (selectedActor.data.data.characteristics.lifeblood.value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedToken.actor.data.data.characteristics.lifeblood.damage > 0) {
+  } else if (selectedActor.data.data.characteristics.lifeblood.damage > 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
 
-function getCEWoundTint(selectedToken: Record<string, any>): string {
+export function getCEWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
-  const testArray = [selectedToken.actor.data.data.characteristics.strength, selectedToken.actor.data.data.characteristics.dexterity, selectedToken.actor.data.data.characteristics.endurance];
+  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
     case 0:
       if (testArray.filter(chr => chr.damage > 0).length > 0) {
@@ -147,16 +175,16 @@ function getCEWoundTint(selectedToken: Record<string, any>): string {
   return returnVal;
 }
 
-function getCEAWoundTint(selectedToken: Record<string, any>): string {
+export function getCEAWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
-  if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current <= 0) {
+  if (selectedActor.data.data.characteristics[lfbCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedToken.actor.data.data.characteristics[lfbCharacteristic].current < (selectedToken.actor.data.data.characteristics[lfbCharacteristic].value / 2)) {
+  } else if (selectedActor.data.data.characteristics[lfbCharacteristic].current < (selectedActor.data.data.characteristics[lfbCharacteristic].value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedToken.actor.data.data.characteristics[endCharacteristic].current <= 0) {
+  } else if (selectedActor.data.data.characteristics[endCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;

@@ -222,6 +222,7 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
+  woundedEffect:number;
   characteristicEdit:boolean;
 }
 

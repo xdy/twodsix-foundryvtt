@@ -52,6 +52,8 @@ const RULESETS = Object.freeze({
       ShowRecoil: true,
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10
     }
@@ -72,6 +74,8 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10
     }
@@ -91,7 +95,9 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: true,
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
-      lifebloodInsteadOfCharacteristics: false
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0
     },
   },
   CEATOM: {
@@ -110,7 +116,9 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
-      showContaminationBelowLifeblood: true
+      showContaminationBelowLifeblood: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -1
     }
   },
   BARBARIC: {
@@ -129,7 +137,9 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 4,
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
-      showContaminationBelowLifeblood: false
+      showContaminationBelowLifeblood: false,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -1
     },
   },
   CEQ: {
@@ -148,7 +158,9 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
-      showContaminationBelowLifeblood: false
+      showContaminationBelowLifeblood: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0
     }
   },
   CD: {
@@ -174,6 +186,8 @@ const RULESETS = Object.freeze({
       ShowDamageType: false,
       ShowRateOfFire: true,
       ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
       mortgagePayment: 320,
       massProductionDiscount: 0.10
     }

@@ -46,6 +46,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting('criticalNaturalAffectsEffect', false));
     settings.push(numberSetting('absoluteCriticalEffectValue', 99));
     settings.push(booleanSetting('showLifebloodStamina', false));
+    settings.push(numberSetting('minorWoundsRollModifier', -1));
+    settings.push(numberSetting('seriousWoundsRollModifier', -2));
     settings.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
     settings.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.push(booleanSetting('showHeroPoints', false));

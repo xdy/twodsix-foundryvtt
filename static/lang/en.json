@@ -439,6 +439,7 @@
       "resultShows": "result shows",
       "sum": "sum",
       "using": "using {characteristic}",
+      "Wounds": "Wounds",
       "AttackDM": "Atack DM",
       "BonusDamage": "Bonus Damage"
     },
@@ -637,8 +638,16 @@
         "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
       "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
-        "name": "Display wounded status indicators"
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds. Roll modifiers below are applied to all rolls.",
+        "name": "Display wounded status indicators and apply roll modifiers"
+      },
+      "minorWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has minor wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for minor wounds"
+      },
+      "seriousWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has serious wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for serious wounds"
       },
       "weightModifierForWornArmor": {
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",

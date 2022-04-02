@@ -1320,7 +1320,7 @@ img.ship-mask-bg {
   height: 4em;*/
 }
 
-.ship-stat {
+.ship-stat, .ship-stat-finance {
   border: solid;
   border-width: thin;
   border-radius: 1ch;

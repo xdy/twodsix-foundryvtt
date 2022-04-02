@@ -139,6 +139,7 @@
           "displayShortLabel": ""
         }
       },
+      "woundedEffect": 0,
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
