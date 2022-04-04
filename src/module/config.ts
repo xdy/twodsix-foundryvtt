@@ -286,13 +286,22 @@ export const MovementUnits = {
 };
 
 /**
- * The valid pricing bases for components.
+ * The valid pricing bases for components other than base hull.
  */
 export const PricingOptions = {
   perUnit: "TWODSIX.Items.Component.perUnit",
   perCompTon: "TWODSIX.Items.Component.perCompTon",
   perHullTon: "TWODSIX.Items.Component.perHullTon",
   pctHull: "TWODSIX.Items.Component.pctHull"
+};
+
+/**
+ * The valid pricing bases for base hull.
+ */
+export const HullPricingOptions = {
+  perUnit: "TWODSIX.Items.Component.perUnit",
+  perCompTon: "TWODSIX.Items.Component.perCompTon",
+  perHullTon: "TWODSIX.Items.Component.perHullTon"
 };
 
 /**
@@ -352,6 +361,7 @@ export type TWODSIX = {
   MovementUnits: typeof MovementUnits,
   MovementType: typeof MovementTypes,
   PricingOptions: typeof PricingOptions,
+  HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes
@@ -368,6 +378,7 @@ export const TWODSIX = {
   MovementUnits: MovementUnits,
   MovementType: MovementTypes,
   PricingOptions: PricingOptions,
+  HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes

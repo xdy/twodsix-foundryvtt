@@ -124,13 +124,14 @@
 
     <div class="item-price">
       <label for = "data.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}: <input class="short-label" id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
-      {{#if data.isBaseHull}}
-        {{localize "TWODSIX.Items.Component.perHullTon"}}
-      {{else}}
+
       <select id = "data.pricingBasis" name = "data.pricingBasis" >
-        {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
+        {{#if data.isBaseHull}}
+          {{selectOptions data.config.HullPricingOptions selected = data.pricingBasis localize = true}}
+        {{else}}
+          {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
+        {{/if}}
       </select>
-      {{/if}}
     </div>
 
     {{else}}
