@@ -1,3 +1,10 @@
+## [1.31.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.1...v1.31.2) (2022-04-05)
+
+
+### Bug Fixes
+
+* Remove fixed font style from paragraphs in text fields ([ab46852](https://github.com/xdy/twodsix-foundryvtt/commit/ab468520120b2b42c325253f05034ed6f528c807))
+
 ## [1.31.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.0...v1.31.1) (2022-04-02)
 
 
