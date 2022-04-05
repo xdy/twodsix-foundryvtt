@@ -25,7 +25,18 @@ export class TwodsixShipActions {
   };
 
   public static chatMessage(msg: string, extra: ExtraData) {
-    return ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: extra.actor }) });
+    const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
+    if (msg.startsWith("/r")) {
+      const rollText = msg.split(" ");
+      if (Roll.validate(rollText[1])) {
+        const flavorTxt:string = "Takes " + extra.actionName + " from " + extra.positionName;
+        new Roll(rollText[1]).toMessage({speaker: speakerData, flavor: flavorTxt});
+      } else {
+        return ChatMessage.create({ content: msg, speaker: speakerData });
+      }
+    } else {
+      return ChatMessage.create({ content: msg, speaker: speakerData });
+    }
   }
 
   public static async skillRoll(text: string, extra: ExtraData) {
