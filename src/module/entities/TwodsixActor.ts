@@ -115,8 +115,13 @@ export default class TwodsixActor extends Actor {
       }
     };
 
-    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max < 0) {
-      actorData.data.shipStats.mass.max = _estimateDisplacement();
+    /* estimate displacement if missing */
+    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max <= 0) {
+      const calcDisplacement = _estimateDisplacement();
+      if (calcDisplacement && calcDisplacement > 0) {
+        actorData.update({"data.shipStats.mass.max": calcDisplacement});
+        /*actorData.data.shipStats.mass.max = calcDisplacement;*/
+      }
     }
 
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
@@ -128,6 +133,9 @@ export default class TwodsixActor extends Actor {
       _allocatePower(anComponent, powerForItem, item);
 
       /* Allocate Weight*/
+      if (anComponent.weightIsPct && anComponent.isBaseHull) {
+        item.update({'data.weightIsPct': false});
+      }
       _allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
