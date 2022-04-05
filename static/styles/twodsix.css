@@ -68,6 +68,7 @@ svg {
   fill: currentColor;
 }
 
+/* Deleted !important from below statements*/
 p span, p {
   background-color: transparent;
   font-family: inherit;
