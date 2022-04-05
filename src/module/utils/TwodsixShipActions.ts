@@ -29,7 +29,8 @@ export class TwodsixShipActions {
     if (msg.startsWith("/r")) {
       const rollText = msg.split(" ");
       if (Roll.validate(rollText[1])) {
-        const flavorTxt:string = "Takes " + extra.actionName + " from " + extra.positionName;
+        const flavorTxt:string = "Takes " + (extra.actionName || game.i18n.localize("TWODSIX.Ship.UnknownAction")) + " " + game.i18n.localize("TWODSIX.Ship.From") +
+          " " + (extra.positionName || game.i18n.localize("TWODSIX.Ship.UnknownPosition")) + ".";
         new Roll(rollText[1]).toMessage({speaker: speakerData, flavor: flavorTxt});
       } else {
         return ChatMessage.create({ content: msg, speaker: speakerData });
