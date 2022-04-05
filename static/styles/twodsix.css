@@ -69,8 +69,8 @@ svg {
 }
 
 p span, p {
-  background-color: transparent !important;
-  font-family: inherit !important;
+  background-color: transparent;
+  font-family: inherit;
 }
 
 input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
