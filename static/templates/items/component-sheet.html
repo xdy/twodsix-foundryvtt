@@ -58,27 +58,34 @@
       </label>
     </div>
     {{/iff}}
-
-    <div class="item-weight multi-line">
-      {{#iff data.subtype "!==" "cargo" }}
-      <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
-      <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
-      </label>
-      {{/iff}}
-      <label for="data.weight" class="resource-label short-label">
-       {{#if data.weightIsPct}}
-         {{localize "TWODSIX.Items.Component.pctDisplacement"}}
-       {{else}}
-         {{localize "TWODSIX.Items.Component.unitWeight"}}
-       {{/if}}
-      <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>{{#if data.weightIsPct}}%{{/if}}
-      </label>
+    <div class="item-weight">
       {{#iff data.subtype "===" "hull" }}
-        <span class="short-label">
-        <label for="data.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}} </label>
-        <input type="checkbox" class="checkbox" name="data.isBaseHull" {{checked data.isBaseHull}} data-dtype="Boolean" />
-        </span>
+        <label for="data.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}}
+          <input type="checkbox" class="checkbox" name="data.isBaseHull" {{checked data.isBaseHull}} data-dtype="Boolean" />
+        </label>
       {{/iff}}
+    <div class="item-weight multi-line">
+      {{#if data.isBaseHull}}
+      <label for="data.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Component.unitWeight"}}
+        <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      </label>
+      {{else}}
+        {{#iff data.subtype "!==" "cargo" }}
+          <label for="data.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}
+          <input type="checkbox" class="checkbox" name="data.weightIsPct" {{checked data.weightIsPct}} data-dtype="Boolean" />
+          </label>
+        {{/iff}}
+
+          <label for="data.weight" class="resource-label short-label">
+          {{#if data.weightIsPct}}
+            {{localize "TWODSIX.Items.Component.pctDisplacement"}}
+          {{else}}
+            {{localize "TWODSIX.Items.Component.unitWeight"}}
+          {{/if}}
+          <input class = "short-label" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>{{#if data.weightIsPct}}%{{/if}}
+          </label>
+
+      {{/if}}
     </div>
 
     {{#iff data.subtype "===" "fuel" }}
@@ -124,13 +131,14 @@
 
     <div class="item-price">
       <label for = "data.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}: <input class="short-label" id="data.price" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/></label>
-      {{#if data.isBaseHull}}
-        {{localize "TWODSIX.Items.Component.perHullTon"}}
-      {{else}}
+
       <select id = "data.pricingBasis" name = "data.pricingBasis" >
-        {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
+        {{#if data.isBaseHull}}
+          {{selectOptions data.config.HullPricingOptions selected = data.pricingBasis localize = true}}
+        {{else}}
+          {{selectOptions data.config.PricingOptions selected = data.pricingBasis localize = true}}
+        {{/if}}
       </select>
-      {{/if}}
     </div>
 
     {{else}}

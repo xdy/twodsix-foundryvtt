@@ -607,9 +607,9 @@ span.bgi-age {
 span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
   margin-right: 0.5em;
   height: 26px;
-  font-size: 16px;
+  /*font-size: 16px;
   font-weight: bold;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color) !important; */
 }
 
 span.bgi-charEdit {
@@ -1195,7 +1195,7 @@ span.total-output {
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  width: 18ch;
+  max-width: 18ch;
 }
 
 .multi-line {

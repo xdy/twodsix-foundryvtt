@@ -357,7 +357,7 @@ span.bgi-charEdit {
 
 .character-bgi span {
   display: inline-block;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .character-characteristics {
@@ -847,7 +847,7 @@ span.total-output {
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  width: 18ch;
+  max-width: 18ch;
 }
 
 .multi-line {

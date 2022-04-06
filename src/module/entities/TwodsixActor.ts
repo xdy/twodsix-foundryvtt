@@ -115,8 +115,13 @@ export default class TwodsixActor extends Actor {
       }
     };
 
-    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max < 0) {
-      actorData.data.shipStats.mass.max = _estimateDisplacement();
+    /* estimate displacement if missing */
+    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max <= 0) {
+      const calcDisplacement = _estimateDisplacement();
+      if (calcDisplacement && calcDisplacement > 0) {
+        actorData.update({"data.shipStats.mass.max": calcDisplacement});
+        /*actorData.data.shipStats.mass.max = calcDisplacement;*/
+      }
     }
 
     actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
@@ -128,6 +133,9 @@ export default class TwodsixActor extends Actor {
       _allocatePower(anComponent, powerForItem, item);
 
       /* Allocate Weight*/
+      if (anComponent.weightIsPct && anComponent.isBaseHull) {
+        item.update({'data.weightIsPct': false});
+      }
       _allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
@@ -160,24 +168,20 @@ export default class TwodsixActor extends Actor {
 
     function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
-        if (anComponent.subtype === "hull" ) {
-          if (anComponent.isBaseHull) {
-            calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
-          } else {
-            switch (anComponent.pricingBasis) {
-              case "perUnit":
-                calcShipStats.cost.hullValue += Number(anComponent.price) * anComponent.quantity;
-                break;
-              case "perCompTon":
-                calcShipStats.cost.hullValue += Number(anComponent.price) * weightForItem;
-                break;
-              case "pctHull":
-                calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
-                break;
-              case "perHullTon":
-                calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
-                break;
-            }
+        if (anComponent.subtype === "hull") {
+          switch (anComponent.pricingBasis) {
+            case "perUnit":
+              calcShipStats.cost.hullValue += Number(anComponent.price) * anComponent.quantity;
+              break;
+            case "perCompTon":
+              calcShipStats.cost.hullValue += Number(anComponent.price) * weightForItem;
+              break;
+            case "pctHull":
+              calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
+              break;
+            case "perHullTon":
+              calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+              break;
           }
         } else {
           switch (anComponent.pricingBasis) {
