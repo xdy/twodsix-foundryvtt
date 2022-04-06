@@ -132,14 +132,14 @@ function processTradeTable (tableName, trcodes, offset, compendium, starBase) {
 
     // Determine tons available for player to buy
     if (RANDOM) {
-      tons = new Roll('@dice', { dice: details[2] }).evaluate().total;
+      tons = new Roll('@dice', { dice: details[2] }).evaluate({ async: false }).total;
       if (tableName.indexOf('Basic') === -1) {
         tons *= isAvailable[row];
       }
     } else {
       if ((tableName.indexOf('Basic') !== -1) ||
           (availableGood(trcodes, details[3]))) {
-        tons = new Roll('@dice', { dice: details[2] }).evaluate().total;
+        tons = new Roll('@dice', { dice: details[2] }).evaluate({ async: false }).total;
       }
     }
 

@@ -236,9 +236,9 @@ function parseCode (profile) {
     'Starport Type', 'World Size - CL', 'Atmosphere', 'Hydrographics',
     'Population', 'Government', 'Law Level - CL', 'Tech Level - CL'
   ];
-  let planetDescrip = `<table><tbody><tr><th style="width: 20%;">Characteristic</th><th style="width: 70%;>Description</th></tr>`;
+  let planetDescrip = `<table style="width=95%; margin: 12px;"><tbody><tr><th style ="width: 20%;">Characteristic</th><th style ="width: 70%;">Description</th></tr>`;
   // parse starport, this is non-numeric
-  planetDescrip += `<tr><td style="padding-right:5px">${UWPtables[0]} (${
+  planetDescrip += `<tr><td style="padding-right: 5px;">${UWPtables[0]} (${
       cleanUWP[0]})</td><td>${getStarportDescr(cleanUWP[0])}</td></tr>`;
 
   // process rest of UWP
@@ -278,7 +278,7 @@ function parseCode (profile) {
       markers.push('P');
       break;
   }
-  console.log(markers);
+
   return ({ planetName: planetName, col: column, row: row, UWP: UWP, text: planetDescrip, color: trData.color, tCodes: trData.tCodes, markers: markers, zone: retZone, aleg: allegiance });
 }
 

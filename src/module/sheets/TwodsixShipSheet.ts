@@ -83,7 +83,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         const extra = {
           actor: game.actors?.get(actorId),
           ship: this.actor,
-          event: event
+          event: event,
+          actionName: action.name,
+          positionName: shipPosition?.name ?? ""
         };
 
         TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
