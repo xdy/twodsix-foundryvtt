@@ -1,3 +1,10 @@
+## [1.32.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.0...v1.32.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* allow more pricing options for hull component ([#947](https://github.com/xdy/twodsix-foundryvtt/issues/947)) ([5ea459b](https://github.com/xdy/twodsix-foundryvtt/commit/5ea459bd664b08319d35e3b977b7cee4418508a2))
+
 # [1.32.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.2...v1.32.0) (2022-04-06)
 
 
