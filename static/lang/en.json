@@ -374,7 +374,7 @@
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
-      "MakesChatRollAction": "Takes _ACTION_NAME_ action from _POSITION_NAME_ position",
+      "MakesChatRollAction": "Takes the _ACTION_NAME_ action from the _POSITION_NAME_ position",
       "MaintPM": "Maintenance P/M",
       "MANIFEST": "MANIFEST",
       "MAX": "MAX",
