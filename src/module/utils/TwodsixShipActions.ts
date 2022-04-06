@@ -25,7 +25,15 @@ export class TwodsixShipActions {
   };
 
   public static chatMessage(msg: string, extra: ExtraData) {
-    return ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: extra.actor }) });
+    const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
+    if (msg.startsWith("/r") || msg.startsWith("/R")) {
+      const rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+      if (Roll.validate(rollText)) {
+        const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
+        return new Roll(rollText).toMessage({speaker: speakerData, flavor: flavorTxt});
+      }
+    }
+    return ChatMessage.create({ content: msg, speaker: speakerData });
   }
 
   public static async skillRoll(text: string, extra: ExtraData) {

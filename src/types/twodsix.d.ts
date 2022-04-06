@@ -110,6 +110,8 @@ declare interface ExtraData {
   actor?: TwodsixActor;
   ship?: TwodsixActor;
   event: Event;
+  actionName?: string;
+  positionName?: string;
 }
 
 declare interface AvailableShipActionData {
