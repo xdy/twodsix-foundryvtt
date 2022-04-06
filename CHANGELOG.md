@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.2...v1.32.0) (2022-04-06)
+
+
+### Features
+
+* add chat rolls to position actions ([#953](https://github.com/xdy/twodsix-foundryvtt/issues/953)) ([7f1f94e](https://github.com/xdy/twodsix-foundryvtt/commit/7f1f94e88c856089211662275a47588f66b7856b))
+
 ## [1.31.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.1...v1.31.2) (2022-04-05)
 
 
