@@ -851,6 +851,7 @@ span.total-output {
 .open-link {
   text-align: left;
   align-self: center;
+  color: var(--color-text-hyperlink);
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
@@ -1801,10 +1802,6 @@ select.form-input, input.form-input, span.form-input {
 
 .mini-grid, .form-section, .item-descr {
   margin-top: 0.5em;
-}
-
-.open-link {
-  color: var(--color-text-hyperlink);
 }
 
 .item-descr div[contenteditable] {
