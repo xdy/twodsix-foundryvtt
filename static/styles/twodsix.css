@@ -2201,7 +2201,7 @@ a:hover {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .form-section {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2212,7 +2212,7 @@ select.form-input, input.form-input, span.form-input {
   align-self: center;
 }
 
-.mini-grid, .form-section, .item-descr {
+.mini-grid, .item-descr {
   margin-top: 0.5em;
 }
 
