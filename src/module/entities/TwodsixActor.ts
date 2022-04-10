@@ -7,7 +7,7 @@ import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
-import { Stats } from "../utils/actorDamage";
+import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 
@@ -335,6 +335,36 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+  public async healActor(healing: number): Promise<void> {
+    if (this.data.type === "traveller") {
+      let damageCharacteristics: string[] = [];
+      if (game.settings.get('twodsix', 'reverseHealingOrder')) {
+        damageCharacteristics = getDamageCharacteristics().reverse();
+      } else {
+        damageCharacteristics = getDamageCharacteristics();
+      }
+
+      for (const characteristic of damageCharacteristics) {
+        const cur_damage = this.data.data.characteristics[characteristic].damage;
+
+        if (cur_damage > 0) {
+          const new_damage = Math.max(0, cur_damage - healing);
+          const char_id = 'data.characteristics.' + characteristic + '.damage';
+
+          await this.update({
+            [char_id]: new_damage
+          });
+
+          healing -= cur_damage - new_damage;
+        }
+
+        if (healing < 1) {
+          break;
+        }
+      }
+    }
+  }
+
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
@@ -420,6 +450,22 @@ export default class TwodsixActor extends Actor {
       }
     });
   }
+
+  public async modifyTokenAttribute(attribute, value, isDelta, isBar) {
+    if ( attribute === "hits" && this.data.type === "traveller") {
+      const hits = getProperty(this.data.data, attribute);
+      const delta = isDelta ? (-1 * value) : (hits.value - value);
+      if (delta > 0) {
+        this.damageActor(delta, 9999, false);
+        return;
+      } else if (delta < 0) {
+        this.healActor(-delta);
+        return;
+      }
+    }
+    return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
+  }
+
 }
 
 export function getPower(item: Component): number{

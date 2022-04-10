@@ -2762,7 +2762,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
   flex: 0 0 32px;
   border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
-  width: 32.5em;
+  /*width: 32.5em;*/
 }
 
 .sheet-tabs {
