@@ -337,7 +337,13 @@ export default class TwodsixActor extends Actor {
 
   public async healActor(healing: number): Promise<void> {
     if (this.data.type === "traveller") {
-      const damageCharacteristics = getDamageCharacteristics().reverse();
+      let damageCharacteristics: string[] = [];
+      if (game.settings.get('twodsix', 'reverseHealingOrder')) {
+        damageCharacteristics = getDamageCharacteristics().reverse();
+      } else {
+        damageCharacteristics = getDamageCharacteristics();
+      }
+
       for (const characteristic of damageCharacteristics) {
         const cur_damage = this.data.data.characteristics[characteristic].damage;
 

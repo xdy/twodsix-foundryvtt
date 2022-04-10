@@ -674,6 +674,10 @@
       "massProductionDiscount": {
         "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
         "name": "Discount for ship being mass produced"
+      },
+      "reverseHealingOrder": {
+        "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",
+        "name": "Reverse characteristic healing order"
       }
     },
     "CloseAndCreateNew": "Close and create new",
