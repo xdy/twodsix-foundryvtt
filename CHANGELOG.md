@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.1...v1.33.0) (2022-04-10)
+
+
+### Features
+
+* make token attributes changable ([#957](https://github.com/xdy/twodsix-foundryvtt/issues/957)) ([b8268f1](https://github.com/xdy/twodsix-foundryvtt/commit/b8268f1fcf6b80eaff6df56708c9f0f30a245a0f))
+
 ## [1.32.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.0...v1.32.1) (2022-04-06)
 
 
