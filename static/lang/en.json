@@ -632,8 +632,8 @@
         "name": "Correct some css style issues due to modules and default Twodsix style."
       },
       "useShipAutoCalcs": {
-        "hint": "When enabled, the ship summary power and weight statistics are calculated based on component vaules. Otherwise, values are input by user.",
-        "name": "Automatically calculate summary ship power and weight values"
+        "hint": "When enabled, the ship summary power, weight, and price statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power, weight, and price values"
       },
       "useSystemDefaultTokenIcon": {
         "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",
