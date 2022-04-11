@@ -57,6 +57,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(numberSetting('maxComponentHits', 3));
     settings.push(numberSetting('mortgagePayment', 240, true));
     settings.push(numberSetting('massProductionDiscount', 0.10, true));
+    settings.push(booleanSetting('reverseHealingOrder', false));
     return settings;
   }
 }
