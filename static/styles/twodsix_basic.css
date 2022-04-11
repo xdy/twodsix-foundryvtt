@@ -28,6 +28,7 @@
 
 input[type= 'checkbox'] {
   vertical-align: middle;
+  align-self: center;
 }
 
 label.checkbox > input[type="checkbox"] {
@@ -1789,7 +1790,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .form-section {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -1800,7 +1801,7 @@ select.form-input, input.form-input, span.form-input {
   align-self: center;
 }
 
-.mini-grid, .item-descr {
+.mini-grid, .item-descr, .form-section {
   margin-top: 0.5em;
 }
 

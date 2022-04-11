@@ -2,7 +2,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import { GearTemplate } from "src/types/template";
+import { Component, GearTemplate } from "src/types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -80,12 +80,32 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     this.handleContentEditable(html);
     html.find('.open-link').on('click', this._openPDFReference.bind(this));
     html.find(`[name="data.subtype"]`).on('change', this._changeSubtype.bind(this));
+    html.find(`[name="data.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
   private async _changeSubtype(event) {
+    /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
       await this.item.update({
         img: "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"
       });
+    }
+
+    /*Prevent cargo from using %hull weight*/
+    const anComponent = <Component> this.item.data.data;
+    if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
+      this.item.update({'data.weightIsPct': false});
+    }
+    /*Unset isBaseHull if not hull component*/
+    if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
+      this.item.update({'data.isBaseHull': false});
+    }
+  }
+
+  private async _changeIsBaseHull() {
+    const anComponent = <Component> this.item.data.data;
+    /*Unset isWeightPct if changing to base hull*/
+    if (!anComponent.isBaseHull && anComponent.weightIsPct) {
+      this.item.update({'data.weightIsPct': false});
     }
   }
 
