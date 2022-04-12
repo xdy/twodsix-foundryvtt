@@ -16,7 +16,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
     });
 
     if (found?.length === 0 || !found) {
-      return ui.notifications?.info('No target for item drop found.');
+      return ui.notifications?.info(game.i18n.localize("TWODSIX.Warnings.NoTargetFound"));
     } else if (found.length === 1) {
       //console.log('Dropped On:', found[0]);
       const target = found[0];
@@ -26,7 +26,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
 
       // TODO: Could add support for asking GM to validate drop onto unowned actor?
       if (!actor?.isOwner) {
-        return ui.notifications?.warn('You lack sufficient permissions on target actor.');
+        return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }
       if (actor.data.type === 'traveller') {
         await (<TwodsixActor>actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
@@ -36,7 +36,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
       return false;
     } else if (found.length > 1) {
       // Make sure only one token is there to avoid mistakes
-      return ui.notifications?.warn('Multiple actors found.');
+      return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.MultipleActorsFound"));
     }
   }
 }

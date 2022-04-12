@@ -727,7 +727,10 @@
       "CantAutoDamageShip": "Automatic damage of ship is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
-      "NoSpecfiedLink": "No document and page specified for document link."
+      "NoSpecfiedLink": "No document and page specified for document link.",
+      "NoTargetFound": "No target for damage found.",
+      "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
+      "MultipleActorsFound": "Multiple actors found. Cannot apply damage."
     }
   },
   "VeryDifficult": "Very Difficult"
