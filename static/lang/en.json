@@ -242,7 +242,9 @@
         "perCompTon": "MCr per component ton",
         "perHullTon": "MCr per hull ton",
         "pctHull": "Percent of base hull value",
-        "isBaseHull":"Is Baseline Hull?"
+        "isBaseHull":"Is Baseline Hull?",
+        "RollModifier":"Roll Modifier",
+        "DM":"DM"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

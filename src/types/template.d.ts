@@ -334,7 +334,7 @@ export interface Component extends GearTemplate {
   rating:string;
   availableQuantity:string;
   damage:string;
-  hits: number;
+  hits:number;
   status:string;
   weightIsPct:boolean;
   isIllegal:boolean;
@@ -345,6 +345,7 @@ export interface Component extends GearTemplate {
   features:string;
   pricingBasis:string;
   isBaseHull:boolean;
+  rollModifier:string;
 }
 
 export interface Consumable extends GearTemplate {

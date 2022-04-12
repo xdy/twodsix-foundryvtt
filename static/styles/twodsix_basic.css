@@ -47,8 +47,13 @@ label.checkbox > input[type="checkbox"] {
   cursor: pointer;
 }
 
+.item-name {
+  align-self: center;
+}
+
 .centre {
   text-align: center;
+  align-self: center;
 }
 
 .item-name {
@@ -797,6 +802,7 @@ input.item-value-edit {
 
 .item-controls {
   align-self: center;
+  padding-left: 1ch;
 }
 
 .skill:nth-of-type(even) {
@@ -1588,10 +1594,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 20em 4em 4em 4em 4em 4em 4.5em 4em 3em;
+  grid-template-columns: 16em 4em 4em 4em 4em 4em 4em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . .";
+  grid-template-areas: ". . . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {
