@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.33.0...v1.34.0) (2022-04-12)
+
+
+### Features
+
+* improve item sheet layouts ([#956](https://github.com/xdy/twodsix-foundryvtt/issues/956)) ([19141d2](https://github.com/xdy/twodsix-foundryvtt/commit/19141d2223c2841c0de930699dc9ae797063c1e1))
+
 # [1.33.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.1...v1.33.0) (2022-04-10)
 
 
