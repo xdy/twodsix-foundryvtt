@@ -1,14 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
   <div class="item-sheet">
-    <div class="item-name">
-      <label for="data.name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}
-        <input id="data.name" type="text" name="name" value="{{name}}" />
-      </label>
+    <div class="item-data">
+      <label for="data.name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}</label>
+      <input class="form-input" id="data.name" type="text" name="name" value="{{name}}" />
     </div>
-    <div class="item-name">
-      <label for="data.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}
-        <input id="data.order" type="number" name="data.order" value="{{data.order}}" data-dtype="Number" />
-      </label>
+    <div class="item-data">
+      <label for="data.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}</label>
+      <input class="form-input" id="data.order" type="number" name="data.order" value="{{data.order}}" data-dtype="Number" />
     </div>
     {{#if hasShipActor}}
     <div class="form-section">
