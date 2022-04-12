@@ -29,8 +29,8 @@
         <li class="item components-stored-single " data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{#iff item.data.data.techLevel ">" "0"}}{{item.data.data.techLevel}}{{else}}&mdash;{{/iff}}</span>
-          <span class="item-name centre">{{item.data.data.rating}}</span>
-          <span class="item-name centre">{{item.data.data.rollModifier}}</span>
+          <span class="item-name centre">{{#iff item.data.data.rating "!==" ""}}{{item.data.data.rating}}{{else}}&mdash;{{/iff}}</span>
+          <span class="item-name centre">{{#iff item.data.data.rollModifier "!==" ""}}{{item.data.data.rollModifier}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{getComponentWeight this}}</span>
           <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
