@@ -1,4 +1,4 @@
-//Liberally adapted from "hey-catch"
+//Liberally adapted from "hey-catch" by Mana#4176
 import TwodsixActor from "../entities/TwodsixActor";
 Hooks.on('dropCanvasData', catchDrop);
 
