@@ -28,6 +28,7 @@
 
 input[type= 'checkbox'] {
   vertical-align: middle;
+  align-self: center;
 }
 
 label.checkbox > input[type="checkbox"] {
@@ -48,10 +49,12 @@ label.checkbox > input[type="checkbox"] {
 
 .centre {
   text-align: center;
+  align-self: center;
 }
 
 .item-name {
   align-self: center;
+  padding-left: 1ch;
 }
 
 .left {
@@ -795,6 +798,7 @@ input.item-value-edit {
 
 .item-controls {
   align-self: center;
+  padding-left: 1ch;
 }
 
 .skill:nth-of-type(even) {
@@ -843,11 +847,18 @@ span.total-output {
 }
 
 .resource-label {
-  padding-top: 0.2em;
+  text-align: right;
+  align-self: center;
+}
+
+.open-link {
+  text-align: left;
+  align-self: center;
+  color: var(--color-text-hyperlink);
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  max-width: 18ch;
+  max-width: 14ch;
 }
 
 .multi-line {
@@ -1412,7 +1423,6 @@ input.power-total {
 }
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
-  /*display: block;*/
   border: solid;
   border-radius: 2ch;
   vertical-align: middle;
@@ -1580,10 +1590,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 20em 4em 4em 4em 4em 4em 4.5em 4em 3em;
+  grid-template-columns: 16em 4em 4em 4em 4em 4em 4em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . .";
+  grid-template-areas: ". . . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {
@@ -1779,56 +1789,35 @@ button.flexrow.flex-group-center.toggle-skills {
   text-shadow: 0 0 5px /*var(--default-color);
 }*/
 
-.item-type {
-  position: relative;
-  float: right;
-  margin-bottom: 0.4em;
-}
-
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .mini-grid, .form-section, .item-reference, .item-features, .item-subtype {
-  margin-top: 0.5em;
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
+.item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data {
+  margin-top: 0.3em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1ch;
 }
 
-.open-link {
-  color: var(--color-text-hyperlink);
+select.form-input, input.form-input, span.form-input {
+  align-self: center;
 }
 
-.item-descr {
-  margin-top: 0.5em;
-}
-
-.item-lawLevel {
-  margin-top: 0.5em;
-}
-
-.item-rangeBand {
-  margin-top: 0.5em;
-}
-
-.item-weaponType {
-  margin-top: 0.5em;
-}
-
-.item-damageType {
-  margin-top: 0.5em;
-}
-
-.item-rateOfFire {
-  margin-top: 0.5em;
-}
-
-.item-recoil {
+.mini-grid, .item-descr, .form-section {
   margin-top: 0.5em;
 }
 
 .item-descr div[contenteditable] {
-  min-height: 140px;
+  min-height: 10ch;
   /*background: rgba(0, 0, 0, 0.22);*/
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 3px;
   padding: 0.5em;
   background: var(--s2d6-input-background);
+}
+
+.item-img {
+  object-fit: contain;
 }
 
 .pusher {
@@ -1881,7 +1870,7 @@ button.flexrow.flex-group-center.toggle-skills {
   padding: 0;
   line-height: normal;
   cursor: pointer;
-  margin-top: -2px;
+  /*margin-top: -2px;*/
 }
 .consumable-row .combined-buttons button {
   margin-top: 0;

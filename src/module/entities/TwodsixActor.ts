@@ -133,9 +133,6 @@ export default class TwodsixActor extends Actor {
       _allocatePower(anComponent, powerForItem, item);
 
       /* Allocate Weight*/
-      if (anComponent.weightIsPct && anComponent.isBaseHull) {
-        item.update({'data.weightIsPct': false});
-      }
       _allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/

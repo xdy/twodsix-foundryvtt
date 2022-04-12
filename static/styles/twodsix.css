@@ -120,6 +120,7 @@ input[type='text']:focus, input[type='number']:focus, input[type='password']:foc
 
 input[type= 'checkbox'] {
   vertical-align: middle;
+  align-self: center;
 }
 
 label.checkbox > input[type="checkbox"] {
@@ -317,8 +318,13 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.item-name {
+  align-self: center;
+}
+
 .centre {
   text-align: center;
+  align-self: center;
 }
 
 .component-toggle:hover {
@@ -1191,11 +1197,18 @@ span.total-output {
 }
 
 .resource-label {
-  padding-top: 0.2em;
+  text-align: right;
+  align-self: center;
+}
+
+.open-link {
+  text-align: left;
+  align-self: center;
+  color: var(--color-text-hyperlink);
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  max-width: 18ch;
+  max-width: 14ch;
 }
 
 .multi-line {
@@ -2014,10 +2027,10 @@ a.ship-notes-tab.active {
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 20em 4em 4em 4em 4em 4em 4.5em 4em 3em;
+  grid-template-columns: 16em 4em 4em 4em 4em 4em 4em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . .";
+  grid-template-areas: ". . . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {
@@ -2191,96 +2204,26 @@ a:hover {
   text-shadow: 0 0 5px var(--s2d6-default-color);
 }
 
-.item-type {
-  position: relative;
-  float: right;
-  margin-bottom: 0.4em;
+.item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
+.item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data {
+  margin-top: 0.3em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1ch;
 }
 
-.item-tl {
+select.form-input, input.form-input, span.form-input {
+  align-self: center;
+}
+
+.mini-grid, .item-descr, .form-section {
   margin-top: 0.5em;
-}
-
-.item-price {
-  margin-top: 0.5em;
-}
-
-.item-skill {
-  margin-top: 0.5em;
-}
-
-.item-skillModifier {
-  margin-top: 0.5em;
-}
-
-.item-ammo {
-  margin-top: 0.5em;
-}
-
-.item-qty {
-  margin-top: 0.5em;
-}
-
-.item-weight {
-  margin-top: 0.5em;
-}
-
-.item-power {
-  margin-top: 0.5em;
-}
-
-.item-damage {
-  margin-top: 0.5em;
-}
-
-.form-section {
-  margin-top: 0.5em;
-}
-
-.item-range {
-  margin-top: 0.5em;
-}
-
-.item-descr {
-  margin-top: 0.5em;
-}
-
-.item-lawLevel {
-  margin-top: 0.5em;
-}
-
-.item-rangeBand {
-  margin-top: 0.5em;
-}
-
-.item-weaponType {
-  margin-top: 0.5em;
-}
-
-.item-damageType {
-  margin-top: 0.5em;
-}
-
-.item-rateOfFire {
-  margin-top: 0.5em;
-}
-
-.item-recoil {
-  margin-top: 0.5em;
-}
-
-.item-short, .item-armor, .item-secondaryArmor, .item-radiationProtection, .item-lvl, .item-prereq, .mini-grid, .item-reference, .item-hits,
-.item-features, .item-subtype {
-  margin-top: 0.5em;
-}
-
-.open-link {
-  color: var(--color-text-hyperlink);
 }
 
 .item-descr div[contenteditable] {
-  min-height: 140px;
-  background: rgba(0, 0, 0, 0.22);
+  min-height: 10ch;
   border: none;
   padding: 0.5em;
 }
@@ -2340,7 +2283,7 @@ a:hover {
   padding: 0;
   line-height: normal;
   cursor: pointer;
-  margin-top: -2px;
+  /*margin-top: -2px;*/
 }
 .consumable-row .combined-buttons button {
   margin-top: 0;

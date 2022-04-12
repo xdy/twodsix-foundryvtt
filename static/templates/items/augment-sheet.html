@@ -1,22 +1,14 @@
 <form class="{{cssClass}}" autocomplete="off">
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
-
-    <div class="small-grid">
-      <!-- Labels -->
-      <div class="item-bonus item-label">
+      <div class="item-bonus">
         <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
+        <input class="form-input" id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/>
       </div>
 
       <div class="item-augmentLoc">
         <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
-      </div>
-
-      <!-- Inputs -->
-      <div class="item-bonus item-label"><input id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/></div>
-
-      <div class="item-augmentLoc">
-        <select name="data.auglocation" value={{data.auglocation}}>
+        <select class="form-input" name="data.auglocation" value={{data.auglocation}}>
           {{#select data.auglocation}}
           <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
           <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
@@ -27,12 +19,9 @@
         </select>
       </div>
 
-    </div>
-
     <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
-      </label>
+      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
     </div>
 
     <div class="item-descr">

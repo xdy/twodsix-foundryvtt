@@ -373,7 +373,8 @@
       "isRefined": false,
       "features": "",
       "pricingBasis": "perUnit",
-      "isBaseHull": false
+      "isBaseHull": false,
+      "rollModifier": ""
     },
     "ship_position": {
       "name": "",

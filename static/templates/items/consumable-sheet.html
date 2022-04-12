@@ -2,29 +2,26 @@
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}
-        <input type="number" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-      </label>
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+      <input class="form-input" id="data.quantity" type="number" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
     </div>
 
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.ArmorPiercing"}}
-        <input type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number" step ="1" oninput="this.value = Math.round(this.value);"/>
-      </label>
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.ArmorPiercing"}}</label>
+      <input class="form-input" id="data.armorPiercing" type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number" step ="1" oninput="this.value = Math.round(this.value);"/>
     </div>
 
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Count"}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Count"}}</label>
         <div>
-          <input class="form-consumable-count" name="data.currentCount" type="number" value="{{data.currentCount}}" data-dtype="Number">
+          <input id="data.currentCount" class="form-consumable-count" name="data.currentCount" type="number" value="{{data.currentCount}}" data-dtype="Number"/>
           /
-          <input class="form-consumable-count" name="data.max" type="number" value="{{data.max}}" data-dtype="Number">
+          <input id="data.max" class="form-consumable-count" name="data.max" type="number" value="{{data.max}}" data-dtype="Number"/>
         </div>
-      </label>
     </div>
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}</label>
         <select name="data.subtype" value={{data.subtype}}>
           {{#select data.subtype}}
           {{#each data.config.CONSUMABLES as |consumable|}}
@@ -32,22 +29,14 @@
           {{/each}}
           {{/select}}
         </select>
-      </label>
     </div>
 
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}
-        <input type="number" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-      </label>
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+      <input class="form-input" id="data.weight" type="number" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
     </div>
 
-    <div class="form-section">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-        <input type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
-      </label>
-    </div>
-
-    <div class="form-section">
+    <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
       <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
     </div>
