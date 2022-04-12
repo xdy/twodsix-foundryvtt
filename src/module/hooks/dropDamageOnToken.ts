@@ -22,9 +22,8 @@ async function catchDrop(canvasObject: Canvas, dropData) {
       const target = found[0];
 
       const actor = target?.actor;
-      console.log(actor);
+      //console.log(actor);
 
-      // TODO: Could add support for asking GM to validate drop onto unowned actor?
       if (!actor?.isOwner) {
         return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }
