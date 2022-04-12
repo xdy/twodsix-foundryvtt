@@ -47,10 +47,6 @@ label.checkbox > input[type="checkbox"] {
   cursor: pointer;
 }
 
-.item-name {
-  align-self: center;
-}
-
 .centre {
   text-align: center;
   align-self: center;
