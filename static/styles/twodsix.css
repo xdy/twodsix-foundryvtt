@@ -2577,13 +2577,15 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   /* position: absolute; */
   /* left: 50.5em; */
   /* top: 0.7em; */
-padding-left: 5ch;;;}
+  padding-left: 5ch;
+}
 
 div.app.window-app.twodsix.ship.actor header a.close {
   /* position: absolute; */
   /* left: 51.5em; */
   /* top: 0.7em; */
-padding-left: 4ch;}
+  padding-left: 4ch;
+}
 
 #sidebar-tabs {
   flex: 0 0 32px;
