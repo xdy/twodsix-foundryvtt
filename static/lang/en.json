@@ -725,6 +725,7 @@
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
       "CantAutoDamageShip": "Automatic damage of ship is not supported",
+      "CantDropOnShipToken": "Dropping items on ship tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
