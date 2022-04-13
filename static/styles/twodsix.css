@@ -2524,6 +2524,17 @@ option {
   padding-top: 4px;
 }
 
+.window-app.minimized.twodsix.ship.actor .window-header {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 0;
+}
+.window-app.minimized.twodsix.sheet.actor .window-header {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 0;
+}
+
 .window-app .window-content > * {
   flex: 1;
 }
@@ -2558,8 +2569,16 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   padding-left: 5ch;
 }
 
+div.app.window-app.minimized.twodsix.sheet.actor header a.close {
+  padding-left: 0;
+}
+
 div.app.window-app.twodsix.ship.actor header a.close {
   padding-left: 4ch;
+}
+
+div.app.window-app.minimized.twodsix.ship.actor header a.close {
+  padding-left: 0;
 }
 
 #sidebar-tabs {
