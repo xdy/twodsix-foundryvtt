@@ -2507,12 +2507,21 @@ option {
 .window-app .window-header {
   /* flex: 0 0 30px; */
   overflow: hidden;
-  padding: 0 8px;
-  line-height: 30px;
   background-color: var(--s2d6-background-transparent);
   border: none !important;
   color: var(--s2d6-default-color);
   z-index: 99;
+}
+.window-app.twodsix.sheet.actor .window-header {
+  padding-right: 7ch;
+  padding-left: 5ch;/* line-height: 30px; */
+  padding-top: 4px;
+}
+
+.window-app.twodsix.ship.actor .window-header {
+  padding-right: 5ch;
+  padding-left: 5ch;/* line-height: 30px; */
+  padding-top: 4px;
 }
 
 .window-app .window-content > * {
@@ -2546,34 +2555,36 @@ option {
 }
 
 div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
-  margin-top: 0.25em !important;
-  margin-left: 3em !important;
-  position: relative;
-  flex: none;
+  /* margin-top: 0.25em !important; */
+  /* margin-left: 3em !important; */
+  /* position: relative; */
+  /* flex: none; */
 }
 
 div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
-  position: absolute;
-  left: 22em;
-  top: 0.8em;
-}
+  /* position: absolute; */
+  /* left: 22em; */
+  /* top: 0.8em; */
+/* margin-top: 0.25em; */}
 
 div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-app.twodsix.ship.actor header a.configure-token {
-  position: absolute;
-  left: 38.5em;
-  top: 0.8em;
+  /* position: absolute; */
+  /* left: 38.5em; */
+  /* top: 0.8em; */
 }
 
 div.app.window-app.twodsix.sheet.actor header a.close {
-  position: absolute;
-  left: 50.5em;
-  top: 0.7em;
+  /* position: absolute; */
+  /* left: 50.5em; */
+  /* top: 0.7em; */
+  padding-left: 5ch;
 }
 
 div.app.window-app.twodsix.ship.actor header a.close {
-  position: absolute;
-  left: 51.5em;
-  top: 0.7em;
+  /* position: absolute; */
+  /* left: 51.5em; */
+  /* top: 0.7em; */
+  padding-left: 4ch;
 }
 
 #sidebar-tabs {
