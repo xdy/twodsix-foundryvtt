@@ -2524,10 +2524,9 @@ option {
   padding-top: 4px;
 }
 
-.window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header {
-  padding: 0 1px;
-}
-.window-app.minimized.twodsix.sheet.actor, .window-app.minimized.twodsix.sheet.actor .window-header {
+.window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,
+.window-app.minimized.twodsix.sheet.actor, .window-app.minimized.twodsix.sheet.actor .window-header,
+.window-app.minimized.twodsix.sheet.npc-actor, .window-app.minimized.twodsix.sheet.npc-actor .window-header {
   padding: 0 1px;
 }
 
