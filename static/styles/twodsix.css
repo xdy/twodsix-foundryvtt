@@ -2524,15 +2524,11 @@ option {
   padding-top: 4px;
 }
 
-.window-app.minimized.twodsix.ship.actor .window-header {
-  padding-right: 0;
-  padding-left: 0;
-  padding-top: 0;
+.window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header {
+  padding: 0 1px;
 }
-.window-app.minimized.twodsix.sheet.actor .window-header {
-  padding-right: 0;
-  padding-left: 0;
-  padding-top: 0;
+.window-app.minimized.twodsix.sheet.actor, .window-app.minimized.twodsix.sheet.actor .window-header {
+  padding: 0 1px;
 }
 
 .window-app .window-content > * {
