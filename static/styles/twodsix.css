@@ -2514,13 +2514,13 @@ option {
 }
 .window-app.twodsix.sheet.actor .window-header {
   padding-right: 7ch;
-  padding-left: 5ch;/* line-height: 30px; */
+  padding-left: 5ch;
   padding-top: 4px;
 }
 
 .window-app.twodsix.ship.actor .window-header {
   padding-right: 5ch;
-  padding-left: 5ch;/* line-height: 30px; */
+  padding-left: 5ch;
   padding-top: 4px;
 }
 
@@ -2554,36 +2554,11 @@ option {
   border-radius: 4px 0 0;
 }
 
-div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
-  /* margin-top: 0.25em !important; */
-  /* margin-left: 3em !important; */
-  /* position: relative; */
-  /* flex: none; */
-}
-
-div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
-  /* position: absolute; */
-  /* left: 22em; */
-  /* top: 0.8em; */
-/* margin-top: 0.25em; */}
-
-div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-app.twodsix.ship.actor header a.configure-token {
-  /* position: absolute; */
-  /* left: 38.5em; */
-  /* top: 0.8em; */
-}
-
 div.app.window-app.twodsix.sheet.actor header a.close {
-  /* position: absolute; */
-  /* left: 50.5em; */
-  /* top: 0.7em; */
   padding-left: 5ch;
 }
 
 div.app.window-app.twodsix.ship.actor header a.close {
-  /* position: absolute; */
-  /* left: 51.5em; */
-  /* top: 0.7em; */
   padding-left: 4ch;
 }
 
