@@ -1,3 +1,10 @@
+## [1.34.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.1...v1.34.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* sheet minimization margins and small smaller format errors ([#966](https://github.com/xdy/twodsix-foundryvtt/issues/966)) ([e65d6a6](https://github.com/xdy/twodsix-foundryvtt/commit/e65d6a669fc0d09f7d6111bed302c1903e846c7d))
+
 ## [1.34.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.0...v1.34.1) (2022-04-13)
 
 
