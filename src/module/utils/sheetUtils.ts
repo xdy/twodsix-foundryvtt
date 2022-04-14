@@ -198,7 +198,7 @@ export async function getItemDataFromDropData(data:Record<string, any>) {
   if (data.pack) {
     // compendium
     const pack = game.packs.find((p) => p.collection === data.pack);
-    // @ts-ignore Until foundry-vtt-types changes
+
     if (!pack || pack.metadata.type !== 'Item') {
       throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
     }

@@ -2524,6 +2524,12 @@ option {
   padding-top: 4px;
 }
 
+.window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,
+.window-app.minimized.twodsix.sheet.actor, .window-app.minimized.twodsix.sheet.actor .window-header,
+.window-app.minimized.twodsix.sheet.npc-actor, .window-app.minimized.twodsix.sheet.npc-actor .window-header {
+  padding: 0 1px;
+}
+
 .window-app .window-content > * {
   flex: 1;
 }
@@ -2558,8 +2564,16 @@ div.app.window-app.twodsix.sheet.actor header a.close {
   padding-left: 5ch;
 }
 
+div.app.window-app.minimized.twodsix.sheet.actor header a.close {
+  padding-left: 0;
+}
+
 div.app.window-app.twodsix.ship.actor header a.close {
   padding-left: 4ch;
+}
+
+div.app.window-app.minimized.twodsix.ship.actor header a.close {
+  padding-left: 0;
 }
 
 #sidebar-tabs {
