@@ -271,8 +271,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     // Create the owned item (TODO Add to type and remove the two lines below...)
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     return this._onDropItemCreate(itemData);
   }
 

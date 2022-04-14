@@ -66,7 +66,7 @@ Hooks.once('init', async function () {
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
-  // @ts-ignore
+
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
   Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true});
 
