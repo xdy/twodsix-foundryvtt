@@ -1,3 +1,4 @@
+//import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import TwodsixActor from "../entities/TwodsixActor";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
@@ -10,9 +11,10 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
   }
 });
 
-Hooks.on('updateToken', async (scene, token: Record<string, any>, update: Record<string, any>) => {
-  if (checkForWounds(update.actorData?.data)) {
-    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token._id));
+Hooks.on('updateToken', async (token: TokenDocument, actorData:Record<string, any> , update: Record<string, any>) => {
+  console.log(token, actorData, update);
+  if (checkForWounds(update?.data)) {
+    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token.id));
   }
 });
 
