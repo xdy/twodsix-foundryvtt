@@ -1,3 +1,4 @@
+//import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import TwodsixActor from "../entities/TwodsixActor";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
@@ -10,9 +11,9 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
   }
 });
 
-Hooks.on('updateToken', async (scene, token: Record<string, any>, update: Record<string, any>) => {
-  if (checkForWounds(update.actorData?.data)) {
-    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token._id));
+Hooks.on('updateToken', async (token: TokenDocument, update: Record<string, any>) => {
+  if (checkForWounds(update?.data)) {
+    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token.id));
   }
 });
 
@@ -94,8 +95,8 @@ async function setConditionState(effectLabel: string, targetToken: Record<string
 
 async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
-  if (isAlreadySet != undefined && state === false) {
-    targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+  if (isAlreadySet && state === false) {
+    await targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
   } else {
     let woundModifier = 0;
     switch (tint) {

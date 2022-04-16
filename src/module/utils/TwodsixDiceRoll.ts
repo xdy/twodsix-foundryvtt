@@ -142,7 +142,8 @@ export class TwodsixDiceRoll {
     const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
-    let flavor = `${rollingString}: ${difficulty}`;
+    let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>` : ``;
+    flavor += `${rollingString}: ${difficulty}`;
 
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
