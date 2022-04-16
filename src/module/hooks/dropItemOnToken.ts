@@ -6,7 +6,7 @@ Hooks.on('dropCanvasData', catchDrop);
 
 async function catchDrop(canvasObject: Canvas, dropData) {
 
-  if (dropData.type === 'damageItem' || dropData.type === "Item") {
+  if ((dropData.type === 'damageItem' || dropData.type === "Item") && game.settings.get("twodsix", "allowDropOnIcon")) {
     // Reference used: PlaceablesLayer.selectObjects
     // Find token(s) at drop location
     const foundTokens = getTokensAtLocation(canvasObject, dropData.x, dropData.y);
@@ -36,6 +36,11 @@ async function catchDrop(canvasObject: Canvas, dropData) {
 
           if (isDuplicateItem(actor, itemData)) {
             console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+            const dupItem:TwodsixItem = actor.data.items.filter(x => x.name === itemData.name)[0];
+            if( dupItem.data.type !== "skills"  && dupItem.data.type !== "trait" && dupItem.data.type !== "ship_position") {
+              const newQuantity = dupItem.data.data.quantity + 1;
+              dupItem.update({"data.quantity": newQuantity});
+            }
             return;
           }
 
