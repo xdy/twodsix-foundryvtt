@@ -73,7 +73,8 @@ export class TwodsixShipActions {
       }
       const settings = {
         characteristic: shortLabel,
-        displayLabel: displayLabel
+        displayLabel: displayLabel,
+        extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")))
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];

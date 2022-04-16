@@ -95,8 +95,8 @@ async function setConditionState(effectLabel: string, targetToken: Record<string
 
 async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
-  if (isAlreadySet != undefined && state === false) {
-    targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+  if (isAlreadySet && state === false) {
+    await targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
   } else {
     let woundModifier = 0;
     switch (tint) {

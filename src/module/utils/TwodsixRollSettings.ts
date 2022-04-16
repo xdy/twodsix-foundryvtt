@@ -16,6 +16,7 @@ export class TwodsixRollSettings {
   skillRoll:boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
+  extraFlavor:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
@@ -34,6 +35,7 @@ export class TwodsixRollSettings {
     this.characteristic = settings?.characteristic ?? characteristic;
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.displayLabel = settings?.displayLabel ?? "";
+    this.extraFlavor = settings?.extraFlavor ?? "";
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
