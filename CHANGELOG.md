@@ -1,3 +1,24 @@
+## [1.34.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.2...v1.34.3) (2022-04-16)
+
+
+### Bug Fixes
+
+* bad token update arguments and add flavor to ship skill rolls ([#967](https://github.com/xdy/twodsix-foundryvtt/issues/967)) ([88295ff](https://github.com/xdy/twodsix-foundryvtt/commit/88295ffe4b558e3038f8c159dee2559871f1de0b))
+
+## [1.34.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.1...v1.34.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* sheet minimization margins and small smaller format errors ([#966](https://github.com/xdy/twodsix-foundryvtt/issues/966)) ([e65d6a6](https://github.com/xdy/twodsix-foundryvtt/commit/e65d6a669fc0d09f7d6111bed302c1903e846c7d))
+
+## [1.34.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.0...v1.34.1) (2022-04-13)
+
+
+### Bug Fixes
+
+* conflict with module icons and sheet headers ([a93b39d](https://github.com/xdy/twodsix-foundryvtt/commit/a93b39d3e1fa2d8878fc6c4e4c28963a06fa5138))
+
 # [1.34.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.33.0...v1.34.0) (2022-04-12)
 
 

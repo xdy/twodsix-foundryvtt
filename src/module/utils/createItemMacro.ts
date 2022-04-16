@@ -8,8 +8,7 @@
  */
 export async function createItemMacro(item, slot): Promise<void> {
   if (item.type === "Macro") {
-    // @ts-ignore
-    await game.user?.assignHotbarMacro(game.macros.get(item.id), slot);
+    await game.user?.assignHotbarMacro(game.macros?.get(item.id) || null, slot);
   } else {
     let itemName = "";
     let img = "";

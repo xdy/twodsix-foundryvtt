@@ -156,9 +156,9 @@ export class Stats {
       if (!isDead) {
         //toggle dead condition on
         const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
-        // @ts-ignore
-        await this.actor.token._object.toggleEffect(deadEffect, {active: true, overlay: true});
-
+        if (deadEffect) {
+          await this.actor.token.toggleActiveEffect(deadEffect, {active: true, overlay: true});
+        }
         //toggle defeated if in combat
         const fighters = game.combats?.active?.data.combatants;
         const combatant = fighters?.find((f: Combatant) => f.data.tokenId === this.actor.token?.data._id);

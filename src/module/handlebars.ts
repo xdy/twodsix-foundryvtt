@@ -54,8 +54,6 @@ export default function registerHandlebarsHelpers(): void {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore If ui is null, we're not in foundry. So, meh
         ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
         showedError = true;
       }

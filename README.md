@@ -24,13 +24,6 @@ System settings and compendiums are available that make it compatible with Cephe
 
 Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc.
 
-Note:
-* This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.
-* Cepheus Engine and Samardan Press:tm: are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press:tm:.    
-* Cepheus Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing.
-* Cepheus Faster Than Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
-* Barbaric!, Sword of Cepheus, Cepheus Light, and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
-
 This system may eventually claim compatibility with other specific rules sets once it:
 * actually has said compatibility 
 * actually has the license to do so
@@ -61,6 +54,15 @@ Project Licensing:
 
 Content Usage and Licensing:
 *  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](OpenGameLicense.md) for details.
+*  Note:
+* This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.
+* Cepheus Engine and Samardan Press:tm: are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press:tm:.    
+* Cepheus Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing.
+* Cepheus Faster Than Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
+* Barbaric!, Sword of Cepheus, Cepheus Light, and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
+* The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises. Traveller is a registered trademark of Far
+Future Enterprises. Far Future permits web sites and fanzines for this game, provided it contains this notice, that Far Future is notified, and subject to a withdrawal of permission on 90 days notice. The contents of this site are for personal, non-commercial use only. Any use of Far Future Enterprises's copyrighted material or trademarks anywhere on this web site and its files should not be viewed as a challenge to those copyrights or trademarks. In addition, any program/articles/file on this site cannot be republished or distributed without the consent of the author who contributed it.
+
 
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
