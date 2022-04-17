@@ -163,3 +163,5 @@ Dice So Nice!, Compendium Folders, DF Settings Clarity, Dice Tray, Forien's Ques
 Autocomplete Whispers, Combat Numbers, DF Scene Enhancement, Forien's Copy Enviromment, FX Master, GM Notes, GM Screen, ModBox, Token Mold.
 
 Also, on our discord (https://discord.gg/KUAwPrj) check out the release notes in #announcements as that is pretty much the only documentation other than this document and the text on the various system settings.
+ 
+ 
