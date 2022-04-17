@@ -684,6 +684,10 @@
       "maxEncumbrance": {
         "hint": "Formula to calculate maximum encumbrance for actor.",
         "name": "Maximum Encumbrance Formula"
+      },
+      "allowDropOnIcon": {
+        "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damge.",
+        "name": "Allow Items to be droped onto icons"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -729,9 +733,13 @@
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
       "CantAutoDamageShip": "Automatic damage of ship is not supported",
+      "CantDropOnShipToken": "Dropping items on ship tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
-      "NoSpecfiedLink": "No document and page specified for document link."
+      "NoSpecfiedLink": "No document and page specified for document link.",
+      "NoTargetFound": "No target for damage found.",
+      "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
+      "MultipleActorsFound": "Multiple actors found. Cannot apply damage."
     }
   },
   "VeryDifficult": "Very Difficult"

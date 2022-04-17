@@ -26,6 +26,7 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useShipAutoCalcs', false));
     settings.push(booleanSetting('useTinyMCEditor', false));
+    settings.push(booleanSetting('allowDropOnIcon', false));
     return settings;
   }
 }
