@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.3...v1.35.0) (2022-04-17)
+
+
+### Features
+
+* Drag and drop items and damage to traveller icons ([#961](https://github.com/xdy/twodsix-foundryvtt/issues/961)) ([59e3312](https://github.com/xdy/twodsix-foundryvtt/commit/59e3312fb94ccdd66ce437d17d84fc5d257f53ea))
+
 ## [1.34.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.2...v1.34.3) (2022-04-16)
 
 
