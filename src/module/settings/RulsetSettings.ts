@@ -31,6 +31,7 @@ export default class RulesetSettings extends AdvancedSettings {
     const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
     // TODO: With the new ship positions this should be changed to take the pilot's piloting skill into consideration.
     const DEFAULT_SHIP_INITIATIVE_FORMULA = "2d6";
+    const DEFAULT_MAX_ENCUMBRANCE_FORMULA = "12 * @characteristics.strength.current";
 
     const settings: string[] = [];
     settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
@@ -58,6 +59,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(numberSetting('mortgagePayment', 240, true));
     settings.push(numberSetting('massProductionDiscount', 0.10, true));
     settings.push(booleanSetting('reverseHealingOrder', false));
+    settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     return settings;
   }
 }

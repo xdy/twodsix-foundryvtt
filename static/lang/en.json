@@ -680,6 +680,10 @@
       "reverseHealingOrder": {
         "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",
         "name": "Reverse characteristic healing order"
+      },
+      "maxEncumbrance": {
+        "hint": "Formula to calculate maximum encumbrance for actor.",
+        "name": "Maximum Encumbrance Formula"
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -55,7 +55,8 @@ const RULESETS = Object.freeze({
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
-      massProductionDiscount: 0.10
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "12 * @characteristics.strength.current"
     }
   },
   CEL: {
@@ -77,7 +78,8 @@ const RULESETS = Object.freeze({
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
-      massProductionDiscount: 0.10
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "3 * @characteristics.strength.value"
     }
   },
   CEFTL: {
@@ -97,7 +99,8 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
       minorWoundsRollModifier: 0,
-      seriousWoundsRollModifier: 0
+      seriousWoundsRollModifier: 0,
+      maxEncumbrance: "3 * @characteristics.strength.value"
     },
   },
   CEATOM: {
@@ -118,7 +121,8 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: true,
       minorWoundsRollModifier: -1,
-      seriousWoundsRollModifier: -1
+      seriousWoundsRollModifier: -1,
+      maxEncumbrance: "2 * @characteristics.endurance.value"
     }
   },
   BARBARIC: {
@@ -139,7 +143,8 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: false,
       minorWoundsRollModifier: -1,
-      seriousWoundsRollModifier: -1
+      seriousWoundsRollModifier: -1,
+      maxEncumbrance: "2 * @characteristics.endurance.value"
     },
   },
   CEQ: {
@@ -160,7 +165,8 @@ const RULESETS = Object.freeze({
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: false,
       minorWoundsRollModifier: 0,
-      seriousWoundsRollModifier: 0
+      seriousWoundsRollModifier: 0,
+      maxEncumbrance: "0"
     }
   },
   CD: {
@@ -189,7 +195,8 @@ const RULESETS = Object.freeze({
       minorWoundsRollModifier: -1,
       seriousWoundsRollModifier: -2,
       mortgagePayment: 320,
-      massProductionDiscount: 0.10
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "3 * (7 + @characteristics.strength.mod)"
     }
   },
   CLU: {
@@ -214,7 +221,8 @@ const RULESETS = Object.freeze({
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
-      ShowRecoil: true
+      ShowRecoil: true,
+      maxEncumbrance: "3*(7 + @characteristics.strength.mod)"
     }
   },
 
