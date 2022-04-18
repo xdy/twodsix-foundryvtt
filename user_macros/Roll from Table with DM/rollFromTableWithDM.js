@@ -17,7 +17,7 @@ async function getModifier (type, text) {
     }).render(true);
   });
 
-  r = new Roll("2d6+@DM",{DM: value});
+  let r = new Roll("2d6+@DM",{DM: value});
   r.evaluate();
 
   game.tables.getName('Book Titles').draw({roll: r});
