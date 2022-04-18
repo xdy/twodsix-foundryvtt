@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.35.1...v1.36.0) (2022-04-18)
+
+
+### Features
+
+* add max encumbrance calc for traveller and range field for armament components  ([#969](https://github.com/xdy/twodsix-foundryvtt/issues/969)) ([3ea3e19](https://github.com/xdy/twodsix-foundryvtt/commit/3ea3e1959d7c63becb8e90b71230495ead1ca05a))
+
 ## [1.35.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.35.0...v1.35.1) (2022-04-18)
 
 
