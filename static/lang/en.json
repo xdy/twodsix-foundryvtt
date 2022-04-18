@@ -220,6 +220,7 @@
         "Power": "Power",
         "status": "Status",
         "rating": "Rating",
+        "Range": "Range",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage",
@@ -680,6 +681,10 @@
       "reverseHealingOrder": {
         "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",
         "name": "Reverse characteristic healing order"
+      },
+      "maxEncumbrance": {
+        "hint": "Formula to calculate maximum encumbrance for actor.",
+        "name": "Maximum Encumbrance Formula"
       },
       "allowDropOnIcon": {
         "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damge.",

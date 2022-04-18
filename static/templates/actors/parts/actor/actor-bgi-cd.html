@@ -28,9 +28,13 @@
        readonly />/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}" placeholder='0' readonly /></span>
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fas fa-radiation-alt"></i>:<input
         name="data.radiationProtection.value" type="number" value="{{data.radiationProtection.value}}" placeholder='0' readonly /></span>
-<span class="bgi-encumbrance" title='{{localize "TWODSIX.Items.Encumbrance"}}'><i class="fas fa-weight-hanging"></i>:<input
-      name="data.encumbrance.value" style="text-align: right;" type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>
-      /<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}" placeholder='0' onClick="this.select();"/></span>
+<span class="bgi-encumbrance" title='{{localize "TWODSIX.Items.Encumbrance"}}'>
+  {{#iff data.encumbrance.value ">" data.encumbrance.max}}
+    <i class="fas fa-weight-hanging" style="color:brown;"></i>
+  {{else}}
+    <i class="fas fa-weight-hanging"></i>
+  {{/iff}}:<input name="data.encumbrance.value" style="text-align: right;" type="number" value="{{data.encumbrance.value}}" placeholder='0' readonly/>
+      /<input name="data.encumbrance.max" type="number" value="{{data.encumbrance.max}}" placeholder='0' readonly/></span>
 <br>
 
 <!-- Damage Stats Information-->

@@ -92,6 +92,7 @@ declare global {
       'twodsix.seriousWoundsRollModifier': number;
       'twodsix.mortgagePayment': number;
       'twodsix.massProductionDiscount': number;
+      'twodsix.maxEncumbrance': string;
     }
   }
 }
