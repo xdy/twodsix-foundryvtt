@@ -364,6 +364,7 @@
       "availableQuantity": "",
       "hits": 0,
       "damage": "",
+      "range": "",
       "status": "operational",
       "weightIsPct": false,
       "isIllegal": false,

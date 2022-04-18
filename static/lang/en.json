@@ -220,6 +220,7 @@
         "Power": "Power",
         "status": "Status",
         "rating": "Rating",
+        "Range": "Range",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage",
