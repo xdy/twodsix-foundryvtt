@@ -335,6 +335,7 @@ export interface Component extends GearTemplate {
   availableQuantity:string;
   damage:string;
   hits:number;
+  range:string;
   status:string;
   weightIsPct:boolean;
   isIllegal:boolean;
