@@ -4,6 +4,7 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{
@@ -98,12 +99,17 @@ export class TwodsixShipActions {
     if (!result) {
       return false;
     }
-    const component = extra.ship?.items.find(item => item.id === componentId);
-    const extraStr = component ? `while using ${component.name} ` : '';
+    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component") ;
+    const extraStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
     if (result.effect >= 0) {
-      TwodsixShipActions.chatMessage(`Hit ${extraStr}with effect ${result.effect}`, extra);
+      const damage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", false, false);
+      if(damage?.total) {
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHitsAndDamage").replace("_WHILE_USING_", extraStr).replace("_EFFECT_VALUE_", result.effect.toString()).replace("_DAMAGE_TOTAL_", damage.total.toString()), extra);
+      } else {
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHits").replace("_WHILE_USING_", extraStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+      }
     } else {
-      TwodsixShipActions.chatMessage(`Missed ${extraStr}with effect ${result.effect}`, extra);
+      TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", extraStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
     }
   }
 }
