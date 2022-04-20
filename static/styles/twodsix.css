@@ -1185,6 +1185,7 @@ select.select-rolltype {
 
 span.total-output {
   text-align: center;
+  align-self: center;
 }
 
 .roll-dice {
