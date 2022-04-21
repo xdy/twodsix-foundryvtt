@@ -364,6 +364,7 @@
       "availableQuantity": "",
       "hits": 0,
       "damage": "",
+      "radDamage": "",
       "range": "",
       "status": "operational",
       "weightIsPct": false,
