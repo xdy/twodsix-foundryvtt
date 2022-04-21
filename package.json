@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "twodsix",
-  "version": "1.36.0",
+  "version": "1.37.0",
   "description": "A 2d6 system",
   "scripts": {
     "build": "gulp build",
@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
-    "esbuild": "^0.14.27",
+    "esbuild": "^0.14.37",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
