@@ -1,3 +1,10 @@
+# [1.37.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.36.0...v1.37.0) (2022-04-21)
+
+
+### Features
+
+* add damage roll and localization for components ([#973](https://github.com/xdy/twodsix-foundryvtt/issues/973)) ([8581ece](https://github.com/xdy/twodsix-foundryvtt/commit/8581ece4cc7e5d672e67d7ad59ac807c5c251d14))
+
 # [1.36.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.35.1...v1.36.0) (2022-04-18)
 
 
