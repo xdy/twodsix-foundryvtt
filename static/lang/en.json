@@ -224,6 +224,7 @@
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
         "damage": "Damage",
+        "RadiationDamage": "Radiation Damage",
         "damageHits": "Damage / Hits",
         "hits": "Hits",
         "weightIsPct": "Weight is Percentage?",
@@ -378,6 +379,11 @@
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
       "MakesChatRollAction": "Takes the _ACTION_NAME_ action from the _POSITION_NAME_ position",
+      "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
+      "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
+      "ActionMisses": "Misses _WHILE_USING_with an effect of _EFFECT_VALUE_",
+      "RadiationDamageOf":"and radiation damage of",
+      "WhileUsing": "while using ",
       "MaintPM": "Maintenance P/M",
       "MANIFEST": "MANIFEST",
       "MAX": "MAX",
@@ -740,7 +746,8 @@
       "NoSpecfiedLink": "No document and page specified for document link.",
       "NoTargetFound": "No target for damage found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
-      "MultipleActorsFound": "Multiple actors found. Cannot apply damage."
+      "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
+      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero."
     }
   },
   "VeryDifficult": "Very Difficult"
