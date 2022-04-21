@@ -366,7 +366,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
     });
     // Calc Max Encumbrance
-    const maxEncumbrance = new Roll(game.settings.get('twodsix', 'maxEncumbrance'), sheetData.actor.data).evaluate({async: false});
+    let maxEncumbrance = 0;
+    const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
+    if (Roll.validate(encumbFormula)) {
+      maxEncumbrance = new Roll(encumbFormula, sheetData.actor.data).evaluate({async: false}).total;
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    }
 
     // Assign and return
     if (sheetData.actor.type === "traveller") {
@@ -383,7 +389,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.secondaryArmor.value = secondaryArmor;
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
-      sheetData.data.encumbrance.max = Math.round((maxEncumbrance.total || 0)* 10) / 10;
+      sheetData.data.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
     } else if (sheetData.actor.type === "ship") {
       sheetData.component = sortObj(component);
       sheetData.storage = storage;

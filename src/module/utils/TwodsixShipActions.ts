@@ -1,9 +1,10 @@
-import { Skills } from "src/types/template";
+import { Component, Skills } from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{
@@ -98,12 +99,25 @@ export class TwodsixShipActions {
     if (!result) {
       return false;
     }
-    const component = extra.ship?.items.find(item => item.id === componentId);
-    const extraStr = component ? `while using ${component.name} ` : '';
-    if (result.effect >= 0) {
-      TwodsixShipActions.chatMessage(`Hit ${extraStr}with effect ${result.effect}`, extra);
+    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
+    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
+    let radString = "";
+    if (result.effect >= 0 && component) {
+      const stdDamage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", false, false);
+      const rollData = extra.actor?.getRollData();
+      if (Roll.validate((<Component>component.data.data).radDamage)) {
+        const radDamage = new Roll((<Component>component.data.data).radDamage, rollData).evaluate({async: false}).total;
+        if (radDamage) {
+          radString = ' ' + game.i18n.localize("TWODSIX.Ship.RadiationDamageOf") + ' ' + radDamage;
+        }
+      }
+      if(stdDamage?.total) {
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHitsAndDamage").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()).replace("_DAMAGE_TOTAL_", stdDamage.total.toString()) + radString, extra);
+      } else {
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHits").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+      }
     } else {
-      TwodsixShipActions.chatMessage(`Missed ${extraStr}with effect ${result.effect}`, extra);
+      TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
     }
   }
 }
