@@ -1,3 +1,10 @@
+# [1.38.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.37.0...v1.38.0) (2022-04-25)
+
+
+### Features
+
+* Include User Macros in Compendium ([#981](https://github.com/xdy/twodsix-foundryvtt/issues/981)) ([f1a11ce](https://github.com/xdy/twodsix-foundryvtt/commit/f1a11ce6a98e1e0f64e70184713335a6493bd371))
+
 # [1.37.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.36.0...v1.37.0) (2022-04-21)
 
 
