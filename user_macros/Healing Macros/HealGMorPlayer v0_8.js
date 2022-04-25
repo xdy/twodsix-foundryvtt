@@ -15,10 +15,12 @@ if (game.user.isGM !== true) {
   }
 } else {
   // For GM, select doctor as the selected token
-  if (token !== undefined) {
+    if (token !== undefined) {
       // eslint-disable-next-line no-undef
       doctor = token.actor;
-  }
+      //console.log(doctor);
+      //console.log(canvas.tokens._controlled);
+    }
 }
 
 // Heal if doctor and patients are defined
@@ -49,27 +51,6 @@ async function healCharacter (healer, patient) {
 
     let pointsToHeal = healRoll.effect * MULTIPLIER;
 
-    // define characteristic healing order
-    const healOrder = ['endurance', 'strength', 'dexterity'];
-
-    let charId = '';
-
-    // Remove damage in the healing order
-    for (let i = 0; i < healOrder.length; ++i) {
-      if (pointsToHeal < 1) {
-        break;
-      }
-
-      const currentDamage = patient.data.data.characteristics[healOrder[i]].damage;
-
-      if (currentDamage > 0) {
-        const newDamage = Math.max(0, currentDamage - pointsToHeal);
-        charId = 'data.characteristics.' + healOrder[i] + '.damage';
-
-        await patient.update({ [charId]: newDamage });
-
-        pointsToHeal -= currentDamage - newDamage;
-      }
-    }
+    patient.healActor(pointsToHeal);
   }
 }

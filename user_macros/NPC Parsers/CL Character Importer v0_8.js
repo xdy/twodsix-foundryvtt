@@ -108,7 +108,7 @@ async function getInputText () {
 
       if (newItem != null) {
         const quant = parseInt(itemList[i].slice(itemList[i].lastIndexOf('x') + 1));
-        await newItem.update({ 'data.quantity': quant });
+        newItem.data.quantity = quant;
         itemsToAdd.push(Object.assign({}, newItem.data));
       }
     }
@@ -131,19 +131,32 @@ async function getInputText () {
     let skillName = skillPair.slice(0, skillPair.length - 2).trim();
     const skillLevel = parseInt(skillPair.slice(skillPair.length - 2));
 
-    let skillItem = await pack.find(s => s.name === skillName && s.type === 'skills');
+    let tempItem = await pack.find(s => s.name === skillName && s.type === 'skills');
+    let skillItem = {};
+    if (tempItem) {
+      skillItem = duplicate(tempItem);
+    } else {
+      skillItem = undefined;
+    }
 
     // Try to correct a null skillItem
-    if (skillItem === null || skillItem === undefined) {
+    if (!skillItem) {
       skillName = compendiumErrors(skillName);
-      skillItem = await pack.find(s => s.name === skillName && s.type === 'skills');
+      tempItem = await duplicate(pack.find(s => s.name === skillName && s.type === 'skills'));
+
+      if (tempItem) {
+        skillItem = duplicate(tempItem);
+      } else {
+        skillItem = undefined;
+      }
     }
 
     // Add new skill
-    if (skillItem != null) {
-      await skillItem.update(
-        { 'data.value': skillLevel, 'data.characteristic': 'NONE' });
-      itemsToAdd.push(Object.assign({}, skillItem.data));
+    if (skillItem) {
+      skillItem.data.value = skillLevel;
+      //skillItem.data.characteristic =  'NONE';
+      //skillItem.data.name = skillItem.name;
+      itemsToAdd.push(Object.assign({}, skillItem));
     } else {
       bio += '<p>Unknown skill: ' + skillsList[i] + '</p>';
     }
