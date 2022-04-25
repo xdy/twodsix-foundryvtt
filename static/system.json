@@ -211,6 +211,24 @@
       "path": "./packs/cepheus-deluxe-gm-screen.db",
       "entity": "JournalEntry",
       "type": "JournalEntry"
+    },
+    {
+      "name": "twodsix-macros",
+      "label": "twodsix macros",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/twodsix-macros.db",
+      "entity": "Macro",
+      "type": "Macro"
+    },
+    {
+      "name": "twodsix-macros-rolltables",
+      "label": "twodsix macros rolltables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/macro-rolltables.db",
+      "entity": "RollTable",
+      "type": "RollTable"
     }
   ],
   "primaryTokenAttribute": "hits",
