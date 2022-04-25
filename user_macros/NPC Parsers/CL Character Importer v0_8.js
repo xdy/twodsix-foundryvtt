@@ -104,12 +104,12 @@ async function getInputText () {
       let benefit = itemList[i].slice(0, itemList[i].lastIndexOf('x') - 1).trim();
       benefit = compendiumErrors(benefit);
 
-      const newItem = await pack.find(s => s.name === benefit);
+      let newItem = await pack.find(s => s.name === benefit)?.toObject();
 
-      if (newItem != null) {
+      if (newItem) {
         const quant = parseInt(itemList[i].slice(itemList[i].lastIndexOf('x') + 1));
         newItem.data.quantity = quant;
-        itemsToAdd.push(Object.assign({}, newItem.data));
+        itemsToAdd.push(Object.assign({}, newItem));
       }
     }
   }
@@ -131,24 +131,12 @@ async function getInputText () {
     let skillName = skillPair.slice(0, skillPair.length - 2).trim();
     const skillLevel = parseInt(skillPair.slice(skillPair.length - 2));
 
-    let tempItem = await pack.find(s => s.name === skillName && s.type === 'skills');
-    let skillItem = {};
-    if (tempItem) {
-      skillItem = duplicate(tempItem);
-    } else {
-      skillItem = undefined;
-    }
+    let skillItem = await pack.find(s => s.name === skillName && s.type === 'skills')?.toObject();
 
     // Try to correct a null skillItem
     if (!skillItem) {
       skillName = compendiumErrors(skillName);
-      tempItem = await duplicate(pack.find(s => s.name === skillName && s.type === 'skills'));
-
-      if (tempItem) {
-        skillItem = duplicate(tempItem);
-      } else {
-        skillItem = undefined;
-      }
+      skillItem = await pack.find(s => s.name === skillName && s.type === 'skills')?.toObject();
     }
 
     // Add new skill
