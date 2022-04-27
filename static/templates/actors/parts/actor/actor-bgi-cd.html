@@ -59,7 +59,7 @@
 <span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}: {{localize "TWODSIX.Actor.Movement.MovementWalk"}}'><i class="fas fa-walking"></i>:
   <input type="number" name="data.movement.walk" value="{{data.movement.walk}}"/>
   <select name="data.movement.units" >
-    {{selectOptions config.MovementUnits selected=data.movement.units inverted=true}}
+    {{selectOptions config.MovementUnits selected=data.movement.units localize=true inverted=false}}
   </select>
 </span>
 
