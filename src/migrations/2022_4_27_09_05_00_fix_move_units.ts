@@ -4,7 +4,7 @@ import { applyToAllActors } from "../migration-utils";
 async function adjustMovementUnits (actor: TwodsixActor): Promise<void> {
   const actorData = actor.data.data as Traveller;
   if (actorData.movement?.units) {
-    console.log("Starting units: ", actorData.movement.units);
+    //console.log("Starting units: ", actorData.movement.units);
     switch (actorData.movement?.units) {
       case 'TWODSIX.Actor.Movement.DistFt':
         await actor.update({ 'data.movement.units': 'ft' });
@@ -22,7 +22,7 @@ async function adjustMovementUnits (actor: TwodsixActor): Promise<void> {
         console.log('nothing changed');
         break;
     }
-    console.log("Ending Units: ", actorData.movement?.units);
+    //console.log("Ending Units: ", (<Traveller>actor.data.data).movement?.units);
   }
   return Promise.resolve();
 }
