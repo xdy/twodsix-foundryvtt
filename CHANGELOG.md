@@ -1,3 +1,10 @@
+## [1.38.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.0...v1.38.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* movement units ([#983](https://github.com/xdy/twodsix-foundryvtt/issues/983)) ([ac356a1](https://github.com/xdy/twodsix-foundryvtt/commit/ac356a1565c99af5146825ea418ce181ab5af8c1))
+
 # [1.38.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.37.0...v1.38.0) (2022-04-25)
 
 
