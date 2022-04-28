@@ -224,6 +224,17 @@ export interface Traveller {
   characteristics:Characteristics;
   woundedEffect:number;
   characteristicEdit:boolean;
+  movement:MovementData;
+}
+
+export interface MovementData {
+  burrow:number;
+  climb:number;
+  fly:number;
+  swim:number;
+  walk:number;
+  units:string;
+  hover:boolean;
 }
 
 export interface Age {

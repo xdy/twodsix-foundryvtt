@@ -290,7 +290,9 @@ export const MovementUnits = {
   ft: "TWODSIX.Actor.Movement.DistFt",
   mi: "TWODSIX.Actor.Movement.DistMi",
   m: "TWODSIX.Actor.Movement.DistM",
-  km: "TWODSIX.Actor.Movement.DistKm"
+  km: "TWODSIX.Actor.Movement.DistKm",
+  pc: "TWODSIX.Actor.Movement.DistPc",
+  gu: "TWODSIX.Actor.Movement.DistGU"
 };
 
 /**

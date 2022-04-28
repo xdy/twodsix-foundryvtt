@@ -6,7 +6,7 @@
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
   "download": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/twodsix.zip",
-  "version": "1.37.0",
+  "version": "1.38.1",
   "socket": true,
   "author": "Jonas Karlsson (xdy#3735), Kevin Maree (Ultra Kev#9816)",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -211,6 +211,24 @@
       "path": "./packs/cepheus-deluxe-gm-screen.db",
       "entity": "JournalEntry",
       "type": "JournalEntry"
+    },
+    {
+      "name": "twodsix-macros",
+      "label": "twodsix macros",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/twodsix-macros.db",
+      "entity": "Macro",
+      "type": "Macro"
+    },
+    {
+      "name": "twodsix-macros-rolltables",
+      "label": "twodsix macros rolltables",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/macro-rolltables.db",
+      "entity": "RollTable",
+      "type": "RollTable"
     }
   ],
   "primaryTokenAttribute": "hits",
