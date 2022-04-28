@@ -18,6 +18,12 @@ async function adjustMovementUnits (actor: TwodsixActor): Promise<void> {
       case 'TWODSIX.Actor.Movement.DistKm':
         await actor.update({ 'data.movement.units': 'km' });
         break;
+      case 'TWODSIX.Actor.Movement.DistPc':
+        await actor.update({ 'data.movement.units': 'pc' });
+        break;
+      case 'TWODSIX.Actor.Movement.DistGU':
+        await actor.update({ 'data.movement.units': 'gu' });
+        break;
       default:
         console.log('nothing changed');
         break;

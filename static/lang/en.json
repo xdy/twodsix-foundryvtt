@@ -149,6 +149,8 @@
         "DistKm": "Kilometers",
         "DistM": "Meters",
         "DistMi": "Miles",
+        "DistPc": "Parsecs",
+        "DistGU": "Grid Units",
         "MovementRate": "Movement Rate"
       },
       "CharDisplay": {
