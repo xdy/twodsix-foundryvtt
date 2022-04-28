@@ -296,10 +296,11 @@ img.character-info-mask {
 }
 
 .bgi-movement select {
-  width: 7ch;
+  width: 12ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
-  height: 2.7ch;
+  /*height: 2.7ch;*/
+  font-size: inherit;
 }
 
 .bgi-char-narrow {
@@ -334,7 +335,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
 }
 
 span.bgi-charEdit {
-  margin-left: 1em;
+  margin-left: 0.5em;
 }
 
 .bgi-armor input {
