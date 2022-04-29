@@ -1,3 +1,10 @@
+# [1.39.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.1...v1.39.0) (2022-04-29)
+
+
+### Features
+
+* drag ruler integration ([#984](https://github.com/xdy/twodsix-foundryvtt/issues/984)) ([093d386](https://github.com/xdy/twodsix-foundryvtt/commit/093d3861b1dbb4f6c9a34610d5c388ff39b59ada))
+
 ## [1.38.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.0...v1.38.1) (2022-04-28)
 
 
