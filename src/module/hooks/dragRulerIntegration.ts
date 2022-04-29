@@ -1,3 +1,5 @@
+import { Traveller } from "src/types/template";
+
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
   class TwodsixSpeedProvider extends SpeedProvider {
     get colors() {
@@ -26,24 +28,51 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
         }
       } else if (actorType === "traveller") {
         movementSpeed = token.actor.data.data.movement.walk;
+        const actorData = (<Traveller>actor.data.data);
         switch (rulesSet) {
-          case "CD":
-          case "CA":
-          case "CEQ":
-          case "CEFTL":
-          case "CEL":
           case "CEATOM":
-          case "CLU":
+          case "BARBARIC":
+            if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 2) && game.settings.get("twodsix", "useEncumbrance")) {
+              movementSpeed *= 0.5;
+            }
             return [
               { range: movementSpeed, color: "walk" },
               { range: movementSpeed * 2, color: "dash" }
             ];
+          case "CD":
+          case "CEL":
+          case "CLU":
+            if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 3) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [
+                { range: movementSpeed, color: "walk" }
+              ];
+            } else {
+              return [
+                { range: movementSpeed, color: "walk" },
+                { range: movementSpeed * 2, color: "dash" }
+              ];
+            }
           case "CE":
+            if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 2) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [
+                { range: 1.5, color: "walk" }
+              ];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 6) && game.settings.get("twodsix", "useEncumbrance")) {
+              movementSpeed *= 0.75;
+            }
             return [
               { range: movementSpeed, color: "walk" },
               { range: movementSpeed * 2, color: "dash" },
               { range: movementSpeed * 3, color: "run" }
             ];
+          case "CEQ":
+          case "CEFTL":
           default:
             return [
               { range: movementSpeed, color: "walk" },

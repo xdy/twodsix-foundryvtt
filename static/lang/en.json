@@ -705,6 +705,10 @@
       "defaultMovementUnits": {
         "hint": "The default movement/walk units for new travellers (typically a minor action), e.g. m for 10m",
         "name": "The default movement units for the walk rate"
+      },
+      "useEncumbrance": {
+        "hint": "Use encumbarnce rules (if they exist) when displaying movement with drag ruler.",
+        "name": "Use system encumbrance rules for drag ruler"
       }
     },
     "CloseAndCreateNew": "Close and create new",
