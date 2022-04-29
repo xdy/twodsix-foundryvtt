@@ -697,6 +697,18 @@
       "allowDropOnIcon": {
         "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damge.",
         "name": "Allow Items to be droped onto icons"
+      },
+      "defaultMovement": {
+        "hint": "The default movement/walk for new travellers (typically a minor action), e.g. 10 for 10m",
+        "name": "The default movement walk rate"
+      },
+      "defaultMovementUnits": {
+        "hint": "The default movement/walk units for new travellers (typically a minor action), e.g. m for 10m",
+        "name": "The default movement units for the walk rate"
+      },
+      "useEncumbrance": {
+        "hint": "Use encumbarnce rules (if they exist) when displaying movement with drag ruler.",
+        "name": "Use system encumbrance rules for drag ruler"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -716,6 +728,12 @@
       "consumable": "consumable",
       "trait": "trait",
       "component": "component"
+    },
+    "speeds": {
+      "walk": "walk",
+      "dash": "dash",
+      "run": "run",
+      "jump": "jump"
     },
     "Errors": {
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
