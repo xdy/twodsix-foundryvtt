@@ -104,7 +104,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
-      maxEncumbrance: "3 * @characteristics.strength.value",
+      maxEncumbrance: "0",
       defaultMovement: 10,
       defaultMovementUnits: "m"
     },
@@ -236,7 +236,12 @@ const RULESETS = Object.freeze({
       ShowDamageType: false,
       ShowRateOfFire: true,
       ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 320,
+      massProductionDiscount: 0.10,
       maxEncumbrance: "3*(7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
       defaultMovementUnits: "m"
     }
   },
