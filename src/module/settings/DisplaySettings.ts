@@ -30,6 +30,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showWeightUsage', false));
     settings.push(booleanSetting('showItemReferences', true));
     settings.push(booleanSetting('showIcons', false));
+    settings.push(booleanSetting('useEncumbrance', false));
     return settings;
   }
 }

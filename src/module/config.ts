@@ -56,7 +56,9 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10,
-      maxEncumbrance: "12 * @characteristics.strength.current"
+      maxEncumbrance: "12 * @characteristics.strength.current",
+      defaultMovement: 6,
+      defaultMovementUnits: "m"
     }
   },
   CEL: {
@@ -79,7 +81,9 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
       massProductionDiscount: 0.10,
-      maxEncumbrance: "3 * @characteristics.strength.value"
+      maxEncumbrance: "3 * @characteristics.strength.value",
+      defaultMovement: 9,
+      defaultMovementUnits: "m"
     }
   },
   CEFTL: {
@@ -100,7 +104,9 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
-      maxEncumbrance: "3 * @characteristics.strength.value"
+      maxEncumbrance: "0",
+      defaultMovement: 10,
+      defaultMovementUnits: "m"
     },
   },
   CEATOM: {
@@ -122,7 +128,9 @@ const RULESETS = Object.freeze({
       showContaminationBelowLifeblood: true,
       minorWoundsRollModifier: -1,
       seriousWoundsRollModifier: -1,
-      maxEncumbrance: "2 * @characteristics.endurance.value"
+      maxEncumbrance: "2 * @characteristics.endurance.value",
+      defaultMovement: 10,
+      defaultMovementUnits: "m"
     }
   },
   BARBARIC: {
@@ -144,7 +152,9 @@ const RULESETS = Object.freeze({
       showContaminationBelowLifeblood: false,
       minorWoundsRollModifier: -1,
       seriousWoundsRollModifier: -1,
-      maxEncumbrance: "2 * @characteristics.endurance.value"
+      maxEncumbrance: "2 * @characteristics.endurance.value",
+      defaultMovement: 10,
+      defaultMovementUnits: "m"
     },
   },
   CEQ: {
@@ -166,7 +176,9 @@ const RULESETS = Object.freeze({
       showContaminationBelowLifeblood: false,
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
-      maxEncumbrance: "0"
+      maxEncumbrance: "0",
+      defaultMovement: 9,
+      defaultMovementUnits: "m"
     }
   },
   CD: {
@@ -196,7 +208,9 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: -2,
       mortgagePayment: 320,
       massProductionDiscount: 0.10,
-      maxEncumbrance: "3 * (7 + @characteristics.strength.mod)"
+      maxEncumbrance: "3 * (7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m"
     }
   },
   CLU: {
@@ -222,7 +236,13 @@ const RULESETS = Object.freeze({
       ShowDamageType: false,
       ShowRateOfFire: true,
       ShowRecoil: true,
-      maxEncumbrance: "3*(7 + @characteristics.strength.mod)"
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 320,
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "3*(7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m"
     }
   },
 
@@ -293,6 +313,15 @@ export const MovementUnits = {
   km: "TWODSIX.Actor.Movement.DistKm",
   pc: "TWODSIX.Actor.Movement.DistPc",
   gu: "TWODSIX.Actor.Movement.DistGU"
+};
+
+export const MovementUnitsUnLocalized = {
+  ft: "Feet",
+  mi: "Miles",
+  m: "Meters",
+  km: "Kilometers",
+  pc: "Parsecs",
+  gu: "Grid Units"
 };
 
 /**
@@ -369,6 +398,7 @@ export type TWODSIX = {
   RULESETS: typeof RULESETS,
   SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
   MovementUnits: typeof MovementUnits,
+  MovementUnitsUnLocalized: typeof MovementUnitsUnLocalized,
   MovementType: typeof MovementTypes,
   PricingOptions: typeof PricingOptions,
   HullPricingOptions: typeof HullPricingOptions,
@@ -386,6 +416,7 @@ export const TWODSIX = {
   RULESETS: RULESETS,
   SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
   MovementUnits: MovementUnits,
+  MovementUnitsUnLocalized: MovementUnitsUnLocalized,
   MovementType: MovementTypes,
   PricingOptions: PricingOptions,
   HullPricingOptions: HullPricingOptions,
