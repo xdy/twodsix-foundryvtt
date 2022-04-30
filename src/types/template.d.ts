@@ -166,7 +166,7 @@ export interface WeightStats {
 
 export interface ShipStats {
   hull:Hits;
-  fuel:Hits;
+  fuel:Fuel;
   power:Hits;
   armor:Staterooms;
   fuelTanks:Staterooms;
@@ -198,6 +198,13 @@ export interface Hits {
   value:number;
   min:number;
   max:number;
+}
+
+export interface Fuel {
+  value:number;
+  min:number;
+  max:number;
+  isRefined:boolean;
 }
 
 export interface Traveller {

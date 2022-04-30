@@ -106,6 +106,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
+    html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
+    html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -154,6 +156,11 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
     }
   }
+
+  private _onAdjustFuelType() {
+    this.actor.update({"data.shipStats.fuel.isRefined": !(<Ship>this.actor.data.data).shipStats.fuel.isRefined});
+  }
+
   private _onDeckplanClick() {
     if ((<Ship>this.actor.data.data)?.deckPlan) {
       game.scenes?.get((<Ship>this.actor.data.data).deckPlan)?.view();

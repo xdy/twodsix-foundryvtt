@@ -374,6 +374,8 @@
       "FINANCENOTES": "FINANCE NOTES",
       "SHIPVALUE": "SHIP VALUE",
       "Fuel": "Fuel",
+      "RefinedFuel": "Refined Fuel",
+      "UnrefinedFuel": "Unrefined Fuel",
       "Gs": "G",
       "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
       "IsMassProduced": "Ship is Mass Produced",
