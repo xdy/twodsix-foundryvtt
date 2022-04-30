@@ -107,6 +107,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
     html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
+    html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
   }
 
   private _onShipPositionCreate():void {

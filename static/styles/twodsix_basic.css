@@ -1189,6 +1189,9 @@ img.ship-mask-bg {
   vertical-align: middle;
   cursor: pointer;
 }
+.fuel-name {
+  cursor: pointer;
+}
 
 .ship-state-grid {
   display: grid;
