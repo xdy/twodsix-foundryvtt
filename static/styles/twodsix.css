@@ -1569,6 +1569,7 @@ img.ship-mask-bg {
   width: 95%;
   height: 30px;
   /* align-self: center; */
+  cursor: pointer;
 }
 
 .ship-state-grid {
