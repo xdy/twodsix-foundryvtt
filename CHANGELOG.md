@@ -1,3 +1,10 @@
+## [1.39.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.0...v1.39.1) (2022-04-30)
+
+
+### Bug Fixes
+
+* toggle fuel type ([#986](https://github.com/xdy/twodsix-foundryvtt/issues/986)) ([2e90b7d](https://github.com/xdy/twodsix-foundryvtt/commit/2e90b7d063adda00bcaf1b944b927f5db0b41c4d))
+
 # [1.39.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.1...v1.39.0) (2022-04-29)
 
 
