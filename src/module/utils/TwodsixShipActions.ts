@@ -103,7 +103,7 @@ export class TwodsixShipActions {
     const [skilText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
     if ((<Component>component?.data.data)?.rollModifier) {
-      extra.diceModifier = (<Component>component?.data.data).rollModifier;
+      extra.diceModifier = (<Component>component?.data.data)?.rollModifier;
     }
 
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
