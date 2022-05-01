@@ -76,7 +76,8 @@ export class TwodsixShipActions {
       const settings = {
         characteristic: shortLabel,
         displayLabel: displayLabel,
-        extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")))
+        extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
+        diceModifier: extra.diceModifier ? parseInt(extra.diceModifier) : 0
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
@@ -95,11 +96,16 @@ export class TwodsixShipActions {
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
+    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
+    if ((<Component>component?.data.data).rollModifier) {
+      extra.diceModifier = (<Component>component?.data.data).rollModifier;
+    }
+
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {
       return false;
     }
-    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
+
     const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
     let radString = "";
     if (result.effect >= 0 && component) {

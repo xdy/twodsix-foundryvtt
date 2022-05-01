@@ -93,6 +93,9 @@ declare global {
       'twodsix.mortgagePayment': number;
       'twodsix.massProductionDiscount': number;
       'twodsix.maxEncumbrance': string;
+      'twodsix.useEncumbrance': boolean;
+      'twodsix.defaultMovement': number;
+      'twodsix.defaultMovementUnits': string;
     }
   }
 }
@@ -113,6 +116,7 @@ declare interface ExtraData {
   event: Event;
   actionName?: string;
   positionName?: string;
+  diceModifier?: string;
 }
 
 declare interface AvailableShipActionData {

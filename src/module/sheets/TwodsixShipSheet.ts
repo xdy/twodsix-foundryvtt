@@ -85,7 +85,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
           ship: this.actor,
           event: event,
           actionName: action.name,
-          positionName: shipPosition?.name ?? ""
+          positionName: shipPosition?.name ?? "",
+          diceModifier: ""
         };
 
         TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
