@@ -211,7 +211,7 @@ export default class TwodsixItem extends Item {
     let rollFormula = weapon.damage;
     console.log(rollFormula);
     if (confirmFormula) {
-      rollFormula = await TwodsixItem.confirmRollFormula(rollFormula);
+      rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
     }
     const damageFormula = rollFormula + (bonusDamage ? "+" + bonusDamage : "");
 
@@ -266,10 +266,10 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public static async confirmRollFormula(initFormula):Promise<string> {
+  public static async confirmRollFormula(initFormula:string, title:string):Promise<string> {
     const returnText:string = await new Promise((resolve) => {
       new Dialog({
-        title: game.i18n.localize("TWODSIX.Damage.DamageFormula"),
+        title: title,
         content:
           `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
         buttons: {

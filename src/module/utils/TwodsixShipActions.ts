@@ -25,10 +25,15 @@ export class TwodsixShipActions {
     }
   };
 
-  public static chatMessage(msg: string, extra: ExtraData) {
+  public static async chatMessage(msg: string, extra: ExtraData) {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
     if (msg.startsWith("/r") || msg.startsWith("/R")) {
-      const rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+      let rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
+      if(showRollDiag) {
+        rollText = await TwodsixItem.confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
+      }
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
@@ -109,7 +114,7 @@ export class TwodsixShipActions {
     const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
     let radString = "";
     if (result.effect >= 0 && component) {
-      const stdDamage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", false, false);
+      const stdDamage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", true, false);
       const rollData = extra.actor?.getRollData();
       if (Roll.validate((<Component>component.data.data).radDamage)) {
         const radDamage = new Roll((<Component>component.data.data).radDamage, rollData).evaluate({async: false}).total;
