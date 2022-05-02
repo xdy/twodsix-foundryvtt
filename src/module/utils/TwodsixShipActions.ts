@@ -111,24 +111,13 @@ export class TwodsixShipActions {
       return false;
     }
 
-    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
-    let radString = "";
-    if (result.effect >= 0 && component) {
-      const stdDamage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", true, false);
-      const rollData = extra.actor?.getRollData();
-      if (Roll.validate((<Component>component.data.data).radDamage)) {
-        const radDamage = new Roll((<Component>component.data.data).radDamage, rollData).evaluate({async: false}).total;
-        if (radDamage) {
-          radString = ' ' + game.i18n.localize("TWODSIX.Ship.RadiationDamageOf") + ' ' + radDamage;
-        }
-      }
-      if(stdDamage?.total) {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHitsAndDamage").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()).replace("_DAMAGE_TOTAL_", stdDamage.total.toString()) + radString, extra);
+    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name + ` `) : '';
+    if (game.settings.get("twodsix", "automateDamageRollOnHit")) {
+      if (result.effect >= 0 && component) {
+        await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", true, false);
       } else {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHits").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
-    } else {
-      TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
     }
   }
 }

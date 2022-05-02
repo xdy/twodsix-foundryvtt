@@ -6,7 +6,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import { Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
+import { Component, Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
 
 
 export default class TwodsixItem extends Item {
@@ -203,7 +203,7 @@ export default class TwodsixItem extends Item {
   }
 
   public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false): Promise<Roll | void>{
-    const weapon = <Weapon>this.data.data;
+    const weapon = <Weapon | Component>this.data.data;
     const doesDamage = weapon.damage != null;
     if (!doesDamage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
@@ -218,7 +218,8 @@ export default class TwodsixItem extends Item {
     if (Roll.validate(damageFormula)) {
       const damageRoll = new Roll(damageFormula, this.actor?.data.data);
       const damage: Roll = await damageRoll.evaluate({ async: true }); // async: true will be default in foundry 0.10
-      const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
+      const apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor?.id || "");
+
       if (showInChat) {
         const results = damage.terms[0]["results"];
         const contentData = {
@@ -228,6 +229,16 @@ export default class TwodsixItem extends Item {
           dice: results,
           armorPiercingValue: apValue ?? 0
         };
+
+        if ( this.data.type === "component") {
+          if (Roll.validate(this.data.data.radDamage)) {
+            const radDamageRoll = new Roll(this.data.data.radDamage, this.actor?.data.data);
+            const radDamage = await radDamageRoll.evaluate({ async: true });
+            contentData['radDamage'] = radDamage.total;
+            contentData['radRoll'] = radDamage;
+            contentData['radDice'] = radDamage.terms[0]["results"];
+          }
+        }
 
         if (apValue !== undefined) {
           contentData.flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
