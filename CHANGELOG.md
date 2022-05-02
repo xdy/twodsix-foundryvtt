@@ -1,3 +1,10 @@
+## [1.39.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.1...v1.39.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* set OTHER system movement to CE type ([#988](https://github.com/xdy/twodsix-foundryvtt/issues/988)) ([9837444](https://github.com/xdy/twodsix-foundryvtt/commit/98374443ef061d23b0a7c902d843edb29abd7544))
+
 ## [1.39.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.0...v1.39.1) (2022-04-30)
 
 
