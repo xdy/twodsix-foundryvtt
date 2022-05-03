@@ -247,7 +247,7 @@ export default class TwodsixItem extends Item {
         Object.assign(contentData, {
           flavor: flavor,
           roll: damage,
-          damage: damage.total ?? 0,
+          damage: damage.total,
           dice: damage.terms[0]["results"],
           armorPiercingValue: apValue ?? 0
         });
