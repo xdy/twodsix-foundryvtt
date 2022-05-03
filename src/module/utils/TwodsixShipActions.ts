@@ -101,7 +101,7 @@ export class TwodsixShipActions {
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
-    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
+    const component = extra.ship?.items.find(item => item.id === componentId);
     if ((<Component>component?.data.data)?.rollModifier) {
       extra.diceModifier = (<Component>component?.data.data)?.rollModifier;
     }
