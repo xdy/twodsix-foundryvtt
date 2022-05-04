@@ -2153,6 +2153,10 @@ button.flexrow.flex-group-center.toggle-skills {
   margin-left: 0;
 }
 
+.mini-dice {
+  align-self: center;
+}
+
 /*--- Item Page ---*/
 
 .small-grid {

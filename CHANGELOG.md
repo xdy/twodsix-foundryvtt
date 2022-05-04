@@ -1,3 +1,17 @@
+## [1.39.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.2...v1.39.3) (2022-05-04)
+
+
+### Bug Fixes
+
+* roll settings for ship actions ([#987](https://github.com/xdy/twodsix-foundryvtt/issues/987)) ([eb0936f](https://github.com/xdy/twodsix-foundryvtt/commit/eb0936ff96874b5924bfb6eda1b63cfb4dc88e73))
+
+## [1.39.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.1...v1.39.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* set OTHER system movement to CE type ([#988](https://github.com/xdy/twodsix-foundryvtt/issues/988)) ([9837444](https://github.com/xdy/twodsix-foundryvtt/commit/98374443ef061d23b0a7c902d843edb29abd7544))
+
 ## [1.39.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.0...v1.39.1) (2022-04-30)
 
 

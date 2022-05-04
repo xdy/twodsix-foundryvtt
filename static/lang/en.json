@@ -340,6 +340,7 @@
     "Ship": {
       "Actions": "Actions",
       "ActionType": "Action Type",
+      "ActionRollFormula": "Action Roll Formula",
       "Unknown": "unknown",
       "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
       "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
