@@ -25,10 +25,15 @@ export class TwodsixShipActions {
     }
   };
 
-  public static chatMessage(msg: string, extra: ExtraData) {
+  public static async chatMessage(msg: string, extra: ExtraData) {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
     if (msg.startsWith("/r") || msg.startsWith("/R")) {
-      const rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+      let rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
+      if(showRollDiag) {
+        rollText = await TwodsixItem.confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
+      }
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
@@ -76,7 +81,8 @@ export class TwodsixShipActions {
       const settings = {
         characteristic: shortLabel,
         displayLabel: displayLabel,
-        extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")))
+        extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
+        diceModifier: extra.diceModifier ? parseInt(extra.diceModifier) : 0
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
@@ -95,29 +101,23 @@ export class TwodsixShipActions {
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
+    const component = extra.ship?.items.find(item => item.id === componentId);
+    if ((<Component>component?.data.data)?.rollModifier) {
+      extra.diceModifier = (<Component>component?.data.data)?.rollModifier;
+    }
+
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {
       return false;
     }
-    const component = extra.ship?.items.find(item => item.id === componentId && item.type === "component");
-    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name +` `) : '';
-    let radString = "";
-    if (result.effect >= 0 && component) {
-      const stdDamage = await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", false, false);
-      const rollData = extra.actor?.getRollData();
-      if (Roll.validate((<Component>component.data.data).radDamage)) {
-        const radDamage = new Roll((<Component>component.data.data).radDamage, rollData).evaluate({async: false}).total;
-        if (radDamage) {
-          radString = ' ' + game.i18n.localize("TWODSIX.Ship.RadiationDamageOf") + ' ' + radDamage;
-        }
-      }
-      if(stdDamage?.total) {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHitsAndDamage").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()).replace("_DAMAGE_TOTAL_", stdDamage.total.toString()) + radString, extra);
+
+    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name + ` `) : '';
+    if (game.settings.get("twodsix", "automateDamageRollOnHit")) {
+      if (result.effect >= 0 && component) {
+        await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), "", true, false);
       } else {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionHits").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
-    } else {
-      TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
     }
   }
 }

@@ -268,6 +268,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     //Link an actor skill with name defined by item.associatedSkillName
     if (itemData.data.associatedSkillName !== "") {
       itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
+      //Try to link Untrained if no match
+      if (!itemData.data.skill) {
+        itemData.data.skill = (<TwodsixActor>actor).getUntrainedSkill().data._id;
+      }
     }
 
     // Create the owned item (TODO Add to type and remove the two lines below...)

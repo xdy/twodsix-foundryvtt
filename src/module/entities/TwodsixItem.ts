@@ -6,7 +6,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import { Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
+import { Component, Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
 
 
 export default class TwodsixItem extends Item {
@@ -202,37 +202,65 @@ export default class TwodsixItem extends Item {
     return diceRoll;
   }
 
-  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false): Promise<Roll | void>{
-    const weapon = <Weapon>this.data.data;
-    const doesDamage = weapon.damage != null;
-    if (!doesDamage) {
+  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false): Promise<Roll | void> {
+    const weapon = <Weapon | Component>this.data.data;
+
+    if (!weapon.damage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
-    }
-    let rollFormula = weapon.damage;
-    console.log(rollFormula);
-    if (confirmFormula) {
-      rollFormula = await TwodsixItem.confirmRollFormula(rollFormula);
-    }
-    const damageFormula = rollFormula + (bonusDamage ? "+" + bonusDamage : "");
+      return;
+    } else {
+      //Calc regular damage
+      let rollFormula = weapon.damage;
+      //console.log(rollFormula);
+      if (confirmFormula) {
+        rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
+      }
+      rollFormula += (bonusDamage ? "+" + bonusDamage : "");
 
-    if (Roll.validate(damageFormula)) {
-      const damageRoll = new Roll(damageFormula, this.actor?.data.data);
-      const damage: Roll = await damageRoll.evaluate({ async: true }); // async: true will be default in foundry 0.10
-      const apValue = TwodsixItem.getApValue(weapon, this.actor?.id || "");
-      if (showInChat) {
-        const results = damage.terms[0]["results"];
-        const contentData = {
-          flavor: `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`,
-          roll: damage,
-          damage: damage.total,
-          dice: results,
-          armorPiercingValue: apValue ?? 0
-        };
+      let damage = <Roll>{};
+      let apValue = 0;
+      if (Roll.validate(rollFormula)) {
+        damage = new Roll(rollFormula, this.actor?.data.data);
+        await damage.evaluate({ async: true }); // async: true will be default in foundry 0.10
+        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor?.id || "");
+      } else {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+        return;
+      }
 
+      //Calc radiation damage
+      let radDamage = <Roll>{};
+      if (this.data.type === "component") {
+        if (Roll.validate(this.data.data.radDamage)) {
+          radDamage = new Roll(this.data.data.radDamage, this.actor?.data.data);
+          await radDamage.evaluate({ async: true });
+        }
+      }
+
+      const contentData = {};
+      if (damage.total) {
+        let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
         if (apValue !== undefined) {
-          contentData.flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
+          flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
         }
 
+        Object.assign(contentData, {
+          flavor: flavor,
+          roll: damage,
+          damage: damage.total,
+          dice: damage.terms[0]["results"],
+          armorPiercingValue: apValue ?? 0
+        });
+      }
+
+      if (radDamage.total) {
+        Object.assign(contentData, {
+          radDamage: radDamage.total,
+          radRoll: radDamage,
+          radDice: radDamage.terms[0]["results"]
+        });
+      }
+      if (showInChat) {
         const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
         const transfer = JSON.stringify(
           {
@@ -249,9 +277,7 @@ export default class TwodsixItem extends Item {
           }
         }, { rollMode: rollMode });
       }
-      return damage;
-    } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+      return damage;  //probably should return contentData instead
     }
   }
   public static getApValue(weapon: Weapon, actorID = ""): number {
@@ -266,10 +292,10 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public static async confirmRollFormula(initFormula):Promise<string> {
-    const returnText:string = await new Promise((resolve) => {
+  public static async confirmRollFormula(initFormula: string, title: string): Promise<string> {
+    const returnText: string = await new Promise((resolve) => {
       new Dialog({
-        title: game.i18n.localize("TWODSIX.Damage.DamageFormula"),
+        title: title,
         content:
           `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
         buttons: {
@@ -277,7 +303,7 @@ export default class TwodsixItem extends Item {
             label: `<i class="fas fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
             callback:
               (html: JQuery) => {
-                resolve( html.find('[name="outputFormula"]')[0]["value"]);
+                resolve(html.find('[name="outputFormula"]')[0]["value"]);
               }
           }
         },
@@ -355,7 +381,7 @@ export default class TwodsixItem extends Item {
    * @param {Event} event   The originating click event
    * @private
    */
-export async function onRollDamage(event): Promise < void> {
+export async function onRollDamage(event): Promise<void> {
   event.preventDefault();
   event.stopPropagation();
   const itemId = $(event.currentTarget).parents('.item').data('item-id');
