@@ -1103,7 +1103,8 @@ a:hover, a.active {
 
 .skills input[type='number'] {
   width: 2em;
-;justify-self: center;}
+  justify-self: center;
+}
 
 input.item-value-edit {
   /*padding: initial;*/
