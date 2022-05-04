@@ -294,7 +294,8 @@
         "LFB": "LFB",
         "STA": "STA",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "TrainingNotes": "Training Notes"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",

@@ -335,7 +335,8 @@
       "reference": "",
       "key": "key",
       "difficulty": "Average",
-      "rolltype": "Normal"
+      "rolltype": "Normal",
+      "trainingNotes": ""
     },
     "trait": {
       "templates": ["skillsTemplate"],

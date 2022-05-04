@@ -685,7 +685,6 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-list {
   padding: 0.3em 0 0;
-  height: 2em;
   border: 1px groove var(--s2d6-background-opaque);
   border-radius: 1ch 0 0;
   background-color: var(--s2d6-background-nearly-opaque);
@@ -750,6 +749,7 @@ a:hover, a.active {
 
 .skills input[type='number'] {
   width: 2em;
+  justify-self: center;
 }
 
 input.item-value-edit {
@@ -786,10 +786,6 @@ input.item-value-edit {
   overflow-x: hidden;
 }
 
-.skl.item-control.item-edit {
-  padding-right: 1.5em;
-}
-
 .item-controls .item-toggle i { display: none; }
 .item-controls .item-toggle .fa-hiking { display: inline; }
 .item-controls .item-toggle.ship .fa-hiking,
@@ -814,7 +810,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 15em 3.4em 4em 3em 6.1em;
+  grid-template-columns: 1.5em 12em 3.5em 2.5em 5em 4em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -846,6 +842,10 @@ span.total-output {
 
 .skill-total {
   text-align: center;
+}
+
+.skill-title {
+  align-self:center;
 }
 
 .resource-label {
