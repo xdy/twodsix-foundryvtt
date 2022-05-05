@@ -1200,6 +1200,13 @@ span.total-output {
   align-self: center;
 }
 
+.pie-chart {
+  width: 2ch;
+  height: 2ch;
+  align-self: center;
+  margin-left: 0.8em;
+}
+
 .resource-label {
   text-align: right;
   align-self: center;
