@@ -397,6 +397,7 @@ export interface Skills {
   key:string;
   difficulty:string;
   rolltype:string;
+  trainingNotes:string;
 }
 
 export interface Templates {
