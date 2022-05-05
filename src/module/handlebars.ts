@@ -276,11 +276,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('makePieImage', (text: string) => {
-    const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
+    //const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
+    const re = new RegExp(/(\d+)(\s?)\/(\s?)(\d+)/gm);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
     let inputPercentage = 0.5;
     if (parsedResult) {
-      inputPercentage = Number(parsedResult[1])/100;
+      inputPercentage = Number(parsedResult[1]) / Number(parsedResult[4]);
       if (inputPercentage > 1) {
         inputPercentage = 1;
       }
