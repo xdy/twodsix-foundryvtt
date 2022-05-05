@@ -1,3 +1,10 @@
+# [1.40.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.3...v1.40.0) (2022-05-05)
+
+
+### Features
+
+* add training notes field and progress indicator ([#989](https://github.com/xdy/twodsix-foundryvtt/issues/989)) ([eaff36a](https://github.com/xdy/twodsix-foundryvtt/commit/eaff36a8e2ae7c2bd5282ce64a05a7b4f7378323))
+
 ## [1.39.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.2...v1.39.3) (2022-05-04)
 
 
