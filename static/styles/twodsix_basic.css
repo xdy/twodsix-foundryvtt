@@ -24,6 +24,8 @@
   --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
   --s2d6-damage-orange: rgba(255, 90, 0, 1);
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
+  --s2d6-pie-color: var(--s2d6-background-opaque);
+  --s2d6-pie-background-color: var(--s2d6-background-transparent);
 }
 
 input[type= 'checkbox'] {
