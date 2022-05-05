@@ -31,6 +31,11 @@
       <input class="form-input" id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/>
     </div>
 
+    <div class="item-simplifiedName">
+      <label class="resource-label" for="data.inTraining">{{localize "TWODSIX.Items.Skills.TrainingNotes"}}</label>
+      <input class="form-input" id="data.trainingNotes" name="data.trainingNotes" type="text" value="{{data.trainingNotes}}"/>
+    </div>
+
       <div class="item-type">
         <label for="data.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
         <select class="form-input" name="data.characteristic" value={{characteristic}}>
@@ -59,11 +64,6 @@
             {{/each}}
           {{/select}}
         </select>
-    </div>
-
-    <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
-      <input class="form-input" id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
     </div>
 
     <div class="item-descr">

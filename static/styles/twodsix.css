@@ -54,6 +54,8 @@
   --s2d6-damage-red: rgba(255, 0, 0, 1);
   --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
+  --s2d6-pie-color: var(--s2d6-default-color);
+  --s2d6-pie-background-color: var(--s2d6-background-opaque);
 }
 
 body {
@@ -1103,6 +1105,7 @@ a:hover, a.active {
 
 .skills input[type='number'] {
   width: 2em;
+  justify-self: center;
 }
 
 input.item-value-edit {
@@ -1139,10 +1142,6 @@ input.item-value-edit {
   overflow-x: hidden;
 }
 
-.skl.item-control.item-edit {
-  padding-right: 1.5em;
-}
-
 .item-controls .item-toggle i { display: none; }
 .item-controls .item-toggle .fa-hiking { display: inline; }
 .item-controls .item-toggle.ship .fa-hiking,
@@ -1163,7 +1162,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 15em 3.4em 4em 3em 6.5em;
+  grid-template-columns: 1.5em 12em 3.5em 2.5em 5em 4em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1195,6 +1194,17 @@ span.total-output {
 
 .skill-total {
   text-align: center;
+}
+
+.skill-title {
+  align-self: center;
+}
+
+.pie-chart {
+  width: 2ch;
+  height: 2ch;
+  align-self: center;
+  margin-left: 0.8em;
 }
 
 .resource-label {
