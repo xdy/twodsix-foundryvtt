@@ -240,11 +240,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
-    if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-      const skills:Skills = <Skills>game.system.template.Item?.skills;
-      itemData.data.value = skills?.value;
-    } else {
-      itemData.data.value = 0;
+    if (itemData.data.value < 0 || !itemData.data.value) {
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        const skills: Skills = <Skills>game.system.template.Item?.skills;
+        itemData.data.value = skills?.value;
+      } else {
+        itemData.data.value = 0;
+      }
     }
 
     await actor.createEmbeddedDocuments("Item", [itemData]);

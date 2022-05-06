@@ -73,14 +73,14 @@ function getTokensAtLocation(canvasObject: Canvas, x: number, y: number) {
 function handleDroppedSkills(actor: TwodsixActor, itemData: TwodsixItem) {
   // Handle item sorting within the same Actor
   const droppedSkill = duplicate(itemData);
-
-  if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-    const skills:Skills = <Skills>game.system.template.Item?.skills;
-    (<Skills>droppedSkill.data).value = skills?.value;
-  } else {
-    (<Skills>droppedSkill.data).value = 0;
+  if ((<Skills>droppedSkill.data).value < 0 || !(<Skills>droppedSkill.data).value) {
+    if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      const skills: Skills = <Skills>game.system.template.Item?.skills;
+      (<Skills>droppedSkill.data).value = skills?.value;
+    } else {
+      (<Skills>droppedSkill.data).value = 0;
+    }
   }
-
   actor.createEmbeddedDocuments("Item", [droppedSkill]);
   console.log(`Twodsix | Added Skill ${droppedSkill.name} to character`);
 }
