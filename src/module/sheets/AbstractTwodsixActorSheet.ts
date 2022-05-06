@@ -283,10 +283,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       (item.type === "equipment") || (item.type === "tool") ||
       (item.type === "junk") || (item.type === "consumable")) {
       if (item.data.data.equipped !== "ship") {
-        const q = item.data.data.quantity || 0;
-        let w = item.data.data.weight || 0;
+        let q = item.data.data.quantity || 0;
+        const w = item.data.data.weight || 0;
         if (item.type === "armor" && item.data.data.equipped === "equipped") {
-          w *= Number(game.settings.get("twodsix", "weightModifierForWornArmor"));
+          if (item.data.data.isPowered) {
+            q = Math.max(0, q - 1);
+          } else {
+            q = Math.max(0, q - 1 + Number(game.settings.get("twodsix", "weightModifierForWornArmor")));
+          }
         }
         return (q * w);
       }

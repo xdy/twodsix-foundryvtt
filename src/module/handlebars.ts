@@ -275,6 +275,24 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get("twodsix", "maxComponentHits");
   });
 
+  Handlebars.registerHelper('makePieImage', (text: string) => {
+    //const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
+    const re = new RegExp(/(\d+)(\s?)\/(\s?)(\d+)/gm);
+    const parsedResult: RegExpMatchArray | null = re.exec(text);
+    let inputPercentage = 0.5;
+    if (parsedResult) {
+      inputPercentage = Number(parsedResult[1]) / Number(parsedResult[4]);
+      if (inputPercentage > 1) {
+        inputPercentage = 1;
+      }
+      if (inputPercentage < 0 ) {
+        inputPercentage = 0;
+      }
+    }
+    const degrees = Math.round(inputPercentage * 360);
+    return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border:solid;`;
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function (context) {
     console.log(context);

@@ -1,3 +1,17 @@
+## [1.40.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.0...v1.40.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* add powered armor ([#990](https://github.com/xdy/twodsix-foundryvtt/issues/990)) ([1d8b395](https://github.com/xdy/twodsix-foundryvtt/commit/1d8b395f7bc434f9b23b544d5bf9c1329ed66741))
+
+# [1.40.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.3...v1.40.0) (2022-05-05)
+
+
+### Features
+
+* add training notes field and progress indicator ([#989](https://github.com/xdy/twodsix-foundryvtt/issues/989)) ([eaff36a](https://github.com/xdy/twodsix-foundryvtt/commit/eaff36a8e2ae7c2bd5282ce64a05a7b4f7378323))
+
 ## [1.39.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.2...v1.39.3) (2022-05-04)
 
 

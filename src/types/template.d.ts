@@ -335,6 +335,7 @@ export interface Armor extends GearTemplate {
   type:string;
   useConsumableForAttack:string;
   location:string[];
+  isPowered:boolean;
 }
 
 export interface Augment extends GearTemplate {
@@ -397,6 +398,7 @@ export interface Skills {
   key:string;
   difficulty:string;
   rolltype:string;
+  trainingNotes:string;
 }
 
 export interface Templates {
