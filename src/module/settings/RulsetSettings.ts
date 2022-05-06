@@ -62,6 +62,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", TWODSIX.MovementUnitsUnLocalized));
+    settings.push(booleanSetting('addEffectForShipDamage', false));
     return settings;
   }
 }
