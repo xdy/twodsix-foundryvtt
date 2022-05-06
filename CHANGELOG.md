@@ -1,3 +1,10 @@
+## [1.40.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.0...v1.40.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* add powered armor ([#990](https://github.com/xdy/twodsix-foundryvtt/issues/990)) ([1d8b395](https://github.com/xdy/twodsix-foundryvtt/commit/1d8b395f7bc434f9b23b544d5bf9c1329ed66741))
+
 # [1.40.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.3...v1.40.0) (2022-05-05)
 
 
