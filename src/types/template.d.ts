@@ -335,6 +335,7 @@ export interface Armor extends GearTemplate {
   type:string;
   useConsumableForAttack:string;
   location:string[];
+  isPowered:boolean;
 }
 
 export interface Augment extends GearTemplate {
