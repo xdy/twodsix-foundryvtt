@@ -58,7 +58,8 @@ const RULESETS = Object.freeze({
       massProductionDiscount: 0.10,
       maxEncumbrance: "12 * @characteristics.strength.current",
       defaultMovement: 6,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     }
   },
   CEL: {
@@ -83,7 +84,8 @@ const RULESETS = Object.freeze({
       massProductionDiscount: 0.10,
       maxEncumbrance: "3 * @characteristics.strength.value",
       defaultMovement: 9,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     }
   },
   CEFTL: {
@@ -106,7 +108,8 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: 0,
       maxEncumbrance: "0",
       defaultMovement: 10,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     },
   },
   CEATOM: {
@@ -178,7 +181,8 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: 0,
       maxEncumbrance: "0",
       defaultMovement: 9,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     }
   },
   CD: {
@@ -210,7 +214,8 @@ const RULESETS = Object.freeze({
       massProductionDiscount: 0.10,
       maxEncumbrance: "3 * (7 + @characteristics.strength.mod)",
       defaultMovement: 10,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     }
   },
   CLU: {
@@ -242,7 +247,8 @@ const RULESETS = Object.freeze({
       massProductionDiscount: 0.10,
       maxEncumbrance: "3*(7 + @characteristics.strength.mod)",
       defaultMovement: 10,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false
     }
   },
 
