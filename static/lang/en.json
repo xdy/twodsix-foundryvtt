@@ -714,6 +714,10 @@
       "useEncumbrance": {
         "hint": "Use encumbarnce rules (if they exist) when displaying movement with drag ruler.",
         "name": "Use system encumbrance rules for drag ruler"
+      },
+      "addEffectForShipDamage": {
+        "hint": "The ship attack effect value is added to the damage roll.",
+        "name": "Add effect to ship damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",

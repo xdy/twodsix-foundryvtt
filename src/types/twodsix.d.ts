@@ -96,6 +96,7 @@ declare global {
       'twodsix.useEncumbrance': boolean;
       'twodsix.defaultMovement': number;
       'twodsix.defaultMovementUnits': string;
+      'twodsix.addEffectForShipDamage': boolean;
     }
   }
 }
