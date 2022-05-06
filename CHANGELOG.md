@@ -1,3 +1,10 @@
+# [1.41.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.1...v1.41.0) (2022-05-06)
+
+
+### Features
+
+* add option to include effect with ship weapon damage ([#991](https://github.com/xdy/twodsix-foundryvtt/issues/991)) ([be134e6](https://github.com/xdy/twodsix-foundryvtt/commit/be134e66c13f9065d9111eeb112b09603b85b47c))
+
 ## [1.40.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.0...v1.40.1) (2022-05-06)
 
 
