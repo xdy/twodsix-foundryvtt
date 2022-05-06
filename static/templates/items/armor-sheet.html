@@ -28,6 +28,11 @@
       <input class="form-input" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
     </div>
 
+    <div class="item-powered">
+      <span class="resource-label">{{localize "TWODSIX.Items.Armor.IsPowered"}}</span>
+      <input type="checkbox" class="checkbox" name="data.isPowered" {{checked data.isPowered}} data-dtype="Boolean" />
+    </div>
+
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
       <div contenteditable="true" data-edit="data.description" >{{{data.description}}}</div>

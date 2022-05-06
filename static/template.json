@@ -315,7 +315,8 @@
       },
       "type": "armor",
       "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "location": ["inventory", "storage"],
+      "isPowered": false
     },
     "augment": {
       "templates": ["gearTemplate"],
