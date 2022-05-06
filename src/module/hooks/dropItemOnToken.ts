@@ -73,7 +73,7 @@ function getTokensAtLocation(canvasObject: Canvas, x: number, y: number) {
 function handleDroppedSkills(actor: TwodsixActor, itemData: TwodsixItem) {
   // Handle item sorting within the same Actor
   const droppedSkill = duplicate(itemData);
-  if ((<Skills>droppedSkill.data).value < 0) {
+  if ((<Skills>droppedSkill.data).value < 0 || !(<Skills>droppedSkill.data).value) {
     if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
       const skills: Skills = <Skills>game.system.template.Item?.skills;
       (<Skills>droppedSkill.data).value = skills?.value;
