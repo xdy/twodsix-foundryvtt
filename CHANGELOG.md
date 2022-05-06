@@ -1,3 +1,10 @@
+## [1.41.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.0...v1.41.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* allow skills to be dropped with level if >=0 ([#992](https://github.com/xdy/twodsix-foundryvtt/issues/992)) ([cdfb69a](https://github.com/xdy/twodsix-foundryvtt/commit/cdfb69aca965c5173b726f495233b15e7f50a20d))
+
 # [1.41.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.1...v1.41.0) (2022-05-06)
 
 
