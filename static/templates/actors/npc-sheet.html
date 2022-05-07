@@ -29,13 +29,13 @@
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
       {{#each_sort_by_name data.skills as |item id|}}
-        {{#if (twodsix_hideUntrainedSkills item.data.data.value)}}
+        {{#if (twodsix_hideUntrainedSkills item.data.data)}}
           <!-- Hiding {{item.name}} -->
         {{else}}
           {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" title="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>, 
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.data.data.value}}"/>,
               </span>
           {{/if}}
        {{/if}}
