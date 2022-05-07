@@ -23,7 +23,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       const shipPositionActorIds = Object.entries(<ShipPositionActorIds>(<Ship>this.actor?.data.data)?.shipPositionActorIds ?? {}).filter(([, shipPositionId]) => shipPositionId === this.item.id);
       if (shipPositionActorIds.length > 0) {
         const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
-        context.actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId));
+        context.actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId)).filter(x => x !== undefined);
       } else {
         context.actors = [];
       }
