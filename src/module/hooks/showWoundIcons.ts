@@ -6,7 +6,10 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
     if (actor.isToken) {
       applyWoundedEffect(<Token>canvas.tokens?.ownedTokens?.find(t => t.id === actor.token?.id));
     } else {
-      applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === actor.id));
+      const actorToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === actor.id);
+      if (actorToken) {
+        applyWoundedEffect(actorToken);
+      }
     }
   }
 });
