@@ -16,7 +16,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     if ((<Ship>this.actor.data.data).shipPositionActorIds) {
       context.shipPositions = this.actor.items.filter((item: TwodsixItem) => item.type === "ship_position").map((shipPosition: TwodsixItem) => {
         const shipPositionActorIds = Object?.entries(<ShipPositionActorIds>(<Ship>this.actor.data.data).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
-        if (shipPositionActorIds.length > 0) {
+        if (shipPositionActorIds?.length > 0) {
           const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
           (<ShipPosition>shipPosition.data.data).actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId)).filter(x => x !== undefined);
         } else {
@@ -124,7 +124,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       if (this.actor.id) {
         const shipActor = <TwodsixActor>game.actors?.get(this.actor.id);
         const updateData = duplicate((<Ship>shipActor.data.data).shipPositionActorIds);
-        for (const actorId in (<Ship>shipActor.data.data).shipPositionActorIds) {
+        for (const actorId in (<Ship>shipActor?.data.data).shipPositionActorIds) {
           const actor = game.actors?.get((<Ship>shipActor.data.data).shipPositionActorIds[actorId]);
           if (actor === undefined) {
             delete updateData[actorId];
