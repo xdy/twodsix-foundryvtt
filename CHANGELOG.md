@@ -1,3 +1,10 @@
+## [1.41.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.1...v1.41.2) (2022-05-07)
+
+
+### Bug Fixes
+
+* Allow untrained skills to show on skill list  ([#993](https://github.com/xdy/twodsix-foundryvtt/issues/993)) ([c12f2f8](https://github.com/xdy/twodsix-foundryvtt/commit/c12f2f8795b391587771574511686c7af92c60bf))
+
 ## [1.41.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.0...v1.41.1) (2022-05-06)
 
 
