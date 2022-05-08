@@ -123,15 +123,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       // get rid of missing actors
       if (this.actor) {
         const shipActor = <TwodsixActor>this.actor;
-        const updateData = duplicate((<Ship>shipActor.data.data)?.shipPositionActorIds);
         for (const actorId in (<Ship>shipActor.data.data)?.shipPositionActorIds) {
-          const actor = game.actors?.get((<Ship>shipActor.data.data)?.shipPositionActorIds[actorId]);
+          const actor = game.actors?.get(actorId);
           if (actor === undefined) {
-            delete updateData[actorId];
+            await shipActor.update({[`data.shipPositionActorIds.-=${actorId}`]: null });
           }
         }
-        await shipActor.update({ 'data.shipPositionActorIds': null });
-        await shipActor.update({ 'data.shipPositionActorIds': updateData });
       }
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
       this.actor?.items?.get(shipPositionId)?.sheet?.render(true);
