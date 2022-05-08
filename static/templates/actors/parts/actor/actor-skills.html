@@ -31,7 +31,7 @@
 </div>
 
 {{#each_sort_by_name data.skills as |item id|}}
-    {{#if (twodsix_hideUntrainedSkills item.data.data.value)}}
+    {{#if (twodsix_hideUntrainedSkills item.data.data)}}
     <!-- Hiding {{item.name}} -->
     {{else}}
       {{#if (twodsix_filterSkills item)}}
