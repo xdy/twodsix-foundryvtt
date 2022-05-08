@@ -101,7 +101,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_hideUntrainedSkills', (data) => {
-    return data.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && data.value < 0  && data.trainingNotes === "");
+    // -1 is case where untrained skill is checked
+    if (data === -1) {
+      return game.settings.get('twodsix', 'hideUntrainedSkills');
+    } else {
+      return data.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && data.value < 0  && data.trainingNotes === "");
+    }
   });
 
   Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
