@@ -121,19 +121,17 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   private async _onShipPositionEdit(event:Event):Promise<void> {
     if (event.currentTarget !== null) {
       // get rid of missing actors
-      if (this.actor.id) {
-        const shipActor = <TwodsixActor>game.actors?.get(this.actor.id);
-        if (shipActor) {
-          const updateData = duplicate((<Ship>shipActor.data.data)?.shipPositionActorIds);
-          for (const actorId in (<Ship>shipActor.data.data)?.shipPositionActorIds) {
-            const actor = game.actors?.get((<Ship>shipActor.data.data)?.shipPositionActorIds[actorId]);
-            if (actor === undefined) {
-              delete updateData[actorId];
-            }
+      if (this.actor) {
+        const shipActor = <TwodsixActor>this.actor;
+        const updateData = duplicate((<Ship>shipActor.data.data)?.shipPositionActorIds);
+        for (const actorId in (<Ship>shipActor.data.data)?.shipPositionActorIds) {
+          const actor = game.actors?.get((<Ship>shipActor.data.data)?.shipPositionActorIds[actorId]);
+          if (actor === undefined) {
+            delete updateData[actorId];
           }
-          await shipActor.update({ 'data.shipPositionActorIds': null });
-          await shipActor.update({ 'data.shipPositionActorIds': updateData });
         }
+        await shipActor.update({ 'data.shipPositionActorIds': null });
+        await shipActor.update({ 'data.shipPositionActorIds': updateData });
       }
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
       this.actor?.items?.get(shipPositionId)?.sheet?.render(true);
