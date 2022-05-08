@@ -1,3 +1,10 @@
+## [1.41.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.2...v1.41.3) (2022-05-08)
+
+
+### Bug Fixes
+
+* Missing Untrained pseudo skill ([bdf4948](https://github.com/xdy/twodsix-foundryvtt/commit/bdf49485fd600c55daa19a78308477f4a43884f5))
+
 ## [1.41.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.1...v1.41.2) (2022-05-07)
 
 
