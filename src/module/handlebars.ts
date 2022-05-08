@@ -101,6 +101,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_hideUntrainedSkills', (data) => {
+    // -1 is case where untrained skill is checked
     if (data === -1) {
       return game.settings.get('twodsix', 'hideUntrainedSkills');
     } else {
