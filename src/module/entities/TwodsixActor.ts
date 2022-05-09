@@ -8,7 +8,7 @@ import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Skills, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Ship, Skills, Traveller, Weapon} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 
 export default class TwodsixActor extends Actor {
@@ -313,6 +313,15 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+  protected async _onDelete() {
+    //Remove actor references from ship Positions
+    if (this.type === "traveller") {
+      if(this.id) {
+        deleteIdFromShipPositions(this.id);
+      }
+    }
+  }
+
   public async damageActor(damage: number, armorPiercingValue: number, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
       const damageData: { damage: number, armorPiercingValue: number, damageId: string, tokenId?: string|null, actorId?: string|null } = {
@@ -493,3 +502,22 @@ export function getWeight(item: Component, actorData): number{
   }
   return (w * q);
 }
+
+async function deleteIdFromShipPositions(actorId: string) {
+  const allShips = (game.actors?.contents.filter(actor => actor.type === "ship") ?? []) as TwodsixActor[];
+
+  for (const scene of game.scenes ?? []) {
+    for (const token of scene.tokens ?? []) {
+      if (token.actor && !token.data.actorLink && token.actor.type === "ship") {
+        allShips.push(token.actor as TwodsixActor);
+      }
+    }
+  }
+
+  for (const ship of allShips) {
+    if ((<Ship>ship.data.data).shipPositionActorIds[actorId]) {
+      await ship.update({[`data.shipPositionActorIds.-=${actorId}`]: null });
+    }
+  }
+}
+

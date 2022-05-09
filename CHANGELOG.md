@@ -1,3 +1,10 @@
+## [1.41.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.3...v1.41.4) (2022-05-09)
+
+
+### Bug Fixes
+
+* Missing actor errors with ship positions ([#994](https://github.com/xdy/twodsix-foundryvtt/issues/994)) ([952309e](https://github.com/xdy/twodsix-foundryvtt/commit/952309eb4c06330fa95a2be647854be3dbe7f006))
+
 ## [1.41.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.2...v1.41.3) (2022-05-08)
 
 
