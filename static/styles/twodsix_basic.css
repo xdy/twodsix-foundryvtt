@@ -56,7 +56,7 @@ label.checkbox > input[type="checkbox"] {
 
 .item-name {
   align-self: center;
-  padding-left: 1ch;
+  /* padding-left: 1ch; */
 }
 
 .left {
@@ -626,7 +626,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 1.6em 1.6em 1.6em 3em 5em 5.5em;
+  grid-template-columns: 1.7em 11.5em 1.6em 1.6em 2em 4em 5em 6em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -650,7 +650,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 3.5em 3.5em 3.5em 4em 4em;
+  grid-template-columns: 1.7em 12.5em 3em 3em 3.5em 4em 5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -664,7 +664,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 1.6em 1.6em 12em 4.5em;
+  grid-template-columns: 1.7em 11em 2em 2em 12em 4.5em;
   gap: 1px 1px;
   grid-template-areas: '. . . . .';
 }
@@ -797,7 +797,7 @@ input.item-value-edit {
 
 .item-controls {
   align-self: center;
-  padding-left: 1ch;
+  /* padding-left: 1ch; */
 }
 
 .skill:nth-of-type(even) {
@@ -812,7 +812,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 12em 3.5em 2.5em 5em 4em 4em;
+  grid-template-columns: 2em 12em 3.5em 2.5em 5em 4em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
