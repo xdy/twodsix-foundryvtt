@@ -13,25 +13,27 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     const context = <TwodsixShipSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
     AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
-
-    context.shipPositions = this.actor.items.filter((item:TwodsixItem)=>item.type==="ship_position").map((shipPosition:TwodsixItem) => {
-      const shipPositionActorIds = Object.entries(<ShipPositionActorIds>(<Ship>this.actor.data.data).shipPositionActorIds).filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
-      if (shipPositionActorIds.length > 0) {
-        const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
-        (<ShipPosition>shipPosition.data.data).actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId));
-      } else {
-        (<ShipPosition>shipPosition.data.data).actors = [];
-      }
-      const actions = (<ShipPosition>shipPosition.data.data).actions ?? [];
-      (<ShipPosition>shipPosition.data.data).sortedActions = Object.entries(actions).map(([id, ret]) => {
-        ret.id = id;
-        return ret;
+    if ((<Ship>this.actor.data.data).shipPositionActorIds) {
+      context.shipPositions = this.actor.items.filter((item: TwodsixItem) => item.type === "ship_position").map((shipPosition: TwodsixItem) => {
+        const shipPositionActorIds = Object?.entries(<ShipPositionActorIds>(<Ship>this.actor.data.data).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
+        if (shipPositionActorIds?.length > 0) {
+          const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
+          (<ShipPosition>shipPosition.data.data).actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId)).filter(x => x !== undefined);
+        } else {
+          (<ShipPosition>shipPosition.data.data).actors = [];
+        }
+        const actions = (<ShipPosition>shipPosition.data.data).actions ?? [];
+        (<ShipPosition>shipPosition.data.data).sortedActions = Object.entries(actions).map(([id, ret]) => {
+          ret.id = id;
+          return ret;
+        });
+        (<ShipPosition>shipPosition.data.data).sortedActions?.sort((a, b) => (a.order > b.order) ? 1 : -1);
+        return shipPosition;
       });
-      (<ShipPosition>shipPosition.data.data).sortedActions?.sort((a, b) => (a.order > b.order) ? 1 : -1);
-      return shipPosition;
-    });
-    context.shipPositions.sort((a:TwodsixItem,b:TwodsixItem) => (<ShipPosition>a.data.data).order-(<ShipPosition>b.data.data).order);
-
+      context.shipPositions.sort((a: TwodsixItem, b: TwodsixItem) => (<ShipPosition>a.data.data).order - (<ShipPosition>b.data.data).order);
+    } else {
+      context.shipPositions = [];
+    }
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
     };
@@ -116,8 +118,18 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     this.actor.createEmbeddedDocuments("Item", [{"type": "ship_position", name: "New Position", order: shipPositions.length}]);
   }
 
-  private _onShipPositionEdit(event:Event):void {
+  private async _onShipPositionEdit(event:Event):Promise<void> {
     if (event.currentTarget !== null) {
+      // get rid of missing actors
+      if (this.actor) {
+        const shipActor = <TwodsixActor>this.actor;
+        for (const actorId in (<Ship>shipActor.data.data)?.shipPositionActorIds) {
+          const actor = game.actors?.get(actorId);
+          if (actor === undefined) {
+            await shipActor.update({[`data.shipPositionActorIds.-=${actorId}`]: null });
+          }
+        }
+      }
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
       this.actor?.items?.get(shipPositionId)?.sheet?.render(true);
     }
@@ -132,7 +144,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
       (<ShipPosition>(<TwodsixItem>this.actor.items.get(shipPositionId)).data.data).actors?.forEach((actor:TwodsixActor) => {
         if (actor.id && actor.id in (<Ship>this.actor.data.data).shipPositionActorIds) {
-          this.actor.update({[`data.shipPositionActorIds.-=${actor.id}`]: null});
+          if (actor.id) {
+            this.actor.update({ [`data.shipPositionActorIds.-=${actor.id}`]: null });
+          }
         }
       });
       this.actor.deleteEmbeddedDocuments("Item", [shipPositionId]);

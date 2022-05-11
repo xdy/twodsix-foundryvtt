@@ -112,7 +112,7 @@ export class TwodsixShipActions {
     }
 
     const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name + ` `) : '';
-    if (game.settings.get("twodsix", "automateDamageRollOnHit")) {
+    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>component?.data.data)?.subtype === "armament") {
       if (result.effect >= 0 && component) {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
