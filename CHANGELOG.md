@@ -1,3 +1,10 @@
+## [1.41.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.4...v1.41.5) (2022-05-11)
+
+
+### Bug Fixes
+
+* don't auto roll damage for components without damage field ([#1000](https://github.com/xdy/twodsix-foundryvtt/issues/1000)) ([32d6202](https://github.com/xdy/twodsix-foundryvtt/commit/32d6202a011363ea750530fb0a39fdd0967a51c5))
+
 ## [1.41.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.3...v1.41.4) (2022-05-09)
 
 
