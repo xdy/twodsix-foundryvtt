@@ -1,3 +1,10 @@
+## [1.41.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.5...v1.41.6) (2022-05-11)
+
+
+### Bug Fixes
+
+* clean-up actor sheet layout ([#999](https://github.com/xdy/twodsix-foundryvtt/issues/999)) ([c38a4a6](https://github.com/xdy/twodsix-foundryvtt/commit/c38a4a6a65b6c504ba4852453924583b3efaee14))
+
 ## [1.41.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.4...v1.41.5) (2022-05-11)
 
 
