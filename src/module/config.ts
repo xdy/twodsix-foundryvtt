@@ -59,7 +59,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "12 * @characteristics.strength.current",
       defaultMovement: 6,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6"
     }
   },
   CEL: {
@@ -85,7 +86,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "3 * @characteristics.strength.value",
       defaultMovement: 9,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     }
   },
   CEFTL: {
@@ -109,7 +111,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "0",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     },
   },
   CEATOM: {
@@ -133,7 +136,8 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: -1,
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     }
   },
   BARBARIC: {
@@ -157,7 +161,8 @@ const RULESETS = Object.freeze({
       seriousWoundsRollModifier: -1,
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
-      defaultMovementUnits: "m"
+      defaultMovementUnits: "m",
+      unarmedDamage: "1d6"
     },
   },
   CEQ: {
@@ -182,7 +187,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "0",
       defaultMovement: 9,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     }
   },
   CD: {
@@ -215,7 +221,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "3 * (7 + @characteristics.strength.mod)",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     }
   },
   CLU: {
@@ -248,7 +255,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "3*(7 + @characteristics.strength.mod)",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)"
     }
   },
 

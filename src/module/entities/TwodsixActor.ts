@@ -292,11 +292,13 @@ export default class TwodsixActor extends Actor {
           });
         }
         await this.createUntrainedSkill();
+
         if (this.data.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_actor.png'
           });
         }
+        await this.createUnarmedSkill();
         break;
       case "ship":
         if (this.data.img === CONST.DEFAULT_TOKEN) {
@@ -427,6 +429,27 @@ export default class TwodsixActor extends Actor {
 
     const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
     return data1[0];
+  }
+
+  public async createUnarmedSkill(): Promise<Skills | void> {
+    if (this.data.items.getName(game.i18n.localize("TWODSIX.Item.Wepaon.Unarmed"))) {
+      return;
+    }
+    const data = {
+      "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "data": {
+        "armorPiercing": 0,
+        "description": game.i18n.localize("TWODSIX.Items.Weapon.UnarmedDescription"),
+        "type": "weapon",
+        "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
+        "quantity": 1,
+        "skill": this.getUntrainedSkill().id || ""
+      },
+    };
+    await (this.createEmbeddedDocuments("Item", [data]));
+
   }
 
   private static _applyToAllActorItems(func: (actor: TwodsixActor, item: TwodsixItem) => void): void {
