@@ -336,7 +336,9 @@
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost",
         "ArmorPiercing": "Armor Piercing Value",
-        "Features": "Features / Traits"
+        "Features": "Features / Traits",
+        "Unarmed": "Unarmed",
+        "UnarmedDescription": "Unarmed attack"
       }
     },
     "Ship": {
@@ -718,6 +720,14 @@
       "addEffectForShipDamage": {
         "hint": "The ship attack effect value is added to the damage roll.",
         "name": "Add effect to ship damage"
+      },
+      "autoAddUnarmed": {
+        "hint": "When checked (true), the unarmed weapon will be automatically added to the inventory for new actors (per rules settings).",
+        "name": "Automatically add unarmed weapon to new actors"
+      },
+      "unarmedDamage": {
+        "hint": "Dice formula for unarmed damage used when Unarmed is automatically added to actors.",
+        "name": "Unarmed Damage Formula"
       }
     },
     "CloseAndCreateNew": "Close and create new",
