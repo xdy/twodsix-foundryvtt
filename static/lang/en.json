@@ -722,7 +722,7 @@
         "name": "Add effect to ship damage"
       },
       "autoAddUnarmed": {
-        "hint": "When check, new characters wil have the unarmed weapon automatically added to inventory (per rules settings).",
+        "hint": "When checked (true), the unarmed weapon will be automatically added to the inventory for new actors (per rules settings).",
         "name": "Automatically add unarmed weapon to new actors"
       },
       "unarmedDamage": {
