@@ -63,6 +63,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", TWODSIX.MovementUnitsUnLocalized));
     settings.push(booleanSetting('addEffectForShipDamage', false));
+    settings.push(stringSetting("unarmedDamage", "1d6", false, "world"));
     return settings;
   }
 }
