@@ -98,6 +98,7 @@ declare global {
       'twodsix.defaultMovementUnits': string;
       'twodsix.addEffectForShipDamage': boolean;
       'twodsix.unarmedDamage': string;
+      'twodsix.autoAddUnarmed': boolean;
     }
   }
 }

@@ -298,7 +298,10 @@ export default class TwodsixActor extends Actor {
             'img': 'systems/twodsix/assets/icons/default_actor.png'
           });
         }
-        await this.createUnarmedSkill();
+
+        if (game.settings.get("twodsix", "autoAddUnarmed")) {
+          await this.createUnarmedSkill();
+        }
         break;
       case "ship":
         if (this.data.img === CONST.DEFAULT_TOKEN) {
@@ -432,7 +435,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async createUnarmedSkill(): Promise<Skills | void> {
-    if (this.data.items.getName(game.i18n.localize("TWODSIX.Item.Wepaon.Unarmed"))) {
+    if (this.data.items.getName(game.i18n.localize("TWODSIX.Item.Weapon.Unarmed"))) {
       return;
     }
     const data = {
