@@ -1,3 +1,10 @@
+## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* component list single line layout ([#1003](https://github.com/xdy/twodsix-foundryvtt/issues/1003)) ([edfa211](https://github.com/xdy/twodsix-foundryvtt/commit/edfa21160d8295d309c11d10b45513d2404360fc))
+
 # [1.42.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.6...v1.42.0) (2022-05-13)
 
 
