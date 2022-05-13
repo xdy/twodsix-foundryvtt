@@ -1,3 +1,10 @@
+# [1.42.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.6...v1.42.0) (2022-05-13)
+
+
+### Features
+
+* Add default unarmed attack to new characters ([#1002](https://github.com/xdy/twodsix-foundryvtt/issues/1002)) ([10c694e](https://github.com/xdy/twodsix-foundryvtt/commit/10c694e28fc4a5e3eeedec49dd1893727d467d25))
+
 ## [1.41.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.5...v1.41.6) (2022-05-11)
 
 
