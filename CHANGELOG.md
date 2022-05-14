@@ -1,3 +1,24 @@
+## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* component list single line layout ([#1003](https://github.com/xdy/twodsix-foundryvtt/issues/1003)) ([edfa211](https://github.com/xdy/twodsix-foundryvtt/commit/edfa21160d8295d309c11d10b45513d2404360fc))
+
+# [1.42.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.6...v1.42.0) (2022-05-13)
+
+
+### Features
+
+* Add default unarmed attack to new characters ([#1002](https://github.com/xdy/twodsix-foundryvtt/issues/1002)) ([10c694e](https://github.com/xdy/twodsix-foundryvtt/commit/10c694e28fc4a5e3eeedec49dd1893727d467d25))
+
+## [1.41.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.5...v1.41.6) (2022-05-11)
+
+
+### Bug Fixes
+
+* clean-up actor sheet layout ([#999](https://github.com/xdy/twodsix-foundryvtt/issues/999)) ([c38a4a6](https://github.com/xdy/twodsix-foundryvtt/commit/c38a4a6a65b6c504ba4852453924583b3efaee14))
+
 ## [1.41.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.4...v1.41.5) (2022-05-11)
 
 

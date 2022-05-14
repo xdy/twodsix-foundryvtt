@@ -31,6 +31,7 @@ export const registerSettings = function ():void {
   booleanSetting('automateDamageRollOnHit', false, true, 'client');
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
+  booleanSetting('autoAddUnarmed', false, true);
   numberSetting('weightModifierForWornArmor', 1.0, true);
 
   function _onHideUntrainedSkillsChange(setting:boolean) {

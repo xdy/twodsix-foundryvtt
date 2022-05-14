@@ -2042,10 +2042,10 @@ a.ship-notes-tab.active {
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 16em 4em 4em 4em 4em 4em 4em 4.5em 4em 3em;
+  grid-template-columns: 12.5em 3em 7em 3em 4em 4em 4em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . . . .";
+  grid-template-areas: ". . . . . . . . . . .";
 }
 
 .grid-columns-single-row:nth-of-type(even) {
