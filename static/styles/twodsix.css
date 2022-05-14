@@ -399,13 +399,13 @@ h2 {
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
   background-color: var(--s2d6-background-nearly-opaque);
-}
+border-width: 2px;}
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
-}
+border-width: 2px;}
 
 .npc-skills {
   grid-area: npc-skills;
@@ -541,7 +541,7 @@ img.character-info-mask {
   border-radius: 2ch;
   padding: 0 1ch;
   color: var(--s2d6-default-color) !important;
-}
+border-width: 2px;}
 
 .character-bgi input, .character-bgi-npc input {
   background-color: transparent !important;
@@ -553,7 +553,7 @@ img.character-info-mask {
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
-  height: 2.4ch;
+  height: 18px;
 }
 
 .bgi-age input {
@@ -825,6 +825,7 @@ span.stat-modifier-table {
 
 span.stat-ability-table input, span.stat-modifier-table input {
   width: 4ch;
+  height: 3ch;
 }
 
 span.stat-damage {
@@ -844,6 +845,7 @@ span.stat-damage-table input {
   border-width: thin !important;
   border-radius: 15%;
   width: 4ch;
+  height: 3ch;
   border-color: var(--s2d6-default-color);
 }
 
@@ -1615,6 +1617,7 @@ img.ship-mask-bg {
   border: solid;
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
+  border-width: 2px;
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
@@ -1624,6 +1627,8 @@ img.ship-mask-bg {
   min-height: 48px;
   /* max-height: 100%; */
   width: 90%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
 }
 
 .ship-hull {
@@ -1913,6 +1918,7 @@ a.ship-notes-tab.active {
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: relative;
+  /* width:fit-content; */
 }
 
 .ship-grid {
