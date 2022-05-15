@@ -69,7 +69,7 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 21.8em 35em;
+  grid-template-columns: 23em 35em;
   gap: 1px 1px;
   position: relative;
   top: -2.4em;
@@ -148,12 +148,13 @@ label.checkbox > input[type="checkbox"] {
 
 .character-info {
   /*margin-left: -8px;*/
-  margin-top: -2px;
+  /* margin-top: -2px; */
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: fit-content;
+  width: 95%;
   padding-right: 8px;
+  border-width: medium;
 }
 
 img.character-info-mask {
@@ -235,7 +236,7 @@ img.character-info-mask {
   max-height: 8em;
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 0 0 1ch 1ch;
 }
 
@@ -248,7 +249,7 @@ img.character-info-mask {
   max-height: 9em;
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 0 0 1ch 1ch;
 }
 
@@ -298,11 +299,11 @@ img.character-info-mask {
 }
 
 .bgi-movement select {
-  width: 11ch;
+  width: 12ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   /*height: 2.7ch;*/
-  font-size: inherit;
+  font-size: smaller;
 }
 
 .bgi-char-narrow {
@@ -614,7 +615,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .tab.inventory {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -786,7 +787,7 @@ input.item-value-edit {
 
 .tab.skills {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -1017,7 +1018,7 @@ span.total-output {
 
 .tab.info {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -1059,7 +1060,7 @@ span.total-output {
 .notes-container {
   margin-left: 1ch;
   margin-top: 5ch;
-  height: 38em;
+  height: 36em;
   margin-bottom: -3em;
   overflow: hidden;
   font-size: larger;
