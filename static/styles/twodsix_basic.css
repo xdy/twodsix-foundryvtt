@@ -96,6 +96,7 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-bgi-stats {
   grid-area: npc-bgi-stats;
+  overflow-y: hidden;
 }
 
 .npc-notes-container {
@@ -155,6 +156,7 @@ label.checkbox > input[type="checkbox"] {
   width: 95%;
   padding-right: 8px;
   border-width: medium;
+  overflow-x: hidden;
 }
 
 img.character-info-mask {
@@ -386,13 +388,14 @@ span.bgi-charEdit {
   margin-bottom: 1.5em;
 }
 
-.stat-table, .stat-table-npc {
+.stat-table {
   font-size: 0.8em;
-  max-width: 25em;
-  margin-left: 0.7em;
+  max-width: 95%;
+  margin-left: 1ch;
 }
 .stat-table-npc {
-  max-width: 26em;
+  font-size: 0.8em;
+  max-width: 100%;
 }
 
 .table-header-row {

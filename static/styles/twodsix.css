@@ -390,6 +390,7 @@ h2 {
 
 .npc-bgi-stats {
   grid-area: npc-bgi-stats;
+  overflow-y: hidden;
 }
 
 .npc-notes-container {
@@ -447,6 +448,7 @@ border-width: 2px;}
   margin-left: -8px;
   margin-top: -2px;
   position: relative;
+  overflow-x: hidden;
 }
 
 img.character-info-mask {
@@ -676,8 +678,7 @@ span.bgi-charEdit {
 }
 
 .stat-table, .stat-table-npc {
-  margin: 0.1em 0 0 -0.2em;
-  /* width: 50%; */
+  font-size: 0.9em;
 }
 
 .stat-table-small {
