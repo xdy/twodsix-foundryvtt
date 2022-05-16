@@ -156,7 +156,6 @@ label.checkbox > input[type="checkbox"] {
   width: 95%;
   padding-right: 8px;
   border-width: medium;
-  overflow-x: hidden;
 }
 
 img.character-info-mask {
