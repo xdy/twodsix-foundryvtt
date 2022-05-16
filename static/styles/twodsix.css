@@ -679,8 +679,15 @@ span.bgi-charEdit {
   margin-bottom: 1.5em;
 }
 
-.stat-table, .stat-table-npc {
-  font-size: 0.9em;
+.stat-table {
+  font-size: 0.8em;
+  margin: 0.5em 0 0;
+}
+
+.stat-table-npc {
+  font-size: 11px;
+  margin: 0.5em 0 0;
+  overflow-x: hidden;
 }
 
 .stat-table-small {
@@ -688,7 +695,7 @@ span.bgi-charEdit {
   font-size: 11px;
   margin-left: 3.2em;
   margin-top: 8px;
-  width: 85%;
+  width: 82%;
 }
 .table-header-row {
   height: 5ch;
