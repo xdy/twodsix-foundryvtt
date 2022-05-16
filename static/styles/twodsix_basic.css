@@ -78,7 +78,7 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
+  grid-template-columns: 15em 22em 18em;
   grid-template-rows: 18em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
@@ -386,10 +386,13 @@ span.bgi-charEdit {
   margin-bottom: 1.5em;
 }
 
-.stat-table {
+.stat-table, .stat-table-npc {
   font-size: 0.8em;
   max-width: 25em;
   margin-left: 0.7em;
+}
+.stat-table-npc {
+  max-width: 26em;
 }
 
 .table-header-row {
@@ -690,7 +693,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-list {
   padding: 0.3em 0 0;
-  border: 1px groove var(--s2d6-background-opaque);
+  border: 1px solid var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 0 0;
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);

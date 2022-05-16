@@ -675,7 +675,7 @@ span.bgi-charEdit {
   margin-bottom: 1.5em;
 }
 
-.stat-table {
+.stat-table, .stat-table-npc {
   margin: 0.1em 0 0 -0.2em;
   /* width: 50%; */
 }
