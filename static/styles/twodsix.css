@@ -835,7 +835,7 @@ span.stat-modifier-table {
 
 span.stat-ability-table input, span.stat-modifier-table input {
   width: 4ch;
-  height: 3ch;
+  height: 3.5ch;
 }
 
 span.stat-damage {
@@ -855,7 +855,7 @@ span.stat-damage-table input {
   border-width: thin !important;
   border-radius: 15%;
   width: 4ch;
-  height: 3ch;
+  height: 3.5ch;
   border-color: var(--s2d6-default-color);
 }
 
