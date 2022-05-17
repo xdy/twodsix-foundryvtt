@@ -416,11 +416,14 @@ span.stat-name {
 }
 
 span.stat-name-table, input.stat-name-table {
-  position: relative;
+  /*position: relative;*/
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 4ch;
+  width: 5ch;
+  height: 2ch;
+  margin: 0;
+  padding: 0;
   transform: rotate(-45deg);
 }
 
@@ -428,8 +431,6 @@ input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
   border: none;
-  margin: 0;
-  padding: 0;
   color: var(--color-text-light-highlight);
   text-shadow: 1px 1px var(--color-shadow-dark);
 }

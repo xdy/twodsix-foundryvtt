@@ -540,7 +540,7 @@ img.character-info-mask {
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   padding: 0 1ch;
   color: var(--s2d6-default-color) !important;
@@ -587,9 +587,10 @@ img.character-info-mask {
 }
 
 .bgi-movement select {
-  width: 12ch;
+  width: 14ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
+  font-size: smaller;
 }
 
 .bgi-char-narrow {
@@ -685,7 +686,7 @@ span.bgi-charEdit {
 }
 
 .stat-table-npc {
-  font-size: 11px;
+  font-size: 12px;
   margin: 0.5em 0 0;
   overflow-x: hidden;
 }
@@ -722,15 +723,16 @@ span.stat-name-table, input.stat-name-table {
   cursor: pointer;
   text-align: center !important;
   width: 4ch;
+  height: 2ch;
   transform: rotate(-45deg);
+  margin: 0;
+  padding: 0;
 }
 
 input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
   border: none;
-  margin: 0;
-  padding: 0;
 }
 
 .stat input, .special input {
