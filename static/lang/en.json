@@ -123,7 +123,16 @@
         "Untrained": "Untrained",
         "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
         "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
-        "JOAT": "Jack of all trades"
+        "JOAT": "Jack of all trades",
+        "Timeframe": {
+          "none": "---",
+          "secs": "second(s)",
+          "mins": "minute(s)",
+          "hrs": "hour(s)",
+          "days": "day(s)",
+          "weeks": "week(s)",
+          "rounds": "round(s)"
+        }
       },
       "Species": "Species",
       "Tabs": {
@@ -161,10 +170,14 @@
     },
     "Chat": {
       "Roll": {
-        "Difficulty": "Roll difficulty",
-        "Mode": "Roll mode",
+        "Difficulty": "Difficulty",
+        "Mode": "Mode",
         "OtherModifiers": "Other modifiers",
-        "Type": "Roll type"
+        "Type": "Type",
+        "RollDetails": "Roll Details",
+        "Timeframe": "Timeframe",
+        "RollFormula": "Roll Formula",
+        "Units": "Units"
       }
     },
     "Create": "Create",
@@ -727,6 +740,10 @@
       "unarmedDamage": {
         "hint": "Dice formula for unarmed damage used when Unarmed is automatically added to actors.",
         "name": "Unarmed Damage Formula"
+      },
+      "showTimeframe": {
+        "hint": "Add timeframe options to skill / characteristic rolls/",
+        "name": "Show Timeframe in Roll Dialog"
       }
     },
     "CloseAndCreateNew": "Close and create new",

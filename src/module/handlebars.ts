@@ -225,6 +225,10 @@ export default function registerHandlebarsHelpers(): void {
     return (game.settings.get('twodsix', 'useTinyMCEditor'));
   });
 
+  Handlebars.registerHelper('twodsix_showTimeframe', () => {
+    return game.settings.get('twodsix', 'showTimeframe');
+  });
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
 
   Handlebars.registerHelper('each_sort_by_name', (array, options) => {
