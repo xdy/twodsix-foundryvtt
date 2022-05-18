@@ -371,7 +371,7 @@ export default class TwodsixActor extends Actor {
           break;
         }
       }
-      await this.update(charArray);
+      await this.update(charArray); /*update only once*/
     }
   }
 
