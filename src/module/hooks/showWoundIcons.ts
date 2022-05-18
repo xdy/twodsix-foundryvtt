@@ -31,6 +31,7 @@ function checkForWounds(data: Record<string, any>): boolean {
       case 'CEL':
       case 'CEFTL':
       case 'CE':
+      case 'OTHER':
         return !!(data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity);
       case 'CEQ':
       case 'CEATOM':
@@ -74,7 +75,7 @@ async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<v
       await setConditionState(deadEffectLabel, selectedToken, false);
 
       if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
-        if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
+        if (['CEQ', 'CEATOM', 'BARBARIC', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
           await setConditionState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
         } else {
           const displayShortChar = _genTranslatedSkillList(selectedToken.actor)['END'];
@@ -135,6 +136,7 @@ export function getIconTint(selectedActor: Record<string, any>): string {
     case 'CEL':
     case 'CEFTL':
     case 'CE':
+    case 'OTHER':
       return (getCEWoundTint(selectedActor));
     case 'CEQ':
     case 'CEATOM':
