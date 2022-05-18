@@ -1,5 +1,6 @@
 //import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import TwodsixActor from "../entities/TwodsixActor";
+import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (checkForWounds(update.data)) {
@@ -76,7 +77,8 @@ async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<v
         if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
           await setConditionState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
         } else {
-          const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
+          const displayShortChar = _genTranslatedSkillList(selectedToken.actor)['END'];
+          const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
           if (returnRoll.effect < 0) {
             await setConditionState(unconsciousEffectLabel, selectedToken, true);
           }
