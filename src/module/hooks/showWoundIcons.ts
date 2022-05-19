@@ -212,7 +212,7 @@ export function getCEWoundTint(selectedActor: Record<string, any>): string {
     default:
       break;
   }
-  if ((testArray.filter(chr => chr.damage > 0).length) === 3) {
+  if ((testArray.filter(chr => chr.damage > 0).length) === 3 && returnVal !== DAMAGECOLORS.deadTint) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
   }
   return returnVal;
