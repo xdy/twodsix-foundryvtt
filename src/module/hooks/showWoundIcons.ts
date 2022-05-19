@@ -4,14 +4,7 @@ import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (checkForWounds(update.data)) {
-    if (actor.isToken) {
-      applyWoundedEffect(<Token>canvas.tokens?.ownedTokens?.find(t => t.id === actor.token?.id));
-    } else {
-      const actorToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === actor.id);
-      if (actorToken) {
-        applyWoundedEffect(actorToken);
-      }
-    }
+    applyWoundedEffect(actor);
   }
 });
 //A check for token update doesn't seem to be needed.  But keep code just in case
@@ -54,56 +47,65 @@ export const DAMAGECOLORS = Object.freeze({
   deadTint: '#FFFFFF'  // White
 });
 
-async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<void> {
-  const tintToApply = getIconTint(selectedToken?.actor);
+async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
+  const tintToApply = getIconTint(selectedActor);
 
   const woundedEffectLabel = 'woundEffect';
   const deadEffectLabel = 'Dead';
   const unconsciousEffectLabel = 'Unconscious';
 
   if (!tintToApply) {
-    await setConditionState(deadEffectLabel, selectedToken, false);
-    await setEffectState(woundedEffectLabel, selectedToken, false, tintToApply);
+    await setConditionState(deadEffectLabel, selectedActor, false);
+    await setEffectState(woundedEffectLabel, selectedActor, false, tintToApply);
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
-      await setConditionState(deadEffectLabel, selectedToken, true);
-      await setEffectState(woundedEffectLabel, selectedToken, false, tintToApply);
-      await setConditionState(unconsciousEffectLabel, selectedToken, false);
+      await setConditionState(deadEffectLabel, selectedActor, true);
+      await setEffectState(woundedEffectLabel, selectedActor, false, tintToApply);
+      await setConditionState(unconsciousEffectLabel, selectedActor, false);
     } else {
-      const oldWoundState = await selectedToken.actor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
-      const isAlreadyDead = await selectedToken.actor.data.effects.find(eff => eff.data.label === deadEffectLabel);
-      const isAlreadyUnconscious = await selectedToken.actor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
-      await setConditionState(deadEffectLabel, selectedToken, false);
+      const oldWoundState = await selectedActor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
+      const isAlreadyDead = await selectedActor.data.effects.find(eff => eff.data.label === deadEffectLabel);
+      const isAlreadyUnconscious = await selectedActor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
+      await setConditionState(deadEffectLabel, selectedActor, false);
 
       if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
         if (['CEQ', 'CEATOM', 'BARBARIC', 'CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-          await setConditionState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
+          await setConditionState(unconsciousEffectLabel, selectedActor, true); // Automatic unconsciousness or out of combat
         } else {
-          const displayShortChar = _genTranslatedSkillList(selectedToken.actor)['END'];
-          const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
-          if (returnRoll.effect < 0) {
-            await setConditionState(unconsciousEffectLabel, selectedToken, true);
+          const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
+          const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
+          if (returnRoll && returnRoll?.effect < 0) {
+            await setConditionState(unconsciousEffectLabel, selectedActor, true);
           }
         }
       }
-
-      await setEffectState(woundedEffectLabel, selectedToken, true, tintToApply);
+      await setEffectState(woundedEffectLabel, selectedActor, true, tintToApply);
     }
   }
 }
 
-async function setConditionState(effectLabel: string, targetToken: Record<string, any>, state: boolean): Promise<void> {
-  const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
+async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
+  const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
   if ((typeof isAlreadySet !== 'undefined') !== state) {
     const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
-    await targetToken.toggleEffect(targetEffect);
+    let targetToken = {};
+    if(targetActor.isToken) {
+      targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
+    } else {
+      targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === targetActor.id);
+    }
+    if (targetToken) {
+      await (<Token>targetToken).toggleEffect(targetEffect);
+    }
   }
 }
 
-async function setEffectState(effectLabel: string, targetToken: Record<string, any>, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
+async function setEffectState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
+  const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
   if (isAlreadySet && state === false) {
-    await targetToken.actor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+    if(isAlreadySet.id) {
+      await targetActor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+    }
   } else {
     let woundModifier = 0;
     switch (tint) {
@@ -116,16 +118,16 @@ async function setEffectState(effectLabel: string, targetToken: Record<string, a
     }
     const changeData = { key: "data.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
     if (isAlreadySet === undefined && state === true) {
-      await targetToken?.actor.createEmbeddedDocuments("ActiveEffect", [{
+      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
         icon: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData]
       }]);
-      const newEffect = await targetToken?.actor?.effects.find(eff => eff.data.label === effectLabel);
-      newEffect.setFlag("core", "statusId", "bleeding"); /*FIX*/
+      const newEffect = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
+      newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
     } else if (isAlreadySet && state === true) {
-      await targetToken.actor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet.id, tint: tint, changes: [changeData] }]);
+      await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet.id, tint: tint, changes: [changeData] }]);
     }
   }
 }
