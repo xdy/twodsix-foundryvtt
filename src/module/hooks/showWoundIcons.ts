@@ -1,5 +1,6 @@
 //import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import TwodsixActor from "../entities/TwodsixActor";
+import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (checkForWounds(update.data)) {
@@ -13,12 +14,12 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
     }
   }
 });
-
-Hooks.on('updateToken', async (token: TokenDocument, update: Record<string, any>) => {
+//A check for token update doesn't seem to be needed.  But keep code just in case
+/*Hooks.on('updateToken', async (token: TokenDocument, update: Record<string, any>) => {
   if (checkForWounds(update?.data)) {
     applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token.id));
   }
-});
+});*/
 
 function checkForWounds(data: Record<string, any>): boolean {
   if (!game.settings.get('twodsix', 'useWoundedStatusIndicators') || data === undefined) {
@@ -26,10 +27,12 @@ function checkForWounds(data: Record<string, any>): boolean {
   } else {
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
+      case 'CLU':
         return (!!data.characteristics?.lifeblood);
       case 'CEL':
       case 'CEFTL':
       case 'CE':
+      case 'OTHER':
         return !!(data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity);
       case 'CEQ':
       case 'CEATOM':
@@ -73,10 +76,11 @@ async function applyWoundedEffect(selectedToken: Record<string, any>): Promise<v
       await setConditionState(deadEffectLabel, selectedToken, false);
 
       if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
-        if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
+        if (['CEQ', 'CEATOM', 'BARBARIC', 'CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
           await setConditionState(unconsciousEffectLabel, selectedToken, true); // Automatic unconsciousness or out of combat
         } else {
-          const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', difficulty: { mod: 0, target: 8 } }, false);
+          const displayShortChar = _genTranslatedSkillList(selectedToken.actor)['END'];
+          const returnRoll = await selectedToken.actor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
           if (returnRoll.effect < 0) {
             await setConditionState(unconsciousEffectLabel, selectedToken, true);
           }
@@ -129,10 +133,12 @@ async function setEffectState(effectLabel: string, targetToken: Record<string, a
 export function getIconTint(selectedActor: Record<string, any>): string {
   switch (game.settings.get('twodsix', 'ruleset')) {
     case 'CD':
+    case 'CLU':
       return (getCDWoundTint(selectedActor));
     case 'CEL':
     case 'CEFTL':
     case 'CE':
+    case 'OTHER':
       return (getCEWoundTint(selectedActor));
     case 'CEQ':
     case 'CEATOM':

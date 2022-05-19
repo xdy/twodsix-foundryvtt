@@ -169,10 +169,12 @@ export class Stats {
     }
 
     let charName = '';
+    const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
       charName = 'data.characteristics.' + characteristic + '.damage';
-      await this.actor.update({[charName]: this[characteristic].totalDamage()});
+      charArray[charName] = this[characteristic].totalDamage();
     }
+    await this.actor.update(charArray);
   }
 }
 
