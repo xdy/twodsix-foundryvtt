@@ -1,3 +1,10 @@
+## [1.42.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.1...v1.42.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* wounded rolls ([9825ba0](https://github.com/xdy/twodsix-foundryvtt/commit/9825ba05ec85e7badba3d41243453ab7c1478c2a))
+
 ## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
 
 
