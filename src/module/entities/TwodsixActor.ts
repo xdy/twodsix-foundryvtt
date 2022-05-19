@@ -356,18 +356,14 @@ export default class TwodsixActor extends Actor {
       } else {
         damageCharacteristics = getDamageCharacteristics();
       }
-
+      const charArray = {};
       for (const characteristic of damageCharacteristics) {
         const cur_damage = this.data.data.characteristics[characteristic].damage;
 
         if (cur_damage > 0) {
           const new_damage = Math.max(0, cur_damage - healing);
           const char_id = 'data.characteristics.' + characteristic + '.damage';
-
-          await this.update({
-            [char_id]: new_damage
-          });
-
+          charArray[char_id] = new_damage;
           healing -= cur_damage - new_damage;
         }
 
@@ -375,6 +371,7 @@ export default class TwodsixActor extends Actor {
           break;
         }
       }
+      await this.update(charArray); /*update only once*/
     }
   }
 
