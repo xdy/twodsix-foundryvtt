@@ -1288,13 +1288,6 @@ img.ship-mask-bg {
   width: max-content;
 }
 
-.ship-value {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 2ch;
-}
-
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-input-background) !important;
   border: 1px solid var(--color-text-dark-primary);
@@ -1710,7 +1703,7 @@ div.ship-value {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 17em;
-  padding: 2ch;
+  padding: 0 2ch;
 }
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
