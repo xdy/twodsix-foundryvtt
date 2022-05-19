@@ -27,6 +27,7 @@ function checkForWounds(data: Record<string, any>): boolean {
   } else {
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
+      case 'CLU':
         return (!!data.characteristics?.lifeblood);
       case 'CEL':
       case 'CEFTL':
