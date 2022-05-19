@@ -68,8 +68,12 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       const isAlreadyUnconscious = await selectedActor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
       await setConditionState(deadEffectLabel, selectedActor, false);
 
-      if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
-        if (['CEQ', 'CEATOM', 'BARBARIC', 'CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
+      if (['CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
+        if (isUnconsciousCE(selectedActor) && !isAlreadyUnconscious) {
+          await setConditionState(unconsciousEffectLabel, selectedActor, true);
+        }
+      } else if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
+        if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
           await setConditionState(unconsciousEffectLabel, selectedActor, true); // Automatic unconsciousness or out of combat
         } else {
           const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
@@ -79,6 +83,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
           }
         }
       }
+
       await setEffectState(woundedEffectLabel, selectedActor, true, tintToApply);
     }
   }
@@ -139,6 +144,7 @@ export function getIconTint(selectedActor: Record<string, any>): string {
       return (getCDWoundTint(selectedActor));
     case 'CEL':
     case 'CEFTL':
+      return (getCELWoundTint(selectedActor));
     case 'CE':
     case 'OTHER':
       return (getCEWoundTint(selectedActor));
@@ -163,7 +169,7 @@ export function getCDWoundTint(selectedActor: Record<string, any>): string {
   return returnVal;
 }
 
-export function getCEWoundTint(selectedActor: Record<string, any>): string {
+export function getCELWoundTint(selectedActor: Record<string, any>): string {
   let returnVal = '';
   const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
@@ -185,6 +191,35 @@ export function getCEWoundTint(selectedActor: Record<string, any>): string {
       break;
   }
   return returnVal;
+}
+
+export function getCEWoundTint(selectedActor: Record<string, any>): string {
+  let returnVal = '';
+  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
+  switch (testArray.filter(chr => chr.current <= 0).length) {
+    case 0:
+      if (testArray.filter(chr => chr.damage > 0).length > 0) {
+        returnVal = DAMAGECOLORS.minorWoundTint;
+      }
+      break;
+    case 1:
+    case 2:
+      returnVal = DAMAGECOLORS.minorWoundTint;
+      break;
+    case 3:
+      returnVal = DAMAGECOLORS.deadTint;
+      break;
+    default:
+      break;
+  }
+  if ((testArray.filter(chr => chr.damage > 0).length) === 3) {
+    returnVal = DAMAGECOLORS.seriousWoundTint;
+  }
+  return returnVal;
+}
+export function isUnconsciousCE(selectedActor: Record<string, any>): boolean {
+  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
+  return (testArray.filter(chr => chr.current <= 0).length === 2);
 }
 
 export function getCEAWoundTint(selectedActor: Record<string, any>): string {
