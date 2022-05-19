@@ -74,7 +74,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
         } else {
           const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
           const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
-          if (returnRoll && returnRoll?.effect < 0) {
+          if (returnRoll && returnRoll.effect < 0) {
             await setConditionState(unconsciousEffectLabel, selectedActor, true);
           }
         }
@@ -124,7 +124,7 @@ async function setEffectState(effectLabel: string, targetActor: TwodsixActor, st
         tint: tint,
         changes: [changeData]
       }]);
-      const newEffect = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
+      const newEffect = await targetActor.effects.find(eff => eff.data.label === effectLabel);
       newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
     } else if (isAlreadySet && state === true) {
       await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet.id, tint: tint, changes: [changeData] }]);
