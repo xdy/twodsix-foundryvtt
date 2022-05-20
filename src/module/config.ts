@@ -60,7 +60,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 6,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "1d6"
+      unarmedDamage: "1d6",
+      showTimeframe: true
     }
   },
   CEL: {
@@ -87,7 +88,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 9,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     }
   },
   CEFTL: {
@@ -112,7 +114,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     },
   },
   CEATOM: {
@@ -137,7 +140,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     }
   },
   BARBARIC: {
@@ -162,7 +166,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      unarmedDamage: "1d6"
+      unarmedDamage: "1d6",
+      showTimeframe: false
     },
   },
   CEQ: {
@@ -188,7 +193,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 9,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     }
   },
   CD: {
@@ -222,7 +228,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     }
   },
   CLU: {
@@ -256,7 +263,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false
     }
   },
 
@@ -403,6 +411,20 @@ export const ComponentTypes = {
   vehicle: "TWODSIX.Items.Component.vehicle"
 };
 
+/**
+ * The valid time units.
+ */
+export const TimeUnits = {
+  none: "TWODSIX.Actor.Skills.Timeframe.none",
+  sec: "TWODSIX.Actor.Skills.Timeframe.secs",
+  min: "TWODSIX.Actor.Skills.Timeframe.mins",
+  hrs: "TWODSIX.Actor.Skills.Timeframe.hrs",
+  days: "TWODSIX.Actor.Skills.Timeframe.days",
+  weeks: "TWODSIX.Actor.Skills.Timeframe.weeks",
+  months: "TWODSIX.Actor.Skills.Timeframe.months",
+  rounds: "TWODSIX.Actor.Skills.Timeframe.rounds"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -418,7 +440,8 @@ export type TWODSIX = {
   HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
   ComponentTypes: typeof ComponentTypes,
-  CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes
+  CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
+  TimeUnts: typeof TimeUnits
 };
 
 export const TWODSIX = {
@@ -436,8 +459,8 @@ export const TWODSIX = {
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
   ComponentTypes: ComponentTypes,
-  CharacteristicDisplayTypes: CharacteristicDisplayTypes
+  CharacteristicDisplayTypes: CharacteristicDisplayTypes,
+  TimeUnits: TimeUnits
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
-

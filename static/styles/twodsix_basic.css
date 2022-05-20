@@ -1979,6 +1979,9 @@ background: var(--sidebar-background);
   word-break: break-all;
   font-size: inherit;
 }*/
+.dice-total {
+  white-space: pre-wrap;
+}
 
 .dice-roll .dice-total.crit-fail-roll {
   color: var(--s2d6-crit-fail);
