@@ -1,3 +1,17 @@
+## [1.42.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.2...v1.42.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* Firefox style improvements ([#1005](https://github.com/xdy/twodsix-foundryvtt/issues/1005)) ([cac475a](https://github.com/xdy/twodsix-foundryvtt/commit/cac475adcb92e1527e76f1f07c66c0afbb5bfcb1))
+
+## [1.42.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.1...v1.42.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* wounded rolls ([9825ba0](https://github.com/xdy/twodsix-foundryvtt/commit/9825ba05ec85e7badba3d41243453ab7c1478c2a))
+
 ## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
 
 

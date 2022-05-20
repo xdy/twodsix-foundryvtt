@@ -69,7 +69,7 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 21.8em 35em;
+  grid-template-columns: 23em 35em;
   gap: 1px 1px;
   position: relative;
   top: -2.4em;
@@ -78,8 +78,8 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-columns: 15em 22em 18em;
+  grid-template-rows: 19em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -96,18 +96,19 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-bgi-stats {
   grid-area: npc-bgi-stats;
+  overflow-y: hidden;
 }
 
 .npc-notes-container {
   grid-area: npc-notes-container;
   max-height: 18em;
-  border-style: solid;
+  border: 2px solid;
   border-radius: 2ch;
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor {
 
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
 }
 
@@ -148,12 +149,13 @@ label.checkbox > input[type="checkbox"] {
 
 .character-info {
   /*margin-left: -8px;*/
-  margin-top: -2px;
+  /* margin-top: -2px; */
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: fit-content;
+  width: 95%;
   padding-right: 8px;
+  border-width: medium;
 }
 
 img.character-info-mask {
@@ -171,7 +173,7 @@ img.character-info-mask {
   width: 18.5em;
   height: 20em;
   z-index: 0;
-  border: solid;
+  border: 2px solid;
   border-color: inherit;
   border-radius: 1ch 1ch 0 0;
   text-align: center;
@@ -206,7 +208,7 @@ img.character-info-mask {
   z-index: 6;
   left: 1.1em;
   width: 36ch;
-  border:solid;
+  border: 2px solid;
   border-radius: 1ch;
   border-color: inherit;
 }
@@ -235,7 +237,7 @@ img.character-info-mask {
   max-height: 8em;
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 0 0 1ch 1ch;
 }
 
@@ -245,17 +247,17 @@ img.character-info-mask {
   position: relative;
   margin-top: 0.15em;
   width: 17.5em;
-  max-height: 8em;
+  max-height: 9em;
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 0 0 1ch 1ch;
 }
 
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   padding: 0 1ch;
 }
@@ -268,7 +270,7 @@ img.character-info-mask {
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
-  height: 2.4ch;
+  height: 18px;
 }
 
 .bgi-age input {
@@ -292,7 +294,7 @@ img.character-info-mask {
 }
 
 .bgi-movement input {
-  width: 4ch;
+  width: 3ch;
   border: none;
   text-align: right;
 }
@@ -302,7 +304,7 @@ img.character-info-mask {
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   /*height: 2.7ch;*/
-  font-size: inherit;
+  font-size: smaller;
 }
 
 .bgi-char-narrow {
@@ -387,8 +389,12 @@ span.bgi-charEdit {
 
 .stat-table {
   font-size: 0.8em;
-  max-width: 25em;
-  margin-left: 0.7em;
+  max-width: 95%;
+  margin-left: 1ch;
+}
+.stat-table-npc {
+  font-size: 0.8em;
+  max-width: 100%;
 }
 
 .table-header-row {
@@ -410,11 +416,14 @@ span.stat-name {
 }
 
 span.stat-name-table, input.stat-name-table {
-  position: relative;
+  /*position: relative;*/
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 4ch;
+  width: 5ch;
+  height: 2ch;
+  margin: 0;
+  padding: 0;
   transform: rotate(-45deg);
 }
 
@@ -422,8 +431,6 @@ input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
   border: none;
-  margin: 0;
-  padding: 0;
   color: var(--color-text-light-highlight);
   text-shadow: 1px 1px var(--color-shadow-dark);
 }
@@ -502,6 +509,7 @@ span.stat-modifier-table {
 
 span.stat-ability-table input, span.stat-modifier-table input {
   width: 4ch;
+  height: 4ch;
 }
 
 span.stat-damage {
@@ -530,6 +538,7 @@ span.stat-damage-table input {
   border-width: thin !important;
   border-radius: 15%;
   width: 4ch;
+  height: 4ch;
 }
 
 span.special-ability {
@@ -612,7 +621,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .tab.inventory {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -687,7 +696,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-list {
   padding: 0.3em 0 0;
-  border: 1px groove var(--s2d6-background-opaque);
+  border: 1px solid var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 0 0;
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
@@ -784,7 +793,7 @@ input.item-value-edit {
 
 .tab.skills {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -1015,7 +1024,7 @@ span.total-output {
 
 .tab.info {
   top: 2em;
-  height: 39em;
+  height: 37em;
   overflow-x: hidden;
 }
 
@@ -1057,7 +1066,7 @@ span.total-output {
 .notes-container {
   margin-left: 1ch;
   margin-top: 5ch;
-  height: 38em;
+  height: 36em;
   margin-bottom: -3em;
   overflow: hidden;
   font-size: larger;
@@ -1107,7 +1116,7 @@ img.ship-mask-bg {
   grid-area: ship-image;
   height: 100%;
   z-index: 0;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   text-align: center;
   background-color: var(--s2d6-input-background);
@@ -1156,7 +1165,7 @@ img.ship-mask-bg {
   z-index: 3;
   position: relative;
   width: 29em;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
 }
 
@@ -1227,18 +1236,20 @@ img.ship-mask-bg {
 }
 
 .ship-armor-name textarea {
-  border: solid;
+  border: 2px solid;
   border-radius: 1ch !important;
-  border-color: var(--s2d6-default-color);
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
   resize: none;
   /* word-wrap: break-word; */
   /* word-break: break-all; */
-  min-height: 44px;
+  min-height: unset;
+  max-height: 40px;
+  padding: 2px;
   width: 90%;
   font-family: inherit;
+  scrollbar-width: thin;
 }
 
 .ship-hull {
@@ -1277,13 +1288,6 @@ img.ship-mask-bg {
   width: max-content;
 }
 
-.ship-value {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 2ch;
-}
-
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-input-background) !important;
   border: 1px solid var(--color-text-dark-primary);
@@ -1309,7 +1313,7 @@ img.ship-mask-bg {
   grid-area: ship-requirements;
   z-index: 3;
   text-align: center;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   width: 29em;
 }
@@ -1438,7 +1442,7 @@ input.power-total {
 }
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   vertical-align: middle;
   padding: 0.2em 0.3em;
@@ -1462,7 +1466,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: relative;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
 }
 
@@ -1699,7 +1703,7 @@ div.ship-value {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 17em;
-  padding: 2ch;
+  padding: 0 2ch;
 }
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
@@ -1726,12 +1730,12 @@ button.flexrow.flex-group-center.toggle-skills {
   text-align: center;
 }
 
-::-webkit-scrollbar-thumb {
+/*::-webkit-scrollbar-thumb {
   outline: none;
   border-radius: 3px;
-  /*background: var(--header-border);
-  border: 1px solid var(--default-color);*/
-}
+  background: var(--header-border);
+  border: 1px solid var(--default-color);
+}*/
 
 .mini-dice img.rollable {
   width: 1.5em;
