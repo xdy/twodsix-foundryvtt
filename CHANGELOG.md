@@ -1,3 +1,10 @@
+## [1.42.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.2...v1.42.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* Firefox style improvements ([#1005](https://github.com/xdy/twodsix-foundryvtt/issues/1005)) ([cac475a](https://github.com/xdy/twodsix-foundryvtt/commit/cac475adcb92e1527e76f1f07c66c0afbb5bfcb1))
+
 ## [1.42.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.1...v1.42.2) (2022-05-19)
 
 
