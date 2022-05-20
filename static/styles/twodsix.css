@@ -390,6 +390,7 @@ h2 {
 
 .npc-bgi-stats {
   grid-area: npc-bgi-stats;
+  overflow-y: hidden;
 }
 
 .npc-notes-container {
@@ -399,12 +400,14 @@ h2 {
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
   background-color: var(--s2d6-background-nearly-opaque);
+  border-width: 2px;
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
+  border-width: 2px;
 }
 
 .npc-skills {
@@ -537,10 +540,11 @@ img.character-info-mask {
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
-  border: solid;
+  border: 2px solid;
   border-radius: 2ch;
   padding: 0 1ch;
   color: var(--s2d6-default-color) !important;
+  border-width: 2px;
 }
 
 .character-bgi input, .character-bgi-npc input {
@@ -553,7 +557,7 @@ img.character-info-mask {
 .character-bgi-std input{
   background-color: transparent !important;
   border: none;
-  height: 2.4ch;
+  height: 18px;
 }
 
 .bgi-age input {
@@ -583,9 +587,10 @@ img.character-info-mask {
 }
 
 .bgi-movement select {
-  width: 12ch;
+  width: 14ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
+  font-size: smaller;
 }
 
 .bgi-char-narrow {
@@ -676,8 +681,14 @@ span.bgi-charEdit {
 }
 
 .stat-table {
-  margin: 0.1em 0 0 -0.2em;
-  /* width: 50%; */
+  font-size: 0.8em;
+  margin: 0.5em 0 0;
+}
+
+.stat-table-npc {
+  font-size: 12px;
+  margin: 0.5em 0 0;
+  overflow-x: hidden;
 }
 
 .stat-table-small {
@@ -712,15 +723,16 @@ span.stat-name-table, input.stat-name-table {
   cursor: pointer;
   text-align: center !important;
   width: 4ch;
+  height: 2ch;
   transform: rotate(-45deg);
+  margin: 0;
+  padding: 0;
 }
 
 input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
   border: none;
-  margin: 0;
-  padding: 0;
 }
 
 .stat input, .special input {
@@ -825,6 +837,7 @@ span.stat-modifier-table {
 
 span.stat-ability-table input, span.stat-modifier-table input {
   width: 4ch;
+  height: 3.5ch;
 }
 
 span.stat-damage {
@@ -844,6 +857,7 @@ span.stat-damage-table input {
   border-width: thin !important;
   border-radius: 15%;
   width: 4ch;
+  height: 3.5ch;
   border-color: var(--s2d6-default-color);
 }
 
@@ -1615,6 +1629,7 @@ img.ship-mask-bg {
   border: solid;
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);
+  border-width: 2px;
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
@@ -1624,6 +1639,8 @@ img.ship-mask-bg {
   min-height: 48px;
   /* max-height: 100%; */
   width: 90%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
 }
 
 .ship-hull {
@@ -1913,6 +1930,7 @@ a.ship-notes-tab.active {
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: relative;
+  /* width:fit-content; */
 }
 
 .ship-grid {

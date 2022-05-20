@@ -295,7 +295,7 @@ export default function registerHandlebarsHelpers(): void {
       }
     }
     const degrees = Math.round(inputPercentage * 360);
-    return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border:solid;`;
+    return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border: 1px solid;`;
   });
 
   // Handy for debugging
