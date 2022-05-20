@@ -39,7 +39,7 @@ export class TwodsixRollSettings {
     this.displayLabel = settings?.displayLabel ?? "";
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
-    this.timeRollFormula = "";
+    this.timeRollFormula = "1d6";
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {

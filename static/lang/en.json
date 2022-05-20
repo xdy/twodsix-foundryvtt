@@ -131,6 +131,7 @@
           "hrs": "hour(s)",
           "days": "day(s)",
           "weeks": "week(s)",
+          "months": "month(s)",
           "rounds": "round(s)"
         }
       },
@@ -400,7 +401,7 @@
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
-      "MakesChatRollAction": "Takes the _ACTION_NAME_ action from the _POSITION_NAME_ position",
+      "MakesChatRollAction": "Uses the _ACTION_NAME_ action from the _POSITION_NAME_ position.",
       "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
       "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
       "ActionMisses": "Misses _WHILE_USING_with an effect of _EFFECT_VALUE_",
@@ -474,7 +475,8 @@
       "using": "using {characteristic}",
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
-      "BonusDamage": "Bonus Damage"
+      "BonusDamage": "Bonus Damage",
+      "Timeframe": "Time"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {

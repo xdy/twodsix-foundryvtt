@@ -2399,6 +2399,10 @@ background: var(--s2d6-sidebar-background);
   font-size: inherit;
 }
 
+.dice-total {
+  white-space: pre-wrap;
+}
+
 .dice-roll .dice-total.crit-fail-roll {
   color: var(--s2d6-crit-fail);
 }

@@ -142,25 +142,7 @@ export class TwodsixDiceRoll {
     const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
 
-    let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `.` : ``;
-
-    // Add timeframe if requred
-    if (game.settings.get("twodsix", "showTimeframe")  && this.settings.selectedTimeUnit !== "none") {
-      if (Roll.validate(this.settings.timeRollFormula)) {
-        const timeToComplete = new Roll(this.settings.timeRollFormula).evaluate({async: false}).total;
-        const timeUnits = game.i18n.localize(TWODSIX.TimeUnits[this.settings.selectedTimeUnit]);
-        // add spacing if necessary
-        if (flavor !== ``) {
-          flavor += `  `;
-        }
-        flavor += game.i18n.localize("TWODSIX.Chat.Roll.taskDuration").replace("_TIME_", timeToComplete.toString()).replace("_UNITS_", timeUnits);
-      }
-    }
-    // add a line break if necessary
-    if (flavor !== ``) {
-      flavor += `<br>`;
-    }
-
+    let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>`: ``;
     flavor += `${rollingString}: ${difficulty}`;
 
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
@@ -197,6 +179,14 @@ export class TwodsixDiceRoll {
       flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
     }
 
+    // Add timeframe if requred
+    let timeToComplete = ``;
+    if (game.settings.get("twodsix", "showTimeframe")  && this.settings.selectedTimeUnit !== "none") {
+      if (Roll.validate(this.settings.timeRollFormula)) {
+        timeToComplete = new Roll(this.settings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.settings.selectedTimeUnit]);
+      }
+    }
+
     await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
@@ -205,7 +195,8 @@ export class TwodsixDiceRoll {
         flags: {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),
-          "twodsix.effect": this.effect
+          "twodsix.effect": this.effect,
+          "twodsix.timeframe": timeToComplete
         }
       },
       {rollMode: this.settings.rollMode}

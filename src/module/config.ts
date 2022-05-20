@@ -421,6 +421,7 @@ export const TimeUnits = {
   hrs: "TWODSIX.Actor.Skills.Timeframe.hrs",
   days: "TWODSIX.Actor.Skills.Timeframe.days",
   weeks: "TWODSIX.Actor.Skills.Timeframe.weeks",
+  months: "TWODSIX.Actor.Skills.Timeframe.months",
   rounds: "TWODSIX.Actor.Skills.Timeframe.rounds"
 };
 

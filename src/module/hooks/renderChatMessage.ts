@@ -16,7 +16,14 @@ Hooks.on('renderChatMessage', (app, html) => {
     if (!isNaN(Number(effect))) {
       const sumString = game.i18n.localize('TWODSIX.Rolls.sum').capitalize();
       const effectString = game.i18n.localize('TWODSIX.Rolls.Effect');
-      diceTotal.text(`${sumString}: ${diceTotal.text()} ${effectString}: ${effect}`);
+
+      if (game.settings.get("twodsix", "showTimeframe") && <string>app.getFlag("twodsix", "timeframe") !== '' && <string>app.getFlag("twodsix", "timeframe")) {
+        const timeframe = <string>app.getFlag("twodsix", "timeframe");
+        const timeString = game.i18n.localize('TWODSIX.Rolls.Timeframe');
+        diceTotal.text(`${sumString}: ${diceTotal.text()} ${effectString}: ${effect}\n${timeString}: ${timeframe}`);
+      } else {
+        diceTotal.text(`${sumString}: ${diceTotal.text()} ${effectString}: ${effect}`);
+      }
     }
 
     // Color crits
