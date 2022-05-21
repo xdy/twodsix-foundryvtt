@@ -59,7 +59,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 825,
-      height: 648,
+      height: 656,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
       scrollY: [".skills", ".inventory", ".finances", ".info", ".notes"]

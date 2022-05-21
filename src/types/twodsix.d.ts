@@ -99,6 +99,7 @@ declare global {
       'twodsix.addEffectForShipDamage': boolean;
       'twodsix.unarmedDamage': string;
       'twodsix.autoAddUnarmed': boolean;
+      'twodsix.showTimeframe': boolean;
     }
   }
 }
