@@ -445,7 +445,8 @@ export default class TwodsixActor extends Actor {
         "type": "weapon",
         "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
         "quantity": 1,
-        "skill": this.getUntrainedSkill().id || ""
+        "skill": this.getUntrainedSkill().id || "",
+        "equipped": "equipped"
       },
     };
     await (this.createEmbeddedDocuments("Item", [data]));
