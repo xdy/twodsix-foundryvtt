@@ -1,9 +1,10 @@
 //import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
+import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
-  if (checkForWounds(update.data)) {
+  if (checkForWounds(update.data) && actor.data.type === "traveller") {
     applyWoundedEffect(actor);
   }
 });
@@ -69,7 +70,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       await setConditionState(deadEffectLabel, selectedActor, false);
 
       if (['CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-        if (isUnconsciousCE(selectedActor) && !isAlreadyUnconscious) {
+        if (isUnconsciousCE(<Traveller>selectedActor.data.data) && !isAlreadyUnconscious) {
           await setConditionState(unconsciousEffectLabel, selectedActor, true);
         }
       } else if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
@@ -137,41 +138,42 @@ async function setEffectState(effectLabel: string, targetActor: TwodsixActor, st
   }
 }
 
-export function getIconTint(selectedActor: Record<string, any>): string {
+export function getIconTint(selectedActor: TwodsixActor): string {
+  const selectedTraveller = <Traveller>selectedActor.data.data;
   switch (game.settings.get('twodsix', 'ruleset')) {
     case 'CD':
     case 'CLU':
-      return (getCDWoundTint(selectedActor));
+      return (getCDWoundTint(selectedTraveller));
     case 'CEL':
     case 'CEFTL':
-      return (getCELWoundTint(selectedActor));
+      return (getCELWoundTint(selectedTraveller));
     case 'CE':
     case 'OTHER':
-      return (getCEWoundTint(selectedActor));
+      return (getCEWoundTint(selectedTraveller));
     case 'CEQ':
     case 'CEATOM':
     case 'BARBARIC':
-      return (getCEAWoundTint(selectedActor));
+      return (getCEAWoundTint(selectedTraveller));
     default:
       return ('');
   }
 }
 
-export function getCDWoundTint(selectedActor: Record<string, any>): string {
+export function getCDWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
-  if (selectedActor.data.data.characteristics.lifeblood.current <= 0) {
+  if (selectedTraveller.characteristics.lifeblood.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedActor.data.data.characteristics.lifeblood.current < (selectedActor.data.data.characteristics.lifeblood.value / 2)) {
+  } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedActor.data.data.characteristics.lifeblood.damage > 0) {
+  } else if (selectedTraveller.characteristics.lifeblood.damage > 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
 
-export function getCELWoundTint(selectedActor: Record<string, any>): string {
+export function getCELWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
-  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
+  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
     case 0:
       if (testArray.filter(chr => chr.damage > 0).length > 0) {
@@ -193,9 +195,9 @@ export function getCELWoundTint(selectedActor: Record<string, any>): string {
   return returnVal;
 }
 
-export function getCEWoundTint(selectedActor: Record<string, any>): string {
+export function getCEWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
-  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
+  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
     case 0:
       if (testArray.filter(chr => chr.damage > 0).length > 0) {
@@ -217,21 +219,21 @@ export function getCEWoundTint(selectedActor: Record<string, any>): string {
   }
   return returnVal;
 }
-export function isUnconsciousCE(selectedActor: Record<string, any>): boolean {
-  const testArray = [selectedActor.data.data.characteristics.strength, selectedActor.data.data.characteristics.dexterity, selectedActor.data.data.characteristics.endurance];
+export function isUnconsciousCE(selectedTraveller: Traveller): boolean {
+  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   return (testArray.filter(chr => chr.current <= 0).length === 2);
 }
 
-export function getCEAWoundTint(selectedActor: Record<string, any>): string {
+export function getCEAWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
 
-  if (selectedActor.data.data.characteristics[lfbCharacteristic].current <= 0) {
+  if (selectedTraveller.characteristics[lfbCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
-  } else if (selectedActor.data.data.characteristics[lfbCharacteristic].current < (selectedActor.data.data.characteristics[lfbCharacteristic].value / 2)) {
+  } else if (selectedTraveller.characteristics[lfbCharacteristic].current < (selectedTraveller.characteristics[lfbCharacteristic].value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
-  } else if (selectedActor.data.data.characteristics[endCharacteristic].current <= 0) {
+  } else if (selectedTraveller.characteristics[endCharacteristic].current <= 0) {
     returnVal = DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
