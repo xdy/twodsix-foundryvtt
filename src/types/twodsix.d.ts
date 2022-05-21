@@ -100,6 +100,7 @@ declare global {
       'twodsix.unarmedDamage': string;
       'twodsix.autoAddUnarmed': boolean;
       'twodsix.showTimeframe': boolean;
+      'twodsix.showStatusIcons': boolean;
     }
   }
 }

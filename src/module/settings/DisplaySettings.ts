@@ -31,6 +31,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showItemReferences', true));
     settings.push(booleanSetting('showIcons', false));
     settings.push(booleanSetting('useEncumbrance', false));
+    settings.push(booleanSetting('showStatusIcons', true));
     return settings;
   }
 }
