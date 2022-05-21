@@ -1,52 +1,72 @@
 <!-- TODO Move this file -->
 <form>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
-      <select name="difficulty">
-        {{#select difficulty}}
-          {{#each difficulties}}
-            <option value="{{@key}}">{{localize @key}} (
-              {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
-            </option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Type"}}
-      <select name="rollType">
-        {{#select rollType}}
-          {{#each rollTypes as |type|}}
-            <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
-  {{#if skillRoll}}
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Items.Skills.Modifier"}}
-      <select class="select-mod" name="characteristic" value={{characteristic}}>
-        {{selectOptions characteristicList selected=initialChoice}}
-      </select>
-    </label>
-  </div>
+  <fieldset>
+  <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
+        <select name="difficulty">
+          {{#select difficulty}}
+            {{#each difficulties}}
+              <option value="{{@key}}">{{localize @key}} (
+                {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+              </option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Type"}}
+        <select name="rollType">
+          {{#select rollType}}
+            {{#each rollTypes as |type|}}
+              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    {{#if skillRoll}}
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Items.Skills.Modifier"}}
+        <select class="select-mod" name="characteristic" value={{characteristic}}>
+          {{selectOptions characteristicList selected=initialChoice}}
+        </select>
+      </label>
+    </div>
+    {{/if}}
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
+        <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
+        <select name="rollMode">
+          {{#select rollMode}}
+            {{#each rollModes as |label mode|}}
+              <option value="{{mode}}">{{localize label}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+  </fieldset>
+  <br>
+  {{#if (twodsix_showTimeframe)}}
+  <fieldset>
+    <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}<br>
+        <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
+      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.Units"}}<br>
+        <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
+          {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
+        </select>
+      </label>
+    </div>
+  </fieldset>
+  <br>
   {{/if}}
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
-      <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();"/>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
-      <select name="rollMode">
-        {{#select rollMode}}
-          {{#each rollModes as |label mode|}}
-            <option value="{{mode}}">{{localize label}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
 </form>
