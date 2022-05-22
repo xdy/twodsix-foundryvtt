@@ -1,3 +1,10 @@
+## [1.43.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.0...v1.43.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* improve show wounds option ([#1009](https://github.com/xdy/twodsix-foundryvtt/issues/1009)) ([ec608a4](https://github.com/xdy/twodsix-foundryvtt/commit/ec608a4b1550b4d83fee6e806b5cc905688fabed))
+
 # [1.43.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.3...v1.43.0) (2022-05-20)
 
 
