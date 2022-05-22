@@ -57,11 +57,11 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 
   if (!tintToApply) {
     await setConditionState(deadEffectLabel, selectedActor, false);
-    await setEffectState(woundedEffectLabel, selectedActor, false, tintToApply);
+    await setWoundedState(woundedEffectLabel, selectedActor, false, tintToApply);
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
       await setConditionState(deadEffectLabel, selectedActor, true);
-      await setEffectState(woundedEffectLabel, selectedActor, false, tintToApply);
+      await setWoundedState(woundedEffectLabel, selectedActor, false, tintToApply);
       await setConditionState(unconsciousEffectLabel, selectedActor, false);
     } else {
       const oldWoundState = await selectedActor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
@@ -85,7 +85,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
         }
       }
 
-      await setEffectState(woundedEffectLabel, selectedActor, true, tintToApply);
+      await setWoundedState(woundedEffectLabel, selectedActor, true, tintToApply);
     }
   }
 }
@@ -100,13 +100,24 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
     } else {
       targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === targetActor.id);
     }
-    if (targetToken) {
-      await (<Token>targetToken).toggleEffect(targetEffect);
+    if (targetToken && targetEffect) {
+      if (effectLabel === "Dead" ) {
+        //await (<TokenDocument>targetActor.token)?.toggleActiveEffect(targetEffect, {active: state, overlay: true});
+        await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
+        // Set defeated if in combat
+        const fighters = game.combats?.active?.data.combatants;
+        const combatant = fighters?.find((f: Combatant) => f.data.tokenId === (<Token>targetToken).id);
+        if (combatant !== undefined) {
+          await combatant.update({defeated: state});
+        }
+      } else {
+        await (<Token>targetToken).toggleEffect(targetEffect, {active: state});
+      }
     }
   }
 }
 
-async function setEffectState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
+async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
   if (isAlreadySet && state === false) {
     if(isAlreadySet.id) {
