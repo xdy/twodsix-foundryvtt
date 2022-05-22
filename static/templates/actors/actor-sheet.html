@@ -9,6 +9,14 @@
       {{/unless}}
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        {{#if actor.data.settings.showStatusIcons}}
+        <span class="status-icons">
+            {{#each actor.effects as |anEffect|}}
+            {{actor.effects}}
+              <img class="condition-icon" src="{{anEffect.icon}}" title="{{anEffect.label}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
+            {{/each}}
+        {{/if}}
+        </span>
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
