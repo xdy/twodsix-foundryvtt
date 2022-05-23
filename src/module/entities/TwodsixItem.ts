@@ -365,6 +365,17 @@ export default class TwodsixItem extends Item {
 
   public async refill(): Promise<void> {
     const consumable = <Consumable>this.data.data;
+
+    //Make a duplicate and add to inventory if not empty
+    if (consumable.currentCount > 0) {
+      const partialConsumable = duplicate(this.data);
+      (<Consumable>partialConsumable.data).quantity = 1;
+      if (partialConsumable) {
+        await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
+      }
+    }
+
+    //refill quantity
     if (consumable.quantity > 1) {
       await this.update({
         "data.quantity": consumable.quantity - 1,
