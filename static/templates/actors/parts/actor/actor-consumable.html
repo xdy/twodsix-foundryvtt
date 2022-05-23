@@ -9,7 +9,7 @@
         <button class="right-button adjust-consumable" {{#iff currentCount "===" max}}disabled{{/iff}} data-value="-1">+</button>
       </span>
     </span>
-    <button {{#iff currentCount "===" max}}disabled{{/iff}} class="refill-button">
+    <button {{#iff currentCount '>=' max}}disabled{{/iff}} class="refill-button">
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
