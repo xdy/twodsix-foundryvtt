@@ -370,9 +370,7 @@ export default class TwodsixItem extends Item {
     if (consumable.currentCount > 0) {
       const partialConsumable = duplicate(this.data);
       (<Consumable>partialConsumable.data).quantity = 1;
-      if (partialConsumable) {
-        await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
-      }
+      await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
     }
 
     //refill quantity
