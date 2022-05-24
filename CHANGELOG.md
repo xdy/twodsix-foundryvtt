@@ -1,3 +1,10 @@
+## [1.43.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.1...v1.43.2) (2022-05-24)
+
+
+### Bug Fixes
+
+* save non-empty magazines when reloading ([#1011](https://github.com/xdy/twodsix-foundryvtt/issues/1011)) ([3e46932](https://github.com/xdy/twodsix-foundryvtt/commit/3e469325e457685d7a91dd148bf60b1f17490c89))
+
 ## [1.43.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.0...v1.43.1) (2022-05-22)
 
 
