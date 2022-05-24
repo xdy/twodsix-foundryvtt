@@ -2,19 +2,19 @@
  * @extends {Item}
  */
 
-import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
+import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import { Component, Consumable, Gear, Skills, UsesConsumables, Weapon } from "../../types/template";
+import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 
 
 export default class TwodsixItem extends Item {
-  public static async create(data, options?): Promise<TwodsixItem> {
+  public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
     if (item?.data.type === 'weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
-      await item.update({ 'img': 'systems/twodsix/assets/icons/default_weapon.png' });
+      await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
     }
 
     return item;
@@ -23,18 +23,18 @@ export default class TwodsixItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
-  prepareData(): void {
+  prepareData():void {
     super.prepareData();
     if (this.getFlag("twodsix", "untrainedSkill")) {
       this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
   }
 
-  prepareConsumable(gear: Gear = <Gear>this.data.data): void {
+  prepareConsumable(gear:Gear = <Gear>this.data.data):void {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 
       //TODO What is consumableData? Where does it come from? Not in template.json
-      gear.consumableData = gear.consumables.map((consumableId: string) => {
+      gear.consumableData = gear.consumables.map((consumableId:string) => {
         return this.actor?.items.filter((item) => item.id === consumableId)[0];
       });
       gear.consumableData.sort((a, b) => {
@@ -43,23 +43,23 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async addConsumable(consumableId: string, gear: Gear = <Gear>this.data.data): Promise<void> {
+  public async addConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
     if (gear.consumables != undefined) {
       if (gear.consumables.includes(consumableId)) {
         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
-        await this.update({ "data.consumables": gear.consumables.concat(consumableId) }, {});
+        await this.update({"data.consumables": gear.consumables.concat(consumableId)}, {});
       }
     } else {
       ui.notifications.error(`Twodsix | Consumable can't be added to item ${this.id}`);
     }
   }
 
-  public async removeConsumable(consumableId: string, gear: Gear = <Gear>this.data.data): Promise<void> {
-    const updatedConsumables = gear.consumables.filter((cId: string) => {
+  public async removeConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
+    const updatedConsumables = gear.consumables.filter((cId:string) => {
       return (cId !== consumableId && cId !== null && this.actor?.items.get(cId) !== undefined);
     });
-    const updateData = { "data.consumables": updatedConsumables };
+    const updateData = {"data.consumables": updatedConsumables};
     if (gear.useConsumableForAttack === consumableId) {
       updateData["data.useConsumableForAttack"] = "";
     }
@@ -68,7 +68,7 @@ export default class TwodsixItem extends Item {
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType: string, showThrowDialog: boolean, rateOfFireCE: number | null = null, showInChat = true, weapon: Weapon = <Weapon>this.data.data): Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.data.data):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -80,17 +80,17 @@ export default class TwodsixItem extends Item {
     let numberOfAttacks = 1;
     let bonusDamage = "0";
     const rof = parseInt(weapon.rateOfFire, 10);
-    const rateOfFire: number = rateOfFireCE ?? (!isNaN(rof) ? rof : 0);
+    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 0);
     if (attackType && !rateOfFire) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
     }
-    const skill: TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
-    let tmpSettings: { characteristic?: string | undefined, diceModifier?: number | undefined } = {
+    const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
+    let tmpSettings:{ characteristic?:string | undefined, diceModifier?:number | undefined } = {
       characteristic: undefined,
       diceModifier: undefined
     };
     if (skill) {
-      tmpSettings = { characteristic: (<Skills>skill.data.data).characteristic || 'NONE' };
+      tmpSettings = {characteristic: (<Skills>skill.data.data).characteristic || 'NONE'};
     }
 
     let usedAmmo = 1;
@@ -113,7 +113,7 @@ export default class TwodsixItem extends Item {
         break;
     }
 
-    const settings: TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this);
+    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this);
 
     if (!settings.shouldRoll) {
       return;
@@ -148,17 +148,19 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async skillRoll(showThrowDialog: boolean, tmpSettings?: TwodsixRollSettings, showInChat = true): Promise<TwodsixDiceRoll | void> {
-    let skill: TwodsixItem | null = null;
-    let item: TwodsixItem | undefined;
+  public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
+    let skill:TwodsixItem | null = null;
+    let item:TwodsixItem | undefined;
 
     // Determine if this is a skill or an item
     const usesConsumable = <UsesConsumables>this.data.data;
     if (this.type == "skills") {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       skill = this;
       item = undefined;
     } else if (usesConsumable.skill) {
       skill = this.actor?.items.get(usesConsumable.skill) as TwodsixItem;
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
     }
 
@@ -202,7 +204,7 @@ export default class TwodsixItem extends Item {
     return diceRoll;
   }
 
-  public async rollDamage(rollMode: DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false): Promise<Roll | void> {
+  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<Roll | void> {
     const weapon = <Weapon | Component>this.data.data;
 
     if (!weapon.damage) {
@@ -221,7 +223,7 @@ export default class TwodsixItem extends Item {
       let apValue = 0;
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.data.data);
-        await damage.evaluate({ async: true }); // async: true will be default in foundry 0.10
+        await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
         apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor?.id || "");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -233,7 +235,7 @@ export default class TwodsixItem extends Item {
       if (this.data.type === "component") {
         if (Roll.validate(this.data.data.radDamage)) {
           radDamage = new Roll(this.data.data.radDamage, this.actor?.data.data);
-          await radDamage.evaluate({ async: true });
+          await radDamage.evaluate({async: true});
         }
       }
 
@@ -269,18 +271,20 @@ export default class TwodsixItem extends Item {
           }
         );
         await damage.toMessage({
-          speaker: this.actor ? ChatMessage.getSpeaker({ actor: this.actor }) : "???",
+          // @ts-ignore
+          speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : "???",
           content: html,
           flags: {
             "core.canPopout": true,
             "transfer": transfer
           }
-        }, { rollMode: rollMode });
+        }, {rollMode: rollMode});
       }
       return damage;  //probably should return contentData instead
     }
   }
-  public static getApValue(weapon: Weapon, actorID = ""): number {
+
+  public static getApValue(weapon:Weapon, actorID = ""):number {
     let returnValue = weapon.armorPiercing;
     if (weapon.useConsumableForAttack && actorID) {
       const actor = game.actors?.get(actorID);
@@ -292,8 +296,8 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public static async confirmRollFormula(initFormula: string, title: string): Promise<string> {
-    const returnText: string = await new Promise((resolve) => {
+  public static async confirmRollFormula(initFormula:string, title:string):Promise<string> {
+    const returnText:string = await new Promise((resolve) => {
       new Dialog({
         title: title,
         content:
@@ -302,7 +306,7 @@ export default class TwodsixItem extends Item {
           Roll: {
             label: `<i class="fas fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
             callback:
-              (html: JQuery) => {
+              (html:JQuery) => {
                 resolve(html.find('[name="outputFormula"]')[0]["value"]);
               }
           }
@@ -313,7 +317,7 @@ export default class TwodsixItem extends Item {
     return (returnText ?? "");
   }
 
-  public static burstAttackDM(number: number | null): number {
+  public static burstAttackDM(number:number | null):number {
     if (number === null) {
       return 0;
     }
@@ -330,7 +334,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static burstBonusDamage(number: number | null): string {
+  public static burstBonusDamage(number:number | null):string {
     if (number === null) {
       return '0';
     }
@@ -349,26 +353,26 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static simplifySkillName(skillName: string): string {
+  public static simplifySkillName(skillName:string):string {
     return skillName.replace(/\W/g, "");
   }
 
   //////// CONSUMABLE ////////
-  public async consume(quantity: number): Promise<void> {
+  public async consume(quantity:number):Promise<void> {
     const consumableLeft = (<Consumable>this.data.data).currentCount - quantity;
     if (consumableLeft >= 0) {
-      await this.update({ "data.currentCount": consumableLeft }, {});
+      await this.update({"data.currentCount": consumableLeft}, {});
     } else {
-      throw { name: 'NoAmmoError' };
+      throw {name: 'NoAmmoError'};
     }
   }
 
-  public async refill(): Promise<void> {
+  public async refill():Promise<void> {
     const consumable = <Consumable>this.data.data;
     if (consumable.currentCount < consumable.max) {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
-        if (consumable.currentCount > 0 ) {
+        if (consumable.currentCount > 0) {
           const partialConsumable = duplicate(this.data);
           (<Consumable>partialConsumable.data).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
@@ -379,18 +383,18 @@ export default class TwodsixItem extends Item {
           "data.currentCount": consumable.max
         }, {});
       } else {
-        throw { name: 'TooLowQuantityError' };
+        throw {name: 'TooLowQuantityError'};
       }
     }
   }
 }
 
 /**
-   * Handle clickable damage rolls.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-export async function onRollDamage(event): Promise<void> {
+ * Handle clickable damage rolls.
+ * @param {Event} event   The originating click event
+ * @private
+ */
+export async function onRollDamage(event):Promise<void> {
   event.preventDefault();
   event.stopPropagation();
   const itemId = $(event.currentTarget).parents('.item').data('item-id');
@@ -399,7 +403,7 @@ export async function onRollDamage(event): Promise<void> {
   const element = $(event.currentTarget);
   const bonusDamageFormula = String(element.data('bonus-damage') || 0);
 
-  const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+  const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
   const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
 
   await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, showFormulaDialog);
