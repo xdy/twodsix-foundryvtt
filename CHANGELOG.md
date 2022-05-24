@@ -1,3 +1,10 @@
+## [1.43.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.2...v1.43.3) (2022-05-24)
+
+
+### Reverts
+
+* Revert "chore: Update dependencies" ([2368a37](https://github.com/xdy/twodsix-foundryvtt/commit/2368a37fd2d9f9da93846f52298bbb77e748b295))
+
 ## [1.43.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.1...v1.43.2) (2022-05-24)
 
 
