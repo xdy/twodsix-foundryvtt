@@ -365,13 +365,22 @@ export default class TwodsixItem extends Item {
 
   public async refill(): Promise<void> {
     const consumable = <Consumable>this.data.data;
-    if (consumable.quantity > 1) {
-      await this.update({
-        "data.quantity": consumable.quantity - 1,
-        "data.currentCount": consumable.max
-      }, {});
-    } else {
-      throw { name: 'TooLowQuantityError' };
+    if (consumable.currentCount < consumable.max) {
+      if (consumable.quantity > 1) {
+        //Make a duplicate and add to inventory if not empty
+        if (consumable.currentCount > 0 ) {
+          const partialConsumable = duplicate(this.data);
+          (<Consumable>partialConsumable.data).quantity = 1;
+          await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
+        }
+        //refill quantity
+        await this.update({
+          "data.quantity": consumable.quantity - 1,
+          "data.currentCount": consumable.max
+        }, {});
+      } else {
+        throw { name: 'TooLowQuantityError' };
+      }
     }
   }
 }
