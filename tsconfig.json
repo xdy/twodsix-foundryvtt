@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "typeRoots": ["./types"],
     "alwaysStrict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

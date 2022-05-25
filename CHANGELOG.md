@@ -1,3 +1,17 @@
+## [1.43.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.2...v1.43.3) (2022-05-24)
+
+
+### Reverts
+
+* Revert "chore: Update dependencies" ([2368a37](https://github.com/xdy/twodsix-foundryvtt/commit/2368a37fd2d9f9da93846f52298bbb77e748b295))
+
+## [1.43.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.1...v1.43.2) (2022-05-24)
+
+
+### Bug Fixes
+
+* save non-empty magazines when reloading ([#1011](https://github.com/xdy/twodsix-foundryvtt/issues/1011)) ([3e46932](https://github.com/xdy/twodsix-foundryvtt/commit/3e469325e457685d7a91dd148bf60b1f17490c89))
+
 ## [1.43.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.0...v1.43.1) (2022-05-22)
 
 
