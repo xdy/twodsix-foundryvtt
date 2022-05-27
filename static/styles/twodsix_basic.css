@@ -140,6 +140,130 @@ label.checkbox > input[type="checkbox"] {
   display: inline-block;
 }
 
+.vehicle-photo {
+  text-align: center;
+  z-index: 0;
+  object-fit: contain;
+}
+
+.vehicle-photo img {
+  vertical-align: middle;
+  max-height: 100%;
+  z-index: -1;
+}
+
+.vehicle-content-container {
+  display: grid;
+  grid-template-columns: 17em 19em 17em;
+  grid-template-rows: 20em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "vehicle-name-photo vehicle-stats vehicle-notes"
+  "vehicle-systems vehicle-systems vehicle-armor"
+  "vehicle-weapons vehicle-weapons vehicle-armor";
+}
+
+.vehicle-name-photo {
+  grid-area: vehicle-name-photo;
+  height: 95%;
+  width: 100%;
+}
+
+.vehicle-stats {
+  grid-area: vehicle-stats;
+  overflow-y: hidden;
+}
+
+.vehicle-notes {
+  grid-area: vehicle-notes;
+  border: 2px solid;
+  border-radius: 2ch;
+}
+
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
+
+  border: 2px solid;
+  border-radius: 2ch;
+}
+
+.vehicle-systems {
+  grid-area: vehicle-systems;
+}
+
+.vehicle-weapons {
+  grid-area: vehicle-weapons;
+}
+
+.vehicle-traits {
+  grid-area: vehicle-traits;
+}
+
+.vehicle-armor {
+  grid-area: vehicle-armor;
+}
+
+.vehicle-name {
+  height: 22px;
+  width: 100%;
+}
+
+.vehicle-name input[type='text'] {
+  background-color: transparent ;
+  font-size: 1.2em;
+  text-align: center;
+  border: none;
+}
+
+.single-line {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: flex-start;
+  /*max-width: 75%;*/
+}
+
+.vehicle-cell {
+  width: 9ch;
+  text-align: center;
+}
+
+.vehicle-armor-name textarea {
+  border: 1px solid;
+  border-radius: 1ch !important;
+  text-align: center;
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  font-family: inherit;
+}
+
+.vehicle-inset {
+  margin: 1ch 2ch;
+}
+
+.weapons-stored {
+  display: grid;
+  grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ". . . . . . . .";
+}
+
+.grid-columns-weapon {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ".";
+  width: 100%;
+  border: solid 1px var(--s2d6-input-background);
+}
+
+.storage-wrapper-auto {
+  margin-top: 0.5em;
+  overflow-y: auto;
+}
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -984,7 +1108,7 @@ span.total-output {
   padding: 1em;
 }
 
-.item-title, .item-title-npc {
+.item-title, .item-title-npc,  .item-title-vehicle {
   height: 22px;
   display: block;
   color: var(--s2d6-app-color);
