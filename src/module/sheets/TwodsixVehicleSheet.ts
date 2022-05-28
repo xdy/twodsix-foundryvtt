@@ -34,6 +34,10 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     //html.find('.rollableSkill').on('click', this._onSkillRoll(this));
   }
 
+  private _onSkillRoll(event:Event):void {
+    console.log("Here", event);
+  }
+
   private _onToggleComponent(event:Event):void {
     if (event.currentTarget) {
       const system = event.currentTarget["dataset"]["key"];

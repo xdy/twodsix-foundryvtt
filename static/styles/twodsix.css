@@ -566,6 +566,15 @@ h2 {
   border: solid 1px var(--s2d6-input-background);
 }
 
+.weapons-header {
+  border-width: 1px;
+  border-style: solid none;
+  border-color: var(--s2d6-default-color);
+  position: sticky;
+  top:0%;
+  z-index: 20;
+}
+
 .storage-wrapper-auto {
   margin-top: 0.5em;
   overflow-y: auto;

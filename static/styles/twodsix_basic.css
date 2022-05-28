@@ -260,6 +260,15 @@ label.checkbox > input[type="checkbox"] {
   border: solid 1px var(--s2d6-input-background);
 }
 
+.weapons-header {
+  border-width: 1px;
+  border-style: solid none;
+  border-color: var(--s2d6-background-opaque);
+  position: sticky;
+  top:0%;
+  min-height: 4ch;
+}
+
 .storage-wrapper-auto {
   margin-top: 0.5em;
   overflow-y: auto;
