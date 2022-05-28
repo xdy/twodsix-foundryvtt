@@ -25,11 +25,7 @@
           <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
 
           <span class="item-name centre">
-            {{#iff item.data.data.subtype "===" "armament"}}
               {{#iff item.data.data.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.data.data.damage 3}}{{else}}&mdash;{{/iff}}</span>
-            {{else}}
-             &mdash;
-            {{/iff}}
           </span>
           <span class="item-name centre">{{item.data.data.hits}}</span>
           <span class="item-name centre component-toggle">

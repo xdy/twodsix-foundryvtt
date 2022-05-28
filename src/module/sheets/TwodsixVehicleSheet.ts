@@ -1,6 +1,6 @@
 import { Component } from "src/types/template";
 import { TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
-import { onRollDamage } from "../entities/TwodsixItem";
+import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 
 export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
@@ -31,11 +31,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     super.activateListeners(html);
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
-    //html.find('.rollableSkill').on('click', this._onSkillRoll(this));
-  }
-
-  private _onSkillRoll(event:Event):void {
-    console.log("Here", event);
+    html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
   }
 
   private _onToggleComponent(event:Event):void {
@@ -50,6 +46,49 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
         const itemSelected = this.actor.items.get(li.data("itemId"));
         itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
       }
+    }
+  }
+  private _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
+    return (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+
+      func.bind(this)(event, showTrowDiag);
+    };
+  }
+  /**
+   * Handle clickable skill rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  private async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
+    //Get Controlled actor
+    let selectedActor = {};
+    if (game.user?.isGM !== true) {
+      const playerId = game.userId;
+      if (playerId !== null) {
+        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && !!a.getActiveTokens()[0])[0].data;
+        if (character != null) {
+          const charID = character._id;
+          selectedActor = <Actor>game.actors?.get(charID);
+        }
+      }
+    } else {
+      // For GM, select doctor as the selected token
+      if (canvas.tokens?.controlled !== undefined) {
+        selectedActor = <Actor>(canvas.tokens?.controlled[0].actor);
+      }
+    }
+    if (selectedActor) {
+      let skill = <TwodsixItem>(<Actor>selectedActor)?.data.items.getName(this.actor.data.data.skillToOperate);
+      if(!skill) {
+        skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
+      }
+      await skill?.skillRoll(showThrowDiag );
     }
   }
 }
