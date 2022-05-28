@@ -84,7 +84,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       }
     }
     if (selectedActor) {
-      let skill = <TwodsixItem>(<Actor>selectedActor)?.data.items.getName(this.actor.data.data.skillToOperate);
+      let skill = <TwodsixItem>(<Actor>selectedActor).data.items.getName(this.actor.data.data.skillToOperate);
       if(!skill) {
         skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
       }
