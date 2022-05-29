@@ -443,6 +443,7 @@ h2 {
   text-align: center;
   z-index: 0;
   object-fit: contain;
+  height: 95%;
 }
 
 .vehicle-photo img {
@@ -525,6 +526,7 @@ h2 {
   vertical-align: middle;
   align-items: center;
   justify-content: flex-start;
+  gap: 1ch;
   /*max-width: 75%;*/
 }
 

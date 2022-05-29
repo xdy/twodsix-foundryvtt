@@ -144,6 +144,7 @@ label.checkbox > input[type="checkbox"] {
   text-align: center;
   z-index: 0;
   object-fit: contain;
+  height: 95%;
 }
 
 .vehicle-photo img {
@@ -220,6 +221,7 @@ label.checkbox > input[type="checkbox"] {
   vertical-align: middle;
   align-items: center;
   justify-content: flex-start;
+  gap: 1ch;
   /*max-width: 75%;*/
 }
 
@@ -266,7 +268,7 @@ label.checkbox > input[type="checkbox"] {
   border-color: var(--s2d6-background-opaque);
   position: sticky;
   top:0%;
-  min-height: 4ch;
+  /*min-height: 4ch;*/
 }
 
 .storage-wrapper-auto {
