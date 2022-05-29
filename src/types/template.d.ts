@@ -355,12 +355,12 @@ export interface VehicleSystemStatus {
   weapons: string;
 }
 
-export interface VehicleManuever {
+export interface VehicleManeuver {
   speed:number;
   speedUnits:string;
   range:number;
   rangeUnits:string;
-  agility:number;
+  agility:string;
 }
 
 export interface Item {
