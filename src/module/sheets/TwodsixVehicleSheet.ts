@@ -1,5 +1,5 @@
 import { Component, Vehicle } from "src/types/template";
-import { ExtraData, TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
+import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
 import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
@@ -89,8 +89,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       if(!skill) {
         skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
       }
-      const extra:ExtraData = {
-        diceModifier: (<Vehicle>this.actor.data.data).maneuver.agility,
+      const extra = {
+        diceModifier: (<Vehicle>this.actor.data.data).maneuver.agility ? parseInt((<Vehicle>this.actor.data.data).maneuver.agility) : 0,
         event: event
       };
       const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, extra, skill);

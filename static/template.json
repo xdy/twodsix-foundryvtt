@@ -282,7 +282,7 @@
         "speedUnits": "km/h",
         "range": 0,
         "rangeUnits": "km",
-        "agility": 0
+        "agility": ""
       },
       "skillToOperate": "",
       "systemStatus": {
