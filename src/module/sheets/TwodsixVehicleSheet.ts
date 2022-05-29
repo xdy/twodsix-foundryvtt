@@ -1,6 +1,7 @@
-import { Component } from "src/types/template";
-import { TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
+import { Component, Vehicle } from "src/types/template";
+import { ExtraData, TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
 import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
+import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 
 export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
@@ -21,8 +22,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
-      width: 805,
-      height: 540,
+      width: 810,
+      height: 575,
       resizable: true,
     });
   }
@@ -39,7 +40,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       const system = event.currentTarget["dataset"]["key"];
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
       if (system) {
-        const newState = stateTransitions[this.actor.data.data.systemStatus[system]];
+        const newState = stateTransitions[(<Vehicle>this.actor.data.data).systemStatus[system]];
         this.actor.update({[`data.systemStatus.${system}`]: newState});
       } else {
         const li = $(event.currentTarget).parents(".item");
@@ -83,12 +84,20 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
         selectedActor = <Actor>(canvas.tokens?.controlled[0].actor);
       }
     }
-    if (selectedActor) {
-      let skill = <TwodsixItem>(<Actor>selectedActor).data.items.getName(this.actor.data.data.skillToOperate);
+    if (selectedActor && (<Actor>selectedActor).data.type === "traveller") {
+      let skill = <TwodsixItem>(<Actor>selectedActor).data.items.getName((<Vehicle>this.actor.data.data).skillToOperate);
       if(!skill) {
         skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
       }
-      await skill?.skillRoll(showThrowDiag );
+      const extra:ExtraData = {
+        diceModifier: (<Vehicle>this.actor.data.data).maneuver.agility,
+        event: event
+      };
+      const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, extra, skill);
+      if (!settings.shouldRoll) {
+        return;
+      }
+      await skill?.skillRoll(showThrowDiag, settings);
     }
   }
 }

@@ -478,7 +478,8 @@
       "Structure": "Structure",
       "Protection": "Protection",
       "skillToOperate": "Skill to operate",
-      "Weapons": "Weapons"
+      "Weapons": "Weapons",
+      "OpenVehicle": "Open Vehicle"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

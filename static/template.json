@@ -295,7 +295,8 @@
         "powerPlant": "operational",
         "sensors": "operational"
       },
-      "weaponsType": ""
+      "weaponsType": "",
+      "openVehicle": false
     }
   },
   "Item": {

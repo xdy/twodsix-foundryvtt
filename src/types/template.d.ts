@@ -319,7 +319,7 @@ export interface ShipPosition {
   actors?: TwodsixActor[];
 }
 
-export interface Vehcile {
+export interface Vehicle {
   name:string;
   cargoList:string;
   cost: string;
@@ -330,6 +330,7 @@ export interface Vehcile {
   skillToOperate:string;
   systemStatus: VehicleSystemStatus;
   weapons:string;
+  openVehicle:boolean;
 }
 
 export interface VehicleCrew {

@@ -56,6 +56,9 @@
             <textarea type="text" name="data.damageStats.armorLabel" value="{{data.data.damageStats.armorLabel}}">{{~data.data.damageStats.armorLabel~}}</textarea>
             </span>
           {{/if}}
+          <span class="openVehicle" title='{{localize "TWODSIX.Vehicle.OpenVehicle"}}'>{{localize "TWODSIX.Vehicle.OpenVehicle"}}:
+            <input type="checkbox" class="checkbox" name="data.openVehicle" {{checked data.data.openVehicle}} data-dtype="Boolean" />
+          </span>
         </span>
       </div>
     </div>
