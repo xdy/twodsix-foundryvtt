@@ -479,7 +479,7 @@ h2 {
   border-width: 2px;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .vehicle-traits {
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -504,10 +504,6 @@ h2 {
 
 .vehicle-stats {
   grid-area: vehicle-stats;
-}
-
-.vehicle-traits {
-  grid-area: vehicle-traits;
 }
 
 .vehicle-name {

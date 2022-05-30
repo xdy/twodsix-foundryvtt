@@ -182,7 +182,7 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .vehicle-traits {
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
 
   border: 2px solid;
   border-radius: 2ch;
@@ -194,10 +194,6 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-weapons {
   grid-area: vehicle-weapons;
-}
-
-.vehicle-traits {
-  grid-area: vehicle-traits;
 }
 
 .vehicle-armor {
@@ -253,7 +249,6 @@ label.checkbox > input[type="checkbox"] {
   height: 75%;
   max-width: 97%;
   padding: 0 1ch;
-  scrollbar-width: thin;
   font-family: inherit;
 }
 
