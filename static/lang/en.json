@@ -479,7 +479,10 @@
       "Protection": "Protection",
       "skillToOperate": "Skill to operate",
       "Weapons": "Weapons",
-      "OpenVehicle": "Open Vehicle"
+      "OpenVehicle": "Open Vehicle",
+      "techLevel": "TL",
+      "Cost": "Cost",
+      "Traits": "Traits"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

@@ -296,7 +296,9 @@
         "sensors": "operational"
       },
       "weaponsType": "",
-      "openVehicle": false
+      "openVehicle": false,
+      "techLevel": "",
+      "traits": ""
     }
   },
   "Item": {

@@ -331,6 +331,8 @@ export interface Vehicle {
   systemStatus: VehicleSystemStatus;
   weapons:string;
   openVehicle:boolean;
+  techLevel:string;
+  traits:string;
 }
 
 export interface VehicleCrew {

@@ -156,12 +156,12 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 17em 19em 17em;
-  grid-template-rows: 20em 0.5fr 0.5fr;
+  grid-template-rows: 25em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
   "vehicle-name-photo vehicle-stats vehicle-notes"
-  "vehicle-systems vehicle-systems vehicle-armor"
+  "vehicle-systems vehicle-traits vehicle-armor"
   "vehicle-weapons vehicle-weapons vehicle-armor";
 }
 
@@ -182,7 +182,7 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .vehicle-traits {
 
   border: 2px solid;
   border-radius: 2ch;
@@ -202,6 +202,10 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-armor {
   grid-area: vehicle-armor;
+}
+
+.vehicle-traits {
+  grid-area: vehicle-traits;
 }
 
 .vehicle-name {
@@ -233,9 +237,22 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-armor-name textarea {
   border: 1px solid;
   border-radius: 1ch !important;
-  text-align: center;
+  /*text-align: center;*/
   overflow-wrap: break-word;
   resize: none;
+  scrollbar-width: thin;
+  font-family: inherit;
+  height: 16ch;
+}
+
+.vehicle-traits-details textarea {
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
+  height: 75%;
+  max-width: 97%;
+  padding: 0 1ch;
   scrollbar-width: thin;
   font-family: inherit;
 }

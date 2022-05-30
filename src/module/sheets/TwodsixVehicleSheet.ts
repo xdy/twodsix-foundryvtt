@@ -22,8 +22,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
-      width: 810,
-      height: 575,
+      width: 835,
+      height: 640,
       resizable: true,
     });
   }
