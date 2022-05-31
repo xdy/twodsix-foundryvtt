@@ -442,14 +442,14 @@ h2 {
 .vehicle-photo {
   text-align: center;
   z-index: 0;
-  object-fit: contain;
-  height: 95%;
+  min-height: 0;
 }
 
 .vehicle-photo img {
   vertical-align: middle;
-  max-height: 100%;
+  height: 100%;
   z-index: -1;
+  object-fit: contain;
 }
 
 .vehicle-content-container {
@@ -466,8 +466,9 @@ h2 {
 
 .vehicle-name-photo {
   grid-area: vehicle-name-photo;
-  height: 95%;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .vehicle-notes {

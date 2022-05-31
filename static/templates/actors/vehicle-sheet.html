@@ -6,6 +6,12 @@
       </div>
       <div class="vehicle-name" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
+      {{#if (twodsix_showReferences)}}
+      <div class="item-reference">
+        <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
+        <input class="form-input" id="source" type="text" name="data.docReference" value="{{data.data.docReference}}"/>
+      </div>
+      {{/if}}
     </div>
     <div class="vehicle-stats">
       <span class="item-title-vehicle">Stats</span>

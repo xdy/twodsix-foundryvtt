@@ -333,6 +333,7 @@ export interface Vehicle {
   openVehicle:boolean;
   techLevel:string;
   traits:string;
+  docReference:string;
 }
 
 export interface VehicleCrew {

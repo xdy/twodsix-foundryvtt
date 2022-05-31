@@ -33,6 +33,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+    html.find('.open-link').on('click', this._openPDFReference.bind(this));
   }
 
   private _onToggleComponent(event:Event):void {
@@ -98,6 +99,22 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
         return;
       }
       await skill?.skillRoll(showThrowDiag, settings);
+    }
+  }
+
+  private _openPDFReference(event): void {
+    event.preventDefault();
+    const sourceString = (<Vehicle>this.actor.data.data).docReference;
+    if (sourceString) {
+      const [code, page] = sourceString.split(' ');
+      const selectedPage = parseInt(page);
+      if (ui["PDFoundry"]) {
+        ui["PDFoundry"].openPDFByCode(code, {page: selectedPage});
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFFoundryNotInstalled"));
+      }
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }
   }
 }
