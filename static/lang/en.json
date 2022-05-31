@@ -482,7 +482,8 @@
       "OpenVehicle": "Open Vehicle",
       "techLevel": "TL",
       "Cost": "Cost",
-      "Traits": "Traits"
+      "Traits": "Traits",
+      "ArmorHull": "Armor and Hull"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

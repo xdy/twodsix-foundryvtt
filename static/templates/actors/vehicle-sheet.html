@@ -4,7 +4,7 @@
       <div class="vehicle-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
       </div>
-      <div class="vehicle-name" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+      <div class="vehicle-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
       {{#if (twodsix_showReferences)}}
       <div class="item-reference">
@@ -60,7 +60,7 @@
           {{#if settings.showHullAndArmor}}
             {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-integrity-table.html"}}
           {{else}}
-            <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>
+            <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span>
             <span class="vehicle-armor-name">
             <textarea type="text" name="data.damageStats.armorLabel" value="{{data.data.damageStats.armorLabel}}">{{~data.data.damageStats.armorLabel~}}</textarea>
             </span>
