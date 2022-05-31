@@ -637,8 +637,8 @@
         "name": "Show Hero Points"
       },
       "showItemReferences": {
-        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on item sheets."
+        "hint": "Shows a text field on item and vehicle sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
+        "name": "Show reference field on vehicle and item sheets."
       },
       "ShowLawLevel": {
         "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
