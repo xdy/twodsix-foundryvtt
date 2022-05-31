@@ -454,7 +454,7 @@ h2 {
 
 .vehicle-content-container {
   display: grid;
-  grid-template-columns: 17em 19em 17em;
+  grid-template-columns: 19em 19em 17em;
   grid-template-rows: 25em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
