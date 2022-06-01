@@ -4,8 +4,8 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
-  if (checkForWounds(update.data) && actor.data.type === "traveller") {
-    applyWoundedEffect(actor);
+  if (checkForWounds(update.data) && actor.data.type === "traveller" && game.user?.isGM) {
+    await applyWoundedEffect(actor);
   }
 });
 //A check for token update doesn't seem to be needed.  But keep code just in case
@@ -54,6 +54,9 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const woundedEffectLabel = 'woundEffect';
   const deadEffectLabel = 'Dead';
   const unconsciousEffectLabel = 'Unconscious';
+  const oldWoundState = selectedActor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
+  const isAlreadyDead = selectedActor.data.effects.find(eff => eff.data.label === deadEffectLabel);
+  const isAlreadyUnconscious = selectedActor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
 
   if (!tintToApply) {
     await setConditionState(deadEffectLabel, selectedActor, false);
@@ -64,9 +67,6 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       await setWoundedState(woundedEffectLabel, selectedActor, false, tintToApply);
       await setConditionState(unconsciousEffectLabel, selectedActor, false);
     } else {
-      const oldWoundState = await selectedActor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
-      const isAlreadyDead = await selectedActor.data.effects.find(eff => eff.data.label === deadEffectLabel);
-      const isAlreadyUnconscious = await selectedActor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
       await setConditionState(deadEffectLabel, selectedActor, false);
 
       if (['CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
@@ -84,7 +84,6 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
           }
         }
       }
-
       await setWoundedState(woundedEffectLabel, selectedActor, true, tintToApply);
     }
   }
@@ -103,6 +102,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
     if (targetToken && targetEffect) {
       if (effectLabel === "Dead" ) {
         //await (<TokenDocument>targetActor.token)?.toggleActiveEffect(targetEffect, {active: state, overlay: true});
+        //const isAlreadyDead = await (<Token>targetToken).actor?.effects.filter(eff => eff.data.label === effectLabel);
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.data.combatants;
@@ -119,7 +119,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 
 async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
-  if (isAlreadySet && state === false) {
+  if (isAlreadySet && (state === false)) {
     if(isAlreadySet.id) {
       await targetActor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
     }
