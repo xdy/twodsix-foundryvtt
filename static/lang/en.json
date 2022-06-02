@@ -450,6 +450,44 @@
       "MaintenancePerMonth": "Maintenance Cost",
       "CrPerMonth": "Cr/month"
     },
+    "Vehicle": {
+      "SystemStatus": "System Status",
+      "CargoNotes": "Cargo Notes",
+      "Speed": "Speed",
+      "Range": "Range",
+      "Agility": "Agility",
+      "systems": {
+        "cargo": "Cargo",
+        "cockpit": "Cockpit",
+        "computers": "Computers",
+        "electronics": "Electronics",
+        "limbs": "Limbs / Appendages",
+        "propulsion": "Propulsion / Locomotion",
+        "powerPlant": "Power Plant",
+        "sensors": "Sensors",
+        "weapons": "Weapons"
+      },
+      "crew": {
+        "operators": "Operators",
+        "passengers": "Passengers"
+      },
+      "Movement": "Movement",
+      "Crew": "Crew",
+      "Armor": "Armor",
+      "Hull": "Hull",
+      "Structure": "Structure",
+      "Protection": "Protection",
+      "skillToOperate": "Skill to operate",
+      "Weapons": "Weapons",
+      "OpenVehicle": "Open Vehicle",
+      "techLevel": "TL",
+      "Cost": "Cost",
+      "Traits": "Traits",
+      "ArmorHull": "Armor and Hull",
+      "Regular": "Regular",
+      "Critical": "Critical",
+      "Thresholds": "Thresholds"
+    },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
@@ -603,8 +641,8 @@
         "name": "Show Hero Points"
       },
       "showItemReferences": {
-        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on item sheets."
+        "hint": "Shows a text field on item and vehicle sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
+        "name": "Show reference field on vehicle and item sheets."
       },
       "ShowLawLevel": {
         "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
@@ -750,7 +788,11 @@
       },
       "showStatusIcons": {
         "hint": "Overlay condition icons on side of actor images on sheets.",
-        "name": "Show condition icons on actor sheets"
+        "name": "Show condition icons on traveller sheets"
+      },
+      "showHullAndArmor": {
+        "hint": "Display Hull, Structure and Armor statistics on vehicle sheets.",
+        "name": "Show damage values on vehicle sheets"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -802,7 +844,7 @@
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
       "CantAutoDamageShip": "Automatic damage of ship is not supported",
-      "CantDropOnShipToken": "Dropping items on ship tokens is not supported",
+      "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
