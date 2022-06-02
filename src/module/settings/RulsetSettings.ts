@@ -65,7 +65,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting('addEffectForShipDamage', false));
     settings.push(stringSetting("unarmedDamage", "1d6", false, "world"));
     settings.push(booleanSetting("showTimeframe", false));
-    settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", TWODSIX.VehicleProtection));
+    settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", false, TWODSIX.VehicleProtection));
     return settings;
   }
 }
