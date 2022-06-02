@@ -110,7 +110,7 @@ declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
 }
 declare interface TwodsixVehicleSheetSettings {
-  showHullAndArmor: boolean;
+  showHullAndArmor: string;
 }
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
