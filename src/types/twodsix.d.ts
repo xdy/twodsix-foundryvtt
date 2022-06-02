@@ -101,7 +101,7 @@ declare global {
       'twodsix.autoAddUnarmed': boolean;
       'twodsix.showTimeframe': boolean;
       'twodsix.showStatusIcons': boolean;
-      'twodsix.showHullAndArmor': boolean;
+      'twodsix.showHullAndArmor': string;
     }
   }
 }
