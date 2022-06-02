@@ -1,3 +1,10 @@
+# [1.44.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.4...v1.44.0) (2022-06-02)
+
+
+### Features
+
+* add vehicle sheet ([#1015](https://github.com/xdy/twodsix-foundryvtt/issues/1015)) ([7de3b75](https://github.com/xdy/twodsix-foundryvtt/commit/7de3b75d79b26c6cfe010f6b589c6087f6c7e25e))
+
 ## [1.43.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.3...v1.43.4) (2022-06-02)
 
 
