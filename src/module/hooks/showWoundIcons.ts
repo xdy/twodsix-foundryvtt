@@ -90,7 +90,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.data.label === effectLabel);
+  const isAlreadySet = targetActor.effects.filter(eff => eff.data.label === effectLabel);
   const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
 
   let targetToken = {};
