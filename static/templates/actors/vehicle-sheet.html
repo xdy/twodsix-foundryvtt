@@ -65,9 +65,11 @@
             <textarea type="text" name="data.damageStats.armorLabel" value="{{data.data.damageStats.armorLabel}}">{{~data.data.damageStats.armorLabel~}}</textarea>
             </span>
           {{else}}
-          <span>{{localize "TWODSIX.Vehicle.Thresholds"}}</span>
-            <span class="single-line">{{localize "TWODSIX.Vehicle.Regular"}}: <input type="number" value="{{data.data.damageStats.threshold.regular}}" name="data.damageStats.threshold.regular"/></span>
-            <span class="single-line">{{localize "TWODSIX.Vehicle.Critical"}}: <input type="number" value="{{data.data.damageStats.threshold.critical}}" name="data.damageStats.threshold.critical"/></span>
+            <fieldset>
+              <legend>{{localize "TWODSIX.Vehicle.Thresholds"}}</legend>
+              <span class="single-line">{{localize "TWODSIX.Vehicle.Regular"}}: <input type="number" value="{{data.data.damageStats.threshold.regular}}" name="data.damageStats.threshold.regular"/></span>
+              <span class="single-line">{{localize "TWODSIX.Vehicle.Critical"}}: <input type="number" value="{{data.data.damageStats.threshold.critical}}" name="data.damageStats.threshold.critical"/></span>
+            </fieldset>
           {{/iff}}
           <span class="openVehicle" title='{{localize "TWODSIX.Vehicle.OpenVehicle"}}'>{{localize "TWODSIX.Vehicle.OpenVehicle"}}:
             <input type="checkbox" class="checkbox" name="data.openVehicle" {{checked data.data.openVehicle}} data-dtype="Boolean" />

@@ -23,7 +23,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
       width: 835,
-      height: 640,
+      height: 645,
       resizable: true,
     });
   }

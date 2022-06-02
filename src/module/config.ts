@@ -61,7 +61,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "1d6",
-      showTimeframe: true
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc"
     }
   },
   CEL: {
@@ -89,7 +90,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   CEFTL: {
@@ -115,7 +117,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     },
   },
   CEATOM: {
@@ -141,7 +144,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   BARBARIC: {
@@ -194,7 +198,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   CD: {
@@ -229,7 +234,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly"
     }
   },
   CLU: {
@@ -264,7 +270,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
-      showTimeframe: false
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly"
     }
   },
 
