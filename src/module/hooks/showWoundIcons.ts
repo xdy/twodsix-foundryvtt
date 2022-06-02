@@ -90,15 +90,24 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
-  if ((typeof isAlreadySet !== 'undefined') !== state) {
-    const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
-    let targetToken = {};
-    if(targetActor.isToken) {
-      targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
-    } else {
-      targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === targetActor.id);
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.data.label === effectLabel);
+  const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
+
+  let targetToken = {};
+  if(targetActor.isToken) {
+    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
+  } else {
+    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === targetActor.id);
+  }
+  if (isAlreadySet.length > 1) {
+    //Need to get rid of duplicates
+    for (let i = 1; i < isAlreadySet.length; i++) {
+      await (<Token>targetToken).toggleEffect(targetEffect, {active: false});
     }
+  }
+
+  if ((isAlreadySet.length > 0) !== state) {
+
     if (targetToken && targetEffect) {
       if (effectLabel === "Dead" ) {
         //await (<TokenDocument>targetActor.token)?.toggleActiveEffect(targetEffect, {active: state, overlay: true});
@@ -118,10 +127,11 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 }
 
 async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.find(eff => eff.data.label === effectLabel);
-  if (isAlreadySet && (state === false)) {
-    if(isAlreadySet.id) {
-      await targetActor.deleteEmbeddedDocuments("ActiveEffect", [isAlreadySet.id]);
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.data.label === effectLabel);
+  if (isAlreadySet.length > 0 && (state === false)) {
+    const idList= isAlreadySet.map(i => <string>i.id);
+    if(idList.length > 0) {
+      await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
   } else {
     let woundModifier = 0;
@@ -134,7 +144,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         break;
     }
     const changeData = { key: "data.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
-    if (isAlreadySet === undefined && state === true) {
+    if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
         icon: "icons/svg/blood.svg",
@@ -143,8 +153,8 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
       }]);
       const newEffect = await targetActor.effects.find(eff => eff.data.label === effectLabel);
       newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
-    } else if (isAlreadySet && state === true) {
-      await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet.id, tint: tint, changes: [changeData] }]);
+    } else if (isAlreadySet.length > 0 && state === true) {
+      await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet[0].id, tint: tint, changes: [changeData] }]);
     }
   }
 }
