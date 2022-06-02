@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship"],
+    "types": ["traveller", "ship", "vehicle"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -250,6 +250,60 @@
           }
         }
       }
+    },
+    "vehicle": {
+      "cargoList": "",
+      "cost": "",
+      "crew": {
+        "operators": "",
+        "passengers": ""
+      },
+      "damageStats": {
+        "armor": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "armorLabel": "",
+        "hull": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "structure": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "threshold": {
+          "regular": 0,
+          "critical": 0
+        }
+      },
+      "docReference": "",
+      "features": "",
+      "maneuver": {
+        "speed": "0",
+        "speedUnits": "km/h",
+        "range": "0",
+        "rangeUnits": "km",
+        "agility": ""
+      },
+      "skillToOperate": "",
+      "systemStatus": {
+        "cargo": "operational",
+        "cockpit": "operational",
+        "computers": "operational",
+        "electronics": "operational",
+        "limbs": "operational",
+        "propulsion": "operational",
+        "powerPlant": "operational",
+        "sensors": "operational"
+      },
+      "weaponsType": "",
+      "openVehicle": false,
+      "techLevel": "",
+      "traits": ""
     }
   },
   "Item": {

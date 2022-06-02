@@ -217,6 +217,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           return this.handleDroppedItem(actor, itemData, data, event);
         }
         break;
+      case 'vehicle':
+        if (itemData.type === "component" && itemData.data.subtype === "armament") {
+          return this.handleDroppedItem(actor, itemData, data, event);
+        }
+        break;
     }
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
     return false;
@@ -400,7 +405,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
       sheetData.data.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
-    } else if (sheetData.actor.type === "ship") {
+    } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.storage = storage;
     } else {

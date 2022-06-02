@@ -1,5 +1,6 @@
 //Everything except the namespace is generated from template.json using https://app.quicktype.io/?l=ts
 
+
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
@@ -10,8 +11,12 @@ export interface ShipDataSource {
   type:'ship';
   data:Ship;
 }
+export interface VehicleDataSource {
+  type:'vehicle';
+  data:Vehicle;
+}
 
-export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource;
+export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource;
 
 // Items
 export interface EquipmentDataSource {
@@ -111,6 +116,7 @@ export interface Actor {
   types:string[];
   traveller:Traveller;
   ship:Ship;
+  vehicle:Vehicle;
 }
 
 export type ShipPositionActorIds = Record<string, string>
@@ -311,6 +317,59 @@ export interface ShipPosition {
   sortedActions?: ShipAction[];
   order: number;
   actors?: TwodsixActor[];
+}
+
+export interface Vehicle {
+  name:string;
+  cargoList:string;
+  cost: string;
+  crew:VehcileCrew;
+  damageStats:VehicleDamageStats;
+  features:string;
+  maneuver:VehicleManeuver;
+  skillToOperate:string;
+  systemStatus: VehicleSystemStatus;
+  weapons:string;
+  openVehicle:boolean;
+  techLevel:string;
+  traits:string;
+  docReference:string;
+}
+
+export interface VehicleCrew {
+  operators:text;
+  passengers:text;
+}
+export interface VehicleDamageStats {
+  armor: Hits;
+  hull: Hits;
+  structure: Hits;
+  armorLabel: string;
+  threshold: Threshold;
+}
+export interface VehicleSystemStatus {
+  cargo: string;
+  cockpit: string;
+  computers: string;
+  electronics: string;
+  limbs: string;
+  locomotion: string;
+  powerPlant: string;
+  sensors: string;
+  weapons: string;
+}
+
+export interface VehicleManeuver {
+  speed:string;
+  speedUnits:string;
+  range:string;
+  rangeUnits:string;
+  agility:string;
+}
+
+export interface Threshold {
+  regular: number;
+  critical: number;
 }
 
 export interface Item {

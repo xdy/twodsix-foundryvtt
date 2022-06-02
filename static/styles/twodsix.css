@@ -439,6 +439,171 @@ h2 {
   display: inline-block;
 }
 
+.vehicle-photo {
+  text-align: center;
+  z-index: 0;
+  min-height: 0;
+}
+
+.vehicle-photo img {
+  vertical-align: middle;
+  height: 100%;
+  z-index: -1;
+  object-fit: contain;
+}
+
+.vehicle-content-container {
+  display: grid;
+  grid-template-columns: 19em 19em 17em;
+  grid-template-rows: 15em 9em 5em 9em;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+    "vehicle-name-photo vehicle-stats vehicle-armor"
+    "vehicle-name-photo vehicle-stats vehicle-traits"
+    "vehicle-systems vehicle-systems vehicle-notes"
+    "vehicle-weapons vehicle-weapons vehicle-notes";
+}
+
+.vehicle-name-photo {
+  grid-area: vehicle-name-photo;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vehicle-notes {
+  grid-area: vehicle-notes;
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-background-nearly-opaque);
+  border-width: 2px;
+  max-height: 100%;
+}
+.vehicle-notes div[contenteditable] {
+  height: 86%;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 1ch;
+}
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
+  border: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+  border-width: 2px;
+}
+
+.vehicle-systems {
+  grid-area: vehicle-systems;
+}
+
+.vehicle-weapons {
+  grid-area: vehicle-weapons;
+}
+
+.vehicle-traits {
+  grid-area: vehicle-traits;
+}
+
+.vehicle-armor {
+  grid-area: vehicle-armor;
+}
+
+.vehicle-stats {
+  grid-area: vehicle-stats;
+}
+
+.vehicle-name {
+  height: 26px;
+  width: 100%;
+}
+
+.vehicle-name input[type='text'] {
+  background-color: transparent;
+  position: relative;
+  /*width: 15.55em;*/
+  font-size: 1.2em;
+  text-align: center;
+  color: var(--s2d6-default-color) !important;
+  border: none;
+}
+
+.single-line {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1ch;
+  /*max-width: 75%;*/
+}
+
+.vehicle-cell {
+  width: 9ch;
+  text-align: center;
+}
+
+.vehicle-armor-name textarea {
+  border: 1px solid;
+  border-radius: 1ch !important;
+  border-color: var(--s2d6-default-color);
+  /*text-align: center;*/
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
+  height: 16ch;
+}
+
+.vehicle-traits-details textarea {
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
+  height: 80%;
+  max-width: 100%;
+  padding: 0 1ch;
+  border-radius: 0 0 2ch 2ch !important;
+}
+
+.vehicle-inset {
+  margin: 1ch 2ch;
+}
+
+.weapons-stored {
+  display: grid;
+  grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ". . . . . . . .";
+}
+
+.grid-columns-weapon {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ".";
+  width: 100%;
+  border: solid 1px var(--s2d6-input-background);
+}
+
+.weapons-header {
+  border-width: 1px;
+  border-style: solid none;
+  border-color: var(--s2d6-default-color);
+  position: sticky;
+  top:0%;
+  z-index: 20;
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+.storage-wrapper-auto {
+  margin-top: 0.5em;
+  overflow-y: auto;
+  height: 72%;
+}
+
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -516,7 +681,7 @@ img.character-info-mask {
   width: 18.5em;
 }
 
-.character-name .npc {
+.character-name .npc,  .character-name .vehicle {
   height: 22px !important;
   width: 100% !important
 }
@@ -1383,7 +1548,7 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
 }
 
-.item-title-npc {
+.item-title-npc, .item-title-vehicle {
   height: 22px;
   width: 170px;
   display: block;
@@ -2583,7 +2748,8 @@ option {
 
 .window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,
 .window-app.minimized.twodsix.sheet.actor, .window-app.minimized.twodsix.sheet.actor .window-header,
-.window-app.minimized.twodsix.sheet.npc-actor, .window-app.minimized.twodsix.sheet.npc-actor .window-header {
+.window-app.minimized.twodsix.sheet.npc-actor, .window-app.minimized.twodsix.sheet.npc-actor .window-header,
+.window-app.minimized.twodsix.sheet.vehicle-actor, .window-app.minimized.twodsix.sheet.vehicle-actor .window-header {
   padding: 0 1px;
 }
 
