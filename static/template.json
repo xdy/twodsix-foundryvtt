@@ -255,8 +255,8 @@
       "cargoList": "",
       "cost": "",
       "crew": {
-        "operators": 0,
-        "passengers": 0
+        "operators": "",
+        "passengers": ""
       },
       "damageStats": {
         "armor": {
@@ -274,14 +274,18 @@
           "value": 0,
           "min": 0,
           "max": 0
+        },
+        "threshold": {
+          "regular": 0,
+          "critical": 0
         }
       },
       "docReference": "",
       "features": "",
       "maneuver": {
-        "speed": 0,
+        "speed": "0",
         "speedUnits": "km/h",
-        "range": 0,
+        "range": "0",
         "rangeUnits": "km",
         "agility": ""
       },

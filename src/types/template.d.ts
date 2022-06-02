@@ -337,14 +337,15 @@ export interface Vehicle {
 }
 
 export interface VehicleCrew {
-  operators:number;
-  passengers:number;
+  operators:text;
+  passengers:text;
 }
 export interface VehicleDamageStats {
   armor: Hits;
   hull: Hits;
   structure: Hits;
   armorLabel: string;
+  threshold: Threshold;
 }
 export interface VehicleSystemStatus {
   cargo: string;
@@ -359,11 +360,16 @@ export interface VehicleSystemStatus {
 }
 
 export interface VehicleManeuver {
-  speed:number;
+  speed:string;
   speedUnits:string;
-  range:number;
+  range:string;
   rangeUnits:string;
   agility:string;
+}
+
+export interface Threshold {
+  regular: number;
+  critical: number;
 }
 
 export interface Item {

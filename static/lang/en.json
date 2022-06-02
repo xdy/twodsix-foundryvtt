@@ -483,7 +483,10 @@
       "techLevel": "TL",
       "Cost": "Cost",
       "Traits": "Traits",
-      "ArmorHull": "Armor and Hull"
+      "ArmorHull": "Armor and Hull",
+      "Regular": "Regular",
+      "Critical": "Critical",
+      "Thresholds": "Thresholds"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

@@ -455,13 +455,14 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 25em 0.5fr 0.5fr;
+  grid-template-rows: 15em 9em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
-  "vehicle-name-photo vehicle-stats vehicle-notes"
-  "vehicle-systems vehicle-traits vehicle-armor"
-  "vehicle-weapons vehicle-weapons vehicle-armor";
+    "vehicle-name-photo vehicle-stats vehicle-armor"
+    "vehicle-name-photo vehicle-stats vehicle-traits"
+    "vehicle-systems vehicle-systems vehicle-notes"
+    "vehicle-weapons vehicle-weapons vehicle-notes";
 }
 
 .vehicle-name-photo {
@@ -478,8 +479,14 @@ h2 {
   border-color: var(--s2d6-default-color);
   background-color: var(--s2d6-background-nearly-opaque);
   border-width: 2px;
+  max-height: 100%;
 }
-
+.vehicle-notes div[contenteditable] {
+  height: 86%;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 1ch;
+}
 .vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
   border: solid;
   border-radius: 2ch;
@@ -553,9 +560,10 @@ h2 {
   resize: none;
   scrollbar-width: thin;
   scrollbar-color: var(--s2d6-default-color);
-  height: 75%;
-  max-width: 97%;
+  height: 80%;
+  max-width: 100%;
   padding: 0 1ch;
+  border-radius: 0 0 2ch 2ch !important;
 }
 
 .vehicle-inset {
@@ -587,11 +595,13 @@ h2 {
   position: sticky;
   top:0%;
   z-index: 20;
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
 .storage-wrapper-auto {
   margin-top: 0.5em;
   overflow-y: auto;
+  height: 72%;
 }
 
 .content-background {

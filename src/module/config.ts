@@ -425,6 +425,15 @@ export const TimeUnits = {
   rounds: "TWODSIX.Actor.Skills.Timeframe.rounds"
 };
 
+/**
+ * The vehcile protection types.
+ */
+export const VehicleProtection = {
+  armorOnly: "Armor Only",
+  threshold: "Threshold",
+  armorHullStruc: "Armor, Hull and Structure"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -441,7 +450,8 @@ export type TWODSIX = {
   ComponentStates: typeof ComponentStates,
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
-  TimeUnts: typeof TimeUnits
+  TimeUnts: typeof TimeUnits,
+  VehicleProtection: typeof VehicleProtection
 };
 
 export const TWODSIX = {
@@ -460,7 +470,8 @@ export const TWODSIX = {
   ComponentStates: ComponentStates,
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
-  TimeUnits: TimeUnits
+  TimeUnits: TimeUnits,
+  VehicleProtection: VehicleProtection
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

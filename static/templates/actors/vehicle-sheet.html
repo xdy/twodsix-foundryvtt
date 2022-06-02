@@ -19,20 +19,20 @@
         <span class="single-line vehicle-inset">{{localize "TWODSIX.Vehicle.Cost"}}:<input type="text" value="{{data.data.cost}}" name="data.cost"/></span>
       <fieldset class="vehicle-inset">
         <legend>{{localize "TWODSIX.Vehicle.Movement"}}</legend>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.Speed"}}:<input type="number" value="{{data.data.maneuver.speed}}" name="data.maneuver.speed"/><input type="text" value="{{data.data.maneuver.speedUnits}}" name="data.maneuver.speedUnits"/></span>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.Range"}}:<input type="number" value="{{data.data.maneuver.range}}" name="data.maneuver.range"/><input  type="text" value="{{data.data.maneuver.rangeUnits}}" name="data.maneuver.rangeUnits"/></span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.Speed"}}:<input type="text" value="{{data.data.maneuver.speed}}" name="data.maneuver.speed"/><input type="text" value="{{data.data.maneuver.speedUnits}}" name="data.maneuver.speedUnits"/></span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.Range"}}:<input type="text" value="{{data.data.maneuver.range}}" name="data.maneuver.range"/><input  type="text" value="{{data.data.maneuver.rangeUnits}}" name="data.maneuver.rangeUnits"/></span>
         <span class="single-line">{{localize "TWODSIX.Vehicle.Agility"}}:<input type="text" value="{{data.data.maneuver.agility}}" name="data.maneuver.agility"/></span>
       </fieldset>
       <fieldset class="vehicle-inset">
         <legend>{{localize "TWODSIX.Vehicle.Crew"}}</legend>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="number" value="{{data.data.crew.operators}}" name="data.crew.operators"/></span>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="number" value="{{data.data.crew.passengers}}" name="data.crew.passengers"/></span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="text" value="{{data.data.crew.operators}}" name="data.crew.operators"/></span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="text" value="{{data.data.crew.passengers}}" name="data.crew.passengers"/></span>
       </fieldset>
       <span class="single-line vehicle-inset" data-label="{{data.data.skillToOperate}}"><label class="rollable orange">{{localize "TWODSIX.Vehicle.skillToOperate"}}:</label><input type="text" value="{{data.data.skillToOperate}}" name="data.skillToOperate"/></span>
     </div>
     <div class="vehicle-notes">
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.CargoNotes"}}</span>
-      <div contenteditable="true" data-edit="data.cargoList" style="height: 85%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto; padding-left: 1ch;">{{{data.data.cargoList}}}</div>
+      <div contenteditable="true" data-edit="data.cargoList">{{{data.data.cargoList}}}</div>
     </div>
     <div class="vehicle-systems">
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.SystemStatus"}}</span>
@@ -57,14 +57,18 @@
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Protection"}}</span>
       <div class="vehicle-inset">
         <span>
-          {{#if settings.showHullAndArmor}}
+          {{#iff settings.showHullAndArmor "===" 'armorHullStruc'}}
             {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-integrity-table.html"}}
-          {{else}}
+          {{else iff settings.showHullAndArmor "===" 'armorOnly'}}
             <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span>
             <span class="vehicle-armor-name">
             <textarea type="text" name="data.damageStats.armorLabel" value="{{data.data.damageStats.armorLabel}}">{{~data.data.damageStats.armorLabel~}}</textarea>
             </span>
-          {{/if}}
+          {{else}}
+          <span>{{localize "TWODSIX.Vehicle.Thresholds"}}</span>
+            <span class="single-line">{{localize "TWODSIX.Vehicle.Regular"}}: <input type="number" value="{{data.data.damageStats.threshold.regular}}" name="data.damageStats.threshold.regular"/></span>
+            <span class="single-line">{{localize "TWODSIX.Vehicle.Critical"}}: <input type="number" value="{{data.data.damageStats.threshold.critical}}" name="data.damageStats.threshold.critical"/></span>
+          {{/iff}}
           <span class="openVehicle" title='{{localize "TWODSIX.Vehicle.OpenVehicle"}}'>{{localize "TWODSIX.Vehicle.OpenVehicle"}}:
             <input type="checkbox" class="checkbox" name="data.openVehicle" {{checked data.data.openVehicle}} data-dtype="Boolean" />
           </span>

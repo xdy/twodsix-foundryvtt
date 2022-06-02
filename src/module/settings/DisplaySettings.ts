@@ -32,7 +32,6 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showIcons', false));
     settings.push(booleanSetting('useEncumbrance', false));
     settings.push(booleanSetting('showStatusIcons', true));
-    settings.push(booleanSetting('showHullAndArmor', true));
     return settings;
   }
 }
