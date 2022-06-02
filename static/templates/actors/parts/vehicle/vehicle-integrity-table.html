@@ -1,0 +1,26 @@
+  <table>
+  <thead>
+    <tr class="table-header-row vehicle">
+        <td></td>
+        <td class="vehicle-cell">{{localize "TWODSIX.Damage.Current"}}</td>
+        <td class="vehicle-cell">{{localize "TWODSIX.Damage.Max"}}</td>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>{{localize "TWODSIX.Vehicle.Armor"}}</td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.armor.value}}" name="data.damageStats.armor.value" placeholder="0" max = "{{data.data.damageStats.armor.max}}" min = "{{data.data.damageStats.armor.min}}"/></td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.armor.max}}" name="data.damageStats.armor.max" placeholder="0"/></td>
+      </tr>
+      <tr>
+        <td>{{localize "TWODSIX.Vehicle.Hull"}}</td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.hull.value}}" name="data.damageStats.hull.value" placeholder="0" max = "{{data.data.damageStats.hull.max}}" min = "{{data.data.damageStats.hull.min}}"/></td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.hull.max}}" name="data.damageStats.hull.max" placeholder="0"/></td>
+      </tr>
+      <tr>
+        <td>{{localize "TWODSIX.Vehicle.Structure"}}</td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.structure.value}}" name="data.damageStats.structure.value" placeholder="0" max = "{{data.data.damageStats.structure.max}}" min = "{{data.data.damageStats.structure.min}}"/></td>
+        <td class="vehicle-cell"><input type="number" value="{{data.data.damageStats.structure.max}}" name="data.damageStats.structure.max" placeholder="0"/></td>
+      </tr>
+  </tbody>
+  </table>

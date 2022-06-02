@@ -51,7 +51,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
           }
         }
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnShipToken"));
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
       }
       return false;
     } else if (foundTokens.length > 1) {

@@ -140,6 +140,165 @@ label.checkbox > input[type="checkbox"] {
   display: inline-block;
 }
 
+.vehicle-photo {
+  text-align: center;
+  z-index: 0;
+  min-height: 0;
+}
+
+.vehicle-photo img {
+  vertical-align: middle;
+  height: 100%;
+  z-index: -1;
+  object-fit: contain;
+}
+
+.vehicle-content-container {
+  display: grid;
+  grid-template-columns: 19em 19em 17em;
+  grid-template-rows: 15em 9em 5em 9em;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+    "vehicle-name-photo vehicle-stats vehicle-armor"
+    "vehicle-name-photo vehicle-stats vehicle-traits"
+    "vehicle-systems vehicle-systems vehicle-notes"
+    "vehicle-weapons vehicle-weapons vehicle-notes";
+}
+
+.vehicle-name-photo {
+  grid-area: vehicle-name-photo;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vehicle-stats {
+  grid-area: vehicle-stats;
+  overflow-y: hidden;
+}
+
+.vehicle-notes {
+  grid-area: vehicle-notes;
+  border: 2px solid;
+  border-radius: 2ch;
+  max-height: 100%;
+}
+
+.vehicle-notes div[contenteditable] {
+  height: 86%;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 1ch;
+}
+
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
+
+  border: 2px solid;
+  border-radius: 2ch;
+}
+
+.vehicle-systems {
+  grid-area: vehicle-systems;
+}
+
+.vehicle-weapons {
+  grid-area: vehicle-weapons;
+}
+
+.vehicle-armor {
+  grid-area: vehicle-armor;
+}
+
+.vehicle-traits {
+  grid-area: vehicle-traits;
+}
+
+.vehicle-name {
+  height: 26px;
+  width: 100%;
+}
+
+.vehicle-name input[type='text'] {
+  background-color: transparent ;
+  font-size: 1.2em;
+  text-align: center;
+  border: none;
+}
+
+.single-line {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1ch;
+  /*max-width: 75%;*/
+}
+
+.vehicle-cell {
+  width: 9ch;
+  text-align: center;
+}
+
+.vehicle-armor-name textarea {
+  border: 1px solid;
+  border-radius: 1ch !important;
+  /*text-align: center;*/
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  font-family: inherit;
+  height: 16ch;
+}
+
+.vehicle-traits-details textarea {
+  overflow-wrap: break-word;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s2d6-default-color);
+  height: 82%;
+  max-width: 100%;
+  padding: 0 1ch;
+  font-family: inherit;
+  border-radius: 0 0  2ch 2ch;
+}
+
+.vehicle-inset {
+  margin: 1ch 2ch;
+}
+
+.weapons-stored {
+  display: grid;
+  grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ". . . . . . . .";
+}
+
+.grid-columns-weapon {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas: ".";
+  width: 100%;
+  border: solid 1px var(--s2d6-input-background);
+}
+
+.weapons-header {
+  border-width: 1px;
+  border-style: solid none;
+  border-color: var(--s2d6-background-opaque);
+  position: sticky;
+  top:0%;
+  /*min-height: 4ch;*/
+}
+
+.storage-wrapper-auto {
+  margin-top: 0.5em;
+  overflow-y: auto;
+  height: 72%;
+}
 .content-background {
   top: 0.7em;
   left: 0.8em;
@@ -984,7 +1143,7 @@ span.total-output {
   padding: 1em;
 }
 
-.item-title, .item-title-npc {
+.item-title, .item-title-npc,  .item-title-vehicle {
   height: 22px;
   display: block;
   color: var(--s2d6-app-color);

@@ -33,6 +33,8 @@ export default class TwodsixActor extends Actor {
         }
         this._checkCrewTitles(actorData);
         break;
+      case 'vehicle':
+        break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
     }
@@ -307,6 +309,13 @@ export default class TwodsixActor extends Actor {
         if (this.data.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_ship.png'
+          });
+        }
+        break;
+      case "vehicle":
+        if (this.data.img === CONST.DEFAULT_TOKEN) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
           });
         }
         break;
