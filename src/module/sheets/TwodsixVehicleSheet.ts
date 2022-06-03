@@ -73,19 +73,22 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     if (game.user?.isGM !== true) {
       const playerId = game.userId;
       if (playerId !== null) {
-        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && !!a.getActiveTokens()[0])[0].data;
+        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
         if (character != null) {
           const charID = character._id;
           selectedActor = <Actor>game.actors?.get(charID);
         }
       }
     } else {
-      // For GM, select doctor as the selected token
+      // For GM, select actor as the selected traveller token
       if (canvas.tokens?.controlled !== undefined) {
-        selectedActor = <Actor>(canvas.tokens?.controlled[0].actor);
+        const selectedToken = canvas.tokens?.controlled.find(ct => ct.actor?.data.type === "traveller");//<Actor>(canvas.tokens?.controlled[0].actor);
+        if (selectedToken) {
+          selectedActor = <Actor>(selectedToken.actor);
+        }
       }
     }
-    if (selectedActor && (<Actor>selectedActor).data.type === "traveller") {
+    if ((<Actor>selectedActor)?.data) {
       let skill = <TwodsixItem>(<Actor>selectedActor).data.items.getName((<Vehicle>this.actor.data.data).skillToOperate);
       if(!skill) {
         skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;

@@ -344,15 +344,6 @@ export const MovementUnits = {
   gu: "TWODSIX.Actor.Movement.DistGU"
 };
 
-export const MovementUnitsUnLocalized = {
-  ft: "Feet",
-  mi: "Miles",
-  m: "Meters",
-  km: "Kilometers",
-  pc: "Parsecs",
-  gu: "Grid Units"
-};
-
 /**
  * The valid pricing bases for components other than base hull.
  */
@@ -436,9 +427,9 @@ export const TimeUnits = {
  * The vehcile protection types.
  */
 export const VehicleProtection = {
-  armorOnly: "Armor Only",
-  threshold: "Threshold",
-  armorHullStruc: "Armor, Hull and Structure"
+  armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
+  threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
+  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
 };
 
 export type TWODSIX = {
@@ -450,7 +441,6 @@ export type TWODSIX = {
   RULESETS: typeof RULESETS,
   SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
   MovementUnits: typeof MovementUnits,
-  MovementUnitsUnLocalized: typeof MovementUnitsUnLocalized,
   MovementType: typeof MovementTypes,
   PricingOptions: typeof PricingOptions,
   HullPricingOptions: typeof HullPricingOptions,
@@ -470,7 +460,6 @@ export const TWODSIX = {
   RULESETS: RULESETS,
   SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
   MovementUnits: MovementUnits,
-  MovementUnitsUnLocalized: MovementUnitsUnLocalized,
   MovementType: MovementTypes,
   PricingOptions: PricingOptions,
   HullPricingOptions: HullPricingOptions,

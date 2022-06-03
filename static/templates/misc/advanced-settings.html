@@ -12,12 +12,8 @@
                 {{/iff}}
 
                 {{#iff setting.htmlType "===" "Select"}}
-                <select name="{{key}}" data-dtype="String" value="{{setting.value}}">
-                    {{#each setting.choices as |choice choiceKey|}}
-                        {{#select setting.value}}
-                        <option value="{{choiceKey}}">{{choice}}</option>
-                        {{/select}}
-                    {{/each}}
+                <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
+                  {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
                 </select>
                 {{/iff}}
 
