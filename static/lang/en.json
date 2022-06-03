@@ -486,7 +486,12 @@
       "ArmorHull": "Armor and Hull",
       "Regular": "Regular",
       "Critical": "Critical",
-      "Thresholds": "Thresholds"
+      "Thresholds": "Thresholds",
+      "ProtectionType": {
+        "ArmorOnly": "Armor Only",
+        "Threshold": "Threshold",
+        "ArmorHullStruc": "Armor, Hull and Structure"
+      }
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -791,8 +796,8 @@
         "name": "Show condition icons on traveller sheets"
       },
       "showHullAndArmor": {
-        "hint": "Display Hull, Structure and Armor statistics on vehicle sheets.",
-        "name": "Show damage values on vehicle sheets"
+        "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
+        "name": "Protection values on vehicle sheets"
       }
     },
     "CloseAndCreateNew": "Close and create new",

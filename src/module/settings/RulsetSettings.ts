@@ -36,9 +36,9 @@ export default class RulesetSettings extends AdvancedSettings {
     const settings: string[] = [];
     settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
     settings.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
-    settings.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS));
+    settings.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
     settings.push(booleanSetting('difficultiesAsTargetNumber', false));
-    settings.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, TWODSIX.VARIANTS));
+    settings.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
     settings.push(numberSetting('modifierForZeroCharacteristic', -2));
     settings.push(stringSetting('termForAdvantage', 'advantage'));
     settings.push(stringSetting('termForDisadvantage', 'disadvantage'));
@@ -52,20 +52,20 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
     settings.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.push(booleanSetting('showHeroPoints', false));
-    settings.push(stringChoiceSetting('showAlternativeCharacteristics', "base", TWODSIX.CharacteristicDisplayTypes));
+    settings.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
     settings.push(stringSetting("alternativeShort1", "ALT1"));
     settings.push(stringSetting("alternativeShort2", "ALT2"));
     settings.push(numberSetting('maxComponentHits', 3));
-    settings.push(numberSetting('mortgagePayment', 240, true));
-    settings.push(numberSetting('massProductionDiscount', 0.10, true));
+    settings.push(numberSetting('mortgagePayment', 240, false));
+    settings.push(numberSetting('massProductionDiscount', 0.10, false));
     settings.push(booleanSetting('reverseHealingOrder', false));
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.push(numberSetting('defaultMovement', 10));
-    settings.push(stringChoiceSetting('defaultMovementUnits', "m", TWODSIX.MovementUnitsUnLocalized));
+    settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
     settings.push(booleanSetting('addEffectForShipDamage', false));
     settings.push(stringSetting("unarmedDamage", "1d6", false, "world"));
     settings.push(booleanSetting("showTimeframe", false));
-    settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", TWODSIX.VehicleProtection));
+    settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
     return settings;
   }
 }

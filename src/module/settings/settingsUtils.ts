@@ -1,4 +1,4 @@
-function registerSetting(key, scope, config, defaultValue, type, onChange, choices?) {
+function registerSetting(key, scope, config, defaultValue, type, onChange, choices?, localize?) {
   const settingData = {
     name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
     hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
@@ -7,7 +7,8 @@ function registerSetting(key, scope, config, defaultValue, type, onChange, choic
     default: defaultValue,
     type: type,
     onChange: onChange,
-    choices: choices
+    choices: choices,
+    localize: localize
   };
   game.settings.register('twodsix', key, settingData);
 }
@@ -22,8 +23,8 @@ export function numberSetting(key: string, defaultValue: number, config = false,
   return key;
 }
 
-export function stringChoiceSetting(key: string, defaultValue: string, choices, config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
-  registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, choices);
+export function stringChoiceSetting(key: string, defaultValue: string, localize = false, choices, config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
+  registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, choices, localize);
   return key;
 }
 
