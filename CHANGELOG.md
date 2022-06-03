@@ -1,3 +1,10 @@
+## [1.44.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.0...v1.44.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* allow localization in system settings and improve vehicle skill roll logic ([#1022](https://github.com/xdy/twodsix-foundryvtt/issues/1022)) ([57b6719](https://github.com/xdy/twodsix-foundryvtt/commit/57b6719231673e8edb7c5b0e886db4565eae6f0c))
+
 # [1.44.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.4...v1.44.0) (2022-06-02)
 
 
