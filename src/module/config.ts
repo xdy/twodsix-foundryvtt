@@ -427,9 +427,9 @@ export const TimeUnits = {
  * The vehcile protection types.
  */
 export const VehicleProtection = {
-  armorOnly: "Armor Only",
-  threshold: "Threshold",
-  armorHullStruc: "Armor, Hull and Structure"
+  armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
+  threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
+  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
 };
 
 export type TWODSIX = {

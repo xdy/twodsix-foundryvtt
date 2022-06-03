@@ -73,7 +73,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     if (game.user?.isGM !== true) {
       const playerId = game.userId;
       if (playerId !== null) {
-        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && !!a.getActiveTokens()[0])[0].data;
+        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
         if (character != null) {
           const charID = character._id;
           selectedActor = <Actor>game.actors?.get(charID);
