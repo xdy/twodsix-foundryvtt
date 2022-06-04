@@ -848,7 +848,7 @@
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
-      "CantAutoDamageShip": "Automatic damage of ship is not supported",
+      "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
       "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",

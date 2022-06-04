@@ -138,7 +138,8 @@ export default class TwodsixItem extends Item {
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
-        const damage = await this.rollDamage(settings.rollMode, `${roll.effect} + ${bonusDamage}`, showInChat, false) || null;
+        const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
+        const damage = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (game.user?.targets.size === 1 && damage) {
           game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
@@ -217,7 +218,7 @@ export default class TwodsixItem extends Item {
       if (confirmFormula) {
         rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
-      rollFormula += (bonusDamage ? "+" + bonusDamage : "");
+      rollFormula += ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "");
 
       let damage = <Roll>{};
       let apValue = 0;
@@ -271,8 +272,7 @@ export default class TwodsixItem extends Item {
           }
         );
         await damage.toMessage({
-          // @ts-ignore
-          speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : "???",
+          speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
           flags: {
             "core.canPopout": true,
