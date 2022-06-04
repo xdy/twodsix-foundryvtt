@@ -111,8 +111,7 @@ export function getControlledTraveller(): TwodsixActor | void {
     if (playerId !== null) {
       const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
       if (character != null) {
-        const charID = character._id;
-        return <TwodsixActor>game.actors?.get(charID);
+        return <TwodsixActor>game.actors?.get(character._id);
       }
     }
   } else {
