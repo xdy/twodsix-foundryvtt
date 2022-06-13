@@ -4,7 +4,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
-import {Crit} from "./crit";
+import Crit from "./crit";
 import {Gear, Skills} from "../../types/template";
 import { Traveller } from "../../types/template";
 
