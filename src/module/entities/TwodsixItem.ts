@@ -399,7 +399,7 @@ export async function onRollDamage(event):Promise<void> {
   let bonusDamageFormula = String(element.data('bonus-damage') || 0);
   if (game.settings.get('twodsix', 'addEffectToManualDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
-    if (lastMessage.getFlag("twodsix", "effect")) {
+    if (lastMessage?.getFlag("twodsix", "effect")) {
       bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));
     }
   }
