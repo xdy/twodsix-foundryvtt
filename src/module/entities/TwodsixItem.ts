@@ -8,7 +8,6 @@ import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 
-
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
@@ -213,12 +212,11 @@ export default class TwodsixItem extends Item {
       return;
     } else {
       //Calc regular damage
-      let rollFormula = weapon.damage;
+      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
         rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
-      rollFormula += ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "");
 
       let damage = <Roll>{};
       let apValue = 0;
@@ -241,20 +239,17 @@ export default class TwodsixItem extends Item {
       }
 
       const contentData = {};
-      if (damage.total) {
-        let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-        if (apValue !== undefined) {
-          flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
-        }
-
-        Object.assign(contentData, {
-          flavor: flavor,
-          roll: damage,
-          damage: damage.total,
-          dice: damage.terms[0]["results"],
-          armorPiercingValue: apValue ?? 0
-        });
+      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
+      if (apValue !== undefined) {
+        flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
       }
+      Object.assign(contentData, {
+        flavor: flavor,
+        roll: damage,
+        dice: damage.terms[0]["results"],
+        armorPiercingValue: apValue ?? 0,
+        damage: (damage.total && damage.total > 0) ? damage.total : 0
+      });
 
       if (radDamage.total) {
         Object.assign(contentData, {
@@ -401,7 +396,13 @@ export async function onRollDamage(event):Promise<void> {
   const item = this.actor.items.get(itemId) as TwodsixItem;
 
   const element = $(event.currentTarget);
-  const bonusDamageFormula = String(element.data('bonus-damage') || 0);
+  let bonusDamageFormula = String(element.data('bonus-damage') || 0);
+  if (game.settings.get('twodsix', 'addEffectToManualDamage')) {
+    const lastMessage = <ChatMessage>(game.messages?.contents.pop());
+    if (lastMessage.getFlag("twodsix", "effect")) {
+      bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));
+    }
+  }
 
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
   const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
