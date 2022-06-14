@@ -20,7 +20,7 @@
       </div>
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
-      {{#unless limited}}
+
         {{#if actor.data.settings.showLifebloodStamina }}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
@@ -34,6 +34,7 @@
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
           </div>
         {{/if}}
+        {{#unless limited}}
         {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
         {{else}}

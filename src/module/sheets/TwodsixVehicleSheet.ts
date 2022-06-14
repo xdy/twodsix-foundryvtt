@@ -69,29 +69,12 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
    */
   private async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
     //Get Controlled actor
-    let selectedActor = {};
-    if (game.user?.isGM !== true) {
-      const playerId = game.userId;
-      if (playerId !== null) {
-        const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
-        if (character != null) {
-          const charID = character._id;
-          selectedActor = <Actor>game.actors?.get(charID);
-        }
-      }
-    } else {
-      // For GM, select actor as the selected traveller token
-      if (canvas.tokens?.controlled !== undefined) {
-        const selectedToken = canvas.tokens?.controlled.find(ct => ct.actor?.data.type === "traveller");//<Actor>(canvas.tokens?.controlled[0].actor);
-        if (selectedToken) {
-          selectedActor = <Actor>(selectedToken.actor);
-        }
-      }
-    }
-    if ((<Actor>selectedActor)?.data) {
-      let skill = <TwodsixItem>(<Actor>selectedActor).data.items.getName((<Vehicle>this.actor.data.data).skillToOperate);
+    const selectedActor = getControlledTraveller();
+
+    if (selectedActor) {
+      let skill = <TwodsixItem>selectedActor.data.items.getName((<Vehicle>this.actor.data.data).skillToOperate);
       if(!skill) {
-        skill = (<Actor>selectedActor).data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
+        skill = selectedActor.data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
       }
       const extra = {
         diceModifier: (<Vehicle>this.actor.data.data).maneuver.agility ? parseInt((<Vehicle>this.actor.data.data).maneuver.agility) : 0,
@@ -121,3 +104,24 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     }
   }
 }
+
+export function getControlledTraveller(): TwodsixActor | void {
+  if (game.user?.isGM !== true) {
+    const playerId = game.userId;
+    if (playerId !== null) {
+      const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
+      if (character != null) {
+        return <TwodsixActor>game.actors?.get(character._id);
+      }
+    }
+  } else {
+    // For GM, select actor as the selected traveller token
+    if (canvas.tokens?.controlled !== undefined) {
+      const selectedToken = canvas.tokens?.controlled.find(ct => ct.actor?.data.type === "traveller");//<Actor>(canvas.tokens?.controlled[0].actor);
+      if (selectedToken) {
+        return <TwodsixActor>(selectedToken.actor);
+      }
+    }
+  }
+}
+

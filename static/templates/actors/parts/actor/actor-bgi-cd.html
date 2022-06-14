@@ -22,6 +22,7 @@
   <input name="data.gender" type="text" value="{{data.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/>
 </span>
 <br>
+{{#unless limited}}
 <!-- Protection Information-->
 <span class="bgi-armor" title='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fas fa-user-shield"></i>:<input
         style="text-align: right;" name="data.primaryArmor.value" type="number" value="{{data.primaryArmor.value}}" placeholder='0'
@@ -67,3 +68,4 @@
 <span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fas fa-edit"></i>:
   <input type="checkbox" class="checkbox" name="data.characteristicEdit" {{checked data.characteristicEdit}} data-dtype="Boolean" />
 </span>
+{{/unless}}
