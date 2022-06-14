@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         # Run the steps below with the following versions of Node.js
-        node-version: [14.x]
+        node-version: [16.x]
     steps:
       # Fetch the latest commit
       - name: Checkout
@@ -23,9 +23,10 @@ jobs:
 
       # Setup Node.js using the appropriate version
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3.3.0
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       # Install package dependencies
       - name: Install
@@ -58,7 +59,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
+          cache: 'npm'
 
       - name: Install
         run: npm install
