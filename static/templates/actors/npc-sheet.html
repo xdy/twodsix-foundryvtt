@@ -14,22 +14,25 @@
       <div class="character-name npc" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
     </div>
-    {{#unless limited}}
     <div class="npc-bgi-stats">
       <div class="character-bgi-npc">
           {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
       </div>
-      <table class="stat-table-npc">
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-      </table>
+      {{#unless limited}}
+        <table class="stat-table-npc">
+          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+        </table>
+      {{/unless}}
     </div>
-    {{/unless}}
     <div class="npc-notes-container">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Notes.Notes"}}</span>
+      {{#unless limited}}
       <div contenteditable="true" data-edit="data.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto">{{{data.notes}}}</div>
+     {{/unless}}
     </div>
     <div class="npc-skills">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
+      {{#unless limited}}
       <div style="margin-left: 1ch;">
         <span class="item" data-item-id="{{joat-skill-input}}" >
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
@@ -53,10 +56,12 @@
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.data.data.value}}" readonly/>
       </span>
       {{/if}}
-    </div>
+      </div>
+      {{/unless}}
     </div>
     <div class="npc-armor">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
+      {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_by_name data.armor as |item id|}}
@@ -69,9 +74,11 @@
          {{/each_sort_by_name}}
         </span>
       </div>
+      {{/unless}}
     </div>
     <div class="npc-weapons">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
+      {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_by_name data.weapon as |item id|}}
@@ -83,10 +90,11 @@
          {{/each_sort_by_name}}
         </span>
       </div>
+      {{/unless}}
     </div>
-
     <div class="npc-traits">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Traits"}}</span>
+      {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_by_name data.traits as |item id|}}
@@ -97,6 +105,7 @@
          {{/each_sort_by_name}}
         </span>
       </div>
+      {{/unless}}
     </div>
   </div>
 </form>

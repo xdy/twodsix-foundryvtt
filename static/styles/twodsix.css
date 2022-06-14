@@ -487,6 +487,7 @@ h2 {
   overflow-y: auto;
   padding-left: 1ch;
 }
+
 .vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
   border: solid;
   border-radius: 2ch;
@@ -504,6 +505,7 @@ h2 {
 
 .vehicle-traits {
   grid-area: vehicle-traits;
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
 .vehicle-armor {

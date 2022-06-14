@@ -25,7 +25,8 @@
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
       "DealDamageTo": "Deal damage to _ACTOR_NAME_",
-      "DamageFormula": "Damage Formula"
+      "DamageFormula": "Damage Formula",
+      "NoRegularDamage": "No Regular Damage"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
@@ -798,6 +799,10 @@
       "showHullAndArmor": {
         "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
         "name": "Protection values on vehicle sheets"
+      },
+      "addEffectToManualDamage": {
+        "hint": "This option addts the effect to a manual damage roll from the most recent chat message.",
+        "name": "Add effect when making manual damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -848,7 +853,7 @@
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
-      "CantAutoDamageShip": "Automatic damage of ship is not supported",
+      "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
       "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",

@@ -189,7 +189,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
         await (<TwodsixActor>this.actor).damageActor(data.payload.damage, data.payload.armorPiercingValue, showDamageDialog);
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamageShip"));
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
       }
       return false;
     }
