@@ -1,3 +1,10 @@
+## [1.44.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.1...v1.44.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* Format improvements and damage roll cleanup ([#1025](https://github.com/xdy/twodsix-foundryvtt/issues/1025)) ([ed51fb9](https://github.com/xdy/twodsix-foundryvtt/commit/ed51fb9f152deaff31e3946ebf4570c5e29b4fc4))
+
 ## [1.44.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.0...v1.44.1) (2022-06-03)
 
 
