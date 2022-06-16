@@ -433,7 +433,9 @@
       "features": "",
       "pricingBasis": "perUnit",
       "isBaseHull": false,
-      "rollModifier": ""
+      "rollModifier": "",
+      "rateOfFire": "",
+      "armorPiercing": 0
     },
     "ship_position": {
       "name": "",

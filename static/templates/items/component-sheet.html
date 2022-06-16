@@ -126,6 +126,14 @@
       <span class="resource-label">{{localize "TWODSIX.Items.Component.Range"}}</span>
       <input class="form-input" type="text" name="data.range" value="{{data.range}}"/>
     </div>
+    <div class="item-damage">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
+      <input class="form-input" id="data.armorPiercing" type="number" name="data.armorPiercing" value="{{data.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
+    </div>
+    <div class="item-rateOfFire">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+      <input class="form-input" id="data.rateOfFire" type="text" name="data.rateOfFire" value="{{data.rateOfFire}}">
+    </div>
     <div class="item-features">
       <span class="resource-label">{{localize "TWODSIX.Items.Component.Features"}}</span>
       <input class="form-input" type="text" name="data.features" value="{{data.features}}"/>
