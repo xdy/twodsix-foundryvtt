@@ -1,3 +1,10 @@
+## [1.44.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.2...v1.44.3) (2022-06-16)
+
+
+### Bug Fixes
+
+* add weapon damage to NPC sheet and new fields to augment components ([#1036](https://github.com/xdy/twodsix-foundryvtt/issues/1036)) ([161894a](https://github.com/xdy/twodsix-foundryvtt/commit/161894a3e34a3cf565c275afdc47afba314c6939))
+
 ## [1.44.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.1...v1.44.2) (2022-06-14)
 
 
