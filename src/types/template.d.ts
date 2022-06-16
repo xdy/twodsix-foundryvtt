@@ -426,6 +426,8 @@ export interface Component extends GearTemplate {
   pricingBasis:string;
   isBaseHull:boolean;
   rollModifier:string;
+  rateOfFire: string;
+  armorPiercing: number;
 }
 
 export interface Consumable extends GearTemplate {
