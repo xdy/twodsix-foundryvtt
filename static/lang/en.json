@@ -453,7 +453,9 @@
     },
     "Vehicle": {
       "SystemStatus": "System Status",
-      "CargoNotes": "Cargo Notes",
+      "Cargo": "Cargo",
+      "CargoNotes": "Notes",
+      "CargoCapacity": "Capacity",
       "Speed": "Speed",
       "Range": "Range",
       "Agility": "Agility",
@@ -474,6 +476,7 @@
       },
       "Movement": "Movement",
       "Crew": "Crew",
+      "Weight": "Weight",
       "Armor": "Armor",
       "Hull": "Hull",
       "Structure": "Structure",
