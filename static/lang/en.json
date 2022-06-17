@@ -453,7 +453,9 @@
     },
     "Vehicle": {
       "SystemStatus": "System Status",
-      "CargoNotes": "Cargo Notes",
+      "Cargo": "Cargo",
+      "CargoNotes": "Notes",
+      "CargoCapacity": "Capacity",
       "Speed": "Speed",
       "Range": "Range",
       "Agility": "Agility",
@@ -474,6 +476,7 @@
       },
       "Movement": "Movement",
       "Crew": "Crew",
+      "Weight": "Weight",
       "Armor": "Armor",
       "Hull": "Hull",
       "Structure": "Structure",
@@ -803,6 +806,10 @@
       "addEffectToManualDamage": {
         "hint": "This option addts the effect to a manual damage roll from the most recent chat message.",
         "name": "Add effect when making manual damage"
+      },
+      "showRangeSpeedNoUnits": {
+        "hint": "Omit the range and speed units (e.g. km/hr) on vehicle sheet.",
+        "name": "Don't show range and speed units"
       }
     },
     "CloseAndCreateNew": "Close and create new",

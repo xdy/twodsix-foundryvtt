@@ -1,3 +1,10 @@
+## [1.44.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.3...v1.44.4) (2022-06-17)
+
+
+### Bug Fixes
+
+* add cargo capacity and weight fields for vehicle sheet ([#1039](https://github.com/xdy/twodsix-foundryvtt/issues/1039)) ([a442307](https://github.com/xdy/twodsix-foundryvtt/commit/a442307c1874924cc8a30038f8801e9a8868561a))
+
 ## [1.44.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.2...v1.44.3) (2022-06-16)
 
 

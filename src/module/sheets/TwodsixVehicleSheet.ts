@@ -12,7 +12,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     context.dtypes = ["String", "Number", "Boolean"];
     AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
     context.settings = <TwodsixVehicleSheetSettings>{
-      showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor')
+      showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
+      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits')
     };
 
     return context;
@@ -23,7 +24,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
       width: 835,
-      height: 645,
+      height: 675,
       resizable: true,
     });
   }

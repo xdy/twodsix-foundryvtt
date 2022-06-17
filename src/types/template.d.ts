@@ -322,6 +322,7 @@ export interface ShipPosition {
 export interface Vehicle {
   name:string;
   cargoList:string;
+  cargoCapacity:string;
   cost: string;
   crew:VehcileCrew;
   damageStats:VehicleDamageStats;
@@ -334,6 +335,7 @@ export interface Vehicle {
   techLevel:string;
   traits:string;
   docReference:string;
+  weight:string;
 }
 
 export interface VehicleCrew {

@@ -2,7 +2,7 @@
   <div class="vehicle-content-container">
     <div class="vehicle-name-photo">
       <div class="vehicle-photo">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
       </div>
       <div class="vehicle-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
@@ -16,11 +16,12 @@
     <div class="vehicle-stats">
       <span class="item-title-vehicle">Stats</span>
         <span class="single-line vehicle-inset">{{localize "TWODSIX.Vehicle.techLevel"}}:<input type="text" value="{{data.data.techLevel}}" name="data.techLevel"/></span>
+        <span class="single-line vehicle-inset">{{localize "TWODSIX.Vehicle.Weight"}}: <input type="text" value="{{data.data.weight}}" name="data.weight"/></span>
         <span class="single-line vehicle-inset">{{localize "TWODSIX.Vehicle.Cost"}}:<input type="text" value="{{data.data.cost}}" name="data.cost"/></span>
       <fieldset class="vehicle-inset">
         <legend>{{localize "TWODSIX.Vehicle.Movement"}}</legend>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.Speed"}}:<input type="text" value="{{data.data.maneuver.speed}}" name="data.maneuver.speed"/><input type="text" value="{{data.data.maneuver.speedUnits}}" name="data.maneuver.speedUnits"/></span>
-        <span class="single-line">{{localize "TWODSIX.Vehicle.Range"}}:<input type="text" value="{{data.data.maneuver.range}}" name="data.maneuver.range"/><input  type="text" value="{{data.data.maneuver.rangeUnits}}" name="data.maneuver.rangeUnits"/></span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.Speed"}}:<input type="text" value="{{data.data.maneuver.speed}}" name="data.maneuver.speed"/>{{#unless settings.showRangeSpeedNoUnits}}<input type="text" value="{{data.data.maneuver.speedUnits}}" name="data.maneuver.speedUnits"/>{{/unless}}</span>
+        <span class="single-line">{{localize "TWODSIX.Vehicle.Range"}}:<input type="text" value="{{data.data.maneuver.range}}" name="data.maneuver.range"/>{{#unless settings.showRangeSpeedNoUnits}}<input  type="text" value="{{data.data.maneuver.rangeUnits}}" name="data.maneuver.rangeUnits"/>{{/unless}}</span>
         <span class="single-line">{{localize "TWODSIX.Vehicle.Agility"}}:<input type="text" value="{{data.data.maneuver.agility}}" name="data.maneuver.agility"/></span>
       </fieldset>
       <fieldset class="vehicle-inset">
@@ -31,8 +32,15 @@
       <span class="single-line vehicle-inset" data-label="{{data.data.skillToOperate}}"><label class="rollable orange">{{localize "TWODSIX.Vehicle.skillToOperate"}}:</label><input type="text" value="{{data.data.skillToOperate}}" name="data.skillToOperate"/></span>
     </div>
     <div class="vehicle-notes">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.CargoNotes"}}</span>
-      <div contenteditable="true" data-edit="data.cargoList">{{{data.data.cargoList}}}</div>
+      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Cargo"}}</span>
+      <span class="single-line vehicle-inset">{{localize "TWODSIX.Vehicle.CargoCapacity"}}: <input type="text" value="{{data.data.cargoCapacity}}" name="data.cargoCapacity"/></span>
+      <div class="vehicle-inset">
+        <span>{{localize "TWODSIX.Vehicle.CargoNotes"}}</span>
+        <span class="vehicle-cargo-list">
+          <textarea type="text" name="data.cargoList" value="{{data.data.cargoList}}">{{~data.data.cargoList~}}</textarea>
+        </span>
+        <!-- <div contenteditable="true" data-edit="data.cargoList">{{{data.data.cargoList}}}</div> -->
+      </div>
     </div>
     <div class="vehicle-systems">
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.SystemStatus"}}</span>
