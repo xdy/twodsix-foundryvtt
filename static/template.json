@@ -253,6 +253,7 @@
     },
     "vehicle": {
       "cargoList": "",
+      "cargoCapacity": "",
       "cost": "",
       "crew": {
         "operators": "",
@@ -303,7 +304,8 @@
       "weaponsType": "",
       "openVehicle": false,
       "techLevel": "",
-      "traits": ""
+      "traits": "",
+      "weight": ""
     }
   },
   "Item": {

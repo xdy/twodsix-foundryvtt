@@ -103,6 +103,7 @@ declare global {
       'twodsix.showStatusIcons': boolean;
       'twodsix.showHullAndArmor': string;
       'twodsix.addEffectToManualDamage':boolean;
+      'twodsix.showRangeSpeedNoUnits':boolean;
     }
   }
 }

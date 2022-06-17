@@ -455,7 +455,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 9em 5em 9em;
+  grid-template-rows: 15em 11em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -477,7 +477,7 @@ h2 {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
-  background-color: var(--s2d6-background-nearly-opaque);
+  /*background-color: var(--s2d6-background-nearly-opaque);*/
   border-width: 2px;
   max-height: 100%;
 }
@@ -545,7 +545,7 @@ h2 {
   text-align: center;
 }
 
-.vehicle-armor-name textarea {
+.vehicle-armor-name textarea, .vehicle-cargo-list textarea {
   border: 1px solid;
   border-radius: 1ch !important;
   border-color: var(--s2d6-default-color);

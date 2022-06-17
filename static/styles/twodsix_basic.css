@@ -156,7 +156,7 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 9em 5em 9em;
+  grid-template-rows: 15em 11em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -240,7 +240,7 @@ label.checkbox > input[type="checkbox"] {
   text-align: center;
 }
 
-.vehicle-armor-name textarea {
+.vehicle-armor-name textarea, .vehicle-cargo-list textarea {
   border: 1px solid;
   border-radius: 1ch !important;
   /*text-align: center;*/
@@ -256,7 +256,7 @@ label.checkbox > input[type="checkbox"] {
   resize: none;
   scrollbar-width: thin;
   scrollbar-color: var(--s2d6-default-color);
-  height: 82%;
+  height: 86%;
   max-width: 100%;
   padding: 0 1ch;
   font-family: inherit;
