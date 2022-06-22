@@ -186,8 +186,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }).render(true);
   }
 
-  private _onChangeUseConsumableForAttack(event): void {
-    this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+  private async _onChangeUseConsumableForAttack(event): Promise<void> {
+    await this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+    this.render();
   }
 
   private static check(cond: boolean, err: string) {
