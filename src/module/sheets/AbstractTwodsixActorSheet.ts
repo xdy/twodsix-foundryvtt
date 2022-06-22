@@ -51,18 +51,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
               selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
-                const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;
-                if (usesConsumables.consumables != undefined) {
-                  if (usesConsumables.consumables.includes(ownedItem.id) || usesConsumables.useConsumableForAttack === ownedItem.id) {
+                const consumablesList = (<UsesConsumables>i.data.data).consumables;
+                let usedForAttack = (<UsesConsumables>i.data.data).useConsumableForAttack;
+                if (consumablesList != undefined) {
+                  if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
                     //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
-                    const index = usesConsumables.consumables.indexOf(ownedItem.id);
+                    const index = consumablesList.indexOf(ownedItem.id);
                     if (index > -1) {
-                      usesConsumables.consumables.splice(index, 1); // 2nd parameter means remove one item only
+                      consumablesList.splice(index, 1); // 2nd parameter means remove one item only
                     }
-                    if (usesConsumables.useConsumableForAttack === ownedItem.id) {
-                      usesConsumables.useConsumableForAttack = "";
+                    if (usedForAttack === ownedItem.id) {
+                      usedForAttack = "";
                     }
-                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'data.consumables': usesConsumables.consumables, 'data.useConsumableForAttack': usesConsumables.useConsumableForAttack}]);
+                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'data.consumables': consumablesList, 'data.useConsumableForAttack': usedForAttack}]);
                   }
                 }
               });
