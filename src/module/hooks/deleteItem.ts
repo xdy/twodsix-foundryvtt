@@ -1,4 +1,4 @@
-import TwodsixActor from "../entities/TwodsixActor";
+/*import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {Weapon} from "../../types/template";
 
@@ -13,3 +13,4 @@ Hooks.on('deleteOwnedItem', async (actor:TwodsixActor, itemData) => {
     });
   }
 });
+*/

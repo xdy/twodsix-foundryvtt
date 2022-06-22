@@ -34,7 +34,7 @@ export default class TwodsixItem extends Item {
 
       //TODO What is consumableData? Where does it come from? Not in template.json
       gear.consumableData = gear.consumables.map((consumableId:string) => {
-        return this.actor?.items.filter((item) => item.id === consumableId)[0];
+        return this.actor?.items.find((item) => item.id === consumableId);
       });
       gear.consumableData.sort((a, b) => {
         return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;

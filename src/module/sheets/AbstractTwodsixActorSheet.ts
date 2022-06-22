@@ -46,19 +46,27 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           title: title,
           content: template,
           yes: async () => {
+            const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
+            await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
-              this.actor.items.filter(i => i.type !== "skills").forEach(i => {
+              selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
                 const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;
                 if (usesConsumables.consumables != undefined) {
                   if (usesConsumables.consumables.includes(ownedItem.id) || usesConsumables.useConsumableForAttack === ownedItem.id) {
-                    (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                    //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                    const index = usesConsumables.consumables.indexOf(ownedItem.id);
+                    if (index > -1) {
+                      usesConsumables.consumables.splice(index, 1); // 2nd parameter means remove one item only
+                    }
+                    if (usesConsumables.useConsumableForAttack === ownedItem.id) {
+                      usesConsumables.useConsumableForAttack = "";
+                    }
+                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'data.consumables': usesConsumables.consumables, 'data.useConsumableForAttack': usesConsumables.useConsumableForAttack}]);
                   }
                 }
               });
             }
-
-            await this.actor.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             li.slideUp(200, () => this.render(false));
           },
           no: () => {
