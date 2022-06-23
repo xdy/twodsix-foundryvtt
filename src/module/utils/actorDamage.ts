@@ -148,7 +148,7 @@ export class Stats {
   }
 
   public async applyDamage(): Promise<void> {
-    if (this.actor.token && this.totalCurrent() === 0) {
+    /*if (this.actor.token && this.totalCurrent() === 0  && !game.settings.get("twodsix", "useWoundedStatusIndicators")) {
       const isDead = this.actor.effects.map((e: ActiveEffect) => {
         return e.getFlag("core", "statusId") === "dead";
       }).includes(true);
@@ -166,13 +166,15 @@ export class Stats {
           await combatant.update({defeated: true});
         }
       }
-    }
+    }*/
 
     let charName = '';
+    const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
       charName = 'data.characteristics.' + characteristic + '.damage';
-      await this.actor.update({[charName]: this[characteristic].totalDamage()});
+      charArray[charName] = this[characteristic].totalDamage();
     }
+    await this.actor.update(charArray);
   }
 }
 

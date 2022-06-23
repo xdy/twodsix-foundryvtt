@@ -1,3 +1,94 @@
+## [1.44.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.4...v1.44.5) (2022-06-23)
+
+
+### Bug Fixes
+
+* consumable issues ([#1042](https://github.com/xdy/twodsix-foundryvtt/issues/1042)) ([21b3d3e](https://github.com/xdy/twodsix-foundryvtt/commit/21b3d3e7c1e8cc93c5c27fef912fe711ce5291bc))
+
+## [1.44.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.3...v1.44.4) (2022-06-17)
+
+
+### Bug Fixes
+
+* add cargo capacity and weight fields for vehicle sheet ([#1039](https://github.com/xdy/twodsix-foundryvtt/issues/1039)) ([a442307](https://github.com/xdy/twodsix-foundryvtt/commit/a442307c1874924cc8a30038f8801e9a8868561a))
+
+## [1.44.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.2...v1.44.3) (2022-06-16)
+
+
+### Bug Fixes
+
+* add weapon damage to NPC sheet and new fields to augment components ([#1036](https://github.com/xdy/twodsix-foundryvtt/issues/1036)) ([161894a](https://github.com/xdy/twodsix-foundryvtt/commit/161894a3e34a3cf565c275afdc47afba314c6939))
+
+## [1.44.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.1...v1.44.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* Format improvements and damage roll cleanup ([#1025](https://github.com/xdy/twodsix-foundryvtt/issues/1025)) ([ed51fb9](https://github.com/xdy/twodsix-foundryvtt/commit/ed51fb9f152deaff31e3946ebf4570c5e29b4fc4))
+
+## [1.44.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.0...v1.44.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* allow localization in system settings and improve vehicle skill roll logic ([#1022](https://github.com/xdy/twodsix-foundryvtt/issues/1022)) ([57b6719](https://github.com/xdy/twodsix-foundryvtt/commit/57b6719231673e8edb7c5b0e886db4565eae6f0c))
+
+# [1.44.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.4...v1.44.0) (2022-06-02)
+
+
+### Features
+
+* add vehicle sheet ([#1015](https://github.com/xdy/twodsix-foundryvtt/issues/1015)) ([7de3b75](https://github.com/xdy/twodsix-foundryvtt/commit/7de3b75d79b26c6cfe010f6b589c6087f6c7e25e))
+
+## [1.43.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.3...v1.43.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* stop multiple application of wounded conditions ([#1020](https://github.com/xdy/twodsix-foundryvtt/issues/1020)) ([4517248](https://github.com/xdy/twodsix-foundryvtt/commit/4517248f53b1afee54732a0e23030bbdb4ff45b3))
+
+## [1.43.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.2...v1.43.3) (2022-05-24)
+
+
+### Reverts
+
+* Revert "chore: Update dependencies" ([2368a37](https://github.com/xdy/twodsix-foundryvtt/commit/2368a37fd2d9f9da93846f52298bbb77e748b295))
+
+## [1.43.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.1...v1.43.2) (2022-05-24)
+
+
+### Bug Fixes
+
+* save non-empty magazines when reloading ([#1011](https://github.com/xdy/twodsix-foundryvtt/issues/1011)) ([3e46932](https://github.com/xdy/twodsix-foundryvtt/commit/3e469325e457685d7a91dd148bf60b1f17490c89))
+
+## [1.43.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.0...v1.43.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* improve show wounds option ([#1009](https://github.com/xdy/twodsix-foundryvtt/issues/1009)) ([ec608a4](https://github.com/xdy/twodsix-foundryvtt/commit/ec608a4b1550b4d83fee6e806b5cc905688fabed))
+
+# [1.43.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.3...v1.43.0) (2022-05-20)
+
+
+### Features
+
+* add timeframe option to skill rolls ([#1007](https://github.com/xdy/twodsix-foundryvtt/issues/1007)) ([4eb2fd1](https://github.com/xdy/twodsix-foundryvtt/commit/4eb2fd15330892264e861baf589bb583cff4cc27))
+
+## [1.42.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.2...v1.42.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* Firefox style improvements ([#1005](https://github.com/xdy/twodsix-foundryvtt/issues/1005)) ([cac475a](https://github.com/xdy/twodsix-foundryvtt/commit/cac475adcb92e1527e76f1f07c66c0afbb5bfcb1))
+
+## [1.42.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.1...v1.42.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* wounded rolls ([9825ba0](https://github.com/xdy/twodsix-foundryvtt/commit/9825ba05ec85e7badba3d41243453ab7c1478c2a))
+
 ## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
 
 

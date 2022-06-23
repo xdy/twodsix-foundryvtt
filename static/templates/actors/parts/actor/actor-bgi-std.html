@@ -15,7 +15,7 @@
     value="{{data.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span><br>
 <span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="data.homeWorld" type="text"
     value="{{data.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span><br>
-
+{{#unless limited}}
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="data.primaryArmor.value" style="text-align: right;" type="number" value="{{data.primaryArmor.value}}"
       placeholder='0' readonly/>/<input name="data.secondaryArmor.value" type="number" value="{{data.secondaryArmor.value}}"
       placeholder='0' readonly/></span>
@@ -41,3 +41,4 @@
 <span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fas fa-edit"></i>:
   <input type="checkbox" class="checkbox" name="data.characteristicEdit" {{checked data.characteristicEdit}} data-dtype="Boolean" />
 </span>
+{{/unless}}

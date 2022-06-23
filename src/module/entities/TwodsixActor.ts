@@ -33,6 +33,8 @@ export default class TwodsixActor extends Actor {
         }
         this._checkCrewTitles(actorData);
         break;
+      case 'vehicle':
+        break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
     }
@@ -310,6 +312,13 @@ export default class TwodsixActor extends Actor {
           });
         }
         break;
+      case "vehicle":
+        if (this.data.img === CONST.DEFAULT_TOKEN) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+          });
+        }
+        break;
     }
     if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
       await this.update({
@@ -356,18 +365,14 @@ export default class TwodsixActor extends Actor {
       } else {
         damageCharacteristics = getDamageCharacteristics();
       }
-
+      const charArray = {};
       for (const characteristic of damageCharacteristics) {
         const cur_damage = this.data.data.characteristics[characteristic].damage;
 
         if (cur_damage > 0) {
           const new_damage = Math.max(0, cur_damage - healing);
           const char_id = 'data.characteristics.' + characteristic + '.damage';
-
-          await this.update({
-            [char_id]: new_damage
-          });
-
+          charArray[char_id] = new_damage;
           healing -= cur_damage - new_damage;
         }
 
@@ -375,6 +380,7 @@ export default class TwodsixActor extends Actor {
           break;
         }
       }
+      await this.update(charArray); /*update only once*/
     }
   }
 
@@ -448,7 +454,8 @@ export default class TwodsixActor extends Actor {
         "type": "weapon",
         "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
         "quantity": 1,
-        "skill": this.getUntrainedSkill().id || ""
+        "skill": this.getUntrainedSkill().id || "",
+        "equipped": "equipped"
       },
     };
     await (this.createEmbeddedDocuments("Item", [data]));

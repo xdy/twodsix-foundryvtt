@@ -17,6 +17,8 @@ export class TwodsixRollSettings {
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
+  selectedTimeUnit:string;
+  timeRollFormula:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
@@ -36,6 +38,8 @@ export class TwodsixRollSettings {
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.displayLabel = settings?.displayLabel ?? "";
     this.extraFlavor = settings?.extraFlavor ?? "";
+    this.selectedTimeUnit = "none";
+    this.timeRollFormula = "1d6";
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem):Promise<TwodsixRollSettings> {
@@ -57,6 +61,7 @@ export class TwodsixRollSettings {
       }
 
       await twodsixRollSettings._throwDialog(title, skill);
+      console.log(twodsixRollSettings);
 
       //Get display label
       if (skill && skill.actor) {
@@ -90,7 +95,10 @@ export class TwodsixRollSettings {
       diceModifier: this.diceModifier,
       characteristicList: _genTranslatedSkillList(<TwodsixActor>skill?.actor),
       initialChoice: this.characteristic,
-      skillRoll: this.skillRoll
+      skillRoll: this.skillRoll,
+      timeUnits: TWODSIX.TimeUnits,
+      selectedTimeUnit: this.selectedTimeUnit,
+      timeRollFormula: this.timeRollFormula
     };
 
     const buttons = {
@@ -104,6 +112,8 @@ export class TwodsixRollSettings {
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
           this.characteristic = this.skillRoll ? buttonHtml.find('[name="characteristic"]').val() : this.characteristic;
           this.diceModifier = parseInt(buttonHtml.find('[name="diceModifier"]').val(), 10);
+          this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
+          this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
       },
       cancel: {

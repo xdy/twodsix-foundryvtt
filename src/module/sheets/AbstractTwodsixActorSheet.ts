@@ -46,19 +46,28 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           title: title,
           content: template,
           yes: async () => {
+            const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
+            await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
-              this.actor.items.filter(i => i.type !== "skills").forEach(i => {
-                const usesConsumables:UsesConsumables = <UsesConsumables>i.data.data;
-                if (usesConsumables.consumables != undefined) {
-                  if (usesConsumables.consumables.includes(ownedItem.id) || usesConsumables.useConsumableForAttack === ownedItem.id) {
-                    (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+              selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
+                const consumablesList = (<UsesConsumables>i.data.data).consumables;
+                let usedForAttack = (<UsesConsumables>i.data.data).useConsumableForAttack;
+                if (consumablesList != undefined) {
+                  if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
+                    //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                    const index = consumablesList.indexOf(ownedItem.id);
+                    if (index > -1) {
+                      consumablesList.splice(index, 1); // 2nd parameter means remove one item only
+                    }
+                    if (usedForAttack === ownedItem.id) {
+                      usedForAttack = "";
+                    }
+                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'data.consumables': consumablesList, 'data.useConsumableForAttack': usedForAttack}]);
                   }
                 }
               });
             }
-
-            await this.actor.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             li.slideUp(200, () => this.render(false));
           },
           no: () => {
@@ -189,7 +198,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
         await (<TwodsixActor>this.actor).damageActor(data.payload.damage, data.payload.armorPiercingValue, showDamageDialog);
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamageShip"));
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
       }
       return false;
     }
@@ -214,6 +223,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         break;
       case 'ship':
         if (!["augment", "skills", "trait"].includes(itemData.type)) {
+          return this.handleDroppedItem(actor, itemData, data, event);
+        }
+        break;
+      case 'vehicle':
+        if (itemData.type === "component" && itemData.data.subtype === "armament") {
           return this.handleDroppedItem(actor, itemData, data, event);
         }
         break;
@@ -400,7 +414,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.data.radiationProtection.value = radiationProtection;
       sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
       sheetData.data.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
-    } else if (sheetData.actor.type === "ship") {
+    } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.storage = storage;
     } else {

@@ -130,7 +130,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         content: `<div class="remove-consumable">${body}<br><br></div>`,
         yes: async () => {
           if (consumable && consumable.id) {
-            (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
+            await (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
+            this.render();
           }
         },
         no: () => {
@@ -157,6 +158,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           label: game.i18n.localize("TWODSIX.Create"),
           callback: async (buttonHtml: JQuery) => {
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
+            let equippedState = "";
+            if (this.item.data.type !== "skills" && this.item.data.type !== "trait" && this.item.data.type !== "ship_position") {
+              equippedState = this.item.data.data.equipped ?? "backpack";
+            }
             const data = {
               name: buttonHtml.find('.consumable-name').val(),
               type: "consumable",
@@ -165,10 +170,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
                 currentCount: max,
                 max: max,
+                equipped: equippedState
               }
             };
             const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [data]) || {};
             await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
+            this.render();
           }
         },
         cancel: {
@@ -179,8 +186,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }).render(true);
   }
 
-  private _onChangeUseConsumableForAttack(event): void {
-    this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+  private async _onChangeUseConsumableForAttack(event): Promise<void> {
+    await this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+    this.render();
   }
 
   private static check(cond: boolean, err: string) {

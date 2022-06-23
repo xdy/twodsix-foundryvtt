@@ -60,7 +60,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 6,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "1d6"
+      unarmedDamage: "1d6",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc"
     }
   },
   CEL: {
@@ -87,7 +89,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 9,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   CEFTL: {
@@ -112,7 +116,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     },
   },
   CEATOM: {
@@ -137,7 +143,9 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   BARBARIC: {
@@ -162,7 +170,8 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "2 * @characteristics.endurance.value",
       defaultMovement: 10,
       defaultMovementUnits: "m",
-      unarmedDamage: "1d6"
+      unarmedDamage: "1d6",
+      showTimeframe: false
     },
   },
   CEQ: {
@@ -188,7 +197,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 9,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold"
     }
   },
   CD: {
@@ -222,7 +233,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly"
     }
   },
   CLU: {
@@ -256,7 +269,9 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       addEffectForShipDamage: false,
-      unarmedDamage: "max(@characteristics.strength.mod, 1)"
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly"
     }
   },
 
@@ -329,15 +344,6 @@ export const MovementUnits = {
   gu: "TWODSIX.Actor.Movement.DistGU"
 };
 
-export const MovementUnitsUnLocalized = {
-  ft: "Feet",
-  mi: "Miles",
-  m: "Meters",
-  km: "Kilometers",
-  pc: "Parsecs",
-  gu: "Grid Units"
-};
-
 /**
  * The valid pricing bases for components other than base hull.
  */
@@ -403,6 +409,29 @@ export const ComponentTypes = {
   vehicle: "TWODSIX.Items.Component.vehicle"
 };
 
+/**
+ * The valid time units.
+ */
+export const TimeUnits = {
+  none: "TWODSIX.Actor.Skills.Timeframe.none",
+  sec: "TWODSIX.Actor.Skills.Timeframe.secs",
+  min: "TWODSIX.Actor.Skills.Timeframe.mins",
+  hrs: "TWODSIX.Actor.Skills.Timeframe.hrs",
+  days: "TWODSIX.Actor.Skills.Timeframe.days",
+  weeks: "TWODSIX.Actor.Skills.Timeframe.weeks",
+  months: "TWODSIX.Actor.Skills.Timeframe.months",
+  rounds: "TWODSIX.Actor.Skills.Timeframe.rounds"
+};
+
+/**
+ * The vehcile protection types.
+ */
+export const VehicleProtection = {
+  armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
+  threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
+  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -412,13 +441,14 @@ export type TWODSIX = {
   RULESETS: typeof RULESETS,
   SHIP_ACTION_TYPE: typeof SHIP_ACTION_TYPE,
   MovementUnits: typeof MovementUnits,
-  MovementUnitsUnLocalized: typeof MovementUnitsUnLocalized,
   MovementType: typeof MovementTypes,
   PricingOptions: typeof PricingOptions,
   HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
   ComponentTypes: typeof ComponentTypes,
-  CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes
+  CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
+  TimeUnts: typeof TimeUnits,
+  VehicleProtection: typeof VehicleProtection
 };
 
 export const TWODSIX = {
@@ -430,14 +460,14 @@ export const TWODSIX = {
   RULESETS: RULESETS,
   SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
   MovementUnits: MovementUnits,
-  MovementUnitsUnLocalized: MovementUnitsUnLocalized,
   MovementType: MovementTypes,
   PricingOptions: PricingOptions,
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
   ComponentTypes: ComponentTypes,
-  CharacteristicDisplayTypes: CharacteristicDisplayTypes
+  CharacteristicDisplayTypes: CharacteristicDisplayTypes,
+  TimeUnits: TimeUnits,
+  VehicleProtection: VehicleProtection
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
-

@@ -99,6 +99,11 @@ declare global {
       'twodsix.addEffectForShipDamage': boolean;
       'twodsix.unarmedDamage': string;
       'twodsix.autoAddUnarmed': boolean;
+      'twodsix.showTimeframe': boolean;
+      'twodsix.showStatusIcons': boolean;
+      'twodsix.showHullAndArmor': string;
+      'twodsix.addEffectToManualDamage':boolean;
+      'twodsix.showRangeSpeedNoUnits':boolean;
     }
   }
 }
@@ -106,9 +111,19 @@ declare global {
 declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
 }
+declare interface TwodsixVehicleSheetSettings {
+  showHullAndArmor: string;
+}
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
+  shipPositions: Item[];
+  storage: Collection<Item>;
+}
+
+declare interface TwodsixVehicleSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixVehicleSheetSettings;
   shipPositions: Item[];
   storage: Collection<Item>;
 }

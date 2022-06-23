@@ -25,7 +25,8 @@
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
       "DealDamageTo": "Deal damage to _ACTOR_NAME_",
-      "DamageFormula": "Damage Formula"
+      "DamageFormula": "Damage Formula",
+      "NoRegularDamage": "No Regular Damage"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
@@ -123,7 +124,17 @@
         "Untrained": "Untrained",
         "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
         "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
-        "JOAT": "Jack of all trades"
+        "JOAT": "Jack of all trades",
+        "Timeframe": {
+          "none": "---",
+          "secs": "second(s)",
+          "mins": "minute(s)",
+          "hrs": "hour(s)",
+          "days": "day(s)",
+          "weeks": "week(s)",
+          "months": "month(s)",
+          "rounds": "round(s)"
+        }
       },
       "Species": "Species",
       "Tabs": {
@@ -161,10 +172,15 @@
     },
     "Chat": {
       "Roll": {
-        "Difficulty": "Roll difficulty",
-        "Mode": "Roll mode",
+        "Difficulty": "Difficulty",
+        "Mode": "Mode",
         "OtherModifiers": "Other modifiers",
-        "Type": "Roll type"
+        "Type": "Type",
+        "RollDetails": "Roll Details",
+        "Timeframe": "Timeframe",
+        "RollFormula": "Roll Formula",
+        "Units": "Units",
+        "taskDuration": "The task takes _TIME_ _UNITS_ to complete."
       }
     },
     "Create": "Create",
@@ -386,7 +402,7 @@
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
-      "MakesChatRollAction": "Takes the _ACTION_NAME_ action from the _POSITION_NAME_ position",
+      "MakesChatRollAction": "Uses the _ACTION_NAME_ action from the _POSITION_NAME_ position.",
       "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
       "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
       "ActionMisses": "Misses _WHILE_USING_with an effect of _EFFECT_VALUE_",
@@ -435,6 +451,52 @@
       "MaintenancePerMonth": "Maintenance Cost",
       "CrPerMonth": "Cr/month"
     },
+    "Vehicle": {
+      "SystemStatus": "System Status",
+      "Cargo": "Cargo",
+      "CargoNotes": "Notes",
+      "CargoCapacity": "Capacity",
+      "Speed": "Speed",
+      "Range": "Range",
+      "Agility": "Agility",
+      "systems": {
+        "cargo": "Cargo",
+        "cockpit": "Cockpit",
+        "computers": "Computers",
+        "electronics": "Electronics",
+        "limbs": "Limbs / Appendages",
+        "propulsion": "Propulsion / Locomotion",
+        "powerPlant": "Power Plant",
+        "sensors": "Sensors",
+        "weapons": "Weapons"
+      },
+      "crew": {
+        "operators": "Operators",
+        "passengers": "Passengers"
+      },
+      "Movement": "Movement",
+      "Crew": "Crew",
+      "Weight": "Weight",
+      "Armor": "Armor",
+      "Hull": "Hull",
+      "Structure": "Structure",
+      "Protection": "Protection",
+      "skillToOperate": "Skill to operate",
+      "Weapons": "Weapons",
+      "OpenVehicle": "Open Vehicle",
+      "techLevel": "TL",
+      "Cost": "Cost",
+      "Traits": "Traits",
+      "ArmorHull": "Armor and Hull",
+      "Regular": "Regular",
+      "Critical": "Critical",
+      "Thresholds": "Thresholds",
+      "ProtectionType": {
+        "ArmorOnly": "Armor Only",
+        "Threshold": "Threshold",
+        "ArmorHullStruc": "Armor, Hull and Structure"
+      }
+    },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
@@ -460,7 +522,8 @@
       "using": "using {characteristic}",
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
-      "BonusDamage": "Bonus Damage"
+      "BonusDamage": "Bonus Damage",
+      "Timeframe": "Time"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -587,8 +650,8 @@
         "name": "Show Hero Points"
       },
       "showItemReferences": {
-        "hint": "Shows a text field on item sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on item sheets."
+        "hint": "Shows a text field on item and vehicle sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
+        "name": "Show reference field on vehicle and item sheets."
       },
       "ShowLawLevel": {
         "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
@@ -727,6 +790,26 @@
       "unarmedDamage": {
         "hint": "Dice formula for unarmed damage used when Unarmed is automatically added to actors.",
         "name": "Unarmed Damage Formula"
+      },
+      "showTimeframe": {
+        "hint": "Add timeframe options to skill / characteristic rolls/",
+        "name": "Show Timeframe in Roll Dialog"
+      },
+      "showStatusIcons": {
+        "hint": "Overlay condition icons on side of actor images on sheets.",
+        "name": "Show condition icons on traveller sheets"
+      },
+      "showHullAndArmor": {
+        "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
+        "name": "Protection values on vehicle sheets"
+      },
+      "addEffectToManualDamage": {
+        "hint": "This option addts the effect to a manual damage roll from the most recent chat message.",
+        "name": "Add effect when making manual damage"
+      },
+      "showRangeSpeedNoUnits": {
+        "hint": "Omit the range and speed units (e.g. km/hr) on vehicle sheet.",
+        "name": "Don't show range and speed units"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -777,8 +860,8 @@
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
-      "CantAutoDamageShip": "Automatic damage of ship is not supported",
-      "CantDropOnShipToken": "Dropping items on ship tokens is not supported",
+      "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
+      "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",

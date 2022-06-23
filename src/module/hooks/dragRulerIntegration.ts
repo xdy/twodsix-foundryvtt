@@ -26,6 +26,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
         } else {
           return [];
         }
+      } else if (actorType === "vehicle") {
+        return [];
       } else if (actorType === "traveller") {
         movementSpeed = token.actor.data.data.movement.walk;
         const actorData = (<Traveller>actor.data.data);
@@ -80,6 +82,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               { range: movementSpeed * 2, color: "dash" }
             ];
         }
+      } else {
+        return [];
       }
     }
   }

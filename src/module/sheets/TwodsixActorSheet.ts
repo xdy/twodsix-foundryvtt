@@ -45,7 +45,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
       showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
-      showIcons: game.settings.get("twodsix", "showIcons")
+      showIcons: game.settings.get("twodsix", "showIcons"),
+      showStatusIcons: game.settings.get("twodsix", "showStatusIcons")
     };
     data.config = TWODSIX;
 
@@ -59,7 +60,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 825,
-      height: 648,
+      height: 656,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
       scrollY: [".skills", ".inventory", ".finances", ".info", ".notes"]
@@ -244,7 +245,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           subtype: "other",
           quantity: 1,
           currentCount: max,
-          max
+          max,
+          equipped: weaponSelected.data.data.equipped
         }
       };
       const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
@@ -273,6 +275,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       default:
         await itemSelected.update({["data.equipped"]: "equipped"});
         break;
+    }
+
+    // Sync associated consumables equipped state
+    for (const consumeableID of itemSelected.data.data.consumables) {
+      const consumableSelected = itemSelected.actor.items.get(consumeableID);
+      if(consumableSelected) {
+        await consumableSelected.update({["data.equipped"]: itemSelected.data.data.equipped});
+      }
     }
   }
 
