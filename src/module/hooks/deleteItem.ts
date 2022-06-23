@@ -1,3 +1,5 @@
+/*
+*** NOTE: This hook does not fire on delete consumable...not needed as code handles ***
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {Weapon} from "../../types/template";
@@ -13,3 +15,4 @@ Hooks.on('deleteOwnedItem', async (actor:TwodsixActor, itemData) => {
     });
   }
 });
+*/
