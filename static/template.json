@@ -324,7 +324,7 @@
         "skillModifier": 0,
         "skill": "",
         "associatedSkillName": "",
-        "equipped": ["equipped", "ship", "backpack"],
+        "equipped": "backpack",
         "docReference": ""
       }
     },

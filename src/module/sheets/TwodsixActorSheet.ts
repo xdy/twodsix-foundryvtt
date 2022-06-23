@@ -245,7 +245,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           subtype: "other",
           quantity: 1,
           currentCount: max,
-          max
+          max,
+          equipped: weaponSelected.data.data.equipped
         }
       };
       const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
@@ -274,6 +275,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       default:
         await itemSelected.update({["data.equipped"]: "equipped"});
         break;
+    }
+
+    // Sync associated consumables equipped state
+    for (const consumeableID of itemSelected.data.data.consumables) {
+      const consumableSelected = itemSelected.actor.items.get(consumeableID);
+      if(consumableSelected) {
+        await consumableSelected.update({["data.equipped"]: itemSelected.data.data.equipped});
+      }
     }
   }
 
