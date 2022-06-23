@@ -1,3 +1,10 @@
+## [1.44.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.4...v1.44.5) (2022-06-23)
+
+
+### Bug Fixes
+
+* consumable issues ([#1042](https://github.com/xdy/twodsix-foundryvtt/issues/1042)) ([21b3d3e](https://github.com/xdy/twodsix-foundryvtt/commit/21b3d3e7c1e8cc93c5c27fef912fe711ce5291bc))
+
 ## [1.44.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.3...v1.44.4) (2022-06-17)
 
 
