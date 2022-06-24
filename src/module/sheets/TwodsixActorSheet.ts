@@ -118,6 +118,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollInitiative(event): Promise<void> {
+    if (this.token?.combatant?.initiative !== null) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      return;
+    }
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
     const dialogData = {

@@ -873,7 +873,8 @@
       "NoTargetFound": "No target for damage found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
-      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero."
+      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
+      "ActorHasInitiativeAlready": "Traveller already has initiative."
     }
   },
   "VeryDifficult": "Very Difficult"
