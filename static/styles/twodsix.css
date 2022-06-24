@@ -1235,6 +1235,14 @@ a.notes-tab.active {
 
 /*-------Skill Tab-----------*/
 
+.initiative {
+  text-align: center;
+}
+
+.roll-initiative {
+  max-width: fit-content;
+}
+
 .skill-list {
   padding: 0.5em;
   width: 34.2em;

@@ -104,6 +104,7 @@ declare global {
       'twodsix.showHullAndArmor': string;
       'twodsix.addEffectToManualDamage':boolean;
       'twodsix.showRangeSpeedNoUnits':boolean;
+      'twodsix.showInitiativeButton':boolean;
     }
   }
 }
