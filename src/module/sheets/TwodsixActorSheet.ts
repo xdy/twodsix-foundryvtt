@@ -118,7 +118,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollInitiative(event): Promise<void> {
-    if (this.token?.combatant?.initiative !== null) {
+    if (!this.token) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
+      return;
+    } else if (this.token.combatant && this.token.combatant.initiative !== null ) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
       return;
     }

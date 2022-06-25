@@ -874,7 +874,8 @@
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
-      "ActorHasInitiativeAlready": "Traveller already has initiative."
+      "ActorHasInitiativeAlready": "Traveller already has initiative.",
+      "NoActiveToken": "Actor does not have an active token in scene."
     }
   },
   "VeryDifficult": "Very Difficult"
