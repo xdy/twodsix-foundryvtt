@@ -866,6 +866,13 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 /*-------Skill Tab-----------*/
+.initiative {
+  text-align: center;
+}
+
+.roll-initiative {
+  max-width: fit-content;
+}
 
 .skill-list {
   padding: 0.3em 0 0;

@@ -46,7 +46,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
       showIcons: game.settings.get("twodsix", "showIcons"),
-      showStatusIcons: game.settings.get("twodsix", "showStatusIcons")
+      showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
+      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton")
     };
     data.config = TWODSIX;
 
@@ -100,12 +101,94 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //display trait item to chat
     html.find(".showChat").on("click", this._onSendToChat.bind(this));
+
+    //Roll initiative from traveller sheet
+    html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
   }
 
 
   private getItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
     return <TwodsixItem>this.actor.items.get(itemId);
+  }
+
+  /**
+   * Handle when the roll initiative button is pressed.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onRollInitiative(event): Promise<void> {
+    if (!this.token) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
+      return;
+    } else if (this.token.combatant && this.token.combatant.initiative !== null ) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      return;
+    }
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+    const dialogData = {
+      shouldRoll: false,
+      rollType: "Normal",
+      rollTypes: TWODSIX.ROLLTYPES,
+      diceModifier: "",
+      rollFormula: game.settings.get("twodsix", "initiativeFormula")
+    };
+    if (showThrowDiag) {
+      await this.initiativeDialog(dialogData);
+      if (dialogData.shouldRoll) {
+        if (dialogData.rollType !== "Normal") {
+          if (dialogData.rollType === "Advantage") {
+            dialogData.rollFormula = dialogData.rollFormula.replace("2d6", "3d6kh2");
+          } else if (dialogData.rollType === "Disadvantage") {
+            dialogData.rollFormula = dialogData.rollFormula.replace("2d6", "3d6kl2");
+          }
+        }
+        if (dialogData.diceModifier !== "") {
+          dialogData.rollFormula += "+" + dialogData.diceModifier;
+        }
+      } else {
+        return;
+      }
+    }
+    this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula}});
+  }
+
+  private async initiativeDialog(dialogData):Promise<any> {
+    const template = 'systems/twodsix/templates/chat/initiative-dialog.html';
+
+    const buttons = {
+      ok: {
+        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
+        icon: '<i class="fas fa-dice"></i>',
+        callback: (buttonHtml) => {
+          dialogData.shouldRoll = true;
+          dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
+          dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
+          dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
+        }
+      },
+      cancel: {
+        icon: '<i class="fas fa-times"></i>',
+        label: game.i18n.localize("Cancel"),
+        callback: () => {
+          dialogData.shouldRoll = false;
+        }
+      },
+    };
+
+    const html = await renderTemplate(template, dialogData);
+    return new Promise<void>((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Rolls.RollInitiative"),
+        content: html,
+        buttons: buttons,
+        default: 'ok',
+        close: () => {
+          resolve();
+        },
+      }).render(true);
+    });
   }
 
   private _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {

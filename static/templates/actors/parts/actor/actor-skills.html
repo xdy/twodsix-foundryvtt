@@ -1,3 +1,9 @@
+{{#if data.settings.showInitiativeButton}}
+  <div class = "initiative">
+    <button class="roll-initiative"><i class="fas fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
+  </div>
+{{/if}}
+
 <div id="skill-top-row">
   <a class="add-skill item-control item-create" title="Create item" data-type="skills">
     <span class="add-skill-txt">{{localize "TWODSIX.Actor.Skills.AddSkill"}}</span>

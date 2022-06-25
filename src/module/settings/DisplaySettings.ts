@@ -33,6 +33,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('useEncumbrance', false));
     settings.push(booleanSetting('showStatusIcons', true));
     settings.push(booleanSetting('showRangeSpeedNoUnits', false));
+    settings.push(booleanSetting('showInitiativeButton', false));
     return settings;
   }
 }
