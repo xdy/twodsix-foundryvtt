@@ -1,3 +1,10 @@
+# [1.45.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.5...v1.45.0) (2022-06-25)
+
+
+### Features
+
+* add initiative roll to actor sheet ([#1043](https://github.com/xdy/twodsix-foundryvtt/issues/1043)) ([b92e50f](https://github.com/xdy/twodsix-foundryvtt/commit/b92e50f4385645077a63a5a6e87ff25c651ff8c0))
+
 ## [1.44.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.4...v1.44.5) (2022-06-23)
 
 

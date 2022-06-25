@@ -523,7 +523,8 @@
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
       "BonusDamage": "Bonus Damage",
-      "Timeframe": "Time"
+      "Timeframe": "Time",
+      "RollInitiative": "Roll Initiative"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -810,6 +811,10 @@
       "showRangeSpeedNoUnits": {
         "hint": "Omit the range and speed units (e.g. km/hr) on vehicle sheet.",
         "name": "Don't show range and speed units"
+      },
+      "showInitiativeButton": {
+        "hint": "Show an initiative roll button on actor sheet on skills tab.",
+        "name": "Show Initiative Roll Button"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -868,7 +873,9 @@
       "NoTargetFound": "No target for damage found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
-      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero."
+      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
+      "ActorHasInitiativeAlready": "Traveller already has initiative.",
+      "NoActiveToken": "Actor does not have an active token in scene."
     }
   },
   "VeryDifficult": "Very Difficult"

@@ -98,7 +98,7 @@ const RULESETS = Object.freeze({
     key: "CEFTL",
     name: "Cepheus Faster Than Light",
     settings: {
-      initiativeFormula: "2d6",
+      initiativeFormula: "2d6 + @skills.Tactics",
       difficultyListUsed: "CEL",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CE",
@@ -125,7 +125,7 @@ const RULESETS = Object.freeze({
     key: "CEATOM",
     name: "Cepheus Atom",
     settings: {
-      initiativeFormula: "2d6",
+      initiativeFormula: "2d6 + @skills.Combat",
       difficultyListUsed: "CEL",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CE",
@@ -152,7 +152,7 @@ const RULESETS = Object.freeze({
     key: "BARBARIC",
     name: "Barbaric!",
     settings: {
-      initiativeFormula: "2d6",
+      initiativeFormula: "2d6 + @skills.Combat",
       difficultyListUsed: "CEL",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CE",
@@ -242,7 +242,7 @@ const RULESETS = Object.freeze({
     key: "CLU",
     name: "Cepheus Light Upgraded",
     settings: {
-      initiativeFormula: "2d6",
+      initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
       difficultyListUsed: "CE",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",

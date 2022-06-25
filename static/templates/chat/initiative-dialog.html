@@ -1,0 +1,27 @@
+<!-- TODO Move this file -->
+<form>
+  <fieldset>
+  <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Type"}}
+        <select name="rollType">
+          {{#select rollType}}
+            {{#each rollTypes as |type|}}
+              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
+        <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}
+        <input type="text" name="rollFormula" value="{{rollFormula}}" placeholder="" onClick="this.select();" />
+      </label>
+    </div>
+  </fieldset>
+</form>
