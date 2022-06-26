@@ -124,7 +124,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
       return;
-    } else if (!this.token?.combatant && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
+    } else if (!this.actor.isToken && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
       return;
     }
