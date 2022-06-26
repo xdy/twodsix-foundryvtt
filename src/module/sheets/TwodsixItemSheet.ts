@@ -115,7 +115,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _updateComponentItem (componentUpdates) {
     // Something odd going on with token actor (unlinked actor) updates.  Needs double update.
     await this.item.update(componentUpdates);
-    if (this?.actor) {
+    if (this.actor) {
       componentUpdates["_id"] = this.item.id;
       if (this.actor.token) {
         await this.actor.token.updateActorEmbeddedDocuments('Item', [componentUpdates], {});
