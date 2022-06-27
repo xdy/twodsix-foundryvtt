@@ -118,10 +118,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollInitiative(event): Promise<void> {
-    if (!this.token) {
+    if (!canvas.tokens?.ownedTokens.find(t => t.data.actorId === this.actor.id)) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
       return;
-    } else if (this.token.combatant && this.token.combatant.initiative !== null ) {
+    } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      return;
+    } else if (!this.actor.isToken && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
       return;
     }
@@ -132,6 +135,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       rollType: "Normal",
       rollTypes: TWODSIX.ROLLTYPES,
       diceModifier: "",
+      rollMode: game.settings.get('core', 'rollMode'),
+      rollModes: CONFIG.Dice.rollModes,
       rollFormula: game.settings.get("twodsix", "initiativeFormula")
     };
     if (showThrowDiag) {
@@ -151,7 +156,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         return;
       }
     }
-    this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula}});
+
+    if (this.token?.combatant?.id) {
+      //@ts-ignore
+      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
+    } else {
+      this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});
+    }
   }
 
   private async initiativeDialog(dialogData):Promise<any> {
@@ -165,6 +176,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           dialogData.shouldRoll = true;
           dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
           dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
+          dialogData.rollMode = buttonHtml.find('[name="rollMode"]').val();
           dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
         }
       },

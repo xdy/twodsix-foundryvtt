@@ -868,6 +868,8 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 /*-------Skill Tab-----------*/
 .initiative {
   text-align: center;
+  margin-top: 0.5ch;
+  margin-bottom: -2ch;
 }
 
 .roll-initiative {
