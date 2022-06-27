@@ -135,6 +135,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       rollType: "Normal",
       rollTypes: TWODSIX.ROLLTYPES,
       diceModifier: "",
+      rollMode: game.settings.get('core', 'rollMode'),
+      rollModes: CONFIG.Dice.rollModes,
       rollFormula: game.settings.get("twodsix", "initiativeFormula")
     };
     if (showThrowDiag) {
@@ -154,7 +156,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         return;
       }
     }
-    this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula}});
+
+    if (this.token?.combatant?.id) {
+      //@ts-ignore
+      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
+    } else {
+      this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});
+    }
   }
 
   private async initiativeDialog(dialogData):Promise<any> {
@@ -168,6 +176,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           dialogData.shouldRoll = true;
           dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
           dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
+          dialogData.rollMode = buttonHtml.find('[name="rollMode"]').val();
           dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
         }
       },
