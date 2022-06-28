@@ -1237,6 +1237,7 @@ a.notes-tab.active {
 
 .initiative {
   text-align: center;
+  margin-bottom: -2ch;
 }
 
 .roll-initiative {
@@ -2549,7 +2550,7 @@ select.form-input, input.form-input, span.form-input {
 }
 
 #chat-log .message {
-  background: var(--s2d6-background-semi-opaque) none !important;
+  background: var(--s2d6-background-opaque);
   border: 1px solid var(--s2d6-item-border);
   border-radius: 0;
   margin: 3px;
@@ -2574,6 +2575,16 @@ select.form-input, input.form-input, span.form-input {
 
 .chat-message .table-draw .table-results .table-result img.result-image {
 background: var(--s2d6-sidebar-background);
+}
+
+.chat-message.blind {
+  background: var(--color-text-dark-2) !important;
+  border: 1px solid var(--s2d6-window-color);
+}
+
+.chat-message.whisper {
+  background: var(--color-text-dark-2) !important;
+  border: 1px solid var(--s2d6-header-border);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {

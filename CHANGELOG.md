@@ -1,3 +1,10 @@
+## [1.45.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.0...v1.45.1) (2022-06-27)
+
+
+### Bug Fixes
+
+* ship actor and initiative bug fixes for token actors ([#1045](https://github.com/xdy/twodsix-foundryvtt/issues/1045)) ([7cc209e](https://github.com/xdy/twodsix-foundryvtt/commit/7cc209ebc90057f5a39bf69458eeb36ee972b127))
+
 # [1.45.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.5...v1.45.0) (2022-06-25)
 
 

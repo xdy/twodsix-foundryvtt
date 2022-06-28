@@ -83,29 +83,45 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(`[name="data.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
   private async _changeSubtype(event) {
+    const componentUpdates = {};
+    componentUpdates["data.subtype"] = event.currentTarget.selectedOptions[0].value;
     /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      await this.item.update({
-        img: "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"
-      });
+      componentUpdates["img"] = "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg";
     }
 
     /*Prevent cargo from using %hull weight*/
     const anComponent = <Component> this.item.data.data;
     if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      this.item.update({'data.weightIsPct': false});
+      componentUpdates["data.weightIsPct"] = false;
     }
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      this.item.update({'data.isBaseHull': false});
+      componentUpdates["data.isBaseHull"] = false;
     }
+    await this._updateComponentItem(componentUpdates);
   }
 
   private async _changeIsBaseHull() {
     const anComponent = <Component> this.item.data.data;
+    const newValue = !anComponent.isBaseHull;
     /*Unset isWeightPct if changing to base hull*/
-    if (!anComponent.isBaseHull && anComponent.weightIsPct) {
-      this.item.update({'data.weightIsPct': false});
+    if (newValue && anComponent.weightIsPct) {
+      const componentUpdates = {'data.weightIsPct': false, "data.isBaseHull": true};
+      await this._updateComponentItem(componentUpdates);
+    }
+  }
+
+  private async _updateComponentItem (componentUpdates) {
+    // Something odd going on with token actor (unlinked actor) updates.  Needs double update.
+    await this.item.update(componentUpdates);
+    if (this.actor) {
+      componentUpdates["_id"] = this.item.id;
+      if (this.actor.token) {
+        await this.actor.token.updateActorEmbeddedDocuments('Item', [componentUpdates], {});
+      } else {
+        await this.actor.updateEmbeddedDocuments('Item', [componentUpdates]);
+      }
     }
   }
 
