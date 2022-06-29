@@ -19,11 +19,10 @@ To get the system closer to Cepheus Deluxe select 'Cepheus Deluxe' in the dropdo
 
 Support for Traits was added to the system with version 0.8.14
 
-Basic support for new Lifeblood and Stamina characteristics added in version 0.8.26.  Still left to implement is a way to automatically roll for unconsciousness and DM modifiers when wounded.  Watch #615 for any further progress on Lifeblood and Stamina.
+Basic support for new Lifeblood and Stamina characteristics added in version 0.8.26.  Lifeblood and Stamina are supported along with wounded status (if enabled by option).
 
 Compendiums for Cepheus Deluxe excluding ship, vehicle, and robot information are included with the system.
 
-To handle initiative you need to add the Tactics skill yourself after rolling, or use the 'Update Initiative' macro found here: https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros.
 
 ## Cepheus Light
 To get the system closer to Cepheus Light (which should also work fairly well for related systems like Sword of Cepheus if you don't mind the SF theming) select 'Cepheus Light' in the dropdown near the top of the system settings, that will set the following settings:
@@ -119,6 +118,7 @@ To get the system closer to MGT2 change the following in the system settings aft
 * Rename 'advantage' to 'boon' and 'disadvantage' to 'bane'
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 6.
+* Set encumbrance formula to "@characteristics.endurance.current + @characteristics.strength.current + max(0, @skills.AthleticsEndurance) + max(0, @skills.AthleticsStrength)".
 
 Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MTG1 - that provides a skill list that is very similar to the one in MGT2.)
 
@@ -129,8 +129,14 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 * A feature that's a bit too well hidden is that if you shift-click on skills or characteristics you automatically roll and Average difficulty roll without modifiers. This can be set as the default behavior in the settings (making shift-click instead open the full roll dialog).
 * You can connect a skill to any item on a character, with an optional permanent bonus, so you can do 'skill rolls' (often enough weapon attacks) by clicking the item rather than the skill, and get that bonus added automatically.
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)
-* You can drag damage rolls to a character-sheet and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.) Or, by clicking shift when dragging you get a dialog that allows you to spread the damage manually.
+* You can drag damage rolls to a character-sheet or token (if option is enabled) and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.) Or, by clicking shift when dragging you get a dialog that allows you to spread the damage manually.
 * You can right-click on an actor on the map, and select as target (round button in the lower left corner). Now when you do an attack it will automatically bring up the damage dialog for that actor (i.e. you don't need to drag and drop the damage)
+* There is built in support for PDFoundry and Drag Ruler Modules.
+* Can drag a scene to ship actor to act as an attached deck plan.
+* Option to use TinyMCE editor for larger text input fields
+* Automatic wounded status indicators (along with roll modifiers) can be optional added through a setting
+* There is an NPC sheet that can be used for any traveller.  Select under sheet settings
+* If using the show untrained skill, any roll that depends on a skill will default to untrained if no specific skill is selected.
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
@@ -144,7 +150,7 @@ Twodsix has been translated by users of the system into the following languages:
 
 ## Other sources of information
 * [The Wiki](https://github.com/xdy/twodsix-foundryvtt/wiki) contains some guides on how to actually use the system.
-* [The user_macros folder](https://github.com/xdy/twodsix-foundryvtt/tree/master/user_macros) contains several useful macros.
+* [The user_macros wiki](https://github.com/xdy/twodsix-foundryvtt/wiki/User-Macros) contains useful information about macros contained in the compendium Macros are no longer maintained on GitHub.
 
 ## The settings I (xdy) use
 Fwiw, this is how I have set up the system - i.e. the setting combination that is the most tested by me... (Showing the system setting key, and the value I have changed it to. Any setting not mentioned has the default value.)
