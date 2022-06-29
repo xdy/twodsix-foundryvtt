@@ -1,8 +1,8 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   <div class="npc-content-container">
     <div class="npc-name-photo">
-      <div class="character-photo npc">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+      <div class="character-photo npc" style="min-height: 75%;">
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
         {{#if actor.data.settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
@@ -13,6 +13,11 @@
       </div>
       <div class="character-name npc" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
+      {{#if data.settings.showInitiativeButton}}
+        <div class = "initiative">
+          <button class="roll-initiative"><i class="fas fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
+        </div>
+      {{/if}}
     </div>
     <div class="npc-bgi-stats">
       <div class="character-bgi-npc">
