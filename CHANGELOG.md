@@ -1,3 +1,10 @@
+## [1.45.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.1...v1.45.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* Update docs.md and misc updates ([#1047](https://github.com/xdy/twodsix-foundryvtt/issues/1047)) ([d0530af](https://github.com/xdy/twodsix-foundryvtt/commit/d0530af3d65d14bcbbf7b21967b10fa8fbe21c9a))
+
 ## [1.45.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.0...v1.45.1) (2022-06-27)
 
 
