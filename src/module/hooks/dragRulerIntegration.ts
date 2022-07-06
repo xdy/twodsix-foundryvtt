@@ -18,7 +18,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
       let movementSpeed = 0;
 
       if (actorType === "ship") {
-        movementSpeed = token.actor.data.data.shipStats.drives.jDrive.rating;
+        movementSpeed = token.actor.system.shipStats.drives.jDrive.rating;
         if (token.scene.data.gridUnits === "pc") {
           return [
             { range: movementSpeed, color: "jump" },
@@ -29,8 +29,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
       } else if (actorType === "vehicle") {
         return [];
       } else if (actorType === "traveller") {
-        movementSpeed = token.actor.data.data.movement.walk;
-        const actorData = (<Traveller>actor.data.data);
+        movementSpeed = token.actor.system.movement.walk;
+        const actorData = (<Traveller>actor.system);
         switch (rulesSet) {
           case "CEATOM":
           case "BARBARIC":
