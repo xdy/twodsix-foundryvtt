@@ -116,7 +116,7 @@ export default class TwodsixActor extends Actor {
 
     /* estimate displacement if missing */
     if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
-      const calcDisplacement = _estimateDisplacement();
+      const calcDisplacement = estimateDisplacement();
       if (calcDisplacement && calcDisplacement > 0) {
         this.update({"system.shipStats.mass.max": calcDisplacement});
         /*actorData.system.shipStats.mass.max = calcDisplacement;*/
@@ -129,13 +129,13 @@ export default class TwodsixActor extends Actor {
       const weightForItem = getWeight(anComponent, this);
 
       /* Allocate Power */
-      _allocatePower(anComponent, powerForItem, item);
+      allocatePower(anComponent, powerForItem, item);
 
       /* Allocate Weight*/
-      _allocateWeight(anComponent, weightForItem);
+      allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
-      _calculateComponentCost(anComponent, weightForItem);
+      calculateComponentCost(anComponent, weightForItem);
     });
 
     /*Calculate implicit values*/
@@ -151,9 +151,9 @@ export default class TwodsixActor extends Actor {
       calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
     }
     /*Push values to ship actor*/
-    _updateShipData(this);
+    updateShipData(this);
 
-    function _estimateDisplacement(): number {
+    function estimateDisplacement(): number {
       let returnValue = 0;
       this.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
         const anComponent = <Component>item.system;
@@ -162,7 +162,7 @@ export default class TwodsixActor extends Actor {
       return Math.round(returnValue);
     }
 
-    function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
+    function calculateComponentCost(anComponent: Component, weightForItem: number): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
         if (anComponent.subtype === "hull") {
           switch (anComponent.pricingBasis) {
@@ -198,7 +198,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _allocateWeight(anComponent: Component, weightForItem: number): void {
+    function allocateWeight(anComponent: Component, weightForItem: number): void {
       switch (anComponent.subtype) {
         case "vehicle":
           calcShipStats.weight.vehicles += weightForItem;
@@ -223,7 +223,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _allocatePower(anComponent: Component, powerForItem: number, item: TwodsixItem): void {
+    function allocatePower(anComponent: Component, powerForItem: number, item: TwodsixItem): void {
       if (anComponent.generatesPower) {
         calcShipStats.power.max += powerForItem;
       } else {
@@ -250,7 +250,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _updateShipData(shipActor): void {
+    function updateShipData(shipActor): void {
       shipActor.system.shipStats.power.value = Math.round(calcShipStats.power.used);
       shipActor.system.shipStats.power.max = Math.round(calcShipStats.power.max);
       shipActor.system.reqPower.systems = Math.round(calcShipStats.power.systems);
