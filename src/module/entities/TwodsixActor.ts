@@ -116,7 +116,7 @@ export default class TwodsixActor extends Actor {
 
     /* estimate displacement if missing */
     if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
-      const calcDisplacement = estimateDisplacement();
+      const calcDisplacement = estimateDisplacement(this);
       if (calcDisplacement && calcDisplacement > 0) {
         this.update({"system.shipStats.mass.max": calcDisplacement});
         /*actorData.system.shipStats.mass.max = calcDisplacement;*/
@@ -135,7 +135,7 @@ export default class TwodsixActor extends Actor {
       allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
-      calculateComponentCost(anComponent, weightForItem);
+      calculateComponentCost(anComponent, weightForItem, this);
     });
 
     /*Calculate implicit values*/
@@ -153,16 +153,16 @@ export default class TwodsixActor extends Actor {
     /*Push values to ship actor*/
     updateShipData(this);
 
-    function estimateDisplacement(): number {
+    function estimateDisplacement(shipActor): number {
       let returnValue = 0;
       this.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
         const anComponent = <Component>item.system;
-        returnValue += getWeight(anComponent, this);
+        returnValue += getWeight(anComponent, shipActor);
       });
       return Math.round(returnValue);
     }
 
-    function calculateComponentCost(anComponent: Component, weightForItem: number): void {
+    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
         if (anComponent.subtype === "hull") {
           switch (anComponent.pricingBasis) {
@@ -176,7 +176,7 @@ export default class TwodsixActor extends Actor {
               calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
               break;
             case "perHullTon":
-              calcShipStats.cost.hullValue += (this.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+              calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
               break;
           }
         } else {
