@@ -12,10 +12,9 @@ export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
-    if (item?.data.type === 'weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
+    if (item?.type === 'weapon' && (item.img === "" || item.img === foundry.data.ItemData.DEFAULT_ICON)) {
       await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
     }
-
     return item;
   }
 
@@ -25,11 +24,11 @@ export default class TwodsixItem extends Item {
   prepareData():void {
     super.prepareData();
     if (this.getFlag("twodsix", "untrainedSkill")) {
-      this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+      this.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
   }
 
-  prepareConsumable(gear:Gear = <Gear>this.data.data):void {
+  prepareConsumable(gear:Gear = <Gear>this.system):void {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 
       //TODO What is consumableData? Where does it come from? Not in template.json
@@ -47,7 +46,7 @@ export default class TwodsixItem extends Item {
       if (gear.consumables.includes(consumableId)) {
         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
-        await this.update({"data.consumables": gear.consumables.concat(consumableId)}, {});
+        await this.update({"system.consumables": gear.consumables.concat(consumableId)}, {});
       }
     } else {
       ui.notifications.error(`Twodsix | Consumable can't be added to item ${this.id}`);
@@ -58,16 +57,16 @@ export default class TwodsixItem extends Item {
     const updatedConsumables = gear.consumables.filter((cId:string) => {
       return (cId !== consumableId && cId !== null && this.actor?.items.get(cId) !== undefined);
     });
-    const updateData = {"data.consumables": updatedConsumables};
+    const updateData = {"system.consumables": updatedConsumables};
     if (gear.useConsumableForAttack === consumableId) {
-      updateData["data.useConsumableForAttack"] = "";
+      updateData["system.useConsumableForAttack"] = "";
     }
     await this.update(updateData, {});
   }
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.data.data):Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.system):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -89,7 +88,7 @@ export default class TwodsixItem extends Item {
       diceModifier: undefined
     };
     if (skill) {
-      tmpSettings = {characteristic: (<Skills>skill.data.data).characteristic || 'NONE'};
+      tmpSettings = {characteristic: (<Skills>skill.system).characteristic || 'NONE'};
     }
 
     let usedAmmo = 1;
@@ -232,8 +231,8 @@ export default class TwodsixItem extends Item {
       //Calc radiation damage
       let radDamage = <Roll>{};
       if (this.data.type === "component") {
-        if (Roll.validate(this.data.data.radDamage)) {
-          radDamage = new Roll(this.data.data.radDamage, this.actor?.data.data);
+        if (Roll.validate(this.system.radDamage)) {
+          radDamage = new Roll(this.system.radDamage, this.actor?.system);
           await radDamage.evaluate({async: true});
         }
       }
@@ -282,7 +281,7 @@ export default class TwodsixItem extends Item {
   public static getApValue(weapon:Weapon, actorID = ""):number {
     let returnValue = weapon.armorPiercing;
     if (weapon.useConsumableForAttack && actorID) {
-      const actor = game.actors?.get(actorID);
+      const actor = game.actors?.get(actorID);  //THIS MAY NOT WORK FOR UNLINKED ACTORS
       const magazine = actor?.items.get(weapon.useConsumableForAttack);
       if (magazine?.type === "consumable") {
         returnValue += (<Consumable>magazine.data.data)?.armorPiercing || 0;
@@ -354,28 +353,28 @@ export default class TwodsixItem extends Item {
 
   //////// CONSUMABLE ////////
   public async consume(quantity:number):Promise<void> {
-    const consumableLeft = (<Consumable>this.data.data).currentCount - quantity;
+    const consumableLeft = (<Consumable>this.system).currentCount - quantity;
     if (consumableLeft >= 0) {
-      await this.update({"data.currentCount": consumableLeft}, {});
+      await this.update({"system.currentCount": consumableLeft}, {});
     } else {
       throw {name: 'NoAmmoError'};
     }
   }
 
   public async refill():Promise<void> {
-    const consumable = <Consumable>this.data.data;
+    const consumable = <Consumable>this.system;
     if (consumable.currentCount < consumable.max) {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
         if (consumable.currentCount > 0) {
-          const partialConsumable = duplicate(this.data);
-          (<Consumable>partialConsumable.data).quantity = 1;
+          const partialConsumable = duplicate(this);
+          (<Consumable>partialConsumable.system).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
         }
         //refill quantity
         await this.update({
-          "data.quantity": consumable.quantity - 1,
-          "data.currentCount": consumable.max
+          "system.quantity": consumable.quantity - 1,
+          "system.currentCount": consumable.max
         }, {});
       } else {
         throw {name: 'TooLowQuantityError'};
