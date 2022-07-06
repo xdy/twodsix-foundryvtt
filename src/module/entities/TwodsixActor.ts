@@ -155,7 +155,7 @@ export default class TwodsixActor extends Actor {
 
     function estimateDisplacement(shipActor): number {
       let returnValue = 0;
-      this.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
+      shipActor.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
         const anComponent = <Component>item.system;
         returnValue += getWeight(anComponent, shipActor);
       });
