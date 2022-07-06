@@ -195,7 +195,7 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(data:Record<string, any>) {
-  if (data.pack) {
+  /*if (data.pack) {
     // compendium
     const pack = game.packs.find((p) => p.collection === data.pack);
 
@@ -217,5 +217,10 @@ export async function getItemDataFromDropData(data:Record<string, any>) {
       throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
     }
     return duplicate(item.data);
+  }*/
+  const item = await fromUuid(data.uuid);
+  if (!item) {
+    throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
   }
+  return duplicate(item);
 }
