@@ -1,40 +1,33 @@
-//import { ActorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
-  if (checkForWounds(update.data) && actor.data.type === "traveller" && game.user?.isGM) {
+  if (checkForWounds(update.system) && actor.type === "traveller" && game.user?.isGM) {
     await applyWoundedEffect(actor);
   }
 });
-//A check for token update doesn't seem to be needed.  But keep code just in case
-/*Hooks.on('updateToken', async (token: TokenDocument, update: Record<string, any>) => {
-  if (checkForWounds(update?.data)) {
-    applyWoundedEffect(<Token>canvas.tokens?.ownedTokens.find(t => t.id === token.id));
-  }
-});*/
 
-function checkForWounds(data: Record<string, any>): boolean {
-  if (!game.settings.get('twodsix', 'useWoundedStatusIndicators') || data === undefined) {
+function checkForWounds(system: Record<string, any>): boolean {
+  if (!game.settings.get('twodsix', 'useWoundedStatusIndicators') || system === undefined) {
     return false;
   } else {
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
       case 'CLU':
-        return (!!data.characteristics?.lifeblood);
+        return (!!system.characteristics?.lifeblood);
       case 'CEL':
       case 'CEFTL':
       case 'CE':
       case 'OTHER':
-        return !!(data.characteristics?.endurance || data.characteristics?.strength || data.characteristics?.dexterity);
+        return !!(system.characteristics?.endurance || system.characteristics?.strength || system.characteristics?.dexterity);
       case 'CEQ':
       case 'CEATOM':
       case 'BARBARIC':
         if (game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')) {
-          return (!!(data.characteristics?.endurance || data.characteristics?.strength));
+          return (!!(system.characteristics?.endurance || system.characteristics?.strength));
         } else if (game.settings.get('twodsix', 'showLifebloodStamina')) {
-          return (!!(data.characteristics?.stamina || data.characteristics?.lifeblood));
+          return (!!(system.characteristics?.stamina || system.characteristics?.lifeblood));
         }
         return false;
       default:
@@ -54,9 +47,9 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const woundedEffectLabel = 'woundEffect';
   const deadEffectLabel = 'Dead';
   const unconsciousEffectLabel = 'Unconscious';
-  const oldWoundState = selectedActor.data.effects.find(eff => eff.data.label === woundedEffectLabel);
-  const isAlreadyDead = selectedActor.data.effects.find(eff => eff.data.label === deadEffectLabel);
-  const isAlreadyUnconscious = selectedActor.data.effects.find(eff => eff.data.label === unconsciousEffectLabel);
+  const oldWoundState = selectedActor.effects.find(eff => eff.label === woundedEffectLabel);
+  const isAlreadyDead = selectedActor.effects.find(eff => eff.label === deadEffectLabel);
+  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.label === unconsciousEffectLabel);
 
   if (!tintToApply) {
     await setConditionState(deadEffectLabel, selectedActor, false);
@@ -70,10 +63,10 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       await setConditionState(deadEffectLabel, selectedActor, false);
 
       if (['CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-        if (isUnconsciousCE(<Traveller>selectedActor.data.data) && !isAlreadyUnconscious) {
+        if (isUnconsciousCE(<Traveller>selectedActor.system) && !isAlreadyUnconscious) {
           await setConditionState(unconsciousEffectLabel, selectedActor, true);
         }
-      } else if (oldWoundState?.data.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
+      } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
         if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
           await setConditionState(unconsciousEffectLabel, selectedActor, true); // Automatic unconsciousness or out of combat
         } else {
@@ -90,14 +83,14 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = targetActor.effects.filter(eff => eff.data.label === effectLabel);
+  const isAlreadySet = targetActor.effects.filter(eff => eff.label === effectLabel);
   const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
 
   let targetToken = {};
   if(targetActor.isToken) {
     targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
   } else {
-    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.data.actorId === targetActor.id);
+    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.actorId === targetActor.id);
   }
   if (isAlreadySet.length > 1) {
     //Need to get rid of duplicates
@@ -110,12 +103,10 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 
     if (targetToken && targetEffect) {
       if (effectLabel === "Dead" ) {
-        //await (<TokenDocument>targetActor.token)?.toggleActiveEffect(targetEffect, {active: state, overlay: true});
-        //const isAlreadyDead = await (<Token>targetToken).actor?.effects.filter(eff => eff.data.label === effectLabel);
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
-        const fighters = game.combats?.active?.data.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.data.tokenId === (<Token>targetToken).id);
+        const fighters = game.combats?.active?.combatants;
+        const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
         if (combatant !== undefined) {
           await combatant.update({defeated: state});
         }
@@ -127,7 +118,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 }
 
 async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.data.label === effectLabel);
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.label === effectLabel);
   if (isAlreadySet.length > 0 && (state === false)) {
     const idList= isAlreadySet.map(i => <string>i.id);
     if(idList.length > 0) {
@@ -143,7 +134,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "data.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
@@ -151,7 +142,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         tint: tint,
         changes: [changeData]
       }]);
-      const newEffect = await targetActor.effects.find(eff => eff.data.label === effectLabel);
+      const newEffect = await targetActor.effects.find(eff => eff.label === effectLabel);
       newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
     } else if (isAlreadySet.length > 0 && state === true) {
       await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet[0].id, tint: tint, changes: [changeData] }]);
@@ -160,7 +151,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
 }
 
 export function getIconTint(selectedActor: TwodsixActor): string {
-  const selectedTraveller = <Traveller>selectedActor.data.data;
+  const selectedTraveller = <Traveller>selectedActor.system;
   switch (game.settings.get('twodsix', 'ruleset')) {
     case 'CD':
     case 'CLU':
