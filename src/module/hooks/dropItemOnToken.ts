@@ -23,7 +23,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
         return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }
 
-      if (actor.data.type === 'traveller') {
+      if (actor.type === 'traveller') {
         if (dropData.type === 'damageItem') {
           await (<TwodsixActor>actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
         } else if (dropData.type === 'Item') {

@@ -22,7 +22,7 @@ export default class DebugSettings extends AdvancedSettings {
   static registerSettings(): string[] {
     const settings: string[] = [];
     settings.push(booleanSetting('ExperimentalFeatures', false));
-    settings.push(stringSetting('systemMigrationVersion', game.system.data.version));
+    settings.push(stringSetting('systemMigrationVersion', game.system.version));
     settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useShipAutoCalcs', false));
     settings.push(booleanSetting('useTinyMCEditor', false));
