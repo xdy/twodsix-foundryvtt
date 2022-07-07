@@ -291,7 +291,7 @@ export default class TwodsixActor extends Actor {
           });
         }
         await this.createUntrainedSkill();
-
+        // may need to change CONST.DEFAULT_TOKEN to foundry.documents.BaseActor.DEFAULT_ICON ***
         if (this.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_actor.png'
