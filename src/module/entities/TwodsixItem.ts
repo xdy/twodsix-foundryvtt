@@ -139,7 +139,7 @@ export default class TwodsixItem extends Item {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
         const damage = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (game.user?.targets.size === 1 && damage) {
-          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
+          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
         }
@@ -222,7 +222,7 @@ export default class TwodsixItem extends Item {
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.data.data);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor?.id || "");
+        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
@@ -278,13 +278,12 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static getApValue(weapon:Weapon, actorID = ""):number {
+  public static getApValue(weapon:Weapon, actor?):number {
     let returnValue = weapon.armorPiercing;
-    if (weapon.useConsumableForAttack && actorID) {
-      const actor = game.actors?.get(actorID);  //THIS MAY NOT WORK FOR UNLINKED ACTORS
+    if (weapon.useConsumableForAttack && actor) {
       const magazine = actor?.items.get(weapon.useConsumableForAttack);
       if (magazine?.type === "consumable") {
-        returnValue += (<Consumable>magazine.data.data)?.armorPiercing || 0;
+        returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
       }
     }
     return returnValue;
