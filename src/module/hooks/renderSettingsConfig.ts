@@ -16,7 +16,7 @@ function createWarningDialog(event, message: string) {
 
 Hooks.on('updateSetting', async (setting) => {
   const ruleset = game.settings.get('twodsix', 'ruleset');
-  if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.data.key.slice(8))) {
+  if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.key.slice(8))) {
     game.settings.sheet.render();
   }
 });

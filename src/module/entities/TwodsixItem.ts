@@ -12,7 +12,7 @@ export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
-    if (item?.type === 'weapon' && (item.img === "" || item.img === foundry.data.ItemData.DEFAULT_ICON)) {
+    if (item?.type === 'weapon' && (item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
       await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
     }
     return item;
@@ -41,7 +41,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async addConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
+  public async addConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     if (gear.consumables != undefined) {
       if (gear.consumables.includes(consumableId)) {
         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
@@ -53,7 +53,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async removeConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
+  public async removeConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     const updatedConsumables = gear.consumables.filter((cId:string) => {
       return (cId !== consumableId && cId !== null && this.actor?.items.get(cId) !== undefined);
     });
@@ -152,7 +152,7 @@ export default class TwodsixItem extends Item {
     let item:TwodsixItem | undefined;
 
     // Determine if this is a skill or an item
-    const usesConsumable = <UsesConsumables>this.data.data;
+    const usesConsumable = <UsesConsumables>this.system;
     if (this.type == "skills") {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       skill = this;
@@ -177,7 +177,7 @@ export default class TwodsixItem extends Item {
     }
 
     /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
-    if (usesConsumable.useConsumableForAttack && item && item.data.type != "weapon") {
+    if (usesConsumable.useConsumableForAttack && item && item.type != "weapon") {
       const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack);
       if (magazine) {
         try {
@@ -204,7 +204,7 @@ export default class TwodsixItem extends Item {
   }
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<Roll | void> {
-    const weapon = <Weapon | Component>this.data.data;
+    const weapon = <Weapon | Component>this.system;
 
     if (!weapon.damage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
@@ -220,7 +220,7 @@ export default class TwodsixItem extends Item {
       let damage = <Roll>{};
       let apValue = 0;
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.data.data);
+        damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
         apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
       } else {
@@ -230,7 +230,7 @@ export default class TwodsixItem extends Item {
 
       //Calc radiation damage
       let radDamage = <Roll>{};
-      if (this.data.type === "component") {
+      if (this.type === "component") {
         if (Roll.validate(this.system.radDamage)) {
           radDamage = new Roll(this.system.radDamage, this.actor?.system);
           await radDamage.evaluate({async: true});

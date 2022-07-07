@@ -19,7 +19,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 
       if (actorType === "ship") {
         movementSpeed = token.actor.system.shipStats.drives.jDrive.rating;
-        if (token.scene.data.gridUnits === "pc") {
+        if (token.scene.grid.units === "pc") {
           return [
             { range: movementSpeed, color: "jump" },
           ];
