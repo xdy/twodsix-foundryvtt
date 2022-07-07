@@ -281,7 +281,7 @@ export default class TwodsixItem extends Item {
   public static getApValue(weapon:Weapon, actor?):number {
     let returnValue = weapon.armorPiercing;
     if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor?.items.get(weapon.useConsumableForAttack);
+      const magazine = actor.items.get(weapon.useConsumableForAttack);
       if (magazine?.type === "consumable") {
         returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
       }
