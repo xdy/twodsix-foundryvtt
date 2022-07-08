@@ -283,10 +283,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     //Link an actor skill with name defined by item.associatedSkillName
     if (itemData.system.associatedSkillName !== "") {
-      itemData.system.skill = actor.items.getName(itemData.system.associatedSkillName)?._id;
+      itemData.system.skill = actor.items.getName(itemData.system.associatedSkillName)?.id;
       //Try to link Untrained if no match
       if (!itemData.system.skill) {
-        itemData.system.skill = (<TwodsixActor>actor).getUntrainedSkill()._id;
+        itemData.system.skill = (<TwodsixActor>actor).getUntrainedSkill()?.id;
       }
     }
 
