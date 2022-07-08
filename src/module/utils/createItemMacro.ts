@@ -20,11 +20,11 @@ export async function createItemMacro(dropData, slot): Promise<void> {
       let command = "";
       if (dropData.type === "Item") {
         command = `game.twodsix.rollItemMacro("${item.id ? item.id : item._id}");`;
-        itemName = item.name ? item.name : item?.name;
-        img = item.img ? item.img : item?.img;
+        itemName = item.name || "";
+        img = item.img || foundry.documents.BaseMacro.DEFAULT_ICON;
 
         //handle case for unattached item
-        if (!itemName) {
+        if (itemName === "") {
           const origItem = <Item>game.items?.get(item.id);
           itemName = origItem?.name || "???";
           //img = origItem?.img || MacroData.DEFAULT_ICON;
