@@ -280,10 +280,6 @@ export default function registerHandlebarsHelpers(): void {
     return returnValue;
   });
 
-  Handlebars.registerHelper('getComponentMaxHits', () => {
-    return game.settings.get("twodsix", "maxComponentHits");
-  });
-
   Handlebars.registerHelper('makePieImage', (text: string) => {
     //const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
     const re = new RegExp(/(\d+)(\s?)\/(\s?)(\d+)/gm);
