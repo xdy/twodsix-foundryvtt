@@ -90,7 +90,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
   if(targetActor.isToken) {
     targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
   } else {
-    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.actorId === targetActor.id);
+    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.actor?.id === targetActor.id);
   }
   if (isAlreadySet.length > 1) {
     //Need to get rid of duplicates

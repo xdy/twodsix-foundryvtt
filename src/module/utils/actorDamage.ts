@@ -14,7 +14,7 @@ class Attribute {
 
   constructor(characteristic: string, actor: TwodsixActor) {
     if (actor.type !== "ship") {
-      this.original = (<Traveller>actor.data.data).characteristics[characteristic];
+      this.original = (<Traveller>actor.system).characteristics[characteristic];
     }
   }
 
@@ -59,7 +59,7 @@ export class Stats {
     this.damage = damage;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = Math.max((<Traveller>actor.data.data).primaryArmor.value - this.armorPiercingValue, 0);
+      this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics();
 
@@ -123,7 +123,7 @@ export class Stats {
   public updateActor(): void {
     this.actor.prepareData();
     for (const characteristic of this.damageCharacteristics) {
-      this[characteristic].original = (<Traveller>this.actor.data.data).characteristics[characteristic];
+      this[characteristic].original = (<Traveller>this.actor.system).characteristics[characteristic];
     }
     if (!this.edited) {
       this.reduceStats();
@@ -160,8 +160,8 @@ export class Stats {
           await this.actor.token.toggleActiveEffect(deadEffect, {active: true, overlay: true});
         }
         //toggle defeated if in combat
-        const fighters = game.combats?.active?.data.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.data.tokenId === this.actor.token?.data._id);
+        const fighters = game.combats?.active?.combatants;
+        const combatant = fighters?.find((f: Combatant) => f.tokenId === this.actor.token?._id);
         if (combatant !== undefined) {
           await combatant.update({defeated: true});
         }
@@ -171,7 +171,7 @@ export class Stats {
     let charName = '';
     const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
-      charName = 'data.characteristics.' + characteristic + '.damage';
+      charName = 'system.characteristics.' + characteristic + '.damage';
       charArray[charName] = this[characteristic].totalDamage();
     }
     await this.actor.update(charArray);
