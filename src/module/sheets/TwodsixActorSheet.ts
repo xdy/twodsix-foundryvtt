@@ -123,7 +123,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollInitiative(event): Promise<void> {
-    if (!canvas.tokens?.ownedTokens.find(t => t.actorId === this.actor.id)) {
+    if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
       return;
     } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
