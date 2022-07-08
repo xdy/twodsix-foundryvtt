@@ -51,8 +51,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
               selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
-                const consumablesList = (<UsesConsumables>i.data.data).consumables;
-                let usedForAttack = (<UsesConsumables>i.data.data).useConsumableForAttack;
+                const consumablesList = (<UsesConsumables>i.system).consumables;
+                let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
                 if (consumablesList != undefined) {
                   if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
                     //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
@@ -63,7 +63,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
                     if (usedForAttack === ownedItem.id) {
                       usedForAttack = "";
                     }
-                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'data.consumables': consumablesList, 'data.useConsumableForAttack': usedForAttack}]);
+                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack}]);
                   }
                 }
               });
@@ -115,26 +115,26 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
           const skills:Skills = <Skills>game.system.template?.Item?.skills;
-          itemData.data.value = skills?.value;
+          itemData.system.value = skills?.value;
         } else {
-          itemData.data.value = 0;
+          itemData.system.value = 0;
         }
         break;
       case "weapon":
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          itemData.data.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
+          itemData.system.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
         }
         if (!itemData?.img) {
           itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
         }
         break;
       case "component":
-        itemData.data.subtype = subtype || "otherInternal";
+        itemData.system.subtype = subtype || "otherInternal";
         if (subtype === "power") {
-          itemData.data.generatesPower = true;
+          itemData.system.generatesPower = true;
         }
-        itemData.data.status = "operational";
-        itemData.img = "systems/twodsix/assets/icons/components/" + itemData.data.subtype + ".svg";
+        itemData.system.status = "operational";
+        itemData.img = "systems/twodsix/assets/icons/components/" + itemData.system.subtype + ".svg";
         break;
     }
   }
@@ -155,18 +155,18 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
-    data.name = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
+    let itemName = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
 
     if (itemType === "component") {
-      data.name += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
+      itemName += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
     } else {
-      data.name += game.i18n.localize("TWODSIX.itemTypes." + itemType);
+      itemName += game.i18n.localize("TWODSIX.itemTypes." + itemType);
     }
     // Prepare the item object.
     const itemData = {
-      name: data.name,
+      name: itemName,
       type,
-      data
+      system: data
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
@@ -184,19 +184,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
-    const data = getDataFromDropEvent(event);
+    const dropData = getDataFromDropEvent(event);
     const actor = this.actor;
 
-    if (!data) {
+    if (!dropData) {
       console.log(`Twodsix | Dragging something that can't be dragged`);
       return false;
     }
 
-    if (data.type === 'damageItem') {
-      if (actor.data.type === 'traveller') {
+    if (dropData.type === 'damageItem') {
+      if (actor.type === 'traveller') {
         const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-        await (<TwodsixActor>this.actor).damageActor(data.payload.damage, data.payload.armorPiercingValue, showDamageDialog);
+        await (<TwodsixActor>this.actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, showDamageDialog);
       } else {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
       }
@@ -204,31 +204,31 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     // Handle dropped scene on ship sheet
-    if (data.type === "Scene") {
-      if (actor.data.type === 'ship') {
-        actor.update({"data.deckPlan": data.id});
+    if (dropData.type === "Scene") {
+      if (actor.type === 'ship') {
+        actor.update({"system.deckPlan": dropData.id});
       }
       return false;
     }
 
-    const itemData = await getItemDataFromDropData(data);
+    const itemData = await getItemDataFromDropData(dropData);
 
-    switch (actor.data.type) {
+    switch (actor.type) {
       case 'traveller':
         if (itemData.type === 'skills') {
-          return this.handleDroppedSkills(actor, itemData, data, event);
+          return this.handleDroppedSkills(actor, itemData, dropData, event);
         } else if (!["component"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData, data, event);
+          return this.handleDroppedItem(actor, itemData, dropData, event);
         }
         break;
       case 'ship':
         if (!["augment", "skills", "trait"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData, data, event);
+          return this.handleDroppedItem(actor, itemData, dropData, event);
         }
         break;
       case 'vehicle':
-        if (itemData.type === "component" && itemData.data.subtype === "armament") {
-          return this.handleDroppedItem(actor, itemData, data, event);
+        if (itemData.type === "component" && itemData.system.subtype === "armament") {
+          return this.handleDroppedItem(actor, itemData, dropData, event);
         }
         break;
     }
@@ -237,7 +237,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   private async handleDroppedSkills(actor, itemData, data:Record<string, any>, event:DragEvent) {
-    const matching = actor.data.items.filter(x => {
+    const matching = actor.items.filter(x => {
       return x.name === itemData.name;
     });
 
@@ -254,12 +254,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
-    if (itemData.data.value < 0 || !itemData.data.value) {
+    if (itemData.system.value < 0 || !itemData.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;
-        itemData.data.value = skills?.value;
+        itemData.system.value = skills?.value;
       } else {
-        itemData.data.value = 0;
+        itemData.system.value = 0;
       }
     }
 
@@ -275,18 +275,18 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     //Remove any attached consumables
-    if (itemData.data.consumables !== undefined) {
-      if (itemData.data.consumables.length > 0) {
-        itemData.data.consumables = [];
+    if (itemData.system.consumables !== undefined) {
+      if (itemData.system.consumables.length > 0) {
+        itemData.system.consumables = [];
       }
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
-    if (itemData.data.associatedSkillName !== "") {
-      itemData.data.skill = actor.items.getName(itemData.data.associatedSkillName)?.data._id;
+    if (itemData.system.associatedSkillName !== "") {
+      itemData.system.skill = actor.items.getName(itemData.system.associatedSkillName)?._id;
       //Try to link Untrained if no match
-      if (!itemData.data.skill) {
-        itemData.data.skill = (<TwodsixActor>actor).getUntrainedSkill().data._id;
+      if (!itemData.system.skill) {
+        itemData.system.skill = (<TwodsixActor>actor).getUntrainedSkill()._id;
       }
     }
 
@@ -298,11 +298,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if ((item.type === "weapon") || (item.type === "armor") ||
       (item.type === "equipment") || (item.type === "tool") ||
       (item.type === "junk") || (item.type === "consumable")) {
-      if (item.data.data.equipped !== "ship") {
-        let q = item.data.data.quantity || 0;
-        const w = item.data.data.weight || 0;
-        if (item.type === "armor" && item.data.data.equipped === "equipped") {
-          if (item.data.data.isPowered) {
+      if (item.system.equipped !== "ship") {
+        let q = item.system.quantity || 0;
+        const w = item.system.weight || 0;
+        if (item.type === "armor" && item.system.equipped === "equipped") {
+          if (item.system.isPowered) {
             q = Math.max(0, q - 1);
           } else {
             q = Math.max(0, q - 1 + Number(game.settings.get("twodsix", "weightModifierForWornArmor")));
@@ -341,7 +341,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
       if (sheetData.actor.type === "traveller") {
         encumbrance += AbstractTwodsixActorSheet._getWeight(item);
-        const anArmor = <Armor>item.data.data;
+        const anArmor = <Armor>item.system;
         if (item.type === "armor" && anArmor.equipped === "equipped") {
           primaryArmor += anArmor.armor;
           secondaryArmor += anArmor.secondaryArmor.value;
@@ -380,10 +380,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           storage.push(item);
           break;
         case "component":
-          if(component[(<Component>item.data.data).subtype] === undefined) {
-            component[(<Component>item.data.data).subtype] = [];
+          if(component[(<Component>item.system).subtype] === undefined) {
+            component[(<Component>item.system).subtype] = [];
           }
-          component[(<Component>item.data.data).subtype].push(item);
+          component[(<Component>item.system).subtype].push(item);
           break;
         default:
           break;
@@ -393,27 +393,27 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
     if (Roll.validate(encumbFormula)) {
-      maxEncumbrance = new Roll(encumbFormula, sheetData.actor.data).evaluate({async: false}).total;
+      maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
     }
 
-    // Assign and return
+    // Assign and return sheetData.data to shettData.system????
     if (sheetData.actor.type === "traveller") {
-      sheetData.data.equipment = equipment;
-      sheetData.data.weapon = weapon;
-      sheetData.data.armor = armor;
-      sheetData.data.augment = augment;
-      sheetData.data.tool = tool;
-      sheetData.data.junk = junk;
-      sheetData.data.consumable = consumable;
-      sheetData.data.skills = skills;
-      sheetData.data.traits = traits;
-      sheetData.data.primaryArmor.value = primaryArmor;
-      sheetData.data.secondaryArmor.value = secondaryArmor;
-      sheetData.data.radiationProtection.value = radiationProtection;
-      sheetData.data.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
-      sheetData.data.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
+      sheetData.system.equipment = equipment;
+      sheetData.system.weapon = weapon;
+      sheetData.system.armor = armor;
+      sheetData.system.augment = augment;
+      sheetData.system.tool = tool;
+      sheetData.system.junk = junk;
+      sheetData.system.consumable = consumable;
+      sheetData.system.skills = skills;
+      sheetData.system.traits = traits;
+      sheetData.system.primaryArmor.value = primaryArmor;
+      sheetData.system.secondaryArmor.value = secondaryArmor;
+      sheetData.system.radiationProtection.value = radiationProtection;
+      sheetData.system.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
+      sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
     } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.storage = storage;

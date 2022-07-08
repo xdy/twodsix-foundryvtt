@@ -13,31 +13,32 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @type {String}
    */
   get actorType(): string {
-    return this.actor.data.type;
+    return this.actor.type;
   }
 
   /** @override */
   getData(): any {
-    const data: any = super.getData();
-    const actorData = data.data;
-    data.actor = actorData;
-    data.data = actorData.data;
+    const returnData: any = super.getData();
+    const actorData = returnData.data;  // Can Delete
+    returnData.actor = actorData;       // Can delete
+    returnData.data = actorData.data;   // Can delete
+    returnData.system = returnData.actor.system;
 
-    data.dtypes = ["String", "Number", "Boolean"];
+    returnData.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
-    if (this.actor.data.type == 'traveller') {
+    if (this.actor.type == 'traveller') {
       const actor: TwodsixActor = <TwodsixActor>this.actor;
-      TwodsixActorSheet._prepareItemContainers(actor.items, data);
+      TwodsixActorSheet._prepareItemContainers(actor.items, returnData);
       const untrainedSkill = actor.getUntrainedSkill();
       if (untrainedSkill) {
-        data.untrainedSkill = actor.getUntrainedSkill();
-        data.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(data.untrainedSkill.data.data.value);
+        returnData.untrainedSkill = actor.getUntrainedSkill();
+        returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
       }
     }
 
     // Add relevant data from system settings
-    data.data.settings = {
+    returnData.settings = {
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
@@ -47,11 +48,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
       showIcons: game.settings.get("twodsix", "showIcons"),
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
-      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton")
+      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
+      showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
+      useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
+      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle')
     };
-    data.config = TWODSIX;
+    returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
+    returnData.config = TWODSIX;
 
-    return data;
+    return returnData;
   }
 
 
@@ -118,7 +123,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onRollInitiative(event): Promise<void> {
-    if (!canvas.tokens?.ownedTokens.find(t => t.data.actorId === this.actor.id)) {
+    if (!canvas.tokens?.ownedTokens.find(t => t.actorId === this.actor.id)) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
       return;
     } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
@@ -227,7 +232,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
       const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
-      untrainedSkill.update({"data.value": skillValue});
+      untrainedSkill.update({"system.value": skillValue});
     } else if (event.currentTarget["value"] !== "") {
       event.currentTarget["value"] = "";
     }
@@ -240,7 +245,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onJoatSkillBlur(event): Promise<void> {
     if (isNaN(parseInt(event.currentTarget["value"], 10))) {
-      const skillValue = (<Skills>(<TwodsixActor>this.actor).getUntrainedSkill().data.data).value;
+      const skillValue = (<Skills>(<TwodsixActor>this.actor).getUntrainedSkill().system).value;
       event.currentTarget["value"] = TwodsixActorSheet.untrainedToJoat(skillValue);
     }
   }
@@ -283,7 +288,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
     const shortChar = $(event.currentTarget).data("label");
     const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-    const displayShortChar = (<TwodsixActor>this.actor).data.data["characteristics"][fullCharLabel].displayShortLabel;
+    const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
     await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
   }
 
@@ -312,7 +317,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       await item.refill();
     } catch (err) {
       if (err.name === "TooLowQuantityError") {
-        const refillAction = ["magazine", "power_cell"].includes((<Consumable>item.data.data).subtype) ? "Reload" : "Refill";
+        const refillAction = ["magazine", "power_cell"].includes((<Consumable>item.system).subtype) ? "Reload" : "Refill";
         const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLocaleLowerCase();
         const tooFewString = game.i18n.localize("TWODSIX.Errors.TooFewToReload");
         ui.notifications.error(tooFewString.replace("_NAME_", item.name?.toLocaleLowerCase() || "???").replace("_REFILL_ACTION_", refillWord));
@@ -331,22 +336,22 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const li = $(event.currentTarget).parents(".item");
     const weaponSelected: any = this.actor.items.get(li.data("itemId"));
 
-    const max = weaponSelected.data.data.ammo;
-    if (max > 0 && weaponSelected.data.data.consumables.length === 0) {
-      const data = {
-        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.data.name,
+    const max = weaponSelected.system.ammo;
+    if (max > 0 && weaponSelected.system.consumables.length === 0) {
+      const consumableData = {
+        name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.name,
         type: "consumable",
-        data: {
+        system: {
           subtype: "other",
           quantity: 1,
           currentCount: max,
           max,
-          equipped: weaponSelected.data.data.equipped
+          equipped: weaponSelected.system.equipped
         }
       };
-      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [data]);
+      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [consumableData]);
       await weaponSelected.addConsumable(newConsumable[0].id);
-      await weaponSelected.update({"data.useConsumableForAttack": newConsumable[0].id});
+      await weaponSelected.update({"system.useConsumableForAttack": newConsumable[0].id});
     }
   }
 
@@ -359,24 +364,24 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const li = $(event.currentTarget).parents(".item");
     const itemSelected: any = this.actor.items.get(li.data("itemId"));
 
-    switch (itemSelected.data.data.equipped) {
+    switch (itemSelected.system.equipped) {
       case "equipped":
-        await itemSelected.update({["data.equipped"]: "ship"});
+        await itemSelected.update({["system.equipped"]: "ship"});
         break;
       case "ship":
-        await itemSelected.update({["data.equipped"]: "backpack"});
+        await itemSelected.update({["system.equipped"]: "backpack"});
         break;
       case "backpack":
       default:
-        await itemSelected.update({["data.equipped"]: "equipped"});
+        await itemSelected.update({["system.equipped"]: "equipped"});
         break;
     }
 
     // Sync associated consumables equipped state
-    for (const consumeableID of itemSelected.data.data.consumables) {
+    for (const consumeableID of itemSelected.system.consumables) {
       const consumableSelected = itemSelected.actor.items.get(consumeableID);
       if(consumableSelected) {
-        await consumableSelected.update({["data.equipped"]: itemSelected.data.data.equipped});
+        await consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
       }
     }
   }
@@ -393,9 +398,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     if (itemSelected) {
       if (itemSelected.type === "skills") {
-        itemSelected.update({"data.value": newValue});
+        itemSelected.update({"system.value": newValue});
       } else if (itemSelected.type === "consumable") {
-        itemSelected.update({"data.quantity": newValue});
+        itemSelected.update({"system.quantity": newValue});
       }
     }
   }
@@ -407,9 +412,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onSendToChat(event): Promise<void> {
     const item = <TwodsixItem>this.getItem(event);
-    const picture = item.data.img;
+    const picture = item.img;
     if (item.type === "trait") {
-      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.data.data["description"]}`;
+      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.system["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
