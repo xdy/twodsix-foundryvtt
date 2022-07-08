@@ -338,7 +338,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     const max = weaponSelected.system.ammo;
     if (max > 0 && weaponSelected.system.consumables.length === 0) {
-      const consumableData = {
+      const newConsumableData = {
         name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.name,
         type: "consumable",
         system: {
@@ -349,7 +349,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           equipped: weaponSelected.system.equipped
         }
       };
-      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [consumableData]);
+      const newConsumable = await weaponSelected.actor.createEmbeddedDocuments("Item", [newConsumableData]);
       await weaponSelected.addConsumable(newConsumable[0].id);
       await weaponSelected.update({"system.useConsumableForAttack": newConsumable[0].id});
     }
