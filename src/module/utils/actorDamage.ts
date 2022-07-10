@@ -148,26 +148,6 @@ export class Stats {
   }
 
   public async applyDamage(): Promise<void> {
-    /*if (this.actor.token && this.totalCurrent() === 0  && !game.settings.get("twodsix", "useWoundedStatusIndicators")) {
-      const isDead = this.actor.effects.map((e: ActiveEffect) => {
-        return e.getFlag("core", "statusId") === "dead";
-      }).includes(true);
-
-      if (!isDead) {
-        //toggle dead condition on
-        const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
-        if (deadEffect) {
-          await this.actor.token.toggleActiveEffect(deadEffect, {active: true, overlay: true});
-        }
-        //toggle defeated if in combat
-        const fighters = game.combats?.active?.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.tokenId === this.actor.token?._id);
-        if (combatant !== undefined) {
-          await combatant.update({defeated: true});
-        }
-      }
-    }*/
-
     let charName = '';
     const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
