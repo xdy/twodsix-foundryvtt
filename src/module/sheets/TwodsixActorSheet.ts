@@ -19,9 +19,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   /** @override */
   getData(): any {
     const returnData: any = super.getData();
-    const actorData = returnData.data;  // Can Delete
-    returnData.actor = actorData;       // Can delete
-    returnData.data = actorData.data;   // Can delete
+    //const actorData = returnData.data;  // Can Delete
+    //returnData.actor = actorData;       // Can delete
+    //returnData.data = actorData.data;   // Can delete
     returnData.system = returnData.actor.system;
 
     returnData.dtypes = ["String", "Number", "Boolean"];
