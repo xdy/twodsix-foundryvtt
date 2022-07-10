@@ -27,9 +27,9 @@
         <li class="item storage-stored" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
-          <span class="item-name centre">{{item.data.data.techLevel}}</span>
-          <span class="item-name centre">{{twodsix_product item.data.data.weight item.data.data.quantity}}</span>
-          <span class="item-name centre">{{item.data.data.quantity}}</span>
+          <span class="item-name centre">{{item.system.techLevel}}</span>
+          <span class="item-name centre">{{twodsix_product item.system.weight item.system.quantity}}</span>
+          <span class="item-name centre">{{item.system.quantity}}</span>
           <span class="item-controls centre">
             <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
               class="fas fa-edit"></i></a>
