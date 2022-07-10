@@ -53,7 +53,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle')
     };
-    returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
+    //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;
 
     return returnData;
