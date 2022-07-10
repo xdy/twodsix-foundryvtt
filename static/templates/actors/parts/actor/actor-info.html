@@ -9,14 +9,14 @@
         title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fas fa-plus"></i></a></span>
   </div>
 
-  {{#each_sort_by_name data.traits as |item id|}}
+  {{#each_sort_by_name system.traits as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
         <span class="items-traits">
           <span class="item-name showChat">{{item.name}}</span>
-          <span class="item-name centre">{{item.data.data.value}}</span>
-          <span class="item-name centre">{{item.data.data.shortdescr}}</span>
+          <span class="item-name centre">{{item.system.value}}</span>
+          <span class="item-name centre">{{item.system.shortdescr}}</span>
           <span class="item-controls centre">
             <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                 class="fas fa-edit"></i></a>
@@ -33,26 +33,26 @@
 <div class="info-container">
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    {{#if settings.useTinyMCEditor}}
+      {{editor content=system.description target="system.description" button=true owner=owner editable=editable}}
     {{else}}
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     {{/if}}
   </div>
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.contacts target="data.contacts" button=true owner=owner editable=editable}}
+    {{#if settings.useTinyMCEditor}}
+      {{editor content=system.contacts target="system.contacts" button=true owner=owner editable=editable}}
     {{else}}
-      <div contenteditable="true" data-edit="data.contacts">{{{data.contacts}}}</div>
+      <div contenteditable="true" data-edit="system.contacts">{{{system.contacts}}}</div>
     {{/if}}
   </div>
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.bio target="data.bio" button=true owner=owner editable=editable}}
+    {{#if settings.useTinyMCEditor}}
+      {{editor content=system.bio target="system.bio" button=true owner=owner editable=editable}}
     {{else}}
-      <div contenteditable="true" data-edit="data.bio">{{{data.bio}}}</div>
+      <div contenteditable="true" data-edit="system.bio">{{{system.bio}}}</div>
     {{/if}}
   </div>
 </div>
