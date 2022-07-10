@@ -3,7 +3,7 @@ export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void
 
   for (const scene of game.scenes ?? []) {
     for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.data.actorLink) {
+      if (token.actor && !token.actorLink) {
         allActors.push(token.actor as TwodsixActor);
       }
     }
