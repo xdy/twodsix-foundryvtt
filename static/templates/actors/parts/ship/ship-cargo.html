@@ -1,11 +1,11 @@
 <div class = "cargo-all">
   {{#unless (twodsix_showWeightUsage)}}
   <div class="cargo-weight">
-    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.weightStats.cargo}}" name="data.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
-    {{#iff data.data.weightStats.available '>=' 0}}
-      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{#iff actor.system.weightStats.available '>=' 0}}
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{else}}
-      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{/iff}}
   </div>
   {{/unless}}
@@ -38,9 +38,9 @@
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{getComponentWeight item}}</span>
-          <span class="item-name centre">{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{item.data.data.purchasePrice}}</span>
-          <span class="item-name centre">{{#if item.data.data.isIllegal}}<i class="fas fa-skull-crossbones"></i>{{/if}}</span>
+          <span class="item-name centre">{{item.system.quantity}}</span>
+          <span class="item-name centre">{{item.system.purchasePrice}}</span>
+          <span class="item-name centre">{{#if item.system.isIllegal}}<i class="fas fa-skull-crossbones"></i>{{/if}}</span>
           <span class="item-controls centre">
             <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
               class="fas fa-edit"></i></a>
@@ -56,9 +56,9 @@
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
   {{#if (twodsix_useTinyMCE)}}
-    {{editor content=data.data.cargo target="data.cargo" button=true owner=owner editable=editable}}
+    {{editor content=actor.system.cargo target="system.cargo" button=true owner=owner editable=editable}}
   {{else}}
-    <div contenteditable="true" data-edit="data.cargo">{{#if data.data.cargo}}{{{data.data.cargo}}}{{/if}}</div>
+    <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
   {{/if}}
 </div>
 </div>
