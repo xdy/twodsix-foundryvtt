@@ -44,8 +44,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod: number = calcModFor(characteristicElement.current);
       const abbreviatedCharName: string = characteristicElement.displayShortLabel;
@@ -71,13 +70,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     let adjValue = value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
     if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
-      adjValue = actor.items.find((i) => i._id === actorData.untrainedSkill).data.value;
+      adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
     if (characteristicElement) {
@@ -253,11 +251,11 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return (Math.round(getWeight(<Component>item.data.data, item.actor?.data) * 10 ) / 10 ).toFixed(1);
+    return (Math.round(getWeight(<Component>item.system, item.actor) * 10 ) / 10 ).toFixed(1);
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    const anComponent = <Component>item.data.data;
+    const anComponent = <Component>item.system;
     const retValue:number = getPower(anComponent);
     if (anComponent.generatesPower) {
       return "+" + retValue;
