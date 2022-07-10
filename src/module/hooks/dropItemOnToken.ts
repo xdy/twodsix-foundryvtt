@@ -27,7 +27,7 @@ async function catchDrop(canvasObject: Canvas, dropData) {
         if (dropData.type === 'damageItem') {
           await (<TwodsixActor>actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
         } else if (dropData.type === 'Item') {
-          const itemData = await getItemDataFromDropData(dropData);
+          const itemData = await getItemDataFromDropData(dropData);  //Note: this might need to change to  itemData = fromUuidSync(dropData.uuid)
 
           if (isSameActor(actor, itemData)) {
             console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
