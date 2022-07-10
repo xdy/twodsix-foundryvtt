@@ -286,8 +286,8 @@ export default class TwodsixActor extends Actor {
             "token.bar1": {
               attribute: "hits"
             },
-            "data.movement.walk": game.settings.get("twodsix", "defaultMovement"),
-            "data.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+            "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
+            "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
           });
         }
         await this.createUntrainedSkill();
@@ -417,7 +417,7 @@ export default class TwodsixActor extends Actor {
   public async createUntrainedSkill(): Promise<void> {
     const untrainedSkill = await this.buildUntrainedSkill();
     if (untrainedSkill) {
-      await this.update({"data.untrainedSkill": untrainedSkill['id']});
+      await this.update({"system.untrainedSkill": untrainedSkill['id']});
     }
   }
 
@@ -538,7 +538,7 @@ async function deleteIdFromShipPositions(actorId: string) {
 
   for (const scene of game.scenes ?? []) {
     for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.data.actorLink && token.actor.type === "ship") {
+      if (token.actor && !token.actorLink && token.actor.type === "ship") {  //token.data.actorLink becomes what?????
         allShips.push(token.actor as TwodsixActor);
       }
     }
