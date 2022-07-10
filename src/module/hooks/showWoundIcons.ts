@@ -134,7 +134,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
