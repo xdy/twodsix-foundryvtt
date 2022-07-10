@@ -98,12 +98,12 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (data) => {
+  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (inData) => {
     // -1 is case where untrained skill is checked
-    if (data === -1) {
+    if (inData === -1) {
       return game.settings.get('twodsix', 'hideUntrainedSkills');
     } else {
-      return data.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && data.value < 0  && data.trainingNotes === "");
+      return inData.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && inData.value < 0  && inData.trainingNotes === "");
     }
   });
 
