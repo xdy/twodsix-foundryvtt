@@ -194,10 +194,10 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   }
 }
 
-export async function getItemDataFromDropData(data:Record<string, any>) {
-  const item = await fromUuid(data.uuid);
+export async function getItemDataFromDropData(dropData:Record<string, any>) {
+  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
   if (!item) {
-    throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.uuid));
+    throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
   return duplicate(item);
 }
