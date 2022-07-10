@@ -9,7 +9,7 @@
       {{/unless}}
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
-        {{#if actor.data.settings.showStatusIcons}}
+        {{#if settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             {{actor.effects}}
@@ -21,11 +21,11 @@
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
 
-        {{#if actor.data.settings.showLifebloodStamina }}
+        {{#if settings.showLifebloodStamina }}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           </div>
-        {{else if actor.data.settings.showIcons}}
+        {{else if settings.showIcons}}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           </div>
@@ -35,7 +35,7 @@
           </div>
         {{/if}}
         {{#unless limited}}
-        {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
+        {{#if settings.lifebloodInsteadOfCharacteristics}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
         {{else}}
           {{#if (twodsix_useFoundryStyle)}}
