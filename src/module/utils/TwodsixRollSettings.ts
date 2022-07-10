@@ -23,9 +23,9 @@ export class TwodsixRollSettings {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
     this.difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const skill = <Skills>aSkill?.data?.data;
+    const skill = <Skills>aSkill?.system;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
-    const gear = <Gear>anItem?.data?.data;
+    const gear = <Gear>anItem?.system;
     const skillModifier = gear?.skillModifier ?? 0;
     const characteristic = aSkill ? skill.characteristic : "NONE";
 
@@ -48,9 +48,9 @@ export class TwodsixRollSettings {
       //console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
       let title:string;
       if (item && skill) {
-        title = `${skill.data.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.data.name}`;
+        title = `${skill.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.name}`;
       } else if (skill) {
-        title = skill.data.name;
+        title = skill.name || "";
         //check for characterisitc not on actor characteristic list
         if (_genTranslatedSkillList(<TwodsixActor>skill.actor)[twodsixRollSettings.characteristic] === undefined) {
           twodsixRollSettings.characteristic = "NONE";
@@ -69,7 +69,7 @@ export class TwodsixRollSettings {
           twodsixRollSettings.displayLabel = "";
         } else {
           const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.characteristic);
-          twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).data.data["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+          twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
         }
       } else if (skill) {
         twodsixRollSettings.displayLabel = ""; // for unattached skill roll
@@ -143,18 +143,18 @@ export class TwodsixRollSettings {
 export function _genTranslatedSkillList(actor:TwodsixActor):object {
   const returnValue = {};
   if (actor) {
-    returnValue["STR"] = actor.data.data["characteristics"].strength.displayShortLabel;
-    returnValue["DEX"] = actor.data.data["characteristics"].dexterity.displayShortLabel;
-    returnValue["END"] = actor.data.data["characteristics"].endurance.displayShortLabel;
-    returnValue["INT"] = actor.data.data["characteristics"].intelligence.displayShortLabel;
-    returnValue["EDU"] = actor.data.data["characteristics"].education.displayShortLabel;
-    returnValue["SOC"] = actor.data.data["characteristics"].socialStanding.displayShortLabel;
+    returnValue["STR"] = actor.system["characteristics"].strength.displayShortLabel;
+    returnValue["DEX"] = actor.system["characteristics"].dexterity.displayShortLabel;
+    returnValue["END"] = actor.system["characteristics"].endurance.displayShortLabel;
+    returnValue["INT"] = actor.system["characteristics"].intelligence.displayShortLabel;
+    returnValue["EDU"] = actor.system["characteristics"].education.displayShortLabel;
+    returnValue["SOC"] = actor.system["characteristics"].socialStanding.displayShortLabel;
     if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "base") {
-      returnValue["ALT1"] = actor.data.data["characteristics"].alternative1.displayShortLabel;
-      returnValue["ALT2"] =  actor.data.data["characteristics"].alternative2.displayShortLabel;
+      returnValue["ALT1"] = actor.system["characteristics"].alternative1.displayShortLabel;
+      returnValue["ALT2"] =  actor.system["characteristics"].alternative2.displayShortLabel;
     }
     if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "alternate") {
-      returnValue["PSI"] =  actor.data.data["characteristics"].psionicStrength.displayShortLabel;
+      returnValue["PSI"] =  actor.system["characteristics"].psionicStrength.displayShortLabel;
     }
   }
   returnValue["NONE"] =  "---";
