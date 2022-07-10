@@ -445,7 +445,7 @@ export default class TwodsixActor extends Actor {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
       "img": "systems/twodsix/assets/icons/unarmed.svg",
-      "data": {
+      "system": {
         "armorPiercing": 0,
         "description": game.i18n.localize("TWODSIX.Items.Weapon.UnarmedDescription"),
         "type": "weapon",
@@ -456,7 +456,6 @@ export default class TwodsixActor extends Actor {
       },
     };
     await (this.createEmbeddedDocuments("Item", [data]));
-
   }
 
   private static _applyToAllActorItems(func: (actor: TwodsixActor, item: TwodsixItem) => void): void {
