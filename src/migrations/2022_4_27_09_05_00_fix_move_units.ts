@@ -2,27 +2,27 @@ import { Traveller } from "../types/template";
 import { applyToAllActors } from "../migration-utils";
 
 async function adjustMovementUnits (actor: TwodsixActor): Promise<void> {
-  const actorData = actor.data.data as Traveller;
+  const actorData = actor.system as Traveller;
   if (actorData.movement?.units) {
     //console.log("Starting units: ", actorData.movement.units);
     switch (actorData.movement?.units) {
       case 'TWODSIX.Actor.Movement.DistFt':
-        await actor.update({ 'data.movement.units': 'ft' });
+        await actor.update({ 'system.movement.units': 'ft' });
         break;
       case 'TWODSIX.Actor.Movement.DistMi':
-        await actor.update({ 'data.movement.units': 'mi' });
+        await actor.update({ 'system.movement.units': 'mi' });
         break;
       case 'TWODSIX.Actor.Movement.DistM':
-        await actor.update({ 'data.movement.units': 'm' });
+        await actor.update({ 'system.movement.units': 'm' });
         break;
       case 'TWODSIX.Actor.Movement.DistKm':
-        await actor.update({ 'data.movement.units': 'km' });
+        await actor.update({ 'system.movement.units': 'km' });
         break;
       case 'TWODSIX.Actor.Movement.DistPc':
-        await actor.update({ 'data.movement.units': 'pc' });
+        await actor.update({ 'system.movement.units': 'pc' });
         break;
       case 'TWODSIX.Actor.Movement.DistGU':
-        await actor.update({ 'data.movement.units': 'gu' });
+        await actor.update({ 'system.movement.units': 'gu' });
         break;
       default:
         console.log('nothing changed');

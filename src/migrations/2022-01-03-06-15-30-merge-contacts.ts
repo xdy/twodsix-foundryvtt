@@ -2,7 +2,7 @@ import { Traveller } from "../types/template";
 import { applyToAllActors } from "../migration-utils";
 
 async function mergeContacts(actor: TwodsixActor): Promise<void> {
-  const actorData = actor.data.data as Traveller;
+  const actorData = actor.system as Traveller;
   const contacts = actorData.contacts;
   const allies = actorData.allies;
   const enemies = actorData.enemies;
@@ -22,7 +22,7 @@ async function mergeContacts(actor: TwodsixActor): Promise<void> {
       contactAddition += `<br><br>Enemies:<br>${enemies}`;
     }
 
-    await actor.update({ 'data.contacts': contactAddition, 'data.allies': '', 'data.enemies': '' });
+    await actor.update({ 'system.contacts': contactAddition, 'system.allies': '', 'system.enemies': '' });
   }
 
   return Promise.resolve();
