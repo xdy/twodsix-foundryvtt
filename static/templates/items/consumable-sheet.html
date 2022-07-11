@@ -22,12 +22,8 @@
     </div>
     <div class="item-data">
       <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}</label>
-        <select name="system.subtype" value={{system.subtype}}>
-          {{#select system.subtype}}
-          {{#each config.CONSUMABLES as |consumable|}}
-          <option value="{{consumable}}">{{twodsix_localizeConsumable consumable}}</option>
-          {{/each}}
-          {{/select}}
+        <select name="system.subtype">
+          {{selectOptions config.CONSUMABLES selected = system.subtype localize = true}}
         </select>
     </div>
 
