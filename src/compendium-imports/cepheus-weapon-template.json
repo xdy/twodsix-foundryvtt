@@ -1,7 +1,7 @@
 {
   "name": "{{item}}",
   "type": "weapon",
-  "data": {
+  "system": {
     "name": "{{item}}",
     "techLevel": "{{tl}}",
     "description": "{{description}}",

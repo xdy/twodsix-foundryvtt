@@ -1,8 +1,8 @@
 import TwodsixItem from "../entities/TwodsixItem";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-Hooks.on('renderItemSheet', async (app, html, data) => {
-  const item = game.items?.get(data.id);
+Hooks.on('renderItemSheet', async (app, html) => {
+  const item = app.item;
 
   // Check if item was just created
   if (item && item.getFlag('twodsix', 'newItem')) {
