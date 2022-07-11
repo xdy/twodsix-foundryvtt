@@ -176,9 +176,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     this.actor.update({"system.shipStats.fuel.isRefined": !(<Ship>this.actor.system).shipStats.fuel.isRefined});
   }
 
-  private _onDeckplanClick() {
+  private async _onDeckplanClick() {
     if ((<Ship>this.actor.system)?.deckPlan) {
-      game.scenes?.get((<Ship>this.actor.system).deckPlan)?.view();
+      const deckPlan = game.scenes?.get((<Ship>this.actor.system).deckPlan);
+      await deckPlan?.view();
     }
   }
 
