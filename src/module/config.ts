@@ -289,9 +289,15 @@ const ROLLTYPES = Object.freeze({
   Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
 });
 
-const CONSUMABLES = Object.freeze([
-  "air", "drugs", "food", "fuel", "magazine", "power_cell", "other"
-]);
+const CONSUMABLES = Object.freeze({
+  air: "TWODSIX.Items.Consumable.Types.air",
+  drugs: "TWODSIX.Items.Consumable.Types.drugs",
+  food: "TWODSIX.Items.Consumable.Types.food",
+  fuel: "TWODSIX.Items.Consumable.Types.fuel",
+  magazine: "TWODSIX.Items.Consumable.Types.magazine",
+  power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
+  other: "TWODSIX.Items.Consumable.Types.other"
+});
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
