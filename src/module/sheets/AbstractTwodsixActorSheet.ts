@@ -206,7 +206,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Handle dropped scene on ship sheet
     if (dropData.type === "Scene") {
       if (actor.type === 'ship') {
-        actor.update({"system.deckPlan": dropData.id});
+        const scene = await fromUuidSync(dropData.uuid);
+        actor.update({"system.deckPlan": scene.id});
       }
       return false;
     }
