@@ -3090,3 +3090,8 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .force-border {
   border: 1px solid yellow !important;
 }
+
+.journal-sheet form {
+  background: revert;
+  background-color: var(--s2d6-background-semi-opaque);
+}
