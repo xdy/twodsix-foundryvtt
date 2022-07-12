@@ -38,6 +38,14 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
     };
 
+    if (game.settings.get('twodsix', 'useTinyMCEditor')) {
+      context.richText = {
+        cargo: TextEditor.enrichHTML(this.actor.system.cargo, {async: false}),
+        finances: TextEditor.enrichHTML(this.actor.system.finances, {async: false}),
+        notes: TextEditor.enrichHTML(this.actor.system.notes, {async: false})
+      };
+    }
+
     return context;
   }
 
