@@ -120,6 +120,7 @@ declare interface TwodsixShipSheetData extends ActorSheet.Data {
   settings: TwodsixShipSheetSettings;
   shipPositions: Item[];
   storage: Collection<Item>;
+  richText: any;
 }
 
 declare interface TwodsixVehicleSheetData extends ActorSheet.Data {

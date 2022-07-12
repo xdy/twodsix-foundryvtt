@@ -19,10 +19,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   /** @override */
   getData(): any {
     const returnData: any = super.getData();
-    //const actorData = returnData.data;  // Can Delete
-    //returnData.actor = actorData;       // Can delete
-    //returnData.data = actorData.data;   // Can delete
     returnData.system = returnData.actor.system;
+    if (game.settings.get('twodsix', 'useTinyMCEditor')) {
+      returnData.richText = {
+        description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
+        contacts: TextEditor.enrichHTML(returnData.system.contacts, {async: false}),
+        bio: TextEditor.enrichHTML(returnData.system.bio, {async: false}),
+        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false})
+      };
+    }
 
     returnData.dtypes = ["String", "Number", "Boolean"];
 

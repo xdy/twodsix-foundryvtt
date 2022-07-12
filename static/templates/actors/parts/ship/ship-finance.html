@@ -2,7 +2,7 @@
   <div class="ship-financial-notes">
     <span class="item-title">{{localize "TWODSIX.Ship.FINANCENOTES"}}</span>
       {{#if (twodsix_useTinyMCE)}}
-        {{editor content=actor.system.finances target="system.finances" button=true owner=owner editable=editable}}
+      {{editor richText.finances target="system.finances" button=true owner=owner editable=editable async=true}}
       {{else}}
         <div contenteditable="true" data-edit="system.finances">{{#if actor.system.finances}}{{{actor.system.finances}}}{{/if}}</div>
       {{/if}}
