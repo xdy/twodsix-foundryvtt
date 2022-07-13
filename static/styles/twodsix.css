@@ -3093,5 +3093,5 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .journal-sheet form {
   background: revert;
-  background-color: var(--s2d6-background-semi-opaque);
+  background-color: var(--s2d6-background-nearly-transparent);
 }
