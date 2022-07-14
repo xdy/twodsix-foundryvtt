@@ -76,7 +76,7 @@ p span, p {
   font-family: inherit;
 }
 
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
+input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'], input[type='date'], div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque) !important;
   color: var(--s2d6-light-color) !important;
   font-family: inherit;
