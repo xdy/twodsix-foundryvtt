@@ -24,7 +24,9 @@
       "ResultingStat": "Atributo final",
       "UnallocatedDamage": "Daño no asignado",
       "CharacterIsDead": "El PJ ha muerto",
-      "DealDamageTo": "Aplicar daño en _ACTOR_NAME_"
+      "DealDamageTo": "Aplicar daño en _ACTOR_NAME_",
+      "DamageFormula": "Fórmula Daño",
+      "NoRegularDamage": "Sin Daño Normal"
     },
     "Dialogs": {
       "ROFPickerTitle": "Seleccionar modo disparo",
@@ -50,6 +52,7 @@
         "ALT1": "ALT1",
         "ALT2": "ALT2"
       },
+      "CharacteristicEdit": "Modo Edición para los Nombres Cortos de Características.",
       "DeleteOwnedItem": "Borrar objeto",
       "Finances": {
         "CASH_ON_HAND": "DINERO DISPONIBLE",
@@ -96,14 +99,17 @@
         "ShortDescr": "Opciones",
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
+        "Traits": "Detalles",
         "TL": "NT",
+        "TechLevel": "Nivel Tec.",
         "Value": "Precio",
         "WEAPONS": "ARMAS",
         "Weapons": "Armas",
         "Weight": "KG"
       },
       "Notes": {
-        "NOTES": "NOTAS DEL PERSONAJE"
+        "NOTES": "NOTAS DEL PERSONAJE",
+        "Notes": "Notas Personaje"
       },
       "Rolling": "Tirada de",
       "Skills": {
@@ -118,7 +124,17 @@
         "Untrained": "Sin Entrenar",
         "SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
         "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
-        "JOAT": "Polivalencia"
+        "JOAT": "Polivalencia",
+        "Timeframe": {
+          "none": "---",
+          "secs": "segundos",
+          "mins": "minutos",
+          "hrs": "horas",
+          "days": "días",
+          "weeks": "semanas",
+          "months": "meses",
+          "rounds": "rondas"
+        }
       },
       "Species": "Especie",
       "Tabs": {
@@ -144,7 +160,14 @@
         "DistKm": "Kilómetros",
         "DistM": "Metros",
         "DistMi": "Millas",
+        "DistPc": "Parsecs",
+        "DistGU": "Unidades Rejilla",
         "MovementRate": "Paso"
+      },
+      "CharDisplay": {
+        "Base": "Base",
+        "Alternate": "Alternativo",
+        "All": "Todos"
       }
     },
     "Chat": {
@@ -152,7 +175,12 @@
         "Difficulty": "Dificultad tirada",
         "Mode": "Modo tirada",
         "OtherModifiers": "Otros modificadores",
-        "Type": "Tipo tirada"
+        "Type": "Tipo tirada",
+        "RollDetails": "Detalles Tirada",
+        "Timeframe": "Plazo tiempo",
+        "RollFormula": "Fórmula Tirada",
+        "Units": "Unidades",
+        "taskDuration": "La tarea tarda _TIME_ _UNITS_ en completarse."
       }
     },
     "Create": "Crear",
@@ -166,7 +194,8 @@
       "Armor": {
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
-        "RadProt": "Prot Rad"
+        "RadProt": "Prot Rad",
+        "IsPowered": "Alimentación de Armadura"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -210,9 +239,12 @@
         "Power": "Energía",
         "status": "Estado",
         "rating": "Valor",
+        "Range": "Alcance",
         "totalQuantity": "Cantidad Total",
         "availableQuantity": "Cantidad Disponible",
         "damage": "Daño / Impactos",
+        "RadiationDamage": "Daño Radiación",
+        "hits": "Impactos",
         "weightIsPct": "¿Peso en Porcentaje?",
         "purchasePrice": "Precio Compra",
         "isIllegal": "¿Ilegal?",
@@ -223,7 +255,16 @@
         "Price": "Precio",
         "Value": "Valor",
         "GeneratesPower": "¿Genera Energía?",
-        "IsRefined": "¿Refinado?"
+        "IsRefined": "¿Refinado?",
+        "Features": "Propiedades / Detalles",
+        "PricingBasis": "Precio de",
+        "perUnit": "MCr por unidad",
+        "perCompTon": "MCr por ton. componentes",
+        "perHullTon": "MCr por ton. casco",
+        "pctHull": "Porcentaje coste del casco",
+        "isBaseHull": "¿Casco Atmostérico?",
+        "RollModifier": "Modificador Tirada",
+        "DM": "MD"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -269,7 +310,8 @@
         "LFB": "VIT",
         "STA": "AGU",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "TrainingNotes": "Notas Estudio"
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
@@ -308,19 +350,26 @@
         "recoil": "Retroceso",
         "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
         "MagazineCost": "Coste del cargador/celda",
-        "ArmorPiercing": "Valor Penetración Armadura"
+        "ArmorPiercing": "Valor Penetración Armadura",
+        "Features": "Rasgos",
+        "Unarmed": "Desarmado",
+        "UnarmedDescription": "Ataque sin armas"
       }
     },
     "Ship": {
       "Actions": "Acciones",
       "ActionType": "Tipo Acción",
+      "ActionRollFormula": "Fórmula Tirada Acciones",
+      "Unknown": "Desconocido",
       "ActorLacksSkill": "_ACTOR_NAME_ no dispone de habilidad _SKILL_",
       "ActorMustBeSelectedForAction": "Ya que existen varios actores, uno debe ser seleccionado para realizar la acción.",
       "AddShipPosition": "Añadir Puesto Nave",
       "Avail": "Disp.",
       "Available": "Disponible",
+      "AvailableCargoWeight": "Peso Carga Disponible",
       "CantDropActorIfPositionIsNotOnShip": "No puedes colocar un Traveller en el puesto que no se encuentra localizado en una nave.",
       "Cargo": "Carga",
+      "CargoWeight": "Peso Total Carga",
       "CARGONOTES": "NOTAS CARGA",
       "COMPONENTS": "COMPONENTES",
       "CreateAction": "Crear Acción",
@@ -329,10 +378,10 @@
         "ASTROGATOR": "ASTRONAVEGADOR",
         "BROKER": "BRÓKER",
         "CAPTAIN": "CAPITÁN",
-        "ENGINEERS": "INGENIERO(S)",
-        "GUNNERS": "ARTILLERO(S)",
+        "ENGINEER": "INGENIERO(S)",
+        "GUNNER": "ARTILLERO(S)",
         "MAINTENANCE": "MANTENIMIENTO",
-        "MARINES": "MARINE(S)",
+        "MARINE": "MARINE(S)",
         "MEDIC": "DOCTOR",
         "OTHER": "OTRO",
         "PILOT": "PILOTO",
@@ -341,11 +390,24 @@
       "Deckplan": "Mapa Planta",
       "DeleteAction": "Borrar Acción",
       "Displacement": "Desplazamiento",
-      "FINANCES": "FINANZAS",
+      "Drives": "Motores",
+      "FINANCENOTES": "NOTAS FINANZAS",
+      "SHIPVALUE": "COSTE NAVE",
       "Fuel": "Combustible",
+      "RefinedFuel": "Combustible Refinado",
+      "UnrefinedFuel": "Combustible Sin Refinar",
+      "Gs": "G",
       "InvalidDocumentForShipPosition": "Este tipo de documento es inválido para el puesto de la nave. Sólo se pueden colocar habilidades.",
+      "IsMassProduced": "Nave Producida en Serie",
       "JDrive": "MotorS",
+      "Jump": "Salto",
       "MacroSkill": "Macro/Hab.",
+      "MakesChatRollAction": "Ejecuta la acción _ACTION_NAME_ desde el puesto _POSITION_NAME_",
+      "ActionHits": "_WHILE_USING_with impacta con efecto _EFFECT_VALUE_",
+      "ActionHitsAndDamage": "_WHILE_USING_with impacta con efecto _EFFECT_VALUE_ generando _DAMAGE_TOTAL_ puntos de daño estándar",
+      "ActionMisses": "_WHILE_USING_with falla con efecto _EFFECT_VALUE_",
+      "RadiationDamageOf": "y daño por radiación",
+      "WhileUsing": "usando ",
       "MaintPM": "Mantenimiento",
       "MANIFEST": "MANIFIESTO",
       "MAX": "MAX",
@@ -354,6 +416,9 @@
       "NewAction": "Nueva Acción",
       "NoActorsForAction": "Sin actor disponible para la acción",
       "Order": "Orden",
+      "Overdrive": "Overdrive",
+      "Parsecs": "Parsecs",
+      "pc": "pc",
       "PositionName": "Nombre Puesto",
       "Power": "Energía",
       "PowerManagement": "Gestión Energía",
@@ -374,12 +439,64 @@
         "Notes": "Notas",
         "ShipPositions": "Puestos"
       },
+      "Thrust": "Propulsión",
       "tons": "toneladas",
       "Travellers": "Travellers",
       "USED": "USO",
       "Vehicles": "Vehículos",
       "Weapons": "Armas",
+      "MCr": "MCr",
+      "ShipValue": "Precio Nave",
+      "MortgagePerMonth": "Pago Est. Hipoteca",
+      "MaintenancePerMonth": "Coste Mantenimiento",
+      "CrPerMonth": "Cr/mes",
       "SHIPCARGO": "BODEGA DE CARGA"
+    },
+    "Vehicle": {
+      "SystemStatus": "Estado Sistemas",
+      "Cargo": "Carga",
+      "CargoNotes": "Notas",
+      "CargoCapacity": "Capacidad",
+      "Speed": "Velocidad",
+      "Range": "Rango",
+      "Agility": "Agilidad",
+      "systems": {
+        "cargo": "Carga",
+        "cockpit": "Cabina",
+        "computers": "Computadoras",
+        "electronics": "Electrónica",
+        "limbs": "Patas / Apéndices",
+        "propulsion": "Propulsión / Locomoción",
+        "powerPlant": "Planta Energía",
+        "sensors": "Sensores",
+        "weapons": "Armamento"
+      },
+      "crew": {
+        "operators": "Operadores",
+        "passengers": "Pasajeros"
+      },
+      "Movement": "Movimiento",
+      "Crew": "Tripulación",
+      "Weight": "Peso",
+      "Armor": "Blindaje",
+      "Hull": "Casco",
+      "Structure": "Estructura",
+      "Protection": "Protección",
+      "skillToOperate": "Habilidad para Operar",
+      "Weapons": "Armamento",
+      "OpenVehicle": "Vehículo Abierto",
+      "techLevel": "NT",
+      "Cost": "Coste",
+      "Traits": "Rasgos",
+      "ArmorHull": "Blindaje y Casco",
+      "Regular": "Normal",
+      "Critical": "Crítico",
+      "Thresholds": "Umbrales",
+      "ProtectionType": {
+        "ArmorOnly": "Sólo Blindaje",
+        "Threshold": "Umbral",
+        "ArmorHullStruc": "Blindaje, Casco y Estructura"
+      }
     },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
@@ -404,8 +521,11 @@
       "resultShows": "Resultado:",
       "sum": "total",
       "using": "de {characteristic}",
+      "Wounds": "Heridas",
       "AttackDM": "MD Ataque",
-      "BonusDamage": "Bono Daño"
+      "BonusDamage": "Bono Daño",
+      "Timeframe": "Tiempo",
+      "RollInitiative": "Tira Iniciativa"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -605,9 +725,97 @@
         "hint": "Utiliza indicadores en las heridas para mostrar el estado y automáticamente realizar tiradas de salvación en heridas graves para evitar caer inconsciente.",
         "name": "Mostrar indicador de heridas"
       },
+      "minorWoundsRollModifier": {
+        "hint": "El modificador para las tiradas cuando un PJ tiene heridas menores (valor negativo reduce la tirada o incrementa dificultad).",
+        "name": "Modificador Tiradas con Heridas Menores"
+      },
+      "seriousWoundsRollModifier": {
+        "hint": "El modificador para las tiradas cuando un PJ tiene heridas graves (valor negativo reduce la tirada o incrementa dificultad).",
+        "name": "Modificador Tiradas con Heridas Graves"
+      },
       "weightModifierForWornArmor": {
         "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
         "name": "Factor multiplicador del peso armadura equipada."
+      },
+      "useTinyMCEditor": {
+        "hint": "Utiliza el editor HTML incorporado para introducir texto extenso.",
+        "name": "Utiliza el editor TinyMCE para introducir texto extenso."
+      },
+      "showIcons": {
+        "hint": "Usar iconos en vez de texto en información. Los iconos se utilizan siempre con Vitalidad.",
+        "name": "Usar iconos en vez de texto en información."
+      },
+      "maxComponentHits": {
+        "hint": "Número de impactos en un componente para destruirlo.",
+        "name": "Impactos máximos en componentes."
+      },
+      "mortgagePayment": {
+        "hint": "Cantidad a dividir el coste de la nave para determinar el pago mensual de la hipoteca durante 40 años. Un valor de 240 significa que el coste de la nave se divide por 240 para determinar el pago mensual.",
+        "name": "Términos Pago Hipoteca."
+      },
+      "massProductionDiscount": {
+        "hint": "Ahorro en coste de la construcción de la nave al ser producida en serie. Un valor de 0,1 significa que se reduce un 10% del precio base.",
+        "name": "Descuento por producción en serie de la nave."
+      },
+      "reverseHealingOrder": {
+        "hint": "Curar utilizando la barra del token lo realiza en el mismo orden que el daño automático. El primer atributo dañado es también el primero en sanar. Si el valor es falso, la curación comienza en orden inverso comenzando por el último.",
+        "name": "Invertir el orden de curación del atributo"
+      },
+      "maxEncumbrance": {
+        "hint": "Fórmula para calcular la carga máxima del actor.",
+        "name": "Fórmula Carga Máxima"
+      },
+      "allowDropOnIcon": {
+        "hint": "Los objetos se pueden añadir a los actores directamente encima del token sin abrir la hoja del personaje. Objetos duplicados incrementan la cantidad. Mensajes del chat con daño lo aplican.",
+        "name": "Permitir dejar objetos encima de los tokens"
+      },
+      "defaultMovement": {
+        "hint": "El movimiento por defecto al andar/moverse en nuevos actores (normalmente una acción menor), ejemplo: 10 para 10m",
+        "name": "Rango movimiento por defecto al andar"
+      },
+      "defaultMovementUnits": {
+        "hint": "Las unidades por defecto para andar/moverse en nuevos actores (normalmente una acción menor), ejemplo: m para 10m",
+        "name": "Unidades desplazamiento por defecto al andar"
+      },
+      "useEncumbrance": {
+        "hint": "Aplicar las reglas de carga (si existen) cuando se muestra el movimiento con la medición.",
+        "name": "Aplicar reglas de carga en mediciones desplazamiento"
+      },
+      "addEffectForShipDamage": {
+        "hint": "El valor del efecto en el ataque de la nave se añade al daño.",
+        "name": "Añadir efecto al daño de la nave"
+      },
+      "autoAddUnarmed": {
+        "hint": "Activo, el arma Desarmado se añade automáticamente al inventario de los nuevos actores (según configuración del reglamento).",
+        "name": "Automáticamente añadir Desarmado a los nuevos actores"
+      },
+      "unarmedDamage": {
+        "hint": "Fórmula para el daño Desarmado que se añade automáticamente a los actores.",
+        "name": "Fórmula Daño Desarmado"
+      },
+      "showTimeframe": {
+        "hint": "Añadir plazo de tiempo en tirada de habilidad o atributo",
+        "name": "Mostrar Plazo de Tiempo en la Tirada"
+      },
+      "showStatusIcons": {
+        "hint": "Iconos de estado superpuestos al lado de la imagen del actor en la hoja.",
+        "name": "Mostrar iconos de estado en la hoja del actor"
+      },
+      "showHullAndArmor": {
+        "hint": "Opción para escoger información de protección en la hoja del vehículo. Las opciones son: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
+        "name": "Valor de Protección en hoja del vehículo"
+      },
+      "addEffectToManualDamage": {
+        "hint": "Esta opción añade el Efecto, de la última tirada en el chat, al daño aplicado manualmente.",
+        "name": "Añadir Efecto al aplicar daño manual"
+      },
+      "showRangeSpeedNoUnits": {
+        "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo",
+        "name": "No mostrar unidades de rango o velocidad"
+      },
+      "showInitiativeButton": {
+        "hint": "Mostrar un botón para tirar la iniciativa en la hoja, dentro de la pestaña de habilidades.",
+        "name": "Mostrar Botón para Tirar Iniciativa"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -628,6 +836,12 @@
       "trait": "rasgo",
       "component": "componente"
     },
+    "speeds": {
+      "walk": "Andar",
+      "dash": "Ir Deprisa",
+      "run": "Correr",
+      "jump": "Saltar"
+    },
     "Errors": {
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
       "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
@@ -643,7 +857,8 @@
       "OnlyDropConsumables": "Solo es posible asignar consumibles en el objeto.",
       "DropFailedWith": "Error de asignación _ERROR_MSG_",
       "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto."
+      "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
+      "InvalidRollFormula": "Fórmula de daño no válida."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -651,10 +866,17 @@
       "MaxStatVal": "El valor supera el máximo del atributo",
       "StatValBelowZero": "El valor no puede ser inferior a cero",
       "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos",
-      "CantAutoDamageShip": "Daño automático a una nave no soportado.",
+      "CantAutoDamage": "Daño automático en nave o vehículo no soportado.",
+      "CantDropOnToken": "No se permite tirar objetos sobre los tokens de nave o vehículo",
       "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
       "PDFFoundryNotInstalled": "PDFoundry debe estar instalado para utilizar los enlaces.",
-      "NoSpecfiedLink": "Sin documento ni página especificada para el enlace."
+      "NoSpecfiedLink": "Sin documento ni página especificada para el enlace.",
+      "NoTargetFound": "No existe objetivo para el daño.",
+      "LackPermissionToDamage": "No tienes permisos suficientes sobre el actor objetivo.",
+      "MultipleActorsFound": "Actores múltiples. No se puede aplicar el daño.",
+      "EncumbranceFormulaInvalid": "La fórmula de carga no es válida. El valor será cero.",
+      "ActorHasInitiativeAlready": "Personaje ya tiene iniciativa.",
+      "NoActiveToken": "El Actor no tiene un token en la escena."
     }
   },
   "VeryDifficult": "Muy Difícil"
