@@ -1,2 +1,233 @@
 {
+  "Advantage": "Avantage",
+  "TWODSIX": {
+    "Damage": {
+    },
+    "Dialogs": {
+    },
+    "Actor": {
+      "Characteristics": {
+      },
+      "Finances": {
+      },
+      "Info": {
+      },
+      "Items": {
+      },
+      "Notes": {
+      },
+      "Skills": {
+        "Timeframe": {
+        }
+      },
+      "Tabs": {
+      },
+      "Movement": {
+      },
+      "CharDisplay": {
+      }
+    },
+    "Chat": {
+      "Roll": {
+      }
+    },
+    "Handlebars": {
+    },
+    "Items": {
+      "Armor": {
+      },
+      "Augmentation": {
+      },
+      "Component": {
+      },
+      "Equipment": {
+      },
+      "Items": {
+      },
+      "Skills": {
+      },
+      "Traits": {
+      },
+      "Tool": {
+      },
+      "Consumable": {
+        "Types": {
+        }
+      },
+      "Weapon": {
+      }
+    },
+    "Ship": {
+      "Crew": {
+      },
+      "Tabs": {
+      }
+    },
+    "Vehicle": {
+      "systems": {
+      },
+      "crew": {
+      },
+      "ProtectionType": {
+      }
+    },
+    "Migration": {
+    },
+    "Modules": {
+      "compendiumFolders": {
+      }
+    },
+    "Rolls": {
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+      },
+      "absoluteCriticalEffectValue": {
+      },
+      "alternativeShort1": {
+      },
+      "alternativeShort2": {
+      },
+      "autofireRulesUsed": {
+      },
+      "automateDamageRollOnHit": {
+      },
+      "criticalNaturalAffectsEffect": {
+      },
+      "defaultTokenSettings": {
+      },
+      "difficultiesAsTargetNumber": {
+      },
+      "difficultyListUsed": {
+      },
+      "effectOrTotal": {
+      },
+      "ExperimentalFeatures": {
+      },
+      "hideUntrainedSkills": {
+      },
+      "initiativeFormula": {
+      },
+      "invertSkillRollShiftClick": {
+      },
+      "lifebloodInsteadOfCharacteristics": {
+      },
+      "maxSkillLevel": {
+      },
+      "modifierForZeroCharacteristic": {
+      },
+      "ruleset": {
+      },
+      "settingsInterface": {
+        "debugSettings": {
+        },
+        "displaySettings": {
+        },
+        "itemSettings": {
+        },
+        "rulesetSettings": {
+        }
+      },
+      "shipInitiativeFormula": {
+      },
+      "showAlternativeCharacteristics": {
+      },
+      "showContaminationBelowLifeblood": {
+      },
+      "ShowDamageType": {
+      },
+      "showHeroPoints": {
+      },
+      "showItemReferences": {
+      },
+      "ShowLawLevel": {
+      },
+      "showLifebloodStamina": {
+      },
+      "showMissingCompendiumWarnings": {
+      },
+      "ShowRangeBandAndHideRange": {
+      },
+      "ShowRateOfFire": {
+      },
+      "ShowRecoil": {
+      },
+      "showSingleComponentColumn": {
+      },
+      "ShowWeaponType": {
+      },
+      "showWeightUsage": {
+      },
+      "systemMigrationVersion": {
+      },
+      "termForAdvantage": {
+      },
+      "termForDisadvantage": {
+      },
+      "useFoundryStandardStyle": {
+      },
+      "useModuleFixStyle": {
+      },
+      "useShipAutoCalcs": {
+      },
+      "useSystemDefaultTokenIcon": {
+      },
+      "useWoundedStatusIndicators": {
+      },
+      "minorWoundsRollModifier": {
+      },
+      "seriousWoundsRollModifier": {
+      },
+      "weightModifierForWornArmor": {
+      },
+      "useTinyMCEditor": {
+      },
+      "showIcons": {
+      },
+      "maxComponentHits": {
+      },
+      "mortgagePayment": {
+      },
+      "massProductionDiscount": {
+      },
+      "reverseHealingOrder": {
+      },
+      "maxEncumbrance": {
+      },
+      "allowDropOnIcon": {
+      },
+      "defaultMovement": {
+      },
+      "defaultMovementUnits": {
+      },
+      "useEncumbrance": {
+      },
+      "addEffectForShipDamage": {
+      },
+      "autoAddUnarmed": {
+      },
+      "unarmedDamage": {
+      },
+      "showTimeframe": {
+      },
+      "showStatusIcons": {
+      },
+      "showHullAndArmor": {
+      },
+      "addEffectToManualDamage": {
+      },
+      "showRangeSpeedNoUnits": {
+      },
+      "showInitiativeButton": {
+      }
+    },
+    "itemTypes": {
+    },
+    "speeds": {
+    },
+    "Errors": {
+    },
+    "Warnings": {
+    }
+  }
 }
