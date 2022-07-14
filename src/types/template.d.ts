@@ -3,14 +3,15 @@
 
 // Actors
 export interface TravellerDataSource {
-  type:'traveller';
   system:Traveller;
+  type:'traveller';
 }
 
 export interface ShipDataSource {
   type:'ship';
   system:Ship;
 }
+
 export interface VehicleDataSource {
   type:'vehicle';
   system:Vehicle;
@@ -75,8 +76,8 @@ export interface WeaponDataSource {
 }
 
 export interface ShipPositionDataSource {
-  type: 'ship_position';
-  system: ShipPosition;
+  type:'ship_position';
+  system:ShipPosition;
 }
 
 export type ItemTwodsixDataSource = ArmorDataSource
@@ -120,6 +121,7 @@ export interface Actor {
 }
 
 export type ShipPositionActorIds = Record<string, string>
+
 export interface Ship {
   name:string;
   deckPlan:string;
@@ -134,9 +136,9 @@ export interface Ship {
   mortgageCost:number;
   isMassProduced:boolean;
   reqPower:ReqPower;
-  weightStats: WeightStats;
+  weightStats:WeightStats;
   shipStats:ShipStats;
-  shipPositionActorIds: ShipPositionActorIds;
+  shipPositionActorIds:ShipPositionActorIds;
 }
 
 export interface Crew {
@@ -177,7 +179,7 @@ export interface ShipStats {
   armor:Staterooms;
   fuelTanks:Staterooms;
   mass:Staterooms;
-  drives: Drives;
+  drives:Drives;
 }
 
 export interface Staterooms {
@@ -299,37 +301,37 @@ export interface PrimaryArmor {
 }
 
 export interface ShipAction {
-  order: number;
-  name: string;
-  icon: string;
-  type: string;
-  command: string;
-  id?: string;
-  placeholder?: string;
+  order:number;
+  name:string;
+  icon:string;
+  type:string;
+  command:string;
+  id?:string;
+  placeholder?:string;
 }
 
 export type ShipActions = Record<string, ShipAction>;
 
 export interface ShipPosition {
-  name: string;
-  icon: string;
-  actions: ShipActions;
-  sortedActions?: ShipAction[];
-  order: number;
-  actors?: TwodsixActor[];
+  name:string;
+  icon:string;
+  actions:ShipActions;
+  sortedActions?:ShipAction[];
+  order:number;
+  actors?:TwodsixActor[];
 }
 
 export interface Vehicle {
   name:string;
   cargoList:string;
   cargoCapacity:string;
-  cost: string;
+  cost:string;
   crew:VehcileCrew;
   damageStats:VehicleDamageStats;
   features:string;
   maneuver:VehicleManeuver;
   skillToOperate:string;
-  systemStatus: VehicleSystemStatus;
+  systemStatus:VehicleSystemStatus;
   weapons:string;
   openVehicle:boolean;
   techLevel:string;
@@ -342,23 +344,25 @@ export interface VehicleCrew {
   operators:text;
   passengers:text;
 }
+
 export interface VehicleDamageStats {
-  armor: Hits;
-  hull: Hits;
-  structure: Hits;
-  armorLabel: string;
-  threshold: Threshold;
+  armor:Hits;
+  hull:Hits;
+  structure:Hits;
+  armorLabel:string;
+  threshold:Threshold;
 }
+
 export interface VehicleSystemStatus {
-  cargo: string;
-  cockpit: string;
-  computers: string;
-  electronics: string;
-  limbs: string;
-  locomotion: string;
-  powerPlant: string;
-  sensors: string;
-  weapons: string;
+  cargo:string;
+  cockpit:string;
+  computers:string;
+  electronics:string;
+  limbs:string;
+  locomotion:string;
+  powerPlant:string;
+  sensors:string;
+  weapons:string;
 }
 
 export interface VehicleManeuver {
@@ -370,8 +374,8 @@ export interface VehicleManeuver {
 }
 
 export interface Threshold {
-  regular: number;
-  critical: number;
+  regular:number;
+  critical:number;
 }
 
 export interface Item {
@@ -428,8 +432,8 @@ export interface Component extends GearTemplate {
   pricingBasis:string;
   isBaseHull:boolean;
   rollModifier:string;
-  rateOfFire: string;
-  armorPiercing: number;
+  rateOfFire:string;
+  armorPiercing:number;
 }
 
 export interface Consumable extends GearTemplate {

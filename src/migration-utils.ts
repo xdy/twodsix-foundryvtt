@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void>)): Promise<void> {
   const allActors = (game.actors?.contents ?? []) as TwodsixActor[];
 

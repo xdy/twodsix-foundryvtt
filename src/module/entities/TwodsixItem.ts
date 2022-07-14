@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 /**
  * @extends {Item}
  */
@@ -24,7 +26,8 @@ export default class TwodsixItem extends Item {
   prepareData():void {
     super.prepareData();
     if (this.getFlag("twodsix", "untrainedSkill")) {
-      this.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+      //TODO Not sure this actually works
+      this["name"] = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
   }
 

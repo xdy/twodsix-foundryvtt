@@ -14,8 +14,8 @@
     "removeComments": false,
     "resolveJsonModule": true,
     "typeRoots": ["./types"],
-    "alwaysStrict": true,
-    "strictNullChecks": true,
+    "alwaysStrict": false,
+    "strictNullChecks": false,
     "skipLibCheck": true
   },
   "include": ["src"]

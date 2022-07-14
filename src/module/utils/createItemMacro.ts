@@ -1,4 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 /* eslint-disable indent */
+
 //import { BaseMacro } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs";
 
 /**
@@ -8,7 +11,7 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createItemMacro(dropData, slot): Promise<void> {
+export async function createItemMacro(dropData, slot):Promise<void> {
   //console.log(dropData.uuid.split("."));
   const item = await fromUuid(dropData.uuid);
   if (item) {
@@ -36,22 +39,22 @@ export async function createItemMacro(dropData, slot): Promise<void> {
         if (newTable) {
           itemName = newTable.name || "???";
           //img = newTable.img || MacroData.DEFAULT_ICON;
-          img = newTable.img || foundry.documents.BaseMacro.DEFAULT_ICON;;
+          img = newTable.img || foundry.documents.BaseMacro.DEFAULT_ICON;
           command = `game.tables.get("${item.id}").draw();`;
         }
       } else {
         return;
       }
 
-      let macro: Macro | undefined = game.macros?.getName(itemName);
+      let macro:Macro | undefined = game.macros?.getName(itemName);
       if (!macro) {
         macro = await Macro.create({
           command: command,
           name: itemName,
           type: 'script',
           img: img,
-          flags: { 'twodsix.itemMacro': true },
-        }, { renderSheet: false }) as Macro;
+          flags: {'twodsix.itemMacro': true},
+        }, {renderSheet: false}) as Macro;
       }
       await game.user?.assignHotbarMacro(macro, slot);
     }

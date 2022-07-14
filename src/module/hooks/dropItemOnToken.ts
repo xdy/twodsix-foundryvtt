@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 //Liberally adapted from "hey-catch" by Mana#4176
 import { Skills } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
