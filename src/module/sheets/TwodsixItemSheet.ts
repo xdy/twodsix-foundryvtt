@@ -102,6 +102,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     await this._updateComponentItem(componentUpdates);
   }
 
+  /* -------------------------------------------- */
+  /** @override */
+  // cludge to fix consumables dissapearing when updating item sheet
+  async _onChangeInput(event) {
+    //console.log(event);
+    await super._onChangeInput(event);
+    //await (<TwodsixItem>this.item).prepareConsumable();
+    this.item?.sheet?.render();
+  }
+  /* -------------------------------------------- */
+
   private async _changeIsBaseHull() {
     const anComponent = <Component> this.item.data.data;
     const newValue = !anComponent.isBaseHull;
@@ -240,6 +251,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         itemId = newItem[0].id;
       }
       await (<TwodsixItem>this.item).addConsumable(itemId);
+      this.render();
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);
