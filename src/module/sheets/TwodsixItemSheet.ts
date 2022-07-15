@@ -16,7 +16,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
-      submitOnChange: true,
+      submitOnChange: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
       dragDrop: [{dropSelector: null}]
     });
@@ -240,6 +240,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         itemId = newItem[0].id;
       }
       await (<TwodsixItem>this.item).addConsumable(itemId);
+      this.render();
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);
