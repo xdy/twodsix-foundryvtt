@@ -1,3 +1,10 @@
+## [1.45.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.2...v1.45.3) (2022-07-15)
+
+
+### Bug Fixes
+
+* consumables disappearing on drop or item edit ([#1059](https://github.com/xdy/twodsix-foundryvtt/issues/1059)) ([bcff8b0](https://github.com/xdy/twodsix-foundryvtt/commit/bcff8b02185f12095402edb94db98ebedfbbddcc))
+
 ## [1.45.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.1...v1.45.2) (2022-06-29)
 
 
