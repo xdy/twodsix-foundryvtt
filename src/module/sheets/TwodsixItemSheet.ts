@@ -16,7 +16,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
-      submitOnChange: false,
+      submitOnChange: true,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
       dragDrop: [{dropSelector: null}]
     });
@@ -101,6 +101,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
     await this._updateComponentItem(componentUpdates);
   }
+
+  /* -------------------------------------------- */
+  /** @override */
+  // cludge to fix consumables dissapearing when updating item sheet
+  async _onChangeInput(event) {
+    //console.log(event);
+    await super._onChangeInput(event);
+    //await (<TwodsixItem>this.item).prepareConsumable();
+    this.item?.sheet?.render();
+  }
+  /* -------------------------------------------- */
 
   private async _changeIsBaseHull() {
     const anComponent = <Component> this.item.data.data;
