@@ -14,6 +14,7 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * [Kampfzwerg42](https://github.com/Kampfzwerg42/) - Started with adding support for carrying capacity/encumbrance to the character sheet.
 * [decension](https://github.com/descention) - Updates to documentation
 * TheLaundry - Improvements to macros
+* Xanastay - French translation.
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
 
