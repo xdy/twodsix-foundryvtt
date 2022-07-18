@@ -1,100 +1,516 @@
 {
   "Advantage": "Avantage",
+  "Cancel": "Annuler",
+  "Difficult": "Difficile",
+  "Disadvantage": "Désavantage",
+  "Easy": "Facile",
+  "Formidable": "Formidable",
+  "Impossible": "Impossible",
+  "Normal": "Normal",
+  "Routine": "Routinier",
+  "Simple": "Simple",
   "TWODSIX": {
     "Damage": {
+      "DealDamage": "Infliger des dégâts",
+      "Damage": "Dégât",
+      "TotalDamage": "Dégâts totaux",
+      "Characteristics": "Charactéristique",
+      "Max": "Max",
+      "Mod": "Mod",
+      "Dmg": "Deg",
+      "ResultingStat": "Statistique résultante",
+      "UnallocatedDamage": "Dégâts non alloués",
+      "CharacterIsDead": "Personnage est mort",
+      "DealDamageTo": "Infliger des dégâts à _ACTOR_NAME_",
+      "DamageFormula": "Formule de dégâts"
     },
     "Dialogs": {
+      "ROFPickerTitle": "Sélectionnez une cadence de tir",
+      "ROFSingle": "Tir unique",
+      "ROFBurst": "Tir en rafale",
+      "ROFFull": "Tir automatique"
     },
     "Actor": {
+      "Age": "Âge",
+      "CharacterImage": "Image du personnage",
+      "CharacterName": "Nom du personnage",
       "Characteristics": {
+        "DEX": "DEX",
+        "EDU": "EDU",
+        "END": "END",
+        "INT": "INT",
+        "PSI": "PSI",
+        "SOC": "SOC",
+        "STR": "FOR"
       },
+      "CharacteristicEdit": "Basculer en mode édition pour les abréviations de caractéristiques ",
       "Finances": {
+        "CASH_ON_HAND": "ARGENT DISPONIBLE",
+        "DEBT": "DETTE",
+        "FINANCIAL_NOTES": "NOTES FINANCIERES",
+        "LIVING_COSTS": "COÛTS DE LA VIE",
+        "PENSION": "PENSION",
+        "SHIP_PAYMENTS_MONTHLY": "PAIEMENTS MENSUEL DU VAISSEAU"
       },
+      "Gender": "Genre",
+      "Contamination": "Contamination",
+      "Stamina": "Endurance",
+      "RadiationExposure": "Exposition aux radiations",
+      "HomeWorld": "Monde natal",
       "Info": {
+        "ALLIES": "ALLIÉS",
+        "BIOGRAPHY": "BIOGRAPHIE",
+        "CONTACTS": "CONTACTS",
+        "DESCRIPTION": "DESCRIPTION",
+        "ENEMIES": "ENNEMIS"
       },
       "Items": {
+        "ARMOR": "ARMURE",
+        "Ammo": "Munitions",
+        "Armor": "Armure",
+        "CONSUMABLES": "CONSOMMABLES",
+        "CreateItem": "Créer objet",
+        "Damage": "Dégâts",
+        "DeleteItem": "Supprimer objet",
+        "EQUIPMENT": "ÉQUIPEMENT",
+        "EditItem": "Editer objet",
+        "Effect": "Effet",
+        "Location": "Emplacement",
+        "Name": "Nom",
+        "Qty": "Qté",
+        "Range": "Portée",
+        "Reload": "Recharger",
+        "ShortDescr": "Brève description",
+        "Subtype": "Type",
+        "TRAITS": "TRAITS",
+        "Traits": "Traits",
+        "TL": "NT",
+        "TechLevel": "Niveau de technologique",
+        "Value": "Valeur",
+        "WEAPONS": "ARMES",
+        "Weapons": "Armes",
+        "Weight": "Pds"
       },
       "Notes": {
+        "NOTES": "NOTES DE PERSONNAGE",
+        "Notes": "Notes de personnage"
       },
       "Skills": {
+        "AddSkill": ">>Ajouter une compétence<<",
+        "DeleteItem": "Supprimer objet",
+        "EditItem": "Editer objet",
+        "EditOrRemove": "Modifier / supprimer",
+        "Level": "Niveau",
+        "Modifier": "Modificateur",
+        "SkillName": "Nom de la compétence",
+        "Total": "Total",
+        "Untrained": "Non entraîné",
+        "SkillRollTooltip": "Affiche la boîte de dialogue de test de compétence. Maj-clic lance un test de compétence sans modificateur avec une difficulté de 8",
+        "InvertedSkillRollTooltip": "Lance un test de compétence sans modificateur avec une difficulté de 8. Maj-clic affiche la boîte de dialogue de test de compétence",
+        "JOAT": "Touche à tout",
         "Timeframe": {
+          "secs": "seconde(s)",
+          "mins": "minute(s)",
+          "hrs": "heures)",
+          "days": "jour(s)",
+          "weeks": "semaine(s)",
+          "months": "mois",
+          "rounds": "round(s)"
         }
       },
+      "Species": "Espèce",
       "Tabs": {
+        "Finances": "Finances",
+        "Info": "Info",
+        "Inventory": "Inventaire",
+        "Notes": "Notes",
+        "Skills": "Compétences"
       },
+      "UnknownActorType": "Type d'acteur inconnu",
       "Movement": {
+        "MovementConfig": "Configurer la vitesse de déplacement",
+        "MovementConfigHint": "Configurez la vitesse de déplacement et les attributs de déplacement spéciaux de cette créature.",
+        "MovementWalk": "Marche",
+        "MovementBurrow": "Creuse",
+        "MovementClimb": "Grimpe",
+        "MovementHover": "Plane",
+        "MovementFly": "Vole",
+        "MovementSwim": "Nage",
+        "MovementUnits": "Unités",
+        "DistFt": "Pieds",
+        "DistKm": "Kilomètres",
+        "DistM": "Mètres",
+        "DistMi": "Milles",
+        "DistPc": "Parsecs",
+        "MovementRate": "Vitesse de déplacement"
       },
       "CharDisplay": {
+        "Base": "Base",
+        "Alternate": "Alterner",
+        "All": "Tout"
       }
     },
     "Chat": {
       "Roll": {
+        "Difficulty": "Difficulté",
+        "Mode": "Mode",
+        "OtherModifiers": "Autres modificateurs",
+        "Type": "Type",
+        "RollDetails": "Détails du jet",
+        "RollFormula": "Formule du jet",
+        "Units": "Unités"
       }
     },
+    "Create": "Créer",
     "Handlebars": {
+      "CantShowCharacteristic": "Vous devez resélectionner la caractéristique pour toutes les compétences marquées d'un XXX. Désolé..."
     },
     "Items": {
+      "Encumbrance": "Encombrement",
+      "Enc": "Enc",
+      "DocumentReference": "Référence de document",
       "Armor": {
+        "Armor": "Armure",
+        "SecondaryArmor": "Armure secondaire",
+        "RadProt": "Prot rad",
+        "IsPowered": "Armure assistée"
       },
       "Augmentation": {
+        "Arms": "Bras",
+        "AugEffect": "Effet",
+        "AugLocation": "Emplacement",
+        "FullBody": "Tout le corps",
+        "Head": "Tête",
+        "Legs": "Jambes",
+        "Torso": "Torse",
+        "ValueCr": "Valeur en Cr"
       },
       "Component": {
+        "componentName": "Composant",
+        "armament": "armement",
+        "armor": "armure",
+        "bridge": "pont",
+        "cargo": "cargo",
+        "computer": "ordinateur",
+        "drone": "drone",
+        "electronics": "électronique",
+        "fuel": "carburant",
+        "hull": "coque",
+        "power": "énergie ",
+        "sensor": "capteur",
+        "shield": "bouclier",
+        "software": "programme",
+        "storage": "stockage",
+        "vehicle": "véhicule",
+        "other": "autre",
+        "otherExternal": "autre - externe",
+        "otherInternal": "autre - interne",
+        "operational": "opérationnel",
+        "damaged": "endommagé",
+        "destroyed": "détruit",
+        "off": "à l'arrêt",
+        "powerDraw": "Énergie consommée par unité",
+        "powerGenerated": "Énergie générée par unité",
+        "Power": "Énergie ",
+        "status": "Statut",
+        "Range": "Portée",
+        "totalQuantity": "Quantité totale",
+        "availableQuantity": "Quantité disponible",
+        "damage": "Dégâts",
+        "RadiationDamage": "Dégâts de radiation",
+        "weightIsPct": "Le poids est en pourcentage ?",
+        "purchasePrice": "Prix d'achat",
+        "isIllegal": "Illégal?",
+        "CargoItem": "Objet de cargo",
+        "CargoLocation": "Emplacement du cargo",
+        "Price": "Prix",
+        "Value": "Valeur",
+        "GeneratesPower": "Génère de la puissance ?",
+        "IsRefined": "Raffiné?",
+        "Features": "Caractéristiques / traits",
+        "PricingBasis": "Prix de ",
+        "perUnit": "MCr par unité",
+        "perCompTon": "MCr par tonne de composants",
+        "perHullTon": "MCr par tonne de coque",
+        "pctHull": "Pourcentage de la valeur de base de la coque ",
+        "RollModifier": "Modificateur de jet",
+        "DM": "NA"
       },
       "Equipment": {
+        "AssignSkill": "Attribuer la compétence",
+        "Description": "Description",
+        "ItemName": "Nom de l'objet",
+        "Location": "Emplacement",
+        "Price": "Prix",
+        "Quantity": "Quantité",
+        "ShortDescription": "Courte description",
+        "SkillModifier": "Modificateur de compétence",
+        "TL": "NT",
+        "Weight": "Poids"
       },
       "Items": {
+        "AssignArmor": "Armure",
+        "AssignAugment": "Augmentation",
+        "AssignEquipment": "Équipement ",
+        "AssignTool": "Outil",
+        "AssignWeapon": "Arme",
+        "AssignConsumable": "Consommable",
+        "Inventory": "Inventaire",
+        "ItemType": "Type",
+        "MoveStorage": "Déplacer dans le stockage",
+        "New": "Nouveau",
+        "Storage": "Stockage"
       },
       "Skills": {
+        "DEX": "DEX",
+        "EDU": "ÉDU",
+        "END": "END",
+        "INT": "INT",
+        "Level": "Niveau",
+        "Modifier": "Modificateur",
+        "NONE": "---",
+        "PSI": "PSI",
+        "SOC": "SOC",
+        "STR": "FOR",
+        "SkillName": "Nom de la compétence",
+        "SimplifiedSkillName": "Nom simplifié de la compétence",
+        "SimplifiedSkillNameDescription": "Utilisé dans les formules de jet comme @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ est indiquée à zéro par défaut si la compétence est introuvable ou en dessous de zéro.",
+        "TrainingNotes": "Notes sur l'entraînement"
       },
       "Traits": {
+        "Prerequisite": "Prérequis",
+        "TraitName": "Nom du trait"
       },
       "Tool": {
+        "Bonus": "Bonus"
       },
       "Consumable": {
         "Types": {
-        }
+          "air": "Air",
+          "drugs": "Drogue",
+          "food": "Nourriture",
+          "fuel": "Carburant",
+          "magazine": "Chargeur",
+          "power_cell": "Cellule de puissance",
+          "other": "Autre"
+        },
+        "Size": "Taille",
+        "Subtype": "Type",
+        "Count": "Compte",
+        "ArmorPiercing": "Valeur de perforation d'armure",
+        "DropConsumablesHere": "Vous pouvez déposer des consommables ici.",
+        "RemoveConsumable": "Retirer le consommable",
+        "RemoveConsumableFrom": "Retirer le consommable _CONSUMABLE_NAME_ de _ITEM_NAME_ ?"
       },
       "Weapon": {
+        "Ammo": "Munitions",
+        "Damage": "Dégâts",
+        "Range": "Portée",
+        "weaponType": "Type d'arme",
+        "damageType": "Type de dégâts",
+        "rateOfFire": "Cadence de tir/Auto X",
+        "recoil": "Recul",
+        "MagazineCost": "Coût du chargeur / de la cellule de puissance",
+        "ArmorPiercing": "Valeur de perforation d'armure",
+        "Features": "Caractéristiques / traits",
+        "Unarmed": "Sans armes",
+        "UnarmedDescription": "Attaque sans armes"
       }
     },
     "Ship": {
+      "Actions": "Actions",
+      "ActionType": "Type d'action",
+      "ActionRollFormula": "Formule de jet de l'action",
+      "Unknown": "inconnu",
+      "ActorLacksSkill": "_ACTOR_NAME_ n'a pas la compétence _SKILL_",
+      "ActorMustBeSelectedForAction": "Puisqu'il y a plusieurs acteurs, il faut en sélectionner un pour effectuer l'action",
+      "AddShipPosition": "Ajouter une position au vaisseau",
+      "Avail": "Dispo.",
+      "Available": "Disponible",
+      "AvailableCargoWeight": "Poids de cargo disponible",
+      "CantDropActorIfPositionIsNotOnShip": "Vous ne pouvez pas déposer un Traveller sur une position qui ne se trouve pas sur un vaisseau",
+      "Cargo": "Cargo",
+      "CargoWeight": "Poids total du cargo",
+      "CARGONOTES": "NOTES SUR LE CARGO",
+      "COMPONENTS": "COMPOSANTS",
+      "CreateAction": "Créer une action",
       "Crew": {
+        "ADMIN": "ADMINISTRATEUR",
+        "ASTROGATOR": "ASTROGATEUR",
+        "BROKER": "NÉGOCIANT ",
+        "CAPTAIN": "CAPITAINE",
+        "ENGINEER": "INGÉNIEUR(S)",
+        "GUNNER": "ARTILLEUR(S)",
+        "MAINTENANCE": "MAINTENANCE",
+        "MARINE": "MARINE(S)",
+        "MEDIC": "MEDIC",
+        "OTHER": "AUTRE",
+        "PILOT": "PILOTE",
+        "STEWARD": "INTENDANT"
       },
+      "Deckplan": "Plan de pont",
+      "DeleteAction": "Supprimer l'action",
+      "Displacement": "Poids du vaisseau",
+      "FINANCENOTES": "NOTES FINANCIÈRES",
+      "SHIPVALUE": "VALEUR DU VAISSEAU",
+      "Fuel": "Carburant",
+      "RefinedFuel": "Carburant raffiné",
+      "UnrefinedFuel": "Carburant non raffiné",
+      "Gs": "G",
+      "InvalidDocumentForShipPosition": "Ce type de document n'est pas valide pour les positions du vaisseau. Seules les compétences peuvent être déposées ici.",
+      "IsMassProduced": "Vaisseau produit en série",
+      "JDrive": "J-Drive",
+      "Jump": "Saut",
+      "MacroSkill": "Macro/Compétence",
+      "MakesChatRollAction": "Utilise l'action _ACTION_NAME_ à partir de la position _POSITION_NAME_.",
+      "ActionHits": "Touche _WHILE_USING_avec un effet de _EFFECT_VALUE_",
+      "ActionHitsAndDamage": "Touche _WHILE_USING_avec un effet de _EFFECT_VALUE_ causant _DAMAGE_TOTAL_ points de dégâts standards",
+      "ActionMisses": "Manque _WHILE_USING_avec un effet de _EFFECT_VALUE_",
+      "RadiationDamageOf": "et des dégâts de radiation de",
+      "WhileUsing": "en utilisant",
+      "MANIFEST": "MANIFESTE",
+      "MAX": "MAX",
+      "Name": "Nom",
+      "NewAction": "Nouvelle action",
+      "NoActorsForAction": "Aucun acteur disponible pour l'action",
+      "Order": "Ordre",
+      "Overdrive": "Overdrive",
+      "Parsecs": "Parsecs",
+      "PositionName": "Nom du poste",
+      "Power": "Énergie ",
+      "PowerManagement": "Gestion de l'énergie",
+      "PowerWeightManagement": "Gestion de l'énergie et du poids",
+      "RemoveTraveller": "Retirer le Traveller du vaisseau",
+      "Sensors": "Capteurs",
+      "ShipHull": "Coque du vaisseau",
+      "SHIPNOTES": "NOTES DU VAISSEAU",
+      "Storage": "Stockage",
+      "Systems": "Systèmes",
       "Tabs": {
-      }
+        "Cargo": "Cargo",
+        "Components": "Composants",
+        "Crew": "Équipage",
+        "Finance": "Finances",
+        "Locker": "Casier",
+        "Notes": "Notes",
+        "ShipPositions": "Postes"
+      },
+      "Thrust": "Propulsion",
+      "tons": "tonnes",
+      "Travellers": "Travellers",
+      "USED": "UTILISÉ",
+      "Vehicles": "Véhicules",
+      "Weapons": "Armes",
+      "MCr": "MCr",
+      "ShipValue": "Valeur du vaisseau",
+      "MortgagePerMonth": "Est. paiement de l'hypothèque",
+      "MaintenancePerMonth": "Coût de maintenance",
+      "CrPerMonth": "Cr/mois"
     },
     "Vehicle": {
+      "SystemStatus": "État du système",
+      "Cargo": "Cargo",
+      "CargoNotes": "Notes",
+      "CargoCapacity": "Capacité",
+      "Speed": "Vitesse",
+      "Range": "Portée",
+      "Agility": "Agilité",
       "systems": {
+        "cargo": "Cargo",
+        "cockpit": "Cockpit",
+        "computers": "Ordinateurs",
+        "electronics": "Électronique",
+        "limbs": "Membres / Appendices",
+        "propulsion": "Propulsion / Locomotion",
+        "powerPlant": "Générateur",
+        "sensors": "Capteurs",
+        "weapons": "Armes"
       },
       "crew": {
+        "operators": "Opérateurs",
+        "passengers": "Passagers"
       },
+      "Movement": "Mouvement",
+      "Crew": "Équipage",
+      "Weight": "Poids",
+      "Armor": "Armure",
+      "Hull": "Coque",
+      "Structure": "Structure",
+      "Protection": "Protection",
+      "Weapons": "Armes",
+      "techLevel": "NT",
+      "Cost": "Coût",
+      "Traits": "Traits",
+      "ArmorHull": "Armure et coque",
+      "Regular": "Normal",
+      "Critical": "Critique",
+      "Thresholds": "Seuils",
       "ProtectionType": {
+        "ArmorOnly": "Armure uniquement",
+        "Threshold": "Seuil",
+        "ArmorHullStruc": "Armure, coque et structure"
       }
     },
     "Migration": {
+      "Completed": "Migration du système Twodsix vers la version {version} terminée !",
+      "DoNotClose": "Migration de Twodsix vers {version}. Ne fermez pas votre jeu et n'éteignez pas votre serveur.",
+      "MigrationError0.6.25": "Erreur de migration : impossible d'analyser le prix pour ${name}, précédemment ${price} mais désormais égal à 0."
     },
     "Modules": {
       "compendiumFolders": {
+        "missing": "Les compendiums inclus pour les différentes variantes de Cepheus utilisent souvent le module 'Compendium Folders'. Si vous les utilisez, veuillez installer le module Compendium Folders dans Foundry VTT. Sinon, désactivez cet avertissement dans les paramètres système.",
+        "disabled": "Veuillez activer le module 'Compendium Folders' dans ce monde si vous avez l'intention d'utiliser les compendiums inclus. Sinon, désactivez cet avertissement dans les paramètres système."
       }
     },
+    "No": "Non",
     "Rolls": {
+      "AdjustedDamage": "Dégâts modifiés par l'effet",
+      "Cancel": "Annuler",
+      "DamageUsing": "Dégâts à l'aide de",
+      "Effect": "Effet",
+      "Roll": "Lancer",
+      "With": "avec",
+      "resultShows": "résultat montre",
+      "sum": "somme",
+      "using": "en utilisant {caractéristique}",
+      "Wounds": "Blessures",
+      "AttackDM": "NA de l'attaque",
+      "BonusDamage": "Dégâts bonus",
+      "Timeframe": "Temps",
+      "RollInitiative": "Lancer l'initiative"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
+        "hint": "Laisser vide pour utiliser la valeur par défaut (+/-1). Non utilisé actuellement.",
+        "name": "Quel bonus/malus accorder pour chaque changement d'incrément de temps dans une tâche."
       },
       "absoluteCriticalEffectValue": {
+        "hint": "La valeur par défaut est 99, ce qui signifie que l'effet n'est pas pris en compte.",
+        "name": "Quel effet est requis pour qu'un lancer soit considéré comme un succès/échec critique (c'est-à-dire qu'il soit coloré en vert/rouge)."
       },
       "alternativeShort1": {
+        "hint": "Nom abrégé de la première caractéristique alternative. Il doit comporter quatre caractères ou moins.",
+        "name": "Nom abrégé de la caractéristique alternative n°1"
       },
       "alternativeShort2": {
+        "hint": "Nom abrégé de la seconde caractéristique alternative. Il doit comporter quatre caractères ou moins.",
+        "name": "Nom abrégé de la caractéristique alternative n°2"
       },
       "autofireRulesUsed": {
+        "hint": "Sélectionner quelle variante de règle de tir auto/en rafale utiliser.",
+        "name": "Sélectionner quelle variante de règle de tir auto/en rafale utiliser."
       },
       "automateDamageRollOnHit": {
+        "hint": "check=Dégâts du jet, modifiés par l'effet du jet de compétence. unchecked=Les dégâts ne sont pas lancés",
+        "name": "Lancer automatiquement les dégâts sur les jets de compétence réussis (c'est-à-dire obtenir un effet> 0) pour les objets qui causent des dégâts ?"
       },
       "criticalNaturalAffectsEffect": {
+        "hint": "activé=Indépendamment du succès, considérez qu'un 2 naturel a un effet de -1 et qu'un 12 a un effet de 0, unchecked=Utilisez les règles normales",
+        "name": "Un 2 ou un 12 naturel doit-il avoir un traitement spécial en ce qui concerne le succès / l'échec ?"
       },
       "defaultTokenSettings": {
+        "hint": "Appliquer automatiquement les paramètres recommandés pour les tokens prototype lors de la création d'un nouvel acteur.",
+        "name": "Paramètres de tokens prototypes par défaut"
       },
       "difficultiesAsTargetNumber": {
       },
@@ -113,72 +529,135 @@
       "lifebloodInsteadOfCharacteristics": {
       },
       "maxSkillLevel": {
+        "hint": "Laisser vide pour utiliser la valeur par défaut (9).",
+        "name": "Niveau de compétence maximal."
       },
       "modifierForZeroCharacteristic": {
+        "hint": "Laisser vide pour utiliser la valeur par défaut (-2). Ne recalcule pas automatiquement les modificateurs pour les personnages existants.",
+        "name": "Modificateur pour valeur caractéristique de zéro."
       },
       "ruleset": {
+        "hint": "Ceci choisira, en fonction de l'ensemble de règle sélectionné, les options les plus adaptées pour les paramètres qui suivent. Notez que les ensembles de règles en premier dans la liste sont les mieux pris en charge. Voir https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md pour plus de détails. Les règles relatives à l'ensemble de règles sont marquées d'une bordure verte. Toute déviation des paramètres définis par l'ensemble de règles sera marquée d'une bordure orange.",
+        "name": "Ensemble de règles"
       },
       "settingsInterface": {
         "debugSettings": {
+          "hint": "Configurer/Afficher les paramètres de débogage.",
+          "intro": "Paramètres de débogage",
+          "name": "Paramètres de débogage"
         },
         "displaySettings": {
+          "hint": "Configurer les paramètres d'affichage.",
+          "intro": "Paramètres d'affichage",
+          "name": "Paramètres d'affichage"
         },
         "itemSettings": {
+          "hint": "Configurez les champs affichés pour les objets.",
+          "intro": "Paramètres des objets",
+          "name": "Paramètres des objets"
         },
         "rulesetSettings": {
+          "hint": "Configurez les paramètres liés aux ensembles de règles.",
+          "intro": "Règles actuelles",
+          "modified": "modifié",
+          "name": "Paramètres de règles avancés"
         }
       },
       "shipInitiativeFormula": {
+        "hint": "Comme : \"2d6",
+        "name": "Formule d'initiative de vaisseau"
       },
       "showAlternativeCharacteristics": {
+        "hint": "Base : six de base plus PSI. Alternative : six de base plus alternative. Tous: six de base plus PSI plus Alternative",
+        "name": "Sélectionnez les caractéristiques à afficher"
       },
       "showContaminationBelowLifeblood": {
       },
       "ShowDamageType": {
+        "hint": "activé=Afficher le champ 'Types de dégâts', désactivé=Masquer",
+        "name": "Afficher le champ \"Type de dégâts\" sur les fiches d'armes"
       },
       "showHeroPoints": {
       },
       "showItemReferences": {
+        "hint": "Affiche un champ de texte sur les fiches d'objets et de véhicules à utiliser avec PDFoundry ou comme référence de forme libre. Pour PDFoundry, le format doit être '[nom abrégé] [numéro de page]'.",
+        "name": "Afficher le champ de référence sur les fiches des véhicules et des objets."
       },
       "ShowLawLevel": {
       },
       "showLifebloodStamina": {
       },
       "showMissingCompendiumWarnings": {
+        "hint": "Indique s'il faut afficher des avertissements pour les modules manquants/désactivés au démarrage du monde.",
+        "name": "Afficher les avertissements concernant les modules manquants/désactivés."
       },
       "ShowRangeBandAndHideRange": {
       },
       "ShowRateOfFire": {
+        "hint": "activé=Afficher le champ 'Cadence de tir', désactivé=Masquer",
+        "name": "Afficher le champ \"Cadence de tir\" sur les fiches d'armes"
       },
       "ShowRecoil": {
+        "hint": "activé=Afficher le champ 'Recul', désactivé=Masquer",
+        "name": "Afficher le champ \"Recul\" sur les fiches d'armes"
       },
       "showSingleComponentColumn": {
+        "hint": "Afficher la liste des composants du vaisseau sur une seule ligne.",
+        "name": "Composants du vaisseau répertoriés sur une seule ligne"
       },
       "ShowWeaponType": {
+        "hint": "activé=Afficher le champ 'Type d'arme', désactivé=Masquer",
+        "name": "Afficher le champ \"Type d'arme\" sur les fiches d'armes"
       },
       "showWeightUsage": {
+        "hint": "Afficher les valeurs de poids du vaisseau au lieu de l'énergie sur la feuille de vaisseau.",
+        "name": "Afficher le poids au lieu de la gestion de l'énergie sur la feuille de vaisseau"
       },
       "systemMigrationVersion": {
+        "hint": "Enregistre la version du System Schema pour le système Twodsix. (Ne modifiez pas ceci à moins que vous ne sachiez ce que vous faites)",
+        "name": "Version du System Schema"
       },
       "termForAdvantage": {
+        "hint": "N'utilisez pas la même chose que pour termForDisadvantage...",
+        "name": "La façon dont vous voulez nommer les jets avec avantage (3d6kh2)."
       },
       "termForDisadvantage": {
+        "hint": "N'utilisez pas la même chose que pour termForAdvantage...",
+        "name": "La façon dont vous voulez nommer les jets avec désavantage (3d6kl2)."
       },
       "useFoundryStandardStyle": {
+        "default": "Style Twodsix par défaut",
+        "foundry": "Style Foundry VTT standard",
+        "hint": "Utilisez le style par défaut de Foundry pour l'interface utilisateur. Cela devrait rendre certains modules plus compatibles avec TWODSIX",
+        "name": "Utiliser le style standard de Foundry"
       },
       "useModuleFixStyle": {
+        "hint": "Modifie le style CSS pour corriger les problèmes de style identifiés pour certains modules lors de l'utilisation du style Twodsix. Cela ne fonctionne pas lorsque vous utilisez le style par défaut de Foundry.",
+        "name": "Corrigez certains problèmes de style CSS dus aux modules et au style Twodsix par défaut."
       },
       "useShipAutoCalcs": {
+        "hint": "Lorsque cette option est activée, les statistiques de puissance, de poids et de prix du vaisseau sont calculées en fonction des valeurs des composants. Sinon, les valeurs sont saisies par l'utilisateur.",
+        "name": "Calculer automatiquement les valeurs de puissance, du poids et du prix du vaisseau"
       },
       "useSystemDefaultTokenIcon": {
+        "hint": "Utiliser l'icône de token du système par défaut de Foundry VTT plutôt que de Twodsix pour les nouveaux acteurs. Cochez ce paramètre si vous utilisez des images personnalisées afin que le système définisse automatiquement l'image du token pour qu'elle soit identique à l'image de l'acteur.",
+        "name": "Utiliser l'icône de token par défaut de Foundry VTT plutôt que de Twodsix pour les nouveaux acteurs."
       },
       "useWoundedStatusIndicators": {
+        "hint": "Utilise les indicateurs d'état pour indiquer l'état des blessures et lance automatiquement les sauvegardes d'inconscience pour les blessures graves. Les modificateurs de jets ci-dessous sont appliqués à tous les jets.",
+        "name": "Afficher l'indicateur d'état de blessure et appliquer les modificateurs de jet"
       },
       "minorWoundsRollModifier": {
+        "hint": "Le modificateur appliqués à tous les jets lorsque l'acteur subit des blessures mineures (une valeur négative est soustraite au jet ou augmente le NA).",
+        "name": "Modificateur de jet pour les blessures mineures"
       },
       "seriousWoundsRollModifier": {
+        "hint": "Le modificateur appliqués à tous les jets lorsque l'acteur subit des blessures graves (une valeur négative est soustraite au jet ou augmente le NA).",
+        "name": "Modificateur de jet pour les blessures graves"
       },
       "weightModifierForWornArmor": {
+        "hint": "Facteur de multiplication de la valeur de poids d'une armure si elle est actuellement équipée.",
+        "name": "Facteur de multiplication de la valeur de poids d'une armure équipée."
       },
       "useTinyMCEditor": {
       },
@@ -187,47 +666,119 @@
       "maxComponentHits": {
       },
       "mortgagePayment": {
+        "hint": "Le nombre par lequel diviser le coût du vaisseau pour déterminer les versements hypothécaires mensuels sur 40 ans. Une valeur de 240 signifie que le coût du navire est divisé par 240 pour déterminer le paiement mensuel.",
+        "name": "Modalités de paiement hypothécaire."
       },
       "massProductionDiscount": {
+        "hint": "Les économies de coûts de construction de vaisseaux grâce à la production en série. Une valeur de 0,1 signifie que 10 % sont déduits du prix de base du vaisseau.",
+        "name": "Remise sur les vaisseaux produits en série"
       },
       "reverseHealingOrder": {
+        "hint": "La guérison entrée via une barre de token s'applique dans le même ordre que sont subis les dégâts automatiques. La première caractéristique endommagée est donc aussi la première guérie. Si cette option est désactivée, la guérison commencera par la dernière caractéristique endommagée.",
+        "name": "Inverser l'ordre de guérison des caractéristiques"
       },
       "maxEncumbrance": {
+        "hint": "La formule pour calculer l'encombrement maximum de l'acteur.",
+        "name": "Formule d'encombrement maximal"
       },
       "allowDropOnIcon": {
+        "hint": "Les objets peuvent être déposés directement sur les icônes et ajoutés aux acteurs sans ouvrir leur feuille. Déposer un objet déjà présent en augmente la quantité. Les dégâts des objets dans le chat seront appliqués.",
+        "name": "Autorise les objets à être déposés sur les icônes"
       },
       "defaultMovement": {
+        "hint": "La vitesse de mouvement/marche par défaut pour les nouveaux Travelles (en général une action mineure), par ex. m pour 10m",
+        "name": "La valeur de vitesse de mouvement par défaut"
       },
       "defaultMovementUnits": {
+        "hint": "L'unité de mouvement/marche par défaut pour les nouveaux Travelles (en général une action mineure), par ex. m pour 10m",
+        "name": "L'unité de mouvement par défaut pour la vitesse de marche"
       },
       "useEncumbrance": {
       },
       "addEffectForShipDamage": {
+        "hint": "La valeur de l'effet de l'attaque du vaisseau est ajoutée au jet de dégâts.",
+        "name": "Ajouter l'effet aux dégâts du vaisseau"
       },
       "autoAddUnarmed": {
+        "hint": "Si l'option est activée, une attaque à mains nues sera automatiquement ajoutée à l'inventaire des nouveaux acteurs (selon les paramètres des règles).",
+        "name": "Ajouter automatiquement une attaque à mains nues aux nouveaux acteurs"
       },
       "unarmedDamage": {
+        "name": "Formule de dégâts à mains nues"
       },
       "showTimeframe": {
       },
       "showStatusIcons": {
+        "hint": "Superpose les icônes de condition aux côtés du portrait sur la fiche des acteurs.",
+        "name": "Afficher les icônes de condition sur les fiches des Travellers"
       },
       "showHullAndArmor": {
       },
       "addEffectToManualDamage": {
       },
       "showRangeSpeedNoUnits": {
+        "hint": "Cache les unités de portée et de vitesse (par exemple, km/h) sur la fiche du véhicule.",
+        "name": "Ne pas afficher les unités de portée et de vitesse"
       },
       "showInitiativeButton": {
+        "hint": "Afficher un bouton d'initiative sur la feuille de l'acteur dans l'onglet compétences.",
+        "name": "Afficher le bouton de jet d'initiative"
       }
     },
+    "CloseAndCreateNew": "Fermer et créer un nouveau",
+    "Copy": "Copier",
+    "Yes": "Oui",
+    "Name": "Nom",
     "itemTypes": {
+      "equipment": "équipement",
+      "weapon": "arme",
+      "armor": "armure",
+      "storage": "stockage",
+      "tool": "outil",
+      "skills": "compétences",
+      "skill": "compétence",
+      "consumable": "consommable",
+      "trait": "trait",
+      "component": "composant"
     },
     "speeds": {
+      "walk": "marcher",
+      "dash": "dasher",
+      "run": "courir",
+      "jump": "sauter"
     },
     "Errors": {
+      "NoSkillForSkillRoll": "Vous avez essayé d'effectuer un jet de compétence sans spécifier de compétence",
+      "NoCharacteristicForRoll": "Vous avez essayé d'effectuer un jet de caractéristique sans spécifier de caractéristique",
+      "NoROFForAttack": "La cadence de tir doit être spécifiée pour cette attaque",
+      "NoDamageForWeapon": "Il n'est pas précisé quel type de dégâts cette arme cause",
+      "TooFewToReload": "Trop peu de _NAME_ pour _REFILL_ACTION_",
+      "NoAmmo": "Vous êtes à court de munitions. Vous devez recharger avant de tirer!",
+      "EmptyConsumable": "Il ne reste plus de consommables. Vous devez faire le plein !",
+      "SkillsConsumables": "Les compétences ne peuvent pas avoir de consommables",
+      "OnlyDropItems": "Vous ne pouvez déposer que des objets",
+      "OnlyDropConsumables": "Seuls les consommables peuvent être déposés sur un objet.",
+      "CouldNotFindItem": "Impossible de trouver un objet avec l'identifiant : _ITEM_ID_",
+      "DraggedCompendiumIsNotItem": "L'élément de compendium déplacé n'est pas un objet.",
+      "InvalidRollFormula": "Ce n'est pas une formule valide pour un jet de dégâts."
     },
     "Warnings": {
+      "ActorMissingItem": "Votre acteur contrôlé n'a pas d'objet avec l'identifiant : _ITEM_ID_",
+      "AutoDamageForMultipleTargetsNotImplemented": "L'application automatique de dégâts sur plusieurs cibles (à l'aide de Auto X) n'est actuellement pas prise en charge",
+      "MaxStatVal": "La valeur dépasse la valeur maximale de cette statistique",
+      "StatValBelowZero": "La valeur ne peut pas être inférieure à zéro",
+      "CantAutoDamage": "L'application automatique des dégâts aux vaisseaux ou aux véhicules n'est pas prise en charge",
+      "CantDropOnToken": "Le dépôt d'objets sur des tokens de vaisseau ou de véhicule n'est pas pris en charge",
+      "CantDragOntoActor": "Impossible de faire glisser cet objet sur cet acteur",
+      "PDFFoundryNotInstalled": "PDFoundry doit être installé pour utiliser les liens source.",
+      "NoSpecfiedLink": "Aucun document et aucune page spécifiés pour le lien du document.",
+      "NoTargetFound": "Aucune cible trouvée pour appliquer les dégâts.",
+      "LackPermissionToDamage": "Vous n'avez pas les autorisations suffisantes sur l'acteur cible.",
+      "MultipleActorsFound": "Plusieurs acteurs détectés. Impossible d'appliquer les dégâts.",
+      "EncumbranceFormulaInvalid": "La formule d'encombrement n'est pas valide. La valeur est définie à zéro.",
+      "ActorHasInitiativeAlready": "Le Traveller a déjà l'initiative.",
+      "NoActiveToken": "L'acteur n'a pas de token actif dans cette scène."
     }
-  }
+  },
+  "VeryDifficult": "Très difficile"
 }
