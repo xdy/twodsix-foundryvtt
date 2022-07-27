@@ -11,7 +11,7 @@
 export async function createItemMacro(dropData, slot): Promise<void> {
   //console.log(dropData.uuid.split("."));
   const item = await fromUuid(dropData.uuid);
-  if (item) {
+  if (item?.id) {
     if (dropData.type === "Macro") {
       await game.user?.assignHotbarMacro(game.macros?.get(item.id) || null, slot);
     } else {
