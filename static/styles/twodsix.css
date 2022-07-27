@@ -1912,7 +1912,8 @@ img.ship-mask-bg {
   font-weight: bold;
   position: relative;
   width: 16.5em;
-  left: 7em;
+  left: 5.5em;
+  border-bottom: none;
 }
 
 .ship-power {
@@ -1991,7 +1992,7 @@ img.ship-mask-bg {
   font-size: 18px;
   text-align: center;
   position: relative;
-  top: -1.5em;
+  top: -1.7em;
 }
 
 span.power-now {
@@ -1999,7 +2000,7 @@ span.power-now {
   position: relative;
   display: block;
   width: auto;
-  top: -2.8em;
+  top: -3.1em;
 }
 
 span.power-max {
@@ -2007,7 +2008,7 @@ span.power-max {
   position: relative;
   display: block;
   width: auto;
-  top: -4.4em;
+  top: -4.6em;
 }
 
 /*--- Input Fields ---*/
@@ -2016,7 +2017,7 @@ input.power-current {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -1.9em;
+  top: -2.1em;
   width: inherit;
   display: block;
   border: none;
@@ -2027,7 +2028,7 @@ input.power-total {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -2.1em;
+  top: -2.2em;
   width: inherit;
   display: block;
   border: none;
@@ -2975,6 +2976,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   height: 95%;
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
+  margin-top: 0;
 }
 
 .tox .tox-tbtn svg {

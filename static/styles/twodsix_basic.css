@@ -1512,7 +1512,8 @@ img.ship-mask-bg {
   font-weight: bold;
   position: relative;
   width: 16.5em;
-  left: 7.3em;
+  left: 5.8em;
+  border-bottom: none;
 }
 
 .ship-power {
@@ -2386,6 +2387,7 @@ form .form-group > label {
 .editor {
   height: 95%;
   overflow: hidden;
+  margin-top: 0;
   /*background: var(--background-semi-opaque);
   color: var(--default-color);*/
 }
