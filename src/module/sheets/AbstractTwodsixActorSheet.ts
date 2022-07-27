@@ -402,7 +402,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
     }
 
-    // Assign and return sheetData.data to shettData.system????
+    // Assign and return sheetData.data to sheetData.system????
     if (sheetData.actor.type === "traveller") {
       sheetData.system.equipment = equipment;
       sheetData.system.weapon = weapon;

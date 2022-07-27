@@ -31,7 +31,7 @@ async function adjustMovementUnits (actor: TwodsixActor): Promise<void> {
         console.log('nothing changed');
         break;
     }
-    //console.log("Ending Units: ", (<Traveller>actor.data.data).movement?.units);
+    //console.log("Ending Units: ", (<Traveller>actor.system).movement?.units);
   }
   return Promise.resolve();
 }
