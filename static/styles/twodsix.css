@@ -155,11 +155,13 @@ input[type=number] {
 
 /*** Fix link backgrounds and table colors to TWODSIX Style ***/
 a.entity-link,
-a.inline-roll {
+a.inline-roll,
+a.content-link {
   background: var(--s2d6-background-transparent);
 }
 a.entity-link i,
-a.inline-roll i {
+a.inline-roll i,
+a.content-link i {
   color: var(--s2d6-default-color);
 }
 table tr:nth-child(even) {
