@@ -1,5 +1,4 @@
 {
-  "$schema": "https://gitlab.com/fvtt-modules-lab/manifest-schema/-/raw/master/systemSchema.json",
   "id": "twodsix",
   "title": "Twodsix - Cepheus & Traveller (Unofficial)",
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
@@ -271,12 +270,12 @@
       "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_icon.svg"
     }
   ],
-  "relationships": {
-    "requires": [
+  "//relationships": {
+    "//requires": [
       {
-        "type": "module",
-        "id": "compendium-folders",
-        "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/09x-update/module.json"
+        "//type": "module",
+        "//id": "compendium-folders",
+        "//manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/09x-update/module.json"
       }
     ]
   }

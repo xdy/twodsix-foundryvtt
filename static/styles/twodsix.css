@@ -247,7 +247,7 @@ table tr:nth-child(even) {
 }
 
 .sheet nav.sheet-tabs .item {
-  padding: 2px 2px;
+  padding: 2px;
 }
 
 .sheet footer.sheet-footer {
