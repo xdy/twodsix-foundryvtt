@@ -759,9 +759,14 @@ svg:hover {
   z-index: 50;
   height: 22px !important;
 }
+
 .sheet nav.sheet-tabs{
   height: auto !important;
   line-height: 24px !important;
+}
+
+.sheet nav.sheet-tabs .item {
+  padding: 2px 2px;
 }
 
 .character-tabs-info {

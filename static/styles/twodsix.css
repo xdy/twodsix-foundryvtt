@@ -246,6 +246,10 @@ table tr:nth-child(even) {
   margin-left: 3px;
 }
 
+.sheet nav.sheet-tabs .item {
+  padding: 2px 2px;
+}
+
 .sheet footer.sheet-footer {
   display: flex;
   flex-direction: row;
