@@ -3099,7 +3099,8 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border: 1px solid yellow !important;
 }
 
-.journal-sheet form {
+.journal-sheet form, .sheet.journal-entry .journal-entry-content {
   background: revert;
   background-color: var(--s2d6-background-nearly-transparent);
 }
+
