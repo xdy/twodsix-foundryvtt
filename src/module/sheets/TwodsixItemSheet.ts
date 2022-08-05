@@ -111,23 +111,32 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _changeIsBaseHull() {
     const anComponent = <Component> this.item.system;
     const newValue = !anComponent.isBaseHull;
+    const componentUpdates = {"system.isBaseHull": newValue};
     /*Unset isWeightPct if changing to base hull*/
     if (newValue && anComponent.weightIsPct) {
-      const componentUpdates = {'system.weightIsPct': false, "system.isBaseHull": true};
-      await this._updateComponentItem(componentUpdates);
+      componentUpdates["system.weightIsPct"] = false;
     }
+    await this._updateComponentItem(componentUpdates);
   }
 
   private async _updateComponentItem (componentUpdates) {
-    // Something odd going on with token actor (unlinked actor) updates.  Needs double update.
-    await this.item.update(componentUpdates);
+    // Something odd going on with token actor (unlinked actor) updates. Doesn't change img - use old method via .data
+    //console.log(componentUpdates.img);
     if (this.actor) {
-      componentUpdates["_id"] = this.item.id;
-      if (this.actor.token) {
-        await this.actor.token.updateActorEmbeddedDocuments('Item', [componentUpdates], {});
-      } else {
-        await this.actor.updateEmbeddedDocuments('Item', [componentUpdates]);
+      if (this.actor.isToken) {
+        //the statements below are a hack because updating system.var doesn't seem to stick for unlinked actors
+        const revisedUpdates = {};
+        for (const change in componentUpdates) {
+          const revisedKey = "'" + change + "'";
+          revisedUpdates[revisedKey] = componentUpdates[change];
+        }
+        await this.item.update(revisedUpdates);
+        //await this.item.update(componentUpdates);
       }
+      componentUpdates["_id"] = this.item.id;
+      await this.actor.updateEmbeddedDocuments('Item', [componentUpdates], {});
+    } else {
+      await this.item.update(componentUpdates);
     }
   }
 
