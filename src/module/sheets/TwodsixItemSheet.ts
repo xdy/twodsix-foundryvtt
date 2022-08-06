@@ -89,54 +89,30 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
   private async _changeSubtype(event) {
-    const componentUpdates = {};
-    componentUpdates["system.subtype"] = event.currentTarget.selectedOptions[0].value;
+    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
     /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      componentUpdates["img"] = "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg";
+      await this.item.update({"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
     }
-
     /*Prevent cargo from using %hull weight*/
     const anComponent = <Component> this.item.system;
     if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      componentUpdates["system.weightIsPct"] = false;
+      await this.item.update({"system.weightIsPct": false});
     }
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      componentUpdates["system.isBaseHull"] = false;
+      await this.item.update({"system.isBaseHull": false});
     }
-    await this._updateComponentItem(componentUpdates);
   }
 
   private async _changeIsBaseHull() {
     const anComponent = <Component> this.item.system;
     const newValue = !anComponent.isBaseHull;
-    const componentUpdates = {"system.isBaseHull": newValue};
+
+    await this.item.update({"system.isBaseHull": newValue});
     /*Unset isWeightPct if changing to base hull*/
     if (newValue && anComponent.weightIsPct) {
-      componentUpdates["system.weightIsPct"] = false;
-    }
-    await this._updateComponentItem(componentUpdates);
-  }
-
-  private async _updateComponentItem (componentUpdates) {
-    // Something odd going on with token actor (unlinked actor) updates. Doesn't change img - use old method via .data
-    //console.log(componentUpdates.img);
-    if (this.actor) {
-      if (this.actor.isToken) {
-        //the statements below are a hack because updating system.var doesn't seem to stick for unlinked actors
-        const revisedUpdates = {};
-        for (const change in componentUpdates) {
-          const revisedKey = "'" + change + "'";
-          revisedUpdates[revisedKey] = componentUpdates[change];
-        }
-        await this.item.update(revisedUpdates);
-        //await this.item.update(componentUpdates);
-      }
-      componentUpdates["_id"] = this.item.id;
-      await this.actor.updateEmbeddedDocuments('Item', [componentUpdates], {});
-    } else {
-      await this.item.update(componentUpdates);
+      await this.item.update({"system.weightIsPct": false});
     }
   }
 
