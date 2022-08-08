@@ -880,6 +880,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   text-align: center;
   margin-top: 0.5ch;
   margin-bottom: -2ch;
+  cursor: pointer;
 }
 
 .roll-initiative {
@@ -2501,4 +2502,8 @@ form .form-group > label {
 
 .damage-dialog .attribute-name-column {
   text-align: left;
+}
+
+.condition-icon:hover {
+  cursor: pointer;
 }

@@ -11,6 +11,10 @@
   "Routine": "Routine",
   "Simple": "Simple",
   "TWODSIX": {
+    "ActiveEffects": {
+      "DeleteEffect": "Remove Active Effect",
+      "ConfirmDelete": "Do you really want to delete effect?"
+    },
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",

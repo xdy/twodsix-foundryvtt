@@ -117,6 +117,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Roll initiative from traveller sheet
     html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
+
+    //Edit active effect shown on actor
+    html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
+    html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
   }
 
 
@@ -425,6 +429,38 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.system["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
+  }
+
+  /**
+   * Handle when the clicking on status icon.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onEditEffect(event): Promise<void> {
+    const effectUuid = event.currentTarget["dataset"].uuid;
+    const selectedEffect = await fromUuid(effectUuid);
+    console.log(selectedEffect);
+    new ActiveEffectConfig(selectedEffect).render(true);
+  }
+  /**
+   * Handle when the right clicking on status icon.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  private async _onDeleteEffect(event): Promise<void> {
+    const effectUuid = event.currentTarget["dataset"].uuid;
+    const selectedEffect = await fromUuid(effectUuid);
+    console.log(selectedEffect);
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        await selectedEffect?.delete();
+      },
+      no: () => {
+        //Nothing
+      },
+    });
   }
 }
 

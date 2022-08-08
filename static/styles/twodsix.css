@@ -1249,6 +1249,7 @@ a.notes-tab.active {
 .initiative {
   text-align: center;
   margin-bottom: -2ch;
+  cursor: pointer;
 }
 
 .roll-initiative {
@@ -3104,3 +3105,6 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-background-nearly-transparent);
 }
 
+.condition-icon:hover {
+  cursor: pointer;
+}
