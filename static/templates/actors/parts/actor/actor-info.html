@@ -9,7 +9,7 @@
         title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fas fa-plus"></i></a></span>
   </div>
 
-  {{#each_sort_by_name system.traits as |item id|}}
+  {{#each_sort_by_name container.traits as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">

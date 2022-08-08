@@ -404,15 +404,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Assign and return sheetData.data to sheetData.system????
     if (sheetData.actor.type === "traveller") {
-      sheetData.system.equipment = equipment;
-      sheetData.system.weapon = weapon;
-      sheetData.system.armor = armor;
-      sheetData.system.augment = augment;
-      sheetData.system.tool = tool;
-      sheetData.system.junk = junk;
-      sheetData.system.consumable = consumable;
-      sheetData.system.skills = skills;
-      sheetData.system.traits = traits;
+      sheetData.container.equipment = equipment;
+      sheetData.container.weapon = weapon;
+      sheetData.container.armor = armor;
+      sheetData.container.augment = augment;
+      sheetData.container.tool = tool;
+      sheetData.container.junk = junk;
+      sheetData.container.consumable = consumable;
+      sheetData.container.skills = skills;
+      sheetData.container.traits = traits;
       sheetData.system.primaryArmor.value = primaryArmor;
       sheetData.system.secondaryArmor.value = secondaryArmor;
       sheetData.system.radiationProtection.value = radiationProtection;

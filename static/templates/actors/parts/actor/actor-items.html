@@ -15,7 +15,7 @@
       <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon"><i
         class="fas fa-plus"></i></a></span>
     </div>
-    {{#each_sort_by_name system.weapon as |item id|}}
+    {{#each_sort_by_name container.weapon as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -78,7 +78,7 @@
     </div>
 
 
-    {{#each_sort_by_name system.armor as |item id|}}
+    {{#each_sort_by_name container.armor as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -118,7 +118,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each_sort_by_name system.augment as |item id|}}
+    {{#each_sort_by_name container.augment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -156,7 +156,7 @@
         class="fas fa-plus"></i></a></span>
     </div>
 
-    {{#each_sort_by_name system.equipment as |item id|}}
+    {{#each_sort_by_name container.equipment as |item id|}}
     <div class="item gear">
       <ol class="ol-no-indent">
         <li class="item flexrow" data-item-id="{{item.id}}">
@@ -199,7 +199,7 @@
       </span>
     </div>
 
-  {{#each_sort_by_name system.consumable as |item id|}}
+  {{#each_sort_by_name container.consumable as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">

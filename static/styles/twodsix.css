@@ -1249,11 +1249,11 @@ a.notes-tab.active {
 .initiative {
   text-align: center;
   margin-bottom: -2ch;
-  cursor: pointer;
 }
 
 .roll-initiative {
   max-width: fit-content;
+  cursor: pointer;
 }
 
 .skill-list {

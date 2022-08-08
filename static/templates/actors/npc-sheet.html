@@ -7,7 +7,7 @@
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             {{actor.effects}}
-              <img class="condition-icon" src="{{anEffect.icon}}" title="{{anEffect.label}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
+              <img class="condition-icon" src="{{anEffect.icon}}" title="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
             {{/each}}
         {{/if}}
       </div>
@@ -43,7 +43,7 @@
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
-      {{#each_sort_by_name system.skills as |item id|}}
+      {{#each_sort_by_name container.skills as |item id|}}
         {{#if (twodsix_hideUntrainedSkills item.system)}}
           <!-- Hiding {{item.name}} -->
         {{else}}
@@ -69,7 +69,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each_sort_by_name system.armor as |item id|}}
+         {{#each_sort_by_name container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name">{{item.name}} </span>
               <span class="item-controls centre">
@@ -86,7 +86,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each_sort_by_name system.weapon as |item id|}}
+         {{#each_sort_by_name container.weapon as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" title="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange">{{twodsix_limitLength item.system.damage 4}}</span>
               {{#each item.system.consumableData as |consumableData|}}
@@ -102,7 +102,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each_sort_by_name system.traits as |item id|}}
+         {{#each_sort_by_name container.traits as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}

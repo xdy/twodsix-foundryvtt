@@ -23,6 +23,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   getData(): any {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
+    returnData.container = {};
     if (game.settings.get('twodsix', 'useTinyMCEditor')) {
       returnData.richText = {
         description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
