@@ -189,7 +189,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const buttons = {
       ok: {
         label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-        icon: '<i class="fas fa-dice"></i>',
+        icon: '<i class="fa-solid fa-dice"></i>',
         callback: (buttonHtml) => {
           dialogData.shouldRoll = true;
           dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
@@ -199,7 +199,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         }
       },
       cancel: {
-        icon: '<i class="fas fa-times"></i>',
+        icon: '<i class="fa-solid fa-xmark"></i>',
         label: game.i18n.localize("Cancel"),
         callback: () => {
           dialogData.shouldRoll = false;

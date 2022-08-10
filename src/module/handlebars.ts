@@ -174,47 +174,47 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
     switch (componentType) {
       case 'accomodations':
-        return "fas fa-bed";
+        return "fa-solid fa-bed";
       case 'armament':
-        return "fas fa-crosshairs";
+        return "fa-solid fa-crosshairs";
       case 'armor':
-        return "fas fa-grip-vertical";
+        return "fa-solid fa-grip-vertical";
       case 'bridge':
-        return "fas fa-gamepad";
+        return "fa-solid fa-person-seat";
       case 'cargo':
-        return "fas fa-boxes";
+        return "fa-solid fa-boxes-stacked";
       case 'computer':
-        return "fas fa-microchip";
+        return "fa-solid fa-microchip";
       case 'drive':
-        return "fas fa-arrows-alt";
+        return "fa-solid fa-up-down-left-right";
       case 'drone':
-        return "fas fa-satellite";
+        return "fa-solid fa-satellite";
       case 'electronics':
-        return "fas fa-satellite-dish";
+        return "fa-solid fa-satellite-dish";
       case 'fuel':
-        return "fas fa-gas-pump";
+        return "fa-solid fa-gas-pump";
       case 'hull':
-        return "fas fa-rocket";
+        return "fa-solid fa-rocket";
       case 'mount':
-        return "far fa-dot-circle";
+        return "fa-regular fa-circle-dot";
       case "otherExternal":
-        return "fas fa-sign-out-alt";
+        return "fa-solid fa-right-from-bracket";
       case "otherInternal":
-        return "fas fa-sign-in-alt";
+        return "fa-solid fa-right-to-bracket";
       case 'power':
-        return "fas fa-atom";
+        return "fa-solid fa-atom";
       case "sensor":
-        return "fas fa-solar-panel";
+        return "fa-solid fa-solar-panel";
       case 'shield':
-        return "fas fa-shield-alt";
+        return "fa-solid fa-shield";
       case 'software':
-        return "fas fa-code";
+        return "fa-solid fa-code";
       case 'storage':
-        return "fas fa-boxes";
+        return "fa-solid fa-boxes-stacked";
       case 'vehicle':
-        return "fas fa-space-shuttle";
+        return "fa-solid fa-shuttle-space";
       default:
-        return "fas fa-question-circle";
+        return "fa-solid fa-circle-question";
     }
   });
 

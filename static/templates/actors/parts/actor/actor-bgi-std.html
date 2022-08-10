@@ -8,7 +8,7 @@
     {{else}}
       <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">
     {{/if}}
-  <i class="fas fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
+  <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
    step="1" placeholder="2" /></span>
 {{/if}}<br>
 <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="system.species" type="text"
@@ -38,7 +38,7 @@
 </span>
 
 <!-- Characteristic Edit Mode -->
-<span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fas fa-edit"></i>:
+<span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
   <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
 </span>
 {{/unless}}

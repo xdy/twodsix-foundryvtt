@@ -304,7 +304,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     buttons: {
       ok: {
         label: game.i18n.localize("TWODSIX.Damage.DealDamage"),
-        icon: '<i class="fas fa-fist-raised"></i>',
+        icon: '<i class="fa-solid fa-hand-fist"></i>',
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
@@ -313,7 +313,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
         }
       },
       cancel: {
-        icon: '<i class="fas fa-times"></i>',
+        icon: '<i class="fa-solid fa-xmark"></i>',
         label: game.i18n.localize("Cancel"),
         callback: () => {
           //pass

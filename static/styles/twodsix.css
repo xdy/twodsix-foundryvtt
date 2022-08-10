@@ -1360,12 +1360,20 @@ input.item-value-edit {
   overflow-x: hidden;
 }
 
-.item-controls .item-toggle i { display: none; }
-.item-controls .item-toggle .fa-hiking { display: inline; }
-.item-controls .item-toggle.ship .fa-hiking,
-.item-controls .item-toggle.equipped .fa-hiking { display: none; }
-.item-controls .item-toggle.ship .fa-space-shuttle,
-.item-controls .item-toggle.equipped .fa-child { display: inline; }
+.item-controls .item-toggle i {
+  display: none;
+}
+.item-controls .item-toggle .fa-person-hiking {
+  display: inline;
+}
+.item-controls .item-toggle.ship .fa-person-hiking,
+.item-controls .item-toggle.equipped .fa-person-hiking {
+   display: none;
+}
+.item-controls .item-toggle.ship .fa-shuttle-space,
+.item-controls .item-toggle.equipped .fa-child {
+  display: inline;
+}
 
 .skill:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);

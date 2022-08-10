@@ -47,7 +47,7 @@ export default class AdvancedSettings extends FormApplication {
       name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
       label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.hint`),
-      icon: `fas fa-${icon}`,
+      icon: `fa-solid fa-${icon}`,
       type: cls,
       restricted: restricted
     });

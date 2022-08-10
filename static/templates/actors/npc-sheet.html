@@ -15,7 +15,7 @@
                                          onClick="this.select();"/></div>
       {{#if settings.showInitiativeButton}}
         <div class = "initiative">
-          <button class="roll-initiative"><i class="fas fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
+          <button class="roll-initiative"><i class="fa-solid fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
         </div>
       {{/if}}
     </div>
@@ -73,7 +73,7 @@
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name">{{item.name}} </span>
               <span class="item-controls centre">
-                <a class="item-control item-toggle {{item.system.equipped}}" title='{{item.system.equipped}}'><i class="fas fa-child"></i><i class="fas fa-space-shuttle"></i><i class="fas fa-hiking"></i></a>{{#unless @last}}, {{/unless}}
+                <a class="item-control item-toggle {{item.system.equipped}}" title='{{item.system.equipped}}'><i class="fa-solid fa-child"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
          {{/each_sort_by_name}}
