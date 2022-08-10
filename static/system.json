@@ -8,6 +8,20 @@
   "version": "1.45.2",
   "socket": true,
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
+  "authors": [
+    {
+      "name": "Jonas Karlsson",
+      "discord": "xdy#3735"
+    },
+    {
+      "name": "Kevin Maree",
+      "discord": "Ultra Kev#9816"
+    },
+    {
+      "name": "Marvin",
+      "discord": "marvin9257#8916"
+    }
+  ],
   "compatibility":
     {
       "minimum": "10",
