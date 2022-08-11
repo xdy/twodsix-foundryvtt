@@ -437,7 +437,8 @@
       "isBaseHull": false,
       "rollModifier": "",
       "rateOfFire": "",
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "actorLink": ""
     },
     "ship_position": {
       "name": "",

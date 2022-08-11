@@ -1,11 +1,11 @@
 <div class = "cargo-all">
-  {{#unless (twodsix_showWeightUsage)}}
+  {{#unless settings.showWeightUsage}}
   <div class="cargo-weight">
-    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{#iff actor.system.weightStats.available '>=' 0}}
-      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{else}}
-      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{/iff}}
   </div>
   {{/unless}}
@@ -55,7 +55,7 @@
 </div>
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
-  {{#if (twodsix_useTinyMCE)}}
+  {{#if settings.useTinyMCEditor}}
     {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable async=true}}
   {{else}}
     <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>

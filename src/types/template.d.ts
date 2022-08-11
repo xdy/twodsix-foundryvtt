@@ -430,6 +430,7 @@ export interface Component extends GearTemplate {
   rollModifier:string;
   rateOfFire: string;
   armorPiercing: number;
+  actorLink: string;
 }
 
 export interface Consumable extends GearTemplate {

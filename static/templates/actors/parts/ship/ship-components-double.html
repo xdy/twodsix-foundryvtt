@@ -34,7 +34,11 @@
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
-          <span class="item-name">{{item.name}}</span>
+          {{#iff item.system.actorLink "===" ""}}
+            <span class="item-name">{{item.name}}</span>
+          {{else}}
+            <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}</a>
+          {{/iff}}
           <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
           <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{item.system.rating}}</span>

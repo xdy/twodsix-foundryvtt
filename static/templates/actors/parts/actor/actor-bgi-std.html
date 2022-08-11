@@ -3,7 +3,7 @@
 <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="system.gender" type="text"
     value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}
-    {{#if (twodsix_useFoundryStyle)}}
+    {{#if settings.useFoundryStandardStyle}}
       <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'>
     {{else}}
       <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">

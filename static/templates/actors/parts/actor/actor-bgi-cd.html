@@ -6,7 +6,7 @@
   <i class="fa-solid fa-calendar-days"></i>:<input type="text" name="system.age.value" value="{{system.age.value}}" placeholder="0"  /></span>
 <!-- Hero Points Information-->
 {{#if settings.showHeroPoints}}
-   {{#if (twodsix_useFoundryStyle)}}
+   {{#if settings.useFoundryStandardStyle}}
      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'>
    {{else}}
      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">

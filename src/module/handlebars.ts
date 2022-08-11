@@ -139,24 +139,12 @@ export default function registerHandlebarsHelpers(): void {
     return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
-  Handlebars.registerHelper('twodsix_useFoundryStyle', () => {
-    return game.settings.get('twodsix', 'useFoundryStandardStyle');
-  });
-
-  Handlebars.registerHelper('showAlternativeCharacteristics', () => {
-    return game.settings.get('twodsix', 'showAlternativeCharacteristics');
-  });
-
   Handlebars.registerHelper('alternativeShort1', () => {
     return game.settings.get('twodsix', 'alternativeShort1');
   });
 
   Handlebars.registerHelper('alternativeShort2', () => {
     return game.settings.get('twodsix', 'alternativeShort2');
-  });
-
-  Handlebars.registerHelper('autoCalcStats', () => {
-    return game.settings.get('twodsix', 'useShipAutoCalcs');
   });
 
   Handlebars.registerHelper('twodsix_showReferences', () => {
@@ -216,14 +204,6 @@ export default function registerHandlebarsHelpers(): void {
       default:
         return "fa-solid fa-circle-question";
     }
-  });
-
-  Handlebars.registerHelper('twodsix_showWeightUsage', () => {
-    return (game.settings.get('twodsix', 'showWeightUsage'));
-  });
-
-  Handlebars.registerHelper('twodsix_useTinyMCE', () => {
-    return (game.settings.get('twodsix', 'useTinyMCEditor'));
   });
 
   Handlebars.registerHelper('twodsix_showTimeframe', () => {

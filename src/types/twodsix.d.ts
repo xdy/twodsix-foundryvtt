@@ -111,6 +111,10 @@ declare global {
 
 declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
+  useFoundryStandardStyle: boolean;
+  showWeightUsage: boolean;
+  useTinyMCEditor: boolean;
+  useShipAutoCalc: boolean;
 }
 declare interface TwodsixVehicleSheetSettings {
   showHullAndArmor: string;

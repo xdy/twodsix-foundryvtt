@@ -37,11 +37,16 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     } else {
       context.shipPositions = [];
     }
+
     context.settings = <TwodsixShipSheetSettings>{
-      showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn')
+      showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
+      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
+      showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
+      useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
+      useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs')
     };
 
-    if (game.settings.get('twodsix', 'useTinyMCEditor')) {
+    if (context.settings.useTinyMCEditor) {
       context.richText = {
         cargo: TextEditor.enrichHTML(this.actor.system.cargo, {async: false}),
         finances: TextEditor.enrichHTML(this.actor.system.finances, {async: false}),
@@ -122,6 +127,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
     html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
     html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
+    html.find(".item-link").on("click", this._onActorLink.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -256,6 +262,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         const shipPositionId = $(event.target).parents(".ship-position").data("id");
         const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
         await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+      } else if (droppedObject.type === "vehicle") {
+        await this._addVehicleToComponents(droppedObject, dropData.uuid);
       } else {
         return super._onDrop(event);
       }
@@ -263,5 +271,29 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       console.warn(err); // uncomment when debugging
       return false;
     }
+  }
+  async _addVehicleToComponents(droppedObject: any, uuid: string): Promise <void> {
+    const newComponent = {
+      name: droppedObject.name,
+      img: droppedObject.img,
+      type: "component",
+      system: {
+        docReference: droppedObject.system.docReference,
+        price: droppedObject.system.cost,
+        quantity: 1,
+        status: "operational",
+        subtype: "vehicle",
+        techLevel: droppedObject.system.techLevel,
+        weight: droppedObject.system.weight,
+        actorLink: uuid
+      }
+    };
+    await this.actor.createEmbeddedDocuments("Item", [newComponent]);
+  }
+  private async _onActorLink(event): Promise<void> {
+    const actorUuid = event.currentTarget["dataset"].uuid;
+    const selectedActor = <Actor> await fromUuid(actorUuid);
+    console.log(selectedActor);
+    selectedActor?.sheet?.render(true);
   }
 }
