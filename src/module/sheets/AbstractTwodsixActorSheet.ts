@@ -220,19 +220,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (actor.type) {
       case 'traveller':
         if (itemData.type === 'skills') {
-          return this.handleDroppedSkills(actor, itemData, dropData, event);
+          return this.handleDroppedSkills(actor, itemData, event);
         } else if (!["component"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData, dropData, event);
+          return this.handleDroppedItem(actor, itemData, event);
         }
         break;
       case 'ship':
         if (!["augment", "skills", "trait"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData, dropData, event);
+          return this.handleDroppedItem(actor, itemData, event);
         }
         break;
       case 'vehicle':
         if (itemData.type === "component" && itemData.system.subtype === "armament") {
-          return this.handleDroppedItem(actor, itemData, dropData, event);
+          return this.handleDroppedItem(actor, itemData, event);
         }
         break;
     }
@@ -240,16 +240,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return false;
   }
 
-  private async handleDroppedSkills(actor, itemData, data:Record<string, any>, event:DragEvent) {
+  private async handleDroppedSkills(actor, itemData, event:DragEvent) {
     const matching = actor.items.filter(x => {
       return x.name === itemData.name;
     });
 
     // Handle item sorting within the same Actor
-    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
+    const sameActor = actor.items.get(itemData._id);;
     if (sameActor) {
       console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-      return this._onSortItem(event, itemData);
+      //return this._onSortItem(event, sameActor);
+      return false;
     }
 
     if (matching.length > 0) {
@@ -271,11 +272,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
-  private async handleDroppedItem(actor:Actor, itemData, data:Record<string, any>, event:DragEvent) {
+  private async handleDroppedItem(actor:Actor, itemData, event:DragEvent) {
     // Handle item sorting within the same Actor
-    const sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token?.id));
+    const sameActor = actor.items.get(itemData._id);
     if (sameActor) {
-      return this._onSortItem(event, itemData);
+      //return this._onSortItem(event, sameActor);
+      return false;
     }
 
     //Remove any attached consumables
