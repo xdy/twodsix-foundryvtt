@@ -275,6 +275,43 @@ const RULESETS = Object.freeze({
     }
   },
 
+  SOC: {
+    key: "SOC",
+    name: "The Sword of Cepheus",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      ShowRangeBandAndHideRange: false,
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 240,
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "3*(@characteristics.strength.value)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly"
+    }
+  },
+
   OTHER: {
     key: "OTHER",
     name: "Other",

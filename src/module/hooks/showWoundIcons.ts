@@ -22,6 +22,7 @@ function checkForWounds(system: Record<string, any>): boolean {
       case 'CEL':
       case 'CEFTL':
       case 'CE':
+      case 'SOC':
       case 'OTHER':
         return !!(system.characteristics?.endurance || system.characteristics?.strength || system.characteristics?.dexterity);
       case 'CEQ':
@@ -161,6 +162,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       return (getCDWoundTint(selectedTraveller));
     case 'CEL':
     case 'CEFTL':
+    case 'SOC':
       return (getCELWoundTint(selectedTraveller));
     case 'CE':
     case 'OTHER':
@@ -191,9 +193,9 @@ export function getCELWoundTint(selectedTraveller: Traveller): string {
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   switch (testArray.filter(chr => chr.current <= 0).length) {
     case 0:
-      if (testArray.filter(chr => chr.damage > 0).length > 0) {
-        returnVal = DAMAGECOLORS.minorWoundTint;
-      }
+      //if (testArray.filter(chr => chr.damage > 0).length > 0) {
+      //  returnVal = DAMAGECOLORS.minorWoundTint;
+      //}
       break;
     case 1:
       returnVal = DAMAGECOLORS.minorWoundTint;
