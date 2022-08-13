@@ -257,19 +257,6 @@
   "manifestPlusVersion": "1.0.0",
   "allowBugReporter": true,
   "bugs": "https://github.com/xdy/twodsix-foundryvtt/issues",
-  "authors": [
-    {
-      "name": "Jonas Karlsson",
-      "url": "https://gnu.xdy.se/home",
-      "discord": "xdy#3735",
-      "twitter": "@xdy",
-      "reddit": "u/xdyxdy"
-    },
-    {
-      "name": "Kevin Maree",
-      "discord": "Ultra Kev#9816"
-    }
-  ],
   "media": [
     {
       "type": "cover",
@@ -284,12 +271,12 @@
       "url": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_icon.svg"
     }
   ],
-  "//relationships": {
-    "//requires": [
+  "relationships": {
+    "requires": [
       {
-        "//type": "module",
-        "//id": "compendium-folders",
-        "//manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/09x-update/module.json"
+        "type": "module",
+        "id": "compendium-folders",
+        "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/10x-update/module.json"
       }
     ]
   }
