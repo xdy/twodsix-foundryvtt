@@ -3116,3 +3116,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .condition-icon:hover {
   cursor: pointer;
 }
+
+.skill-ranks {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+}

@@ -105,6 +105,7 @@ declare global {
       'twodsix.addEffectToManualDamage':boolean;
       'twodsix.showRangeSpeedNoUnits':boolean;
       'twodsix.showInitiativeButton':boolean;
+      'twodsix.showSkillCountsRanks':boolean;
     }
   }
 }

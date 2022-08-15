@@ -338,6 +338,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let primaryArmor = 0;
     let secondaryArmor = 0;
     let radiationProtection = 0;
+    let numberOfSkills = 0;
+    let skillRanks = 0;
 
     // Iterate through items, allocating to containers
     items.forEach((item:TwodsixItem) => {
@@ -352,7 +354,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           primaryArmor += anArmor.armor;
           secondaryArmor += anArmor.secondaryArmor.value;
           radiationProtection += anArmor.radiationProtection.value;
+        } else if (item.type === "skills") {
+          if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
+            numberOfSkills += 1;
+            skillRanks += item.system.value;
+          }
         }
+
       }
       switch (item.type) {
         case 'storage':
@@ -420,6 +428,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.system.radiationProtection.value = radiationProtection;
       sheetData.system.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
       sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
+      sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
+      sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
     } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.storage = storage;

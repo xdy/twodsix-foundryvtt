@@ -2507,3 +2507,9 @@ form .form-group > label {
 .condition-icon:hover {
   cursor: pointer;
 }
+
+.skill-ranks {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+}

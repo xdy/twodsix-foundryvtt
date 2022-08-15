@@ -38,12 +38,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     // Prepare items.
     if (this.actor.type == 'traveller') {
       const actor: TwodsixActor = <TwodsixActor>this.actor;
-      TwodsixActorSheet._prepareItemContainers(actor.items, returnData);
       const untrainedSkill = actor.getUntrainedSkill();
       if (untrainedSkill) {
-        returnData.untrainedSkill = actor.getUntrainedSkill();
+        returnData.untrainedSkill = untrainedSkill;
         returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
       }
+      TwodsixActorSheet._prepareItemContainers(actor.items, returnData);
     }
 
     // Add relevant data from system settings
@@ -60,7 +60,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
       useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle')
+      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
+      showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

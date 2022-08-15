@@ -315,7 +315,9 @@
         "STA": "STA",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
-        "TrainingNotes": "Training Notes"
+        "TrainingNotes": "Training Notes",
+        "NumberOfSkills": "Number of Skills",
+        "SkillRanks": "Skill Ranks"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",
@@ -819,6 +821,10 @@
       "showInitiativeButton": {
         "hint": "Show an initiative roll button on actor sheet on skills tab.",
         "name": "Show Initiative Roll Button"
+      },
+      "showSkillCountsRanks": {
+        "hint": "Show a count of the number of trained skills and the sum of the levels (rank) at the bottom of the skills tab.",
+        "name": "Show Skills Count and Ranks on Traveller Sheet"
       }
     },
     "CloseAndCreateNew": "Close and create new",

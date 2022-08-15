@@ -88,3 +88,8 @@
   </span>
 </div>
 {{/if}}
+{{#if settings.showSkillCountsRanks}}
+<div class="skill-ranks">
+  {{localize "TWODSIX.Items.Skills.NumberOfSkills"}}: {{numberOfSkills}}, {{localize "TWODSIX.Items.Skills.SkillRanks"}}: {{skillRanks}}
+</div>
+{{/if}}
