@@ -147,10 +147,6 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'alternativeShort2');
   });
 
-  Handlebars.registerHelper('twodsix_showReferences', () => {
-    return game.settings.get('twodsix', 'showItemReferences');
-  });
-
   Handlebars.registerHelper('skillName', (skillName) => {
     return TwodsixItem.simplifySkillName(skillName);
   });

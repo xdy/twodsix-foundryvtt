@@ -61,7 +61,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
       useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
-      showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks')
+      showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
+      showReferences: game.settings.get('twodsix', 'showItemReferences')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

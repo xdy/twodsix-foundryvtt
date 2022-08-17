@@ -16,7 +16,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
-      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits')
+      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
+      showReferences: game.settings.get('twodsix', 'showItemReferences')
     };
 
     return context;
