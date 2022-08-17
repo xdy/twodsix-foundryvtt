@@ -995,7 +995,7 @@ input.item-value-edit {
 .item-controls .item-toggle.ship .fa-person-hiking,
 .item-controls .item-toggle.equipped .fa-person-hiking { display: none; }
 .item-controls .item-toggle.ship .fa-shuttle-space,
-.item-controls .item-toggle.equipped .fa-child { display: inline; }
+.item-controls .item-toggle.equipped .fa-child-reaching { display: inline; }
 
 .item-controls {
   align-self: center;
@@ -1511,15 +1511,18 @@ img.ship-mask-bg {
   width: 29em;
 }
 
-.ship-power-management h3 {
+.power-title {
   color: var(--s2d6-app-color);
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   position: relative;
-  width: 16.5em;
-  left: 5.8em;
+  width: 23.5em;
+  left: 2.5em;
   border-bottom: none;
+  font-size: 1.25em;
+  padding: 2px 24px;
+  margin: 0 0 0.5rem;
 }
 
 .ship-power {

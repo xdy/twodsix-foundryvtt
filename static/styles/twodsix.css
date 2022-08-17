@@ -1257,7 +1257,7 @@ a.notes-tab.active {
 }
 
 .skill-list {
-  padding: 0.5em;
+  padding: 0.3em 0.5em;
   width: 34.2em;
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
@@ -1371,7 +1371,7 @@ input.item-value-edit {
    display: none;
 }
 .item-controls .item-toggle.ship .fa-shuttle-space,
-.item-controls .item-toggle.equipped .fa-child {
+.item-controls .item-toggle.equipped .fa-child-reaching {
   display: inline;
 }
 
@@ -1922,13 +1922,16 @@ img.ship-mask-bg {
   padding-top: 0.3em;
 }
 
-.ship-power-management h3 {
+.power-title {
   color: black;
   font-weight: bold;
   position: relative;
   width: 16.5em;
-  left: 5.5em;
+  left: 2.5em;
   border-bottom: none;
+  font-size: 1.25em;
+  padding: 0;
+  margin: 0 0 0.5rem;
 }
 
 .ship-power {
@@ -1937,7 +1940,7 @@ img.ship-mask-bg {
   width: 5.3em;
   margin-right: -5.3em;
   margin-bottom: -2.43em;
-  top: 0.23em;
+  top: 0.75em;
 }
 
 .power-grid {
@@ -1949,7 +1952,7 @@ img.ship-mask-bg {
     ". . . . .";
   position: relative;
   left: 7.4em;
-  top: -66px;
+  top: -60px;
   /* margin-bottom: -4em; */
   /* height: 4em; */
 }

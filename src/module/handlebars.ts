@@ -194,7 +194,7 @@ export default function registerHandlebarsHelpers(): void {
       case "sensor":
         return "fa-solid fa-solar-panel";
       case 'shield':
-        return "fa-solid fa-shield";
+        return "fa-solid fa-shield-halved";
       case 'software':
         return "fa-solid fa-code";
       case 'storage':
