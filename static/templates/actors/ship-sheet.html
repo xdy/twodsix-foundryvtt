@@ -6,12 +6,17 @@
     <div class="ship-image">
       <img class= "profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
     </div>
-    {{#iff actor.system.deckPlan "!==" ""}}
+
     <div class="ship-deck">
-      <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
-      <a class="item-control ship-deck-unlink" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+      {{#if settings.showComponentSummaryIcons}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-status.html"}}
+      {{/if}}
+      {{#iff actor.system.deckPlan "!==" ""}}
+        <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+        <a class="item-control ship-deck-unlink" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+      {{/iff}}
     </div>
-    {{/iff}}
+
     <div class="ship-name">
       <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
     </div>

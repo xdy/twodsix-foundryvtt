@@ -825,6 +825,10 @@
       "showSkillCountsRanks": {
         "hint": "Show a count of the number of trained skills and the sum of the levels (rank) at the bottom of the skills tab.",
         "name": "Show Skills Count and Ranks on Traveller Sheet"
+      },
+      "showComponentSummaryIcons": {
+        "hint": "Show summary icons for components below ship image.",
+        "name": "Show Component Summary Icons"
       }
     },
     "CloseAndCreateNew": "Close and create new",

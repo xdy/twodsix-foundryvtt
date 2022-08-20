@@ -340,6 +340,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let radiationProtection = 0;
     let numberOfSkills = 0;
     let skillRanks = 0;
+    const summaryStatus = {};
+    const statusOrder = {"operational": 0, "damaged": 1, "destroyed": 3, "off": 2};
 
     // Iterate through items, allocating to containers
     items.forEach((item:TwodsixItem) => {
@@ -396,8 +398,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case "component":
           if(component[(<Component>item.system).subtype] === undefined) {
             component[(<Component>item.system).subtype] = [];
+            summaryStatus[(<Component>item.system).subtype] = item.system.status;
           }
           component[(<Component>item.system).subtype].push(item);
+          if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
+            summaryStatus[(<Component>item.system).subtype] = item.system.status;
+          }
           break;
         default:
           break;
@@ -432,6 +438,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
     } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
+      sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = storage;
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");

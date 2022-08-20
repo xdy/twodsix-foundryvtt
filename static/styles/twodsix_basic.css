@@ -1323,8 +1323,8 @@ img.ship-mask-bg {
 }
 
 .ship-deck {
-  width: 14em;
-  margin-left: 6.5em;
+  /* width: 24em; */
+  /* margin-left: 6.5em; */
   margin-top: 0.4em;
   text-align: center;
 }
@@ -1631,7 +1631,7 @@ input.power-total {
 .ship-tabs {
   width: 32.5rem;
   display: block;
-  margin-left: 18.5em;
+  margin-left: 21em;
   margin-top: -3.6em;
   z-index: 99;
   height: 28px;

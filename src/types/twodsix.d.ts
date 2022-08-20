@@ -106,6 +106,7 @@ declare global {
       'twodsix.showRangeSpeedNoUnits':boolean;
       'twodsix.showInitiativeButton':boolean;
       'twodsix.showSkillCountsRanks':boolean;
+      'twodsix.showComponentSummaryIcons':boolean;
     }
   }
 }

@@ -35,6 +35,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showRangeSpeedNoUnits', false));
     settings.push(booleanSetting('showInitiativeButton', false));
     settings.push(booleanSetting('showSkillCountsRanks', true));
+    settings.push(booleanSetting('showComponentSummaryIcons', false));
     return settings;
   }
 }

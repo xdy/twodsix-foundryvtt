@@ -1704,7 +1704,10 @@ span.total-output {
   grid-template-columns: 28em 28em;
   grid-template-rows: 2.4em 8.5em 9em;
   gap: 1px 1px;
-  grid-template-areas: "ship-image ship-name" "ship-image ship-info" "ship-image ship-requirements";
+  grid-template-areas:
+    "ship-image ship-name"
+    "ship-image ship-info"
+    "ship-image ship-requirements";
 }
 
 img.ship-mask-bg {
@@ -1731,8 +1734,8 @@ img.ship-mask-bg {
 }
 
 .ship-deck {
-  width: 19em;
-  margin-left: 1.5em;
+  width: 20em;
+  margin-left: 0.5em;
   margin-top: 0.4em;
   text-align: center;
 }

@@ -168,13 +168,13 @@ export default function registerHandlebarsHelpers(): void {
       case 'cargo':
         return "fa-solid fa-boxes-stacked";
       case 'computer':
-        return "fa-solid fa-microchip";
+        return "fa-solid fa-computer";
       case 'drive':
         return "fa-solid fa-up-down-left-right";
       case 'drone':
         return "fa-solid fa-satellite";
       case 'electronics':
-        return "fa-solid fa-satellite-dish";
+        return "fa-solid fa-microchip";
       case 'fuel':
         return "fa-solid fa-gas-pump";
       case 'hull':

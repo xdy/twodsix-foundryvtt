@@ -43,7 +43,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
       useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
-      useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs')
+      useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
+      showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons')
     };
 
     if (context.settings.useTinyMCEditor) {
