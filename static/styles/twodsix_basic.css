@@ -2516,3 +2516,10 @@ form .form-group > label {
   text-align: center;
   padding-top: 8px;
 }
+
+#tooltip {
+  padding: 3px 4px;
+  font-family: Asap, sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+}

@@ -4,7 +4,7 @@
   {{/unless}}
   <div class="ship-container">
     <div class="ship-image">
-      <img class= "profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
+      <img class= "profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
     </div>
 
     <div class="ship-deck">
@@ -13,7 +13,7 @@
       {{/if}}
       {{#iff actor.system.deckPlan "!==" ""}}
         <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
-        <a class="item-control ship-deck-unlink" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+        <a class="item-control ship-deck-unlink" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
       {{/iff}}
     </div>
 

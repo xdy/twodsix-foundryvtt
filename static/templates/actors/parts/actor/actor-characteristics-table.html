@@ -26,26 +26,26 @@
         {{/iff}}
       {{else}}
         <td><i class="fa-solid fa-dice"></i></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}">
           {{system.characteristics.strength.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.dexterity.mod}}" data-label="{{system.characteristics.dexterity.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.dexterity.mod}}" data-label="{{system.characteristics.dexterity.shortLabel}}">
           {{system.characteristics.dexterity.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}">
           {{system.characteristics.endurance.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.intelligence.mod}}" data-label="{{system.characteristics.intelligence.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.intelligence.mod}}" data-label="{{system.characteristics.intelligence.shortLabel}}">
           {{system.characteristics.intelligence.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.education.mod}}" data-label="{{system.characteristics.education.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.education.mod}}" data-label="{{system.characteristics.education.shortLabel}}">
           {{system.characteristics.education.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.socialStanding.mod}}" data-label="{{system.characteristics.socialStanding.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.socialStanding.mod}}" data-label="{{system.characteristics.socialStanding.shortLabel}}">
           {{system.characteristics.socialStanding.displayShortLabel}}</span></td>
         {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative1.mod}}" data-label="{{system.characteristics.alternative1.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative1.mod}}" data-label="{{system.characteristics.alternative1.shortLabel}}">
           {{system.characteristics.alternative1.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative2.mod}}" data-label="{{system.characteristics.alternative2.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative2.mod}}" data-label="{{system.characteristics.alternative2.shortLabel}}">
           {{system.characteristics.alternative2.displayShortLabel}}</span></td>
         {{/iff}}
         {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-        <td><span class="stat-name-table rollable-characteristic" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}">
+        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}">
           {{system.characteristics.psionicStrength.displayShortLabel}}</span></td>
         {{/iff}}
       {{/if}}

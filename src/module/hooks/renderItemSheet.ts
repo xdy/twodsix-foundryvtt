@@ -12,7 +12,7 @@ Hooks.on('renderItemSheet', async (app, html) => {
     const closeAndCreateNew = game.i18n.localize("TWODSIX.CloseAndCreateNew");
     const copyText = game.i18n.localize("TWODSIX.Copy");
 
-    const closeAndCreateBtn = $(`<a title="${closeAndCreateNew}"><i class="fa-solid fa-floppy-disk"></i> ${closeAndCreateNew}</a>`);
+    const closeAndCreateBtn = $(`<a data-tooltip="${closeAndCreateNew}"><i class="fa-solid fa-floppy-disk"></i> ${closeAndCreateNew}</a>`);
 
     closeAndCreateBtn.on("click", async () => {
       // close current item sheet

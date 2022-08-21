@@ -25,7 +25,7 @@
             <td><img src="{{actor.img}}" width="20" height="20"></td>
             <td>{{actor.name}}</td>
             <td class="centre">
-              <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" title='{{localize "TWODSIX.Ship.RemoveTraveller"}}'>
+              <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" data-tooltip='{{localize "TWODSIX.Ship.RemoveTraveller"}}'>
                 <i class="fa-solid fa-trash"></i>
               </a>
             </td>
@@ -45,7 +45,7 @@
             <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
             <td>{{localize "TWODSIX.Ship.ActionType"}}</td>
             <td class="centre">
-              <a class="ship-position-details-action-create" title='{{localize "TWODSIX.Ship.CreateAction"}}'>
+              <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}'>
                 <i class="fa-solid fa-plus"></i>
               </a>
             </td>
@@ -74,7 +74,7 @@
               </select>
             </td>
             <td class="centre">
-              <a class="ship-position-details-action-delete" data-id="{{action.id}}" title='{{localize "TWODSIX.Ship.DeleteAction"}}'>
+              <a class="ship-position-details-action-delete" data-id="{{action.id}}" data-tooltip='{{localize "TWODSIX.Ship.DeleteAction"}}'>
                 <i class="fa-solid fa-trash"></i>
               </a>
             </td>

@@ -15,7 +15,7 @@
         {{else iff this "===" 'destroyed'}} style="color: red;"
         {{else iff this "===" 'off'}} style="color: grey;"
         {{/iff}}
-        title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
+        data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
       </span>
     {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
 {{/each}}

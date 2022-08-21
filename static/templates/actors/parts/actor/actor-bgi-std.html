@@ -4,9 +4,9 @@
     value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}
     {{#if settings.useFoundryStandardStyle}}
-      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}'>
+      <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
     {{else}}
-      <span class="bgi-armor" title='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">
+      <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}' style="color:gold !important">
     {{/if}}
   <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
    step="1" placeholder="2" /></span>
@@ -22,15 +22,15 @@
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
       placeholder='0' readonly/></span><br>
 
-<span class="bgi-encumbrance" title="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"
+<span class="bgi-encumbrance" data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"
     type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly/>/<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}"
     placeholder='0' readonly/></span>
 
-<span class="bgi-radExposure" title="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
+<span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
       type="number" value="{{system.radiationDose.value}}" placeholder='0' onClick="this.select();"/></span><br>
 
 <!-- Movement -->
-<span class="bgi-movement" title='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
+<span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
   <input type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>
   <select name="system.movement.units" >
     {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
@@ -38,7 +38,7 @@
 </span>
 
 <!-- Characteristic Edit Mode -->
-<span class="bgi-charEdit" title='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
+<span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
   <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
 </span>
 {{/unless}}

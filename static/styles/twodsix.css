@@ -2668,6 +2668,18 @@ background: var(--s2d6-sidebar-background);
   text-align: center;
 }
 
+#tooltip {
+  padding: 3px 4px;
+  background: var(--s2d6-background-opaque);
+  font-family: Asap, sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--s2d6-light-color);
+  border: 1px solid var(--s2d6-item-border);
+  border-radius: 3px;
+  box-shadow: 0 0 4px var(--s2d6-form-light);
+}
+
 #chat-form textarea {
   width: 100%;
   height: 100%;

@@ -8,12 +8,12 @@
         <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
       {{/unless}}
       <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         {{#if settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             {{actor.effects}}
-              <img class="condition-icon" src="{{anEffect.icon}}" title="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
+              <img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
             {{/each}}
         {{/if}}
         </span>
