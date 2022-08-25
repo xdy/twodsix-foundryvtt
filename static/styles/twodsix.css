@@ -3154,3 +3154,11 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   text-align: center;
   padding-top: 8px;
 }
+
+.prosemirror .editor-container .editor-content {
+  color: var(--s2d6-default-color) !important;
+}
+
+.prosemirror menu .pm-dropdown ul,  .prosemirror menu .pm-dropdown li {
+  background-color: var(--s2d6-background-opaque);
+}
