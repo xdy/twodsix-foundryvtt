@@ -59,6 +59,11 @@ export interface TraitDataSource {
   system:Trait;
 }
 
+export interface SpellDataSource {
+  type:'spell';
+  system:Spell;
+}
+
 export interface ConsumableDataSource {
   type:'consumable';
   system:Consumable;
@@ -89,6 +94,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | SkillsDataSource
   | StorageDataSource
   | TraitDataSource
+  | SpellDataSource
   | WeaponDataSource
   | ShipPositionDataSource
   ;
@@ -384,6 +390,7 @@ export interface Item {
   augment:Augment;
   skills:Skills;
   trait:Trait;
+  spell:Spell;
   consumable:Consumable;
   component:Component;
 }
@@ -497,6 +504,17 @@ export interface Trait {
   subtype:string;
   reference:string;
   key:string;
+}
+
+export interface Spell {
+  templates:string[];
+  value:number;
+  type:string;
+  description:string;
+  circle:string;
+  shortdescr:string;
+  subtype:string;
+  reference:string;
 }
 
 export interface Weapon extends GearTemplate {

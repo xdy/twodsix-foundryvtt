@@ -62,7 +62,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
-      showReferences: game.settings.get('twodsix', 'showItemReferences')
+      showReferences: game.settings.get('twodsix', 'showItemReferences'),
+      showSpells: game.settings.get('twodsix', 'showSpells')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;
@@ -428,8 +429,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onSendToChat(event): Promise<void> {
     const item = <TwodsixItem>this.getItem(event);
     const picture = item.img;
-    if (item.type === "trait") {
-      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>Trait: ${item.name}</strong></div><br>${item.system["description"]}`;
+    const capType = item.type.capitalize();
+    if (item.type === "trait"  || item.type === "spell") {
+      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>${capType}: ${item.name}</strong></div><br>${item.system["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }

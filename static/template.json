@@ -309,7 +309,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -405,6 +405,16 @@
       "subtype": "",
       "reference": "",
       "key": "key"
+    },
+    "spell": {
+      "templates": ["skillsTemplate"],
+      "value": 0,
+      "type": "spell",
+      "description": "",
+      "circle": "",
+      "shortdescr": "",
+      "subtype": "",
+      "reference": ""
     },
     "consumable": {
       "templates": ["gearTemplate"],

@@ -107,6 +107,8 @@ declare global {
       'twodsix.showInitiativeButton':boolean;
       'twodsix.showSkillCountsRanks':boolean;
       'twodsix.showComponentSummaryIcons':boolean;
+      'twodsix.showSpells':boolean;
+      'twodsix.sorcerySkill':string;
     }
   }
 }
@@ -231,6 +233,7 @@ declare interface Game {
         junk: TwodsixItemSheetData;
         skills: TwodsixItemSheetData;
         trait: TwodsixItemSheetData;
+        spell: TwodsixItemSheetData;
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
         shipPosition: TwodsixShipPositionSheetData;

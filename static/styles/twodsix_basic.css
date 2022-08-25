@@ -87,7 +87,17 @@ label.checkbox > input[type="checkbox"] {
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-armor";
 }
-
+.npc-content-container-spells {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 18em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-armor npc-spells npc-weapons";
+}
 .npc-name-photo {
   grid-area: npc-name-photo;
   max-height: 100%;
@@ -111,7 +121,7 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
-.npc-skills, .npc-weapons, .npc-traits, .npc-armor {
+.npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
 
   border: 2px solid;
   border-radius: 2ch;
@@ -127,6 +137,10 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-traits {
   grid-area: npc-traits;
+}
+
+.npc-spells {
+  grid-area: npc-spells;
 }
 
 .npc-armor {
@@ -861,7 +875,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-areas: '. . . . .';
 }
 
-.items-traits {
+.items-traits, .items-spells {
   display: grid;
   grid-template-columns: 14em 2em 14em 3em;
   gap: 1px 1px;
@@ -2008,7 +2022,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;

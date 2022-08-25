@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
+import {TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {advantageDisadvantageTerm} from "../i18n";
@@ -139,11 +139,11 @@ export class TwodsixDiceRoll {
     return `${value <= 0 ? "" : "+"}${value}`;
   }
 
-  public async sendToChat():Promise<void> {
+  public async sendToChat(difficultyList: object):Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
-    const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
+    //const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.settings.difficulty));
 
     let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>`: ``;
     flavor += `${rollingString}: ${difficulty}`;

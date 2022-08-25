@@ -24,7 +24,7 @@ export class TwodsixRollSettings {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem) {
-    this.difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    this.difficulties = settings?.difficulties ? settings.difficulties : TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const skill = <Skills>aSkill?.system;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.system;
@@ -63,7 +63,7 @@ export class TwodsixRollSettings {
       }
 
       await twodsixRollSettings._throwDialog(title, skill);
-      console.log(twodsixRollSettings);
+      //console.log(twodsixRollSettings);
 
       //Get display label
       if (skill && skill.actor) {
@@ -81,7 +81,7 @@ export class TwodsixRollSettings {
     } else {
       twodsixRollSettings.shouldRoll = true;
     }
-    //console.log("Settings: ", twodsixRollSettings);
+    console.log("Settings: ", twodsixRollSettings);
     return twodsixRollSettings;
   }
 

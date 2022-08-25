@@ -1,5 +1,9 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+  {{#if settings.showSpells}}
+  <div class="npc-content-container-spells">
+  {{else}}
   <div class="npc-content-container">
+  {{/if}}
     <div class="npc-name-photo">
       <div class="character-photo npc" style="min-height: 75%;">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
@@ -112,5 +116,23 @@
       </div>
       {{/unless}}
     </div>
+
+    {{#if settings.showSpells}}
+    <div class="npc-spells">
+      <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Spells"}}</span>
+      {{#unless limited}}
+      <div style="margin-left: 1ch">
+        <span >
+        {{#each_sort_by_name container.spells as |item id|}}
+            <span class="item" data-item-id="{{item.id}}">
+              <span class="item-name showChat">{{item.name}} </span>
+              <span class="item-name centre rollable">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
+            </span>
+        {{/each_sort_by_name}}
+        </span>
+      </div>
+      {{/unless}}
+    </div>
+    {{/if}}
   </div>
 </form>

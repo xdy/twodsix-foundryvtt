@@ -160,6 +160,13 @@ export default class TwodsixItem extends Item {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       skill = this;
       item = undefined;
+    } else if (this.type === "spell") {
+      skill = this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
+      if (skill === undefined) {
+        skill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      }
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      item = this;
     } else if (usesConsumable.skill) {
       skill = this.actor?.items.get(usesConsumable.skill) as TwodsixItem;
       // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -173,6 +180,16 @@ export default class TwodsixItem extends Item {
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
     if (!tmpSettings) {
+      if(this.type === "spell") {
+        // Spells under SOC and Barbaric have a sequential difficulty class based on spell level.  Create an override to system difficulties.
+        tmpSettings = {difficulties: {}};
+        for (let i = 1; i <= 6; i++) {
+          const levelKey = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + i;
+          tmpSettings.difficulties[levelKey] = {mod: -i, target: i+6};
+        }
+        const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + this.system.value;
+        tmpSettings.difficulty = tmpSettings.difficulties[level];
+      }
       tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       if (!tmpSettings.shouldRoll) {
         return;
@@ -201,7 +218,7 @@ export default class TwodsixItem extends Item {
     const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
 
     if (showInChat) {
-      await diceRoll.sendToChat();
+      await diceRoll.sendToChat(tmpSettings.difficulties);
     }
     return diceRoll;
   }

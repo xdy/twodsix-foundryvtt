@@ -100,6 +100,8 @@
         "Range": "Range",
         "Refill": "Refill",
         "Reload": "Reload",
+        "SPELLS": "SPELLS",
+        "Spells": "Spells",
         "ShortDescr": "Short Descr",
         "Subtype": "Type",
         "TRAITS": "TRAITS",
@@ -360,6 +362,12 @@
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack"
+      },
+      "Spells": {
+        "CircleSchool": "Spell Circle/School",
+        "SpellName": "Spell Name",
+        "Level": "Level",
+        "sorcerySkill": "Sorcery"
       }
     },
     "Ship": {
@@ -829,6 +837,14 @@
       "showComponentSummaryIcons": {
         "hint": "Show summary icons for components below ship image.",
         "name": "Show Component Summary Icons"
+      },
+      "showSpells": {
+        "hint": "Show spells lists on actor sheets.",
+        "name": "Show Spells"
+      },
+      "sorcerySkill": {
+        "hint": "The name of the skill used for spellcasting / sorcery.",
+        "name": "Sorcery skill name"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -847,6 +863,7 @@
       "skill": "skill",
       "consumable": "consumable",
       "trait": "trait",
+      "spell": "spell",
       "component": "component"
     },
     "speeds": {

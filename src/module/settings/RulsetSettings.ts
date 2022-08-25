@@ -66,6 +66,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringSetting("unarmedDamage", "1d6", false, "world"));
     settings.push(booleanSetting("showTimeframe", false));
     settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
+    settings.push(stringSetting("sorcerySkill", "Sorcery", false, "world"));
     return settings;
   }
 }

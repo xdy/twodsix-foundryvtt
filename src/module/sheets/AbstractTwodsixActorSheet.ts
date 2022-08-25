@@ -332,6 +332,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const junk:Item[] = [];
     const skills:Item[] = [];
     const traits:Item[] = [];
+    const spells:Item[] = [];
     const consumable:Item[] = [];
     const component = {};
     let encumbrance = 0;
@@ -391,6 +392,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case "trait":
           traits.push(item);
           break;
+        case "spell":
+          spells.push(item);
+          break;
         case 'consumable':
           consumable.push(item);
           storage.push(item);
@@ -429,6 +433,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.container.consumable = consumable;
       sheetData.container.skills = skills;
       sheetData.container.traits = traits;
+      sheetData.container.spells = spells;
       sheetData.system.primaryArmor.value = primaryArmor;
       sheetData.system.secondaryArmor.value = secondaryArmor;
       sheetData.system.radiationProtection.value = radiationProtection;

@@ -62,7 +62,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "1d6",
       showTimeframe: true,
-      showHullAndArmor: "armorHullStruc"
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false
     }
   },
   CEL: {
@@ -91,7 +92,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   CEFTL: {
@@ -118,7 +120,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     },
   },
   CEATOM: {
@@ -145,7 +148,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   BARBARIC: {
@@ -171,7 +175,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       unarmedDamage: "1d6",
-      showTimeframe: false
+      showTimeframe: false,
+      showSpells: true
     },
   },
   CEQ: {
@@ -199,7 +204,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   CD: {
@@ -235,7 +241,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "armorOnly"
+      showHullAndArmor: "armorOnly",
+      showSpells: false
     }
   },
   CLU: {
@@ -271,7 +278,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "armorOnly"
+      showHullAndArmor: "armorOnly",
+      showSpells: false
     }
   },
 
@@ -308,7 +316,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "armorOnly"
+      showHullAndArmor: "armorOnly",
+      showSpells: true
     }
   },
 
