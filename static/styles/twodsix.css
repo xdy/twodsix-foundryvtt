@@ -1631,7 +1631,7 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 8em 13em 19em;
+  grid-template-rows: 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
       "char-description"
@@ -3161,4 +3161,14 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .prosemirror menu .pm-dropdown ul,  .prosemirror menu .pm-dropdown li {
   background-color: var(--s2d6-background-opaque);
+}
+
+
+.prosemirror menu {
+  flex-wrap: nowrap;
+  padding: 4px, 2px;
+}
+
+.prosemirror menu button {
+  padding: 0 2px;
 }

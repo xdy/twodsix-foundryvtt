@@ -2537,3 +2537,12 @@ form .form-group > label {
   font-size: 14px;
   line-height: 14px;
 }
+
+.prosemirror menu {
+  flex-wrap: nowrap;
+  padding: 4px, 2px;
+}
+
+.prosemirror menu button {
+  padding: 0 2px;
+}

@@ -56,7 +56,7 @@
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
   {{#if settings.useTinyMCEditor}}
-    {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable async=true}}
+    {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
   {{else}}
     <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
   {{/if}}
