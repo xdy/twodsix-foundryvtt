@@ -2540,7 +2540,7 @@ form .form-group > label {
 
 .prosemirror menu {
   flex-wrap: nowrap;
-  padding: 4px, 2px;
+  padding: 4px 2px;
 }
 
 .prosemirror menu button {
