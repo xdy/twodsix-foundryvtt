@@ -414,7 +414,8 @@
       "circle": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": ""
+      "reference": "",
+      "key": "key"
     },
     "consumable": {
       "templates": ["gearTemplate"],

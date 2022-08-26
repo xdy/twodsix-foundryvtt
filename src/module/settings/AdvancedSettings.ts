@@ -36,7 +36,9 @@ export default class AdvancedSettings extends FormApplication {
   async _updateObject(event, formData): Promise<void> {
     if (event.submitter.name === "submit") {
       Object.entries(formData).forEach(([key, value]) => {
-        game.settings.set("twodsix", key, value);
+        if (key != "submit" && key != "cancel") {
+          game.settings.set("twodsix", key, value);
+        }
       });
     }
     return Promise.resolve();

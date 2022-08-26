@@ -42,12 +42,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
-      useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
+      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons')
     };
 
-    if (context.settings.useTinyMCEditor) {
+    if (context.settings.useProseMirror) {
       context.richText = {
         cargo: TextEditor.enrichHTML(this.actor.system.cargo, {async: false}),
         finances: TextEditor.enrichHTML(this.actor.system.finances, {async: false}),

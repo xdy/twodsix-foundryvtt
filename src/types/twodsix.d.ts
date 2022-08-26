@@ -117,7 +117,7 @@ declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
   useFoundryStandardStyle: boolean;
   showWeightUsage: boolean;
-  useTinyMCEditor: boolean;
+  useProseMirror: boolean;
   useShipAutoCalc: boolean;
 }
 declare interface TwodsixVehicleSheetSettings {

@@ -24,7 +24,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
     returnData.container = {};
-    if (game.settings.get('twodsix', 'useTinyMCEditor')) {
+    if (game.settings.get('twodsix', 'useProseMirror')) {
       returnData.richText = {
         description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
         contacts: TextEditor.enrichHTML(returnData.system.contacts, {async: false}),
@@ -59,7 +59,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      useTinyMCEditor: game.settings.get('twodsix', 'useTinyMCEditor'),
+      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
       showReferences: game.settings.get('twodsix', 'showItemReferences'),

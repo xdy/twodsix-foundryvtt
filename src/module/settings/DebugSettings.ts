@@ -28,7 +28,7 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(stringSetting('systemMigrationVersion', game.system.version));
     settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useShipAutoCalcs', false));
-    settings.push(booleanSetting('useTinyMCEditor', false));
+    settings.push(booleanSetting('useProseMirror', false));
     settings.push(booleanSetting('allowDropOnIcon', false));
     return settings;
   }
