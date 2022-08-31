@@ -1,3 +1,10 @@
+## [1.45.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.3...v1.45.4) (2022-08-31)
+
+
+### Bug Fixes
+
+* No real changes, just a final foundry v9 release. ([180544a](https://github.com/xdy/twodsix-foundryvtt/commit/180544a576de17c98209559b03f46729d5e6c579))
+
 ## [1.45.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.2...v1.45.3) (2022-07-15)
 
 
