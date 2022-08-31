@@ -4,16 +4,16 @@
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
-  data:Traveller;
+  system:Traveller;
 }
 
 export interface ShipDataSource {
   type:'ship';
-  data:Ship;
+  system:Ship;
 }
 export interface VehicleDataSource {
   type:'vehicle';
-  data:Vehicle;
+  system:Vehicle;
 }
 
 export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource;
@@ -21,62 +21,67 @@ export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | Veh
 // Items
 export interface EquipmentDataSource {
   type:'equipment';
-  data:Equipment;
+  system:Equipment;
 }
 
 export interface ArmorDataSource {
   type:'armor';
-  data:Armor;
+  system:Armor;
 }
 
 export interface AugmentDataSource {
   type:'augment';
-  data:Augment;
+  system:Augment;
 }
 
 export interface StorageDataSource {
   type:'storage';
-  data:Storage;
+  system:Storage;
 }
 
 export interface ToolDataSource {
   type:'tool';
-  data:Equipment;
+  system:Equipment;
 }
 
 export interface JunkDataSource {
   type:'junk';
-  data:Equipment;
+  system:Equipment;
 }
 
 export interface SkillsDataSource {
   type:'skills';
-  data:Skills;
+  system:Skills;
 }
 
 export interface TraitDataSource {
   type:'trait';
-  data:Trait;
+  system:Trait;
+}
+
+export interface SpellDataSource {
+  type:'spell';
+  system:Spell;
 }
 
 export interface ConsumableDataSource {
   type:'consumable';
-  data:Consumable;
+  system:Consumable;
 }
 
 export interface ComponentDataSource {
   type:'component';
-  data:Component;
+  system:Component;
 }
 
 export interface WeaponDataSource {
   type:'weapon';
-  data:Weapon;
+  system:Weapon;
 }
 
 export interface ShipPositionDataSource {
   type: 'ship_position';
-  data: ShipPosition;
+  system: ShipPosition;
 }
 
 export type ItemTwodsixDataSource = ArmorDataSource
@@ -89,6 +94,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | SkillsDataSource
   | StorageDataSource
   | TraitDataSource
+  | SpellDataSource
   | WeaponDataSource
   | ShipPositionDataSource
   ;
@@ -384,6 +390,7 @@ export interface Item {
   augment:Augment;
   skills:Skills;
   trait:Trait;
+  spell:Spell;
   consumable:Consumable;
   component:Component;
 }
@@ -430,6 +437,7 @@ export interface Component extends GearTemplate {
   rollModifier:string;
   rateOfFire: string;
   armorPiercing: number;
+  actorLink: string;
 }
 
 export interface Consumable extends GearTemplate {
@@ -496,6 +504,17 @@ export interface Trait {
   subtype:string;
   reference:string;
   key:string;
+}
+
+export interface Spell {
+  templates:string[];
+  value:number;
+  type:string;
+  description:string;
+  circle:string;
+  shortdescr:string;
+  subtype:string;
+  reference:string;
 }
 
 export interface Weapon extends GearTemplate {

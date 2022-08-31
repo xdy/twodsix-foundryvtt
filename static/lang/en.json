@@ -11,6 +11,10 @@
   "Routine": "Routine",
   "Simple": "Simple",
   "TWODSIX": {
+    "ActiveEffects": {
+      "DeleteEffect": "Remove Active Effect",
+      "ConfirmDelete": "Do you really want to delete effect?"
+    },
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",
@@ -96,6 +100,8 @@
         "Range": "Range",
         "Refill": "Refill",
         "Reload": "Reload",
+        "SPELLS": "SPELLS",
+        "Spells": "Spells",
         "ShortDescr": "Short Descr",
         "Subtype": "Type",
         "TRAITS": "TRAITS",
@@ -194,7 +200,7 @@
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
-        "RadProt": "Rad Prot",
+        "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor"
       },
       "Augmentation": {
@@ -311,7 +317,9 @@
         "STA": "STA",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
-        "TrainingNotes": "Training Notes"
+        "TrainingNotes": "Training Notes",
+        "NumberOfSkills": "Number of Skills",
+        "SkillRanks": "Skill Ranks"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",
@@ -354,6 +362,12 @@
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack"
+      },
+      "Spells": {
+        "CircleSchool": "Spell Circle/School",
+        "SpellName": "Spell Name",
+        "Level": "Level",
+        "sorcerySkill": "Sorcery"
       }
     },
     "Ship": {
@@ -736,9 +750,9 @@
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
         "name": "Factor to multiply the weight value of a equipped armor."
       },
-      "useTinyMCEditor": {
+      "useProseMirror": {
         "hint": "Use the embedded HTML editor for larger input blocks.",
-        "name": "Use TinyMCE editor for larger input blocks."
+        "name": "Use ProseMirror editor for larger input blocks."
       },
       "showIcons": {
         "hint": "Use icons instead of text for biographical information.  Icons always shown when using lifeblood and stamina.",
@@ -815,6 +829,22 @@
       "showInitiativeButton": {
         "hint": "Show an initiative roll button on actor sheet on skills tab.",
         "name": "Show Initiative Roll Button"
+      },
+      "showSkillCountsRanks": {
+        "hint": "Show a count of the number of trained skills and the sum of the levels (rank) at the bottom of the skills tab.",
+        "name": "Show Skills Count and Ranks on Traveller Sheet"
+      },
+      "showComponentSummaryIcons": {
+        "hint": "Show summary icons for components below ship image.",
+        "name": "Show Component Summary Icons"
+      },
+      "showSpells": {
+        "hint": "Show spells lists on actor sheets.",
+        "name": "Show Spells"
+      },
+      "sorcerySkill": {
+        "hint": "The name of the skill used for spellcasting / sorcery.",
+        "name": "Sorcery skill name"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -833,6 +863,7 @@
       "skill": "skill",
       "consumable": "consumable",
       "trait": "trait",
+      "spell": "spell",
       "component": "component"
     },
     "speeds": {

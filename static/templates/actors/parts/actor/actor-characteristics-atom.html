@@ -1,50 +1,49 @@
 <div class="character-characteristics">
   <div class="stat endurance" data-characteristic="endurance">
-    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.endurance.mod}}" data-label="{{data.characteristics.endurance.shortLabel}}"
+    <span class="stat-name" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}"
     style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.END"}}
   </span>
 
-    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.endurance.value"
-                                      data-label="data.characteristics.endurance.value" value="{{data.characteristics.endurance.value}}"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.endurance.value"
+                                      data-label="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="stat-modifier"><input readonly type="text"
                                        value="-"/></span>
-    <span class="stat-damage"><input type="number" max="{{data.characteristics.endurance.value}}" min="0"
-                                     name="data.characteristics.endurance.damage" value="{{data.characteristics.endurance.damage}}"
+    <span class="stat-damage"><input type="number" max="{{system.characteristics.endurance.value}}" min="0"
+                                     name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}"
                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
   </div>
 
   <div class="stat strength" data-characteristic="strength">
-    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.strength.mod}}" data-label="{{data.characteristics.strength.shortLabel}}"
+    <span class="stat-name" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}"
     style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.LFB"}}</span>
 
-    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.strength.value"
-                                      data-label="data.characteristics.strength.value" value="{{data.characteristics.strength.value}}"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.strength.value"
+                                      data-label="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="stat-modifier"><input readonly type="text"
                                        value="-"/></span>
-    <span class="stat-damage"><input type="number" max="{{data.characteristics.strength.value}}" min="0"
-                                     name="data.characteristics.strength.damage" value="{{data.characteristics.strength.damage}}"
+    <span class="stat-damage"><input type="number" max="{{system.characteristics.strength.value}}" min="0"
+                                     name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}"
                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
   </div>
 
   <div>
   </div>
 
-{{#if actor.data.settings.showContaminationBelowLifeblood}}
-  <div class="stat psionicStrength" data-characteristic="intelligence">
-    <span class="stat-name" title="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{data.characteristics.psionicStrength.mod}}" data-label="{{data.characteristics.psionicStrength.shortLabel}}"
-    style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.CTM"}}
-  </span>
-    <span class="stat-ability"><input type="number" min="0" name="data.characteristics.psionicStrength.value"
-                                      data-label="data.characteristics.psionicStrength.value" value="{{data.characteristics.psionicStrength.value}}"
+  {{#if settings.showContaminationBelowLifeblood}}
+    <div class="stat psionicStrength" data-characteristic="intelligence">
+      <span class="stat-name" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}"
+      style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.CTM"}}
+    </span>
+      <span class="stat-ability"><input type="number" min="0" name="system.characteristics.psionicStrength.value"
+                                        data-label="system.characteristics.psionicStrength.value" value="{{system.characteristics.psionicStrength.value}}"
+                                        placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+      <span class="stat-modifier"><input readonly type="text"
+                                        value="-"/></span>
+      <span class="stat-damage"><input readonly type="number" max="{{system.characteristics.psionicStrength.value}}" min="0"
+                                      name="system.characteristics.psionicStrength.damage" value="{{system.characteristics.psionicStrength.damage}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
-                                       value="-"/></span>
-    <span class="stat-damage"><input readonly type="number" max="{{data.characteristics.psionicStrength.value}}" min="0"
-                                     name="data.characteristics.psionicStrength.damage" value="{{data.characteristics.psionicStrength.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
+    </div>
   {{/if}}
-
 </div>

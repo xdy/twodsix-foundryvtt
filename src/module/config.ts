@@ -62,7 +62,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "1d6",
       showTimeframe: true,
-      showHullAndArmor: "armorHullStruc"
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false
     }
   },
   CEL: {
@@ -91,7 +92,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   CEFTL: {
@@ -118,7 +120,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     },
   },
   CEATOM: {
@@ -145,7 +148,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   BARBARIC: {
@@ -171,7 +175,8 @@ const RULESETS = Object.freeze({
       defaultMovement: 10,
       defaultMovementUnits: "m",
       unarmedDamage: "1d6",
-      showTimeframe: false
+      showTimeframe: false,
+      showSpells: true
     },
   },
   CEQ: {
@@ -199,7 +204,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "threshold"
+      showHullAndArmor: "threshold",
+      showSpells: false
     }
   },
   CD: {
@@ -235,7 +241,8 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "armorOnly"
+      showHullAndArmor: "armorOnly",
+      showSpells: false
     }
   },
   CLU: {
@@ -271,7 +278,46 @@ const RULESETS = Object.freeze({
       addEffectForShipDamage: false,
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
-      showHullAndArmor: "armorOnly"
+      showHullAndArmor: "armorOnly",
+      showSpells: false
+    }
+  },
+
+  SOC: {
+    key: "SOC",
+    name: "The Sword of Cepheus",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      ShowRangeBandAndHideRange: false,
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 240,
+      massProductionDiscount: 0.10,
+      maxEncumbrance: "3*(@characteristics.strength.value)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly",
+      showSpells: true
     }
   },
 
@@ -289,9 +335,15 @@ const ROLLTYPES = Object.freeze({
   Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
 });
 
-const CONSUMABLES = Object.freeze([
-  "air", "drugs", "food", "fuel", "magazine", "power_cell", "other"
-]);
+const CONSUMABLES = Object.freeze({
+  air: "TWODSIX.Items.Consumable.Types.air",
+  drugs: "TWODSIX.Items.Consumable.Types.drugs",
+  food: "TWODSIX.Items.Consumable.Types.food",
+  fuel: "TWODSIX.Items.Consumable.Types.fuel",
+  magazine: "TWODSIX.Items.Consumable.Types.magazine",
+  power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
+  other: "TWODSIX.Items.Consumable.Types.other"
+});
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };

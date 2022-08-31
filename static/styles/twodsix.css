@@ -76,7 +76,7 @@ p span, p {
   font-family: inherit;
 }
 
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], div[contenteditable], textarea {
+input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'], input[type='date'], div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque) !important;
   color: var(--s2d6-light-color) !important;
   font-family: inherit;
@@ -155,11 +155,13 @@ input[type=number] {
 
 /*** Fix link backgrounds and table colors to TWODSIX Style ***/
 a.entity-link,
-a.inline-roll {
+a.inline-roll,
+a.content-link {
   background: var(--s2d6-background-transparent);
 }
 a.entity-link i,
-a.inline-roll i {
+a.inline-roll i,
+a.content-link i {
   color: var(--s2d6-default-color);
 }
 table tr:nth-child(even) {
@@ -242,6 +244,10 @@ table tr:nth-child(even) {
   border: none !important;
   padding: 0;
   margin-left: 3px;
+}
+
+.sheet nav.sheet-tabs .item {
+  padding: 2px;
 }
 
 .sheet footer.sheet-footer {
@@ -381,7 +387,17 @@ h2 {
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-armor";
 }
-
+.npc-content-container-spells {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 18em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-armor npc-spells npc-weapons";
+}
 .npc-name-photo {
   grid-area: npc-name-photo;
   max-height: 100%;
@@ -408,7 +424,7 @@ h2 {
   border-width: 2px;
 }
 
-.npc-skills, .npc-weapons, .npc-traits, .npc-armor {
+.npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -425,6 +441,10 @@ h2 {
 
 .npc-traits {
   grid-area: npc-traits;
+}
+
+.npc-spells {
+  grid-area: npc-spells;
 }
 
 .npc-armor {
@@ -1224,7 +1244,7 @@ a.notes-tab.active {
   grid-template-areas: '. . . . .';
 }
 
-.items-traits {
+.items-traits, .items-spells {
   display: grid;
   grid-template-columns: 14em 2em 14em 3em;
   gap: 1px 1px;
@@ -1247,10 +1267,11 @@ a.notes-tab.active {
 
 .roll-initiative {
   max-width: fit-content;
+  cursor: pointer;
 }
 
 .skill-list {
-  padding: 0.5em;
+  padding: 0.3em 0.5em;
   width: 34.2em;
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
@@ -1353,12 +1374,20 @@ input.item-value-edit {
   overflow-x: hidden;
 }
 
-.item-controls .item-toggle i { display: none; }
-.item-controls .item-toggle .fa-hiking { display: inline; }
-.item-controls .item-toggle.ship .fa-hiking,
-.item-controls .item-toggle.equipped .fa-hiking { display: none; }
-.item-controls .item-toggle.ship .fa-space-shuttle,
-.item-controls .item-toggle.equipped .fa-child { display: inline; }
+.item-controls .item-toggle i {
+  display: none;
+}
+.item-controls .item-toggle .fa-person-hiking {
+  display: inline;
+}
+.item-controls .item-toggle.ship .fa-person-hiking,
+.item-controls .item-toggle.equipped .fa-person-hiking {
+   display: none;
+}
+.item-controls .item-toggle.ship .fa-shuttle-space,
+.item-controls .item-toggle.equipped .fa-child-reaching {
+  display: inline;
+}
 
 .skill:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
@@ -1602,7 +1631,7 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 8em 13em 19em;
+  grid-template-rows: 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
       "char-description"
@@ -1689,7 +1718,10 @@ span.total-output {
   grid-template-columns: 28em 28em;
   grid-template-rows: 2.4em 8.5em 9em;
   gap: 1px 1px;
-  grid-template-areas: "ship-image ship-name" "ship-image ship-info" "ship-image ship-requirements";
+  grid-template-areas:
+    "ship-image ship-name"
+    "ship-image ship-info"
+    "ship-image ship-requirements";
 }
 
 img.ship-mask-bg {
@@ -1716,8 +1748,8 @@ img.ship-mask-bg {
 }
 
 .ship-deck {
-  width: 19em;
-  margin-left: 1.5em;
+  width: 20em;
+  margin-left: 0.5em;
   margin-top: 0.4em;
   text-align: center;
 }
@@ -1907,12 +1939,16 @@ img.ship-mask-bg {
   padding-top: 0.3em;
 }
 
-.ship-power-management h3 {
+.power-title {
   color: black;
   font-weight: bold;
   position: relative;
   width: 16.5em;
-  left: 7em;
+  left: 2.5em;
+  border-bottom: none;
+  font-size: 1.25em;
+  padding: 0;
+  margin: 0 0 0.5rem;
 }
 
 .ship-power {
@@ -1921,7 +1957,7 @@ img.ship-mask-bg {
   width: 5.3em;
   margin-right: -5.3em;
   margin-bottom: -2.43em;
-  top: 0.23em;
+  top: 0.75em;
 }
 
 .power-grid {
@@ -1933,7 +1969,7 @@ img.ship-mask-bg {
     ". . . . .";
   position: relative;
   left: 7.4em;
-  top: -66px;
+  top: -60px;
   /* margin-bottom: -4em; */
   /* height: 4em; */
 }
@@ -1991,7 +2027,7 @@ img.ship-mask-bg {
   font-size: 18px;
   text-align: center;
   position: relative;
-  top: -1.5em;
+  top: -1.7em;
 }
 
 span.power-now {
@@ -1999,7 +2035,7 @@ span.power-now {
   position: relative;
   display: block;
   width: auto;
-  top: -2.8em;
+  top: -3.1em;
 }
 
 span.power-max {
@@ -2007,7 +2043,7 @@ span.power-max {
   position: relative;
   display: block;
   width: auto;
-  top: -4.4em;
+  top: -4.6em;
 }
 
 /*--- Input Fields ---*/
@@ -2016,7 +2052,7 @@ input.power-current {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -1.9em;
+  top: -2.1em;
   width: inherit;
   display: block;
   border: none;
@@ -2027,7 +2063,7 @@ input.power-total {
   font-size: 18px;
   position: relative;
   left: 0;
-  top: -2.1em;
+  top: -2.2em;
   width: inherit;
   display: block;
   border: none;
@@ -2441,7 +2477,7 @@ a:hover {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2644,6 +2680,18 @@ background: var(--s2d6-sidebar-background);
   color: var(--s2d6-default-color);
   font-weight: bold;
   text-align: center;
+}
+
+#tooltip {
+  padding: 3px 4px;
+  background: var(--s2d6-background-opaque);
+  font-family: Asap, sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--s2d6-light-color);
+  border: 1px solid var(--s2d6-item-border);
+  border-radius: 3px;
+  box-shadow: 0 0 4px var(--s2d6-form-light);
 }
 
 #chat-form textarea {
@@ -2975,6 +3023,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   height: 95%;
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
+  margin-top: 0;
 }
 
 .tox .tox-tbtn svg {
@@ -3089,4 +3138,36 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .force-border {
   border: 1px solid yellow !important;
+}
+
+.journal-sheet form, .sheet.journal-entry .journal-entry-content {
+  background: revert;
+  background-color: var(--s2d6-background-nearly-transparent);
+}
+
+.condition-icon:hover {
+  cursor: pointer;
+}
+
+.skill-ranks {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.prosemirror .editor-container .editor-content {
+  color: var(--s2d6-default-color) !important;
+}
+
+.prosemirror menu .pm-dropdown ul,  .prosemirror menu .pm-dropdown li {
+  background-color: var(--s2d6-background-opaque);
+}
+
+.prosemirror menu {
+  flex-wrap: nowrap;
+  padding: 4px 2px;
+}
+
+.prosemirror menu button {
+  padding: 0 2px;
 }

@@ -6,16 +6,16 @@
           {{shipPosition.name}}
         </div>
         <div class="ship-position-box">
-          {{#each shipPosition.data.data.actors as |actor|}}
-            <img src="{{actor.img}}" draggable="true" class="ship-position-actor-token" data-drag="actor" data-id="{{actor.id}}" width="40" height="40" alt="{{actor.name}}" title="{{actor.name}}">
+          {{#each shipPosition.system.actors as |actor|}}
+            <img src="{{actor.img}}" draggable="true" class="ship-position-actor-token" data-drag="actor" data-id="{{actor.id}}" width="40" height="40" alt="{{actor.name}}" data-tooltip="{{actor.name}}">
           {{/each}}
           <span class="fa fa-trash ship-position-delete"></span>
           <span class="fa fa-wrench ship-position-edit"></span>
 
         </div>
         <div class="ship-position-box">
-        {{#each shipPosition.data.data.sortedActions as |action|}}
-          <img src="{{action.icon}}" class="ship-position-action" data-id="{{action.id}}" title="{{action.name}}" width="40" height="40">
+        {{#each shipPosition.system.sortedActions as |action|}}
+          <img src="{{action.icon}}" class="ship-position-action" data-id="{{action.id}}" data-tooltip="{{action.name}}" width="40" height="40">
         {{/each}}
         </div>
       </div>

@@ -3,23 +3,23 @@
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
     <div class="item-qty">
-      <label for="data.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
-      <input class="form-input" id="data.quantity" type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+      <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+      <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
     </div>
 
     <div class="item-weight">
-      <label for="data.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
-      <input class="form-input" id="data.weight" type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+      <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+      <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
     </div>
 
     <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
-      <input class="form-input" id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+      <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}

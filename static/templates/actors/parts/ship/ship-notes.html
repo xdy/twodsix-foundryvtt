@@ -1,8 +1,8 @@
 <div class="ship-notes-container">
   <span class="item-title">{{localize "TWODSIX.Ship.SHIPNOTES"}}</span>
-  {{#if (twodsix_useTinyMCE)}}
-      {{{editor content=data.data.notes target="data.notes" button=true owner=owner editable=editable}}}
-    {{else}}
-      <div contenteditable="true" data-edit="data.notes">{{#if data.data.notes}}{{{data.data.notes}}}{{/if}}</div>
+  {{#if settings.useProseMirror}}
+    {{editor richText.notes target="system.notes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+  {{else}}
+      <div contenteditable="true" data-edit="system.notes">{{#if actor.system.notes}}{{{actor.system.notes}}}{{/if}}</div>
   {{/if}}
 </div>

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
@@ -44,8 +47,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod: number = calcModFor(characteristicElement.current);
       const abbreviatedCharName: string = characteristicElement.displayShortLabel;
@@ -71,13 +73,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     let adjValue = value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
     if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
-      adjValue = actor.items.find((i) => i._id === actorData.untrainedSkill).data.value;
+      adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
     if (characteristicElement) {
@@ -100,12 +101,12 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (data) => {
+  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (inData) => {
     // -1 is case where untrained skill is checked
-    if (data === -1) {
+    if (inData === -1) {
       return game.settings.get('twodsix', 'hideUntrainedSkills');
     } else {
-      return data.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && data.value < 0  && data.trainingNotes === "");
+      return inData.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && inData.value < 0  && inData.trainingNotes === "");
     }
   });
 
@@ -138,28 +139,12 @@ export default function registerHandlebarsHelpers(): void {
     return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
-  Handlebars.registerHelper('twodsix_useFoundryStyle', () => {
-    return game.settings.get('twodsix', 'useFoundryStandardStyle');
-  });
-
-  Handlebars.registerHelper('showAlternativeCharacteristics', () => {
-    return game.settings.get('twodsix', 'showAlternativeCharacteristics');
-  });
-
   Handlebars.registerHelper('alternativeShort1', () => {
     return game.settings.get('twodsix', 'alternativeShort1');
   });
 
   Handlebars.registerHelper('alternativeShort2', () => {
     return game.settings.get('twodsix', 'alternativeShort2');
-  });
-
-  Handlebars.registerHelper('autoCalcStats', () => {
-    return game.settings.get('twodsix', 'useShipAutoCalcs');
-  });
-
-  Handlebars.registerHelper('twodsix_showReferences', () => {
-    return game.settings.get('twodsix', 'showItemReferences');
   });
 
   Handlebars.registerHelper('skillName', (skillName) => {
@@ -173,56 +158,48 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
     switch (componentType) {
       case 'accomodations':
-        return "fas fa-bed";
+        return "fa-solid fa-bed";
       case 'armament':
-        return "fas fa-crosshairs";
+        return "fa-solid fa-crosshairs";
       case 'armor':
-        return "fas fa-grip-vertical";
+        return "fa-solid fa-grip-vertical";
       case 'bridge':
-        return "fas fa-gamepad";
+        return "fa-solid fa-person-seat";
       case 'cargo':
-        return "fas fa-boxes";
+        return "fa-solid fa-boxes-stacked";
       case 'computer':
-        return "fas fa-microchip";
+        return "fa-solid fa-computer";
       case 'drive':
-        return "fas fa-arrows-alt";
+        return "fa-solid fa-up-down-left-right";
       case 'drone':
-        return "fas fa-satellite";
+        return "fa-solid fa-satellite";
       case 'electronics':
-        return "fas fa-satellite-dish";
+        return "fa-solid fa-microchip";
       case 'fuel':
-        return "fas fa-gas-pump";
+        return "fa-solid fa-gas-pump";
       case 'hull':
-        return "fas fa-rocket";
+        return "fa-solid fa-rocket";
       case 'mount':
-        return "far fa-dot-circle";
+        return "fa-regular fa-circle-dot";
       case "otherExternal":
-        return "fas fa-sign-out-alt";
+        return "fa-solid fa-right-from-bracket";
       case "otherInternal":
-        return "fas fa-sign-in-alt";
+        return "fa-solid fa-right-to-bracket";
       case 'power':
-        return "fas fa-atom";
+        return "fa-solid fa-atom";
       case "sensor":
-        return "fas fa-solar-panel";
+        return "fa-solid fa-solar-panel";
       case 'shield':
-        return "fas fa-shield-alt";
+        return "fa-solid fa-shield-halved";
       case 'software':
-        return "fas fa-code";
+        return "fa-solid fa-code";
       case 'storage':
-        return "fas fa-boxes";
+        return "fa-solid fa-boxes-stacked";
       case 'vehicle':
-        return "fas fa-space-shuttle";
+        return "fa-solid fa-shuttle-space";
       default:
-        return "fas fa-question-circle";
+        return "fa-solid fa-circle-question";
     }
-  });
-
-  Handlebars.registerHelper('twodsix_showWeightUsage', () => {
-    return (game.settings.get('twodsix', 'showWeightUsage'));
-  });
-
-  Handlebars.registerHelper('twodsix_useTinyMCE', () => {
-    return (game.settings.get('twodsix', 'useTinyMCEditor'));
   });
 
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
@@ -253,11 +230,11 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return (Math.round(getWeight(<Component>item.data.data, item.actor?.data) * 10 ) / 10 ).toFixed(1);
+    return (Math.round(getWeight(<Component>item.system, item.actor) * 10 ) / 10 ).toFixed(1);
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    const anComponent = <Component>item.data.data;
+    const anComponent = <Component>item.system;
     const retValue:number = getPower(anComponent);
     if (anComponent.generatesPower) {
       return "+" + retValue;
@@ -278,10 +255,6 @@ export default function registerHandlebarsHelpers(): void {
       returnValue = _genUntranslatedSkillList();
     }
     return returnValue;
-  });
-
-  Handlebars.registerHelper('getComponentMaxHits', () => {
-    return game.settings.get("twodsix", "maxComponentHits");
   });
 
   Handlebars.registerHelper('makePieImage', (text: string) => {

@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { TWODSIX } from "../config";
-import { getDataFromDropEvent } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { Ship, ShipAction, ShipPosition, ShipPositionActorIds, Skills } from "../../types/template";
@@ -11,7 +14,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     const context = <TwodsixShipPositionSheetData>super.getData();
     context.components = this.item.actor?.items.filter(component => component.type === "component") ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
-    const actions = (<ShipPosition>this.item.data.data).actions ?? [];
+    const actions = (<ShipPosition>this.item.system).actions ?? [];
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {
       ret.id = id;
       ret.placeholder = TwodsixShipActions.availableMethods[ret.type].placeholder;
@@ -20,7 +23,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     context.sortedActions.sort((a: ShipAction, b: ShipAction) => (a.order > b.order) ? 1 : -1);
     context.hasShipActor = !!this.actor;
     if (context.hasShipActor) {
-      const shipPositionActorIds = Object.entries(<ShipPositionActorIds>(<Ship>this.actor?.data.data)?.shipPositionActorIds ?? {}).filter(([, shipPositionId]) => shipPositionId === this.item.id);
+      const shipPositionActorIds = Object.entries(<ShipPositionActorIds>(<Ship>this.actor?.system)?.shipPositionActorIds ?? {}).filter(([, shipPositionId]) => shipPositionId === this.item.id);
       if (shipPositionActorIds.length > 0) {
         const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
         context.actors = <TwodsixActor[]>actorIds.map(actorId => game.actors?.get(actorId)).filter(x => x !== undefined);
@@ -57,8 +60,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   public static async createActionFromSkill(position:TwodsixItem, skill:TwodsixItem): Promise<void> {
-    const actions = (<ShipPosition>position.data.data).actions;
-    const skillData = (<Skills>skill.data.data);
+    const actions = (<ShipPosition>position.system).actions;
+    const skillData = (<Skills>skill.system);
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     let command = skill.name ?? "";
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
@@ -73,7 +76,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
       "command": command
     };
-    await position.update({ "data.actions": actions });
+    await position.update({ "system.actions": actions });
   }
 
   _onDragStart(event: DragEvent):void {
@@ -81,7 +84,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       const actor = game.actors?.get($(event.target).data("id"));
       event.dataTransfer.setData("text/plain", JSON.stringify({
         "type": "Actor",
-        "data": actor?.data,
+        "data": actor,  //NOT CERTAIN WHAT TO DO ABOUT THIS ONE
         "actorId": this.actor?.id,
         "id": $(event.target).data("id")
       }));
@@ -91,16 +94,14 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   async _onDrop(event: DragEvent): Promise<boolean | any> {
-    const data:any = getDataFromDropEvent(event);
-    if (data.type === "Item" && (data.data?.type === "skills" || game.items?.get(data.id)?.type === "skills")) {
-      const skillData = <TwodsixItem>game.items?.get(data.id);
-      if (skillData) {
-        await TwodsixShipPositionSheet.createActionFromSkill(this.item, skillData);
-      }
-    } else if (data.type === "Actor" && (data.data?.type === "traveller" || game.actors?.get(data.id)?.type === "traveller")) {
+    const dropData:any = getDataFromDropEvent(event);
+    const droppedObject:any = await getItemDataFromDropData(dropData);
+    if (droppedObject.type === "skills") {
+      await TwodsixShipPositionSheet.createActionFromSkill(this.item, droppedObject);
+    } else if (droppedObject.type === "traveller") {
       if (this.actor) {
-        const currentShipPositionId = (<Ship>this.actor.data.data).shipPositionActorIds[data.id];
-        await this.actor.update({[`data.shipPositionActorIds.${data.id}`]: this.item.id});
+        const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[droppedObject._id];
+        await this.actor.update({[`system.shipPositionActorIds.${droppedObject._id}`]: this.item.id});
         this.render();
         if (currentShipPositionId){
           this.actor.items.get(currentShipPositionId)?.sheet?.render();
@@ -108,7 +109,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip"));
       }
-    }else {
+    } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForShipPosition"));
     }
   }
@@ -117,25 +118,25 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     if (event.currentTarget !== null) {
       const deleteId = $(event.currentTarget).data("id");
 
-      // await this.item.update({ [`data.actions.-=${deleteId}`]: null });
+      // await this.item.update({ [`system.actions.-=${deleteId}`]: null });
       // The code below is an ugly fix because of a bug in foundry: https://gitlab.com/foundrynet/foundryvtt/-/issues/6421
-      const actions = duplicate((<ShipPosition>this.item.data.data).actions);
+      const actions = duplicate((<ShipPosition>this.item.system).actions);
       delete actions[deleteId];
-      await this.item.update({"data.actions": null}, {noHook: true, render: false});
-      await this.item.update({ 'data.actions': actions });
+      await this.item.update({"system.actions": null}, {noHook: true, render: false});
+      await this.item.update({"system.actions": actions });
     }
   }
 
   private async _onDeleteActor(event: Event) {
     if (event.currentTarget !== null) {
       const deleteId = $(event.currentTarget).data("id");
-      await this.actor?.update({[`data.shipPositionActorIds.-=${deleteId}`]: null});
+      await this.actor?.update({[`system.shipPositionActorIds.-=${deleteId}`]: null});
       this.render();
     }
   }
 
   private _onCreateAction() {
-    const actions = (<ShipPosition>this.item.data.data).actions;
+    const actions = (<ShipPosition>this.item.system).actions;
     actions[randomID()] = {
       "order": Object.values(actions).length === 0 ? 1 : Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
@@ -143,6 +144,6 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       "command": "",
       "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
-    this.item.update({ "data.actions": actions });
+    this.item.update({ "system.actions": actions });
   }
 }

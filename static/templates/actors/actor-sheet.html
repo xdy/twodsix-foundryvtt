@@ -1,19 +1,19 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-  {{#unless (twodsix_useFoundryStyle)}}
+  {{#unless settings.useFoundryStandardStyle}}
     <img class="content-background" src="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?"/>
   {{/unless}}
   <div class="content-container">
     <div class="character-info">
-      {{#unless (twodsix_useFoundryStyle)}}
+      {{#unless settings.useFoundryStandardStyle}}
         <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
       {{/unless}}
       <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} title="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
-        {{#if actor.data.settings.showStatusIcons}}
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        {{#if settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             {{actor.effects}}
-              <img class="condition-icon" src="{{anEffect.icon}}" title="{{anEffect.label}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
+              <img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
             {{/each}}
         {{/if}}
         </span>
@@ -21,11 +21,11 @@
       <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
 
-        {{#if actor.data.settings.showLifebloodStamina }}
+        {{#if settings.showLifebloodStamina }}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           </div>
-        {{else if actor.data.settings.showIcons}}
+        {{else if settings.showIcons}}
           <div class="character-bgi">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
           </div>
@@ -35,18 +35,18 @@
           </div>
         {{/if}}
         {{#unless limited}}
-        {{#if actor.data.settings.lifebloodInsteadOfCharacteristics}}
+        {{#if settings.lifebloodInsteadOfCharacteristics}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
         {{else}}
-          {{#if (twodsix_useFoundryStyle)}}
+          {{#if settings.useFoundryStandardStyle}}
           <table class="stat-table">
             {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
           </table>
           {{else}}
-            {{#iff (showAlternativeCharacteristics) "!==" "all"}}
+            {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
               {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
             {{/iff}}
-            {{#iff (showAlternativeCharacteristics) "===" "all"}}
+            {{#iff settings.showAlternativeCharacteristics "===" "all"}}
             <table class="stat-table-small">
               {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
             </table>

@@ -659,7 +659,7 @@
         "hint": "Facteur de multiplication de la valeur de poids d'une armure si elle est actuellement équipée.",
         "name": "Facteur de multiplication de la valeur de poids d'une armure équipée."
       },
-      "useTinyMCEditor": {
+      "useProseMirror": {
       },
       "showIcons": {
       },

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { Component, Skills } from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
@@ -66,12 +69,12 @@ export class TwodsixShipActions {
       /*get characteristic key, default to skill key if none specificed in formula */
       let characteristicKey = "";
       if(!char) {
-        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.data.data).characteristic);
+        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
       } else {
         characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
       }
 
-      const charObject = extra.actor?.data.data["characteristics"];
+      const charObject = extra.actor?.system["characteristics"];
       let shortLabel = "NONE";
       let displayLabel = "NONE";
       if (charObject && characteristicKey) {
@@ -102,8 +105,8 @@ export class TwodsixShipActions {
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
-    if ((<Component>component?.data.data)?.rollModifier) {
-      extra.diceModifier = (<Component>component?.data.data)?.rollModifier;
+    if ((<Component>component?.system)?.rollModifier) {
+      extra.diceModifier = (<Component>component?.system)?.rollModifier;
     }
 
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
@@ -112,7 +115,7 @@ export class TwodsixShipActions {
     }
 
     const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name + ` `) : '';
-    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>component?.data.data)?.subtype === "armament") {
+    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>component?.system)?.subtype === "armament") {
       if (result.effect >= 0 && component) {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
@@ -127,7 +130,7 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
   let tempObject = {};
   let charObject= {};
   if (actor) {
-    charObject = actor.data.data["characteristics"];
+    charObject = actor.system["characteristics"];
     for (const key in charObject) {
       tempObject[key] = charObject[key].displayShortLabel;
     }

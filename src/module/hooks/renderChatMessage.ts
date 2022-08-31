@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import Crit from "../utils/crit";
 
 Hooks.on('renderChatMessage', (app, html) => {
@@ -6,7 +9,7 @@ Hooks.on('renderChatMessage', (app, html) => {
     damageMessage.setAttribute("draggable", "true");
 
     damageMessage.addEventListener('dragstart', ev => {
-      return ev.dataTransfer?.setData("text/plain", <string>app.data.flags.transfer);
+      return ev.dataTransfer?.setData("text/plain", <string>app.flags.transfer);
     });
   }
 

@@ -194,28 +194,10 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   }
 }
 
-export async function getItemDataFromDropData(data:Record<string, any>) {
-  if (data.pack) {
-    // compendium
-    const pack = game.packs.find((p) => p.collection === data.pack);
-
-    if (!pack || pack.metadata.type !== 'Item') {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
-    }
-    const item = await pack.getDocument(data.id);
-    if (!item) {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
-    }
-    return duplicate(item.data);
-  } else if (data.data) {
-    // other actor
-    return duplicate(data.data);
-  } else {
-    // items directory
-    const item = game.items?.get(data.id);
-    if (!item) {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
-    }
-    return duplicate(item.data);
+export async function getItemDataFromDropData(dropData:Record<string, any>) {
+  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  if (!item) {
+    throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
+  return duplicate(item);
 }

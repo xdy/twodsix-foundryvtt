@@ -1,11 +1,11 @@
 <div class = "cargo-all">
-  {{#unless (twodsix_showWeightUsage)}}
+  {{#unless settings.showWeightUsage}}
   <div class="cargo-weight">
-    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if (autoCalcStats)}}readonly{{/if}} type="number" value="{{data.data.weightStats.cargo}}" name="data.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
-    {{#iff data.data.weightStats.available '>=' 0}}
-      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    <span class="ship-stat centre"><label>{{localize "TWODSIX.Ship.CargoWeight"}}: </label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+    {{#iff actor.system.weightStats.available '>=' 0}}
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{else}}
-      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if (autoCalcStats)}}readonly{{/if}} value="{{data.data.weightStats.available}}" name="data.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></span>
     {{/iff}}
   </div>
   {{/unless}}
@@ -18,8 +18,8 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo"><i
+        class="fa-solid fa-plus"></i></a></span>
     </div>
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
@@ -27,8 +27,8 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo"><i
+        class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
   <div class="grid-columns-double">
@@ -38,14 +38,14 @@
         <li class="item components-stored-double" data-item-id="{{item.id}}">
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{getComponentWeight item}}</span>
-          <span class="item-name centre">{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{item.data.data.purchasePrice}}</span>
-          <span class="item-name centre">{{#if item.data.data.isIllegal}}<i class="fas fa-skull-crossbones"></i>{{/if}}</span>
+          <span class="item-name centre">{{item.system.quantity}}</span>
+          <span class="item-name centre">{{item.system.purchasePrice}}</span>
+          <span class="item-name centre">{{#if item.system.isIllegal}}<i class="fa-solid fa-skull-crossbones"></i>{{/if}}</span>
           <span class="item-controls centre">
-            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
-              class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
-              class="fas fa-trash"></i></a>
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+              class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
+              class="fa-solid fa-trash"></i></a>
           </span>
         </li>
       </ol>
@@ -55,10 +55,10 @@
 </div>
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
-  {{#if (twodsix_useTinyMCE)}}
-    {{editor content=data.data.cargo target="data.cargo" button=true owner=owner editable=editable}}
+  {{#if settings.useProseMirror}}
+    {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
   {{else}}
-    <div contenteditable="true" data-edit="data.cargo">{{#if data.data.cargo}}{{{data.data.cargo}}}{{/if}}</div>
+    <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
   {{/if}}
 </div>
 </div>

@@ -2,14 +2,14 @@
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
       <div class="item-bonus">
-        <label for="data.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
-        <input class="form-input" id="data.bonus" type="text" name="data.bonus" value="{{data.bonus}}"/>
+        <label for="system.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
+        <input class="form-input" id="system.bonus" type="text" name="system.bonus" value="{{system.bonus}}"/>
       </div>
 
       <div class="item-augmentLoc">
         <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
-        <select class="form-input" name="data.auglocation" value={{data.auglocation}}>
-          {{#select data.auglocation}}
+        <select class="form-input" name="system.auglocation" value={{system.auglocation}}>
+          {{#select system.auglocation}}
           <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
           <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
           <option value="Arms">{{localize "TWODSIX.Items.Augmentation.Arms"}}</option>
@@ -20,13 +20,13 @@
       </div>
 
     <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
-      <input class="form-input" id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
+      <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}

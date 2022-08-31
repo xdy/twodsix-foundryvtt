@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
@@ -9,7 +11,7 @@ import { Component, GearTemplate } from "src/types/template";
  * @extends {ItemSheet}
  */
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
-  data: any;
+  returnData: any; ///Not certain on this one or is it just 'data' ************
 
   /** @override */
   static get defaultOptions(): ItemSheet.Options {
@@ -25,30 +27,34 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /** @override */
   get template(): string {
     const path = "systems/twodsix/templates/items";
-    return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   getData(): ItemSheet {
-    const data = super.getData();
-    data.actor = data.data;
+    const returnData = super.getData();
+    //returnData.actor = returnData.data;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
-    data.data.settings = {
+    returnData.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
+      showReferences: game.settings.get('twodsix', 'showItemReferences'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
-    data.data.config = TWODSIX;
-    data.data.isOwned = this.item.isOwned;
-    return data;
+    returnData.config = TWODSIX;
+    //returnData.isOwned = this.item.isOwned;
+    //returnData.data.settings = returnData.settings;  //DELETE WHEN CONVERSION COMPLETE
+    //returnData.data.config = returnData.config;  //DELETE WHEN CONVERSION COMPLETE
+    //returnData.data.isOwned = returnData.isOwned;  //DELETE WHEN CONVERSION COMPLETE
+    return returnData;
   }
 
   /* -------------------------------------------- */
@@ -79,27 +85,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
     this.handleContentEditable(html);
     html.find('.open-link').on('click', this._openPDFReference.bind(this));
-    html.find(`[name="data.subtype"]`).on('change', this._changeSubtype.bind(this));
-    html.find(`[name="data.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
+    html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
+    html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
   private async _changeSubtype(event) {
-    const componentUpdates = {};
-    componentUpdates["data.subtype"] = event.currentTarget.selectedOptions[0].value;
+    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
     /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      componentUpdates["img"] = "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg";
+      await this.item.update({"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
     }
-
     /*Prevent cargo from using %hull weight*/
-    const anComponent = <Component> this.item.data.data;
+    const anComponent = <Component> this.item.system;
     if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      componentUpdates["data.weightIsPct"] = false;
+      await this.item.update({"system.weightIsPct": false});
     }
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      componentUpdates["data.isBaseHull"] = false;
+      await this.item.update({"system.isBaseHull": false});
     }
-    await this._updateComponentItem(componentUpdates);
   }
 
   /* -------------------------------------------- */
@@ -114,25 +117,13 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   private async _changeIsBaseHull() {
-    const anComponent = <Component> this.item.data.data;
+    const anComponent = <Component> this.item.system;
     const newValue = !anComponent.isBaseHull;
+
+    await this.item.update({"system.isBaseHull": newValue});
     /*Unset isWeightPct if changing to base hull*/
     if (newValue && anComponent.weightIsPct) {
-      const componentUpdates = {'data.weightIsPct': false, "data.isBaseHull": true};
-      await this._updateComponentItem(componentUpdates);
-    }
-  }
-
-  private async _updateComponentItem (componentUpdates) {
-    // Something odd going on with token actor (unlinked actor) updates.  Needs double update.
-    await this.item.update(componentUpdates);
-    if (this.actor) {
-      componentUpdates["_id"] = this.item.id;
-      if (this.actor.token) {
-        await this.actor.token.updateActorEmbeddedDocuments('Item', [componentUpdates], {});
-      } else {
-        await this.actor.updateEmbeddedDocuments('Item', [componentUpdates]);
-      }
+      await this.item.update({"system.weightIsPct": false});
     }
   }
 
@@ -186,13 +177,13 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           callback: async (buttonHtml: JQuery) => {
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             let equippedState = "";
-            if (this.item.data.type !== "skills" && this.item.data.type !== "trait" && this.item.data.type !== "ship_position") {
-              equippedState = this.item.data.data.equipped ?? "backpack";
+            if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
+              equippedState = this.item.system.equipped ?? "backpack";
             }
-            const data = {
+            const newConsumableData = {
               name: buttonHtml.find('.consumable-name').val(),
               type: "consumable",
-              data: {
+              system: {
                 subtype: buttonHtml.find('.consumable-subtype').val(),
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
                 currentCount: max,
@@ -200,7 +191,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 equipped: equippedState
               }
             };
-            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [data]) || {};
+            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
             await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
             this.render();
           }
@@ -214,7 +205,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onChangeUseConsumableForAttack(event): Promise<void> {
-    await this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+    await this.item.update({"system.useConsumableForAttack": $(event.currentTarget).val()});
     this.render();
   }
 
@@ -230,12 +221,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
       TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
 
-      const data = getDataFromDropEvent(event);
+      const dropData = getDataFromDropEvent(event);
 
-      TwodsixItemSheet.check(!data, "DraggingSomething");
-      TwodsixItemSheet.check(data.type !== "Item", "OnlyDropItems");
+      TwodsixItemSheet.check(!dropData, "DraggingSomething");
+      TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
 
-      const itemData = await getItemDataFromDropData(data);
+      const itemData = await getItemDataFromDropData(dropData);
 
       TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
 
@@ -260,7 +251,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   private _openPDFReference(event): void {
     event.preventDefault();
-    const sourceString = (<GearTemplate>this.item.data.data).docReference;
+    const sourceString = (<GearTemplate>this.item.system).docReference;
     if (sourceString) {
       const [code, page] = sourceString.split(' ');
       const selectedPage = parseInt(page);

@@ -1,4 +1,7 @@
-import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
+import {TWODSIX} from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import {advantageDisadvantageTerm} from "../i18n";
@@ -24,7 +27,7 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    this.woundedEffect = (<Traveller>this.actor.data.data)?.woundedEffect;
+    this.woundedEffect = (<Traveller>this.actor.system)?.woundedEffect;
 
     this.createRoll();
 
@@ -38,48 +41,48 @@ export class TwodsixDiceRoll {
   private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const data = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
+    const formulaData = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
 
     let formula = rollType;
 
     // Add characteristic modifier
     if (this.settings.characteristic !== "NONE" && this.actor) {
       formula += ` + @${this.settings.characteristic}`;
-      data[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
+      formulaData[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
     }
 
     // Add skill modifier
     if (this.skill) {
       formula += "+ @skill";
       /*Check for "Untrained" value and use if better to account for JOAT*/
-      const joat = (<Skills>this.actor?.getUntrainedSkill().data?.data)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
-      const aSkill = <Skills>this.skill.data.data;
+      const joat = (<Skills>this.actor?.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
+      const aSkill = <Skills>this.skill.system;
       if (joat > aSkill.value) {
-        data.skill = joat;
+        formulaData.skill = joat;
       } else {
-        data.skill = aSkill.value;
+        formulaData.skill = aSkill.value;
       }
     }
 
     // Add dice modifier
     if (this.settings.diceModifier) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
       formula += "+ @DM";
-      data.DM = this.settings.diceModifier;
+      formulaData.DM = this.settings.diceModifier;
     }
 
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
       formula += "+ @difficultyMod";
-      data.difficultyMod = this.settings.difficulty.mod;
+      formulaData.difficultyMod = this.settings.difficulty.mod;
     }
 
     //Subtract Modifier for wound status
     if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.woundedEffect < 0) {
       formula += "+ @woundedEffect";
-      data.woundedEffect = this.woundedEffect;
+      formulaData.woundedEffect = this.woundedEffect;
     }
 
-    this.roll = new Roll(formula, data).evaluate({async: false}); // async:true will be default in foundry 0.10
+    this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {
@@ -136,11 +139,11 @@ export class TwodsixDiceRoll {
     return `${value <= 0 ? "" : "+"}${value}`;
   }
 
-  public async sendToChat():Promise<void> {
+  public async sendToChat(difficultyList: object):Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
-    const difficulty = game.i18n.localize(getKeyByValue(difficulties, this.settings.difficulty));
+    //const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.settings.difficulty));
 
     let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>`: ``;
     flavor += `${rollingString}: ${difficulty}`;
@@ -159,11 +162,11 @@ export class TwodsixDiceRoll {
 
     if (this.skill) {
       const skillValue = TwodsixDiceRoll.addSign((<Gear>this.roll?.data)?.skill);
-      flavor += ` ${this.skill.data.name}(${skillValue})`;
+      flavor += ` ${this.skill.name}(${skillValue})`;
     }
 
     if (this.item) {
-      flavor += ` ${usingString} ${this.item.data.name}`;
+      flavor += ` ${usingString} ${this.item.name}`;
     }
 
     if (this.roll?.data['DM']) {

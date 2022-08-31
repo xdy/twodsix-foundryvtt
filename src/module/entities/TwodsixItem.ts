@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 /**
  * @extends {Item}
  */
@@ -12,10 +15,9 @@ export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
-    if (item?.data.type === 'weapon' && (item.data.img === "" || item.data.img === foundry.data.ItemData.DEFAULT_ICON)) {
+    if (item?.type === 'weapon' && (item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
       await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
     }
-
     return item;
   }
 
@@ -25,11 +27,11 @@ export default class TwodsixItem extends Item {
   prepareData():void {
     super.prepareData();
     if (this.getFlag("twodsix", "untrainedSkill")) {
-      this.data.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
+      this.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
   }
 
-  prepareConsumable(gear:Gear = <Gear>this.data.data):void {
+  prepareConsumable(gear:Gear = <Gear>this.system):void {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 
       //TODO What is consumableData? Where does it come from? Not in template.json
@@ -42,32 +44,32 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async addConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
+  public async addConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     if (gear.consumables != undefined) {
       if (gear.consumables.includes(consumableId)) {
         console.error(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
-        await this.update({"data.consumables": gear.consumables.concat(consumableId)}, {});
+        await this.update({"system.consumables": gear.consumables.concat(consumableId)}, {});
       }
     } else {
       ui.notifications.error(`Twodsix | Consumable can't be added to item ${this.id}`);
     }
   }
 
-  public async removeConsumable(consumableId:string, gear:Gear = <Gear>this.data.data):Promise<void> {
+  public async removeConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     const updatedConsumables = gear.consumables.filter((cId:string) => {
       return (cId !== consumableId && cId !== null && this.actor?.items.get(cId) !== undefined);
     });
-    const updateData = {"data.consumables": updatedConsumables};
+    const updateData = {"system.consumables": updatedConsumables};
     if (gear.useConsumableForAttack === consumableId) {
-      updateData["data.useConsumableForAttack"] = "";
+      updateData["system.useConsumableForAttack"] = "";
     }
     await this.update(updateData, {});
   }
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.data.data):Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.system):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -89,7 +91,7 @@ export default class TwodsixItem extends Item {
       diceModifier: undefined
     };
     if (skill) {
-      tmpSettings = {characteristic: (<Skills>skill.data.data).characteristic || 'NONE'};
+      tmpSettings = {characteristic: (<Skills>skill.system).characteristic || 'NONE'};
     }
 
     let usedAmmo = 1;
@@ -140,7 +142,7 @@ export default class TwodsixItem extends Item {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
         const damage = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (game.user?.targets.size === 1 && damage) {
-          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor?.id || ""));
+          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
         }
@@ -153,11 +155,18 @@ export default class TwodsixItem extends Item {
     let item:TwodsixItem | undefined;
 
     // Determine if this is a skill or an item
-    const usesConsumable = <UsesConsumables>this.data.data;
+    const usesConsumable = <UsesConsumables>this.system;
     if (this.type == "skills") {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       skill = this;
       item = undefined;
+    } else if (this.type === "spell") {
+      skill = this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
+      if (skill === undefined) {
+        skill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      }
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      item = this;
     } else if (usesConsumable.skill) {
       skill = this.actor?.items.get(usesConsumable.skill) as TwodsixItem;
       // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -171,6 +180,16 @@ export default class TwodsixItem extends Item {
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
     if (!tmpSettings) {
+      if(this.type === "spell") {
+        // Spells under SOC and Barbaric have a sequential difficulty class based on spell level.  Create an override to system difficulties.
+        tmpSettings = {difficulties: {}};
+        for (let i = 1; i <= 6; i++) {
+          const levelKey = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + i;
+          tmpSettings.difficulties[levelKey] = {mod: -i, target: i+6};
+        }
+        const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + this.system.value;
+        tmpSettings.difficulty = tmpSettings.difficulties[level];
+      }
       tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       if (!tmpSettings.shouldRoll) {
         return;
@@ -178,7 +197,7 @@ export default class TwodsixItem extends Item {
     }
 
     /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
-    if (usesConsumable.useConsumableForAttack && item && item.data.type != "weapon") {
+    if (usesConsumable.useConsumableForAttack && item && item.type != "weapon") {
       const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack);
       if (magazine) {
         try {
@@ -199,13 +218,13 @@ export default class TwodsixItem extends Item {
     const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
 
     if (showInChat) {
-      await diceRoll.sendToChat();
+      await diceRoll.sendToChat(tmpSettings.difficulties);
     }
     return diceRoll;
   }
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<Roll | void> {
-    const weapon = <Weapon | Component>this.data.data;
+    const weapon = <Weapon | Component>this.system;
 
     if (!weapon.damage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
@@ -221,9 +240,9 @@ export default class TwodsixItem extends Item {
       let damage = <Roll>{};
       let apValue = 0;
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.data.data);
+        damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor?.id || "");
+        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
@@ -231,9 +250,9 @@ export default class TwodsixItem extends Item {
 
       //Calc radiation damage
       let radDamage = <Roll>{};
-      if (this.data.type === "component") {
-        if (Roll.validate(this.data.data.radDamage)) {
-          radDamage = new Roll(this.data.data.radDamage, this.actor?.data.data);
+      if (this.type === "component") {
+        if (Roll.validate(this.system.radDamage)) {
+          radDamage = new Roll(this.system.radDamage, this.actor?.system);
           await radDamage.evaluate({async: true});
         }
       }
@@ -279,13 +298,12 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static getApValue(weapon:Weapon, actorID = ""):number {
+  public static getApValue(weapon:Weapon, actor?):number {
     let returnValue = weapon.armorPiercing;
-    if (weapon.useConsumableForAttack && actorID) {
-      const actor = game.actors?.get(actorID);
-      const magazine = actor?.items.get(weapon.useConsumableForAttack);
+    if (weapon.useConsumableForAttack && actor) {
+      const magazine = actor.items.get(weapon.useConsumableForAttack);
       if (magazine?.type === "consumable") {
-        returnValue += (<Consumable>magazine.data.data)?.armorPiercing || 0;
+        returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
       }
     }
     return returnValue;
@@ -299,7 +317,7 @@ export default class TwodsixItem extends Item {
           `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
         buttons: {
           Roll: {
-            label: `<i class="fas fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
+            label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
             callback:
               (html:JQuery) => {
                 resolve(html.find('[name="outputFormula"]')[0]["value"]);
@@ -354,28 +372,28 @@ export default class TwodsixItem extends Item {
 
   //////// CONSUMABLE ////////
   public async consume(quantity:number):Promise<void> {
-    const consumableLeft = (<Consumable>this.data.data).currentCount - quantity;
+    const consumableLeft = (<Consumable>this.system).currentCount - quantity;
     if (consumableLeft >= 0) {
-      await this.update({"data.currentCount": consumableLeft}, {});
+      await this.update({"system.currentCount": consumableLeft}, {});
     } else {
       throw {name: 'NoAmmoError'};
     }
   }
 
   public async refill():Promise<void> {
-    const consumable = <Consumable>this.data.data;
+    const consumable = <Consumable>this.system;
     if (consumable.currentCount < consumable.max) {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
         if (consumable.currentCount > 0) {
-          const partialConsumable = duplicate(this.data);
-          (<Consumable>partialConsumable.data).quantity = 1;
+          const partialConsumable = duplicate(this);
+          (<Consumable>partialConsumable.system).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
         }
         //refill quantity
         await this.update({
-          "data.quantity": consumable.quantity - 1,
-          "data.currentCount": consumable.max
+          "system.quantity": consumable.quantity - 1,
+          "system.currentCount": consumable.max
         }, {});
       } else {
         throw {name: 'TooLowQuantityError'};

@@ -737,7 +737,7 @@
         "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
         "name": "Factor multiplicador del peso armadura equipada."
       },
-      "useTinyMCEditor": {
+      "useProseMirror": {
         "hint": "Utiliza el editor HTML incorporado para introducir texto extenso.",
         "name": "Utiliza el editor TinyMCE para introducir texto extenso."
       },
