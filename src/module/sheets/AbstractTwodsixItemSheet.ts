@@ -18,8 +18,8 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
   getData():any {
     // @ts-ignore
-    const data = super.getData().data;
-    data.data.owner = this.actor;
+    const data = super.getData().item;
+    data.owner = this.actor;
 
     return data;
   }

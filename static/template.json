@@ -309,7 +309,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -406,6 +406,17 @@
       "reference": "",
       "key": "key"
     },
+    "spell": {
+      "templates": ["skillsTemplate"],
+      "value": 0,
+      "type": "spell",
+      "description": "",
+      "circle": "",
+      "shortdescr": "",
+      "subtype": "",
+      "reference": "",
+      "key": "key"
+    },
     "consumable": {
       "templates": ["gearTemplate"],
       "currentCount": 1,
@@ -437,7 +448,8 @@
       "isBaseHull": false,
       "rollModifier": "",
       "rateOfFire": "",
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "actorLink": ""
     },
     "ship_position": {
       "name": "",

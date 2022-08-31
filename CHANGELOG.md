@@ -1,3 +1,34 @@
+# [2.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.4...v2.0.0) (2022-08-31)
+
+
+### Features
+
+* Twodsix now requires Foundry V10 ([#1051](https://github.com/xdy/twodsix-foundryvtt/issues/1051)) ([0300bfa](https://github.com/xdy/twodsix-foundryvtt/commit/0300bface26f1265c5bb84dbb1e924e9adca2db1))
+
+
+### BREAKING CHANGES
+
+* Twodsix now requires Foundry V10. 
+*** PLEASE BACKUP YOUR DATA BEFORE UPGRADING - There is no way to revert data to v9 format. ***
+
+This release also makes the following improvements:
+* Shifted FontAwesome from v5 to v6
+* Editor handlebar refactor - switch to ProseMirror
+* Ability to edit active effects from actor sheet icons (left-click to edit, right-click to delete)
+* Can drop vehicle onto ship sheet to automatically add corresponding component (name links to open vehicle sheet)
+* add optional count of skills and associated ranks
+* add icon summary status displays for components on ship sheet (optional)
+* switch from browser to FVTT tooltips
+* add Sword of Cepheus settings
+* add spell support for Sword of Cepheus and Barbaric! (optional)
+
+## [1.45.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.3...v1.45.4) (2022-08-31)
+
+
+### Bug Fixes
+
+* No real changes, just a final foundry v9 release. ([180544a](https://github.com/xdy/twodsix-foundryvtt/commit/180544a576de17c98209559b03f46729d5e6c579))
+
 ## [1.45.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.2...v1.45.3) (2022-07-15)
 
 

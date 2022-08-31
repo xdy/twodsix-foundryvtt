@@ -6,19 +6,19 @@
         <tr>
           <th>
             <div class="item-img">
-              <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
+              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
                    height="128"/></div>
           </th>
           <th>
             <div class="item-name">
-              <label for="data.name">{{localize "TWODSIX.Items.Skills.SkillName"}}</label>
-              <input id="data.name" name="name" type="text" value="{{name}}"/>
+              <label for="name">{{localize "TWODSIX.Items.Skills.SkillName"}}</label>
+              <input id="name" name="name" type="text" value="{{name}}"/>
             </div>
           </th>
         </tr>
       </table>
       <div class="item-simplifiedName">
-        <label class="resource-label" for="data.name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
+        <label class="resource-label" for="name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
         <input class="form-input" type="text" value="{{skillName name}}" readonly/>
       </div>
         <div class="simplified-skill-description">
@@ -27,26 +27,26 @@
         </div>
     </div>
     <div class="item-lvl">
-      <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
-      <input class="form-input" id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/>
+      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <input class="form-input" id="system.value" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
     </div>
 
     <div class="item-simplifiedName">
-      <label class="resource-label" for="data.inTraining">{{localize "TWODSIX.Items.Skills.TrainingNotes"}}</label>
-      <input class="form-input" id="data.trainingNotes" name="data.trainingNotes" type="text" value="{{data.trainingNotes}}"/>
+      <label class="resource-label" for="system.inTraining">{{localize "TWODSIX.Items.Skills.TrainingNotes"}}</label>
+      <input class="form-input" id="system.trainingNotes" name="system.trainingNotes" type="text" value="{{system.trainingNotes}}"/>
     </div>
 
       <div class="item-type">
-        <label for="data.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
-        <select class="form-input" name="data.characteristic" value={{characteristic}}>
-          {{selectOptions (getCharacteristicList data.owner) selected=data.characteristic }}
+        <label for="system.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
+        <select class="form-input" name="system.characteristic" value={{characteristic}}>
+          {{selectOptions (getCharacteristicList owner) selected=system.characteristic }}
         </select>
       </div>
       <div class="item-rollDifficulty">
         <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
-          <select class="form-input" name="data.difficulty" value={{difficulty}}>
-            {{#select data.difficulty}}
-            {{#each data.settings.DIFFICULTIES}}
+          <select class="form-input" name="system.difficulty" value={{difficulty}}>
+            {{#select system.difficulty}}
+            {{#each settings.DIFFICULTIES}}
             <option value="{{@key}}">{{localize @key}} (
               {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
             </option>
@@ -57,9 +57,9 @@
 
     <div class="item-rollType">
       <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}</label>
-        <select class="form-input" name="data.rolltype" value={{rolltype}}>
-          {{#select data.rolltype}}
-            {{#each data.config.ROLLTYPES as |type|}}
+        <select class="form-input" name="system.rolltype" value={{rolltype}}>
+          {{#select system.rolltype}}
+            {{#each config.ROLLTYPES as |type|}}
               <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
             {{/each}}
           {{/select}}
@@ -68,7 +68,7 @@
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
   </div>

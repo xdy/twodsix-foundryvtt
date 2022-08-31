@@ -1,4 +1,4 @@
-{{#if data.isOwned}}
+{{#if isOwned}}
 <div class="form-section">
   {{localize "TWODSIX.Actor.Items.CONSUMABLES"}}: <br>
   <table>
@@ -9,30 +9,30 @@
         <td>{{localize "TWODSIX.Actor.Items.Qty"}}</td>
         <td>{{localize "TWODSIX.Actor.Items.Count"}}</td>
         <td class="centre">
-          <a class="consumable-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}'>
-            <i class="fas fa-plus"></i>
+          <a class="consumable-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}'>
+            <i class="fa-solid fa-plus"></i>
           </a>
         </td>
       </tr>
     </thead>
     <tbody>
-      {{#each data.consumableData as |consumable|}}
+      {{#each system.consumableData as |consumable|}}
       <tr class="consumable" data-consumable-id="{{consumable.id}}">
         <td>{{consumable.name}}</td>
-        <td>{{twodsix_localizeConsumable consumable.data.data.subtype}}</td>
-        <td>{{consumable.data.data.quantity}}</td>
-        <td>{{consumable.data.data.currentCount}}/{{consumable.data.data.max}}</td>
+        <td>{{twodsix_localizeConsumable consumable.system.subtype}}</td>
+        <td>{{consumable.system.quantity}}</td>
+        <td>{{consumable.system.currentCount}}/{{consumable.system.max}}</td>
         <td class="centre">
-          <a class="consumable-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'>
-            <i class="fas fa-edit"></i>
+          <a class="consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'>
+            <i class="fa-solid fa-pen-to-square"></i>
           </a>
-          <a class="consumable-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'>
-            <i class="fas fa-trash"></i>
+          <a class="consumable-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'>
+            <i class="fa-solid fa-trash"></i>
           </a>
         </td>
       </tr>
       {{/each}}
-      {{#unless data.consumableData}}
+      {{#unless system.consumableData}}
       <tr>
         <td colspan="5">
           {{localize "TWODSIX.Items.Consumable.DropConsumablesHere"}}

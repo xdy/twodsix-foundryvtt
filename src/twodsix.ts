@@ -82,6 +82,18 @@ Hooks.once('init', async function () {
 
   registerSettings();
 
+  /* add fonts */
+  // @ts-ignore
+  CONFIG.fontDefinitions["Asap"] = {
+    editor: true,
+    fonts: [
+      {urls: ["systems/twodsix/fonts/Asap-Regular.woff2", "systems/twodsix/fonts/Asap-Regular.ttf"]},
+      {urls: ["systems/twodsix/fonts/Asap-Bold.woff2", "systems/twodsix/fonts/Asap-Bold.ttf"], weight: 700},
+      {urls: ["systems/twodsix/fonts/Asap-Italic.woff2", "systems/twodsix/fonts/Asap-Italic.ttf"], style: "italic"},
+      {urls: ["systems/twodsix/fonts/Asap-BoldItalic.woff2", "systems/twodsix/fonts/Asap-BoldItalic.ttf"], style: "italic", weight: 700}
+    ]
+  };
+
   /*Register CSS Styles*/
   let sheetName = "systems/twodsix/styles/";
   if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
@@ -101,4 +113,8 @@ Hooks.once('init', async function () {
 
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
+});
+
+Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
+  registerPackageDebugFlag('twodsix');
 });

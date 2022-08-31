@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import TwodsixItem from "../entities/TwodsixItem";
 import { TWODSIX } from "../config";
 import {Weapon} from "../../types/template";
@@ -25,7 +28,7 @@ export async function rollItemMacro(itemId: string): Promise<void> {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorMissingItem").replace("_ITEM_ID_", itemId));
     }
   } else {
-    if (item.data.type != "weapon") {
+    if (item.type != "weapon") {
       await item.skillRoll(!game.settings.get("twodsix", "invertSkillRollShiftClick"));
     } else {
       resolveUnknownAutoMode(item);
@@ -34,7 +37,7 @@ export async function rollItemMacro(itemId: string): Promise<void> {
 }
 
 export function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
-  const rateOfFire: string = (<Weapon>weapon.data.data).rateOfFire;
+  const rateOfFire: string = (<Weapon>weapon.system).rateOfFire;
   return (
     (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
     (Number(rateOfFire) > 1)
@@ -42,7 +45,7 @@ export function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
 }
 
 export function shouldShowCEAutoFireDialog(weapon: TwodsixItem): boolean {
-  const modes = ((<Weapon>weapon.data.data).rateOfFire ?? "").split(/[-/]/);
+  const modes = ((<Weapon>weapon.system).rateOfFire ?? "").split(/[-/]/);
   return (
     (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key) &&
     (modes.length > 1)
@@ -120,7 +123,7 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
 
 export async function resolveUnknownAutoMode(item: TwodsixItem) {
   let attackType = "";
-  const modes = ((<Weapon>item.data.data).rateOfFire ?? "").split(/[-/]/);;
+  const modes = ((<Weapon>item.system).rateOfFire ?? "").split(/[-/]/);;
   switch (game.settings.get('twodsix', 'autofireRulesUsed')) {
     case TWODSIX.RULESETS.CEL.key:
       if (shouldShowCELAutoFireDialog(item)) {

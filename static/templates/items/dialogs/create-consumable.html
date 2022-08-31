@@ -1,9 +1,7 @@
 <div class="form-group form-section">
   <label>{{localize "TWODSIX.Items.Consumable.Subtype"}}
     <select class="consumable-subtype">
-      {{#each consumables as |consumable|}}
-        <option value="{{consumable}}">{{twodsix_localizeConsumable consumable}}</option>
-      {{/each}}
+        {{selectOptions consumables localize = true}}
     </select>
   </label>
 </div>

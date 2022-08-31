@@ -1,7 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
-
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -14,7 +16,7 @@ class Attribute {
 
   constructor(characteristic: string, actor: TwodsixActor) {
     if (actor.type !== "ship") {
-      this.original = (<Traveller>actor.data.data).characteristics[characteristic];
+      this.original = (<Traveller>actor.system).characteristics[characteristic];
     }
   }
 
@@ -59,7 +61,7 @@ export class Stats {
     this.damage = damage;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = Math.max((<Traveller>actor.data.data).primaryArmor.value - this.armorPiercingValue, 0);
+      this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics();
 
@@ -123,7 +125,7 @@ export class Stats {
   public updateActor(): void {
     this.actor.prepareData();
     for (const characteristic of this.damageCharacteristics) {
-      this[characteristic].original = (<Traveller>this.actor.data.data).characteristics[characteristic];
+      this[characteristic].original = (<Traveller>this.actor.system).characteristics[characteristic];
     }
     if (!this.edited) {
       this.reduceStats();
@@ -148,30 +150,10 @@ export class Stats {
   }
 
   public async applyDamage(): Promise<void> {
-    /*if (this.actor.token && this.totalCurrent() === 0  && !game.settings.get("twodsix", "useWoundedStatusIndicators")) {
-      const isDead = this.actor.effects.map((e: ActiveEffect) => {
-        return e.getFlag("core", "statusId") === "dead";
-      }).includes(true);
-
-      if (!isDead) {
-        //toggle dead condition on
-        const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
-        if (deadEffect) {
-          await this.actor.token.toggleActiveEffect(deadEffect, {active: true, overlay: true});
-        }
-        //toggle defeated if in combat
-        const fighters = game.combats?.active?.data.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.data.tokenId === this.actor.token?.data._id);
-        if (combatant !== undefined) {
-          await combatant.update({defeated: true});
-        }
-      }
-    }*/
-
     let charName = '';
     const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
-      charName = 'data.characteristics.' + characteristic + '.damage';
+      charName = 'system.characteristics.' + characteristic + '.damage';
       charArray[charName] = this[characteristic].totalDamage();
     }
     await this.actor.update(charArray);
@@ -322,7 +304,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     buttons: {
       ok: {
         label: game.i18n.localize("TWODSIX.Damage.DealDamage"),
-        icon: '<i class="fas fa-fist-raised"></i>',
+        icon: '<i class="fa-solid fa-hand-fist"></i>',
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
@@ -331,7 +313,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
         }
       },
       cancel: {
-        icon: '<i class="fas fa-times"></i>',
+        icon: '<i class="fa-solid fa-xmark"></i>',
         label: game.i18n.localize("Cancel"),
         callback: () => {
           //pass

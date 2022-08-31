@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 //Liberally adapted from "hey-catch" by Mana#4176
 import { Skills } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
@@ -23,11 +26,11 @@ async function catchDrop(canvasObject: Canvas, dropData) {
         return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }
 
-      if (actor.data.type === 'traveller') {
+      if (actor.type === 'traveller') {
         if (dropData.type === 'damageItem') {
           await (<TwodsixActor>actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
         } else if (dropData.type === 'Item') {
-          const itemData = await getItemDataFromDropData(dropData);
+          const itemData = await getItemDataFromDropData(dropData);  //Note: this might need to change to  itemData = fromUuidSync(dropData.uuid)
 
           if (isSameActor(actor, itemData)) {
             console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
@@ -36,10 +39,10 @@ async function catchDrop(canvasObject: Canvas, dropData) {
 
           if (isDuplicateItem(actor, itemData)) {
             console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
-            const dupItem:TwodsixItem = actor.data.items.filter(x => x.name === itemData.name)[0];
-            if( dupItem.data.type !== "skills"  && dupItem.data.type !== "trait" && dupItem.data.type !== "ship_position") {
-              const newQuantity = dupItem.data.data.quantity + 1;
-              dupItem.update({"data.quantity": newQuantity});
+            const dupItem:TwodsixItem = actor.items.filter(x => x.name === itemData.name)[0];
+            if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
+              const newQuantity = dupItem.system.quantity + 1;
+              dupItem.update({"system.quantity": newQuantity});
             }
             return;
           }
@@ -73,12 +76,12 @@ function getTokensAtLocation(canvasObject: Canvas, x: number, y: number) {
 function handleDroppedSkills(actor: TwodsixActor, itemData: TwodsixItem) {
   // Handle item sorting within the same Actor
   const droppedSkill = duplicate(itemData);
-  if ((<Skills>droppedSkill.data).value < 0 || !(<Skills>droppedSkill.data).value) {
+  if ((<Skills>droppedSkill.system).value < 0 || !(<Skills>droppedSkill.system).value) {
     if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
       const skills: Skills = <Skills>game.system.template.Item?.skills;
-      (<Skills>droppedSkill.data).value = skills?.value;
+      (<Skills>droppedSkill.system).value = skills?.value;
     } else {
-      (<Skills>droppedSkill.data).value = 0;
+      (<Skills>droppedSkill.system).value = 0;
     }
   }
   actor.createEmbeddedDocuments("Item", [droppedSkill]);
@@ -89,22 +92,22 @@ function handleDroppedItem(actor:Actor, itemData:any) {
   const droppedItem = duplicate(itemData);
 
   //Remove any attached consumables
-  if (droppedItem.data.consumables !== undefined) {
-    if (droppedItem.data.consumables.length > 0) {
-      droppedItem.data.consumables = [];
+  if (droppedItem.system.consumables !== undefined) {
+    if (droppedItem.system.consumables.length > 0) {
+      droppedItem.system.consumables = [];
     }
   }
 
   //Link an actor skill with name defined by item.associatedSkillName
-  if (droppedItem.data.associatedSkillName !== "") {
-    droppedItem.data.skill = actor.items.getName(droppedItem.data.associatedSkillName)?.data._id;
+  if (droppedItem.system.associatedSkillName !== "") {
+    droppedItem.system.skill = actor.items.getName(droppedItem.system.associatedSkillName)?.id;  // or is it _id????????
   }
 
   actor.createEmbeddedDocuments("Item", [droppedItem]);
 }
 
 function isDuplicateItem(actor: Actor, itemData: any):boolean {
-  const retValue = actor.data.items.filter(x => x.name === itemData.name);
+  const retValue = actor.items.filter(x => x.name === itemData.name);
   return retValue.length > 0 ? true : false;
 }
 

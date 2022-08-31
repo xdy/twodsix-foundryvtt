@@ -10,7 +10,7 @@
           </th>
           <th>
             <div class="item-name">
-              <label for="name">{{localize "TWODSIX.Items.Traits.TraitName"}}</label>
+              <label for="name">{{localize "TWODSIX.Items.Spells.SpellName"}}</label>
               <input id="name" name="name" type="text" value="{{name}}"/>
             </div>
           </th>
@@ -18,18 +18,21 @@
       </table>
     </div>
     <div class="item-lvl">
-      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <label for="system.value" class="resource-label rollable">{{localize "TWODSIX.Items.Skills.Level"}}</label>
       <input class="form-input" id="system.value" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
     </div>
-    <div class="item-prereq">
-      <label for="system.prereq" class="resource-label">{{localize "TWODSIX.Items.Traits.Prerequisite"}}</label>
-      <input class="form-input" id="system.prereq" type="text" name="system.prereq" value="{{system.prereq}}"/>
+    <div class="item-circle">
+      <label for="system.circle" class="resource-label">{{localize "TWODSIX.Items.Spells.CircleSchool"}}</label>
+      <input class="form-input" id="system.circle" type="text" name="system.circle" value="{{system.circle}}"/>
+    </div>
+    <div class="item-range">
+      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
+      <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
     </div>
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
       <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
-
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>

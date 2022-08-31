@@ -6,22 +6,21 @@
     <span class="item-name">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
     <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
     <span class="item-name centre"><a class="item-control item-create"
-        title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fas fa-plus"></i></a></span>
+        data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fa-solid fa-plus"></i></a></span>
   </div>
 
-  {{#each_sort_by_name data.traits as |item id|}}
+  {{#each_sort_by_name container.traits as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
         <span class="items-traits">
           <span class="item-name showChat">{{item.name}}</span>
-          <span class="item-name centre">{{item.data.data.value}}</span>
-          <span class="item-name centre">{{item.data.data.shortdescr}}</span>
+          <span class="item-name centre">{{item.system.value}}</span>
+          <span class="item-name centre">{{item.system.shortdescr}}</span>
           <span class="item-controls centre">
-            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
-                class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
-                class="fas fa-trash"></i></a>
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
           </span>
         </span>
       </li>
@@ -30,29 +29,61 @@
   {{/each_sort_by_name}}
 </div>
 
+<!---- Spells ---->
+{{#if settings.showSpells}}
+<div><span class="pusher"></span>
+  <span class="item-title">{{localize "TWODSIX.Actor.Items.SPELLS"}}</span>
+  <div class="items-traits gear-header">
+    <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+    <span class="item-name">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
+    <span class="item-name centre"><a class="item-control item-create"
+        data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="spell"><i class="fa-solid fa-plus"></i></a></span>
+  </div>
+
+  {{#each_sort_by_name container.spells as |item id|}}
+  <div class="item gear">
+    <ol class="ol-no-indent">
+      <li class="item flexrow" data-item-id="{{item.id}}">
+        <span class="items-spells">
+          <span class="item-name showChat">{{item.name}}</span>
+          <span class="item-name centre rollable">{{item.system.value}}</span>
+          <span class="item-name centre">{{item.system.shortdescr}}</span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+          </span>
+        </span>
+      </li>
+    </ol>
+  </div>
+  {{/each_sort_by_name}}
+</div>
+{{/if}}
 <div class="info-container">
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    {{#if settings.useProseMirror}}
+      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
     {{else}}
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     {{/if}}
   </div>
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.contacts target="data.contacts" button=true owner=owner editable=editable}}
+    {{#if settings.useProseMirror}}
+      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
     {{else}}
-      <div contenteditable="true" data-edit="data.contacts">{{{data.contacts}}}</div>
+      <div contenteditable="true" data-edit="system.contacts">{{{system.contacts}}}</div>
     {{/if}}
   </div>
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
-    {{#if (twodsix_useTinyMCE)}}
-      {{editor content=data.bio target="data.bio" button=true owner=owner editable=editable}}
+    {{#if settings.useProseMirror}}
+      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
     {{else}}
-      <div contenteditable="true" data-edit="data.bio">{{{data.bio}}}</div>
+      <div contenteditable="true" data-edit="system.bio">{{{system.bio}}}</div>
     {{/if}}
   </div>
 </div>

@@ -6,7 +6,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
     </div>
     <div class="components-stored-double ">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
@@ -14,7 +14,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
 
@@ -23,8 +23,8 @@
     <div class="grid-columns-single">
       <div class="grid-columns-single-row">
         <ol class="ol-no-indent header-row">
-          <i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
-          <a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fas fa-plus"></i></a>
+          <i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
+          <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a>
         </ol>
       </div>
     </div>
@@ -34,25 +34,29 @@
     <div class="grid-columns-double-row">
       <ol class="ol-no-indent">
         <li class="item components-stored-double" data-item-id="{{item.id}}">
-          <span class="item-name">{{item.name}}</span>
-          <span class="item-name centre">{{#if item.data.data.availableQuantity}}{{item.data.data.availableQuantity}}/{{/if}}{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{#iff item.data.data.techLevel ">" "0"}}{{item.data.data.techLevel}}{{else}}&mdash;{{/iff}}</span>
-          <span class="item-name centre">{{item.data.data.rating}}</span>
+          {{#iff item.system.actorLink "===" ""}}
+            <span class="item-name">{{item.name}}</span>
+          {{else}}
+            <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}</a>
+          {{/iff}}
+          <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+          <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
+          <span class="item-name centre">{{item.system.rating}}</span>
           <span class="item-name centre component-toggle">
-            {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
+            {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
-              {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
+              {{#iff item.system.status "===" 'damaged'}} <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
             {{else}}
-              {{#iff item.data.data.status "===" 'destroyed'}} <i class="fas fa-times-circle" style="color: red;" title='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
+              {{#iff item.system.status "===" 'destroyed'}} <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
             {{else}}
-              {{#iff item.data.data.status "===" 'off'}} <i class="fas fa-power-off" style="color: grey;" title='{{localize "TWODSIX.Items.Component.off"}}'></i>
+              {{#iff item.system.status "===" 'off'}} <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
             {{/iff}} {{/iff}} {{/iff}} {{/iff}}
           </span>
           <span class="item-controls centre">
-            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
-              class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
-              class="fas fa-trash"></i></a>
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+              class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
+              class="fa-solid fa-trash"></i></a>
           </span>
         </li>
       </ol>

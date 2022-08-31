@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -17,36 +19,33 @@ export default class TwodsixActor extends Actor {
    */
   prepareDerivedData(): void {
     super.prepareDerivedData();
-    const actorData = <TwodsixActor><unknown>this.data;
-    // const data = actorData.data;
-    // const flags = actorData.flags;
 
     // Make separate methods for each Actor type (traveller, npc, etc.) to keep
     // things organized.
-    switch (actorData.type) {
+    switch (this.type) {
       case 'traveller':
-        this._prepareTravellerData(actorData);
+        this._prepareTravellerData();
         break;
       case 'ship':
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
-          this._prepareShipData(actorData);
+          this._prepareShipData();
         }
-        this._checkCrewTitles(actorData);
+        this._checkCrewTitles();
         break;
       case 'vehicle':
         break;
       default:
-        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + actorData.type);
+        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
     }
 
   }
   /**
   * Check Crew Titles for missing and set to localized default
   */
-  _checkCrewTitles(actorData): void {
-    for (const pos in actorData.data.crewLabel) {
-      if (actorData.data.crewLabel[pos] === "") {
-        actorData.data.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
+  _checkCrewTitles(): void {
+    for (const pos in this.system.crewLabel) {
+      if (this.system.crewLabel[pos] === "") {
+        this.system.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
       }
     }
   }
@@ -54,21 +53,21 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareTravellerData(actorData): void {
-    const {data} = actorData;
+  _prepareTravellerData(): void {
+    const {system} = this;
 
-    for (const cha of Object.keys(data.characteristics)) {
-      const characteristic: Characteristic = data.characteristics[cha];
+    for (const cha of Object.keys(system.characteristics)) {
+      const characteristic: Characteristic = system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
       characteristic.mod = calcModFor(characteristic.current);
       if (characteristic.displayShortLabel === "") {
         characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
       }
     }
-    const actorSkills = actorData.items.filter(
+    const actorSkills = this.items.filter(
       (item:TwodsixItem) => item.type === "skills"
     ).map(
-      (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.data.data as Skills).value]
+      (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
     );
 
     const handler = {
@@ -80,15 +79,15 @@ export default class TwodsixActor extends Actor {
           const newName = property[property.length - 1] === "_" ? property.slice(0, -1) : property;
           return newName in target && target[newName] > 0 ? target[newName] : 0;
         } else {
-          return property in target ? target[property] : (this.getUntrainedSkill().data.data as Skills).value;
+          return property in target ? target[property] : (this.getUntrainedSkill().system as Skills).value;
         }
       }
     };
 
-    data.skills = new Proxy(Object.fromEntries(actorSkills), handler);
+    system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
   }
 
-  _prepareShipData(actorData): void {
+  _prepareShipData(): void {
     const calcShipStats = {
       power: {
         max: 0,
@@ -118,54 +117,54 @@ export default class TwodsixActor extends Actor {
     };
 
     /* estimate displacement if missing */
-    if (!actorData.data.shipStats.mass.max || actorData.data.shipStats.mass.max <= 0) {
-      const calcDisplacement = _estimateDisplacement();
+    if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
+      const calcDisplacement = estimateDisplacement(this);
       if (calcDisplacement && calcDisplacement > 0) {
-        actorData.update({"data.shipStats.mass.max": calcDisplacement});
-        /*actorData.data.shipStats.mass.max = calcDisplacement;*/
+        this.update({"system.shipStats.mass.max": calcDisplacement});
+        /*actorData.system.shipStats.mass.max = calcDisplacement;*/
       }
     }
 
-    actorData.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
-      const anComponent = <Component>item.data.data;
+    this.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
+      const anComponent = <Component>item.system;
       const powerForItem = getPower(anComponent);
-      const weightForItem = getWeight(anComponent, actorData);
+      const weightForItem = getWeight(anComponent, this);
 
       /* Allocate Power */
-      _allocatePower(anComponent, powerForItem, item);
+      allocatePower(anComponent, powerForItem, item);
 
       /* Allocate Weight*/
-      _allocateWeight(anComponent, weightForItem);
+      allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
-      _calculateComponentCost(anComponent, weightForItem);
+      calculateComponentCost(anComponent, weightForItem, this);
     });
 
     /*Calculate implicit values*/
     calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
       calcShipStats.power.weapons + calcShipStats.power.systems;
 
-    calcShipStats.weight.available = actorData.data.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
+    calcShipStats.weight.available = this.system.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 ) * calcShipStats.cost.hullOffset
-      + calcShipStats.cost.perHullTon * (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull);
-    if(actorData.data.isMassProduced) {
+      + calcShipStats.cost.perHullTon * (this.system.shipStats.mass.max || calcShipStats.weight.baseHull);
+    if(this.system.isMassProduced) {
       calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
     }
     /*Push values to ship actor*/
-    _updateShipData();
+    updateShipData(this);
 
-    function _estimateDisplacement(): number {
+    function estimateDisplacement(shipActor): number {
       let returnValue = 0;
-      actorData.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.data.data).isBaseHull).forEach((item: TwodsixItem) => {
-        const anComponent = <Component>item.data.data;
-        returnValue += getWeight(anComponent, actorData);
+      shipActor.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
+        const anComponent = <Component>item.system;
+        returnValue += getWeight(anComponent, shipActor);
       });
       return Math.round(returnValue);
     }
 
-    function _calculateComponentCost(anComponent: Component, weightForItem: number): void {
+    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor): void {
       if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
         if (anComponent.subtype === "hull") {
           switch (anComponent.pricingBasis) {
@@ -179,7 +178,7 @@ export default class TwodsixActor extends Actor {
               calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
               break;
             case "perHullTon":
-              calcShipStats.cost.hullValue += (actorData.data.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+              calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
               break;
           }
         } else {
@@ -201,7 +200,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _allocateWeight(anComponent: Component, weightForItem: number): void {
+    function allocateWeight(anComponent: Component, weightForItem: number): void {
       switch (anComponent.subtype) {
         case "vehicle":
           calcShipStats.weight.vehicles += weightForItem;
@@ -226,15 +225,15 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _allocatePower(anComponent: Component, powerForItem: number, item: TwodsixItem): void {
+    function allocatePower(anComponent: Component, powerForItem: number, item: TwodsixItem): void {
       if (anComponent.generatesPower) {
         calcShipStats.power.max += powerForItem;
       } else {
         switch (anComponent.subtype) {
           case 'drive':
-            if (item.data.name.toLowerCase().includes('j-drive') || item.data.name.toLowerCase().includes('j drive')) {
+            if (item.name?.toLowerCase().includes('j-drive') || item.name?.toLowerCase().includes('j drive')) {
               calcShipStats.power.jDrive += powerForItem;
-            } else if (item.data.name.toLowerCase().includes('m-drive') || item.data.name.toLowerCase().includes('m drive')) {
+            } else if (item.name?.toLowerCase().includes('m-drive') || item.name?.toLowerCase().includes('m drive')) {
               calcShipStats.power.mDrive += powerForItem;
             } else {
               calcShipStats.power.systems += powerForItem;
@@ -253,29 +252,29 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function _updateShipData(): void {
-      actorData.data.shipStats.power.value = Math.round(calcShipStats.power.used);
-      actorData.data.shipStats.power.max = Math.round(calcShipStats.power.max);
-      actorData.data.reqPower.systems = Math.round(calcShipStats.power.systems);
-      actorData.data.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
-      actorData.data.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
-      actorData.data.reqPower.sensors = Math.round(calcShipStats.power.sensors);
-      actorData.data.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+    function updateShipData(shipActor): void {
+      shipActor.system.shipStats.power.value = Math.round(calcShipStats.power.used);
+      shipActor.system.shipStats.power.max = Math.round(calcShipStats.power.max);
+      shipActor.system.reqPower.systems = Math.round(calcShipStats.power.systems);
+      shipActor.system.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
+      shipActor.system.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
+      shipActor.system.reqPower.sensors = Math.round(calcShipStats.power.sensors);
+      shipActor.system.reqPower.weapons = Math.round(calcShipStats.power.weapons);
 
-      actorData.data.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
-      actorData.data.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
-      actorData.data.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
-      actorData.data.weightStats.systems = Math.round(calcShipStats.weight.systems);
-      actorData.data.weightStats.available = Math.round(calcShipStats.weight.available);
+      shipActor.system.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
+      shipActor.system.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
+      shipActor.system.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
+      shipActor.system.weightStats.systems = Math.round(calcShipStats.weight.systems);
+      shipActor.system.weightStats.available = Math.round(calcShipStats.weight.available);
 
-      actorData.data.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
-      actorData.data.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
-      actorData.data.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
+      shipActor.system.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
+      shipActor.system.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
+      shipActor.system.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
     }
   }
 
   protected async _onCreate() {
-    switch (this.data.type) {
+    switch (this.type) {
       case "traveller":
         if (game.settings.get("twodsix", "defaultTokenSettings")) {
           this.update( {
@@ -289,13 +288,13 @@ export default class TwodsixActor extends Actor {
             "token.bar1": {
               attribute: "hits"
             },
-            "data.movement.walk": game.settings.get("twodsix", "defaultMovement"),
-            "data.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+            "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
+            "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
           });
         }
         await this.createUntrainedSkill();
-
-        if (this.data.img === CONST.DEFAULT_TOKEN) {
+        // may need to change CONST.DEFAULT_TOKEN to foundry.documents.BaseActor.DEFAULT_ICON ***
+        if (this.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_actor.png'
           });
@@ -306,14 +305,14 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case "ship":
-        if (this.data.img === CONST.DEFAULT_TOKEN) {
+        if (this.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
         break;
       case "vehicle":
-        if (this.data.img === CONST.DEFAULT_TOKEN) {
+        if (this.img === CONST.DEFAULT_TOKEN) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_vehicle.png'
           });
@@ -358,7 +357,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async healActor(healing: number): Promise<void> {
-    if (this.data.type === "traveller") {
+    if (this.type === "traveller") {
       let damageCharacteristics: string[] = [];
       if (game.settings.get('twodsix', 'reverseHealingOrder')) {
         damageCharacteristics = getDamageCharacteristics().reverse();
@@ -367,11 +366,11 @@ export default class TwodsixActor extends Actor {
       }
       const charArray = {};
       for (const characteristic of damageCharacteristics) {
-        const cur_damage = this.data.data.characteristics[characteristic].damage;
+        const cur_damage = this.system.characteristics[characteristic].damage;
 
         if (cur_damage > 0) {
           const new_damage = Math.max(0, cur_damage - healing);
-          const char_id = 'data.characteristics.' + characteristic + '.damage';
+          const char_id = 'system.characteristics.' + characteristic + '.damage';
           charArray[char_id] = new_damage;
           healing -= cur_damage - new_damage;
         }
@@ -387,11 +386,11 @@ export default class TwodsixActor extends Actor {
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
-    } else if (this.data.type === 'ship') {
+    } else if (this.type === 'ship') {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      return calcModFor((<Traveller>this.data.data).characteristics[keyByValue].current);
+      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
     }
   }
 
@@ -408,30 +407,30 @@ export default class TwodsixActor extends Actor {
 
     const diceRoll = new TwodsixDiceRoll(settings, this);
     if (showInChat) {
-      await diceRoll.sendToChat();
+      await diceRoll.sendToChat(setting.difficulties);
     }
     return diceRoll;
   }
 
   public getUntrainedSkill(): TwodsixItem {
-    return <TwodsixItem>this.items.get((<Traveller>this.data.data).untrainedSkill);
+    return <TwodsixItem>this.items.get((<Traveller>this.system).untrainedSkill);
   }
 
   public async createUntrainedSkill(): Promise<void> {
     const untrainedSkill = await this.buildUntrainedSkill();
     if (untrainedSkill) {
-      await this.update({"data.untrainedSkill": untrainedSkill['id']});
+      await this.update({"system.untrainedSkill": untrainedSkill['id']});
     }
   }
 
   public async buildUntrainedSkill(): Promise<Skills | void> {
-    if ((<Traveller>this.data.data).untrainedSkill) {
+    if ((<Traveller>this.system).untrainedSkill) {
       return;
     }
     const data = {
       "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
       "type": "skills",
-      "data": {"characteristic": "NONE"},
+      "system": {"characteristic": "NONE"},
       "flags": {'twodsix.untrainedSkill': true}
     };
 
@@ -441,14 +440,14 @@ export default class TwodsixActor extends Actor {
   }
 
   public async createUnarmedSkill(): Promise<Skills | void> {
-    if (this.data.items.getName(game.i18n.localize("TWODSIX.Item.Weapon.Unarmed"))) {
+    if (this.items?.getName(game.i18n.localize("TWODSIX.Item.Weapon.Unarmed"))) {
       return;
     }
     const data = {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
       "img": "systems/twodsix/assets/icons/unarmed.svg",
-      "data": {
+      "system": {
         "armorPiercing": 0,
         "description": game.i18n.localize("TWODSIX.Items.Weapon.UnarmedDescription"),
         "type": "weapon",
@@ -459,7 +458,6 @@ export default class TwodsixActor extends Actor {
       },
     };
     await (this.createEmbeddedDocuments("Item", [data]));
-
   }
 
   private static _applyToAllActorItems(func: (actor: TwodsixActor, item: TwodsixItem) => void): void {
@@ -476,9 +474,9 @@ export default class TwodsixActor extends Actor {
       if (item.type === "skills") {
         return;
       }
-      const skill = actor.items.get((<Gear>item.data.data).skill);
+      const skill = actor.items.get((<Gear>item.system).skill);
       if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
-        item.update({"data.skill": ""}, {}); //TODO Should have await?
+        item.update({"system.skill": ""}, {}); //TODO Should have await?
       }
     });
   }
@@ -486,15 +484,15 @@ export default class TwodsixActor extends Actor {
   public static setUntrainedSkillForWeapons(): void {
     //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
     TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
-      if (item.type === "weapon" && !(<Weapon>item.data.data).skill && actor.type === "traveller") {
-        item.update({"data.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
+      if (item.type === "weapon" && !(<Weapon>item.system).skill && actor.type === "traveller") {
+        item.update({"system.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
       }
     });
   }
 
   public async modifyTokenAttribute(attribute, value, isDelta, isBar) {
-    if ( attribute === "hits" && this.data.type === "traveller") {
-      const hits = getProperty(this.data.data, attribute);
+    if ( attribute === "hits" && this.type === "traveller") {
+      const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
         this.damageActor(delta, 9999, false);
@@ -529,7 +527,7 @@ export function getWeight(item: Component, actorData): number{
   }
   let w = 0;
   if (item.weightIsPct) {
-    w = (item.weight ?? 0) / 100 * actorData.data.shipStats.mass.max;
+    w = (item.weight ?? 0) / 100 * actorData.system.shipStats.mass.max;
   } else {
     w = item.weight ?? 0;
   }
@@ -541,15 +539,15 @@ async function deleteIdFromShipPositions(actorId: string) {
 
   for (const scene of game.scenes ?? []) {
     for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.data.actorLink && token.actor.type === "ship") {
+      if (token.actor && !token.actorLink && token.actor.type === "ship") {  //token.data.actorLink becomes what?????
         allShips.push(token.actor as TwodsixActor);
       }
     }
   }
 
   for (const ship of allShips) {
-    if ((<Ship>ship.data.data).shipPositionActorIds[actorId]) {
-      await ship.update({[`data.shipPositionActorIds.-=${actorId}`]: null });
+    if ((<Ship>ship.system).shipPositionActorIds[actorId]) {
+      await ship.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
     }
   }
 }

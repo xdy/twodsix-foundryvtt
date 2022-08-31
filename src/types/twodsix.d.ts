@@ -105,12 +105,20 @@ declare global {
       'twodsix.addEffectToManualDamage':boolean;
       'twodsix.showRangeSpeedNoUnits':boolean;
       'twodsix.showInitiativeButton':boolean;
+      'twodsix.showSkillCountsRanks':boolean;
+      'twodsix.showComponentSummaryIcons':boolean;
+      'twodsix.showSpells':boolean;
+      'twodsix.sorcerySkill':string;
     }
   }
 }
 
 declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
+  useFoundryStandardStyle: boolean;
+  showWeightUsage: boolean;
+  useProseMirror: boolean;
+  useShipAutoCalc: boolean;
 }
 declare interface TwodsixVehicleSheetSettings {
   showHullAndArmor: string;
@@ -120,6 +128,7 @@ declare interface TwodsixShipSheetData extends ActorSheet.Data {
   settings: TwodsixShipSheetSettings;
   shipPositions: Item[];
   storage: Collection<Item>;
+  richText: any;
 }
 
 declare interface TwodsixVehicleSheetData extends ActorSheet.Data {
@@ -224,6 +233,7 @@ declare interface Game {
         junk: TwodsixItemSheetData;
         skills: TwodsixItemSheetData;
         trait: TwodsixItemSheetData;
+        spell: TwodsixItemSheetData;
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
         shipPosition: TwodsixShipPositionSheetData;

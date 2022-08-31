@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { Component, Vehicle } from "src/types/template";
 import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
 import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
@@ -13,7 +16,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
-      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits')
+      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
+      showReferences: game.settings.get('twodsix', 'showItemReferences')
     };
 
     return context;
@@ -42,12 +46,12 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       const system = event.currentTarget["dataset"]["key"];
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
       if (system) {
-        const newState = stateTransitions[(<Vehicle>this.actor.data.data).systemStatus[system]];
-        this.actor.update({[`data.systemStatus.${system}`]: newState});
+        const newState = stateTransitions[(<Vehicle>this.actor.system).systemStatus[system]];
+        this.actor.update({[`system.systemStatus.${system}`]: newState});
       } else {
         const li = $(event.currentTarget).parents(".item");
         const itemSelected = this.actor.items.get(li.data("itemId"));
-        itemSelected?.update({"data.status": stateTransitions[(<Component>itemSelected.data.data)?.status]});
+        itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
       }
     }
   }
@@ -73,12 +77,12 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     const selectedActor = getControlledTraveller();
 
     if (selectedActor) {
-      let skill = <TwodsixItem>selectedActor.data.items.getName((<Vehicle>this.actor.data.data).skillToOperate);
+      let skill = <TwodsixItem>selectedActor.items.getName((<Vehicle>this.actor.system).skillToOperate);
       if(!skill) {
-        skill = selectedActor.data.items.filter((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills")[0] as TwodsixItem;
+        skill = selectedActor.items.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills") as TwodsixItem;
       }
       const extra = {
-        diceModifier: (<Vehicle>this.actor.data.data).maneuver.agility ? parseInt((<Vehicle>this.actor.data.data).maneuver.agility) : 0,
+        diceModifier: (<Vehicle>this.actor.system).maneuver.agility ? parseInt((<Vehicle>this.actor.system).maneuver.agility) : 0,
         event: event
       };
       const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, extra, skill);
@@ -91,7 +95,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
 
   private _openPDFReference(event): void {
     event.preventDefault();
-    const sourceString = (<Vehicle>this.actor.data.data).docReference;
+    const sourceString = (<Vehicle>this.actor.system).docReference;
     if (sourceString) {
       const [code, page] = sourceString.split(' ');
       const selectedPage = parseInt(page);
@@ -110,15 +114,15 @@ export function getControlledTraveller(): TwodsixActor | void {
   if (game.user?.isGM !== true) {
     const playerId = game.userId;
     if (playerId !== null) {
-      const character = game.actors?.filter(a => (a.data.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.data.type === "traveller") && !!a.getActiveTokens()[0])[0].data;
+      const character = game.actors?.find(a => (a.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.type === "traveller") && !!a.getActiveTokens()[0]);
       if (character != null) {
-        return <TwodsixActor>game.actors?.get(character._id);
+        return <TwodsixActor>game.actors?.get(character.id);
       }
     }
   } else {
     // For GM, select actor as the selected traveller token
     if (canvas.tokens?.controlled !== undefined) {
-      const selectedToken = canvas.tokens?.controlled.find(ct => ct.actor?.data.type === "traveller");//<Actor>(canvas.tokens?.controlled[0].actor);
+      const selectedToken = canvas.tokens?.controlled.find(ct => ct.actor?.type === "traveller");//<Actor>(canvas.tokens?.controlled[0].actor);
       if (selectedToken) {
         return <TwodsixActor>(selectedToken.actor);
       }

@@ -1,0 +1,21 @@
+{{#each summaryStatus}}
+    {{#iff @key "!==" "cargo"}}
+    {{#iff @key "!==" "accomodations"}}
+    {{#iff @key "!==" "fuel"}}
+    {{#iff @key "!==" "otherInternal"}}
+    {{#iff @key "!==" "otherExternal"}}
+    {{#iff @key "!==" "mount"}}
+    {{#iff @key "!==" "vehicle"}}
+    {{#iff @key "!==" "storage"}}
+    {{#iff @key "!==" "software"}}
+      <span class="status-component">
+        <i class= '{{twodsix_getComponentIcon @key}}'
+        {{#iff this "===" 'operational'}} style="color: green;"
+        {{else iff this "===" 'damaged'}} style="color: yellow;"
+        {{else iff this "===" 'destroyed'}} style="color: red;"
+        {{else iff this "===" 'off'}} style="color: grey;"
+        {{/iff}}
+        data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
+      </span>
+    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+{{/each}}

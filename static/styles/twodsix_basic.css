@@ -87,7 +87,17 @@ label.checkbox > input[type="checkbox"] {
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-armor";
 }
-
+.npc-content-container-spells {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 18em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-armor npc-spells npc-weapons";
+}
 .npc-name-photo {
   grid-area: npc-name-photo;
   max-height: 100%;
@@ -111,7 +121,7 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
-.npc-skills, .npc-weapons, .npc-traits, .npc-armor {
+.npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
 
   border: 2px solid;
   border-radius: 2ch;
@@ -127,6 +137,10 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-traits {
   grid-area: npc-traits;
+}
+
+.npc-spells {
+  grid-area: npc-spells;
 }
 
 .npc-armor {
@@ -759,9 +773,14 @@ svg:hover {
   z-index: 50;
   height: 22px !important;
 }
+
 .sheet nav.sheet-tabs{
   height: auto !important;
   line-height: 24px !important;
+}
+
+.sheet nav.sheet-tabs .item {
+  padding: 2px;
 }
 
 .character-tabs-info {
@@ -856,7 +875,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-areas: '. . . . .';
 }
 
-.items-traits {
+.items-traits, .items-spells {
   display: grid;
   grid-template-columns: 14em 2em 14em 3em;
   gap: 1px 1px;
@@ -879,6 +898,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .roll-initiative {
   max-width: fit-content;
+  cursor: pointer;
 }
 
 .skill-list {
@@ -985,11 +1005,11 @@ input.item-value-edit {
 }
 
 .item-controls .item-toggle i { display: none; }
-.item-controls .item-toggle .fa-hiking { display: inline; }
-.item-controls .item-toggle.ship .fa-hiking,
-.item-controls .item-toggle.equipped .fa-hiking { display: none; }
-.item-controls .item-toggle.ship .fa-space-shuttle,
-.item-controls .item-toggle.equipped .fa-child { display: inline; }
+.item-controls .item-toggle .fa-person-hiking { display: inline; }
+.item-controls .item-toggle.ship .fa-person-hiking,
+.item-controls .item-toggle.equipped .fa-person-hiking { display: none; }
+.item-controls .item-toggle.ship .fa-shuttle-space,
+.item-controls .item-toggle.equipped .fa-child-reaching { display: inline; }
 
 .item-controls {
   align-self: center;
@@ -1317,8 +1337,8 @@ img.ship-mask-bg {
 }
 
 .ship-deck {
-  width: 14em;
-  margin-left: 6.5em;
+  /* width: 24em; */
+  /* margin-left: 6.5em; */
   margin-top: 0.4em;
   text-align: center;
 }
@@ -1505,14 +1525,18 @@ img.ship-mask-bg {
   width: 29em;
 }
 
-.ship-power-management h3 {
+.power-title {
   color: var(--s2d6-app-color);
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   position: relative;
-  width: 16.5em;
-  left: 7.3em;
+  width: 23.5em;
+  left: 2.5em;
+  border-bottom: none;
+  font-size: 1.25em;
+  padding: 2px 24px;
+  margin: 0 0 0.5rem;
 }
 
 .ship-power {
@@ -1621,7 +1645,7 @@ input.power-total {
 .ship-tabs {
   width: 32.5rem;
   display: block;
-  margin-left: 18.5em;
+  margin-left: 21em;
   margin-top: -3.6em;
   z-index: 99;
   height: 28px;
@@ -1998,7 +2022,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2386,6 +2410,7 @@ form .form-group > label {
 .editor {
   height: 95%;
   overflow: hidden;
+  margin-top: 0;
   /*background: var(--background-semi-opaque);
   color: var(--default-color);*/
 }
@@ -2494,4 +2519,30 @@ form .form-group > label {
 
 .damage-dialog .attribute-name-column {
   text-align: left;
+}
+
+.condition-icon:hover {
+  cursor: pointer;
+}
+
+.skill-ranks {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+}
+
+#tooltip {
+  padding: 3px 4px;
+  font-family: Asap, sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.prosemirror menu {
+  flex-wrap: nowrap;
+  padding: 4px 2px;
+}
+
+.prosemirror menu button {
+  padding: 0 2px;
 }
