@@ -20,6 +20,7 @@ import {switchCss} from "./module/settings";
 import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
+import { TwodsixAnimalSheet } from "./module/sheets/TwodsixAnimalSheet";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -67,6 +68,12 @@ Hooks.once('init', async function () {
   Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
     types: ["vehicle"],
     label: "Vehicle Sheet",
+    makeDefault: true,
+  });
+
+  Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
+    types: ["animal"],
+    label: "Animal Sheet",
     makeDefault: true,
   });
 

@@ -176,6 +176,30 @@
         "All": "All"
       }
     },
+    "Animal": {
+      "NicheType": {
+        "Herbivore": "Herbivore",
+        "Omnivore": "Omnivore",
+        "Canivore": "Carnivore",
+        "Scavenger": "Scavenger"
+      },
+      "Subtype": {
+        "Filter": "Filter",
+        "Intermittent": "Intermittent",
+        "Grazer": "Grazer",
+        "Gatherer": "Gatherer",
+        "Hunter": "Hunter",
+        "Eater": "Eater",
+        "Pouncer": "Pouncer",
+        "Chaser": "Chaser",
+        "Trapper": "Trapper",
+        "Killer": "Killer",
+        "Hijacker": "Hijacker",
+        "Intimidator": "Intimidator",
+        "CarrionEater": "Carrion-Eater",
+        "Reducer": "Reducer"
+      }
+    },
     "Chat": {
       "Roll": {
         "Difficulty": "Difficulty",

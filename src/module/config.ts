@@ -476,12 +476,45 @@ export const TimeUnits = {
 };
 
 /**
- * The vehcile protection types.
+ * The vehicle protection types.
  */
 export const VehicleProtection = {
   armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
   threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
   armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
+};
+
+/**
+ * The animal types.
+ */
+export const AnimalNiche = {
+  herbivore: "TWODSIX.Animal.NicheType.Herbivore",
+  omnivore: "TWODSIX.Animal.NicheType.Omnivore",
+  carnivore: "TWODSIX.Animal.NicheType.Carnivore",
+  scavenger: "TWODSIX.Animal.NicheType.Scavenger"
+};
+export const HerbivoreType = {
+  filter: "TWODSIX.Animal.Subtype.Filter",
+  intermittent: "TWODSIX.Animal.Subtype.Intermittent",
+  grazer: "TWODSIX.Animal.Subtype.Grazer"
+};
+export const OmnivoreType = {
+  gatherer: "TWODSIX.Animal.Subtype.Gatherer",
+  hunter: "TWODSIX.Animal.Subtype.Hunter",
+  eater: "TWODSIX.Animal.Subtype.Eater"
+};
+export const CarnivoreType = {
+  pouncer: "TWODSIX.Animal.Subtype.Pouncer",
+  chaser: "TWODSIX.Animal.Subtype.Chaser",
+  trapper: "TWODSIX.Animal.Subtype.Trapper",
+  siren: "TWODSIX.Animal.Subtype.Siren",
+  killer: "TWODSIX.Animal.Subtype.Killer"
+};
+export const ScavengerType = {
+  hijacker: "TWODSIX.Animal.Subtype.Hijacker",
+  intimidator: "TWODSIX.Animal.Subtype.Intimidator",
+  carrionEater: "TWODSIX.Animal.Subtype.CarrionEater",
+  reducer: "TWODSIX.Animal.Subtype.Reducer"
 };
 
 export type TWODSIX = {
@@ -500,7 +533,12 @@ export type TWODSIX = {
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
   TimeUnts: typeof TimeUnits,
-  VehicleProtection: typeof VehicleProtection
+  VehicleProtection: typeof VehicleProtection,
+  AnimalNiche: typeof AnimalNiche,
+  HerbivoreType: typeof HerbivoreType,
+  OmnivoreType: typeof OmnivoreType,
+  CarnivoreType: typeof CarnivoreType,
+  ScavengerType: typeof ScavengerType
 };
 
 export const TWODSIX = {
@@ -519,7 +557,12 @@ export const TWODSIX = {
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
   TimeUnits: TimeUnits,
-  VehicleProtection: VehicleProtection
+  VehicleProtection: VehicleProtection,
+  AnimalNiche: AnimalNiche,
+  HerbivoreType: HerbivoreType,
+  OmnivoreType: OmnivoreType,
+  CarnivoreType: CarnivoreType,
+  ScavengerType: ScavengerType
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
