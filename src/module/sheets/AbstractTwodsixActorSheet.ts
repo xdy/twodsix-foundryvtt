@@ -441,6 +441,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
+    } else if (sheetData.actor.type === "animal" ) {
+      sheetData.container.weapon = weapon;
+      sheetData.container.armor = armor;
+      sheetData.container.skills = skills;
+      sheetData.container.traits = traits;
     } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);

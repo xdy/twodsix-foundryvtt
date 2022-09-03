@@ -24,6 +24,7 @@ export default class TwodsixActor extends Actor {
     // things organized.
     switch (this.type) {
       case 'traveller':
+      case 'animal':
         this._prepareTravellerData();
         break;
       case 'ship':
