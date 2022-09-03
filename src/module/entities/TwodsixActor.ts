@@ -294,8 +294,7 @@ export default class TwodsixActor extends Actor {
           });
         }
         await this.createUntrainedSkill();
-        // may need to change CONST.DEFAULT_TOKEN to foundry.documents.BaseActor.DEFAULT_ICON ***
-        if (this.img === CONST.DEFAULT_TOKEN) {
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_actor.png'
           });
@@ -305,15 +304,27 @@ export default class TwodsixActor extends Actor {
           await this.createUnarmedSkill();
         }
         break;
+      case "animal":
+        await this.createUntrainedSkill();
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/alien-bug.svg'
+          });
+        }
+
+        if (game.settings.get("twodsix", "autoAddUnarmed")) {
+          await this.createUnarmedSkill();
+        }
+        break;
       case "ship":
-        if (this.img === CONST.DEFAULT_TOKEN) {
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
         break;
       case "vehicle":
-        if (this.img === CONST.DEFAULT_TOKEN) {
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_vehicle.png'
           });
@@ -322,7 +333,7 @@ export default class TwodsixActor extends Actor {
     }
     if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
       await this.update({
-        'token.img': CONST.DEFAULT_TOKEN //'icons/svg/mystery-man.svg'
+        'token.img': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
       });
     }
   }
