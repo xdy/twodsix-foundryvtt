@@ -464,6 +464,18 @@ h2 {
   display: inline-block;
 }
 
+.animal-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 18em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-weapons npc-weapons npc-traits";
+}
+
 .vehicle-photo {
   text-align: center;
   z-index: 0;
