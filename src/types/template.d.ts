@@ -256,13 +256,12 @@ export interface Animal {
   homeWorld:string;
   animalType:AnimalType;
   size:string;
-  numberAppering:string;
+  numberAppearing:string;
   hits:Hits;
   radiationDose:Hits;
   encumbrance:Encumbrance;
   primaryArmor:PrimaryArmor;
   secondaryArmor:PrimaryArmor;
-  heroPoints:number;
   radiationProtection:PrimaryArmor;
   untrainedSkill:string;
   description:string;
@@ -271,6 +270,12 @@ export interface Animal {
   woundedEffect:number;
   characteristicEdit:boolean;
   movement:MovementData;
+  reaction:ReactionData;
+}
+
+export interface ReactionData {
+  attack:number;
+  flee:number;
 }
 
 export interface AnimalType {

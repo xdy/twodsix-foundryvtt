@@ -177,12 +177,14 @@
       }
     },
     "Animal": {
+      "Niche": "Niche",
       "NicheType": {
         "Herbivore": "Herbivore",
         "Omnivore": "Omnivore",
-        "Canivore": "Carnivore",
+        "Carnivore": "Carnivore",
         "Scavenger": "Scavenger"
       },
+      "Type": "Type",
       "Subtype": {
         "Filter": "Filter",
         "Intermittent": "Intermittent",
@@ -198,7 +200,15 @@
         "Intimidator": "Intimidator",
         "CarrionEater": "Carrion-Eater",
         "Reducer": "Reducer"
-      }
+      },
+      "AnimalNotes": "Animal Notes",
+      "AttackWeapons": "Attacks / Weapons",
+      "Reaction": "Reaction Roll",
+      "Attack": "Attack",
+      "Flee": "Flee",
+      "AttacksMessage": "Animal attacks party!",
+      "FleesMessage": "Animal flees from party!",
+      "NoReactionMessage": "Animal does not react"
     },
     "Chat": {
       "Roll": {
@@ -929,8 +939,9 @@
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
-      "ActorHasInitiativeAlready": "Traveller already has initiative.",
-      "NoActiveToken": "Actor does not have an active token in scene."
+      "ActorHasInitiativeAlready": "Actor already has initiative.",
+      "NoActiveToken": "Actor does not have an active token in scene.",
+      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid."
     }
   },
   "VeryDifficult": "Very Difficult"

@@ -21,7 +21,7 @@
     </div>
     <div class="npc-bgi-stats">
       <div class="character-bgi-npc">
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
+          {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-animal.html"}}
       </div>
       {{#unless limited}}
         <table class="stat-table-npc">
@@ -30,9 +30,9 @@
       {{/unless}}
     </div>
     <div class="npc-notes-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Actor.Notes.Notes"}}</span>
+      <span class="item-title-npc">{{localize "TWODSIX.Animal.AnimalNotes"}}</span>
       {{#unless limited}}
-      <div contenteditable="true" data-edit="system.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto">{{{system.notes}}}</div>
+      <div contenteditable="true" data-edit="system.notes" style="height: 90%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto; padding-left: 2px;">{{{system.notes}}}</div>
      {{/unless}}
     </div>
     <div class="npc-skills">
@@ -61,7 +61,7 @@
       {{/unless}}
     </div>
     <div class="npc-weapons">
-      <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
+      <span class="item-title-npc">{{localize "TWODSIX.Animal.AttackWeapons"}}</span>
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >

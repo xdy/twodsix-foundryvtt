@@ -326,6 +326,10 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.roll-reaction:hover {
+  cursor: pointer;
+}
+
 .item-name {
   align-self: center;
 }
@@ -416,7 +420,7 @@ h2 {
 
 .npc-notes-container {
   grid-area: npc-notes-container;
-  max-height: 18em;
+  max-height: -webkit-fill-available;
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -467,7 +471,7 @@ h2 {
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -785,6 +789,16 @@ img.character-info-mask {
   border: none;
 }
 
+.bgi-reaction {
+  display: inline-flex;
+  gap: 2ch;
+}
+
+.bgi-reaction input {
+  width: 2em;
+  border: none;
+}
+
 .bgi-gender input {
   width: 10ch;
   border: none;
@@ -808,6 +822,20 @@ img.character-info-mask {
 
 .bgi-movement select {
   width: 14ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-niche select {
+  width: 14ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-type select {
+  width: 16ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   font-size: smaller;
@@ -1274,7 +1302,7 @@ a.notes-tab.active {
 
 .initiative {
   text-align: center;
-  margin-bottom: -2ch;
+  /*margin-bottom: -2ch;*/
 }
 
 .roll-initiative {
