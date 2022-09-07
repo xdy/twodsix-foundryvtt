@@ -34,12 +34,14 @@ input.dice-tray__input {
   color: var(--s2d6-default) !important;
 }
 
-/*Fix for Tidy UI */
+/*No longer needed for v10
+//Fix for Tidy UI
 #client-settings nav.tabs {
   flex-grow: 0 !important;
 }
 
-/*Fix for PDFoundry*/
+//Fix for PDFoundry
 div.pdf-app section.window-content {
   background: var(--s2d6-background-transparent) !important;
 }
+*/
