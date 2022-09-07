@@ -25,7 +25,7 @@
 {{#unless limited}}
 <!-- Reaction Information -->
 <span class="bgi-reaction">
-  <span class="roll-reaction orange"><i class="fa-solid fa-person-circle-question" data-tooltip='{{localize "TWODSIX.Animal.Reaction"}}' style="align-self: center;"></i></span>
+  <span class="roll-reaction orange" style="align-self: center;"><i class="fa-solid fa-person-circle-question" data-tooltip='{{localize "TWODSIX.Animal.Reaction"}}'></i>:</span>
   <span>{{localize "TWODSIX.Animal.Attack"}}:
   <input name="system.reaction.attack" type="number" value="{{system.reaction.attack}}" data-tooltip='{{localize "TWODSIX.Animal.Attack"}}'/>
   </span>
@@ -43,23 +43,46 @@
 <br>
 
 <!-- Damage Stats Information-->
-{{#if settings.showLifebloodStamina}}
-<span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'>
-    {{#iff system.characteristics.stamina.value ">" system.characteristics.stamina.damage}}
-    <i class="fa-solid fa-battery-half"></i>
-    {{else}}
+{{#if settings.lifebloodInsteadOfCharacteristics}}
+  <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'>
+      {{#iff system.characteristics.endurance.value ">" system.characteristics.endurance.damage}}
+        <i class="fa-solid fa-battery-half"></i>
+        {{else iff system.characteristics.endurance.damage "==" 0}}
+        <i class="fa-solid fa-battery-full" style="color:green;"></i>
+      {{else}}
         <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
-    {{/iff}}:<input type="number" name="system.characteristics.stamina.value" value="{{system.characteristics.stamina.value}}" min="0"/>-</span>
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
-        name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
-<span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
-        type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0"/>-</span>
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
-    <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
+      {{/iff}}:<input type="number" name="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}" min="0"/>-</span>
+  <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'><input type="number"
+          name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}" min="0" max="{{system.characteristics.endurance.value}}"/></span>
+  <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+          type="number" name="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}" min="0"/>-</span>
+  <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+      <input type="number" name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}" min="0" max="{{system.characteristics.strength.value}}"/></span>
+  {{#if settings.showContaminationBelowLifeblood}}
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Contamination"}}'><i class="fa-solid fa-radiation"></i>:<input
+      name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span>
+  {{/if}}
+  <br>
+{{else}}
+  {{#if settings.showLifebloodStamina}}
+  <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'>
+      {{#iff system.characteristics.stamina.value "===" system.characteristics.stamina.current}}
+        <i class="fa-solid fa-battery-full" style="color:green;"></i>
+      {{else iff system.characteristics.stamina.damage "===" system.characteristics.stamina.value}}
+        <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
+      {{else}}
+         <i class="fa-solid fa-battery-half"></i>
+      {{/iff}}:<input type="number" name="system.characteristics.stamina.value" value="{{system.characteristics.stamina.value}}" min="0"/>-</span>
+  <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
+          name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
+  <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+          type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0"/>-</span>
+  <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+      <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
+  {{/if}}
+  <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
+          name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span><br>
 {{/if}}
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
-        name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span><br>
-
 <!-- Movement -->
 <span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}: {{localize "TWODSIX.Actor.Movement.MovementWalk"}}'><i class="fa-solid fa-person-walking"></i>:
   <input type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>

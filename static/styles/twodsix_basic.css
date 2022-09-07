@@ -127,9 +127,9 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
-
   border: 2px solid;
   border-radius: 2ch;
+  overflow: auto;
 }
 
 .npc-skills {
@@ -174,6 +174,19 @@ label.checkbox > input[type="checkbox"] {
   "npc-name-photo npc-bgi-stats npc-notes-container"
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-traits";
+}
+
+.animal-content-container-small {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-name-photo npc-traits npc-notes-container"
+  "npc-skills npc-skills npc-skills"
+  "npc-weapons npc-weapons npc-weapons";
 }
 
 .vehicle-photo {

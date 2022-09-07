@@ -238,7 +238,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (dropData.type === 'damageItem') {
-      if (actor.type === 'traveller') {
+      if (actor.type === 'traveller' || actor.type === 'animal') {
         const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
         await (<TwodsixActor>this.actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, showDamageDialog);
@@ -261,6 +261,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     switch (actor.type) {
       case 'traveller':
+      case 'animal':
         if (itemData.type === 'skills') {
           return this.handleDroppedSkills(actor, itemData);
         } else if (!["component"].includes(itemData.type)) {
@@ -457,11 +458,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     });
     // Calc Max Encumbrance
     let maxEncumbrance = 0;
-    const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
-    if (Roll.validate(encumbFormula)) {
-      maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
-    } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    if (sheetData.actor.type === "traveller") {
+      const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
+      if (Roll.validate(encumbFormula)) {
+        maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+      }
     }
 
     // Assign and return sheetData.data to sheetData.system????

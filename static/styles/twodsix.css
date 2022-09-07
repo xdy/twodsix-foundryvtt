@@ -433,6 +433,7 @@ h2 {
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
   border-width: 2px;
+  overflow: auto;
 }
 
 .npc-skills {
@@ -478,6 +479,19 @@ h2 {
   "npc-name-photo npc-bgi-stats npc-notes-container"
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-traits";
+}
+
+.animal-content-container-small {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-name-photo npc-traits npc-notes-container"
+  "npc-skills npc-skills npc-weapons"
+  "npc-skills npc-skills npc-weapons";
 }
 
 .vehicle-photo {
