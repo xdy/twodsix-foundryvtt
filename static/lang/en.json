@@ -365,6 +365,7 @@
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
+        "Duration": "Duration",
         "SpellName": "Spell Name",
         "Level": "Level",
         "sorcerySkill": "Sorcery"
