@@ -389,8 +389,14 @@ export default class TwodsixActor extends Actor {
     } else if (this.type === 'ship') {
       return 0;
     } else {
+      let override = 0;
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
+      if (this.overrides?.system?.characteristics) {
+        if (keyByValue in this.overrides.system.characteristics) {
+          override = this.overrides.system.characteristics[keyByValue].mod ?? 0;
+        }
+      }
+      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current) + override;
     }
   }
 
