@@ -1,3 +1,17 @@
+## [2.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.1...v2.0.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* add duration for spells ([#1108](https://github.com/xdy/twodsix-foundryvtt/issues/1108)) ([e2cdc12](https://github.com/xdy/twodsix-foundryvtt/commit/e2cdc125eed60208d7905fc467b48d119b0bc332))
+
+## [2.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.0...v2.0.1) (2022-09-03)
+
+
+### Bug Fixes
+
+* bug with characteristic rolls ([#1102](https://github.com/xdy/twodsix-foundryvtt/issues/1102)) ([db7650d](https://github.com/xdy/twodsix-foundryvtt/commit/db7650dd738b0052360019682238a11d676ae254))
+
 # [2.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.4...v2.0.0) (2022-08-31)
 
 

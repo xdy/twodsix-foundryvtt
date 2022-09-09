@@ -512,6 +512,7 @@ export interface Spell {
   type:string;
   description:string;
   circle:string;
+  duration:string;
   shortdescr:string;
   subtype:string;
   reference:string;
