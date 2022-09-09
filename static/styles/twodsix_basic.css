@@ -2129,10 +2129,10 @@ select.form-input, input.form-input, span.form-input {
 }
 
 /*--- Chat Log ---*/
-#sidebar {
+/*#sidebar {
   width: 320px;
 }
-/*
+
 #sidebar-tabs.tabs .item.active {
   text-shadow: 0 0 2em var(--default-color);
   text-decoration: none;

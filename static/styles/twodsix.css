@@ -2874,9 +2874,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 #sidebar-tabs {
-  flex: 0 0 32px;
+  /*flex: 0 0 32px;
   box-sizing: border-box;
-  margin: 0 0 5px;
+  margin: 0 0 5px;*/
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
@@ -2907,12 +2907,11 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   box-shadow: 0 0 6px inset var(--s2d6-default-color);
 }
 
-#sidebar {
+/*#sidebar {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  /*position: fixed;*/
   right: 5px;
   top: 5px;
   width: 320px;
@@ -2921,9 +2920,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   margin: 0;
   padding: 0;
   background-image: none !important;
-  /* border: none !important; */
-  background-color: var(--s2d6-dark-hover)/*#0d0d0dad*/;
-}
+  border: none !important;
+  background-color: var(--s2d6-dark-hover);
+}*/
 
 /* SCENE INTERFACE */
 
@@ -3084,21 +3083,21 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
 }
 /* ------ WEBCAM Settings ------ */
-
+/*
 #camera-views {
-  /*position: fixed;
+  position: fixed;
   bottom: 70px;
-  left: 225px;*/
+  left: 225px;
   width: calc(100% - 550px);
   margin: 0;
   padding: 0;
-  /*align-items: baseline;*/
+  align-items: baseline;
   z-index: 60;
   box-shadow: none;
   pointer-events: none;
-  /*background: none !important;
-  border: none !important;*/
-}
+  background: none !important;
+  border: none !important;
+}*/
 /* ------ Damage Dialog ------ */
 
 .damage-dialog .red {
