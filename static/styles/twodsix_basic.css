@@ -1412,9 +1412,9 @@ img.ship-mask-bg {
   width: 95%;
   height: 30px;
   vertical-align: middle;
-  cursor: pointer;
 }
-.fuel-name {
+
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
   cursor: pointer;
 }
 

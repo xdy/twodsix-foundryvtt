@@ -8,12 +8,12 @@
     {{#iff @key "!==" "vehicle"}}
     {{#iff @key "!==" "storage"}}
     {{#iff @key "!==" "software"}}
-      <span class="status-component">
+      <span class="status-component" data-uuid="{{this.uuid}}">
         <i class= '{{twodsix_getComponentIcon @key}}'
-        {{#iff this "===" 'operational'}} style="color: green;"
-        {{else iff this "===" 'damaged'}} style="color: yellow;"
-        {{else iff this "===" 'destroyed'}} style="color: red;"
-        {{else iff this "===" 'off'}} style="color: grey;"
+        {{#iff this.status "===" 'operational'}} style="color: green;"
+        {{else iff this.status "===" 'damaged'}} style="color: yellow;"
+        {{else iff this.status "===" 'destroyed'}} style="color: red;"
+        {{else iff this.status "===" 'off'}} style="color: grey;"
         {{/iff}}
         data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
       </span>
