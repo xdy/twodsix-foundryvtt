@@ -360,7 +360,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         } else if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
-            skillRanks += item.system.value;
+            skillRanks += Number(item.system.value);
           }
         }
 
