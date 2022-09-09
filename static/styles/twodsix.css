@@ -2883,9 +2883,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 #sidebar-tabs > .item {
-  position: relative;
+  /*position: relative;
   flex: 0 0 27px;
-  line-height: 32px;
+  line-height: 32px;*/
   border: 1px solid transparent;
   border-radius: 5px 5px 0 0;
   color: var(--s2d6-dialog-color);
