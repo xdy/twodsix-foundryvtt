@@ -2912,7 +2912,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  position: fixed;
+  /*position: fixed;*/
   right: 5px;
   top: 5px;
   width: 320px;
@@ -2928,9 +2928,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* SCENE INTERFACE */
 
 #navigation {
-  position: fixed;
+  /*position: fixed;
   top: 12px;
-  left: 120px;
+  left: 120px;*/
   width: calc(100% - 440px);
   margin: 0;
   padding: 0;
@@ -3086,20 +3086,19 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* ------ WEBCAM Settings ------ */
 
 #camera-views {
-  position: fixed;
+  /*position: fixed;
   bottom: 70px;
-  left: 225px;
+  left: 225px;*/
   width: calc(100% - 550px);
   margin: 0;
   padding: 0;
-  align-items: baseline;
+  /*align-items: baseline;*/
   z-index: 60;
   box-shadow: none;
   pointer-events: none;
-  background: none !important;
-  border: none !important;
+  /*background: none !important;
+  border: none !important;*/
 }
-
 /* ------ Damage Dialog ------ */
 
 .damage-dialog .red {
