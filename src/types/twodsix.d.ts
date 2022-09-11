@@ -109,6 +109,7 @@ declare global {
       'twodsix.showComponentSummaryIcons':boolean;
       'twodsix.showSpells':boolean;
       'twodsix.sorcerySkill':string;
+      'twodsix.useNationality':boolean;
     }
   }
 }

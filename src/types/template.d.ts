@@ -222,6 +222,7 @@ export interface Fuel {
 export interface Traveller {
   name:string;
   homeWorld:string;
+  nationality:string;
   species:string;
   age:Age;
   hits:Hits;
