@@ -2403,6 +2403,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 */
 form .form-group > label {
   flex: 4;
+  line-height: 18px;
 }
 
 /* EDITOR */
@@ -2533,7 +2534,7 @@ form .form-group > label {
 
 #tooltip {
   padding: 3px 4px;
-  font-family: Asap, sans-serif;
+  /*font-family: Asap, sans-serif;*/
   font-size: 14px;
   line-height: 14px;
 }

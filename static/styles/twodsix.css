@@ -77,7 +77,8 @@ p span, p {
   font-family: inherit;
 }
 
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'], input[type='date'], div[contenteditable], textarea {
+input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'],
+input[type='search'], input[type='date'], div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque) !important;
   color: var(--s2d6-light-color) !important;
   font-family: inherit;
@@ -115,10 +116,15 @@ select {
   border-radius: 0 !important;
 }
 
-input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus,
+input[type='search']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
   background: var(--s2d6-background-semi-opaque);
+}
+
+input[type='search']::placeholder {
+  color: var(--s2d6-form-light);
 }
 
 input[type= 'checkbox'] {
@@ -300,6 +306,7 @@ form .form-group, form .form-group-stacked {
 
 form .form-group > label {
   flex: 4;
+  line-height: 18px;
 }
 
 form .form-group span.units {
@@ -2778,6 +2785,10 @@ form .notes, form .hint {
   line-height: 16px;
   color: var(--s2d6-form-light);
   margin: 3px 0;
+}
+
+#permissions-config .hint {
+  color: var(--s2d6-form-light);
 }
 
 #module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
