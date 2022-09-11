@@ -128,7 +128,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
     html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
     html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
-    html.find(".item-link").on("click", this._onActorLink.bind(this));
+    html.find(".item-link").on("click", this._onDocumentLink.bind(this));
+    html.find(".status-component").on("click", this._onDocumentLink.bind(this));
   }
 
   private _onShipPositionCreate():void {
@@ -291,10 +292,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     };
     await this.actor.createEmbeddedDocuments("Item", [newComponent]);
   }
-  private async _onActorLink(event): Promise<void> {
-    const actorUuid = event.currentTarget["dataset"].uuid;
-    const selectedActor = <Actor> await fromUuid(actorUuid);
-    console.log(selectedActor);
-    selectedActor?.sheet?.render(true);
+  private async _onDocumentLink(event): Promise<void> {
+    const documentUuid = event.currentTarget["dataset"].uuid;
+    const selectedDocument = await fromUuid(documentUuid);
+    selectedDocument?.sheet?.render(true);
   }
 }

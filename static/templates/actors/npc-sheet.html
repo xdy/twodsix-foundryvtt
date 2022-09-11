@@ -75,7 +75,7 @@
         <span >
          {{#each_sort_by_name container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
-              <span class="item-name">{{item.name}} </span>
+              <span class="item-name rollable">{{item.name}} </span>
               <span class="item-controls centre">
                 <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{item.system.equipped}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>{{#unless @last}}, {{/unless}}
               </span>

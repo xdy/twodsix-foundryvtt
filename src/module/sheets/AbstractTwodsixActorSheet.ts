@@ -385,7 +385,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let numberOfSkills = 0;
     let skillRanks = 0;
     const summaryStatus = {};
-    const statusOrder = {"operational": 0, "damaged": 1, "destroyed": 3, "off": 2};
+    const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, allocating to containers
     items.forEach((item:TwodsixItem) => {
@@ -403,7 +403,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         } else if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
-            skillRanks += item.system.value;
+            skillRanks += Number(item.system.value);
           }
         }
 
@@ -445,11 +445,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         case "component":
           if(component[(<Component>item.system).subtype] === undefined) {
             component[(<Component>item.system).subtype] = [];
-            summaryStatus[(<Component>item.system).subtype] = item.system.status;
+            summaryStatus[(<Component>item.system).subtype] = {
+              status: item.system.status,
+              uuid: item.uuid
+            };
           }
           component[(<Component>item.system).subtype].push(item);
           if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
-            summaryStatus[(<Component>item.system).subtype] = item.system.status;
+            summaryStatus[(<Component>item.system).subtype] = {
+              status: item.system.status,
+              uuid: item.uuid
+            };
           }
           break;
         default:
