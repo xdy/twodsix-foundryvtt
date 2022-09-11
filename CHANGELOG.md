@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.2...v2.1.0) (2022-09-11)
+
+
+### Features
+
+* allow rolls to have characteristic active effects on mod and clickable component status icons ([#1109](https://github.com/xdy/twodsix-foundryvtt/issues/1109)) ([c040bfa](https://github.com/xdy/twodsix-foundryvtt/commit/c040bfa8fa8c630b49bfda31641dc2e752fbea79))
+
 ## [2.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.1...v2.0.2) (2022-09-07)
 
 

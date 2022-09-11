@@ -56,6 +56,7 @@
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
   --s2d6-pie-color: var(--s2d6-default-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
+  --sidebar-width: 305px;
 }
 
 body {
@@ -76,7 +77,8 @@ p span, p {
   font-family: inherit;
 }
 
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'], input[type='date'], div[contenteditable], textarea {
+input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'],
+input[type='search'], input[type='date'], div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque) !important;
   color: var(--s2d6-light-color) !important;
   font-family: inherit;
@@ -114,10 +116,15 @@ select {
   border-radius: 0 !important;
 }
 
-input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
+input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus,
+input[type='search']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
   background: var(--s2d6-background-semi-opaque);
+}
+
+input[type='search']::placeholder {
+  color: var(--s2d6-form-light);
 }
 
 input[type= 'checkbox'] {
@@ -299,6 +306,7 @@ form .form-group, form .form-group-stacked {
 
 form .form-group > label {
   flex: 4;
+  line-height: 18px;
 }
 
 form .form-group span.units {
@@ -1822,9 +1830,9 @@ img.ship-mask-bg {
   width: 95%;
   height: 30px;
   /* align-self: center; */
-  cursor: pointer;
 }
-.fuel-name {
+
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
   cursor: pointer;
 }
 
@@ -2779,6 +2787,10 @@ form .notes, form .hint {
   margin: 3px 0;
 }
 
+#permissions-config .hint {
+  color: var(--s2d6-form-light);
+}
+
 #module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
   color: var(--s2d6-form-light);
 }
@@ -2874,18 +2886,18 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 #sidebar-tabs {
-  flex: 0 0 32px;
+  /*flex: 0 0 32px;
   box-sizing: border-box;
-  margin: 0 0 5px;
+  margin: 0 0 5px;*/
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
 }
 
 #sidebar-tabs > .item {
-  position: relative;
+  /*position: relative;
   flex: 0 0 27px;
-  line-height: 32px;
+  line-height: 32px;*/
   border: 1px solid transparent;
   border-radius: 5px 5px 0 0;
   color: var(--s2d6-dialog-color);
@@ -2907,12 +2919,11 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   box-shadow: 0 0 6px inset var(--s2d6-default-color);
 }
 
-#sidebar {
+/*#sidebar {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  position: fixed;
   right: 5px;
   top: 5px;
   width: 320px;
@@ -2921,16 +2932,16 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   margin: 0;
   padding: 0;
   background-image: none !important;
-  /* border: none !important; */
-  background-color: var(--s2d6-dark-hover)/*#0d0d0dad*/;
-}
+  border: none !important;
+  background-color: var(--s2d6-dark-hover);
+}*/
 
 /* SCENE INTERFACE */
 
 #navigation {
-  position: fixed;
+  /*position: fixed;
   top: 12px;
-  left: 120px;
+  left: 120px;*/
   width: calc(100% - 440px);
   margin: 0;
   padding: 0;
@@ -3084,7 +3095,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
 }
 /* ------ WEBCAM Settings ------ */
-
+/*
 #camera-views {
   position: fixed;
   bottom: 70px;
@@ -3098,8 +3109,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   pointer-events: none;
   background: none !important;
   border: none !important;
-}
-
+}*/
 /* ------ Damage Dialog ------ */
 
 .damage-dialog .red {
