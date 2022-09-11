@@ -1412,9 +1412,9 @@ img.ship-mask-bg {
   width: 95%;
   height: 30px;
   vertical-align: middle;
-  cursor: pointer;
 }
-.fuel-name {
+
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
   cursor: pointer;
 }
 
@@ -2129,10 +2129,10 @@ select.form-input, input.form-input, span.form-input {
 }
 
 /*--- Chat Log ---*/
-#sidebar {
+/*#sidebar {
   width: 320px;
 }
-/*
+
 #sidebar-tabs.tabs .item.active {
   text-shadow: 0 0 2em var(--default-color);
   text-decoration: none;
@@ -2403,6 +2403,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 */
 form .form-group > label {
   flex: 4;
+  line-height: 18px;
 }
 
 /* EDITOR */
@@ -2533,7 +2534,7 @@ form .form-group > label {
 
 #tooltip {
   padding: 3px 4px;
-  font-family: Asap, sans-serif;
+  /*font-family: Asap, sans-serif;*/
   font-size: 14px;
   line-height: 14px;
 }
