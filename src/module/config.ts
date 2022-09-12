@@ -63,7 +63,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "1d6",
       showTimeframe: true,
       showHullAndArmor: "armorHullStruc",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     }
   },
   CEL: {
@@ -93,7 +94,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     }
   },
   CEFTL: {
@@ -121,7 +123,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     },
   },
   CEATOM: {
@@ -149,7 +152,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: true
     }
   },
   BARBARIC: {
@@ -176,7 +180,8 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       unarmedDamage: "1d6",
       showTimeframe: false,
-      showSpells: true
+      showSpells: true,
+      useNationality: true
     },
   },
   CEQ: {
@@ -205,7 +210,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     }
   },
   CD: {
@@ -242,7 +248,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     }
   },
   CLU: {
@@ -279,7 +286,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: false
+      showSpells: false,
+      useNationality: false
     }
   },
 
@@ -317,7 +325,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: true
+      showSpells: true,
+      useNationality: true
     }
   },
 

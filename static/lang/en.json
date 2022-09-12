@@ -73,6 +73,7 @@
       "Stamina": "Stamina",
       "RadiationExposure": "Radiation Exposure",
       "HomeWorld": "Home world",
+      "Nationality": "Nationality",
       "Info": {
         "ALLIES": "ALLIES",
         "BIOGRAPHY": "BIOGRAPHY",
@@ -846,6 +847,10 @@
       "sorcerySkill": {
         "hint": "The name of the skill used for spellcasting / sorcery.",
         "name": "Sorcery skill name"
+      },
+      "useNationality": {
+        "hint": "Display nationality field instead of home world field on actor sheet.",
+        "name": "Display nationality rather than home world"
       }
     },
     "CloseAndCreateNew": "Close and create new",

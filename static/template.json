@@ -4,6 +4,7 @@
     "traveller": {
       "name": "",
       "homeWorld": "",
+      "nationality": "",
       "species": "",
       "age": {
         "value": 18,
