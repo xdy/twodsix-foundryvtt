@@ -181,7 +181,7 @@ const RULESETS = Object.freeze({
       unarmedDamage: "1d6",
       showTimeframe: false,
       showSpells: true,
-      useNationality: false
+      useNationality: true
     },
   },
   CEQ: {
