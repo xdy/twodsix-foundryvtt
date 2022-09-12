@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.1.0...v2.2.0) (2022-09-12)
+
+
+### Features
+
+* add optional nationality field ([#1114](https://github.com/xdy/twodsix-foundryvtt/issues/1114)) ([9d16541](https://github.com/xdy/twodsix-foundryvtt/commit/9d165410576079fae0b69f34ac88c77acf69b902))
+
 # [2.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.2...v2.1.0) (2022-09-11)
 
 
