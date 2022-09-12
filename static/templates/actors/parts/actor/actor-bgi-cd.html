@@ -1,7 +1,13 @@
 <!-- Biographical Information-->
-<span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fa-solid fa-globe"></i>:<input
-        name="system.homeWorld" type="text" value="{{system.homeWorld}}"
-        placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+{{#unless settings.useNationality}}
+  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fa-solid fa-globe"></i>:<input
+          name="system.homeWorld" type="text" value="{{system.homeWorld}}"
+          placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+{{else}}
+  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'><i class="fa-solid fa-flag"></i>:<input
+    name="system.nationality" type="text" value="{{system.nationality}}"
+    placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
+{{/unless}}
 <span class="bgi-age" data-tooltip='{{localize "TWODSIX.Actor.Age"}}'>
   <i class="fa-solid fa-calendar-days"></i>:<input type="text" name="system.age.value" value="{{system.age.value}}" placeholder="0"  /></span>
 <!-- Hero Points Information-->
