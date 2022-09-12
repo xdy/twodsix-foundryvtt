@@ -261,10 +261,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     switch (actor.type) {
       case 'traveller':
-      case 'animal':
         if (itemData.type === 'skills') {
           return this.handleDroppedSkills(actor, itemData);
         } else if (!["component"].includes(itemData.type)) {
+          return this.handleDroppedItem(actor, itemData);
+        }
+        break;
+      case 'animal':
+        if (itemData.type === 'skills') {
+          return this.handleDroppedSkills(actor, itemData);
+        } else if (["weapon", "trait"].includes(itemData.type)) {
           return this.handleDroppedItem(actor, itemData);
         }
         break;

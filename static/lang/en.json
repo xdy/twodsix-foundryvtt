@@ -68,6 +68,7 @@
       },
       "Gender": "Gender",
       "HeroPoints": "Hero Points",
+      "Hits": "Hits",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
       "Stamina": "Stamina",
@@ -351,6 +352,7 @@
         "SimplifiedSkillNameDescription": "Used in roll formulas as @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ defaults to zero if the skill is missing or below zero.",
         "LFB": "LFB",
         "STA": "STA",
+        "HIT": "HIT",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
         "TrainingNotes": "Training Notes",
@@ -886,6 +888,10 @@
       "useNationality": {
         "hint": "Display nationality field instead of home world field on actor sheet.",
         "name": "Display nationality rather than home world"
+      },
+      "animalsUseHits": {
+        "hint": "Animals have only one damage statistic: hits.",
+        "name": "Animals use hits for damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -369,12 +370,12 @@ export default class TwodsixActor extends Actor {
   }
 
   public async healActor(healing: number): Promise<void> {
-    if (this.type === "traveller") {
+    if (this.type === "traveller" || this.type === "animal") {
       let damageCharacteristics: string[] = [];
       if (game.settings.get('twodsix', 'reverseHealingOrder')) {
-        damageCharacteristics = getDamageCharacteristics().reverse();
+        damageCharacteristics = getDamageCharacteristics(this.type).reverse();
       } else {
-        damageCharacteristics = getDamageCharacteristics();
+        damageCharacteristics = getDamageCharacteristics(this.type);
       }
       const charArray = {};
       for (const characteristic of damageCharacteristics) {
@@ -431,6 +432,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill(): TwodsixItem {
+    //TODO May need to update this type <Traveller>
     return <TwodsixItem>this.items.get((<Traveller>this.system).untrainedSkill);
   }
 
@@ -502,14 +504,14 @@ export default class TwodsixActor extends Actor {
   public static setUntrainedSkillForWeapons(): void {
     //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
     TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
-      if (item.type === "weapon" && !(<Weapon>item.system).skill && actor.type === "traveller") {
+      if (item.type === "weapon" && !(<Weapon>item.system).skill && (actor.type === "traveller" || actor.type === 'animal')) {
         item.update({"system.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
       }
     });
   }
 
   public async modifyTokenAttribute(attribute, value, isDelta, isBar) {
-    if ( attribute === "hits" && this.type === "traveller") {
+    if ( attribute === "hits" && (this.type === "traveller" || this.type === 'animal')) {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {

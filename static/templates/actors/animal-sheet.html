@@ -1,10 +1,8 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-  {{#if settings.lifebloodInsteadOfCharacteristics}}
-  <div class="animal-content-container-small">
-  {{else if settings.showLifebloodStamina}}
-  <div class="animal-content-container-small">
+  {{#if settings.dontShowStatBlock}}
+    <div class="animal-content-container-small">
   {{else}}
-  <div class="animal-content-container">
+    <div class="animal-content-container">
   {{/if}}
 
     <div class="npc-name-photo">
@@ -31,12 +29,11 @@
           {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-animal.html"}}
       </div>
       {{#unless limited}}
-      {{#unless settings.lifebloodInsteadOfCharacteristics}}
-      {{#unless settings.showLifebloodStamina}}
+      {{#unless settings.dontShowStatBlock}}
         <table class="stat-table-npc">
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
         </table>
-      {{/unless}}{{/unless}}{{/unless}}
+      {{/unless}}{{/unless}}
     </div>
     <div class="npc-notes-container">
       <span class="item-title-npc">{{localize "TWODSIX.Animal.AnimalNotes"}}</span>

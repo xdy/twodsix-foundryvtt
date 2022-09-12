@@ -64,7 +64,8 @@ const RULESETS = Object.freeze({
       showTimeframe: true,
       showHullAndArmor: "armorHullStruc",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     }
   },
   CEL: {
@@ -95,7 +96,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "threshold",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     }
   },
   CEFTL: {
@@ -124,7 +126,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "threshold",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     },
   },
   CEATOM: {
@@ -153,7 +156,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "threshold",
       showSpells: false,
-      useNationality: true
+      useNationality: true,
+      animalsUseHits: false
     }
   },
   BARBARIC: {
@@ -181,7 +185,8 @@ const RULESETS = Object.freeze({
       unarmedDamage: "1d6",
       showTimeframe: false,
       showSpells: true,
-      useNationality: true
+      useNationality: true,
+      animalsUseHits: false
     },
   },
   CEQ: {
@@ -211,7 +216,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "threshold",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     }
   },
   CD: {
@@ -249,7 +255,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     }
   },
   CLU: {
@@ -287,7 +294,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
       showSpells: false,
-      useNationality: false
+      useNationality: false,
+      animalsUseHits: false
     }
   },
 
@@ -326,7 +334,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
       showSpells: true,
-      useNationality: true
+      useNationality: true,
+      animalsUseHits: false
     }
   },
 

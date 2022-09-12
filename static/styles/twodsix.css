@@ -56,7 +56,7 @@
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
   --s2d6-pie-color: var(--s2d6-default-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
-  --sidebar-width: 305px;
+  --sidebar-width: 325px;
 }
 
 body {
