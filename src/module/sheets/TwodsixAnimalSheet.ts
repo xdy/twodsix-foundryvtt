@@ -85,7 +85,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   protected async _onRollReaction(): Promise<void> {
     const reaction = (<Animal>this.actor.system).reaction;
-    const roll = await new Roll("2d6").roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await new Roll("2d6 + @woundedEffect", this.actor.system).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
 
     let flavor = "";
 
