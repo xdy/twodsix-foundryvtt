@@ -204,6 +204,15 @@
         "CarrionEater": "Carrion-Eater",
         "Reducer": "Reducer"
       },
+      "Locations": {
+        "CityUrban": "City or Urban",
+        "PlainsGrassland": "Plains or Grassland",
+        "HillsMountains": "Hills or Mountains",
+        "DesertBadlands": "Desert or Badlands",
+        "SwampAcquatic": "Swamp or Acquatic",
+        "ForestJungle": "Forest or Jungle"
+      },
+      "Location": "Location",
       "AnimalNotes": "Animal Notes",
       "AttackWeapons": "Attacks / Weapons",
       "Reaction": "Reaction Roll",
@@ -211,7 +220,14 @@
       "Flee": "Flee",
       "AttacksMessage": "Animal attacks party!",
       "FleesMessage": "Animal flees from party!",
-      "NoReactionMessage": "Animal does not react"
+      "NoReactionMessage": "Animal does not react",
+      "MoraleRoll": "Morale Roll",
+      "MoraleDM": "Morale DM",
+      "Retreat": "Retreat",
+      "FightingWithdrawal": "Fighting Withdrawl",
+      "KeepFighting": "Keep Fighting",
+      "Advance": "Advance",
+      "FightToTheDeath": "Fight to The Death!"
     },
     "Chat": {
       "Roll": {
@@ -892,6 +908,10 @@
       "animalsUseHits": {
         "hint": "Animals have only one damage statistic: hits.",
         "name": "Animals use hits for damage"
+      },
+      "animalsUseLocations": {
+        "hint": "Animals are described by location found instead of type and niche.",
+        "name": "Animals use location instead of type"
       }
     },
     "CloseAndCreateNew": "Close and create new",

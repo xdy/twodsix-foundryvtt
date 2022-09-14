@@ -65,7 +65,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "armorHullStruc",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
   CEL: {
@@ -97,7 +98,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "threshold",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
   CEFTL: {
@@ -127,7 +129,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "threshold",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     },
   },
   CEATOM: {
@@ -157,7 +160,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "threshold",
       showSpells: false,
       useNationality: true,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: true
     }
   },
   BARBARIC: {
@@ -186,7 +190,8 @@ const RULESETS = Object.freeze({
       showTimeframe: false,
       showSpells: true,
       useNationality: true,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: true
     },
   },
   CEQ: {
@@ -217,7 +222,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "threshold",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
   CD: {
@@ -256,7 +262,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "armorOnly",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
   CLU: {
@@ -295,7 +302,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "armorOnly",
       showSpells: false,
       useNationality: false,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
 
@@ -335,7 +343,8 @@ const RULESETS = Object.freeze({
       showHullAndArmor: "armorOnly",
       showSpells: true,
       useNationality: true,
-      animalsUseHits: false
+      animalsUseHits: false,
+      animalsUseLocations: false
     }
   },
 
@@ -535,6 +544,15 @@ export const ScavengerType = {
   reducer: "TWODSIX.Animal.Subtype.Reducer"
 };
 
+export const AnimalLocations = {
+  city: "TWODSIX.Animal.Locations.CityUrban",
+  plains: "TWODSIX.Animal.Locations.PlainsGrassland",
+  hills: "TWODSIX.Animal.Locations.HillsMountains",
+  desert: "TWODSIX.Animal.Locations.DesertBadlands",
+  swamp: "TWODSIX.Animal.Locations.SwampAcquatic",
+  forest: "TWODSIX.Animal.Locations.ForestJungle"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -556,7 +574,8 @@ export type TWODSIX = {
   HerbivoreType: typeof HerbivoreType,
   OmnivoreType: typeof OmnivoreType,
   CarnivoreType: typeof CarnivoreType,
-  ScavengerType: typeof ScavengerType
+  ScavengerType: typeof ScavengerType,
+  AnimalLocations: typeof AnimalLocations
 };
 
 export const TWODSIX = {
@@ -580,7 +599,8 @@ export const TWODSIX = {
   HerbivoreType: HerbivoreType,
   OmnivoreType: OmnivoreType,
   CarnivoreType: CarnivoreType,
-  ScavengerType: ScavengerType
+  ScavengerType: ScavengerType,
+  AnimalLocations: AnimalLocations
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

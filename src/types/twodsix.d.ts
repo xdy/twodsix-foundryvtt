@@ -113,6 +113,7 @@ declare global {
       'twodsix.sorcerySkill':string;
       'twodsix.useNationality':boolean;
       'twodsix.animalsUseHits': boolean;
+      'twodsix.animalsUseLocations':boolean;
     }
   }
 }

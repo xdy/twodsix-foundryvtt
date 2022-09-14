@@ -256,6 +256,7 @@ export interface Animal {
   name:string;
   homeWorld:string;
   animalType:AnimalType;
+  location:string;
   size:string;
   numberAppearing:string;
   hits:Hits;
@@ -272,6 +273,7 @@ export interface Animal {
   characteristicEdit:boolean;
   movement:MovementData;
   reaction:ReactionData;
+  moraleDM:string;
 }
 
 export interface ReactionData {

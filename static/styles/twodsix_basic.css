@@ -517,7 +517,8 @@ img.character-info-mask {
 
 .bgi-reaction {
   display: inline-flex;
-  gap: 2ch;
+  gap: 1ch;
+  flex-wrap: nowrap;
 }
 
 .bgi-reaction input {
@@ -548,6 +549,13 @@ img.character-info-mask {
 
 .bgi-type select {
   width: 16ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-location select {
+  width: 20ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   font-size: smaller;

@@ -315,12 +315,14 @@
         "niche": "herbivore",
         "subtype": "filter"
       },
+      "location":"plains",
       "size": "",
       "numberAppearing": "1d6",
       "reaction": {
         "attack": "9",
         "flee": "6"
       },
+      "moraleDM": "",
       "hits": {
         "value": 21,
         "min": 0,

@@ -3,24 +3,32 @@
         name="system.homeWorld" type="text" value="{{system.homeWorld}}"
         placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
 <br>
-<span class="bgi-niche" data-tooltip='{{localize "TWODSIX.Animal.Niche"}}'><i class="fa-solid fa-bowl-food"></i>:
-  <select name="system.animalType.niche" >
-    {{selectOptions config.AnimalNiche selected=system.animalType.niche localize=true inverted=false}}
+{{#if settings.animalsUseLocations}}
+<span class="bgi-location" data-tooltip='{{localize "TWODSIX.Animal.Location"}}'><i class="fa-solid fa-mountain-city"></i>:
+  <select name="system.location" >
+    {{selectOptions config.AnimalLocations selected=system.location localize=true inverted=false}}
   </select>
 </span>
-<span class="bgi-type" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'><i class="fa-solid fa-dna"></i>:
-  <select name="system.animalType.subtype" >
-    {{#iff system.animalType.niche "==" "herbivore"}}
-      {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
-    {{else iff system.animalType.niche "==" "omnivore"}}
-      {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
-    {{else iff system.animalType.niche "==" "carnivore"}}
-      {{selectOptions config.CarnivoreType selected=system.animalType.subtype localize=true inverted=false}}
-    {{else}}
-      {{selectOptions config.ScavengerType selected=system.animalType.subtype localize=true inverted=false}}
-    {{/iff}}
-  </select>
-</span>
+{{else}}
+  <span class="bgi-niche" data-tooltip='{{localize "TWODSIX.Animal.Niche"}}'><i class="fa-solid fa-bowl-food"></i>:
+    <select name="system.animalType.niche" >
+      {{selectOptions config.AnimalNiche selected=system.animalType.niche localize=true inverted=false}}
+    </select>
+  </span>
+  <span class="bgi-type" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'><i class="fa-solid fa-dna"></i>:
+    <select name="system.animalType.subtype" >
+      {{#iff system.animalType.niche "==" "herbivore"}}
+        {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else iff system.animalType.niche "==" "omnivore"}}
+        {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else iff system.animalType.niche "==" "carnivore"}}
+        {{selectOptions config.CarnivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else}}
+        {{selectOptions config.ScavengerType selected=system.animalType.subtype localize=true inverted=false}}
+      {{/iff}}
+    </select>
+  </span>
+{{/if}}
 <br>
 {{#unless limited}}
   <!-- Reaction Information -->
@@ -32,6 +40,8 @@
     <span>{{localize "TWODSIX.Animal.Flee"}}:
     <input name="system.reaction.flee" type="number" value="{{system.reaction.flee}}" data-tooltip='{{localize "TWODSIX.Animal.Flee"}}'/>
     </span>
+    <span class="roll-morale orange" style="align-self: center;"><i class="fa-solid fa-hand-fist" data-tooltip='{{localize "TWODSIX.Animal.MoraleRoll"}}'></i>:</span>
+    <input name="system.moraleDM" type="text" value="{{system.moraleDM}}" data-tooltip='{{localize "TWODSIX.Animal.MoraleDM"}}'' placeholder='{{localize "TWODSIX.Items.Component.DM"}}'/>
   </span>
   <br>
   <!-- Protection Information-->
