@@ -549,7 +549,7 @@ export const AnimalLocations = {
   plains: "TWODSIX.Animal.Locations.PlainsGrassland",
   hills: "TWODSIX.Animal.Locations.HillsMountains",
   desert: "TWODSIX.Animal.Locations.DesertBadlands",
-  swamp: "TWODSIX.Animal.Locations.SwampAcquatic",
+  swamp: "TWODSIX.Animal.Locations.SwampAquatic",
   forest: "TWODSIX.Animal.Locations.ForestJungle"
 };
 

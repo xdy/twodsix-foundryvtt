@@ -209,7 +209,7 @@
         "PlainsGrassland": "Plains or Grassland",
         "HillsMountains": "Hills or Mountains",
         "DesertBadlands": "Desert or Badlands",
-        "SwampAcquatic": "Swamp or Acquatic",
+        "SwampAquatic": "Swamp or Aquatic",
         "ForestJungle": "Forest or Jungle"
       },
       "Location": "Location",
