@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.2.0...v2.3.0) (2022-09-16)
+
+
+### Features
+
+* add animal sheet ([#1101](https://github.com/xdy/twodsix-foundryvtt/issues/1101)) ([4e2d100](https://github.com/xdy/twodsix-foundryvtt/commit/4e2d100eba7f724d9b52c6388fe5fea9ad7f16a3))
+
 # [2.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.1.0...v2.2.0) (2022-09-12)
 
 
