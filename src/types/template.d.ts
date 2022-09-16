@@ -15,8 +15,12 @@ export interface VehicleDataSource {
   type:'vehicle';
   system:Vehicle;
 }
+export interface AnimalDataSource {
+  type:'animal';
+  system:Animal;
+}
 
-export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource;
+export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource | AnimalDataSource;
 
 // Items
 export interface EquipmentDataSource {
@@ -123,6 +127,7 @@ export interface Actor {
   traveller:Traveller;
   ship:Ship;
   vehicle:Vehicle;
+  animal:Animal;
 }
 
 export type ShipPositionActorIds = Record<string, string>
@@ -245,6 +250,40 @@ export interface Traveller {
   woundedEffect:number;
   characteristicEdit:boolean;
   movement:MovementData;
+}
+
+export interface Animal {
+  name:string;
+  homeWorld:string;
+  animalType:AnimalType;
+  location:string;
+  size:string;
+  numberAppearing:string;
+  hits:Hits;
+  radiationDose:Hits;
+  encumbrance:Encumbrance;
+  primaryArmor:PrimaryArmor;
+  secondaryArmor:PrimaryArmor;
+  radiationProtection:PrimaryArmor;
+  untrainedSkill:string;
+  description:string;
+  notes:string;
+  characteristics:Characteristics;
+  woundedEffect:number;
+  characteristicEdit:boolean;
+  movement:MovementData;
+  reaction:ReactionData;
+  moraleDM:string;
+}
+
+export interface ReactionData {
+  attack:number;
+  flee:number;
+}
+
+export interface AnimalType {
+  niche:string;
+  subtype:string;
 }
 
 export interface MovementData {

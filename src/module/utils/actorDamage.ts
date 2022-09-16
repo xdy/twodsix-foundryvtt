@@ -50,6 +50,7 @@ export class Stats {
   damageCharacteristics: string[] = [];
   useLifebloodStamina = false;
   useLifebloodEndurance = false;
+  useLifebloodOnly = false;
 
   constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
     this.strength = new Attribute("strength", actor);
@@ -63,14 +64,20 @@ export class Stats {
     if (actor.type !== "ship") {
       this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
     }
-    this.damageCharacteristics = getDamageCharacteristics();
+    this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
 
-    if (game.settings.get("twodsix", "showLifebloodStamina")) {
-      this.useLifebloodStamina = true;
-      this.useLifebloodEndurance = false;
-    } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
       this.useLifebloodStamina = false;
       this.useLifebloodEndurance = true;
+      this.useLifebloodOnly = false;
+    } else if (game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal') {
+      this.useLifebloodStamina = false;
+      this.useLifebloodEndurance = false;
+      this.useLifebloodOnly = true;
+    } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
+      this.useLifebloodStamina = true;
+      this.useLifebloodEndurance = false;
+      this.useLifebloodOnly = false;
     }
 
     this.reduceStats();
@@ -334,11 +341,13 @@ export function destroyDamageDialog(damageId: string): void {
   });
 }
 
-export function getDamageCharacteristics(): string[] {
-  if (game.settings.get("twodsix", "showLifebloodStamina")) {
-    return ["stamina", "lifeblood"];
-  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+export function getDamageCharacteristics(actorType:string): string[] {
+  if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
     return ["endurance", "strength"];
+  } else if (actorType === "animal" && game.settings.get("twodsix", "animalsUseHits")) {
+    return ["lifeblood"];
+  } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
+    return ["stamina", "lifeblood"];
   } else {
     return ["endurance", "strength", "dexterity"];
   }

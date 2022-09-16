@@ -68,9 +68,11 @@
       },
       "Gender": "Gender",
       "HeroPoints": "Hero Points",
+      "Hits": "Hits",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
       "Stamina": "Stamina",
+      "Endurance": "Endurance",
       "RadiationExposure": "Radiation Exposure",
       "HomeWorld": "Home world",
       "Nationality": "Nationality",
@@ -176,6 +178,56 @@
         "Alternate": "Alternate",
         "All": "All"
       }
+    },
+    "Animal": {
+      "Niche": "Niche",
+      "NicheType": {
+        "Herbivore": "Herbivore",
+        "Omnivore": "Omnivore",
+        "Carnivore": "Carnivore",
+        "Scavenger": "Scavenger"
+      },
+      "Type": "Type",
+      "Subtype": {
+        "Filter": "Filter",
+        "Intermittent": "Intermittent",
+        "Grazer": "Grazer",
+        "Gatherer": "Gatherer",
+        "Hunter": "Hunter",
+        "Eater": "Eater",
+        "Pouncer": "Pouncer",
+        "Chaser": "Chaser",
+        "Trapper": "Trapper",
+        "Killer": "Killer",
+        "Hijacker": "Hijacker",
+        "Intimidator": "Intimidator",
+        "CarrionEater": "Carrion-Eater",
+        "Reducer": "Reducer"
+      },
+      "Locations": {
+        "CityUrban": "City or Urban",
+        "PlainsGrassland": "Plains or Grassland",
+        "HillsMountains": "Hills or Mountains",
+        "DesertBadlands": "Desert or Badlands",
+        "SwampAquatic": "Swamp or Aquatic",
+        "ForestJungle": "Forest or Jungle"
+      },
+      "Location": "Location",
+      "AnimalNotes": "Animal Notes",
+      "AttackWeapons": "Attacks / Weapons",
+      "Reaction": "Reaction Roll",
+      "Attack": "Attack",
+      "Flee": "Flee",
+      "AttacksMessage": "Animal attacks party!",
+      "FleesMessage": "Animal flees from party!",
+      "NoReactionMessage": "Animal does not react",
+      "MoraleRoll": "Morale Roll",
+      "MoraleDM": "Morale DM",
+      "Retreat": "Retreat",
+      "FightingWithdrawal": "Fighting Withdrawl",
+      "KeepFighting": "Keep Fighting",
+      "Advance": "Advance",
+      "FightToTheDeath": "Fight to The Death!"
     },
     "Chat": {
       "Roll": {
@@ -316,6 +368,7 @@
         "SimplifiedSkillNameDescription": "Used in roll formulas as @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ defaults to zero if the skill is missing or below zero.",
         "LFB": "LFB",
         "STA": "STA",
+        "HIT": "HIT",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
         "TrainingNotes": "Training Notes",
@@ -851,6 +904,14 @@
       "useNationality": {
         "hint": "Display nationality field instead of home world field on actor sheet.",
         "name": "Display nationality rather than home world"
+      },
+      "animalsUseHits": {
+        "hint": "Animals have only one damage statistic: hits.",
+        "name": "Animals use hits for damage"
+      },
+      "animalsUseLocations": {
+        "hint": "Animals are described by location found instead of type and niche.",
+        "name": "Animals use location instead of type"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -911,8 +972,9 @@
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
-      "ActorHasInitiativeAlready": "Traveller already has initiative.",
-      "NoActiveToken": "Actor does not have an active token in scene."
+      "ActorHasInitiativeAlready": "Actor already has initiative.",
+      "NoActiveToken": "Actor does not have an active token in scene.",
+      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid."
     }
   },
   "VeryDifficult": "Very Difficult"

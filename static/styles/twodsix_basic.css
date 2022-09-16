@@ -49,6 +49,10 @@ label.checkbox > input[type="checkbox"] {
   cursor: pointer;
 }
 
+.roll-reaction:hover {
+  cursor: pointer;
+}
+
 .centre {
   text-align: center;
   align-self: center;
@@ -87,6 +91,7 @@ label.checkbox > input[type="checkbox"] {
   "npc-skills npc-skills npc-traits"
   "npc-weapons npc-weapons npc-armor";
 }
+
 .npc-content-container-spells {
   display: grid;
   grid-template-columns: 15em 21em 18em;
@@ -116,15 +121,15 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-notes-container {
   grid-area: npc-notes-container;
-  max-height: 18em;
+  max-height: -webkit-fill-available;
   border: 2px solid;
   border-radius: 2ch;
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
-
   border: 2px solid;
   border-radius: 2ch;
+  overflow: auto;
 }
 
 .npc-skills {
@@ -157,6 +162,31 @@ label.checkbox > input[type="checkbox"] {
   left: inherit !important;
   justify-self: center;
   display: inline-block;
+}
+
+.animal-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 20em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-weapons npc-weapons npc-traits";
+}
+
+.animal-content-container-small {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-name-photo npc-traits npc-notes-container"
+  "npc-skills npc-skills npc-skills"
+  "npc-weapons npc-weapons npc-weapons";
 }
 
 .vehicle-photo {
@@ -485,6 +515,17 @@ img.character-info-mask {
   border: none;
 }
 
+.bgi-reaction {
+  display: inline-flex;
+  gap: 1ch;
+  flex-wrap: nowrap;
+}
+
+.bgi-reaction input {
+  width: 2em;
+  border: none;
+}
+
 .bgi-movement input {
   width: 3ch;
   border: none;
@@ -496,6 +537,27 @@ img.character-info-mask {
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   /*height: 2.7ch;*/
+  font-size: smaller;
+}
+
+.bgi-niche select {
+  width: 14ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-type select {
+  width: 16ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-location select {
+  width: 20ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
   font-size: smaller;
 }
 
@@ -893,7 +955,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .initiative {
   text-align: center;
   margin-top: 0.5ch;
-  margin-bottom: -2ch;
+  /*margin-bottom: -2ch;*/
 }
 
 .roll-initiative {

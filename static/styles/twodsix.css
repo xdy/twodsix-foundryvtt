@@ -56,7 +56,7 @@
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
   --s2d6-pie-color: var(--s2d6-default-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
-  --sidebar-width: 305px;
+  --sidebar-width: 325px;
 }
 
 body {
@@ -334,6 +334,10 @@ form .form-group span.units {
   cursor: pointer;
 }
 
+.roll-reaction:hover {
+  cursor: pointer;
+}
+
 .item-name {
   align-self: center;
 }
@@ -424,7 +428,7 @@ h2 {
 
 .npc-notes-container {
   grid-area: npc-notes-container;
-  max-height: 18em;
+  max-height: -webkit-fill-available;
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -437,6 +441,7 @@ h2 {
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
   border-width: 2px;
+  overflow: auto;
 }
 
 .npc-skills {
@@ -470,6 +475,31 @@ h2 {
   justify-self: center;
   position: inherit !important;
   display: inline-block;
+}
+
+.animal-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 20em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-skills npc-skills npc-traits"
+  "npc-weapons npc-weapons npc-traits";
+}
+
+.animal-content-container-small {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-notes-container"
+  "npc-name-photo npc-traits npc-notes-container"
+  "npc-skills npc-skills npc-weapons"
+  "npc-skills npc-skills npc-weapons";
 }
 
 .vehicle-photo {
@@ -781,6 +811,17 @@ img.character-info-mask {
   border: none;
 }
 
+.bgi-reaction {
+  display: inline-flex;
+  gap: 1ch;
+  flex-wrap: nowrap;
+}
+
+.bgi-reaction input {
+  width: 2em;
+  border: none;
+}
+
 .bgi-gender input {
   width: 10ch;
   border: none;
@@ -804,6 +845,27 @@ img.character-info-mask {
 
 .bgi-movement select {
   width: 14ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-niche select {
+  width: 14ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-type select {
+  width: 16ch;
+  background-color: var(--s2d6-background-transparent) !important;
+  border: none;
+  font-size: smaller;
+}
+
+.bgi-location select {
+  width: 20ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   font-size: smaller;
@@ -1270,7 +1332,7 @@ a.notes-tab.active {
 
 .initiative {
   text-align: center;
-  margin-bottom: -2ch;
+  /*margin-bottom: -2ch;*/
 }
 
 .roll-initiative {

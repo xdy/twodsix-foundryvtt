@@ -1,0 +1,117 @@
+<!-- Biographical Information-->
+<span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fa-solid fa-globe"></i>:<input
+        name="system.homeWorld" type="text" value="{{system.homeWorld}}"
+        placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+<br>
+{{#if settings.animalsUseLocations}}
+<span class="bgi-location" data-tooltip='{{localize "TWODSIX.Animal.Location"}}'><i class="fa-solid fa-mountain-city"></i>:
+  <select name="system.location" >
+    {{selectOptions config.AnimalLocations selected=system.location localize=true inverted=false}}
+  </select>
+</span>
+{{else}}
+  <span class="bgi-niche" data-tooltip='{{localize "TWODSIX.Animal.Niche"}}'><i class="fa-solid fa-bowl-food"></i>:
+    <select name="system.animalType.niche" >
+      {{selectOptions config.AnimalNiche selected=system.animalType.niche localize=true inverted=false}}
+    </select>
+  </span>
+  <span class="bgi-type" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'><i class="fa-solid fa-dna"></i>:
+    <select name="system.animalType.subtype" >
+      {{#iff system.animalType.niche "==" "herbivore"}}
+        {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else iff system.animalType.niche "==" "omnivore"}}
+        {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else iff system.animalType.niche "==" "carnivore"}}
+        {{selectOptions config.CarnivoreType selected=system.animalType.subtype localize=true inverted=false}}
+      {{else}}
+        {{selectOptions config.ScavengerType selected=system.animalType.subtype localize=true inverted=false}}
+      {{/iff}}
+    </select>
+  </span>
+{{/if}}
+<br>
+{{#unless limited}}
+  <!-- Reaction Information -->
+  <span class="bgi-reaction">
+    <span class="roll-reaction orange" style="align-self: center;"><i class="fa-solid fa-person-circle-question" data-tooltip='{{localize "TWODSIX.Animal.Reaction"}}'></i>:</span>
+    <span>{{localize "TWODSIX.Animal.Attack"}}:
+    <input name="system.reaction.attack" type="number" value="{{system.reaction.attack}}" data-tooltip='{{localize "TWODSIX.Animal.Attack"}}'/>
+    </span>
+    <span>{{localize "TWODSIX.Animal.Flee"}}:
+    <input name="system.reaction.flee" type="number" value="{{system.reaction.flee}}" data-tooltip='{{localize "TWODSIX.Animal.Flee"}}'/>
+    </span>
+    <span class="roll-morale orange" style="align-self: center;"><i class="fa-solid fa-hand-fist" data-tooltip='{{localize "TWODSIX.Animal.MoraleRoll"}}'></i>:</span>
+    <input name="system.moraleDM" type="text" value="{{system.moraleDM}}" data-tooltip='{{localize "TWODSIX.Animal.MoraleDM"}}'' placeholder='{{localize "TWODSIX.Items.Component.DM"}}'/>
+  </span>
+  <br>
+  <!-- Protection Information-->
+  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
+          style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
+        />/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' /></span>
+  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
+          name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' /></span>
+  <br>
+
+  <!-- Damage Stats Information-->
+  {{#if settings.lifebloodInsteadOfCharacteristics}}
+    <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'>
+      {{#iff system.characteristics.endurance.value "===" system.characteristics.endurance.current}}
+        <i class="fa-solid fa-battery-full" style="color:green;"></i>
+      {{else iff system.characteristics.endurance.damage "===" system.characteristics.endurance.value}}
+        <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
+      {{else}}
+        <i class="fa-solid fa-battery-half"></i>
+      {{/iff}}:<input type="number" name="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}" min="0"/>-</span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'><input type="number"
+            name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}" min="0" max="{{system.characteristics.endurance.value}}"/></span>
+    <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+            type="number" name="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}" min="0"/>-</span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+        <input type="number" name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}" min="0" max="{{system.characteristics.strength.value}}"/></span>
+    {{#if settings.showContaminationBelowLifeblood}}
+      <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Contamination"}}'><i class="fa-solid fa-radiation"></i>:<input
+        name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span>
+    {{/if}}
+    <br>
+  {{else if settings.animalsUseHits}}
+    <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Hits"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+      type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0"/>-</span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Hits"}}'>
+    <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
+      name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span><br>
+  {{else}}
+    {{#if settings.showLifebloodStamina}}
+    <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'>
+        {{#iff system.characteristics.stamina.value "===" system.characteristics.stamina.current}}
+          <i class="fa-solid fa-battery-full" style="color:green;"></i>
+        {{else iff system.characteristics.stamina.damage "===" system.characteristics.stamina.value}}
+          <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
+        {{else}}
+          <i class="fa-solid fa-battery-half"></i>
+        {{/iff}}:<input type="number" name="system.characteristics.stamina.value" value="{{system.characteristics.stamina.value}}" min="0"/>-</span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
+            name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
+    <span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+            type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0"/>-</span>
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+        <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
+    {{/if}}
+    <span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
+            name="system.radiationDose.value" value={{system.radiationDose.value}} type="number"/></span><br>
+  {{/if}}
+  <!-- Movement -->
+  <span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-person-walking"></i>:
+    <input type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>
+    <select name="system.movement.units" >
+      {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
+    </select>
+  </span>
+
+  <!-- Characteristic Edit Mode -->
+  {{#unless settings.dontShowStatBlock}}
+    <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
+      <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
+    </span>
+  {{/unless}}
+{{/unless}}

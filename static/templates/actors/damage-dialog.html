@@ -44,6 +44,14 @@
           <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
           <td><span class="result-value"></span> <span class="mod"></span></td>
         </tr>
+      {{else if useLifebloodOnly}}
+        <tr class="lifeblood">
+          <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.HIT"}}</td>
+          <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
+          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span> <span class="current-mod"></span></td>
+          <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
+          <td><span class="result-value"></span> <span class="mod"></span></td>
+        </tr>
       {{else}}
         <tr class="strength">
           {{#if useLifebloodEndurance}}

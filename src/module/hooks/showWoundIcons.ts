@@ -3,85 +3,88 @@
 
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
+import { getDamageCharacteristics } from "../utils/actorDamage";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
-  if (checkForWounds(update.system) && actor.type === "traveller" && game.user?.isGM) {
-    await applyWoundedEffect(actor);
+  if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.isGM) {
+      await applyWoundedEffect(actor);
+    }
   }
 });
 
-function checkForWounds(system: Record<string, any>): boolean {
-  if (!game.settings.get('twodsix', 'useWoundedStatusIndicators') || system === undefined) {
+function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
+  if (systemUpdates === undefined) {
     return false;
   } else {
-    switch (game.settings.get('twodsix', 'ruleset')) {
-      case 'CD':
-      case 'CLU':
-        return (!!system.characteristics?.lifeblood);
-      case 'CEL':
-      case 'CEFTL':
-      case 'CE':
-      case 'SOC':
-      case 'OTHER':
-        return !!(system.characteristics?.endurance || system.characteristics?.strength || system.characteristics?.dexterity);
-      case 'CEQ':
-      case 'CEATOM':
-      case 'BARBARIC':
-        if (game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')) {
-          return (!!(system.characteristics?.endurance || system.characteristics?.strength));
-        } else if (game.settings.get('twodsix', 'showLifebloodStamina')) {
-          return (!!(system.characteristics?.stamina || system.characteristics?.lifeblood));
+    const damageCharacteristics = getDamageCharacteristics(actorType);
+    for (const characteristic of damageCharacteristics) {
+      if (systemUpdates.characteristics) {
+        if (characteristic in systemUpdates.characteristics) {
+          return true;
         }
-        return false;
-      default:
-        return false;
+      }
     }
   }
+  return false;
 }
+
 export const DAMAGECOLORS = Object.freeze({
   minorWoundTint: '#FFFF00', // Yellow
   seriousWoundTint: '#FF0000', // Red
   deadTint: '#FFFFFF'  // White
 });
 
+export const effectType = Object.freeze({
+  dead: 'Dead',
+  wounded: 'Wounded',
+  unconscious: 'Unconscious'
+});
+
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
-
-  const woundedEffectLabel = 'woundEffect';
-  const deadEffectLabel = 'Dead';
-  const unconsciousEffectLabel = 'Unconscious';
-  const oldWoundState = selectedActor.effects.find(eff => eff.label === woundedEffectLabel);
-  const isAlreadyDead = selectedActor.effects.find(eff => eff.label === deadEffectLabel);
-  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.label === unconsciousEffectLabel);
+  const oldWoundState = selectedActor.effects.find(eff => eff.label === effectType.wounded);
+  const isCurrentlyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
 
   if (!tintToApply) {
-    await setConditionState(deadEffectLabel, selectedActor, false);
-    await setWoundedState(woundedEffectLabel, selectedActor, false, tintToApply);
+    await setConditionState(effectType.dead, selectedActor, false);
+    await setWoundedState(effectType.wounded, selectedActor, false, tintToApply);
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
-      await setConditionState(deadEffectLabel, selectedActor, true);
-      await setWoundedState(woundedEffectLabel, selectedActor, false, tintToApply);
-      await setConditionState(unconsciousEffectLabel, selectedActor, false);
+      await setConditionState(effectType.dead, selectedActor, true);
+      await setWoundedState(effectType.wounded, selectedActor, false, tintToApply);
+      await setConditionState(effectType.unconscious, selectedActor, false);
     } else {
-      await setConditionState(deadEffectLabel, selectedActor, false);
+      await setConditionState(effectType.dead, selectedActor, false);
 
-      if (['CE', 'OTHER'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-        if (isUnconsciousCE(<Traveller>selectedActor.system) && !isAlreadyUnconscious) {
-          await setConditionState(unconsciousEffectLabel, selectedActor, true);
-        }
-      } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && !isAlreadyDead && tintToApply === DAMAGECOLORS.seriousWoundTint && !isAlreadyUnconscious) {
-        if (['CEQ', 'CEATOM', 'BARBARIC'].includes(game.settings.get('twodsix', 'ruleset').toString())) {
-          await setConditionState(unconsciousEffectLabel, selectedActor, true); // Automatic unconsciousness or out of combat
-        } else {
-          const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
-          const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
-          if (returnRoll && returnRoll.effect < 0) {
-            await setConditionState(unconsciousEffectLabel, selectedActor, true);
-          }
+      if (selectedActor.type !== 'animal' && !isCurrentlyDead && oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint) {
+        await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
+      }
+      await setWoundedState(effectType.wounded, selectedActor, true, tintToApply);
+    }
+  }
+}
+
+async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string) {
+  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.label === effectType.unconscious);
+  const isAlreadyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
+  const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
+  if (!isAlreadyUnconscious && !isAlreadyDead) {
+    if (['CE', 'OTHER'].includes(rulesSet)) {
+      if (isUnconsciousCE(<Traveller>selectedActor.system)) {
+        await setConditionState(effectType.unconscious, selectedActor, true);
+      }
+    } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
+      if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
+        await setConditionState(effectType.unconscious, selectedActor, true); // Automatic unconsciousness or out of combat
+      } else {
+        const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
+        const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
+        if (returnRoll && returnRoll.effect < 0) {
+          await setConditionState(effectType.unconscious, selectedActor, true);
         }
       }
-      await setWoundedState(woundedEffectLabel, selectedActor, true, tintToApply);
     }
   }
 }
@@ -156,24 +159,40 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
 
 export function getIconTint(selectedActor: TwodsixActor): string {
   const selectedTraveller = <Traveller>selectedActor.system;
-  switch (game.settings.get('twodsix', 'ruleset')) {
-    case 'CD':
-    case 'CLU':
-      return (getCDWoundTint(selectedTraveller));
-    case 'CEL':
-    case 'CEFTL':
-    case 'SOC':
-      return (getCELWoundTint(selectedTraveller));
-    case 'CE':
-    case 'OTHER':
-      return (getCEWoundTint(selectedTraveller));
-    case 'CEQ':
-    case 'CEATOM':
-    case 'BARBARIC':
-      return (getCEAWoundTint(selectedTraveller));
-    default:
-      return ('');
+  if (selectedActor.type === 'animal' && game.settings.get('twodsix', 'animalsUseHits')) {
+    return(getHitsTint(selectedTraveller));
+  } else {
+    switch (game.settings.get('twodsix', 'ruleset')) {
+      case 'CD':
+      case 'CLU':
+        return (getCDWoundTint(selectedTraveller));
+      case 'CEL':
+      case 'CEFTL':
+      case 'SOC':
+        return (getCELWoundTint(selectedTraveller));
+      case 'CE':
+      case 'OTHER':
+        return (getCEWoundTint(selectedTraveller));
+      case 'CEQ':
+      case 'CEATOM':
+      case 'BARBARIC':
+        return (getCEAWoundTint(selectedTraveller));
+      default:
+        return ('');
+    }
   }
+}
+
+export function getHitsTint(selectedTraveller: Traveller): string {
+  let returnVal = '';
+  if (selectedTraveller.characteristics.lifeblood.current <= 0) {
+    returnVal = DAMAGECOLORS.deadTint;
+  } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 3)) {
+    returnVal = DAMAGECOLORS.seriousWoundTint;
+  } else if (selectedTraveller.characteristics.lifeblood.current < (2 * selectedTraveller.characteristics.lifeblood.value / 3)) {
+    returnVal = DAMAGECOLORS.minorWoundTint;
+  }
+  return returnVal;
 }
 
 export function getCDWoundTint(selectedTraveller: Traveller): string {

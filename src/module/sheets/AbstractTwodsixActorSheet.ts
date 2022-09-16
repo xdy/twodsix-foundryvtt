@@ -1,13 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
-
+import { getKeyByValue } from "../utils/sheetUtils";
+import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
+import { TWODSIX } from "../config";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -79,6 +81,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         });
       }
     });
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       const handler = ev => this._onDragStart(ev);
@@ -91,7 +94,53 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
     }
 
-    this.handleContentEditable(html);
+    // Handle format stripping for content editable
+    html.find('div[contenteditable="true"][data-edit]').on('focusout', this._onSubmit.bind(this));
+    html.find('div[contenteditable="true"][data-edit]').on('paste', onPasteStripFormatting.bind(this));
+
+    //Non-ship actors listeners
+    if (this.actor.type !== "ship") {
+      // Handle click for attack roll
+      html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
+
+      html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+      html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
+
+      html.find('.roll-damage').on('click', onRollDamage.bind(this));
+
+      //add hooks to allow skill levels consumable counts to be updated on skill and equipment tabs, repectively
+      html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
+      html.find(".item-value-edit").on("click", (event) => {
+        $(event.currentTarget).trigger("select");
+      });
+
+      //display trait item to chat
+      html.find(".showChat").on("click", this._onSendToChat.bind(this));
+
+      //Roll initiative from traveller sheet
+      html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
+
+      //Edit active effect shown on actor
+      html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
+      html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
+    }
+  }
+
+  /**
+   * Handle clickable weapon attacks.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   */
+  protected async _onPerformAttack(event, showThrowDiag: boolean): Promise<void> {
+    const attackType = event.currentTarget["dataset"].attackType;
+    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
+    const item = this.getItem(event);
+    console.log("Sheet Item Attack: ", item);
+    if (this.options.template?.includes("npc-sheet")) {
+      resolveUnknownAutoMode(item);
+    } else {
+      await item.performAttack(attackType, showThrowDiag, rof);
+    }
   }
 
   _onDragStart(event:DragEvent):void {
@@ -102,18 +151,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return super._onDragStart(event);
   }
 
-  private handleContentEditable(html:JQuery) {
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'focusout',
-      this._onSubmit.bind(this)
-    );
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'paste',
-      onPasteStripFormatting.bind(this)
-    );
-  }
-
-  private updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
+  protected updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -139,6 +177,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.system.status = "operational";
         itemData.img = "systems/twodsix/assets/icons/components/" + itemData.system.subtype + ".svg";
         break;
+      case "spell":
+        if (!itemData?.img) {
+          itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
+        }
+        break;
     }
   }
 
@@ -147,7 +190,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  private async _onItemCreate(event:{ preventDefault:() => void; currentTarget:HTMLElement }):Promise<void> {
+  protected async _onItemCreate(event:{ preventDefault:() => void; currentTarget:HTMLElement }):Promise<void> {
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -180,7 +223,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
-
   /**
    * Special handling of skills dropping.
    */
@@ -196,7 +238,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (dropData.type === 'damageItem') {
-      if (actor.type === 'traveller') {
+      if (actor.type === 'traveller' || actor.type === 'animal') {
         const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
         await (<TwodsixActor>this.actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, showDamageDialog);
@@ -225,6 +267,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           return this.handleDroppedItem(actor, itemData);
         }
         break;
+      case 'animal':
+        if (itemData.type === 'skills') {
+          return this.handleDroppedSkills(actor, itemData);
+        } else if (["weapon", "trait"].includes(itemData.type)) {
+          return this.handleDroppedItem(actor, itemData);
+        }
+        break;
       case 'ship':
         if (!["augment", "skills", "trait"].includes(itemData.type)) {
           return this.handleDroppedItem(actor, itemData);
@@ -240,7 +289,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return false;
   }
 
-  private async handleDroppedSkills(actor, itemData) {
+  protected async handleDroppedSkills(actor, itemData) {
     const matching = actor.items.filter(x => {
       return x.name === itemData.name;
     });
@@ -272,7 +321,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     console.log(`Twodsix | Added Skill ${itemData.name} to character`);
   }
 
-  private async handleDroppedItem(actor:Actor, itemData) {
+  protected async handleDroppedItem(actor:Actor, itemData) {
     // Handle item sorting within the same Actor
     const sameActor = actor.items.get(itemData._id);
     if (sameActor) {
@@ -300,7 +349,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return this._onDropItemCreate(itemData);
   }
 
-  private static _getWeight(item):number {
+  protected static _getWeight(item):number {
     if ((item.type === "weapon") || (item.type === "armor") ||
       (item.type === "equipment") || (item.type === "tool") ||
       (item.type === "junk") || (item.type === "consumable")) {
@@ -421,11 +470,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     });
     // Calc Max Encumbrance
     let maxEncumbrance = 0;
-    const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
-    if (Roll.validate(encumbFormula)) {
-      maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
-    } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    if (sheetData.actor.type === "traveller") {
+      const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
+      if (Roll.validate(encumbFormula)) {
+        maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+      }
     }
 
     // Assign and return sheetData.data to sheetData.system????
@@ -447,6 +498,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
+    } else if (sheetData.actor.type === "animal" ) {
+      sheetData.container.weapon = weapon;
+      sheetData.container.armor = armor;
+      sheetData.container.skills = skills;
+      sheetData.container.traits = traits;
     } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
@@ -454,6 +510,204 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else {
       console.log("Unrecognized Actor in AbstractActorSheet");
     }
+  }
+
+  protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
+    return (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+
+      func.bind(this)(event, showTrowDiag);
+    };
+  }
+
+  /**
+   * Handle when the roll initiative button is pressed.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  protected async _onRollInitiative(event): Promise<void> {
+    if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
+      return;
+    } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      return;
+    } else if (!this.actor.isToken && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      return;
+    }
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+    const dialogData = {
+      shouldRoll: false,
+      rollType: "Normal",
+      rollTypes: TWODSIX.ROLLTYPES,
+      diceModifier: "",
+      rollMode: game.settings.get('core', 'rollMode'),
+      rollModes: CONFIG.Dice.rollModes,
+      rollFormula: game.settings.get("twodsix", "initiativeFormula")
+    };
+    if (showThrowDiag) {
+      await this.initiativeDialog(dialogData);
+      if (dialogData.shouldRoll) {
+        if (dialogData.rollType !== "Normal") {
+          if (dialogData.rollType === "Advantage") {
+            dialogData.rollFormula = dialogData.rollFormula.replace("2d6", "3d6kh2");
+          } else if (dialogData.rollType === "Disadvantage") {
+            dialogData.rollFormula = dialogData.rollFormula.replace("2d6", "3d6kl2");
+          }
+        }
+        if (dialogData.diceModifier !== "") {
+          dialogData.rollFormula += "+" + dialogData.diceModifier;
+        }
+      } else {
+        return;
+      }
+    }
+
+    if (this.token?.combatant?.id) {
+      //@ts-ignore
+      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
+    } else {
+      this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});
+    }
+  }
+
+  protected async initiativeDialog(dialogData):Promise<any> {
+    const template = 'systems/twodsix/templates/chat/initiative-dialog.html';
+
+    const buttons = {
+      ok: {
+        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
+        icon: '<i class="fa-solid fa-dice"></i>',
+        callback: (buttonHtml) => {
+          dialogData.shouldRoll = true;
+          dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
+          dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
+          dialogData.rollMode = buttonHtml.find('[name="rollMode"]').val();
+          dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
+        }
+      },
+      cancel: {
+        icon: '<i class="fa-solid fa-xmark"></i>',
+        label: game.i18n.localize("Cancel"),
+        callback: () => {
+          dialogData.shouldRoll = false;
+        }
+      },
+    };
+
+    const html = await renderTemplate(template, dialogData);
+    return new Promise<void>((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Rolls.RollInitiative"),
+        content: html,
+        buttons: buttons,
+        default: 'ok',
+        close: () => {
+          resolve();
+        },
+      }).render(true);
+    });
+  }
+
+  /**
+   * Handle clickable skill rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  protected async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
+    const item = this.getItem(event);
+    await item.skillRoll(showThrowDiag );
+  }
+
+  /**
+   * Handle clickable characteristics rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  protected async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
+    const shortChar = $(event.currentTarget).data("label");
+    const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+    const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
+    await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
+  }
+
+  /**
+   * Update an item value when edited on skill or inventory tab.
+   * @param {Event} event  The originating input event
+   * @private
+   */
+  protected async _onItemValueEdit(event): Promise<void> {
+    const newValue = parseInt(event.currentTarget["value"], 10);
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+
+    if (itemSelected) {
+      if (itemSelected.type === "skills") {
+        itemSelected.update({"system.value": newValue});
+      } else if (itemSelected.type === "consumable") {
+        itemSelected.update({"system.quantity": newValue});
+      }
+    }
+  }
+
+  /**
+   * Handle send to chat.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  protected async _onSendToChat(event): Promise<void> {
+    const item = <TwodsixItem>this.getItem(event);
+    const picture = item.img;
+    const capType = item.type.capitalize();
+    if (item.type === "trait"  || item.type === "spell") {
+      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>${capType}: ${item.name}</strong></div><br>${item.system["description"]}`;
+      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+    }
+  }
+
+  /**
+   * Handle when the clicking on status icon.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  protected async _onEditEffect(event): Promise<void> {
+    const effectUuid = event.currentTarget["dataset"].uuid;
+    const selectedEffect = await fromUuid(effectUuid);
+    console.log(selectedEffect);
+    new ActiveEffectConfig(selectedEffect).render(true);
+  }
+  /**
+   * Handle when the right clicking on status icon.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  protected async _onDeleteEffect(event): Promise<void> {
+    const effectUuid = event.currentTarget["dataset"].uuid;
+    const selectedEffect = await fromUuid(effectUuid);
+    console.log(selectedEffect);
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        await selectedEffect?.delete();
+      },
+      no: () => {
+        //Nothing
+      },
+    });
+  }
+
+  private getItem(event): TwodsixItem {
+    const itemId = $(event.currentTarget).parents('.item').data('item-id');
+    return <TwodsixItem>this.actor.items.get(itemId);
   }
 }
 

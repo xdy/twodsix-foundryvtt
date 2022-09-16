@@ -68,6 +68,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
     settings.push(stringSetting("sorcerySkill", "Sorcery", false, "world"));
     settings.push(booleanSetting("useNationality", false));
+    settings.push(booleanSetting("animalsUseHits", false));
+    settings.push(booleanSetting("animalsUseLocations", false));
     return settings;
   }
 }
