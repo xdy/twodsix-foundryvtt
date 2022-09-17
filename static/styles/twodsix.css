@@ -1263,7 +1263,7 @@ a.actor-notes-tab.active {
 
 .tab.inventory, .tab.actor-notes {
   margin-top: 27px;
-  height: 541px;
+  height: 549px;
   overflow: auto;
   padding-left: 8px;
 }
@@ -1693,8 +1693,9 @@ span.total-output {
   color: var(--s2d6-item-active);
   font-weight: bold;
   font-size: 2ch;
-  /* padding: 0.2em 0.2em 0.2em 0.5em; */
-  padding-left: 0.5em;
+  padding: 1px 2px 2px 5px;
+  /* padding-left: 0.5em; */
+  /* vertical-align: middle; */
 }
 
 .item-title-npc, .item-title-vehicle {
@@ -1795,11 +1796,11 @@ span.total-output {
 .notes-container {
   margin-left: 1ch;
   margin-top: 12px;
-  height: 567px;
+  height: 524px;
   width: 467px;
   margin-bottom: -77px;
   overflow: auto;
-  font-size: larger;
+  /* font-size: larger; */
 }
 
 .notes-container .editor-content {
@@ -3134,7 +3135,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* EDITOR */
 
 .editor {
-  height: 90%;
+  height: 95%;
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
   margin-top: 0;
