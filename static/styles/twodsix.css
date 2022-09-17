@@ -241,16 +241,17 @@ table tr:nth-child(even) {
   width: 96%;
 }
 .sheet nav.sheet-tabs {
-  height: 21px !important;
+  height: 22px !important;
   flex: 0 0 23px !important;
   /* margin: 0 0 !important; */
   line-height: 16px !important;
   /* position: relative; */
-  top: 1.8em !important;
+  top: 25px !important;
   /* margin-bottom: 1em; */
   border: none !important;
   padding: 0;
-  margin-left: 3px;
+  margin-left: 8px;
+  /* overflow: hidden; */
 }
 
 .sheet nav.sheet-tabs .item {
@@ -381,11 +382,11 @@ h2 {
 
 .content-container {
   display: grid;
-  grid-template-columns: 21.8em 35em;
+  grid-template-columns: 297px 493px;
   gap: 1px 1px;
   position: relative;
-  top: -2.4em;
-  left: -0.3em;
+  top: -34px;
+  left: -3px;
 }
 
 .npc-content-container {
@@ -496,10 +497,11 @@ h2 {
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
-  "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-name-photo npc-traits npc-notes-container"
-  "npc-skills npc-skills npc-weapons"
-  "npc-skills npc-skills npc-weapons";
+    "npc-name-photo npc-bgi-stats npc-notes-container"
+    "npc-name-photo npc-traits npc-notes-container"
+    "npc-skills npc-skills npc-weapons"
+    "npc-skills npc-skills npc-weapons";
+  overflow: auto;
 }
 
 .vehicle-photo {
@@ -670,8 +672,8 @@ h2 {
 }
 
 .content-background {
-  top: 0.7em;
-  left: 0.8em;
+  top: 9px;
+  left: 8px;
   position: absolute;
   z-index: 0;
 }
@@ -686,16 +688,16 @@ img.character-info-mask {
   z-index: 4;
   position: absolute;
   pointer-events: none;
-  margin-top: 1.65em;
-  margin-left: 1.1em;
+  margin-top: 21px;
+  margin-left: 17px;
 }
 
 .character-photo {
-  margin-top: 2.15em;
-  margin-left: 2.1em;
+  margin-top: 32px;
+  margin-left: 30px;
   position: absolute;
-  width: 19.3em;
-  height: 20em;
+  width: 270px;
+  height: 273px;
   text-align: center;
   z-index: 0;
   object-fit: contain;
@@ -709,8 +711,8 @@ img.character-info-mask {
 
 .status-icons {
   position: absolute;
-  left: 1em;
-  top: 1em;
+  left: 15px;
+  top: 15px;
   z-index: 1;
   flex-direction: column;
   display: flex;
@@ -739,11 +741,11 @@ img.character-info-mask {
 
 .character-name {
   position: relative;
-  margin-top: 22em;
+  margin-top: 307px;
   text-align: center;
   z-index: 6;
-  left: 2.5em;
-  width: 18.5em;
+  left: 32px;
+  width: 262px;
 }
 
 .character-name .npc,  .character-name .vehicle {
@@ -754,8 +756,8 @@ img.character-info-mask {
 .character-name input[type='text'] {
   background-color: transparent;
   position: relative;
-  /*width: 15.55em;*/
-  font-size: 1.2em;
+  /* width: 15.55em; */
+  font-size: larger;
   text-align: center;
   color: var(--s2d6-default-color) !important;
   border: none;
@@ -773,24 +775,26 @@ img.character-info-mask {
 }
 
 .character-bgi-std {
-  margin-left: 2.2em;
+  margin-left: 34px;
   position: relative;
-  margin-top: 0.15em;
-  width: 17em;
-  height: 7.5em;
-  font-size: 16px;
+  margin-top: 4px;
+  width: 265px;
+  height: 122px;
+  font-size: 2ch;
   z-index: 9;
   color: var(--s2d6-default-color) !important;
+  overflow: auto;
 }
 
 .character-bgi-npc {
-  font-size: 16px;
+  font-size: 2ch;
   z-index: 9;
   border: 2px solid;
   border-radius: 2ch;
   padding: 0 1ch;
   color: var(--s2d6-default-color) !important;
   border-width: 2px;
+  overflow: auto;
 }
 
 .character-bgi input, .character-bgi-npc input {
@@ -872,7 +876,7 @@ img.character-info-mask {
 }
 
 .bgi-char-narrow {
-  font-size: 16px;
+  /* font-size: 1ch; */
 }
 
 .bgi-char-narrow input {
@@ -881,7 +885,7 @@ img.character-info-mask {
 }
 
 .bgi-char-wide {
-  font-size: 16px;
+  /* font-size: 2ch; */
 }
 
 .bgi-char-wide input {
@@ -933,13 +937,14 @@ span.bgi-charEdit {
 }
 
 .character-characteristics {
-  width: 17.5em;
-  margin-top: 2em;
-  margin-left: 3em;
+  width: 250px;
+  margin-top: 22px;
+  margin-left: 40px;
   position: relative;
   z-index: 6;
-  height: 7.5em;
+  height: 120px;
   color: var(--s2d6-default-color) !important;
+  font-size: 15px;
 }
 
 .edit-mode {
@@ -988,7 +993,7 @@ span.stat-name {
   position: relative;
   /*left: 0.7em;*/
   top: -1.1em;
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   display: block;
   /*width: 65%;*/
   cursor: pointer;
@@ -1066,24 +1071,24 @@ input.special-name {
 
 .special.psionicStrength {
   left: 13.7em;
-  top: -7.9em;
+  top: -8em;
 }
 
 .special.alternative1 {
-  left: 13.7em;
-  top: -10.2em;
+  left: 199px;
+  top: -140px;
 }
 
 .special.alternative2 {
-  left: 13.7em;
-  top: -9em;
+  left: 199px;
+  top: -125px;
 }
 
 span.special-name {
   position: relative;
   top: -1.1em;
   right: -0.15em;
-  font-size: 1.2em;
+  /* font-size: 15px; */
   cursor: pointer;
   display: inline-block;
   min-width: 3ch;
@@ -1093,8 +1098,8 @@ span.special-name {
 span.stat-ability {
   margin: -0.3em;
   position: relative;
-  left: 1.1em;
-  top: -1.2em;
+  left: 15px;
+  top: -15px;
 }
 
 span.stat-ability-table {
@@ -1103,10 +1108,10 @@ span.stat-ability-table {
 }
 
 span.stat-modifier {
-  margin: -5px;
+  margin: -6px;
   position: relative;
-  left: 1.95em;
-  top: -1.2em;
+  left: 29px;
+  top: -16px;
 }
 span.stat-modifier-table {
   text-align: center !important;
@@ -1120,8 +1125,7 @@ span.stat-ability-table input, span.stat-modifier-table input {
 
 span.stat-damage {
   position: relative;
-  padding-left: 0.1em;
-  top: 0.25em;
+  top: 5px;
 }
 
 span.stat-damage-table {
@@ -1147,21 +1151,21 @@ span.stat-damage input, span.special-damage input {
 
 span.special-ability {
   position: relative;
-  top: -1.4em;
-  left: 0.7em;
+  top: -16px;
+  left: 11px;
 }
 
 span.special-modifier {
   margin: -5px;
   position: relative;
   /* left: 1em; */
-  top: -2.2em;
+  top: -2.0em;
 }
 
 span.special-damage {
   position: relative;
   padding-left: 0.7em;
-  top: -1.3em;
+  top: -1.1em;
 }
 
 svg:hover {
@@ -1173,7 +1177,7 @@ svg:hover {
 .character-tabs .tabs {
   position: relative;
   top: 2em;
-  left: 0.3em;
+  left: 4px;
   z-index: 50;
   width: 453px;
   height: 22px;
@@ -1223,7 +1227,7 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   text-shadow: none !important;
 }
 
-.notes-tab {
+.actor-notes-tab {
   background-image: url(../assets/actor/Interface-Tabs.svg);
   background-position-x: 93px;
   padding-top: 0.15em;
@@ -1232,13 +1236,13 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   background-color: unset !important;
 }
 
-a.notes-tab:hover {
+a.actor-notes-tab:hover {
   background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
   color: var(--s2d6-item-hover);
   background-color: unset !important;
 }
 
-a.notes-tab.active {
+a.actor-notes-tab.active {
   background-image: url(../assets/actor/Interface-Tabs-Active.svg);
   color: var(--s2d6-item-active);
   text-shadow: none !important;
@@ -1250,18 +1254,22 @@ a.notes-tab.active {
 }
 
 .tab[data-tab].active {
-  display: block;
-  position: relative;
+  /* display: block; */
+  /* position: relative; */
+  /* overflow: auto; */
+  /* margin-top: 28px; */
+  /* padding-left: 5px; */
 }
 
-.tab.inventory {
-  top: 2em;
-  height: 39em;
-  overflow-x: hidden;
+.tab.inventory, .tab.actor-notes {
+  margin-top: 27px;
+  height: 541px;
+  overflow: auto;
+  padding-left: 8px;
 }
 
 .character-inventory {
-  overflow-x: hidden;
+  /* overflow-x: visible; */
 }
 
 .inventory {
@@ -1270,16 +1278,20 @@ a.notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.5em 13.5em 1.6em 1.6em 1.6em 3em 5em 5.5em;
+  grid-template-columns: 1.5em 12.5em 1.6em 1.6em 1.6em 3em 5em 5.5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . . .';
 }
 
 .gear-header {
   border: 2px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
-  padding-left: 0.5em;
+  padding-left: 0.3em;
+  margin-right: 0.5em;
+  overflow-x: visible;
+  width: fit-content;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -1288,56 +1300,70 @@ a.notes-tab.active {
 
 .gear {
   border: solid;
-  border-width: 1px;
+  border-width: 1px 2px;
   border-color: var(--s2d6-default-color);
-  padding-left: 0.5em;
+  padding-left: 0.3em;
+  margin-right: 0.5em;
+  width: fit-content;
 }
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.5em 13.5em 3.5em 3.5em 3.5em 4em 4em;
+  grid-template-columns: 1.5em 12.5em 3.5em 3.5em 3.5em 4em 4em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . .';
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 10.5em 4em 3em;
+  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 9.5em 4em 3em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 13em 4.5em;
+  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 12em 4.5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . .';
 }
 
 .items-traits, .items-spells {
   display: grid;
-  grid-template-columns: 14em 2em 14em 3em;
+  grid-template-columns: 14em 3em 12em 3em;
   gap: 1px 1px;
-  grid-template-areas: '. . . .';
+  grid-template-areas:
+    '. . . .';
 }
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1.5em 14.5em 5em 2.5em 5.8em 4.5em;
+  grid-template-columns: 1.5em 13.5em 5em 2.5em 5.8em 4.5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . .';
 }
 
 /*-------Skill Tab-----------*/
 
 .initiative {
   text-align: center;
-  /*margin-bottom: -2ch;*/
 }
 
 .roll-initiative {
   max-width: fit-content;
   cursor: pointer;
+  /* max-height: 7ch; */
+  /* margin: 0.01em; */
+  /* text-align: center; */
+  /* align-items: center; */
+  /* padding: 0; */
+  /* vertical-align: middle; */
+  font-size: inherit;
+  line-height: 4ch;
 }
 
 .skill-list {
@@ -1361,12 +1387,12 @@ a.notes-tab.active {
 .add-skill {
   background-image: url(../assets/actor/sheet-button1.svg);
   background-size: cover;
-  width: 108px;
-  height: 22px;
+  width: 15ch;
+  height: 2.5ch;
   display: block;
   position: relative;
   top: 0.1em;
-  left: 26.5em;
+  left: 25.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
   /* font-weight: bold; */
@@ -1379,7 +1405,7 @@ a.notes-tab.active {
 }
 
 span.add-skill-txt {
-  height: 22px;
+  height: 1.5ch;
   display: inline-block;
   position: relative;
   margin-top: -0.4em;
@@ -1439,9 +1465,10 @@ input.item-value-edit {
 }
 
 .tab.skills {
-  top: 2em;
-  height: 39em;
-  overflow-x: hidden;
+  top: 41px;
+  height: 540px;
+  overflow-x: auto;
+  padding-left: 8px;
 }
 
 .item-controls .item-toggle i {
@@ -1580,8 +1607,9 @@ span.total-output {
 
 .financial-notes div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
-  width: 14.8em;
-  height: 28.5em;
+  /* width: 14.8em; */
+  width: 221px;
+  min-height: 356px;
   border-radius: 0;
   overflow-y: auto;
   padding: 0.2em;
@@ -1593,7 +1621,8 @@ span.total-output {
 }
 
 .cash input[type='text'] {
-  width: 14.8em;
+  /* width: 14.8em; */
+  width: 207px;
   padding: 0.5em;
   height: 31px;
   border: 1px solid var(--s2d6-default-color);
@@ -1606,7 +1635,8 @@ span.total-output {
 }
 
 .pension input[type='text'] {
-  width: 14.8em;
+  /* width: 14.8em; */
+  width: 207px;
   padding: 0.5em;
   height: 31px;
   border: 1px solid var(--s2d6-default-color);
@@ -1619,7 +1649,8 @@ span.total-output {
 }
 
 .debt input[type='text'] {
-  width: 14.8em;
+  /* width: 14.8em; */
+  width: 207px;
   padding: 0.5em;
   height: 31px;
   border: 1px solid var(--s2d6-default-color);
@@ -1632,7 +1663,8 @@ span.total-output {
 }
 
 .ship-payments input[type='text'] {
-  width: 14.8em;
+  /* width: 14.8em; */
+  width: 207px;
   padding: 0.5em;
   height: 31px;
   border: 1px solid var(--s2d6-default-color);
@@ -1645,7 +1677,8 @@ span.total-output {
 }
 
 .living-costs input[type='text'] {
-  width: 14.8em;
+  /* width: 14.8em; */
+  width: 207px;
   padding: 0.5em;
   height: 31px;
   border: 1px solid var(--s2d6-default-color);
@@ -1659,20 +1692,22 @@ span.total-output {
   display: block;
   color: var(--s2d6-item-active);
   font-weight: bold;
-  font-size: 15px;
-  padding: 0.2em 0.2em 0.2em 0.5em;
+  font-size: 2ch;
+  /* padding: 0.2em 0.2em 0.2em 0.5em; */
+  padding-left: 0.5em;
 }
 
 .item-title-npc, .item-title-vehicle {
-  height: 22px;
-  width: 170px;
+  height: 3ch;
+  width: 20ch;
   display: block;
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
   font-weight: bold;
-  font-size: 15px;
+  font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
   border-radius: 2ch 0 4ch;
+  /* margin: -1px; */
 }
 
 .item-title-short {
@@ -1712,9 +1747,10 @@ span.total-output {
 }
 
 .tab.info {
-  top: 2em;
-  height: 39em;
-  overflow-x: hidden;
+  margin-top: 28px;
+  height: 548px;
+  overflow: auto;
+  padding-left: 10px;
 }
 
 .info-container .editor {
@@ -1758,11 +1794,11 @@ span.total-output {
 
 .notes-container {
   margin-left: 1ch;
-  padding-top: 5ch;
-  height: 39em;
-  width: 32em;
-  margin-bottom: -3em;
-  overflow-x: hidden;
+  margin-top: 12px;
+  height: 567px;
+  width: 467px;
+  margin-bottom: -77px;
+  overflow: auto;
   font-size: larger;
 }
 
@@ -2580,9 +2616,9 @@ select.form-input, input.form-input, span.form-input {
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
-  padding-right: 3px;
-  width: 100%;
-  /*height: 30px;*/
+  /* padding: 0; */
+  width: 98%;
+  /* height: 30px; */
   text-align: right;
 }
 
@@ -2594,13 +2630,14 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .consumable-row .refill-button {
-  width: 100px;
-  height: 20px;
-  border-radius: 10px;
+  width: 10ch;
+  height: 2.5ch;
+  border-radius: 1ch;
   line-height: normal;
   cursor: pointer;
   margin-top: 0;
-  margin-left: 5px;
+  margin-left: 1ch;
+  padding: 0;
 }
 
 .consumable-row .consumable-count {
@@ -2612,13 +2649,13 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .combined-buttons {
-  width: 40px;
+  width: 8em;
   font-size: 0;
 }
 
 .combined-buttons button {
-  width: 20px;
-  height: 20px;
+  width: 2ch;
+  height: 2.5ch;
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -2626,7 +2663,8 @@ select.form-input, input.form-input, span.form-input {
   /*margin-top: -2px;*/
 }
 .consumable-row .combined-buttons button {
-  margin-top: 0;
+  /* margin-top: 0; */
+  /* padding: 0; */
 }
 
 .left-button {
@@ -2842,11 +2880,11 @@ button:hover, button:focus {
 }
 
 form .notes, form .hint {
-  flex: 0 0 100%;
-  font-size: 12px;
-  line-height: 16px;
+  /* flex: 0 0 100%; */
+  /* font-size: 12px; */
+  /* line-height: 16px; */
   color: var(--s2d6-form-light);
-  margin: 3px 0;
+  /* margin: 3px 0; */
 }
 
 #permissions-config .hint {
@@ -2883,9 +2921,9 @@ option {
   z-index: 99;
 }
 .window-app.twodsix.sheet.actor .window-header {
-  padding-right: 7ch;
-  padding-left: 5ch;
-  padding-top: 4px;
+  padding-right: 53px;
+  padding-left: 30px;
+  padding-top: 0.2em;
 }
 
 .window-app.twodsix.ship.actor .window-header {
@@ -2932,7 +2970,10 @@ option {
 }
 
 div.app.window-app.twodsix.sheet.actor header a.close {
-  padding-left: 5ch;
+  padding-left: 50px;
+  /* text-align: center; */
+  /* align-self: center; */
+  /* align-content: center; */
 }
 
 div.app.window-app.minimized.twodsix.sheet.actor header a.close {
@@ -3093,7 +3134,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* EDITOR */
 
 .editor {
-  height: 95%;
+  height: 90%;
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
   margin-top: 0;
