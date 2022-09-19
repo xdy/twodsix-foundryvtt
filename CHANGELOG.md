@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.0...v2.3.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* add setting to display reaction and morale on animal sheet ([#1121](https://github.com/xdy/twodsix-foundryvtt/issues/1121)) ([6fdf958](https://github.com/xdy/twodsix-foundryvtt/commit/6fdf9580dc64ac4c6640a6901a0c7c87f508462b))
+
 # [2.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.2.0...v2.3.0) (2022-09-16)
 
 
