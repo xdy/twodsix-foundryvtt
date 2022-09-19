@@ -912,6 +912,10 @@
       "animalsUseLocations": {
         "hint": "Animals are described by location found instead of type and niche.",
         "name": "Animals use location instead of type"
+      },
+      "displayReactionMorale": {
+        "hint": "Show reaction and morale information on animal sheet.",
+        "name": "Show animal reaction and morale"
       }
     },
     "CloseAndCreateNew": "Close and create new",

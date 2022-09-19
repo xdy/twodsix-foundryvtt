@@ -70,6 +70,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("useNationality", false));
     settings.push(booleanSetting("animalsUseHits", false));
     settings.push(booleanSetting("animalsUseLocations", false));
+    settings.push(booleanSetting("displayReactionMorale", false));
     return settings;
   }
 }
