@@ -66,7 +66,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
   CEL: {
@@ -99,7 +100,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: false
     }
   },
   CEFTL: {
@@ -130,7 +132,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: false
     },
   },
   CEATOM: {
@@ -161,7 +164,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: true,
       animalsUseHits: false,
-      animalsUseLocations: true
+      animalsUseLocations: true,
+      displayReactionMorale: true
     }
   },
   BARBARIC: {
@@ -191,7 +195,8 @@ const RULESETS = Object.freeze({
       showSpells: true,
       useNationality: true,
       animalsUseHits: false,
-      animalsUseLocations: true
+      animalsUseLocations: true,
+      displayReactionMorale: true
     },
   },
   CEQ: {
@@ -223,7 +228,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: false
     }
   },
   CD: {
@@ -263,7 +269,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
   CLU: {
@@ -303,7 +310,8 @@ const RULESETS = Object.freeze({
       showSpells: false,
       useNationality: false,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
 
@@ -344,7 +352,8 @@ const RULESETS = Object.freeze({
       showSpells: true,
       useNationality: true,
       animalsUseHits: false,
-      animalsUseLocations: false
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
 
