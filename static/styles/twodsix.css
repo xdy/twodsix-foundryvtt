@@ -520,7 +520,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 11em 5em 9em;
+  grid-template-rows: 15em 12em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -558,6 +558,7 @@ h2 {
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
   border-width: 2px;
+  overflow: auto;
 }
 
 .vehicle-systems {
@@ -875,18 +876,18 @@ img.character-info-mask {
   font-size: smaller;
 }
 
-.bgi-char-narrow {
-  /* font-size: 1ch; */
-}
+/*.bgi-char-narrow {
+  font-size: 1ch;
+}*/
 
 .bgi-char-narrow input {
   width: 1.5em;
   text-align: right;
 }
 
-.bgi-char-wide {
-  /* font-size: 2ch; */
-}
+/*.bgi-char-wide {
+  font-size: 2ch;
+}*/
 
 .bgi-char-wide input {
   width: 2.2em;
@@ -969,7 +970,7 @@ span.bgi-charEdit {
 }
 
 .stat-table-npc {
-  font-size: 12px;
+  font-size: smaller;
   margin: 0.5em 0 0;
   overflow-x: hidden;
 }
@@ -977,8 +978,8 @@ span.bgi-charEdit {
 .stat-table-small {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
-  margin-left: 3.2em;
-  margin-top: 8px;
+  margin-left: 41px;
+  margin-top: 12px;
   width: 82%;
 }
 .table-header-row {
@@ -1070,8 +1071,8 @@ input.special-name {
 }
 
 .special.psionicStrength {
-  left: 13.7em;
-  top: -8em;
+  left: 196px;
+  top: -115px;
 }
 
 .special.alternative1 {
@@ -1111,7 +1112,7 @@ span.stat-modifier {
   margin: -6px;
   position: relative;
   left: 29px;
-  top: -16px;
+  top: -15px;
 }
 span.stat-modifier-table {
   text-align: center !important;
@@ -1253,13 +1254,13 @@ a.actor-notes-tab.active {
   scrollbar-color: var(--s2d6-default-color);
 }
 
-.tab[data-tab].active {
-  /* display: block; */
-  /* position: relative; */
-  /* overflow: auto; */
-  /* margin-top: 28px; */
-  /* padding-left: 5px; */
-}
+/*.tab[data-tab].active {
+  display: block;
+  position: relative;
+  overflow: auto;
+  margin-top: 28px;
+  padding-left: 5px;
+}*/
 
 .tab.inventory, .tab.actor-notes {
   margin-top: 27px;
@@ -1268,9 +1269,9 @@ a.actor-notes-tab.active {
   padding-left: 8px;
 }
 
-.character-inventory {
-  /* overflow-x: visible; */
-}
+/* .character-inventory {
+  overflow-x: visible;
+}*/
 
 .inventory {
   top: 2em;
@@ -1281,7 +1282,7 @@ a.actor-notes-tab.active {
   grid-template-columns: 1.5em 12.5em 1.6em 1.6em 1.6em 3em 5em 5.5em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . . . .';
+    '. . . . . . . .';
 }
 
 .gear-header {
@@ -1312,7 +1313,7 @@ a.actor-notes-tab.active {
   grid-template-columns: 1.5em 12.5em 3.5em 3.5em 3.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . . .';
+    '. . . . . . .';
 }
 
 .items-augments {
@@ -1320,7 +1321,7 @@ a.actor-notes-tab.active {
   grid-template-columns: 1.5em 11.5em 1.6em 1.6em 9.5em 4em 3em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . . .';
+    '. . . . . . .';
 }
 
 .items-equipment {
@@ -1344,7 +1345,7 @@ a.actor-notes-tab.active {
   grid-template-columns: 1.5em 13.5em 5em 2.5em 5.8em 4.5em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . .';
+    '. . . . . .';
 }
 
 /*-------Skill Tab-----------*/
@@ -1621,7 +1622,6 @@ span.total-output {
 }
 
 .cash input[type='text'] {
-  /* width: 14.8em; */
   width: 207px;
   padding: 0.5em;
   height: 31px;
@@ -1708,7 +1708,6 @@ span.total-output {
   font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
   border-radius: 2ch 0 4ch;
-  /* margin: -1px; */
 }
 
 .item-title-short {
@@ -2663,10 +2662,11 @@ select.form-input, input.form-input, span.form-input {
   cursor: pointer;
   /*margin-top: -2px;*/
 }
-.consumable-row .combined-buttons button {
-  /* margin-top: 0; */
-  /* padding: 0; */
-}
+
+/* .consumable-row .combined-buttons button {
+  margin-top: 0;
+  padding: 0;
+}*/
 
 .left-button {
   border-radius: 10px 0 0 10px;

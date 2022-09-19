@@ -207,7 +207,7 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 11em 5em 9em;
+  grid-template-rows: 15em 12em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -226,7 +226,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-stats {
   grid-area: vehicle-stats;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .vehicle-notes {
@@ -649,7 +649,7 @@ span.bgi-charEdit {
   margin-left: 1ch;
 }
 .stat-table-npc {
-  font-size: 0.8em;
+  font-size: smaller;
   max-width: 100%;
 }
 
@@ -887,9 +887,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   overflow: auto;
 }
 
-.character-inventory {
-  /* overflow-x: auto; */
-}
+/* .character-inventory {
+  overflow-x: auto;
+}*/
 
 .inventory {
   top: 2em;
@@ -900,7 +900,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-columns: 1.7em 11.5em 1.6em 1.6em 2em 4em 5em 6em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . .';
+    '. . . . . . . .';
 }
 
 .gear-header {
@@ -935,7 +935,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-columns: 1.7em 11.5em 1.6em 1.6em 10.5em 4em 3em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . .';
+    '. . . . . . .';
 }
 
 .items-equipment {
@@ -943,7 +943,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-columns: 1.7em 12em 2em 2em 12em 4.5em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . .';
+    '. . . . . .';
 }
 
 .items-traits, .items-spells {
@@ -958,7 +958,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-columns: 1.7em 12.5em 6em 2.5em 7em 4.5em;
   gap: 1px 1px;
   grid-template-areas:
-    '. . . . .';
+    '. . . . . .';
 }
 
 /*-------Skill Tab-----------*/
@@ -1267,6 +1267,7 @@ span.total-output {
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1.5ch 1.5ch 0 0;
+  /* position: fixed; */
 }
 .item-title {
   width: fit-content;
