@@ -114,6 +114,7 @@ declare global {
       'twodsix.useNationality':boolean;
       'twodsix.animalsUseHits': boolean;
       'twodsix.animalsUseLocations':boolean;
+      'twodsix.displayReactionMorale': boolean;
     }
   }
 }
