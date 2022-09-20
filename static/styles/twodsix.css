@@ -337,7 +337,7 @@ form .form-group, form .form-group-stacked {
 
 form .form-group > label {
   flex: 4;
-  line-height: 18px;
+  /* line-height: 18px; */
 }
 
 form .form-group span.units {
@@ -550,7 +550,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 12em 5em 9em;
+  grid-template-rows: 15em 10em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
