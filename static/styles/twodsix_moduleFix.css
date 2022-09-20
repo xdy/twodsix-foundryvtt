@@ -17,8 +17,8 @@ input.dice-tray__input {
 
 /*Correct PopOut! auto resizing of ship sheet*/
 .ship-container {
-  min-height: 21.8em;
-  max-height: 21.8em;
+  min-height: 305px;
+  max-height: 305px;
 }
 
 /* Allow FVTT sidebar (menu) pop-outs to be resized*/
