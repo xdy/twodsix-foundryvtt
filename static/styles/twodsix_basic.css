@@ -77,8 +77,8 @@ label.checkbox > input[type="checkbox"] {
   grid-template-rows: 607px;
   gap: 1px 1px;
   position: relative;
-  top: -32px;
-  left: -11px;
+  top: -10px;
+  left: -6px;
   overflow: hidden;
 }
 
@@ -877,12 +877,12 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .tab[data-tab].active {
   display: block;
-  /* position: relative; */
-  /* overflow-x: auto; */
+  position: relative;
+  /* overflow: auto; */
 }
 
 .tab.inventory {
-  margin-top: 41px;
+  margin-top: 1em;
   height: 525px;
   overflow: auto;
 }
@@ -989,8 +989,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 #joat-skill-input {
-  height: 20px;
-  width: 25px;
+  height: auto;
+  /* width: 4ch; */
+  width: 2em !important;
 }
 
 .add-skill {
@@ -1063,7 +1064,7 @@ input.item-value-edit {
 
 .skills {
   position: relative;
-  top: 2.5em;
+  /* top: 2.5em; */
   /* overflow: auto; */
 }
 
@@ -1075,8 +1076,8 @@ input.item-value-edit {
 
 .tab.skills {
   top: 2em;
-  /* height: 37em; */
-  overflow-x: auto;
+  height: 524px;
+  overflow: auto;
 }
 
 .item-controls .item-toggle i { display: none; }
@@ -2563,7 +2564,7 @@ form .form-group > label {
 .ol-no-indent {
   list-style: none;
   padding-left: 0em;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 
 .header-row {
