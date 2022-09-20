@@ -2199,11 +2199,12 @@ select.form-input, input.form-input, span.form-input {
 .combined-buttons button {
   width: 2ch;
   height: 2.5ch;
-  margin: 0;
+  margin: 0px;
   padding: 0;
   line-height: normal;
   cursor: pointer;
-  /*margin-top: -2px;*/
+  /* align-content: center; */
+  /* margin-top: -2px; */
 }
 .consumable-row .combined-buttons button {
   margin-top: 0;
