@@ -1627,14 +1627,20 @@ span.total-output {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 1px 1px;
-  grid-template-areas: 'cash financial-notes' 'pension financial-notes' 'debt financial-notes' 'ship-payments financial-notes' 'living-costs financial-notes';
+  grid-template-areas:
+    'cash financial-notes'
+    'pension financial-notes'
+    'debt financial-notes'
+    'ship-payments financial-notes'
+    'living-costs financial-notes';
   position: relative;
-  margin-top: 3em;
+  margin-top: 44px;
+  margin-left: 24px;
 }
 
 .financial-notes {
   grid-area: financial-notes;
-  padding: 1em;
+  /* padding: 1em; */
 }
 
 .financial-notes div[contenteditable] {
@@ -1649,7 +1655,7 @@ span.total-output {
 
 .cash {
   grid-area: cash;
-  padding: 1em;
+  padding: 0 0 10px;
 }
 
 .cash input[type='text'] {
@@ -1662,7 +1668,7 @@ span.total-output {
 
 .pension {
   grid-area: pension;
-  padding: 1em;
+  padding: 10px 0;
 }
 
 .pension input[type='text'] {
@@ -1676,7 +1682,7 @@ span.total-output {
 
 .debt {
   grid-area: debt;
-  padding: 1em;
+  padding: 10px 0;
 }
 
 .debt input[type='text'] {
@@ -1690,7 +1696,7 @@ span.total-output {
 
 .ship-payments {
   grid-area: ship-payments;
-  padding: 1em;
+  padding: 10px 0;
 }
 
 .ship-payments input[type='text'] {
@@ -1704,7 +1710,7 @@ span.total-output {
 
 .living-costs {
   grid-area: living-costs;
-  padding: 1em;
+  padding: 10px 0;
 }
 
 .living-costs input[type='text'] {
@@ -1942,11 +1948,9 @@ img.ship-mask-bg {
   padding: 0;
   /* margin-top: -0.5em; */
   /*margin-left: 1.7em;*/
-  font-size: 18px;
   width: 100%;
   border: none;
   background-color: transparent !important;
-  font-size: 15px;
 }
 
 .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
