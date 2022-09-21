@@ -283,6 +283,10 @@
         }
       },
       "docReference": "",
+      "pdfReference": {
+        "href": "",
+        "label": ""
+      },
       "features": "",
       "maneuver": {
         "speed": "0",
@@ -469,7 +473,11 @@
         "skill": "",
         "associatedSkillName": "",
         "equipped": "backpack",
-        "docReference": ""
+        "docReference": "",
+        "pdfReference": {
+          "href": "",
+          "label": ""
+        }
       }
     },
     "equipment": {
@@ -533,7 +541,11 @@
       "description": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
+      "docReference": "",
+      "pdfReference": {
+        "href": "",
+        "label": ""
+      },
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal",
@@ -547,7 +559,11 @@
       "prereq": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
+      "docReference": "",
+      "pdfReference": {
+        "href": "",
+        "label": ""
+      },
       "key": "key"
     },
     "spell": {
@@ -559,7 +575,11 @@
       "duration": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
+      "docReference": "",
+      "pdfReference": {
+        "href": "",
+        "label": ""
+      },
       "key": "key"
     },
     "consumable": {

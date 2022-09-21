@@ -1,10 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import { Component, GearTemplate } from "src/types/template";
+import { Component } from "src/types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -84,7 +85,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
     this.handleContentEditable(html);
-    html.find('.open-link').on('click', this._openPDFReference.bind(this));
+    html.find('.delete-link').on('click', this._deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
@@ -218,38 +219,51 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
-      TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-      TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
-
       const dropData = getDataFromDropEvent(event);
-
       TwodsixItemSheet.check(!dropData, "DraggingSomething");
-      TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
-
-      const itemData = await getItemDataFromDropData(dropData);
-
-      TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
-
-      // If the dropped item has the same actor as the current item let's just use the same id.
-      let itemId: string;
-      if (this.item.actor?.items.get(itemData.id)) {
-        itemId = itemData.id;
-      } else {
-        const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
-        if (!newItem) {
-          throw new Error(`Somehow could not create item ${itemData}`);
+      if (dropData.type === 'html'){
+        if (dropData.href) {
+          await this.item.update({"system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
         }
-        itemId = newItem[0].id;
+      } else {
+        //This part handles just comsumables
+        TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
+        TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
+
+        TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
+
+        const itemData = await getItemDataFromDropData(dropData);
+
+        TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
+
+        // If the dropped item has the same actor as the current item let's just use the same id.
+        let itemId: string;
+        if (this.item.actor?.items.get(itemData.id)) {
+          itemId = itemData.id;
+        } else {
+          const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
+          if (!newItem) {
+            throw new Error(`Somehow could not create item ${itemData}`);
+          }
+          itemId = newItem[0].id;
+        }
+        await (<TwodsixItem>this.item).addConsumable(itemId);
       }
-      await (<TwodsixItem>this.item).addConsumable(itemId);
       this.render();
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);
     }
   }
-
-  private _openPDFReference(event): void {
+  private async _deletePDFReference(event): void {
+    event.preventDefault();
+    if (this.item.system.pdfReference.href != "") {
+      await this.item.update({"system.pdfReference.href": "", "system.pdfReference.label": ""});
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+    }
+  }
+  /*private _openPDFReference(event): void {
     event.preventDefault();
     const sourceString = (<GearTemplate>this.item.system).docReference;
     if (sourceString) {
@@ -263,5 +277,5 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }
-  }
+  }*/
 }

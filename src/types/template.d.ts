@@ -381,6 +381,7 @@ export interface Vehicle {
   techLevel:string;
   traits:string;
   docReference:string;
+  pdfReference:PDFLink;
   weight:string;
 }
 
@@ -505,7 +506,8 @@ export interface Skills {
   description:string;
   shortdescr:string;
   subtype:string;
-  reference:string;
+  docReference:string;
+  pdfReference:PDFLink;
   key:string;
   difficulty:string;
   rolltype:string;
@@ -532,6 +534,7 @@ export interface GearTemplate {
   associatedSkillName:string;
   equipped:string;
   docReference:string;
+  pdfReference:PDFLink;
 }
 
 export interface Trait {
@@ -542,7 +545,8 @@ export interface Trait {
   prereq:string;
   shortdescr:string;
   subtype:string;
-  reference:string;
+  docReference:string;
+  pdfReference:PDFLink;
   key:string;
 }
 
@@ -555,7 +559,8 @@ export interface Spell {
   duration:string;
   shortdescr:string;
   subtype:string;
-  reference:string;
+  docReference:string;
+  pdfReference:PDFLink;
 }
 
 export interface Weapon extends GearTemplate {
@@ -577,4 +582,9 @@ export interface Weapon extends GearTemplate {
   recoil:boolean;
   features:string;
   armorPiercing:number;
+}
+
+export interface PDFLink {
+  href:string;
+  label:string;
 }

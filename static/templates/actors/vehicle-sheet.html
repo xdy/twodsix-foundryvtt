@@ -7,10 +7,11 @@
       <div class="vehicle-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                          onClick="this.select();"/></div>
       {{#if settings.showReferences}}
-      <div class="item-reference">
-        <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-        <input class="form-input" id="source" type="text" name="system.docReference" value="{{actor.system.docReference}}"/>
-      </div>
+        <div class="item-reference">
+          {{localize "TWODSIX.Items.DocumentReference"}}:
+          <a class="open-link" href="{{actor.system.pdfReference.href}}">{{actor.system.pdfReference.label}}</a>
+          {{#if actor.system.pdfReference.href}} <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </div>
       {{/if}}
     </div>
     <div class="vehicle-stats">

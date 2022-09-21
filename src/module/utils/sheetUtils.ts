@@ -190,7 +190,12 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
     return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
   } catch (err) {
-    throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
+    const htmlRef = event.dataTransfer?.getData('text/html');
+    if (htmlRef) {
+      return getHTMLLink(htmlRef);
+    } else {
+      throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
+    }
   }
 }
 
@@ -200,4 +205,22 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
   return duplicate(item);
+}
+
+export function getHTMLLink(dropString:string): Record<string,unknown> {
+  const re = new RegExp(/<a href="(.+?)">(.*?)<\/a>/gm);
+  const parsedResult: RegExpMatchArray | null = re.exec(dropString);
+  if (parsedResult){
+    return ({
+      type: "html",
+      href: parsedResult[1] ?? "",
+      label: parsedResult[2] ?? ""
+    });
+  } else {
+    return ({
+      type: "html",
+      href: "",
+      label: ""
+    });
+  }
 }

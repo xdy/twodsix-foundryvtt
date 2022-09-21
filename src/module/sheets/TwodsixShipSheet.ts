@@ -247,6 +247,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     try {
       const dropData:any = getDataFromDropEvent(event);
+      if (dropData.type === 'html') {
+        return false;
+      }
       const droppedObject:any = await getItemDataFromDropData(dropData);
 
       if (droppedObject.type === "traveller") {

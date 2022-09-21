@@ -1,6 +1,7 @@
 {{#if settings.showReferences}}
 <div class="item-reference">
-  <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-  <input class="form-input" id="source" type="text" name="system.docReference" value="{{system.docReference}}"/>
+  {{localize "TWODSIX.Items.DocumentReference"}}:
+  <a class="open-link" href="{{system.pdfReference.href}}">{{system.pdfReference.label}}</a>
+  {{#if system.pdfReference.href}} <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>{{/if}}
 </div>
 {{/if}}

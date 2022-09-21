@@ -257,6 +257,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
+    //Handle droped pdf reference for vehicle sheet
+    if (dropData.type === 'html'){
+      if (dropData.href && this.actor.type === 'vehicle') {
+        await this.actor.update({"system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
+      }
+      return false;
+    }
+
     const itemData = await getItemDataFromDropData(dropData);
 
     switch (actor.type) {

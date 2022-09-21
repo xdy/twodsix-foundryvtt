@@ -250,6 +250,7 @@
       "Encumbrance": "Encumbrance",
       "Enc": "Enc",
       "DocumentReference": "Document Reference",
+      "DeleteReference": "Delete Reference",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
