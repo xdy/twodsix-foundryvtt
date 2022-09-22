@@ -38,6 +38,8 @@
               <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
             </span>
           </span>
+        </li>
+        <li class="item flexrow" data-item-id="{{item.id}}">
           {{#if (twodsix_useCEAutofireRules)}}
             {{#each (twodsix_burstModes item.system) as |mode|}}
               <span class="items-weapons-abilities">

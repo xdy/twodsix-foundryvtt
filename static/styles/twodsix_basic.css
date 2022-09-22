@@ -73,11 +73,13 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 23em 35em;
+  grid-template-columns: 316px 493px;
+  grid-template-rows: 607px;
   gap: 1px 1px;
   position: relative;
-  top: -2.4em;
-  left: -0.3em;
+  top: -10px;
+  left: -6px;
+  overflow: hidden;
 }
 
 .npc-content-container {
@@ -205,7 +207,7 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 11em 5em 9em;
+  grid-template-rows: 15em 12em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -224,7 +226,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-stats {
   grid-area: vehicle-stats;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .vehicle-notes {
@@ -376,10 +378,10 @@ img.character-info-mask {
 
 .character-photo {
   margin-top: 2.15em;
-  margin-left: 1.5em;
+  margin-left: 20px;
   position: relative;
-  width: 18.5em;
-  height: 20em;
+  width: 260px;
+  height: 280px;
   z-index: 0;
   border: 2px solid;
   border-color: inherit;
@@ -428,8 +430,8 @@ img.character-info-mask {
   margin-top: 0.2em;
   text-align: center;
   z-index: 6;
-  left: 1.1em;
-  width: 36ch;
+  left: 14px;
+  width: 269px;
   border: 2px solid;
   border-radius: 1ch;
   border-color: inherit;
@@ -642,12 +644,12 @@ span.bgi-charEdit {
 }
 
 .stat-table {
-  font-size: 0.8em;
+  font-size: 12px;
   max-width: 95%;
   margin-left: 1ch;
 }
 .stat-table-npc {
-  font-size: 0.8em;
+  font-size: smaller;
   max-width: 100%;
 }
 
@@ -849,7 +851,7 @@ svg:hover {
   background: transparent !important;
 }
 
-.skill-tab, .item-tab, .finances-tab, .info-tab, .notes-tab {
+.skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab {
   background-position-x: -2px;
   width: 90px;
   display: block;
@@ -857,12 +859,12 @@ svg:hover {
   border-radius: 2ch;
 }
 
-a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.notes-tab:hover {
+a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.actor-notes-tab:hover {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-semi-opaque)
 }
 
-a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.notes-tab.active {
+a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-nearly-opaque) !important;
   text-shadow: none !important;
@@ -876,17 +878,18 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .tab[data-tab].active {
   display: block;
   position: relative;
+  /* overflow: auto; */
 }
 
 .tab.inventory {
-  top: 2em;
-  height: 37em;
-  overflow-x: hidden;
+  margin-top: 1em;
+  height: 525px;
+  overflow: auto;
 }
 
-.character-inventory {
-  overflow-x: hidden;
-}
+/* .character-inventory {
+  overflow-x: auto;
+}*/
 
 .inventory {
   top: 2em;
@@ -896,7 +899,8 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   display: grid;
   grid-template-columns: 1.7em 11.5em 1.6em 1.6em 2em 4em 5em 6em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . . . .';
 }
 
 .gear-header {
@@ -905,6 +909,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   padding-left: 0.5em;
   padding-top: 2px;
   padding-bottom: 2px;
+  width: fit-content;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -913,28 +918,32 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .gear {
   border: 1px solid var(--s2d6-background-semi-opaque);
-  padding-left: 0.5em;
+  padding-left: 0.4em;
+  width: fit-content;
 }
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 3em 3em 3.5em 4em 5em;
+  grid-template-columns: 1.7em 13.5em 3em 3em 3.5em 4em 5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . .';
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.7em 11.5em 1.6em 1.6em 9.5em 4em 3em;
+  grid-template-columns: 1.7em 11.5em 1.6em 1.6em 10.5em 4em 3em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.7em 11em 2em 2em 12em 4.5em;
+  grid-template-columns: 1.7em 12em 2em 2em 12em 4.5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . .';
 }
 
 .items-traits, .items-spells {
@@ -946,9 +955,10 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 5em 2.5em 5.8em 4.5em;
+  grid-template-columns: 1.7em 12.5em 6em 2.5em 7em 4.5em;
   gap: 1px 1px;
-  grid-template-areas: '. . . . .';
+  grid-template-areas:
+    '. . . . . .';
 }
 
 /*-------Skill Tab-----------*/
@@ -961,6 +971,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .roll-initiative {
   max-width: fit-content;
   cursor: pointer;
+  line-height: 4ch;
 }
 
 .skill-list {
@@ -970,6 +981,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
   /*font-weight: bold;*/
+  width: fit-content;
 }
 
 #joat-skill {
@@ -977,8 +989,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 #joat-skill-input {
-  height: 20px;
-  width: 25px;
+  height: auto;
+  /* width: 4ch; */
+  width: 2em !important;
 }
 
 .add-skill {
@@ -989,7 +1002,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   display: block;
   position: relative;
   top: 0.1em;
-  left: 27.5em;
+  left: 25.5em;
   z-index: 51;
   color: var(--s2d6-app-color);
   background-color: var(--s2d6-background-nearly-opaque);
@@ -1001,16 +1014,17 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 span.add-skill-txt {
-  height: 22px;
+  height: 2ch;
   display: inline-block;
   position: relative;
   margin-top: -0.4em;
   margin-left: 0.95em;
 }
 
-/*.skill {
-  padding: 0.1em 0 0.1em 0.1em;
-}*/
+.skill {
+  /* padding: 0.1em 0 0.1em 0.1em; */
+  width: fit-content;
+}
 
 a:hover, a.active {
   text-shadow: 0 0 0.8em;
@@ -1050,8 +1064,8 @@ input.item-value-edit {
 
 .skills {
   position: relative;
-  top: 2.5em;
-  overflow-y: auto;
+  /* top: 2.5em; */
+  /* overflow: auto; */
 }
 
 .skills.grid.grid-2col {
@@ -1062,8 +1076,8 @@ input.item-value-edit {
 
 .tab.skills {
   top: 2em;
-  height: 37em;
-  overflow-x: hidden;
+  height: 524px;
+  overflow: auto;
 }
 
 .item-controls .item-toggle i { display: none; }
@@ -1186,9 +1200,15 @@ span.total-output {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 1px 1px;
-  grid-template-areas: 'cash financial-notes' 'pension financial-notes' 'debt financial-notes' 'ship-payments financial-notes' 'living-costs financial-notes';
+  grid-template-areas:
+    'cash financial-notes'
+    'pension financial-notes'
+    'debt financial-notes'
+    'ship-payments financial-notes'
+    'living-costs financial-notes';
   position: relative;
-  margin-top: 3em;
+  margin-top: 2em;
+  overflow: hidden;
 }
 
 .financial-notes {
@@ -1198,8 +1218,8 @@ span.total-output {
 
 .financial-notes div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary);
-  width: 14.8em;
-  height: 28.5em;
+  width: 223px;
+  height: 434px;
   border-radius: 0 0 3px 3px;
   overflow-y: auto;
   padding: 0.2em;
@@ -1212,9 +1232,9 @@ span.total-output {
 }
 
 .cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'] {
-  width: 14.8em;
+  width: 215px;
   padding: 0.5em;
-  height: 31px;
+  height: 3ch;
   /*border: 2px solid;*/
   border-radius: 0 0 3px 3px;
 }
@@ -1240,17 +1260,21 @@ span.total-output {
 }
 
 .item-title, .item-title-npc,  .item-title-vehicle {
-  height: 22px;
+  min-height: 3ch;
   display: block;
   color: var(--s2d6-app-color);
   font-weight: bold;
-  font-size: 15px;
+  font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1.5ch 1.5ch 0 0;
+  /* position: fixed; */
 }
 .item-title {
-  width: 207px;
+  width: fit-content;
+  min-width: 6ch;
+  padding: 2px 1ch;
+  vertical-align: middle;
 }
 
 .item-title-short {
@@ -1265,8 +1289,8 @@ span.total-output {
   border-radius: 1ch 1ch 0 0;
 }
 .manifest {
-  margin-left: 1em;
-  width: 215px;
+  margin-left: 15px;
+  /* width: 215px; */
 }
 
 .simplified-skill-description {
@@ -1293,7 +1317,7 @@ span.total-output {
 
 .tab.info {
   top: 2em;
-  height: 37em;
+  height: 550px;
   overflow-x: hidden;
 }
 
@@ -1335,10 +1359,10 @@ span.total-output {
 .notes-container {
   margin-left: 1ch;
   margin-top: 5ch;
-  height: 36em;
-  margin-bottom: -3em;
+  height: 528px;
+  margin-bottom: 30px;
   overflow: hidden;
-  font-size: larger;
+  /* font-size: larger; */
 }
 
 /*.editor-content {
@@ -1367,10 +1391,14 @@ span.total-output {
 
 .ship-container {
   display: grid;
-  grid-template-columns: 28em 29em;
-  grid-template-rows: 2.4em 7.5em 7.5em;
+  grid-template-columns: 392px 406px;
+  grid-template-rows: 34px 105px 105px 65px;
   gap: 1px 1px;
-  grid-template-areas: "ship-image ship-name" "ship-image ship-info" "ship-image ship-requirements";
+  grid-template-areas:
+    "ship-image ship-name"
+    "ship-image ship-info"
+    "ship-image ship-requirements"
+    "ship-deck .";
 }
 
 img.ship-mask-bg {
@@ -1386,7 +1414,7 @@ img.ship-mask-bg {
   height: 100%;
   z-index: 0;
   border: 2px solid;
-  border-radius: 2ch;
+  border-radius: 15px;
   text-align: center;
   background-color: var(--s2d6-input-background);
 }
@@ -1401,8 +1429,9 @@ img.ship-mask-bg {
 .ship-deck {
   /* width: 24em; */
   /* margin-left: 6.5em; */
-  margin-top: 0.4em;
+  margin-top: 7px;
   text-align: center;
+  grid-area: ship-deck;
 }
 
 .ship-deck-link {
@@ -1433,9 +1462,9 @@ img.ship-mask-bg {
   grid-area: ship-info;
   z-index: 3;
   position: relative;
-  width: 29em;
+  width: 406px;
   border: 2px solid;
-  border-radius: 2ch;
+  border-radius: 15px;
 }
 
 .ship-info li {
@@ -1482,14 +1511,13 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 8em 5em 7em 5em 7em;
-  grid-template-rows: 8.5em;
+  grid-template-columns: 100px 50px 82px 58px 82px;
+  grid-template-rows: 100px;
   gap: 1px 5px;
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
-  font-size: smaller;
-  /* margin-top: 0.5em; */
-  margin-left: 0.5em;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .ship-state-grid span {
@@ -1583,8 +1611,8 @@ img.ship-mask-bg {
   z-index: 3;
   text-align: center;
   border: 2px solid;
-  border-radius: 2ch;
-  width: 29em;
+  border-radius: 15px;
+  width: 406px;
 }
 
 .power-title {
@@ -1593,34 +1621,36 @@ img.ship-mask-bg {
   border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   position: relative;
-  width: 23.5em;
-  left: 2.5em;
+  width: 411px;
+  left: 43px;
   border-bottom: none;
-  font-size: 1.25em;
+  font-size: 17.5px;
   padding: 2px 24px;
-  margin: 0 0 0.5rem;
+  margin: 0 0 8px;
 }
 
 .ship-power {
   position: relative;
-  left: 1em;
-  width: 5.3em;
-  margin-right: -5.3em;
-  margin-bottom: -2.43em;
-  top: 0.23em;
+  left: 14px;
+  width: 75px;
+  margin-right: -74px;
+  margin-bottom: -34px;
+  top: 4px;
 }
 
 .power-grid {
   display: grid;
-  grid-template-columns: 4.2em 4.2em 4.2em 4.2em 4.2em;
+  grid-template-columns: 59px 59px 59px 59px 59px;
   grid-template-rows: 1fr;
   gap: 2px 2px;
-  grid-template-areas: ". . . . .";
+  grid-template-areas:
+    ". . . . .";
   position: relative;
-  left: 6.7em;
-  top: -4.4em;
+  left: 93px;
+  top: -60px;
   /*margin-bottom: -4em;
   height: 4em;*/
+  font-size: 15px;
 }
 
 .ship-stat, .ship-stat-finance {
@@ -1705,10 +1735,10 @@ input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 32.5rem;
+  width: 497px;
   display: block;
-  margin-left: 21em;
-  margin-top: -3.6em;
+  margin-left: 315px;
+  margin-top: -57px;
   z-index: 99;
   height: 28px;
   position: absolute;
@@ -1716,9 +1746,10 @@ input.power-total {
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
   border: 2px solid;
-  border-radius: 2ch;
+  border-radius: 15px;
   vertical-align: middle;
-  padding: 0.2em 0.3em;
+  padding: 3px 4px;
+  font-size: 15px;
 }
 
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
@@ -1740,15 +1771,16 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   z-index: 99;
   position: relative;
   border: 2px solid;
-  border-radius: 2ch;
+  border-radius: 20px;
 }
 
 .ship-grid {
   display: grid;
-  grid-template-columns: 17em 17em 17em;
-  grid-template-rows: 4em 4em 4em;
-  gap: 1em 1em;
-  grid-template-areas: ". .";
+  grid-template-columns: 245px 245px 245px;
+  grid-template-rows: 56px 56px 56px;
+  gap: 10px 22px;
+  grid-template-areas:
+    ". .";
 }
 
 .ship-positions-grid {
@@ -1760,10 +1792,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .tab.ship-crew, .tab.ship-positions {
-  width: 56.3em;
-  padding-left: 2.5em;
-  padding-right: 2em;
-  margin-top: 1em;
+  width: 100%;
+  padding-left: 14px;
+  /* padding-right: 24px; */
+  margin-top: 7px;
   overflow: auto;
 }
 
@@ -1801,7 +1833,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .crew-list, .ship-positions-list {
-  height: 20.4em;
+  height: 302px;
 }
 
 .force-border {
@@ -1809,24 +1841,23 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-grid input[type="text"] {
-  width: 14.8em;
+  width: 207px;
   border: 1px groove;
   border-radius: 0;
-
 }
 
 .ship-grid > div > div[contenteditable] {
-  width: 14.8em;
+  width: 207px;
   border: 1px groove !important;
   border-radius: 0;
-  min-height: 3em;
+  min-height: 6ch;
   background-color: var(--s2d6-input-background);
 }
 
 .storage-wrapper {
   margin-top: 1.0em;
   overflow-y: auto;
-  height: 21em;
+  height: 290px;
 }
 
 .grid-columns-double {
@@ -1834,10 +1865,11 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". .";
+  grid-template-areas:
+    ". .";
   margin-left: 15px;
   width: 54.4em;
-  border: solid 1px var(--s2d6-input-background);
+  /* border-right: 1px solid var(--s2d6-form-light); */
 }
 
 .grid-columns-single {
@@ -1845,10 +1877,11 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ".";
+  grid-template-areas:
+    ".";
   margin-left: 1em;
   width: 54.4em;
-  border: solid 1px var(--s2d6-input-background);
+  /* border: solid 1px var(--s2d6-input-background); */
 }
 
 .storage-stored {
@@ -1856,16 +1889,19 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-columns: 8.5em 5em 3em 3em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". . . . . .";
+  grid-template-areas:
+    ". . . . . .";
+  border-right: 1px solid var(--s2d6-form-light);
 }
 
 .storage-header {
-  border: 2px solid var(--s2d6-background-opaque);
+  /* border: 2px solid var(--s2d6-background-opaque); */
   background-color: var(--s2d6-background-opaque);
   color: var(--s2d6-app-color);
   position: sticky;
   top:0%;
   min-height: 5ch;
+  /* width: fit-content; */
 }
 
 .components-stored-double {
@@ -1873,11 +1909,14 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". . . . . .";
+  grid-template-areas:
+    ". . . . . .";
+  border-right: 1px solid var(--s2d6-form-light);
 }
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
   background: var(--s2d6-skill-list-even);
+  border-right: 1px solid var(--s2d6-form-light);
 }
 
 .components-stored-single {
@@ -1895,7 +1934,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .cargo-all {
   margin-top: 1.1em;
   overflow-y: auto;
-  height: 20em;
+  height: 290px;
 }
 
 .cargo-weight {
@@ -1908,7 +1947,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*margin-top: 1.1em;*/
   overflow-y: auto;
   height: 12em;
-  width: 56em;
+  width: 784px;
   /*padding: 0 0.5em;*/
 }
 
@@ -1937,10 +1976,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }*/
 
 .ship-notes-container, .ship-finances-container {
-  margin-left: 1ch;
-  padding-top: 2ch;
-  height: 21em;
-  width: 56em;
+  margin-left: 15px;
+  padding-top: 14px;
+  height: 302px;
+  width: 782px;
   overflow-x: hidden;
 }
 
@@ -1948,7 +1987,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 100%;
-  height: 90%;
+  height: 88%;
   overflow-y: auto;
   background-color: var(--s2d6-input-background) !important;
 }
@@ -1971,12 +2010,14 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 div.ship-value {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 17.5em;
+  justify-content: space-between;
+  height: 245px;
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
-  width: 17em;
+  width: 238px;
   padding: 0 2ch;
+  /* font-size: 15px; */
+  overflow-y: auto;
 }
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
@@ -1986,8 +2027,8 @@ div.ship-value {
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--color-border-light-tertiary);
   background-color: var(--s2d6-input-background) !important;
-  width: 34.8em;
-  height: 17.5em;
+  width: 487px;
+  height: 245px;
   border-radius: 0 3px 3px;
   overflow-y: auto;
   padding: 0.2em;
@@ -2133,13 +2174,14 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .consumable-row .refill-button {
-  width: 100px;
-  height: 20px;
+  width: 10ch;
+  height: 2.5ch;
   border-radius: 10px;
   line-height: normal;
   cursor: pointer;
   margin-top: 0;
-  margin-left: 5px;
+  margin-left: 1ch;
+  padding: 0;
 }
 
 .consumable-row .consumable-count {
@@ -2151,18 +2193,19 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .combined-buttons {
-  width: 40px;
+  width: 8em;
   font-size: 0;
 }
 
 .combined-buttons button {
-  width: 20px;
-  height: 20px;
-  margin: 0;
+  width: 2ch;
+  height: 2.5ch;
+  margin: 0px;
   padding: 0;
   line-height: normal;
   cursor: pointer;
-  /*margin-top: -2px;*/
+  /* align-content: center; */
+  /* margin-top: -2px; */
 }
 .consumable-row .combined-buttons button {
   margin-top: 0;
@@ -2520,7 +2563,8 @@ form .form-group > label {
 
 .ol-no-indent {
   list-style: none;
-  padding-left: 0;
+  padding-left: 0em;
+  margin: 2px 0;
 }
 
 .header-row {
@@ -2528,6 +2572,7 @@ form .form-group > label {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-backgroun-semi-opaque);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-background-opaque), var(--s2d6-input-background));
+  /* border-right: 1px solid var(--s2d6-form-light); */
 }
 /* ------ WEBCAM Settings ------ */
 /*
