@@ -250,6 +250,7 @@
       "Encumbrance": "Encumbrance",
       "Enc": "Enc",
       "DocumentReference": "Document Reference",
+      "Link": "Link",
       "DeleteReference": "Delete Reference",
       "Armor": {
         "Armor": "Armor",
@@ -719,10 +720,6 @@
       "showHeroPoints": {
         "hint": "Show Hero Points counter on actor sheet.",
         "name": "Show Hero Points"
-      },
-      "showItemReferences": {
-        "hint": "Shows a text field on item and vehicle sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on vehicle and item sheets."
       },
       "ShowLawLevel": {
         "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",

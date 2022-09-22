@@ -47,7 +47,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
-      showReferences: game.settings.get('twodsix', 'showItemReferences'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
     returnData.config = TWODSIX;
@@ -221,9 +220,13 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     try {
       const dropData = getDataFromDropEvent(event);
       TwodsixItemSheet.check(!dropData, "DraggingSomething");
-      if (dropData.type === 'html'){
+      if (dropData.type === 'html' || dropData.type === 'pdf'){
         if (dropData.href) {
-          await this.item.update({"system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
+          await this.item.update({
+            "system.pdfReference.type": dropData.type,
+            "system.pdfReference.href": dropData.href,
+            "system.pdfReference.label": dropData.label
+          });
         }
       } else {
         //This part handles just comsumables

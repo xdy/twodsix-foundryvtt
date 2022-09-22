@@ -1,7 +1,14 @@
-{{#if settings.showReferences}}
+{{#if system.pdfReference.href}}
 <div class="item-reference">
-  {{localize "TWODSIX.Items.DocumentReference"}}:
-  <a class="open-link" href="{{system.pdfReference.href}}">{{system.pdfReference.label}}</a>
-  {{#if system.pdfReference.href}} <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>{{/if}}
+  {{localize "TWODSIX.Items.Link"}}:
+  <a class="open-link" href="{{system.pdfReference.href}}">
+    {{#iff system.pdfReference.type "===" 'pdf'}}
+      <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+    {{else}}
+      <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+    {{/iff}}
+     {{system.pdfReference.label}}
+  </a>
+  <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
 </div>
 {{/if}}

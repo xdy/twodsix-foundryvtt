@@ -190,10 +190,18 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
     return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
   } catch (err) {
-    const htmlRef = event.dataTransfer?.getData('text/html');
-    if (htmlRef) {
-      return getHTMLLink(htmlRef);
+    const pdfRef = event.dataTransfer?.getData('text/html');
+    if (pdfRef) {
+      return getHTMLLink(pdfRef);
     } else {
+      const uriRef = event.dataTransfer?.getData('text/uri-list');
+      if (uriRef) {
+        return ({
+          type: "html",
+          href: uriRef,
+          label: "Weblink"
+        });
+      }
       throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
     }
   }
@@ -210,15 +218,16 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
 export function getHTMLLink(dropString:string): Record<string,unknown> {
   const re = new RegExp(/<a href="(.+?)">(.*?)<\/a>/gm);
   const parsedResult: RegExpMatchArray | null = re.exec(dropString);
+  const isPDF = dropString.includes("/pdfjs/");
   if (parsedResult){
     return ({
-      type: "html",
+      type: isPDF ? "pdf" : "html",
       href: parsedResult[1] ?? "",
       label: parsedResult[2] ?? ""
     });
   } else {
     return ({
-      type: "html",
+      type: isPDF ? "pdf" : "html",
       href: "",
       label: ""
     });

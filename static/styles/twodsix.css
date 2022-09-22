@@ -532,7 +532,7 @@ h2 {
   grid-area: vehicle-name-photo;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .vehicle-notes {

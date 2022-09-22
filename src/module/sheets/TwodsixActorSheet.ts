@@ -60,7 +60,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
-      showReferences: game.settings.get('twodsix', 'showItemReferences'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       useNationality: game.settings.get('twodsix', 'useNationality')
     };
