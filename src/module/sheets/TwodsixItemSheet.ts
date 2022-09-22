@@ -261,7 +261,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _deletePDFReference(event): void {
     event.preventDefault();
     if (this.item.system.pdfReference.href != "") {
-      await this.item.update({"system.pdfReference.href": "", "system.pdfReference.label": ""});
+      await this.item.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }

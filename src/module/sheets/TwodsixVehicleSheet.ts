@@ -110,7 +110,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
   private async _deletePDFReference(event): void {
     event.preventDefault();
     if (this.actor.system.pdfReference.href != "") {
-      await this.actor.update({"system.pdfReference.href": "", "system.pdfReference.label": ""});
+      await this.actor.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }
