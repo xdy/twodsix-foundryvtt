@@ -2076,11 +2076,6 @@ button.flexrow.flex-group-center.toggle-skills {
   margin: 0 0.4em -0.5em 0.3em;
 }
 
-/*a:hover {
-  color: var(--light-color);
-  text-shadow: 0 0 5px /*var(--default-color);
-}*/
-
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
