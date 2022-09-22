@@ -2092,7 +2092,7 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 .item-reference {
-  display: inline-flex;
+  text-align: center;
   margin-top: 0.3em;
   gap: 1ch;
 }
