@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.1...v2.3.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* make actor sheets more robust when changing font size ([#1120](https://github.com/xdy/twodsix-foundryvtt/issues/1120)) ([d68efbd](https://github.com/xdy/twodsix-foundryvtt/commit/d68efbdf29a9bd075b372068ecbc2948c6b65967))
+
 ## [2.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.0...v2.3.1) (2022-09-19)
 
 
