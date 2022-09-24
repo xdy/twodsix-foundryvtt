@@ -185,7 +185,8 @@
         "Herbivore": "Herbivore",
         "Omnivore": "Omnivore",
         "Carnivore": "Carnivore",
-        "Scavenger": "Scavenger"
+        "Scavenger": "Scavenger",
+        "Other": "Other"
       },
       "Type": "Type",
       "Subtype": {
@@ -202,7 +203,8 @@
         "Hijacker": "Hijacker",
         "Intimidator": "Intimidator",
         "CarrionEater": "Carrion-Eater",
-        "Reducer": "Reducer"
+        "Reducer": "Reducer",
+        "Siren": "Siren"
       },
       "Locations": {
         "CityUrban": "City or Urban",

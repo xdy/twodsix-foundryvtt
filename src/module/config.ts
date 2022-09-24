@@ -527,7 +527,8 @@ export const AnimalNiche = {
   herbivore: "TWODSIX.Animal.NicheType.Herbivore",
   omnivore: "TWODSIX.Animal.NicheType.Omnivore",
   carnivore: "TWODSIX.Animal.NicheType.Carnivore",
-  scavenger: "TWODSIX.Animal.NicheType.Scavenger"
+  scavenger: "TWODSIX.Animal.NicheType.Scavenger",
+  other: "TWODSIX.Animal.NicheType.Other"
 };
 export const HerbivoreType = {
   filter: "TWODSIX.Animal.Subtype.Filter",

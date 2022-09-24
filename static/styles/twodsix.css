@@ -534,6 +534,11 @@ h2 {
   overflow: auto;
 }
 
+.short-input {
+  max-width: 21ch;
+  font-size: smaller;
+}
+
 .vehicle-photo {
   text-align: center;
   z-index: 0;
@@ -887,7 +892,7 @@ img.character-info-mask {
 }
 
 .bgi-niche select {
-  width: 14ch;
+  width: 13ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   font-size: smaller;
