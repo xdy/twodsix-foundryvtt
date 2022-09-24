@@ -11,6 +11,10 @@
   "Routine": "Rutinaria",
   "Simple": "Sencilla",
   "TWODSIX": {
+    "ActiveEffects": {
+      "DeleteEffect": "Eliminar Efecto Activo",
+      "ConfirmDelete": "¿Quieres realmente borrar el efecto?"
+    },
     "Damage": {
       "DealDamage": "Aplicar daño",
       "Damage": "Daño",
@@ -64,11 +68,14 @@
       },
       "Gender": "Sexo",
       "HeroPoints": "Puntos Heroe",
+      "Hits": "Impactos",
       "Contamination": "Contaminación",
       "Lifeblood": "Vitalidad",
       "Stamina": "Aguante",
+      "Endurance": "Resistencia",
       "RadiationExposure": "Exposición Radiación",
       "HomeWorld": "Planeta Natal",
+      "Nationality": "Nacionalidad",
       "Info": {
         "ALLIES": "ALIADOS",
         "BIOGRAPHY": "BIOGRAFÍA",
@@ -96,6 +103,8 @@
         "Range": "Alcance",
         "Refill": "Recarga",
         "Reload": "Recargar",
+        "SPELLS": "CONJUROS",
+        "Spells": "Conjuros",
         "ShortDescr": "Opciones",
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
@@ -170,6 +179,56 @@
         "All": "Todos"
       }
     },
+    "Animal": {
+      "Niche": "Nicho",
+      "NicheType": {
+        "Herbivore": "Herbívoro",
+        "Omnivore": "Omnívoro",
+        "Carnivore": "Carnívoro",
+        "Scavenger": "Carroñero"
+      },
+      "Type": "Tipo",
+      "Subtype": {
+        "Filter": "Filtro",
+        "Intermittent": "Intermitente",
+        "Grazer": "Pastador",
+        "Gatherer": "Recolector",
+        "Hunter": "Cazador",
+        "Eater": "Consumidor",
+        "Pouncer": "Agresivo",
+        "Chaser": "Perseguidor",
+        "Trapper": "Trampero",
+        "Killer": "Asesino",
+        "Hijacker": "Secuestrador",
+        "Intimidator": "Intimidador",
+        "CarrionEater": "Carroñero",
+        "Reducer": "Reductor"
+      },
+      "Locations": {
+        "CityUrban": "Ciudad o Urbano",
+        "PlainsGrassland": "Llanuras o Praderas",
+        "HillsMountains": "Colinas o Montañas",
+        "DesertBadlands": "Desierto o Tierras baldías",
+        "SwampAquatic": "Pantano o Acuático",
+        "ForestJungle": "Bosque o Jungla"
+      },
+      "Location": "Emplazamiento",
+      "AnimalNotes": "Notas del Animal",
+      "AttackWeapons": "Ataques / Armas",
+      "Reaction": "Tirada Reacción",
+      "Attack": "Ataque",
+      "Flee": "Huida",
+      "AttacksMessage": "¡El animal ataca al grupo!",
+      "FleesMessage": "¡El animal huye del grupo!",
+      "NoReactionMessage": "El animal no reacciona",
+      "MoraleRoll": "Tirada Moral",
+      "MoraleDM": "MD Moral",
+      "Retreat": "Retirada",
+      "FightingWithdrawal": "Escapa del combate",
+      "KeepFighting": "Mantiene el combate",
+      "Advance": "Avanza",
+      "FightToTheDeath": "¡Lucha hasta la Muerte!"
+    },
     "Chat": {
       "Roll": {
         "Difficulty": "Dificultad tirada",
@@ -218,7 +277,7 @@
         "drive": "motor",
         "drone": "dron",
         "electronics": "electrónica",
-        "fuel": "combustible",
+        "fuel": "fuel",
         "hull": "casco",
         "mount": "montura",
         "power": "energía",
@@ -309,9 +368,12 @@
         "SimplifiedSkillNameDescription": "Utilizado para fórmulas de tiradas estilo @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ por defecto es cero si la habilidad no existe o de valor negativo.",
         "LFB": "VIT",
         "STA": "AGU",
+        "HIT": "IMPACTOS",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
-        "TrainingNotes": "Notas Estudio"
+        "TrainingNotes": "Notas Estudio",
+        "NumberOfSkills": "Número de Habilidades",
+        "SkillRanks": "Rangos Habilidad"
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
@@ -325,7 +387,7 @@
           "air": "Aire",
           "drugs": "Drogas",
           "food": "Comida",
-          "fuel": "Combustible",
+          "fuel": "Fuel",
           "magazine": "Cargador",
           "power_cell": "Celda de potencia",
           "other": "Otros"
@@ -354,6 +416,13 @@
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
         "UnarmedDescription": "Ataque sin armas"
+      },
+      "Spells": {
+        "CircleSchool": "Círculo/Escuela Magia",
+        "Duration": "Duración",
+        "SpellName": "Nombre",
+        "Level": "Nivel",
+        "sorcerySkill": "Hechicería"
       }
     },
     "Ship": {
@@ -393,9 +462,9 @@
       "Drives": "Motores",
       "FINANCENOTES": "NOTAS FINANZAS",
       "SHIPVALUE": "COSTE NAVE",
-      "Fuel": "Combustible",
-      "RefinedFuel": "Combustible Refinado",
-      "UnrefinedFuel": "Combustible Sin Refinar",
+      "Fuel": "Fuel",
+      "RefinedFuel": "Fuel Refinado",
+      "UnrefinedFuel": "Fuel Sin Refinar",
       "Gs": "G",
       "InvalidDocumentForShipPosition": "Este tipo de documento es inválido para el puesto de la nave. Sólo se pueden colocar habilidades.",
       "IsMassProduced": "Nave Producida en Serie",
@@ -798,7 +867,7 @@
         "name": "Mostrar Plazo de Tiempo en la Tirada"
       },
       "showStatusIcons": {
-        "hint": "Iconos de estado superpuestos al lado de la imagen del actor en la hoja.",
+        "hint": "Iconos estado superpuestos junto a la imagen de la hoja del personaje.",
         "name": "Mostrar iconos de estado en la hoja del actor"
       },
       "showHullAndArmor": {
@@ -816,6 +885,38 @@
       "showInitiativeButton": {
         "hint": "Mostrar un botón para tirar la iniciativa en la hoja, dentro de la pestaña de habilidades.",
         "name": "Mostrar Botón para Tirar Iniciativa"
+      },
+      "showSkillCountsRanks": {
+        "hint": "Mostrar el número de habilidades entrenadas y suma de niveles (rangos) en la parte inferior de la pestaña.",
+        "name": "Mostrar número Habilidades y Rangos en la Hoja Traveller"
+      },
+      "showComponentSummaryIcons": {
+        "hint": "Mostrar iconos resumen de los componentes debajo de la ilustración de la nave.",
+        "name": "Mostrar Iconos Resumen Componentes"
+      },
+      "showSpells": {
+        "hint": "Mostrar lista de conjuros en la hoja del personaje.",
+        "name": "Mostrar Conjuros"
+      },
+      "sorcerySkill": {
+        "hint": "El nombre de la habilidad utilizada para Conjurar/Hechicería.",
+        "name": "Nombre habilidad para Magia"
+      },
+      "useNationality": {
+        "hint": "Mostrar el campo de nacionalidad en vez de mundo natal en la hoja de personaje.",
+        "name": "Mostrar nacionalidad en vez de mundo natal"
+      },
+      "animalsUseHits": {
+        "hint": "Los animales sólo tienen un atributo para el daño: los Impactos.",
+        "name": "Los animales utilizan Impactos para daño"
+      },
+      "animalsUseLocations": {
+        "hint": "Los animales se describen por el emplazamiento donde se encuentran en vez del tipo y nicho.",
+        "name": "Animales utilizan emplazamiento en vez de tipo"
+      },
+      "displayReactionMorale": {
+        "hint": "Mostrar información de reacción y moral en la hoja de animales.",
+        "name": "Mostrar reacción y moral animal"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -834,6 +935,7 @@
       "skill": "habilidad",
       "consumable": "consumible",
       "trait": "rasgo",
+      "spell": "conjuro",
       "component": "componente"
     },
     "speeds": {
@@ -876,7 +978,8 @@
       "MultipleActorsFound": "Actores múltiples. No se puede aplicar el daño.",
       "EncumbranceFormulaInvalid": "La fórmula de carga no es válida. El valor será cero.",
       "ActorHasInitiativeAlready": "Personaje ya tiene iniciativa.",
-      "NoActiveToken": "El Actor no tiene un token en la escena."
+      "NoActiveToken": "El Actor no tiene un token en la escena.",
+      "InvalidReactionInputs": "No es posible realizar la Tirada de Reacción debido a que los campos de Ataque y Huida son inválidos."
     }
   },
   "VeryDifficult": "Muy Difícil"
