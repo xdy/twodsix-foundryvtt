@@ -1,3 +1,10 @@
+## [2.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.3...v2.3.4) (2022-09-24)
+
+
+### Bug Fixes
+
+* animal sheet types update ([#1127](https://github.com/xdy/twodsix-foundryvtt/issues/1127)) ([9427169](https://github.com/xdy/twodsix-foundryvtt/commit/9427169fc835004445ce1d49922da23360453ce8))
+
 ## [2.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.2...v2.3.3) (2022-09-24)
 
 
