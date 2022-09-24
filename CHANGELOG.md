@@ -1,3 +1,31 @@
+## [2.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.1...v2.3.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* make actor sheets more robust when changing font size ([#1120](https://github.com/xdy/twodsix-foundryvtt/issues/1120)) ([d68efbd](https://github.com/xdy/twodsix-foundryvtt/commit/d68efbdf29a9bd075b372068ecbc2948c6b65967))
+
+## [2.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.0...v2.3.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* add setting to display reaction and morale on animal sheet ([#1121](https://github.com/xdy/twodsix-foundryvtt/issues/1121)) ([6fdf958](https://github.com/xdy/twodsix-foundryvtt/commit/6fdf9580dc64ac4c6640a6901a0c7c87f508462b))
+
+# [2.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.2.0...v2.3.0) (2022-09-16)
+
+
+### Features
+
+* add animal sheet ([#1101](https://github.com/xdy/twodsix-foundryvtt/issues/1101)) ([4e2d100](https://github.com/xdy/twodsix-foundryvtt/commit/4e2d100eba7f724d9b52c6388fe5fea9ad7f16a3))
+
+# [2.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.1.0...v2.2.0) (2022-09-12)
+
+
+### Features
+
+* add optional nationality field ([#1114](https://github.com/xdy/twodsix-foundryvtt/issues/1114)) ([9d16541](https://github.com/xdy/twodsix-foundryvtt/commit/9d165410576079fae0b69f34ac88c77acf69b902))
+
 # [2.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.2...v2.1.0) (2022-09-11)
 
 

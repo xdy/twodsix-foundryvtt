@@ -26,11 +26,17 @@ async function catchDrop(canvasObject: Canvas, dropData) {
         return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }
 
-      if (actor.type === 'traveller') {
+      if (actor.type === 'traveller' || actor.type === 'animal') {
         if (dropData.type === 'damageItem') {
           await (<TwodsixActor>actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
         } else if (dropData.type === 'Item') {
           const itemData = await getItemDataFromDropData(dropData);  //Note: this might need to change to  itemData = fromUuidSync(dropData.uuid)
+
+          //Block unallowed types on animals
+          if (!["weapon", "trait", "skills"].includes(itemData.type) && actor.type === "animal") {
+            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
+            return false;
+          }
 
           if (isSameActor(actor, itemData)) {
             console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
@@ -49,8 +55,10 @@ async function catchDrop(canvasObject: Canvas, dropData) {
 
           if (itemData.type === "skills") {
             handleDroppedSkills(<TwodsixActor>actor, itemData);
+            return;
           } else if (!["component"].includes(itemData.type)) {
             handleDroppedItem(actor, itemData);
+            return;
           }
         }
       } else {

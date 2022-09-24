@@ -3,6 +3,8 @@ import DisplaySettings from "../module/settings/DisplaySettings";
 import ItemSettings from "../module/settings/ItemSettings";
 import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
+import { TwodsixVehicleSheet } from "../module/sheets/TwodsixVehicleSheet";
+import { TwodsixAnimalSheet } from "../module/sheets/TwodsixAnimalSheet";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import {rollItemMacro} from "../module/utils/rollItemMacro";
 import { TwodsixItemSheet } from "../module/sheets/TwodsixItemSheet";
@@ -109,6 +111,10 @@ declare global {
       'twodsix.showComponentSummaryIcons':boolean;
       'twodsix.showSpells':boolean;
       'twodsix.sorcerySkill':string;
+      'twodsix.useNationality':boolean;
+      'twodsix.animalsUseHits': boolean;
+      'twodsix.animalsUseLocations':boolean;
+      'twodsix.displayReactionMorale': boolean;
     }
   }
 }
@@ -186,6 +192,8 @@ declare interface Game {
     applications: {
       TwodsixActorSheet: TwodsixActorSheet;
       TwodsixShipSheet: TwodsixShipSheet;
+      TwodsixVehicleSheet: TwodsixVehicleSheet;
+      TwodsixAnimalSheet: TwodsixAnimalSheet;
     }
     config: TWODSIX
     entities: {
@@ -215,6 +223,22 @@ declare interface Game {
             id: 'twodsix.TwodsixShipSheet';
             default: boolean;
             cls: TwodsixShipSheet;
+            label: string;
+          };
+        };
+        vehicle: {
+          'twodsix.TwodsixVehicleSheet': {
+            id: 'twodsix.TwodsixVehicleSheet';
+            default: boolean;
+            cls: TwodsixVehicleSheet;
+            label: string;
+          };
+        };
+        animal: {
+          'twodsix.TwodsixAnimalSheet': {
+            id: 'twodsix.TwodsixAnimalSheet';
+            default: boolean;
+            cls: TwodsixAnimalSheet;
             label: string;
           };
         };

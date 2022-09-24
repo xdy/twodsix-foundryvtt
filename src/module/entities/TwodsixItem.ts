@@ -15,8 +15,12 @@ export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
     item?.setFlag('twodsix', 'newItem', true);
-    if (item?.type === 'weapon' && (item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
-      await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
+    if ((item?.img === "" || item?.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
+      if (item?.type === 'weapon') {
+        await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
+      } else if (item?.type === "spell") {
+        await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
+      }
     }
     return item;
   }

@@ -63,7 +63,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "1d6",
       showTimeframe: true,
       showHullAndArmor: "armorHullStruc",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
   CEL: {
@@ -93,7 +97,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false
     }
   },
   CEFTL: {
@@ -121,7 +129,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false
     },
   },
   CEATOM: {
@@ -149,7 +161,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: true,
+      animalsUseHits: false,
+      animalsUseLocations: true,
+      displayReactionMorale: true
     }
   },
   BARBARIC: {
@@ -176,7 +192,11 @@ const RULESETS = Object.freeze({
       defaultMovementUnits: "m",
       unarmedDamage: "1d6",
       showTimeframe: false,
-      showSpells: true
+      showSpells: true,
+      useNationality: true,
+      animalsUseHits: false,
+      animalsUseLocations: true,
+      displayReactionMorale: true
     },
   },
   CEQ: {
@@ -205,7 +225,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "threshold",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false
     }
   },
   CD: {
@@ -242,7 +266,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
   CLU: {
@@ -279,7 +307,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: false
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
 
@@ -317,7 +349,11 @@ const RULESETS = Object.freeze({
       unarmedDamage: "max(@characteristics.strength.mod, 1)",
       showTimeframe: false,
       showHullAndArmor: "armorOnly",
-      showSpells: true
+      showSpells: true,
+      useNationality: true,
+      animalsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true
     }
   },
 
@@ -476,12 +512,54 @@ export const TimeUnits = {
 };
 
 /**
- * The vehcile protection types.
+ * The vehicle protection types.
  */
 export const VehicleProtection = {
   armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
   threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
   armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
+};
+
+/**
+ * The animal types.
+ */
+export const AnimalNiche = {
+  herbivore: "TWODSIX.Animal.NicheType.Herbivore",
+  omnivore: "TWODSIX.Animal.NicheType.Omnivore",
+  carnivore: "TWODSIX.Animal.NicheType.Carnivore",
+  scavenger: "TWODSIX.Animal.NicheType.Scavenger"
+};
+export const HerbivoreType = {
+  filter: "TWODSIX.Animal.Subtype.Filter",
+  intermittent: "TWODSIX.Animal.Subtype.Intermittent",
+  grazer: "TWODSIX.Animal.Subtype.Grazer"
+};
+export const OmnivoreType = {
+  gatherer: "TWODSIX.Animal.Subtype.Gatherer",
+  hunter: "TWODSIX.Animal.Subtype.Hunter",
+  eater: "TWODSIX.Animal.Subtype.Eater"
+};
+export const CarnivoreType = {
+  pouncer: "TWODSIX.Animal.Subtype.Pouncer",
+  chaser: "TWODSIX.Animal.Subtype.Chaser",
+  trapper: "TWODSIX.Animal.Subtype.Trapper",
+  siren: "TWODSIX.Animal.Subtype.Siren",
+  killer: "TWODSIX.Animal.Subtype.Killer"
+};
+export const ScavengerType = {
+  hijacker: "TWODSIX.Animal.Subtype.Hijacker",
+  intimidator: "TWODSIX.Animal.Subtype.Intimidator",
+  carrionEater: "TWODSIX.Animal.Subtype.CarrionEater",
+  reducer: "TWODSIX.Animal.Subtype.Reducer"
+};
+
+export const AnimalLocations = {
+  city: "TWODSIX.Animal.Locations.CityUrban",
+  plains: "TWODSIX.Animal.Locations.PlainsGrassland",
+  hills: "TWODSIX.Animal.Locations.HillsMountains",
+  desert: "TWODSIX.Animal.Locations.DesertBadlands",
+  swamp: "TWODSIX.Animal.Locations.SwampAquatic",
+  forest: "TWODSIX.Animal.Locations.ForestJungle"
 };
 
 export type TWODSIX = {
@@ -500,7 +578,13 @@ export type TWODSIX = {
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
   TimeUnts: typeof TimeUnits,
-  VehicleProtection: typeof VehicleProtection
+  VehicleProtection: typeof VehicleProtection,
+  AnimalNiche: typeof AnimalNiche,
+  HerbivoreType: typeof HerbivoreType,
+  OmnivoreType: typeof OmnivoreType,
+  CarnivoreType: typeof CarnivoreType,
+  ScavengerType: typeof ScavengerType,
+  AnimalLocations: typeof AnimalLocations
 };
 
 export const TWODSIX = {
@@ -519,7 +603,13 @@ export const TWODSIX = {
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
   TimeUnits: TimeUnits,
-  VehicleProtection: VehicleProtection
+  VehicleProtection: VehicleProtection,
+  AnimalNiche: AnimalNiche,
+  HerbivoreType: HerbivoreType,
+  OmnivoreType: OmnivoreType,
+  CarnivoreType: CarnivoreType,
+  ScavengerType: ScavengerType,
+  AnimalLocations: AnimalLocations
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

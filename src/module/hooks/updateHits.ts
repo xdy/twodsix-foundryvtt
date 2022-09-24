@@ -6,9 +6,9 @@ import { getDamageCharacteristics } from "../utils/actorDamage";
 import { mergeDeep } from "../utils/utils";
 import {Traveller} from "../../types/template";
 
-function getCurrentHits(...args: Record<string, any>[]) {
+function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
-  const hitsCharacteristics: string[] = getDamageCharacteristics();
+  const hitsCharacteristics: string[] = getDamageCharacteristics(actorType);
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
     if (hitsCharacteristics.includes(key)) {
@@ -20,8 +20,8 @@ function getCurrentHits(...args: Record<string, any>[]) {
 }
 
 Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
-  if (update.system?.characteristics && actor.type=== 'traveller') {
-    update.system.hits = getCurrentHits((<Traveller>actor.system).characteristics, update.system.characteristics);
+  if (update.system?.characteristics && (actor.type === 'traveller' || actor.type === 'animal')) {
+    update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
   }
 });
 

@@ -21,7 +21,9 @@
         "INT": "INT",
         "PSI": "PSI",
         "SOC": "SOZ",
-        "STR": "STA"
+        "STR": "STA",
+        "LFB": "LFB",
+        "STA": "STA"
       },
       "CharacterName": "Charakter Name",
       "Contamination": "Kontamination",
@@ -114,7 +116,12 @@
       "Max": "Max.",
       "ResultingStat": "Resultierender Wert",
       "TotalDamage": "Gesamter Schaden",
-      "UnallocatedDamage": "Nicht zugewiesener Schaden"
+      "UnallocatedDamage": "Nicht zugewiesener Schaden",
+      "NoRegularDamage": "Keine regulären Schäden",
+      "AP": "AP",
+      "Mod": "Mod",
+      "Dmg": "Dmg",
+      "DamageFormula": "Schadensformel"
     },
     "Dialogs": {
       "ROFBurst": "Burst Feuer",
@@ -387,6 +394,10 @@
       },
       "Yes": "Ja"
     },
-    "VeryDifficult": "Sehr schwierig"
+    "VeryDifficult": "Sehr schwierig",
+    "ActiveEffects": {
+      "DeleteEffect": "Aktiven Effekt entfernen",
+      "ConfirmDelete": "Wollen Sie den Effekt wirklich löschen?"
+    }
   }
 }

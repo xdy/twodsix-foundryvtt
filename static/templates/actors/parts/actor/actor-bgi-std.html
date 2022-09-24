@@ -13,8 +13,16 @@
 {{/if}}<br>
 <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="system.species" type="text"
     value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span><br>
-<span class="bgi-homeWorld">{{localize "TWODSIX.Actor.HomeWorld"}}:<input name="system.homeWorld" type="text"
-    value="{{system.homeWorld}}" placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /></span><br>
+{{#unless settings.useNationality}}
+  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'>{{localize "TWODSIX.Actor.HomeWorld"}}:<input
+    name="system.homeWorld" type="text" value="{{system.homeWorld}}"
+    placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+{{else}}
+  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'>{{localize "TWODSIX.Actor.Nationality"}}:<input
+    name="system.nationality" type="text" value="{{system.nationality}}"
+    placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
+{{/unless}}
+<br>
 {{#unless limited}}
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.primaryArmor.value" style="text-align: right;" type="number" value="{{system.primaryArmor.value}}"
       placeholder='0' readonly/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
