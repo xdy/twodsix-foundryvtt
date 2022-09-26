@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { Component } from "src/types/template";
 
 /**
@@ -47,6 +47,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
     returnData.config = TWODSIX;
@@ -84,7 +85,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
     this.handleContentEditable(html);
-    html.find('.delete-link').on('click', this._deletePDFReference.bind(this));
+    html.find('.open-link').on('click', openPDFReference.bind(this, [this.item.system.docReference]));
+    html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
   }
@@ -258,27 +260,4 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ui.notifications.error(err);
     }
   }
-  private async _deletePDFReference(event): void {
-    event.preventDefault();
-    if (this.item.system.pdfReference.href != "") {
-      await this.item.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
-    } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
-    }
-  }
-  /*private _openPDFReference(event): void {
-    event.preventDefault();
-    const sourceString = (<GearTemplate>this.item.system).docReference;
-    if (sourceString) {
-      const [code, page] = sourceString.split(' ');
-      const selectedPage = parseInt(page);
-      if (ui["PDFoundry"]) {
-        ui["PDFoundry"].openPDFByCode(code, {page: selectedPage});
-      } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFFoundryNotInstalled"));
-      }
-    } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
-    }
-  }*/
 }

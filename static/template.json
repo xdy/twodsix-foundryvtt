@@ -473,10 +473,10 @@
         "skillModifier": 0,
         "skill": "",
         "associatedSkillName": "",
-        "equipped": "backpack",
-        "docReference": ""
+        "equipped": "backpack"
       },
       "referenceTemplate": {
+        "docReference": "",
         "pdfReference": {
           "type": "",
           "href": "",
@@ -538,14 +538,13 @@
       "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": ["referenceTemplate"],
+      "templates": ["referenceTemplate", "referenceTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
       "description": "",
       "shortdescr": "",
       "subtype": "",
-      "docReference": "",
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal",
@@ -559,7 +558,6 @@
       "prereq": "",
       "shortdescr": "",
       "subtype": "",
-      "docReference": "",
       "key": "key"
     },
     "spell": {
@@ -571,7 +569,6 @@
       "duration": "",
       "shortdescr": "",
       "subtype": "",
-      "docReference": "",
       "key": "key"
     },
     "consumable": {

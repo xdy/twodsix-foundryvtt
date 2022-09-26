@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 //Assorted utility functions likely to be helpful when displaying characters
 
 
@@ -233,3 +236,62 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
     });
   }
 }
+
+export function openPDFReference(sourceString:string[]): void {
+  if (sourceString) {
+    const [code, page] = sourceString[0].split(' ');
+    const selectedPage = parseInt(page);
+    if (ui["pdfpager"]) {
+      ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
+      //byJournalName(code, selectedPage);
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFPagerNotInstalled"));
+    }
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+  }
+}
+
+export async function deletePDFReference(event): Promise<void> {
+  event.preventDefault();
+  if (this.actor.system.pdfReference.href != "") {
+    await this.actor.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+  }
+}
+/*
+async function byJournalName(journalName, pageNumber) {
+  //This function bypasses pdf pager codes and calls by journal name
+  // Find page uuid
+  const journalEntry = game.journal?.getName(journalName);
+  let uuid = "";
+  if (journalEntry?.pages){
+    for (const page of journalEntry.pages) {
+      if (page.type === 'pdf') {
+        uuid = page.uuid;
+        break;
+      }
+    }
+  }
+
+  // Now request that the corresponding page be loaded.
+  if (!uuid) {
+    console.error(`byJournalName: unable to find PDF with name '${journalName}'`);
+    //ui.notifications.error(game.i18n.localize(`${PDFCONFIG.MODULE_NAME}.Error.NoPDFWithCode`));
+    return;
+  }
+  const pagedoc = await fromUuid(uuid);
+  if (!pagedoc) {
+    console.error(`byJournalName failed to retrieve document uuid '${uuid}`);
+    //ui.notifications.error(game.i18n.localize(`${PDFCONFIG.MODULE_NAME}.Error.FailedLoadPage`))
+    return;
+  }
+  const pageoptions = { pageId: pagedoc.id };
+  if (pageNumber) {
+    pageoptions.anchor = `page=${pageNumber}`;
+  }
+
+  // Render journal entry showing the appropriate page (JOurnalEntryPage#_onClickDocumentLink)
+  pagedoc.parent.sheet.render(true, pageoptions);
+} */

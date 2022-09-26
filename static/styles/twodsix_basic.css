@@ -2123,7 +2123,7 @@ button.flexrow.flex-group-center.toggle-skills {
 }
 
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type,
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration {
   margin-top: 0.3em;
@@ -2132,7 +2132,8 @@ button.flexrow.flex-group-center.toggle-skills {
   gap: 1ch;
 }
 
-.item-reference {
+.item-link {
+  display: inline-flex;
   text-align: center;
   margin-top: 0.3em;
   gap: 1ch;

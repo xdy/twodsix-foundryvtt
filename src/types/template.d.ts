@@ -365,7 +365,7 @@ export interface ShipPosition {
   actors?: TwodsixActor[];
 }
 
-export interface Vehicle {
+export interface Vehicle extends LinkTemplate {
   name:string;
   cargoList:string;
   cargoCapacity:string;
@@ -380,8 +380,6 @@ export interface Vehicle {
   openVehicle:boolean;
   techLevel:string;
   traits:string;
-  docReference:string;
-  pdfReference:PDFLink;
   weight:string;
 }
 
@@ -498,7 +496,7 @@ export interface Equipment extends GearTemplate, LinkTemplate {
   location:string[];
 }
 
-export interface Skills {
+export interface Skills extends LinkTemplate {
   templates:string[];
   value:number;
   characteristic:string;
@@ -506,13 +504,10 @@ export interface Skills {
   description:string;
   shortdescr:string;
   subtype:string;
-  docReference:string;
-  pdfReference:PDFLink;
   key:string;
   difficulty:string;
   rolltype:string;
   trainingNotes:string;
-  pdfReference:PDFLink;
 }
 
 export interface Templates {
@@ -521,7 +516,14 @@ export interface Templates {
 }
 
 export interface LinkTemplate {
+  docReference:string;
   pdfReference:PDFLink;
+}
+
+export interface PDFLink {
+  type:string;
+  href:string;
+  label:string;
 }
 
 export interface GearTemplate {
@@ -539,7 +541,6 @@ export interface GearTemplate {
   skill:string;
   associatedSkillName:string;
   equipped:string;
-  docReference:string;
 }
 
 export interface Trait extends LinkTemplate {
@@ -550,7 +551,6 @@ export interface Trait extends LinkTemplate {
   prereq:string;
   shortdescr:string;
   subtype:string;
-  docReference:string;
   key:string;
 }
 
@@ -563,7 +563,6 @@ export interface Spell extends LinkTemplate {
   duration:string;
   shortdescr:string;
   subtype:string;
-  docReference:string;
 }
 
 export interface Weapon extends GearTemplate, LinkTemplate {
@@ -587,8 +586,3 @@ export interface Weapon extends GearTemplate, LinkTemplate {
   armorPiercing:number;
 }
 
-export interface PDFLink {
-  type:string;
-  href:string;
-  label:string;
-}
