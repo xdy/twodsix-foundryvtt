@@ -210,23 +210,16 @@ export function getCDWoundTint(selectedTraveller: Traveller): string {
 export function getCELWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
-  switch (testArray.filter(chr => chr.current <= 0).length) {
-    case 0:
-      //if (testArray.filter(chr => chr.damage > 0).length > 0) {
-      //  returnVal = DAMAGECOLORS.minorWoundTint;
-      //}
-      break;
-    case 1:
-      returnVal = DAMAGECOLORS.minorWoundTint;
-      break;
-    case 2:
+  const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
+  const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
+  if (currentZero === maxNonZero) {
+    returnVal = DAMAGECOLORS.deadTint;
+  } else if (currentZero > 0){
+    if (currentZero > 1) {
       returnVal = DAMAGECOLORS.seriousWoundTint;
-      break;
-    case 3:
-      returnVal = DAMAGECOLORS.deadTint;
-      break;
-    default:
-      break;
+    } else {
+      returnVal = DAMAGECOLORS.minorWoundTint;
+    }
   }
   return returnVal;
 }
@@ -234,30 +227,32 @@ export function getCELWoundTint(selectedTraveller: Traveller): string {
 export function getCEWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
-  switch (testArray.filter(chr => chr.current <= 0).length) {
-    case 0:
-      if (testArray.filter(chr => chr.damage > 0).length > 0) {
+  const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
+  const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
+  const numDamaged = testArray.filter(chr => chr.damage > 0 && chr.value !== 0).length;
+  if (currentZero === maxNonZero) {
+    returnVal = DAMAGECOLORS.deadTint;
+  } else if (numDamaged > 0) {
+    if (maxNonZero > 1) {
+      if (numDamaged === maxNonZero) {
+        returnVal = DAMAGECOLORS.seriousWoundTint;
+      } else {
         returnVal = DAMAGECOLORS.minorWoundTint;
       }
-      break;
-    case 1:
-    case 2:
-      returnVal = DAMAGECOLORS.minorWoundTint;
-      break;
-    case 3:
-      returnVal = DAMAGECOLORS.deadTint;
-      break;
-    default:
-      break;
-  }
-  if ((testArray.filter(chr => chr.damage > 0).length) === 3 && returnVal !== DAMAGECOLORS.deadTint) {
-    returnVal = DAMAGECOLORS.seriousWoundTint;
+    } else {
+      if(testArray.filter(chr => (chr.damage >= chr.value / 2) && chr.value !== 0).length) {
+        returnVal = DAMAGECOLORS.seriousWoundTint;
+      } else {
+        returnVal = DAMAGECOLORS.minorWoundTint;
+      }
+    }
   }
   return returnVal;
 }
+
 export function isUnconsciousCE(selectedTraveller: Traveller): boolean {
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
-  return (testArray.filter(chr => chr.current <= 0).length === 2);
+  return (testArray.filter(chr => chr.current <= 0 && chr.value !== 0).length === 2);
 }
 
 export function getCEAWoundTint(selectedTraveller: Traveller): string {
