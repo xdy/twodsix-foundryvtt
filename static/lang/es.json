@@ -720,7 +720,7 @@
         "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
         "name": "Mostrar Puntos Heroe"
       },
-      "showItemReferences": {
+      "usePDFPagerForRefs": {
         "hint": "Mostrar un campo de texto en la hoja de objetos para utilizar por PDFoundry o como referencia. Para PDFoundry, el formato debe ser '[nombre abreviado] [número página]'.",
         "name": "Mostrar campo de referencia en los objetos."
       },

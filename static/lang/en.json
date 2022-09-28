@@ -252,6 +252,8 @@
       "Encumbrance": "Encumbrance",
       "Enc": "Enc",
       "DocumentReference": "Document Reference",
+      "Link": "Link",
+      "DeleteReference": "Delete Reference",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
@@ -721,9 +723,9 @@
         "hint": "Show Hero Points counter on actor sheet.",
         "name": "Show Hero Points"
       },
-      "showItemReferences": {
-        "hint": "Shows a text field on item and vehicle sheets to use with PDFoundry or as a freeform reference.  For PDFoundry, format must be '[abbreviated name] [page number]'.",
-        "name": "Show reference field on vehicle and item sheets."
+      "usePDFPagerForRefs": {
+        "hint": "Use with PDF Pager to show references.  The format must be '[code name] [page number]'. If setting is false, uri links to references are used instead.",
+        "name": "Use PDF-Pager module to show references"
       },
       "ShowLawLevel": {
         "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
@@ -972,7 +974,7 @@
       "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
       "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
-      "PDFFoundryNotInstalled": "PDFoundry must be installed to use source links.",
+      "PDFPagerNotInstalled": "PDF Pager must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
       "NoTargetFound": "No target for damage found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",

@@ -226,7 +226,7 @@ label.checkbox > input[type="checkbox"] {
   grid-area: vehicle-name-photo;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .vehicle-stats {
@@ -2122,18 +2122,20 @@ button.flexrow.flex-group-center.toggle-skills {
   margin: 0 0.4em -0.5em 0.3em;
 }
 
-/*a:hover {
-  color: var(--light-color);
-  text-shadow: 0 0 5px /*var(--default-color);
-}*/
-
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
-.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-reference, .item-features, .item-subtype, .item-type,
+.item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
+  gap: 1ch;
+}
+
+.item-link {
+  display: inline-flex;
+  text-align: center;
+  margin-top: 0.3em;
   gap: 1ch;
 }
 

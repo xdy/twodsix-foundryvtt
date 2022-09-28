@@ -55,7 +55,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
-      showReferences: game.settings.get('twodsix', 'showItemReferences'),
+      showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       animalsUseHits: game.settings.get('twodsix', 'animalsUseHits'),
       dontShowStatBlock: (game.settings.get('twodsix', 'animalsUseHits') | game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),

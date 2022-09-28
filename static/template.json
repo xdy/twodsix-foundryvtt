@@ -283,6 +283,11 @@
         }
       },
       "docReference": "",
+      "pdfReference": {
+        "type": "",
+        "href": "",
+        "label": ""
+      },
       "features": "",
       "maneuver": {
         "speed": "0",
@@ -468,24 +473,31 @@
         "skillModifier": 0,
         "skill": "",
         "associatedSkillName": "",
-        "equipped": "backpack",
-        "docReference": ""
+        "equipped": "backpack"
+      },
+      "referenceTemplate": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        }
       }
     },
     "equipment": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
       "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "tool": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
       "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -505,7 +517,7 @@
       "armorPiercing": 0
     },
     "armor": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "armor": 0,
       "secondaryArmor": {
         "value": 0
@@ -519,39 +531,37 @@
       "isPowered": false
     },
     "augment": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
       "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": ["skillsTemplate"],
+      "templates": ["referenceTemplate", "referenceTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
       "description": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal",
       "trainingNotes": ""
     },
     "trait": {
-      "templates": ["skillsTemplate"],
+      "templates": ["referenceTemplate"],
       "value": 0,
       "type": "trait",
       "description": "",
       "prereq": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
       "key": "key"
     },
     "spell": {
-      "templates": ["skillsTemplate"],
+      "templates": ["referenceTemplate"],
       "value": 0,
       "type": "spell",
       "description": "",
@@ -559,11 +569,10 @@
       "duration": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
       "key": "key"
     },
     "consumable": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "currentCount": 1,
       "max": 0,
       "type": "consumable",
@@ -572,7 +581,7 @@
       "armorPiercing": 0
     },
     "component": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "subtype": "otherInternal",
       "powerDraw": 0,
       "rating": "",
