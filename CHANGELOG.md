@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.0...v2.4.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* Updates to  es.json via GitLocalize ([#1132](https://github.com/xdy/twodsix-foundryvtt/issues/1132)) ([b907b80](https://github.com/xdy/twodsix-foundryvtt/commit/b907b8034e5bdca379d279d94ce5e7f484eab3eb))
+
 # [2.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.4...v2.4.0) (2022-09-28)
 
 
