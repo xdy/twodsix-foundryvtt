@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.4...v2.4.0) (2022-09-28)
+
+
+### Features
+
+* integrate pdf-pager module add optional item html and pdf links ([#1124](https://github.com/xdy/twodsix-foundryvtt/issues/1124)) ([91834fe](https://github.com/xdy/twodsix-foundryvtt/commit/91834fed8451650bb81ad1fb60f397bd06f31497))
+
 ## [2.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.3...v2.3.4) (2022-09-24)
 
 
