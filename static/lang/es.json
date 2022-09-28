@@ -68,7 +68,7 @@
       },
       "Gender": "Sexo",
       "HeroPoints": "Puntos Heroe",
-      "Hits": "Impactos",
+      "Hits": "Puntos Vida",
       "Contamination": "Contaminación",
       "Lifeblood": "Vitalidad",
       "Stamina": "Aguante",
@@ -185,7 +185,8 @@
         "Herbivore": "Herbívoro",
         "Omnivore": "Omnívoro",
         "Carnivore": "Carnívoro",
-        "Scavenger": "Carroñero"
+        "Scavenger": "Carroñero",
+        "Other": "Otro"
       },
       "Type": "Tipo",
       "Subtype": {
@@ -202,7 +203,8 @@
         "Hijacker": "Secuestrador",
         "Intimidator": "Intimidador",
         "CarrionEater": "Carroñero",
-        "Reducer": "Reductor"
+        "Reducer": "Reductor",
+        "Siren": "Siren"
       },
       "Locations": {
         "CityUrban": "Ciudad o Urbano",
@@ -250,6 +252,8 @@
       "Encumbrance": "Impedimento",
       "Enc": "Imp",
       "DocumentReference": "Referencia",
+      "Link": "Enlace",
+      "DeleteReference": "Borrar Referencia",
       "Armor": {
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
@@ -301,7 +305,7 @@
         "Range": "Alcance",
         "totalQuantity": "Cantidad Total",
         "availableQuantity": "Cantidad Disponible",
-        "damage": "Daño / Impactos",
+        "damage": "Daño",
         "RadiationDamage": "Daño Radiación",
         "hits": "Impactos",
         "weightIsPct": "¿Peso en Porcentaje?",
@@ -816,7 +820,7 @@
       },
       "maxComponentHits": {
         "hint": "Número de impactos en un componente para destruirlo.",
-        "name": "Impactos máximos en componentes."
+        "name": "Máximo número de Impactos en un componente."
       },
       "mortgagePayment": {
         "hint": "Cantidad a dividir el coste de la nave para determinar el pago mensual de la hipoteca durante 40 años. Un valor de 240 significa que el coste de la nave se divide por 240 para determinar el pago mensual.",
@@ -907,8 +911,8 @@
         "name": "Mostrar nacionalidad en vez de mundo natal"
       },
       "animalsUseHits": {
-        "hint": "Los animales sólo tienen un atributo para el daño: los Impactos.",
-        "name": "Los animales utilizan Impactos para daño"
+        "hint": "Los animales sólo tienen un atributo para el daño: los Puntos de Vida.",
+        "name": "Los animales utilizan Puntos de Vida para el daño"
       },
       "animalsUseLocations": {
         "hint": "Los animales se describen por el emplazamiento donde se encuentran en vez del tipo y nicho.",
@@ -971,7 +975,7 @@
       "CantAutoDamage": "Daño automático en nave o vehículo no soportado.",
       "CantDropOnToken": "No se permite tirar objetos sobre los tokens de nave o vehículo",
       "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
-      "PDFFoundryNotInstalled": "PDFoundry debe estar instalado para utilizar los enlaces.",
+      "PDFPagerNotInstalled": "Debes instalar el módulo PDF Pager para poder utilizar enlaces.",
       "NoSpecfiedLink": "Sin documento ni página especificada para el enlace.",
       "NoTargetFound": "No existe objetivo para el daño.",
       "LackPermissionToDamage": "No tienes permisos suficientes sobre el actor objetivo.",
