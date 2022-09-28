@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.1...v2.4.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* wound logic and macro create from item ([#1129](https://github.com/xdy/twodsix-foundryvtt/issues/1129)) ([cc1a385](https://github.com/xdy/twodsix-foundryvtt/commit/cc1a3850a26eadc474c21420459f3077370014ad))
+
 ## [2.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.0...v2.4.1) (2022-09-28)
 
 
