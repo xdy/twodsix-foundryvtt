@@ -38,6 +38,18 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_titleCase', (str) => {
+    if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
+      return '';
+    } else {
+      //const thing: string = str;
+      //return str.charAt(0).toLocaleUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+      return str.toLowerCase().split(' ').map(function(word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+      }).join(' ');
+    }
+  });
+
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
     if (!a) {
       return '';
