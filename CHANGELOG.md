@@ -1,3 +1,38 @@
+## [2.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.1...v2.4.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* wound logic and macro create from item ([#1129](https://github.com/xdy/twodsix-foundryvtt/issues/1129)) ([cc1a385](https://github.com/xdy/twodsix-foundryvtt/commit/cc1a3850a26eadc474c21420459f3077370014ad))
+
+## [2.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.0...v2.4.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* Updates to  es.json via GitLocalize ([#1132](https://github.com/xdy/twodsix-foundryvtt/issues/1132)) ([b907b80](https://github.com/xdy/twodsix-foundryvtt/commit/b907b8034e5bdca379d279d94ce5e7f484eab3eb))
+
+# [2.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.4...v2.4.0) (2022-09-28)
+
+
+### Features
+
+* integrate pdf-pager module add optional item html and pdf links ([#1124](https://github.com/xdy/twodsix-foundryvtt/issues/1124)) ([91834fe](https://github.com/xdy/twodsix-foundryvtt/commit/91834fed8451650bb81ad1fb60f397bd06f31497))
+
+## [2.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.3...v2.3.4) (2022-09-24)
+
+
+### Bug Fixes
+
+* animal sheet types update ([#1127](https://github.com/xdy/twodsix-foundryvtt/issues/1127)) ([9427169](https://github.com/xdy/twodsix-foundryvtt/commit/9427169fc835004445ce1d49922da23360453ce8))
+
+## [2.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.2...v2.3.3) (2022-09-24)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1125](https://github.com/xdy/twodsix-foundryvtt/issues/1125)) ([9527e05](https://github.com/xdy/twodsix-foundryvtt/commit/9527e0592d1c7e20ae4d11aa6f3eb80f8139d8ad))
+
 ## [2.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.1...v2.3.2) (2022-09-22)
 
 

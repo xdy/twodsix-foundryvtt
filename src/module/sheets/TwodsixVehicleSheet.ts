@@ -6,6 +6,7 @@ import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/t
 import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 
 export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
 
@@ -16,8 +17,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
-      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
-      showReferences: game.settings.get('twodsix', 'showItemReferences')
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits')
     };
 
     return context;
@@ -38,7 +39,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
-    html.find('.open-link').on('click', this._openPDFReference.bind(this));
+    html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
+    html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
   private _onToggleComponent(event:Event):void {
@@ -90,22 +92,6 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
         return;
       }
       await skill?.skillRoll(showThrowDiag, settings);
-    }
-  }
-
-  private _openPDFReference(event): void {
-    event.preventDefault();
-    const sourceString = (<Vehicle>this.actor.system).docReference;
-    if (sourceString) {
-      const [code, page] = sourceString.split(' ');
-      const selectedPage = parseInt(page);
-      if (ui["PDFoundry"]) {
-        ui["PDFoundry"].openPDFByCode(code, {page: selectedPage});
-      } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFFoundryNotInstalled"));
-      }
-    } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
     }
   }
 }

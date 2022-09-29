@@ -257,6 +257,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
+    //Handle droped pdf reference for vehicle sheet
+    if (dropData.type === 'html' || dropData.type === 'pdf'){
+      if (dropData.href && this.actor.type === 'vehicle') {
+        await this.actor.update({"system.pdfReference.type": dropData.type, "system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
+      }
+      return false;
+    }
+
     const itemData = await getItemDataFromDropData(dropData);
 
     switch (actor.type) {
@@ -680,9 +688,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onEditEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
-    const selectedEffect = await fromUuid(effectUuid);
-    console.log(selectedEffect);
-    new ActiveEffectConfig(selectedEffect).render(true);
+    const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
+    //console.log(selectedEffect);
+    if (selectedEffect) {
+      new ActiveEffectConfig(selectedEffect).render(true);
+    };
   }
   /**
    * Handle when the right clicking on status icon.

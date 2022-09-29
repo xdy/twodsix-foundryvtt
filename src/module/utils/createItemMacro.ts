@@ -6,10 +6,16 @@
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {Object} dropData     Document type and uuid
  * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
  */
-export async function createItemMacro(dropData, slot): Promise<void> {
+export function createItemMacro(dropData, slot) {
   //console.log(dropData.uuid.split("."));
+  if (dropData.type === "Item") {
+    addItemMacro(dropData, slot);
+    return false;
+  }
+}
+
+async function addItemMacro(dropData, slot): Promise<void> {
   const item = await fromUuid(dropData.uuid);
   if (item?.id) {
     if (dropData.type === "Macro") {

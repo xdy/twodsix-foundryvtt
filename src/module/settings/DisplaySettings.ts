@@ -28,7 +28,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.push(booleanSetting('showWeightUsage', false));
-    settings.push(booleanSetting('showItemReferences', true));
+    settings.push(booleanSetting('usePDFPagerForRefs', false));
     settings.push(booleanSetting('showIcons', false));
     settings.push(booleanSetting('useEncumbrance', false));
     settings.push(booleanSetting('showStatusIcons', true));
