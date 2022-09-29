@@ -167,7 +167,7 @@ export default class TwodsixActor extends Actor {
     }
 
     function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor): void {
-      if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
+      if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo" && anComponent.subtype !== "vehicle") {
         if (anComponent.subtype === "hull") {
           switch (anComponent.pricingBasis) {
             case "perUnit":
