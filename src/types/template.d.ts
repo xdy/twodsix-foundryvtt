@@ -140,9 +140,9 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
-  shipValue:number;
-  maintenanceCost:number;
-  mortgageCost:number;
+  shipValue:string;
+  maintenanceCost:string;
+  mortgageCost:string;
   isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
