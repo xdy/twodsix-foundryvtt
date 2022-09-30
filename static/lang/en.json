@@ -328,7 +328,9 @@
         "pctHull": "Percent of base hull value",
         "isBaseHull":"Is Baseline Hull?",
         "RollModifier":"Roll Modifier",
-        "DM":"DM"
+        "DM":"DM",
+        "Hardened": "Hardened?",
+        "hardened": "hardened"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

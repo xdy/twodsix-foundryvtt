@@ -477,6 +477,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   rateOfFire: string;
   armorPiercing: number;
   actorLink: string;
+  hardened: boolean;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {

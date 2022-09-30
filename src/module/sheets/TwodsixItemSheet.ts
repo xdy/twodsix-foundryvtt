@@ -105,6 +105,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
       await this.item.update({"system.isBaseHull": false});
     }
+    /*Unset hardened if fuel, cargo, storage, vehicle*/
+    if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+      await this.item.update({"system.hardened": false});
+    }
   }
 
   /* -------------------------------------------- */

@@ -603,7 +603,8 @@
       "rollModifier": "",
       "rateOfFire": "",
       "armorPiercing": 0,
-      "actorLink": ""
+      "actorLink": "",
+      "hardened": false
     },
     "ship_position": {
       "name": "",
