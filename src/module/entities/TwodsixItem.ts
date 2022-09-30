@@ -20,6 +20,8 @@ export default class TwodsixItem extends Item {
         await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
       } else if (item?.type === "spell") {
         await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
+      } else if (item?.type === 'component') {
+        await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
       }
     }
     return item;

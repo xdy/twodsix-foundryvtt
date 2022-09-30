@@ -480,6 +480,7 @@ export const ComponentTypes = {
   bridge: "TWODSIX.Items.Component.bridge",
   cargo: "TWODSIX.Items.Component.cargo",
   computer: "TWODSIX.Items.Component.computer",
+  dock: "TWODSIX.Items.Component.dock",
   drive: "TWODSIX.Items.Component.drive",
   drone: "TWODSIX.Items.Component.drone",
   electronics: "TWODSIX.Items.Component.electronics",

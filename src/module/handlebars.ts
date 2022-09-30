@@ -181,6 +181,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fa-solid fa-boxes-stacked";
       case 'computer':
         return "fa-solid fa-computer";
+      case 'dock':
+        return "fa-solid fa-arrow-right-arrow-left";
       case 'drive':
         return "fa-solid fa-up-down-left-right";
       case 'drone':

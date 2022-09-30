@@ -278,6 +278,7 @@
         "bridge": "bridge",
         "cargo": "cargo",
         "computer": "computer",
+        "dock": "dock",
         "drive": "drive",
         "drone": "drone",
         "electronics": "electronics",
