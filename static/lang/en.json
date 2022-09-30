@@ -330,7 +330,8 @@
         "RollModifier":"Roll Modifier",
         "DM":"DM",
         "Hardened": "Hardened?",
-        "hardened": "hardened"
+        "hardened": "hardened",
+        "Hd": "Hd"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
