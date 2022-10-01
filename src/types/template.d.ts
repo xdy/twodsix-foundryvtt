@@ -478,6 +478,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   armorPiercing: number;
   actorLink: string;
   hardened: boolean;
+  associatedSkillName:string;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {

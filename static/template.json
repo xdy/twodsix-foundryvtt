@@ -604,7 +604,8 @@
       "rateOfFire": "",
       "armorPiercing": 0,
       "actorLink": "",
-      "hardened": false
+      "hardened": false,
+      "associatedSkillName": ""
     },
     "ship_position": {
       "name": "",
