@@ -244,16 +244,16 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return (Math.round(getWeight(<Component>item.system, item.actor) * 10 ) / 10 ).toFixed(1);
+    return getWeight(<Component>item.system, item.actor).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
     const anComponent = <Component>item.system;
     const retValue:number = getPower(anComponent);
     if (anComponent.generatesPower) {
-      return "+" + retValue;
+      return "+" + retValue.toLocaleString(game.i18n.lang);
     } else {
-      return retValue;
+      return retValue.toLocaleString(game.i18n.lang);
     }
   });
 

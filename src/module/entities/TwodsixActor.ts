@@ -269,9 +269,9 @@ export default class TwodsixActor extends Actor {
       shipActor.system.weightStats.systems = Math.round(calcShipStats.weight.systems);
       shipActor.system.weightStats.available = Math.round(calcShipStats.weight.available);
 
-      shipActor.system.shipValue = (Math.round(calcShipStats.cost.total * 10) / 10).toLocaleString(game.i18n.lang);
-      shipActor.system.mortgageCost = (Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000)).toLocaleString(game.i18n.lang);
-      shipActor.system.maintenanceCost = (Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12)).toLocaleString(game.i18n.lang);
+      shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+      shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
+      shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
 
