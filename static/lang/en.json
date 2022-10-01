@@ -325,6 +325,7 @@
         "perUnit": "MCr per unit",
         "perCompTon": "MCr per component ton",
         "perHullTon": "MCr per hull ton",
+        "per100HullTon": "MCr per 100 hull tons",
         "pctHull": "Percent of base hull value",
         "isBaseHull":"Is Baseline Hull?",
         "RollModifier":"Roll Modifier",

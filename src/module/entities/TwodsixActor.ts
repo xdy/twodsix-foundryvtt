@@ -182,6 +182,9 @@ export default class TwodsixActor extends Actor {
             case "perHullTon":
               calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
               break;
+            case "per100HullTon":
+              calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100;
+              break;
           }
         } else {
           switch (anComponent.pricingBasis) {
@@ -196,6 +199,9 @@ export default class TwodsixActor extends Actor {
               break;
             case "perHullTon":
               calcShipStats.cost.perHullTon += Number(anComponent.price);
+              break;
+            case "per100HullTon":
+              calcShipStats.cost.perHullTon += Number(anComponent.price)/100;
               break;
           }
         }
