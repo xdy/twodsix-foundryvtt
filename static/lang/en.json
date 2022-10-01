@@ -924,6 +924,14 @@
       "displayReactionMorale": {
         "hint": "Show reaction and morale information on animal sheet.",
         "name": "Show animal reaction and morale"
+      },
+      "showComponentRating": {
+        "hint": "Show rating field on ship component item sheet.",
+        "name": "Show component rating"
+      },
+      "showComponentDM": {
+        "hint": "Show DM field on ship component item sheet.",
+        "name": "Show component DM"
       }
     },
     "CloseAndCreateNew": "Close and create new",
