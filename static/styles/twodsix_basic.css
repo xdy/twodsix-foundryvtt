@@ -1931,6 +1931,21 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px;
   grid-template-areas: ". . . . . . . . . . . .";
 }
+.only-rating {
+  grid-template-columns: 13.5em 4em 6em 4em 4em 4em 4.5em 2.5em 4.5em 3.5em 3em;
+  grid-template-areas:
+    ". . . . . . . . . . .";
+}
+.only-dm {
+  grid-template-columns: 14.5em 4em 4em 4em 4em 4em 4.5em 2.5em 4.5em 4.5em 3em;
+  grid-template-areas:
+    ". . . . . . . . . . .";
+}
+.no-dm-rating {
+  grid-template-columns: 14.5em 4em 5em 5em 5em 4.5em 4.5em 4.5em 3.5em 3em;
+  grid-template-areas:
+    ". . . . . . . . . .";
+}
 
 .grid-columns-single-row:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
