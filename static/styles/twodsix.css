@@ -555,7 +555,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 10em 5em 9em;
+  grid-template-rows: 15em 13em 5em 9em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -663,7 +663,7 @@ h2 {
   resize: none;
   scrollbar-width: thin;
   scrollbar-color: var(--s2d6-default-color);
-  height: 80%;
+  height: 84%;
   max-width: 100%;
   padding: 0 1ch;
   border-radius: 0 0 2ch 2ch !important;

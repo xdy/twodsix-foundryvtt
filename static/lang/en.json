@@ -573,7 +573,8 @@
         "ArmorOnly": "Armor Only",
         "Threshold": "Threshold",
         "ArmorHullStruc": "Armor, Hull and Structure"
-      }
+      },
+      "ShippingSize": "Shipping Size"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

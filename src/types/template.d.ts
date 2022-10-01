@@ -381,6 +381,7 @@ export interface Vehicle extends LinkTemplate {
   techLevel:string;
   traits:string;
   weight:string;
+  shippingSize:string;
 }
 
 export interface VehicleCrew {
