@@ -140,9 +140,9 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
-  shipValue:number;
-  maintenanceCost:number;
-  mortgageCost:number;
+  shipValue:string;
+  maintenanceCost:string;
+  mortgageCost:string;
   isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
@@ -381,6 +381,7 @@ export interface Vehicle extends LinkTemplate {
   techLevel:string;
   traits:string;
   weight:string;
+  shippingSize:string;
 }
 
 export interface VehicleCrew {
@@ -477,6 +478,8 @@ export interface Component extends GearTemplate, LinkTemplate {
   rateOfFire: string;
   armorPiercing: number;
   actorLink: string;
+  hardened: boolean;
+  associatedSkillName:string;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {

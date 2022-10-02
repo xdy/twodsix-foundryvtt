@@ -38,6 +38,18 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_titleCase', (str) => {
+    if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
+      return '';
+    } else {
+      //const thing: string = str;
+      //return str.charAt(0).toLocaleUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+      return str.toLowerCase().split(' ').map(function(word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+      }).join(' ');
+    }
+  });
+
   Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
     if (!a) {
       return '';
@@ -169,6 +181,8 @@ export default function registerHandlebarsHelpers(): void {
         return "fa-solid fa-boxes-stacked";
       case 'computer':
         return "fa-solid fa-computer";
+      case 'dock':
+        return "fa-solid fa-arrow-right-arrow-left";
       case 'drive':
         return "fa-solid fa-up-down-left-right";
       case 'drone':
@@ -230,16 +244,16 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return (Math.round(getWeight(<Component>item.system, item.actor) * 10 ) / 10 ).toFixed(1);
+    return getWeight(<Component>item.system, item.actor).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
     const anComponent = <Component>item.system;
     const retValue:number = getPower(anComponent);
     if (anComponent.generatesPower) {
-      return "+" + retValue;
+      return "+" + retValue.toLocaleString(game.i18n.lang);
     } else {
-      return retValue;
+      return retValue.toLocaleString(game.i18n.lang);
     }
   });
 

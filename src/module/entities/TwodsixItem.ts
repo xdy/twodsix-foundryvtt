@@ -20,6 +20,8 @@ export default class TwodsixItem extends Item {
         await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
       } else if (item?.type === "spell") {
         await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
+      } else if (item?.type === 'component') {
+        await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
       }
     }
     return item;
@@ -243,6 +245,7 @@ export default class TwodsixItem extends Item {
 
       let damage = <Roll>{};
       let apValue = 0;
+      rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10

@@ -23,7 +23,7 @@
     <div class="grid-columns-single">
       <div class="grid-columns-single-row">
         <ol class="ol-no-indent header-row">
-          <i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
+          <i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}
           <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a>
         </ol>
       </div>

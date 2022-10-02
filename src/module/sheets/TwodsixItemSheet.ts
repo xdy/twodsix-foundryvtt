@@ -48,6 +48,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
+      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
     returnData.config = TWODSIX;
@@ -104,6 +106,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
       await this.item.update({"system.isBaseHull": false});
+    }
+    /*Unset hardened if fuel, cargo, storage, vehicle*/
+    if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+      await this.item.update({"system.hardened": false});
     }
   }
 

@@ -115,6 +115,8 @@ declare global {
       'twodsix.animalsUseHits': boolean;
       'twodsix.animalsUseLocations':boolean;
       'twodsix.displayReactionMorale': boolean;
+      'twodsix.showComponentRating': boolean;
+      'twodsix.showComponentDM': boolean;
     }
   }
 }

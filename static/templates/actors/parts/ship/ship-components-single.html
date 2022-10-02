@@ -1,14 +1,31 @@
 <div class="storage-wrapper">
   <div class="grid-columns-single storage-header">
-    <div class="components-stored-single ">
+    {{#if settings.showComponentRating}}
+      {{#if settings.showComponentDM}}
+        <div class="components-stored-single">
+      {{else}}
+        <div class="components-stored-single only-rating">
+      {{/if}}
+    {{else}}
+      {{#if settings.showComponentDM}}
+        <div class="components-stored-single only-dm">
+      {{else}}
+        <div class="components-stored-single no-dm-rating">
+      {{/if}}
+    {{/if}}
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      {{#if settings.showComponentRating}}
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      {{/if}}
+      {{#if settings.showComponentDM}}
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.DM"}}</span>
+      {{/if}}
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.Power"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.hardened"}}'>{{localize "TWODSIX.Items.Component.Hd"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
@@ -19,7 +36,7 @@
     {{#each component}}
     {{#iff @key "!==" "cargo"}}
     <div class="grid-columns-single-row">
-       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}
+       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}
          <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a>
        </ol>
     </div>
@@ -27,15 +44,31 @@
 
     <div class="grid-columns-single-row">
       <ol class="ol-no-indent">
-        <li class="item components-stored-single " data-item-id="{{item.id}}">
+        {{#if ../../settings.showComponentRating}}
+          {{#if ../../settings.showComponentDM}}
+            <li class="item components-stored-single" data-item-id="{{item.id}}">
+          {{else}}
+            <li class="item components-stored-single only-rating" data-item-id="{{item.id}}">
+          {{/if}}
+        {{else}}
+          {{#if ../../settings.showComponentDM}}
+            <li class="item components-stored-single only-dm" data-item-id="{{item.id}}">
+          {{else}}
+            <li class="item components-stored-single no-dm-rating" data-item-id="{{item.id}}">
+          {{/if}}
+        {{/if}}
           {{#iff item.system.actorLink "===" ""}}
             <span class="item-name">{{item.name}}</span>
           {{else}}
             <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}</a>
           {{/iff}}
           <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
+          {{#if ../../settings.showComponentRating}}
           <span class="item-name centre">{{#iff item.system.rating "!==" ""}}{{item.system.rating}}{{else}}&mdash;{{/iff}}</span>
+          {{/if}}
+          {{#if ../../settings.showComponentDM}}
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
+          {{/if}}
           <span class="item-name centre">{{getComponentWeight this}}</span>
           <span class="item-name centre">{{getComponentPower this}}</span>
           <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
@@ -47,6 +80,7 @@
              &mdash;
             {{/iff}}
           </span>
+          <span class="item-name centre">{{#if item.system.hardened}}<i class="fa-solid fa-gem"></i>{{else}}&mdash;{{/if}}</span>
           <span class="item-name centre">{{item.system.hits}}
           <span class="combined-buttons">
             <button class="left-button adjust-hits" {{#iff currentCount "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
