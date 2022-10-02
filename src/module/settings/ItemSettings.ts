@@ -27,7 +27,8 @@ export default class ItemSettings extends AdvancedSettings {
     settings.push(booleanSetting('ShowRateOfFire', true));
     settings.push(booleanSetting('ShowRecoil', false));
     settings.push(booleanSetting('addEffectToManualDamage', false));
-
+    settings.push(booleanSetting('showComponentRating', true));
+    settings.push(booleanSetting('showComponentDM', true));
     return settings;
   }
 }

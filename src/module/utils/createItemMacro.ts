@@ -10,7 +10,7 @@
 export function createItemMacro(dropData, slot) {
   //console.log(dropData.uuid.split("."));
   if (dropData.type === "Item") {
-    addItemMacro(dropData, slot);
+    addItemMacro(dropData, slot).then();
     return false;
   }
 }

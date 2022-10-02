@@ -9,7 +9,7 @@ import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
     if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.isGM) {
-      await applyWoundedEffect(actor);
+      await applyWoundedEffect(actor).then();
     }
   }
 });

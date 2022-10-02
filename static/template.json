@@ -187,9 +187,9 @@
       "notes": "",
       "cargo": "",
       "finances": "",
-      "maintenanceCost": 0,
-      "mortgageCost": 0,
-      "shipValue": 0,
+      "maintenanceCost": "0",
+      "mortgageCost": "0",
+      "shipValue": "0",
       "isMassProduced": false,
       "reqPower": {
         "systems": 0,
@@ -603,7 +603,9 @@
       "rollModifier": "",
       "rateOfFire": "",
       "armorPiercing": 0,
-      "actorLink": ""
+      "actorLink": "",
+      "hardened": false,
+      "associatedSkillName": ""
     },
     "ship_position": {
       "name": "",

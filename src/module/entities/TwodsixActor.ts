@@ -167,7 +167,7 @@ export default class TwodsixActor extends Actor {
     }
 
     function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor): void {
-      if (anComponent.subtype !== "fuel" && anComponent.subtype !== "cargo") {
+      if (!["fuel", "cargo", "vehicle"].includes(anComponent.subtype)) {
         if (anComponent.subtype === "hull") {
           switch (anComponent.pricingBasis) {
             case "perUnit":
@@ -181,6 +181,9 @@ export default class TwodsixActor extends Actor {
               break;
             case "perHullTon":
               calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+              break;
+            case "per100HullTon":
+              calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100;
               break;
           }
         } else {
@@ -196,6 +199,9 @@ export default class TwodsixActor extends Actor {
               break;
             case "perHullTon":
               calcShipStats.cost.perHullTon += Number(anComponent.price);
+              break;
+            case "per100HullTon":
+              calcShipStats.cost.perHullTon += Number(anComponent.price)/100;
               break;
           }
         }
@@ -269,9 +275,9 @@ export default class TwodsixActor extends Actor {
       shipActor.system.weightStats.systems = Math.round(calcShipStats.weight.systems);
       shipActor.system.weightStats.available = Math.round(calcShipStats.weight.available);
 
-      shipActor.system.shipValue = Math.round(calcShipStats.cost.total * 10) / 10;
-      shipActor.system.mortgageCost = Math.round(calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000);
-      shipActor.system.maintenanceCost = Math.round(calcShipStats.cost.total * 0.001 * 1000000 / 12);
+      shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+      shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
+      shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
 

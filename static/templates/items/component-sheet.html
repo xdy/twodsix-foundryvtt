@@ -24,10 +24,12 @@
     </div>
 
     {{#iff system.subtype "!==" "cargo" }}
+    {{#if settings.showComponentRating}}
     <div class="item-tl">
         <label for="system.rating" class="resource-label">{{localize "TWODSIX.Items.Component.rating"}}</label>
         <input class="form-input" id="system.rating" type="text" name="system.rating" value="{{system.rating}}"/>
     </div>
+    {{/if}}
     {{/iff}}
 
     <div class="item-subtype">
@@ -44,6 +46,14 @@
         {{selectOptions config.ComponentStates selected = system.status localize = true}}
       </select>
     </div>
+    {{#iff system.subtype "!==" "vehicle"}}
+      {{#iff system.subtype "!==" "storage"}}
+      {{#iff system.subtype "!==" "fuel"}}
+        <div class = "item-hardened">
+          <label for="system.hardened" class="resource-label short-label">{{localize "TWODSIX.Items.Component.Hardened"}}</label>
+          <input type="checkbox" class="checkbox" name="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
+        </div>
+      {{/iff}}{{/iff}}{{/iff}}
     {{/iff}}
 
     <div class="item-qty">
@@ -92,7 +102,7 @@
 
 
     {{#iff system.subtype "===" "fuel" }}
-    <div class="refined">
+    <div class="item-refined">
       <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
       <input type="checkbox" class="checkbox" name="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
     </div>
@@ -100,18 +110,18 @@
 
     {{#iff system.subtype "!==" "cargo"}}
     {{#iff system.subtype "!==" "fuel"}}
-    <div class="item-power">
-      <label for="system.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}
-      <input type="checkbox" class="checkbox" name="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
+      <div class="item-power">
+        <label for="system.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}
+        <input type="checkbox" class="checkbox" name="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
 
-      <label for="system.powerDraw" class="short-label" style="align-self: center;">
-      {{#if system.generatesPower}}
-        {{localize "TWODSIX.Items.Component.powerGenerated"}}
-      {{else}}
-        {{localize "TWODSIX.Items.Component.powerDraw"}}
-      {{/if}}
-      <input class="short-label" id="system.powerDraw" type="number" name="system.powerDraw" value="{{system.powerDraw}}" data-dtype="Number"/></label>
-    </div>
+        <label for="system.powerDraw" class="short-label" style="align-self: center;">
+        {{#if system.generatesPower}}
+          {{localize "TWODSIX.Items.Component.powerGenerated"}}
+        {{else}}
+          {{localize "TWODSIX.Items.Component.powerDraw"}}
+        {{/if}}
+        <input class="short-label" id="system.powerDraw" type="number" name="system.powerDraw" value="{{system.powerDraw}}" data-dtype="Number"/></label>
+      </div>
     {{/iff}}
     {{#iff system.subtype "===" "armament"}}
     <div class="item-damage">
@@ -138,6 +148,10 @@
       <span class="resource-label">{{localize "TWODSIX.Items.Component.Features"}}</span>
       <input class="form-input" type="text" name="system.features" value="{{system.features}}"/>
     </div>
+    <div class="item-skill">
+      <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+      <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+    </div>
     {{/iff}}
     <div class="item-hits">
       <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.hits"}}</label>
@@ -157,11 +171,12 @@
         </select>
       </span>
     </div>
-
+    {{#if settings.showComponentDM}}
     <div class="item-data">
       <label for="system.rollModifier" class="resource-label">{{localize "TWODSIX.Items.Component.RollModifier"}}</label>
       <input class="form-input" id="system.rollModifier" type="text" name="system.rollModifier" value="{{system.rollModifier}}"/>
     </div>
+    {{/if}}
 
     {{else}}
     <div class="item-price">

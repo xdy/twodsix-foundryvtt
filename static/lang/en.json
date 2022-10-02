@@ -278,6 +278,7 @@
         "bridge": "bridge",
         "cargo": "cargo",
         "computer": "computer",
+        "dock": "dock",
         "drive": "drive",
         "drone": "drone",
         "electronics": "electronics",
@@ -289,7 +290,7 @@
         "shield": "shield",
         "software": "software",
         "storage": "storage",
-        "vehicle": "vehicle",
+        "vehicle": "vehicle & craft",
         "other": "other",
         "otherExternal": "other - external",
         "otherInternal": "other - internal",
@@ -324,10 +325,14 @@
         "perUnit": "MCr per unit",
         "perCompTon": "MCr per component ton",
         "perHullTon": "MCr per hull ton",
+        "per100HullTon": "MCr per 100 hull tons",
         "pctHull": "Percent of base hull value",
         "isBaseHull":"Is Baseline Hull?",
         "RollModifier":"Roll Modifier",
-        "DM":"DM"
+        "DM":"DM",
+        "Hardened": "Hardened?",
+        "hardened": "hardened",
+        "Hd": "Hd"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -568,7 +573,8 @@
         "ArmorOnly": "Armor Only",
         "Threshold": "Threshold",
         "ArmorHullStruc": "Armor, Hull and Structure"
-      }
+      },
+      "ShippingSize": "Shipping Size"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -920,6 +926,14 @@
       "displayReactionMorale": {
         "hint": "Show reaction and morale information on animal sheet.",
         "name": "Show animal reaction and morale"
+      },
+      "showComponentRating": {
+        "hint": "Show rating field on ship component item sheet.",
+        "name": "Show component rating"
+      },
+      "showComponentDM": {
+        "hint": "Show DM field on ship component item sheet.",
+        "name": "Show component DM"
       }
     },
     "CloseAndCreateNew": "Close and create new",
