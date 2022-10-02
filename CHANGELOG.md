@@ -1,3 +1,10 @@
+## [2.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.2...v2.4.3) (2022-10-02)
+
+
+### Bug Fixes
+
+* hooks and ship sheet issues ([#1133](https://github.com/xdy/twodsix-foundryvtt/issues/1133)) ([306de10](https://github.com/xdy/twodsix-foundryvtt/commit/306de108da35e80db32eabdb4190d4608e8fbefc))
+
 ## [2.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.1...v2.4.2) (2022-09-28)
 
 
