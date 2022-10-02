@@ -278,6 +278,7 @@
         "bridge": "puente",
         "cargo": "bodega carga",
         "computer": "computadora",
+        "dock": "acoplar",
         "drive": "motor",
         "drone": "dron",
         "electronics": "electrónica",
@@ -324,10 +325,13 @@
         "perUnit": "MCr por unidad",
         "perCompTon": "MCr por ton. componentes",
         "perHullTon": "MCr por ton. casco",
+        "per100HullTon": "MCr por 100 toneladas de caso",
         "pctHull": "Porcentaje coste del casco",
         "isBaseHull": "¿Casco Atmostérico?",
         "RollModifier": "Modificador Tirada",
-        "DM": "MD"
+        "DM": "MD",
+        "Hardened": "¿Reforzado?",
+        "hardened": "reforzado"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -569,7 +573,8 @@
         "ArmorOnly": "Sólo Blindaje",
         "Threshold": "Umbral",
         "ArmorHullStruc": "Blindaje, Casco y Estructura"
-      }
+      },
+      "ShippingSize": "Tamaño"
     },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
@@ -921,6 +926,14 @@
       "displayReactionMorale": {
         "hint": "Mostrar información de reacción y moral en la hoja de animales.",
         "name": "Mostrar reacción y moral animal"
+      },
+      "showComponentRating": {
+        "hint": "Mostrar el campo de grado en la hoja de componentes de la nave.",
+        "name": "Mostrar el grado del componente"
+      },
+      "showComponentDM": {
+        "hint": "Mostrar el campo MD en la hoja de componentes de la nave.",
+        "name": "Mostrar MD componentes"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
