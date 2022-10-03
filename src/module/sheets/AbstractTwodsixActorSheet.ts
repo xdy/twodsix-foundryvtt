@@ -505,7 +505,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.system.radiationProtection.value = radiationProtection;
       sheetData.system.encumbrance.value = Math.round(encumbrance * 10) / 10; /*Round value to nearest tenth*/
       sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && sheetData.system.encumbrance.max > 0) {
         applyEncumberedEffect(sheetData.actor, sheetData.system.encumbrance.value / sheetData.system.encumbrance.max);
       }
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
