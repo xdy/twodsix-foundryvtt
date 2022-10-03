@@ -102,7 +102,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor, ratio:n
       { key: "system.characteristics.endurance.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
       { key: "system.characteristics.dexterity.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() }
     ];
-    if (isCurrentlyEncumbered.length === 0 && state === true) {
+    if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectType.encumbered,
         icon: "icons/svg/downgrade.svg",
