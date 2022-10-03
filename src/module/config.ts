@@ -69,7 +69,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: true,
       showComponentRating: true,
-      showComponentDM: true
+      showComponentDM: true,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: -1
     }
   },
   CEL: {
@@ -105,7 +107,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: false,
       showComponentRating: true,
-      showComponentDM: true
+      showComponentDM: true,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: -1
     }
   },
   CEFTL: {
@@ -139,7 +143,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: false,
       showComponentRating: false,
-      showComponentDM: false
+      showComponentDM: false,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: 0
     },
   },
   CEATOM: {
@@ -173,7 +179,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: true,
       displayReactionMorale: true,
       showComponentRating: false,
-      showComponentDM: false
+      showComponentDM: false,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: 0
     }
   },
   BARBARIC: {
@@ -206,7 +214,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: true,
       displayReactionMorale: true,
       showComponentRating: false,
-      showComponentDM: false
+      showComponentDM: false,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: 0
     },
   },
   CEQ: {
@@ -241,7 +251,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: false,
       showComponentRating: false,
-      showComponentDM: false
+      showComponentDM: false,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: 0
     }
   },
   CD: {
@@ -284,7 +296,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: true,
       showComponentRating: true,
-      showComponentDM: true
+      showComponentDM: true,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: -2
     }
   },
   CLU: {
@@ -327,7 +341,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: true,
       showComponentRating: true,
-      showComponentDM: true
+      showComponentDM: true,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: -2
     }
   },
 
@@ -371,7 +387,9 @@ const RULESETS = Object.freeze({
       animalsUseLocations: false,
       displayReactionMorale: true,
       showComponentRating: false,
-      showComponentDM: false
+      showComponentDM: false,
+      encumbranceFraction: "0.33",
+      encumbranceModifier: -1
     }
   },
 
