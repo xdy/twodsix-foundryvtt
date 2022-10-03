@@ -37,7 +37,11 @@
         name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' readonly /></span>
 <span class="bgi-encumbrance" data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
+  {{#iff system.encumbrance.max ">" "0"}}
     <i class="fa-solid fa-weight-hanging" style="color:brown;"></i>
+  {{else}}
+    <i class="fa-solid fa-weight-hanging"></i>
+  {{/iff}}
   {{else}}
   <i class="fa-solid fa-weight-hanging"></i>
   {{/iff}}:<input name="system.encumbrance.value" style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly/>
