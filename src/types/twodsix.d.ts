@@ -71,6 +71,9 @@ declare global {
       'twodsix.useFoundryStandardStyle': boolean;
       'twodsix.useSystemDefaultTokenIcon': boolean;
       'twodsix.useWoundedStatusIndicators': boolean;
+      'twodsix.useWoundedEncumbranceIndicators': boolean;
+      'twodsix.encumbranceFraction': string;
+      'twodsix.encumbranceModifier': number;
       'twodsix.absoluteBonusValueForEachTimeIncrement': number;
       'twodsix.absoluteCriticalEffectValue': number;
       'twodsix.maxSkillLevel': number;

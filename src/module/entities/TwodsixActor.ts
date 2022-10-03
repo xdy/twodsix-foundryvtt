@@ -408,6 +408,7 @@ export default class TwodsixActor extends Actor {
     } else if (this.type === 'ship') {
       return 0;
     } else {
+      //include any overrides from active effects in calculations
       let override = 0;
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
       if (this.overrides?.system?.characteristics) {
