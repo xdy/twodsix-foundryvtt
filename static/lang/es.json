@@ -190,13 +190,13 @@
       },
       "Type": "Tipo",
       "Subtype": {
-        "Filter": "Filtro",
-        "Intermittent": "Intermitente",
-        "Grazer": "Pastador",
+        "Filter": "Filtrador",
+        "Intermittent": "Intermitentes",
+        "Grazer": "Apacentador",
         "Gatherer": "Recolector",
         "Hunter": "Cazador",
-        "Eater": "Consumidor",
-        "Pouncer": "Agresivo",
+        "Eater": "Comedor",
+        "Pouncer": "Depredador",
         "Chaser": "Perseguidor",
         "Trapper": "Trampero",
         "Killer": "Asesino",
@@ -204,7 +204,7 @@
         "Intimidator": "Intimidador",
         "CarrionEater": "Carroñero",
         "Reducer": "Reductor",
-        "Siren": "Siren"
+        "Siren": "Sirena"
       },
       "Locations": {
         "CityUrban": "Ciudad o Urbano",
