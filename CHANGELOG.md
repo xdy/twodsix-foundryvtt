@@ -1,3 +1,10 @@
+## [2.4.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.5...v2.4.6) (2022-10-04)
+
+
+### Bug Fixes
+
+* Fixed animal terms ([#1138](https://github.com/xdy/twodsix-foundryvtt/issues/1138)) ([0fc645a](https://github.com/xdy/twodsix-foundryvtt/commit/0fc645a11a2c637b9dc67183203cfa9c6e860e46))
+
 ## [2.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.4...v2.4.5) (2022-10-04)
 
 
