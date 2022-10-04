@@ -158,7 +158,7 @@
       "Movement": {
         "MovementConfig": "Configurar Velocidad Movimiento",
         "MovementConfigHint": "Configurar la velocidad y atributos especiales del movimiento de la criatura.",
-        "MovementWalk": "Andar",
+        "MovementWalk": "Movimiento",
         "MovementBurrow": "Excavar",
         "MovementClimb": "Escalar",
         "MovementHover": "Flotar",
@@ -171,7 +171,7 @@
         "DistMi": "Millas",
         "DistPc": "Parsecs",
         "DistGU": "Unidades Rejilla",
-        "MovementRate": "Paso"
+        "MovementRate": "Velocidad"
       },
       "CharDisplay": {
         "Base": "Base",
@@ -552,7 +552,7 @@
         "operators": "Operadores",
         "passengers": "Pasajeros"
       },
-      "Movement": "Movimiento",
+      "Movement": "Velocidad",
       "Crew": "Tripulación",
       "Weight": "Peso",
       "Armor": "Blindaje",
@@ -956,7 +956,7 @@
       "component": "componente"
     },
     "speeds": {
-      "walk": "Andar",
+      "walk": "Movimiento",
       "dash": "Ir Deprisa",
       "run": "Correr",
       "jump": "Saltar"
