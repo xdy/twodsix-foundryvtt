@@ -1,3 +1,17 @@
+## [2.4.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.5...v2.4.6) (2022-10-04)
+
+
+### Bug Fixes
+
+* Fixed animal terms ([#1138](https://github.com/xdy/twodsix-foundryvtt/issues/1138)) ([0fc645a](https://github.com/xdy/twodsix-foundryvtt/commit/0fc645a11a2c637b9dc67183203cfa9c6e860e46))
+
+## [2.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.4...v2.4.5) (2022-10-04)
+
+
+### Bug Fixes
+
+* Bug fixes for actor and tokens re-release of [#1139](https://github.com/xdy/twodsix-foundryvtt/issues/1139) ([#1140](https://github.com/xdy/twodsix-foundryvtt/issues/1140)) ([a819ada](https://github.com/xdy/twodsix-foundryvtt/commit/a819adaf21ea8bf70d95c2570c6cd6615f4a88f4))
+
 ## [2.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.3...v2.4.4) (2022-10-02)
 
 
