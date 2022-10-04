@@ -133,7 +133,7 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 * You can right-click on an actor on the map, and select as target (round button in the lower left corner). Now when you do an attack it will automatically bring up the damage dialog for that actor (i.e. you don't need to drag and drop the damage)
 * There is built in support for PDFoundry and Drag Ruler Modules.
 * Can drag a scene to ship actor to act as an attached deck plan.
-* Option to use TinyMCE editor for larger text input fields
+* Option to use ProseMirror editor for larger text input fields
 * Automatic wounded status indicators (along with roll modifiers) can be optional added through a setting
 * There is an NPC sheet that can be used for any traveller.  Select under sheet settings
 * If using the show untrained skill, any roll that depends on a skill will default to untrained if no specific skill is selected.
