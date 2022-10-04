@@ -468,7 +468,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async createUnarmedSkill(): Promise<Skills | void> {
-    if (this.items?.getName(game.i18n.localize("TWODSIX.Item.Weapon.Unarmed"))) {
+    if (this.items?.getName(game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"))) {
       return;
     }
     const data = {
