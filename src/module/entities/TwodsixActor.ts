@@ -295,11 +295,13 @@ export default class TwodsixActor extends Actor {
             "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
             "token.bar1": {
               attribute: "hits"
-            },
-            "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
-            "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+            }
           });
         }
+        this.update({
+          "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
+          "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+        });
         await this.createUntrainedSkill();
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           await this.update({
@@ -466,7 +468,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async createUnarmedSkill(): Promise<Skills | void> {
-    if (this.items?.getName(game.i18n.localize("TWODSIX.Item.Weapon.Unarmed"))) {
+    if (this.items?.getName(game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"))) {
       return;
     }
     const data = {

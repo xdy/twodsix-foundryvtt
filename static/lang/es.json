@@ -102,7 +102,7 @@
         "Qty": "Cant.",
         "Range": "Alcance",
         "Refill": "Recarga",
-        "Reload": "Recargar",
+        "Reload": "Cargar",
         "SPELLS": "CONJUROS",
         "Spells": "Conjuros",
         "ShortDescr": "Opciones",
@@ -190,13 +190,13 @@
       },
       "Type": "Tipo",
       "Subtype": {
-        "Filter": "Filtro",
-        "Intermittent": "Intermitente",
-        "Grazer": "Pastador",
+        "Filter": "Filtrador",
+        "Intermittent": "Intermitentes",
+        "Grazer": "Apacentador",
         "Gatherer": "Recolector",
         "Hunter": "Cazador",
-        "Eater": "Consumidor",
-        "Pouncer": "Agresivo",
+        "Eater": "Comedor",
+        "Pouncer": "Depredador",
         "Chaser": "Perseguidor",
         "Trapper": "Trampero",
         "Killer": "Asesino",
@@ -204,7 +204,7 @@
         "Intimidator": "Intimidador",
         "CarrionEater": "Carroñero",
         "Reducer": "Reductor",
-        "Siren": "Siren"
+        "Siren": "Sirena"
       },
       "Locations": {
         "CityUrban": "Ciudad o Urbano",
@@ -817,7 +817,7 @@
       },
       "useProseMirror": {
         "hint": "Utiliza el editor HTML incorporado para introducir texto extenso.",
-        "name": "Utiliza el editor TinyMCE para introducir texto extenso."
+        "name": "Utiliza el editor ProseMirror para introducir bloques de texto largos."
       },
       "showIcons": {
         "hint": "Usar iconos en vez de texto en información. Los iconos se utilizan siempre con Vitalidad.",
@@ -968,7 +968,7 @@
       "NoDamageForWeapon": "Falta definir el daño del arma",
       "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
       "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
-      "EmptyConsumable": "Sin suministro, no te quedan consumibles. Neceistas recargar",
+      "EmptyConsumable": "Sin suministro, no te quedan consumibles. Necesitas recargar",
       "OnlyOwnedItems": "Sólo se pueden colocar en objetos propiedad del Actor",
       "SkillsConsumables": "Las habilidades no pueden tener consumibles",
       "DraggingSomething": "Arrastrando algo que no se puede mover",
