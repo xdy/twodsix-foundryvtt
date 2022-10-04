@@ -817,7 +817,7 @@
       },
       "useProseMirror": {
         "hint": "Utiliza el editor HTML incorporado para introducir texto extenso.",
-        "name": "Utiliza el editor TinyMCE para introducir texto extenso."
+        "name": "Utiliza el editor ProseMirror para introducir bloques de texto largos."
       },
       "showIcons": {
         "hint": "Usar iconos en vez de texto en información. Los iconos se utilizan siempre con Vitalidad.",
