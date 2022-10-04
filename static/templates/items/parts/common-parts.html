@@ -53,17 +53,18 @@
           {{/select}}
         </select>
     </div>
-  <div class="item-skillModifier">
-    <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
-    <input class="form-input" id="system.skillModifier" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
-           data-dtype="Number"/>
-  </div>
   {{else}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
   {{/if}}
+
+<div class="item-skillModifier">
+  <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
+  <input class="form-input" id="system.skillModifier" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
+          data-dtype="Number"/>
+</div>
 
 <div class="item-tl">
   <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
