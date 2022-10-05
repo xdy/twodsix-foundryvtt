@@ -3,6 +3,7 @@
 
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
+
 import { getDamageCharacteristics } from "../utils/actorDamage";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
@@ -12,20 +13,36 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
       await applyWoundedEffect(actor).then();
     }
   }
-  /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (checkForEncumbered(update.system) && (actor.type === 'traveller') && game.user?.isGM) {
-      applyEncumberedEffect(actor).then();
-    }
-  }*/
-});
-
-/*Hooks.on('updateToken', async (token:Record<string, any>, update:Record<string, any>) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (checkForEncumbered(update.system) && (actor.type === 'traveller') && game.user?.isGM) {
-      applyEncumberedEffect(token.actor, token.actor.system.encumbrance.value / token.actor.system.encumbrance.max);
+    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.isGM) {
+      await applyEncumberedEffect(actor).then();
     }
   }
-});*/
+});
+
+Hooks.on("updateItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.isGM) {
+      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+Hooks.on("deleteItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+
+Hooks.on("createItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+
 
 function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
   if (systemUpdates !== undefined) {
@@ -43,7 +60,7 @@ function checkForWounds(systemUpdates: Record<string, any>, actorType:string): b
 
 /*function checkForEncumbered(systemUpdates: Record<string, any>): boolean {
   if (systemUpdates !== undefined) {
-    if (systemUpdates.encumbrance) {
+    if (systemUpdates.equipped) {
       return true;
     }
   }
@@ -87,8 +104,9 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   }
 }
 
-export async function applyEncumberedEffect(selectedActor: TwodsixActor, ratio:number): Promise<void> {
+export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
   const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
+  const ratio = selectedActor.getActorEncumbrance() / selectedActor.getMaxEncumbrance();
   const state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
   if (isCurrentlyEncumbered.length > 0 && (state === false)) {
     const idList= isCurrentlyEncumbered.map(i => <string>i.id);
@@ -105,11 +123,11 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor, ratio:n
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectType.encumbered,
-        icon: "icons/svg/downgrade.svg",
+        icon: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData
       }]);
       const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
-      newEffect?.setFlag("core", "statusId", "downgrade");
+      newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
     }
   }
 }
@@ -317,3 +335,5 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
   }
   return returnVal;
 }
+
+
