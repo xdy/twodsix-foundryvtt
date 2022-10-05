@@ -373,7 +373,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const spells:Item[] = [];
     const consumable:Item[] = [];
     const component = {};
-    //let encumbrance = 0;
     let primaryArmor = 0;
     let secondaryArmor = 0;
     let radiationProtection = 0;
@@ -389,7 +388,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         item.prepareConsumable();
       }
       if (sheetData.actor.type === "traveller") {
-        //encumbrance += AbstractTwodsixActorSheet._getWeight(item);
         const anArmor = <Armor>item.system;
         if (item.type === "armor" && anArmor.equipped === "equipped") {
           primaryArmor += anArmor.armor;
@@ -457,18 +455,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           break;
       }
     });
-    // Calc Max Encumbrance
-    /*let maxEncumbrance = 0;
-    if (sheetData.actor.type === "traveller") {
-      const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
-      if (Roll.validate(encumbFormula)) {
-        maxEncumbrance = new Roll(encumbFormula, sheetData.actor.system).evaluate({async: false}).total;
-      } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
-      }
-    }*/
 
-    // Assign and return sheetData.data to sheetData.system????
+    // Assign and return sheetData
     if (sheetData.actor.type === "traveller") {
       sheetData.container.equipment = equipment;
       sheetData.container.weapon = weapon;
@@ -483,15 +471,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.system.primaryArmor.value = primaryArmor;
       sheetData.system.secondaryArmor.value = secondaryArmor;
       sheetData.system.radiationProtection.value = radiationProtection;
-      /*sheetData.system.encumbrance.value = Math.round(encumbrance * 10) / 10;
-      sheetData.system.encumbrance.max = Math.round((maxEncumbrance || 0)* 10) / 10;
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        if (sheetData.system.encumbrance.max > 0) {
-          applyEncumberedEffect(sheetData.actor, encumbrance / maxEncumbrance);
-        } else {
-          applyEncumberedEffect(sheetData.actor, 0);
-        }
-      }*/
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
     } else if (sheetData.actor.type === "animal" ) {
