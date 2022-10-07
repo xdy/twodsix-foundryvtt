@@ -3,6 +3,7 @@
 
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
+
 import { getDamageCharacteristics } from "../utils/actorDamage";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
@@ -12,12 +13,39 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
       await applyWoundedEffect(actor).then();
     }
   }
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.isGM) {
+      await applyEncumberedEffect(actor).then();
+    }
+  }
 });
 
+Hooks.on("updateItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.isGM) {
+      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+Hooks.on("deleteItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+
+Hooks.on("createItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});
+
+
 function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
-  if (systemUpdates === undefined) {
-    return false;
-  } else {
+  if (systemUpdates !== undefined) {
     const damageCharacteristics = getDamageCharacteristics(actorType);
     for (const characteristic of damageCharacteristics) {
       if (systemUpdates.characteristics) {
@@ -30,6 +58,15 @@ function checkForWounds(systemUpdates: Record<string, any>, actorType:string): b
   return false;
 }
 
+/*function checkForEncumbered(systemUpdates: Record<string, any>): boolean {
+  if (systemUpdates !== undefined) {
+    if (systemUpdates.equipped) {
+      return true;
+    }
+  }
+  return false;
+}*/
+
 export const DAMAGECOLORS = Object.freeze({
   minorWoundTint: '#FFFF00', // Yellow
   seriousWoundTint: '#FF0000', // Red
@@ -39,7 +76,8 @@ export const DAMAGECOLORS = Object.freeze({
 export const effectType = Object.freeze({
   dead: 'Dead',
   wounded: 'Wounded',
-  unconscious: 'Unconscious'
+  unconscious: 'Unconscious',
+  encumbered: 'Encumbered'
 });
 
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
@@ -62,6 +100,38 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       await setWoundedState(effectType.wounded, selectedActor, true, tintToApply);
+    }
+  }
+}
+
+export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
+  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
+  let state = false;
+  const maxEncumbrance = selectedActor.getMaxEncumbrance();
+  if(maxEncumbrance !== 0 && maxEncumbrance) {
+    const ratio = selectedActor.getActorEncumbrance() / maxEncumbrance;
+    state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
+  }
+  if (isCurrentlyEncumbered.length > 0 && (state === false)) {
+    const idList= isCurrentlyEncumbered.map(i => <string>i.id);
+    if(idList.length > 0) {
+      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+    }
+  } else if (state === true  && isCurrentlyEncumbered.length === 0) {
+    const modifier = game.settings.get('twodsix', 'encumbranceModifier');
+    const changeData = [
+      { key: "system.characteristics.strength.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
+      { key: "system.characteristics.endurance.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
+      { key: "system.characteristics.dexterity.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() }
+    ];
+    if (isCurrentlyEncumbered.length === 0) {
+      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+        label: effectType.encumbered,
+        icon: "systems/twodsix/assets/icons/weight.svg",
+        changes: changeData
+      }]);
+      const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
+      newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
     }
   }
 }
@@ -269,3 +339,5 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
   }
   return returnVal;
 }
+
+

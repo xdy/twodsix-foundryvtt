@@ -87,6 +87,26 @@ export default class TwodsixActor extends Actor {
     };
 
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
+    system.encumbrance.max = this.getMaxEncumbrance();
+    system.encumbrance.value = this.getActorEncumbrance();
+  }
+
+  getMaxEncumbrance():number {
+    let maxEncumbrance = 0;
+    const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
+    if (Roll.validate(encumbFormula)) {
+      maxEncumbrance = new Roll(encumbFormula, this.system).evaluate({async: false}).total;
+    }
+    return maxEncumbrance;
+  }
+
+  getActorEncumbrance():number {
+    let encumbrance = 0;
+    const actorItems = this.items.filter( i => i.type !== 'skills');
+    for (const item of actorItems) {
+      encumbrance += getEquipmentWeight(<TwodsixItem>item);
+    }
+    return encumbrance;
   }
 
   _prepareShipData(): void {
@@ -410,6 +430,7 @@ export default class TwodsixActor extends Actor {
     } else if (this.type === 'ship') {
       return 0;
     } else {
+      //include any overrides from active effects in calculations
       let override = 0;
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
       if (this.overrides?.system?.characteristics) {
@@ -580,3 +601,20 @@ async function deleteIdFromShipPositions(actorId: string) {
   }
 }
 
+function getEquipmentWeight(item:TwodsixItem):number {
+  if (["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type)) {
+    if (item.system.equipped !== "ship") {
+      let q = item.system.quantity || 0;
+      const w = item.system.weight || 0;
+      if (item.type === "armor" && item.system.equipped === "equipped") {
+        if (item.system.isPowered) {
+          q = Math.max(0, q - 1);
+        } else {
+          q = Math.max(0, q - 1 + Number(game.settings.get("twodsix", "weightModifierForWornArmor")));
+        }
+      }
+      return (q * w);
+    }
+  }
+  return 0;
+}
