@@ -60,6 +60,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(numberSetting('massProductionDiscount', 0.10, false));
     settings.push(booleanSetting('reverseHealingOrder', false));
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
+    settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with vales other than 0.5
+    settings.push(numberSetting('encumbranceModifier', -1, false));
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
     settings.push(booleanSetting('addEffectForShipDamage', false));

@@ -856,7 +856,7 @@
         "name": "The default movement units for the walk rate"
       },
       "useEncumbrance": {
-        "hint": "Use encumbarnce rules (if they exist) when displaying movement with drag ruler.",
+        "hint": "Use encumbrance rules (if they exist) when displaying movement with drag ruler.",
         "name": "Use system encumbrance rules for drag ruler"
       },
       "addEffectForShipDamage": {
@@ -934,6 +934,18 @@
       "showComponentDM": {
         "hint": "Show DM field on ship component item sheet.",
         "name": "Show component DM"
+      },
+      "useEncumbranceStatusIndicators": {
+        "hint": "Uses status indicators to indicate encumbered status. Roll modifiers below are applied to all physical characteristic rolls.",
+        "name": "Display encumbrance status indicators and apply roll modifiers"
+      },
+      "encumbranceFraction": {
+        "hint": "The fraction applied to the maximum encumbrance formula to indicate actor is encumbered.  For example, a value of 0.5 would mean the actor becomes encumbered when carried weight exceeds one half of maximum encumbrance.",
+        "name": "Fraction of maximum encumbrance when actor becomes encumbered"
+      },
+      "encumbranceModifier": {
+        "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
+        "name": "Modifier to physical characteristics when actor becomes encumbered"
       }
     },
     "CloseAndCreateNew": "Close and create new",
