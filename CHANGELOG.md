@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.6...v2.5.0) (2022-10-07)
+
+
+### Features
+
+* Add encumbrance icons and modifiers ([#1135](https://github.com/xdy/twodsix-foundryvtt/issues/1135)) ([c595345](https://github.com/xdy/twodsix-foundryvtt/commit/c595345ecf6bb442f38989e4a5c7859f2f895813))
+
 ## [2.4.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.5...v2.4.6) (2022-10-04)
 
 
