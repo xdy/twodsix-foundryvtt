@@ -271,91 +271,31 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (actor.type) {
       case 'traveller':
         if (itemData.type === 'skills') {
-          return this.handleDroppedSkills(actor, itemData);
+          return handleDroppedSkills(actor, itemData);
         } else if (!["component"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData);
+          return handleDroppedItem(actor, itemData);
         }
         break;
       case 'animal':
         if (itemData.type === 'skills') {
-          return this.handleDroppedSkills(actor, itemData);
+          return handleDroppedSkills(actor, itemData);
         } else if (["weapon", "trait"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData);
+          return handleDroppedItem(actor, itemData);
         }
         break;
       case 'ship':
-        if (!["augment", "skills", "trait"].includes(itemData.type)) {
-          return this.handleDroppedItem(actor, itemData);
+        if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
+          return handleDroppedItem(actor, itemData);
         }
         break;
       case 'vehicle':
         if (itemData.type === "component" && itemData.system.subtype === "armament") {
-          return this.handleDroppedItem(actor, itemData);
+          return handleDroppedItem(actor, itemData);
         }
         break;
     }
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
     return false;
-  }
-
-  protected async handleDroppedSkills(actor, itemData) {
-    const matching = actor.items.filter(x => {
-      return x.name === itemData.name;
-    });
-
-    // Handle item sorting within the same Actor
-    const sameActor = actor.items.get(itemData._id);;
-    if (sameActor) {
-      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-      //return this._onSortItem(event, sameActor);
-      return false;
-    }
-
-    if (matching.length > 0) {
-      console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
-      //TODO Maybe this should mean increase skill value?
-      return false;
-    }
-
-    if (itemData.system.value < 0 || !itemData.system.value) {
-      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        const skills: Skills = <Skills>game.system.template.Item?.skills;
-        itemData.system.value = skills?.value;
-      } else {
-        itemData.system.value = 0;
-      }
-    }
-
-    await actor.createEmbeddedDocuments("Item", [itemData]);
-    console.log(`Twodsix | Added Skill ${itemData.name} to character`);
-  }
-
-  protected async handleDroppedItem(actor:Actor, itemData) {
-    // Handle item sorting within the same Actor
-    const sameActor = actor.items.get(itemData._id);
-    if (sameActor) {
-      //return this._onSortItem(event, sameActor);
-      return false;
-    }
-
-    //Remove any attached consumables
-    if (itemData.system.consumables !== undefined) {
-      if (itemData.system.consumables.length > 0) {
-        itemData.system.consumables = [];
-      }
-    }
-
-    //Link an actor skill with name defined by item.associatedSkillName
-    if (itemData.system.associatedSkillName !== "") {
-      itemData.system.skill = actor.items.getName(itemData.system.associatedSkillName)?.id;
-      //Try to link Untrained if no match
-      if (!itemData.system.skill) {
-        itemData.system.skill = (<TwodsixActor>actor).getUntrainedSkill()?.id;
-      }
-    }
-
-    // Create the owned item (TODO Add to type and remove the two lines below...)
-    return this._onDropItemCreate(itemData);
   }
 
   protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
@@ -693,4 +633,86 @@ function sortObj(obj) {
     result[key] = obj[key];
     return result;
   }, {});
+}
+
+export async function handleDroppedSkills(actor, itemData): Promise<boolean>{
+  const matching = actor.items.filter(x => {
+    return x.name === itemData.name;
+  });
+
+  // Handle item sorting within the same Actor
+  const sameActor = actor.items.get(itemData._id);;
+  if (sameActor) {
+    console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+    //return this._onSortItem(event, sameActor);
+    return false;
+  }
+
+  if (matching.length > 0) {
+    console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+    //TODO Maybe this should mean increase skill value?
+    return false;
+  }
+
+  if (itemData.system.value < 0 || !itemData.system.value) {
+    if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      const skills: Skills = <Skills>game.system.template.Item?.skills;
+      itemData.system.value = skills?.value;
+    } else {
+      itemData.system.value = 0;
+    }
+  }
+
+  const addedSkill = await actor.createEmbeddedDocuments("Item", [itemData]);
+  console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+  return(!!addedSkill);
+}
+
+export async function handleDroppedItem(actor, itemData): Promise<boolean>{
+  // Handle item sorting within the same Actor
+  const sameActor = actor.items.get(itemData._id);
+  if (sameActor) {
+    //return this._onSortItem(event, sameActor);
+    return false;
+  }
+
+  // Item already exists on actor
+  if (isDuplicateItem(actor, itemData)) {
+    console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+    const dupItem:TwodsixItem = actor.items.getName(itemData.name);
+    if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
+      const newQuantity = dupItem.system.quantity + itemData.system.quantity;
+      dupItem.update({"system.quantity": newQuantity});
+    }
+    return;
+  }
+
+  //Remove any attached consumables
+  if (itemData.system.consumables !== undefined) {
+    if (itemData.system.consumables.length > 0) {
+      itemData.system.consumables = [];
+    }
+  }
+
+  // Create the owned item (TODO Add to type and remove the two lines below...)
+  //return actor._onDropItemCreate(itemData);
+  const addedItem = (await actor.createEmbeddedDocuments("Item", [itemData]))[0];
+
+  //Link an actor skill with name defined by item.associatedSkillName
+  let skillId = "";
+  if (addedItem.system.associatedSkillName !== "") {
+    skillId = await actor.items.getName(addedItem.system.associatedSkillName)?.id;
+    //Try to link Untrained if no match
+    if (!skillId) {
+      skillId = (<TwodsixActor>actor).getUntrainedSkill()?.id;
+    }
+    await addedItem.update({"system.skill": skillId});
+  }
+  console.log(`Twodsix | Added Item ${itemData.name} to character`);
+  return (!!addedItem);
+}
+
+function isDuplicateItem(actor: Actor, itemData: any):boolean {
+  const retValue = actor.items.filter(x => x.name === itemData.name);
+  return retValue.length > 0 ? true : false;
 }
