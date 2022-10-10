@@ -4,7 +4,6 @@
 //Liberally adapted from "hey-catch" by Mana#4176
 //import { Skills } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
-import { handleDroppedItem, handleDroppedSkills } from "../sheets/AbstractTwodsixActorSheet";
 import { getItemDataFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
   if ((dropData.type === 'damageItem' || dropData.type === "Item") && game.settings.get("twodsix", "allowDropOnIcon")) {
@@ -48,10 +47,10 @@ async function catchDrop(canvasObject: Canvas, dropData) {
         }
 
         if (itemData.type === "skills") {
-          handleDroppedSkills(targetActor, itemData);
+          targetActor.handleDroppedSkills(itemData);
           return;
         } else if (!["component"].includes(itemData.type)) {
-          handleDroppedItem(targetActor, itemData);
+          targetActor.handleDroppedItem(itemData);
           return;
         }
       }

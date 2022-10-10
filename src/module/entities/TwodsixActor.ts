@@ -554,6 +554,82 @@ export default class TwodsixActor extends Actor {
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
 
+  public async handleDroppedSkills(skillData): Promise<boolean>{
+    // Handle item sorting within the same Actor
+    const sameActor = this.items.get(skillData._id);;
+    if (sameActor) {
+      console.log(`Twodsix | Moved Skill ${skillData.name} to another position in the skill list`);
+      //return this._onSortItem(event, sameActor);
+      return false;
+    }
+
+    //Check for pre-existing skill by same name
+    const matching = this.items.getName(skillData.name);
+
+    if (matching) {
+      console.log(`Twodsix | Skill ${skillData.name} already on character ${this.name}.`);
+      //TODO Maybe this should mean increase skill value?
+      return false;
+    }
+
+    if (skillData.system.value < 0 || !skillData.system.value) {
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        const skills: Skills = <Skills>game.system.template.Item?.skills;
+        skillData.system.value = skills?.value;
+      } else {
+        skillData.system.value = 0;
+      }
+    }
+
+    const addedSkill = await this.createEmbeddedDocuments("Item", [skillData]);
+    console.log(`Twodsix | Added Skill ${skillData.name} to character`);
+    return(!!addedSkill);
+  }
+
+  public async handleDroppedItem(itemData): Promise<boolean>{
+    // Handle item sorting within the same Actor
+    const sameActor = this.items.get(itemData._id);
+    if (sameActor) {
+      //return this._onSortItem(event, sameActor);
+      return false;
+    }
+
+    // Item already exists on actor
+    if (this.items.getName(itemData.name)) {
+      console.log(`Twodsix | Item ${itemData.name} already on character ${this.name}.`);
+      const dupItem:TwodsixItem = this.items.getName(itemData.name);
+      if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
+        const newQuantity = dupItem.system.quantity + itemData.system.quantity;
+        dupItem.update({"system.quantity": newQuantity});
+      }
+      return false;
+    }
+
+    //Remove any attached consumables
+    if (itemData.system.consumables !== undefined) {
+      if (itemData.system.consumables.length > 0) {
+        itemData.system.consumables = [];
+      }
+    }
+
+    // Create the owned item (TODO Add to type and remove the two lines below...)
+    //return actor._onDropItemCreate(itemData);
+    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+
+    //Link an actor skill with name defined by item.associatedSkillName
+    let skillId = "";
+    if (addedItem.system.associatedSkillName !== "") {
+      skillId = this.items.getName(addedItem.system.associatedSkillName)?.id;
+      //Try to link Untrained if no match
+      if (!skillId) {
+        skillId = this.getUntrainedSkill()?.id ?? "";
+      }
+      await addedItem.update({"system.skill": skillId});
+    }
+    console.log(`Twodsix | Added Item ${itemData.name} to character`);
+    return (!!addedItem);
+  }
+
 }
 
 export function getPower(item: Component): number{
@@ -617,4 +693,9 @@ function getEquipmentWeight(item:TwodsixItem):number {
     }
   }
   return 0;
+}
+
+function isDuplicateItem(itemData: any):boolean {
+  const retValue = this.items.filter(x => x.name === itemData.name);
+  return retValue.length > 0 ? true : false;
 }
