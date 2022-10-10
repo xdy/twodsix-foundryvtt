@@ -1002,7 +1002,7 @@
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFPagerNotInstalled": "PDF Pager must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
-      "NoTargetFound": "No target for damage found.",
+      "NoTargetFound": "No target for dropping found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
