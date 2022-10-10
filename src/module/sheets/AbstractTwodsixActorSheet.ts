@@ -684,7 +684,7 @@ export async function handleDroppedItem(actor, itemData): Promise<boolean>{
       const newQuantity = dupItem.system.quantity + itemData.system.quantity;
       dupItem.update({"system.quantity": newQuantity});
     }
-    return;
+    return false;
   }
 
   //Remove any attached consumables
@@ -704,7 +704,7 @@ export async function handleDroppedItem(actor, itemData): Promise<boolean>{
     skillId = await actor.items.getName(addedItem.system.associatedSkillName)?.id;
     //Try to link Untrained if no match
     if (!skillId) {
-      skillId = (<TwodsixActor>actor).getUntrainedSkill()?.id;
+      skillId = (<TwodsixActor>actor).getUntrainedSkill()?.id ?? "";
     }
     await addedItem.update({"system.skill": skillId});
   }
