@@ -694,8 +694,3 @@ function getEquipmentWeight(item:TwodsixItem):number {
   }
   return 0;
 }
-
-function isDuplicateItem(itemData: any):boolean {
-  const retValue = this.items.filter(x => x.name === itemData.name);
-  return retValue.length > 0 ? true : false;
-}
