@@ -635,36 +635,35 @@ function sortObj(obj) {
   }, {});
 }
 
-export async function handleDroppedSkills(actor, itemData): Promise<boolean>{
-  const matching = actor.items.filter(x => {
-    return x.name === itemData.name;
-  });
-
+export async function handleDroppedSkills(actor, skillData): Promise<boolean>{
   // Handle item sorting within the same Actor
-  const sameActor = actor.items.get(itemData._id);;
+  const sameActor = actor.items.get(skillData._id);;
   if (sameActor) {
-    console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+    console.log(`Twodsix | Moved Skill ${skillData.name} to another position in the skill list`);
     //return this._onSortItem(event, sameActor);
     return false;
   }
 
-  if (matching.length > 0) {
-    console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+  //Check for pre-existing skill by same name
+  const matching = actor.items.getName(skillData.name);
+
+  if (matching) {
+    console.log(`Twodsix | Skill ${skillData.name} already on character ${actor.name}.`);
     //TODO Maybe this should mean increase skill value?
     return false;
   }
 
-  if (itemData.system.value < 0 || !itemData.system.value) {
+  if (skillData.system.value < 0 || !skillData.system.value) {
     if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
       const skills: Skills = <Skills>game.system.template.Item?.skills;
-      itemData.system.value = skills?.value;
+      skillData.system.value = skills?.value;
     } else {
-      itemData.system.value = 0;
+      skillData.system.value = 0;
     }
   }
 
-  const addedSkill = await actor.createEmbeddedDocuments("Item", [itemData]);
-  console.log(`Twodsix | Added Skill ${itemData.name} to character`);
+  const addedSkill = await actor.createEmbeddedDocuments("Item", [skillData]);
+  console.log(`Twodsix | Added Skill ${skillData.name} to character`);
   return(!!addedSkill);
 }
 
@@ -678,7 +677,7 @@ export async function handleDroppedItem(actor, itemData): Promise<boolean>{
 
   // Item already exists on actor
   if (isDuplicateItem(actor, itemData)) {
-    console.log(`Twodsix | Skill ${itemData.name} already on character ${actor.name}.`);
+    console.log(`Twodsix | Item ${itemData.name} already on character ${actor.name}.`);
     const dupItem:TwodsixItem = actor.items.getName(itemData.name);
     if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
       const newQuantity = dupItem.system.quantity + itemData.system.quantity;
