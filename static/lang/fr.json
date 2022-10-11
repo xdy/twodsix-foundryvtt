@@ -115,7 +115,8 @@
           "days": "jour(s)",
           "weeks": "semaine(s)",
           "months": "mois",
-          "rounds": "round(s)"
+          "rounds": "round(s)",
+          "none": "---"
         }
       },
       "Species": "Espèce",
@@ -148,7 +149,9 @@
         "Base": "Base",
         "Alternate": "Alterner",
         "All": "Tout"
-      }
+      },
+      "Endurance": "Endurance",
+      "Nationality": "Nationalité"
     },
     "Chat": {
       "Roll": {
@@ -512,22 +515,6 @@
         "hint": "Appliquer automatiquement les paramètres recommandés pour les tokens prototype lors de la création d'un nouvel acteur.",
         "name": "Paramètres de tokens prototypes par défaut"
       },
-      "difficultiesAsTargetNumber": {
-      },
-      "difficultyListUsed": {
-      },
-      "effectOrTotal": {
-      },
-      "ExperimentalFeatures": {
-      },
-      "hideUntrainedSkills": {
-      },
-      "initiativeFormula": {
-      },
-      "invertSkillRollShiftClick": {
-      },
-      "lifebloodInsteadOfCharacteristics": {
-      },
       "maxSkillLevel": {
         "hint": "Laisser vide pour utiliser la valeur par défaut (9).",
         "name": "Niveau de compétence maximal."
@@ -571,27 +558,17 @@
         "hint": "Base : six de base plus PSI. Alternative : six de base plus alternative. Tous: six de base plus PSI plus Alternative",
         "name": "Sélectionnez les caractéristiques à afficher"
       },
-      "showContaminationBelowLifeblood": {
-      },
       "ShowDamageType": {
         "hint": "activé=Afficher le champ 'Types de dégâts', désactivé=Masquer",
         "name": "Afficher le champ \"Type de dégâts\" sur les fiches d'armes"
-      },
-      "showHeroPoints": {
       },
       "showItemReferences": {
         "hint": "Affiche un champ de texte sur les fiches d'objets et de véhicules à utiliser avec PDFoundry ou comme référence de forme libre. Pour PDFoundry, le format doit être '[nom abrégé] [numéro de page]'.",
         "name": "Afficher le champ de référence sur les fiches des véhicules et des objets."
       },
-      "ShowLawLevel": {
-      },
-      "showLifebloodStamina": {
-      },
       "showMissingCompendiumWarnings": {
         "hint": "Indique s'il faut afficher des avertissements pour les modules manquants/désactivés au démarrage du monde.",
         "name": "Afficher les avertissements concernant les modules manquants/désactivés."
-      },
-      "ShowRangeBandAndHideRange": {
       },
       "ShowRateOfFire": {
         "hint": "activé=Afficher le champ 'Cadence de tir', désactivé=Masquer",
@@ -659,12 +636,6 @@
         "hint": "Facteur de multiplication de la valeur de poids d'une armure si elle est actuellement équipée.",
         "name": "Facteur de multiplication de la valeur de poids d'une armure équipée."
       },
-      "useProseMirror": {
-      },
-      "showIcons": {
-      },
-      "maxComponentHits": {
-      },
       "mortgagePayment": {
         "hint": "Le nombre par lequel diviser le coût du vaisseau pour déterminer les versements hypothécaires mensuels sur 40 ans. Une valeur de 240 signifie que le coût du navire est divisé par 240 pour déterminer le paiement mensuel.",
         "name": "Modalités de paiement hypothécaire."
@@ -693,8 +664,6 @@
         "hint": "L'unité de mouvement/marche par défaut pour les nouveaux Travelles (en général une action mineure), par ex. m pour 10m",
         "name": "L'unité de mouvement par défaut pour la vitesse de marche"
       },
-      "useEncumbrance": {
-      },
       "addEffectForShipDamage": {
         "hint": "La valeur de l'effet de l'attaque du vaisseau est ajoutée au jet de dégâts.",
         "name": "Ajouter l'effet aux dégâts du vaisseau"
@@ -706,15 +675,9 @@
       "unarmedDamage": {
         "name": "Formule de dégâts à mains nues"
       },
-      "showTimeframe": {
-      },
       "showStatusIcons": {
         "hint": "Superpose les icônes de condition aux côtés du portrait sur la fiche des acteurs.",
         "name": "Afficher les icônes de condition sur les fiches des Travellers"
-      },
-      "showHullAndArmor": {
-      },
-      "addEffectToManualDamage": {
       },
       "showRangeSpeedNoUnits": {
         "hint": "Cache les unités de portée et de vitesse (par exemple, km/h) sur la fiche du véhicule.",
