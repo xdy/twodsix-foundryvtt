@@ -225,13 +225,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   /**
-   * Special handling of skills dropping.
+   * Process dropped information.
    */
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
 
     const dropData = getDataFromDropEvent(event);
-    const actor = this.actor;
+    const actor = <TwodsixActor>this.actor;
 
     if (!dropData) {
       console.log(`Twodsix | Dragging something that can't be dragged`);
@@ -239,14 +239,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (dropData.type === 'damageItem') {
-      if (actor.type === 'traveller' || actor.type === 'animal') {
-        const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-        const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-        await (<TwodsixActor>this.actor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, showDamageDialog);
-      } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
-      }
-      return false;
+      const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+      return actor.handleDamageData(dropData.payload, showDamageDialog);
     }
 
     // Handle dropped scene on ship sheet
@@ -267,35 +262,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
-
-    switch (actor.type) {
-      case 'traveller':
-        if (itemData.type === 'skills') {
-          return actor.handleDroppedSkills(itemData);
-        } else if (!["component"].includes(itemData.type)) {
-          return actor.handleDroppedItem(itemData);
-        }
-        break;
-      case 'animal':
-        if (itemData.type === 'skills') {
-          return actor.handleDroppedSkills(itemData);
-        } else if (["weapon", "trait"].includes(itemData.type)) {
-          return actor.handleDroppedItem(itemData);
-        }
-        break;
-      case 'ship':
-        if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
-          return actor.handleDroppedItem(itemData);
-        }
-        break;
-      case 'vehicle':
-        if (itemData.type === "component" && itemData.system.subtype === "armament") {
-          return actor.handleDroppedItem(itemData);
-        }
-        break;
-    }
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
-    return false;
+    return actor.handleDroppedItem(itemData);
   }
 
   protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {

@@ -393,7 +393,7 @@ export default class TwodsixActor extends Actor {
       Hooks.call('createDamageDialog', damageData);
     } else {
       const stats = new Stats(this, damage, armorPiercingValue);
-      stats.applyDamage(); //TODO Should have await?
+      await stats.applyDamage();
     }
   }
 
@@ -554,7 +554,7 @@ export default class TwodsixActor extends Actor {
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
 
-  public async handleDroppedSkills(skillData): Promise<boolean>{
+  private async _addDroppedSkills(skillData): Promise<boolean>{
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(skillData._id);;
     if (sameActor) {
@@ -586,7 +586,7 @@ export default class TwodsixActor extends Actor {
     return(!!addedSkill);
   }
 
-  public async handleDroppedItem(itemData): Promise<boolean>{
+  private async _addDroppedItem(itemData): Promise<boolean>{
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(itemData._id);
     if (sameActor) {
@@ -630,6 +630,49 @@ export default class TwodsixActor extends Actor {
     return (!!addedItem);
   }
 
+  public async handleDroppedItem(itemData): Promise<boolean> {
+    if(!itemData) {
+      return false;
+    }
+
+    switch (this.type) {
+      case 'traveller':
+        if (itemData.type === 'skills') {
+          return this._addDroppedSkills(itemData);
+        } else if (!["component"].includes(itemData.type)) {
+          return this._addDroppedItem(itemData);
+        }
+        break;
+      case 'animal':
+        if (itemData.type === 'skills') {
+          return this._addDroppedSkills(itemData);
+        } else if (["weapon", "trait"].includes(itemData.type)) {
+          return this._addDroppedItem(itemData);
+        }
+        break;
+      case 'ship':
+        if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
+          return this._addDroppedItem(itemData);
+        }
+        break;
+      case 'vehicle':
+        if (itemData.type === "component" && itemData.system.subtype === "armament") {
+          return this._addDroppedItem(itemData);
+        }
+        break;
+    }
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
+    return false;
+  }
+
+  public async handleDamageData(damagePayload:any, showDamageDialog:boolean) {
+    if (this.type === 'traveller' || this.type === 'animal') {
+      await this.damageActor(damagePayload.damage, damagePayload.armorPiercingValue, showDamageDialog);
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+    }
+    return false;
+  }
 }
 
 export function getPower(item: Component): number{
@@ -694,3 +737,7 @@ function getEquipmentWeight(item:TwodsixItem):number {
   }
   return 0;
 }
+
+/*function isSameActor(actor: Actor, itemData: any): boolean {
+  return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
+}*/

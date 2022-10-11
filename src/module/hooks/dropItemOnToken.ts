@@ -20,40 +20,16 @@ async function catchDrop(canvasObject: Canvas, dropData) {
   if (foundTokens?.length === 0 || !foundTokens) {
     return ui.notifications?.info(game.i18n.localize("TWODSIX.Warnings.NoTargetFound"));
   } else if (foundTokens.length === 1) {
-    //console.log('Dropped On:', found[0]);
-
     const targetActor = <TwodsixActor>foundTokens[0]?.actor;
-    //console.log(actor);
 
     if (!targetActor?.isOwner) {
       return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
     }
-
-    if (targetActor.type === 'traveller' || targetActor.type === 'animal') {
-      if (dropData.type === 'damageItem') {
-        await (<TwodsixActor>targetActor).damageActor(dropData.payload.damage, dropData.payload.armorPiercingValue, true);
-      } else if (dropData.type === 'Item') {
-        const itemData = await getItemDataFromDropData(dropData);  //Note: this might need to change to  itemData = fromUuidSync(dropData.uuid)
-
-        //Block unallowed types on animals
-        if (!["weapon", "trait", "skills"].includes(itemData.type) && targetActor.type === "animal") {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
-          return false;
-        }
-
-        if (isSameActor(targetActor, itemData)) {
-          console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-          return;
-        }
-
-        if (itemData.type === "skills") {
-          targetActor.handleDroppedSkills(itemData);
-          return;
-        } else if (!["component"].includes(itemData.type)) {
-          targetActor.handleDroppedItem(itemData);
-          return;
-        }
-      }
+    if (dropData.type === 'damageItem') {
+      return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    } else if (dropData.type === 'Item') {
+      const itemData = await getItemDataFromDropData(dropData);
+      return targetActor.handleDroppedItem(itemData);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
     }
@@ -71,8 +47,4 @@ function getTokensAtLocation(canvasObject: Canvas, x: number, y: number) {
     return Number.between(x, obj.x, obj.x + obj.w) && Number.between(y, obj.y, obj.y + obj.h);
   });
   return foundTokens;
-}
-
-function isSameActor(actor: Actor, itemData: any): boolean {
-  return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }
