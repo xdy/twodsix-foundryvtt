@@ -4,7 +4,7 @@
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
+import {Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getKeyByValue } from "../utils/sheetUtils";
@@ -373,9 +373,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const spells:Item[] = [];
     const consumable:Item[] = [];
     const component = {};
-    let primaryArmor = 0;
-    let secondaryArmor = 0;
-    let radiationProtection = 0;
     let numberOfSkills = 0;
     let skillRanks = 0;
     const summaryStatus = {};
@@ -388,18 +385,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         item.prepareConsumable();
       }
       if (sheetData.actor.type === "traveller") {
-        const anArmor = <Armor>item.system;
-        if (item.type === "armor" && anArmor.equipped === "equipped") {
-          primaryArmor += anArmor.armor;
-          secondaryArmor += anArmor.secondaryArmor.value;
-          radiationProtection += anArmor.radiationProtection.value;
-        } else if (item.type === "skills") {
+        if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
             skillRanks += Number(item.system.value);
           }
         }
-
       }
       switch (item.type) {
         case 'storage':
@@ -468,9 +459,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.container.skills = skills;
       sheetData.container.traits = traits;
       sheetData.container.spells = spells;
-      sheetData.system.primaryArmor.value = primaryArmor;
-      sheetData.system.secondaryArmor.value = secondaryArmor;
-      sheetData.system.radiationProtection.value = radiationProtection;
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
     } else if (sheetData.actor.type === "animal" ) {

@@ -89,6 +89,29 @@ export default class TwodsixActor extends Actor {
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
     system.encumbrance.max = this.getMaxEncumbrance();
     system.encumbrance.value = this.getActorEncumbrance();
+    if (this.type === 'traveller') {
+      const armorValues = this.getArmorValues();
+      system.primaryArmor.value = armorValues.primaryArmor;
+      system.secondaryArmor.value= armorValues.secondaryArmor;
+      system.radiationProtection.value = armorValues.radiationProtection;
+    }
+  }
+
+  getArmorValues():object {
+    const returnValue = {
+      primaryArmor: 0,
+      secondaryArmor: 0,
+      radiationProtection: 0
+    };
+    const armorItems = this.items.filter( a => a.type === "armor");
+    for (const armor of armorItems) {
+      if (armor.system.equipped === "equipped") {
+        returnValue.primaryArmor += armor.system.armor;
+        returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+        returnValue.radiationProtection += armor.system.radiationProtection.value;
+      }
+    }
+    return returnValue;
   }
 
   getMaxEncumbrance():number {
