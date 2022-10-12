@@ -586,7 +586,7 @@ export default class TwodsixActor extends Actor {
     return(!!addedSkill);
   }
 
-  private async _addDroppedItem(itemData): Promise<boolean>{
+  private async _addDroppedEquipment(itemData): Promise<boolean>{
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(itemData._id);
     if (sameActor) {
@@ -594,12 +594,34 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
+    let numberToMove = itemData.system.quantity;
+
+    //Handle moving items from another actor if enabled by settings
+    if (itemData.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
+      const sourceActor = itemData.actor; //fix
+      if (itemData.system.quantity > 1) {
+        numberToMove = await getMoveNumber(itemData);
+        if (numberToMove >= itemData.system.quantity) {
+          numberToMove = itemData.system.quantity;
+          await sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
+        } else if (numberToMove === 0) {
+          return false;
+        } else {
+          sourceActor.updateEmbeddedDocuments("Item", [{_id: itemData.id, 'system.quantity': (itemData.system.quantity - numberToMove)}]);
+        }
+      } else if (itemData.system.quantity === 1) {
+        sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
+      } else {
+        return false;
+      }
+    }
+
     // Item already exists on actor
     if (this.items.getName(itemData.name)) {
       console.log(`Twodsix | Item ${itemData.name} already on character ${this.name}.`);
-      const dupItem:TwodsixItem = this.items.getName(itemData.name);
+      const dupItem = <TwodsixItem>this.items.getName(itemData.name);
       if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
-        const newQuantity = dupItem.system.quantity + itemData.system.quantity;
+        const newQuantity = dupItem.system.quantity + numberToMove;
         dupItem.update({"system.quantity": newQuantity});
       }
       return false;
@@ -612,16 +634,16 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    // Create the owned item (TODO Add to type and remove the two lines below...)
-    //return actor._onDropItemCreate(itemData);
+    // Create the owned item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    await addedItem.update({"system.quantity": numberToMove});
 
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
     if (addedItem.system.associatedSkillName !== "") {
-      skillId = this.items.getName(addedItem.system.associatedSkillName)?.id;
+      skillId = this.items.getName(addedItem.system.associatedSkillName)?.id ?? "";
       //Try to link Untrained if no match
-      if (!skillId) {
+      if (skillId === "") {
         skillId = this.getUntrainedSkill()?.id ?? "";
       }
       await addedItem.update({"system.skill": skillId});
@@ -640,24 +662,24 @@ export default class TwodsixActor extends Actor {
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
         } else if (!["component"].includes(itemData.type)) {
-          return this._addDroppedItem(itemData);
+          return this._addDroppedEquipment(itemData);
         }
         break;
       case 'animal':
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
         } else if (["weapon", "trait"].includes(itemData.type)) {
-          return this._addDroppedItem(itemData);
+          return this._addDroppedEquipment(itemData);
         }
         break;
       case 'ship':
         if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
-          return this._addDroppedItem(itemData);
+          return this._addDroppedEquipment(itemData);
         }
         break;
       case 'vehicle':
         if (itemData.type === "component" && itemData.system.subtype === "armament") {
-          return this._addDroppedItem(itemData);
+          return this._addDroppedEquipment(itemData);
         }
         break;
     }
@@ -736,6 +758,29 @@ function getEquipmentWeight(item:TwodsixItem):number {
     }
   }
   return 0;
+}
+
+async function getMoveNumber(itemData:number): Promise <number> {
+  const returnNumber:number = await new Promise((resolve) => {
+    new Dialog({
+      title: game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer"),
+      content:
+        `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
+        `<div><label>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" id="amount" value="` +
+        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></div>`,
+      buttons: {
+        Transfer: {
+          label: `<i class="fa-solid fa-arrow-right-arrow-left"></i> ` + game.i18n.localize("TWODSIX.Actor.Items.Transfer"),
+          callback:
+            (html:JQuery) => {
+              resolve(html.find('[name="amount"]')[0]["value"]);
+            }
+        }
+      },
+      default: `Transfer`
+    }).render(true);
+  });
+  return Math.round(returnNumber);
 }
 
 /*function isSameActor(actor: Actor, itemData: any): boolean {
