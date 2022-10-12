@@ -120,6 +120,7 @@ declare global {
       'twodsix.displayReactionMorale': boolean;
       'twodsix.showComponentRating': boolean;
       'twodsix.showComponentDM': boolean;
+      'twodsix.transferDroppedItems': boolean;
     }
   }
 }

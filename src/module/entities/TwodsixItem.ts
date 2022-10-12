@@ -146,9 +146,9 @@ export default class TwodsixItem extends Item {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
-        const damage = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (game.user?.targets.size === 1 && damage) {
-          game.user?.targets.values().next().value.actor.damageActor(damage.total, TwodsixItem.getApValue(weapon, this.actor));
+        const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
+        if (game.user?.targets.size === 1 && damagePayload) {
+          game.user?.targets.values().next().value.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'invertSkillRollShiftClick'));
         } else if (game.user?.targets && game.user?.targets.size > 1) {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
         }
@@ -229,7 +229,7 @@ export default class TwodsixItem extends Item {
     return diceRoll;
   }
 
-  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<Roll | void> {
+  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
 
     if (!weapon.damage) {
@@ -301,7 +301,7 @@ export default class TwodsixItem extends Item {
           }
         }, {rollMode: rollMode});
       }
-      return damage;  //probably should return contentData instead
+      return contentData;
     }
   }
 

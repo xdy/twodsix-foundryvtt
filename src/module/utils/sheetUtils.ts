@@ -215,7 +215,7 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
-  return duplicate(item);
+  return deepClone(item);
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {
