@@ -3,7 +3,7 @@
 
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
-
+import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
@@ -150,7 +150,8 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
         await setConditionState(effectType.unconscious, selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
         const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
-        const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: { mod: 0, target: 8 } }, false);
+        const setDifficulty = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))].Difficult;
+        const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
           await setConditionState(effectType.unconscious, selectedActor, true);
         }

@@ -331,7 +331,8 @@
         "RollModifier": "Modificador Tirada",
         "DM": "MD",
         "Hardened": "¿Reforzado?",
-        "hardened": "reforzado"
+        "hardened": "reforzado",
+        "Hd": "Hd"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -934,6 +935,18 @@
       "showComponentDM": {
         "hint": "Mostrar el campo MD en la hoja de componentes de la nave.",
         "name": "Mostrar MD componentes"
+      },
+      "useEncumbranceStatusIndicators": {
+        "hint": "Utiliza los indicadores de estado para marcar la sobrecarga de peso. Los modificadores abajo se aplicaran a todas las tiradas de atributos físicos.",
+        "name": "Mostrar estado sobrecargado y aplicar modificadores en las tiradas"
+      },
+      "encumbranceFraction": {
+        "hint": "La fracción aplicable en la fórmula de carga máxima para indicar que el actor esta sobrecargado. Ejemplo: 0.5 significa que el actor se encuentra sobrecargado cuando el peso supera la mitad de la carga máxima.",
+        "name": "Fracción de la carga máxima cuando el actor esta sobrecargado"
+      },
+      "encumbranceModifier": {
+        "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
+        "name": "Modificador de atributos físicos en sobrecarga de peso"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -956,7 +969,7 @@
       "component": "componente"
     },
     "speeds": {
-      "walk": "Movimiento",
+      "walk": "Andar",
       "dash": "Ir Deprisa",
       "run": "Correr",
       "jump": "Saltar"
