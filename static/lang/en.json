@@ -84,6 +84,7 @@
         "ENEMIES": "ENEMIES"
       },
       "Items": {
+        "Amount": "Amount",
         "ARMOR": "ARMOR",
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
@@ -99,6 +100,7 @@
         "Effect": "Effect",
         "Location": "Location",
         "Name": "Name",
+        "QuantityToTransfer": "Quantity to Transfer",
         "Qty": "Qty",
         "Range": "Range",
         "Refill": "Refill",
@@ -109,6 +111,7 @@
         "Subtype": "Type",
         "TRAITS": "TRAITS",
         "Traits": "Traits",
+        "Transfer": "Transfer Items",
         "TL": "TL",
         "TechLevel": "Tech Level",
         "Value": "Value",
@@ -946,6 +949,10 @@
       "encumbranceModifier": {
         "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
         "name": "Modifier to physical characteristics when actor becomes encumbered"
+      },
+      "transferDroppedItems": {
+        "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
+        "name": "Transfer rather than copy dropped equipment on actors"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1002,7 +1009,7 @@
       "CantDragOntoActor": "This item can't be dragged onto this actor",
       "PDFPagerNotInstalled": "PDF Pager must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
-      "NoTargetFound": "No target for damage found.",
+      "NoTargetFound": "No target for dropping found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
