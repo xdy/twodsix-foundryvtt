@@ -617,9 +617,9 @@ export default class TwodsixActor extends Actor {
     }
 
     // Item already exists on actor
-    if (this.items.getName(itemData.name)) {
+    const dupItem = <TwodsixItem>this.items.getName(itemData.name);
+    if (dupItem && itemData.type === dupItem.type) {
       console.log(`Twodsix | Item ${itemData.name} already on character ${this.name}.`);
-      const dupItem = <TwodsixItem>this.items.getName(itemData.name);
       if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
         const newQuantity = dupItem.system.quantity + numberToMove;
         dupItem.update({"system.quantity": newQuantity});
@@ -760,7 +760,7 @@ function getEquipmentWeight(item:TwodsixItem):number {
   return 0;
 }
 
-async function getMoveNumber(itemData:number): Promise <number> {
+async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   const returnNumber:number = await new Promise((resolve) => {
     new Dialog({
       title: game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer"),
