@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.2...v2.6.0) (2022-10-12)
+
+
+### Features
+
+* Improve drag-drop of items between actors ([#1147](https://github.com/xdy/twodsix-foundryvtt/issues/1147)) ([347b0f9](https://github.com/xdy/twodsix-foundryvtt/commit/347b0f9d44b741d2308ce9625d5215bf68cf303c))
+
 ## [2.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.1...v2.5.2) (2022-10-07)
 
 
