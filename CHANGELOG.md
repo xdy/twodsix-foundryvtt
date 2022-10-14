@@ -1,3 +1,10 @@
+## [2.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.2...v2.6.3) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translation updates using Weblate (French) ([#1151](https://github.com/xdy/twodsix-foundryvtt/issues/1151)) ([148d5aa](https://github.com/xdy/twodsix-foundryvtt/commit/148d5aa48f310b32e346f8e452869d8dc3fc84f3))
+
 ## [2.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.1...v2.6.2) (2022-10-14)
 
 
