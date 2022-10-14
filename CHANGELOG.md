@@ -1,3 +1,10 @@
+## [2.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.3...v2.6.4) (2022-10-14)
+
+
+### Bug Fixes
+
+* make animals compatible with Drag Ruler ([#1155](https://github.com/xdy/twodsix-foundryvtt/issues/1155)) ([b6a2556](https://github.com/xdy/twodsix-foundryvtt/commit/b6a2556e5804dac4d39c091f1666236a9026de4e))
+
 ## [2.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.2...v2.6.3) (2022-10-14)
 
 
