@@ -572,17 +572,16 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    if (skillData.system.value < 0 || !skillData.system.value) {
+    const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;
-        skillData.system.value = skills?.value;
+        addedSkill.update({"system.value": skills?.value});
       } else {
-        skillData.system.value = 0;
+        addedSkill.update({"system.value": 0});
       }
     }
-
-    const addedSkill = await this.createEmbeddedDocuments("Item", [skillData]);
-    console.log(`Twodsix | Added Skill ${skillData.name} to character`);
+    console.log(`Twodsix | Added Skill ${addedSkill.name} to character`);
     return(!!addedSkill);
   }
 

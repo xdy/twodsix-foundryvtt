@@ -1,3 +1,24 @@
+## [2.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.2...v2.6.3) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translation updates using Weblate (French) ([#1151](https://github.com/xdy/twodsix-foundryvtt/issues/1151)) ([148d5aa](https://github.com/xdy/twodsix-foundryvtt/commit/148d5aa48f310b32e346f8e452869d8dc3fc84f3))
+
+## [2.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.1...v2.6.2) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1152](https://github.com/xdy/twodsix-foundryvtt/issues/1152)) ([2ca1bc3](https://github.com/xdy/twodsix-foundryvtt/commit/2ca1bc3f241de5a614ea5e28a942ad4b94767443))
+
+## [2.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.0...v2.6.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* untrained skills disappearing when dropped onto actor ([#1154](https://github.com/xdy/twodsix-foundryvtt/issues/1154)) ([32dcd30](https://github.com/xdy/twodsix-foundryvtt/commit/32dcd306bce619c659c9cb8dbdb9b496e16945ba))
+
 # [2.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.2...v2.6.0) (2022-10-12)
 
 
