@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.0...v2.6.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* untrained skills disappearing when dropped onto actor ([#1154](https://github.com/xdy/twodsix-foundryvtt/issues/1154)) ([32dcd30](https://github.com/xdy/twodsix-foundryvtt/commit/32dcd306bce619c659c9cb8dbdb9b496e16945ba))
+
 # [2.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.2...v2.6.0) (2022-10-12)
 
 
