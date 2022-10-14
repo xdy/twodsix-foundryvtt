@@ -84,6 +84,7 @@
         "ENEMIES": "ENEMIGOS"
       },
       "Items": {
+        "Amount": "Cantidad",
         "ARMOR": "ARMADURA",
         "AUGMENTS": "AUMENTOS",
         "Ammo": "Cargador",
@@ -99,6 +100,7 @@
         "Effect": "Efecto",
         "Location": "Zona",
         "Name": "Nombre",
+        "QuantityToTransfer": "Cantidad a Transferir",
         "Qty": "Cant.",
         "Range": "Alcance",
         "Refill": "Recarga",
@@ -109,6 +111,7 @@
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
         "Traits": "Detalles",
+        "Transfer": "Objetos Transferidos",
         "TL": "NT",
         "TechLevel": "Nivel Tec.",
         "Value": "Precio",
@@ -332,7 +335,7 @@
         "DM": "MD",
         "Hardened": "¿Reforzado?",
         "hardened": "reforzado",
-        "Hd": "Hd"
+        "Hd": "Ref"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -947,6 +950,10 @@
       "encumbranceModifier": {
         "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
         "name": "Modificador de atributos físicos en sobrecarga de peso"
+      },
+      "transferDroppedItems": {
+        "hint": "Cambia la funcionalidad por defecto de Foundry al soltar objetos encima (objeto será borrado de la fuente) y transferir equipo entre los actores.",
+        "name": "Transferir en vez de copiar equipo soltado sobre un actor"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
