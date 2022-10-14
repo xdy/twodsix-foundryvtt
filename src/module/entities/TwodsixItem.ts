@@ -24,13 +24,8 @@ export default class TwodsixItem extends Item {
         await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
       }
     }
-    if (item?.type === "skills") {
-      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        const skills: Skills = <Skills>game.system.template.Item?.skills;
-        item.update({"system.value": skills?.value});
-      } else {
-        item.update({"system.value": 0});
-      }
+    if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      item.update({"system.value": 0});
     }
     return item;
   }
