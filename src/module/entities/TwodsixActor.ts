@@ -648,6 +648,7 @@ export default class TwodsixActor extends Actor {
         await addedItem.update({"system.consumables": []});
       }
     }
+
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);
   }
