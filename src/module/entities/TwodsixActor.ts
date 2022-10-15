@@ -626,13 +626,6 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    //Remove any attached consumables
-    if (itemData.system.consumables !== undefined) {
-      if (itemData.system.consumables.length > 0) {
-        itemData.system.consumables = [];
-      }
-    }
-
     // Create the owned item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
@@ -647,6 +640,14 @@ export default class TwodsixActor extends Actor {
       }
       await addedItem.update({"system.skill": skillId});
     }
+
+    //Remove any attached consumables
+    if (addedItem.system.consumables !== undefined) {
+      if (addedItem.system.consumables.length > 0) {
+        await addedItem.update({"system.consumables": []});
+      }
+    }
+
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);
   }
