@@ -483,8 +483,8 @@ export default class TwodsixActor extends Actor {
       "flags": {'twodsix.untrainedSkill': true}
     };
 
-
-    const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
+    const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));
+    //const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
     return data1[0];
   }
 
@@ -571,8 +571,8 @@ export default class TwodsixActor extends Actor {
       //TODO Maybe this should mean increase skill value?
       return false;
     }
-
-    const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(duplicate(skillData)))[0];
+    //const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;
@@ -626,15 +626,9 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    //Remove any attached consumables
-    if (itemData.system.consumables !== undefined) {
-      if (itemData.system.consumables.length > 0) {
-        itemData.system.consumables = [];
-      }
-    }
-
     // Create the owned item
-    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
+    //const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
 
     //Link an actor skill with name defined by item.associatedSkillName
@@ -646,6 +640,13 @@ export default class TwodsixActor extends Actor {
         skillId = this.getUntrainedSkill()?.id ?? "";
       }
       await addedItem.update({"system.skill": skillId});
+    }
+
+    //Remove any attached consumables
+    if (addedItem.system.consumables !== undefined) {
+      if (addedItem.system.consumables.length > 0) {
+        await addedItem.update({"system.consumables": []});
+      }
     }
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);

@@ -36,7 +36,7 @@
   </span>
 </div>
 
-{{#each_sort_by_name container.skills as |item id|}}
+{{#each_sort_item container.skills as |item id|}}
     {{#if (twodsix_hideUntrainedSkills item.system)}}
     <!-- Hiding {{item.name}} -->
     {{else}}
@@ -69,7 +69,7 @@
       </div>
       {{/if}}
    {{/if}}
-{{/each_sort_by_name}}
+{{/each_sort_item}}
 {{#if (twodsix_hideUntrainedSkills -1)}}
 <div class="skill">
   <span class="item skill-container">

@@ -262,6 +262,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
+    const sameActor = this.actor.items.get(itemData._id);;
+    if (sameActor) {
+      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
+      return this._onSortItem(event, itemData.toJSON());
+    }
     return actor.handleDroppedItem(itemData);
   }
 

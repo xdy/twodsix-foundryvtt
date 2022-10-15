@@ -243,6 +243,27 @@ export default function registerHandlebarsHelpers(): void {
     return Handlebars.helpers.each(sortedArray, options);
   });
 
+  Handlebars.registerHelper('each_sort_item', (array, options) => {
+    let sortedArray: TwodsixItem[] = [];
+    const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
+    if (slice) {
+      sortedArray = slice.sort((a, b) => {
+        if (a.sort == null) {
+          return 1;
+        } else {
+          if (b.sort == null) {
+            return -1;
+          } else if (a.sort === b.sort) {
+            return 0;
+          } else {
+            return a.sort.toString().localeCompare(b.sort.toString());
+          }
+        }
+      });
+    }
+    return Handlebars.helpers.each(sortedArray, options);
+  });
+
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
     return getWeight(<Component>item.system, item.actor).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
