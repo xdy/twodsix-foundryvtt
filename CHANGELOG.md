@@ -1,3 +1,10 @@
+## [2.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.4...v2.6.5) (2022-10-15)
+
+
+### Bug Fixes
+
+* remove attached consumables during drop ([#1156](https://github.com/xdy/twodsix-foundryvtt/issues/1156)) ([ff27202](https://github.com/xdy/twodsix-foundryvtt/commit/ff27202d8746cdebcd9e5b820890b173733e9289))
+
 ## [2.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.3...v2.6.4) (2022-10-14)
 
 
