@@ -98,7 +98,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each_sort_by_name container.traits as |item id|}}
+         {{#each_sort_by_name container.trait as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>

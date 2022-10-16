@@ -265,33 +265,23 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return actor.handleDroppedItem(itemData);
   }
 
-  protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
+  protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
 
     // Initialize containers.
-    const storage:Item[] = [];
-    const equipment:Item[] = [];
-    const weapon:Item[] = [];
-    const armor:Item[] = [];
-    const augment:Item[] = [];
-    const tool:Item[] = [];
-    const junk:Item[] = [];
-    const skills:Item[] = [];
-    const traits:Item[] = [];
-    const spells:Item[] = [];
-    const consumable:Item[] = [];
+    const items = actor.items;
     const component = {};
     let numberOfSkills = 0;
     let skillRanks = 0;
     const summaryStatus = {};
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
-    // Iterate through items, allocating to containers
+    // Iterate through items, calculating derived data
     items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (item.type !== "skills") {
+      if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
         item.prepareConsumable();
       }
-      if (sheetData.actor.type === "traveller") {
+      if (actor.type === "traveller") {
         if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
@@ -299,86 +289,34 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           }
         }
       }
-      switch (item.type) {
-        case 'storage':
-          storage.push(item);
-          break;
-        case 'equipment':
-        case 'tool':
-        case 'junk':
-          equipment.push(item);
-          storage.push(item);
-          break;
-        case 'weapon':
-          weapon.push(item);
-          storage.push(item);
-          break;
-        case 'armor':
-          armor.push(item);
-          storage.push(item);
-          break;
-        case 'augment':
-          augment.push(item);
-          break;
-        case 'skills':
-          skills.push(item);
-          break;
-        case "trait":
-          traits.push(item);
-          break;
-        case "spell":
-          spells.push(item);
-          break;
-        case 'consumable':
-          consumable.push(item);
-          storage.push(item);
-          break;
-        case "component":
-          if(component[(<Component>item.system).subtype] === undefined) {
-            component[(<Component>item.system).subtype] = [];
-            summaryStatus[(<Component>item.system).subtype] = {
-              status: item.system.status,
-              uuid: item.uuid
-            };
-          }
-          component[(<Component>item.system).subtype].push(item);
-          if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
-            summaryStatus[(<Component>item.system).subtype] = {
-              status: item.system.status,
-              uuid: item.uuid
-            };
-          }
-          break;
-        default:
-          break;
+      if (item.type === "component") {
+        if(component[(<Component>item.system).subtype] === undefined) {
+          component[(<Component>item.system).subtype] = [];
+          summaryStatus[(<Component>item.system).subtype] = {
+            status: item.system.status,
+            uuid: item.uuid
+          };
+        }
+        component[(<Component>item.system).subtype].push(item);
+        if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
+          summaryStatus[(<Component>item.system).subtype] = {
+            status: item.system.status,
+            uuid: item.uuid
+          };
+        }
       }
     });
 
-    // Assign and return sheetData
-    if (sheetData.actor.type === "traveller") {
-      sheetData.container.equipment = equipment;
-      sheetData.container.weapon = weapon;
-      sheetData.container.armor = armor;
-      sheetData.container.augment = augment;
-      sheetData.container.tool = tool;
-      sheetData.container.junk = junk;
-      sheetData.container.consumable = consumable;
-      sheetData.container.skills = skills;
-      sheetData.container.traits = traits;
-      sheetData.container.spells = spells;
+    // Prepare Containers for sheetData
+    sheetData.container = actor.itemTypes;
+    if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
-    } else if (sheetData.actor.type === "animal" ) {
-      sheetData.container.weapon = weapon;
-      sheetData.container.armor = armor;
-      sheetData.container.skills = skills;
-      sheetData.container.traits = traits;
-    } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
+
+    } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = storage;
-    } else {
-      console.log("Unrecognized Actor in AbstractActorSheet");
+      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }
   }
 

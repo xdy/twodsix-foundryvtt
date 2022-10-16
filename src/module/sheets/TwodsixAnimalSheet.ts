@@ -37,7 +37,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       if (untrainedSkill) {
         returnData.untrainedSkill = untrainedSkill;
       }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor.items, returnData);
+      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
     }
 
     // Add relevant data from system settings

@@ -103,7 +103,7 @@ export default class TwodsixActor extends Actor {
       secondaryArmor: 0,
       radiationProtection: 0
     };
-    const armorItems = this.items.filter( a => a.type === "armor");
+    const armorItems = this.itemTypes.armor;
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
         returnValue.primaryArmor += armor.system.armor;

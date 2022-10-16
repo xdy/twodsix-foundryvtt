@@ -41,7 +41,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         returnData.untrainedSkill = untrainedSkill;
         returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
       }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor.items, returnData);
+      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
     }
 
     // Add relevant data from system settings

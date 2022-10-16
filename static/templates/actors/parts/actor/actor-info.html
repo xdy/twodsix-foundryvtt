@@ -9,7 +9,7 @@
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fa-solid fa-plus"></i></a></span>
   </div>
 
-  {{#each_sort_by_name container.traits as |item id|}}
+  {{#each_sort_by_name container.trait as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
@@ -41,7 +41,7 @@
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="spell"><i class="fa-solid fa-plus"></i></a></span>
   </div>
 
-  {{#each_sort_by_name container.spells as |item id|}}
+  {{#each_sort_by_name container.spell as |item id|}}
   <div class="item gear">
     <ol class="ol-no-indent">
       <li class="item flexrow" data-item-id="{{item.id}}">
