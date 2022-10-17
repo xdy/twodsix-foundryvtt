@@ -1015,7 +1015,8 @@
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
       "ActorHasInitiativeAlready": "Actor already has initiative.",
       "NoActiveToken": "Actor does not have an active token in scene.",
-      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid."
+      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
     }
   },
   "VeryDifficult": "Very Difficult"

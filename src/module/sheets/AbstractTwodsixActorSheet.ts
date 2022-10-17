@@ -103,8 +103,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (this.actor.type !== "ship") {
       // Handle click for attack roll
       html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
-
-      html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+      if (this.actor.type != "vehicle") {  //Vehcile has a special skill roll
+        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+      }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
 
       html.find('.roll-damage').on('click', onRollDamage.bind(this));

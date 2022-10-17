@@ -66,9 +66,7 @@ export default class TwodsixActor extends Actor {
         characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
       }
     }
-    const actorSkills = this.items.filter(
-      (item:TwodsixItem) => item.type === "skills"
-    ).map(
+    const actorSkills = this.itemTypes.skills.map(
       (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
     );
 
@@ -170,7 +168,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    this.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
+    this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
       const powerForItem = getPower(anComponent);
       const weightForItem = getWeight(anComponent, this);
@@ -202,7 +200,7 @@ export default class TwodsixActor extends Actor {
 
     function estimateDisplacement(shipActor): number {
       let returnValue = 0;
-      shipActor.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
+      shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
         const anComponent = <Component>item.system;
         returnValue += getWeight(anComponent, shipActor);
       });
