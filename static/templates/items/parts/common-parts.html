@@ -31,26 +31,13 @@
         {{/select}}
       </select>
   </div>
-
+  {{log this system skillsList}}
 {{#if owner}}
+
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
-        <select class="form-input" id="system.skill" name="system.skill" value="{{system.skill}}">
-          {{#select system.skill}}
-            <option value="" >None</option>
-            {{#if (twodsix_hideUntrainedSkills -1)}}
-            <option value="{{owner.system.untrainedSkill}}" >{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
-            {{/if}}
-            {{#each owner.items as |skill|}}
-              {{#if (twodsix_filterSkills skill)}}
-                {{#if (twodsix_hideUntrainedSkills skill.system.value)}}
-                  <!-- Hiding {{name}} -->
-                {{else}}
-                  <option value="{{skill.id}}">{{skill.name}}</option>
-                {{/if}}
-              {{/if}}
-            {{/each}}
-          {{/select}}
+        <select class="form-input" name="system.skill" >
+          {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
         </select>
     </div>
   {{else}}

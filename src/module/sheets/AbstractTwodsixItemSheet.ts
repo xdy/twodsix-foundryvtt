@@ -1,3 +1,6 @@
+import { Skills } from "src/types/template";
+import { isDisplayableSkill } from "../utils/sheetUtils";
+
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
   protected handleContentEditable(html:JQuery):void {
@@ -20,7 +23,16 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     // @ts-ignore
     const data = super.getData().item;
     data.owner = this.actor;
-
+    if (data.owner){
+      //build Skills Pick List
+      const skillsList: Skills[] = [];
+      for (const skill of data.owner.itemTypes.skills) {
+        if (isDisplayableSkill(<Skills>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+          skillsList.push(<Skills>skill);
+        }
+      }
+      data.skillsList = skillsList;
+    }
     return data;
   }
 }
