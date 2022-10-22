@@ -1,3 +1,38 @@
+## [2.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.4...v2.6.5) (2022-10-15)
+
+
+### Bug Fixes
+
+* remove attached consumables during drop ([#1156](https://github.com/xdy/twodsix-foundryvtt/issues/1156)) ([ff27202](https://github.com/xdy/twodsix-foundryvtt/commit/ff27202d8746cdebcd9e5b820890b173733e9289))
+
+## [2.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.3...v2.6.4) (2022-10-14)
+
+
+### Bug Fixes
+
+* make animals compatible with Drag Ruler ([#1155](https://github.com/xdy/twodsix-foundryvtt/issues/1155)) ([b6a2556](https://github.com/xdy/twodsix-foundryvtt/commit/b6a2556e5804dac4d39c091f1666236a9026de4e))
+
+## [2.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.2...v2.6.3) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translation updates using Weblate (French) ([#1151](https://github.com/xdy/twodsix-foundryvtt/issues/1151)) ([148d5aa](https://github.com/xdy/twodsix-foundryvtt/commit/148d5aa48f310b32e346f8e452869d8dc3fc84f3))
+
+## [2.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.1...v2.6.2) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1152](https://github.com/xdy/twodsix-foundryvtt/issues/1152)) ([2ca1bc3](https://github.com/xdy/twodsix-foundryvtt/commit/2ca1bc3f241de5a614ea5e28a942ad4b94767443))
+
+## [2.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.0...v2.6.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* untrained skills disappearing when dropped onto actor ([#1154](https://github.com/xdy/twodsix-foundryvtt/issues/1154)) ([32dcd30](https://github.com/xdy/twodsix-foundryvtt/commit/32dcd306bce619c659c9cb8dbdb9b496e16945ba))
+
 # [2.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.2...v2.6.0) (2022-10-12)
 
 

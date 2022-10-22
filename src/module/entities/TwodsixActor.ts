@@ -593,17 +593,16 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    if (skillData.system.value < 0 || !skillData.system.value) {
+    const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;
-        skillData.system.value = skills?.value;
+        addedSkill.update({"system.value": skills?.value});
       } else {
-        skillData.system.value = 0;
+        addedSkill.update({"system.value": 0});
       }
     }
-
-    const addedSkill = await this.createEmbeddedDocuments("Item", [skillData]);
-    console.log(`Twodsix | Added Skill ${skillData.name} to character`);
+    console.log(`Twodsix | Added Skill ${addedSkill.name} to character`);
     return(!!addedSkill);
   }
 
@@ -648,13 +647,6 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    //Remove any attached consumables
-    if (itemData.system.consumables !== undefined) {
-      if (itemData.system.consumables.length > 0) {
-        itemData.system.consumables = [];
-      }
-    }
-
     // Create the owned item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
@@ -669,6 +661,14 @@ export default class TwodsixActor extends Actor {
       }
       await addedItem.update({"system.skill": skillId});
     }
+
+    //Remove any attached consumables
+    if (addedItem.system.consumables !== undefined) {
+      if (addedItem.system.consumables.length > 0) {
+        await addedItem.update({"system.consumables": []});
+      }
+    }
+
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);
   }
