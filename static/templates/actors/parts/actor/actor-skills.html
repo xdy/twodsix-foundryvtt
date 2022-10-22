@@ -37,7 +37,6 @@
 </div>
 
 {{#each_sort_by_name container.skills as |item id|}}
-      {{#if (twodsix_filterSkills item)}}
       <div class="skill">
         <span class="item skill-container">
           <ol class="ol-no-indent">
@@ -64,7 +63,6 @@
           </ol>
         </span>
       </div>
-      {{/if}}
 {{/each_sort_by_name}}
 {{#if settings.hideUntrainedSkills}}
 <div class="skill">

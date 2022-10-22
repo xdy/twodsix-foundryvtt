@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
+import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
@@ -289,7 +289,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
             numberOfSkills += 1;
             skillRanks += Number(item.system.value);
           }
-          if (!item.getFlag("twodsix", "untrainedSkill") || game.settings.get('twodsix', 'hideUntrainedSkills')) {
+          if (isDisplayableSkill(<Skills>item)) {
             skillsList.push(item);
           }
         }

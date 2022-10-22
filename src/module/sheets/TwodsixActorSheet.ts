@@ -34,7 +34,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     returnData.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
-    if (this.actor.type == 'traveller') {
+    if (this.actor.type === 'traveller') {
       const actor: TwodsixActor = <TwodsixActor>this.actor;
       const untrainedSkill = actor.getUntrainedSkill();
       if (untrainedSkill) {

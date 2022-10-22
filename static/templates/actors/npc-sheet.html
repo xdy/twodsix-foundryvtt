@@ -48,13 +48,11 @@
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
       {{#each_sort_by_name container.skills as |item id|}}
-          {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
                 <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>
               </span>
               {{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
-          {{/if}}
       {{/each_sort_by_name}}
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">

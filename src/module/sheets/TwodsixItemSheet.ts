@@ -53,10 +53,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
     returnData.config = TWODSIX;
-    //returnData.isOwned = this.item.isOwned;
-    //returnData.data.settings = returnData.settings;  //DELETE WHEN CONVERSION COMPLETE
-    //returnData.data.config = returnData.config;  //DELETE WHEN CONVERSION COMPLETE
-    //returnData.data.isOwned = returnData.isOwned;  //DELETE WHEN CONVERSION COMPLETE
     return returnData;
   }
 
