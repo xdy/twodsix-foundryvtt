@@ -1,4 +1,3 @@
-import { Skills } from "src/types/template";
 import { isDisplayableSkill } from "../utils/sheetUtils";
 
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
@@ -25,13 +24,13 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     data.owner = this.actor;
     if (data.owner){
       //build Skills Pick List
-      const skillsList: Skills[] = [];
+      const skillsList: Item[] = [];
       for (const skill of data.owner.itemTypes.skills) {
-        if (isDisplayableSkill(<Skills>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
-          skillsList.push(<Skills>skill);
+        if (isDisplayableSkill(<Item>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+          skillsList.push(<Item>skill);
         }
       }
-      data.skillsList = skillsList;
+      data.skillsList = skillsList.sort((a:any,b:any) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
     }
     return data;
   }
