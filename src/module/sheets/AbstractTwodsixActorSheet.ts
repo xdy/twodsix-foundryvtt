@@ -274,6 +274,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let numberOfSkills = 0;
     let skillRanks = 0;
     const summaryStatus = {};
+    const skillsList = [];
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, calculating derived data
@@ -282,11 +283,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
         item.prepareConsumable();
       }
-      if (actor.type === "traveller") {
+      if (actor.type === "traveller" || actor.type === "animal") {
         if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
             skillRanks += Number(item.system.value);
+          }
+          if (!item.getFlag("twodsix", "untrainedSkill") || game.settings.get('twodsix', 'hideUntrainedSkills')) {
+            skillsList.push(item);
           }
         }
       }
@@ -310,6 +314,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Prepare Containers for sheetData
     sheetData.container = actor.itemTypes;
+    sheetData.container.skills = skillsList;
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
