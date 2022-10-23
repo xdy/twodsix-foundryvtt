@@ -262,10 +262,10 @@ export async function deletePDFReference(event): Promise<void> {
 }
 
 export function isDisplayableSkill(skill:Skills): boolean {
-  if (skill.system.trainingNotes !== ""  || skill.system.value >= 0) {
+  if (skill.getFlag("twodsix", "untrainedSkill")) {
+    return false;
+  } else if (skill.system.trainingNotes !== ""  || skill.system.value >= 0) {
     return true;
-  } else if (skill.getFlag("twodsix", "untrainedSkill")) {
-    return false;  //Separate HTML used for untrained skills
   } else if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
     return true;
   } else {
