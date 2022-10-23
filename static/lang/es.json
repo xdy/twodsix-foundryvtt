@@ -134,8 +134,8 @@
         "SkillName": "Nombre",
         "Total": "Total",
         "Untrained": "Sin Entrenar",
-        "SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
-        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
+        "SkillRollTooltip": "Diálogo con opciones para tiradas de habilidad. Con tecla SHIFT se tiran dados sin aplicar modificadores y dificultad normal (6/8)",
+        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores y dificultad normal 6/8. Con tecla SHIFT se muestra diálogo opciones para tiradas ",
         "JOAT": "Polivalencia",
         "Timeframe": {
           "none": "---",
@@ -651,7 +651,7 @@
         "name": "Listado dificultad:"
       },
       "effectOrTotal": {
-        "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
+        "hint": "Marcado=Mostrar Efecto (ej. tirada+mods-objetivo, normalmente 6/8); SinMarcar=Mostrar Valor (ej. tirada+mods).",
         "name": "Estilo resultados por Efecto"
       },
       "ExperimentalFeatures": {
@@ -671,7 +671,7 @@
         "name": "Fórmula para iniciativa:"
       },
       "invertSkillRollShiftClick": {
-        "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
+        "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 6/8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
         "name": "Invertir el funcionamiento de la tecla SHIFT en clic de tiradas de habilidad o al arrastrar el daño"
       },
       "lifebloodInsteadOfCharacteristics": {
@@ -738,7 +738,7 @@
         "name": "Mostrar campo de referencia en los objetos."
       },
       "ShowLawLevel": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Esconder.",
         "name": "Mostrar 'Nivel de Ley' en armas"
       },
       "showLifebloodStamina": {
