@@ -589,7 +589,12 @@ export default class TwodsixActor extends Actor {
 
     if (matching) {
       console.log(`Twodsix | Skill ${skillData.name} already on character ${this.name}.`);
-      //TODO Maybe this should mean increase skill value?
+      //Increase skill value
+      let updateValue = matching.system.value + 1;
+      if (game.settings.get('twodsix', 'hideUntrainedSkills') && updateValue < 0) {
+        updateValue = 0;
+      }
+      await matching.update({"system.value": updateValue});
       return false;
     }
 
