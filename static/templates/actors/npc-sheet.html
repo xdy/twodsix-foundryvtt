@@ -48,18 +48,13 @@
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
       {{#each_sort_by_name container.skills as |item id|}}
-        {{#if (twodsix_hideUntrainedSkills item.system)}}
-          <!-- Hiding {{item.name}} -->
-        {{else}}
-          {{#if (twodsix_filterSkills item)}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>,
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>
               </span>
-          {{/if}}
-       {{/if}}
+              {{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
       {{/each_sort_by_name}}
-      {{#if (twodsix_hideUntrainedSkills -1)}}
+      {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
@@ -106,7 +101,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each_sort_by_name container.traits as |item id|}}
+         {{#each_sort_by_name container.trait as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
@@ -123,7 +118,7 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-        {{#each_sort_by_name container.spells as |item id|}}
+        {{#each_sort_by_name container.spell as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre rollable">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}

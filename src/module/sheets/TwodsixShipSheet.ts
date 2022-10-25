@@ -6,6 +6,7 @@ import { ShipPosition, ShipPositionActorIds, Ship, Component } from "../../types
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 
@@ -15,9 +16,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
+    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>(this.actor), context);
     if ((<Ship>this.actor.system).shipPositionActorIds) {
-      context.shipPositions = this.actor.items.filter((item: TwodsixItem) => item.type === "ship_position").map((shipPosition: TwodsixItem) => {
+      context.shipPositions = (<TwodsixActor>this.actor).itemTypes.ship_position.map((shipPosition: TwodsixItem) => {
         const shipPositionActorIds = Object?.entries(<ShipPositionActorIds>(<Ship>this.actor.system).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
         if (shipPositionActorIds?.length > 0) {
           const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
@@ -135,7 +136,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   private _onShipPositionCreate():void {
-    const shipPositions = this.actor.items.filter(item => item.type === "ship_position");
+    const shipPositions = this.actor.itemTypes.ship_position;
     this.actor.createEmbeddedDocuments("Item", [{"type": "ship_position", name: "New Position", order: shipPositions.length}]);
   }
 
@@ -271,6 +272,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
       } else if (droppedObject.type === "vehicle") {
         await this._addVehicleToComponents(droppedObject, dropData.uuid);
+      } else if (droppedObject.type === "animal") {
+        ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions");
+        return false;
       } else {
         return super._onDrop(event);
       }

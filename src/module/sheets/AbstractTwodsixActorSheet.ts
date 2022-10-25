@@ -2,9 +2,9 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemDataFromDropData} from "../utils/sheetUtils";
+import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Armor, Skills, UsesConsumables, Component} from "../../types/template";
+import {Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getKeyByValue } from "../utils/sheetUtils";
@@ -103,8 +103,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (this.actor.type !== "ship") {
       // Handle click for attack roll
       html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
-
-      html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+      if (this.actor.type != "vehicle") {  //Vehcile has a special skill roll
+        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+      }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
 
       html.find('.roll-damage').on('click', onRollDamage.bind(this));
@@ -265,132 +266,63 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return actor.handleDroppedItem(itemData);
   }
 
-  protected static _prepareItemContainers(items, sheetData:TwodsixShipSheetData|any):void {
+  protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
 
     // Initialize containers.
-    const storage:Item[] = [];
-    const equipment:Item[] = [];
-    const weapon:Item[] = [];
-    const armor:Item[] = [];
-    const augment:Item[] = [];
-    const tool:Item[] = [];
-    const junk:Item[] = [];
-    const skills:Item[] = [];
-    const traits:Item[] = [];
-    const spells:Item[] = [];
-    const consumable:Item[] = [];
+    const items = actor.items;
     const component = {};
-    let primaryArmor = 0;
-    let secondaryArmor = 0;
-    let radiationProtection = 0;
     let numberOfSkills = 0;
     let skillRanks = 0;
     const summaryStatus = {};
+    const skillsList = [];
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
-    // Iterate through items, allocating to containers
+    // Iterate through items, calculating derived data
     items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (item.type !== "skills") {
+      if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
         item.prepareConsumable();
       }
-      if (sheetData.actor.type === "traveller") {
-        const anArmor = <Armor>item.system;
-        if (item.type === "armor" && anArmor.equipped === "equipped") {
-          primaryArmor += anArmor.armor;
-          secondaryArmor += anArmor.secondaryArmor.value;
-          radiationProtection += anArmor.radiationProtection.value;
-        } else if (item.type === "skills") {
+      if (actor.type === "traveller" || actor.type === "animal") {
+        if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
             skillRanks += Number(item.system.value);
           }
+          if (isDisplayableSkill(<Skills>item)) {
+            skillsList.push(item);
+          }
         }
-
       }
-      switch (item.type) {
-        case 'storage':
-          storage.push(item);
-          break;
-        case 'equipment':
-        case 'tool':
-        case 'junk':
-          equipment.push(item);
-          storage.push(item);
-          break;
-        case 'weapon':
-          weapon.push(item);
-          storage.push(item);
-          break;
-        case 'armor':
-          armor.push(item);
-          storage.push(item);
-          break;
-        case 'augment':
-          augment.push(item);
-          break;
-        case 'skills':
-          skills.push(item);
-          break;
-        case "trait":
-          traits.push(item);
-          break;
-        case "spell":
-          spells.push(item);
-          break;
-        case 'consumable':
-          consumable.push(item);
-          storage.push(item);
-          break;
-        case "component":
-          if(component[(<Component>item.system).subtype] === undefined) {
-            component[(<Component>item.system).subtype] = [];
-            summaryStatus[(<Component>item.system).subtype] = {
-              status: item.system.status,
-              uuid: item.uuid
-            };
-          }
-          component[(<Component>item.system).subtype].push(item);
-          if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
-            summaryStatus[(<Component>item.system).subtype] = {
-              status: item.system.status,
-              uuid: item.uuid
-            };
-          }
-          break;
-        default:
-          break;
+      if (item.type === "component") {
+        if(component[(<Component>item.system).subtype] === undefined) {
+          component[(<Component>item.system).subtype] = [];
+          summaryStatus[(<Component>item.system).subtype] = {
+            status: item.system.status,
+            uuid: item.uuid
+          };
+        }
+        component[(<Component>item.system).subtype].push(item);
+        if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
+          summaryStatus[(<Component>item.system).subtype] = {
+            status: item.system.status,
+            uuid: item.uuid
+          };
+        }
       }
     });
 
-    // Assign and return sheetData
-    if (sheetData.actor.type === "traveller") {
-      sheetData.container.equipment = equipment;
-      sheetData.container.weapon = weapon;
-      sheetData.container.armor = armor;
-      sheetData.container.augment = augment;
-      sheetData.container.tool = tool;
-      sheetData.container.junk = junk;
-      sheetData.container.consumable = consumable;
-      sheetData.container.skills = skills;
-      sheetData.container.traits = traits;
-      sheetData.container.spells = spells;
-      sheetData.system.primaryArmor.value = primaryArmor;
-      sheetData.system.secondaryArmor.value = secondaryArmor;
-      sheetData.system.radiationProtection.value = radiationProtection;
+    // Prepare Containers for sheetData
+    sheetData.container = actor.itemTypes;
+    sheetData.container.skills = skillsList;
+    if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
-    } else if (sheetData.actor.type === "animal" ) {
-      sheetData.container.weapon = weapon;
-      sheetData.container.armor = armor;
-      sheetData.container.skills = skills;
-      sheetData.container.traits = traits;
-    } else if (sheetData.actor.type === "ship" || sheetData.actor.type === "vehicle" ) {
+
+    } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.component = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = storage;
-    } else {
-      console.log("Unrecognized Actor in AbstractActorSheet");
+      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }
   }
 

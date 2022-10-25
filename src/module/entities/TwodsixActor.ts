@@ -66,9 +66,7 @@ export default class TwodsixActor extends Actor {
         characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
       }
     }
-    const actorSkills = this.items.filter(
-      (item:TwodsixItem) => item.type === "skills"
-    ).map(
+    const actorSkills = this.itemTypes.skills.map(
       (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
     );
 
@@ -89,6 +87,29 @@ export default class TwodsixActor extends Actor {
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
     system.encumbrance.max = this.getMaxEncumbrance();
     system.encumbrance.value = this.getActorEncumbrance();
+    if (this.type === 'traveller') {
+      const armorValues = this.getArmorValues();
+      system.primaryArmor.value = armorValues.primaryArmor;
+      system.secondaryArmor.value= armorValues.secondaryArmor;
+      system.radiationProtection.value = armorValues.radiationProtection;
+    }
+  }
+
+  getArmorValues():object {
+    const returnValue = {
+      primaryArmor: 0,
+      secondaryArmor: 0,
+      radiationProtection: 0
+    };
+    const armorItems = this.itemTypes.armor;
+    for (const armor of armorItems) {
+      if (armor.system.equipped === "equipped") {
+        returnValue.primaryArmor += armor.system.armor;
+        returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+        returnValue.radiationProtection += armor.system.radiationProtection.value;
+      }
+    }
+    return returnValue;
   }
 
   getMaxEncumbrance():number {
@@ -147,7 +168,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    this.items.filter((item: TwodsixItem) => item.type === "component").forEach((item: TwodsixItem) => {
+    this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
       const powerForItem = getPower(anComponent);
       const weightForItem = getWeight(anComponent, this);
@@ -179,7 +200,7 @@ export default class TwodsixActor extends Actor {
 
     function estimateDisplacement(shipActor): number {
       let returnValue = 0;
-      shipActor.items.filter((item: TwodsixItem) => item.type === "component" && (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
+      shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
         const anComponent = <Component>item.system;
         returnValue += getWeight(anComponent, shipActor);
       });
@@ -568,7 +589,12 @@ export default class TwodsixActor extends Actor {
 
     if (matching) {
       console.log(`Twodsix | Skill ${skillData.name} already on character ${this.name}.`);
-      //TODO Maybe this should mean increase skill value?
+      //Increase skill value
+      let updateValue = matching.system.value + 1;
+      if (game.settings.get('twodsix', 'hideUntrainedSkills') && updateValue < 0) {
+        updateValue = 0;
+      }
+      await matching.update({"system.value": updateValue});
       return false;
     }
 

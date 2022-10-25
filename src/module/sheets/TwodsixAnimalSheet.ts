@@ -37,7 +37,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       if (untrainedSkill) {
         returnData.untrainedSkill = untrainedSkill;
       }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor.items, returnData);
+      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
     }
 
     // Add relevant data from system settings
@@ -60,7 +60,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       animalsUseHits: game.settings.get('twodsix', 'animalsUseHits'),
       dontShowStatBlock: (game.settings.get('twodsix', 'animalsUseHits') | game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
-      displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale')
+      displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
+      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

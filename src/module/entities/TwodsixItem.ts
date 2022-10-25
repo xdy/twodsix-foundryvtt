@@ -191,15 +191,17 @@ export default class TwodsixItem extends Item {
     if (!tmpSettings) {
       if(this.type === "spell") {
         // Spells under SOC and Barbaric have a sequential difficulty class based on spell level.  Create an override to system difficulties.
-        tmpSettings = {difficulties: {}};
+        const workingSettings = {"difficulties": {}, "difficulty": ""};
         for (let i = 1; i <= 6; i++) {
           const levelKey = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + i;
-          tmpSettings.difficulties[levelKey] = {mod: -i, target: i+6};
+          workingSettings.difficulties[levelKey] = {mod: -i, target: i+6};
         }
-        const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + this.system.value;
-        tmpSettings.difficulty = tmpSettings.difficulties[level];
+        const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
+        workingSettings.difficulty = workingSettings.difficulties[level];
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item);
+      } else {
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       }
-      tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
       if (!tmpSettings.shouldRoll) {
         return;
       }
