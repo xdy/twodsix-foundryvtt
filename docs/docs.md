@@ -134,9 +134,10 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 * There is built in support for PDFoundry and Drag Ruler Modules.
 * Can drag a scene to ship actor to act as an attached deck plan.
 * Option to use ProseMirror editor for larger text input fields
-* Automatic wounded status indicators (along with roll modifiers) can be optional added through a setting
+* Automatic wounded and encumbered status indicators (along with roll modifiers) can be optional added through a setting
 * There is an NPC sheet that can be used for any traveller.  Select under sheet settings
 * If using the show untrained skill, any roll that depends on a skill will default to untrained if no specific skill is selected.
+* Can specify DD damage that is nd6*10
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
 
