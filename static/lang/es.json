@@ -24,8 +24,8 @@
       "Max": "Máx.",
       "Mod": "Mod.",
       "Dmg": "Daño",
-      "Current": "Actual",
-      "ResultingStat": "Atributo final",
+      "Current": "Valor",
+      "ResultingStat": "Resultado",
       "UnallocatedDamage": "Daño no asignado",
       "CharacterIsDead": "El PJ ha muerto",
       "DealDamageTo": "Aplicar daño en _ACTOR_NAME_",
@@ -89,7 +89,7 @@
         "AUGMENTS": "AUMENTOS",
         "Ammo": "Cargador",
         "Armor": "Protección",
-        "EffectiveArmor": "Armadura Real",
+        "EffectiveArmor": "Armadura",
         "CONSUMABLES": "CONSUMIBLES",
         "Count": "Cantidad",
         "CreateItem": "Crear Objeto",
@@ -134,8 +134,8 @@
         "SkillName": "Nombre",
         "Total": "Total",
         "Untrained": "Sin Entrenar",
-        "SkillRollTooltip": "Ventana de opciones adicionales en cada tirada de habilidad. Con tecla Shift se tiran los dados sin aplicar modificadores extra y dificultad 8",
-        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores extra y una dificultad 8. Con tecla Shift se muestra la ventana de opciones para las tiradas ",
+        "SkillRollTooltip": "Diálogo con opciones para tiradas de habilidad. Con tecla SHIFT se tiran dados sin aplicar modificadores y dificultad normal (6/8)",
+        "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores y dificultad normal 6/8. Con tecla SHIFT se muestra diálogo opciones para tiradas ",
         "JOAT": "Polivalencia",
         "Timeframe": {
           "none": "---",
@@ -651,7 +651,7 @@
         "name": "Listado dificultad:"
       },
       "effectOrTotal": {
-        "hint": "Marca=Mostrar Efecto; SinMarca=Mostrar Valor.",
+        "hint": "Marcado=Mostrar Efecto (ej. tirada+mods-objetivo, normalmente 6/8); SinMarcar=Mostrar Valor (ej. tirada+mods).",
         "name": "Estilo resultados por Efecto"
       },
       "ExperimentalFeatures": {
@@ -671,8 +671,8 @@
         "name": "Fórmula para iniciativa:"
       },
       "invertSkillRollShiftClick": {
-        "hint": "Cuando se pulsa encima de una habilidad se muestra una ventana con opciones. Si pulsas Shift se lanzan los dados directamente con Objetivo 8. Marca esta casilla para cambiar el modo de funcionamiento.",
-        "name": "Invertir el funcionamiento de la tecla shift en tiradas de habilidad"
+        "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 6/8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
+        "name": "Invertir el funcionamiento de la tecla SHIFT en clic de tiradas de habilidad o al arrastrar el daño"
       },
       "lifebloodInsteadOfCharacteristics": {
         "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
@@ -738,7 +738,7 @@
         "name": "Mostrar campo de referencia en los objetos."
       },
       "ShowLawLevel": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Esconder.",
         "name": "Mostrar 'Nivel de Ley' en armas"
       },
       "showLifebloodStamina": {
@@ -848,7 +848,7 @@
         "name": "Fórmula Carga Máxima"
       },
       "allowDropOnIcon": {
-        "hint": "Los objetos se pueden añadir a los actores directamente encima del token sin abrir la hoja del personaje. Objetos duplicados incrementan la cantidad. Mensajes del chat con daño lo aplican.",
+        "hint": "Tirar objetos encima de un token para añadir cosas a los actores directamente sin abrir la hoja del personaje. Los objetos duplicados incrementan la cantidad. Arrastrar mensajes del chat con daño de un ataque aplican el daño.",
         "name": "Permitir dejar objetos encima de los tokens"
       },
       "defaultMovement": {
