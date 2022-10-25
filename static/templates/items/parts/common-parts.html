@@ -16,49 +16,42 @@
   </table>
 </div>
 
-  <div class="item-type">
-    <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}} </label>
-      <select class="form-input" id="type" name="type" value={{item.type}}>
-        {{#select type}}
-          <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
-          <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
-          <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
-          <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
-          <option value="consumable">{{localize "TWODSIX.Items.Items.AssignConsumable"}}</option>
-          <option value="tool">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
-          <option value="junk">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
-          <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
-        {{/select}}
-      </select>
-  </div>
+<div class="item-type">
+  <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}} </label>
+    <select class="form-input" id="type" name="type" value={{item.type}}>
+      {{#select type}}
+        <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
+        <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
+        <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
+        <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
+        <option value="consumable">{{localize "TWODSIX.Items.Items.AssignConsumable"}}</option>
+        <option value="tool">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
+        <option value="junk">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
+        <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
+      {{/select}}
+    </select>
+</div>
 
 {{#if owner}}
+  {{#iff owner.type "!==" "ship"}}
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
-        <select class="form-input" id="system.skill" name="system.skill" value="{{system.skill}}">
-          {{#select system.skill}}
-            <option value="" >None</option>
-            {{#if (twodsix_hideUntrainedSkills -1)}}
-            <option value="{{owner.system.untrainedSkill}}" >{{localize "TWODSIX.Actor.Skills.Untrained"}}</option>
-            {{/if}}
-            {{#each owner.items as |skill|}}
-              {{#if (twodsix_filterSkills skill)}}
-                {{#if (twodsix_hideUntrainedSkills skill.system.value)}}
-                  <!-- Hiding {{name}} -->
-                {{else}}
-                  <option value="{{skill.id}}">{{skill.name}}</option>
-                {{/if}}
-              {{/if}}
-            {{/each}}
-          {{/select}}
+        <select class="form-input" name="system.skill" >
+          {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
         </select>
     </div>
-  {{else}}
+    {{else}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
-  {{/if}}
+  {{/iff}}
+{{else}}
+  <div class="item-skill">
+    <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+    <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+  </div>
+{{/if}}
 
 <div class="item-skillModifier">
   <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>

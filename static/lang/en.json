@@ -134,7 +134,7 @@
         "SkillName": "Skill Name",
         "Total": "Total",
         "Untrained": "Untrained",
-        "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
+        "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes an average difficulty of 6 or 8",
         "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
         "JOAT": "Jack of all trades",
         "Timeframe": {
@@ -650,7 +650,7 @@
         "name": "Select which variant's difficulty list should be used."
       },
       "effectOrTotal": {
-        "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 8), unchecked=Show total (i.e. roll+modifiers)",
+        "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 6 or 8), unchecked=Show total (i.e. roll+modifiers)",
         "name": "Show effect or total roll value for skill and characteristic rolls."
       },
       "ExperimentalFeatures": {
@@ -847,7 +847,7 @@
         "name": "Maximum Encumbrance Formula"
       },
       "allowDropOnIcon": {
-        "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damge.",
+        "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damage.",
         "name": "Allow Items to be droped onto icons"
       },
       "defaultMovement": {
@@ -1015,7 +1015,8 @@
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
       "ActorHasInitiativeAlready": "Actor already has initiative.",
       "NoActiveToken": "Actor does not have an active token in scene.",
-      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid."
+      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
     }
   },
   "VeryDifficult": "Very Difficult"

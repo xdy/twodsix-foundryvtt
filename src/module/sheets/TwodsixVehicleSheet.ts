@@ -7,6 +7,7 @@ import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
+import TwodsixActor from "../entities/TwodsixActor";
 
 export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
 
@@ -14,7 +15,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
   getData(): TwodsixVehicleSheetData {
     const context = <TwodsixVehicleSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(this.actor.items, context);
+    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
@@ -38,7 +39,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     super.activateListeners(html);
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
-    html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+    html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
     html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
@@ -57,7 +58,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       }
     }
   }
-  private _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
+
+  private _onRollWrapperVehicle(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
     return (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -74,7 +76,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
+  private async _onSkillRollVehicle(event, showThrowDiag: boolean): Promise<void> {
     //Get Controlled actor
     const selectedActor = getControlledTraveller();
 
