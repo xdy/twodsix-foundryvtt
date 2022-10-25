@@ -1,3 +1,11 @@
+## [2.6.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.5...v2.6.6) (2022-10-25)
+
+
+### Bug Fixes
+
+* Attempt at re-release after fixing release script. ([bad3e91](https://github.com/xdy/twodsix-foundryvtt/commit/bad3e91e6c2c6ced97340a132d077abc2563cfd8)), closes [#1150](https://github.com/xdy/twodsix-foundryvtt/issues/1150)
+* trailing commas and dropped skills([#1150](https://github.com/xdy/twodsix-foundryvtt/issues/1150)) ([dfc6153](https://github.com/xdy/twodsix-foundryvtt/commit/dfc61536a77b9c07f3e49c4114026da91df20700))
+
 ## [2.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.4...v2.6.5) (2022-10-15)
 
 
