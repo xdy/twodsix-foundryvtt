@@ -265,8 +265,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = await getItemDataFromDropData(dropData);
     const sameActor = this.actor.items.get(itemData._id);;
     if (sameActor) {
-      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the skill list`);
-      return this._onSortItem(event, itemData.toJSON());
+      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the ITEM list`);
+      const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
+      if (dropTargetId !== "") {
+        return this._onSortItem(event, itemData.toJSON());
+      } else {
+        return false; //JOAT which has no id
+      }
     }
     return actor.handleDroppedItem(itemData);
   }
@@ -325,7 +330,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
 
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
-      sheetData.component = sortObj(component);
+      sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }

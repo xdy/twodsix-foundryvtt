@@ -576,8 +576,8 @@ export default class TwodsixActor extends Actor {
   }
 
   private async _addDroppedSkills(skillData): Promise<boolean>{
-    // Handle item sorting within the same Actor
-    const sameActor = this.items.get(skillData._id);;
+    // Handle item sorting within the same Actor SHOULD NEVER DO THIS
+    const sameActor = this.items.get(skillData._id);
     if (sameActor) {
       console.log(`Twodsix | Moved Skill ${skillData.name} to another position in the skill list`);
       //return this._onSortItem(event, sameActor);

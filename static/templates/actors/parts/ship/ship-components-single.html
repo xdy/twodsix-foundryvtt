@@ -33,7 +33,7 @@
   </div>
 
   <div class="grid-columns-single">
-    {{#each component}}
+    {{#each componentObject}}
     {{#iff @key "!==" "cargo"}}
     <div class="grid-columns-single-row">
        <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}

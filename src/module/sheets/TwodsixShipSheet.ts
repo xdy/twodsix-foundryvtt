@@ -71,11 +71,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        {dropSelector: null, dragSelector: ".drag"},
+        {dropSelector: ".ship-position-box", dragSelector: ".drag"},
         {
-          dropSelector: null,
+          dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
-        }
+        },
+        {dragSelector: ".item", dropSelector: null}
       ]
     });
   }
@@ -233,7 +234,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         "type": "Actor",
         "data": actor,  //Not Certain if this should be system instead
         "actorId": this.actor.id,
-        "id": $(event.target).data("id")
+        "id": $(event.target).data("id"),
+        "uuid": actor?.uuid
       }));
     } else if (event.target && $(event.target).hasClass("ship-position-action")) {
       return;
