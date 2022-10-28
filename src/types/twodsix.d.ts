@@ -121,6 +121,7 @@ declare global {
       'twodsix.showComponentRating': boolean;
       'twodsix.showComponentDM': boolean;
       'twodsix.transferDroppedItems': boolean;
+      'twodsix.allowDragDropOfLists':boolean;
     }
   }
 }

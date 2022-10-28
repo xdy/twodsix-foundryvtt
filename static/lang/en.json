@@ -691,9 +691,9 @@
       },
       "settingsInterface": {
         "debugSettings": {
-          "hint": "Configure/View the debug settings.",
-          "intro": "Debug Settings",
-          "name": "Debug Settings"
+          "hint": "Configure/View the debugging and experimental features settings.",
+          "intro": "Experimental & Debugging Settings",
+          "name": "Experimental & Debugging Settings"
         },
         "displaySettings": {
           "hint": "Configure the display settings.",
@@ -953,6 +953,10 @@
       "transferDroppedItems": {
         "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
         "name": "Transfer rather than copy dropped equipment on actors"
+      },
+      "allowDragDropOfLists" : {
+        "hint": "Allow items in lists to be moved by drag and drop rather than sorting alphabetically.",
+        "name":"Allow Drag-Drop in Lists"
       }
     },
     "CloseAndCreateNew": "Close and create new",

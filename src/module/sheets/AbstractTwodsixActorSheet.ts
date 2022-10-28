@@ -230,7 +230,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
-
     const dropData = getDataFromDropEvent(event);
     const actor = <TwodsixActor>this.actor;
 
@@ -265,12 +264,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = await getItemDataFromDropData(dropData);
     const sameActor = this.actor.items.get(itemData._id);;
     if (sameActor) {
-      console.log(`Twodsix | Moved Skill ${itemData.name} to another position in the ITEM list`);
       const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
-      if (dropTargetId !== "") {
-        return this._onSortItem(event, itemData.toJSON());
+      const targetItem = this.actor.items.get(dropTargetId);
+      if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill')) {
+        console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
+        super._onDrop(event); //needed?
+        return await this._onSortItem(event, itemData.toJSON());
       } else {
-        return false; //JOAT which has no id
+        return false; //JOAT or Untrained which can't be moved
       }
     }
     return actor.handleDroppedItem(itemData);

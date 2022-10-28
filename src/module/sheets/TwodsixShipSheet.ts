@@ -278,7 +278,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions");
         return false;
       } else {
-        return super._onDrop(event);
+        super._onDrop(event);
+        return this._onSortItem(event, droppedObject.toJSON());
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging

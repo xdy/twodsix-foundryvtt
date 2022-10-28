@@ -30,6 +30,7 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(booleanSetting('useShipAutoCalcs', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useProseMirror', false));
     settings.push(booleanSetting('allowDropOnIcon', false));
+    settings.push(booleanSetting('allowDragDropOfLists', false));
     return settings;
   }
 }
