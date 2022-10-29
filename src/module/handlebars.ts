@@ -220,22 +220,27 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'showTimeframe');
   });
 
-  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
 
-  Handlebars.registerHelper('each_sort_by_name', (array, options) => {
+  Handlebars.registerHelper('each_sort_item', (array, options) => {
     let sortedArray: TwodsixItem[] = [];
+    const sortLabel = game.settings.get('twodsix', 'allowDragDropOfLists') ? "sort" : "name";
     const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
     if (slice) {
       sortedArray = slice.sort((a, b) => {
-        if (a.name == null) {
+        if (a[sortLabel] == null) {
           return 1;
         } else {
-          if (b.name == null) {
+          if (b[sortLabel] == null) {
             return -1;
-          } else if (a.name === b.name) {
+          } else if (a[sortLabel] === b[sortLabel]) {
             return 0;
           } else {
-            return a.name.toLocaleLowerCase().localeCompare(b.name.toLocaleLowerCase());
+            if (game.settings.get('twodsix', 'allowDragDropOfLists')) {
+              return a.sort - b.sort;
+            } else {
+              return a.name.localeCompare(b.name);
+            }
           }
         }
       });

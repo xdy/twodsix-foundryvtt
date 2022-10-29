@@ -47,7 +47,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
-      showComponentDM: game.settings.get('twodsix', 'showComponentDM')
+      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
+      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists')
     };
 
     if (context.settings.useProseMirror) {
@@ -71,11 +72,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        {dropSelector: null, dragSelector: ".drag"},
+        {dropSelector: ".ship-position-box", dragSelector: ".drag"},
         {
-          dropSelector: null,
+          dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
-        }
+        },
+        {dragSelector: ".item", dropSelector: null}
       ]
     });
   }
@@ -233,7 +235,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         "type": "Actor",
         "data": actor,  //Not Certain if this should be system instead
         "actorId": this.actor.id,
-        "id": $(event.target).data("id")
+        "id": $(event.target).data("id"),
+        "uuid": actor?.uuid
       }));
     } else if (event.target && $(event.target).hasClass("ship-position-action")) {
       return;
@@ -276,7 +279,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions");
         return false;
       } else {
-        return super._onDrop(event);
+        super._onDrop(event);
+        return this._onSortItem(event, droppedObject.toJSON());
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging

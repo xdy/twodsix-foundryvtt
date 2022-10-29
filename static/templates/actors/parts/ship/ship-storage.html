@@ -20,11 +20,11 @@
     </div>
   </div>
 
-  <div class="grid-columns-double">
-    {{#each_sort_by_name storage as |item id|}}
-    <div class="grid-columns-double-row">
+  <div class="grid-columns-double item-list">
+    {{#each_sort_item storage as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
-        <li class="item storage-stored" data-item-id="{{item.id}}">
+        <li class="storage-stored" >
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
           <span class="item-name centre">{{item.system.techLevel}}</span>
@@ -39,6 +39,9 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_by_name}}
+    {{/each_sort_item}}
+    {{#if (twodsix_isOdd storage.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item storage-stored" ></li></ol></div>
+    {{/if}}
   </div>
 </div>

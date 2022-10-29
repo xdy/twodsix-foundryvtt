@@ -183,10 +183,12 @@ img {
 
 input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
 input[type=number] {
+  appearance: texfield;
   -moz-appearance: textfield;
 }
 
@@ -371,6 +373,7 @@ form .form-group span.units {
 
 .item-name {
   align-self: center;
+  text-align: left;
 }
 
 .centre {
@@ -2450,6 +2453,10 @@ a.ship-notes-tab.active {
   grid-template-areas:
     ". . . . . .";
   padding: 1px;
+}
+
+.grid-columns-double-row {
+  align-self: center;
 }
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {

@@ -77,7 +77,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       template: "systems/twodsix/templates/actors/animal-sheet.html",
       width: 830,
       height: 500,
-      resizable: true
+      resizable: true,
+      dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
 

@@ -504,8 +504,8 @@ export default class TwodsixActor extends Actor {
       "flags": {'twodsix.untrainedSkill': true}
     };
 
-
-    const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
+    const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));
+    //const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
     return data1[0];
   }
 
@@ -576,8 +576,8 @@ export default class TwodsixActor extends Actor {
   }
 
   private async _addDroppedSkills(skillData): Promise<boolean>{
-    // Handle item sorting within the same Actor
-    const sameActor = this.items.get(skillData._id);;
+    // Handle item sorting within the same Actor SHOULD NEVER DO THIS
+    const sameActor = this.items.get(skillData._id);
     if (sameActor) {
       console.log(`Twodsix | Moved Skill ${skillData.name} to another position in the skill list`);
       //return this._onSortItem(event, sameActor);
@@ -597,8 +597,8 @@ export default class TwodsixActor extends Actor {
       await matching.update({"system.value": updateValue});
       return false;
     }
-
-    const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(duplicate(skillData)))[0];
+    //const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;
@@ -653,7 +653,8 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
-    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
+    //const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
 
     //Link an actor skill with name defined by item.associatedSkillName

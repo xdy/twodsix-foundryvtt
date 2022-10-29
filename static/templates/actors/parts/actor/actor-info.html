@@ -8,11 +8,11 @@
     <span class="item-name centre"><a class="item-control item-create"
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait"><i class="fa-solid fa-plus"></i></a></span>
   </div>
-
-  {{#each_sort_by_name container.trait as |item id|}}
-  <div class="item gear">
+  <section class="item-list">
+  {{#each_sort_item container.trait as |item id|}}
+  <div class="item gear" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{item.id}}">
+      <li class="flexrow" >
         <span class="items-traits">
           <span class="item-name showChat">{{item.name}}</span>
           <span class="item-name centre">{{item.system.value}}</span>
@@ -26,7 +26,8 @@
       </li>
     </ol>
   </div>
-  {{/each_sort_by_name}}
+  {{/each_sort_item}}
+</section>
 </div>
 
 <!---- Spells ---->
@@ -40,11 +41,11 @@
     <span class="item-name centre"><a class="item-control item-create"
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="spell"><i class="fa-solid fa-plus"></i></a></span>
   </div>
-
-  {{#each_sort_by_name container.spell as |item id|}}
-  <div class="item gear">
+  <section class="item-list">
+  {{#each_sort_item container.spell as |item id|}}
+  <div class="item gear" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{item.id}}">
+      <li class="flexrow" >
         <span class="items-spells">
           <span class="item-name showChat">{{item.name}}</span>
           <span class="item-name centre rollable"><i class="fa-solid fa-dice" alt="2d6"></i>{{item.system.value}}</span>
@@ -58,7 +59,8 @@
       </li>
     </ol>
   </div>
-  {{/each_sort_by_name}}
+  {{/each_sort_item}}
+</section>
 </div>
 {{/if}}
 <div class="info-container">

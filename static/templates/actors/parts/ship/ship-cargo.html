@@ -21,7 +21,7 @@
       <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo"><i
         class="fa-solid fa-plus"></i></a></span>
     </div>
-    <div class="components-stored-double ">
+    <div class="components-stored-double">
       <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Equipment.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
@@ -31,11 +31,11 @@
         class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
-  <div class="grid-columns-double">
-    {{#each component.cargo as |item id|}}
-    <div class="grid-columns-double-row">
+  <div class="grid-columns-double item-list">
+    {{#each_sort_item componentObject.cargo as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
-        <li class="item components-stored-double" data-item-id="{{item.id}}">
+        <li class="components-stored-double" >
           <span class="item-name">{{item.name}}</span>
           <span class="item-name centre">{{getComponentWeight item}}</span>
           <span class="item-name centre">{{item.system.quantity}}</span>
@@ -50,7 +50,10 @@
         </li>
       </ol>
     </div>
-    {{/each}}
+    {{/each_sort_item}}
+    {{#if (twodsix_isOdd componentObject.cargo.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+    {{/if}}
   </div>
 </div>
 <div class="cargo-wrapper">

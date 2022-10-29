@@ -54,12 +54,13 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .centre {
-  text-align: center;
+  text-align: center !important;
   align-self: center;
 }
 
 .item-name {
   align-self: center;
+  text-align: left;
   /* padding-left: 1ch; */
 }
 
@@ -1293,10 +1294,10 @@ span.total-output {
   background-color: var(--s2d6-background-nearly-opaque);
   border-radius: 1ch 1ch 0 0;
 }
-.manifest {
+/*.manifest {
   margin-left: 15px;
-  /* width: 215px; */
-}
+  width: 215px;
+}*/
 
 .simplified-skill-description {
   font-weight: normal;
@@ -1863,6 +1864,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   margin-top: 1.0em;
   overflow-y: auto;
   height: 290px;
+  margin-left: 15px;
 }
 
 .grid-columns-double {
@@ -1872,7 +1874,6 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px 1px;
   grid-template-areas:
     ". .";
-  margin-left: 15px;
   width: 54.4em;
   /* border-right: 1px solid var(--s2d6-form-light); */
 }
@@ -1884,7 +1885,6 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px;
   grid-template-areas:
     ".";
-  margin-left: 1em;
   width: 54.4em;
   /* border: solid 1px var(--s2d6-input-background); */
 }
@@ -1917,6 +1917,10 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   grid-template-areas:
     ". . . . . .";
   border-right: 1px solid var(--s2d6-form-light);
+}
+
+grid-columns-double-row {
+  align-self: center;
 }
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
@@ -1968,6 +1972,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   overflow-y: auto;
   height: 12em;
   width: 784px;
+  margin-left: 15px;
   /*padding: 0 0.5em;*/
 }
 

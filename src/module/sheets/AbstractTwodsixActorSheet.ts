@@ -230,7 +230,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onDrop(event:DragEvent):Promise<boolean | any> {
     event.preventDefault();
-
     const dropData = getDataFromDropEvent(event);
     const actor = <TwodsixActor>this.actor;
 
@@ -263,6 +262,18 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
+    const sameActor = this.actor.items.get(itemData._id);;
+    if (sameActor) {
+      const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
+      const targetItem = this.actor.items.get(dropTargetId);
+      if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', 'allowDragDropOfLists') && !sameActor.getFlag('twodsix','untrainedSkill')) {
+        console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
+        //super._onDrop(event); //needed?
+        return await this._onSortItem(event, itemData); //.toJSON()???
+      } else {
+        return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
+      }
+    }
     return actor.handleDroppedItem(itemData);
   }
 
@@ -315,12 +326,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Prepare Containers for sheetData
     sheetData.container = actor.itemTypes;
     sheetData.container.skills = skillsList;
+    sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo")
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
 
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
-      sheetData.component = sortObj(component);
+      sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }

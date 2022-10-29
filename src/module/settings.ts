@@ -13,7 +13,7 @@ export const registerSettings = function ():void {
   RulsetSettings.registerMenu(RulsetSettings.create(), "rulesetSettings", "gavel");
   ItemSettings.registerMenu(ItemSettings.create(), "itemSettings", "bars");
   DisplaySettings.registerMenu(DisplaySettings.create(), "displaySettings", "tv");
-  DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "bug");
+  DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "flask");
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
