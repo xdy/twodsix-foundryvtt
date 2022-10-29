@@ -1,3 +1,10 @@
+## [2.6.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.6...v2.6.7) (2022-10-29)
+
+
+### Bug Fixes
+
+* allow drag drop of lists again ([#1157](https://github.com/xdy/twodsix-foundryvtt/issues/1157)) ([63d4239](https://github.com/xdy/twodsix-foundryvtt/commit/63d42397d5cd763177f4860730427f6e1d4c2a2d))
+
 ## [2.6.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.5...v2.6.6) (2022-10-25)
 
 
