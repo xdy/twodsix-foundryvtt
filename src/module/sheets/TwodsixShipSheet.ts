@@ -47,7 +47,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
-      showComponentDM: game.settings.get('twodsix', 'showComponentDM')
+      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
+      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists')
     };
 
     if (context.settings.useProseMirror) {
