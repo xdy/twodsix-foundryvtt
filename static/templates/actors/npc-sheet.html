@@ -55,7 +55,7 @@
               {{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
-      <span class="item" data-item-id="{{untrainedSkill.id}}">
+      <span class="item" data-item-id="{{untrainedSkill.id}}" draggable="false">
           <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
       </span>
