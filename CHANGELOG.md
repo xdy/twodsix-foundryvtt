@@ -1,3 +1,10 @@
+## [2.6.8](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.7...v2.6.8) (2022-10-29)
+
+
+### Bug Fixes
+
+* Quick fix to prevent JOAT from drag and drop ([#1169](https://github.com/xdy/twodsix-foundryvtt/issues/1169)) ([9210f79](https://github.com/xdy/twodsix-foundryvtt/commit/9210f7953c9ce2819f782b2505af2dd3e8c54cab))
+
 ## [2.6.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.6...v2.6.7) (2022-10-29)
 
 
