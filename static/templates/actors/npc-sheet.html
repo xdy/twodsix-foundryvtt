@@ -43,7 +43,7 @@
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
       {{#unless limited}}
       <div style="margin-left: 1ch;">
-        <span class="item" data-item-id="{{joat-skill-input}}" >
+        <span class="fixed-item" data-item-id="{{joat-skill-input}}" >
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
         </span>
@@ -55,7 +55,7 @@
               {{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
-      <span class="item" data-item-id="{{untrainedSkill.id}}">
+      <span class="item" data-item-id="{{untrainedSkill.id}}" draggable="false">
           <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
       </span>

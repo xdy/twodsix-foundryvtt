@@ -23,7 +23,7 @@
 </div>
 
 <div class="skill">
-  <span class="item skill-container">
+  <span class="fixed-item skill-container" draggable="false">
     <ol class="ol-no-indent">
       <li class="fixed-item flexrow" data-item-id="{{joat-skill-input}}" style="margin-bottom: 0.01px;">
         <span class="skill-container">
@@ -67,9 +67,9 @@
 </section>
 {{#if settings.hideUntrainedSkills}}
 <div class="skill">
-  <span class="item skill-container" draggable="false">
+  <span class="item skill-container" data-item-id="{{untrainedSkill.id}}" draggable="false">
     <ol class="ol-no-indent">
-      <li class="item flexrow" data-item-id="{{untrainedSkill.id}}" draggable="false">
+      <li class="flexrow" >
         <span class="skill-container">
           <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"><i class="fa-solid fa-dice" alt="d6"></i></span>
           <span class="item-name rollable">{{untrainedSkill.name}}</span>
