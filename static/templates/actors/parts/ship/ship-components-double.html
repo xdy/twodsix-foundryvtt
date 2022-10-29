@@ -18,26 +18,32 @@
     </div>
   </div>
 
-  <div class="grid-columns-single">
+  <div class="grid-columns-double">
     {{#if settings.allowDragDropOfLists}}
     <div class="item-list grid-columns-double">
       {{#each_sort_item container.nonCargo as |item id|}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.html" item = item settings = ../settings}}
       {{/each_sort_item}}
+      {{#if (twodsix_isOdd container.nonCargo.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+      {{/if}}
     </div>
     {{else}}
       {{#each componentObject}}
         {{#iff @key "!==" "cargo"}}
-          <div class="grid-columns-single-row">
+          <div class="grid-columns-double-row">
             <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}
               <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a>
             </ol>
           </div>
 
           <div class="item-list grid-columns-double">
-            {{#each this as |item id|}}
+            {{#each_sort_item this as |item id|}}
               {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.html" item = item settings = ../../settings}}
-            {{/each}}
+            {{/each_sort_item}}
+            {{#if (twodsix_isOdd this.length)}}
+              <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+            {{/if}}
           </div>
         {{/iff}}
       {{/each}}

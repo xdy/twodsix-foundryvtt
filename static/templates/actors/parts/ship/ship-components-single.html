@@ -49,9 +49,9 @@
           </div>
 
           <div class="item-list grid-columns-single">
-            {{#each this as |item id|}}
+            {{#each_sort_item this as |item id|}}
               {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../../settings}}
-            {{/each}}
+            {{/each_sort_item}}
           </div>
         {{/iff}}
       {{/each}}
