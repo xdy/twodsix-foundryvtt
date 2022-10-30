@@ -114,7 +114,8 @@ export default class TwodsixItem extends Item {
         usedAmmo = parseInt(weapon.rateOfFire, 10);
         break;
       case "burst-attack-dm":
-        tmpSettings.diceModifier = TwodsixItem.burstAttackDM(rateOfFireCE);
+        tmpSettings.diceModifier = TwodsixItem.burstAttackDM(rateOfFireCE);  // ***Delete on refactor of Roll Settings
+        tmpSettings.rollModifiers = {rof: TwodsixItem.burstAttackDM(rateOfFireCE)};
         usedAmmo = rateOfFireCE || 0;
         break;
       case "burst-bonus-damage":
@@ -123,7 +124,7 @@ export default class TwodsixItem extends Item {
         break;
     }
 
-    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this);
+    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, this.actor);
 
     if (!settings.shouldRoll) {
       return;
@@ -198,9 +199,9 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, this.actor);
       } else {
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, this.actor);
       }
       if (!tmpSettings.shouldRoll) {
         return;

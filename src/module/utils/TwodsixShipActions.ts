@@ -90,7 +90,7 @@ export class TwodsixShipActions {
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill);
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, extra.actor);
       if (!options.shouldRoll) {
         return false;
       }

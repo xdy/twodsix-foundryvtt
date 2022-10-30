@@ -469,7 +469,7 @@ export default class TwodsixActor extends Actor {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
     }
-    const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings);
+    const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, undefined, undefined, this);
     if (!settings.shouldRoll) {
       return;
     }
