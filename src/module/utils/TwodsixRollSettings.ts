@@ -42,8 +42,8 @@ export class TwodsixRollSettings {
       selectedActor = <TwodsixActor>anItem.actor;
     }
     if (selectedActor) {
-      woundsValue = (<TwodsixActor>selectedActor)?.system.woundedEffect.toString();
-      const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor)?.effects.find(eff => eff.label === 'Encumbered');
+      woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect.toString();
+      const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
       if(encumberedEffect) {
         const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
         encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? "0";
