@@ -103,7 +103,7 @@ export class TwodsixRollSettings {
           twodsixRollSettings.rollModifiers.characteristic = "NONE";
         }
       } else {
-        title = twodsixRollSettings?.displayLabel ?? "";
+        title = twodsixRollSettings.displayLabel ?? "";
       }
 
       await twodsixRollSettings._throwDialog(title, skill);
