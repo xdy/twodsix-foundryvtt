@@ -703,6 +703,7 @@ input.stat-name-table {
   border: none;
   border: none;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .stat img {

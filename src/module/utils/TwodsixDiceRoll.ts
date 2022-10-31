@@ -8,7 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import {Gear, Skills} from "../../types/template";
+import {Gear} from "../../types/template";
 import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
@@ -41,45 +41,50 @@ export class TwodsixDiceRoll {
   private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const formulaData = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
+    const formulaData = {};
 
     let formula = rollType;
 
-    // Add characteristic modifier
-    if (this.settings.characteristic !== "NONE" && this.actor) {
-      formula += ` + @${this.settings.characteristic}`;
-      formulaData[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
-    }
-
     // Add skill modifier
     if (this.skill) {
-      formula += "+ @skill";
-      /*Check for "Untrained" value and use if better to account for JOAT*/
-      const joat = (<Skills>this.actor?.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
-      const aSkill = <Skills>this.skill.system;
-      if (joat > aSkill.value) {
-        formulaData.skill = joat;
-      } else {
-        formulaData.skill = aSkill.value;
-      }
+      formula += " + @skill";
+      formulaData.skill = this.settings.rollModifiers.skill;
     }
 
-    // Add dice modifier
-    if (this.settings.diceModifier) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
-      formula += "+ @DM";
-      formulaData.DM = this.settings.diceModifier;
+    // Add characteristic modifier
+    if (this.settings.rollModifiers.characteristic !== "NONE" && this.actor) {
+      formula += ' + @characteristicModifier';
+      formulaData.characteristicModifier = this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic);
+    }
+
+    // Add item modifier
+    if (this.settings.rollModifiers.item) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
+      formula += " + @item";
+      formulaData.item = this.settings.rollModifiers.item;
+    }
+
+    // Add other modifier
+    if (this.settings.rollModifiers.other) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
+      formula += " + @DM";
+      formulaData.DM = this.settings.rollModifiers.other;
+    }
+
+    //Subtract Modifier for wound status
+    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.settings.rollModifiers.wounds < 0) {
+      formula += " - @woundedEffect";
+      formulaData.woundedEffect = -this.settings.rollModifiers.wounds;
+    }
+
+    //Subtract Modifier for wound status
+    if(game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.settings.rollModifiers.encumbered < 0) {
+      formula += " - @encumberedEffect";
+      formulaData.encumberedEffect = -this.settings.rollModifiers.encumbered;
     }
 
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
-      formula += "+ @difficultyMod";
+      formula += " + @difficultyMod";
       formulaData.difficultyMod = this.settings.difficulty.mod;
-    }
-
-    //Subtract Modifier for wound status
-    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.woundedEffect < 0) {
-      formula += "+ @woundedEffect";
-      formulaData.woundedEffect = this.woundedEffect;
     }
 
     this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10

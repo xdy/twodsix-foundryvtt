@@ -10,27 +10,29 @@ import TwodsixActor from "../entities/TwodsixActor";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
-  diceModifier:number;
+  //diceModifier:number;
   shouldRoll:boolean;
   rollType:string;
   rollMode:DICE_ROLL_MODES;
-  characteristic:string;
+  //characteristic:string;
   skillRoll:boolean;
+  itemRoll:boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
   selectedTimeUnit:string;
   timeRollFormula:string;
   rollModifiers:Record<string, unknown>;
+  skillName:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem, sourceActor?:TwodsixActor) {
     this.difficulties = settings?.difficulties ? settings.difficulties : TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const skill = <Skills>aSkill?.system;
+    let skillValue = 0;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.system;
-    const skillModifier = gear?.skillModifier ?? 0;
-    const characteristic = aSkill ? skill.characteristic : (settings?.characteristic ?? "NONE");
+    const characteristic = aSkill ? skill.characteristic : (settings?.rollModifiers?.characteristic ?? "NONE");
 
     //Determine active effects modifiers
     let woundsValue = "0";
@@ -42,56 +44,69 @@ export class TwodsixRollSettings {
       selectedActor = <TwodsixActor>anItem.actor;
     }
     if (selectedActor) {
-      woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect.toString();
-      const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
-      if(encumberedEffect) {
-        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-        encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? "0";
+      if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+        woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect.toString();
+      }
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+        const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
+        if(encumberedEffect) {
+          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+          encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? "0";
+        }
+      }
+      /*Check for "Untrained" value and use if better to account for JOAT*/
+      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
+      if (joat > skill?.value) {
+        skillValue = joat;
+        this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
+      } else {
+        skillValue = skill?.value;
+        this.skillName = aSkill?.name ?? "?";
       }
     }
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
     this.rollType = settings?.rollType ?? "Normal";
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
-    this.diceModifier = settings?.diceModifier ? settings?.diceModifier + skillModifier : skillModifier;
-    this.characteristic = settings?.characteristic ?? characteristic;
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
+    this.itemRoll = !!(anItem);
     this.displayLabel = settings?.displayLabel ?? "";
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
     this.timeRollFormula = "1d6";
     this.rollModifiers = {
-      rof: settings?.rollModifiers?.rof?.toString() ?? "0",
+      rof: settings?.rollModifiers?.rof ?? 0,
       characteristic: characteristic,
       wounds: woundsValue,
-      skill: skill?.value.toString() ?? "0",
-      item: gear?.skillModifier.toString() ?? "0",
-      other: settings?.diceModifier?.toString() ?? "0",
-      encumbered: encumberedValue
+      skill: skillValue ?? 0,
+      item: gear?.skillModifier ?? 0,
+      other: settings?.diceModifier ?? 0,
+      encumbered: encumberedValue,
+      custom: 0
     };
     console.log("Modifiers: ", this.rollModifiers);
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
+    if (sourceActor) {
+      twodsixRollSettings.rollModifiers.custom = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic);
+    }
     if (showThrowDialog) {
-      //console.log("Create RollSettings, item:", item, " skill: ", skill, " charcteristic:", settings?.characteristic);
       let title:string;
       if (item && skill) {
-        title = `${skill.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.name}`;
+        title = `${twodsixRollSettings.skillName} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.name}`;
       } else if (skill) {
-        title = skill.name || "";
+        title = twodsixRollSettings.skillName || "";
         //check for characterisitc not on actor characteristic list
-        if (_genTranslatedSkillList(<TwodsixActor>skill.actor)[twodsixRollSettings.characteristic] === undefined) {
-          twodsixRollSettings.characteristic = "NONE";
+        if (_genTranslatedSkillList(<TwodsixActor>skill.actor)[twodsixRollSettings.rollModifiers.characteristic] === undefined) {
+          twodsixRollSettings.rollModifiers.characteristic = "NONE";
         }
       } else {
-        title = settings?.displayLabel ?? "";
-        //console.log("Here:", settings);
+        title = twodsixRollSettings?.displayLabel ?? "";
       }
 
       await twodsixRollSettings._throwDialog(title, skill);
-      //console.log(twodsixRollSettings);
 
       //Get display label
       if (skill && skill.actor) {
@@ -103,7 +118,7 @@ export class TwodsixRollSettings {
         }
       } else if (skill) {
         twodsixRollSettings.displayLabel = ""; // for unattached skill roll
-        twodsixRollSettings.characteristic = "NONE";
+        twodsixRollSettings.rollModifiers.characteristic = "NONE";
       }
 
     } else {
@@ -122,13 +137,18 @@ export class TwodsixRollSettings {
       difficulties: this.difficulties,
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
-      diceModifier: this.diceModifier,
       characteristicList: _genTranslatedSkillList(<TwodsixActor>skill?.actor),
-      initialChoice: this.characteristic,
+      initialChoice: this.rollModifiers.characteristic,
+      rollModifiers: this.rollModifiers,
+      skillLabel: this.skillName,
       skillRoll: this.skillRoll,
+      itemRoll: this.itemRoll,
       timeUnits: TWODSIX.TimeUnits,
       selectedTimeUnit: this.selectedTimeUnit,
-      timeRollFormula: this.timeRollFormula
+      timeRollFormula: this.timeRollFormula,
+      showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators') || this.rollModifiers.custom),
+      showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
+      showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
     };
 
     const buttons = {
@@ -137,11 +157,17 @@ export class TwodsixRollSettings {
         icon: '<i class="fa-solid fa-dice"></i>',
         callback: (buttonHtml) => {
           this.shouldRoll = true;
-          this.difficulty = this.difficulties[buttonHtml.find('[name="difficulty"]').val()];
+          this.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          this.characteristic = this.skillRoll ? buttonHtml.find('[name="characteristic"]').val() : this.characteristic;
-          this.diceModifier = parseInt(buttonHtml.find('[name="diceModifier"]').val(), 10);
+          this.rollModifiers.skill = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skill"]').val(), 10) : this.rollModifiers.skill;
+          this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
+          this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
+          this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;
+          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
+          this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
+          this.rollModifiers.encumbered = dialogData.showEncumbered ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
+          this.rollModifiers.custom = dialogData.showConditions ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
@@ -213,5 +239,19 @@ export function _genUntranslatedSkillList(): object {
     returnValue["PSI"] = game.i18n.localize("TWODSIX.Items.Skills.PSI");
   }
   returnValue["NONE"] = "---";
+  return returnValue;
+}
+
+export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string) : Promise<number> {
+  const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+  let returnValue = 0;
+  const customEffects = selectedActor.effects.filter(eff => eff.label !== "Wounded" && eff.label !== "Encumbered");
+  for (const effect of customEffects) {
+    for (const change of effect.changes) {
+      if (change.key === `system.characteristic.${keyByValue}.mod`) {
+        returnValue += parseInt(change.value);
+      }
+    }
+  }
   return returnValue;
 }

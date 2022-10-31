@@ -462,7 +462,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const shortChar = $(event.currentTarget).data("label");
     const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
     const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
-    await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
+    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}, "displayLabel": displayShortChar }, showThrowDiag);
   }
 
   /**
