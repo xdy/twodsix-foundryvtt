@@ -46,7 +46,7 @@ export class TwodsixDiceRoll {
     let formula = rollType;
 
     // Add skill modifier
-    if (this.skill) {
+    if (this.settings.skillRoll) {
       formula += " + @skill";
       formulaData.skill = this.settings.rollModifiers.skill;
     }
@@ -58,13 +58,13 @@ export class TwodsixDiceRoll {
     }
 
     // Add item modifier
-    if (this.settings.rollModifiers.item) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
+    if (this.settings.itemRoll) {
       formula += " + @item";
       formulaData.item = this.settings.rollModifiers.item;
     }
 
     // Add other modifier
-    if (this.settings.rollModifiers.other) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
+    if (this.settings.rollModifiers.other) {
       formula += " + @DM";
       formulaData.DM = this.settings.rollModifiers.other;
     }
@@ -79,6 +79,12 @@ export class TwodsixDiceRoll {
     if(game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.settings.rollModifiers.encumbered < 0) {
       formula += " - @encumberedEffect";
       formulaData.encumberedEffect = -this.settings.rollModifiers.encumbered;
+    }
+
+    //Allow custom .mod effect
+    if(this.settings.rollModifiers.custom !== 0) {
+      formula += " + @customEffect";
+      formulaData.customEffect = this.settings.rollModifiers.custom;
     }
 
     // Add difficulty modifier or set target
@@ -165,26 +171,34 @@ export class TwodsixDiceRoll {
       flavor += ` ${game.i18n.localize("TWODSIX.Rolls.With")} ${rollType}`;
     }
 
-    if (this.skill) {
+    if (this.settings.skillRoll) {
       const skillValue = TwodsixDiceRoll.addSign((<Gear>this.roll?.data)?.skill);
       flavor += ` ${this.skill.name}(${skillValue})`;
     }
 
-    if (this.item) {
-      flavor += ` ${usingString} ${this.item.name}`;
-    }
-
-    if (this.roll?.data['DM']) {
-      flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll?.data['DM'])})`;
-    }
-
-    if (this.roll?.data['woundedEffect']) {
-      flavor += ` +${game.i18n.localize("TWODSIX.Rolls.Wounds")}(${this.roll?.data['woundedEffect']})`;
-    }
-    if (this.settings.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
-      const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data[this.settings.characteristic]);
+    if (this.settings.rollModifiers.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
+      const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data.characteristicModifier);
       const charShortName:string = this.settings.displayLabel;
       flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
+    }
+
+    if (this.settings.itemRoll) {
+      const itemValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.item);
+      flavor += ` ${usingString} ${this.item.name}(${itemValue})`;
+    }
+
+    if (this.settings.rollModifiers.other !== 0) {
+      flavor += ` + Custom DM(${TwodsixDiceRoll.addSign(this.settings.rollModifiers.other)})`;
+    }
+
+    if (this.settings.rollModifiers.wounds !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Wounds")}(${this.settings.rollModifiers.wounds})`;
+    }
+    if (this.settings.rollModifiers.encumbered !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}(${this.settings.rollModifiers.encumbered})`;
+    }
+    if (this.settings.rollModifiers.custom !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}(${this.settings.rollModifiers.custom})`;
     }
 
     // Add timeframe if requred

@@ -252,7 +252,7 @@
         "Wounds": "Wounds",
         "Encumbered": "Encumbered",
         "CharacteristicModifier": "Characteristic Modifier",
-        "Conditions": "Conditions",
+        "Conditions": "Condition Modifiers",
         "Custom": "Custom"
       }
     },

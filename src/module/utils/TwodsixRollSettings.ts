@@ -22,7 +22,7 @@ export class TwodsixRollSettings {
   extraFlavor:string;
   selectedTimeUnit:string;
   timeRollFormula:string;
-  rollModifiers:Record<string, unknown>;
+  rollModifiers:Record<number, unknown>;
   skillName:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -34,16 +34,17 @@ export class TwodsixRollSettings {
     const gear = <Gear>anItem?.system;
     const characteristic = aSkill ? skill.characteristic : (settings?.rollModifiers?.characteristic ?? "NONE");
 
-    //Determine active effects modifiers
-    let woundsValue = "0";
-    let encumberedValue = "0";
+    let woundsValue = 0;
+    let encumberedValue = 0;
     let selectedActor = sourceActor;
+    let displayLabel = "";
     if (aSkill && !selectedActor) {
       selectedActor = <TwodsixActor>aSkill.actor;
     } else if (anItem && !selectedActor) {
       selectedActor = <TwodsixActor>anItem.actor;
     }
     if (selectedActor) {
+      //Determine active effects modifiers
       if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
         woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect.toString();
       }
@@ -51,10 +52,10 @@ export class TwodsixRollSettings {
         const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
         if(encumberedEffect) {
           const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-          encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? "0";
+          encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? 0;
         }
       }
-      /*Check for "Untrained" value and use if better to account for JOAT*/
+      //Check for "Untrained" value and use if better to account for JOAT
       const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
       if (joat > skill?.value) {
         skillValue = joat;
@@ -63,6 +64,11 @@ export class TwodsixRollSettings {
         skillValue = skill?.value;
         this.skillName = aSkill?.name ?? "?";
       }
+      // check for missing display label
+      if (!settings?.displayLabel) {
+        const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+        displayLabel = sourceActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+      }
     }
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
@@ -70,7 +76,7 @@ export class TwodsixRollSettings {
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
-    this.displayLabel = settings?.displayLabel ?? "";
+    this.displayLabel = settings?.displayLabel ?? displayLabel;
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
     this.timeRollFormula = "1d6";
@@ -81,7 +87,7 @@ export class TwodsixRollSettings {
       skill: skillValue ?? 0,
       item: gear?.skillModifier ?? 0,
       other: settings?.diceModifier ?? 0,
-      encumbered: encumberedValue,
+      encumbered: encumberedValue ?? 0,
       custom: 0
     };
     console.log("Modifiers: ", this.rollModifiers);
@@ -95,7 +101,8 @@ export class TwodsixRollSettings {
     if (showThrowDialog) {
       let title:string;
       if (item && skill) {
-        title = `${twodsixRollSettings.skillName} ${game.i18n.localize("TWODSIX.Actor.using")} ${item.name}`;
+        title = `${item.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${twodsixRollSettings.skillName}`;
+        twodsixRollSettings.itemName = item.name;
       } else if (skill) {
         title = twodsixRollSettings.skillName || "";
         //check for characterisitc not on actor characteristic list
@@ -113,8 +120,8 @@ export class TwodsixRollSettings {
         if (twodsixRollSettings.characteristic === "NONE") {
           twodsixRollSettings.displayLabel = "";
         } else {
-          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.characteristic);
-          twodsixRollSettings.displayLabel = (<TwodsixActor>skill.actor).system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.rollModifiers.characteristic);
+          twodsixRollSettings.displayLabel = sourceActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
         }
       } else if (skill) {
         twodsixRollSettings.displayLabel = ""; // for unattached skill roll
@@ -124,7 +131,6 @@ export class TwodsixRollSettings {
     } else {
       twodsixRollSettings.shouldRoll = true;
     }
-    console.log("Settings: ", twodsixRollSettings);
     return twodsixRollSettings;
   }
 
@@ -141,6 +147,7 @@ export class TwodsixRollSettings {
       initialChoice: this.rollModifiers.characteristic,
       rollModifiers: this.rollModifiers,
       skillLabel: this.skillName,
+      itemLabel: this.itemName,
       skillRoll: this.skillRoll,
       itemRoll: this.itemRoll,
       timeUnits: TWODSIX.TimeUnits,
@@ -164,10 +171,10 @@ export class TwodsixRollSettings {
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
           this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;
-          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
+          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10) ?? 0;
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
           this.rollModifiers.encumbered = dialogData.showEncumbered ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
-          this.rollModifiers.custom = dialogData.showConditions ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
+          this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) ?? 0 : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
