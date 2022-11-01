@@ -46,7 +46,7 @@ export class TwodsixRollSettings {
     if (selectedActor) {
       //Determine active effects modifiers
       if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-        woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect.toString();
+        woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect;
       }
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
         const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
@@ -87,7 +87,7 @@ export class TwodsixRollSettings {
       skill: skillValue ?? 0,
       item: gear?.skillModifier ?? 0,
       other: settings?.diceModifier ?? 0,
-      encumbered: encumberedValue ?? 0,
+      encumbered: encumberedValue,
       custom: 0
     };
     console.log("Modifiers: ", this.rollModifiers);
@@ -171,10 +171,10 @@ export class TwodsixRollSettings {
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
           this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;
-          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10) ?? 0;
+          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
           this.rollModifiers.encumbered = dialogData.showEncumbered ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
-          this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) ?? 0 : 0;
+          this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
