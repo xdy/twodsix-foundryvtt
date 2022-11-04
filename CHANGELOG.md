@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.8...v2.7.0) (2022-11-04)
+
+
+### Features
+
+* Improvements to roll dialog and chat message ([#1172](https://github.com/xdy/twodsix-foundryvtt/issues/1172)) ([6425608](https://github.com/xdy/twodsix-foundryvtt/commit/6425608a9d1a40ece28d847f07c662f61665cf84))
+
 ## [2.6.8](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.7...v2.6.8) (2022-10-29)
 
 
