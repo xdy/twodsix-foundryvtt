@@ -67,7 +67,7 @@ export class TwodsixRollSettings {
       // check for missing display label
       if (!settings?.displayLabel) {
         const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-        displayLabel = sourceActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+        displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
       }
     }
     this.difficulty = settings?.difficulty ?? difficulty;

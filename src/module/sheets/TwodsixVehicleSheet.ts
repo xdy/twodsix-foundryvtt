@@ -89,7 +89,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
         rollModifiers: {other: (<Vehicle>this.actor.system).maneuver.agility ? parseInt((<Vehicle>this.actor.system).maneuver.agility) : 0},
         event: event
       };
-      const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, tmpSettings, skill);
+      const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, tmpSettings, skill, undefined, selectedActor);
       if (!settings.shouldRoll) {
         return;
       }

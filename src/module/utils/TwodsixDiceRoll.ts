@@ -8,7 +8,6 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import {Gear} from "../../types/template";
 import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
@@ -44,29 +43,35 @@ export class TwodsixDiceRoll {
     const formulaData = {};
 
     let formula = rollType;
+    // Add difficulty modifier or set target
+    if (!difficultiesAsTargetNumber) {
+      formula += this.settings.difficulty.mod < 0 ? " - @difficultyMod" : " + @difficultyMod";
+      formulaData.difficultyMod = this.settings.difficulty.mod < 0 ? -this.settings.difficulty.mod : this.settings.difficulty.mod;
+    }
 
     // Add skill modifier
     if (this.settings.skillRoll) {
-      formula += " + @skill";
-      formulaData.skill = this.settings.rollModifiers.skill;
+      formula += this.settings.rollModifiers.skill < 0 ? " - @skill" : " + @skill";
+      formulaData.skill = this.settings.rollModifiers.skill < 0 ? -this.settings.rollModifiers.skill : this.settings.rollModifiers.skill;
     }
 
     // Add characteristic modifier
     if (this.settings.rollModifiers.characteristic !== "NONE" && this.actor) {
-      formula += ' + @characteristicModifier';
-      formulaData.characteristicModifier = this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic);
+      const charMod = this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic);
+      formula += charMod < 0 ? ' - @characteristicModifier' : ' + @characteristicModifier';
+      formulaData.characteristicModifier = charMod < 0 ? -charMod : charMod;
     }
 
     // Add item modifier
     if (this.settings.itemRoll) {
-      formula += " + @item";
-      formulaData.item = this.settings.rollModifiers.item;
+      formula += this.settings.rollModifiers.item < 0 ? " - @item": " + @item";
+      formulaData.item = this.settings.rollModifiers.item < 0 ? -this.settings.rollModifiers.item : this.settings.rollModifiers.item;
     }
 
     // Add other modifier
     if (this.settings.rollModifiers.other) {
-      formula += " + @DM";
-      formulaData.DM = this.settings.rollModifiers.other;
+      formula += this.settings.rollModifiers.other < 0 ? " - @DM" : " + @DM";
+      formulaData.DM = this.settings.rollModifiers.other < 0 ? -this.settings.rollModifiers.other : this.settings.rollModifiers.other;
     }
 
     //Subtract Modifier for wound status
@@ -83,14 +88,8 @@ export class TwodsixDiceRoll {
 
     //Allow custom .mod effect
     if(this.settings.rollModifiers.custom !== 0) {
-      formula += " + @customEffect";
-      formulaData.customEffect = this.settings.rollModifiers.custom;
-    }
-
-    // Add difficulty modifier or set target
-    if (!difficultiesAsTargetNumber) {
-      formula += " + @difficultyMod";
-      formulaData.difficultyMod = this.settings.difficulty.mod;
+      formula += this.settings.rollModifiers.custom < 0 ? " - @customEffect": " + @customEffect";
+      formulaData.customEffect = this.settings.rollModifiers.custom < 0 ? -this.settings.rollModifiers.custom : this.settings.rollModifiers.custom;
     }
 
     this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -153,7 +152,6 @@ export class TwodsixDiceRoll {
   public async sendToChat(difficultyList: object):Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    //const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.settings.difficulty));
 
     let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>`: ``;
@@ -172,19 +170,20 @@ export class TwodsixDiceRoll {
     }
 
     if (this.settings.skillRoll) {
-      const skillValue = TwodsixDiceRoll.addSign((<Gear>this.roll?.data)?.skill);
-      flavor += ` ${this.skill.name}(${skillValue})`;
+      const skillValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.skill);
+      flavor += ` ${usingString} ${this.settings.skillName}(${skillValue}) ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
     }
 
     if (this.settings.rollModifiers.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
-      const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data.characteristicModifier);
+      const characteristicLabel = game.i18n.localize("TWODSIX.Rolls.characteristic");
+      const characteristicValue = TwodsixDiceRoll.addSign(this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic));
       const charShortName:string = this.settings.displayLabel;
-      flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
+      flavor += this.settings.skillRoll ? ` & ${charShortName}(${characteristicValue}) ${characteristicLabel}` : ` ${usingString} ${charShortName}(${characteristicValue}) ${characteristicLabel}`;
     }
 
     if (this.settings.itemRoll) {
       const itemValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.item);
-      flavor += ` ${usingString} ${this.item.name}(${itemValue})`;
+      flavor += this.settings.skillRoll ? ` & ${this.item.name}(${itemValue})` : ` ${usingString} ${this.item.name}(${itemValue})`;
     }
 
     if (this.settings.rollModifiers.other !== 0) {

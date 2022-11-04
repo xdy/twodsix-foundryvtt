@@ -615,7 +615,8 @@
       "AttackDM": "Atack DM",
       "BonusDamage": "Bonus Damage",
       "Timeframe": "Time",
-      "RollInitiative": "Roll Initiative"
+      "RollInitiative": "Roll Initiative",
+      "characteristic": "characteristic"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
