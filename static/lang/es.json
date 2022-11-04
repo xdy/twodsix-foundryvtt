@@ -244,7 +244,16 @@
         "Timeframe": "Plazo tiempo",
         "RollFormula": "Fórmula Tirada",
         "Units": "Unidades",
-        "taskDuration": "La tarea tarda _TIME_ _UNITS_ en completarse."
+        "taskDuration": "La tarea tarda _TIME_ _UNITS_ en completarse.",
+        "RollModifiers": "Modificador Tirada",
+        "SkillModifier": "Nivel Habilidad",
+        "ItemModifier": "Bono Equipo",
+        "ROF": "Cadencia Tiro",
+        "Wounds": "Heridas",
+        "Encumbered": "Carga",
+        "CharacteristicModifier": "Modificador Atributo",
+        "Conditions": "Modificador Estado",
+        "Custom": "Personalizado"
       }
     },
     "Create": "Crear",
@@ -607,7 +616,8 @@
       "AttackDM": "MD Ataque",
       "BonusDamage": "Bono Daño",
       "Timeframe": "Tiempo",
-      "RollInitiative": "Tira Iniciativa"
+      "RollInitiative": "Tira Iniciativa",
+      "characteristic": "atributo"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -738,7 +748,7 @@
         "name": "Mostrar campo de referencia en los objetos."
       },
       "ShowLawLevel": {
-        "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Esconder.",
+        "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Ocultar.",
         "name": "Mostrar 'Nivel de Ley' en armas"
       },
       "showLifebloodStamina": {
@@ -758,7 +768,7 @@
         "name": "Mostrar 'Cadencia de Tiro' en armas"
       },
       "ShowRecoil": {
-        "hint": "Marca=Mostrar; SinMarca=Esconder.",
+        "hint": "Marcado=Mostrar Retroceso; SinMarcar=Ocultar.",
         "name": "Mostrar 'Retroceso' en armas"
       },
       "showSingleComponentColumn": {
@@ -954,6 +964,10 @@
       "transferDroppedItems": {
         "hint": "Cambia la funcionalidad por defecto de Foundry al soltar objetos encima (objeto será borrado de la fuente) y transferir equipo entre los actores.",
         "name": "Transferir en vez de copiar equipo soltado sobre un actor"
+      },
+      "allowDragDropOfLists": {
+        "hint": "Permitir a objetos en listas moverse arrastrándolos, en vez del orden alfabético.",
+        "name": "Permitir Reordenar Listas"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
