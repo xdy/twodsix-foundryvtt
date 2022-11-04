@@ -131,9 +131,10 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 * Another feature you need to turn on in system settings if you want to use it is to automatically roll damage for items that have a connected skill, roll a success (i.e. Effect of 0 or greater) and immediately roll damage. (I.e. Weapons.)
 * You can drag damage rolls to a character-sheet or token (if option is enabled) and the damage is automatically applied to the character after subtracting any armor (but do note that after END runs out the damage always goes to the currently highest of STR and DEX, the target cannot currently choose which.) Or, by clicking shift when dragging you get a dialog that allows you to spread the damage manually.
 * You can right-click on an actor on the map, and select as target (round button in the lower left corner). Now when you do an attack it will automatically bring up the damage dialog for that actor (i.e. you don't need to drag and drop the damage)
-* There is built in support for PDFoundry and Drag Ruler Modules.
+* There is built in support for PDF Pager and Drag Ruler Modules.
 * Can drag a scene to ship actor to act as an attached deck plan.
-* Option to use ProseMirror editor for larger text input fields
+* Option to use ProseMirror editor for larger text input fields.
+* Dragging a vehicle actor to a ship component list creats a component copy of the vehicle.  Name links to actor.
 * Automatic wounded status indicators (along with roll modifiers) can be optional added through a setting
 * There is an NPC sheet that can be used for any traveller.  Select under sheet settings
 * If using the show untrained skill, any roll that depends on a skill will default to untrained if no specific skill is selected.
