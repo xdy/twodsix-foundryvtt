@@ -151,7 +151,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       } else {
         const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
         const setDifficulty = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))].Difficult;
-        const returnRoll = await selectedActor.characteristicRoll({ characteristic: 'END', displayLabel: displayShortChar, difficulty: setDifficulty}, false);
+        const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, displayLabel: displayShortChar, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
           await setConditionState(effectType.unconscious, selectedActor, true);
         }

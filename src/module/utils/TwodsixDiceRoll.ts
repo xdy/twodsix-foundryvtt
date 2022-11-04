@@ -8,7 +8,6 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import {Gear, Skills} from "../../types/template";
 import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
@@ -41,45 +40,56 @@ export class TwodsixDiceRoll {
   private createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.settings.rollType].formula;
-    const formulaData = {} as { skill:number, difficultyMod:number, DM:number, woundedEffect:number };
+    const formulaData = {};
 
     let formula = rollType;
-
-    // Add characteristic modifier
-    if (this.settings.characteristic !== "NONE" && this.actor) {
-      formula += ` + @${this.settings.characteristic}`;
-      formulaData[this.settings.characteristic] = this.actor.getCharacteristicModifier(this.settings.characteristic);
+    // Add difficulty modifier or set target
+    if (!difficultiesAsTargetNumber) {
+      formula += this.settings.difficulty.mod < 0 ? " - @difficultyMod" : " + @difficultyMod";
+      formulaData.difficultyMod = this.settings.difficulty.mod < 0 ? -this.settings.difficulty.mod : this.settings.difficulty.mod;
     }
 
     // Add skill modifier
-    if (this.skill) {
-      formula += "+ @skill";
-      /*Check for "Untrained" value and use if better to account for JOAT*/
-      const joat = (<Skills>this.actor?.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
-      const aSkill = <Skills>this.skill.system;
-      if (joat > aSkill.value) {
-        formulaData.skill = joat;
-      } else {
-        formulaData.skill = aSkill.value;
-      }
+    if (this.settings.skillRoll) {
+      formula += this.settings.rollModifiers.skill < 0 ? " - @skill" : " + @skill";
+      formulaData.skill = this.settings.rollModifiers.skill < 0 ? -this.settings.rollModifiers.skill : this.settings.rollModifiers.skill;
     }
 
-    // Add dice modifier
-    if (this.settings.diceModifier) { //TODO Not sure I like that auto-fire DM and 'skill DM' from the weapon get added, I prefer to 'show the math'
-      formula += "+ @DM";
-      formulaData.DM = this.settings.diceModifier;
+    // Add characteristic modifier
+    if (this.settings.rollModifiers.characteristic !== "NONE" && this.actor) {
+      const charMod = this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic);
+      formula += charMod < 0 ? ' - @characteristicModifier' : ' + @characteristicModifier';
+      formulaData.characteristicModifier = charMod < 0 ? -charMod : charMod;
     }
 
-    // Add difficulty modifier or set target
-    if (!difficultiesAsTargetNumber) {
-      formula += "+ @difficultyMod";
-      formulaData.difficultyMod = this.settings.difficulty.mod;
+    // Add item modifier
+    if (this.settings.itemRoll) {
+      formula += this.settings.rollModifiers.item < 0 ? " - @item": " + @item";
+      formulaData.item = this.settings.rollModifiers.item < 0 ? -this.settings.rollModifiers.item : this.settings.rollModifiers.item;
+    }
+
+    // Add other modifier
+    if (this.settings.rollModifiers.other) {
+      formula += this.settings.rollModifiers.other < 0 ? " - @DM" : " + @DM";
+      formulaData.DM = this.settings.rollModifiers.other < 0 ? -this.settings.rollModifiers.other : this.settings.rollModifiers.other;
     }
 
     //Subtract Modifier for wound status
-    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.woundedEffect < 0) {
-      formula += "+ @woundedEffect";
-      formulaData.woundedEffect = this.woundedEffect;
+    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.settings.rollModifiers.wounds < 0) {
+      formula += " - @woundedEffect";
+      formulaData.woundedEffect = -this.settings.rollModifiers.wounds;
+    }
+
+    //Subtract Modifier for wound status
+    if(game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.settings.rollModifiers.encumbered < 0) {
+      formula += " - @encumberedEffect";
+      formulaData.encumberedEffect = -this.settings.rollModifiers.encumbered;
+    }
+
+    //Allow custom .mod effect
+    if(this.settings.rollModifiers.custom !== 0) {
+      formula += this.settings.rollModifiers.custom < 0 ? " - @customEffect": " + @customEffect";
+      formulaData.customEffect = this.settings.rollModifiers.custom < 0 ? -this.settings.rollModifiers.custom : this.settings.rollModifiers.custom;
     }
 
     this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -142,7 +152,6 @@ export class TwodsixDiceRoll {
   public async sendToChat(difficultyList: object):Promise<void> {
     const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString = game.i18n.localize("TWODSIX.Actor.using");
-    //const difficulties:CEL_DIFFICULTIES | CE_DIFFICULTIES = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))];
     const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.settings.difficulty));
 
     let flavor = this.settings.extraFlavor ? this.settings.extraFlavor + `<br>`: ``;
@@ -160,26 +169,35 @@ export class TwodsixDiceRoll {
       flavor += ` ${game.i18n.localize("TWODSIX.Rolls.With")} ${rollType}`;
     }
 
-    if (this.skill) {
-      const skillValue = TwodsixDiceRoll.addSign((<Gear>this.roll?.data)?.skill);
-      flavor += ` ${this.skill.name}(${skillValue})`;
+    if (this.settings.skillRoll) {
+      const skillValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.skill);
+      flavor += ` ${usingString} ${this.settings.skillName}(${skillValue}) ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
     }
 
-    if (this.item) {
-      flavor += ` ${usingString} ${this.item.name}`;
-    }
-
-    if (this.roll?.data['DM']) {
-      flavor += ` +DM(${TwodsixDiceRoll.addSign(this.roll?.data['DM'])})`;
-    }
-
-    if (this.roll?.data['woundedEffect']) {
-      flavor += ` +${game.i18n.localize("TWODSIX.Rolls.Wounds")}(${this.roll?.data['woundedEffect']})`;
-    }
-    if (this.settings.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
-      const characteristicValue = TwodsixDiceRoll.addSign(this.roll?.data[this.settings.characteristic]);
+    if (this.settings.rollModifiers.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
+      const characteristicLabel = game.i18n.localize("TWODSIX.Rolls.characteristic");
+      const characteristicValue = TwodsixDiceRoll.addSign(this.actor.getCharacteristicModifier(this.settings.rollModifiers.characteristic));
       const charShortName:string = this.settings.displayLabel;
-      flavor += ` ${usingString} ${charShortName}(${characteristicValue})`;
+      flavor += this.settings.skillRoll ? ` & ${charShortName}(${characteristicValue}) ${characteristicLabel}` : ` ${usingString} ${charShortName}(${characteristicValue}) ${characteristicLabel}`;
+    }
+
+    if (this.settings.itemRoll) {
+      const itemValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.item);
+      flavor += this.settings.skillRoll ? ` & ${this.item.name}(${itemValue})` : ` ${usingString} ${this.item.name}(${itemValue})`;
+    }
+
+    if (this.settings.rollModifiers.other !== 0) {
+      flavor += ` + Custom DM(${TwodsixDiceRoll.addSign(this.settings.rollModifiers.other)})`;
+    }
+
+    if (this.settings.rollModifiers.wounds !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Wounds")}(${this.settings.rollModifiers.wounds})`;
+    }
+    if (this.settings.rollModifiers.encumbered !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}(${this.settings.rollModifiers.encumbered})`;
+    }
+    if (this.settings.rollModifiers.custom !== 0) {
+      flavor += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}(${this.settings.rollModifiers.custom})`;
     }
 
     // Add timeframe if requred

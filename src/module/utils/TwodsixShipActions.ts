@@ -82,15 +82,14 @@ export class TwodsixShipActions {
         displayLabel = charObject[characteristicKey].displayShortLabel;
       }
       const settings = {
-        characteristic: shortLabel,
         displayLabel: displayLabel,
         extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
-        diceModifier: extra.diceModifier ? parseInt(extra.diceModifier) : 0
+        rollModifiers: {characteristic: shortLabel, item: extra.diceModifier ? parseInt(extra.diceModifier) : 0}
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill);
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, undefined, extra.actor);
       if (!options.shouldRoll) {
         return false;
       }

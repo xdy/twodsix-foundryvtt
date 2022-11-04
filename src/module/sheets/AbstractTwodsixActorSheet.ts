@@ -326,7 +326,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Prepare Containers for sheetData
     sheetData.container = actor.itemTypes;
     sheetData.container.skills = skillsList;
-    sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo")
+    sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
@@ -462,7 +462,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const shortChar = $(event.currentTarget).data("label");
     const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
     const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
-    await (<TwodsixActor>this.actor).characteristicRoll({ "characteristic": shortChar, "displayLabel": displayShortChar }, showThrowDiag);
+    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}, "displayLabel": displayShortChar }, showThrowDiag);
   }
 
   /**

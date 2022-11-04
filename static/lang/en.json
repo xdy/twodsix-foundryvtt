@@ -244,7 +244,16 @@
         "Timeframe": "Timeframe",
         "RollFormula": "Roll Formula",
         "Units": "Units",
-        "taskDuration": "The task takes _TIME_ _UNITS_ to complete."
+        "taskDuration": "The task takes _TIME_ _UNITS_ to complete.",
+        "RollModifiers": "Roll Modifiers",
+        "SkillModifier": "Skill Level",
+        "ItemModifier": "Item Bonus",
+        "ROF": "Rate-of-Fire",
+        "Wounds": "Wounds",
+        "Encumbered": "Encumbered",
+        "CharacteristicModifier": "Characteristic Modifier",
+        "Conditions": "Condition Modifiers",
+        "Custom": "Custom"
       }
     },
     "Create": "Create",
@@ -606,7 +615,8 @@
       "AttackDM": "Atack DM",
       "BonusDamage": "Bonus Damage",
       "Timeframe": "Time",
-      "RollInitiative": "Roll Initiative"
+      "RollInitiative": "Roll Initiative",
+      "characteristic": "characteristic"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {

@@ -451,25 +451,18 @@ export default class TwodsixActor extends Actor {
     } else if (this.type === 'ship') {
       return 0;
     } else {
-      //include any overrides from active effects in calculations
-      let override = 0;
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      if (this.overrides?.system?.characteristics) {
-        if (keyByValue in this.overrides.system.characteristics) {
-          override = this.overrides.system.characteristics[keyByValue].mod ?? 0;
-        }
-      }
-      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current) + override;
+      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
-    if (!tmpSettings.characteristic) {
+    if (!tmpSettings.rollModifiers?.characteristic) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
     }
-    const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings);
+    const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, undefined, undefined, this);
     if (!settings.shouldRoll) {
       return;
     }

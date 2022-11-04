@@ -1066,6 +1066,7 @@ input.stat-name-table {
   border: none;
   color: var(--s2d6-stat-input);
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input.stat-name, input.special-name {
@@ -1545,7 +1546,7 @@ input.item-value-edit {
 }
 
 select.select-mod {
-  width: 5em;
+  width: 6em;
   margin-left: 1em;
 }
 

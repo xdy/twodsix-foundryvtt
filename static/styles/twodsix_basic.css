@@ -703,6 +703,7 @@ input.stat-name-table {
   border: none;
   border: none;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .stat img {
@@ -1116,7 +1117,7 @@ input.item-value-edit {
 }
 
 select.select-mod {
-  width: 5em;
+  width: 6em;
   margin-left: 1em;
 }
 

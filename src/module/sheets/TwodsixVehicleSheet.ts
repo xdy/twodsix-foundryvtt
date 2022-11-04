@@ -85,11 +85,11 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       if(!skill) {
         skill = selectedActor.items.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained") && itm.type === "skills") as TwodsixItem;
       }
-      const extra = {
-        diceModifier: (<Vehicle>this.actor.system).maneuver.agility ? parseInt((<Vehicle>this.actor.system).maneuver.agility) : 0,
+      const tmpSettings = {
+        rollModifiers: {other: (<Vehicle>this.actor.system).maneuver.agility ? parseInt((<Vehicle>this.actor.system).maneuver.agility) : 0},
         event: event
       };
-      const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, extra, skill);
+      const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, tmpSettings, skill, undefined, selectedActor);
       if (!settings.shouldRoll) {
         return;
       }
