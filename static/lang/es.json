@@ -244,7 +244,16 @@
         "Timeframe": "Plazo tiempo",
         "RollFormula": "Fórmula Tirada",
         "Units": "Unidades",
-        "taskDuration": "La tarea tarda _TIME_ _UNITS_ en completarse."
+        "taskDuration": "La tarea tarda _TIME_ _UNITS_ en completarse.",
+        "RollModifiers": "Modificador Tirada",
+        "SkillModifier": "Nivel Habilidad",
+        "ItemModifier": "Bono Equipo",
+        "ROF": "Cadencia Tiro",
+        "Wounds": "Heridas",
+        "Encumbered": "Carga",
+        "CharacteristicModifier": "Modificador Atributo",
+        "Conditions": "Modificador Estado",
+        "Custom": "Personalizado"
       }
     },
     "Create": "Crear",
@@ -607,7 +616,8 @@
       "AttackDM": "MD Ataque",
       "BonusDamage": "Bono Daño",
       "Timeframe": "Tiempo",
-      "RollInitiative": "Tira Iniciativa"
+      "RollInitiative": "Tira Iniciativa",
+      "characteristic": "atributo"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
