@@ -90,7 +90,7 @@ export class TwodsixRollSettings {
       encumbered: encumberedValue,
       custom: 0
     };
-    console.log("Modifiers: ", this.rollModifiers);
+    //console.log("Modifiers: ", this.rollModifiers);
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
