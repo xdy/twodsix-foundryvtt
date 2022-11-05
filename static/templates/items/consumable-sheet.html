@@ -3,6 +3,13 @@
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
     <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}</label>
+        <select name="system.subtype">
+          {{selectOptions config.CONSUMABLES selected = system.subtype localize = true}}
+        </select>
+    </div>
+
+    <div class="item-data">
       <label class="resource-label">{{localize "TWODSIX.Items.Equipment.isAttachment"}}</label>
       <input type="checkbox" class="checkbox" name="system.isAttachment" {{checked system.isAttachment}} data-dtype="Boolean" />
     </div>
@@ -25,12 +32,6 @@
             /
             <input id="system.max" class="form-consumable-count" name="system.max" type="number" value="{{system.max}}" data-dtype="Number"/>
           </div>
-      </div>
-      <div class="item-data">
-        <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}</label>
-          <select name="system.subtype">
-            {{selectOptions config.CONSUMABLES selected = system.subtype localize = true}}
-          </select>
       </div>
     {{/unless}}
 
