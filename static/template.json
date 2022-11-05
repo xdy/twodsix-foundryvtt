@@ -578,7 +578,9 @@
       "type": "consumable",
       "subtype": "other",
       "location": ["inventory", "storage"],
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "bonusDamage": "",
+      "isAttachment": false
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],

@@ -490,6 +490,8 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   subtype:string;
   location:string[];
   armorPiercing:number;
+  bonusDamage:string;
+  isAttachment:boolean;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
