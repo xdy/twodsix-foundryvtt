@@ -238,6 +238,9 @@
           </span>
       </li>
     </ol>
+    {{#each item.system.consumableData as |consumableData|}}
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
+    {{/each}}
   </div>
   {{/unless}}
   {{/each_sort_item}}

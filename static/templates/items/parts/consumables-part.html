@@ -42,7 +42,7 @@
     </tbody>
   </table>
 </div>
-
+{{#iff system.type "!==" "consumable"}}
 <div class="form-section">
   {{localize "TWODSIX.Actor.Items.ATTACHMENTS"}}: <br>
   <table>
@@ -86,4 +86,5 @@
     </tbody>
   </table>
 </div>
+{{/iff}}
 {{/if}}
