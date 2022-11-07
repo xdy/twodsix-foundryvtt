@@ -183,7 +183,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.name,
         type: "consumable",
         system: {
-          subtype: "other",
+          subtype: "magazine",
           quantity: 1,
           currentCount: max,
           max,
