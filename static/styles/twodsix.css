@@ -188,7 +188,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 input[type=number] {
-  appearance: texfield;
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 

@@ -184,6 +184,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
         }
         break;
+      case "consumable":
+        itemData.system.subtype = "other";
+        if (subtype === "attachment") {
+          itemData.system.isAttachment = true;
+          itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");
+        } else {
+          itemData.system.max = 1;
+        }
+        break;
     }
   }
 

@@ -48,14 +48,18 @@ export default class TwodsixItem extends Item {
       const allConsumables = gear.consumables.map((consumableId:string) => {
         return this.actor?.items.find((item) => item.id === consumableId);
       });
-      gear.consumableData = allConsumables.filter((item) => !item.system.isAttachment);
-      gear.consumableData.sort((a, b) => {
-        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-      });
-      gear.attachmentData = allConsumables.filter((item) => item.system.isAttachment);
-      gear.attachmentData.sort((a, b) => {
-        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-      });
+      gear.consumableData = allConsumables.filter((item) => !item?.system.isAttachment);
+      if (gear.consumableData.length > 0) {
+        gear.consumableData.sort((a, b) => {
+          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+      }
+      gear.attachmentData = allConsumables.filter((item) => item?.system.isAttachment);
+      if (gear.attachmentData > 0) {
+        gear.attachmentData.sort((a, b) => {
+          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+      }
     }
   }
 

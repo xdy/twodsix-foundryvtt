@@ -220,6 +220,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       }
     };
     const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
+    //newConsumable.update({"system.isAttachment": true});
     await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
     this.render();
   }
