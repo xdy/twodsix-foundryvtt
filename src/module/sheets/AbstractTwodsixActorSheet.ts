@@ -208,7 +208,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const {type} = header.dataset;
 
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset) as Record<string, any>;
+    //const data = duplicate(header.dataset) as Record<string, any>;
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
@@ -223,7 +223,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = {
       name: itemName,
       type,
-      system: data
+      system: {}
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
@@ -323,7 +323,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           };
         }
         component[(<Component>item.system).subtype].push(item);
-        if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
+        if (statusOrder[summaryStatus[(<Component>item.system).subtype].status] < statusOrder[item.system.status]) {
           summaryStatus[(<Component>item.system).subtype] = {
             status: item.system.status,
             uuid: item.uuid
