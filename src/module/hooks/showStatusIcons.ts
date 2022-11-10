@@ -9,7 +9,8 @@ import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.id === firstGM?.id) {
       await applyWoundedEffect(actor).then();
     }
   }
@@ -22,14 +23,16 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
 
 Hooks.on("updateItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
 });
 Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
@@ -37,7 +40,8 @@ Hooks.on("deleteItem", async (item: TwodsixItem) => {
 
 Hooks.on("createItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
@@ -212,7 +216,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: woundModifier.toString() };//
+    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
