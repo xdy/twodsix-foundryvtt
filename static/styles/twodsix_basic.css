@@ -1918,7 +1918,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px 1px;
   grid-template-areas:
     ". . . . . .";
-  border-right: 1px solid var(--s2d6-form-light);
+  /*border-right: 1px solid var(--s2d6-form-light);*/
 }
 
 grid-columns-double-row {
