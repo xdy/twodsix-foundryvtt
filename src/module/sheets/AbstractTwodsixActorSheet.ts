@@ -7,7 +7,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
-import { getKeyByValue } from "../utils/sheetUtils";
+//import { getKeyByValue } from "../utils/sheetUtils";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 import { TWODSIX } from "../config";
 //import { applyEncumberedEffect } from "../hooks/showStatusIcons";
@@ -469,9 +469,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
     const shortChar = $(event.currentTarget).data("label");
-    const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-    const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
-    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}, "displayLabel": displayShortChar }, showThrowDiag);
+    //const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+    //const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
+    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}}, showThrowDiag);
   }
 
   /**
