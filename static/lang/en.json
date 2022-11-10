@@ -96,6 +96,8 @@
         "CreateItem": "Create Item",
         "Damage": "Damage",
         "DeleteItem": "Delete Item",
+        "DisplayStored": "Displaying stored items",
+        "HideStored": "Hidding stored items",
         "EQUIPMENT": "EQUIPMENT",
         "EditItem": "Edit Item",
         "Effect": "Effect",

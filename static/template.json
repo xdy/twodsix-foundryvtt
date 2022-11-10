@@ -150,6 +150,14 @@
         "walk": 10,
         "units": "m",
         "hover": false
+      },
+      "hideStoredItems": {
+        "weapon": false,
+        "armor": false,
+        "augment": false,
+        "equipment": false,
+        "consumable": false,
+        "attachment": false
       }
     },
     "ship": {

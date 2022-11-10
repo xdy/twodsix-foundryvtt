@@ -1346,6 +1346,7 @@ a.actor-notes-tab.active {
   padding-left: 0.3em;
   margin-right: 0.5em;
   width: fit-content;
+  margin-bottom: -1px;
 }
 
 .items-armor {

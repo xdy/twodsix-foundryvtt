@@ -220,6 +220,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'showTimeframe');
   });
 
+  Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {
+    return (display && (itemLocation === "ship"));
+  });
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
 
   Handlebars.registerHelper('each_sort_item', (array, options) => {

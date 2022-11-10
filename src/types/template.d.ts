@@ -250,6 +250,7 @@ export interface Traveller {
   woundedEffect:number;
   characteristicEdit:boolean;
   movement:MovementData;
+  hideStoredItems: StoredItemView;
 }
 
 export interface Animal {
@@ -299,6 +300,15 @@ export interface MovementData {
 export interface Age {
   value:number;
   min:number;
+}
+
+export interface StoredItemView {
+  weapon:boolean;
+  armor:boolean;
+  augment:boolean;
+  equipment:boolean;
+  consumable:boolean;
+  attachment:boolean;
 }
 
 export interface Characteristics {
