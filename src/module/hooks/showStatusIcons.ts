@@ -8,14 +8,14 @@ import { getDamageCharacteristics } from "../utils/actorDamage";
 import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
+  const firstGM = game.users.find(u => u.isGM);
   if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
     if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.id === firstGM?.id) {
       await applyWoundedEffect(actor).then();
     }
   }
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.isGM) {
+    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(actor).then();
     }
   }
