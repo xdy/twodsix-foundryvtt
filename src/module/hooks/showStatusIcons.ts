@@ -153,7 +153,6 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
         await setConditionState(effectType.unconscious, selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
-        const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
         const setDifficulty = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))].Difficult;
         const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
