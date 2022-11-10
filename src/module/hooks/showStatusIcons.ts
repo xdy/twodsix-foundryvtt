@@ -5,7 +5,6 @@ import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
-import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   const firstGM = game.users.find(u => u.isGM);
