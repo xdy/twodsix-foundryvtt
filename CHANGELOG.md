@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.2...v2.8.0) (2022-11-11)
+
+
+### Features
+
+* QOL improvements for consumables and other fixes - re-release of [#1174](https://github.com/xdy/twodsix-foundryvtt/issues/1174) ([#1176](https://github.com/xdy/twodsix-foundryvtt/issues/1176)) ([0650049](https://github.com/xdy/twodsix-foundryvtt/commit/0650049ca94ac4517d208a27709ee0de036db987))
+
 ## [2.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.1...v2.7.2) (2022-11-10)
 
 
