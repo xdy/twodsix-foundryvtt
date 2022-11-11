@@ -7,7 +7,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
-import { getKeyByValue } from "../utils/sheetUtils";
+//import { getKeyByValue } from "../utils/sheetUtils";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 import { TWODSIX } from "../config";
 //import { applyEncumberedEffect } from "../hooks/showStatusIcons";
@@ -184,6 +184,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
         }
         break;
+      case "consumable":
+        itemData.system.subtype = "other";
+        if (subtype === "attachment") {
+          itemData.system.isAttachment = true;
+          itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");
+        } else {
+          itemData.system.max = 1;
+        }
+        break;
     }
   }
 
@@ -199,7 +208,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const {type} = header.dataset;
 
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset) as Record<string, any>;
+    //const data = duplicate(header.dataset) as Record<string, any>;
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
@@ -214,7 +223,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const itemData = {
       name: itemName,
       type,
-      system: data
+      system: {}
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
@@ -314,7 +323,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           };
         }
         component[(<Component>item.system).subtype].push(item);
-        if (statusOrder[summaryStatus[(<Component>item.system).subtype]] < statusOrder[item.system.status]) {
+        if (statusOrder[summaryStatus[(<Component>item.system).subtype].status] < statusOrder[item.system.status]) {
           summaryStatus[(<Component>item.system).subtype] = {
             status: item.system.status,
             uuid: item.uuid
@@ -460,9 +469,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
     const shortChar = $(event.currentTarget).data("label");
-    const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-    const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
-    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}, "displayLabel": displayShortChar }, showThrowDiag);
+    //const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
+    //const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
+    await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}}, showThrowDiag);
   }
 
   /**

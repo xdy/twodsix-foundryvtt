@@ -5,7 +5,9 @@
       <option value="">---</option>
       {{#select system.useConsumableForAttack}}
       {{#each system.consumableData as |consumable|}}
-      <option value="{{consumable.id}}">{{consumable.name}}</option>
+        {{#unless consumable.isAttachment}}
+          <option value="{{consumable.id}}">{{consumable.name}}</option>
+        {{/unless}}
       {{/each}}
       {{/select}}
     </select>

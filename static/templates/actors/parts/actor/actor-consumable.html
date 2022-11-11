@@ -1,3 +1,4 @@
+{{#unless system.isAttachment}}
 <div class="consumable-row" data-consumable-id="{{id}}">
   <div class="wrapper">
     {{name}}:
@@ -15,3 +16,10 @@
     {{/with}}
   </div>
 </div>
+{{else}}
+<div class="consumable-row" data-consumable-id="{{id}}">
+  <div class="wrapper">
+    {{name}}
+  </div>
+</div>
+{{/unless}}

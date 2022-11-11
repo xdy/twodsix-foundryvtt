@@ -10,6 +10,7 @@ import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
+import { simplifyRollFormula } from "../utils/dice";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -44,12 +45,21 @@ export default class TwodsixItem extends Item {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 
       //TODO What is consumableData? Where does it come from? Not in template.json
-      gear.consumableData = gear.consumables.map((consumableId:string) => {
+      const allConsumables = gear.consumables.map((consumableId:string) => {
         return this.actor?.items.find((item) => item.id === consumableId);
       });
-      gear.consumableData.sort((a, b) => {
-        return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-      });
+      gear.consumableData = allConsumables.filter((item) => !item?.system.isAttachment) ?? [];
+      if (gear.consumableData.length > 0) {
+        gear.consumableData.sort((a, b) => {
+          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+      }
+      gear.attachmentData = allConsumables.filter((item) => item?.system.isAttachment) ?? [];
+      if (gear.attachmentData.length > 0) {
+        gear.attachmentData.sort((a, b) => {
+          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+      }
     }
   }
 
@@ -246,15 +256,17 @@ export default class TwodsixItem extends Item {
       return;
     } else {
       //Calc regular damage
-      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "");
+      const consumableDamage = TwodsixItem.getConsumableBonusDamage(<Weapon>weapon, this.actor);
+      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
         rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
-
+      rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
+      rollFormula = simplifyRollFormula(rollFormula);
       let damage = <Roll>{};
       let apValue = 0;
-      rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
+
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
@@ -268,7 +280,9 @@ export default class TwodsixItem extends Item {
       let radDamage = <Roll>{};
       if (this.type === "component") {
         if (Roll.validate(this.system.radDamage)) {
-          radDamage = new Roll(this.system.radDamage, this.actor?.system);
+          let radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
+          radFormula = simplifyRollFormula(radFormula);
+          radDamage = new Roll(radFormula, this.actor?.system);
           await radDamage.evaluate({async: true});
         }
       }
@@ -281,7 +295,7 @@ export default class TwodsixItem extends Item {
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
-        dice: damage.terms[0]["results"],
+        dice: getDiceResults(damage), //damage.terms[0]["results"]
         armorPiercingValue: apValue ?? 0,
         damage: (damage.total && damage.total > 0) ? damage.total : 0
       });
@@ -290,7 +304,7 @@ export default class TwodsixItem extends Item {
         Object.assign(contentData, {
           radDamage: radDamage.total,
           radRoll: radDamage,
-          radDice: radDamage.terms[0]["results"]
+          radDice: getDiceResults(radDamage)
         });
       }
       if (showInChat) {
@@ -318,8 +332,19 @@ export default class TwodsixItem extends Item {
     let returnValue = weapon.armorPiercing;
     if (weapon.useConsumableForAttack && actor) {
       const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable") {
+      if (magazine?.type === "consumable" && !magazine?.isAttachment) {
         returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
+      }
+    }
+    return returnValue;
+  }
+
+  public static getConsumableBonusDamage(weapon:Weapon, actor?):string {
+    let returnValue = "";
+    if (weapon.useConsumableForAttack && actor) {
+      const magazine = actor.items.get(weapon.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        returnValue = (<Consumable>magazine.system)?.bonusDamage;
       }
     }
     return returnValue;
@@ -443,4 +468,17 @@ export async function onRollDamage(event):Promise<void> {
 
   await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, showFormulaDialog);
 
+}
+/**
+ * A function for simplifying the dice results of a multipart roll formula.
+ *
+ * @param {Roll} inputRoll    The original roll.
+ * @returns {object[]}        The resulting simplified dice terms.
+ */
+function getDiceResults(inputRoll:Roll) {
+  const returnValue = [];
+  for (const die of inputRoll.dice) {
+    returnValue.push(die.results);
+  }
+  return returnValue.flat(2);
 }

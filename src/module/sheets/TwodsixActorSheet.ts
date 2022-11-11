@@ -101,6 +101,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
     // Item State toggling
     html.find(".item-toggle").on("click", this._onToggleItem.bind(this));
+    html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
 
   }
 
@@ -178,12 +179,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const weaponSelected: any = this.actor.items.get(li.data("itemId"));
 
     const max = weaponSelected.system.ammo;
-    if (max > 0 && weaponSelected.system.consumables.length === 0) {
+    if (max > 0 && !weaponSelected.system.consumableData?.length) {
       const newConsumableData = {
         name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.name,
         type: "consumable",
         system: {
-          subtype: "other",
+          subtype: "magazine",
           quantity: 1,
           currentCount: max,
           max,
@@ -225,6 +226,16 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         await consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
       }
     }
+  }
+
+  /**
+   * Handle toggling the view state of an Item class.
+   * @param {Event} event   The originating click event.
+   * @private
+   */
+  private async _onViewToggle(event): Promise<void> {
+    const itemType: string = $(event.currentTarget).data("itemType");
+    await this.actor.update({[`system.hideStoredItems.${itemType}`]: !this.actor.system.hideStoredItems[itemType]});
   }
 }
 

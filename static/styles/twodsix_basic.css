@@ -927,6 +927,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   border: 1px solid var(--s2d6-background-semi-opaque);
   padding-left: 0.4em;
   width: fit-content;
+  margin-bottom: -1px;
 }
 
 .items-armor {
@@ -1099,7 +1100,7 @@ input.item-value-edit {
   /* padding-left: 1ch; */
 }
 
-.skill:nth-of-type(even) {
+.skill:nth-of-type(even), .even-skill {
   background: var(--s2d6-skill-list-even);
 }
 

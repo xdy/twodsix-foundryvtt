@@ -1,4 +1,5 @@
 <div class="consumable-row npc" data-consumable-id="{{id}}">
+  {{#unless system.isAttachment}}
   <div class="wrapper">
     {{#with system}}
     <span class="consumable-count">
@@ -10,4 +11,9 @@
     </span>
     {{/with}}
   </div>
+  {{else}}
+  <div class="wrapper">
+    {{name}}
+  </div>
+  {{/unless}}
 </div>

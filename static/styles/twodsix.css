@@ -188,7 +188,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 input[type=number] {
-  appearance: texfield;
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 
@@ -1346,6 +1346,7 @@ a.actor-notes-tab.active {
   padding-left: 0.3em;
   margin-right: 0.5em;
   width: fit-content;
+  margin-bottom: -1px;
 }
 
 .items-armor {
@@ -1527,7 +1528,7 @@ input.item-value-edit {
   display: inline;
 }
 
-.skill:nth-of-type(even) {
+.skill:nth-of-type(even), .even-skill {
   background: var(--s2d6-skill-list-even);
 }
 
@@ -1876,6 +1877,8 @@ span.total-output {
     "ship-image ship-requirements"
     "ship-deck .";
   /* position: fixed; */
+  min-height: 305px;
+  max-height: 305px;
 }
 
 img.ship-mask-bg {

@@ -5,16 +5,16 @@ import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
-import { _genTranslatedSkillList } from "../utils/TwodsixRollSettings";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
+  const firstGM = game.users.find(u => u.isGM);
   if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.isGM) {
+    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.id === firstGM?.id) {
       await applyWoundedEffect(actor).then();
     }
   }
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.isGM) {
+    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(actor).then();
     }
   }
@@ -22,14 +22,16 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
 
 Hooks.on("updateItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
 });
 Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
@@ -37,7 +39,8 @@ Hooks.on("deleteItem", async (item: TwodsixItem) => {
 
 Hooks.on("createItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if ((item?.actor?.type === 'traveller') && game.user?.isGM) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
@@ -149,9 +152,8 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
         await setConditionState(effectType.unconscious, selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
-        const displayShortChar = _genTranslatedSkillList(selectedActor)['END'];
-        const setDifficulty = TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))].Difficult;
-        const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, displayLabel: displayShortChar, difficulty: setDifficulty}, false);
+        const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
+        const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
           await setConditionState(effectType.unconscious, selectedActor, true);
         }
@@ -212,7 +214,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: woundModifier.toString() };//
+    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,

@@ -86,6 +86,7 @@
       "Items": {
         "Amount": "Amount",
         "ARMOR": "ARMOR",
+        "ATTACHMENTS": "ATTACHMENTS",
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
@@ -95,6 +96,8 @@
         "CreateItem": "Create Item",
         "Damage": "Damage",
         "DeleteItem": "Delete Item",
+        "DisplayStored": "Displaying stored items",
+        "HideStored": "Hidding stored items",
         "EQUIPMENT": "EQUIPMENT",
         "EditItem": "Edit Item",
         "Effect": "Effect",
@@ -357,7 +360,10 @@
         "ShortDescription": "Short Description",
         "SkillModifier": "Skill Modifier",
         "TL": "TL",
-        "Weight": "Weight"
+        "Weight": "Weight",
+        "isAttachment": "Attachment?",
+        "NewAttachment": "New Attachment",
+        "BonusDamage": "Bonus Damage"
       },
       "Items": {
         "AssignArmor": "Assign Armor",
@@ -418,6 +424,7 @@
         "Count": "Count",
         "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
+        "DropAttachmentsHere": "You can drop attachments here.",
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
       },

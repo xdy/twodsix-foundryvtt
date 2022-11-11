@@ -79,6 +79,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
 
     html.find('.consumable-create').on('click', this._onCreateConsumable.bind(this));
+    html.find('.attachment-create').on('click', this._onCreateAttachment.bind(this));
     html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
@@ -206,6 +207,22 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       },
       default: 'ok',
     }).render(true);
+  }
+
+  private async _onCreateAttachment():Promise<void> {
+    const newConsumableData = {
+      name: game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment"),
+      type: "consumable",
+      system: {
+        subtype: "other",
+        quantity: 1,
+        isAttachment: true
+      }
+    };
+    const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
+    //newConsumable.update({"system.isAttachment": true});
+    await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
+    this.render();
   }
 
   private async _onChangeUseConsumableForAttack(event): Promise<void> {
