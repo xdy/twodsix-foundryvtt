@@ -107,12 +107,12 @@ export default class TwodsixItem extends Item {
     const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
     const tmpSettings = {
       rollModifiers: {
-        characteristic: undefined,
+        characteristic: "",
         other: 0
       }
     };
     if (skill) {
-      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic ?? 'NONE';
+      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
     }
 
     let usedAmmo = 1;
@@ -138,14 +138,17 @@ export default class TwodsixItem extends Item {
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry")) {
-      const skillName = this.actor.items.get(this.system.skill).name;
-      const dodgeParryModifier = Array.from(game.users.current.targets)[0]?.actor.itemTypes.skills.find(sk=> sk.name === skillName)?.system.value;
+      const weaponSkill = this.actor?.items.get(this.system.skill);
+      const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
+      const selectedTarget = (<Token> Array.from(<any>game.users?.current?.targets)[0])?.actor;
+      const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk=> sk.name === skillName);
+      const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
       if (dodgeParryModifier > 0) {
         Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier});
       }
     }
 
-    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, this.actor);
+    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
     if (!settings.shouldRoll) {
       return;
@@ -220,9 +223,9 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, <TwodsixActor>this.actor);
       } else {
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, <TwodsixActor>this.actor);
       }
       if (!tmpSettings.shouldRoll) {
         return;
@@ -484,7 +487,7 @@ export async function onRollDamage(event):Promise<void> {
  * @returns {object[]}        The resulting simplified dice terms.
  */
 function getDiceResults(inputRoll:Roll) {
-  const returnValue = [];
+  const returnValue:any[] = [];
   for (const die of inputRoll.dice) {
     returnValue.push(die.results);
   }
