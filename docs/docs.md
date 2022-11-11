@@ -140,7 +140,7 @@ Can probably be done, but, I haven't tried it. If you have, tell us on the Disco
 * If using the show untrained skill, any roll that depends on a skill will default to untrained if no specific skill is selected.
 * If the training notes contain aa fraction, the pie shown represents that fraction rather than the default 50 percent.
 * Can now hide items on actor sheet that are stored on the ship by toggling the eyeball icon.
-* Unconsciousness rolls (if made) now fixed at 8+ per all rules settings (not a specific difficulty)
+* Unconsciousness rolls (if made) now fixed at 8+ per all rules settings (not set to a specific difficulty).
 * Unconscious and Dead condition icons only get applied if the actor has an active token.
 
 Note that skills can be set to not use any characteristic for modifiers which is useful in some cases beyond Cepheus Light (like classic Traveller).
