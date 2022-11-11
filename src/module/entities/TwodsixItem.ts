@@ -140,11 +140,13 @@ export default class TwodsixItem extends Item {
     if (game.settings.get("twodsix", "useDodgeParry")) {
       const weaponSkill = this.actor?.items.get(this.system.skill);
       const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
-      const selectedTarget = (<Token> Array.from(game.users?.current?.targets)[0])?.actor;
-      const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk=> sk.name === skillName);
-      const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
-      if (dodgeParryModifier > 0) {
-        Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier});
+      if(game.user?.targets) {
+        const selectedTarget = (<Token> Array.from(game.user?.targets)[0])?.actor;
+        const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk=> sk.name === skillName);
+        const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
+        if (dodgeParryModifier > 0) {
+          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier});
+        }
       }
     }
 
@@ -195,7 +197,7 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = undefined;
     } else if (this.type === "spell") {
-      skill = this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
+      skill = <TwodsixItem>this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
       if (skill === undefined) {
         skill = (<TwodsixActor>this.actor).getUntrainedSkill();
       }
