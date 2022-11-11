@@ -64,14 +64,14 @@
             ({{itemLabel}})
           </label>
         </div>
-        {{#iff rollModifiers.rof "!==" "0"}}
+        {{#iff rollModifiers.rof "!==" 0}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.ROF"}}
               <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
             </label>
           </div>
         {{/iff}}
-        {{#iff rollModifiers.DodgeParry "!==" "0"}}
+        {{#iff rollModifiers.dodgeParry "!==" 0}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}
               <input type="number" name="rollModifiers.dodgeParry" value="{{rollModifiers.dodgeParry}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
