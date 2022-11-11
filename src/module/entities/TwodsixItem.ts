@@ -112,8 +112,7 @@ export default class TwodsixItem extends Item {
       }
     };
     if (skill) {
-      //tmpSettings = {characteristic: (<Skills>skill.system).characteristic || 'NONE'}; // ***Delete on refactor of Roll Settings
-      tmpSettings.rollModifiers = {characteristic: (<Skills>skill.system).characteristic || 'NONE'};
+      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic ?? 'NONE';
     }
 
     let usedAmmo = 1;
@@ -128,13 +127,22 @@ export default class TwodsixItem extends Item {
         break;
       case "burst-attack-dm":
         //tmpSettings.diceModifier = TwodsixItem.burstAttackDM(rateOfFireCE);  // ***Delete on refactor of Roll Settings
-        tmpSettings.rollModifiers = {rof: TwodsixItem.burstAttackDM(rateOfFireCE)};
+        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFireCE)});
         usedAmmo = rateOfFireCE || 0;
         break;
       case "burst-bonus-damage":
         bonusDamage = TwodsixItem.burstBonusDamage(rateOfFireCE);
         usedAmmo = rateOfFireCE || 0;
         break;
+    }
+
+    //Get Dodge Parry information
+    if (game.settings.get("twodsix", "useDodgeParry")) {
+      const skillName = this.actor.items.get(this.system.skill).name;
+      const dodgeParryModifier = Array.from(game.users.current.targets)[0]?.actor.itemTypes.skills.find(sk=> sk.name === skillName)?.system.value;
+      if (dodgeParryModifier > 0) {
+        Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier});
+      }
     }
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, this.actor);

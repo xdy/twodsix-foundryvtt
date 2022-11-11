@@ -256,6 +256,7 @@
         "Encumbered": "Encumbered",
         "CharacteristicModifier": "Characteristic Modifier",
         "Conditions": "Condition Modifiers",
+        "DodgeParry": "Dodge/Parry Modifier",
         "Custom": "Custom"
       }
     },
@@ -623,7 +624,9 @@
       "BonusDamage": "Bonus Damage",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
-      "characteristic": "characteristic"
+      "characteristic": "characteristic",
+      "ROF" :"ROF",
+      "DodgeParry": "Dodge/Parry"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -974,6 +977,10 @@
       "allowDragDropOfLists" : {
         "hint": "Allow items in lists to be moved by drag and drop rather than sorting alphabetically.",
         "name":"Allow Drag-Drop in Lists"
+      },
+      "useDodgeParry" : {
+        "hint": "Add a roll penalty to refect targets ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
+        "name": "Use Dodge / Parry Attack Modifers"
       }
     },
     "CloseAndCreateNew": "Close and create new",
