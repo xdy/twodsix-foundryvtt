@@ -1528,7 +1528,7 @@ input.item-value-edit {
   display: inline;
 }
 
-.skill:nth-of-type(even) {
+.skill:nth-of-type(even), .even-skill {
   background: var(--s2d6-skill-list-even);
 }
 

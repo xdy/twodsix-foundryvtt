@@ -66,7 +66,7 @@
 {{/each_sort_item}}
 </section>
 {{#if settings.hideUntrainedSkills}}
-<div class="skill">
+{{#if (twodsix_isOdd numberOfSkills)}}<div class="skill">{{else}}<div class="skill even-skill">{{/if}}
   <span class="item skill-container" data-item-id="{{untrainedSkill.id}}" draggable="false">
     <ol class="ol-no-indent">
       <li class="flexrow" >
