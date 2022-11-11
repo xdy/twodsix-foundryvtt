@@ -140,7 +140,7 @@ export default class TwodsixItem extends Item {
     if (game.settings.get("twodsix", "useDodgeParry")) {
       const weaponSkill = this.actor?.items.get(this.system.skill);
       const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
-      const selectedTarget = (<Token> Array.from(<any>game.users?.current?.targets)[0])?.actor;
+      const selectedTarget = (<Token> Array.from(game.users?.current?.targets)[0])?.actor;
       const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk=> sk.name === skillName);
       const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
       if (dodgeParryModifier > 0) {
