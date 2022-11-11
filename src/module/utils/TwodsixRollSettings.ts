@@ -88,7 +88,7 @@ export class TwodsixRollSettings {
       item: gear?.skillModifier ?? 0,
       other: settings?.diceModifier ?? 0,
       encumbered: encumberedValue,
-      dodgeParry: settings.rollModifiers.dodgeParry ?? 0,
+      dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       custom: 0
     };
     //console.log("Modifiers: ", this.rollModifiers);
