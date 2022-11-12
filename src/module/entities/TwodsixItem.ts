@@ -145,7 +145,7 @@ export default class TwodsixItem extends Item {
         const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk => sk.name === skillName);
         const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
         if (dodgeParryModifier > 0) {
-          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier});
+          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
         }
       }
     }

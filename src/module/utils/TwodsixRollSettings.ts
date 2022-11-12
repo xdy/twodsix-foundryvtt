@@ -89,6 +89,7 @@ export class TwodsixRollSettings {
       other: settings?.diceModifier ?? 0,
       encumbered: encumberedValue,
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
+      dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
       custom: 0
     };
     //console.log("Modifiers: ", this.rollModifiers);
