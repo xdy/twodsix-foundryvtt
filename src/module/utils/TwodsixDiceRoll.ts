@@ -62,10 +62,19 @@ export class TwodsixDiceRoll {
       formulaData.characteristicModifier = charMod < 0 ? -charMod : charMod;
     }
 
-    // Add item modifier
+    // Add item related modifiers
     if (this.settings.itemRoll) {
       formula += this.settings.rollModifiers.item < 0 ? " - @item": " + @item";
       formulaData.item = this.settings.rollModifiers.item < 0 ? -this.settings.rollModifiers.item : this.settings.rollModifiers.item;
+
+      if (this.settings.rollModifiers.rof) {
+        formula += this.settings.rollModifiers.rof < 0 ? " - @rof": " + @rof";
+        formulaData.rof = this.settings.rollModifiers.rof < 0 ? -this.settings.rollModifiers.rof : this.settings.rollModifiers.rof;
+      }
+      if (this.settings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
+        formula += this.settings.rollModifiers.dodgeParry < 0 ? " - @dodgeParry": " + @dodgeParry";
+        formulaData.dodgeParry = this.settings.rollModifiers.dodgeParry < 0 ? -this.settings.rollModifiers.dodgeParry : this.settings.rollModifiers.dodgeParry;
+      }
     }
 
     // Add other modifier
@@ -184,6 +193,13 @@ export class TwodsixDiceRoll {
     if (this.settings.itemRoll) {
       const itemValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.item);
       flavor += this.settings.skillRoll ? ` & ${this.item.name}(${itemValue})` : ` ${usingString} ${this.item.name}(${itemValue})`;
+
+      if (this.settings.rollModifiers.rof) {
+        flavor += ` + ${game.i18n.localize("TWODSIX.Rolls.ROF")} (${TwodsixDiceRoll.addSign(this.settings.rollModifiers.rof)})`;
+      }
+      if (this.settings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
+        flavor += ` + ${game.i18n.localize("TWODSIX.Rolls.DodgeParry")} (${TwodsixDiceRoll.addSign(this.settings.rollModifiers.dodgeParry)})`;
+      }
     }
 
     if (this.settings.rollModifiers.other !== 0) {

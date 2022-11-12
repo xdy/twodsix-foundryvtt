@@ -57,19 +57,28 @@
       </div>
       {{/if}}
       {{#if itemRoll}}
-      <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.ItemModifier"}}
-          <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-          ({{itemLabel}})
-        </label>
-      </div>
-        {{#if rollModifiers.rof}}
+        {{log rollModifiers}}
         <div class="form-group">
-          <label>{{localize "TWODSIX.Chat.Roll.ROF"}}
-            <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+          <label>{{localize "TWODSIX.Chat.Roll.ItemModifier"}}
+            <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            ({{itemLabel}})
           </label>
         </div>
-        {{/if}}
+        {{#iff rollModifiers.rof "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.ROF"}}
+              <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.dodgeParry "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}
+              <input type="number" name="rollModifiers.dodgeParry" value="{{rollModifiers.dodgeParry}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{rollModifiers.dodgeParryLabel}})
+            </label>
+          </div>
+        {{/iff}}
       {{/if}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}

@@ -73,6 +73,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseHits", false));
     settings.push(booleanSetting("animalsUseLocations", false));
     settings.push(booleanSetting("displayReactionMorale", false));
+    settings.push(booleanSetting("useDodgeParry", false));
     return settings;
   }
 }

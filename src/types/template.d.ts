@@ -543,6 +543,7 @@ export interface PDFLink {
 
 export interface GearTemplate {
   consumableData:ConsumableDataSource;
+  attachmentData:ConsumableDataSource;
   name:string;
   techLevel:number;
   description:string;

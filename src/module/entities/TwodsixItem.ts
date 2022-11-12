@@ -107,13 +107,12 @@ export default class TwodsixItem extends Item {
     const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
     const tmpSettings = {
       rollModifiers: {
-        characteristic: undefined,
+        characteristic: "",
         other: 0
       }
     };
     if (skill) {
-      //tmpSettings = {characteristic: (<Skills>skill.system).characteristic || 'NONE'}; // ***Delete on refactor of Roll Settings
-      tmpSettings.rollModifiers = {characteristic: (<Skills>skill.system).characteristic || 'NONE'};
+      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
     }
 
     let usedAmmo = 1;
@@ -128,7 +127,7 @@ export default class TwodsixItem extends Item {
         break;
       case "burst-attack-dm":
         //tmpSettings.diceModifier = TwodsixItem.burstAttackDM(rateOfFireCE);  // ***Delete on refactor of Roll Settings
-        tmpSettings.rollModifiers = {rof: TwodsixItem.burstAttackDM(rateOfFireCE)};
+        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFireCE)});
         usedAmmo = rateOfFireCE || 0;
         break;
       case "burst-bonus-damage":
@@ -137,7 +136,21 @@ export default class TwodsixItem extends Item {
         break;
     }
 
-    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, this.actor);
+    //Get Dodge Parry information
+    if (game.settings.get("twodsix", "useDodgeParry")) {
+      const weaponSkill = this.actor?.items.get(this.system.skill);
+      const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
+      if(game.user?.targets) {
+        const selectedTarget = (<Token> Array.from(game.user.targets)[0])?.actor;
+        const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk => sk.name === skillName);
+        const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
+        if (dodgeParryModifier > 0) {
+          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
+        }
+      }
+    }
+
+    const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
     if (!settings.shouldRoll) {
       return;
@@ -184,7 +197,7 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = undefined;
     } else if (this.type === "spell") {
-      skill = this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
+      skill = <TwodsixItem>this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
       if (skill === undefined) {
         skill = (<TwodsixActor>this.actor).getUntrainedSkill();
       }
@@ -212,9 +225,9 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, <TwodsixActor>this.actor);
       } else {
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, <TwodsixActor>this.actor);
       }
       if (!tmpSettings.shouldRoll) {
         return;
@@ -476,7 +489,7 @@ export async function onRollDamage(event):Promise<void> {
  * @returns {object[]}        The resulting simplified dice terms.
  */
 function getDiceResults(inputRoll:Roll) {
-  const returnValue = [];
+  const returnValue:any[] = [];
   for (const die of inputRoll.dice) {
     returnValue.push(die.results);
   }
