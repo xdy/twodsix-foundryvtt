@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.8.0...v2.9.0) (2022-11-12)
+
+
+### Features
+
+* add optional dodge parry modifier ([#1177](https://github.com/xdy/twodsix-foundryvtt/issues/1177)) ([37addc2](https://github.com/xdy/twodsix-foundryvtt/commit/37addc2cf5c3d840fc93b017a0011684904fe91a))
+
 # [2.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.2...v2.8.0) (2022-11-11)
 
 
