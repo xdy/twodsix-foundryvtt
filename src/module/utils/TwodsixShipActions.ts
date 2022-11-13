@@ -49,21 +49,21 @@ export class TwodsixShipActions {
 
   public static async skillRoll(text: string, extra: ExtraData) {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-    const showTrowDiag = useInvertedShiftClick ? extra?.event["shiftKey"] : !extra?.event["shiftKey"];
+    const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
-    const selectedActor = <TwodsixActor>extra?.actor;
+    const selectedActor = <TwodsixActor>extra.actor;
 
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
-      let skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      let skill = selectedActor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
-        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+        skill = selectedActor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
         if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor.name ?? "").replace("_SKILL_", parsedSkill));
           return false;
         }
       }
