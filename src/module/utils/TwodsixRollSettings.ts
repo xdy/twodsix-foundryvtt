@@ -32,7 +32,7 @@ export class TwodsixRollSettings {
     let skillValue = 0;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.system;
-    const characteristic = aSkill ? skill.characteristic : (settings?.rollModifiers?.characteristic ?? "NONE");
+    const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
 
     let woundsValue = 0;
     let encumberedValue = 0;
