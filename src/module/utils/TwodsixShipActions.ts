@@ -104,10 +104,7 @@ export class TwodsixShipActions {
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
-    if ((<Component>component?.system)?.rollModifier) {
-      extra.component = component;
-    }
-
+    extra.component = component;
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {
       return false;

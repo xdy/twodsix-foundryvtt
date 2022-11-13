@@ -192,7 +192,7 @@ export class TwodsixDiceRoll {
 
     if (this.settings.itemRoll) {
       const itemValue = TwodsixDiceRoll.addSign(this.settings.rollModifiers.item);
-      flavor += this.settings.skillRoll ? ` & ${this.item.name}(${itemValue})` : ` ${usingString} ${this.item.name}(${itemValue})`;
+      flavor += this.settings.skillRoll ? ` & ${this.settings.itemName}(${itemValue})` : ` ${usingString} ${this.settings.itemName}(${itemValue})`;
 
       if (this.settings.rollModifiers.rof) {
         flavor += ` + ${game.i18n.localize("TWODSIX.Rolls.ROF")} (${TwodsixDiceRoll.addSign(this.settings.rollModifiers.rof)})`;
