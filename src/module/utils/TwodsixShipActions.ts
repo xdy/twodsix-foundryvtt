@@ -57,13 +57,13 @@ export class TwodsixShipActions {
 
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
-      let skill = selectedActor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      let skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
-        skill = selectedActor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
         if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor.name ?? "").replace("_SKILL_", parsedSkill));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkill));
           return false;
         }
       }
