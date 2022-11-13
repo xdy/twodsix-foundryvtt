@@ -49,7 +49,7 @@ export class TwodsixShipActions {
 
   public static async skillRoll(text: string, extra: ExtraData) {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-    const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
+    const showTrowDiag = useInvertedShiftClick ? extra?.event["shiftKey"] : !extra?.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
@@ -57,7 +57,7 @@ export class TwodsixShipActions {
 
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
-      let skill = selectedActor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      let skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
