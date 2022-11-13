@@ -159,6 +159,7 @@ declare interface ExtraData {
   actionName?: string;
   positionName?: string;
   diceModifier?: string;
+  component?:TwodsixItem;
 }
 
 declare interface AvailableShipActionData {
