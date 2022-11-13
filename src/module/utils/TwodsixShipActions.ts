@@ -89,7 +89,7 @@ export class TwodsixShipActions {
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, undefined, extra.actor);
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, extra.component, extra.actor);
       if (!options.shouldRoll) {
         return false;
       }
@@ -105,7 +105,7 @@ export class TwodsixShipActions {
     const [skilText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
     if ((<Component>component?.system)?.rollModifier) {
-      extra.diceModifier = (<Component>component?.system)?.rollModifier;
+      extra.component = component;
     }
 
     const result = await TwodsixShipActions.skillRoll(skilText, extra);

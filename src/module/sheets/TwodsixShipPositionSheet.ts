@@ -67,7 +67,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
       command += `/${skillData.characteristic}`;
     }
-    command += ` ${difficulties[skillData.difficulty].target}+`;
+    command += `/ ${difficulties[skillData.difficulty].target}+`;
 
     actions[randomID()] = {
       "order": Object.keys(actions).length,
