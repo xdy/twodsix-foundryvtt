@@ -280,7 +280,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         return false;
       } else {
         super._onDrop(event);
-        return this._onSortItem(event, droppedObject.toJSON());
+        if (droppedObject.actor) {
+          return this._onSortItem(event, droppedObject.toJSON());
+        }
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging
