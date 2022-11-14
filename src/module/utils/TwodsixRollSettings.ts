@@ -17,6 +17,7 @@ export class TwodsixRollSettings {
   //characteristic:string;
   skillRoll:boolean;
   itemRoll:boolean;
+  itemName: string;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
@@ -32,7 +33,8 @@ export class TwodsixRollSettings {
     let skillValue = 0;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.system;
-    const characteristic = aSkill ? skill.characteristic : (settings?.rollModifiers?.characteristic ?? "NONE");
+    const itemName = anItem?.name ?? "";
+    const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
 
     let woundsValue = 0;
     let encumberedValue = 0;
@@ -76,6 +78,7 @@ export class TwodsixRollSettings {
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
+    this.itemName = settings?.itemName ?? itemName;
     this.displayLabel = settings?.displayLabel ?? displayLabel;
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
@@ -85,7 +88,7 @@ export class TwodsixRollSettings {
       characteristic: characteristic,
       wounds: woundsValue,
       skill: skillValue ?? 0,
-      item: gear?.skillModifier ?? 0,
+      item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
       other: settings?.diceModifier ?? 0,
       encumbered: encumberedValue,
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,

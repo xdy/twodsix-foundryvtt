@@ -72,12 +72,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        {dropSelector: ".ship-position-box", dragSelector: ".drag"},
+        //{dropSelector: ".ship-positions-list", dragSelector: ".drag"},
         {
           dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
         },
-        {dragSelector: ".item", dropSelector: null}
+        {dragSelector: ".item", dropSelector: ".item-list"}
       ]
     });
   }
@@ -276,11 +276,10 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       } else if (droppedObject.type === "vehicle") {
         await this._addVehicleToComponents(droppedObject, dropData.uuid);
       } else if (droppedObject.type === "animal") {
-        ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions");
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
       } else {
-        super._onDrop(event);
-        return this._onSortItem(event, droppedObject.toJSON());
+        await super._onDrop(event); //re-order is handled in abstract actor onDrop
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging
