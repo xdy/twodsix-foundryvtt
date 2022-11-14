@@ -5,6 +5,7 @@ import { Component, Skills } from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixActor from "../entities/TwodsixActor";
 import { getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
@@ -52,16 +53,17 @@ export class TwodsixShipActions {
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
+    const selectedActor = <TwodsixActor>extra.actor;
 
     if (parsedResult !== null) {
       const [, parsedSkill, char, diff] = parsedResult;
-      let skill = extra.actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      let skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
-        skill = (<TwodsixActor>extra.actor)?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
         if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkill));
           return false;
         }
       }
@@ -71,10 +73,10 @@ export class TwodsixShipActions {
       if(!char) {
         characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
       } else {
-        characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
+        characteristicKey = getCharacteristicFromDisplayLabel(char, selectedActor);
       }
 
-      const charObject = extra.actor?.system["characteristics"];
+      const charObject = selectedActor?.system["characteristics"];
       let shortLabel = "NONE";
       let displayLabel = "NONE";
       if (charObject && characteristicKey) {
@@ -89,7 +91,7 @@ export class TwodsixShipActions {
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, undefined, extra.actor);
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, selectedActor);
       if (!options.shouldRoll) {
         return false;
       }
@@ -104,10 +106,7 @@ export class TwodsixShipActions {
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
     const [skilText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
-    if ((<Component>component?.system)?.rollModifier) {
-      extra.diceModifier = (<Component>component?.system)?.rollModifier;
-    }
-
+    extra.component = <TwodsixItem>component;
     const result = await TwodsixShipActions.skillRoll(skilText, extra);
     if (!result) {
       return false;
