@@ -78,13 +78,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "command": command
       }
     };
-
-    if (Object.values(position.system.actions).find(ac => ac.command === command && ac.type === TWODSIX.SHIP_ACTION_TYPE.skillRoll)) {
-      return;  //fix odd situation where the drop is called twice.  Don't double add.
-    } else {
-      const newActions = duplicate(Object.assign(actions, newAction));
-      await position.update({ "system.actions": newActions });
-    }
+    const newActions = duplicate(Object.assign(actions, newAction));
+    await position.update({ "system.actions": newActions });
   }
 
   _onDragStart(event: DragEvent):void {
