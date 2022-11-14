@@ -86,6 +86,7 @@
       "Items": {
         "Amount": "Cantidad",
         "ARMOR": "ARMADURA",
+        "ATTACHMENTS": "ACCESORIOS",
         "AUGMENTS": "AUMENTOS",
         "Ammo": "Cargador",
         "Armor": "Protección",
@@ -95,6 +96,8 @@
         "CreateItem": "Crear Objeto",
         "Damage": "Daño",
         "DeleteItem": "Borrar Objeto",
+        "DisplayStored": "Mostrar objetos almacenados",
+        "HideStored": "Ocultar objetos almacenados",
         "EQUIPMENT": "EQUIPO",
         "EditItem": "Editar Objeto",
         "Effect": "Efecto",
@@ -253,6 +256,7 @@
         "Encumbered": "Carga",
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
+        "DodgeParry": "Modificador Esquiva/Parada",
         "Custom": "Personalizado"
       }
     },
@@ -357,7 +361,10 @@
         "ShortDescription": "Opciones",
         "SkillModifier": "Modificador Habilidad",
         "TL": "NT",
-        "Weight": "KG"
+        "Weight": "KG",
+        "isAttachment": "¿Accesorio?",
+        "NewAttachment": "Nuevo Accesorio",
+        "BonusDamage": "Bono Daño"
       },
       "Items": {
         "AssignArmor": "Armadura",
@@ -417,7 +424,8 @@
         "Subtype": "SubCat.",
         "Count": "Cant.",
         "ArmorPiercing": "Valor Penetración Armadura",
-        "DropConsumablesHere": "Puedes arrastrar consumibles aquí.",
+        "DropConsumablesHere": "Aquí puedes arrastrar consumibles.",
+        "DropAttachmentsHere": "Aquí puedes añadir accesorios.",
         "RemoveConsumable": "Eliminar consumible",
         "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
       },
@@ -617,7 +625,9 @@
       "BonusDamage": "Bono Daño",
       "Timeframe": "Tiempo",
       "RollInitiative": "Tira Iniciativa",
-      "characteristic": "atributo"
+      "characteristic": "atributo",
+      "ROF": "CdT",
+      "DodgeParry": "Esquiva/Parada"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -968,6 +978,10 @@
       "allowDragDropOfLists": {
         "hint": "Permitir a objetos en listas moverse arrastrándolos, en vez del orden alfabético.",
         "name": "Permitir Reordenar Listas"
+      },
+      "useDodgeParry": {
+        "hint": "Añade penalizador a la tirada según la habilidad de equiva/parada del objetivo. El objetivo debe estar seleccionado y el nombre de la habilidad en el arma debe coincidir.",
+        "name": "Utilizar Modificadores Esquiva/Parada en Ataques"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
