@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.0...v2.9.1) (2022-11-14)
+
+
+### Bug Fixes
+
+* ship positions characteristic override ([#1179](https://github.com/xdy/twodsix-foundryvtt/issues/1179)) ([5122e58](https://github.com/xdy/twodsix-foundryvtt/commit/5122e58343e26ab08434a30b49a1a2e3bd7fd235))
+
 # [2.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.8.0...v2.9.0) (2022-11-12)
 
 
