@@ -67,16 +67,24 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
       command += `/${skillData.characteristic}`;
     }
-    command += `/ ${difficulties[skillData.difficulty].target}+`;
+    command += ` ${difficulties[skillData.difficulty].target}+`;
 
-    actions[randomID()] = {
-      "order": Object.keys(actions).length,
-      "name": "New action",
-      "icon": skill.img ?? "",
-      "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-      "command": command
+    const newAction = {
+      [randomID()]: {
+        "order": Object.keys(actions).length,
+        "name": skill.name,
+        "icon": skill.img ?? "",
+        "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
+        "command": command
+      }
     };
-    await position.update({ "system.actions": actions });
+
+    if (Object.values(position.system.actions).find(ac => ac.command === command && ac.type === TWODSIX.SHIP_ACTION_TYPE.skillRoll)) {
+      return;  //fix odd situation where the drop is called twice.  Don't double add.
+    } else {
+      const newActions = duplicate(Object.assign(actions, newAction));
+      await position.update({ "system.actions": newActions });
+    }
   }
 
   _onDragStart(event: DragEvent):void {
