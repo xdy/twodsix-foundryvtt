@@ -18,6 +18,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {
       ret.id = id;
       ret.placeholder = TwodsixShipActions.availableMethods[ret.type].placeholder;
+      ret.tooltip = TwodsixShipActions.availableMethods[ret.type].tooltip;
       return ret;
     });
     context.sortedActions.sort((a: ShipAction, b: ShipAction) => (a.order > b.order) ? 1 : -1);
