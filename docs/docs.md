@@ -119,6 +119,7 @@ To get the system closer to MGT2 change the following in the system settings aft
 * Select CEL style autofire rules and make sure weapons have a single number for their 'Rate of Fire/Auto X' setting.
 * Set "What effect (if above 0) is required for a throw to be considered a critical success/failure (i.e. be colored green/red)." to 6.
 * Set encumbrance formula to "@characteristics.endurance.current + @characteristics.strength.current + max(0, @skills.AthleticsEndurance) + max(0, @skills.AthleticsStrength)".
+* Set the "Animals use hits for damage" option to true.
 
 Compendiums with skills, items, etc cannot be included for licensing reasons, so you have to enter those yourself, except that the '2e skills' compendium is sufficiently close that it should be useful, even though it is not based on MGT2. (It is for https://www.drivethrurpg.com/product/207738/Skills-List-2e which is an Open Gaming License Pay What You Want supplement for for Cepheus Engine - which is pretty much the Open Gaming License version of MTG1 - that provides a skill list that is very similar to the one in MGT2.)
 
