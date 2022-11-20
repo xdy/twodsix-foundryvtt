@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.2...v2.10.0) (2022-11-20)
+
+
+### Features
+
+* Add option for alternative skills in ship positions. ([#1180](https://github.com/xdy/twodsix-foundryvtt/issues/1180)) ([3f807db](https://github.com/xdy/twodsix-foundryvtt/commit/3f807db1e7a6a5f8ee4cb45d1c93bbb9344b289d))
+
 ## [2.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.1...v2.9.2) (2022-11-14)
 
 
