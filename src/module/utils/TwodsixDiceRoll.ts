@@ -169,7 +169,7 @@ export class TwodsixDiceRoll {
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
     } else {
-      const difficultyMod = TwodsixDiceRoll.addSign(this.settings?.difficulty.mod);
+      const difficultyMod = TwodsixDiceRoll.addSign(this.settings.difficulty.mod);
       flavor += `(${difficultyMod})`;
     }
 
