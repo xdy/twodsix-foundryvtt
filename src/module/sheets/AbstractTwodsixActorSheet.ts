@@ -338,6 +338,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
+      sheetData.numberListedSkills = numberOfSkills;
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
 
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
