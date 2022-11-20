@@ -14,18 +14,21 @@ export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{
     [TWODSIX.SHIP_ACTION_TYPE.chatMessage]: <AvailableShipActionData>{
       action: TwodsixShipActions.chatMessage,
-      name: "Chat",
-      placeholder: "Message"
+      name: "TWODSIX.Ship.Chat",
+      placeholder: "TWODSIX.Ship.chatPlaceholder",
+      tooltip: "TWODSIX.Ship.chatTooltip"
     },
     [TWODSIX.SHIP_ACTION_TYPE.skillRoll]: <AvailableShipActionData>{
       action: TwodsixShipActions.skillRoll,
-      name: "Skill Roll",
-      placeholder: "Skill/CHR 8+"
+      name: "TWODSIX.Ship.SkillRoll",
+      placeholder: "TWODSIX.Ship.skillPlaceholder",
+      tooltip: "TWODSIX.Ship.skillTooltip"
     },
     [TWODSIX.SHIP_ACTION_TYPE.fireEnergyWeapons]: <AvailableShipActionData>{
       action: TwodsixShipActions.fireEnergyWeapons,
-      name: "Fire Energy Weapons",
-      placeholder: "Skill/CHR 8+=COMPONENT_ID"
+      name: "TWODSIX.Ship.UseAComponent",
+      placeholder: "TWODSIX.Ship.firePlaceholder",
+      tooltip: "TWODSIX.Ship.fireTooltip"
     }
   };
 
@@ -56,14 +59,21 @@ export class TwodsixShipActions {
     const selectedActor = <TwodsixActor>extra.actor;
 
     if (parsedResult !== null) {
-      const [, parsedSkill, char, diff] = parsedResult;
-      let skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      const [, parsedSkills, char, diff] = parsedResult;
+      const skillOptions = parsedSkills.split("|");
+      let skill = "";
+      for (const skillOption of skillOptions) {
+        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === skillOption) as TwodsixItem;
+        if(skill){
+          break;
+        }
+      }
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
         skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
         if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkill));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkills));
           return false;
         }
       }
