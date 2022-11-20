@@ -328,7 +328,7 @@ export default class TwodsixItem extends Item {
             payload: contentData
           }
         );
-        await damage.toMessage({
+        const msg = await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
           flags: {
@@ -336,6 +336,9 @@ export default class TwodsixItem extends Item {
             "transfer": transfer
           }
         }, {rollMode: rollMode});
+        if (game.modules.get("dice-so-nice")?.active) {
+          await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+        }
       }
       return contentData;
     }

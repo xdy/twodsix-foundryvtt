@@ -224,7 +224,7 @@ export class TwodsixDiceRoll {
       }
     }
 
-    await this.roll?.toMessage(
+    const msg = await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: flavor,
@@ -238,5 +238,8 @@ export class TwodsixDiceRoll {
       },
       {rollMode: this.settings.rollMode}
     );
+    if (game.modules.get("dice-so-nice")?.active) {
+      await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+    }
   }
 }

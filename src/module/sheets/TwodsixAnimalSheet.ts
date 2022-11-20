@@ -104,11 +104,14 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       } else {
         flavor = game.i18n.localize("TWODSIX.Animal.NoReactionMessage");
       }
-      await roll.toMessage(
+      const msg =await roll.toMessage(
         { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
           flavor: flavor},
         {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
       );
+      if (game.modules.get("dice-so-nice")?.active) {
+        await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+      }
     }
   }
 
@@ -127,10 +130,13 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     } else {
       flavor = game.i18n.localize("TWODSIX.Animal.FightToTheDeath");
     }
-    await roll.toMessage(
+    const msg = await roll.toMessage(
       { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
         flavor: flavor},
       {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
     );
+    if (game.modules.get("dice-so-nice")?.active) {
+      await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+    }
   }
 }
