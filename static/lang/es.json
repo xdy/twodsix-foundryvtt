@@ -417,7 +417,7 @@
           "food": "Comida",
           "fuel": "Fuel",
           "magazine": "Cargador",
-          "power_cell": "Celda de potencia",
+          "power_cell": "Batería Energia",
           "other": "Otros"
         },
         "Size": "Tamaño",
@@ -439,7 +439,7 @@
         "damageType": "Tipo Daño",
         "rateOfFire": "Cadencia de Tiro/Auto X",
         "recoil": "Retroceso",
-        "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
+        "UseAsAmmunitionForAttack": "Utilizar como munición en ataques",
         "MagazineCost": "Coste del cargador/celda",
         "ArmorPiercing": "Valor Penetración Armadura",
         "Features": "Rasgos",
@@ -458,7 +458,7 @@
       "Actions": "Acciones",
       "ActionType": "Tipo Acción",
       "ActionRollFormula": "Fórmula Tirada Acciones",
-      "Unknown": "Desconocido",
+      "Unknown": "desconocido",
       "ActorLacksSkill": "_ACTOR_NAME_ no dispone de habilidad _SKILL_",
       "ActorMustBeSelectedForAction": "Ya que existen varios actores, uno debe ser seleccionado para realizar la acción.",
       "AddShipPosition": "Añadir Puesto Nave",
@@ -548,6 +548,15 @@
       "MortgagePerMonth": "Pago Est. Hipoteca",
       "MaintenancePerMonth": "Coste Mantenimiento",
       "CrPerMonth": "Cr/mes",
+      "Chat": "Chat",
+      "UseAComponent": "Componente",
+      "SkillRoll": "Habilidad",
+      "chatPlaceholder": "Mensaje del Chat",
+      "skillPlaceholder": "Hab./CHR 8+",
+      "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
+      "skillTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alternativa 1|...\nHab./ATR\nHab./ 8+\nHab./ATR 8+",
+      "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHab.|Hab. Alternativa 1|...=COMPONENT_ID\nHab./ATR=COMPONENT_ID\nHab./ 8+=COMPONENT_ID\nHab./ATR 8+=COMPONENT_ID",
+      "chatTooltip": "¡A la vista!",
       "SHIPCARGO": "BODEGA DE CARGA"
     },
     "Vehicle": {
@@ -632,7 +641,7 @@
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
-        "name": "Bonus/penaliz. incrementar tarea:"
+        "name": "Qué bono/penaliz. aplicar en cada incremento de la tarea."
       },
       "absoluteCriticalEffectValue": {
         "hint": "Por defecto 99, que ignora el efecto.",
@@ -647,12 +656,12 @@
         "name": "Nombre abreviado para el atributo alternativo 2"
       },
       "autofireRulesUsed": {
-        "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
+        "hint": "Selecciona qué variante del reglamento para fuego automático/ráfagas utilizar.",
         "name": "Variante disparo automático"
       },
       "automateDamageRollOnHit": {
         "hint": "Marcado=Tirar daño modificado por el efecto; SinMarcar=No tirar daño.",
-        "name": "Daño en tirada que impacte"
+        "name": "¿Automáticamente tirar el daño en tiradas de habilidad que impacten (ejemplo: Efecto>0) en objetos que puedan generarlo?"
       },
       "criticalNaturalAffectsEffect": {
         "hint": "Marcado=Sin importar éxito considerar doble 1s como Efecto -1 y el doble 6s como Efecto 0, SinMarcar=Utilizar reglas normales",
@@ -664,11 +673,11 @@
       },
       "difficultiesAsTargetNumber": {
         "hint": "Marcado=Objetivo Dificultad numérico; SinMarcar=Modificadores.",
-        "name": "Dificultad por objetivo numérico"
+        "name": "Utilizar número objetivo en vez de modificadores de dificultad."
       },
       "difficultyListUsed": {
         "hint": "Variante del listado de dificultad.",
-        "name": "Listado dificultad:"
+        "name": "Selecciona qué variante de la lista de dificultades utilizar."
       },
       "effectOrTotal": {
         "hint": "Marcado=Mostrar Efecto (ej. tirada+mods-objetivo, normalmente 6/8); SinMarcar=Mostrar Valor (ej. tirada+mods).",
@@ -687,27 +696,27 @@
         "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder."
       },
       "initiativeFormula": {
-        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\".",
-        "name": "Fórmula para iniciativa:"
+        "hint": "Ejemplo: \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Fórmula Iniciativa"
       },
       "invertSkillRollShiftClick": {
         "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 6/8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
         "name": "Invertir funcionamiento de tecla SHIFT en clic de tiradas habilidad o arrastrar daño"
       },
       "lifebloodInsteadOfCharacteristics": {
-        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
+        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, ¡Bárbaro!, etc.",
         "name": "Mostrar RES y Vitalidad (FUE) como atributos."
       },
       "maxSkillLevel": {
         "hint": "Vacío por defecto (9).",
-        "name": "Máximo nivel habilidad:"
+        "name": "Máximo nivel habilidad."
       },
       "modifierForZeroCharacteristic": {
         "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
-        "name": "Modificador Atributo nuevo:"
+        "name": "Modificador Atributo de valor cero."
       },
       "ruleset": {
-        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
+        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido. Los primeros reglamentos son los mejor soportados. Revisar https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md para más detalles. Opciones relativas al sistema estarán marcadas en verde. Y cambios aplicados por el sistema marcados en naranja.",
         "name": "Reglamento"
       },
       "settingsInterface": {
@@ -738,8 +747,8 @@
         "name": "Fórmula Iniciativa Nave"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Mostrar los atributos alternativos en vez de PSI. Sólo funciona en el estilo por defecto de Foundry.",
-        "name": "Mostrar atributos alternativos"
+        "hint": "Básico: seis atributos con PSI. Alternativo: seis atributos y alternativos. Todos: seis atributos con PSI y Alternativos.",
+        "name": "Selecciona qué atributos mostrar"
       },
       "showContaminationBelowLifeblood": {
         "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
@@ -755,7 +764,7 @@
       },
       "usePDFPagerForRefs": {
         "hint": "Mostrar un campo de texto en la hoja de objetos para utilizar por PDFoundry o como referencia. Para PDFoundry, el formato debe ser '[nombre abreviado] [número página]'.",
-        "name": "Mostrar campo de referencia en los objetos."
+        "name": "Utilizar módulo PDF-Pager para mostrar referencias"
       },
       "ShowLawLevel": {
         "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Ocultar.",
@@ -771,7 +780,7 @@
       },
       "ShowRangeBandAndHideRange": {
         "hint": "Marcado=Mostrar 'Bandas de Alcance', SinMarcar=Mostrar 'Alcance'.",
-        "name": "Banda de Alcance"
+        "name": "Mostrar \"Bandas de Alcance\" y ocultar \"Alcance\" en la hoja del arma y PJ."
       },
       "ShowRateOfFire": {
         "hint": "Marcado=Mostrar Cadencia; SinMarcar=Ocultar.",
@@ -794,20 +803,20 @@
         "name": "Mostrar en la Hoja de la Nave la Carga en vez de la gestión Energía"
       },
       "systemMigrationVersion": {
-        "hint": "Versión schema del sistema. (No modificar)",
-        "name": "Versión Schema del sistema:"
+        "hint": "Versión del esquema del sistema Twodsix. (No modificar, a menos que sepas lo que haces)",
+        "name": "Versión Esquema del sistema"
       },
       "termForAdvantage": {
-        "hint": "No asignar igual a Desventaja.",
-        "name": "Nombre tirada Ventaja:"
+        "hint": "No utilizar el mismo término de Desventaja.",
+        "name": "Nombre tiradas con ventaja (3d6kh2)."
       },
       "termForDisadvantage": {
         "hint": "No asignar igual a Ventaja.",
-        "name": "Nombre tirada Desventaja:"
+        "name": "Nombre de tiradas con desventaja (3d6kl2)."
       },
       "useFoundryStandardStyle": {
-        "default": "Por Defecto Twodsix",
-        "foundry": "Estandar Foundry VTT",
+        "default": "Twodsix por defecto",
+        "foundry": "Estilo estándar Foundry VTT",
         "hint": "Utilizar el estilo por defecto de Foundry VTT para IU. Esto mejora la compatibilidad de los módulos con el sistema Twodsix",
         "name": "Usar IU Estilo Estandar Foundry VTT"
       },
@@ -904,7 +913,7 @@
         "name": "Mostrar iconos de estado en la hoja del actor"
       },
       "showHullAndArmor": {
-        "hint": "Opción para escoger información de protección en la hoja del vehículo. Las opciones son: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
+        "hint": "opción para escoger el tipo de protección en la hoja vehicular. Opciones: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
         "name": "Valor de Protección en hoja del vehículo"
       },
       "addEffectToManualDamage": {
@@ -912,7 +921,7 @@
         "name": "Añadir Efecto al aplicar daño manual"
       },
       "showRangeSpeedNoUnits": {
-        "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo",
+        "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo.",
         "name": "No mostrar unidades de rango o velocidad"
       },
       "showInitiativeButton": {
@@ -1033,7 +1042,7 @@
       "MaxStatVal": "El valor supera el máximo del atributo",
       "StatValBelowZero": "El valor no puede ser inferior a cero",
       "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos",
-      "CantAutoDamage": "Daño automático en nave o vehículo no soportado.",
+      "CantAutoDamage": "Daño automático en nave o vehículo no soportado",
       "CantDropOnToken": "No se permite tirar objetos sobre los tokens de nave o vehículo",
       "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
       "PDFPagerNotInstalled": "Debes instalar el módulo PDF Pager para poder utilizar enlaces.",
