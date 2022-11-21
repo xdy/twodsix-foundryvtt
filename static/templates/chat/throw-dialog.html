@@ -7,8 +7,7 @@
         <select name="difficulty">
           {{#select difficulty}}
             {{#each difficulties}}
-              <option value="{{@key}}">{{localize @key}} (
-                {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+              <option value="{{@key}}">{{localize @key}} ({{#if (twodsix_difficultiesAsTargetNumber)}}{{this.target}}+{{else}}{{#iff this.mod ">=" 0}}+{{/iff}}{{this.mod}}{{/if}})
               </option>
             {{/each}}
           {{/select}}

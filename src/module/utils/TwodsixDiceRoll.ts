@@ -169,7 +169,7 @@ export class TwodsixDiceRoll {
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavor += `(${this.settings.difficulty.target}+)`;
     } else {
-      const difficultyMod = TwodsixDiceRoll.addSign(this.roll?.data['difficultyMod']);
+      const difficultyMod = TwodsixDiceRoll.addSign(this.settings.difficulty.mod);
       flavor += `(${difficultyMod})`;
     }
 
@@ -224,7 +224,7 @@ export class TwodsixDiceRoll {
       }
     }
 
-    await this.roll?.toMessage(
+    const msg = await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: flavor,
@@ -238,5 +238,8 @@ export class TwodsixDiceRoll {
       },
       {rollMode: this.settings.rollMode}
     );
+    if (game.modules.get("dice-so-nice")?.active) {
+      await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+    }
   }
 }

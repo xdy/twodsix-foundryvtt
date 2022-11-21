@@ -32,10 +32,10 @@ export class TwodsixShipActions {
     }
   };
 
-  public static async chatMessage(msg: string, extra: ExtraData) {
+  public static async chatMessage(msgStr: string, extra: ExtraData) {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
-    if (msg.startsWith("/r") || msg.startsWith("/R")) {
-      let rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+    if (msgStr.startsWith("/r") || msgStr.startsWith("/R")) {
+      let rollText = msgStr.substring(msgStr.indexOf(' ') + 1); /* return roll formula after first space */
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
       if(showRollDiag) {
@@ -44,10 +44,14 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        return new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
+        const msg =  new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
+        if (game.modules.get("dice-so-nice")?.active) {
+          await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
+        }
+        return msg;
       }
     }
-    return ChatMessage.create({ content: msg, speaker: speakerData });
+    return ChatMessage.create({ content: msgStr, speaker: speakerData });
   }
 
   public static async skillRoll(text: string, extra: ExtraData) {
