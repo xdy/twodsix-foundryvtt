@@ -257,7 +257,13 @@
         "CharacteristicModifier": "Characteristic Modifier",
         "Conditions": "Condition Modifiers",
         "DodgeParry": "Dodge/Parry Modifier",
-        "Custom": "Custom"
+        "Custom": "Custom",
+        "Modifier": "Modifier",
+        "Description": "Description",
+        "DM": "DM",
+        "Characteristic": "Characteristic",
+        "Condition": "Condition",
+        "Attack": "Attack"
       }
     },
     "Create": "Create",
