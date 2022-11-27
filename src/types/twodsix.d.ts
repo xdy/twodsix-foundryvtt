@@ -123,6 +123,7 @@ declare global {
       'twodsix.transferDroppedItems': boolean;
       'twodsix.allowDragDropOfLists':boolean;
       'twodsix.useDodgeParry':boolean;
+      'twodsix.showModifierDetails':boolean;
     }
   }
 }
