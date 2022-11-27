@@ -1,3 +1,10 @@
+# [2.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.10.1...v2.11.0) (2022-11-27)
+
+
+### Features
+
+* add expandable roll descriptions ([#1185](https://github.com/xdy/twodsix-foundryvtt/issues/1185)) ([d7bc6b6](https://github.com/xdy/twodsix-foundryvtt/commit/d7bc6b6d10a49fd33333a1ac6a348b4aa7534927))
+
 ## [2.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.10.0...v2.10.1) (2022-11-21)
 
 
