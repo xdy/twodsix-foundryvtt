@@ -2411,6 +2411,17 @@ background: var(--sidebar-background);
   box-shadow: 0 4px 8px 0 var(--s2d6-damage-stat-color), 0 6px 16px 0 var(--s2d6-damage-stat-color);
 }
 
+.chat-image {
+  width: 40px;
+  min-width: 40px;
+  object-fit: contain;
+  height: auto;
+}
+
+.flavor-line {
+  display: inline-flex;
+  gap: 0 5px;
+}
 
 /*
 #settings button {

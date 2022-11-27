@@ -494,7 +494,8 @@ export default class TwodsixActor extends Actor {
       "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
       "type": "skills",
       "system": {"characteristic": "NONE"},
-      "flags": {'twodsix.untrainedSkill': true}
+      "flags": {'twodsix.untrainedSkill': true},
+      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
     };
 
     const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));

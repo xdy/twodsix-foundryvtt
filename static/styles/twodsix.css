@@ -2933,6 +2933,17 @@ background: var(--s2d6-sidebar-background);
   box-shadow: 0 4px 8px 0 var(--s2d6-background-nearly-transparent), 0 6px 20px 0 var(--s2d6-background-nearly-transparent);
 }
 
+.chat-image {
+  width: 40px;
+  min-width: 40px;
+  object-fit: contain;
+  height: auto;
+}
+
+.flavor-line {
+  display: inline-flex;
+  gap: 0 5px;
+}
 
 /*
 #settings button {

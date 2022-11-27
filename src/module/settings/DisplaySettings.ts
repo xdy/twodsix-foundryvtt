@@ -38,6 +38,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showSkillCountsRanks', true));
     settings.push(booleanSetting('showComponentSummaryIcons', false));
     settings.push(booleanSetting('showSpells', false));
+    settings.push(booleanSetting('showModifierDetails', false));
     return settings;
   }
 }

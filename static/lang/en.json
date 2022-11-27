@@ -257,7 +257,13 @@
         "CharacteristicModifier": "Characteristic Modifier",
         "Conditions": "Condition Modifiers",
         "DodgeParry": "Dodge/Parry Modifier",
-        "Custom": "Custom"
+        "Custom": "Custom",
+        "Modifier": "Modifier",
+        "Description": "Description",
+        "DM": "DM",
+        "Characteristic": "Characteristic",
+        "Condition": "Condition",
+        "Attack": "Attack"
       }
     },
     "Create": "Create",
@@ -990,6 +996,10 @@
       "useDodgeParry" : {
         "hint": "Add a roll penalty to refect targets ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
         "name": "Use Dodge / Parry Attack Modifers"
+      },
+      "showModifierDetails": {
+        "hint": "Show roll moddifier values in roll flavor line, e.g. STR(+1) versus STR.",
+        "name": "Display roll modifiers in chat roll text"
       }
     },
     "CloseAndCreateNew": "Close and create new",
