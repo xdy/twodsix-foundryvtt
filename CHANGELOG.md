@@ -1,3 +1,10 @@
+## [2.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.0...v2.11.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* merge equipment and tools, block junk storage ([#1189](https://github.com/xdy/twodsix-foundryvtt/issues/1189)) ([b8b0b35](https://github.com/xdy/twodsix-foundryvtt/commit/b8b0b35fa60a62af6131f8d86af10cca3bd271df))
+
 # [2.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.10.1...v2.11.0) (2022-11-27)
 
 
