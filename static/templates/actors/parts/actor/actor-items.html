@@ -180,7 +180,7 @@
 
   <!---- EQUIPMENT ---->
   <div><span class="pusher"></span>
-    <span class="item-title">{{localize "TWODSIX.Actor.Items.EQUIPMENT"}}</span>
+    <span class="item-title">{{localize "TWODSIX.Actor.Items.EQUIPMENT_TOOLS"}}</span>
     <div class="items-equipment gear-header">
       <span></span>
       <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
@@ -198,7 +198,7 @@
       </span>
     </div>
       <section class="item-list">
-        {{#each_sort_item container.equipment as |item id|}}
+        {{#each_sort_item container.equipmentAndTools as |item id|}}
         {{#unless (twodsix_hideItem ../system.hideStoredItems.equipment item.system.equipped)}}
         <div class="item gear" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">
