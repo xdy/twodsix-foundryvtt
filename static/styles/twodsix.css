@@ -723,7 +723,7 @@ h2 {
   position: relative;
 }
 
-img.character-info-mask {
+.character-info-mask {
   z-index: 4;
   position: absolute;
   pointer-events: none;
@@ -1427,7 +1427,8 @@ a.actor-notes-tab.active {
 }
 
 .add-skill {
-  background-image: url(../assets/actor/sheet-button1.svg);
+  -webkit-mask-image: url(../assets/actor/sheet-button1.svg);
+  mask-image: url(../assets/actor/sheet-button1.svg);
   background-size: cover;
   width: 15ch;
   height: 2.5ch;
@@ -1437,6 +1438,7 @@ a.actor-notes-tab.active {
   left: 25.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
+  background-color: var(--s2d6-default-color);
   /* font-weight: bold; */
 }
 
@@ -1733,7 +1735,10 @@ span.total-output {
 }
 
 .item-title, .ship-grid .item-title input[type="text"]{
-  background-image: url(../assets/actor/header.svg);
+  -webkit-mask-image: url(../assets/actor/header.svg);
+  mask-image: url(../assets/actor/header.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   height: 22px;
   width: 207px;
   display: block;
@@ -1741,6 +1746,7 @@ span.total-output {
   font-weight: bold;
   font-size: 2ch;
   padding: 1px 2px 2px 5px;
+  background-color: var(--s2d6-default-color);
   /* padding-left: 0.5em; */
   /* align-items: center; */
 }

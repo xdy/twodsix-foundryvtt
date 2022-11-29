@@ -1,11 +1,13 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{#unless settings.useFoundryStandardStyle}}
-    <img class="content-background" src="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?"/>
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-interface-bg.html"}}
+    <!--<img class="content-background" src="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?"/>-->
   {{/unless}}
   <div class="content-container">
     <div class="character-info">
       {{#unless settings.useFoundryStandardStyle}}
-        <img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>
+        <!--<img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>-->
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-overlay-1.html"}}
       {{/unless}}
       <div class="character-photo">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
