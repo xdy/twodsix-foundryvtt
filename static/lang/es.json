@@ -257,7 +257,13 @@
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
         "DodgeParry": "Modificador Esquiva/Parada",
-        "Custom": "Personalizado"
+        "Custom": "Personalizado",
+        "Modifier": "Modificador",
+        "Description": "Descripción",
+        "DM": "MD",
+        "Characteristic": "Atributo",
+        "Condition": "Estado",
+        "Attack": "Ataque"
       }
     },
     "Create": "Crear",
@@ -991,6 +997,10 @@
       "useDodgeParry": {
         "hint": "Añade penalizador a la tirada según la habilidad de equiva/parada del objetivo. El objetivo debe estar seleccionado y el nombre de la habilidad en el arma debe coincidir.",
         "name": "Utilizar Modificadores Esquiva/Parada en Ataques"
+      },
+      "showModifierDetails": {
+        "hint": "Mostrar los valores de los modificadores de las tiradas dentro del mismo texto, ejemplo: FUE(+1) en vez de sólo FUE.",
+        "name": "Mostrar modificadores en el texto del chat"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
