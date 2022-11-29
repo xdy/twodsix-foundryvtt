@@ -123,7 +123,7 @@ export default class TwodsixActor extends Actor {
 
   getActorEncumbrance():number {
     let encumbrance = 0;
-    const actorItems = this.items.filter( i => i.type !== 'skills');
+    const actorItems = this.items.filter( i => !["skills", "junk", "storage", "trait", "ship_position"].includes(i.type));
     for (const item of actorItems) {
       encumbrance += getEquipmentWeight(<TwodsixItem>item);
     }
@@ -682,7 +682,7 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
-        } else if (!["component"].includes(itemData.type)) {
+        } else if (!["component", "junk", "storage", "ship_position"].includes(itemData.type)) {
           return this._addDroppedEquipment(itemData);
         }
         break;
