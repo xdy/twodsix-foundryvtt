@@ -26,7 +26,8 @@
     <span class="overdrive-mode">{{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="system.shipStats.drives.overdrive" {{checked actor.system.shipStats.drives.overdrive}} data-dtype="Boolean"/></span>
   </div>
   <div class="ship-hull">
-    <span>{{localize "TWODSIX.Ship.ShipHull"}}</span>
+    <span class="hull-label">{{localize "TWODSIX.Ship.ShipHull"}}</span>
+    {{> "systems/twodsix/templates/actors/parts/ship/ship-hull.html"}}
     <span class="ship-hull-value"><input type="number" value="{{actor.system.shipStats.hull.value}}" name="system.shipStats.hull.value" placeholder="0" min="0" max="{{actor.system.shipStats.hull.max}}" step = "1"/></span>
     <span class="ship-hull-max"><input type="number" value="{{actor.system.shipStats.hull.max}}" name="system.shipStats.hull.max" placeholder="0" min="0" step="1"/></span>
   </div>

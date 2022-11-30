@@ -96,10 +96,6 @@ body {
   font-family: "Asap", sans-serif;
 }
 
-svg {
-  fill: currentColor;
-}
-
 /* Deleted !important from below statements*/
 p span, p {
   background-color: transparent;
@@ -1907,7 +1903,7 @@ span.total-output {
   max-height: 305px;
 }
 
-img.ship-mask-bg {
+.ship-mask-bg {
   top: 4px;
   left: 0;
   position: absolute;
@@ -2058,18 +2054,25 @@ img.ship-mask-bg {
 }
 
 .ship-hull {
-  grid-area: ship-hull;
-  display: grid;
+  /* grid-area: ship-hull; */
+  /* display: grid; */
   text-align: center;
-  background-image: url(../assets/ship/hull.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   margin-top: 0.5em;
 }
 
 .ship-hull-value {
-  margin-top: 0.5em;
+  position: relative;
+  top: -82px;
+}
+
+.ship-hull-max {
+  position: relative;
+  top: -66px;
+}
+
+.ship-hull-svg {
+  position: relative;
+  top: -12px;
 }
 
 .ship-fuel {
@@ -2119,9 +2122,9 @@ img.ship-mask-bg {
   grid-area: ship-requirements;
   z-index: 3;
   text-align: center;
-  background-image: url(../assets/ship/power-management.svg);
+  /* background-image: url(../assets/ship/power-management.svg); */
   background-size: contain;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   padding-top: 1px;
 }
 
@@ -2134,7 +2137,7 @@ img.ship-mask-bg {
   border-bottom: none;
   font-size: 17.5px;
   padding: 4px;
-  top: 3px;
+  top: -98px;
 }
 
 .ship-power {
@@ -2143,7 +2146,7 @@ img.ship-mask-bg {
   width: 74px;
   margin-right: -75px;
   margin-bottom: -34px;
-  top: 11px;
+  top: -90px;
 }
 
 .power-grid {
@@ -2154,7 +2157,7 @@ img.ship-mask-bg {
     ". . . . .";
   position: relative;
   left: 104px;
-  top: -61px;
+  top: -162px;
   font-size: 14px;
   /* margin-bottom: -4em; */
   /* height: 4em; */
