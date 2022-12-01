@@ -124,6 +124,8 @@ declare global {
       'twodsix.allowDragDropOfLists':boolean;
       'twodsix.useDodgeParry':boolean;
       'twodsix.showModifierDetails':boolean;
+      'twodsix.defaultColor':string;
+      'twodsix.lightColor':string;
     }
   }
 }

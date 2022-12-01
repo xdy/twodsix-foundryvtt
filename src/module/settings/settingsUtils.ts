@@ -32,3 +32,8 @@ export function stringSetting(key: string, defaultValue: string, config = false,
   registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange);
   return key;
 }
+
+export function colorSetting(key: string, defaultValue: string, choices = "Color", config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
+  registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, choices);
+  return key;
+}
