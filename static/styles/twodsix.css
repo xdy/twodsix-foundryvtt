@@ -3429,3 +3429,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .prosemirror menu button {
   padding: 0 2px;
 }
+
+input[type="text"].color {
+  width: fit-content;
+}
