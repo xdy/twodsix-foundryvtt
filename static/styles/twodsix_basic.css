@@ -2697,3 +2697,7 @@ form .form-group > label {
 .prosemirror menu button {
   padding: 0 2px;
 }
+
+input[type="text"].color {
+  width: fit-content;
+}

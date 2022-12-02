@@ -109,6 +109,10 @@ Hooks.once('init', async function () {
     sheetName += "twodsix.css";
   }
   switchCss(sheetName);
+  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+    document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+  }
 
   if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");

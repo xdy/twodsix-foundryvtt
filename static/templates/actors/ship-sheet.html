@@ -1,6 +1,6 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{#unless settings.useFoundryStandardStyle}}
-    <img class="ship-mask-bg" src="./systems/twodsix/assets/ship/Interface-Overlay-2.svg" alt="?"/>
+    {{> "systems/twodsix/templates/actors/parts/ship/interface-overlay-2.html"}}
   {{/unless}}
   <div class="ship-container">
     <div class="ship-image">
@@ -25,6 +25,7 @@
       {{> "systems/twodsix/templates/actors/parts/ship/ship-state-grid.html"}}
     </div>
     <div class="ship-power-management">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-power-management.html"}}
     {{#if settings.showWeightUsage}}
     <span class ="power-title">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
     {{else}}

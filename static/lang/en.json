@@ -1001,6 +1001,14 @@
       "showModifierDetails": {
         "hint": "Show roll moddifier values in roll flavor line, e.g. STR(+1) versus STR.",
         "name": "Display roll modifiers in chat roll text"
+      },
+      "defaultColor": {
+        "hint": "Change the theme main color. Delete value to reset.",
+        "name": "Set Default Color"
+      },
+      "lightColor": {
+        "hint": "Change the theme highlight color. Delete value to reset.",
+        "name": "Set Highlight Color"
       }
     },
     "CloseAndCreateNew": "Close and create new",

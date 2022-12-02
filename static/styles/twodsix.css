@@ -96,10 +96,6 @@ body {
   font-family: "Asap", sans-serif;
 }
 
-svg {
-  fill: currentColor;
-}
-
 /* Deleted !important from below statements*/
 p span, p {
   background-color: transparent;
@@ -278,16 +274,22 @@ table tr:nth-child(even) {
   /* margin: 0 0 !important; */
   line-height: 16px !important;
   /* position: relative; */
-  top: 27px !important;
+  top: 25px !important;
   /* margin-bottom: 1em; */
   border: none !important;
   padding: 0;
-  margin-left: 8px;
+  margin-left: 11px;
+  padding-right: 5px;
   /* overflow: hidden; */
 }
 
 .sheet nav.sheet-tabs .item {
   padding: 2px;
+  border: none;
+  border: solid 2px var(--s2d6-default-color) !important;
+  border-radius: 5ch 1ch 2ch 0;
+  /* -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0); */
+  /* clip-path: polygon(    0 10%,    10% 0,    90% 0,    100% 10%,    100% 90%,    90% 100%,    10% 100%,    0% 90%,    0% 10%  ); */
 }
 
 .sheet footer.sheet-footer {
@@ -723,7 +725,7 @@ h2 {
   position: relative;
 }
 
-img.character-info-mask {
+.character-info-mask {
   z-index: 4;
   position: absolute;
   pointer-events: none;
@@ -994,8 +996,8 @@ span.bgi-charEdit {
 }
 
 .stat {
-  background-image: url(../assets/actor/Stat-1.svg);
-  background-size: cover !important;
+  /*background-image: url(../assets/actor/Stat-1.svg);*/
+  /*background-size: cover !important;*/
   height: 48px;
   width: 61px;
   display: inline-block;
@@ -1061,7 +1063,7 @@ input.stat-name-table {
 .stat input, .special input {
   width: 1.5em;
   text-align: center;
-  margin-left: -0.25em;
+  margin-left: -0.26em;
   background-color: transparent !important;
   border: none;
   color: var(--s2d6-stat-input);
@@ -1095,7 +1097,7 @@ input.special-name {
 }
 
 .special {
-  background-image: url(../assets/actor/Stat-Psi.svg);
+  /* background-image: url(../assets/actor/Stat-Psi.svg); */
   height: 56px;
   width: 46px;
   background-size: cover;
@@ -1112,7 +1114,7 @@ input.special-name {
 
 .special.psionicStrength {
   left: 196px;
-  top: -115px;
+  top: -119px;
 }
 
 .special.alternative1 {
@@ -1128,7 +1130,7 @@ input.special-name {
 span.special-name {
   position: relative;
   top: -1.1em;
-  right: -0.15em;
+  right: -0.2em;
   /* font-size: 15px; */
   cursor: pointer;
   display: inline-block;
@@ -1140,7 +1142,7 @@ span.stat-ability {
   margin: -0.3em;
   position: relative;
   left: 15px;
-  top: -15px;
+  top: -13px;
 }
 
 span.stat-ability-table {
@@ -1152,7 +1154,7 @@ span.stat-modifier {
   margin: -6px;
   position: relative;
   left: 29px;
-  top: -15px;
+  top: -13px;
 }
 span.stat-modifier-table {
   text-align: center !important;
@@ -1166,7 +1168,8 @@ span.stat-ability-table input, span.stat-modifier-table input {
 
 span.stat-damage {
   position: relative;
-  top: 5px;
+  top: 8px;
+  left: 1px;
 }
 
 span.stat-damage-table {
@@ -1193,20 +1196,20 @@ span.stat-damage input, span.special-damage input {
 span.special-ability {
   position: relative;
   top: -16px;
-  left: 11px;
+  left: 9px;
 }
 
 span.special-modifier {
   margin: -6px;
   position: relative;
-  /* left: 1em; */
-  top: -26px;
+  left: -2px;
+  top: -28px;
 }
 
 span.special-damage {
   position: relative;
-  padding-left: 0.7em;
-  top: -12px;
+  padding-left: 0.6em;
+  top: -14px;
 }
 
 svg:hover {
@@ -1217,7 +1220,7 @@ svg:hover {
 
 .character-tabs .tabs {
   position: relative;
-  top: 2em;
+  top: 3px;
   left: 4px;
   z-index: 50;
   width: 453px;
@@ -1229,64 +1232,75 @@ svg:hover {
 }
 
 .skill-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
+  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -2px;
   width: 90px;
   padding-top: 0.15em;
   display: block;
   background-color: unset !important;
+  border: solid 2px;
+  border-radius: 45ch 4ch 11ch 22ch !important;
 }
 
 a.skill-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
 a.skill-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
+  /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
+  background-color: var(--s2d6-default-color) !important;
 }
 
 .item-tab, .finances-tab, .info-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
+  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -97px;
   padding-top: 0.15em;
   width: 90px;
   display: block;
   background-color: transparent !important;
+  /* border: solid 2px !important; */
+  /* border-radius: 3ch 1ch 0; */
 }
 
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
 a.item-tab.active, a.finances-tab.active, a.info-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
+  /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
+  background-color: var(--s2d6-default-color) !important;
 }
 
 .actor-notes-tab {
-  background-image: url(../assets/actor/Interface-Tabs.svg);
-  background-position-x: 93px;
+  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
+  /* background-position-x: 93px; */
   padding-top: 0.15em;
-  width: 93px;
+  width: 90px;
   display: block;
   background-color: unset !important;
+  border-radius: 21ch 4ch 17ch 0 !important;
 }
 
 a.actor-notes-tab:hover {
-  background-image: url(../assets/actor/Interface-Tabs-Hover.svg);
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
   background-color: unset !important;
 }
 
 a.actor-notes-tab.active {
-  background-image: url(../assets/actor/Interface-Tabs-Active.svg);
+  /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
+  /* -webkit-mask-image: url(../assets/actor/Interface-Tabs.svg) !important; */
+  background-color: var(--s2d6-default-color) !important;
+  border-color: var(--s2d6-default-color) !important;
+  /* -webkit-mask-repeat: no-repeat; */
 }
 
 .tab, div{
@@ -1427,7 +1441,8 @@ a.actor-notes-tab.active {
 }
 
 .add-skill {
-  background-image: url(../assets/actor/sheet-button1.svg);
+  -webkit-mask-image: url(../assets/actor/sheet-button1.svg);
+  mask-image: url(../assets/actor/sheet-button1.svg);
   background-size: cover;
   width: 15ch;
   height: 2.5ch;
@@ -1437,7 +1452,10 @@ a.actor-notes-tab.active {
   left: 25.5em;
   z-index: 51;
   color: var(--s2d6-item-active);
+  background-color: var(--s2d6-default-color);
   /* font-weight: bold; */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .add-skill:hover {
@@ -1733,14 +1751,18 @@ span.total-output {
 }
 
 .item-title, .ship-grid .item-title input[type="text"]{
-  background-image: url(../assets/actor/header.svg);
-  height: 22px;
+  -webkit-mask-image: url(../assets/actor/header.svg);
+  mask-image: url(../assets/actor/header.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 21px;
   width: 207px;
   display: block;
   color: var(--s2d6-item-active);
   font-weight: bold;
   font-size: 2ch;
   padding: 1px 2px 2px 5px;
+  background-color: var(--s2d6-default-color);
   /* padding-left: 0.5em; */
   /* align-items: center; */
 }
@@ -1881,7 +1903,7 @@ span.total-output {
   max-height: 305px;
 }
 
-img.ship-mask-bg {
+.ship-mask-bg {
   top: 4px;
   left: 0;
   position: absolute;
@@ -2033,17 +2055,24 @@ img.ship-mask-bg {
 
 .ship-hull {
   grid-area: ship-hull;
-  display: grid;
+  /* display: grid; */
   text-align: center;
-  background-image: url(../assets/ship/hull.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   margin-top: 0.5em;
 }
 
 .ship-hull-value {
-  margin-top: 0.5em;
+  position: relative;
+  top: -82px;
+}
+
+.ship-hull-max {
+  position: relative;
+  top: -66px;
+}
+
+.ship-hull-svg {
+  position: relative;
+  top: -12px;
 }
 
 .ship-fuel {
@@ -2093,9 +2122,9 @@ img.ship-mask-bg {
   grid-area: ship-requirements;
   z-index: 3;
   text-align: center;
-  background-image: url(../assets/ship/power-management.svg);
+  /* background-image: url(../assets/ship/power-management.svg); */
   background-size: contain;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   padding-top: 1px;
 }
 
@@ -2108,7 +2137,7 @@ img.ship-mask-bg {
   border-bottom: none;
   font-size: 17.5px;
   padding: 4px;
-  top: 3px;
+  top: -98px;
 }
 
 .ship-power {
@@ -2117,7 +2146,7 @@ img.ship-mask-bg {
   width: 74px;
   margin-right: -75px;
   margin-bottom: -34px;
-  top: 11px;
+  top: -90px;
 }
 
 .power-grid {
@@ -2128,7 +2157,7 @@ img.ship-mask-bg {
     ". . . . .";
   position: relative;
   left: 104px;
-  top: -61px;
+  top: -162px;
   font-size: 14px;
   /* margin-bottom: -4em; */
   /* height: 4em; */
@@ -3399,4 +3428,8 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .prosemirror menu button {
   padding: 0 2px;
+}
+
+input[type="text"].color {
+  width: fit-content;
 }
