@@ -1238,7 +1238,6 @@ svg:hover {
   padding-top: 0.15em;
   display: block;
   background-color: unset !important;
-  border: solid 2px;
   border-radius: 45ch 4ch 11ch 22ch !important;
   border: solid 2px var(--s2d6-default-color) !important;
 }
@@ -2741,9 +2740,9 @@ select.form-input, input.form-input, span.form-input {
 }
 
 
-.tabs .item.active {
-  /* text-shadow: 0 0 10px var(--s2d6-light-color) !important; */
-}
+/*.tabs .item.active {
+  text-shadow: 0 0 10px var(--s2d6-light-color) !important;
+}*/
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
