@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.1...v2.12.0) (2022-12-02)
+
+
+### Features
+
+* updates to actor sheet colors ([#1188](https://github.com/xdy/twodsix-foundryvtt/issues/1188)) ([a0b9098](https://github.com/xdy/twodsix-foundryvtt/commit/a0b9098356cb9a09afe947ccc9351abb2ce3a11d))
+
 ## [2.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.0...v2.11.1) (2022-11-29)
 
 

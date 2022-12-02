@@ -4,8 +4,8 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v2.11.1/twodsix.zip",
-  "version": "2.11.1",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v2.12.0/twodsix.zip",
+  "version": "2.12.0",
   "socket": true,
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
   "authors": [
