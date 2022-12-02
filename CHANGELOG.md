@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.0...v2.12.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* active effects tabs ([#1192](https://github.com/xdy/twodsix-foundryvtt/issues/1192)) ([0c34f84](https://github.com/xdy/twodsix-foundryvtt/commit/0c34f840da56ff61a838b9dc0a68a64aea065a29))
+
 # [2.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.1...v2.12.0) (2022-12-02)
 
 
