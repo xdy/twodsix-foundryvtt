@@ -286,8 +286,8 @@ table tr:nth-child(even) {
 .sheet nav.sheet-tabs .item {
   padding: 2px;
   border: none;
-  border: solid 2px var(--s2d6-default-color) !important;
-  border-radius: 5ch 1ch 2ch 0;
+  /* border: solid 2px var(--s2d6-default-color) !important; */
+  /* border-radius: 5ch 1ch 2ch 0; */
   /* -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0); */
   /* clip-path: polygon(    0 10%,    10% 0,    90% 0,    100% 10%,    100% 90%,    90% 100%,    10% 100%,    0% 90%,    0% 10%  ); */
 }
@@ -1238,8 +1238,8 @@ svg:hover {
   padding-top: 0.15em;
   display: block;
   background-color: unset !important;
-  border: solid 2px;
   border-radius: 45ch 4ch 11ch 22ch !important;
+  border: solid 2px var(--s2d6-default-color) !important;
 }
 
 a.skill-tab:hover {
@@ -1263,6 +1263,8 @@ a.skill-tab.active {
   background-color: transparent !important;
   /* border: solid 2px !important; */
   /* border-radius: 3ch 1ch 0; */
+  border: solid 2px var(--s2d6-default-color) !important;
+  border-radius: 5ch 1ch 2ch 0;
 }
 
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
@@ -1285,6 +1287,7 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active {
   display: block;
   background-color: unset !important;
   border-radius: 21ch 4ch 17ch 0 !important;
+  border: solid 2px var(--s2d6-default-color) !important;
 }
 
 a.actor-notes-tab:hover {
@@ -2737,9 +2740,9 @@ select.form-input, input.form-input, span.form-input {
 }
 
 
-.tabs .item.active {
+/*.tabs .item.active {
   text-shadow: 0 0 10px var(--s2d6-light-color) !important;
-}
+}*/
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {
