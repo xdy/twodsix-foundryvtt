@@ -12,8 +12,8 @@
       <div class="flexcol" style="padding: 1ch; gap: 1ch;">
         <!-- Movement -->
         <div class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-rocket"></i>:
-          <input type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>
-          <select name="system.movement.units" >
+          <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" />
+          <select name="system.movement.units" style="width: 14ch;">
             {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
           </select>
         </div>
@@ -49,7 +49,7 @@
       <div class="space-object-notes-container">
         <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Notes"}}</span>
         {{#unless limited}}
-         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes" style="min-height: 261px;">{{~system.notes~}}</textarea>
+         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes" style="min-height: 93%;">{{~system.notes~}}</textarea>
         {{/unless}}
       </div>
     </div>

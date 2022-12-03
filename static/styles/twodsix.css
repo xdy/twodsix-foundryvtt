@@ -576,7 +576,6 @@ h2 {
   gap: 16px 16px;
   position: relative;
   grid-template-areas: "space-object-name-photo space-object-stats space-object-notes";
-
 }
 
 .vehicle-name-photo, .space-object-photo {
@@ -648,7 +647,6 @@ h2 {
 
 .space-object-stats {
   grid-area: space-object-stats;
-  padding: 2ch;
   display: flex;
   flex-direction: column;
   gap: 1ch;
@@ -704,6 +702,10 @@ h2 {
   max-width: 100%;
   padding: 0 1ch;
   border-radius: 0 0 2ch 2ch !important;
+}
+
+.space-object-notes-container {
+  height: 100%;
 }
 
 .vehicle-inset {
