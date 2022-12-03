@@ -3,7 +3,7 @@
 
 import { Component, Vehicle } from "src/types/template";
 import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
-import TwodsixItem, { onRollDamage} from "../entities/TwodsixItem";
+import TwodsixItem from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
