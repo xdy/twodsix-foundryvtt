@@ -20,6 +20,11 @@ export interface AnimalDataSource {
   system:Animal;
 }
 
+export interface SpaceObjectDataSource {
+  type:'space-object';
+  system:SpaceObject;
+}
+
 export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource | AnimalDataSource;
 
 // Items
@@ -128,6 +133,7 @@ export interface Actor {
   ship:Ship;
   vehicle:Vehicle;
   animal:Animal;
+  "space-object":SpaceObject;
 }
 
 export type ShipPositionActorIds = Record<string, string>
@@ -275,6 +281,13 @@ export interface Animal {
   movement:MovementData;
   reaction:ReactionData;
   moraleDM:string;
+}
+
+export interface SpaceObject {
+  description:string;
+  notes:string;
+  movement:MovementData;
+  damage:string;
 }
 
 export interface ReactionData {

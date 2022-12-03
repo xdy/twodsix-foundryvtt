@@ -612,6 +612,11 @@
       },
       "ShippingSize": "Shipping Size"
     },
+    "SpaceObject": {
+      "Notes": "Notes",
+      "Damage": "Damage",
+      "Information": "Information"
+    },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",

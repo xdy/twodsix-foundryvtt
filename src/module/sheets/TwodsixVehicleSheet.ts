@@ -38,7 +38,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
   activateListeners(html:JQuery):void {
     super.activateListeners(html);
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
-    html.find('.roll-damage').on('click', onRollDamage.bind(this));
+    //html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
     html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));

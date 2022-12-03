@@ -35,6 +35,7 @@ export default class TwodsixActor extends Actor {
         this._checkCrewTitles();
         break;
       case 'vehicle':
+      case 'space-object':
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -377,6 +378,13 @@ export default class TwodsixActor extends Actor {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           await this.update({
             'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+          });
+        }
+        break;
+      case "space-object":
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          await this.update({
+            'img': 'systems/twodsix/assets/icons/default_space-object.png'
           });
         }
         break;

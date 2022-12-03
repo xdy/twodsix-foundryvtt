@@ -140,6 +140,11 @@ declare interface TwodsixShipSheetSettings {
 declare interface TwodsixVehicleSheetSettings {
   showHullAndArmor: string;
 }
+
+declare interface TwodsixSpaceObjectSheetSettings {
+  useProseMirror?: boolean;
+}
+
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
@@ -153,6 +158,12 @@ declare interface TwodsixVehicleSheetData extends ActorSheet.Data {
   settings: TwodsixVehicleSheetSettings;
   shipPositions: Item[];
   storage: Collection<Item>;
+}
+
+declare interface TwodsixSpaceObjectSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixSpaceObjectSheetSettings;
+  richText: any;
 }
 
 declare interface ExtraData {
@@ -254,6 +265,14 @@ declare interface Game {
             label: string;
           };
         };
+        "space-object": {
+          'twodsix.TwodsixVehicleSheet': {
+            id: 'twodsix.TwodsixSpaceObjectSheet';
+            default: boolean;
+            cls: TwodsixSpaceObjectSheet;
+            label: string;
+          };
+        }
       };
     };
 

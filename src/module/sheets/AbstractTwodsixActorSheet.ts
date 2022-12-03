@@ -107,9 +107,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
       }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
-
-      html.find('.roll-damage').on('click', onRollDamage.bind(this));
-
+      if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
+        html.find('.roll-damage').on('click', onRollDamage.bind(this));
+      }
       //add hooks to allow skill levels consumable counts to be updated on skill and equipment tabs, repectively
       html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
       html.find(".item-value-edit").on("click", (event) => {

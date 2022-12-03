@@ -272,3 +272,24 @@ export function isDisplayableSkill(skill:Skills): boolean {
     return false;
   }
 }
+
+export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
+  const returnText:string = await new Promise((resolve) => {
+    new Dialog({
+      title: title,
+      content:
+        `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
+      buttons: {
+        Roll: {
+          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
+          callback:
+            (html:JQuery) => {
+              resolve(html.find('[name="outputFormula"]')[0]["value"]);
+            }
+        }
+      },
+      default: `Roll`
+    }).render(true);
+  });
+  return (returnText ?? "");
+}
