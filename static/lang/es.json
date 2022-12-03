@@ -1002,6 +1002,14 @@
       "showModifierDetails": {
         "hint": "Mostrar los valores de los modificadores de las tiradas dentro del mismo texto, ejemplo: FUE(+1) en vez de sólo FUE.",
         "name": "Mostrar modificadores en el texto del chat"
+      },
+      "defaultColor": {
+        "hint": "Cambiar el color principal. Borrar el valor para reiniciar.",
+        "name": "Color por Defecto"
+      },
+      "lightColor": {
+        "hint": "Cambiar el color resaltado. Borrar el valor para reiniciar.",
+        "name": "Color Resaltado"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
