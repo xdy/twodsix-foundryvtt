@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.2...v2.13.0) (2022-12-05)
+
+
+### Features
+
+* add space object ([#1194](https://github.com/xdy/twodsix-foundryvtt/issues/1194)) ([9f3bec0](https://github.com/xdy/twodsix-foundryvtt/commit/9f3bec0ec995a4b1e19f525be75cbfa4542d10e5))
+
 ## [2.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.1...v2.12.2) (2022-12-03)
 
 
