@@ -1,0 +1,57 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="space-object-content-container">
+    <div class="space-object-name-photo">
+      <div class="space-object-photo">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+      </div>
+      <div class="space-object-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
+      </div>
+    </div>
+    <div class="space-object-stats">
+      <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Information"}}</span>
+      <div class="flexcol" style="padding: 1ch;">
+        <!-- Movement -->
+        <div class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-rocket"></i>:
+          <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" />
+          <select name="system.movement.units" style="width: 14ch;">
+            {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
+          </select>
+        </div>
+        <!--Damage-->
+        <div class="flexrow" style="align-items: center;">
+          <span class="roll-damage orange">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
+        </div>
+        <!--Reference-->
+        {{#if settings.usePDFPager}}
+          <div class="item-reference">
+            <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
+            <input class="form-input" id="source" type="text" name="system.docReference" value="{{system.docReference}}"/>
+          </div>
+        {{else}}
+          {{#if system.pdfReference.href}}
+            <div class="item-link centre">
+              {{localize "TWODSIX.Items.Link"}}:
+              <a href="{{actor.system.pdfReference.href}}">
+                {{#iff system.pdfReference.type "===" 'pdf'}}
+                  <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+                {{else}}
+                  <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+                {{/iff}}
+                {{system.pdfReference.label}}</a>
+              <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+    <!--Notes-->
+    <div class="space-object-notes">
+      <div class="space-object-notes-container">
+        <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Notes"}}</span>
+        {{#unless limited}}
+         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes">{{~system.notes~}}</textarea>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</form>

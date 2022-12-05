@@ -197,16 +197,15 @@ label.checkbox > input[type="checkbox"] {
   font-size: smaller;
 }
 
-.vehicle-photo {
+.vehicle-photo, .space-object-photo {
   text-align: center;
   z-index: 0;
   min-height: 0;
 }
 
-.vehicle-photo img {
+.vehicle-photo img, .space-object-photo img  {
   vertical-align: middle;
   height: 100%;
-  z-index: -1;
   object-fit: contain;
 }
 
@@ -223,16 +222,40 @@ label.checkbox > input[type="checkbox"] {
     "vehicle-weapons vehicle-weapons vehicle-notes";
 }
 
-.vehicle-name-photo {
-  grid-area: vehicle-name-photo;
+.space-object-content-container {
+  display: grid;
+  grid-template-columns: 19em 19em;
+  grid-template-rows: 10em 11em;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+    "space-object-name-photo space-object-stats"
+    "space-object-name-photo space-object-notes";
+}
+.vehicle-name-photo, .space-object-name-photo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
+.vehicle-name-photo {
+  grid-area: vehicle-name-photo;
+}
+
+.space-object-name-photo {
+  grid-area: space-object-name-photo;
+}
+
 .vehicle-stats {
   grid-area: vehicle-stats;
   overflow-y: auto;
+}
+
+.space-object-stats {
+  grid-area: space-object-stats;
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
 }
 
 .vehicle-notes {
@@ -249,8 +272,7 @@ label.checkbox > input[type="checkbox"] {
   padding-left: 1ch;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
-
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
   border: 2px solid;
   border-radius: 2ch;
 }
@@ -271,12 +293,12 @@ label.checkbox > input[type="checkbox"] {
   grid-area: vehicle-traits;
 }
 
-.vehicle-name {
+.vehicle-name, .space-object-name {
   height: 26px;
   width: 100%;
 }
 
-.vehicle-name input[type='text'] {
+.vehicle-name input[type='text'], .space-object-name input[type='text'] {
   background-color: transparent ;
   font-size: 1.2em;
   text-align: center;
@@ -308,16 +330,28 @@ label.checkbox > input[type="checkbox"] {
   height: 16ch;
 }
 
-.vehicle-traits-details textarea {
+.vehicle-traits-details textarea, .space-object-notes textarea {
   overflow-wrap: break-word;
   resize: none;
   scrollbar-width: thin;
-  scrollbar-color: var(--s2d6-default-color);
+  /*scrollbar-color: var(--s2d6-default-color);*/
   height: 88%;
   max-width: 100%;
   padding: 0 1ch;
   font-family: inherit;
   border-radius: 0 0  2ch 2ch;
+  border: none;
+}
+
+.space-object-notes {
+  grid-area: space-object-notes;
+  border: solid 2px;
+  border-radius: 2ch;
+  height: 100%;
+}
+
+.space-object-notes-container {
+  height: 100%;
 }
 
 .vehicle-inset {

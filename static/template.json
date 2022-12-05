@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship", "vehicle", "animal"],
+    "types": ["traveller", "ship", "vehicle", "animal", "space-object"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -454,6 +454,26 @@
       },
       "woundedEffect": 0,
       "characteristicEdit": false,
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
+      }
+    },
+    "space-object": {
+      "docReference": "",
+      "pdfReference": {
+        "type": "",
+        "href": "",
+        "label": ""
+      },
+      "description": "",
+      "notes": "",
+      "damage": "3d6",
       "movement": {
         "burrow": 0,
         "climb": 0,

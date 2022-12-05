@@ -11,6 +11,7 @@ import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { simplifyRollFormula } from "../utils/dice";
+import { confirmRollFormula } from "../utils/sheetUtils";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -273,7 +274,7 @@ export default class TwodsixItem extends Item {
       let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
-        rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
+        rollFormula = await confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       rollFormula = simplifyRollFormula(rollFormula);
@@ -364,27 +365,6 @@ export default class TwodsixItem extends Item {
       }
     }
     return returnValue;
-  }
-
-  public static async confirmRollFormula(initFormula:string, title:string):Promise<string> {
-    const returnText:string = await new Promise((resolve) => {
-      new Dialog({
-        title: title,
-        content:
-          `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
-        buttons: {
-          Roll: {
-            label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
-            callback:
-              (html:JQuery) => {
-                resolve(html.find('[name="outputFormula"]')[0]["value"]);
-              }
-          }
-        },
-        default: `Roll`
-      }).render(true);
-    });
-    return (returnText ?? "");
   }
 
   public static burstAttackDM(number:number | null):number {
@@ -491,7 +471,7 @@ export async function onRollDamage(event):Promise<void> {
  * @param {Roll} inputRoll    The original roll.
  * @returns {object[]}        The resulting simplified dice terms.
  */
-function getDiceResults(inputRoll:Roll) {
+export function getDiceResults(inputRoll:Roll) {
   const returnValue:any[] = [];
   for (const die of inputRoll.dice) {
     returnValue.push(die.results);

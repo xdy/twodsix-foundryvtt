@@ -21,6 +21,7 @@ import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet } from "./module/sheets/TwodsixAnimalSheet";
+import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -74,6 +75,12 @@ Hooks.once('init', async function () {
   Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
     types: ["animal"],
     label: "Animal Sheet",
+    makeDefault: true,
+  });
+
+  Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
+    types: ["space-object"],
+    label: "Space Object Sheet",
     makeDefault: true,
   });
 

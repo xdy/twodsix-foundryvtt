@@ -544,16 +544,16 @@ h2 {
   font-size: smaller;
 }
 
-.vehicle-photo {
+.vehicle-photo, .space-object-photo {
   text-align: center;
   z-index: 0;
   min-height: 0;
 }
 
-.vehicle-photo img {
+.vehicle-photo img, .space-object-photo img {
   vertical-align: middle;
   height: 100%;
-  z-index: -1;
+  /*z-index: -1;*/
   object-fit: contain;
 }
 
@@ -570,15 +570,32 @@ h2 {
     "vehicle-weapons vehicle-weapons vehicle-notes";
 }
 
-.vehicle-name-photo {
-  grid-area: vehicle-name-photo;
+.space-object-content-container {
+  display: grid;
+  grid-template-columns: 19em 19em;
+  grid-template-rows: 10em 11em;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+    "space-object-name-photo space-object-stats"
+    "space-object-name-photo space-object-notes";
+}
+
+.vehicle-name-photo, .space-object-name-photo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.vehicle-notes {
-  grid-area: vehicle-notes;
+.vehicle-name-photo {
+  grid-area: vehicle-name-photo;
+}
+
+.space-object-name-photo {
+  grid-area: space-object-name-photo;
+}
+
+.vehicle-notes, .space-object-notes {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -586,6 +603,16 @@ h2 {
   border-width: 2px;
   max-height: 100%;
 }
+
+.vehicle-notes {
+  grid-area: vehicle-notes;
+}
+
+.space-object-notes {
+  grid-area: space-object-notes;
+  background-color: var(--s2d6-background-opaque);
+}
+
 .vehicle-notes div[contenteditable] {
   height: 86%;
   border-radius: 0 0 2ch 2ch !important;
@@ -593,7 +620,7 @@ h2 {
   padding-left: 1ch;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats {
+.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -622,12 +649,19 @@ h2 {
   grid-area: vehicle-stats;
 }
 
-.vehicle-name {
+.space-object-stats {
+  grid-area: space-object-stats;
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+}
+
+.vehicle-name, .space-object-name {
   height: 26px;
   width: 100%;
 }
 
-.vehicle-name input[type='text'] {
+.vehicle-name input[type='text'], .space-object-name input[type='text'] {
   background-color: transparent;
   position: relative;
   /*width: 15.55em;*/
@@ -663,7 +697,7 @@ h2 {
   height: 16ch;
 }
 
-.vehicle-traits-details textarea {
+.vehicle-traits-details textarea, .space-object-notes textarea {
   overflow-wrap: break-word;
   resize: none;
   scrollbar-width: thin;
@@ -672,6 +706,10 @@ h2 {
   max-width: 100%;
   padding: 0 1ch;
   border-radius: 0 0 2ch 2ch !important;
+}
+
+.space-object-notes-container {
+  height: 100%;
 }
 
 .vehicle-inset {
