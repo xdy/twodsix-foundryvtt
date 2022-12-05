@@ -9,7 +9,7 @@
     </div>
     <div class="space-object-stats">
       <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Information"}}</span>
-      <div class="flexcol" style="padding: 1ch; gap: 1ch;">
+      <div class="flexcol" style="padding: 1ch;">
         <!-- Movement -->
         <div class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-rocket"></i>:
           <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" />
@@ -18,7 +18,7 @@
           </select>
         </div>
         <!--Damage-->
-        <div class="flexrow">
+        <div class="flexrow" style="align-items: center;">
           <span class="roll-damage orange">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
         </div>
         <!--Reference-->
@@ -49,7 +49,7 @@
       <div class="space-object-notes-container">
         <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Notes"}}</span>
         {{#unless limited}}
-         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes" style="min-height: 93%;">{{~system.notes~}}</textarea>
+         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes">{{~system.notes~}}</textarea>
         {{/unless}}
       </div>
     </div>

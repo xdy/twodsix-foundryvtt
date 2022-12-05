@@ -224,13 +224,15 @@ label.checkbox > input[type="checkbox"] {
 
 .space-object-content-container {
   display: grid;
-  grid-template-columns: 19em 19em 17em;
+  grid-template-columns: 19em 19em;
+  grid-template-rows: 10em 11em;
   gap: 16px 16px;
   position: relative;
-  grid-template-areas: "space-object-name-photo space-object-stats space-object-notes";
-
+  grid-template-areas:
+    "space-object-name-photo space-object-stats"
+    "space-object-name-photo space-object-notes";
 }
-.vehicle-name-photo, .space-object-photo {
+.vehicle-name-photo, .space-object-name-photo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

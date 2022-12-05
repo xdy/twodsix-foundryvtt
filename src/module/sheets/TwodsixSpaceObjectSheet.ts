@@ -34,8 +34,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "space-object", "actor"],
       template: "systems/twodsix/templates/actors/space-object-sheet.html",
-      width: 835,
-      height: 355,
+      width: 'auto',
+      height: 'auto',
       resizable: true,
     });
   }
