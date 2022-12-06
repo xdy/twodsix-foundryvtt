@@ -405,6 +405,10 @@ form .form-group span.units {
   overflow: hidden !important;
 }
 
+.app.sidebar-popout .window-content {
+  color: var(--color-border-light-1) !important;
+}
+
 .character-name h2 {
   margin-bottom: -0.5em;
   border: none;
