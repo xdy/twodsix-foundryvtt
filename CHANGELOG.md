@@ -1,3 +1,10 @@
+## [2.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.0...v2.13.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* text colors on pop-outs ([#1196](https://github.com/xdy/twodsix-foundryvtt/issues/1196)) ([b713906](https://github.com/xdy/twodsix-foundryvtt/commit/b7139062324f8c3ab0fa3ada71dcea3e3b516559))
+
 # [2.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.2...v2.13.0) (2022-12-05)
 
 
