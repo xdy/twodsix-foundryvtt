@@ -613,6 +613,11 @@
       },
       "ShippingSize": "Tamaño"
     },
+    "SpaceObject": {
+      "Notes": "Notas",
+      "Damage": "Daño",
+      "Information": "Información"
+    },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
