@@ -12,12 +12,8 @@
                 {{/iff}}
 
                 {{#iff setting.htmlType "===" "Select"}}
-                <select name="{{key}}" data-dtype="String" value="{{setting.value}}">
-                    {{#each setting.choices as |choice choiceKey|}}
-                        {{#select setting.value}}
-                        <option value="{{choiceKey}}">{{choice}}</option>
-                        {{/select}}
-                    {{/each}}
+                <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
+                  {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
                 </select>
                 {{/iff}}
 
@@ -26,16 +22,22 @@
                     <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
                 </span>
                 {{/iff}}
+
+                {{#iff setting.htmlType "===" "Color"}}
+                <span class = "color-select" name="{{key}}">
+                  {{colorPicker name=key value = setting.value default=setting.value}}
+                </span>
+                {{/iff}}
             </div>
             <p class="notes">{{{localize setting.hint}}}</p>
         </div>
     {{/each}}
     <footer class="sheet-footer flexrow">
       <button type="submit" name="submit">
-          <i class="far fa-save"></i> Save Changes
+          <i class="far fa-save"></i> {{localize "Save Changes"}}
       </button>
       <button name="cancel">
-          <i class="fas fa-times-circle"></i> Close without saving
+          <i class="fa-solid fa-circle-x"></i> {{localize "Cancel"}}
       </button>
     </footer>
 </form>

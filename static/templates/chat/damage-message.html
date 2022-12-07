@@ -1,7 +1,7 @@
 <div class='twodsix-message dice-roll' data-transfer='{{transfer}}'>
   <div class='damage-message'>
     <div class='prefix'>{{flavor}}</div>
-    <br/>
+
     <div class="dice-result">
       <div class="dice-formula">{{roll.formula}}</div>
       <div class="dice-tooltip">
@@ -19,7 +19,35 @@
           </div>
         </section>
       </div>
-      <h4 class="dice-total">{{damage}}</h4>
+      {{#iff damage '>' '0'}}
+        <h4 class="dice-total">{{damage}}</h4>
+      {{else}}
+        <h4 class="dice-total">{{localize "TWODSIX.Damage.NoRegularDamage"}}</h4>
+      {{/iff}}
     </div>
+    {{#if radRoll}}
+    <br>
+    {{localize "TWODSIX.Items.Component.RadiationDamage"}}
+    <br>
+    <div class="dice-result">
+      <div class="dice-formula">{{radRoll.formula}}</div>
+      <div class="dice-tooltip">
+        <section class="tooltip-part">
+          <div class="dice">
+            <header class="part-header flexrow">
+              <span class="part-formula">{{radRoll.formula}}</span>
+              <span class="part-total">{{radRoll.total}}</span>
+            </header>
+            <ol class="dice-rolls">
+              {{#each radDice as |die|}}
+                <li class="roll">{{die.result}}</li>
+              {{/each}}
+            </ol>
+          </div>
+        </section>
+      </div>
+      <h4 class="dice-total">{{radDamage}}</h4>
+    </div>
+    {{/if}}
   </div>
 </div>

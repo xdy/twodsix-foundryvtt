@@ -1,9 +1,10 @@
 {
   "Actor": {
-    "types": ["traveller", "ship"],
+    "types": ["traveller", "ship", "vehicle", "animal", "space-object"],
     "traveller": {
       "name": "",
       "homeWorld": "",
+      "nationality": "",
       "species": "",
       "age": {
         "value": 18,
@@ -55,83 +56,129 @@
           "value": 7,
           "damage": 0,
           "label": "Strength",
-          "shortLabel": "STR"
+          "shortLabel": "STR",
+          "displayShortLabel": ""
         },
         "dexterity": {
           "key": "dexterity",
           "value": 7,
           "damage": 0,
           "label": "Dexterity",
-          "shortLabel": "DEX"
+          "shortLabel": "DEX",
+          "displayShortLabel": ""
         },
         "endurance": {
           "key": "endurance",
           "value": 7,
           "damage": 0,
           "label": "Endurance",
-          "shortLabel": "END"
+          "shortLabel": "END",
+          "displayShortLabel": ""
         },
         "intelligence": {
           "key": "intelligence",
           "value": 7,
           "damage": 0,
           "label": "Intelligence",
-          "shortLabel": "INT"
+          "shortLabel": "INT",
+          "displayShortLabel": ""
         },
         "education": {
           "key": "education",
           "value": 7,
           "damage": 0,
           "label": "Education",
-          "shortLabel": "EDU"
+          "shortLabel": "EDU",
+          "displayShortLabel": ""
         },
         "socialStanding": {
           "key": "socialStanding",
           "value": 7,
           "damage": 0,
           "label": "Social Standing",
-          "shortLabel": "SOC"
+          "shortLabel": "SOC",
+          "displayShortLabel": ""
         },
         "psionicStrength": {
           "key": "psionicStrength",
           "value": 7,
           "damage": 0,
           "label": "Psionic Strength",
-          "shortLabel": "PSI"
+          "shortLabel": "PSI",
+          "displayShortLabel": ""
         },
         "stamina": {
           "key": "stamina",
           "value": 7,
           "damage": 0,
           "label": "Stamina",
-          "shortLabel": "STA"
+          "shortLabel": "STA",
+          "displayShortLabel": ""
         },
         "lifeblood": {
           "key": "lifeblood",
           "value": 14,
           "damage": 0,
           "label": "Lifeblood",
-          "shortLabel": "LFB"
+          "shortLabel": "LFB",
+          "displayShortLabel": ""
         },
         "alternative1": {
           "key": "alternative1",
           "value": 7,
           "damage": 0,
           "label": "Alternative 1",
-          "shortLabel": "ALT1"
+          "shortLabel": "ALT1",
+          "displayShortLabel": ""
         },
         "alternative2": {
           "key": "alternative2",
           "value": 7,
           "damage": 0,
           "label": "Alternative 2",
-          "shortLabel": "ALT2"
+          "shortLabel": "ALT2",
+          "displayShortLabel": ""
         }
+      },
+      "woundedEffect": 0,
+      "characteristicEdit": false,
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
+      },
+      "hideStoredItems": {
+        "weapon": false,
+        "armor": false,
+        "augment": false,
+        "equipment": false,
+        "consumable": false,
+        "attachment": false
       }
     },
     "ship": {
       "name": "",
+      "deckPlan": "",
+      "techLevel": 0,
       "crew": {
+        "captain": "",
+        "pilot": "",
+        "astrogator": "",
+        "engineer": "",
+        "maintenance": "",
+        "gunner": "",
+        "medic": "",
+        "admin": "",
+        "steward": "",
+        "broker": "",
+        "marine": "",
+        "other": ""
+      },
+      "crewLabel": {
         "captain": "",
         "pilot": "",
         "astrogator": "",
@@ -148,13 +195,23 @@
       "notes": "",
       "cargo": "",
       "finances": "",
-      "maintenanceCost": 0,
+      "maintenanceCost": "0",
+      "mortgageCost": "0",
+      "shipValue": "0",
+      "isMassProduced": false,
       "reqPower": {
         "systems": 0,
         "m-drive": 0,
         "j-drive": 0,
         "sensors": 0,
         "weapons": 0
+      },
+      "weightStats": {
+        "systems": 0,
+        "cargo": 0,
+        "fuel": 0,
+        "vehicles": 0,
+        "available": 0
       },
       "shipPositionActorIds": {},
       "shipStats": {
@@ -166,7 +223,8 @@
         "fuel": {
           "value": 0,
           "min": 0,
-          "max": 0
+          "max": 0,
+          "isRefined": true
         },
         "power": {
           "value": 0,
@@ -176,7 +234,10 @@
         "armor": {
           "name": "",
           "weight": "",
-          "cost": ""
+          "cost": "",
+          "value": 0,
+          "max": 0,
+          "min": 0
         },
         "mass": {
           "value": 0,
@@ -187,12 +248,245 @@
           "name": "",
           "weight": "",
           "cost": ""
+        },
+        "drives": {
+          "overdrive": false,
+          "jDrive": {
+            "rating": 0
+          },
+          "mDrive": {
+            "rating": 0
+          }
         }
+      }
+    },
+    "vehicle": {
+      "cargoList": "",
+      "cargoCapacity": "",
+      "cost": "",
+      "crew": {
+        "operators": "",
+        "passengers": ""
+      },
+      "damageStats": {
+        "armor": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "armorLabel": "",
+        "hull": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "structure": {
+          "value": 0,
+          "min": 0,
+          "max": 0
+        },
+        "threshold": {
+          "regular": 0,
+          "critical": 0
+        }
+      },
+      "docReference": "",
+      "pdfReference": {
+        "type": "",
+        "href": "",
+        "label": ""
+      },
+      "features": "",
+      "maneuver": {
+        "speed": "0",
+        "speedUnits": "km/h",
+        "range": "0",
+        "rangeUnits": "km",
+        "agility": ""
+      },
+      "skillToOperate": "",
+      "systemStatus": {
+        "cargo": "operational",
+        "cockpit": "operational",
+        "computers": "operational",
+        "electronics": "operational",
+        "limbs": "operational",
+        "propulsion": "operational",
+        "powerPlant": "operational",
+        "sensors": "operational"
+      },
+      "weaponsType": "",
+      "openVehicle": false,
+      "techLevel": "",
+      "traits": "",
+      "weight": ""
+    },
+    "animal": {
+      "name": "",
+      "homeWorld": "",
+      "animalType": {
+        "niche": "herbivore",
+        "subtype": "filter"
+      },
+      "location":"plains",
+      "size": "",
+      "numberAppearing": "1d6",
+      "reaction": {
+        "attack": "9",
+        "flee": "6"
+      },
+      "moraleDM": "",
+      "hits": {
+        "value": 21,
+        "min": 0,
+        "max": 21
+      },
+      "radiationDose": {
+        "value": 0,
+        "max": 0,
+        "min": 0
+      },
+      "encumbrance": {
+        "value": 0,
+        "max": 0
+      },
+      "primaryArmor": {
+        "value": 0
+      },
+      "secondaryArmor": {
+        "value": 0
+      },
+      "radiationProtection": {
+        "value": 0
+      },
+      "untrainedSkill": "",
+      "description": "",
+      "notes": "",
+      "characteristics": {
+        "strength": {
+          "key": "strength",
+          "value": 7,
+          "damage": 0,
+          "label": "Strength",
+          "shortLabel": "STR",
+          "displayShortLabel": ""
+        },
+        "dexterity": {
+          "key": "dexterity",
+          "value": 7,
+          "damage": 0,
+          "label": "Dexterity",
+          "shortLabel": "DEX",
+          "displayShortLabel": ""
+        },
+        "endurance": {
+          "key": "endurance",
+          "value": 7,
+          "damage": 0,
+          "label": "Endurance",
+          "shortLabel": "END",
+          "displayShortLabel": ""
+        },
+        "intelligence": {
+          "key": "intelligence",
+          "value": 7,
+          "damage": 0,
+          "label": "Intelligence",
+          "shortLabel": "INT",
+          "displayShortLabel": ""
+        },
+        "education": {
+          "key": "education",
+          "value": 7,
+          "damage": 0,
+          "label": "Instinct",
+          "shortLabel": "EDU",
+          "displayShortLabel": "INS"
+        },
+        "socialStanding": {
+          "key": "socialStanding",
+          "value": 7,
+          "damage": 0,
+          "label": "Pack",
+          "shortLabel": "SOC",
+          "displayShortLabel": "PAK"
+        },
+        "psionicStrength": {
+          "key": "psionicStrength",
+          "value": 7,
+          "damage": 0,
+          "label": "Psionic Strength",
+          "shortLabel": "PSI",
+          "displayShortLabel": ""
+        },
+        "stamina": {
+          "key": "stamina",
+          "value": 7,
+          "damage": 0,
+          "label": "Stamina",
+          "shortLabel": "STA",
+          "displayShortLabel": ""
+        },
+        "lifeblood": {
+          "key": "lifeblood",
+          "value": 14,
+          "damage": 0,
+          "label": "Lifeblood",
+          "shortLabel": "LFB",
+          "displayShortLabel": ""
+        },
+        "alternative1": {
+          "key": "alternative1",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 1",
+          "shortLabel": "ALT1",
+          "displayShortLabel": ""
+        },
+        "alternative2": {
+          "key": "alternative2",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 2",
+          "shortLabel": "ALT2",
+          "displayShortLabel": ""
+        }
+      },
+      "woundedEffect": 0,
+      "characteristicEdit": false,
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
+      }
+    },
+    "space-object": {
+      "docReference": "",
+      "pdfReference": {
+        "type": "",
+        "href": "",
+        "label": ""
+      },
+      "description": "",
+      "notes": "",
+      "damage": "3d6",
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
       }
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "trait", "consumable", "component", "ship_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -207,23 +501,31 @@
         "skillModifier": 0,
         "skill": "",
         "associatedSkillName": "",
-        "equipped": "equipped"
+        "equipped": "backpack"
+      },
+      "referenceTemplate": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        }
       }
     },
     "equipment": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
       "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "tool": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
       "useConsumableForAttack": "",
       "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -238,10 +540,12 @@
       "weaponType": "",
       "damageType": "",
       "rateOfFire": "",
-      "recoil": false
+      "recoil": false,
+      "features": "",
+      "armorPiercing": 0
     },
     "armor": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "armor": 0,
       "secondaryArmor": {
         "value": 0
@@ -251,55 +555,87 @@
       },
       "type": "armor",
       "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "location": ["inventory", "storage"],
+      "isPowered": false
     },
     "augment": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "auglocation": "None",
       "type": "augment",
       "bonus": "stat increase",
       "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": ["skillsTemplate"],
+      "templates": ["referenceTemplate", "referenceTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
       "description": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": "",
       "key": "key",
       "difficulty": "Average",
-      "rolltype": "Normal"
+      "rolltype": "Normal",
+      "trainingNotes": ""
     },
     "trait": {
-      "templates": ["skillsTemplate"],
+      "templates": ["referenceTemplate"],
       "value": 0,
       "type": "trait",
       "description": "",
       "prereq": "",
       "shortdescr": "",
       "subtype": "",
-      "reference": ""
+      "key": "key"
+    },
+    "spell": {
+      "templates": ["referenceTemplate"],
+      "value": 0,
+      "type": "spell",
+      "description": "",
+      "circle": "",
+      "duration": "",
+      "shortdescr": "",
+      "subtype": "",
+      "key": "key"
     },
     "consumable": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "currentCount": 1,
       "max": 0,
       "type": "consumable",
       "subtype": "other",
-      "location": ["inventory", "storage"]
+      "location": ["inventory", "storage"],
+      "armorPiercing": 0,
+      "bonusDamage": "",
+      "isAttachment": false
     },
     "component": {
-      "templates": ["gearTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate"],
       "subtype": "otherInternal",
       "powerDraw": 0,
       "rating": "",
       "availableQuantity": "",
+      "hits": 0,
       "damage": "",
+      "radDamage": "",
+      "range": "",
       "status": "operational",
-      "isPercentage": false
+      "weightIsPct": false,
+      "isIllegal": false,
+      "purchasePrice": "",
+      "cargoLocation": "",
+      "generatesPower": false,
+      "isRefined": false,
+      "features": "",
+      "pricingBasis": "perUnit",
+      "isBaseHull": false,
+      "rollModifier": "",
+      "rateOfFire": "",
+      "armorPiercing": 0,
+      "actorLink": "",
+      "hardened": false,
+      "associatedSkillName": ""
     },
     "ship_position": {
       "name": "",

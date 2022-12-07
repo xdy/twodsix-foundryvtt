@@ -1,7 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
-
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -14,7 +16,7 @@ class Attribute {
 
   constructor(characteristic: string, actor: TwodsixActor) {
     if (actor.type !== "ship") {
-      this.original = (<Traveller>actor.data.data).characteristics[characteristic];
+      this.original = (<Traveller>actor.system).characteristics[characteristic];
     }
   }
 
@@ -41,14 +43,16 @@ export class Stats {
   stamina: Attribute;
   lifeblood: Attribute;
   damage: number;
+  armorPiercingValue: number;
   armor: number;
   edited = false;
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
   useLifebloodStamina = false;
   useLifebloodEndurance = false;
+  useLifebloodOnly = false;
 
-  constructor(actor: TwodsixActor, damage: number) {
+  constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
@@ -56,17 +60,24 @@ export class Stats {
     this.lifeblood = new Attribute("lifeblood", actor);
     this.actor = actor;
     this.damage = damage;
+    this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = (<Traveller>actor.data.data).primaryArmor.value;
+      this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
     }
-    this.damageCharacteristics = getDamageCharacteristics();
+    this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
 
-    if (game.settings.get("twodsix", "showLifebloodStamina")) {
-      this.useLifebloodStamina = true;
-      this.useLifebloodEndurance = false;
-    } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
       this.useLifebloodStamina = false;
       this.useLifebloodEndurance = true;
+      this.useLifebloodOnly = false;
+    } else if (game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal') {
+      this.useLifebloodStamina = false;
+      this.useLifebloodEndurance = false;
+      this.useLifebloodOnly = true;
+    } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
+      this.useLifebloodStamina = true;
+      this.useLifebloodEndurance = false;
+      this.useLifebloodOnly = false;
     }
 
     this.reduceStats();
@@ -121,7 +132,7 @@ export class Stats {
   public updateActor(): void {
     this.actor.prepareData();
     for (const characteristic of this.damageCharacteristics) {
-      this[characteristic].original = (<Traveller>this.actor.data.data).characteristics[characteristic];
+      this[characteristic].original = (<Traveller>this.actor.system).characteristics[characteristic];
     }
     if (!this.edited) {
       this.reduceStats();
@@ -146,31 +157,13 @@ export class Stats {
   }
 
   public async applyDamage(): Promise<void> {
-    if (this.actor.token && this.totalCurrent() === 0) {
-      const isDead = this.actor.effects.map((e: ActiveEffect) => {
-        return e.getFlag("core", "statusId") === "dead";
-      }).includes(true);
-
-      if (!isDead) {
-        //toggle dead condition on
-        const deadEffect = CONFIG.statusEffects.find(effect => (effect.id === "dead"));
-        // @ts-ignore
-        await this.actor.token._object.toggleEffect(deadEffect, {active: true, overlay: true});
-
-        //toggle defeated if in combat
-        const fighters = game.combats?.active?.data.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.data.tokenId === this.actor.token?.data._id);
-        if (combatant !== undefined) {
-          await combatant.update({defeated: true});
-        }
-      }
-    }
-
     let charName = '';
+    const charArray = {};
     for (const characteristic of this.damageCharacteristics) {
-      charName = 'data.characteristics.' + characteristic + '.damage';
-      await this.actor.update({[charName]: this[characteristic].totalDamage()});
+      charName = 'system.characteristics.' + characteristic + '.damage';
+      charArray[charName] = this[characteristic].totalDamage();
     }
+    await this.actor.update(charArray);
   }
 }
 
@@ -293,7 +286,7 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damage} = damageData;
+  const {damageId, damage, armorPiercingValue} = damageData;
   let actor;
   if (damageData.actorId) {
     actor = game.actors?.get(damageData.actorId);
@@ -307,7 +300,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
 
-  const stats = new Stats(actor, damage);
+  const stats = new Stats(actor, damage, armorPiercingValue);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
@@ -318,7 +311,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     buttons: {
       ok: {
         label: game.i18n.localize("TWODSIX.Damage.DealDamage"),
-        icon: '<i class="fas fa-fist-raised"></i>',
+        icon: '<i class="fa-solid fa-hand-fist"></i>',
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
@@ -327,7 +320,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
         }
       },
       cancel: {
-        icon: '<i class="fas fa-times"></i>',
+        icon: '<i class="fa-solid fa-xmark"></i>',
         label: game.i18n.localize("Cancel"),
         callback: () => {
           //pass
@@ -348,11 +341,13 @@ export function destroyDamageDialog(damageId: string): void {
   });
 }
 
-export function getDamageCharacteristics(): string[] {
-  if (game.settings.get("twodsix", "showLifebloodStamina")) {
-    return ["stamina", "lifeblood"];
-  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+export function getDamageCharacteristics(actorType:string): string[] {
+  if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
     return ["endurance", "strength"];
+  } else if (actorType === "animal" && game.settings.get("twodsix", "animalsUseHits")) {
+    return ["lifeblood"];
+  } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
+    return ["stamina", "lifeblood"];
   } else {
     return ["endurance", "strength", "dexterity"];
   }

@@ -1,3 +1,973 @@
+## [2.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.0...v2.13.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* text colors on pop-outs ([#1196](https://github.com/xdy/twodsix-foundryvtt/issues/1196)) ([b713906](https://github.com/xdy/twodsix-foundryvtt/commit/b7139062324f8c3ab0fa3ada71dcea3e3b516559))
+
+# [2.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.2...v2.13.0) (2022-12-05)
+
+
+### Features
+
+* add space object ([#1194](https://github.com/xdy/twodsix-foundryvtt/issues/1194)) ([9f3bec0](https://github.com/xdy/twodsix-foundryvtt/commit/9f3bec0ec995a4b1e19f525be75cbfa4542d10e5))
+
+## [2.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.1...v2.12.2) (2022-12-03)
+
+
+### Bug Fixes
+
+* Updates to es.json translation via GitLocalize ([#1193](https://github.com/xdy/twodsix-foundryvtt/issues/1193)) ([b756973](https://github.com/xdy/twodsix-foundryvtt/commit/b7569736387f9c28eb17d429c174d9801447d6ab))
+
+## [2.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.12.0...v2.12.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* active effects tabs ([#1192](https://github.com/xdy/twodsix-foundryvtt/issues/1192)) ([0c34f84](https://github.com/xdy/twodsix-foundryvtt/commit/0c34f840da56ff61a838b9dc0a68a64aea065a29))
+
+# [2.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.1...v2.12.0) (2022-12-02)
+
+
+### Features
+
+* updates to actor sheet colors ([#1188](https://github.com/xdy/twodsix-foundryvtt/issues/1188)) ([a0b9098](https://github.com/xdy/twodsix-foundryvtt/commit/a0b9098356cb9a09afe947ccc9351abb2ce3a11d))
+
+## [2.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.11.0...v2.11.1) (2022-11-29)
+
+
+### Bug Fixes
+
+* merge equipment and tools, block junk storage ([#1189](https://github.com/xdy/twodsix-foundryvtt/issues/1189)) ([b8b0b35](https://github.com/xdy/twodsix-foundryvtt/commit/b8b0b35fa60a62af6131f8d86af10cca3bd271df))
+
+# [2.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.10.1...v2.11.0) (2022-11-27)
+
+
+### Features
+
+* add expandable roll descriptions ([#1185](https://github.com/xdy/twodsix-foundryvtt/issues/1185)) ([d7bc6b6](https://github.com/xdy/twodsix-foundryvtt/commit/d7bc6b6d10a49fd33333a1ac6a348b4aa7534927))
+
+## [2.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.10.0...v2.10.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* Various Bugs Fixes ([#1183](https://github.com/xdy/twodsix-foundryvtt/issues/1183)) ([a2b69db](https://github.com/xdy/twodsix-foundryvtt/commit/a2b69dba9abf845db993cf46653be419b1187f1f))
+
+# [2.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.2...v2.10.0) (2022-11-20)
+
+
+### Features
+
+* Add option for alternative skills in ship positions. ([#1180](https://github.com/xdy/twodsix-foundryvtt/issues/1180)) ([3f807db](https://github.com/xdy/twodsix-foundryvtt/commit/3f807db1e7a6a5f8ee4cb45d1c93bbb9344b289d))
+
+## [2.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.1...v2.9.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1178](https://github.com/xdy/twodsix-foundryvtt/issues/1178)) ([462ace8](https://github.com/xdy/twodsix-foundryvtt/commit/462ace84372862e2c94e9fe1ca4a3ca47d90c4fa))
+
+## [2.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.9.0...v2.9.1) (2022-11-14)
+
+
+### Bug Fixes
+
+* ship positions characteristic override ([#1179](https://github.com/xdy/twodsix-foundryvtt/issues/1179)) ([5122e58](https://github.com/xdy/twodsix-foundryvtt/commit/5122e58343e26ab08434a30b49a1a2e3bd7fd235))
+
+# [2.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.8.0...v2.9.0) (2022-11-12)
+
+
+### Features
+
+* add optional dodge parry modifier ([#1177](https://github.com/xdy/twodsix-foundryvtt/issues/1177)) ([37addc2](https://github.com/xdy/twodsix-foundryvtt/commit/37addc2cf5c3d840fc93b017a0011684904fe91a))
+
+# [2.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.2...v2.8.0) (2022-11-11)
+
+
+### Features
+
+* QOL improvements for consumables and other fixes - re-release of [#1174](https://github.com/xdy/twodsix-foundryvtt/issues/1174) ([#1176](https://github.com/xdy/twodsix-foundryvtt/issues/1176)) ([0650049](https://github.com/xdy/twodsix-foundryvtt/commit/0650049ca94ac4517d208a27709ee0de036db987))
+
+## [2.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.1...v2.7.2) (2022-11-10)
+
+
+### Bug Fixes
+
+* ship component listings ([#1175](https://github.com/xdy/twodsix-foundryvtt/issues/1175)) ([acd6549](https://github.com/xdy/twodsix-foundryvtt/commit/acd654990fff1a0e933bc50b6a5051dff0567b73))
+
+## [2.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.7.0...v2.7.1) (2022-11-04)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1173](https://github.com/xdy/twodsix-foundryvtt/issues/1173)) ([992c804](https://github.com/xdy/twodsix-foundryvtt/commit/992c804c2a0f765cd6fe215ae4528479df9e835a))
+
+# [2.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.8...v2.7.0) (2022-11-04)
+
+
+### Features
+
+* Improvements to roll dialog and chat message ([#1172](https://github.com/xdy/twodsix-foundryvtt/issues/1172)) ([6425608](https://github.com/xdy/twodsix-foundryvtt/commit/6425608a9d1a40ece28d847f07c662f61665cf84))
+
+## [2.6.8](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.7...v2.6.8) (2022-10-29)
+
+
+### Bug Fixes
+
+* Quick fix to prevent JOAT from drag and drop ([#1169](https://github.com/xdy/twodsix-foundryvtt/issues/1169)) ([9210f79](https://github.com/xdy/twodsix-foundryvtt/commit/9210f7953c9ce2819f782b2505af2dd3e8c54cab))
+
+## [2.6.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.6...v2.6.7) (2022-10-29)
+
+
+### Bug Fixes
+
+* allow drag drop of lists again ([#1157](https://github.com/xdy/twodsix-foundryvtt/issues/1157)) ([63d4239](https://github.com/xdy/twodsix-foundryvtt/commit/63d42397d5cd763177f4860730427f6e1d4c2a2d))
+
+## [2.6.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.5...v2.6.6) (2022-10-25)
+
+
+### Bug Fixes
+
+* Attempt at re-release after fixing release script. ([bad3e91](https://github.com/xdy/twodsix-foundryvtt/commit/bad3e91e6c2c6ced97340a132d077abc2563cfd8)), closes [#1150](https://github.com/xdy/twodsix-foundryvtt/issues/1150)
+* trailing commas and dropped skills([#1150](https://github.com/xdy/twodsix-foundryvtt/issues/1150)) ([dfc6153](https://github.com/xdy/twodsix-foundryvtt/commit/dfc61536a77b9c07f3e49c4114026da91df20700))
+
+## [2.6.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.4...v2.6.5) (2022-10-15)
+
+
+### Bug Fixes
+
+* remove attached consumables during drop ([#1156](https://github.com/xdy/twodsix-foundryvtt/issues/1156)) ([ff27202](https://github.com/xdy/twodsix-foundryvtt/commit/ff27202d8746cdebcd9e5b820890b173733e9289))
+
+## [2.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.3...v2.6.4) (2022-10-14)
+
+
+### Bug Fixes
+
+* make animals compatible with Drag Ruler ([#1155](https://github.com/xdy/twodsix-foundryvtt/issues/1155)) ([b6a2556](https://github.com/xdy/twodsix-foundryvtt/commit/b6a2556e5804dac4d39c091f1666236a9026de4e))
+
+## [2.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.2...v2.6.3) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translation updates using Weblate (French) ([#1151](https://github.com/xdy/twodsix-foundryvtt/issues/1151)) ([148d5aa](https://github.com/xdy/twodsix-foundryvtt/commit/148d5aa48f310b32e346f8e452869d8dc3fc84f3))
+
+## [2.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.1...v2.6.2) (2022-10-14)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1152](https://github.com/xdy/twodsix-foundryvtt/issues/1152)) ([2ca1bc3](https://github.com/xdy/twodsix-foundryvtt/commit/2ca1bc3f241de5a614ea5e28a942ad4b94767443))
+
+## [2.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.6.0...v2.6.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* untrained skills disappearing when dropped onto actor ([#1154](https://github.com/xdy/twodsix-foundryvtt/issues/1154)) ([32dcd30](https://github.com/xdy/twodsix-foundryvtt/commit/32dcd306bce619c659c9cb8dbdb9b496e16945ba))
+
+# [2.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.2...v2.6.0) (2022-10-12)
+
+
+### Features
+
+* Improve drag-drop of items between actors ([#1147](https://github.com/xdy/twodsix-foundryvtt/issues/1147)) ([347b0f9](https://github.com/xdy/twodsix-foundryvtt/commit/347b0f9d44b741d2308ce9625d5215bf68cf303c))
+
+## [2.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.1...v2.5.2) (2022-10-07)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1143](https://github.com/xdy/twodsix-foundryvtt/issues/1143)) ([70d1bc3](https://github.com/xdy/twodsix-foundryvtt/commit/70d1bc34f328ba99fd9a04e2ae28acbe6898fd23))
+
+## [2.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.5.0...v2.5.1) (2022-10-07)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1141](https://github.com/xdy/twodsix-foundryvtt/issues/1141)) ([3cca18a](https://github.com/xdy/twodsix-foundryvtt/commit/3cca18a5ef1a0167430b3351330c83253f7897f9))
+
+# [2.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.6...v2.5.0) (2022-10-07)
+
+
+### Features
+
+* Add encumbrance icons and modifiers ([#1135](https://github.com/xdy/twodsix-foundryvtt/issues/1135)) ([c595345](https://github.com/xdy/twodsix-foundryvtt/commit/c595345ecf6bb442f38989e4a5c7859f2f895813))
+
+## [2.4.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.5...v2.4.6) (2022-10-04)
+
+
+### Bug Fixes
+
+* Fixed animal terms ([#1138](https://github.com/xdy/twodsix-foundryvtt/issues/1138)) ([0fc645a](https://github.com/xdy/twodsix-foundryvtt/commit/0fc645a11a2c637b9dc67183203cfa9c6e860e46))
+
+## [2.4.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.4...v2.4.5) (2022-10-04)
+
+
+### Bug Fixes
+
+* Bug fixes for actor and tokens re-release of [#1139](https://github.com/xdy/twodsix-foundryvtt/issues/1139) ([#1140](https://github.com/xdy/twodsix-foundryvtt/issues/1140)) ([a819ada](https://github.com/xdy/twodsix-foundryvtt/commit/a819adaf21ea8bf70d95c2570c6cd6615f4a88f4))
+
+## [2.4.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.3...v2.4.4) (2022-10-02)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1134](https://github.com/xdy/twodsix-foundryvtt/issues/1134)) ([c973a46](https://github.com/xdy/twodsix-foundryvtt/commit/c973a4633cf10b83510dbbae019fc76b662950f8))
+
+## [2.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.2...v2.4.3) (2022-10-02)
+
+
+### Bug Fixes
+
+* hooks and ship sheet issues ([#1133](https://github.com/xdy/twodsix-foundryvtt/issues/1133)) ([306de10](https://github.com/xdy/twodsix-foundryvtt/commit/306de108da35e80db32eabdb4190d4608e8fbefc))
+
+## [2.4.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.1...v2.4.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* wound logic and macro create from item ([#1129](https://github.com/xdy/twodsix-foundryvtt/issues/1129)) ([cc1a385](https://github.com/xdy/twodsix-foundryvtt/commit/cc1a3850a26eadc474c21420459f3077370014ad))
+
+## [2.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.4.0...v2.4.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* Updates to  es.json via GitLocalize ([#1132](https://github.com/xdy/twodsix-foundryvtt/issues/1132)) ([b907b80](https://github.com/xdy/twodsix-foundryvtt/commit/b907b8034e5bdca379d279d94ce5e7f484eab3eb))
+
+# [2.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.4...v2.4.0) (2022-09-28)
+
+
+### Features
+
+* integrate pdf-pager module add optional item html and pdf links ([#1124](https://github.com/xdy/twodsix-foundryvtt/issues/1124)) ([91834fe](https://github.com/xdy/twodsix-foundryvtt/commit/91834fed8451650bb81ad1fb60f397bd06f31497))
+
+## [2.3.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.3...v2.3.4) (2022-09-24)
+
+
+### Bug Fixes
+
+* animal sheet types update ([#1127](https://github.com/xdy/twodsix-foundryvtt/issues/1127)) ([9427169](https://github.com/xdy/twodsix-foundryvtt/commit/9427169fc835004445ce1d49922da23360453ce8))
+
+## [2.3.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.2...v2.3.3) (2022-09-24)
+
+
+### Bug Fixes
+
+* Translate es.json via GitLocalize ([#1125](https://github.com/xdy/twodsix-foundryvtt/issues/1125)) ([9527e05](https://github.com/xdy/twodsix-foundryvtt/commit/9527e0592d1c7e20ae4d11aa6f3eb80f8139d8ad))
+
+## [2.3.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.1...v2.3.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* make actor sheets more robust when changing font size ([#1120](https://github.com/xdy/twodsix-foundryvtt/issues/1120)) ([d68efbd](https://github.com/xdy/twodsix-foundryvtt/commit/d68efbdf29a9bd075b372068ecbc2948c6b65967))
+
+## [2.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.3.0...v2.3.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* add setting to display reaction and morale on animal sheet ([#1121](https://github.com/xdy/twodsix-foundryvtt/issues/1121)) ([6fdf958](https://github.com/xdy/twodsix-foundryvtt/commit/6fdf9580dc64ac4c6640a6901a0c7c87f508462b))
+
+# [2.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.2.0...v2.3.0) (2022-09-16)
+
+
+### Features
+
+* add animal sheet ([#1101](https://github.com/xdy/twodsix-foundryvtt/issues/1101)) ([4e2d100](https://github.com/xdy/twodsix-foundryvtt/commit/4e2d100eba7f724d9b52c6388fe5fea9ad7f16a3))
+
+# [2.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.1.0...v2.2.0) (2022-09-12)
+
+
+### Features
+
+* add optional nationality field ([#1114](https://github.com/xdy/twodsix-foundryvtt/issues/1114)) ([9d16541](https://github.com/xdy/twodsix-foundryvtt/commit/9d165410576079fae0b69f34ac88c77acf69b902))
+
+# [2.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.2...v2.1.0) (2022-09-11)
+
+
+### Features
+
+* allow rolls to have characteristic active effects on mod and clickable component status icons ([#1109](https://github.com/xdy/twodsix-foundryvtt/issues/1109)) ([c040bfa](https://github.com/xdy/twodsix-foundryvtt/commit/c040bfa8fa8c630b49bfda31641dc2e752fbea79))
+
+## [2.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.1...v2.0.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* add duration for spells ([#1108](https://github.com/xdy/twodsix-foundryvtt/issues/1108)) ([e2cdc12](https://github.com/xdy/twodsix-foundryvtt/commit/e2cdc125eed60208d7905fc467b48d119b0bc332))
+
+## [2.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.0.0...v2.0.1) (2022-09-03)
+
+
+### Bug Fixes
+
+* bug with characteristic rolls ([#1102](https://github.com/xdy/twodsix-foundryvtt/issues/1102)) ([db7650d](https://github.com/xdy/twodsix-foundryvtt/commit/db7650dd738b0052360019682238a11d676ae254))
+
+# [2.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.4...v2.0.0) (2022-08-31)
+
+
+### Features
+
+* Twodsix now requires Foundry V10 ([#1051](https://github.com/xdy/twodsix-foundryvtt/issues/1051)) ([0300bfa](https://github.com/xdy/twodsix-foundryvtt/commit/0300bface26f1265c5bb84dbb1e924e9adca2db1))
+
+
+### BREAKING CHANGES
+
+* Twodsix now requires Foundry V10. 
+*** PLEASE BACKUP YOUR DATA BEFORE UPGRADING - There is no way to revert data to v9 format. ***
+
+This release also makes the following improvements:
+* Shifted FontAwesome from v5 to v6
+* Editor handlebar refactor - switch to ProseMirror
+* Ability to edit active effects from actor sheet icons (left-click to edit, right-click to delete)
+* Can drop vehicle onto ship sheet to automatically add corresponding component (name links to open vehicle sheet)
+* add optional count of skills and associated ranks
+* add icon summary status displays for components on ship sheet (optional)
+* switch from browser to FVTT tooltips
+* add Sword of Cepheus settings
+* add spell support for Sword of Cepheus and Barbaric! (optional)
+
+## [1.45.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.3...v1.45.4) (2022-08-31)
+
+
+### Bug Fixes
+
+* No real changes, just a final foundry v9 release. ([180544a](https://github.com/xdy/twodsix-foundryvtt/commit/180544a576de17c98209559b03f46729d5e6c579))
+
+## [1.45.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.2...v1.45.3) (2022-07-15)
+
+
+### Bug Fixes
+
+* consumables disappearing on drop or item edit ([#1059](https://github.com/xdy/twodsix-foundryvtt/issues/1059)) ([bcff8b0](https://github.com/xdy/twodsix-foundryvtt/commit/bcff8b02185f12095402edb94db98ebedfbbddcc))
+
+## [1.45.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.1...v1.45.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* Update docs.md and misc updates ([#1047](https://github.com/xdy/twodsix-foundryvtt/issues/1047)) ([d0530af](https://github.com/xdy/twodsix-foundryvtt/commit/d0530af3d65d14bcbbf7b21967b10fa8fbe21c9a))
+
+## [1.45.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.45.0...v1.45.1) (2022-06-27)
+
+
+### Bug Fixes
+
+* ship actor and initiative bug fixes for token actors ([#1045](https://github.com/xdy/twodsix-foundryvtt/issues/1045)) ([7cc209e](https://github.com/xdy/twodsix-foundryvtt/commit/7cc209ebc90057f5a39bf69458eeb36ee972b127))
+
+# [1.45.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.5...v1.45.0) (2022-06-25)
+
+
+### Features
+
+* add initiative roll to actor sheet ([#1043](https://github.com/xdy/twodsix-foundryvtt/issues/1043)) ([b92e50f](https://github.com/xdy/twodsix-foundryvtt/commit/b92e50f4385645077a63a5a6e87ff25c651ff8c0))
+
+## [1.44.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.4...v1.44.5) (2022-06-23)
+
+
+### Bug Fixes
+
+* consumable issues ([#1042](https://github.com/xdy/twodsix-foundryvtt/issues/1042)) ([21b3d3e](https://github.com/xdy/twodsix-foundryvtt/commit/21b3d3e7c1e8cc93c5c27fef912fe711ce5291bc))
+
+## [1.44.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.3...v1.44.4) (2022-06-17)
+
+
+### Bug Fixes
+
+* add cargo capacity and weight fields for vehicle sheet ([#1039](https://github.com/xdy/twodsix-foundryvtt/issues/1039)) ([a442307](https://github.com/xdy/twodsix-foundryvtt/commit/a442307c1874924cc8a30038f8801e9a8868561a))
+
+## [1.44.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.2...v1.44.3) (2022-06-16)
+
+
+### Bug Fixes
+
+* add weapon damage to NPC sheet and new fields to augment components ([#1036](https://github.com/xdy/twodsix-foundryvtt/issues/1036)) ([161894a](https://github.com/xdy/twodsix-foundryvtt/commit/161894a3e34a3cf565c275afdc47afba314c6939))
+
+## [1.44.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.1...v1.44.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* Format improvements and damage roll cleanup ([#1025](https://github.com/xdy/twodsix-foundryvtt/issues/1025)) ([ed51fb9](https://github.com/xdy/twodsix-foundryvtt/commit/ed51fb9f152deaff31e3946ebf4570c5e29b4fc4))
+
+## [1.44.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.44.0...v1.44.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* allow localization in system settings and improve vehicle skill roll logic ([#1022](https://github.com/xdy/twodsix-foundryvtt/issues/1022)) ([57b6719](https://github.com/xdy/twodsix-foundryvtt/commit/57b6719231673e8edb7c5b0e886db4565eae6f0c))
+
+# [1.44.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.4...v1.44.0) (2022-06-02)
+
+
+### Features
+
+* add vehicle sheet ([#1015](https://github.com/xdy/twodsix-foundryvtt/issues/1015)) ([7de3b75](https://github.com/xdy/twodsix-foundryvtt/commit/7de3b75d79b26c6cfe010f6b589c6087f6c7e25e))
+
+## [1.43.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.3...v1.43.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* stop multiple application of wounded conditions ([#1020](https://github.com/xdy/twodsix-foundryvtt/issues/1020)) ([4517248](https://github.com/xdy/twodsix-foundryvtt/commit/4517248f53b1afee54732a0e23030bbdb4ff45b3))
+
+## [1.43.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.2...v1.43.3) (2022-05-24)
+
+
+### Reverts
+
+* Revert "chore: Update dependencies" ([2368a37](https://github.com/xdy/twodsix-foundryvtt/commit/2368a37fd2d9f9da93846f52298bbb77e748b295))
+
+## [1.43.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.1...v1.43.2) (2022-05-24)
+
+
+### Bug Fixes
+
+* save non-empty magazines when reloading ([#1011](https://github.com/xdy/twodsix-foundryvtt/issues/1011)) ([3e46932](https://github.com/xdy/twodsix-foundryvtt/commit/3e469325e457685d7a91dd148bf60b1f17490c89))
+
+## [1.43.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.43.0...v1.43.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* improve show wounds option ([#1009](https://github.com/xdy/twodsix-foundryvtt/issues/1009)) ([ec608a4](https://github.com/xdy/twodsix-foundryvtt/commit/ec608a4b1550b4d83fee6e806b5cc905688fabed))
+
+# [1.43.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.3...v1.43.0) (2022-05-20)
+
+
+### Features
+
+* add timeframe option to skill rolls ([#1007](https://github.com/xdy/twodsix-foundryvtt/issues/1007)) ([4eb2fd1](https://github.com/xdy/twodsix-foundryvtt/commit/4eb2fd15330892264e861baf589bb583cff4cc27))
+
+## [1.42.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.2...v1.42.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* Firefox style improvements ([#1005](https://github.com/xdy/twodsix-foundryvtt/issues/1005)) ([cac475a](https://github.com/xdy/twodsix-foundryvtt/commit/cac475adcb92e1527e76f1f07c66c0afbb5bfcb1))
+
+## [1.42.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.1...v1.42.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* wounded rolls ([9825ba0](https://github.com/xdy/twodsix-foundryvtt/commit/9825ba05ec85e7badba3d41243453ab7c1478c2a))
+
+## [1.42.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.42.0...v1.42.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* component list single line layout ([#1003](https://github.com/xdy/twodsix-foundryvtt/issues/1003)) ([edfa211](https://github.com/xdy/twodsix-foundryvtt/commit/edfa21160d8295d309c11d10b45513d2404360fc))
+
+# [1.42.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.6...v1.42.0) (2022-05-13)
+
+
+### Features
+
+* Add default unarmed attack to new characters ([#1002](https://github.com/xdy/twodsix-foundryvtt/issues/1002)) ([10c694e](https://github.com/xdy/twodsix-foundryvtt/commit/10c694e28fc4a5e3eeedec49dd1893727d467d25))
+
+## [1.41.6](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.5...v1.41.6) (2022-05-11)
+
+
+### Bug Fixes
+
+* clean-up actor sheet layout ([#999](https://github.com/xdy/twodsix-foundryvtt/issues/999)) ([c38a4a6](https://github.com/xdy/twodsix-foundryvtt/commit/c38a4a6a65b6c504ba4852453924583b3efaee14))
+
+## [1.41.5](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.4...v1.41.5) (2022-05-11)
+
+
+### Bug Fixes
+
+* don't auto roll damage for components without damage field ([#1000](https://github.com/xdy/twodsix-foundryvtt/issues/1000)) ([32d6202](https://github.com/xdy/twodsix-foundryvtt/commit/32d6202a011363ea750530fb0a39fdd0967a51c5))
+
+## [1.41.4](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.3...v1.41.4) (2022-05-09)
+
+
+### Bug Fixes
+
+* Missing actor errors with ship positions ([#994](https://github.com/xdy/twodsix-foundryvtt/issues/994)) ([952309e](https://github.com/xdy/twodsix-foundryvtt/commit/952309eb4c06330fa95a2be647854be3dbe7f006))
+
+## [1.41.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.2...v1.41.3) (2022-05-08)
+
+
+### Bug Fixes
+
+* Missing Untrained pseudo skill ([bdf4948](https://github.com/xdy/twodsix-foundryvtt/commit/bdf49485fd600c55daa19a78308477f4a43884f5))
+
+## [1.41.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.1...v1.41.2) (2022-05-07)
+
+
+### Bug Fixes
+
+* Allow untrained skills to show on skill list  ([#993](https://github.com/xdy/twodsix-foundryvtt/issues/993)) ([c12f2f8](https://github.com/xdy/twodsix-foundryvtt/commit/c12f2f8795b391587771574511686c7af92c60bf))
+
+## [1.41.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.41.0...v1.41.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* allow skills to be dropped with level if >=0 ([#992](https://github.com/xdy/twodsix-foundryvtt/issues/992)) ([cdfb69a](https://github.com/xdy/twodsix-foundryvtt/commit/cdfb69aca965c5173b726f495233b15e7f50a20d))
+
+# [1.41.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.1...v1.41.0) (2022-05-06)
+
+
+### Features
+
+* add option to include effect with ship weapon damage ([#991](https://github.com/xdy/twodsix-foundryvtt/issues/991)) ([be134e6](https://github.com/xdy/twodsix-foundryvtt/commit/be134e66c13f9065d9111eeb112b09603b85b47c))
+
+## [1.40.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.40.0...v1.40.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* add powered armor ([#990](https://github.com/xdy/twodsix-foundryvtt/issues/990)) ([1d8b395](https://github.com/xdy/twodsix-foundryvtt/commit/1d8b395f7bc434f9b23b544d5bf9c1329ed66741))
+
+# [1.40.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.3...v1.40.0) (2022-05-05)
+
+
+### Features
+
+* add training notes field and progress indicator ([#989](https://github.com/xdy/twodsix-foundryvtt/issues/989)) ([eaff36a](https://github.com/xdy/twodsix-foundryvtt/commit/eaff36a8e2ae7c2bd5282ce64a05a7b4f7378323))
+
+## [1.39.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.2...v1.39.3) (2022-05-04)
+
+
+### Bug Fixes
+
+* roll settings for ship actions ([#987](https://github.com/xdy/twodsix-foundryvtt/issues/987)) ([eb0936f](https://github.com/xdy/twodsix-foundryvtt/commit/eb0936ff96874b5924bfb6eda1b63cfb4dc88e73))
+
+## [1.39.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.1...v1.39.2) (2022-05-02)
+
+
+### Bug Fixes
+
+* set OTHER system movement to CE type ([#988](https://github.com/xdy/twodsix-foundryvtt/issues/988)) ([9837444](https://github.com/xdy/twodsix-foundryvtt/commit/98374443ef061d23b0a7c902d843edb29abd7544))
+
+## [1.39.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.39.0...v1.39.1) (2022-04-30)
+
+
+### Bug Fixes
+
+* toggle fuel type ([#986](https://github.com/xdy/twodsix-foundryvtt/issues/986)) ([2e90b7d](https://github.com/xdy/twodsix-foundryvtt/commit/2e90b7d063adda00bcaf1b944b927f5db0b41c4d))
+
+# [1.39.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.1...v1.39.0) (2022-04-29)
+
+
+### Features
+
+* drag ruler integration ([#984](https://github.com/xdy/twodsix-foundryvtt/issues/984)) ([093d386](https://github.com/xdy/twodsix-foundryvtt/commit/093d3861b1dbb4f6c9a34610d5c388ff39b59ada))
+
+## [1.38.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.38.0...v1.38.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* movement units ([#983](https://github.com/xdy/twodsix-foundryvtt/issues/983)) ([ac356a1](https://github.com/xdy/twodsix-foundryvtt/commit/ac356a1565c99af5146825ea418ce181ab5af8c1))
+
+# [1.38.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.37.0...v1.38.0) (2022-04-25)
+
+
+### Features
+
+* Include User Macros in Compendium ([#981](https://github.com/xdy/twodsix-foundryvtt/issues/981)) ([f1a11ce](https://github.com/xdy/twodsix-foundryvtt/commit/f1a11ce6a98e1e0f64e70184713335a6493bd371))
+
+# [1.37.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.36.0...v1.37.0) (2022-04-21)
+
+
+### Features
+
+* add damage roll and localization for components ([#973](https://github.com/xdy/twodsix-foundryvtt/issues/973)) ([8581ece](https://github.com/xdy/twodsix-foundryvtt/commit/8581ece4cc7e5d672e67d7ad59ac807c5c251d14))
+
+# [1.36.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.35.1...v1.36.0) (2022-04-18)
+
+
+### Features
+
+* add max encumbrance calc for traveller and range field for armament components  ([#969](https://github.com/xdy/twodsix-foundryvtt/issues/969)) ([3ea3e19](https://github.com/xdy/twodsix-foundryvtt/commit/3ea3e1959d7c63becb8e90b71230495ead1ca05a))
+
+## [1.35.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.35.0...v1.35.1) (2022-04-18)
+
+
+### Bug Fixes
+
+* add missing roll data ([#971](https://github.com/xdy/twodsix-foundryvtt/issues/971)) ([00d1dcd](https://github.com/xdy/twodsix-foundryvtt/commit/00d1dcd606ca9588cb135c34a7c6ee4048e8ebd1))
+
+# [1.35.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.3...v1.35.0) (2022-04-17)
+
+
+### Features
+
+* Drag and drop items and damage to traveller icons ([#961](https://github.com/xdy/twodsix-foundryvtt/issues/961)) ([59e3312](https://github.com/xdy/twodsix-foundryvtt/commit/59e3312fb94ccdd66ce437d17d84fc5d257f53ea))
+
+## [1.34.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.2...v1.34.3) (2022-04-16)
+
+
+### Bug Fixes
+
+* bad token update arguments and add flavor to ship skill rolls ([#967](https://github.com/xdy/twodsix-foundryvtt/issues/967)) ([88295ff](https://github.com/xdy/twodsix-foundryvtt/commit/88295ffe4b558e3038f8c159dee2559871f1de0b))
+
+## [1.34.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.1...v1.34.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* sheet minimization margins and small smaller format errors ([#966](https://github.com/xdy/twodsix-foundryvtt/issues/966)) ([e65d6a6](https://github.com/xdy/twodsix-foundryvtt/commit/e65d6a669fc0d09f7d6111bed302c1903e846c7d))
+
+## [1.34.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.34.0...v1.34.1) (2022-04-13)
+
+
+### Bug Fixes
+
+* conflict with module icons and sheet headers ([a93b39d](https://github.com/xdy/twodsix-foundryvtt/commit/a93b39d3e1fa2d8878fc6c4e4c28963a06fa5138))
+
+# [1.34.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.33.0...v1.34.0) (2022-04-12)
+
+
+### Features
+
+* improve item sheet layouts ([#956](https://github.com/xdy/twodsix-foundryvtt/issues/956)) ([19141d2](https://github.com/xdy/twodsix-foundryvtt/commit/19141d2223c2841c0de930699dc9ae797063c1e1))
+
+# [1.33.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.1...v1.33.0) (2022-04-10)
+
+
+### Features
+
+* make token attributes changable ([#957](https://github.com/xdy/twodsix-foundryvtt/issues/957)) ([b8268f1](https://github.com/xdy/twodsix-foundryvtt/commit/b8268f1fcf6b80eaff6df56708c9f0f30a245a0f))
+
+## [1.32.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.32.0...v1.32.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* allow more pricing options for hull component ([#947](https://github.com/xdy/twodsix-foundryvtt/issues/947)) ([5ea459b](https://github.com/xdy/twodsix-foundryvtt/commit/5ea459bd664b08319d35e3b977b7cee4418508a2))
+
+# [1.32.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.2...v1.32.0) (2022-04-06)
+
+
+### Features
+
+* add chat rolls to position actions ([#953](https://github.com/xdy/twodsix-foundryvtt/issues/953)) ([7f1f94e](https://github.com/xdy/twodsix-foundryvtt/commit/7f1f94e88c856089211662275a47588f66b7856b))
+
+## [1.31.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.1...v1.31.2) (2022-04-05)
+
+
+### Bug Fixes
+
+* Remove fixed font style from paragraphs in text fields ([ab46852](https://github.com/xdy/twodsix-foundryvtt/commit/ab468520120b2b42c325253f05034ed6f528c807))
+
+## [1.31.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.31.0...v1.31.1) (2022-04-02)
+
+
+### Bug Fixes
+
+* get rid of extra comma on npc skill list ([#945](https://github.com/xdy/twodsix-foundryvtt/issues/945)) ([ca34a79](https://github.com/xdy/twodsix-foundryvtt/commit/ca34a79e5afcadbc80eaa89d922824b0a614d0b9))
+
+# [1.31.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.30.0...v1.31.0) (2022-04-02)
+
+
+### Features
+
+* add roll modifiers for wounded state ([#793](https://github.com/xdy/twodsix-foundryvtt/issues/793)) ([80a1831](https://github.com/xdy/twodsix-foundryvtt/commit/80a18313c1f4ef616c24fe91c33af3ebf5685e95))
+
+# [1.30.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.1...v1.30.0) (2022-04-01)
+
+
+### Features
+
+* add armor section to npc sheet ([#943](https://github.com/xdy/twodsix-foundryvtt/issues/943)) ([b7eb6f6](https://github.com/xdy/twodsix-foundryvtt/commit/b7eb6f6395333c82db7e6ec08653f46f3666483f))
+
+## [1.29.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.29.0...v1.29.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* specifying skills for ship actions ([#942](https://github.com/xdy/twodsix-foundryvtt/issues/942)) ([466ae7a](https://github.com/xdy/twodsix-foundryvtt/commit/466ae7a75c0de6a569ee08e0f151f164ce72d856))
+
+# [1.29.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.1...v1.29.0) (2022-03-25)
+
+
+### Features
+
+* add editable crew titles ([#933](https://github.com/xdy/twodsix-foundryvtt/issues/933)) ([529706d](https://github.com/xdy/twodsix-foundryvtt/commit/529706de2387468deb5200cf4176f591e35d484d))
+
+## [1.28.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.28.0...v1.28.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* sort consumables on actor sheet by name ([#931](https://github.com/xdy/twodsix-foundryvtt/issues/931)) ([8e17ab8](https://github.com/xdy/twodsix-foundryvtt/commit/8e17ab84d82513eae36d164eee9e4f2c32e52563))
+
+# [1.28.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.1...v1.28.0) (2022-03-24)
+
+
+### Features
+
+* add traits to NPC sheet ([#930](https://github.com/xdy/twodsix-foundryvtt/issues/930)) ([0039b6d](https://github.com/xdy/twodsix-foundryvtt/commit/0039b6d536d637570dcdc9201d473f08b19aacc6))
+
+## [1.27.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.27.0...v1.27.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* does not calc hull component as pct of hull value correctly ([755d35e](https://github.com/xdy/twodsix-foundryvtt/commit/755d35e773a8fb30952b370fb03cabc62ae7ca6f))
+
+# [1.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.26.0...v1.27.0) (2022-03-23)
+
+
+### Features
+
+* add pricing for components ([5470666](https://github.com/xdy/twodsix-foundryvtt/commit/54706666ed764cd1559a3d2e4e1d820db33de41e))
+
+# [1.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.3...v1.26.0) (2022-03-15)
+
+
+### Features
+
+* display trait info on name click ([#921](https://github.com/xdy/twodsix-foundryvtt/issues/921)) ([e775c41](https://github.com/xdy/twodsix-foundryvtt/commit/e775c41b33bef77b8a622753b95c04f1734b10de))
+
+## [1.25.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.2...v1.25.3) (2022-03-14)
+
+
+### Bug Fixes
+
+* Quality of life improvements ([#919](https://github.com/xdy/twodsix-foundryvtt/issues/919)) ([24a1900](https://github.com/xdy/twodsix-foundryvtt/commit/24a19009892d7a9bd1bac89562eca319988742a1))
+
+## [1.25.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.1...v1.25.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* Use Untrained skill for ship position rolls ([00ded01](https://github.com/xdy/twodsix-foundryvtt/commit/00ded013eec1e7a8517822c48ccf67c282dabdc8))
+
+## [1.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.25.0...v1.25.1) (2022-03-12)
+
+
+### Bug Fixes
+
+* adjust ship image to fit within image frame ([778472b](https://github.com/xdy/twodsix-foundryvtt/commit/778472beb4ecfc46d1c107e00aa4ecae790500b8))
+
+# [1.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.2...v1.25.0) (2022-03-12)
+
+
+### Features
+
+* Re-release ship sheet update ([839b13d](https://github.com/xdy/twodsix-foundryvtt/commit/839b13db97936de6b7a94eb005def120f0805385))
+
+## [1.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.1...v1.24.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* make bold and italics fonts work again ([#909](https://github.com/xdy/twodsix-foundryvtt/issues/909)) ([dd07ba3](https://github.com/xdy/twodsix-foundryvtt/commit/dd07ba3b38f309f1a2886d73f2e498511a3f7ec8))
+
+## [1.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.24.0...v1.24.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* adjust for missing bold font ([#910](https://github.com/xdy/twodsix-foundryvtt/issues/910)) ([5b764f6](https://github.com/xdy/twodsix-foundryvtt/commit/5b764f68e96d2a34e2188bd97c7b6595786a0f00))
+
+# [1.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.23.0...v1.24.0) (2022-03-06)
+
+
+### Features
+
+* flexible skill names ([e206e0e](https://github.com/xdy/twodsix-foundryvtt/commit/e206e0e14cf0144e4f6ecb9e500ed1b3e9996d21)), closes [#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)
+
+# [1.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.22.0...v1.23.0) (2022-03-03)
+
+
+### Features
+
+* add buttons to component hits list ([#905](https://github.com/xdy/twodsix-foundryvtt/issues/905)) ([160b1e4](https://github.com/xdy/twodsix-foundryvtt/commit/160b1e4f99fed44aa390c2224a26d39677803eb2))
+
+# [1.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.21.0...v1.22.0) (2022-03-02)
+
+
+### Features
+
+* split hits and damage for ship components ([#904](https://github.com/xdy/twodsix-foundryvtt/issues/904)) ([a07ff39](https://github.com/xdy/twodsix-foundryvtt/commit/a07ff39a01e4b19dbb5e9ca029ba36952d6b6d88))
+
+# [1.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.1...v1.21.0) (2022-02-28)
+
+
+### Features
+
+* add damage rolls from ship sheet and add prompt for all direct damage rolls ([#899](https://github.com/xdy/twodsix-foundryvtt/issues/899)) ([1b875e6](https://github.com/xdy/twodsix-foundryvtt/commit/1b875e6e37677b788f52db03cc6ba502aabecf90))
+
+## [1.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.20.0...v1.20.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* update pointer help text ([#898](https://github.com/xdy/twodsix-foundryvtt/issues/898)) ([ccbe2ee](https://github.com/xdy/twodsix-foundryvtt/commit/ccbe2ee75721ed90b26677f961716c10235a93ae))
+
+# [1.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.19.0...v1.20.0) (2022-02-25)
+
+
+### Features
+
+* add option to show icons in bio ([#897](https://github.com/xdy/twodsix-foundryvtt/issues/897)) ([08c475d](https://github.com/xdy/twodsix-foundryvtt/commit/08c475df85db298a081856b4bbfd55535453d077))
+
+# [1.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.18.0...v1.19.0) (2022-02-18)
+
+
+### Features
+
+* alternative displays of characteristics ([#889](https://github.com/xdy/twodsix-foundryvtt/issues/889)) ([4c18d65](https://github.com/xdy/twodsix-foundryvtt/commit/4c18d65bf506254515abf14398ff9a96ba33c0c3))
+
+# [1.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.2...v1.18.0) (2022-02-15)
+
+
+### Features
+
+* Improvements to large text inputs ([#881](https://github.com/xdy/twodsix-foundryvtt/issues/881)) ([2c4648d](https://github.com/xdy/twodsix-foundryvtt/commit/2c4648def63d10027c86d48152defb4239b18299))
+
+## [1.17.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.1...v1.17.2) (2022-02-15)
+
+
+### Bug Fixes
+
+* force cut and paste for contenteditables to be plain text ([#886](https://github.com/xdy/twodsix-foundryvtt/issues/886)) ([ce6c846](https://github.com/xdy/twodsix-foundryvtt/commit/ce6c846579172044f4cdda6bbfbd67edc33c0248))
+
+## [1.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.17.0...v1.17.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* NPC image aspect ratio ([#882](https://github.com/xdy/twodsix-foundryvtt/issues/882)) ([b15cd87](https://github.com/xdy/twodsix-foundryvtt/commit/b15cd8718fe86345a4e7aec69ca3e01ff845518c))
+
+# [1.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.16.0...v1.17.0) (2022-02-11)
+
+
+### Features
+
+* revise ship component listing ([#877](https://github.com/xdy/twodsix-foundryvtt/issues/877)) ([962beff](https://github.com/xdy/twodsix-foundryvtt/commit/962beffc39a10a00e86d48b425054a2de458fd49))
+
+# [1.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.15.0...v1.16.0) (2022-02-08)
+
+
+### Features
+
+* add optional document references ([#876](https://github.com/xdy/twodsix-foundryvtt/issues/876)) ([8017593](https://github.com/xdy/twodsix-foundryvtt/commit/8017593ec832eca3c714d398e40d705c287ceb18))
+
+# [1.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.14.0...v1.15.0) (2022-02-07)
+
+
+### Features
+
+* Add movement rate to traveller sheet ([#869](https://github.com/xdy/twodsix-foundryvtt/issues/869)) ([e3d9439](https://github.com/xdy/twodsix-foundryvtt/commit/e3d943912ed580efbace0d60b91d33197400a9dc))
+
+# [1.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.13.0...v1.14.0) (2022-02-04)
+
+
+### Features
+
+* add cargo management ([c3273a2](https://github.com/xdy/twodsix-foundryvtt/commit/c3273a2af98f7552975cb1f7d33d56a07c77d59e))
+
+# [1.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.2...v1.13.0) (2022-02-04)
+
+
+### Features
+
+* add weight management options ([#829](https://github.com/xdy/twodsix-foundryvtt/issues/829)) ([737c2ce](https://github.com/xdy/twodsix-foundryvtt/commit/737c2cec57d3488e0600277d24ae5c4c81ea55b0))
+
+## [1.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.1...v1.12.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* Make npc sheet work with ce autofire rules ([#864](https://github.com/xdy/twodsix-foundryvtt/issues/864)) ([6f439a7](https://github.com/xdy/twodsix-foundryvtt/commit/6f439a7f59704f2fc9245bd05bb8b2436173125f))
+
+## [1.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.12.0...v1.12.1) (2022-02-02)
+
+
+### Bug Fixes
+
+* npc sheet fixes ([#858](https://github.com/xdy/twodsix-foundryvtt/issues/858)) ([4549d61](https://github.com/xdy/twodsix-foundryvtt/commit/4549d61ee41c9bada5ac2f976bd3305f846e6fcb))
+
+# [1.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.11.1...v1.12.0) (2022-02-01)
+
+
+### Features
+
+* Add an NPC sheet ([#857](https://github.com/xdy/twodsix-foundryvtt/issues/857)) ([379bd85](https://github.com/xdy/twodsix-foundryvtt/commit/379bd8534184b0eb2be3450cd51f9dcc2525aafc))
+
+## [1.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.11.0...v1.11.1) (2022-01-30)
+
+
+### Bug Fixes
+
+* allow Tokenizer module to work with ship sheet ([#851](https://github.com/xdy/twodsix-foundryvtt/issues/851)) ([78789df](https://github.com/xdy/twodsix-foundryvtt/commit/78789dfe9f3c39c218f3e7021160ffd8406e7de2))
+
+# [1.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.10.1...v1.11.0) (2022-01-30)
+
+
+### Features
+
+* add armor piercing feature on weapons and consumables ([#847](https://github.com/xdy/twodsix-foundryvtt/issues/847)) ([5694a34](https://github.com/xdy/twodsix-foundryvtt/commit/5694a34ee5b8afed8fc51237e4126e7e01ca8a72))
+
+## [1.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.10.0...v1.10.1) (2022-01-29)
+
+
+### Bug Fixes
+
+* error with if statement ([#849](https://github.com/xdy/twodsix-foundryvtt/issues/849)) ([c24cf7b](https://github.com/xdy/twodsix-foundryvtt/commit/c24cf7b3eea9e3fec7788c710870529cb448b888))
+
+# [1.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.3...v1.10.0) (2022-01-29)
+
+
+### Features
+
+* show difficulty values along with text ([#848](https://github.com/xdy/twodsix-foundryvtt/issues/848)) ([b52d8e7](https://github.com/xdy/twodsix-foundryvtt/commit/b52d8e725c2819bb49711a181c82645b285da4bc))
+
+## [1.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.2...v1.9.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* Tidy UI Module tab issue ([#843](https://github.com/xdy/twodsix-foundryvtt/issues/843)) ([c5538bd](https://github.com/xdy/twodsix-foundryvtt/commit/c5538bdf29473ad6401cb01dc8b22e9b80aa7613))
+
+## [1.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.1...v1.9.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* show skill roll dialog for macros & padding issues ([#842](https://github.com/xdy/twodsix-foundryvtt/issues/842)) ([b939ea2](https://github.com/xdy/twodsix-foundryvtt/commit/b939ea234e64c6306fe1443e580f65111013fee8))
+
+## [1.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.9.0...v1.9.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* FVTT v9 patch 2 style fix ([#839](https://github.com/xdy/twodsix-foundryvtt/issues/839)) ([aef3a5d](https://github.com/xdy/twodsix-foundryvtt/commit/aef3a5d1ed02564006c807c84b552a93b062a2ff))
+
+# [1.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.2...v1.9.0) (2022-01-26)
+
+
+### Features
+
+* add a deck plan hyperlink for ship ([#836](https://github.com/xdy/twodsix-foundryvtt/issues/836)) ([e680695](https://github.com/xdy/twodsix-foundryvtt/commit/e6806951f6843ec584a152100827ff6718ea2b78))
+
+## [1.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.1...v1.8.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* Advanced Macros Not working ([#835](https://github.com/xdy/twodsix-foundryvtt/issues/835)) ([371a6cd](https://github.com/xdy/twodsix-foundryvtt/commit/371a6cddec84203a6bae05d9346a0584feb85190))
+
+## [1.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v1.8.0...v1.8.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* This commit fixes a bug with our discord announcments. ([#827](https://github.com/xdy/twodsix-foundryvtt/issues/827)) ([1d98fec](https://github.com/xdy/twodsix-foundryvtt/commit/1d98fec679a4b771aa149b20791bfb3a7341c33d))
+
 # [1.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v1.7.2...v1.8.0) (2022-01-21)
 
 

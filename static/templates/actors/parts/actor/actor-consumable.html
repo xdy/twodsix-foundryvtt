@@ -1,17 +1,25 @@
+{{#unless system.isAttachment}}
 <div class="consumable-row" data-consumable-id="{{id}}">
   <div class="wrapper">
     {{name}}:
-    {{#with data.data}}
+    {{#with system}}
     <span class="consumable-count">
       <span>{{currentCount}}/{{max}}</span>
       <span class="combined-buttons">
-        <button class="left-button adjust-consumable" {{#iff currentCount "===" 0}}disabled{{/iff}} data-value="1">-</button>
-        <button class="right-button adjust-consumable" {{#iff currentCount "===" max}}disabled{{/iff}} data-value="-1">+</button>
+        <button class="left-button adjust-consumable" {{#iff currentCount "<=" 0}}disabled{{/iff}} data-value="1">-</button>
+        <button class="right-button adjust-consumable" {{#iff currentCount ">=" max}}disabled{{/iff}} data-value="-1">+</button>
       </span>
     </span>
-    <button {{#iff currentCount "===" max}}disabled{{/iff}} class="refill-button">
+    <button {{#iff currentCount '>=' max}}disabled{{/iff}} class="refill-button">
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
   </div>
 </div>
+{{else}}
+<div class="consumable-row" data-consumable-id="{{id}}">
+  <div class="wrapper">
+    {{name}}
+  </div>
+</div>
+{{/unless}}

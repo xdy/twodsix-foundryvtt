@@ -11,9 +11,14 @@
   "Routine": "Routine",
   "Simple": "Simple",
   "TWODSIX": {
+    "ActiveEffects": {
+      "DeleteEffect": "Remove Active Effect",
+      "ConfirmDelete": "Do you really want to delete effect?"
+    },
     "Damage": {
       "DealDamage": "Deal damage",
       "Damage": "Damage",
+      "AP": "AP",
       "TotalDamage": "Total damage",
       "Characteristics": "Characteristics",
       "Max": "Max",
@@ -23,7 +28,9 @@
       "ResultingStat": "Resulting stat",
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
-      "DealDamageTo": "Deal damage to _ACTOR_NAME_"
+      "DealDamageTo": "Deal damage to _ACTOR_NAME_",
+      "DamageFormula": "Damage Formula",
+      "NoRegularDamage": "No Regular Damage"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
@@ -49,6 +56,7 @@
         "ALT1": "ALT1",
         "ALT2": "ALT2"
       },
+      "CharacteristicEdit": "Toggle Edit Mode for Characteristic Short Names",
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
@@ -60,11 +68,14 @@
       },
       "Gender": "Gender",
       "HeroPoints": "Hero Points",
+      "Hits": "Hits",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
       "Stamina": "Stamina",
+      "Endurance": "Endurance",
       "RadiationExposure": "Radiation Exposure",
       "HomeWorld": "Home world",
+      "Nationality": "Nationality",
       "Info": {
         "ALLIES": "ALLIES",
         "BIOGRAPHY": "BIOGRAPHY",
@@ -73,34 +84,48 @@
         "ENEMIES": "ENEMIES"
       },
       "Items": {
+        "Amount": "Amount",
         "ARMOR": "ARMOR",
+        "ATTACHMENTS": "ATTACHMENTS",
         "AUGMENTS": "AUGMENTS",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
         "CreateItem": "Create Item",
         "Damage": "Damage",
         "DeleteItem": "Delete Item",
+        "DisplayStored": "Displaying stored items",
+        "HideStored": "Hiding stored items",
         "EQUIPMENT": "EQUIPMENT",
+        "EQUIPMENT_TOOLS": "EQUIPMENT & TOOLS",
         "EditItem": "Edit Item",
         "Effect": "Effect",
         "Location": "Location",
         "Name": "Name",
+        "QuantityToTransfer": "Quantity to Transfer",
         "Qty": "Qty",
         "Range": "Range",
         "Refill": "Refill",
         "Reload": "Reload",
+        "SPELLS": "SPELLS",
+        "Spells": "Spells",
         "ShortDescr": "Short Descr",
         "Subtype": "Type",
         "TRAITS": "TRAITS",
+        "Traits": "Traits",
+        "Transfer": "Transfer Items",
         "TL": "TL",
+        "TechLevel": "Tech Level",
         "Value": "Value",
         "WEAPONS": "WEAPONS",
+        "Weapons": "Weapons",
         "Weight": "Wt"
       },
       "Notes": {
-        "NOTES": "CHARACTER NOTES"
+        "NOTES": "CHARACTER NOTES",
+        "Notes": "Character Notes"
       },
       "Rolling": "Rolling",
       "Skills": {
@@ -113,9 +138,19 @@
         "SkillName": "Skill Name",
         "Total": "Total",
         "Untrained": "Untrained",
-        "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes a difficulty of 8",
+        "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes an average difficulty of 6 or 8",
         "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
-        "JOAT": "Jack of all trades"
+        "JOAT": "Jack of all trades",
+        "Timeframe": {
+          "none": "---",
+          "secs": "second(s)",
+          "mins": "minute(s)",
+          "hrs": "hour(s)",
+          "days": "day(s)",
+          "weeks": "week(s)",
+          "months": "month(s)",
+          "rounds": "round(s)"
+        }
       },
       "Species": "Species",
       "Tabs": {
@@ -126,14 +161,110 @@
         "Skills": "Skills"
       },
       "UnknownActorType": "Unknown actor type",
-      "using": "using"
+      "using": "using",
+      "Movement": {
+        "MovementConfig": "Configure Movement Speed",
+        "MovementConfigHint": "Configure the movement speed and special movement attributes of this creature.",
+        "MovementWalk": "Walk",
+        "MovementBurrow": "Burrow",
+        "MovementClimb": "Climb",
+        "MovementHover": "Hover",
+        "MovementFly": "Fly",
+        "MovementSwim": "Swim",
+        "MovementUnits": "Units",
+        "DistFt": "Feet",
+        "DistKm": "Kilometers",
+        "DistM": "Meters",
+        "DistMi": "Miles",
+        "DistPc": "Parsecs",
+        "DistGU": "Grid Units",
+        "MovementRate": "Movement Rate"
+      },
+      "CharDisplay": {
+        "Base": "Base",
+        "Alternate": "Alternate",
+        "All": "All"
+      }
+    },
+    "Animal": {
+      "Niche": "Niche",
+      "NicheType": {
+        "Herbivore": "Herbivore",
+        "Omnivore": "Omnivore",
+        "Carnivore": "Carnivore",
+        "Scavenger": "Scavenger",
+        "Other": "Other"
+      },
+      "Type": "Type",
+      "Subtype": {
+        "Filter": "Filter",
+        "Intermittent": "Intermittent",
+        "Grazer": "Grazer",
+        "Gatherer": "Gatherer",
+        "Hunter": "Hunter",
+        "Eater": "Eater",
+        "Pouncer": "Pouncer",
+        "Chaser": "Chaser",
+        "Trapper": "Trapper",
+        "Killer": "Killer",
+        "Hijacker": "Hijacker",
+        "Intimidator": "Intimidator",
+        "CarrionEater": "Carrion-Eater",
+        "Reducer": "Reducer",
+        "Siren": "Siren"
+      },
+      "Locations": {
+        "CityUrban": "City or Urban",
+        "PlainsGrassland": "Plains or Grassland",
+        "HillsMountains": "Hills or Mountains",
+        "DesertBadlands": "Desert or Badlands",
+        "SwampAquatic": "Swamp or Aquatic",
+        "ForestJungle": "Forest or Jungle"
+      },
+      "Location": "Location",
+      "AnimalNotes": "Animal Notes",
+      "AttackWeapons": "Attacks / Weapons",
+      "Reaction": "Reaction Roll",
+      "Attack": "Attack",
+      "Flee": "Flee",
+      "AttacksMessage": "Animal attacks party!",
+      "FleesMessage": "Animal flees from party!",
+      "NoReactionMessage": "Animal does not react",
+      "MoraleRoll": "Morale Roll",
+      "MoraleDM": "Morale DM",
+      "Retreat": "Retreat",
+      "FightingWithdrawal": "Fighting Withdrawl",
+      "KeepFighting": "Keep Fighting",
+      "Advance": "Advance",
+      "FightToTheDeath": "Fight to The Death!"
     },
     "Chat": {
       "Roll": {
-        "Difficulty": "Roll difficulty",
-        "Mode": "Roll mode",
+        "Difficulty": "Difficulty",
+        "Mode": "Mode",
         "OtherModifiers": "Other modifiers",
-        "Type": "Roll type"
+        "Type": "Type",
+        "RollDetails": "Roll Details",
+        "Timeframe": "Timeframe",
+        "RollFormula": "Roll Formula",
+        "Units": "Units",
+        "taskDuration": "The task takes _TIME_ _UNITS_ to complete.",
+        "RollModifiers": "Roll Modifiers",
+        "SkillModifier": "Skill Level",
+        "ItemModifier": "Item Bonus",
+        "ROF": "Rate-of-Fire",
+        "Wounds": "Wounds",
+        "Encumbered": "Encumbered",
+        "CharacteristicModifier": "Characteristic Modifier",
+        "Conditions": "Condition Modifiers",
+        "DodgeParry": "Dodge/Parry Modifier",
+        "Custom": "Custom",
+        "Modifier": "Modifier",
+        "Description": "Description",
+        "DM": "DM",
+        "Characteristic": "Characteristic",
+        "Condition": "Condition",
+        "Attack": "Attack"
       }
     },
     "Create": "Create",
@@ -143,10 +274,14 @@
     "Items": {
       "Encumbrance": "Encumbrance",
       "Enc": "Enc",
+      "DocumentReference": "Document Reference",
+      "Link": "Link",
+      "DeleteReference": "Delete Reference",
       "Armor": {
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
-        "RadProt": "Rad Prot"
+        "RadProt": "Rad Protection",
+        "IsPowered": "Powered Armor"
       },
       "Augmentation": {
         "Arms": "Arms",
@@ -164,8 +299,9 @@
         "armament": "armament",
         "armor": "armor",
         "bridge": "bridge",
-        "cargo": "cargo-area",
+        "cargo": "cargo",
         "computer": "computer",
+        "dock": "dock",
         "drive": "drive",
         "drone": "drone",
         "electronics": "electronics",
@@ -176,7 +312,8 @@
         "sensor": "sensor",
         "shield": "shield",
         "software": "software",
-        "vehicle": "vehicle",
+        "storage": "storage",
+        "vehicle": "vehicle & craft",
         "other": "other",
         "otherExternal": "other - external",
         "otherInternal": "other - internal",
@@ -184,14 +321,41 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Power Draw",
-        "powerGenerated": "Power Generated",
+        "powerDraw": "Power Draw per Unit",
+        "powerGenerated": "Power Generated per Unit",
+        "Power": "Power",
         "status": "Status",
         "rating": "Rating",
+        "Range": "Range",
         "totalQuantity": "Total Quantity",
         "availableQuantity": "Available Quantity",
-        "damage": "Damage / Hits",
-        "isPercentage": "Percentage?"
+        "damage": "Damage",
+        "RadiationDamage": "Radiation Damage",
+        "hits": "Hits",
+        "weightIsPct": "Weight is Percentage?",
+        "purchasePrice": "Purchase Price",
+        "isIllegal": "Illegal?",
+        "unitWeight": "Unit Weight",
+        "pctDisplacement": "% Displacement Weight",
+        "CargoItem": "Cargo Item",
+        "CargoLocation": "Cargo Location",
+        "Price": "Price",
+        "Value": "Value",
+        "GeneratesPower": "Generates Power?",
+        "IsRefined": "Refined?",
+        "Features": "Features / Traits",
+        "PricingBasis": "Pricing of",
+        "perUnit": "MCr per unit",
+        "perCompTon": "MCr per component ton",
+        "perHullTon": "MCr per hull ton",
+        "per100HullTon": "MCr per 100 hull tons",
+        "pctHull": "Percent of base hull value",
+        "isBaseHull":"Is Baseline Hull?",
+        "RollModifier":"Roll Modifier",
+        "DM":"DM",
+        "Hardened": "Hardened?",
+        "hardened": "hardened",
+        "Hd": "Hd"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -204,7 +368,10 @@
         "ShortDescription": "Short Description",
         "SkillModifier": "Skill Modifier",
         "TL": "TL",
-        "Weight": "Weight"
+        "Weight": "Weight",
+        "isAttachment": "Attachment?",
+        "NewAttachment": "New Attachment",
+        "BonusDamage": "Bonus Damage"
       },
       "Items": {
         "AssignArmor": "Assign Armor",
@@ -236,8 +403,12 @@
         "SimplifiedSkillNameDescription": "Used in roll formulas as @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__ defaults to zero if the skill is missing or below zero.",
         "LFB": "LFB",
         "STA": "STA",
+        "HIT": "HIT",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "TrainingNotes": "Training Notes",
+        "NumberOfSkills": "Number of Skills",
+        "SkillRanks": "Skill Ranks"
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
@@ -265,7 +436,9 @@
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
+        "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
+        "DropAttachmentsHere": "You can drop attachments here.",
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
       },
@@ -280,68 +453,175 @@
         "rateOfFire": "Rate of Fire/Auto X",
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
-        "MagazineCost": "Magazine/Power Cell Cost"
+        "MagazineCost": "Magazine/Power Cell Cost",
+        "ArmorPiercing": "Armor Piercing Value",
+        "Features": "Features / Traits",
+        "Unarmed": "Unarmed",
+        "UnarmedDescription": "Unarmed attack"
+      },
+      "Spells": {
+        "CircleSchool": "Spell Circle/School",
+        "Duration": "Duration",
+        "SpellName": "Spell Name",
+        "Level": "Level",
+        "sorcerySkill": "Sorcery"
       }
     },
     "Ship": {
-      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
-      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
-      "NoActorsForAction": "No actor available for action",
-      "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
-      "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
-      "AddShipPosition": "Add Ship Position",
-      "Order": "Order",
-      "Name": "Name",
-      "Travellers": "Travellers",
-      "RemoveTraveller": "Remove Traveller from ship",
       "Actions": "Actions",
-      "MacroSkill": "Macro/Skill",
       "ActionType": "Action Type",
-      "PositionName": "Position Name",
-      "NewAction": "New Action",
-      "CreateAction": "Create Action",
-      "DeleteAction": "Delete Action",
-      "ShipHull": "Ship Hull",
-      "Fuel": "Fuel",
-      "MaintPM": "Maintenance P/M",
-      "Displacement": "Displacement",
-      "tons": "tons",
-      "PowerManagement": "Power Management",
-      "Power": "Power",
-      "USED": "USED",
-      "MAX": "MAX",
-      "Systems": "Systems",
-      "MDrive": "M-Drive",
-      "JDrive": "J-Drive",
-      "Sensors": "Sensors",
-      "Weapons": "Weapons",
+      "ActionRollFormula": "Action Roll Formula",
+      "Unknown": "unknown",
+      "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
+      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
+      "AddShipPosition": "Add Ship Position",
+      "Avail": "Avail.",
+      "Available": "Available",
+      "AvailableCargoWeight": "Available Cargo Weight",
+      "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
+      "Cargo": "Cargo",
+      "CargoWeight": "Total Cargo Weight",
+      "CARGONOTES": "CARGO NOTES",
       "COMPONENTS": "COMPONENTS",
-      "SHIPCARGO": "SHIP CARGO",
-      "SHIPNOTES": "SHIP NOTES",
-      "FINANCES": "FINANCES",
-      "Tabs": {
-        "ShipPositions": "Positions",
-        "Crew": "Crew",
-        "Components": "Components",
-        "Locker": "Locker",
-        "Cargo": "Cargo",
-        "Finance": "Finance",
-        "Notes": "Notes"
-      },
+      "CreateAction": "Create Action",
       "Crew": {
-        "CAPTAIN": "CAPTAIN",
-        "MAINTENANCE": "MAINTENANCE",
         "ADMIN": "ADMINISTRATION",
-        "ENGINEERS": "ENGINEER(S)",
-        "PILOT": "PILOT",
-        "MEDIC": "MEDIC",
-        "BROKER": "BROKER",
-        "GUNNERS": "GUNNER(S)",
         "ASTROGATOR": "ASTROGATOR",
-        "STEWARD": "STEWARD",
+        "BROKER": "BROKER",
+        "CAPTAIN": "CAPTAIN",
+        "ENGINEER": "ENGINEER(S)",
+        "GUNNER": "GUNNER(S)",
+        "MAINTENANCE": "MAINTENANCE",
+        "MARINE": "MARINE(S)",
+        "MEDIC": "MEDIC",
         "OTHER": "OTHER",
-        "MARINES": "MARINE(S)"
-      }
+        "PILOT": "PILOT",
+        "STEWARD": "STEWARD"
+      },
+      "Deckplan": "Deck Plan",
+      "DeleteAction": "Delete Action",
+      "Displacement": "Displacement",
+      "Drives": "Drives",
+      "FINANCENOTES": "FINANCE NOTES",
+      "SHIPVALUE": "SHIP VALUE",
+      "Fuel": "Fuel",
+      "RefinedFuel": "Refined Fuel",
+      "UnrefinedFuel": "Unrefined Fuel",
+      "Gs": "G",
+      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
+      "IsMassProduced": "Ship is Mass Produced",
+      "JDrive": "J-Drive",
+      "Jump": "Jump",
+      "MacroSkill": "Macro/Skill",
+      "MakesChatRollAction": "Uses the _ACTION_NAME_ action from the _POSITION_NAME_ position.",
+      "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
+      "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
+      "ActionMisses": "Misses _WHILE_USING_with an effect of _EFFECT_VALUE_",
+      "RadiationDamageOf":"and radiation damage of",
+      "WhileUsing": "while using ",
+      "MaintPM": "Maintenance P/M",
+      "MANIFEST": "MANIFEST",
+      "MAX": "MAX",
+      "MDrive": "M-Drive",
+      "Name": "Name",
+      "NewAction": "New Action",
+      "NoActorsForAction": "No actor available for action",
+      "Order": "Order",
+      "Overdrive": "Overdrive",
+      "Parsecs": "Parsecs",
+      "pc": "pc",
+      "PositionName": "Position Name",
+      "Power": "Power",
+      "PowerManagement": "Power Management",
+      "PowerWeightManagement": "Power & Weight Management",
+      "PP": "PP",
+      "RemoveTraveller": "Remove Traveller from ship",
+      "Sensors": "Sensors",
+      "ShipHull": "Ship Hull",
+      "SHIPNOTES": "SHIP NOTES",
+      "Storage": "Storage",
+      "Systems": "Systems",
+      "Tabs": {
+        "Cargo": "Cargo",
+        "Components": "Components",
+        "Crew": "Crew",
+        "Finance": "Finance",
+        "Locker": "Locker",
+        "Notes": "Notes",
+        "ShipPositions": "Positions"
+      },
+      "Thrust": "Thrust",
+      "tons": "tons",
+      "Travellers": "Travellers",
+      "USED": "USED",
+      "Vehicles": "Vehicles",
+      "Weapons": "Weapons",
+      "MCr": "MCr",
+      "ShipValue": "Ship Value",
+      "MortgagePerMonth": "Est. Mortgage Payment",
+      "MaintenancePerMonth": "Maintenance Cost",
+      "CrPerMonth": "Cr/month",
+      "Chat": "Chat",
+      "UseAComponent": "Component",
+      "SkillRoll": "Skill",
+      "chatPlaceholder": "Chat Message",
+      "skillPlaceholder": "Skill/CHR 8+",
+      "firePlaceholder": "Skill/CHR 8+=COMPONENT_ID",
+      "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+",
+      "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR 8+=COMPONENT_ID",
+      "chatTooltip": "Ahoy!"
+    },
+    "Vehicle": {
+      "SystemStatus": "System Status",
+      "Cargo": "Cargo",
+      "CargoNotes": "Notes",
+      "CargoCapacity": "Capacity",
+      "Speed": "Speed",
+      "Range": "Range",
+      "Agility": "Agility",
+      "systems": {
+        "cargo": "Cargo",
+        "cockpit": "Cockpit",
+        "computers": "Computers",
+        "electronics": "Electronics",
+        "limbs": "Limbs / Appendages",
+        "propulsion": "Propulsion / Locomotion",
+        "powerPlant": "Power Plant",
+        "sensors": "Sensors",
+        "weapons": "Weapons"
+      },
+      "crew": {
+        "operators": "Operators",
+        "passengers": "Passengers"
+      },
+      "Movement": "Movement",
+      "Crew": "Crew",
+      "Weight": "Weight",
+      "Armor": "Armor",
+      "Hull": "Hull",
+      "Structure": "Structure",
+      "Protection": "Protection",
+      "skillToOperate": "Skill to operate",
+      "Weapons": "Weapons",
+      "OpenVehicle": "Open Vehicle",
+      "techLevel": "TL",
+      "Cost": "Cost",
+      "Traits": "Traits",
+      "ArmorHull": "Armor and Hull",
+      "Regular": "Regular",
+      "Critical": "Critical",
+      "Thresholds": "Thresholds",
+      "ProtectionType": {
+        "ArmorOnly": "Armor Only",
+        "Threshold": "Threshold",
+        "ArmorHullStruc": "Armor, Hull and Structure"
+      },
+      "ShippingSize": "Shipping Size"
+    },
+    "SpaceObject": {
+      "Notes": "Notes",
+      "Damage": "Damage",
+      "Information": "Information"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -365,13 +645,17 @@
       "With": "with",
       "resultShows": "result shows",
       "sum": "sum",
-      "using": "using {characteristic}"
+      "using": "using {characteristic}",
+      "Wounds": "Wounds",
+      "AttackDM": "Atack DM",
+      "BonusDamage": "Bonus Damage",
+      "Timeframe": "Time",
+      "RollInitiative": "Roll Initiative",
+      "characteristic": "characteristic",
+      "ROF" :"ROF",
+      "DodgeParry": "Dodge/Parry"
     },
     "Settings": {
-      "ruleset": {
-        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details. Rules relating to the ruleset are marked with a green border. Any changes to settings set by the ruleset will be marked with an orange border.",
-        "name": "Ruleset"
-      },
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Leave empty to use default (+/-1). Not currently used.",
         "name": "What bonus/penalty to give per each time increment change in a task."
@@ -379,6 +663,18 @@
       "absoluteCriticalEffectValue": {
         "hint": "Defaults to 99, which means that effect is ignored.",
         "name": "What effect is required for a throw to be considered a critical success/failure (i.e. be colored green/red)."
+      },
+      "alternativeShort1": {
+        "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 1"
+      },
+      "alternativeShort2": {
+        "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 2"
+      },
+      "autofireRulesUsed": {
+        "hint": "Select which variant's auto/burst fire rules should be used.",
+        "name": "Select which variant's auto/burst fire rules should be used."
       },
       "automateDamageRollOnHit": {
         "hint": "checked=Roll damage, modified by effect of skill roll. unchecked=Don't roll damage.",
@@ -392,13 +688,41 @@
         "hint": "Automatically set advised prototype token settings to newly created Actors.",
         "name": "Default Prototype Token Settings"
       },
+      "difficultiesAsTargetNumber": {
+        "hint": "checked=Use target number rather than modifier for difficulties, unchecked=Use modifiers",
+        "name": "Use target numbers rather than modifiers for difficulties."
+      },
+      "difficultyListUsed": {
+        "hint": "Select which variant's difficulty list should be used.",
+        "name": "Select which variant's difficulty list should be used."
+      },
       "effectOrTotal": {
-        "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 8), unchecked=Show total (i.e. roll+modifiers)",
+        "hint": "checked=Show effect (i.e. roll+modifiers-target number, usually 6 or 8), unchecked=Show total (i.e. roll+modifiers)",
         "name": "Show effect or total roll value for skill and characteristic rolls."
+      },
+      "ExperimentalFeatures": {
+        "hint": "checked=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, unchecked=Hide them like any sane person would",
+        "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
+      },
+      "hideUntrainedSkills": {
+        "continue": "Do you want to continue?",
+        "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
+        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
+        "warning": "Warning!",
+        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
+        "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone."
       },
       "initiativeFormula": {
         "hint": "Like: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Initiative Formula"
+      },
+      "invertSkillRollShiftClick": {
+        "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
+        "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Show END and 'Lifeblood' (uses STR below the covers) as characteristics. Useful for Cepheus Atom, Barbaric!, etc.",
+        "name": "Show END and 'Lifeblood' (STR) as characteristics."
       },
       "maxSkillLevel": {
         "hint": "Leave empty to use default (9).",
@@ -408,9 +732,92 @@
         "hint": "Leave empty to use default (-2). Does not automatically recalculate modifiers for existing characters.",
         "name": "Modifier for characteristic value of zero."
       },
+      "ruleset": {
+        "hint": "This will configure the below settings with the best options for the given ruleset. Note that the rulesets at the top are the best supported ones. See https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md for details. Rules relating to the ruleset are marked with a green border. Any changes to settings set by the ruleset will be marked with an orange border.",
+        "name": "Ruleset"
+      },
+      "settingsInterface": {
+        "debugSettings": {
+          "hint": "Configure/View the debugging and experimental features settings.",
+          "intro": "Experimental & Debugging Settings",
+          "name": "Experimental & Debugging Settings"
+        },
+        "displaySettings": {
+          "hint": "Configure the display settings.",
+          "intro": "Display Settings",
+          "name": "Display Settings"
+        },
+        "itemSettings": {
+          "hint": "Configure the item fields that are shown.",
+          "intro": "Item Settings",
+          "name": "Item Settings"
+        },
+        "rulesetSettings": {
+          "hint": "Configure the ruleset settings.",
+          "intro": "Current Rules",
+          "modified": "modified",
+          "name": "Advanced Ruleset Settings"
+        }
+      },
+      "shipInitiativeFormula": {
+        "hint": "Like: \"2d6",
+        "name": "Ship Initiative Formula"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": "Base: core six plus PSI. Alternative: core six plus alternative. All: core six plus PSI plus Alternative",
+        "name": "Select characteristics to display"
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
+        "name": "Show Contamination below Lifeblood. "
+      },
+      "ShowDamageType": {
+        "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
+        "name": "Show the 'Damage Type' field on weapon sheets"
+      },
+      "showHeroPoints": {
+        "hint": "Show Hero Points counter on actor sheet.",
+        "name": "Show Hero Points"
+      },
+      "usePDFPagerForRefs": {
+        "hint": "Use with PDF Pager to show references.  The format must be '[code name] [page number]'. If setting is false, uri links to references are used instead.",
+        "name": "Use PDF-Pager module to show references"
+      },
+      "ShowLawLevel": {
+        "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
+        "name": "Show the 'Law Level' field on weapon sheets"
+      },
+      "showLifebloodStamina": {
+        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
+        "name": "Show Lifeblood and Stamina characteristics and use for damage."
+      },
       "showMissingCompendiumWarnings": {
         "hint": "Whether to show warnings for missing/disabled modules on world start.",
         "name": "Show warnings about missing/disabled modules."
+      },
+      "ShowRangeBandAndHideRange": {
+        "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
+        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
+      },
+      "ShowRateOfFire": {
+        "hint": "checked=Show the 'Rate of Fire' field, unchecked=Hide it",
+        "name": "Show the 'Rate of Fire' field on weapon sheets"
+      },
+      "ShowRecoil": {
+        "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
+        "name": "Show the 'Recoil' field on weapon sheets"
+      },
+      "showSingleComponentColumn": {
+        "hint": "Show the ship components list as a single row.",
+        "name": "Ship components listed as single row"
+      },
+      "ShowWeaponType": {
+        "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
+        "name": "Show the 'Weapon Type' field on weapon sheets"
+      },
+      "showWeightUsage": {
+        "hint": "Display ship weight values instead of power on ship sheet.",
+        "name": "Show Weight instead of Power management on Ship Sheet"
       },
       "systemMigrationVersion": {
         "hint": "Records the schema version for the Twodsix system. (Don't modify this unless you know what you are doing)",
@@ -424,134 +831,195 @@
         "hint": "Don't use the same as for termForAdvantage...",
         "name": "What you want to call rolls with disadvantage (3d6kl2)."
       },
-      "ShowLawLevel": {
-        "hint": "checked=Show the 'Law Level' field, unchecked=Hide it",
-        "name": "Show the 'Law Level' field on weapon sheets"
+      "useFoundryStandardStyle": {
+        "default": "Default Twodsix Style",
+        "foundry": "Standard Foundry VTT style",
+        "hint": "Use Foundry's default style for user interface.  This should make some modules more compatible with TWODSIX",
+        "name": "Use Foundry Standard Style"
       },
-      "ShowRecoil": {
-        "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
-        "name": "Show the 'Recoil' field on weapon sheets"
+      "useModuleFixStyle": {
+        "hint": "Modifies CSS style to correct identified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
+        "name": "Correct some css style issues due to modules and default Twodsix style."
       },
-      "ShowRateOfFire": {
-        "name": "Show the 'Rate of Fire' field on weapon sheets",
-        "hint": "checked=Show the 'Rate of Fire' field, unchecked=Hide it"
-      },
-      "ShowDamageType": {
-        "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
-        "name": "Show the 'Damage Type' field on weapon sheets"
-      },
-      "ShowWeaponType": {
-        "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
-        "name": "Show the 'Weapon Type' field on weapon sheets"
-      },
-      "ShowRangeBandAndHideRange": {
-        "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
-        "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
-      },
-      "autofireRulesUsed": {
-        "hint": "Select which variant's auto/burst fire rules should be used.",
-        "name": "Select which variant's auto/burst fire rules should be used."
-      },
-      "difficultyListUsed": {
-        "hint": "Select which variant's difficulty list should be used.",
-        "name": "Select which variant's difficulty list should be used."
-      },
-      "difficultiesAsTargetNumber": {
-        "hint": "checked=Use target number rather than modifier for difficulties, unchecked=Use modifiers",
-        "name": "Use target numbers rather than modifiers for difficulties."
-      },
-      "ExperimentalFeatures": {
-        "hint": "checked=Boldly use ugly and buggy experimental features that just maybe won't delete your game world, unchecked=Hide them like any sane person would",
-        "name": "Show ugly, buggy and unfinished features. I.e., kind of like all the other features that are not hidden by this flag. :)"
-      },
-      "hideUntrainedSkills": {
-        "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
-        "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
-        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
-        "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone.",
-        "continue": "Do you want to continue?",
-        "warning": "Warning!"
-      },
-      "invertSkillRollShiftClick": {
-        "hint": "Clicking on a skill roll or dragging damage to a character normally shows a dialog, shift-clicking applies default values (Average skill roll or automatic damage distribution). Checking this box swaps this behavior.",
-        "name": "Invert behavior for shift-clicking for skill rolls and shift-dragging for taking damage"
-      },
-      "lifebloodInsteadOfCharacteristics": {
-        "hint": "Show END and 'Lifeblood' (uses STR below the covers) as characteristics. Useful for Cepheus Atom, Barbaric!, etc.",
-        "name": "Show END and 'Lifeblood' (STR) as characteristics."
-      },
-      "showContaminationBelowLifeblood": {
-        "hint": "Show Contamination below Lifeblood. Only useful along with the 'show END and lifeblood' setting.",
-        "name": "Show Contamination below Lifeblood. "
+      "useShipAutoCalcs": {
+        "hint": "When enabled, the ship summary power, weight, and price statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power, weight, and price values"
       },
       "useSystemDefaultTokenIcon": {
         "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",
         "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
-      "showLifebloodStamina": {
-        "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
-        "name": "Show Lifeblood and Stamina characteristics and use for damage."
+      "useWoundedStatusIndicators": {
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds. Roll modifiers below are applied to all rolls.",
+        "name": "Display wounded status indicators and apply roll modifiers"
+      },
+      "minorWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has minor wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for minor wounds"
+      },
+      "seriousWoundsRollModifier": {
+        "hint": "The modifier for all rolls when actor has serious wounds (negative subtracts from roll or increases DM).",
+        "name": "Roll Modifier for serious wounds"
       },
       "weightModifierForWornArmor": {
         "hint": "Factor to multiply the weight value of a armor if it is currently equipped.",
         "name": "Factor to multiply the weight value of a equipped armor."
       },
-      "showHeroPoints": {
-        "hint": "Show Hero Points counter on actor sheet.",
-        "name": "Show Hero Points"
+      "useProseMirror": {
+        "hint": "Use the embedded HTML editor for larger input blocks.",
+        "name": "Use ProseMirror editor for larger input blocks."
       },
-      "showSingleComponentColumn": {
-        "hint": "Show the ship components list as a single row.",
-        "name": "Ship components listed as single row"
+      "showIcons": {
+        "hint": "Use icons instead of text for biographical information.  Icons always shown when using lifeblood and stamina.",
+        "name": "Use icons for biographical information."
       },
-      "useFoundryStandardStyle": {
-        "hint": "Use Foundry's default style for user interface.  This should make some modules more compatible with TWODSIX",
-        "name": "Use Foundry Standard Style",
-        "default": "Default Twodsix Style",
-        "foundry": "Standard Foundry VTT style"
+      "maxComponentHits": {
+        "hint": "The number of hits at which the component is destroyed",
+        "name": "Maximum hits for a component."
       },
-      "showAlternativeCharacteristics": {
-        "hint": "Show alternative characteristics instead of PSI. Only works for the Foundry default style.",
-        "name": "Show alternative characteristics"
+      "mortgagePayment": {
+        "hint": "The number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
+        "name": "Mortgage Payment Terms."
       },
-      "alternativeShort1": {
-        "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
-        "name": "Short name for alternative characteristic 1"
+      "massProductionDiscount": {
+        "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
+        "name": "Discount for ship being mass produced"
       },
-      "alternativeShort2": {
-        "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
-        "name": "Short name for alternative characteristic 2"
+      "reverseHealingOrder": {
+        "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",
+        "name": "Reverse characteristic healing order"
       },
-      "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds.",
-        "name": "Display wounded status indicators"
+      "maxEncumbrance": {
+        "hint": "Formula to calculate maximum encumbrance for actor.",
+        "name": "Maximum Encumbrance Formula"
       },
-      "useModuleFixStyle": {
-        "hint": "Modifies CSS style to correct idetified style issues for certain modules when using the Twodsix style.  It doesn't work when using Foundry default style.",
-        "name": "Correct some css style issues due to modules and default Twodsix style."
+      "allowDropOnIcon": {
+        "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damage.",
+        "name": "Allow Items to be droped onto icons"
       },
-      "settingsInterface": {
-        "rulesetSettings": {
-          "intro": "Current Rules",
-          "name": "Advanced Ruleset Settings",
-          "hint": "Configure the ruleset settings.",
-          "modified": "modified"
-        },
-        "itemSettings": {
-          "intro": "Item Settings",
-          "name": "Item Settings",
-          "hint": "Configure the item fields that are shown."
-        },
-        "displaySettings": {
-          "intro": "Display Settings",
-          "name": "Display Settings",
-          "hint": "Configure the display settings."
-        },
-        "debugSettings": {
-          "intro": "Debug Settings",
-          "name": "Debug Settings",
-          "hint": "Configure/View the debug settings."
-        }
+      "defaultMovement": {
+        "hint": "The default movement/walk for new travellers (typically a minor action), e.g. 10 for 10m",
+        "name": "The default movement walk rate"
+      },
+      "defaultMovementUnits": {
+        "hint": "The default movement/walk units for new travellers (typically a minor action), e.g. m for 10m",
+        "name": "The default movement units for the walk rate"
+      },
+      "useEncumbrance": {
+        "hint": "Use encumbrance rules (if they exist) when displaying movement with drag ruler.",
+        "name": "Use system encumbrance rules for drag ruler"
+      },
+      "addEffectForShipDamage": {
+        "hint": "The ship attack effect value is added to the damage roll.",
+        "name": "Add effect to ship damage"
+      },
+      "autoAddUnarmed": {
+        "hint": "When checked (true), the unarmed weapon will be automatically added to the inventory for new actors (per rules settings).",
+        "name": "Automatically add unarmed weapon to new actors"
+      },
+      "unarmedDamage": {
+        "hint": "Dice formula for unarmed damage used when Unarmed is automatically added to actors.",
+        "name": "Unarmed Damage Formula"
+      },
+      "showTimeframe": {
+        "hint": "Add timeframe options to skill / characteristic rolls/",
+        "name": "Show Timeframe in Roll Dialog"
+      },
+      "showStatusIcons": {
+        "hint": "Overlay condition icons on side of actor images on sheets.",
+        "name": "Show condition icons on traveller sheets"
+      },
+      "showHullAndArmor": {
+        "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
+        "name": "Protection values on vehicle sheets"
+      },
+      "addEffectToManualDamage": {
+        "hint": "This option addts the effect to a manual damage roll from the most recent chat message.",
+        "name": "Add effect when making manual damage"
+      },
+      "showRangeSpeedNoUnits": {
+        "hint": "Omit the range and speed units (e.g. km/hr) on vehicle sheet.",
+        "name": "Don't show range and speed units"
+      },
+      "showInitiativeButton": {
+        "hint": "Show an initiative roll button on actor sheet on skills tab.",
+        "name": "Show Initiative Roll Button"
+      },
+      "showSkillCountsRanks": {
+        "hint": "Show a count of the number of trained skills and the sum of the levels (rank) at the bottom of the skills tab.",
+        "name": "Show Skills Count and Ranks on Traveller Sheet"
+      },
+      "showComponentSummaryIcons": {
+        "hint": "Show summary icons for components below ship image.",
+        "name": "Show Component Summary Icons"
+      },
+      "showSpells": {
+        "hint": "Show spells lists on actor sheets.",
+        "name": "Show Spells"
+      },
+      "sorcerySkill": {
+        "hint": "The name of the skill used for spellcasting / sorcery.",
+        "name": "Sorcery skill name"
+      },
+      "useNationality": {
+        "hint": "Display nationality field instead of home world field on actor sheet.",
+        "name": "Display nationality rather than home world"
+      },
+      "animalsUseHits": {
+        "hint": "Animals have only one damage statistic: hits.",
+        "name": "Animals use hits for damage"
+      },
+      "animalsUseLocations": {
+        "hint": "Animals are described by location found instead of type and niche.",
+        "name": "Animals use location instead of type"
+      },
+      "displayReactionMorale": {
+        "hint": "Show reaction and morale information on animal sheet.",
+        "name": "Show animal reaction and morale"
+      },
+      "showComponentRating": {
+        "hint": "Show rating field on ship component item sheet.",
+        "name": "Show component rating"
+      },
+      "showComponentDM": {
+        "hint": "Show DM field on ship component item sheet.",
+        "name": "Show component DM"
+      },
+      "useEncumbranceStatusIndicators": {
+        "hint": "Uses status indicators to indicate encumbered status. Roll modifiers below are applied to all physical characteristic rolls.",
+        "name": "Display encumbrance status indicators and apply roll modifiers"
+      },
+      "encumbranceFraction": {
+        "hint": "The fraction applied to the maximum encumbrance formula to indicate actor is encumbered.  For example, a value of 0.5 would mean the actor becomes encumbered when carried weight exceeds one half of maximum encumbrance.",
+        "name": "Fraction of maximum encumbrance when actor becomes encumbered"
+      },
+      "encumbranceModifier": {
+        "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
+        "name": "Modifier to physical characteristics when actor becomes encumbered"
+      },
+      "transferDroppedItems": {
+        "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
+        "name": "Transfer rather than copy dropped equipment on actors"
+      },
+      "allowDragDropOfLists" : {
+        "hint": "Allow items in lists to be moved by drag and drop rather than sorting alphabetically.",
+        "name":"Allow Drag-Drop in Lists"
+      },
+      "useDodgeParry" : {
+        "hint": "Add a roll penalty to refect targets ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
+        "name": "Use Dodge / Parry Attack Modifers"
+      },
+      "showModifierDetails": {
+        "hint": "Show roll moddifier values in roll flavor line, e.g. STR(+1) versus STR.",
+        "name": "Display roll modifiers in chat roll text"
+      },
+      "defaultColor": {
+        "hint": "Change the theme main color. Delete value to reset.",
+        "name": "Set Default Color"
+      },
+      "lightColor": {
+        "hint": "Change the theme highlight color. Delete value to reset.",
+        "name": "Set Highlight Color"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -570,7 +1038,14 @@
       "skill": "skill",
       "consumable": "consumable",
       "trait": "trait",
+      "spell": "spell",
       "component": "component"
+    },
+    "speeds": {
+      "walk": "walk",
+      "dash": "dash",
+      "run": "run",
+      "jump": "jump"
     },
     "Errors": {
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
@@ -587,7 +1062,8 @@
       "OnlyDropConsumables": "Only consumables can be dropped on an item.",
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
-      "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item."
+      "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
+      "InvalidRollFormula": "Not a valid damage roll formula."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
@@ -595,8 +1071,19 @@
       "MaxStatVal": "The value exceededs the maximum stat value",
       "StatValBelowZero": "The value cannot be below zero",
       "DecreaseEnduranceFirst": "Endurance/Stamina should be decreased before other stats",
-      "CantAutoDamageShip": "Automatic damage of ship is not supported",
-      "CantDragOntoActor": "This item can't be dragged onto this actor"
+      "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
+      "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
+      "CantDragOntoActor": "This item can't be dragged onto this actor",
+      "PDFPagerNotInstalled": "PDF Pager must be installed to use source links.",
+      "NoSpecfiedLink": "No document and page specified for document link.",
+      "NoTargetFound": "No target for dropping found.",
+      "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
+      "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
+      "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
+      "ActorHasInitiativeAlready": "Actor already has initiative.",
+      "NoActiveToken": "Actor does not have an active token in scene.",
+      "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
     }
   },
   "VeryDifficult": "Very Difficult"

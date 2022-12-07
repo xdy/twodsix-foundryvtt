@@ -5,37 +5,35 @@
         <tr>
           <th>
             <div class="item-img">
-              <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
+              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
                    height="128"/></div>
           </th>
           <th>
             <div class="item-name">
-              <label for="data.name">{{localize "TWODSIX.Items.Traits.TraitName"}}</label>
-              <input id="data.name" name="name" type="text" value="{{name}}"/>
+              <label for="name">{{localize "TWODSIX.Items.Traits.TraitName"}}</label>
+              <input id="name" name="name" type="text" value="{{name}}"/>
             </div>
           </th>
         </tr>
       </table>
     </div>
     <div class="item-lvl">
-      <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
-        <input id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/></label>
+      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <input class="form-input" id="system.value" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
     </div>
     <div class="item-prereq">
-      <label for="data.prereq" class="resource-label">{{localize "TWODSIX.Items.Traits.Prerequisite"}}
-        <input id="data.prereq" type="text" name="data.prereq" value="{{data.prereq}}"/>
-      </label>
+      <label for="system.prereq" class="resource-label">{{localize "TWODSIX.Items.Traits.Prerequisite"}}</label>
+      <input class="form-input" id="system.prereq" type="text" name="system.prereq" value="{{system.prereq}}"/>
     </div>
     <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
-      </label>
+      <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
-    {{> "systems/twodsix/templates/items/parts/footer.html"}}
+    {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
   </div>
 </form>

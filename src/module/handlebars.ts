@@ -1,9 +1,14 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { advantageDisadvantageTerm } from "./i18n";
 import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import { getCharShortName, simplifySkillName } from "./utils/utils";
-import {Skills} from "../types/template";
+import {Skills, Component} from "../types/template";
+import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
+import { _genTranslatedSkillList, _genUntranslatedSkillList } from "./utils/TwodsixRollSettings";
+import { simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -13,8 +18,16 @@ export default function registerHandlebarsHelpers(): void {
     return advantageDisadvantageTerm(str);
   });
 
+  Handlebars.registerHelper('twodsix_difficultiesAsTargetNumber', () => {
+    return game.settings.get('twodsix', 'difficultiesAsTargetNumber');
+  });
+
   Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
     return (num % 2) == 1;
+  });
+
+  Handlebars.registerHelper('twodsix_product', (num1:number, num2:number) => {
+    return (num1 ?? 0) * (num2 ?? 0);
   });
 
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
@@ -23,6 +36,18 @@ export default function registerHandlebarsHelpers(): void {
     } else {
       const thing: string = str;
       return str.charAt(0).toLocaleUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+    }
+  });
+
+  Handlebars.registerHelper('twodsix_titleCase', (str) => {
+    if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
+      return '';
+    } else {
+      //const thing: string = str;
+      //return str.charAt(0).toLocaleUpperCase() + (thing.length > 1 ? thing.slice(1) : "");
+      return str.toLowerCase().split(' ').map(function(word) {
+        return (word.charAt(0).toUpperCase() + word.slice(1));
+      }).join(' ');
     }
   });
 
@@ -35,18 +60,15 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
       const mod: number = calcModFor(characteristicElement.current);
-      const abbreviatedCharName: string = getCharShortName(characteristic);
+      const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore If ui is null, we're not in foundry. So, meh
         ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
         showedError = true;
       }
@@ -64,13 +86,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
-    const actorData = actor.data;
-    const characteristicElement = actorData.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     let adjValue = value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
     if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
-      adjValue = actor.items.find((i) => i._id === actorData.untrainedSkill).data.value;
+      adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
     if (characteristicElement) {
@@ -93,8 +114,13 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (value) => {
-    return value && (game.settings.get('twodsix', 'hideUntrainedSkills') && value < 0);
+  Handlebars.registerHelper('twodsix_hideUntrainedSkills', (inData) => {
+    // -1 is case where untrained skill is checked
+    if (inData === -1) {
+      return game.settings.get('twodsix', 'hideUntrainedSkills');
+    } else {
+      return inData.value && (game.settings.get('twodsix', 'hideUntrainedSkills') && inData.value < 0  && inData.trainingNotes === "");
+    }
   });
 
   Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
@@ -126,14 +152,6 @@ export default function registerHandlebarsHelpers(): void {
     return skill != null && !skill.getFlag("twodsix", "untrainedSkill") && skill.type === "skills";
   });
 
-  Handlebars.registerHelper('twodsix_useFoundryStyle', () => {
-    return game.settings.get('twodsix', 'useFoundryStandardStyle');
-  });
-
-  Handlebars.registerHelper('showAlternativeCharacteristics', () => {
-    return game.settings.get('twodsix', 'showAlternativeCharacteristics');
-  });
-
   Handlebars.registerHelper('alternativeShort1', () => {
     return game.settings.get('twodsix', 'alternativeShort1');
   });
@@ -153,75 +171,61 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
     switch (componentType) {
       case 'accomodations':
-        return "fas fa-bed";
+        return "fa-solid fa-bed";
       case 'armament':
-        return "fas fa-crosshairs";
+        return "fa-solid fa-crosshairs";
       case 'armor':
-        return "fas fa-grip-vertical";
+        return "fa-solid fa-grip-vertical";
       case 'bridge':
-        return "fas fa-gamepad";
+        return "fa-solid fa-person-seat";
       case 'cargo':
-        return "fas fa-boxes";
+        return "fa-solid fa-boxes-stacked";
       case 'computer':
-        return "fas fa-microchip";
+        return "fa-solid fa-computer";
+      case 'dock':
+        return "fa-solid fa-arrow-right-arrow-left";
       case 'drive':
-        return "fas fa-arrows-alt";
+        return "fa-solid fa-up-down-left-right";
       case 'drone':
-        return "fas fa-satellite";
+        return "fa-solid fa-satellite";
       case 'electronics':
-        return "fas fa-satellite-dish";
+        return "fa-solid fa-microchip";
       case 'fuel':
-        return "fas fa-gas-pump";
+        return "fa-solid fa-gas-pump";
       case 'hull':
-        return "fas fa-rocket";
+        return "fa-solid fa-rocket";
       case 'mount':
-        return "far fa-dot-circle";
+        return "fa-regular fa-circle-dot";
       case "otherExternal":
-        return "fas fa-sign-out-alt";
+        return "fa-solid fa-right-from-bracket";
       case "otherInternal":
-        return "fas fa-sign-in-alt";
+        return "fa-solid fa-right-to-bracket";
       case 'power':
-        return "fas fa-atom";
+        return "fa-solid fa-atom";
       case "sensor":
-        return "fas fa-solar-panel";
+        return "fa-solid fa-solar-panel";
       case 'shield':
-        return "fas fa-shield-alt";
+        return "fa-solid fa-shield-halved";
       case 'software':
-        return "fas fa-code";
+        return "fa-solid fa-code";
+      case 'storage':
+        return "fa-solid fa-boxes-stacked";
       case 'vehicle':
-        return "fas fa-space-shuttle";
+        return "fa-solid fa-shuttle-space";
       default:
-        return "fas fa-question-circle";
+        return "fa-solid fa-circle-question";
     }
   });
 
-  Handlebars.registerHelper('getComponentTypes', () => {
-    return ComponentTypes;
+  Handlebars.registerHelper('twodsix_showTimeframe', () => {
+    return game.settings.get('twodsix', 'showTimeframe');
   });
 
-  const ComponentTypes: string[] = [
-    'accomodations',
-    'armament',
-    'armor',
-    'bridge',
-    'cargo',
-    'computer',
-    'drive',
-    'drone',
-    'electronics',
-    'fuel',
-    'hull',
-    'mount',
-    "otherExternal",
-    "otherInternal",
-    'power',
-    "sensor",
-    'shield',
-    'software',
-    'vehicle'
-  ];
+  Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {
+    return (display && (itemLocation === "ship"));
+  });
 
-  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
 
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {
     let sortedArray: TwodsixItem[] = [];
@@ -242,6 +246,78 @@ export default function registerHandlebarsHelpers(): void {
       });
     }
     return Handlebars.helpers.each(sortedArray, options);
+  });
+
+  Handlebars.registerHelper('each_sort_item', (array, options) => {
+    let sortedArray: TwodsixItem[] = [];
+    const sortLabel = game.settings.get('twodsix', 'allowDragDropOfLists') ? "sort" : "name";
+    const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
+    if (slice) {
+      sortedArray = slice.sort((a, b) => {
+        if (a[sortLabel] == null) {
+          return 1;
+        } else {
+          if (b[sortLabel] == null) {
+            return -1;
+          } else if (a[sortLabel] === b[sortLabel]) {
+            return 0;
+          } else {
+            if (game.settings.get('twodsix', 'allowDragDropOfLists')) {
+              return a.sort - b.sort;
+            } else {
+              return a.name.localeCompare(b.name);
+            }
+          }
+        }
+      });
+    }
+    return Handlebars.helpers.each(sortedArray, options);
+  });
+
+  Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
+    return getWeight(<Component>item.system, item.actor).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+  });
+
+  Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
+    const anComponent = <Component>item.system;
+    const retValue:number = getPower(anComponent);
+    if (anComponent.generatesPower) {
+      return "+" + retValue.toLocaleString(game.i18n.lang);
+    } else {
+      return retValue.toLocaleString(game.i18n.lang);
+    }
+  });
+
+  Handlebars.registerHelper('getComponentMaxHits', () => {
+    return game.settings.get("twodsix", "maxComponentHits");
+  });
+
+  Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
+    let returnValue = {};
+    if (actor) {
+      returnValue = _genTranslatedSkillList(actor);
+    } else {
+      returnValue = _genUntranslatedSkillList();
+    }
+    return returnValue;
+  });
+
+  Handlebars.registerHelper('makePieImage', (text: string) => {
+    //const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
+    const re = new RegExp(/(\d+)(\s?)\/(\s?)(\d+)/gm);
+    const parsedResult: RegExpMatchArray | null = re.exec(text);
+    let inputPercentage = 0.5;
+    if (parsedResult) {
+      inputPercentage = Number(parsedResult[1]) / Number(parsedResult[4]);
+      if (inputPercentage > 1) {
+        inputPercentage = 1;
+      }
+      if (inputPercentage < 0 ) {
+        inputPercentage = 0;
+      }
+    }
+    const degrees = Math.round(inputPercentage * 360);
+    return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border: 1px solid;`;
   });
 
   // Handy for debugging

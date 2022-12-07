@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 //Assorted utility functions likely to be helpful when displaying characters
 
 
@@ -190,32 +193,103 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
     return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
   } catch (err) {
-    throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
+    const pdfRef = event.dataTransfer?.getData('text/html');
+    if (pdfRef) {
+      return getHTMLLink(pdfRef);
+    } else {
+      const uriRef = event.dataTransfer?.getData('text/uri-list');
+      if (uriRef) {
+        return ({
+          type: "html",
+          href: uriRef,
+          label: "Weblink"
+        });
+      }
+      throw new Error(game.i18n.localize("TWODSIX.Errors.DropFailedWith").replace("_ERROR_MSG_", err));
+    }
   }
 }
 
-export async function getItemDataFromDropData(data:Record<string, any>) {
-  if (data.pack) {
-    // compendium
-    const pack = game.packs.find((p) => p.collection === data.pack);
-    // @ts-ignore Until foundry-vtt-types changes
-    if (!pack || pack.metadata.type !== 'Item') {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.DraggedCompendiumIsNotItem"));
-    }
-    const item = await pack.getDocument(data.id);
-    if (!item) {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
-    }
-    return duplicate(item.data);
-  } else if (data.data) {
-    // other actor
-    return duplicate(data.data);
-  } else {
-    // items directory
-    const item = game.items?.get(data.id);
-    if (!item) {
-      throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", data.id));
-    }
-    return duplicate(item.data);
+export async function getItemDataFromDropData(dropData:Record<string, any>) {
+  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  if (!item) {
+    throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
+  return deepClone(item);
+}
+
+export function getHTMLLink(dropString:string): Record<string,unknown> {
+  const re = new RegExp(/<a href="(.+?)">(.*?)<\/a>/gm);
+  const parsedResult: RegExpMatchArray | null = re.exec(dropString);
+  const isPDF = dropString.includes("/pdfjs/");
+  if (parsedResult){
+    return ({
+      type: isPDF ? "pdf" : "html",
+      href: parsedResult[1] ?? "",
+      label: parsedResult[2] ?? ""
+    });
+  } else {
+    return ({
+      type: isPDF ? "pdf" : "html",
+      href: "",
+      label: ""
+    });
+  }
+}
+
+export function openPDFReference(sourceString:string[]): void {
+  if (sourceString) {
+    const [code, page] = sourceString[0].split(' ');
+    const selectedPage = parseInt(page);
+    if (ui["pdfpager"]) {
+      ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
+      //byJournalName(code, selectedPage);
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFPagerNotInstalled"));
+    }
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+  }
+}
+
+export async function deletePDFReference(event): Promise<void> {
+  event.preventDefault();
+  if (this.actor.system.pdfReference.href != "") {
+    await this.actor.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+  }
+}
+
+export function isDisplayableSkill(skill:Skills): boolean {
+  if (skill.getFlag("twodsix", "untrainedSkill")) {
+    return false;
+  } else if (skill.system.trainingNotes !== ""  || skill.system.value >= 0) {
+    return true;
+  } else if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
+  const returnText:string = await new Promise((resolve) => {
+    new Dialog({
+      title: title,
+      content:
+        `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
+      buttons: {
+        Roll: {
+          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
+          callback:
+            (html:JQuery) => {
+              resolve(html.find('[name="outputFormula"]')[0]["value"]);
+            }
+        }
+      },
+      default: `Roll`
+    }).render(true);
+  });
+  return (returnText ?? "");
 }

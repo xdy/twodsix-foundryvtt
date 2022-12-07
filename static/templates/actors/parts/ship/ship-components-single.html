@@ -1,57 +1,60 @@
 <div class="storage-wrapper">
   <div class="grid-columns-single storage-header">
-    <div class="components-stored-single ">
+    {{#if settings.showComponentRating}}
+      {{#if settings.showComponentDM}}
+        <div class="components-stored-single">
+      {{else}}
+        <div class="components-stored-single only-rating">
+      {{/if}}
+    {{else}}
+      {{#if settings.showComponentDM}}
+        <div class="components-stored-single only-dm">
+      {{else}}
+        <div class="components-stored-single no-dm-rating">
+      {{/if}}
+    {{/if}}
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      {{#if settings.showComponentRating}}
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      {{/if}}
+      {{#if settings.showComponentDM}}
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.DM"}}</span>
+      {{/if}}
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
-      <span class="item-name centre">{{localize "TWODSIX.Items.Component.powerDraw"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.Power"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.hardened"}}'>{{localize "TWODSIX.Items.Component.Hd"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" title='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component"><i
-        class="fas fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
 
   <div class="grid-columns-single">
-    {{#each component}}
-    <div class="grid-columns-single-row">
-       <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' title='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_capitalize (localize (concat "TWODSIX.Items.Component." @key))}}</ol>
+    {{#if settings.allowDragDropOfLists}}
+    <div class="item-list grid-columns-single">
+      {{#each_sort_item container.nonCargo as |item id|}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../settings}}
+      {{/each_sort_item}}
     </div>
-    {{#each this as |item id|}}
-    <div class="grid-columns-single-row">
-      <ol class="ol-no-indent">
-        <li class="item components-stored-single " data-item-id="{{item.id}}">
-          <span class="item-name">{{item.name}}</span>
-          <span class="item-name">{{item.data.data.shortdescr}}</span>
-          <span class="item-name centre">{{item.data.data.techLevel}}</span>
-          <span class="item-name centre">{{item.data.data.rating}}</span>
-          <span class="item-name centre">{{item.data.data.weight}}</span>
-          <span class="item-name centre">{{item.data.data.powerDraw}}</span>
-          <span class="item-name centre">{{item.data.data.availableQuantity}}/{{item.data.data.quantity}}</span>
-          <span class="item-name centre">{{twodsix_limitLength item.data.data.damage 7}}</span>
-          <span class="item-name centre component-toggle">
-            {{#iff item.data.data.status "===" 'operational'}} <i class="fas fa-check-circle" style="color: green;" title='{{localize "TWODSIX.Items.Component.operational"}}'></i>
-            {{else}}
-              {{#iff item.data.data.status "===" 'damaged'}} <i class="fas fa-exclamation-circle" style="color: yellow;" title='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
-            {{else}}
-              {{#iff item.data.data.status "===" 'destroyed'}} <i class="fas fa-times-circle" style="color: red;" title='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
-            {{else}}
-              {{#iff item.data.data.status "===" 'off'}} <i class="fas fa-power-off" style="color: grey;" title='{{localize "TWODSIX.Items.Component.off"}}'></i>
-            {{/iff}} {{/iff}} {{/iff}} {{/iff}}
-          </span>
-          <span class="item-controls centre">
-            <a class="item-control item-edit" title='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
-              class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
-              class="fas fa-trash"></i></a>
-          </span>
-        </li>
-      </ol>
-    </div>
-    {{/each}}
-    {{/each}}
+    {{else}}
+      {{#each componentObject}}
+        {{#iff @key "!==" "cargo"}}
+          <div class="grid-columns-single-row">
+            <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}
+              <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a>
+            </ol>
+          </div>
+
+          <div class="item-list grid-columns-single">
+            {{#each_sort_item this as |item id|}}
+              {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../../settings}}
+            {{/each_sort_item}}
+          </div>
+        {{/iff}}
+      {{/each}}
+    {{/if}}
   </div>
 </div>

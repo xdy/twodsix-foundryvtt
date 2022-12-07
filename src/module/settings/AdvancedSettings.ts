@@ -8,7 +8,7 @@ export default class AdvancedSettings extends FormApplication {
   }
 
   /** @override */
-  static get defaultOptions(): FormApplication.Options {
+  static get defaultOptions(): FormApplicationOptions {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
@@ -22,7 +22,9 @@ export default class AdvancedSettings extends FormApplication {
     const settings = this.settings.map((settingName) => {
       const setting: any = game.settings.settings.get("twodsix." + settingName);
       setting.value = game.settings.get(setting.namespace ?? setting.module, settingName);
-      if (setting.choices) {
+      if (setting.choices === "Color") {
+        setting.htmlType = "Color";
+      } else if (setting.choices) {
         setting.htmlType = "Select";
       } else {
         setting.htmlType = setting.type.name;
@@ -36,7 +38,9 @@ export default class AdvancedSettings extends FormApplication {
   async _updateObject(event, formData): Promise<void> {
     if (event.submitter.name === "submit") {
       Object.entries(formData).forEach(([key, value]) => {
-        game.settings.set("twodsix", key, value);
+        if (key != "submit" && key != "cancel") {
+          game.settings.set("twodsix", key, value);
+        }
       });
     }
     return Promise.resolve();
@@ -47,7 +51,7 @@ export default class AdvancedSettings extends FormApplication {
       name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
       label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
       hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.hint`),
-      icon: `fas fa-${icon}`,
+      icon: `fa-solid fa-${icon}`,
       type: cls,
       restricted: restricted
     });

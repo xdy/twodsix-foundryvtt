@@ -3,6 +3,8 @@ import DisplaySettings from "../module/settings/DisplaySettings";
 import ItemSettings from "../module/settings/ItemSettings";
 import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
+import { TwodsixVehicleSheet } from "../module/sheets/TwodsixVehicleSheet";
+import { TwodsixAnimalSheet } from "../module/sheets/TwodsixAnimalSheet";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import {rollItemMacro} from "../module/utils/rollItemMacro";
 import { TwodsixItemSheet } from "../module/sheets/TwodsixItemSheet";
@@ -60,7 +62,7 @@ declare global {
       'twodsix.hideUntrainedSkills': boolean;
       'twodsix.invertSkillRollShiftClick': boolean;
       'twodsix.lifebloodInsteadOfCharacteristics': boolean;
-      'twodsix.showAlternativeCharacteristics': boolean;
+      'twodsix.showAlternativeCharacteristics': string;
       'twodsix.showContaminationBelowLifeblood': boolean;
       'twodsix.showHeroPoints': boolean;
       'twodsix.showLifebloodStamina': boolean;
@@ -69,6 +71,9 @@ declare global {
       'twodsix.useFoundryStandardStyle': boolean;
       'twodsix.useSystemDefaultTokenIcon': boolean;
       'twodsix.useWoundedStatusIndicators': boolean;
+      'twodsix.useWoundedEncumbranceIndicators': boolean;
+      'twodsix.encumbranceFraction': string;
+      'twodsix.encumbranceModifier': number;
       'twodsix.absoluteBonusValueForEachTimeIncrement': number;
       'twodsix.absoluteCriticalEffectValue': number;
       'twodsix.maxSkillLevel': number;
@@ -79,32 +84,96 @@ declare global {
       'twodsix.ruleset': string; //TODO Should be more specific, really
       'twodsix.alternativeShort1': string;
       'twodsix.alternativeShort2': string;
+      'twodsix.maxComponentHits':number;
       'twodsix.initiativeFormula': string;
       'twodsix.systemMigrationVersion': string;
       'twodsix.termForAdvantage': string;
       'twodsix.termForDisadvantage': string;
-      'twodsix.debugSettings': RulesetSettings
-      'twodsix.displaySettings': DisplaySettings
-      'twodsix.itemSettings': ItemSettings
-      'twodsix.rulesetSettings': RulesetSettings
+      'twodsix.debugSettings': RulesetSettings;
+      'twodsix.displaySettings': DisplaySettings;
+      'twodsix.itemSettings': ItemSettings;
+      'twodsix.rulesetSettings': RulesetSettings;
+      'twodsix.minorWoundsRollModifier': number;
+      'twodsix.seriousWoundsRollModifier': number;
+      'twodsix.mortgagePayment': number;
+      'twodsix.massProductionDiscount': number;
+      'twodsix.maxEncumbrance': string;
+      'twodsix.useEncumbrance': boolean;
+      'twodsix.defaultMovement': number;
+      'twodsix.defaultMovementUnits': string;
+      'twodsix.addEffectForShipDamage': boolean;
+      'twodsix.unarmedDamage': string;
+      'twodsix.autoAddUnarmed': boolean;
+      'twodsix.showTimeframe': boolean;
+      'twodsix.showStatusIcons': boolean;
+      'twodsix.showHullAndArmor': string;
+      'twodsix.addEffectToManualDamage':boolean;
+      'twodsix.showRangeSpeedNoUnits':boolean;
+      'twodsix.showInitiativeButton':boolean;
+      'twodsix.showSkillCountsRanks':boolean;
+      'twodsix.showComponentSummaryIcons':boolean;
+      'twodsix.showSpells':boolean;
+      'twodsix.sorcerySkill':string;
+      'twodsix.useNationality':boolean;
+      'twodsix.animalsUseHits': boolean;
+      'twodsix.animalsUseLocations':boolean;
+      'twodsix.displayReactionMorale': boolean;
+      'twodsix.showComponentRating': boolean;
+      'twodsix.showComponentDM': boolean;
+      'twodsix.transferDroppedItems': boolean;
+      'twodsix.allowDragDropOfLists':boolean;
+      'twodsix.useDodgeParry':boolean;
+      'twodsix.showModifierDetails':boolean;
+      'twodsix.defaultColor':string;
+      'twodsix.lightColor':string;
     }
   }
 }
 
 declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
+  useFoundryStandardStyle: boolean;
+  showWeightUsage: boolean;
+  useProseMirror: boolean;
+  useShipAutoCalc: boolean;
 }
+declare interface TwodsixVehicleSheetSettings {
+  showHullAndArmor: string;
+}
+
+declare interface TwodsixSpaceObjectSheetSettings {
+  useProseMirror?: boolean;
+}
+
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
   shipPositions: Item[];
   storage: Collection<Item>;
+  richText: any;
+}
+
+declare interface TwodsixVehicleSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixVehicleSheetSettings;
+  shipPositions: Item[];
+  storage: Collection<Item>;
+}
+
+declare interface TwodsixSpaceObjectSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixSpaceObjectSheetSettings;
+  richText: any;
 }
 
 declare interface ExtraData {
   actor?: TwodsixActor;
   ship?: TwodsixActor;
   event: Event;
+  actionName?: string;
+  positionName?: string;
+  diceModifier?: string;
+  component?:TwodsixItem;
 }
 
 declare interface AvailableShipActionData {
@@ -146,6 +215,8 @@ declare interface Game {
     applications: {
       TwodsixActorSheet: TwodsixActorSheet;
       TwodsixShipSheet: TwodsixShipSheet;
+      TwodsixVehicleSheet: TwodsixVehicleSheet;
+      TwodsixAnimalSheet: TwodsixAnimalSheet;
     }
     config: TWODSIX
     entities: {
@@ -178,6 +249,30 @@ declare interface Game {
             label: string;
           };
         };
+        vehicle: {
+          'twodsix.TwodsixVehicleSheet': {
+            id: 'twodsix.TwodsixVehicleSheet';
+            default: boolean;
+            cls: TwodsixVehicleSheet;
+            label: string;
+          };
+        };
+        animal: {
+          'twodsix.TwodsixAnimalSheet': {
+            id: 'twodsix.TwodsixAnimalSheet';
+            default: boolean;
+            cls: TwodsixAnimalSheet;
+            label: string;
+          };
+        };
+        "space-object": {
+          'twodsix.TwodsixVehicleSheet': {
+            id: 'twodsix.TwodsixSpaceObjectSheet';
+            default: boolean;
+            cls: TwodsixSpaceObjectSheet;
+            label: string;
+          };
+        }
       };
     };
 
@@ -193,6 +288,7 @@ declare interface Game {
         junk: TwodsixItemSheetData;
         skills: TwodsixItemSheetData;
         trait: TwodsixItemSheetData;
+        spell: TwodsixItemSheetData;
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
         shipPosition: TwodsixShipPositionSheetData;

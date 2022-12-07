@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <td>{{localize "TWODSIX.Damage.Damage"}}</td>
-        <td>{{localize "TWODSIX.Actor.Items.Armor"}}</td>
+        <td>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</td>
         <td>{{localize "TWODSIX.Damage.TotalDamage"}}</td>
       </tr>
     </thead>
@@ -44,6 +44,14 @@
           <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
           <td><span class="result-value"></span> <span class="mod"></span></td>
         </tr>
+      {{else if useLifebloodOnly}}
+        <tr class="lifeblood">
+          <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.HIT"}}</td>
+          <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
+          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span> <span class="current-mod"></span></td>
+          <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
+          <td><span class="result-value"></span> <span class="mod"></span></td>
+        </tr>
       {{else}}
         <tr class="strength">
           {{#if useLifebloodEndurance}}
@@ -75,10 +83,10 @@
       {{/if}}
     </tbody>
   </table>
-  
+
   <span class="unalocated-damage-text">{{localize "TWODSIX.Damage.UnallocatedDamage"}}: <span class="unalocated-damage"></span></span><br><br>
   <span class="character-dead red">{{localize "TWODSIX.Damage.CharacterIsDead"}}</span>
-  
+
   <br><br>
   {{/with}}
 </div>

@@ -1,0 +1,19 @@
+<div class="consumable-row npc" data-consumable-id="{{id}}">
+  {{#unless system.isAttachment}}
+  <div class="wrapper">
+    {{#with system}}
+    <span class="consumable-count">
+      <span>{{currentCount}}/{{max}}</span>
+      <span class="combined-buttons">
+        <button class="left-button adjust-consumable" {{#iff currentCount "<=" 0}}disabled{{/iff}} data-value="1">-</button>
+        <button class="right-button adjust-consumable" {{#iff currentCount ">=" max}}disabled{{/iff}} data-value="-1">+</button>
+      </span>
+    </span>
+    {{/with}}
+  </div>
+  {{else}}
+  <div class="wrapper">
+    {{name}}
+  </div>
+  {{/unless}}
+</div>

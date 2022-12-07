@@ -1,64 +1,132 @@
 <!-- TODO Move this file -->
 <form>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
-      <select name="difficulty">
-        {{#select difficulty}}
-          {{#each difficulties as |label difficulty|}}
-            <option value="{{difficulty}}">{{localize difficulty}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Type"}}
-      <select name="rollType">
-        {{#select rollType}}
-          {{#each rollTypes as |type|}}
-            <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
-  {{#if skillRoll}}
-  <div class="form-group">
-    <label class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}
-      <select class="select-mod" name="characteristic" value={{characteristic}}>
-        {{#select characteristic}}
-          <option value="STR" for="skill-modifier">{{localize "TWODSIX.Items.Skills.STR"}}</option>
-          <option value="DEX" for="skill-modifier">{{localize "TWODSIX.Items.Skills.DEX"}}</option>
-          <option value="END" for="skill-modifier">{{localize "TWODSIX.Items.Skills.END"}}</option>
-          <option value="INT" for="skill-modifier">{{localize "TWODSIX.Items.Skills.INT"}}</option>
-          <option value="EDU" for="skill-modifier">{{localize "TWODSIX.Items.Skills.EDU"}}</option>
-          <option value="SOC" for="skill-modifier">{{localize "TWODSIX.Items.Skills.SOC"}}</option>
-        {{#if (showAlternativeCharacteristics)}}
-          <option value="ALT1" for="skill-modifier">{{alternativeShort1}}</option>
-          <option value="ALT2" for="skill-modifier">{{alternativeShort2}}</option>
-        {{else}}
-          <option value="PSI" for="skill-modifier">{{localize "TWODSIX.Items.Skills.PSI"}}</option>
-        {{/if}}
-        <option value="NONE" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</option>
-        {{/select}}
-      </select>
-    </label>
-  </div>
+  <fieldset>
+  <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
+        <select name="difficulty">
+          {{#select difficulty}}
+            {{#each difficulties}}
+              <option value="{{@key}}">{{localize @key}} ({{#if (twodsix_difficultiesAsTargetNumber)}}{{this.target}}+{{else}}{{#iff this.mod ">=" 0}}+{{/iff}}{{this.mod}}{{/if}})
+              </option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Type"}}
+        <select name="rollType">
+          {{#select rollType}}
+            {{#each rollTypes as |type|}}
+              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
+        <select name="rollMode">
+          {{#select rollMode}}
+            {{#each rollModes as |label mode|}}
+              <option value="{{mode}}">{{localize label}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </label>
+    </div>
+  </fieldset>
+  <br>
+  <fieldset>
+    <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
+      {{#if skillRoll}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.SkillModifier"}}
+          <input type="number" name="rollModifiers.skill" value="{{rollModifiers.skill}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+          ({{skillLabel}})
+        </label>
+      </div>
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}
+          <select class="select-mod" name="rollModifiers.characteristic" value={{rollModifiers.characteristic}}>
+          {{selectOptions characteristicList selected=initialChoice}}
+          </select>
+        </label>
+      </div>
+      {{/if}}
+      {{#if itemRoll}}
+        {{log rollModifiers}}
+        <div class="form-group">
+          <label>{{localize "TWODSIX.Chat.Roll.ItemModifier"}}
+            <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            ({{itemLabel}})
+          </label>
+        </div>
+        {{#iff rollModifiers.rof "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.ROF"}}
+              <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.dodgeParry "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}
+              <input type="number" name="rollModifiers.dodgeParry" value="{{rollModifiers.dodgeParry}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{rollModifiers.dodgeParryLabel}})
+            </label>
+          </div>
+        {{/iff}}
+      {{/if}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
+          <input type="number" name="rollModifiers.other" value="{{rollModifiers.other}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+  </fieldset>
+  <br>
+  {{#if showConditions}}
+  <fieldset>
+    <legend>{{localize "TWODSIX.Chat.Roll.Conditions"}}</legend>
+      {{#if showWounds}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.Wounds"}}
+          <input type="number" name="rollModifiers.wounds" value="{{rollModifiers.wounds}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+      {{/if}}
+      {{#if showEncumbered}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.Encumbered"}}
+          <input type="number" name="rollModifiers.encumbered" value="{{rollModifiers.encumbered}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+      {{/if}}
+      {{#if rollModifiers.custom}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.Custom"}}
+          <input type="number" name="rollModifiers.custom" value="{{rollModifiers.custom}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+      {{/if}}
+  </fieldset>
+  <br>
   {{/if}}
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
-      <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();"/>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
-      <select name="rollMode">
-        {{#select rollMode}}
-          {{#each rollModes as |label mode|}}
-            <option value="{{mode}}">{{localize label}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-    </label>
-  </div>
+  {{#if (twodsix_showTimeframe)}}
+  <fieldset>
+    <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}<br>
+        <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
+      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.Units"}}<br>
+        <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
+          {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
+        </select>
+      </label>
+    </div>
+  </fieldset>
+  <br>
+  {{/if}}
 </form>

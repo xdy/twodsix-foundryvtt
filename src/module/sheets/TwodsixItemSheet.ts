@@ -1,14 +1,18 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
-import { Gear } from "../../types/template";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
+import { Component, Gear } from "src/types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
 export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
+  returnData: any; ///Not certain on this one or is it just 'data' ************
 
   /** @override */
   static get defaultOptions(): ItemSheet.Options {
@@ -24,29 +28,32 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /** @override */
   get template(): string {
     const path = "systems/twodsix/templates/items";
-    return `${path}/${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   getData(): ItemSheet {
-    const data = super.getData();
+    const returnData = super.getData();
+    //returnData.actor = returnData.data;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
-    data.data.settings = {
+    returnData.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
       ShowRangeBandAndHideRange: game.settings.get('twodsix', 'ShowRangeBandAndHideRange'),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
+      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
     };
-    data.data.config = TWODSIX;
-    data.data.isOwned = this.item.isOwned;
-    return data;
+    returnData.config = TWODSIX;
+    return returnData;
   }
 
   /* -------------------------------------------- */
@@ -72,6 +79,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
 
     html.find('.consumable-create').on('click', this._onCreateConsumable.bind(this));
+    html.find('.attachment-create').on('click', this._onCreateAttachment.bind(this));
     html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
@@ -81,6 +89,52 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
 
     this.handleContentEditable(html);
+    html.find('.open-link').on('click', openPDFReference.bind(this, [this.item.system.docReference]));
+    html.find('.delete-link').on('click', deletePDFReference.bind(this));
+    html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
+    html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
+  }
+  private async _changeSubtype(event) {
+    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
+    /*Update from default other image*/
+    if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
+      await this.item.update({"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+    }
+    /*Prevent cargo from using %hull weight*/
+    const anComponent = <Component> this.item.system;
+    if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
+      await this.item.update({"system.weightIsPct": false});
+    }
+    /*Unset isBaseHull if not hull component*/
+    if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
+      await this.item.update({"system.isBaseHull": false});
+    }
+    /*Unset hardened if fuel, cargo, storage, vehicle*/
+    if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+      await this.item.update({"system.hardened": false});
+    }
+  }
+
+  /* -------------------------------------------- */
+  /** @override */
+  // cludge to fix consumables dissapearing when updating item sheet
+  async _onChangeInput(event) {
+    //console.log(event);
+    await super._onChangeInput(event);
+    //await (<TwodsixItem>this.item).prepareConsumable();
+    this.item?.sheet?.render();
+  }
+  /* -------------------------------------------- */
+
+  private async _changeIsBaseHull() {
+    const anComponent = <Component> this.item.system;
+    const newValue = !anComponent.isBaseHull;
+
+    await this.item.update({"system.isBaseHull": newValue});
+    /*Unset isWeightPct if changing to base hull*/
+    if (newValue && anComponent.weightIsPct) {
+      await this.item.update({"system.weightIsPct": false});
+    }
   }
 
   private async _onCreateEffect(): Promise<void> {
@@ -151,7 +205,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         content: `<div class="remove-consumable">${body}<br><br></div>`,
         yes: async () => {
           if (consumable && consumable.id) {
-            (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
+            await (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
+            this.render();
           }
         },
         no: () => {
@@ -178,18 +233,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           label: game.i18n.localize("TWODSIX.Create"),
           callback: async (buttonHtml: JQuery) => {
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
-            const data = {
+            let equippedState = "";
+            if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
+              equippedState = this.item.system.equipped ?? "backpack";
+            }
+            const newConsumableData = {
               name: buttonHtml.find('.consumable-name').val(),
               type: "consumable",
-              data: {
+              system: {
                 subtype: buttonHtml.find('.consumable-subtype').val(),
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
                 currentCount: max,
                 max: max,
+                equipped: equippedState
               }
             };
-            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [data]) || {};
+            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
             await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
+            this.render();
           }
         },
         cancel: {
@@ -200,8 +261,25 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }).render(true);
   }
 
-  private _onChangeUseConsumableForAttack(event): void {
-    this.item.update({"data.useConsumableForAttack": $(event.currentTarget).val()});
+  private async _onCreateAttachment():Promise<void> {
+    const newConsumableData = {
+      name: game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment"),
+      type: "consumable",
+      system: {
+        subtype: "other",
+        quantity: 1,
+        isAttachment: true
+      }
+    };
+    const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
+    //newConsumable.update({"system.isAttachment": true});
+    await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
+    this.render();
+  }
+
+  private async _onChangeUseConsumableForAttack(event): Promise<void> {
+    await this.item.update({"system.useConsumableForAttack": $(event.currentTarget).val()});
+    this.render();
   }
 
   private static check(cond: boolean, err: string) {
@@ -213,30 +291,41 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
-      TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-      TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
-
-      const data = getDataFromDropEvent(event);
-
-      TwodsixItemSheet.check(!data, "DraggingSomething");
-      TwodsixItemSheet.check(data.type !== "Item", "OnlyDropItems");
-
-      const itemData = await getItemDataFromDropData(data);
-
-      TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
-
-      // If the dropped item has the same actor as the current item let's just use the same id.
-      let itemId: string;
-      if (this.item.actor?.items.get(itemData.id)) {
-        itemId = itemData.id;
-      } else {
-        const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
-        if (!newItem) {
-          throw new Error(`Somehow could not create item ${itemData}`);
+      const dropData = getDataFromDropEvent(event);
+      TwodsixItemSheet.check(!dropData, "DraggingSomething");
+      if (dropData.type === 'html' || dropData.type === 'pdf'){
+        if (dropData.href) {
+          await this.item.update({
+            "system.pdfReference.type": dropData.type,
+            "system.pdfReference.href": dropData.href,
+            "system.pdfReference.label": dropData.label
+          });
         }
-        itemId = newItem[0].id;
+      } else {
+        //This part handles just comsumables
+        TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
+        TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
+
+        TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
+
+        const itemData = await getItemDataFromDropData(dropData);
+
+        TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
+
+        // If the dropped item has the same actor as the current item let's just use the same id.
+        let itemId: string;
+        if (this.item.actor?.items.get(itemData.id)) {
+          itemId = itemData.id;
+        } else {
+          const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
+          if (!newItem) {
+            throw new Error(`Somehow could not create item ${itemData}`);
+          }
+          itemId = newItem[0].id;
+        }
+        await (<TwodsixItem>this.item).addConsumable(itemId);
       }
-      await (<TwodsixItem>this.item).addConsumable(itemId);
+      this.render();
     } catch (err) {
       console.error(`Twodsix | ${err}`);
       ui.notifications.error(err);

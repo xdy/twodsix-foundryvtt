@@ -13,7 +13,7 @@ export const registerSettings = function ():void {
   RulsetSettings.registerMenu(RulsetSettings.create(), "rulesetSettings", "gavel");
   ItemSettings.registerMenu(ItemSettings.create(), "itemSettings", "bars");
   DisplaySettings.registerMenu(DisplaySettings.create(), "displaySettings", "tv");
-  DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "bug");
+  DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "flask");
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
@@ -26,11 +26,13 @@ export const registerSettings = function ():void {
     }
     return 0;
   });
-  stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, Object.fromEntries(rulesetOptions), true);
+  stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, false, Object.fromEntries(rulesetOptions), true);
 
   booleanSetting('automateDamageRollOnHit', false, true, 'client');
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
+  booleanSetting('transferDroppedItems', false, true);
+  booleanSetting('autoAddUnarmed', false, true);
   numberSetting('weightModifierForWornArmor', 1.0, true);
 
   function _onHideUntrainedSkillsChange(setting:boolean) {

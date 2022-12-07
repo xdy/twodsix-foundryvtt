@@ -1,36 +1,65 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} item     The item data
+ * @param {Object} dropData     Document type and uuid
  * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
  */
-export async function createItemMacro(item, slot): Promise<void> {
-  if (item.type === "Macro") {
-    // @ts-ignore
-    await game.user?.assignHotbarMacro(game.macros.get(item.id), slot);
-  } else {
-    const command = `game.twodsix.rollItemMacro("${item.id ? item.id : item.data._id}");`;
-    let itemName = item.name ? item.name : item.data?.name;
-    let img = item.img ? item.img : item.data?.img;
+export function createItemMacro(dropData, slot) {
+  //console.log(dropData.uuid.split("."));
+  if (dropData.type === "Item") {
+    addItemMacro(dropData, slot).then();
+    return false;
+  }
+}
 
-    //handle case for unattached item
-    if (!itemName) {
-      const origItem = <Item>game.items?.get(item.id);
-      itemName = origItem?.name || "???";
-      img = origItem?.img || CONST.DEFAULT_MACRO_ICON;
+async function addItemMacro(dropData, slot): Promise<void> {
+  const item = await fromUuid(dropData.uuid);
+  if (item?.id) {
+    if (dropData.type === "Macro") {
+      await game.user?.assignHotbarMacro(game.macros?.get(item.id) || null, slot);
+    } else {
+      let itemName = "";
+      let img = "";
+      let command = "";
+      if (dropData.type === "Item") {
+        command = `game.twodsix.rollItemMacro("${item.id ? item.id : item._id}");`;
+        itemName = item.name || "";
+        img = item.img || foundry.documents.BaseMacro.DEFAULT_ICON;
+
+        //handle case for unattached item
+        if (itemName === "") {
+          const origItem = <Item>game.items?.get(item.id);
+          itemName = origItem?.name || "???";
+          //img = origItem?.img || MacroData.DEFAULT_ICON;
+          img = origItem?.img || foundry.documents.BaseMacro.DEFAULT_ICON;
+        }
+
+      } else if (dropData.type === "RollTable") {
+        const newTable = game.tables?.get(item.id);
+        if (newTable) {
+          itemName = newTable.name || "???";
+          //img = newTable.img || MacroData.DEFAULT_ICON;
+          img = newTable.img || foundry.documents.BaseMacro.DEFAULT_ICON;;
+          command = `game.tables.get("${item.id}").draw();`;
+        }
+      } else {
+        return;
+      }
+
+      let macro: Macro | undefined = game.macros?.getName(itemName);
+      if (!macro) {
+        macro = await Macro.create({
+          command: command,
+          name: itemName,
+          type: 'script',
+          img: img,
+          flags: { 'twodsix.itemMacro': true },
+        }, { renderSheet: false }) as Macro;
+      }
+      await game.user?.assignHotbarMacro(macro, slot);
     }
-    let macro: Macro | undefined = game.macros?.getName(itemName);
-    if (!macro) {
-      macro = await Macro.create({
-        command: command,
-        name: itemName,
-        type: 'script',
-        img: img,
-        flags: { 'twodsix.itemMacro': true },
-      }, { renderSheet: false }) as Macro;
-    }
-    await game.user?.assignHotbarMacro(macro, slot);
   }
 }

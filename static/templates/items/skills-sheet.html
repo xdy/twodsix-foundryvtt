@@ -6,84 +6,70 @@
         <tr>
           <th>
             <div class="item-img">
-              <img class="item-img" src="{{img}}" title="{{img}}" alt="{{name}}" data-edit="img" width="128"
+              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
                    height="128"/></div>
           </th>
           <th>
             <div class="item-name">
-              <label for="data.name">{{localize "TWODSIX.Items.Skills.SkillName"}}</label>
-              <input id="data.name" name="name" type="text" value="{{name}}"/>
+              <label for="name">{{localize "TWODSIX.Items.Skills.SkillName"}}</label>
+              <input id="name" name="name" type="text" value="{{name}}"/>
             </div>
           </th>
         </tr>
       </table>
-      <div class="item-name">
-        <label for="data.name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
-        <input type="text" value="{{skillName name}}" readonly/>
-        <div class="simplified-skill-description">
-          {{{replace (localize "TWODSIX.Items.Skills.SimplifiedSkillNameDescription") "_SKILL_NAME_" (skillName name)}}}
-        </div>
+      <div class="item-simplifiedName">
+        <label class="resource-label" for="name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
+        <input class="form-input" type="text" value="{{skillName name}}" readonly/>
       </div>
+        <div class="simplified-skill-description">
+          <span class="resource-label">&nbsp</span>
+          <span class="form-input">{{{replace (localize "TWODSIX.Items.Skills.SimplifiedSkillNameDescription") "_SKILL_NAME_" (skillName name)}}}</span>
+        </div>
     </div>
     <div class="item-lvl">
-      <label for="data.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}
-        <input id="data.value" type="text" name="data.value" value="{{data.value}}" data-dtype="Number"/></label>
+      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <input class="form-input" id="system.value" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
     </div>
-    <div class = "mini-grid">
-      <div class="item-type left">
-        <label for="data.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
-        <select class="select-mod" name="data.characteristic" value={{characteristic}}>
-          {{#select data.characteristic}}
-          <option value="STR" for="skill-modifier">{{localize "TWODSIX.Items.Skills.STR"}}</option>
-          <option value="DEX" for="skill-modifier">{{localize "TWODSIX.Items.Skills.DEX"}}</option>
-          <option value="END" for="skill-modifier">{{localize "TWODSIX.Items.Skills.END"}}</option>
-          <option value="INT" for="skill-modifier">{{localize "TWODSIX.Items.Skills.INT"}}</option>
-          <option value="EDU" for="skill-modifier">{{localize "TWODSIX.Items.Skills.EDU"}}</option>
-          <option value="SOC" for="skill-modifier">{{localize "TWODSIX.Items.Skills.SOC"}}</option>
-          {{#if (showAlternativeCharacteristics)}}
-            <option value="ALT1" for="skill-modifier">{{alternativeShort1}}</option>
-            <option value="ALT2" for="skill-modifier">{{alternativeShort2}}</option>
-          {{else}}
-            <option value="PSI" for="skill-modifier">{{localize "TWODSIX.Items.Skills.PSI"}}</option>
-          {{/if}}
-          <option value="NONE" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</option>
-          {{/select}}
+
+    <div class="item-simplifiedName">
+      <label class="resource-label" for="system.inTraining">{{localize "TWODSIX.Items.Skills.TrainingNotes"}}</label>
+      <input class="form-input" id="system.trainingNotes" name="system.trainingNotes" type="text" value="{{system.trainingNotes}}"/>
+    </div>
+
+      <div class="item-type">
+        <label for="system.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
+        <select class="form-input" name="system.characteristic" value={{characteristic}}>
+          {{selectOptions (getCharacteristicList owner) selected=system.characteristic }}
         </select>
       </div>
-      <div class="item-name left">
-        <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}
-          <select class="select-difficulty" name="data.difficulty" value={{difficulty}}>
-            {{#select data.difficulty}}
-            {{#each data.settings.DIFFICULTIES as |label difficulty|}}
-            <option value="{{difficulty}}">{{localize difficulty}}</option>
+      <div class="item-rollDifficulty">
+        <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
+          <select class="form-input" name="system.difficulty" value={{difficulty}}>
+            {{#select system.difficulty}}
+            {{#each settings.DIFFICULTIES}}
+            <option value="{{@key}}">{{localize @key}} (
+              {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
+            </option>
             {{/each}}
             {{/select}}
           </select>
-        </label>
       </div>
-    </div>
-    <div class="mini-grid">
-      <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}
-        <select class="select-rolltype" name="data.rolltype" value={{rolltype}}>
-          {{#select data.rolltype}}
-            {{#each data.config.ROLLTYPES as |type|}}
+
+    <div class="item-rollType">
+      <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}</label>
+        <select class="form-input" name="system.rolltype" value={{rolltype}}>
+          {{#select system.rolltype}}
+            {{#each config.ROLLTYPES as |type|}}
               <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
             {{/each}}
           {{/select}}
         </select>
-      </label>
-    </div>
-
-    <div class="item-short">
-      <label for="data.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}
-        <input id="data.shortdescr" type="text" name="data.shortdescr" value="{{data.shortdescr}}"/>
-      </label>
     </div>
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="data.description">{{{data.description}}}</div>
+      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
-    {{> "systems/twodsix/templates/items/parts/footer.html"}}
+    {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
   </div>
 </form>
