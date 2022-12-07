@@ -331,7 +331,7 @@ export default class TwodsixActor extends Actor {
       documents.forEach(async (element:ActiveEffect, i) => {
         const activeEffectId = element.getFlag("twodsix", "sourceId");
         if (activeEffectId) {
-          const match = element.data.origin?.match(/Item\.(.+)/);
+          const match = element.origin?.match(/Item\.(.+)/);
           if (match) {
             const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
             delete result[i]._id;
