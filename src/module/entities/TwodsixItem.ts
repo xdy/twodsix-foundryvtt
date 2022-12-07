@@ -41,7 +41,7 @@ export default class TwodsixItem extends Item {
         if (effect.flags.twodsix === undefined) {
           effect.flags.twodsix = {};
         }
-        effect.flags.twodsix.sourceId = effect._id
+        effect.flags.twodsix.sourceId = effect._id;
         effect.origin = "";
         return effect;
       });
