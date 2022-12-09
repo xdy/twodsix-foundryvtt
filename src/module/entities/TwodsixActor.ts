@@ -326,7 +326,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  protected async override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+  protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
     super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (embeddedName === "ActiveEffect") {
       documents.forEach(async (element:ActiveEffect, i) => {
