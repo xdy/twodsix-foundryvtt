@@ -15,6 +15,7 @@ import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller, Weapon} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
+//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -325,7 +326,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+  protected async override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
     super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (embeddedName === "ActiveEffect") {
       documents.forEach(async (element:ActiveEffect, i) => {
@@ -343,12 +344,12 @@ export default class TwodsixActor extends Actor {
               }
             });
             // @ts-ignore
-            item?.update({"effects": newEffects}, {recursive: true});
+            await item?.update({"effects": newEffects}, {recursive: true, noHook: true}).then();
           }
         }
       });
     }
-    this.render();
+    //this.render();
   }
 
   protected async _onCreate() {
@@ -843,3 +844,23 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
 /*function isSameActor(actor: Actor, itemData: any): boolean {
   return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }*/
+
+/*Hooks.on("updateActiveEffect", async (effect, _update) => {
+  const activeEffectId = effect.getFlag("twodsix", "sourceId");
+  /*if (activeEffectId) {
+    const match = element.origin?.match(/Item\.(.+)/);
+    if (match) {
+      const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
+      delete result[i]._id;
+      const newEffects = item?.effects.map(effect => {
+        if (effect.id === activeEffectId) {
+          return foundry.utils.mergeObject(effect.toObject(), result[i]);
+        } else {
+          return effect.toObject();
+        }
+      });
+      // @ts-ignore
+      await item?.update({"effects": newEffects}, {recursive: true, noHook: true}).then();
+    }
+  }
+});*/

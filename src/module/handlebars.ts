@@ -7,7 +7,7 @@ import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import {Skills, Component} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
-import { _genTranslatedSkillList, _genUntranslatedSkillList } from "./utils/TwodsixRollSettings";
+import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
@@ -295,9 +295,9 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
     let returnValue = {};
     if (actor) {
-      returnValue = _genTranslatedSkillList(actor);
+      returnValue = _getTranslatedCharacteristicList(actor);
     } else {
-      returnValue = _genUntranslatedSkillList();
+      returnValue = _genUntranslatedCharacteristicList();
     }
     return returnValue;
   });

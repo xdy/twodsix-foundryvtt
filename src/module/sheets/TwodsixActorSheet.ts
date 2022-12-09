@@ -215,16 +215,16 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       let disableEffect: boolean;
       switch ((<Gear>itemSelected.system).equipped) {
         case "equipped":
-          await itemSelected.update({["system.equipped"]: "ship"});
+          await itemSelected.update({["system.equipped"]: "ship"}).then();
           disableEffect = true;
           break;
         case "ship":
-          await itemSelected.update({["system.equipped"]: "backpack"});
+          await itemSelected.update({["system.equipped"]: "backpack"}).then();
           disableEffect = true;
           break;
         case "backpack":
         default:
-          await itemSelected.update({["system.equipped"]: "equipped"});
+          await itemSelected.update({["system.equipped"]: "equipped"}).then();
           disableEffect = false;
           break;
       }
@@ -232,9 +232,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       if (itemSelected.effects.size > 0) {
         const effect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
         if (effect) {
-          if (effect.getFlag("twodsix", "lastSetDisable") === undefined || effect.getFlag("twodsix", "lastSetDisable") === effect.disabled) {
-            await effect.update({disabled: disableEffect});
-            effect.setFlag("twodsix", "lastSetDisable", disableEffect);
+          if (effect.disabled !== disableEffect || effect.getFlag("twodsix", "lastSetDisable") === undefined) {
+            await effect.update({disabled: disableEffect}, {noHook: true}).then();
+            await effect.setFlag("twodsix", "lastSetDisable", disableEffect);
           }
         }
       }

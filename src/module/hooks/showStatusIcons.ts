@@ -20,14 +20,22 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
+Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>) => {
+  const firstGM = game.users.find(u => u.isGM);
+  const owningActor = <TwodsixActor> item.actor;
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+    console.log(update);
     if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
-      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+      await applyEncumberedEffect(owningActor).then();
+    }
+  }
+  if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+    if ((owningActor.type === 'traveller' || owningActor.type === 'animal') && game.user?.id === firstGM?.id) {
+      await applyWoundedEffect(<TwodsixActor>item.actor).then();
     }
   }
 });
+
 Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
     const firstGM = game.users.find(u => u.isGM);
@@ -118,7 +126,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   if (isCurrentlyEncumbered.length > 0 && (state === false)) {
     const idList= isCurrentlyEncumbered.map(i => <string>i.id);
     if(idList.length > 0) {
-      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList, {noHook: true});
     }
   } else if (state === true  && isCurrentlyEncumbered.length === 0) {
     const modifier = game.settings.get('twodsix', 'encumbranceModifier');

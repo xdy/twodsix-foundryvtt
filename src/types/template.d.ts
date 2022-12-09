@@ -112,6 +112,7 @@ export type Gear = Armor
   | Equipment
   | Storage
   | Weapon
+  | Component
   ;
 
 export type UsesConsumables = Armor

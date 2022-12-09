@@ -5,9 +5,9 @@ import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
 import {getKeyByValue} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Gear, Skills, Traveller} from "../../types/template";
+import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
-import { simplifySkillName} from "./utils";
+import { simplifySkillName } from "./utils";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -24,7 +24,7 @@ export class TwodsixRollSettings {
   extraFlavor:string;
   selectedTimeUnit:string;
   timeRollFormula:string;
-  rollModifiers:Record<number, unknown>;
+  rollModifiers:Record<any, unknown>;
   skillName:string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -52,7 +52,7 @@ export class TwodsixRollSettings {
         woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect;
       }
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        const encumberedEffect:ActiveEffect =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
+        const encumberedEffect:ActiveEffect|undefined =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
         if(encumberedEffect) {
           const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
           encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? 0;
@@ -75,8 +75,7 @@ export class TwodsixRollSettings {
     }
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
-    const skillName = simplifySkillName(aSkill?.name ?? "");
-    this.rollType = (<Traveller>aSkill?.actor?.data?.data)?.skillRollTypes?.[skillName] ?? settings?.rollType ?? "Normal";
+    this.rollType = settings?.rollType ?? (aSkill?.system)?.rolltype ??  "Normal";
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
@@ -95,7 +94,8 @@ export class TwodsixRollSettings {
       encumbered: encumberedValue,
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
-      custom: 0
+      custom: 0,
+      customLabel: ""
     };
     //console.log("Modifiers: ", this.rollModifiers);
   }
@@ -103,17 +103,19 @@ export class TwodsixRollSettings {
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
     if (sourceActor) {
-      twodsixRollSettings.rollModifiers.custom = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic);
+      const customModifiers = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
+      twodsixRollSettings.rollModifiers.custom = customModifiers.value;
+      twodsixRollSettings.rollModifiers.customLabel = customModifiers.label;
     }
     if (showThrowDialog) {
       let title:string;
       if (item && skill) {
         title = `${item.name} ${game.i18n.localize("TWODSIX.Actor.using")} ${twodsixRollSettings.skillName}`;
-        twodsixRollSettings.itemName = item.name;
+        twodsixRollSettings.itemName = item.name ?? "Unknown Item";
       } else if (skill) {
         title = twodsixRollSettings.skillName || "";
         //check for characterisitc not on actor characteristic list
-        if (_genTranslatedSkillList(<TwodsixActor>skill.actor)[twodsixRollSettings.rollModifiers.characteristic] === undefined) {
+        if ( _getTranslatedCharacteristicList(<TwodsixActor>skill.actor)[(<string>twodsixRollSettings.rollModifiers.characteristic)] === undefined) {
           twodsixRollSettings.rollModifiers.characteristic = "NONE";
         }
       } else {
@@ -124,11 +126,11 @@ export class TwodsixRollSettings {
 
       //Get display label
       if (skill && skill.actor) {
-        if (twodsixRollSettings.characteristic === "NONE") {
+        if (twodsixRollSettings.rollModifiers.characteristic === "NONE") { //*****************CHECK THIS
           twodsixRollSettings.displayLabel = "";
         } else {
           const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.rollModifiers.characteristic);
-          twodsixRollSettings.displayLabel = sourceActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+          twodsixRollSettings.displayLabel = sourceActor?.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
         }
       } else if (skill) {
         twodsixRollSettings.displayLabel = ""; // for unattached skill roll
@@ -150,7 +152,7 @@ export class TwodsixRollSettings {
       difficulties: this.difficulties,
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
-      characteristicList: _genTranslatedSkillList(<TwodsixActor>skill?.actor),
+      characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>skill?.actor),
       initialChoice: this.rollModifiers.characteristic,
       rollModifiers: this.rollModifiers,
       skillLabel: this.skillName,
@@ -211,7 +213,7 @@ export class TwodsixRollSettings {
   }
 }
 
-export function _genTranslatedSkillList(actor:TwodsixActor):object {
+export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
   const returnValue = {};
   if (actor) {
     returnValue["STR"] = getCharacteristicLabelWithMod(actor, "strength");
@@ -238,7 +240,7 @@ export function getCharacteristicLabelWithMod(actor: TwodsixActor, characterisit
   actor.system.characteristics[characterisitc].mod + ')';
 }
 
-export function _genUntranslatedSkillList(): object {
+export function _genUntranslatedCharacteristicList(): object {
   const returnValue = {};
   returnValue["STR"] = game.i18n.localize("TWODSIX.Items.Skills.STR");
   returnValue["DEX"] = game.i18n.localize("TWODSIX.Items.Skills.DEX");
@@ -257,16 +259,24 @@ export function _genUntranslatedSkillList(): object {
   return returnValue;
 }
 
-export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string) : Promise<number> {
+export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills) : Promise<any> {
   const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+  const simpleSkillRef = skill ? `@skills.` + simplifySkillName(skill.name) : ``;
   let returnValue = 0;
+  let returnLabel = "";
+  let changed = false;
   const customEffects = selectedActor.effects.filter(eff => eff.label !== "Wounded" && eff.label !== "Encumbered");
   for (const effect of customEffects) {
+    changed = false;
     for (const change of effect.changes) {
-      if (change.key === `system.characteristic.${keyByValue}.mod`) {
+      if (change.key === `system.characteristics.${keyByValue}.mod` || (change.key === simpleSkillRef) && simpleSkillRef) {
+        changed = true;
         returnValue += parseInt(change.value);
       }
     }
+    if (changed) {
+      returnLabel += effect.label + ', ';
+    }
   }
-  return returnValue;
+  return {label: returnLabel.slice(0, -2), value: returnValue};
 }
