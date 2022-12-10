@@ -126,7 +126,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   if (isCurrentlyEncumbered.length > 0 && (state === false)) {
     const idList= isCurrentlyEncumbered.map(i => <string>i.id);
     if(idList.length > 0) {
-      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList, {noHook: true});
+      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
   } else if (state === true  && isCurrentlyEncumbered.length === 0) {
     const modifier = game.settings.get('twodsix', 'encumbranceModifier');

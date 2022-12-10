@@ -233,8 +233,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         const effect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
         if (effect) {
           if (effect.disabled !== disableEffect || effect.getFlag("twodsix", "lastSetDisable") === undefined) {
-            await effect.update({disabled: disableEffect}, {noHook: true}).then();
             await effect.setFlag("twodsix", "lastSetDisable", disableEffect);
+            await effect.update({disabled: disableEffect}).then();
           }
         }
       }

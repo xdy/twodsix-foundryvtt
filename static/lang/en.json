@@ -264,7 +264,8 @@
         "DM": "DM",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
-        "Attack": "Attack"
+        "Attack": "Attack",
+        "ActiveEffect": "Active Effect"
       }
     },
     "Create": "Create",

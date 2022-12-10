@@ -228,7 +228,7 @@ export class TwodsixDiceRoll {
     if (this.settings.rollModifiers.other !== 0) {
       const customDM = TwodsixDiceRoll.addSign(this.settings.rollModifiers.other);
       flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}` + (showModifiers ? `(${customDM})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td>&mdash;</td><td>${customDM}</td></tr>`;
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td>&mdash;</td><td class="centre">${customDM}</td></tr>`;
     }
 
     //Condition Modifiers
@@ -241,8 +241,8 @@ export class TwodsixDiceRoll {
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}</td><td class="centre">${this.settings.rollModifiers.encumbered}</td></tr>`;
     }
     if (this.settings.rollModifiers.custom !== 0) {
-      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}`+ (showModifiers ? `(${this.settings.rollModifiers.custom})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td class="centre">${this.settings.rollModifiers.custom}</td></tr>`;
+      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}`+ (showModifiers ? `(${this.settings.rollModifiers.custom})` : ``);
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}</td><td>${this.settings.rollModifiers.customLabel}</td><td class="centre">${this.settings.rollModifiers.custom}</td></tr>`;
     }
 
     // Add timeframe if requred
