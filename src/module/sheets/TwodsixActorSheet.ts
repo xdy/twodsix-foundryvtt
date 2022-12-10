@@ -230,11 +230,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       }
 
       if (itemSelected.effects.size > 0) {
-        const effect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
-        if (effect) {
-          if (effect.disabled !== disableEffect || effect.getFlag("twodsix", "lastSetDisable") === undefined) {
-            await effect.setFlag("twodsix", "lastSetDisable", disableEffect);
-            await effect.update({disabled: disableEffect}).then();
+        const actorEffect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
+        //const itemEffect = itemSelected.effects.contents[0];
+        if (actorEffect) {
+          if (actorEffect.disabled !== disableEffect || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
+            await actorEffect.setFlag("twodsix", "lastSetDisable", disableEffect);
+            await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: disableEffect}], {dontSync: false}).then();
+            //await itemEffect.update({disabled: disableEffect}, {dontSync: true});
           }
         }
       }
