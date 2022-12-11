@@ -211,20 +211,21 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
+      let newState = "";
 
       let disableEffect: boolean;
       switch ((<Gear>itemSelected.system).equipped) {
         case "equipped":
-          await itemSelected.update({["system.equipped"]: "ship"}).then();
+          newState = "ship";
           disableEffect = true;
           break;
         case "ship":
-          await itemSelected.update({["system.equipped"]: "backpack"}).then();
+          newState = "backpack";
           disableEffect = true;
           break;
         case "backpack":
         default:
-          await itemSelected.update({["system.equipped"]: "equipped"}).then();
+          newState = "equipped";
           disableEffect = false;
           break;
       }
@@ -240,6 +241,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           }
         }
       }
+
+      await itemSelected.update({["system.equipped"]: newState}).then();
 
       // Sync associated consumables equipped state
       for (const consumeableID of itemSelected.system.consumables) {
