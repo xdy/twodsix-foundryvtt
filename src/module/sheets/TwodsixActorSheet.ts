@@ -235,7 +235,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         if (actorEffect) {
           if (actorEffect.disabled !== disableEffect || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
             await actorEffect.setFlag("twodsix", "lastSetDisable", disableEffect);
-            await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: disableEffect}], {dontSync: false}).then();
+            await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: disableEffect}], {dontSync: true}).then();
             //await itemEffect.update({disabled: disableEffect}, {dontSync: true});
           }
         }
