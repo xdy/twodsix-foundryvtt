@@ -685,9 +685,13 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
-    const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
-    //const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
+    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
+    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+      const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);
+      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
+    }
 
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
