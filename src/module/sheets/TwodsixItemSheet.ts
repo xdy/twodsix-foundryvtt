@@ -50,7 +50,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
+      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
+      useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects')
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -138,26 +139,28 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onCreateEffect(): Promise<void> {
-    const effects = [new ActiveEffect({
-      origin: this.item.uuid,
-      icon: this.item.img,
-      tint: "#ffffff",
-      label: this.item.name,
-      disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped"
-    }).toObject()];
-    await this.item.update({effects: effects }, {recursive: true});
-    const newEffect = this.item.effects.contents[0].toObject();
-    newEffect.flags = {twodsix: {sourceId: newEffect._id}};
-    await this.item.update({effects: [newEffect] }, {recursive: true});
+    if(game.settings.get('twodsix', 'useItemActiveEffects')) {
+      const effects = [new ActiveEffect({
+        origin: this.item.uuid,
+        icon: this.item.img,
+        tint: "#ffffff",
+        label: this.item.name,
+        disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped"
+      }).toObject()];
+      await this.item.update({effects: effects }, {recursive: true});
+      const newEffect = this.item.effects.contents[0].toObject();
+      newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+      await this.item.update({effects: [newEffect] }, {recursive: true});
 
-    if (this.actor) {
-      newEffect.transfer = false;
-      const oldId = newEffect._id;
-      newEffect._id = "";
-      await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
-    } else {
-      this.item.effects.contents[0].sheet?.render(true);
+      if (this.actor) {
+        newEffect.transfer = false;
+        const oldId = newEffect._id;
+        newEffect._id = "";
+        await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+        this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+      } else {
+        this.item.effects.contents[0].sheet?.render(true);
+      }
     }
   }
 

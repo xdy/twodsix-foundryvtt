@@ -62,7 +62,8 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
     const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
-      const mod: number = calcModFor(characteristicElement.current);
+      //const mod: number = calcModFor(characteristicElement.current);
+      const mod: number = characteristicElement.mod;
       const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
@@ -99,7 +100,8 @@ export default function registerHandlebarsHelpers(): void {
         characteristicElement.current = characteristicElement.value - characteristicElement.damage;
       }
 
-      const mod = calcModFor(characteristicElement.current);
+      //const mod = calcModFor(characteristicElement.current);
+      const mod = characteristicElement.mod;
       return Number(adjValue) + mod;
     } else {
       return adjValue;

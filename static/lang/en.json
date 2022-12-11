@@ -1021,6 +1021,10 @@
       "lightColor": {
         "hint": "Change the theme highlight color. Delete value to reset.",
         "name": "Set Highlight Color"
+      },
+      "useItemActiveEffects": {
+        "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
+        "name": "Use Item Active Effects"
       }
     },
     "CloseAndCreateNew": "Close and create new",

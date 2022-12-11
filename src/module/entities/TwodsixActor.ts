@@ -328,7 +328,7 @@ export default class TwodsixActor extends Actor {
 
   protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
     super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-    if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync) {
+    if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
       documents.forEach(async (element:ActiveEffect, i) => {
         const activeEffectId = element.getFlag("twodsix", "sourceId");
         if (activeEffectId) {
@@ -489,7 +489,8 @@ export default class TwodsixActor extends Actor {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
+      //return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
+      return (<Traveller>this.system).characteristics[keyByValue].mod;
     }
   }
 

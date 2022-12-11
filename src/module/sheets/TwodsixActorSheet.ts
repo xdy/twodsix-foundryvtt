@@ -229,7 +229,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           break;
       }
 
-      if (itemSelected.effects.size > 0) {
+      if (itemSelected.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects')) {
         const actorEffect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
         //const itemEffect = itemSelected.effects.contents[0];
         if (actorEffect) {
