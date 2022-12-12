@@ -53,6 +53,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           content: template,
           yes: async () => {
             const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
+            if (game.settings.get('twodsix', 'useItemActiveEffects')) {
+              const effectToDelete = selectedActor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0].id);
+              selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete.id]);
+            }
             await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {

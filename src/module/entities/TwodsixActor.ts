@@ -352,7 +352,7 @@ export default class TwodsixActor extends Actor {
     //this.render();
   }
 
-  protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+  /*protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
     super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     //Try to get rid of duplicate effects - This shouldn't be needed
     if(embeddedName === "Item") {
@@ -361,7 +361,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     console.log(embeddedName, documents, result, options, userId );
-  }
+  }*/
 
   protected async _onCreate() {
     switch (this.type) {
@@ -697,19 +697,21 @@ export default class TwodsixActor extends Actor {
 
     // Create the owned item
     // Prepare effects
+    const transferData = itemData.toJSON();
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
-      //clear extra item effects - SEEMS TO BE DUPLICATING ON TRANSFER
-      while (itemData.effects.size > 1) {
-        itemData.effects.delete(itemData.effects.contents[1].id);
+      //clear extra item effects - should be fixed
+      while (transferData.effects.length > 1) {
+        transferData.effects.pop();
       }
-      itemData.effects.contents[0].transfer = false;
+      transferData.effects[0].transfer = false;
+      transferData.effects[0]._id = randomID();
+      transferData.effects.origin = "";
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
-    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData.toObject()]))[0];
+    const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle") {
-      //const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect._id = "";
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
