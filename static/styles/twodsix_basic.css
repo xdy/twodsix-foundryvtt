@@ -990,7 +990,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-traits, .items-spells {
   display: grid;
-  grid-template-columns: 14em 3em 13em 3em;
+  grid-template-columns: 11em 3em 16em 3em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
