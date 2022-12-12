@@ -990,14 +990,10 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-traits, .items-spells {
   display: grid;
-  grid-template-columns: 8em 19em 4em;
-  gap: 0 1ch;
-  grid-template-areas: '. . .';
-}
-
-.trait-name {
-  display: inline-flex;
-  align-items: center;
+  grid-template-columns: 14em 3em 13em 3em;
+  gap: 1px 1px;
+  grid-template-areas:
+    '. . . .';
 }
 
 .items-consumable {
