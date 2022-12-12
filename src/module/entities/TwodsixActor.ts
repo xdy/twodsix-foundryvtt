@@ -695,7 +695,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
-    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData.toObject()]))[0];
     await addedItem.update({"system.quantity": numberToMove});
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" & this.type !== "vehicle") {
       //const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);

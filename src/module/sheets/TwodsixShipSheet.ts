@@ -77,7 +77,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
           dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
         },
-        {dragSelector: ".item", dropSelector: ".item-list"}
+        {dragSelector: ".item", dropSelector: null}
       ]
     });
   }

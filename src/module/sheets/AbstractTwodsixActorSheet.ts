@@ -283,7 +283,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
-    return actor.handleDroppedItem(itemData);
+    return await actor.handleDroppedItem(itemData);
   }
 
   protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
