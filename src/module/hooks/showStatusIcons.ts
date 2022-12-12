@@ -24,7 +24,6 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>) =>
   const firstGM = game.users.find(u => u.isGM);
   const owningActor = <TwodsixActor> item.actor;
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
-    console.log(update);
     if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(owningActor).then();
     }

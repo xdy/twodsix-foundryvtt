@@ -145,6 +145,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         icon: this.item.img,
         tint: "#ffffff",
         label: this.item.name,
+        transfer: false,
         disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped"
       }).toObject()];
       await this.item.update({effects: effects }, {recursive: true});
@@ -165,7 +166,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private _onEditEffect(): void {
-    if (this.actor) {
+    if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
     } else {
       this.item.effects.contents[0].sheet?.render(true);

@@ -685,11 +685,23 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
+    // Prepare effects
+    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+      //clear extra item effects - SEEMS TO BE DUPLICATING ON TRANSFER
+      while (itemData.effects.size > 1) {
+        itemData.effects.delete(itemData.effects.contents[1].id);
+      }
+      itemData.effects.contents[0].transfer = false;
+    }
+
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
-    if (game.settings.get('twodsix', "useItemActiveEffects")) {
-      const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" & this.type !== "vehicle") {
+      //const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);
+      const newEffect = addedItem.effects.contents[0].toObject();
+      newEffect._id = "";
+      const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
 

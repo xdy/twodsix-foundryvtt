@@ -241,7 +241,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           }
         }
       }
-
+      //change equipped state after toggling active effects so that encumbrance calcs correctly
       await itemSelected.update({["system.equipped"]: newState}).then();
 
       // Sync associated consumables equipped state
@@ -272,7 +272,8 @@ export class TwodsixNPCSheet extends TwodsixActorSheet {
       template: "systems/twodsix/templates/actors/npc-sheet.html",
       width: 830,
       height: 500,
-      resizable: true
+      resizable: true,
+      dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
 }
