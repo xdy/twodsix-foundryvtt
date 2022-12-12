@@ -352,6 +352,17 @@ export default class TwodsixActor extends Actor {
     //this.render();
   }
 
+  protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+    super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+    //Try to get rid of duplicate effects - This shouldn't be needed
+    if(embeddedName === "Item") {
+      while (documents[0].effects.size > 1) {
+        documents[0].delete(documents[0].effects.contents[1].id);
+      }
+    }
+    console.log(embeddedName, documents, result, options, userId );
+  }
+
   protected async _onCreate() {
     switch (this.type) {
       case "traveller":
@@ -697,7 +708,7 @@ export default class TwodsixActor extends Actor {
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemData.toObject()]))[0];
     await addedItem.update({"system.quantity": numberToMove});
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" & this.type !== "vehicle") {
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle") {
       //const newActorEffect = this.effects.find(eff => eff.getFlag("twodsix", 'sourceId') === itemData.effects.contents[0].id);
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect._id = "";

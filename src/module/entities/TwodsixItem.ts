@@ -34,7 +34,7 @@ export default class TwodsixItem extends Item {
   }
 
 
-  protected override async _onCreate(data): Promise<void> {
+  /*protected override async _onCreate(data): Promise<void> {
     if (data.effects) {
       const newEffects = data.effects.map((effect:Record<string, any>) => {
         effect._id = randomID();
@@ -47,7 +47,7 @@ export default class TwodsixItem extends Item {
       });
       this.update({ "effects": newEffects });
     }
-  }
+  }*/
 
 
   /**
