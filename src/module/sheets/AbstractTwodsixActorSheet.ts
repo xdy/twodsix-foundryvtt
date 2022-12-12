@@ -54,7 +54,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           yes: async () => {
             const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
             if (game.settings.get('twodsix', 'useItemActiveEffects')) {
-              const effectToDelete = selectedActor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0].id);
+              const effectToDelete = selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0].id);
               selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete.id]);
             }
             await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
