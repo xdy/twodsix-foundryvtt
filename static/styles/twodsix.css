@@ -2540,6 +2540,8 @@ a.ship-notes-tab.active {
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
   background: var(--s2d6-skill-list-even);
+  height: -webkit-fill-available;
+  height: -moz-available;
 }
 
 .components-stored-single {

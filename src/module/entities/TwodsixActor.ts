@@ -367,7 +367,7 @@ export default class TwodsixActor extends Actor {
     if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
       const ownedItem = <TwodsixItem>documents[0];
       const selectedActor = <TwodsixActor>ownedItem.actor;
-      const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0].id);
+      const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
       if (effectToDelete?.id) {
         await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
       }
@@ -717,9 +717,11 @@ export default class TwodsixActor extends Actor {
       while (transferData.effects.length > 1) {
         transferData.effects.pop();
       }
-      transferData.effects[0].transfer = false;
-      transferData.effects[0]._id = randomID();
-      transferData.effects.origin = "";
+      if (transferData.effects.length > 1) {
+        transferData.effects[0].transfer = false;
+        transferData.effects[0]._id = randomID();
+        transferData.effects.origin = "";
+      }
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];

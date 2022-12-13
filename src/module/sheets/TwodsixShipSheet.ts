@@ -246,7 +246,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   async _onDrop(event:DragEvent):Promise<boolean | any> {
-    //event.preventDefault();
+    event.preventDefault();
     if (event.dataTransfer === null || event.target === null) {
       return false;
     }
