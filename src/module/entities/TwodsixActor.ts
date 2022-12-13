@@ -362,7 +362,7 @@ export default class TwodsixActor extends Actor {
     }
     console.log(embeddedName, documents, result, options, userId );
   }*/
-  protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+  protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options, userId: string): void {
     super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
       const ownedItem = <TwodsixItem>documents[0];
