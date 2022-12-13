@@ -53,10 +53,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           content: template,
           yes: async () => {
             const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
-            if (game.settings.get('twodsix', 'useItemActiveEffects')) {
-              const effectToDelete = selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0].id);
-              selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete.id]);
-            }
+            await ownedItem.update({'system.equipped': 'ship'});
             await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
@@ -535,7 +532,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _onDeleteEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
     const selectedEffect = await fromUuid(effectUuid);
-    console.log(selectedEffect);
     await Dialog.confirm({
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),

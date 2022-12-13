@@ -39,7 +39,7 @@ Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
     const firstGM = game.users.find(u => u.isGM);
     if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
-      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
 });
