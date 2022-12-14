@@ -717,14 +717,15 @@ export default class TwodsixActor extends Actor {
       while (transferData.effects.length > 1) {
         transferData.effects.pop();
       }
-      //check needed here?
-      const actorEffect = <ActiveEffect>this.effects.find(effect => effect.getFlag("twodsix", "sourceId") === itemData.id);
+      //below needed - AE seems to fix item with link
+      /*const actorEffect = <ActiveEffect>this.effects.find(effect => effect.getFlag("twodsix", "sourceId") === itemData.id);
       if (actorEffect) {
-        transferData.effects[0] = actorEffect?.effects.contents[0];
-      }
+        //Needed????
+        //transferData.effects[0] = actorEffect.toObject();
+      }*/
       transferData.effects[0].transfer = false;
       transferData.effects[0]._id = randomID();
-      transferData.effects.origin = "";
+      transferData.effects[0].origin = "";
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
@@ -734,7 +735,7 @@ export default class TwodsixActor extends Actor {
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect.disabled = false;
       newEffect._id = "";
-      newEffect.origin = "Item." + addedItem.id;
+      newEffect.origin = addedItem.uuid;
       newEffect.label = addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
