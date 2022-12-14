@@ -20,7 +20,7 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>) => {
+Hooks.on("updateItem", async (item: TwodsixItem) => {
   const firstGM = game.users.find(u => u.isGM);
   const owningActor = <TwodsixActor> item.actor;
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
@@ -35,19 +35,20 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>) =>
   }
 });
 
-Hooks.on("deleteItem", async (item: TwodsixItem) => {
+//Below not necessary now force a equip to ship before delete
+/*Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
     const firstGM = game.users.find(u => u.isGM);
     if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
       await applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
-});
+});*/
 
 Hooks.on("createItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
     const firstGM = game.users.find(u => u.isGM);
-    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
+    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }

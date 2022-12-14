@@ -362,17 +362,17 @@ export default class TwodsixActor extends Actor {
     }
     console.log(embeddedName, documents, result, options, userId );
   }*/
-  protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
+  /*protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
     super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
       const ownedItem = <TwodsixItem>documents[0];
       const selectedActor = <TwodsixActor>ownedItem.actor;
       const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
       if (effectToDelete?.id) {
-        await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
+        //await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
       }
     }
-  }
+  }*/
 
   protected async _onCreate() {
     switch (this.type) {
@@ -712,25 +712,30 @@ export default class TwodsixActor extends Actor {
     // Prepare effects
     const transferData = itemData.toJSON();
     transferData.system.equipped = "equipped";
-    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects.length > 0) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
         transferData.effects.pop();
       }
-      if (transferData.effects.length > 1) {
-        transferData.effects[0].transfer = false;
-        transferData.effects[0]._id = randomID();
-        transferData.effects.origin = "";
+      //check needed here?
+      const actorEffect = <ActiveEffect>this.effects.find(effect => effect.getFlag("twodsix", "sourceId") === itemData.id);
+      if (actorEffect) {
+        transferData.effects[0] = actorEffect?.effects.contents[0];
       }
+      transferData.effects[0].transfer = false;
+      transferData.effects[0]._id = randomID();
+      transferData.effects.origin = "";
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle") {
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect.disabled = false;
       newEffect._id = "";
+      newEffect.origin = "Item." + addedItem.id;
+      newEffect.label = addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
