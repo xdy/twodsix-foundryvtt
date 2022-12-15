@@ -139,28 +139,36 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onCreateEffect(): Promise<void> {
-    if(game.settings.get('twodsix', 'useItemActiveEffects')) {
-      const effects = [new ActiveEffect({
-        origin: this.item.uuid,
-        icon: this.item.img,
-        tint: "#ffffff",
-        label: this.item.name,
-        transfer: false,
-        disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped"
-      }).toObject()];
-      await this.item.update({effects: effects }, {recursive: true});
-      const newEffect = this.item.effects.contents[0].toObject();
-      newEffect.flags = {twodsix: {sourceId: newEffect._id}};
-      await this.item.update({effects: [newEffect] }, {recursive: true});
+    if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else {
+      const newId = randomID();
+      if(game.settings.get('twodsix', 'useItemActiveEffects')) {
+        const effects = [new ActiveEffect({
+          origin: this.item.uuid,
+          icon: this.item.img,
+          tint: "#ffffff",
+          label: this.item.name,
+          transfer: true,
+          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped",
+          _id: newId,
+          flags: {twodsix: {sourceId: newId}}
 
-      if (this.actor) {
-        newEffect.transfer = false;
-        const oldId = newEffect._id;
-        newEffect._id = "";
-        await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-        this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
-      } else {
-        this.item.effects.contents[0].sheet?.render(true);
+        }).toObject()];
+        await this.item.update({effects: effects }, {recursive: true});
+        const newEffect = this.item.effects.contents[0].toObject();
+        //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+        //await this.item.update({effects: [newEffect] }, {recursive: true});
+
+        if (this.actor) {
+          newEffect.transfer = false;
+          const oldId = newEffect._id;
+          newEffect._id = "";
+          await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+          this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+        } else {
+          this.item.effects.contents[0].sheet?.render(true);
+        }
       }
     }
   }
@@ -168,6 +176,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private _onEditEffect(): void {
     if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
+    } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
       this.item.effects.contents[0].sheet?.render(true);
     }

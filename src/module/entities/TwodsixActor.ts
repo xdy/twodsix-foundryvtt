@@ -723,21 +723,24 @@ export default class TwodsixActor extends Actor {
         //Needed????
         //transferData.effects[0] = actorEffect.toObject();
       }*/
-      transferData.effects[0].transfer = false;
+      transferData.effects[0].transfer = (this.type !== "ship" && this.type !== "vehicle");
       transferData.effects[0]._id = randomID();
       transferData.effects[0].origin = "";
+      transferData.effects[0].disabled = false;
     }
 
     //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
-      const newEffect = addedItem.effects.contents[0].toObject();
+      /*const newEffect = addedItem.effects.contents[0].toObject();
       newEffect.disabled = false;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
       newEffect.label = addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
+      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);*/
+      const newActorEffect = <ActiveEffect> this.effects.find( eff => eff.origin === addedItem.uuid);
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
 

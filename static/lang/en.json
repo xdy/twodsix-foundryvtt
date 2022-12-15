@@ -1088,7 +1088,8 @@
       "ActorHasInitiativeAlready": "Actor already has initiative.",
       "NoActiveToken": "Actor does not have an active token in scene.",
       "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
-      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions",
+      "CantEditCreateInCargo": "Can not edit or create effects while in cargo"
     }
   },
   "VeryDifficult": "Very Difficult"

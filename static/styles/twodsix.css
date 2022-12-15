@@ -1022,9 +1022,9 @@ span.bgi-charEdit {
 
 .character-characteristics {
   width: 250px;
-  margin-top: 25px;
-  margin-left: 40px;
-  position: relative;
+  top: 478px;
+  left: 44px;
+  position: absolute;
   z-index: 6;
   height: 120px;
   color: var(--s2d6-default-color) !important;
