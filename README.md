@@ -10,7 +10,7 @@
 <a href="https://gitlocalize.com/repo/7105/sv?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/sv/badge.svg" alt="Swedish translation percentage"/> </a>
 <a href="https://weblate.foundryvtt-hub.com/engage/twodsix/"><img src="https://weblate.foundryvtt-hub.com/widgets/twodsix/-/main/svg-badge.svg" alt="Translation status" /></a>
 
-[![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
+[![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/KUAwPrj)
 
 A [Foundry VTT](https://foundryvtt.com/) system for running games using various 2d6-based role-playing games, specifically those based on the Cepheus Engine.
 
