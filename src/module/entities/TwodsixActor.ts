@@ -674,6 +674,7 @@ export default class TwodsixActor extends Actor {
     }
 
     let numberToMove = itemData.system.quantity;
+    const transferData = itemData.toJSON();
 
     //Handle moving items from another actor if enabled by settings
     if (itemData.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
@@ -710,39 +711,32 @@ export default class TwodsixActor extends Actor {
 
     // Create the owned item
     // Prepare effects
-    const transferData = itemData.toJSON();
-    transferData.system.equipped = "equipped";
+    transferData.system.equipped = "ship";
+    transferData._id = "";
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects.length > 0) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
         transferData.effects.pop();
       }
-      //below needed - AE seems to fix item with link
-      /*const actorEffect = <ActiveEffect>this.effects.find(effect => effect.getFlag("twodsix", "sourceId") === itemData.id);
-      if (actorEffect) {
-        //Needed????
-        //transferData.effects[0] = actorEffect.toObject();
-      }*/
-      transferData.effects[0].transfer = (this.type !== "ship" && this.type !== "vehicle");
-      transferData.effects[0]._id = randomID();
+      //use Object.assign() ?
+      transferData.effects[0].transfer = false;
+      transferData.effects[0]._id = randomID(); //dont need random, just blank?
       transferData.effects[0].origin = "";
-      transferData.effects[0].disabled = false;
+      transferData.effects[0].disabled = true;
     }
 
-    //const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
-      /*const newEffect = addedItem.effects.contents[0].toObject();
-      newEffect.disabled = false;
+      const newEffect = addedItem.effects.contents[0].toObject();
+      //newEffect.disabled = true;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
       newEffect.label = addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
-      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);*/
-      const newActorEffect = <ActiveEffect> this.effects.find( eff => eff.origin === addedItem.uuid);
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
+    await addedItem.update({"system.equipped": "backpack"});
 
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
