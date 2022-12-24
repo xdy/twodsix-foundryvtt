@@ -72,12 +72,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        //{dropSelector: ".ship-positions-list", dragSelector: ".drag"},
+        //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
         {
           dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
         },
-        {dragSelector: ".item", dropSelector: ".item-list"}
+        {dragSelector: ".item", dropSelector: null}
       ]
     });
   }
