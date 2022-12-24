@@ -1,3 +1,10 @@
+## [2.13.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.2...v2.13.3) (2022-12-24)
+
+
+### Bug Fixes
+
+* component drop on ship ([09e6cb0](https://github.com/xdy/twodsix-foundryvtt/commit/09e6cb0cbc422f62df70f64553c53bee0ce7e73c))
+
 ## [2.13.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.1...v2.13.2) (2022-12-24)
 
 
