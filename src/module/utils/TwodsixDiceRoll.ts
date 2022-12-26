@@ -265,7 +265,10 @@ export class TwodsixDiceRoll {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),
           "twodsix.effect": this.effect,
-          "twodsix.timeframe": timeToComplete
+          "twodsix.timeframe": timeToComplete,
+          "twodsix.itemUUID": this.settings.flags.itemUUID ?? "",
+          "twodsix.tokenUUID": this.settings.flags.tokenUUID ?? "",
+          "twodsix.rollClass": this.settings.flags.rollClass ?? "",
         }
       },
       {rollMode: this.settings.rollMode}

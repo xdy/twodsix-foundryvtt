@@ -25,6 +25,7 @@ export class TwodsixRollSettings {
   timeRollFormula:string;
   rollModifiers:Record<number, unknown>;
   skillName:string;
+  flags:Record<string, unknown>;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem, sourceActor?:TwodsixActor) {
@@ -35,6 +36,9 @@ export class TwodsixRollSettings {
     const gear = <Gear>anItem?.system;
     const itemName = anItem?.name ?? "";
     const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
+    const itemUUID =  anItem?.uuid ?? "";
+    const tokenUUID = (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
+    let rollClass = "";
 
     let woundsValue = 0;
     let encumberedValue = 0;
@@ -71,6 +75,18 @@ export class TwodsixRollSettings {
         const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
         displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
       }
+      //set active animation flags
+      if (anItem) {
+        if (anItem.type === "weapon") {
+          rollClass = "Attack";
+        } else {
+          rollClass = "UseItem";
+        }
+      } else if (aSkill) {
+        rollClass = "SkillRoll";
+      } else {
+        rollClass = "Unknown";
+      }
     }
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
@@ -94,6 +110,11 @@ export class TwodsixRollSettings {
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
       custom: 0
+    };
+    this.flags = {
+      rollClass: rollClass,
+      tokenUUID: tokenUUID,
+      itemUUID: itemUUID
     };
     //console.log("Modifiers: ", this.rollModifiers);
   }
