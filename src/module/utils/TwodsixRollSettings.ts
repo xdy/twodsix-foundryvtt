@@ -36,8 +36,8 @@ export class TwodsixRollSettings {
     const gear = <Gear>anItem?.system;
     const itemName = anItem?.name ?? "";
     const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
-    const itemUUID =  anItem?.uuid ?? "";
-    const tokenUUID = (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
+    const itemUUID =  settings?.flags?.itemUUID ?? anItem?.uuid ?? "";
+    const tokenUUID = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
     let rollClass = "";
 
     let woundsValue = 0;
@@ -75,10 +75,16 @@ export class TwodsixRollSettings {
         const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
         displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
       }
-      //set active animation flags
+      //set active animation rollClass flag
       if (anItem) {
         if (anItem.type === "weapon") {
           rollClass = "Attack";
+        } else if (anItem.type === "component") {
+          if (anItem.system.subtype === "armament") {
+            rollClass = "ShipWeapon";
+          } else {
+            rollClass = "ShipAction";
+          }
         } else {
           rollClass = "UseItem";
         }
