@@ -36,8 +36,9 @@ export class TwodsixRollSettings {
     const gear = <Gear>anItem?.system;
     const itemName = anItem?.name ?? "";
     const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
-    const itemUUID =  settings?.flags?.itemUUID ?? anItem?.uuid ?? "";
-    const tokenUUID = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
+    //Create Flag data for Automated Automations Module
+    const itemUUID:string =  settings?.flags?.itemUUID ?? anItem?.uuid ?? aSkill?.uuid ?? "";
+    const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
     let rollClass = "";
 
     let woundsValue = 0;
@@ -75,7 +76,7 @@ export class TwodsixRollSettings {
         const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
         displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
       }
-      //set active animation rollClass flag
+      //set Active Animation rollClass flag
       if (anItem) {
         if (anItem.type === "weapon") {
           rollClass = "Attack";
@@ -86,10 +87,12 @@ export class TwodsixRollSettings {
             rollClass = "ShipAction";
           }
         } else {
-          rollClass = "UseItem";
+          rollClass = "Item";
         }
       } else if (aSkill) {
-        rollClass = "SkillRoll";
+        rollClass = "Skill";
+      } else if (characteristic !== "NONE" && characteristic !== "") {
+        rollClass = "Characteristic";
       } else {
         rollClass = "Unknown";
       }
