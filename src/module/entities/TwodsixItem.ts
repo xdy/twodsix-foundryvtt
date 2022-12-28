@@ -334,7 +334,11 @@ export default class TwodsixItem extends Item {
           content: html,
           flags: {
             "core.canPopout": true,
-            "transfer": transfer
+            "transfer": transfer,
+            "twodsix.itemUUID": this.uuid,
+            "twodsix.rollClass": "Damage",
+            "twodsix.tokenUUID": (<Actor>this.actor)?.getActiveTokens()[0]?.document.uuid ?? "",
+            "twodsix.actorUUID": (<Actor>this.actor)?.uuid ?? ""
           }
         }, {rollMode: rollMode});
         if (game.modules.get("dice-so-nice")?.active) {

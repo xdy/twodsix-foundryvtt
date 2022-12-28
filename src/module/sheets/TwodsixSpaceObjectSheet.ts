@@ -83,7 +83,10 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
       content: html,
       flags: {
         "core.canPopout": true,
-        "transfer": transfer
+        "transfer": transfer,
+        "twodsix.itemUUID": "",
+        "twodsix.rollClass": "Damage",
+        "twodsix.tokenUUID": (<Actor>this.actor).getActiveTokens()[0]?.document.uuid ?? ""
       }
     });
 
