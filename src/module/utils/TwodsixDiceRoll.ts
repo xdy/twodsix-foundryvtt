@@ -269,6 +269,7 @@ export class TwodsixDiceRoll {
           "twodsix.itemUUID": this.settings.flags.itemUUID ?? "",
           "twodsix.tokenUUID": this.settings.flags.tokenUUID ?? "",
           "twodsix.rollClass": this.settings.flags.rollClass ?? "",
+          "twodsix.actorUUID": this.settings.flags.actorUUID ?? ""
         }
       },
       {rollMode: this.settings.rollMode}

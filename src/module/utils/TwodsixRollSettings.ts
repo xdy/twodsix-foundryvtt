@@ -39,6 +39,7 @@ export class TwodsixRollSettings {
     //Create Flag data for Automated Automations Module
     const itemUUID:string =  settings?.flags?.itemUUID ?? anItem?.uuid ?? aSkill?.uuid ?? "";
     const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
+    const actorUUID:string = settings?.flags?.actorUUID ?? (<Actor>sourceActor)?.uuid ?? "";
     let rollClass = "";
 
     let woundsValue = 0;
@@ -123,7 +124,8 @@ export class TwodsixRollSettings {
     this.flags = {
       rollClass: rollClass,
       tokenUUID: tokenUUID,
-      itemUUID: itemUUID
+      itemUUID: itemUUID,
+      actorUUID: actorUUID
     };
     //console.log("Modifiers: ", this.rollModifiers);
   }
