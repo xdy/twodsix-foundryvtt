@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.3...v2.14.0) (2022-12-28)
+
+
+### Features
+
+* adding flags for Automated Automation Module ([#1209](https://github.com/xdy/twodsix-foundryvtt/issues/1209)) ([1cab9a3](https://github.com/xdy/twodsix-foundryvtt/commit/1cab9a34e13cbffe9474d5948e8f1b365337274f))
+
 ## [2.13.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.13.2...v2.13.3) (2022-12-24)
 
 
