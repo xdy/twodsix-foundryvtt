@@ -627,7 +627,6 @@ export default class TwodsixActor extends Actor {
     }
 
     let numberToMove = itemData.system?.quantity ?? 1;
-    const transferData = itemData.toJSON();
 
     //Handle moving items from another actor if enabled by settings
     if (itemData.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
