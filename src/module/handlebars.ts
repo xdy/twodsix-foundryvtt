@@ -86,12 +86,12 @@ export default function registerHandlebarsHelpers(): void {
     return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
   });
 
-  Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
-    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
-    let adjValue = value;
+  Handlebars.registerHelper('twodsix_skillTotal', (actor, skillItem) => {
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, skillItem.system.characteristic)];
+    let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+    if (adjValue === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
       adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
@@ -106,6 +106,11 @@ export default function registerHandlebarsHelpers(): void {
     } else {
       return adjValue;
     }
+  });
+
+  Handlebars.registerHelper('twodsix_adjustedSkillValue', (actor, skillItem) => {
+    const adjValue = actor.system.skills[simplifySkillName(skillItem.name)];
+    return (adjValue !== skillItem.system.value ? adjValue : `&#8212;`);
   });
 
   Handlebars.registerHelper('twodsix_invertSkillRollShiftClick', () => {

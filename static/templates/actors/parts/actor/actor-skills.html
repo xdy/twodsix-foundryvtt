@@ -14,9 +14,10 @@
   <span class="skill-container">
     <span></span>
     <span class="skill-title">{{localize "TWODSIX.Actor.Skills.SkillName"}}</span>
-    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.BaseLevel"}}</span>
     <abbr class="skill-training centre" data-tooltip="{{localize 'TWODSIX.Items.Skills.TrainingNotes'}}"><i class="fa-solid fa-school"></i></abbr>
     <span class="skill-mod centre">{{localize "TWODSIX.Actor.Skills.Modifier"}}</span>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.AdjLevel"}}</span>
     <span class="skill-total centre">{{localize "TWODSIX.Actor.Skills.Total"}}</span>
     <span class="skill-edit-remove centre">{{localize "TWODSIX.Actor.Skills.EditOrRemove"}}</span>
   </span>
@@ -52,7 +53,8 @@
                   <span></span>
                 {{/iff}}
                 <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.system.characteristic}}</span>
-                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item.system.characteristic item.system.value}}</span>
+                <span class="item-name centre">{{{twodsix_adjustedSkillValue ../actor item}}}</span>
+                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item}}</span>
                 <span class="item-controls centre">
                   <a class="skl item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
                   <a class="skl item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
@@ -75,6 +77,7 @@
           <input class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
           <span class="centre">&mdash;</span>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
+          <span class="centre">&mdash;</span>
           <span class="total-output flex1 skill-mod">{{untrainedSkill.system.value}}</span>
         </span>
       </li>

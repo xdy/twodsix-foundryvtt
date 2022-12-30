@@ -97,6 +97,7 @@ export default class TwodsixActor extends Actor {
       system.secondaryArmor.value= armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
+    this._updateDerivedDataActiveEffects();
   }
 
   getArmorValues():object {
@@ -803,6 +804,39 @@ export default class TwodsixActor extends Actor {
     }
     return false;
   }
+
+  private async _updateDerivedDataActiveEffects(): void {
+    const derivedData = [];
+    //Add characteristics mods
+    for (const char of Object.keys(this.system.characteristics)) {
+      derivedData.push(`system.characteristics.${char}.mod`);
+    }
+    //Add skills
+    for (const shortName of Object.keys(this.system.skills)) {
+      derivedData.push(`system.skills.${shortName}`);
+    }
+    //Add other values
+    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+    //console.log(derivedData);
+
+    const overrides = {};
+
+    // Apply all changes
+    for (const effect of this.effects.filter( e => !e.disabled)) {
+      for (const change of effect.changes) {
+        if (derivedData.includes(change.key)) {
+          const changes = await (<ActiveEffect>effect).apply(this, change);
+          Object.assign(overrides, changes);
+        }
+      }
+    }
+
+    // Expand the set of final overrides
+    this.overrides = await foundry.utils.expandObject({
+      ...foundry.utils.flattenObject(this.overrides),
+      ...overrides,
+    });
+  }
 }
 
 export function getPower(item: Component): number{
@@ -895,23 +929,3 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }*/
 
-/*Hooks.on("updateActiveEffect", async (effect, _update) => {
-  const activeEffectId = effect.getFlag("twodsix", "sourceId");
-  /*if (activeEffectId) {
-    const match = element.origin?.match(/Item\.(.+)/);
-    if (match) {
-      const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
-      delete result[i]._id;
-      const newEffects = item?.effects.map(effect => {
-        if (effect.id === activeEffectId) {
-          return foundry.utils.mergeObject(effect.toObject(), result[i]);
-        } else {
-          return effect.toObject();
-        }
-      });
-      // @ts-ignore
-      await item?.update({"effects": newEffects}, {recursive: true, noHook: true}).then();
-    }
-  }
-  console.log(effect, _update, activeEffectId);
-});*/

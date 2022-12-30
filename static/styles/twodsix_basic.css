@@ -1045,7 +1045,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   display: block;
   position: relative;
   top: 0.1em;
-  left: 25.5em;
+  left: 26.4em;
   z-index: 51;
   color: var(--s2d6-app-color);
   background-color: var(--s2d6-background-nearly-opaque);
@@ -1147,7 +1147,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 2em 12em 3.5em 2.5em 5em 4em 4em;
+  grid-template-columns: 2em 12em 3.3em 2em 4.5em 3em 2.8em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1189,7 +1189,7 @@ span.total-output {
   width: 2ch;
   height: 2ch;
   align-self: center;
-  margin-left: 0.8em;
+  margin-left: 0.4em;
 }
 
 .resource-label {

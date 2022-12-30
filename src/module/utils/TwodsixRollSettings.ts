@@ -64,13 +64,18 @@ export class TwodsixRollSettings {
           encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? 0;
         }
       }
+      //Check for active effect override of skill
+      if (aSkill) {
+        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? (<Skills>game.system.template?.Item?.skills)?.value
+      }
+
       //Check for "Untrained" value and use if better to account for JOAT
       const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
-      if (joat > skill?.value) {
+      if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
       } else {
-        skillValue = skill?.value;
+        //skillValue = skill?.value;
         this.skillName = aSkill?.name ?? "?";
       }
       // check for missing display label
