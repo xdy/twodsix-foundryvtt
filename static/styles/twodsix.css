@@ -1604,7 +1604,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 12em 3.3em 2em 4.5em 3em 2.8em 4em;
+  grid-template-columns: 1.5em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
