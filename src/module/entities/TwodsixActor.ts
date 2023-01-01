@@ -673,9 +673,14 @@ export default class TwodsixActor extends Actor {
       //return this._onSortItem(event, sameActor);
       return false;
     }
+    //handle drop from compendium
+    if (itemData.pack) {
+      const pack = game.packs.get(itemData.pack);
+      itemData = await pack?.getDocument(itemData._id);
+    }
 
-    let numberToMove = itemData.system.quantity;
     const transferData = itemData.toJSON();
+    let numberToMove = itemData.system?.quantity ?? 1;
 
     //Handle moving items from another actor if enabled by settings
     if (itemData.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
