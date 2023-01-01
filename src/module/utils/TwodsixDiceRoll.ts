@@ -249,7 +249,7 @@ export class TwodsixDiceRoll {
     flavorText +=`</p>`;
 
     //add features
-    if (this.settings.itemRoll && this.item?.system?.features !== "") {
+    if (this.settings.itemRoll && this.item?.system?.features !== ""  && game.settings.get("twodsix", "showFeaturesInChat")) {
       flavorText += `<p><b>${game.i18n.localize("TWODSIX.Items.Weapon.Features")}</b>: ${this.item.system.features}</p>`;
     }
 
