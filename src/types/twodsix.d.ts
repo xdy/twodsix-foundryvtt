@@ -126,6 +126,7 @@ declare global {
       'twodsix.showModifierDetails':boolean;
       'twodsix.defaultColor':string;
       'twodsix.lightColor':string;
+      'twodsix.showFeaturesInChat':boolean;
     }
   }
 }

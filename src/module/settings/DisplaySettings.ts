@@ -39,6 +39,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('showComponentSummaryIcons', false));
     settings.push(booleanSetting('showSpells', false));
     settings.push(booleanSetting('showModifierDetails', false));
+    settings.push(booleanSetting('showFeaturesInChat', false));
     settings.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     return settings;

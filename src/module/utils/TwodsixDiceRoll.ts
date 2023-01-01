@@ -166,13 +166,15 @@ export class TwodsixDiceRoll {
 
     //Initialize flavor strings
     let flavorText = ``;
-    if (this.skill?.img) {
+    if (this.settings.itemRoll && this.item?.img) {
+      flavorText += `<section style="align-self: center;"><img src=${this.item.img} class="chat-image"></section>`;
+    } else if (this.settings.skillRoll && this.skill?.img) {
       flavorText += `<section style="align-self: center;"><img src=${this.skill.img} class="chat-image"></section>`;
     }
     let flavorTable = `<table><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
 
     //Difficulty Text
-    flavorText += `${rollingString}: ${difficulty}`;
+    flavorText += `<section><p><b>${rollingString}</b>: ${difficulty}`;
     flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Difficulty")}</td><td>${difficulty}</td>`;
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       flavorText += showModifiers ? `(${this.settings.difficulty.target}+)` : ``;
@@ -244,6 +246,12 @@ export class TwodsixDiceRoll {
       flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}`+ (showModifiers ? `(${this.settings.rollModifiers.custom})` : ``);
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td class="centre">${this.settings.rollModifiers.custom}</td></tr>`;
     }
+    flavorText +=`</p>`;
+
+    //add features
+    if (this.settings.itemRoll && this.item?.system?.features !== ""  && game.settings.get("twodsix", "showFeaturesInChat")) {
+      flavorText += `<p><b>${game.i18n.localize("TWODSIX.Items.Weapon.Features")}</b>: ${this.item.system.features}</p>`;
+    }
 
     // Add timeframe if requred
     let timeToComplete = ``;
@@ -252,7 +260,7 @@ export class TwodsixDiceRoll {
         timeToComplete = new Roll(this.settings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.settings.selectedTimeUnit]);
       }
     }
-
+    flavorText +=`</section>`;
     flavorTable += `</table>`;
     const flavor = (this.settings.extraFlavor ? `<section>${this.settings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-tooltip">` + flavorTable + `</section></section>`;
 

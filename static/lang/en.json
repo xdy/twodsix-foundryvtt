@@ -1014,6 +1014,10 @@
       "lightColor": {
         "hint": "Change the theme highlight color. Delete value to reset.",
         "name": "Set Highlight Color"
+      },
+      "showFeaturesInChat": {
+        "hint" : "Show item features text at bottom of chat messages for rolls.",
+        "name": "Show Item Features in Chat"
       }
     },
     "CloseAndCreateNew": "Close and create new",

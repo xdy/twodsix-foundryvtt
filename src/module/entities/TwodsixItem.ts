@@ -190,7 +190,7 @@ export default class TwodsixItem extends Item {
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
     let skill:TwodsixItem | null = null;
     let item:TwodsixItem | undefined;
-
+    let workingActor:TwodsixActor = this.actor;
     // Determine if this is a skill or an item
     const usesConsumable = <UsesConsumables>this.system;
     if (this.type == "skills") {
@@ -201,6 +201,14 @@ export default class TwodsixItem extends Item {
       skill = <TwodsixItem>this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
       if (skill === undefined) {
         skill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      }
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      item = this;
+    } else if (this.type === "component") {
+      workingActor = await fromUuid(tmpSettings?.flags.actorUUID);
+      skill = <TwodsixItem>workingActor?.items.getName(tmpSettings?.skillName);
+      if (skill === undefined) {
+        skill = workingActor.getUntrainedSkill();
       }
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
@@ -226,9 +234,9 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, <TwodsixActor>this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, workingActor);
       } else {
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, <TwodsixActor>this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, workingActor);
       }
       if (!tmpSettings.shouldRoll) {
         return;
@@ -237,7 +245,7 @@ export default class TwodsixItem extends Item {
 
     /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
     if (usesConsumable.useConsumableForAttack && item && item.type != "weapon") {
-      const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack);
+      const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack); //this shoould always be this.actor as components on ship, not working actor
       if (magazine) {
         try {
           await magazine.consume(1);
@@ -254,7 +262,8 @@ export default class TwodsixItem extends Item {
         return;
       }
     }
-    const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
+
+    const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
 
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);

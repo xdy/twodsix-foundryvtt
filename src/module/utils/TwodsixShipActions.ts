@@ -65,7 +65,7 @@ export class TwodsixShipActions {
     if (parsedResult !== null) {
       const [, parsedSkills, char, diff] = parsedResult;
       const skillOptions = parsedSkills.split("|");
-      let skill = "";
+      let skill = {};
       for (const skillOption of skillOptions) {
         skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === skillOption) as TwodsixItem;
         if(skill){
@@ -110,7 +110,12 @@ export class TwodsixShipActions {
       if (!options.shouldRoll) {
         return false;
       }
-      return skill.skillRoll(showTrowDiag, options);
+
+      if (extra.component) {
+        return extra.component.skillRoll(showTrowDiag, options);
+      } else {
+        return skill.skillRoll(showTrowDiag, options);
+      }
 
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
@@ -119,10 +124,10 @@ export class TwodsixShipActions {
   }
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
-    const [skilText, componentId] = text.split("=");
+    const [skillText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
     extra.component = <TwodsixItem>component;
-    const result = await TwodsixShipActions.skillRoll(skilText, extra);
+    const result = await TwodsixShipActions.skillRoll(skillText, extra);
     if (!result) {
       return false;
     }
