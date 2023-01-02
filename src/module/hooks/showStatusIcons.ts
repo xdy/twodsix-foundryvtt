@@ -131,9 +131,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   } else if (state === true  && isCurrentlyEncumbered.length === 0) {
     const modifier = game.settings.get('twodsix', 'encumbranceModifier');
     const changeData = [
-      { key: "system.characteristics.strength.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
-      { key: "system.characteristics.endurance.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
-      { key: "system.characteristics.dexterity.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() }
+      { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
     ];
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
@@ -222,7 +220,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
+    const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,

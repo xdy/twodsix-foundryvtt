@@ -255,10 +255,15 @@ export interface Traveller {
   finances:Finances;
   characteristics:Characteristics;
   skillRollTypes:Record<string,string>;
-  woundedEffect:number;
   characteristicEdit:boolean;
   movement:MovementData;
   hideStoredItems: StoredItemView;
+  conditions: Conditions;
+}
+
+export interface Conditions {
+  woundedEffect:number;
+  encumberedEffect:number;
 }
 
 export interface Animal {

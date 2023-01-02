@@ -55,14 +55,11 @@ export class TwodsixRollSettings {
     if (selectedActor) {
       //Determine active effects modifiers
       if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-        woundsValue = (<TwodsixActor>selectedActor).system.woundedEffect;
+        woundsValue = (<TwodsixActor>selectedActor).system.conditions.woundedEffect ?? 0;
       }
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        const encumberedEffect:ActiveEffect|undefined =  (<TwodsixActor>selectedActor).effects.find(eff => eff.label === 'Encumbered');
-        if(encumberedEffect) {
-          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-          encumberedValue = encumberedEffect.changes.find(change => change.key === ('system.characteristics.' + fullCharLabel + '.mod'))?.value.toString() ?? 0;
-        }
+        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+        encumberedValue = ["strength", "dexterity", "endurance"].includes(fullCharLabel) ? (<TwodsixActor>selectedActor).system.conditions.encumberedEffect ?? 0 : 0;
       }
       //Check for active effect override of skill
       if (aSkill) {
@@ -220,7 +217,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(buttonHtml.find('[name="rollModifiers.dodgeParry"]').val(), 10) : this.rollModifiers.dodgeParry;
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
-          this.rollModifiers.encumbered = dialogData.showEncumbered ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
+          this.rollModifiers.encumbered = (dialogData.showEncumbered && ["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
           this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();

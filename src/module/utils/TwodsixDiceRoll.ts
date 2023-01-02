@@ -8,7 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import { Traveller } from "../../types/template";
+//import { Traveller } from "../../types/template";
 
 export class TwodsixDiceRoll {
   settings:TwodsixRollSettings;
@@ -26,7 +26,8 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    this.woundedEffect = (<Traveller>this.actor.system)?.woundedEffect;
+    //this.woundedEffect = (<Traveller>this.actor.system.conditions)?.woundedEffect;
+    //this.encumberedEffect = (<Traveller>this.actor.system.conditions)?.encumberedEffect;
 
     this.createRoll();
 
