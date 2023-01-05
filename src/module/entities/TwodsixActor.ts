@@ -419,6 +419,8 @@ export default class TwodsixActor extends Actor {
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           await this.createUnarmedSkill();
         }
+        this.deleteCustomAEs();
+        this.fixItemAEs();
         break;
       case "ship":
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
