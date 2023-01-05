@@ -844,7 +844,7 @@ export default class TwodsixActor extends Actor {
       ...foundry.utils.flattenObject(this.overrides),
       ...overrides,
     });
-    console.log(this.overrides);
+    //console.log(this.overrides);
   }
 
   public deleteCustomAEs():void {
