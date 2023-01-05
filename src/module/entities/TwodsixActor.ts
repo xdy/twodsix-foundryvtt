@@ -392,8 +392,8 @@ export default class TwodsixActor extends Actor {
           });
         }
         this.update({
-          "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
-          "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+          "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
+          "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
         });
         await this.createUntrainedSkill();
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -405,6 +405,8 @@ export default class TwodsixActor extends Actor {
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           await this.createUnarmedSkill();
         }
+        this.deleteCustomAEs();
+        this.fixItemAEs();
         break;
       case "animal":
         await this.createUntrainedSkill();
@@ -841,6 +843,30 @@ export default class TwodsixActor extends Actor {
       ...overrides,
     });
     console.log(this.overrides);
+  }
+
+  public deleteCustomAEs():void {
+    const systemAEs = this.effects.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+    const idsToDelete = [];
+    for (const eff of systemAEs) {
+      idsToDelete.push(eff.id);
+    }
+    this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+  }
+
+  public async fixItemAEs(): void {
+    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+      const itemsWithEffects = this.items.filter(it => it.effects.size > 0);
+      for (const item of itemsWithEffects) {
+        const newEffect = item.effects.contents[0].toObject();
+        newEffect.disabled = item.system.equipped !== "equipped";
+        newEffect._id = "";
+        newEffect.origin = item.uuid;
+        newEffect.label = item.name;
+        const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
+        await newActorEffect?.setFlag('twodsix', 'sourceId', item.effects.contents[0].id);
+      }
+    }
   }
 }
 

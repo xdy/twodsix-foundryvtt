@@ -118,8 +118,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
   const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
   let state = false;
-  //const maxEncumbrance = selectedActor.system.encumbrance.max;
-  if(selectedActor.system.encumbrance.max > 0 && selectedActor.system.encumbrance.max) {
+  if(selectedActor.system.encumbrance.max > 0) {
     const ratio = selectedActor.system.encumbrance.value / selectedActor.system.encumbrance.max;
     state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
   }
