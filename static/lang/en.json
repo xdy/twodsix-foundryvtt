@@ -13,7 +13,9 @@
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Remove Active Effect",
-      "ConfirmDelete": "Do you really want to delete effect?"
+      "ConfirmDelete": "Do you really want to delete effect?",
+      "BaseValue": "Base",
+      "Modifiers": "Modifiers"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -135,6 +137,7 @@
         "EditOrRemove": "Edit / Remove",
         "BaseLevel": "Base Level",
         "AdjLevel": "Adj. Level",
+        "Level": "Level",
         "Modifier": "Modifier",
         "SkillName": "Skill Name",
         "Total": "Total",

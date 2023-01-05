@@ -8,7 +8,7 @@ import TwodsixItem from "./entities/TwodsixItem";
 import {Skills, Component} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
-import { simplifySkillName } from "./utils/utils";
+import { ObjectbyString, simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -226,6 +226,29 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
     return game.settings.get('twodsix', 'showTimeframe');
+  });
+
+  Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
+    let returnValue = ``;
+    const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
+    if (ObjectbyString(actor.overrides, field)) {
+      const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
+      const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
+      const baseValue = ObjectbyString(actor._source, field);
+      returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
+      const workingEffects = actor.effects.filter(e => !e.disabled);
+      for (const effect of workingEffects) {
+        const realChanges = effect.changes.filter(ch => ch.key === field);
+        if (realChanges.length > 0) {
+          returnValue += `${effect.label}: `;
+          for (const change of realChanges) {
+            returnValue += `${modes[change.mode]}(${change.value}), `;
+          }
+        }
+      }
+      returnValue = returnValue.slice(0, -2);
+    }
+    return returnValue;
   });
 
   Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {

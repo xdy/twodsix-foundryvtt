@@ -10,10 +10,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.strength.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.strength.value"
+    <span class="stat-ability" ><input type="number" min="0" name="system.characteristics.strength.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}"
                                       data-label="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.mod'}}"
                                        value="{{numberFormat system.characteristics.strength.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.strength.value}}" min="0"
                                      name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}"
@@ -30,10 +30,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.dexterity.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.dexterity.value"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.dexterity.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.value'}}"
                                       data-label="system.characteristics.dexterity.value" value="{{system.characteristics.dexterity.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.mod'}}"
                                        value="{{numberFormat system.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.dexterity.value}}" min="0"
                                      name="system.characteristics.dexterity.damage" value="{{system.characteristics.dexterity.damage}}"
@@ -50,10 +50,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.endurance.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.endurance.value"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.endurance.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}"
                                       data-label="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.mod'}}"
                                        value="{{numberFormat system.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.endurance.value}}" min="0"
                                      name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}"
@@ -70,10 +70,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.intelligence.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.intelligence.value"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.intelligence.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.value'}}"
                                       data-label="system.characteristics.intelligence.value" value="{{system.characteristics.intelligence.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.mod'}}"
                                        value="{{numberFormat system.characteristics.intelligence.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.intelligence.value}}" min="0"
                                      name="system.characteristics.intelligence.damage" value="{{system.characteristics.intelligence.damage}}"
@@ -90,10 +90,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.education.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.education.value"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.education.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.value'}}"
                                       data-label="system.characteristics.education.value" value="{{system.characteristics.education.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.mod'}}"
                                        value="{{numberFormat system.characteristics.education.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.education.value}}" min="0"
                                      name="system.characteristics.education.damage" value="{{system.characteristics.education.damage}}"
@@ -110,10 +110,10 @@
         <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.socialStanding.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.socialStanding.value"
+    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.socialStanding.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.value'}}"
                                       data-label="system.characteristics.socialStanding.value" value="{{system.characteristics.socialStanding.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text"
+    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.mod'}}"
                                        value="{{numberFormat system.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.socialStanding.value}}" min="0"
                                      name="system.characteristics.socialStanding.damage" value="{{system.characteristics.socialStanding.damage}}" placeholder="0"
@@ -131,13 +131,13 @@
         {{system.characteristics.alternative1.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative1.value"
+    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative1.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.value'}}"
       data-label="system.characteristics.alternative1.value" value="{{system.characteristics.alternative1.value}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="special-damage"><input type="number" max="{{system.characteristics.alternative1.value}}" min="0"
       name="system.characteristics.alternative1.damage" value="{{system.characteristics.alternative1.damage}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text"
+    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.mod'}}"
       value="{{numberFormat system.characteristics.alternative1.mod decimals=0 sign=true}}"/></span>
     </div>
   <div class="special alternative2" data-characteristic="alternative2">
@@ -150,13 +150,13 @@
         {{system.characteristics.alternative2.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative2.value"
+    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative2.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.value'}}"
       data-label="system.characteristics.alternative2.value" value="{{system.characteristics.alternative2.value}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="special-damage"><input type="number" max="{{system.characteristics.alternative2.value}}" min="0"
       name="system.characteristics.alternative2.damage" value="{{system.characteristics.alternative2.damage}}"
       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text"
+    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.mod'}}"
       value="{{numberFormat system.characteristics.alternative2.mod decimals=0 sign=true}}"/></span>
   </div>
   {{/iff}}
@@ -171,13 +171,13 @@
         {{system.characteristics.psionicStrength.displayShortLabel}}
       </span>
     {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.psionicStrength.value"
+    <span class="special-ability"><input type="number" min="0" name="system.characteristics.psionicStrength.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.value'}}"
                                          data-label="system.characteristics.psionicStrength.value" value="{{system.characteristics.psionicStrength.value}}"
                                          placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="special-damage"><input type="number" max="{{system.characteristics.psionicStrength.value}}" min="0"
                                         name="system.characteristics.psionicStrength.damage" value="{{system.characteristics.psionicStrength.damage}}"
                                         placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text"
+    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.mod'}}"
                                           value="{{numberFormat system.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
   </div>
   {{/iff}}

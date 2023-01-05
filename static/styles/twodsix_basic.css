@@ -784,6 +784,10 @@ span.stat-ability {
   border-radius: 15%;
 }
 
+input[data-tooltip *="("] {
+  color: var(--s2d6-damage-orange) !important;
+}
+
 span.stat-ability-table {
   text-align: center !important;
   position: relative;

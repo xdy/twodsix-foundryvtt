@@ -15,7 +15,6 @@ import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller, Weapon} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
-//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -94,7 +93,7 @@ export default class TwodsixActor extends Actor {
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
-      system.secondaryArmor.value= armorValues.secondaryArmor;
+      system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
     this._updateDerivedDataActiveEffects();
@@ -364,15 +363,15 @@ export default class TwodsixActor extends Actor {
     console.log(embeddedName, documents, result, options, userId );
   }*/
   /*protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
-    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
       const ownedItem = <TwodsixItem>documents[0];
       const selectedActor = <TwodsixActor>ownedItem.actor;
       const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
       if (effectToDelete?.id) {
-        //await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
+        await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
       }
     }
+    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
   }*/
 
   protected async _onCreate() {
@@ -810,7 +809,7 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
-  private async _updateDerivedDataActiveEffects(): void {
+  public async _updateDerivedDataActiveEffects(): Promise<void> {
     const derivedData = [];
     //Add characteristics mods
     for (const char of Object.keys(this.system.characteristics)) {
@@ -841,6 +840,7 @@ export default class TwodsixActor extends Actor {
       ...foundry.utils.flattenObject(this.overrides),
       ...overrides,
     });
+    console.log(this.overrides);
   }
 }
 

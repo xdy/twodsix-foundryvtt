@@ -115,12 +115,12 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   }
 }
 
-export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
+async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
   const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
   let state = false;
-  const maxEncumbrance = selectedActor.getMaxEncumbrance();
-  if(maxEncumbrance !== 0 && maxEncumbrance) {
-    const ratio = selectedActor.getActorEncumbrance() / maxEncumbrance;
+  //const maxEncumbrance = selectedActor.system.encumbrance.max;
+  if(selectedActor.system.encumbrance.max > 0 && selectedActor.system.encumbrance.max) {
+    const ratio = selectedActor.system.encumbrance.value / selectedActor.system.encumbrance.max;
     state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
   }
   if (isCurrentlyEncumbered.length > 0 && (state === false)) {
@@ -133,15 +133,13 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     const changeData = [
       { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
     ];
-    if (isCurrentlyEncumbered.length === 0) {
-      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-        label: effectType.encumbered,
-        icon: "systems/twodsix/assets/icons/weight.svg",
-        changes: changeData
-      }]);
-      const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
-      newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
-    }
+    await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+      label: effectType.encumbered,
+      icon: "systems/twodsix/assets/icons/weight.svg",
+      changes: changeData
+    }]);
+    const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
+    await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
   }
 }
 
