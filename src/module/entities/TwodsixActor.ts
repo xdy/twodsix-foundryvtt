@@ -858,16 +858,20 @@ export default class TwodsixActor extends Actor {
 
   public async fixItemAEs(): void {
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
+      const newEffects = [];
       const itemsWithEffects = this.items.filter(it => it.effects.size > 0);
       for (const item of itemsWithEffects) {
         const newEffect = item.effects.contents[0].toObject();
-        newEffect.disabled = item.system.equipped !== "equipped";
-        newEffect._id = "";
-        newEffect.origin = item.uuid;
-        newEffect.label = item.name;
-        const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
-        await newActorEffect?.setFlag('twodsix', 'sourceId', item.effects.contents[0].id);
+        Object.assign(newEffect, {
+          disabled: item.system.equipped !== "equipped",
+          _id: "",
+          origin: item.uuid,
+          //label: item.name,
+          flags: {twodsix: {sourceId: item.effects.contents[0].id}}
+        });
+        newEffects.push(newEffect);
       }
+      await this.createEmbeddedDocuments("ActiveEffect", newEffects);
     }
   }
 }
