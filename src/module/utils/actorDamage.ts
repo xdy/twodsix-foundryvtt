@@ -205,7 +205,7 @@ class DamageDialogHandler {
         chrHtml.find(`.damage-input`).val(stat.damage);
       }
 
-      if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
+      if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0 && stat.original.damage === 0) {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
