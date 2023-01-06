@@ -4,8 +4,8 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, stringSetting} from "./settingsUtils";
 import {refreshWindow} from "./DisplaySettings";
-//import { applyToAllActors } from ".../migration-utils";
-
+import { applyToAllActors } from "../utils/migration-utils";
+import TwodsixActor from "../entities/TwodsixActor";
 export default class DebugSettings extends AdvancedSettings {
   static create() {
     DebugSettings.settings = DebugSettings.registerSettings();
@@ -32,47 +32,17 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(booleanSetting('useProseMirror', false));
     settings.push(booleanSetting('allowDropOnIcon', false));
     settings.push(booleanSetting('allowDragDropOfLists', false));
-    settings.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateItemAE));
+    settings.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateActorAE));
     return settings;
   }
 }
 
-async function deactivateItemAE () {
+async function deactivateActorAE () {
   if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
     await applyToAllActors(deleteSystemAE);
   }
 }
 
 async function deleteSystemAE(actor: TwodsixActor): Promise<void> {
-  const idsToDelete:string[] = [];
-  const systemAEs = actor.effects.filter( (e:ActiveEffect) => e.getFlag("twodsix", "sourceId"));
-  for (const eff of systemAEs) {
-    idsToDelete.push(eff.id);
-  }
-  actor.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
-}
-
-async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void>)): Promise<void> {
-  const allActors = (game.actors?.contents ?? []) as TwodsixActor[];
-
-  for (const scene of game.scenes ?? []) {
-    for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.actorLink) {
-        allActors.push(token.actor as TwodsixActor);
-      }
-    }
-  }
-
-  const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && !pack.locked);
-  for (const pack of actorPacks) {
-    for (const actor of await pack.getDocuments()) {
-      allActors.push(actor as unknown as TwodsixActor);
-    }
-  }
-
-  for (const actor of allActors) {
-    await fn(actor);
-  }
-
-  return Promise.resolve();
+  actor.deleteCustomAEs();
 }
