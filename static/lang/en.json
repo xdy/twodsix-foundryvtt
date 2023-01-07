@@ -69,6 +69,9 @@
       "Gender": "Gender",
       "HeroPoints": "Hero Points",
       "Hits": "Hits",
+      "healing": "healing",
+      "damage": "damage",
+      "Applied": "Applied",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
       "Stamina": "Stamina",
@@ -1018,6 +1021,10 @@
       "showFeaturesInChat": {
         "hint" : "Show item features text at bottom of chat messages for rolls.",
         "name": "Show Item Features in Chat"
+      },
+      "showHitsChangesInChat": {
+        "hint": "Show a whispered chat message to GM when damage/healing is appled to an actor.",
+        "name": "Show damage / healing chat message to GM"
       }
     },
     "CloseAndCreateNew": "Close and create new",

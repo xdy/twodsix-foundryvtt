@@ -22,6 +22,12 @@ function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
 Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
   if (update.system?.characteristics && (actor.type === 'traveller' || actor.type === 'animal')) {
     update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
+    Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
+    if (update.system.hits.lastDelta !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
+      const appliedType = update.system.hits.lastDelta > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
+      const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
+      ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(update.system.hits.lastDelta)}`, speaker: ChatMessage.getSpeaker({ actor: actor }), whisper: ChatMessage.getWhisperRecipients("GM") });
+    }
   }
 });
 

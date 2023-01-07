@@ -8,9 +8,14 @@ import { getDamageCharacteristics } from "../utils/actorDamage";
 
 Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
   const firstGM = game.users.find(u => u.isGM);
-  if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-    if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal') && game.user?.id === firstGM?.id) {
-      await applyWoundedEffect(actor).then();
+  if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal')) {
+    if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+      if (game.user?.id === firstGM?.id) {
+        await applyWoundedEffect(actor).then();
+      }
+    }
+    if (actor.system.hits.lastDelta !== 0 && actor.isOwner) {
+      actor.scrollDamage(actor.system.hits.lastDelta);
     }
   }
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
