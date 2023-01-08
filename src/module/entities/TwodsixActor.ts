@@ -587,7 +587,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //Check for pre-existing skill by same name
-    const matching = this.items.getName(skillData.name);
+    const matching = this.items.find(it => it.name === skillData.name && it.type === "skills");
 
     if (matching) {
       console.log(`Twodsix | Skill ${skillData.name} already on character ${this.name}.`);
