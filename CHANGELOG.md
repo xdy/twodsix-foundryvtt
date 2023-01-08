@@ -1,3 +1,10 @@
+## [2.14.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.2...v2.14.3) (2023-01-08)
+
+
+### Bug Fixes
+
+* duplicate skill and item drops on actor ([#1216](https://github.com/xdy/twodsix-foundryvtt/issues/1216)) ([d7cc0b9](https://github.com/xdy/twodsix-foundryvtt/commit/d7cc0b9d1c75567c929a269e9da182c10b948733))
+
 ## [2.14.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.1...v2.14.2) (2023-01-08)
 
 
