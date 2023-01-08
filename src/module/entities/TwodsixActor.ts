@@ -649,7 +649,13 @@ export default class TwodsixActor extends Actor {
     }
 
     // Item already exists on actor
-    const dupItem = <TwodsixItem>this.items.find(it => it.name === itemData.name && it.type === itemData.type);
+    let dupItem:TwodsixItem = {};
+    if (itemData.type === "component") {
+      dupItem = <TwodsixItem>this.items.find(it => it.name === itemData.name && it.type === itemData.type && it.system.subtype === itemData.system.subtype);
+    } else {
+      dupItem = <TwodsixItem>this.items.find(it => it.name === itemData.name && it.type === itemData.type);
+    }
+
     if (dupItem) {
       console.log(`Twodsix | Item ${itemData.name} already on character ${this.name}.`);
       if( dupItem.type !== "skills"  && dupItem.type !== "trait" && dupItem.type !== "ship_position") {
