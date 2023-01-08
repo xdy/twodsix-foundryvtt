@@ -1,3 +1,10 @@
+## [2.14.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.1...v2.14.2) (2023-01-08)
+
+
+### Bug Fixes
+
+* actor damage dialog and notification issues ([#1215](https://github.com/xdy/twodsix-foundryvtt/issues/1215)) ([78b58e6](https://github.com/xdy/twodsix-foundryvtt/commit/78b58e610173ee16d455e42800777e3bba2ff084))
+
 ## [2.14.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.0...v2.14.1) (2023-01-01)
 
 
