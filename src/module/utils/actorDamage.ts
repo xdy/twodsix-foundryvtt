@@ -208,7 +208,9 @@ class DamageDialogHandler {
       if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+          if (stat.original.damage === 0) {
+            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+          }
         }
       } else {
         chrHtml.find(`.damage-input`).removeClass("orange-border");
@@ -293,8 +295,8 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   } else {
     actor = (canvas.tokens?.placeables?.find((t: Token) => t.id === damageData.tokenId) || null)?.actor || null;
   }
-  const actorUsers = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3)) || null;
-  if ((game.user?.isGM && actorUsers && actorUsers.length > 1) || (!game.user?.isGM && !actor.isOwner)) {
+  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3) && !user.isGM) || null;
+  if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
     return;
   }
 

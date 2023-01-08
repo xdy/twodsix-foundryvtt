@@ -729,6 +729,30 @@ export default class TwodsixActor extends Actor {
     }
     return false;
   }
+
+  /**
+   * Display changes to health as scrolling combat text.
+   * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
+   * @param {number} damageApplied     The change in hit points that was applied
+   * @public
+   */
+  public scrollDamage(damageApplied:number): void {
+    if ( !damageApplied ) {
+      return;
+    }
+    const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
+    for ( const t of tokens ) {
+      const pct = Math.clamped(Math.abs(damageApplied) / this.system.hits.max, 0, 1);
+      canvas.interface.createScrollingText(t.center, -damageApplied.signedString(), {
+        anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+        fontSize: 22 + (32 * pct), // Range between [22, 54]
+        fill: -damageApplied < 0 ? 16711680 : 65280,
+        stroke: 0x000000,
+        strokeThickness: 4,
+        jitter: 0.25
+      });
+    }
+  }
 }
 
 export function getPower(item: Component): number{

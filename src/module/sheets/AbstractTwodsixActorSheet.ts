@@ -137,7 +137,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const attackType = event.currentTarget["dataset"].attackType;
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
     const item = this.getItem(event);
-    console.log("Sheet Item Attack: ", item);
+    //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet")) {
       resolveUnknownAutoMode(item);
     } else {
