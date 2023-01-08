@@ -222,6 +222,7 @@ export interface Hits {
   value:number;
   min:number;
   max:number;
+  lastDelta?:number;
 }
 
 export interface Fuel {
