@@ -1,3 +1,10 @@
+## [2.14.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.3...v2.14.4) (2023-01-08)
+
+
+### Bug Fixes
+
+* duplicate component drops on ships ([#1217](https://github.com/xdy/twodsix-foundryvtt/issues/1217)) ([466b02f](https://github.com/xdy/twodsix-foundryvtt/commit/466b02fef14b372dc1e03c5ce70f0e5038739762))
+
 ## [2.14.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.2...v2.14.3) (2023-01-08)
 
 
