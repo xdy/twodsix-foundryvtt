@@ -219,7 +219,17 @@ export class TwodsixRollSettings {
           this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(buttonHtml.find('[name="rollModifiers.attachments"]').val(), 10) : this.rollModifiers.attachments;
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
-          this.rollModifiers.encumbered = (dialogData.showEncumbered && ["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) ? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) : 0;
+
+          if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
+            //either dont show modifier or not a physical characterisitc
+            this.rollModifiers.encumbered = 0;
+          } else if (dialogData.initialChoice === this.rollModifiers.characterisitc || parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) !== dialogData.rollModifiers.encumbered) {
+            //characteristic didn't change or encumbrance modifer changed
+            this.rollModifiers.encumbered = parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) ?? 0;
+          } else {
+            this.rollModifiers.encumbered = (<TwodsixActor>skill?.actor).system.conditions.encumberedEffect ?? parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10) ?? 0;
+          }
+
           this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
