@@ -297,7 +297,7 @@ export default class TwodsixItem extends Item {
       return;
     } else {
       //Calc regular damage
-      const consumableDamage = TwodsixItem.getConsumableBonusDamage(<Weapon>weapon, this.actor);
+      const consumableDamage = this.getConsumableBonusDamage();
       let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
@@ -311,7 +311,7 @@ export default class TwodsixItem extends Item {
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
+        apValue = this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
@@ -376,23 +376,28 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static getApValue(weapon:Weapon, actor?):number {
-    let returnValue = weapon.armorPiercing;
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable" && !magazine?.isAttachment) {
-        returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
+  public getConsumableBonusDamage():string {
+    let returnValue = "";
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        returnValue = (<Consumable>magazine.system)?.bonusDamage;
       }
     }
     return returnValue;
   }
 
-  public static getConsumableBonusDamage(weapon:Weapon, actor?):string {
-    let returnValue = "";
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable") {
-        returnValue = (<Consumable>magazine.system)?.bonusDamage;
+  public getConsumableBonus(type:string):number {
+    let returnValue = 0;
+    if (this.system.attachmentData) {
+      for (const attach of this.system.attachmentData) {
+        returnValue += attach.system[type];
+      }
+    }
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable" && magazine?.system[type]) {
+        returnValue += (<Consumable>magazine.system)[type];
       }
     }
     return returnValue;

@@ -272,7 +272,8 @@
         "Characteristic": "Characteristic",
         "Condition": "Condition",
         "Attack": "Attack",
-        "ActiveEffect": "Active Effect"
+        "ActiveEffect": "Active Effect",
+        "Attachments": "Attach./Consm."
       }
     },
     "Create": "Create",
@@ -661,7 +662,8 @@
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
       "ROF" :"ROF",
-      "DodgeParry": "Dodge/Parry"
+      "DodgeParry": "Dodge/Parry",
+      "Attachments": "Attch/Cons"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
