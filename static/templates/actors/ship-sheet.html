@@ -25,7 +25,9 @@
       {{> "systems/twodsix/templates/actors/parts/ship/ship-state-grid.html"}}
     </div>
     <div class="ship-power-management">
-      {{> "systems/twodsix/templates/actors/parts/ship/ship-power-management.html"}}
+      {{#unless settings.useFoundryStandardStyle}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-power-management.html"}}
+      {{/unless}}
     {{#if settings.showWeightUsage}}
     <span class ="power-title">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
     {{else}}
