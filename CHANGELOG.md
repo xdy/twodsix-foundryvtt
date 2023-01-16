@@ -1,3 +1,10 @@
+## [2.14.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.5...v2.14.6) (2023-01-16)
+
+
+### Bug Fixes
+
+* ship layout display in default style ([#1223](https://github.com/xdy/twodsix-foundryvtt/issues/1223)) ([c718ae8](https://github.com/xdy/twodsix-foundryvtt/commit/c718ae8502eb4e5da688a43f04804521afbb358c))
+
 ## [2.14.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.4...v2.14.5) (2023-01-16)
 
 
