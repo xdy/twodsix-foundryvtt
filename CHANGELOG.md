@@ -1,3 +1,10 @@
+## [2.14.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.4...v2.14.5) (2023-01-16)
+
+
+### Bug Fixes
+
+* roll actions on ships ([#1221](https://github.com/xdy/twodsix-foundryvtt/issues/1221)) ([1c525b9](https://github.com/xdy/twodsix-foundryvtt/commit/1c525b912ab493d200083782035920bd5b470b36))
+
 ## [2.14.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.3...v2.14.4) (2023-01-08)
 
 
