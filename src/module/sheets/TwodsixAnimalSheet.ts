@@ -5,7 +5,6 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
-
 export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   /**
@@ -90,7 +89,11 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   protected async _onRollReaction(): Promise<void> {
     const reaction = (<Animal>this.actor.system).reaction;
-    const roll = await new Roll("2d6 + @woundedEffect", this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    let rollString = "2d6";
+    if (this.actor.system.woundedEffect) {
+      rollString += " + @woundedEffect";
+    }
+    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
 
     let flavor = "";
 
@@ -104,7 +107,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       } else {
         flavor = game.i18n.localize("TWODSIX.Animal.NoReactionMessage");
       }
-      const msg =await roll.toMessage(
+      const msg = await roll.toMessage(
         { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
           flavor: flavor},
         {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
@@ -116,7 +119,14 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
   }
 
   protected async _onRollMorale(): Promise<void> {
-    const roll = await new Roll("2d6 + @moraleDM + @woundedEffect", this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    let rollString = "2d6";
+    if (this.actor.system.woundedEffect) {
+      rollString += " + @woundedEffect";
+    }
+    if (this.actor.system.moraleDM) {
+      rollString += " + @moraleDM";
+    }
+    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
 
     let flavor = "";
     if (roll.total <= 5) {
