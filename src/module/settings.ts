@@ -28,7 +28,7 @@ export const registerSettings = function ():void {
   });
   stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, false, Object.fromEntries(rulesetOptions), true);
 
-  booleanSetting('automateDamageRollOnHit', false, true, 'client');
+  booleanSetting('automateDamageRollOnHit', true, true, 'client');
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
   booleanSetting('transferDroppedItems', false, true);
