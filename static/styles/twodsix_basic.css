@@ -998,6 +998,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
+  word-wrap: break-word;
 }
 
 .items-consumable {

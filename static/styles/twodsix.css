@@ -1442,6 +1442,7 @@ a.actor-notes-tab.active {
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
+  word-wrap: break-word;
 }
 
 .items-consumable {
