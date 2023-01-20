@@ -456,7 +456,10 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
