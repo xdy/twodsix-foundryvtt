@@ -2199,6 +2199,7 @@ button.flexrow.flex-group-center.toggle-skills {
   text-align: center;
   margin-top: 0.3em;
   gap: 1ch;
+  align-items: center;
 }
 
 select.form-input, input.form-input, span.form-input {

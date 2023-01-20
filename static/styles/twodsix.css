@@ -2764,6 +2764,7 @@ a:hover {
   display: inline-flex;
   margin-top: 0.3em;
   gap: 1ch;
+  align-items: center;
 }
 
 select.form-input, input.form-input, span.form-input {
