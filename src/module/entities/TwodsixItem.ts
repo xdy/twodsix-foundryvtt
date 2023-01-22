@@ -291,13 +291,12 @@ export default class TwodsixItem extends Item {
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
-
-    if (!weapon.damage) {
+    const consumableDamage = this.getConsumableBonusDamage();
+    if (!weapon.damage && !consumableDamage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage
-      const consumableDamage = this.getConsumableBonusDamage();
       let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
