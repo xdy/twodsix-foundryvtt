@@ -896,20 +896,20 @@ svg:hover {
   background: transparent !important;
 }
 
-.skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab {
+.skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab, .effects-tab {
   background-position-x: -2px;
-  width: 90px;
+  width: 80px;
   display: block;
   border: solid;
   border-radius: 2ch;
 }
 
-a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.actor-notes-tab:hover {
+a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.actor-notes-tab:hover, .effects-tab:hover {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-semi-opaque)
 }
 
-a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active {
+a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active, .effects-tab.active {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-nearly-opaque) !important;
   text-shadow: none !important;
@@ -1406,6 +1406,7 @@ span.total-output {
 
 .notes-container {
   margin-left: 1ch;
+  margin-right: 1ch;
   margin-top: 5ch;
   height: 528px;
   margin-bottom: 30px;
@@ -2750,5 +2751,29 @@ form .form-group > label {
 }
 
 input[type="text"].color {
+  width: fit-content;
+}
+
+.effect-image {
+  height: auto;
+  width: auto;
+  max-width: 24px;
+  max-height: 24px;
+  background-color: var(--s2d6-background-nearly-opaque);
+  display: list-item;
+}
+
+.effects-container {
+  display: grid;
+  grid-template-columns: 30px 130px 130px 100px 60px;
+  grid-template-areas: '. . . .';
+  padding: inherit;
+  align-items: center;
+  grid-gap: 4px 2px;
+  min-height: 28px;
+}
+
+.effect:nth-of-type(even) {
+  background: var(--s2d6-skill-list-even);
   width: fit-content;
 }

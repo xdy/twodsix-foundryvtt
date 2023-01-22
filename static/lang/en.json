@@ -15,7 +15,15 @@
       "DeleteEffect": "Remove Active Effect",
       "ConfirmDelete": "Do you really want to delete effect?",
       "BaseValue": "Base",
-      "Modifiers": "Modifiers"
+      "Modifiers": "Modifiers",
+      "EffectLabel": "Effect Label",
+      "Source": "Source",
+      "Duration": "Duration",
+      "Condition":"Condition",
+      "UnknownSource": "Unknown Source",
+      "EffectEnable": "Effect Enable",
+      "EffectDisable": "Effect Disable",
+      "Controls": "Controls"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -165,6 +173,7 @@
         "Info": "Info",
         "Inventory": "Inventory",
         "Notes": "Notes",
+        "Effects": "Effects",
         "Skills": "Skills"
       },
       "UnknownActorType": "Unknown actor type",

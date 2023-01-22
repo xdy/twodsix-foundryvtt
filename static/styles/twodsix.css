@@ -1300,7 +1300,7 @@ a.skill-tab.active {
   background-color: var(--s2d6-default-color) !important;
 }
 
-.item-tab, .finances-tab, .info-tab {
+.item-tab, .finances-tab, .info-tab, .effects-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -97px;
   padding-top: 0.15em;
@@ -1313,12 +1313,12 @@ a.skill-tab.active {
   border-radius: 5ch 1ch 2ch 0;
 }
 
-a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
+a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, .effects-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
-a.item-tab.active, a.finances-tab.active, a.info-tab.active {
+a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active {
   /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
@@ -3493,5 +3493,30 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 input[type="text"].color {
+  width: fit-content;
+}
+
+.effect-image {
+  height: auto;
+  width: auto;
+  max-width: 24px;
+  max-height: 24px;
+  background-color: var(--s2d6-background-nearly-opaque);
+  display: list-item;
+  border: solid thin !important;
+}
+
+.effects-container {
+  display: grid;
+  grid-template-columns: 30px 130px 130px 100px 60px;
+  grid-template-areas: '. . . .';
+  padding: inherit;
+  align-items: center;
+  grid-gap: 4px 2px;
+  min-height: 28px;
+}
+
+.effect:nth-of-type(even) {
+  background: var(--s2d6-skill-list-even);
   width: fit-content;
 }

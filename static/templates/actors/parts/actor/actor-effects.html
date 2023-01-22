@@ -1,0 +1,40 @@
+<div class="items-list effects-list">
+  <li class="effects-container gear-header">
+      <div></div>
+      <div class="item-name effect-name flexrow">{{localize "TWODSIX.ActiveEffects.EffectLabel"}}</div>
+      <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Source"}}</div>
+      <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Duration"}}</div>
+      <div class="item-controls effect-controls flexrow">
+          {{#if @root.editable}}
+          <a class="effect-control">
+            {{localize "TWODSIX.ActiveEffects.Controls"}}
+          </a>
+          {{/if}}
+      </div>
+  </li>
+
+  {{#each effects as |effect|}}
+      <li class="item effect effects-container" data-uuid="{{effect.uuid}}">
+          <div class="item-name">
+              <img class="effect-image" src="{{effect.icon}}" style="border-color: {{effect.tint}} !important;"/>
+          </div>
+          <div class="effect-name">{{effect.label}}</div>
+          <div class="effect-source">{{twodsix_getEffectSource effect}}</div>
+          <div class="effect-duration">{{effect.duration.label}}</div>
+          <div class="item-controls effect-controls flexrow">
+              {{#if @root.editable}}
+              <a class="effect-control" data-action="toggle" data-uuid="{{effect.uuid}}"
+                  title="{{#if effect.disabled}}{{localize 'TWODSIX.ActiveEffects.EffectEnable'}}{{else}}{{localize 'TWODSIX.ActiveEffects.EffectDisable'}}{{/if}}">
+                  <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+              </a>
+              <a class="effect-control" data-action="edit" data-uuid="{{effect.uuid}}" title="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
+                  <i class="fas fa-edit"></i>
+              </a>
+              <a class="effect-control" data-action="delete" data-uuid="{{effect.uuid}}" title="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
+                  <i class="fas fa-trash"></i>
+              </a>
+              {{/if}}
+          </div>
+      </li>
+  {{/each}}
+</div>

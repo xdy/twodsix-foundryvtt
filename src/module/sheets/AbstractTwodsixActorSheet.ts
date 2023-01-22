@@ -126,6 +126,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       //Edit active effect shown on actor
       html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
+      html.find('.effect-control').on('click', this._modifyEffect.bind(this));
     }
   }
 
@@ -342,12 +343,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
-
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }
+    sheetData.effects = actor.effects.contents;
   }
 
   protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
@@ -542,6 +543,22 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         //Nothing
       }
     });
+  }
+
+  protected async _modifyEffect(event): Promise<void> {
+    const action = event.currentTarget["dataset"].action;
+    if (action === "delete") {
+      this._onDeleteEffect(event);
+    } else if (action === "edit") {
+      this._onEditEffect(event);
+    } else if (action === "toggle") {
+      const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
+      if (selectedEffect) {
+        await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+      }
+    } else {
+      console.log("Unknown Action");
+    }
   }
 
   private getItem(event): TwodsixItem {
