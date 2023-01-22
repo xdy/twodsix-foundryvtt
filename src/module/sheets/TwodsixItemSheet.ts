@@ -184,13 +184,22 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onDeleteEffect(): Promise<void> {
-    if (this.actor) {
-      const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
-      if (id) {
-        this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        if (this.actor) {
+          const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+          if (id) {
+            this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+          }
+        }
+        await this.item.update({effects: [] }, {recursive: false});
+      },
+      no: () => {
+        //Nothing
       }
-    }
-    await this.item.update({effects: [] }, {recursive: false});
+    });
   }
 
 

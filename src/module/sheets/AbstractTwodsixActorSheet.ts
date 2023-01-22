@@ -540,7 +540,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       },
       no: () => {
         //Nothing
-      },
+      }
     });
   }
 
