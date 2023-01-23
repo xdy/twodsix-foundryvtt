@@ -21,8 +21,8 @@
       "Duration": "Duration",
       "Condition":"Condition",
       "UnknownSource": "Unknown Source",
-      "EffectEnable": "Effect Enable",
-      "EffectDisable": "Effect Disable",
+      "EffectEnable": "Enable Effect",
+      "EffectDisable": "Disable Effect",
       "Controls": "Controls"
     },
     "Damage": {
@@ -174,7 +174,13 @@
         "Inventory": "Inventory",
         "Notes": "Notes",
         "Effects": "Effects",
-        "Skills": "Skills"
+        "Skills": "Skills",
+        "FinancesTabTooltip": "Cash on Hand, Debt, Pension, Living Costs, etc.",
+        "InfoTabTooltip": "Traits, Description, Contacts, and Biography",
+        "InventoryTabTooltip": "Weapons, Armor, Augments, Equipment & Tools, Consumables and Attachements",
+        "NotesTabTooltip": "Traveller Notes",
+        "EffectsTabTooltip": "Active Effects",
+        "SkillsTabTooltip": "Traveller Skills"
       },
       "UnknownActorType": "Unknown actor type",
       "using": "using",

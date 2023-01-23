@@ -24,13 +24,13 @@
           <div class="item-controls effect-controls flexrow">
               {{#if @root.editable}}
               <a class="effect-control" data-action="toggle" data-uuid="{{effect.uuid}}"
-                  title="{{#if effect.disabled}}{{localize 'TWODSIX.ActiveEffects.EffectEnable'}}{{else}}{{localize 'TWODSIX.ActiveEffects.EffectDisable'}}{{/if}}">
-                  <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                  data-tooltip="{{#if effect.disabled}}{{localize 'TWODSIX.ActiveEffects.EffectEnable'}}{{else}}{{localize 'TWODSIX.ActiveEffects.EffectDisable'}}{{/if}}">
+                  <i class="fa-solid {{#if effect.disabled}}fa-circle-check{{else}}fa-circle-xmark{{/if}}"></i>
               </a>
-              <a class="effect-control" data-action="edit" data-uuid="{{effect.uuid}}" title="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
+              <a class="effect-control" data-action="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
                   <i class="fas fa-edit"></i>
               </a>
-              <a class="effect-control" data-action="delete" data-uuid="{{effect.uuid}}" title="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
+              <a class="effect-control" data-action="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
                   <i class="fas fa-trash"></i>
               </a>
               {{/if}}
