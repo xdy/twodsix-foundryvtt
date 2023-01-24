@@ -328,15 +328,12 @@ export default class TwodsixItem extends Item {
       }
 
       const contentData = {};
-      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-      if (apValue !== undefined) {
-        flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
-      }
+      const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
         dice: getDiceResults(damage), //damage.terms[0]["results"]
-        armorPiercingValue: apValue ?? 0,
+        armorPiercingValue: apValue,
         damage: (damage.total && damage.total > 0) ? damage.total : 0
       });
 
