@@ -23,7 +23,10 @@
       "UnknownSource": "Unknown Source",
       "EffectEnable": "Enable Effect",
       "EffectDisable": "Disable Effect",
-      "Controls": "Controls"
+      "Controls": "Controls",
+      "NewEffect": "New Effect",
+      "CreateEffect": "Create Effect",
+      "Add": "Add"
     },
     "Damage": {
       "DealDamage": "Deal damage",

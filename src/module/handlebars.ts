@@ -337,7 +337,11 @@ export default function registerHandlebarsHelpers(): void {
       return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
     } else if (effect.origin) {
       const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
-      return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
+      if (attachedItem) {
+        return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
+      } else {
+        return effect.origin;
+      }
     } else {
       return game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
     }

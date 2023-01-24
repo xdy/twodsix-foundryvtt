@@ -6,9 +6,9 @@
       <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Duration"}}</div>
       <div class="item-controls effect-controls flexrow">
           {{#if @root.editable}}
-          <a class="effect-control">
-            {{localize "TWODSIX.ActiveEffects.Controls"}}
-          </a>
+            <a class="effect-control" data-action="create" title="{{localize 'TWODSIX.ActiveEffects.CreateEffect'}}">
+                <i class="fa-solid fa-plus"></i> {{localize "TWODSIX.ActiveEffects.Add"}}
+            </a>
           {{/if}}
       </div>
   </li>
@@ -28,10 +28,10 @@
                   <i class="fa-solid {{#if effect.disabled}}fa-circle-check{{else}}fa-circle-xmark{{/if}}"></i>
               </a>
               <a class="effect-control" data-action="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
-                  <i class="fas fa-edit"></i>
+                  <i class="fa-solid fa-edit"></i>
               </a>
               <a class="effect-control" data-action="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
-                  <i class="fas fa-trash"></i>
+                  <i class="fa-solid fa-trash"></i>
               </a>
               {{/if}}
           </div>

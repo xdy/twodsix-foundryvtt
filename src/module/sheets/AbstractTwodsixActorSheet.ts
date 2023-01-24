@@ -556,6 +556,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (selectedEffect) {
         await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
       }
+    } else if (action === "create") {
+      this.actor.createEmbeddedDocuments("ActiveEffect", [{
+        label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
+        icon: "icons/svg/aura.svg",
+        origin: "Custom",
+        disabled: false
+      }]);
+
     } else {
       console.log("Unknown Action");
     }
