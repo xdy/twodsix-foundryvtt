@@ -305,12 +305,12 @@ export default class TwodsixItem extends Item {
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       rollFormula = simplifyRollFormula(rollFormula);
       let damage = <Roll>{};
-      let apValue = 0;
+      let apValue = weapon.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = this.getConsumableBonus("armorPiercing");
+        apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
