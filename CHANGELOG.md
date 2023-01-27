@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.7...v2.15.0) (2023-01-27)
+
+
+### Features
+
+* Add active effects to Twodsix Actors ([#1197](https://github.com/xdy/twodsix-foundryvtt/issues/1197)) ([a24c076](https://github.com/xdy/twodsix-foundryvtt/commit/a24c076e8f00b7264f151916823b06a1ef414075))
+
 ## [2.14.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.6...v2.14.7) (2023-01-18)
 
 
