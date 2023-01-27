@@ -1,3 +1,10 @@
+## [2.15.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.0...v2.15.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* Add compatibility for Autocomplete-Inline-Properties Module ([#1231](https://github.com/xdy/twodsix-foundryvtt/issues/1231)) ([3972cab](https://github.com/xdy/twodsix-foundryvtt/commit/3972cab83cb508eae8184c519eb99ceb2fa1ee64))
+
 # [2.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.14.7...v2.15.0) (2023-01-27)
 
 
