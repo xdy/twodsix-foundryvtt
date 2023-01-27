@@ -141,15 +141,18 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       },
       "hideStoredItems": {
@@ -453,7 +456,10 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,

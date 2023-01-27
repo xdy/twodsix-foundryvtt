@@ -69,6 +69,13 @@
             </label>
           </div>
         {{/iff}}
+        {{#iff rollModifiers.attachments "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Attachments"}}
+              <input type="number" name="rollModifiers.attachments" value="{{rollModifiers.attachments}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/iff}}
         {{#iff rollModifiers.dodgeParry "!==" 0}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}
@@ -106,6 +113,7 @@
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.Custom"}}
           <input type="number" name="rollModifiers.custom" value="{{rollModifiers.custom}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+          ({{rollModifiers.customLabel}})
         </label>
       </div>
       {{/if}}

@@ -6,7 +6,7 @@
 
     <span class="stat-ability"><input type="number" min="0" name="system.characteristics.endurance.value"
                                       data-label="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+                                      data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="stat-modifier"><input readonly type="text"
                                        value="-"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.endurance.value}}" min="0"
@@ -20,7 +20,7 @@
 
     <span class="stat-ability"><input type="number" min="0" name="system.characteristics.strength.value"
                                       data-label="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+                                      data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     <span class="stat-modifier"><input readonly type="text"
                                        value="-"/></span>
     <span class="stat-damage"><input type="number" max="{{system.characteristics.strength.value}}" min="0"
@@ -38,7 +38,7 @@
     </span>
       <span class="stat-ability"><input type="number" min="0" name="system.characteristics.psionicStrength.value"
                                         data-label="system.characteristics.psionicStrength.value" value="{{system.characteristics.psionicStrength.value}}"
-                                        placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+                                        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
       <span class="stat-modifier"><input readonly type="text"
                                         value="-"/></span>
       <span class="stat-damage"><input readonly type="number" max="{{system.characteristics.psionicStrength.value}}" min="0"

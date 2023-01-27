@@ -44,7 +44,7 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        const msg =  new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
         if (game.modules.get("dice-so-nice")?.active) {
           await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
         }
@@ -138,7 +138,7 @@ export class TwodsixShipActions {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
       } else {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+        await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
     }
   }

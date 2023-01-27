@@ -16,7 +16,13 @@
         <span class="items-traits">
           <span class="item-name showChat">{{item.name}}</span>
           <span class="item-name centre">{{item.system.value}}</span>
-          <span class="item-name centre">{{item.system.shortdescr}}</span>
+          <span class="item-name centre">{{item.system.shortdescr}}
+            <ul>
+              {{#each item.effects.contents.[0].changes as |change|}}
+              <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
+              {{/each}}
+            </ul>
+          </span>
           <span class="item-controls centre">
             <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                 class="fa-solid fa-pen-to-square"></i></a>

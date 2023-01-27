@@ -5,7 +5,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
-import { Component } from "src/types/template";
+import { Component, Gear } from "src/types/template";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -50,7 +50,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
+      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
+      useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects')
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -83,6 +84,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
+
+    html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
+    html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
+    html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
+
     this.handleContentEditable(html);
     html.find('.open-link').on('click', openPDFReference.bind(this, [this.item.system.docReference]));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
@@ -132,16 +138,85 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private getConsumable(event) {
-    const li = $(event.currentTarget).parents(".consumable");
-    return this.item.actor?.items.get(li.data("consumableId"));
+  private async _onCreateEffect(): Promise<void> {
+    if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else {
+      const newId = randomID();
+      if(game.settings.get('twodsix', 'useItemActiveEffects')) {
+        const effects = [new ActiveEffect({
+          origin: this.item.uuid,
+          icon: this.item.img,
+          tint: "#ffffff",
+          label: this.item.name,
+          transfer: true,
+          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped",
+          _id: newId,
+          flags: {twodsix: {sourceId: newId}}
+
+        }).toObject()];
+        await this.item.update({effects: effects }, {recursive: true});
+        const newEffect = this.item.effects.contents[0].toObject();
+        //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+        //await this.item.update({effects: [newEffect] }, {recursive: true});
+
+        if (this.actor) {
+          newEffect.transfer = false;
+          const oldId = newEffect._id;
+          newEffect._id = "";
+          await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+          this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+        } else {
+          this.item.effects.contents[0].sheet?.render(true);
+        }
+      }
+    }
   }
 
-  private _onEditConsumable(event): void {
+  private _onEditEffect(): void {
+    if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
+      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
+    } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else {
+      this.item.effects.contents[0].sheet?.render(true);
+    }
+  }
+
+  private async _onDeleteEffect(): Promise<void> {
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        if (this.actor) {
+          const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+          if (id) {
+            this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+          }
+        }
+        await this.item.update({effects: [] }, {recursive: false});
+      },
+      no: () => {
+        //Nothing
+      }
+    });
+  }
+
+
+  private getConsumable(event:Event):TwodsixItem | undefined {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".consumable");
+      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+    } else {
+      return undefined;
+    }
+  }
+
+  private _onEditConsumable(event:Event): void {
     this.getConsumable(event)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event): Promise<void> {
+  private async _onDeleteConsumable(event:Event): Promise<void> {
     const consumable = this.getConsumable(event);
     if (!consumable) {
       (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?

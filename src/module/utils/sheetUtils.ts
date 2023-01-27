@@ -211,9 +211,18 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  const item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
+  }
+  //Delete Active effects if not used
+  if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
+    const systemAEs = item.effects.contents;
+    const idsToDelete = [];
+    for (const eff of systemAEs) {
+      idsToDelete.push(eff.id);
+    }
+    item.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
   }
   return deepClone(item);
 }

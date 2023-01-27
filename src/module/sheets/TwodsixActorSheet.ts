@@ -4,7 +4,7 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
-import { Consumable, Skills } from "../../types/template";
+import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
@@ -64,7 +64,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useNationality: game.settings.get('twodsix', 'useNationality'),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills')
     };
-    //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
+
+    returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
+      const [ key, value ] = entry;
+      ret[ value ] = key;
+      return ret;
+    }, {});
     returnData.config = TWODSIX;
 
     return returnData;
@@ -80,7 +85,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       height: 656,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".inventory", ".finances", ".info", ".actor-notes"],
+      scrollY: [".skills", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
@@ -202,28 +207,49 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @param {Event} event   The originating click event.
    * @private
    */
-  private async _onToggleItem(event): Promise<void> {
-    const li = $(event.currentTarget).parents(".item");
-    const itemSelected: any = this.actor.items.get(li.data("itemId"));
+  private async _onToggleItem(event:Event): Promise<void> {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".item");
+      const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
+      let newState = "";
 
-    switch (itemSelected.system.equipped) {
-      case "equipped":
-        await itemSelected.update({["system.equipped"]: "ship"});
-        break;
-      case "ship":
-        await itemSelected.update({["system.equipped"]: "backpack"});
-        break;
-      case "backpack":
-      default:
-        await itemSelected.update({["system.equipped"]: "equipped"});
-        break;
-    }
+      let disableEffect: boolean;
+      switch ((<Gear>itemSelected.system).equipped) {
+        case "equipped":
+          newState = "ship";
+          disableEffect = true;
+          break;
+        case "ship":
+          newState = "backpack";
+          disableEffect = true;
+          break;
+        case "backpack":
+        default:
+          newState = "equipped";
+          disableEffect = false;
+          break;
+      }
 
-    // Sync associated consumables equipped state
-    for (const consumeableID of itemSelected.system.consumables) {
-      const consumableSelected = itemSelected.actor.items.get(consumeableID);
-      if(consumableSelected) {
-        await consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
+      if (itemSelected.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects')) {
+        const actorEffect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
+        //const itemEffect = itemSelected.effects.contents[0];
+        if (actorEffect) {
+          if (actorEffect.disabled !== disableEffect || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
+            await actorEffect.setFlag("twodsix", "lastSetDisable", disableEffect);
+            await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: disableEffect}], {dontSync: true}).then();
+            //await itemEffect.update({disabled: disableEffect}, {dontSync: true});
+          }
+        }
+      }
+      //change equipped state after toggling active effects so that encumbrance calcs correctly
+      await itemSelected.update({["system.equipped"]: newState}).then();
+
+      // Sync associated consumables equipped state
+      for (const consumeableID of itemSelected.system.consumables) {
+        const consumableSelected = itemSelected.actor.items.get(consumeableID);
+        if(consumableSelected) {
+          await consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
+        }
       }
     }
   }
@@ -246,7 +272,8 @@ export class TwodsixNPCSheet extends TwodsixActorSheet {
       template: "systems/twodsix/templates/actors/npc-sheet.html",
       width: 830,
       height: 500,
-      resizable: true
+      resizable: true,
+      dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
 }

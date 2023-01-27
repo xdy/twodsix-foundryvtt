@@ -12,6 +12,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { simplifyRollFormula } from "../utils/dice";
 import { confirmRollFormula } from "../utils/sheetUtils";
+//import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -31,6 +32,23 @@ export default class TwodsixItem extends Item {
     }
     return item;
   }
+
+
+  /*protected override async _onCreate(data): Promise<void> {
+    if (data.effects) {
+      const newEffects = data.effects.map((effect:Record<string, any>) => {
+        effect._id = randomID();
+        if (effect.flags.twodsix === undefined) {
+          effect.flags.twodsix = {};
+        }
+        effect.flags.twodsix.sourceId = effect._id;
+        effect.origin = "";
+        return effect;
+      });
+      this.update({ "effects": newEffects });
+    }
+  }*/
+
 
   /**
    * Augment the basic Item data model with additional dynamic data.
@@ -273,13 +291,12 @@ export default class TwodsixItem extends Item {
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
-
-    if (!weapon.damage) {
+    const consumableDamage = this.getConsumableBonusDamage();
+    if (!weapon.damage && !consumableDamage) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage
-      const consumableDamage = TwodsixItem.getConsumableBonusDamage(<Weapon>weapon, this.actor);
       let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
@@ -288,12 +305,12 @@ export default class TwodsixItem extends Item {
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       rollFormula = simplifyRollFormula(rollFormula);
       let damage = <Roll>{};
-      let apValue = 0;
+      let apValue = weapon.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.system);
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
+        apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
@@ -311,15 +328,12 @@ export default class TwodsixItem extends Item {
       }
 
       const contentData = {};
-      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-      if (apValue !== undefined) {
-        flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
-      }
+      const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
         dice: getDiceResults(damage), //damage.terms[0]["results"]
-        armorPiercingValue: apValue ?? 0,
+        armorPiercingValue: apValue,
         damage: (damage.total && damage.total > 0) ? damage.total : 0
       });
 
@@ -358,23 +372,28 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static getApValue(weapon:Weapon, actor?):number {
-    let returnValue = weapon.armorPiercing;
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable" && !magazine?.isAttachment) {
-        returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
+  public getConsumableBonusDamage():string {
+    let returnValue = "";
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        returnValue = (<Consumable>magazine.system)?.bonusDamage;
       }
     }
     return returnValue;
   }
 
-  public static getConsumableBonusDamage(weapon:Weapon, actor?):string {
-    let returnValue = "";
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable") {
-        returnValue = (<Consumable>magazine.system)?.bonusDamage;
+  public getConsumableBonus(type:string):number {
+    let returnValue = 0;
+    if (this.system.attachmentData) {
+      for (const attach of this.system.attachmentData) {
+        returnValue += attach.system[type];
+      }
+    }
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable" && magazine?.system[type]) {
+        returnValue += (<Consumable>magazine.system)[type];
       }
     }
     return returnValue;
@@ -426,7 +445,7 @@ export default class TwodsixItem extends Item {
     if (consumableLeft >= 0) {
       await this.update({"system.currentCount": consumableLeft}, {});
     } else {
-      throw {name: 'NoAmmoError'};
+      throw { name: 'NoAmmoError' };
     }
   }
 

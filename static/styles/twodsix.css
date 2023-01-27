@@ -1022,9 +1022,9 @@ span.bgi-charEdit {
 
 .character-characteristics {
   width: 250px;
-  margin-top: 25px;
-  margin-left: 40px;
-  position: relative;
+  top: 478px;
+  left: 44px;
+  position: absolute;
   z-index: 6;
   height: 120px;
   color: var(--s2d6-default-color) !important;
@@ -1187,6 +1187,10 @@ span.stat-ability {
   top: -13px;
 }
 
+input[data-tooltip *="("] {
+  color: var(--s2d6-damage-orange) !important;
+}
+
 span.stat-ability-table {
   text-align: center !important;
   position: relative;
@@ -1296,7 +1300,7 @@ a.skill-tab.active {
   background-color: var(--s2d6-default-color) !important;
 }
 
-.item-tab, .finances-tab, .info-tab {
+.item-tab, .finances-tab, .info-tab, .effects-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -97px;
   padding-top: 0.15em;
@@ -1309,12 +1313,12 @@ a.skill-tab.active {
   border-radius: 5ch 1ch 2ch 0;
 }
 
-a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover {
+a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, .effects-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
-a.item-tab.active, a.finances-tab.active, a.info-tab.active {
+a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active {
   /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
@@ -1438,6 +1442,7 @@ a.actor-notes-tab.active {
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
+  word-wrap: break-word;
 }
 
 .items-consumable {
@@ -1494,7 +1499,7 @@ a.actor-notes-tab.active {
   display: block;
   position: relative;
   top: 0.1em;
-  left: 25.5em;
+  left: 26.4em;
   z-index: 51;
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
@@ -1604,7 +1609,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 12em 3.5em 2.5em 5em 4em 4em;
+  grid-template-columns: 1.5em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1646,7 +1651,7 @@ span.total-output {
   width: 2ch;
   height: 2ch;
   align-self: center;
-  margin-left: 0.8em;
+  margin-left: 0.4em;
 }
 
 .resource-label {
@@ -2540,6 +2545,8 @@ a.ship-notes-tab.active {
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
   background: var(--s2d6-skill-list-even);
+  height: -webkit-fill-available;
+  height: -moz-available;
 }
 
 .components-stored-single {
@@ -2758,6 +2765,7 @@ a:hover {
   display: inline-flex;
   margin-top: 0.3em;
   gap: 1ch;
+  align-items: center;
 }
 
 select.form-input, input.form-input, span.form-input {
@@ -2858,6 +2866,15 @@ select.form-input, input.form-input, span.form-input {
   text-align: center;
 }
 
+.effects-footer {
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.edit-active-effect, .delete-active-effect, .create-active-effect {
+  flex-basis: 0;
+  flex-grow: 1;
+}
 /*--- Chat Log ---*/
 
 #sidebar-tabs.tabs .item.active {
@@ -3476,5 +3493,30 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 input[type="text"].color {
+  width: fit-content;
+}
+
+.effect-image {
+  height: auto;
+  width: auto;
+  max-width: 24px;
+  max-height: 24px;
+  background-color: var(--s2d6-background-nearly-opaque);
+  display: list-item;
+  border: solid thin !important;
+}
+
+.effects-container {
+  display: grid;
+  grid-template-columns: 30px 130px 130px 100px 60px;
+  grid-template-areas: '. . . .';
+  padding: inherit;
+  align-items: center;
+  grid-gap: 4px 2px;
+  min-height: 28px;
+}
+
+.effect:nth-of-type(even) {
+  background: var(--s2d6-skill-list-even);
   width: fit-content;
 }

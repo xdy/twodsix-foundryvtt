@@ -13,7 +13,20 @@
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Remove Active Effect",
-      "ConfirmDelete": "Do you really want to delete effect?"
+      "ConfirmDelete": "Do you really want to delete effect?",
+      "BaseValue": "Base",
+      "Modifiers": "Modifiers",
+      "EffectLabel": "Effect Label",
+      "Source": "Source",
+      "Duration": "Duration",
+      "Condition":"Condition",
+      "UnknownSource": "Unknown Source",
+      "EffectEnable": "Enable Effect",
+      "EffectDisable": "Disable Effect",
+      "Controls": "Controls",
+      "NewEffect": "New Effect",
+      "CreateEffect": "Create Effect",
+      "Add": "Add"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -136,6 +149,8 @@
         "DeleteItem": "Delete Item",
         "EditItem": "Edit Item",
         "EditOrRemove": "Edit / Remove",
+        "BaseLevel": "Base Level",
+        "AdjLevel": "Adj. Level",
         "Level": "Level",
         "Modifier": "Modifier",
         "SkillName": "Skill Name",
@@ -161,7 +176,14 @@
         "Info": "Info",
         "Inventory": "Inventory",
         "Notes": "Notes",
-        "Skills": "Skills"
+        "Effects": "Effects",
+        "Skills": "Skills",
+        "FinancesTabTooltip": "Cash on Hand, Debt, Pension, Living Costs, etc.",
+        "InfoTabTooltip": "Traits, Description, Contacts, and Biography",
+        "InventoryTabTooltip": "Weapons, Armor, Augments, Equipment & Tools, Consumables and Attachements",
+        "NotesTabTooltip": "Traveller Notes",
+        "EffectsTabTooltip": "Active Effects",
+        "SkillsTabTooltip": "Traveller Skills"
       },
       "UnknownActorType": "Unknown actor type",
       "using": "using",
@@ -267,7 +289,9 @@
         "DM": "DM",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
-        "Attack": "Attack"
+        "Attack": "Attack",
+        "ActiveEffect": "Active Effect",
+        "Attachments": "Attach./Consm."
       }
     },
     "Create": "Create",
@@ -414,8 +438,14 @@
         "SkillRanks": "Skill Ranks"
       },
       "Traits": {
-        "Prerequisite": "Prerequisite",
-        "TraitName": "Trait Name"
+              "Prerequisite": "Prerequisite",
+              "TraitName": "Trait Name",
+              "CreateEffect": "Create Effect",
+              "DeleteEffect": "Delete Effect",
+              "EditEffect": "Edit Effects",
+              "CreateTrait": "Create Trait",
+              "DeleteTrait": "Delete Trait",
+              "ShortDescAndEffects": "Short description and list of effects"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -650,7 +680,8 @@
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
       "ROF" :"ROF",
-      "DodgeParry": "Dodge/Parry"
+      "DodgeParry": "Dodge/Parry",
+      "Attachments": "Attch/Cons"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1018,6 +1049,10 @@
         "hint": "Change the theme highlight color. Delete value to reset.",
         "name": "Set Highlight Color"
       },
+      "useItemActiveEffects": {
+        "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
+        "name": "Use Item Active Effects"
+      },
       "showFeaturesInChat": {
         "hint" : "Show item features text at bottom of chat messages for rolls.",
         "name": "Show Item Features in Chat"
@@ -1088,7 +1123,8 @@
       "ActorHasInitiativeAlready": "Actor already has initiative.",
       "NoActiveToken": "Actor does not have an active token in scene.",
       "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
-      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions",
+      "CantEditCreateInCargo": "Can not edit or create effects while in cargo"
     }
   },
   "VeryDifficult": "Very Difficult"

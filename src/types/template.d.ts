@@ -112,6 +112,7 @@ export type Gear = Armor
   | Equipment
   | Storage
   | Weapon
+  | Component
   ;
 
 export type UsesConsumables = Armor
@@ -254,10 +255,16 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
-  woundedEffect:number;
+  skillRollTypes:Record<string,string>;
   characteristicEdit:boolean;
   movement:MovementData;
   hideStoredItems: StoredItemView;
+  conditions: Conditions;
+}
+
+export interface Conditions {
+  woundedEffect:number;
+  encumberedEffect:number;
 }
 
 export interface Animal {
@@ -570,7 +577,13 @@ export interface GearTemplate {
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:string;
+  equipped:Equipped;
+}
+
+export enum Equipped {
+  equipped = "equipped",
+  ship = "ship",
+  backpack = "backpack"
 }
 
 export interface Trait extends LinkTemplate {

@@ -9,6 +9,8 @@ import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
+import { simplifySkillName } from "../utils/utils";
+import { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller, Weapon} from "../../types/template";
@@ -68,7 +70,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [TwodsixItem.simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
     );
 
     const handler = {
@@ -91,9 +93,10 @@ export default class TwodsixActor extends Actor {
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
-      system.secondaryArmor.value= armorValues.secondaryArmor;
+      system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
+    this._updateDerivedDataActiveEffects();
   }
 
   getArmorValues():object {
@@ -323,6 +326,54 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+  protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+    super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+    if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
+      documents.forEach(async (element:ActiveEffect, i) => {
+        const activeEffectId = element.getFlag("twodsix", "sourceId");
+        if (activeEffectId) {
+          const match = element.origin?.match(/Item\.(.+)/);
+          if (match) {
+            const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
+            delete result[i]._id;
+            const newEffects = item?.effects.map(effect => {
+              if (effect.id === activeEffectId) {
+                return foundry.utils.mergeObject(effect.toObject(), result[i]);
+              } else {
+                return effect.toObject();
+              }
+            });
+            // @ts-ignore
+            await item?.update({"effects": newEffects}, {recursive: true}).then();
+          }
+        }
+      });
+    }
+    //this.render();
+  }
+
+  /*protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+    super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+    //Try to get rid of duplicate effects - This shouldn't be needed
+    if(embeddedName === "Item") {
+      while (documents[0].effects.size > 1) {
+        documents[0].delete(documents[0].effects.contents[1].id);
+      }
+    }
+    console.log(embeddedName, documents, result, options, userId );
+  }*/
+  /*protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
+    if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
+      const ownedItem = <TwodsixItem>documents[0];
+      const selectedActor = <TwodsixActor>ownedItem.actor;
+      const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
+      if (effectToDelete?.id) {
+        await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
+      }
+    }
+    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
+  }*/
+
   protected async _onCreate() {
     switch (this.type) {
       case "traveller":
@@ -341,8 +392,8 @@ export default class TwodsixActor extends Actor {
           });
         }
         this.update({
-          "system.movement.walk": game.settings.get("twodsix", "defaultMovement"),
-          "system.movement.units": game.settings.get("twodsix", "defaultMovementUnits")
+          "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
+          "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
         });
         await this.createUntrainedSkill();
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -354,6 +405,8 @@ export default class TwodsixActor extends Actor {
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           await this.createUnarmedSkill();
         }
+        this.deleteCustomAEs();
+        this.fixItemAEs();
         break;
       case "animal":
         await this.createUntrainedSkill();
@@ -366,6 +419,8 @@ export default class TwodsixActor extends Actor {
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           await this.createUnarmedSkill();
         }
+        this.deleteCustomAEs();
+        this.fixItemAEs();
         break;
       case "ship":
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -460,7 +515,8 @@ export default class TwodsixActor extends Actor {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
+      //return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
+      return (<Traveller>this.system).characteristics[keyByValue].mod;
     }
   }
 
@@ -626,6 +682,7 @@ export default class TwodsixActor extends Actor {
       itemData = await pack?.getDocument(itemData._id);
     }
 
+    const transferData = itemData.toJSON();
     let numberToMove = itemData.system?.quantity ?? 1;
 
     //Handle moving items from another actor if enabled by settings
@@ -634,15 +691,17 @@ export default class TwodsixActor extends Actor {
       if (itemData.system.quantity > 1) {
         numberToMove = await getMoveNumber(itemData);
         if (numberToMove >= itemData.system.quantity) {
+          await itemData.update({"system.equipped": "ship"});
           numberToMove = itemData.system.quantity;
           await sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
         } else if (numberToMove === 0) {
           return false;
         } else {
-          sourceActor.updateEmbeddedDocuments("Item", [{_id: itemData.id, 'system.quantity': (itemData.system.quantity - numberToMove)}]);
+          await sourceActor.updateEmbeddedDocuments("Item", [{_id: itemData.id, 'system.quantity': (itemData.system.quantity - numberToMove)}]);
         }
       } else if (itemData.system.quantity === 1) {
-        sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
+        await itemData.update({"system.equipped": "ship"});
+        await sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
       } else {
         return false;
       }
@@ -666,9 +725,33 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
-    const addedItem = (await (<ActorSheet>this.sheet)._onDropItemCreate(itemData))[0];
-    //const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
+    // Prepare effects
+    transferData.system.equipped = "ship";
+    transferData._id = "";
+    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects.length > 0) {
+      //clear extra item effects - should be fixed
+      while (transferData.effects.length > 1) {
+        transferData.effects.pop();
+      }
+      //use Object.assign() ?
+      transferData.effects[0].transfer = false;
+      transferData.effects[0]._id = randomID(); //dont need random, just blank?
+      transferData.effects[0].origin = "";
+      transferData.effects[0].disabled = true;
+    }
+
+    const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
     await addedItem.update({"system.quantity": numberToMove});
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
+      const newEffect = addedItem.effects.contents[0].toObject();
+      //newEffect.disabled = true;
+      newEffect._id = "";
+      newEffect.origin = addedItem.uuid;
+      newEffect.label = addedItem.name;
+      const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
+      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
+    }
+    await addedItem.update({"system.equipped": "backpack"});
 
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
@@ -734,6 +817,68 @@ export default class TwodsixActor extends Actor {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
     }
     return false;
+  }
+
+  public async _updateDerivedDataActiveEffects(): Promise<void> {
+    const derivedData = [];
+    //Add characteristics mods
+    for (const char of Object.keys(this.system.characteristics)) {
+      derivedData.push(`system.characteristics.${char}.mod`);
+    }
+    //Add skills
+    for (const shortName of Object.keys(this.system.skills)) {
+      derivedData.push(`system.skills.${shortName}`);
+    }
+    //Add other values
+    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+    //console.log(derivedData);
+
+    const overrides = {};
+
+    // Apply all changes
+    for (const effect of this.effects.filter( e => !e.disabled)) {
+      for (const change of effect.changes) {
+        if (derivedData.includes(change.key)) {
+          const changes = await (<ActiveEffect>effect).apply(this, change);
+          Object.assign(overrides, changes);
+        }
+      }
+    }
+
+    // Expand the set of final overrides
+    this.overrides = await foundry.utils.expandObject({
+      ...foundry.utils.flattenObject(this.overrides),
+      ...overrides,
+    });
+    //console.log(this.overrides);
+  }
+
+  public deleteCustomAEs():void {
+    const systemAEs = this.effects.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+    const idsToDelete = [];
+    for (const eff of systemAEs) {
+      idsToDelete.push(eff.id);
+    }
+    this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+  }
+
+  public async fixItemAEs(): void {
+    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+      const newEffects = [];
+      const itemsWithEffects = this.items.filter(it => it.effects.size > 0);
+      for (const item of itemsWithEffects) {
+        const newEffect = item.effects.contents[0].toObject();
+        Object.assign(newEffect, {
+          disabled: item.system.equipped !== "equipped",
+          _id: "",
+          origin: item.uuid,
+          //label: item.name,
+          flags: {twodsix: {sourceId: item.effects.contents[0].id}}
+        });
+        newEffects.push(newEffect);
+      }
+      await this.createEmbeddedDocuments("ActiveEffect", newEffects);
+    }
   }
 
   /**
@@ -850,3 +995,4 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
 /*function isSameActor(actor: Actor, itemData: any): boolean {
   return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }*/
+

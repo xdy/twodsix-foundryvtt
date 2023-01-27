@@ -14,10 +14,11 @@
   <span class="skill-container">
     <span></span>
     <span class="skill-title">{{localize "TWODSIX.Actor.Skills.SkillName"}}</span>
-    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
-    <abbr class="skill-training centre" data-tooltip="{{localize 'TWODSIX.Items.Skills.TrainingNotes'}}"><i class="fa-solid fa-school"></i></abbr>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.BaseLevel"}}</span>
     <span class="skill-mod centre">{{localize "TWODSIX.Actor.Skills.Modifier"}}</span>
+    <span class="skill-level centre">{{localize "TWODSIX.Actor.Skills.AdjLevel"}}</span>
     <span class="skill-total centre">{{localize "TWODSIX.Actor.Skills.Total"}}</span>
+    <abbr class="skill-training centre" data-tooltip="{{localize 'TWODSIX.Items.Skills.TrainingNotes'}}"><i class="fa-solid fa-school"></i></abbr>
     <span class="skill-edit-remove centre">{{localize "TWODSIX.Actor.Skills.EditOrRemove"}}</span>
   </span>
 </div>
@@ -38,7 +39,6 @@
 <section class="item-list">
 {{#each_sort_item container.skills as |item id|}}
       <div class="item skill" data-item-id="{{item.id}}">
-
           <ol class="ol-no-indent">
             <li class=" flexrow" >
               <span class="skill-container">
@@ -47,13 +47,14 @@
                 </span>
                 <span class="item-name rollable" data-label="{{item.name}}">{{item.name}}</span>
                 <input class= "item-value-edit" type="number" value="{{item.system.value}}"/>
+                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.system.characteristic}}</span>
+                <span class="item-name centre">{{{twodsix_adjustedSkillValue ../actor item}}}</span>
+                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item}}</span>
                 {{#iff item.system.trainingNotes "!==" ""}}
                   <span class="pie-chart" style ='{{makePieImage item.system.trainingNotes}}'></span>
                 {{else}}
                   <span></span>
                 {{/iff}}
-                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.system.characteristic}}</span>
-                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item.system.characteristic item.system.value}}</span>
                 <span class="item-controls centre">
                   <a class="skl item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
                   <a class="skl item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
@@ -74,8 +75,8 @@
           <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"><i class="fa-solid fa-dice" alt="d6"></i></span>
           <span class="item-name rollable">{{untrainedSkill.name}}</span>
           <input class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
-          <span class="centre">&mdash;</span>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
+          <span class="centre">&mdash;</span>
           <span class="total-output flex1 skill-mod">{{untrainedSkill.system.value}}</span>
         </span>
       </li>

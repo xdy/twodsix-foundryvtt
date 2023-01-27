@@ -26,26 +26,34 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>)
 });
 
 Hooks.on("updateItem", async (item: TwodsixItem) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
-    if ((item.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
-      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+  const firstGM = game.users.find(u => u.isGM);
+  const owningActor = <TwodsixActor> item.actor;
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+    if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
+      await applyEncumberedEffect(owningActor).then();
     }
   }
-});
-Hooks.on("deleteItem", async (item: TwodsixItem) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
-    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
-      applyEncumberedEffect(<TwodsixActor>item.actor).then();
+  if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+    if ((owningActor.type === 'traveller' || owningActor.type === 'animal') && game.user?.id === firstGM?.id) {
+      await applyWoundedEffect(<TwodsixActor>item.actor).then();
     }
   }
 });
 
-Hooks.on("createItem", async (item: TwodsixItem) => {
+//Below not necessary now force a equip to ship before delete
+/*Hooks.on("deleteItem", async (item: TwodsixItem) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
     const firstGM = game.users.find(u => u.isGM);
     if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
+      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+    }
+  }
+});*/
+
+Hooks.on("createItem", async (item: TwodsixItem) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    const firstGM = game.users.find(u => u.isGM);
+    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
@@ -112,12 +120,11 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   }
 }
 
-export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
+async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
   const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
   let state = false;
-  const maxEncumbrance = selectedActor.getMaxEncumbrance();
-  if(maxEncumbrance !== 0 && maxEncumbrance) {
-    const ratio = selectedActor.getActorEncumbrance() / maxEncumbrance;
+  if(selectedActor.system.encumbrance.max > 0) {
+    const ratio = selectedActor.system.encumbrance.value / selectedActor.system.encumbrance.max;
     state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
   }
   if (isCurrentlyEncumbered.length > 0 && (state === false)) {
@@ -128,19 +135,15 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   } else if (state === true  && isCurrentlyEncumbered.length === 0) {
     const modifier = game.settings.get('twodsix', 'encumbranceModifier');
     const changeData = [
-      { key: "system.characteristics.strength.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
-      { key: "system.characteristics.endurance.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
-      { key: "system.characteristics.dexterity.mod", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() }
+      { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
     ];
-    if (isCurrentlyEncumbered.length === 0) {
-      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-        label: effectType.encumbered,
-        icon: "systems/twodsix/assets/icons/weight.svg",
-        changes: changeData
-      }]);
-      const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
-      newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
-    }
+    await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+      label: effectType.encumbered,
+      icon: "systems/twodsix/assets/icons/weight.svg",
+      changes: changeData
+    }]);
+    const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
+    await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
   }
 }
 
@@ -219,7 +222,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
+    const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         label: effectLabel,
