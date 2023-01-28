@@ -150,7 +150,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           tint: "#ffffff",
           label: this.item.name,
           transfer: true,
-          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped",
+          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && this.item.type !== "augment",
           _id: newId,
           flags: {twodsix: {sourceId: newId}}
 
