@@ -1,3 +1,10 @@
+## [2.15.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.1...v2.15.2) (2023-01-28)
+
+
+### Bug Fixes
+
+* Update autoCompleteIntegration ([#1232](https://github.com/xdy/twodsix-foundryvtt/issues/1232)) ([1e3a32f](https://github.com/xdy/twodsix-foundryvtt/commit/1e3a32f7dd8270efe6edada91ab3c0d829698467))
+
 ## [2.15.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.0...v2.15.1) (2023-01-27)
 
 
