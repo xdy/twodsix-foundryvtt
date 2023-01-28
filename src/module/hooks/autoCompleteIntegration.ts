@@ -32,6 +32,13 @@ Hooks.on("aipSetup", (packageConfig) => {
               dataMode: DATA_MODE.OWNING_ACTOR_ROLL_DATA,
               inlinePrefix: "@"
             },
+            {
+              selector: `input[type="text"][name^="${key}.bonusDamage"]`,
+              showButton: true,
+              allowHotkey: true,
+              dataMode: DATA_MODE.OWNING_ACTOR_ROLL_DATA,
+              inlinePrefix: "@"
+            }
           ]),
         },
         {
