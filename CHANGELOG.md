@@ -1,3 +1,10 @@
+## [2.15.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.2...v2.15.3) (2023-01-29)
+
+
+### Bug Fixes
+
+* augment Active Effects enabled by default ([#1233](https://github.com/xdy/twodsix-foundryvtt/issues/1233)) ([5ce5555](https://github.com/xdy/twodsix-foundryvtt/commit/5ce5555933c3e54cdbf50acfb12fad83987514fd))
+
 ## [2.15.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.1...v2.15.2) (2023-01-28)
 
 
