@@ -13,7 +13,20 @@
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Eliminar Efecto Activo",
-      "ConfirmDelete": "¿Quieres realmente borrar el efecto?"
+      "ConfirmDelete": "¿Quieres realmente borrar el efecto?",
+      "BaseValue": "Base",
+      "Modifiers": "Modificadores",
+      "EffectLabel": "Etiqueta Efecto",
+      "Source": "Fuente",
+      "Duration": "Duración",
+      "Condition": "Estado",
+      "UnknownSource": "Fuente Desconocida",
+      "EffectEnable": "Activar Efecto",
+      "EffectDisable": "Desactivar Efecto",
+      "Controls": "Controles",
+      "NewEffect": "Efecto Nuevo",
+      "CreateEffect": "Crear Efecto",
+      "Add": "Añadir"
     },
     "Damage": {
       "DealDamage": "Aplicar daño",
@@ -136,6 +149,8 @@
         "DeleteItem": "Borrar Objeto",
         "EditItem": "Editar Objeto",
         "EditOrRemove": "Editar / Borrar",
+        "BaseLevel": "Nivel Base",
+        "AdjLevel": "Adj. Nivel",
         "Level": "Nivel",
         "Modifier": "Mod.",
         "SkillName": "Nombre",
@@ -161,7 +176,14 @@
         "Info": "Info",
         "Inventory": "Equipo",
         "Notes": "Notas",
-        "Skills": "Habilidades"
+        "Effects": "Efectos",
+        "Skills": "Habilidades",
+        "FinancesTabTooltip": "Dinero, Deuda, Pensión, Coste Vida, etc.",
+        "InfoTabTooltip": "Talentos, Descripción, Contactos, y Biografía",
+        "InventoryTabTooltip": "Armas, Armadura, Aumentos, Equipo y Herramientas, Consumibles y Accesorios",
+        "NotesTabTooltip": "Notas Viajero",
+        "EffectsTabTooltip": "Efectos Activos",
+        "SkillsTabTooltip": "Habilidades Viajero"
       },
       "UnknownActorType": "Tipo actor desconocido",
       "using": "utilizando",
@@ -267,7 +289,9 @@
         "DM": "MD",
         "Characteristic": "Atributo",
         "Condition": "Estado",
-        "Attack": "Ataque"
+        "Attack": "Ataque",
+        "ActiveEffect": "Efecto Activo",
+        "Attachments": "Acc./Consm."
       }
     },
     "Create": "Crear",
@@ -284,7 +308,7 @@
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad",
-        "IsPowered": "Alimentación de Armadura"
+        "IsPowered": "Armadura Energía"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -415,7 +439,13 @@
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
-        "TraitName": "Nombre"
+        "TraitName": "Nombre",
+        "CreateEffect": "Crear Efecto",
+        "DeleteEffect": "Borrar Efecto",
+        "EditEffect": "Editar Efecto",
+        "CreateTrait": "Crear Talento",
+        "DeleteTrait": "Borrar Talento",
+        "ShortDescAndEffects": "Descripción resumida y lista efectos"
       },
       "Tool": {
         "Bonus": "Bono"
@@ -566,8 +596,7 @@
       "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
       "skillTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alternativa 1|...\nHab./ATR\nHab./ 8+\nHab./ATR 8+",
       "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHab.|Hab. Alternativa 1|...=COMPONENT_ID\nHab./ATR=COMPONENT_ID\nHab./ 8+=COMPONENT_ID\nHab./ATR 8+=COMPONENT_ID",
-      "chatTooltip": "¡A la vista!",
-      "SHIPCARGO": "BODEGA DE CARGA"
+      "chatTooltip": "¡A la vista!"
     },
     "Vehicle": {
       "SystemStatus": "Estado Sistemas",
@@ -651,7 +680,8 @@
       "RollInitiative": "Tira Iniciativa",
       "characteristic": "atributo",
       "ROF": "CdT",
-      "DodgeParry": "Esquiva/Parada"
+      "DodgeParry": "Esquiva/Parada",
+      "Attachments": "Acc/Cons"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1019,6 +1049,10 @@
         "hint": "Cambiar el color resaltado. Borrar el valor para reiniciar.",
         "name": "Color Resaltado"
       },
+      "useItemActiveEffects": {
+        "hint": "Utilizar Efectos Activos en Objetos. AVISO: puede resultar en comportamientos raros del sistema.",
+        "name": "Utilizar Efectos Activos en Objetos"
+      },
       "showFeaturesInChat": {
         "hint": "Mostrar en las tiradas el texto de las características del objeto en los mensajes del chat.",
         "name": "Mostrar en Chat características del objeto"
@@ -1089,7 +1123,8 @@
       "ActorHasInitiativeAlready": "Personaje ya tiene iniciativa.",
       "NoActiveToken": "El Actor no tiene un token en la escena.",
       "InvalidReactionInputs": "No es posible realizar la Tirada de Reacción debido a que los campos de Ataque y Huida son inválidos.",
-      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave"
+      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave",
+      "CantEditCreateInCargo": "No se pueden editar o crear efectos activos mientras se está en la carga"
     }
   },
   "VeryDifficult": "Muy Difícil"
