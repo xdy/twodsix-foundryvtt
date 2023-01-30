@@ -7,7 +7,7 @@
 
     <div class="npc-name-photo">
       <div class="character-photo npc" style="min-height: 75%;">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}} data-edit="img" {{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
         {{#if settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
