@@ -215,14 +215,17 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
+
   //Delete Active effects if not used
-  if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
-    const systemAEs = item.effects.contents;
-    const idsToDelete = [];
-    for (const eff of systemAEs) {
-      idsToDelete.push(eff.id);
+  if (!game.settings.get('twodsix', 'useItemActiveEffects') && !item.isEmbedded && !item.pack) {
+    const systemAEs = item.effects?.contents;
+    if (systemAEs?.length > 0) {
+      const idsToDelete = [];
+      for (const eff of systemAEs) {
+        idsToDelete.push(eff.id);
+      }
+      item.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
     }
-    item.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
   }
   return deepClone(item);
 }
