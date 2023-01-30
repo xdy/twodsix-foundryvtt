@@ -673,7 +673,7 @@ export default class TwodsixActor extends Actor {
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(itemData._id);
     if (sameActor) {
-      //return this._onSortItem(event, sameActor);
+      //return this.sheet._onSortItem(event, sameActor);
       return false;
     }
     //handle drop from compendium

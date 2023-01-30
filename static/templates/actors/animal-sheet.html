@@ -7,7 +7,7 @@
 
     <div class="npc-name-photo">
       <div class="character-photo npc" style="min-height: 75%;">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}} data-edit="img" {{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
         {{#if settings.showStatusIcons}}
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
@@ -48,7 +48,15 @@
       {{#each_sort_item container.skills as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>
+                <!--<input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>-->
+                <input style="width: 2ch;"  type="number"
+                {{#if (twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name)))}}
+                  value="{{twodsix_skillTotal ../actor item}}"
+                  data-tooltip="{{twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name))}}"
+                  disabled
+                {{else}}
+                  class= "item-value-edit" value="{{item.system.value}}"
+                {{/if}} />
                 <span class="item-controls centre">
                   <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                       class="fa-solid fa-pen-to-square"></i></a>

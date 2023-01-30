@@ -273,19 +273,23 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
-    const sameActor = this.actor.items.get(itemData._id);;
+    return await this.processDroppedItem(event, itemData);
+  }
+
+  public async processDroppedItem(event:DragEvent, itemData: any): Promise<boolean> {
+    const sameActor:TwodsixItem = this.actor.items.get(itemData._id);
     if (sameActor) {
       const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
       const targetItem = this.actor.items.get(dropTargetId);
       if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', 'allowDragDropOfLists') && !sameActor.getFlag('twodsix','untrainedSkill')) {
         console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
         //super._onDrop(event); //needed?
-        return await this._onSortItem(event, itemData); //.toJSON()???
+        return !!await this._onSortItem(event, itemData); //.toJSON()???
       } else {
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
-    return await actor.handleDroppedItem(itemData);
+    return await (<TwodsixActor>this.actor).handleDroppedItem(itemData);
   }
 
   protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
