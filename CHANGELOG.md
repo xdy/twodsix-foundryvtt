@@ -1,3 +1,10 @@
+## [2.15.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.3...v2.15.4) (2023-01-30)
+
+
+### Bug Fixes
+
+* Active Effects improvements and bug fixes  ([#1235](https://github.com/xdy/twodsix-foundryvtt/issues/1235)) ([52fc2e4](https://github.com/xdy/twodsix-foundryvtt/commit/52fc2e43ee2f3b19bf05b7f462b5475948d34358))
+
 ## [2.15.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.2...v2.15.3) (2023-01-29)
 
 
