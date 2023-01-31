@@ -84,6 +84,14 @@
             </label>
           </div>
         {{/iff}}
+        {{#iff rollModifiers.weaponsHandling "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.WeaponsHandling"}}
+              <input type="number" name="rollModifiers.weaponsHandling" value="{{rollModifiers.weaponsHandling}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{itemLabel}})
+            </label>
+          </div>
+        {{/iff}}
       {{/if}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}

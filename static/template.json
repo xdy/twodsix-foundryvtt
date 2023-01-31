@@ -549,7 +549,8 @@
       "rateOfFire": "",
       "recoil": false,
       "features": "",
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "handlingModifiers": ""
     },
     "armor": {
       "templates": ["gearTemplate", "referenceTemplate"],

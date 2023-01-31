@@ -12,6 +12,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { simplifyRollFormula } from "../utils/dice";
 import { confirmRollFormula } from "../utils/sheetUtils";
+import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 //import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
@@ -166,6 +167,26 @@ export default class TwodsixItem extends Item {
         if (dodgeParryModifier > 0) {
           Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
         }
+      }
+    }
+
+    //Get weapon characteristic modifier
+    if (this.system.handlingModifiers !== "") {
+      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(-?[0-9]+)\s+([0-9]+)\+?\/(\+?[0-9]+)/gm);
+      const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
+      if (parsedResult) {
+        let weaponHandlingMod = 0;
+        const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
+        if (checkCharacteristic) {
+          const charValue = this.actor.system.characteristics[checkCharacteristic].value;
+          if (charValue <= parseInt(parsedResult[2], 10)) {
+            weaponHandlingMod = parseInt(parsedResult[3], 10);
+          } else if (charValue >= parseInt(parsedResult[4], 10)) {
+            weaponHandlingMod = parseInt(parsedResult[5], 10);
+          }
+        }
+        Object.assign(tmpSettings.rollModifiers, {weaponsHandling: weaponHandlingMod});
+        console.log(tmpSettings);
       }
     }
 
