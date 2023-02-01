@@ -64,8 +64,9 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     const skillData = (<Skills>skill.system);
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     let command = skill.name ?? "";
+    command += `/`;
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
-      command += `/${skillData.characteristic}`;
+      command += `${skillData.characteristic}`;
     }
     command += ` ${difficulties[skillData.difficulty].target}+`;
 
