@@ -81,7 +81,7 @@
         <span >
          {{#each_sort_item container.weapon as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
-              <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange">{{twodsix_limitLength item.system.damage 4}}</span>
+              <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
               {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}{{/each}}
               <span class="item-controls centre">

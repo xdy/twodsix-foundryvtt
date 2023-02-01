@@ -1,3 +1,10 @@
+## [2.15.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.4...v2.15.5) (2023-02-01)
+
+
+### Bug Fixes
+
+* Fix skill drop and damage labels ([#1237](https://github.com/xdy/twodsix-foundryvtt/issues/1237)) ([e130047](https://github.com/xdy/twodsix-foundryvtt/commit/e130047efc94a83d30671a1243907ad2c9ff0884))
+
 ## [2.15.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.3...v2.15.4) (2023-01-30)
 
 

@@ -676,11 +676,6 @@ export default class TwodsixActor extends Actor {
       //return this.sheet._onSortItem(event, sameActor);
       return false;
     }
-    //handle drop from compendium
-    if (itemData.pack) {
-      const pack = game.packs.get(itemData.pack);
-      itemData = await pack?.getDocument(itemData._id);
-    }
 
     const transferData = itemData.toJSON();
     let numberToMove = itemData.system?.quantity ?? 1;
@@ -776,6 +771,12 @@ export default class TwodsixActor extends Actor {
   }
 
   public async handleDroppedItem(itemData): Promise<boolean> {
+    //handle drop from compendium
+    if (itemData?.pack) {
+      const pack = game.packs.get(itemData.pack);
+      itemData = await pack?.getDocument(itemData._id);
+    }
+
     if(!itemData) {
       return false;
     }
