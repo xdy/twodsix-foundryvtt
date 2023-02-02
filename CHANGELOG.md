@@ -1,3 +1,10 @@
+## [2.15.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.5...v2.15.6) (2023-02-02)
+
+
+### Bug Fixes
+
+* Update ship roll parsing ([#1239](https://github.com/xdy/twodsix-foundryvtt/issues/1239)) ([0397840](https://github.com/xdy/twodsix-foundryvtt/commit/0397840e47cad6e3cca3a87883f550bb6c1f1318))
+
 ## [2.15.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.4...v2.15.5) (2023-02-01)
 
 
