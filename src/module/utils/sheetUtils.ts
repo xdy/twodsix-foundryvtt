@@ -211,23 +211,29 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  const item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  let item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
+  //handle drop from compendium
+  if (item.pack) {
+    const pack = game.packs.get(item.pack);
+    item = await pack?.getDocument(item._id);
+  }
+  const itemCopy = deepClone(item);
 
   //Delete Active effects if not used
-  if (!game.settings.get('twodsix', 'useItemActiveEffects') && !item.isEmbedded && !item.pack) {
-    const systemAEs = item.effects?.contents;
+  if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
+    const systemAEs = itemCopy.effects?.contents;
     if (systemAEs?.length > 0) {
       const idsToDelete = [];
       for (const eff of systemAEs) {
         idsToDelete.push(eff.id);
       }
-      item.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+      await itemCopy.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
     }
   }
-  return deepClone(item);
+  return itemCopy;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {

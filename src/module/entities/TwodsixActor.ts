@@ -772,10 +772,10 @@ export default class TwodsixActor extends Actor {
 
   public async handleDroppedItem(itemData): Promise<boolean> {
     //handle drop from compendium
-    if (itemData?.pack) {
-      const pack = game.packs.get(itemData.pack);
-      itemData = await pack?.getDocument(itemData._id);
-    }
+    //if (itemData?.pack) {
+    //  const pack = game.packs.get(itemData.pack);
+    //  itemData = await pack?.getDocument(itemData._id);
+    //}
 
     if(!itemData) {
       return false;
