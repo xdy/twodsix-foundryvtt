@@ -270,9 +270,14 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
       } else if ((droppedObject.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-        const shipPositionId = $(event.target).parents(".ship-position").data("id");
-        const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
-        await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+        //check for double drop trigger, not clear why this occurs
+        if (event.currentTarget.className === "ship-position-box") {
+          const shipPositionId = $(event.target).parents(".ship-position").data("id");
+          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+          await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+        } else {
+          return false;
+        }
       } else if (droppedObject.type === "vehicle") {
         await this._addVehicleToComponents(droppedObject, dropData.uuid);
       } else if (droppedObject.type === "animal") {
