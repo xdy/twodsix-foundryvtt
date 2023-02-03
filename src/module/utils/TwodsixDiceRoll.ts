@@ -273,9 +273,11 @@ export class TwodsixDiceRoll {
     flavorTable += `</table>`;
     const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-tooltip">` + flavorTable + `</section></section>`;
 
-    const msg = await this.roll?.toMessage(
+    await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        rolls: [this.roll],
         flavor: flavor,
         rollMode: this.rollSettings.rollMode,
         flags: {
@@ -291,8 +293,5 @@ export class TwodsixDiceRoll {
       },
       {rollMode: this.rollSettings.rollMode}
     );
-    if (game.modules.get("dice-so-nice")?.active) {
-      await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
-    }
   }
 }
