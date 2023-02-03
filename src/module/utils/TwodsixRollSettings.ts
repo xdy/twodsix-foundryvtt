@@ -123,6 +123,7 @@ export class TwodsixRollSettings {
       encumbered: encumberedValue,
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
+      weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       custom: 0,
       customLabel: ""
     };
@@ -216,6 +217,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
           this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;
           this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(buttonHtml.find('[name="rollModifiers.dodgeParry"]').val(), 10) : this.rollModifiers.dodgeParry;
+          this.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(buttonHtml.find('[name="rollModifiers.weaponsHandling"]').val(), 10) : this.rollModifiers.weaponsHandling;
           this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(buttonHtml.find('[name="rollModifiers.attachments"]').val(), 10) : this.rollModifiers.attachments;
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;

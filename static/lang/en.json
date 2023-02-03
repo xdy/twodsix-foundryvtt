@@ -291,7 +291,8 @@
         "Condition": "Condition",
         "Attack": "Attack",
         "ActiveEffect": "Active Effect",
-        "Attachments": "Attach./Consm."
+        "Attachments": "Attach./Consm.",
+        "WeaponsHandling": "Weapons Handling"
       }
     },
     "Create": "Create",
@@ -484,7 +485,8 @@
         "ArmorPiercing": "Armor Piercing Value",
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
-        "UnarmedDescription": "Unarmed attack"
+        "UnarmedDescription": "Unarmed attack",
+        "HandlingModifiers": "Handling Modifiers"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -679,9 +681,10 @@
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
-      "ROF" :"ROF",
+      "ROF": "ROF",
       "DodgeParry": "Dodge/Parry",
-      "Attachments": "Attch/Cons"
+      "Attachments": "Attch/Cons",
+      "WeaponsHandling":"Weapons Handling"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {

@@ -75,6 +75,10 @@ export class TwodsixDiceRoll {
         formula += this.rollSettings.rollModifiers.dodgeParry < 0 ? " - @dodgeParry": " + @dodgeParry";
         formulaData.dodgeParry = this.rollSettings.rollModifiers.dodgeParry < 0 ? -this.rollSettings.rollModifiers.dodgeParry : this.rollSettings.rollModifiers.dodgeParry;
       }
+      if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {
+        formula += this.rollSettings.rollModifiers.weaponsHandling < 0 ? " - @weaponsHandling": " + @weaponsHandling";
+        formulaData.weaponsHandling = this.rollSettings.rollModifiers.weaponsHandling < 0 ? -this.rollSettings.rollModifiers.weaponsHandling : this.rollSettings.rollModifiers.weaponsHandling;
+      }
       if(this.rollSettings.rollModifiers.attachments !== 0) {
         formula += this.rollSettings.rollModifiers.attachments < 0 ? " - @attachments": " + @attachments";
         formulaData.attachments = this.rollSettings.rollModifiers.attachments < 0 ? -this.rollSettings.rollModifiers.attachments : this.rollSettings.rollModifiers.attachments;
@@ -227,6 +231,11 @@ export class TwodsixDiceRoll {
         const rofValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.rof);
         flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.ROF")}` + (showModifiers ? `(${rofValue})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.ROF")}</td><td class="centre">${rofValue}</td></tr>`;
+      }
+      if (this.rollSettings.rollModifiers.weaponsHandling) {
+        const weaponsHandling = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.weaponsHandling);
+        flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.WeaponsHandling")}` + (showModifiers ? `(${weaponsHandling})` : ``);
+        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.WeaponsHandling")}</td><td class="centre">${weaponsHandling}</td></tr>`;
       }
       if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
         const dodgeParryValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.dodgeParry);
