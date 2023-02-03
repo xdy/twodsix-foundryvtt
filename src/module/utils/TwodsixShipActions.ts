@@ -44,10 +44,7 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
-        if (game.modules.get("dice-so-nice")?.active) {
-          await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
-        }
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
         return msg;
       }
     }

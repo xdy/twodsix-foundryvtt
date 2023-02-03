@@ -352,9 +352,10 @@ export default class TwodsixItem extends Item {
             payload: contentData
           }
         );
-        const msg = await damage.toMessage({
+        await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
+          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
           flags: {
             "core.canPopout": true,
             "transfer": transfer,
@@ -364,9 +365,6 @@ export default class TwodsixItem extends Item {
             "twodsix.actorUUID": (<Actor>this.actor)?.uuid ?? ""
           }
         }, {rollMode: rollMode});
-        if (game.modules.get("dice-so-nice")?.active) {
-          await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
-        }
       }
       return contentData;
     }
