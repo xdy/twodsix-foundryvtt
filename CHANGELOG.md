@@ -1,3 +1,10 @@
+## [2.15.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.6...v2.15.7) (2023-02-03)
+
+
+### Bug Fixes
+
+* better dice so nice integration ([#1240](https://github.com/xdy/twodsix-foundryvtt/issues/1240)) ([6994fdb](https://github.com/xdy/twodsix-foundryvtt/commit/6994fdb3d11f1c8658285094fa9ea862aaf62637))
+
 ## [2.15.6](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.5...v2.15.6) (2023-02-02)
 
 
