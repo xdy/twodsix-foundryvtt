@@ -1,3 +1,10 @@
+# [2.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.7...v2.16.0) (2023-02-03)
+
+
+### Features
+
+* add weapons handling modifiers ([#1236](https://github.com/xdy/twodsix-foundryvtt/issues/1236)) ([c2e7fc6](https://github.com/xdy/twodsix-foundryvtt/commit/c2e7fc69385311299b71deaea3fc4f003811684e))
+
 ## [2.15.7](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.6...v2.15.7) (2023-02-03)
 
 
