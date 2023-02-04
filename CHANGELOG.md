@@ -1,3 +1,10 @@
+## [2.16.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.1...v2.16.2) (2023-02-04)
+
+
+### Bug Fixes
+
+* weapons damage formulas ([#1242](https://github.com/xdy/twodsix-foundryvtt/issues/1242)) ([5888fd6](https://github.com/xdy/twodsix-foundryvtt/commit/5888fd67d41e048be705485d96bef420cd89d3eb))
+
 ## [2.16.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.0...v2.16.1) (2023-02-04)
 
 
