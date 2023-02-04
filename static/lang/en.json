@@ -394,7 +394,7 @@
         "Price": "Price",
         "Quantity": "Quantity",
         "ShortDescription": "Short Description",
-        "SkillModifier": "Skill Modifier",
+        "SkillModifier": "Roll/Dice Modifier",
         "TL": "TL",
         "Weight": "Weight",
         "isAttachment": "Attachment?",
