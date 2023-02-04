@@ -10,7 +10,7 @@ import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
-import { simplifyRollFormula } from "../utils/dice";
+//import { simplifyRollFormula } from "../utils/dice";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 //import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
@@ -318,18 +318,18 @@ export default class TwodsixItem extends Item {
       return;
     } else {
       //Calc regular damage
-      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
+      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? " + " + bonusDamage : "") + (consumableDamage != "" ? " + " + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
         rollFormula = await confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
-      rollFormula = simplifyRollFormula(rollFormula);
+      //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
       let damage = <Roll>{};
       let apValue = weapon.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.system);
+        damage = new Roll(rollFormula, this.actor?.getRollData());
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
@@ -341,9 +341,9 @@ export default class TwodsixItem extends Item {
       let radDamage = <Roll>{};
       if (this.type === "component") {
         if (Roll.validate(this.system.radDamage)) {
-          let radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
-          radFormula = simplifyRollFormula(radFormula);
-          radDamage = new Roll(radFormula, this.actor?.system);
+          const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
+          //radFormula = simplifyRollFormula(radFormula);
+          radDamage = new Roll(radFormula, this.actor?.getRollData());
           await radDamage.evaluate({async: true});
         }
       }
