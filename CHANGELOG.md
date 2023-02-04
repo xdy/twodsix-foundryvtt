@@ -1,3 +1,10 @@
+## [2.16.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.0...v2.16.1) (2023-02-04)
+
+
+### Bug Fixes
+
+* quality of life issues ([#1241](https://github.com/xdy/twodsix-foundryvtt/issues/1241)) ([dd106e5](https://github.com/xdy/twodsix-foundryvtt/commit/dd106e553a18669b6a4493f6c48444d8c6790b5f))
+
 # [2.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.15.7...v2.16.0) (2023-02-03)
 
 
