@@ -329,7 +329,7 @@ export default class TwodsixItem extends Item {
       let apValue = weapon.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.system);
+        damage = new Roll(rollFormula, this.actor?.getRollData());
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
@@ -343,7 +343,7 @@ export default class TwodsixItem extends Item {
         if (Roll.validate(this.system.radDamage)) {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
-          radDamage = new Roll(radFormula, this.actor?.system);
+          radDamage = new Roll(radFormula, this.actor?.getRollData());
           await radDamage.evaluate({async: true});
         }
       }
