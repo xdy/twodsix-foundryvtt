@@ -142,6 +142,13 @@ export class TwodsixShipActions {
   }
 }
 
+/**
+ * A function for getting the full characteristic label from the displayed short label.
+ *
+ * @param {string} char           The displayed characteristic short label.
+ * @param {TwodsixActor} actor    The Actor in question.
+ * @returns {string}              Full logical name of the characteristic.
+ */
 export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
   let tempObject = {};
   let charObject= {};
@@ -153,6 +160,5 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
   } else {
     tempObject = TWODSIX.CHARACTERISTICS;
   }
-
   return getKeyByValue(tempObject, char);
 }

@@ -34,6 +34,23 @@ input.dice-tray__input {
   color: var(--s2d6-default) !important;
 }
 
+/*Fix for automated Automations*/
+
+#AA-autorec-settings .window-content, #AA-item-settings .window-content, #AA-ae-settings .window-content {
+	color: black !important;
+}
+
+#AA-autorec-settings .animation input, #AA-item-settings .animation input, #AA-ae-settings .animation input {
+	color: black !important;
+	background-color: rgba(182, 182, 182, 0.461) !important;
+	border-radius: var(--tjs-input-text-border-radius, var(--tjs-input-border-radius))!important
+}
+
+#AA-autorec-settings .animation select, #AA-item-settings .animation select, #AA-ae-settings .animation select {
+    background-color: rgb(160, 160, 160) !important;
+    color: black !important;
+}
+
 /*No longer needed for v10
 //Fix for Tidy UI
 #client-settings nav.tabs {

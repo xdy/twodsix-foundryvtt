@@ -172,7 +172,7 @@ export default class TwodsixItem extends Item {
 
     //Get weapon characteristic modifier
     if (this.system.handlingModifiers !== "") {
-      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(-?[0-9]+)\s+([0-9]+)\+?\/(\+?[0-9]+)/gm);
+      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
       const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
       if (parsedResult) {
         let weaponHandlingMod = 0;
@@ -180,13 +180,13 @@ export default class TwodsixItem extends Item {
         if (checkCharacteristic) {
           const charValue = this.actor.system.characteristics[checkCharacteristic].value;
           if (charValue <= parseInt(parsedResult[2], 10)) {
-            weaponHandlingMod = parseInt(parsedResult[3], 10);
+            weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
           } else if (charValue >= parseInt(parsedResult[4], 10)) {
-            weaponHandlingMod = parseInt(parsedResult[5], 10);
+            weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
           }
         }
         Object.assign(tmpSettings.rollModifiers, {weaponsHandling: weaponHandlingMod});
-        console.log(tmpSettings);
+        //console.log(tmpSettings);
       }
     }
 
@@ -528,4 +528,19 @@ export function getDiceResults(inputRoll:Roll) {
     returnValue.push(die.results);
   }
   return returnValue.flat(2);
+}
+
+/**
+ * A function for getting a value from a roll string.
+ *
+ * @param {string} rollFormula    The original roll.
+ * @param {TwodsixItem } item     Item making the roll
+ * @returns {number}              The resulting roll value.
+ */
+export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
+  let returnValue = 0;
+  if (Roll.validate(rollFormula)) {
+    returnValue = new Roll(rollFormula, item.actor?.getRollData()).evaluate({async: false}).total;
+  }
+  return returnValue;
 }
