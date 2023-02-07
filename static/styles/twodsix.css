@@ -3512,7 +3512,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   height: auto;
   background: var(--s2d6-background-transparent);
   border: solid 1px var(--s2d6-form-light);
-  color:	var(--2d6-form-light);
+  color: var(--s2d6-form-light);
 }
 
 input[type="text"].color {
