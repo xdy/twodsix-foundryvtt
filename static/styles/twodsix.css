@@ -3089,7 +3089,7 @@ button:hover {
 
 button:hover, button:focus {
   outline: none;
-  box-shadow: 0 0 5px var(--s2d6-default-color);
+  box-shadow: 0 0 5px var(--s2d6-item-border);
 }
 
 form .notes, form .hint {
@@ -3122,8 +3122,8 @@ form .notes, form .hint {
 }
 
 .dialog .dialog-buttons button.default {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px groove var(--s2d6-default-color);
+  background: var(--s2d6-item-active);
+  border: 2px groove var(--s2d6-item-border);
 }
 
 option {
