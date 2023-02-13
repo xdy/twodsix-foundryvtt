@@ -2348,7 +2348,7 @@ a.ship-crew-tab:hover, a.ship-positions-tab:hover {
 a.ship-crew-tab.active, a.ship-positions-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   color: var(--s2d6-item-active);
-  text-shadow: none;
+  text-shadow: none !important; /*necessary important*/
   background-color: var(--s2d6-default-color);
 }
 
@@ -2368,7 +2368,7 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.sh
 a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active, a.ship-component-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   color: var(--s2d6-item-active);
-  text-shadow: none;
+  text-shadow: none !important; /*necessary*/
   background-color: var(--s2d6-default-color);
 }
 
@@ -2393,7 +2393,7 @@ a.ship-notes-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 7em;
   color: var(--s2d6-item-active);
-  text-shadow: none;
+  text-shadow: none !important; /*necessary*/
   display: block;
   height: 46px;
   padding: 1ch;
@@ -2755,7 +2755,8 @@ a:hover {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
+.item-target-area, .item-target-width {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2791,9 +2792,9 @@ select.form-input, input.form-input, span.form-input {
 }
 
 
-.tabs .item.active {
+/*.tabs .item.active {
   text-shadow: 0 0 10px var(--s2d6-light-color);
-}
+}*/
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {

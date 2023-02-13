@@ -496,6 +496,22 @@
         "sorcerySkill": "Sorcery"
       }
     },
+    "Target": {
+      "AreaEffect": "Area of Effect",
+      "Target": "Target",
+      "None": "none",
+      "Radius": "radius",
+      "Sphere": "sphere",
+      "Cylinder": "cylinder",
+      "Cone": "cone",
+      "Square": "square",
+      "Cube": "cube",
+      "Line": "line",
+      "Wall": "wall",
+      "Width": "Width",
+      "Units": "Units",
+      "TypeArea": "Area Type"
+    },
     "Ship": {
       "Actions": "Actions",
       "ActionType": "Action Type",

@@ -469,6 +469,48 @@ export const MovementUnits = {
 };
 
 /**
+ * The valid target Area Types in the game system.
+ */
+export const areaTargetTypes = {
+  none: {
+    label: "TWODSIX.Target.None",
+    template: ""
+  },
+  radius: {
+    label: "TWODSIX.Target.Radius",
+    template: "circle"
+  },
+  sphere: {
+    label: "TWODSIX.Target.Sphere",
+    template: "circle"
+  },
+  cylinder: {
+    label: "TWODSIX.Target.Cylinder",
+    template: "circle"
+  },
+  cone: {
+    label: "TWODSIX.Target.Cone",
+    template: "cone"
+  },
+  square: {
+    label: "TWODSIX.Target.Square",
+    template: "rect"
+  },
+  cube: {
+    label: "TWODSIX.Target.Cube",
+    template: "rect"
+  },
+  line: {
+    label: "TWODSIX.Target.Line",
+    template: "ray"
+  },
+  wall: {
+    label: "TWODSIX.Target.Wall",
+    template: "ray"
+  }
+};
+
+/**
  * The valid pricing bases for components other than base hull.
  */
 export const PricingOptions = {
@@ -623,7 +665,8 @@ export type TWODSIX = {
   OmnivoreType: typeof OmnivoreType,
   CarnivoreType: typeof CarnivoreType,
   ScavengerType: typeof ScavengerType,
-  AnimalLocations: typeof AnimalLocations
+  AnimalLocations: typeof AnimalLocations,
+  areaTargetTypes: typeof areaTargetTypes
 };
 
 export const TWODSIX = {
@@ -648,7 +691,8 @@ export const TWODSIX = {
   OmnivoreType: OmnivoreType,
   CarnivoreType: CarnivoreType,
   ScavengerType: ScavengerType,
-  AnimalLocations: AnimalLocations
+  AnimalLocations: AnimalLocations,
+  areaTargetTypes: areaTargetTypes
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];
