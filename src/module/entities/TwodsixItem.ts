@@ -118,11 +118,14 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    /*Apply measured template if valid AOE*/
     if ( weapon.target?.type !== "none" ) {
-      //try {
+      try {
         const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
         console.log(templates);
-      //} catch(err) {  empty */ }
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+      }
     }
 
     let numberOfAttacks = 1;
