@@ -291,7 +291,8 @@
         "Condition": "Estado",
         "Attack": "Ataque",
         "ActiveEffect": "Efecto Activo",
-        "Attachments": "Acc./Consm."
+        "Attachments": "Acc./Consm.",
+        "WeaponsHandling": "Manejo Armas"
       }
     },
     "Create": "Crear",
@@ -393,7 +394,7 @@
         "Price": "Precio",
         "Quantity": "Cantidad",
         "ShortDescription": "Opciones",
-        "SkillModifier": "Modificador Habilidad",
+        "SkillModifier": "Modificador Tirada",
         "TL": "NT",
         "Weight": "KG",
         "isAttachment": "¿Accesorio?",
@@ -484,7 +485,8 @@
         "ArmorPiercing": "Valor Penetración Armadura",
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
-        "UnarmedDescription": "Ataque sin armas"
+        "UnarmedDescription": "Ataque sin armas",
+        "HandlingModifiers": "Modificador Manejo"
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -681,7 +683,8 @@
       "characteristic": "atributo",
       "ROF": "CdT",
       "DodgeParry": "Esquiva/Parada",
-      "Attachments": "Acc/Cons"
+      "Attachments": "Acc/Cons",
+      "WeaponsHandling": "Manejo Armas"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
