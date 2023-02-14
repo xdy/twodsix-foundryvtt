@@ -13,6 +13,8 @@ import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../.
 //import { simplifyRollFormula } from "../utils/dice";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
+import ItemTemplate from "../utils/ItemTemplate";
+//import {targetTokensInTemplate} from "../utils/ItemTemplate";
 //import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
@@ -115,6 +117,19 @@ export default class TwodsixItem extends Item {
     if (!weapon.skill) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
+    }
+
+    /*Apply measured template if valid AOE*/
+    if ( weapon.target?.type !== "none" ) {
+      try {
+        await (ItemTemplate.fromItem(this))?.drawPreview();
+        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
+        //if (templates?.length > 0) {
+        //  targetTokensInTemplate(templates[0]);
+        //}
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+      }
     }
 
     let numberOfAttacks = 1;

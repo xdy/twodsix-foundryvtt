@@ -496,6 +496,22 @@
         "sorcerySkill": "Sorcery"
       }
     },
+    "Target": {
+      "AreaEffect": "Area of Effect",
+      "Target": "Target",
+      "None": "none",
+      "Radius": "radius",
+      "Sphere": "sphere",
+      "Cylinder": "cylinder",
+      "Cone": "cone",
+      "Square": "square",
+      "Cube": "cube",
+      "Line": "line",
+      "Wall": "wall",
+      "Width": "Width",
+      "Units": "Units",
+      "TypeArea": "Area Type"
+    },
     "Ship": {
       "Actions": "Actions",
       "ActionType": "Action Type",
@@ -1106,7 +1122,8 @@
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
-      "InvalidRollFormula": "Not a valid damage roll formula."
+      "InvalidRollFormula": "Not a valid damage roll formula.",
+      "CantPlaceTemplate": "Error placing AOE measured Template."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",

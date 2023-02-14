@@ -73,7 +73,7 @@
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     {{/if}}
@@ -81,7 +81,7 @@
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.contacts">{{{system.contacts}}}</div>
     {{/if}}
@@ -89,7 +89,7 @@
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.bio">{{{system.bio}}}</div>
     {{/if}}
