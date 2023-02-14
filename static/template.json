@@ -517,6 +517,14 @@
           "href": "",
           "label": ""
         }
+      },
+      "targetTemplate": {
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        }
       }
     },
     "equipment": {
@@ -532,7 +540,7 @@
       "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate", "targetTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -597,7 +605,7 @@
       "key": "key"
     },
     "spell": {
-      "templates": ["referenceTemplate"],
+      "templates": ["referenceTemplate", "targetTemplate"],
       "value": 0,
       "type": "spell",
       "description": "",

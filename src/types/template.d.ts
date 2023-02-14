@@ -549,6 +549,7 @@ export interface Skills extends LinkTemplate {
 export interface Templates {
   gearTemplate:GearTemplate;
   referenceTemplate:LinkTemplate;
+  targetTemplate: TargetTemplate
 }
 
 export interface LinkTemplate {
@@ -580,6 +581,16 @@ export interface GearTemplate {
   equipped:Equipped;
 }
 
+export interface TargetTemplate {
+  target: TemplateData
+}
+
+export interface TemplateData {
+  value: number,
+  width: number,
+  units: string,
+  type: string
+}
 export enum Equipped {
   equipped = "equipped",
   ship = "ship",
@@ -597,7 +608,7 @@ export interface Trait extends LinkTemplate {
   key:string;
 }
 
-export interface Spell extends LinkTemplate {
+export interface Spell extends LinkTemplate, TargetTemplate {
   templates:string[];
   value:number;
   type:string;
@@ -608,7 +619,7 @@ export interface Spell extends LinkTemplate {
   subtype:string;
 }
 
-export interface Weapon extends GearTemplate, LinkTemplate {
+export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   templates:string[];
   range:number;
   damage:string;

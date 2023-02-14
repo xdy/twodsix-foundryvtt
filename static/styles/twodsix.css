@@ -44,13 +44,13 @@
   --s2d6-background-opaque:
   rgba(0, 0, 0, 1);
   --s2d6-nav-background:
-  rgba(52, 52, 52, 0.95);
+  rgb(64 63 63 / 95%);
   --s2d6-dark-hover:
   var(--s2d6-background-nearly-opaque);
   --s2d6-light-background-transparent:
   rgba(255, 255, 255, 0.09);
   --s2d6-stat-input:
-  rgba(110, 129, 158, 1);
+  rgb(146 172 213);
   --s2d6-item-active:
   var(--s2d6-background-opaque);
   --s2d6-header-border:
@@ -104,8 +104,8 @@ p span, p {
 
 input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'],
 input[type='search'], input[type='date'], div[contenteditable], textarea {
-  background: var(--s2d6-background-semi-opaque) !important;
-  color: var(--s2d6-light-color) !important;
+  background: var(--s2d6-background-semi-opaque);
+  color: var(--s2d6-light-color);
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -115,7 +115,7 @@ input[type='search'], input[type='date'], div[contenteditable], textarea {
   -ms-user-select: text;
   user-select: text;
   border: 1px solid var(--s2d6-background-opaque);
-  border-radius: 0 !important;
+  border-radius: 0;
   height: 3ch;
 }
 
@@ -128,8 +128,8 @@ input[type='search'], input[type='date'], div[contenteditable], textarea {
 
 select {
   height: 3ch;
-  background: var(--s2d6-background-semi-opaque) !important;
-  color: var(--s2d6-light-color) !important;
+  background-color: var(--s2d6-background-semi-opaque);
+  color: var(--s2d6-light-color);
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -139,14 +139,14 @@ select {
   -ms-user-select: text;
   user-select: text;
   border: 1px solid var(--s2d6-background-opaque);
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 
 input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='datetime-local']:focus,
 input[type='search']:focus, textarea:focus, input:focus, div[contenteditable]:focus, select:focus {
   outline: none;
   box-shadow: 0 0 10px var(--s2d6-header-border);
-  background: var(--s2d6-background-semi-opaque);
+  /* background: var(--s2d6-background-semi-opaque); */
 }
 
 input[type='search']::placeholder {
@@ -171,7 +171,7 @@ input::-webkit-inner-spin-button {
 }
 
 img {
-  border: none !important;
+  border: none;
   max-width: 100%;
 }
 
@@ -285,8 +285,8 @@ table tr:nth-child(even) {
 
 .sheet nav.sheet-tabs .item {
   padding: 2px;
-  border: none;
-  /* border: solid 2px var(--s2d6-default-color) !important; */
+  /* border: none; */
+  /* border: solid 2px var(--s2d6-default-color); */
   /* border-radius: 5ch 1ch 2ch 0; */
   /* -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 25%, 75% 0); */
   /* clip-path: polygon(    0 10%,    10% 0,    90% 0,    100% 10%,    100% 90%,    90% 100%,    10% 100%,    0% 90%,    0% 10%  ); */
@@ -336,7 +336,7 @@ form .form-group, form .form-group-stacked {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 3px 0;
-  color: var(--s2d6-light-color) !important;
+  /* color: var(--s2d6-default-color) ; */
 }
 
 form .form-group > label {
@@ -348,13 +348,13 @@ form .form-group span.units {
   flex: 0;
   line-height: 28px;
   font-size: 12px;
-  color:var(--s2d6-form-light) !important;
+  color: var(--s2d6-form-light);
 }
 
 #player-config label {
   font-size: 14px;
   font-weight: bold;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
 }
 
 .rollable:hover {
@@ -388,12 +388,12 @@ form .form-group span.units {
 }
 /*div {border: thin dotted #FFF;}*/
 
-.window-content {
-  background-attachment: fixed !important;
-  background-image: url(../assets/bg2.jpg) !important;
-  background-repeat: repeat-x !important;
+.window-content, .window-app .window-content, .app-content, .window-content, section.app-content, section.window-app, section.window-content {
+  background-attachment: fixed;
+  background-image: url(../assets/bg2.jpg);
+  background-repeat: repeat-x;
   font-family: inherit;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
 }
 
 .editor-content strong {
@@ -402,11 +402,11 @@ form .form-group span.units {
 }
 
 .app.window-app.twodsix.sheet.actor .window-content {
-  overflow: hidden !important;
+  overflow: hidden;
 }
 
 .app.sidebar-popout .window-content {
-  color: var(--color-border-light-1) !important;
+  color: var(--color-border-light-1);
 }
 
 .character-name h2 {
@@ -617,12 +617,12 @@ h2 {
   background-color: var(--s2d6-background-opaque);
 }
 
-.vehicle-notes div[contenteditable] {
+/*.vehicle-notes div[contenteditable] {
   height: 86%;
-  border-radius: 0 0 2ch 2ch !important;
+  border-radius: 0 0 2ch 2ch;
   overflow-y: auto;
   padding-left: 1ch;
-}
+}*/
 
 .vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
   border: solid;
@@ -671,7 +671,7 @@ h2 {
   /*width: 15.55em;*/
   font-size: 1.2em;
   text-align: center;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
   border: none;
 }
 
@@ -691,7 +691,7 @@ h2 {
 
 .vehicle-armor-name textarea, .vehicle-cargo-list textarea {
   border: 1px solid;
-  border-radius: 1ch !important;
+  border-radius: 1ch;
   border-color: var(--s2d6-default-color);
   /*text-align: center;*/
   overflow-wrap: break-word;
@@ -709,7 +709,7 @@ h2 {
   height: 84%;
   max-width: 100%;
   padding: 0 1ch;
-  border-radius: 0 0 2ch 2ch !important;
+  border-radius: 0 0 2ch 2ch;
 }
 
 .space-object-notes-container {
@@ -832,8 +832,8 @@ h2 {
 }
 
 .character-name .npc,  .character-name .vehicle {
-  height: 22px !important;
-  width: 100% !important
+  height: 22px;
+  width: 100%;
 }
 
 .character-name input[type='text'] {
@@ -842,7 +842,7 @@ h2 {
   /* width: 15.55em; */
   font-size: larger;
   text-align: center;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
   border: none;
   height: 27px;
 }
@@ -855,7 +855,7 @@ h2 {
   height: 120px;
   font-size: 16px;
   z-index: 9;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
 }
 
 .character-bgi-std {
@@ -866,7 +866,7 @@ h2 {
   height: 122px;
   font-size: 2ch;
   z-index: 9;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
   overflow: auto;
 }
 
@@ -876,20 +876,20 @@ h2 {
   border: 2px solid;
   border-radius: 2ch;
   padding: 0 1ch;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
   border-width: 2px;
   overflow: auto;
 }
 
 .character-bgi input, .character-bgi-npc input {
-  background-color: transparent !important;
+  background-color: transparent;
   border: none;
   height: 2.7ch;
   /* vertical-align: middle; */
 }
 
 .character-bgi-std input{
-  background-color: transparent !important;
+  background-color: transparent;
   border: none;
   height: 18px;
 }
@@ -933,28 +933,28 @@ h2 {
 
 .bgi-movement select {
   width: 14ch;
-  background-color: var(--s2d6-background-transparent) !important;
+  background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
 }
 
 .bgi-niche select {
   width: 13ch;
-  background-color: var(--s2d6-background-transparent) !important;
+  background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
 }
 
 .bgi-type select {
   width: 16ch;
-  background-color: var(--s2d6-background-transparent) !important;
+  background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
 }
 
 .bgi-location select {
   width: 20ch;
-  background-color: var(--s2d6-background-transparent) !important;
+  background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
 }
@@ -976,7 +976,7 @@ h2 {
   width: 2.2em;
   border: none;
   text-align: left;
-  color: var(--s2d6-damage-stat-color) !important;
+  color: var(--s2d6-damage-stat-color);
 }
 
 span.bgi-age {
@@ -988,7 +988,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
   height: auto;
   /*font-size: 16px;
   font-weight: bold;
-  color: var(--s2d6-default-color) !important; */
+  color: var(--s2d6-default-color); */
 }
 
 span.bgi-charEdit {
@@ -1027,7 +1027,7 @@ span.bgi-charEdit {
   position: absolute;
   z-index: 6;
   height: 120px;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
   font-size: 15px;
 }
 
@@ -1088,7 +1088,7 @@ span.stat-name-table, input.stat-name-table {
   position: relative;
   display: block;
   cursor: pointer;
-  text-align: center !important;
+  text-align: center;
   width: 4ch;
   height: 2ch;
   transform: rotate(-45deg);
@@ -1098,7 +1098,7 @@ span.stat-name-table, input.stat-name-table {
 
 input.stat-name-table {
   cursor: inherit;
-  background-color: unset !important;
+  background-color: unset;
   border: none;
 }
 
@@ -1106,7 +1106,7 @@ input.stat-name-table {
   width: 1.5em;
   text-align: center;
   margin-left: -0.26em;
-  background-color: transparent !important;
+  background-color: transparent;
   border: none;
   color: var(--s2d6-stat-input);
   -moz-appearance: textfield;
@@ -1188,11 +1188,11 @@ span.stat-ability {
 }
 
 input[data-tooltip *="("] {
-  color: var(--s2d6-damage-orange) !important;
+  color: var(--s2d6-damage-orange) !important; /*must keep important*/
 }
 
 span.stat-ability-table {
-  text-align: center !important;
+  text-align: center;
   position: relative;
 }
 
@@ -1203,13 +1203,14 @@ span.stat-modifier {
   top: -13px;
 }
 span.stat-modifier-table {
-  text-align: center !important;
+  text-align: center;
   position: relative;
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
   width: 4ch;
   height: 3.5ch;
+  color: var(--s2d6-stat-input);
 }
 
 span.stat-damage {
@@ -1220,13 +1221,13 @@ span.stat-damage {
 
 span.stat-damage-table {
   position: relative;
-  text-align: center !important;
+  text-align: center;
 }
 
 span.stat-damage-table input {
-  color:var(--s2d6-damage-stat-color) !important;
+  color:var(--s2d6-damage-stat-color);
   border: solid;
-  border-width: thin !important;
+  border-width: thin;
   border-radius: 15%;
   width: 4ch;
   height: 3.5ch;
@@ -1235,7 +1236,7 @@ span.stat-damage-table input {
 
 
 span.stat-damage input, span.special-damage input {
-  color: var(--s2d6-damage-stat-color) !important;
+  color: var(--s2d6-damage-stat-color);
   border: none;
 }
 
@@ -1274,10 +1275,10 @@ svg:hover {
 }
 
 .character-tabs-info {
-  background: transparent !important;
+  background-color: var(--s2d6-background-transparent);
 }
 
-.skill-tab {
+.skill-tab, .item.skill-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -2px;
   width: 90px;
@@ -1285,7 +1286,7 @@ svg:hover {
   display: block;
   background-color: unset !important;
   border-radius: 45ch 4ch 11ch 22ch !important;
-  border: solid 2px var(--s2d6-default-color) !important;
+  border: solid 2px var(--s2d6-default-color);
 }
 
 a.skill-tab:hover {
@@ -1603,8 +1604,8 @@ input.item-value-edit {
 .skill:hover {
   border-left: 1px solid var(--s2d6-light-color);
   border-right: 1px solid var(--s2d6-light-color);
-  background-color: var(--s2d6-default-color) !important;
-  color: var(--s2d6-dark-hover) !important;
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-dark-hover);
 }
 
 .skill-container {
@@ -1893,7 +1894,7 @@ span.total-output {
   border: 1px solid var(--s2d6-default-color);
   height: 95%;
   overflow-y: auto;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-light-color);
   padding: 0.2em;
 }
 
@@ -1901,7 +1902,7 @@ span.total-output {
   border: 1px solid var(--s2d6-default-color);
   height: 95%;
   overflow-y: auto;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-light-color);
   padding: 0.2em;
 }
 
@@ -1931,7 +1932,7 @@ span.total-output {
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
   font-size: 15px;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-light-color);
   padding: 0.2em;
   overflow-y: auto;
 }
@@ -2024,7 +2025,7 @@ span.total-output {
 }
 
 .ship-info ul {
-  padding: 0 !important;
+  padding: 0 !important; /*not certain where this is used*/
 }
 
 .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
@@ -2034,7 +2035,7 @@ span.total-output {
   /*margin-left: 1.7em;*/
   width: 100%;
   border: none;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
@@ -2087,7 +2088,7 @@ span.total-output {
 
 .ship-armor-name textarea {
   border: solid;
-  border-radius: 1ch !important;
+  border-radius: 1ch;
   border-color: var(--s2d6-default-color);
   border-width: 2px;
   text-align: center;
@@ -2149,7 +2150,7 @@ span.total-output {
 }
 
 .ship-mass input, .ship-tl input {
-  background-color: var(--s2d6-background-nearly-opaque) !important;
+  background-color: var(--s2d6-background-nearly-opaque);
   /*border: solid;
   border-color: var(--s2d6-default-color);
   border-radius: 0.5ch !important;*/
@@ -2207,7 +2208,7 @@ span.total-output {
     ". . . . .";
   position: relative;
   left: 104px;
-  top: -162px;
+  top: -161px;
   font-size: 14px;
   /* margin-bottom: -4em; */
   /* height: 4em; */
@@ -2216,7 +2217,7 @@ span.total-output {
 .ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
   text-align: center;
   width: 53px;
-  background-color: transparent !important;
+  background-color: transparent;
   border: none;
   height: auto;
   margin-top: 5px;
@@ -2244,7 +2245,7 @@ span.total-output {
 }
 
 #ship-stat-red {
-  color: var(--s2d6-damage-red) !important;
+  color: var(--s2d6-damage-red);
 }
 
 .power-grid input[type="text"] {
@@ -2255,7 +2256,7 @@ span.total-output {
   top: 0.20em;
   text-align: center;
   border: none;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 /*--- Labels ---*/
@@ -2295,18 +2296,18 @@ input.power-current {
   width: inherit;
   display: block;
   border: none;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 input.power-total {
-  font-size: 18px;
+  font-size: 17px;
   position: relative;
   left: 0;
   top: -39px;
   width: inherit;
   display: block;
   border: none;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 /*------------------*/
@@ -2347,7 +2348,7 @@ a.ship-crew-tab:hover, a.ship-positions-tab:hover {
 a.ship-crew-tab.active, a.ship-positions-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   color: var(--s2d6-item-active);
-  text-shadow: none !important;
+  text-shadow: none !important; /*necessary important*/
   background-color: var(--s2d6-default-color);
 }
 
@@ -2367,7 +2368,7 @@ a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.sh
 a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active, a.ship-component-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   color: var(--s2d6-item-active);
-  text-shadow: none !important;
+  text-shadow: none !important; /*necessary*/
   background-color: var(--s2d6-default-color);
 }
 
@@ -2392,7 +2393,7 @@ a.ship-notes-tab.active {
   /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   background-position: 7em;
   color: var(--s2d6-item-active);
-  text-shadow: none !important;
+  text-shadow: none !important; /*necessary*/
   display: block;
   height: 46px;
   padding: 1ch;
@@ -2473,7 +2474,7 @@ a.ship-notes-tab.active {
 
 .ship-grid > div > div[contenteditable] {
   width: 207px;
-  border: 1px groove var(--s2d6-default-color) !important;
+  border: 1px groove var(--s2d6-default-color) !important; /* must keep !important*/
   border-radius: 0;
   min-height: 6ch;
 }
@@ -2595,7 +2596,7 @@ a.ship-notes-tab.active {
   /*margin-top: 1.1em;*/
   overflow-y: auto;
   height: 12em;
-  padding: 0 0.5em;
+  padding: 0 0.4em;
   margin-bottom: 1em;
   margin-left: 6px;
 }
@@ -2611,7 +2612,7 @@ a.ship-notes-tab.active {
 .cargo-wrapper > div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   height: 18em;
-  color: var(--s2d6-light-color) !important;
+  color: var(--s2d6-light-color);
   padding: 0.2em;
   overflow-y: auto;
 }
@@ -2635,8 +2636,8 @@ a.ship-notes-tab.active {
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0 3px 3px;
   font-size: 15px;
-  background-color: var(--s2d6-input-background) !important;
-  color: var(--s2d6-background-opaque);
+  /* background-color: var(--s2d6-input-background); */
+  /* color: var(--s2d6-default-color); */
   padding: 0.2em;
   height: 90%;
   overflow-y: auto;
@@ -2663,7 +2664,7 @@ div.ship-value {
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--s2d6-default-color);
-  width: 473px;
+  width: 503px;
   height: 245px;
   border-radius: 0;
   overflow-y: auto;
@@ -2754,7 +2755,8 @@ a:hover {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
+.item-target-area, .item-target-width {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2791,7 +2793,7 @@ select.form-input, input.form-input, span.form-input {
 
 
 /*.tabs .item.active {
-  text-shadow: 0 0 10px var(--s2d6-light-color) !important;
+  text-shadow: 0 0 10px var(--s2d6-light-color);
 }*/
 
 /* ------ Item page - Consumables ------ */
@@ -2888,7 +2890,7 @@ select.form-input, input.form-input, span.form-input {
   text-shadow: 0 0 0.8em var(--s2d6-light-color);
 }
 
-#chat-log .message {
+.message {
   background: var(--s2d6-background-opaque);
   border: 1px solid var(--s2d6-item-border);
   border-radius: 0;
@@ -2901,11 +2903,11 @@ select.form-input, input.form-input, span.form-input {
 
 #chat-log .message .message-header {
   line-height: 20px;
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
 }
 
 .table-description {
-  color: var(--s2d6-stat-input) !important;
+  color: var(--s2d6-stat-input);
 }
 
 .chat-message .table-draw .table-results .table-result .result-text {
@@ -2917,12 +2919,12 @@ background: var(--s2d6-sidebar-background);
 }
 
 .chat-message.blind {
-  background: var(--color-text-dark-2) !important;
+  background: var(--color-text-dark-2);
   border: 1px solid var(--s2d6-window-color);
 }
 
 .chat-message.whisper {
-  background: var(--color-text-dark-2) !important;
+  background: var(--color-text-dark-2);
   border: 1px solid var(--s2d6-header-border);
 }
 
@@ -2934,7 +2936,7 @@ background: var(--s2d6-sidebar-background);
   text-align: center;
   background: var(--s2d6-background-nearly-transparent);
   border: 1px solid var(--s2d6-default-color);
-  border-radius: 1px;
+  border-radius: 2px;
   box-shadow: 0 0 2px var(--s2d6-background-opaque) inset;
   word-break: break-all;
   font-size: inherit;
@@ -2953,17 +2955,21 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-tooltip .dice-rolls .roll.d6 {
-  background-image: url(../assets/chatlog/d6.svg) !important;
+  background-image: none;
 }
 
 .dice-tooltip .dice-rolls .roll.max {
   color: var(--s2d6-crit-success);
-  filter: none !important;
+  filter: none;
 }
 
 .dice-tooltip .dice-rolls .roll.min {
   color: var(--s2d6-crit-fail);
-  filter: none !important;
+  filter: none;
+}
+
+.dice-tooltip .dice-rolls .roll.discarded, .dice-tooltip .dice-rolls .roll.rerolled {
+  filter: sepia(0.5) contrast(0.75) opacity(0.4) !important; /*must keep this important*/
 }
 
 .dice-tooltip .dice-rolls .roll {
@@ -2971,13 +2977,15 @@ background: var(--s2d6-sidebar-background);
   line-height: 24px;
   float: left;
   margin-right: 1px;
-  background-image: url(../assets/chatlog/d6.svg) !important;
-  background-repeat: no-repeat;
   background-size: 24px 24px;
   font-size: 16px;
   color: var(--s2d6-default-color);
   font-weight: bold;
   text-align: center;
+  background-image: none;
+  /*background-color: var(--s2d6-background-opaque);*/
+  border: solid 1px var(--s2d6-default-color);
+  border-radius: 3px;
 }
 
 #tooltip {
@@ -2997,8 +3005,8 @@ background: var(--s2d6-sidebar-background);
   height: 100%;
   resize: none;
   color: var(--s2d6-light-color);
-  background: var(--s2d6-background-opaque) !important;
-  border-color: var(--s2d6-default-color) !important;
+  background: var(--s2d6-background-opaque);
+  border-color: var(--s2d6-default-color);
 }
 
 #chat-controls div.roll-type-select select {
@@ -3006,7 +3014,12 @@ background: var(--s2d6-sidebar-background);
   width: 200px;
   height: 24px;
   top: -3px;
-  border-color: var(--s2d6-default-color) !important;
+  border-color: var(--s2d6-default-color);
+  background: var(--s2d6-background-opaque);
+}
+
+#chat-controls .roll-type-select {
+  background: var(--s2d6-background-opaque);
 }
 
 .damage {
@@ -3059,9 +3072,9 @@ form button {
 button {
   position: relative;
   margin: 0.5em 0;
-  background-color: var(--s2d6-background-opaque) !important;
-  border-color: var(--s2d6-default-color) !important;
-  color: var(--s2d6-form-light) !important;
+  background-color: var(--s2d6-background-opaque);
+  border-color: var(--s2d6-default-color);
+  color: var(--s2d6-form-light);
 }
 
 form button {
@@ -3077,7 +3090,7 @@ button:hover {
 
 button:hover, button:focus {
   outline: none;
-  box-shadow: 0 0 5px var(--s2d6-default-color) !important;
+  box-shadow: 0 0 5px var(--s2d6-item-border);
 }
 
 form .notes, form .hint {
@@ -3103,10 +3116,15 @@ form .notes, form .hint {
   background-color: var(--s2d6-item-active);
 }
 
-.dialog .dialog-buttons button:last-child:hover {
-  margin-right: 0;
+.dialog .dialog-buttons button:hover {
+  /* margin-right: 0; */
   color: var(--s2d6-light-color);
-  border-color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color)!important; /*must keep important*/
+}
+
+.dialog .dialog-buttons button.default {
+  background: var(--s2d6-item-active);
+  border: 2px groove var(--s2d6-item-border);
 }
 
 option {
@@ -3115,7 +3133,7 @@ option {
 
 .window-app .window-header {
   background-color: var(--s2d6-background-transparent);
-  border: none !important;
+  border: none;
   color: var(--s2d6-default-color);
   z-index: 99;
 }
@@ -3150,15 +3168,15 @@ option {
 
 .app {
   max-height: 100%;
-  background-image: url(../assets/bg2.jpg) !important;
-  background-repeat: repeat-x !important;
+  background-image: url(../assets/bg2.jpg);
+  background-repeat: repeat;
   border-radius: 5px;
   box-shadow: 0 0 20px var(--s2d6-item-active);
   margin: 3px 0;
   padding: 0.5em;
   color: var(--s2d6-app-color);
-  border: 1px solid var(--s2d6-header-border) !important;
-  z-index: 30;
+  border: 1px solid var(--s2d6-header-border);
+  /* z-index: 30; */
 }
 
 .window-app .window-resizable-handle {
@@ -3169,7 +3187,7 @@ option {
   right: -1px;
   background: var(--s2d6-background-opaque);
   padding: 2px;
-  border: 1px solid var(--s2d6-header-border) !important;
+  border: 1px solid var(--s2d6-header-border);
   color: var(--s2d6-window-color);
   border-radius: 4px 0 0;
 }
@@ -3215,7 +3233,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
   border-color: var(--s2d6-default-color);
-  /*background-color: var(--sidebar-dark-background);*/
+  background-color: var(--sidebar-dark-background);
 }
 
 #sidebar-tabs > .item.active {
@@ -3252,21 +3270,21 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   margin: 0;
   padding: 0;
   box-shadow: none;
-  background-color: var(--s2d6-background-transparent) !important;
-  background-image: none !important;
-  border: 1px groove var(--s2d6-background-transparent)/*#19181300*/ !important;
+  background-color: var(--s2d6-background-transparent);
+  background-image: none;
+  border: 1px groove var(--s2d6-background-transparent)/*#19181300*/;
 }
 
-#controls .scene-control, #controls .control-tool, #controls .control-tool.toggle {
-  background-color: var(--s2d6-background-nearly-opaque)!important;
+#controls .scene-control, #controls .control-tool, #controls .control-tool.toggle, #controls ol.control-tools > li {
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
-#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover,#controls .control-tool.toggle.active,  #controls .control-tool.toggle:hover {
-  color: var(--s2d6-item-hover) !important;
-  border: 1px solid var(--s2d6-light-color)!important;
-  border-bottom: 1px solid var(--s2d6-default-color)!important;
-  box-shadow: 0 0 10px var(--s2d6-default-color)!important;
-  background-color: var(--s2d6-background-opaque)!important;
+#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover,#controls .control-tool.toggle.active,  #controls .control-tool.toggle:hover, #controls ol.control-tools > li.active, #controls ol.control-tools > li:hover {
+  color: var(--s2d6-item-hover);
+  border: 1px solid var(--s2d6-light-color);
+  border-bottom: 1px solid var(--s2d6-default-color);
+  box-shadow: 0 0 10px var(--s2d6-default-color);
+  background-color: var(--s2d6-background-opaque);
 }
 
 #navigation #scene-list .scene.view, #navigation #scene-list .scene.context {
@@ -3280,7 +3298,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 #navigation #scene-list .scene.gm {
   background: var(--s2d6-background-opaque);
-  border: 1px solid var(--s2d6-nav-background) !important;
+  border: 1px solid var(--s2d6-nav-background);
 }
 
 #controls {
@@ -3290,14 +3308,13 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   padding: 10px;
   list-style: none;
   box-shadow: none;
-  background-image: none !important;
-  background-color: none !important;
-  border: none !important;
+  background-image: none;
+  border: none;
 }
 
 #controls ol {
-  background-image: none !important;
-  border: none !important;
+  background-image: none;
+  border: none;
 }
 
 /* MACRO BAR */
@@ -3346,11 +3363,11 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .tox .tox-tbtn svg {
   display: block;
-  fill: var(--s2d6-default-color) !important;
+  fill: var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn:hover svg {
-  fill: var(--s2d6-light-color) !important;
+  fill: var(--s2d6-light-color);
 }
 
 .tox .tox-tbtn--bespoke .tox-tbtn__select-label {
@@ -3358,7 +3375,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background: var(--s2d6-item-active) none !important;
+  background: var(--s2d6-item-active) none;
   display: flex;
   flex: 0 0 auto;
   flex-shrink: 0;
@@ -3457,7 +3474,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .force-border {
-  border: 1px solid yellow !important;
+  border: 1px solid yellow;
 }
 
 .journal-sheet form, .sheet.journal-entry .journal-entry-content {
@@ -3476,11 +3493,14 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .prosemirror .editor-container .editor-content {
-  color: var(--s2d6-default-color) !important;
+  color: var(--s2d6-default-color);
+  width: inherit;
+  height: inherit;
 }
 
 .prosemirror menu .pm-dropdown ul,  .prosemirror menu .pm-dropdown li {
   background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-form-light);
 }
 
 .prosemirror menu {
@@ -3488,8 +3508,12 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   padding: 4px 2px;
 }
 
-.prosemirror menu button {
+.prosemirror menu button, .prosemirror menu .pm-dropdown {
   padding: 0 2px;
+  height: auto;
+  background: var(--s2d6-background-transparent);
+  border: solid 1px var(--s2d6-form-light);
+  color: var(--s2d6-form-light);
 }
 
 input[type="text"].color {
@@ -3503,7 +3527,7 @@ input[type="text"].color {
   max-height: 24px;
   background-color: var(--s2d6-background-nearly-opaque);
   display: list-item;
-  border: solid thin !important;
+  border: solid thin !important; /*must keep important*/
 }
 
 .effects-container {
