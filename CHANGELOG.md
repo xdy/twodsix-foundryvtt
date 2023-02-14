@@ -1,3 +1,10 @@
+# [2.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.2...v2.17.0) (2023-02-14)
+
+
+### Features
+
+* add measured templates for weapons and style sheet clean-up ([#1244](https://github.com/xdy/twodsix-foundryvtt/issues/1244)) ([3e87dd6](https://github.com/xdy/twodsix-foundryvtt/commit/3e87dd62c8c0501c60219607e3cb5c0fadb46761))
+
 ## [2.16.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.1...v2.16.2) (2023-02-04)
 
 
