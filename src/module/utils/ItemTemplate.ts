@@ -239,7 +239,7 @@ function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
 export function targetTokensInTemplate(template:MeasuredTemplate):void {
   const tokens = canvas.tokens?.placeables;
   const arrayOfTokenIds:string[] = [];
-  if (tokens && tokens?.length > 0) {
+  if (tokens?.length > 0) {
     for (const tok of tokens) {
       if (checkTokenInTemplate(tok, template)) {
         arrayOfTokenIds.push(tok.id);
