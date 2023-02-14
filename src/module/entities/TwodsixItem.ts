@@ -14,6 +14,7 @@ import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../.
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 import ItemTemplate from "../utils/ItemTemplate";
+//import {targetTokensInTemplate} from "../utils/ItemTemplate";
 //import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
@@ -121,8 +122,11 @@ export default class TwodsixItem extends Item {
     /*Apply measured template if valid AOE*/
     if ( weapon.target?.type !== "none" ) {
       try {
-        const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
-        console.log(templates);
+        await (ItemTemplate.fromItem(this))?.drawPreview();
+        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
+        //if (templates?.length > 0) {
+        //  targetTokensInTemplate(templates[0]);
+        //}
       } catch(err) {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
       }

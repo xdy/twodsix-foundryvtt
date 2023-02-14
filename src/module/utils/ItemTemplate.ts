@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+
 import { TWODSIX } from "../config";
 
 /**
@@ -46,12 +47,12 @@ export default class ItemTemplate extends MeasuredTemplate {
     // Prepare template data
     const templateData = {
       t: templateShape,
-      user: game.user.id,
+      user: game.user?.id,
       distance: target.value,
       direction: 0,
       x: 0,
       y: 0,
-      fillColor: game.user.color,
+      fillColor: game.user?.color,
       flags: { twodsix: { origin: item.uuid } }
     };
 
@@ -66,7 +67,7 @@ export default class ItemTemplate extends MeasuredTemplate {
         templateData.direction = 45;
         break;
       case "ray": // 5e rays are most commonly 1 square (5 ft) in width
-        templateData.width = target.width ?? canvas.dimensions.distance;
+        templateData.width = target.width ?? canvas.dimensions?.distance;
         break;
       default:
         break;
@@ -93,7 +94,7 @@ export default class ItemTemplate extends MeasuredTemplate {
     // Draw the template and switch to the template layer
     this.draw();
     this.layer.activate();
-    this.layer.preview.addChild(this);
+    this.layer.preview?.addChild(this);
 
     // Hide the sheet that originated the preview
     this.actorSheet?.minimize();
@@ -207,5 +208,43 @@ export default class ItemTemplate extends MeasuredTemplate {
     await this._finishPlacement(event);
     this.#events.reject();
   }
+}
 
+/**
+ * Determines whether a token is within the template.
+ * @param {Token} token  token on canvas.
+ * @param {ItemTemplate} template  token on canvas.
+ * @returns {boolean}   whether token in inside template
+ */
+function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
+  const grid = canvas.scene?.grid;
+  const {x: tempx, y: tempy} = template;
+  const startX = token.document.width >= 1 ? 0.5 : token.document.width/2;
+  const startY = token.document.height >= 1 ? 0.5 : token.document.height/2;
+  for (let x = startX; x < token.document.width; x++) {
+    for (let y = startY; y < token.document.width; y++) {
+      const curr = { x: token.document.x + x * grid.size - tempx, y: token.document.y + y * grid.size - tempy };
+      const contains = template.object.shape?.contains(curr.x, curr.y);
+      if (contains) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+/**
+ * Sets all tokens within the template to targeted.
+ * @param {MeasuredTemplate} template  token on canvas.
+ */
+export function targetTokensInTemplate(template:MeasuredTemplate):void {
+  const tokens = canvas.tokens?.placeables;
+  const arrayOfTokenIds:string[] = [];
+  if (tokens && tokens?.length > 0) {
+    for (const tok of tokens) {
+      if (checkTokenInTemplate(tok, template)) {
+        arrayOfTokenIds.push(tok.id);
+      }
+      game.user?.updateTokenTargets(arrayOfTokenIds);
+    }
+  }
 }
