@@ -80,7 +80,7 @@ async function onChatCardAction(event: Event): Promise<any> {
       break;
     case "formula":
     case "save":
-      targets = getChatCardTargets(card);
+      targets = getChatCardTargets();
       for ( const token of targets ) {
         const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
         await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
@@ -94,7 +94,7 @@ async function onChatCardAction(event: Event): Promise<any> {
       } catch(err) {/*blank*/}
       break;
     case "abilityCheck":
-      targets = getChatCardTargets(card);
+      targets = getChatCardTargets();
       for ( const token of targets ) {
         const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
         await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
