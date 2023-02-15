@@ -39,6 +39,9 @@ async function onChatCardAction(event: Event): Promise<any> {
   //button.disabled = true;
   const messageId = event.target.closest("[data-message-id]")?.dataset.messageId;
   const message = game.messages.get(messageId);
+  if (!message) {
+    return;
+  }
   const action = button.dataset.action;
 
   // Recover the actor for the chat card
@@ -64,8 +67,8 @@ async function onChatCardAction(event: Event): Promise<any> {
   let targets;
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
   const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-  const bonusDamage:string = message?.getFlag("twodsix", "bonusDamage");
-  const effect = message?.getFlag("twodsix", "effect") ?? 0;
+  const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
+  const effect = message.getFlag("twodsix", "effect") ?? 0;
   const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${effect} + ${bonusDamage}` : `${effect}`;
   switch ( action ) {
     case "attack":
@@ -146,7 +149,7 @@ async function getChatCardActor(message:ChatMessage): Actor | null {
  * @returns {Token[]}            An Array of Token documents, if any
  * @private
  */
-function getChatCardTargets(card: HTMLElement): Token[] {
+function getChatCardTargets(): Token[] {
   let targets = canvas.tokens.controlled.filter(t => !!t.actor);
   if ( !targets.length && game.user.character ) {
     targets = targets.concat(game.user.character.getActiveTokens());
