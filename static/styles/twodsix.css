@@ -2988,6 +2988,10 @@ background: var(--s2d6-sidebar-background);
   border-radius: 3px;
 }
 
+.card-buttons {
+  display: inline-flex;
+}
+
 #tooltip {
   padding: 3px 4px;
   background: var(--s2d6-background-opaque);

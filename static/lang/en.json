@@ -685,6 +685,7 @@
       "Cancel": "Cancel",
       "DamageUsing": "Damage using",
       "Effect": "Effect",
+      "ToggleDetails": "Toggle Details",
       "Roll": "Roll",
       "Rolling": "Rolling",
       "With": "with",
@@ -698,6 +699,7 @@
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
       "ROF": "ROF",
+      "RollDamage": "Roll Damage",
       "DodgeParry": "Dodge/Parry",
       "Attachments": "Attch/Cons",
       "WeaponsHandling":"Weapons Handling"

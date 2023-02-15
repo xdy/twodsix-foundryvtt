@@ -25,8 +25,6 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    //this.woundedEffect = (<Traveller>this.actor.system.conditions)?.woundedEffect;
-    //this.encumberedEffect = (<Traveller>this.actor.system.conditions)?.encumberedEffect;
 
     this.createRoll();
 
@@ -278,9 +276,17 @@ export class TwodsixDiceRoll {
         timeToComplete = new Roll(this.rollSettings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
       }
     }
-    flavorText +=`</section>`;
+
+    //Add buttons
+    flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question"></i></button>`;
+    if (this.isSuccess() && !game.settings.get("twodsix", "automateDamageRollOnHit") && this.item?.type === "weapon") {
+      flavorText += `<button data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst"></i></button>`;
+    }
+
+    flavorText +=`</section></section>`;
     flavorTable += `</table>`;
-    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-tooltip">` + flavorTable + `</section></section>`;
+
+    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 
     await this.roll?.toMessage(
       {
@@ -297,7 +303,8 @@ export class TwodsixDiceRoll {
           "twodsix.itemUUID": this.rollSettings.flags.itemUUID ?? "",
           "twodsix.tokenUUID": this.rollSettings.flags.tokenUUID ?? "",
           "twodsix.rollClass": this.rollSettings.flags.rollClass ?? "",
-          "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? ""
+          "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? "",
+          "twodsix.bonusDamage": this.rollSettings.flags.bonusDamage ?? "",
         }
       },
       {rollMode: this.rollSettings.rollMode}

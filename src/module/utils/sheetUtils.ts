@@ -306,7 +306,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
             }
         }
       },
-      default: `Roll`
+      default: `Roll`,
     }).render(true);
   });
   return (returnText ?? "");

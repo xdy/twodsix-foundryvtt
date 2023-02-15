@@ -170,6 +170,7 @@ export default class TwodsixItem extends Item {
         usedAmmo = rateOfFireCE || 0;
         break;
     }
+    Object.assign(tmpSettings, {bonusDamage: bonusDamage});
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry")) {
