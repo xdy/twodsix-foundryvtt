@@ -289,6 +289,13 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
+        if ( this.system.target?.type !== "none" ) {
+          try {
+            await (ItemTemplate.fromItem(this))?.drawPreview();
+          } catch(err) {
+            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+          }
+        }
         tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, workingActor);
       } else {
         tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, workingActor);
