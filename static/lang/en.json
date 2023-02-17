@@ -293,11 +293,11 @@
         "ActiveEffect": "Active Effect",
         "Attachments": "Attach./Consm.",
         "WeaponsHandling": "Weapons Handling",
-        "ChainRoll": "Chain / Assited Roll",
+        "ChainRoll": "Chain / Assisted Roll",
         "Bonus": "Bonus",
-        "WithChainBonus": "with Chain/Assit bonus",
+        "WithChainBonus": "with Chain/Assist bonus",
         "WinsRoll": "wins contested / opposed roll.",
-        "TiedRoll": "Tied contested /opposed roll. No winner."
+        "TiedRoll": "Tied contested / opposed roll. No winner."
       }
     },
     "Create": "Create",
@@ -692,7 +692,7 @@
       "Effect": "Effect",
       "ToggleDetails": "Toggle Details",
       "Roll": "Roll",
-      "RollChain": "Chain/Assited Roll",
+      "RollChain": "Chain / Assisted Roll",
       "RollOpposed": "Opposed Roll",
       "Rolling": "Rolling",
       "With": "with",
