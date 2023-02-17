@@ -217,6 +217,7 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
   const originalEffect = message.getFlag("twodsix", "effect");
   if (selectedSkillUuid === "") {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
+    return;
   }
   const selectedSkill:TwodsixItem = await fromUuid(selectedSkillUuid);
   const tempSettings = {};
