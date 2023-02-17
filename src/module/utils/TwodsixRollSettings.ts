@@ -126,7 +126,8 @@ export class TwodsixRollSettings {
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       custom: 0,
-      customLabel: ""
+      customLabel: "",
+      chain: settings?.rollModifiers?.chain ?? 0
     };
     this.flags = {
       rollClass: rollClass,
@@ -215,6 +216,7 @@ export class TwodsixRollSettings {
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
           this.rollModifiers.skill = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skill"]').val(), 10) : this.rollModifiers.skill;
+          this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
           this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;

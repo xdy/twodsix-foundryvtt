@@ -905,6 +905,22 @@ export default class TwodsixActor extends Actor {
       });
     }
   }
+
+  /**
+   * Get skills level pairs.
+   * @return {any} an object with skill name /level pairs
+   * @public
+   */
+  public async getSkilNameList(): any {
+    const returnObject = {};
+    for (const skill of this.itemTypes.skills) {
+      if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills')) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+        Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${skill.system.value})`});
+      }
+    }
+    return returnObject;
+  }
+
 }
 
 export function getPower(item: Component): number{

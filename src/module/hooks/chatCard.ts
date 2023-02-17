@@ -1,6 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import TwodsixItem from "../entities/TwodsixItem";
+import ItemTemplate from "../utils/ItemTemplate";
+import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
+import TwodsixActor from "../entities/TwodsixActor";
+import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
+import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 
 Hooks.on("renderChatLog", (app, html, data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
@@ -79,6 +84,7 @@ async function onChatCardAction(event: Event): Promise<any> {
     case "versatile":
       break;
     case "formula":
+      break;
     case "save":
       targets = getChatCardTargets();
       for ( const token of targets ) {
@@ -102,6 +108,14 @@ async function onChatCardAction(event: Event): Promise<any> {
       break;
     case "expand":
       onExpandClick(event);
+      break;
+    case "opposed":
+      //opposed roll
+      makeSecondaryRoll(message, "opposed", showFormulaDialog);
+      break;
+    case "chain":
+      //chain roll
+      makeSecondaryRoll(message, "chain", showFormulaDialog);
       break;
   }
 
@@ -175,12 +189,153 @@ function onExpandClick(event: Event) {
   const chattips = roll.querySelectorAll(".dice-chattip");
   for ( const tip of chattips ) {
     if ( $(tip).css("display") !== "none" ) {
-      //$(tip).slideDown(200);
+      //$(tip).slideUp(200);
       $(tip).css("display", "none");
     } else {
-      //$(tip).slideUp(200);
+      //$(tip).slideDown(200);
       $(tip).css("display", "contents");
     }
     //tip.classList.toggle("expanded", message._rollExpanded);
+  }
+}
+/**
+ * Make second skill roll from chat card
+ * @param {ChatMessage} message    The originating message
+ * @param {string} type The type of decondary roll, chain or opposed
+ * @param {boolean} showDialog whether or not to show skill roll dialog
+ * @returns {void}
+ */
+async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:boolean): Promise<void> {
+  const secondActor:TwodsixActor = getControlledTraveller();
+  if (!secondActor) {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    return;
+  }
+
+  const skillList = await secondActor.getSkilNameList();
+  const selectedSkillUuid = await skillDialog(skillList);
+  const originalEffect = message.getFlag("twodsix", "effect");
+  if (selectedSkillUuid === "") {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
+  }
+  const selectedSkill:TwodsixItem = await fromUuid(selectedSkillUuid);
+  const tempSettings = {};
+  switch (type) {
+    case "opposed":
+      Object.assign(tempSettings, {
+        extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesOpposedRoll")
+      });
+      break;
+    case "chain":
+      Object.assign(tempSettings, {
+        extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesChainRoll"),
+        rollModifiers: {chain: getChainRollBonus(originalEffect)}
+      });
+      break;
+    default:
+      break;
+  }
+  const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showDialog, tempSettings, selectedSkill, undefined, <TwodsixActor>secondActor);
+  const roll:TwodsixDiceRoll = await selectedSkill.skillRoll(showDialog, settings, true);
+  let winnerName = "";
+  if (roll && type === "opposed") {
+    if (originalEffect > roll.effect) {
+      winnerName = (await fromUuid(message.getFlag("twodsix", "actorUUID"))).name;
+    } else if (roll.effect > originalEffect) {
+      winnerName = secondActor.name;
+    }
+    if (winnerName === "") {
+      ChatMessage.create({ content: game.i18n.localize("TWODSIX.Chat.Roll.TiedRoll"), speaker: ChatMessage.getSpeaker({ actor: secondActor }) });
+    } else {
+      ChatMessage.create({ content: `${winnerName} ${game.i18n.localize("TWODSIX.Chat.Roll.WinsRoll")}`, speaker: ChatMessage.getSpeaker({ actor: secondActor }) });
+    }
+  }
+
+}
+
+/**
+ * Prompt for skill from actor. Returns selected skill's uuid
+ * @param {object} skillList    list of skill uuid and name pairs
+ * @returns {string} the uuid of the selected skill item
+ */
+async function skillDialog(skillList:object):Promise<string> {
+  let returnValue = "";
+  let options = ``;
+  for (const [key, value] of Object.entries(skillList)) {
+    options += `<option value="${key}">${value}</option>`;
+  }
+  const select = `<select name="item-select">${options}</select>`;
+  const content = `<form><div class="form-group"><label>Select the scroll:</label>${select}</div></form>`;
+
+  const buttons = {
+    ok: {
+      label: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
+      icon: '<i class="fa-solid fa-list"></i>',
+      callback: async (htmlObject) => {
+        const skillId = htmlObject[0].querySelector("select[name='item-select']").value;
+        returnValue = skillId;
+      }
+    },
+    cancel: {
+      icon: '<i class="fa-solid fa-xmark"></i>',
+      label: game.i18n.localize("Cancel"),
+      callback: () => {
+        returnValue = '';
+      }
+    },
+  };
+
+  return new Promise<void>((resolve) => {
+    new Dialog({
+      title: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
+      content: content,
+      buttons: buttons,
+      default: 'ok',
+      close: () => {
+        resolve(returnValue);
+      },
+    }).render(true);
+  });
+}
+/**
+ * Returns chain roll DM based on effect and rileset
+ * @param {number} effect    effect from assisting / first roll
+ * @returns {number} DM for second roll base on first roll
+ */
+function getChainRollBonus(effect:number): number {
+  let ranges = {};
+  switch (game.settings.get("twodsix", "ruleset")) {
+    case "OTHER": //MgT2
+      ranges ={"-6": -3, "-5 to -2": -2, "-1": -1, "0": 1, "1 to 5": 2, "6+": 3};
+      break;
+    case "CLASSIC": //Traveller SRD
+      ranges ={"-6": -3, "-5 to -2": -2, "-1": -1, "0": 0, "1 to 5": 1, "6+": 2};
+      break;
+    case "CE":
+      ranges ={"-6": -2, "-5 to -2": -1, "-1": -1, "0": 1, "1 to 5": 1, "6+": 2};
+      break;
+    case "CLU":
+    case "CD":
+      return (effect < 0 ? 0 : 1);
+    case "CEFTL":
+    case "CEATOM":
+    case "CL":
+    case "BARBARIC":
+    case "SOC":
+      return 0;
+  }
+
+  if (effect <= -6) {
+    return ranges["-6"];
+  } else if (effect <= -2) {
+    return ranges["-5 to -2"];
+  } else if (effect === -1) {
+    return ranges["-1"];
+  } else if (effect === 0) {
+    return ranges["0"];
+  } else if (effect <= 5) {
+    return ranges["1 to 5"];
+  } else if (effect >= 6) {
+    return rnages["6+"];
   }
 }

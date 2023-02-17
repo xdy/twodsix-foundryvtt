@@ -53,6 +53,12 @@ export class TwodsixDiceRoll {
       formulaData.skill = this.rollSettings.rollModifiers.skill < 0 ? -this.rollSettings.rollModifiers.skill : this.rollSettings.rollModifiers.skill;
     }
 
+    // Add chain modifier
+    if (this.rollSettings.rollModifiers.chain) {
+      formula += this.rollSettings.rollModifiers.chain < 0 ? " - @chain" : " + @chain";
+      formulaData.cchain = this.rollSettings.rollModifiers.chain < 0 ? -this.rollSettings.rollModifiers.chain : this.rollSettings.rollModifiers.chain;
+    }
+
     // Add characteristic modifier
     if (this.rollSettings.rollModifiers.characteristic !== "NONE" && this.actor) {
       const charMod = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic);
@@ -203,6 +209,13 @@ export class TwodsixDiceRoll {
       const skillValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.skill);
       flavorText += ` ${usingString} ${this.rollSettings.skillName}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.rollSettings.skillName}</td><td class="centre">${skillValue}</td></tr>`;
+
+      //Chain Roll
+      if (this.rollSettings.rollModifiers.chain) {
+        const chainValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.chain);
+        flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}` + (showModifiers ? `(${chainValue})` : ``);
+        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ChainRoll")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Bonus")}</td><td class="centre">${chainValue}</td></tr>`;
+      }
     }
 
     //Characterisitic Modifier
@@ -281,6 +294,9 @@ export class TwodsixDiceRoll {
     flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question"></i></button>`;
     if (this.isSuccess() && !game.settings.get("twodsix", "automateDamageRollOnHit") && this.item?.type === "weapon") {
       flavorText += `<button data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst"></i></button>`;
+    } else if (this.rollSettings.skillRoll) {
+      flavorText += `<button data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link"></i></button>`;
+      flavorText += `<button data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>`;
     }
 
     flavorText +=`</section></section>`;

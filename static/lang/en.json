@@ -292,7 +292,12 @@
         "Attack": "Attack",
         "ActiveEffect": "Active Effect",
         "Attachments": "Attach./Consm.",
-        "WeaponsHandling": "Weapons Handling"
+        "WeaponsHandling": "Weapons Handling",
+        "ChainRoll": "Chain / Assited Roll",
+        "Bonus": "Bonus",
+        "WithChainBonus": "with Chain/Assit bonus",
+        "WinsRoll": "wins contested / opposed roll.",
+        "TiedRoll": "Tied contested /opposed roll. No winner."
       }
     },
     "Create": "Create",
@@ -687,6 +692,8 @@
       "Effect": "Effect",
       "ToggleDetails": "Toggle Details",
       "Roll": "Roll",
+      "RollChain": "Chain/Assited Roll",
+      "RollOpposed": "Opposed Roll",
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
@@ -702,7 +709,11 @@
       "RollDamage": "Roll Damage",
       "DodgeParry": "Dodge/Parry",
       "Attachments": "Attch/Cons",
-      "WeaponsHandling":"Weapons Handling"
+      "WeaponsHandling":"Weapons Handling",
+      "SelectSkill": "Select Skill",
+      "SkillName": "Skill Name",
+      "MakesOpposedRoll": "Makes an opposed / contested roll.",
+      "MakesChainRoll": "Makes an chain / assisted roll."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1146,7 +1157,9 @@
       "NoActiveToken": "Actor does not have an active token in scene.",
       "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
       "AnimalsCantHoldPositions": "Animals cant be placed in ship positions",
-      "CantEditCreateInCargo": "Can not edit or create effects while in cargo"
+      "CantEditCreateInCargo": "Can not edit or create effects while in cargo",
+      "NoActorSelected": "An actor must be selected or controlled",
+      "NoSkillSelected": "Must select a skill to make a roll"
     }
   },
   "VeryDifficult": "Very Difficult"
