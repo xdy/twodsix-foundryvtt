@@ -1,3 +1,10 @@
+# [2.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.17.0...v2.18.0) (2023-02-18)
+
+
+### Features
+
+* Create chat buttons ([#1247](https://github.com/xdy/twodsix-foundryvtt/issues/1247)) ([4b726bc](https://github.com/xdy/twodsix-foundryvtt/commit/4b726bc4360d6d69de9f686f71701279d3ae12f1))
+
 # [2.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.16.2...v2.17.0) (2023-02-14)
 
 
