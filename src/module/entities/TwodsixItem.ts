@@ -170,6 +170,7 @@ export default class TwodsixItem extends Item {
         usedAmmo = rateOfFireCE || 0;
         break;
     }
+    Object.assign(tmpSettings, {bonusDamage: bonusDamage});
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry")) {
@@ -288,6 +289,13 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
+        if ( this.system.target?.type !== "none" ) {
+          try {
+            await (ItemTemplate.fromItem(this))?.drawPreview();
+          } catch(err) {
+            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+          }
+        }
         tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, workingActor);
       } else {
         tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, workingActor);
@@ -329,7 +337,7 @@ export default class TwodsixItem extends Item {
     const weapon = <Weapon | Component>this.system;
     const consumableDamage = this.getConsumableBonusDamage();
     if (!weapon.damage && !consumableDamage) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage

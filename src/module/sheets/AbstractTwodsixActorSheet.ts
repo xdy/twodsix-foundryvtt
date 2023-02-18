@@ -87,6 +87,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Drag events for macros.
     if (this.actor.isOwner) {
       const handler = ev => this._onDragStart(ev);
+
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
           return;
@@ -151,6 +152,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (event.currentTarget && !(event.currentTarget)["dataset"]) {
       return;
     }
+    // Active Effect
+    /*const li = $(event.currentTarget).data(".effect");
+      if (li) {
+      const effect = await fromUuid(li.dataset.uuid);
+      const dragData = {
+        data: effect.toObject(),
+        uuid: effect.uuid,
+        type: "ActiveEffect"
+      };
+      event.dataTransfer?.setData("text/plain", li.dataset.uuid);
+    }*/
 
     return super._onDragStart(event);
   }

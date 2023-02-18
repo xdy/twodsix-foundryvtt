@@ -2778,3 +2778,7 @@ input[type="text"].color {
   background: var(--s2d6-skill-list-even);
   width: fit-content;
 }
+
+.card-buttons {
+  display: inline-flex;
+}

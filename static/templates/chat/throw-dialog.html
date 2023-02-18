@@ -48,6 +48,11 @@
         </label>
       </div>
       <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.ChainRoll"}}
+          <input type="number" name="rollModifiers.chain" value="{{rollModifiers.chain}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+      <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}
           <select class="select-mod" name="rollModifiers.characteristic" value={{rollModifiers.characteristic}}>
           {{selectOptions characteristicList selected=initialChoice}}

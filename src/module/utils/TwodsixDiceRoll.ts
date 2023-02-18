@@ -25,8 +25,6 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = skill;
     this.item = item;
-    //this.woundedEffect = (<Traveller>this.actor.system.conditions)?.woundedEffect;
-    //this.encumberedEffect = (<Traveller>this.actor.system.conditions)?.encumberedEffect;
 
     this.createRoll();
 
@@ -53,6 +51,12 @@ export class TwodsixDiceRoll {
     if (this.rollSettings.skillRoll) {
       formula += this.rollSettings.rollModifiers.skill < 0 ? " - @skill" : " + @skill";
       formulaData.skill = this.rollSettings.rollModifiers.skill < 0 ? -this.rollSettings.rollModifiers.skill : this.rollSettings.rollModifiers.skill;
+    }
+
+    // Add chain modifier
+    if (this.rollSettings.rollModifiers.chain) {
+      formula += this.rollSettings.rollModifiers.chain < 0 ? " - @chain" : " + @chain";
+      formulaData.cchain = this.rollSettings.rollModifiers.chain < 0 ? -this.rollSettings.rollModifiers.chain : this.rollSettings.rollModifiers.chain;
     }
 
     // Add characteristic modifier
@@ -205,6 +209,13 @@ export class TwodsixDiceRoll {
       const skillValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.skill);
       flavorText += ` ${usingString} ${this.rollSettings.skillName}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.rollSettings.skillName}</td><td class="centre">${skillValue}</td></tr>`;
+
+      //Chain Roll
+      if (this.rollSettings.rollModifiers.chain) {
+        const chainValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.chain);
+        flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}` + (showModifiers ? `(${chainValue})` : ``);
+        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ChainRoll")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Bonus")}</td><td class="centre">${chainValue}</td></tr>`;
+      }
     }
 
     //Characterisitic Modifier
@@ -278,9 +289,20 @@ export class TwodsixDiceRoll {
         timeToComplete = new Roll(this.rollSettings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
       }
     }
-    flavorText +=`</section>`;
+
+    //Add buttons
+    flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question"></i></button>`;
+    if (this.isSuccess() && !game.settings.get("twodsix", "automateDamageRollOnHit") && (this.item?.type === "weapon" || (this.item?.type === "component" && this.item?.system?.subtype === "armament"))) {
+      flavorText += `<button data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst"></i></button>`;
+    } else if (this.rollSettings.skillRoll && this.item?.type !== "weapon" && !(this.item?.type === "component" && this.item?.system?.subtype === "armament")) {
+      flavorText += `<button data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link"></i></button>`;
+      flavorText += `<button data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>`;
+    }
+
+    flavorText +=`</section></section>`;
     flavorTable += `</table>`;
-    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-tooltip">` + flavorTable + `</section></section>`;
+
+    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 
     await this.roll?.toMessage(
       {
@@ -297,7 +319,8 @@ export class TwodsixDiceRoll {
           "twodsix.itemUUID": this.rollSettings.flags.itemUUID ?? "",
           "twodsix.tokenUUID": this.rollSettings.flags.tokenUUID ?? "",
           "twodsix.rollClass": this.rollSettings.flags.rollClass ?? "",
-          "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? ""
+          "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? "",
+          "twodsix.bonusDamage": this.rollSettings.flags.bonusDamage ?? "",
         }
       },
       {rollMode: this.rollSettings.rollMode}
