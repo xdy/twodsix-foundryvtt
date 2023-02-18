@@ -12,7 +12,7 @@ Hooks.once("ready", async function () {
   }
 
   //Prevent a conflict with Twodsix conditions
-  if (game.modules.get("combat-utility-belt")) {
+  if (game.modules.get("combat-utility-belt")?.active) {
     if (game.settings.get("combat-utility-belt", "removeDefaultEffects")) {
       game.settings.set("combat-utility-belt", "removeDefaultEffects", false);
     }
