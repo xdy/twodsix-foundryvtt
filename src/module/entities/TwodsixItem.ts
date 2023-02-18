@@ -337,7 +337,7 @@ export default class TwodsixItem extends Item {
     const weapon = <Weapon | Component>this.system;
     const consumableDamage = this.getConsumableBonusDamage();
     if (!weapon.damage && !consumableDamage) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage
