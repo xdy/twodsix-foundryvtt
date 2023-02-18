@@ -69,7 +69,7 @@ async function onChatCardAction(event: Event): Promise<any> {
   }
 
   // Handle different actions
-  let targets;
+  //let targets;
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
   const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
   const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
@@ -86,25 +86,26 @@ async function onChatCardAction(event: Event): Promise<any> {
     case "formula":
       break;
     case "save":
-      targets = getChatCardTargets();
-      for ( const token of targets ) {
-        const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
-        await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
-      }
+      //targets = getChatCardTargets();
+      //for ( const token of targets ) {
+      //  const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
+      //  await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
+      //}
       break;
     case "toolCheck":
-      await item.rollToolCheck({event}); break;
+      //await item.rollToolCheck({event});
+      break;
     case "placeTemplate":
       try {
         await ItemTemplate.fromItem(item)?.drawPreview();
       } catch(err) {/*blank*/}
       break;
     case "abilityCheck":
-      targets = getChatCardTargets();
-      for ( const token of targets ) {
-        const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
-        await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
-      }
+      //targets = getChatCardTargets();
+      //for ( const token of targets ) {
+      //  const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
+      //  await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
+      //}
       break;
     case "expand":
       onExpandClick(event);
@@ -116,6 +117,8 @@ async function onChatCardAction(event: Event): Promise<any> {
     case "chain":
       //chain roll
       makeSecondaryRoll(message, "chain", showFormulaDialog);
+      break;
+    default:
       break;
   }
 
@@ -163,16 +166,16 @@ async function getChatCardActor(message:ChatMessage): Actor | null {
  * @returns {Token[]}            An Array of Token documents, if any
  * @private
  */
-function getChatCardTargets(): Token[] {
+/*function getChatCardTargets(): Token[] {
   let targets = canvas.tokens.controlled.filter(t => !!t.actor);
   if ( !targets.length && game.user.character ) {
     targets = targets.concat(game.user.character.getActiveTokens());
   }
   if ( !targets.length ) {
-    ui.notifications.warn(game.i18n.localize("DND5E.ActionWarningNoToken"));
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActionWarningNoToken"));
   }
   return targets;
-}
+}*/
 
 /** Handle clicking of dice tooltip buttons
   * @param {Event} event
@@ -340,6 +343,6 @@ function getChainRollBonus(effect:number): number {
   } else if (effect <= 5) {
     return ranges["1 to 5"];
   } else if (effect >= 6) {
-    return rnages["6+"];
+    return ranges["6+"];
   }
 }

@@ -1159,7 +1159,8 @@
       "CantEditCreateInCargo": "Can not edit or create effects while in cargo",
       "NoActorSelected": "An actor must be selected or controlled",
       "NoSkillSelected": "Must select a skill to make a roll",
-      "NoDamageForWeapon": "This weapon has not specified the damage it does."
+      "NoDamageForWeapon": "This weapon has not specified the damage it does.",
+      "ActionWarningNoToken": "No targets selected for action."
     }
   },
   "VeryDifficult": "Very Difficult"
