@@ -237,6 +237,9 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
       break;
   }
   const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showDialog, tempSettings, selectedSkill, undefined, <TwodsixActor>secondActor);
+  if (!settings.shouldRoll) {
+    return;
+  }
   const roll:TwodsixDiceRoll = await selectedSkill.skillRoll(showDialog, settings, true);
   let winnerName = "";
   if (roll && type === "opposed") {
