@@ -1,3 +1,10 @@
+## [2.18.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.1...v2.18.2) (2023-02-18)
+
+
+### Bug Fixes
+
+* clean-up chatCard code ([#1250](https://github.com/xdy/twodsix-foundryvtt/issues/1250)) ([9d7613c](https://github.com/xdy/twodsix-foundryvtt/commit/9d7613cfd4eb7aa4f3df8f49fe7184c49b951bc5))
+
 ## [2.18.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.0...v2.18.1) (2023-02-18)
 
 
