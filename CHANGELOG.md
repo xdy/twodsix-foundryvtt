@@ -1,3 +1,10 @@
+## [2.18.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.0...v2.18.1) (2023-02-18)
+
+
+### Bug Fixes
+
+* respect aborting roll ([#1249](https://github.com/xdy/twodsix-foundryvtt/issues/1249)) ([cf2cb10](https://github.com/xdy/twodsix-foundryvtt/commit/cf2cb1095ca510b65605815ceaca52f6f32132d6))
+
 # [2.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.17.0...v2.18.0) (2023-02-18)
 
 
