@@ -3360,6 +3360,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .sheet-tabs {
   justify-content: space-between;
   font-size: 14px;
+  text-align: center;
 }
 
 .token-sheet .notes {

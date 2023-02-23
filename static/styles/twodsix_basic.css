@@ -886,6 +886,7 @@ svg:hover {
 .sheet nav.sheet-tabs{
   height: auto !important;
   line-height: 24px !important;
+  text-align: center;
 }
 
 .sheet nav.sheet-tabs .item {
@@ -1814,6 +1815,7 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   vertical-align: middle;
   padding: 3px 4px;
   font-size: 15px;
+  text-align: center;
 }
 
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
