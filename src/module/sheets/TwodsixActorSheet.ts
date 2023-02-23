@@ -27,7 +27,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
         contacts: TextEditor.enrichHTML(returnData.system.contacts, {async: false}),
         bio: TextEditor.enrichHTML(returnData.system.bio, {async: false}),
-        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false})
+        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false}),
+        xpNotes: TextEditor.enrichHTML(returnData.system.xpNotes, {async: false})
       };
     }
 

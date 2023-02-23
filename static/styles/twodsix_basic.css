@@ -716,7 +716,7 @@ span.stat-name-table, input.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 5ch;
+  width: 4ch;
   height: 2ch;
   margin: 0;
   padding: 0;
@@ -1352,9 +1352,11 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 11em 12em 19em;
+  grid-template-rows: 10em 2em 11em 12em 19em;
   gap: 30px 1px;
   grid-template-areas:
+      "char-xp"
+      "char-xp-details"
       "char-description"
       "char-contacts"
       "char-bio";
@@ -1374,6 +1376,19 @@ span.total-output {
   border-radius: 0 3px 3px;
 }
 
+.char-xp {
+  grid-area: char-xp;
+}
+
+.char-xp-details {
+  grid-area: char-xp-details;
+}
+
+.xp-details {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .char-description {
   grid-area: char-description;
 }
@@ -1386,7 +1401,7 @@ span.total-output {
   grid-area: char-contacts;
 }
 
-.char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable] {
+.char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable], .char-xp div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   height: 90%;
