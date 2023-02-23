@@ -292,7 +292,12 @@
         "Attack": "Ataque",
         "ActiveEffect": "Efecto Activo",
         "Attachments": "Acc./Consm.",
-        "WeaponsHandling": "Manejo Armas"
+        "WeaponsHandling": "Manejo Armas",
+        "ChainRoll": "Tirada en Cadena / con Apoyo",
+        "Bonus": "Bono",
+        "WithChainBonus": "con bono Cadena / Apoyo",
+        "WinsRoll": "gana tirada disputa / opuesta.",
+        "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor."
       }
     },
     "Create": "Crear",
@@ -496,6 +501,22 @@
         "sorcerySkill": "Hechicería"
       }
     },
+    "Target": {
+      "AreaEffect": "Area de Efecto",
+      "Target": "Objetivo",
+      "None": "ninguno",
+      "Radius": "radio",
+      "Sphere": "esfera",
+      "Cylinder": "cilindro",
+      "Cone": "cono",
+      "Square": "cuadrado",
+      "Cube": "cubo",
+      "Line": "línea",
+      "Wall": "pared",
+      "Width": "Anchura",
+      "Units": "Unidades",
+      "TypeArea": "Tipo Area"
+    },
     "Ship": {
       "Actions": "Acciones",
       "ActionType": "Tipo Acción",
@@ -669,7 +690,10 @@
       "Cancel": "Cancelar",
       "DamageUsing": "Daño utilizando",
       "Effect": "Efecto",
+      "ToggleDetails": "Cambiar Detalles",
       "Roll": "Tirar",
+      "RollChain": "Tirada en Cadena / Apoyo",
+      "RollOpposed": "Tirada Opuesta",
       "Rolling": "Tirada",
       "With": "con",
       "resultShows": "Resultado:",
@@ -682,9 +706,14 @@
       "RollInitiative": "Tira Iniciativa",
       "characteristic": "atributo",
       "ROF": "CdT",
+      "RollDamage": "Tirada Daño",
       "DodgeParry": "Esquiva/Parada",
       "Attachments": "Acc/Cons",
-      "WeaponsHandling": "Manejo Armas"
+      "WeaponsHandling": "Manejo Armas",
+      "SelectSkill": "Selecciona Habilidad",
+      "SkillName": "Nombre Habilidad",
+      "MakesOpposedRoll": "Realiza una tirada disputa / opuesta.",
+      "MakesChainRoll": "Realiza una tirada en cadena / apoyo."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1094,7 +1123,6 @@
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
       "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Falta definir el daño del arma",
       "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
       "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
       "EmptyConsumable": "Sin suministro, no te quedan consumibles. Necesitas recargar",
@@ -1106,7 +1134,8 @@
       "DropFailedWith": "Error de asignación _ERROR_MSG_",
       "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
-      "InvalidRollFormula": "Fórmula de daño no válida."
+      "InvalidRollFormula": "Fórmula de daño no válida.",
+      "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -1127,7 +1156,11 @@
       "NoActiveToken": "El Actor no tiene un token en la escena.",
       "InvalidReactionInputs": "No es posible realizar la Tirada de Reacción debido a que los campos de Ataque y Huida son inválidos.",
       "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave",
-      "CantEditCreateInCargo": "No se pueden editar o crear efectos activos mientras se está en la carga"
+      "CantEditCreateInCargo": "No se pueden editar o crear efectos activos mientras se está en la carga",
+      "NoActorSelected": "Un actor debe estar seleccionado o controlado",
+      "NoSkillSelected": "Debes seleccionar habilidad para realizar tirada",
+      "NoDamageForWeapon": "Este arma no tiene daño especificado.",
+      "ActionWarningNoToken": "Sin objetivo seleccionado para la acción."
     }
   },
   "VeryDifficult": "Muy Difícil"
