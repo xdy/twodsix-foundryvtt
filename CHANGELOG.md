@@ -1,3 +1,10 @@
+## [2.19.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.0...v2.19.1) (2023-02-24)
+
+
+### Bug Fixes
+
+* Drag ruler settings when using OTHER ruleset ([#1254](https://github.com/xdy/twodsix-foundryvtt/issues/1254)) ([3b74a0d](https://github.com/xdy/twodsix-foundryvtt/commit/3b74a0daea700bea0ec6a32014c74b8b03c610da))
+
 # [2.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.2...v2.19.0) (2023-02-24)
 
 
