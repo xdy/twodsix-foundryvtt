@@ -1856,9 +1856,11 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 12em 13em 19em;
+  grid-template-rows: 10em 2em 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
+      "char-xp"
+      "char-xp-details"
       "char-description"
       "char-contacts"
       "char-bio";
@@ -1890,7 +1892,20 @@ span.total-output {
   grid-area: char-contacts;
 }
 
-.char-description div[contenteditable], .char-contacts div[contenteditable] {
+.char-xp {
+  grid-area: char-xp;
+}
+.char-xp-details {
+  grid-area: char-xp-details;
+}
+
+.xp-details {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.char-description div[contenteditable], .char-contacts div[contenteditable], .char-xp div[contenteditable], .char-bio div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   height: 95%;
   overflow-y: auto;
@@ -1898,13 +1913,13 @@ span.total-output {
   padding: 0.2em;
 }
 
-.char-bio div[contenteditable] {
+/*.char-bio div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color);
   padding: 0.2em;
-}
+}*/
 
 .showChat {
   cursor: pointer;
@@ -2578,7 +2593,6 @@ a.ship-notes-tab.active {
 .grid-columns-single-row:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
 }
-
 
 .cargo-all {
   margin-top: 19px;
@@ -3346,6 +3360,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .sheet-tabs {
   justify-content: space-between;
   font-size: 14px;
+  text-align: center;
 }
 
 .token-sheet .notes {

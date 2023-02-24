@@ -162,7 +162,12 @@
         "equipment": false,
         "consumable": false,
         "attachment": false
-      }
+      },
+      "experience": {
+        "value": 0,
+        "totalEarned": 0
+      },
+      "xpNotes": ""
     },
     "ship": {
       "name": "",

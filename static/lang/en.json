@@ -97,7 +97,11 @@
         "BIOGRAPHY": "BIOGRAPHY",
         "CONTACTS": "CONTACTS",
         "DESCRIPTION": "DESCRIPTION",
-        "ENEMIES": "ENEMIES"
+        "ENEMIES": "ENEMIES",
+        "XP": "EXPERIENCE POINTS",
+        "Points": "points",
+        "Available": "Available",
+        "TotalEarned": "Total Earned"
       },
       "Items": {
         "Amount": "Amount",

@@ -260,11 +260,18 @@ export interface Traveller {
   movement:MovementData;
   hideStoredItems: StoredItemView;
   conditions: Conditions;
+  experience: ExperiencePoints;
+  xpNotes:string;
 }
 
 export interface Conditions {
   woundedEffect:number;
   encumberedEffect:number;
+}
+
+export interface ExperiencePoints {
+  value: number;
+  totalEarned: number;
 }
 
 export interface Animal {
