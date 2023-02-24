@@ -42,7 +42,7 @@ export class TwodsixRollSettings {
     const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
     const actorUUID:string = settings?.flags?.actorUUID ?? (<Actor>sourceActor)?.uuid ?? "";
     let rollClass = "";
-    const bonusDamage:string = settings?.flags?.bonusDamage ?? "";
+    const bonusDamage:string = settings?.bonusDamage ?? "";
 
     let woundsValue = 0;
     let encumberedValue = 0;
