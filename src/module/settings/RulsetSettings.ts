@@ -74,6 +74,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseLocations", false));
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
+    settings.push(numberSetting('encumbFractionOneSquare', 0.5));
+    settings.push(numberSetting('encumbFraction75pct', 0.33));
     return settings;
   }
 }

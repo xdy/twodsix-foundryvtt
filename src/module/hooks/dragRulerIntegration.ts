@@ -61,7 +61,6 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               ];
             }
           case "CE":
-          case "OTHER":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 2) && game.settings.get("twodsix", "useEncumbrance")) {
@@ -69,6 +68,21 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
                 { range: 1.5, color: "walk" }
               ];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 6) && game.settings.get("twodsix", "useEncumbrance")) {
+              movementSpeed *= 0.75;
+            }
+            return [
+              { range: movementSpeed, color: "walk" },
+              { range: movementSpeed * 2, color: "dash" },
+              { range: movementSpeed * 3, color: "run" }
+            ];
+          case "OTHER":
+            if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max * game.settings.get("twodsix", "encumbFractionOneSquare")) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [
+                { range: 1.5, color: "walk" }
+              ];
+            } else if ((actorData.encumbrance.value > actorData.encumbrance.max * game.settings.get("twodsix", "encumbFraction75pct")) && game.settings.get("twodsix", "useEncumbrance")) {
               movementSpeed *= 0.75;
             }
             return [

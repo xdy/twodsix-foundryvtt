@@ -1092,6 +1092,14 @@
       "showHitsChangesInChat": {
         "hint": "Show a whispered chat message to GM when damage/healing is appled to an actor.",
         "name": "Show damage / healing chat message to GM"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "This is a Drag Ruler module setting to set the one 'square' movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Encumbrance Fraction for 1.5m/5ft of movement"
+      },
+      "encumbFraction75Pct": {
+        "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Encumbrance Fraction for 1.5m/5ft of movement"
       }
     },
     "CloseAndCreateNew": "Close and create new",
