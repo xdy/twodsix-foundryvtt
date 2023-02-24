@@ -1099,7 +1099,7 @@
       },
       "encumbFraction75pct": {
         "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
-        "name": "Encumbrance Fraction for 1.5m/5ft of movement"
+        "name": "Encumbrance Fraction for 75 percent movement rate"
       }
     },
     "CloseAndCreateNew": "Close and create new",
