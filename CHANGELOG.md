@@ -1,3 +1,10 @@
+# [2.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.2...v2.19.0) (2023-02-24)
+
+
+### Features
+
+* add xp information to actor ([#1252](https://github.com/xdy/twodsix-foundryvtt/issues/1252)) ([76f4ab9](https://github.com/xdy/twodsix-foundryvtt/commit/76f4ab9dab45e6e0b522780d1ce10fdf3d1288df))
+
 ## [2.18.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.18.1...v2.18.2) (2023-02-18)
 
 
