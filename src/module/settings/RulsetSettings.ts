@@ -61,6 +61,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting('reverseHealingOrder', false));
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with vales other than 0.5
+    settings.push(numberSetting('encumbFractionOneSquare', 0.5));
+    settings.push(numberSetting('encumbFraction75pct', 0.33));
     settings.push(numberSetting('encumbranceModifier', -1, false));
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
@@ -74,6 +76,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseLocations", false));
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
+
     return settings;
   }
 }

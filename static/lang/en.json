@@ -1055,11 +1055,11 @@
       },
       "encumbranceFraction": {
         "hint": "The fraction applied to the maximum encumbrance formula to indicate actor is encumbered.  For example, a value of 0.5 would mean the actor becomes encumbered when carried weight exceeds one half of maximum encumbrance.",
-        "name": "Fraction of maximum encumbrance when actor becomes encumbered"
+        "name": "Fraction of maximum encumbrance when encumbrance roll modifier applies"
       },
       "encumbranceModifier": {
         "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
-        "name": "Modifier to physical characteristics when actor becomes encumbered"
+        "name": "Roll modifier using physical characteristics when actor is encumbered"
       },
       "transferDroppedItems": {
         "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
@@ -1096,6 +1096,14 @@
       "showHitsChangesInChat": {
         "hint": "Show a whispered chat message to GM when damage/healing is appled to an actor.",
         "name": "Show damage / healing chat message to GM"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "This is a Drag Ruler module setting to set the one 'square' movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Fraction of maximum encumbrance for 1.5m/5ft of movement"
+      },
+      "encumbFraction75pct": {
+        "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Fraction of maximum encumbrance for 75 percent movement rate"
       }
     },
     "CloseAndCreateNew": "Close and create new",
