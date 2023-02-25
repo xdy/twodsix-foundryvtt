@@ -90,7 +90,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
 
     this.handleContentEditable(html);
-    html.find('.open-link').on('click', openPDFReference.bind(this, [this.item.system.docReference]));
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
