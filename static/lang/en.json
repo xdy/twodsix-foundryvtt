@@ -675,7 +675,8 @@
     "SpaceObject": {
       "Notes": "Notes",
       "Damage": "Damage",
-      "Information": "Information"
+      "Information": "Information",
+      "Features": "Features"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

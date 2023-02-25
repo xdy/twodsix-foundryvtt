@@ -326,7 +326,7 @@
       },
       "weaponsType": "",
       "openVehicle": false,
-      "techLevel": "",
+      "techLevel": 0,
       "traits": "",
       "weight": ""
     },
@@ -477,11 +477,12 @@
       }
     },
     "space-object": {
-      "docReference": "",
-      "pdfReference": {
-        "type": "",
-        "href": "",
-        "label": ""
+      "templates": ["referenceTemplate"],
+      "techLevel": 0,
+      "features": "",
+      "count": {
+        "value": 0,
+        "max": 0
       },
       "description": "",
       "notes": "",

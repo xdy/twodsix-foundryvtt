@@ -298,7 +298,10 @@ export interface Animal {
   moraleDM:string;
 }
 
-export interface SpaceObject {
+export interface SpaceObject extends LinkTemplate {
+  techLevel:number;
+  features:string;
+  count:Encumbrance;
   description:string;
   notes:string;
   movement:MovementData;
