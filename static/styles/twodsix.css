@@ -577,7 +577,7 @@ h2 {
 .space-object-content-container {
   display: grid;
   grid-template-columns: 18em 18em;
-  grid-template-rows: 21em 8em;
+  grid-template-rows: 22em 8em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
