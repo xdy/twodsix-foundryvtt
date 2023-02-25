@@ -487,6 +487,8 @@
       "description": "",
       "notes": "",
       "damage": "3d6",
+      "thrust": 0,
+      "roundsActive": 0,
       "movement": {
         "burrow": 0,
         "climb": 0,

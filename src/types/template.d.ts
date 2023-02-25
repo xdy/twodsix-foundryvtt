@@ -304,6 +304,8 @@ export interface SpaceObject extends LinkTemplate {
   count:Encumbrance;
   description:string;
   notes:string;
+  thrust:number;
+  roundsActive:number;
   movement:MovementData;
   damage:string;
 }

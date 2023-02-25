@@ -29,6 +29,18 @@
           <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Features"}}</span>
           <input class="form-input" type="text" name="system.features" value="{{system.features}}"/>
         </div>
+        <!--Thrust-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Thrust"}}</span>
+          <input class="form-input" type="number" name="system.thrust" value="{{system.thrust}}"/>
+          {{localize "TWODSIX.Ship.Gs"}}
+        </div>
+        <!--Rounds Active-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.RoundsActive"}}</span>
+          <input class="form-input" type="number" name="system.roundsActive" value="{{system.roundsActive}}" step="1" min="0"/>
+          {{localize "TWODSIX.SpaceObject.rounds"}}
+        </div>
         <!-- Movement -->
         <div class="flexrow space-object-data" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>
           <span class="flexlabel"><i class="fa-solid fa-rocket"></i>:</span>
