@@ -1,5 +1,5 @@
 {{#unless system.isAttachment}}
-<div class="consumable-row" data-consumable-id="{{id}}">
+<div class="consumable-row" data-consumable-id="{{id}}" data-weapon-id="{{weaponID}}">
   <div class="wrapper">
     {{name}}:
     {{#with system}}
@@ -14,7 +14,7 @@
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
-    <span {{#iff isSelected '===' consumableId}} style="color: green;" {{else}} style="color: var(--s2d6-nav-background);" {{/iff}}> <i class="fa-solid fa-circle-check"></i></span>
+    <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-weapon-id="{{weaponID}}" {{#iff isSelected '===' consumableId}} style="color: green;" {{else}} style="color: var(--s2d6-nav-background);" {{/iff}}> <i class="fa-solid fa-circle-check"></i></span>
   </div>
 </div>
 {{else}}
