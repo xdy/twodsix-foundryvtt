@@ -56,7 +56,7 @@ export class TwodsixShipActions {
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     // eslint-disable-next-line no-useless-escape
-    const re = new RegExp(/^(.[^\/]+)\/?([a-zA-Z0-9]{0,4}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
+    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/(\w{0,4}))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
     const selectedActor = <TwodsixActor>extra.actor;
 
