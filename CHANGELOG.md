@@ -1,3 +1,10 @@
+## [2.19.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.1...v2.19.2) (2023-02-27)
+
+
+### Bug Fixes
+
+* add data fields to space-object plus fixes ([#1255](https://github.com/xdy/twodsix-foundryvtt/issues/1255)) ([6eb5de0](https://github.com/xdy/twodsix-foundryvtt/commit/6eb5de043d531b983b7b048a6cab3dde40d2b9ee))
+
 ## [2.19.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.0...v2.19.1) (2023-02-24)
 
 
