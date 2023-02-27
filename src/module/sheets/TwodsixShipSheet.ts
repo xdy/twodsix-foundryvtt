@@ -278,8 +278,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         } else {
           return false;
         }
-      } else if (droppedObject.type === "vehicle") {
-        await this._addVehicleToComponents(droppedObject, dropData.uuid);
+      } else if (["vehicle", "ship"].includes(droppedObject.type)) {
+        await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
       } else if (droppedObject.type === "animal") {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
@@ -294,19 +294,19 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       return false;
     }
   }
-  async _addVehicleToComponents(droppedObject: any, uuid: string): Promise <void> {
+  async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
     const newComponent = {
       name: droppedObject.name,
       img: droppedObject.img,
       type: "component",
       system: {
-        docReference: droppedObject.system.docReference,
-        price: droppedObject.system.cost,
+        docReference: droppedObject.type === "ship" ? "" : droppedObject.system.docReference,
+        price: droppedObject.type === "ship" ? droppedObject.system.shipValue : droppedObject.system.cost,
         quantity: 1,
         status: "operational",
         subtype: "vehicle",
         techLevel: droppedObject.system.techLevel,
-        weight: droppedObject.system.weight,
+        weight: droppedObject.type === "ship" ? droppedObject.system.shipStats.mass.max : droppedObject.system.weight,
         actorLink: uuid
       }
     };

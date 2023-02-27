@@ -675,7 +675,11 @@
     "SpaceObject": {
       "Notes": "Notes",
       "Damage": "Damage",
-      "Information": "Information"
+      "Information": "Information",
+      "Features": "Features",
+      "Thrust": "Thrust",
+      "rounds":"round(s)",
+      "RoundsActive": "Rounds Active"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

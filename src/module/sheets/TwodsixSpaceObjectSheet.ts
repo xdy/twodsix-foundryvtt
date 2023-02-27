@@ -43,7 +43,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   activateListeners(html:JQuery):void {
     super.activateListeners(html);
     html.find('.roll-damage').on('click', this.onRollDamage.bind(this, this.actor));
-    html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 

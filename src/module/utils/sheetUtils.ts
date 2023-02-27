@@ -255,9 +255,9 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(sourceString:string[]): void {
+export function openPDFReference(sourceString:string): void {
   if (sourceString) {
-    const [code, page] = sourceString[0].split(' ');
+    const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
     if (ui["pdfpager"]) {
       ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
