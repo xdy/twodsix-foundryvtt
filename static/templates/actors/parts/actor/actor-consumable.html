@@ -14,6 +14,7 @@
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
+    <span {{#iff isSelected '===' consumableId}} style="color: green;" {{else}} style="color: var(--s2d6-nav-background);" {{/iff}}> <i class="fa-solid fa-circle-check"></i></span>
   </div>
 </div>
 {{else}}
