@@ -97,7 +97,11 @@
         "BIOGRAPHY": "BIOGRAFÍA",
         "CONTACTS": "CONTACTOS",
         "DESCRIPTION": "DESCRIPCIÓN",
-        "ENEMIES": "ENEMIGOS"
+        "ENEMIES": "ENEMIGOS",
+        "XP": "PUNTOS EXPERIENCIA",
+        "Points": "puntos",
+        "Available": "Disponible",
+        "TotalEarned": "Total Ganado"
       },
       "Items": {
         "Amount": "Cantidad",
@@ -279,7 +283,7 @@
         "ItemModifier": "Bono Equipo",
         "ROF": "Cadencia Tiro",
         "Wounds": "Heridas",
-        "Encumbered": "Carga",
+        "Encumbered": "Sobrecargado",
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
         "DodgeParry": "Modificador Esquiva/Parada",
@@ -1051,11 +1055,11 @@
       },
       "encumbranceFraction": {
         "hint": "La fracción aplicable en la fórmula de carga máxima para indicar que el actor esta sobrecargado. Ejemplo: 0.5 significa que el actor se encuentra sobrecargado cuando el peso supera la mitad de la carga máxima.",
-        "name": "Fracción de la carga máxima cuando el actor esta sobrecargado"
+        "name": "Fracción de carga máxima aplicable en el modificador de la tirada"
       },
       "encumbranceModifier": {
         "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
-        "name": "Modificador de atributos físicos en sobrecarga de peso"
+        "name": "Roll modifier using physical characteristics when actor is encumbered"
       },
       "transferDroppedItems": {
         "hint": "Cambia la funcionalidad por defecto de Foundry al soltar objetos encima (objeto será borrado de la fuente) y transferir equipo entre los actores.",
@@ -1092,6 +1096,14 @@
       "showHitsChangesInChat": {
         "hint": "Mostrar un mensaje oculto para el Árbitro cuando se aplica daño/curación a un Actor.",
         "name": "Mostrar daño/curación en el chat del Árbitro"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite de movimiento para un cuadrado. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para moverse 1,5m/5ft"
+      },
+      "encumbFraction75pct": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite del 75% del movimiento. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para el 75% del movimiento"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
