@@ -675,7 +675,11 @@
     "SpaceObject": {
       "Notes": "Notas",
       "Damage": "Daño",
-      "Information": "Información"
+      "Information": "Información",
+      "Features": "Rasgos",
+      "Thrust": "Impulso",
+      "rounds": "asaltos",
+      "RoundsActive": "Asaltos Activo"
     },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
@@ -1059,7 +1063,7 @@
       },
       "encumbranceModifier": {
         "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
-        "name": "Roll modifier using physical characteristics when actor is encumbered"
+        "name": "Modificador de atributos físicos en sobrecarga de peso"
       },
       "transferDroppedItems": {
         "hint": "Cambia la funcionalidad por defecto de Foundry al soltar objetos encima (objeto será borrado de la fuente) y transferir equipo entre los actores.",
