@@ -477,7 +477,9 @@
         "DropConsumablesHere": "You can drop consumables here.",
         "DropAttachmentsHere": "You can drop attachments here.",
         "RemoveConsumable": "Remove consumable",
-        "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
+        "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?",
+        "SelectConsumable": "Select Consumable",
+        "ActiveConsumable": "Active Consumable"
       },
       "Weapon": {
         "Ammo": "Ammo",

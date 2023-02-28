@@ -14,7 +14,13 @@
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
-    <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-weapon-id="{{weaponID}}" {{#iff isSelected '===' consumableId}} style="color: green; cursor: pointer;" {{else}} style="color: var(--s2d6-nav-background); cursor: pointer;" {{/iff}}> <i class="fa-solid fa-circle-check"></i></span>
+    <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-weapon-id="{{weaponID}}"
+      {{#iff isSelected '===' consumableId}}
+        style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
+      {{else}}
+        data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
+      {{/iff}}> <i class="fa-solid fa-circle-check"></i>
+    </span>
   </div>
 </div>
 {{else}}
