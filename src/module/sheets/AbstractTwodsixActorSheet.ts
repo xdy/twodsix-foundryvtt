@@ -53,6 +53,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           content: template,
           yes: async () => {
             const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
+            await ownedItem.update({'system.equipped': 'ship'});
             await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
@@ -86,6 +87,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Drag events for macros.
     if (this.actor.isOwner) {
       const handler = ev => this._onDragStart(ev);
+
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
           return;
@@ -125,6 +127,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       //Edit active effect shown on actor
       html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
+      html.find('.effect-control').on('click', this._modifyEffect.bind(this));
     }
   }
 
@@ -149,6 +152,17 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (event.currentTarget && !(event.currentTarget)["dataset"]) {
       return;
     }
+    // Active Effect
+    /*const li = $(event.currentTarget).data(".effect");
+      if (li) {
+      const effect = await fromUuid(li.dataset.uuid);
+      const dragData = {
+        data: effect.toObject(),
+        uuid: effect.uuid,
+        type: "ActiveEffect"
+      };
+      event.dataTransfer?.setData("text/plain", li.dataset.uuid);
+    }*/
 
     return super._onDragStart(event);
   }
@@ -271,19 +285,23 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
-    const sameActor = this.actor.items.get(itemData._id);;
+    return await this.processDroppedItem(event, itemData);
+  }
+
+  public async processDroppedItem(event:DragEvent, itemData: any): Promise<boolean> {
+    const sameActor:TwodsixItem = this.actor.items.get(itemData._id);
     if (sameActor) {
       const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
       const targetItem = this.actor.items.get(dropTargetId);
       if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', 'allowDragDropOfLists') && !sameActor.getFlag('twodsix','untrainedSkill')) {
         console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
         //super._onDrop(event); //needed?
-        return await this._onSortItem(event, itemData); //.toJSON()???
+        return !!await this._onSortItem(event, itemData); //.toJSON()???
       } else {
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
-    return actor.handleDroppedItem(itemData);
+    return await (<TwodsixActor>this.actor).handleDroppedItem(itemData);
   }
 
   protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
@@ -341,12 +359,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;
       sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
-
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
     }
+    sheetData.effects = actor.effects.contents;
   }
 
   protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
@@ -531,7 +549,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _onDeleteEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
     const selectedEffect = await fromUuid(effectUuid);
-    console.log(selectedEffect);
     await Dialog.confirm({
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
@@ -540,8 +557,32 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       },
       no: () => {
         //Nothing
-      },
+      }
     });
+  }
+
+  protected async _modifyEffect(event): Promise<void> {
+    const action = event.currentTarget["dataset"].action;
+    if (action === "delete") {
+      this._onDeleteEffect(event);
+    } else if (action === "edit") {
+      this._onEditEffect(event);
+    } else if (action === "toggle") {
+      const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
+      if (selectedEffect) {
+        await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+      }
+    } else if (action === "create") {
+      this.actor.createEmbeddedDocuments("ActiveEffect", [{
+        label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
+        icon: "icons/svg/aura.svg",
+        origin: "Custom",
+        disabled: false
+      }]);
+
+    } else {
+      console.log("Unknown Action");
+    }
   }
 
   private getItem(event): TwodsixItem {

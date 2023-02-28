@@ -2,12 +2,13 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { advantageDisadvantageTerm } from "./i18n";
-import { calcModFor, getKeyByValue } from "./utils/sheetUtils";
+import { getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import {Skills, Component} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
-import { _genTranslatedSkillList, _genUntranslatedSkillList } from "./utils/TwodsixRollSettings";
+import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
+import { ObjectbyString, simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -61,7 +62,8 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
     const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
     if (characteristicElement) {
-      const mod: number = calcModFor(characteristicElement.current);
+      //const mod: number = calcModFor(characteristicElement.current);
+      const mod: number = characteristicElement.mod;
       const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
     } else if ('NONE' === characteristic) {
@@ -84,12 +86,12 @@ export default function registerHandlebarsHelpers(): void {
     return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
   });
 
-  Handlebars.registerHelper('twodsix_skillTotal', (actor, characteristic, value) => {
-    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
-    let adjValue = value;
+  Handlebars.registerHelper('twodsix_skillTotal', (actor, skillItem) => {
+    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, skillItem.system.characteristic)];
+    let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (value === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+    if (adjValue === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
       adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
@@ -98,11 +100,17 @@ export default function registerHandlebarsHelpers(): void {
         characteristicElement.current = characteristicElement.value - characteristicElement.damage;
       }
 
-      const mod = calcModFor(characteristicElement.current);
+      //const mod = calcModFor(characteristicElement.current);
+      const mod = characteristicElement.mod;
       return Number(adjValue) + mod;
     } else {
       return adjValue;
     }
+  });
+
+  Handlebars.registerHelper('twodsix_adjustedSkillValue', (actor, skillItem) => {
+    const adjValue = actor.system.skills[simplifySkillName(skillItem.name)];
+    return (adjValue !== skillItem.system.value ? adjValue : `&#8212;`);
   });
 
   Handlebars.registerHelper('twodsix_invertSkillRollShiftClick', () => {
@@ -160,7 +168,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('skillName', (skillName) => {
-    return TwodsixItem.simplifySkillName(skillName);
+    return simplifySkillName(skillName);
   });
 
   Handlebars.registerHelper('replace', (text, key, value) => {
@@ -220,11 +228,55 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'showTimeframe');
   });
 
+  Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
+    let returnValue = ``;
+    const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
+    if (ObjectbyString(actor.overrides, field)) {
+      const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
+      const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
+      const baseValue = ObjectbyString(actor._source, field);
+      returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
+      const workingEffects = actor.effects.filter(e => !e.disabled);
+      for (const effect of workingEffects) {
+        const realChanges = effect.changes.filter(ch => ch.key === field);
+        if (realChanges.length > 0) {
+          returnValue += `${effect.label}: `;
+          for (const change of realChanges) {
+            returnValue += `${modes[change.mode]}(${change.value}), `;
+          }
+        }
+      }
+      returnValue = returnValue.slice(0, -2);
+    }
+    return returnValue;
+  });
+
   Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {
     return (display && (itemLocation === "ship"));
   });
 
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
+
+  Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {
+    let sortedArray: TwodsixItem[] = [];
+    const slice = array?.slice(0);
+    if (slice) {
+      sortedArray = slice.sort((a, b) => {
+        if (a[property] == null) {
+          return 1;
+        } else {
+          if (b[property] == null) {
+            return -1;
+          } else if (a[property] === b[property]) {
+            return 0;
+          } else {
+            return a[property].toLocaleLowerCase().localeCompare(b[property].toLocaleLowerCase());
+          }
+        }
+      });
+    }
+    return Handlebars.helpers.each(sortedArray, options);
+  });
 
   Handlebars.registerHelper('each_sort_item', (array, options) => {
     let sortedArray: TwodsixItem[] = [];
@@ -273,11 +325,26 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
     let returnValue = {};
     if (actor) {
-      returnValue = _genTranslatedSkillList(actor);
+      returnValue = _getTranslatedCharacteristicList(actor);
     } else {
-      returnValue = _genUntranslatedSkillList();
+      returnValue = _genUntranslatedCharacteristicList();
     }
     return returnValue;
+  });
+
+  Handlebars.registerHelper('twodsix_getEffectSource', (effect: ActiveEffect) => {
+    if (["Wounded", "Encumbered", "Dead"].includes(effect.label)) {
+      return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
+    } else if (effect.origin) {
+      const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
+      if (attachedItem) {
+        return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
+      } else {
+        return effect.origin;
+      }
+    } else {
+      return game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
+    }
   });
 
   Handlebars.registerHelper('makePieImage', (text: string) => {

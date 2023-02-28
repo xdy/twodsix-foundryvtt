@@ -112,6 +112,7 @@ export type Gear = Armor
   | Equipment
   | Storage
   | Weapon
+  | Component
   ;
 
 export type UsesConsumables = Armor
@@ -254,10 +255,23 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
-  woundedEffect:number;
+  skillRollTypes:Record<string,string>;
   characteristicEdit:boolean;
   movement:MovementData;
   hideStoredItems: StoredItemView;
+  conditions: Conditions;
+  experience: ExperiencePoints;
+  xpNotes:string;
+}
+
+export interface Conditions {
+  woundedEffect:number;
+  encumberedEffect:number;
+}
+
+export interface ExperiencePoints {
+  value: number;
+  totalEarned: number;
 }
 
 export interface Animal {
@@ -284,9 +298,14 @@ export interface Animal {
   moraleDM:string;
 }
 
-export interface SpaceObject {
+export interface SpaceObject extends LinkTemplate {
+  techLevel:number;
+  features:string;
+  count:Encumbrance;
   description:string;
   notes:string;
+  thrust:number;
+  roundsActive:number;
   movement:MovementData;
   damage:string;
 }
@@ -542,6 +561,7 @@ export interface Skills extends LinkTemplate {
 export interface Templates {
   gearTemplate:GearTemplate;
   referenceTemplate:LinkTemplate;
+  targetTemplate: TargetTemplate
 }
 
 export interface LinkTemplate {
@@ -570,7 +590,23 @@ export interface GearTemplate {
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:string;
+  equipped:Equipped;
+}
+
+export interface TargetTemplate {
+  target: TemplateData
+}
+
+export interface TemplateData {
+  value: number,
+  width: number,
+  units: string,
+  type: string
+}
+export enum Equipped {
+  equipped = "equipped",
+  ship = "ship",
+  backpack = "backpack"
 }
 
 export interface Trait extends LinkTemplate {
@@ -584,7 +620,7 @@ export interface Trait extends LinkTemplate {
   key:string;
 }
 
-export interface Spell extends LinkTemplate {
+export interface Spell extends LinkTemplate, TargetTemplate {
   templates:string[];
   value:number;
   type:string;
@@ -595,7 +631,7 @@ export interface Spell extends LinkTemplate {
   subtype:string;
 }
 
-export interface Weapon extends GearTemplate, LinkTemplate {
+export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   templates:string[];
   range:number;
   damage:string;

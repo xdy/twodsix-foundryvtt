@@ -108,6 +108,9 @@ Hooks.once('init', async function () {
     ]
   };
 
+  /*Add time for a combat round default*/
+  CONFIG.time.roundTime = 6;
+
   /*Register CSS Styles*/
   let sheetName = "systems/twodsix/styles/";
   if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {

@@ -1,7 +1,7 @@
 <div class="notes-container">
   <span class="item-title">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
   {{#if settings.useProseMirror}}
-  {{editor richText.notes target="system.notes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+  {{editor richText.notes target="system.notes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
   {{else}}
     <div contenteditable="true" data-edit="system.notes">{{{system.notes}}}</div>
   {{/if}}

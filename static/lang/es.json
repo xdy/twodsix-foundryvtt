@@ -13,7 +13,20 @@
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Eliminar Efecto Activo",
-      "ConfirmDelete": "¿Quieres realmente borrar el efecto?"
+      "ConfirmDelete": "¿Quieres realmente borrar el efecto?",
+      "BaseValue": "Base",
+      "Modifiers": "Modificadores",
+      "EffectLabel": "Etiqueta Efecto",
+      "Source": "Fuente",
+      "Duration": "Duración",
+      "Condition": "Estado",
+      "UnknownSource": "Fuente Desconocida",
+      "EffectEnable": "Activar Efecto",
+      "EffectDisable": "Desactivar Efecto",
+      "Controls": "Controles",
+      "NewEffect": "Efecto Nuevo",
+      "CreateEffect": "Crear Efecto",
+      "Add": "Añadir"
     },
     "Damage": {
       "DealDamage": "Aplicar daño",
@@ -84,7 +97,11 @@
         "BIOGRAPHY": "BIOGRAFÍA",
         "CONTACTS": "CONTACTOS",
         "DESCRIPTION": "DESCRIPCIÓN",
-        "ENEMIES": "ENEMIGOS"
+        "ENEMIES": "ENEMIGOS",
+        "XP": "PUNTOS EXPERIENCIA",
+        "Points": "puntos",
+        "Available": "Disponible",
+        "TotalEarned": "Total Ganado"
       },
       "Items": {
         "Amount": "Cantidad",
@@ -136,6 +153,8 @@
         "DeleteItem": "Borrar Objeto",
         "EditItem": "Editar Objeto",
         "EditOrRemove": "Editar / Borrar",
+        "BaseLevel": "Nivel Base",
+        "AdjLevel": "Adj. Nivel",
         "Level": "Nivel",
         "Modifier": "Mod.",
         "SkillName": "Nombre",
@@ -161,7 +180,14 @@
         "Info": "Info",
         "Inventory": "Equipo",
         "Notes": "Notas",
-        "Skills": "Habilidades"
+        "Effects": "Efectos",
+        "Skills": "Habilidades",
+        "FinancesTabTooltip": "Dinero, Deuda, Pensión, Coste Vida, etc.",
+        "InfoTabTooltip": "Talentos, Descripción, Contactos, y Biografía",
+        "InventoryTabTooltip": "Armas, Armadura, Aumentos, Equipo y Herramientas, Consumibles y Accesorios",
+        "NotesTabTooltip": "Notas Viajero",
+        "EffectsTabTooltip": "Efectos Activos",
+        "SkillsTabTooltip": "Habilidades Viajero"
       },
       "UnknownActorType": "Tipo actor desconocido",
       "using": "utilizando",
@@ -257,7 +283,7 @@
         "ItemModifier": "Bono Equipo",
         "ROF": "Cadencia Tiro",
         "Wounds": "Heridas",
-        "Encumbered": "Carga",
+        "Encumbered": "Sobrecargado",
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
         "DodgeParry": "Modificador Esquiva/Parada",
@@ -267,7 +293,15 @@
         "DM": "MD",
         "Characteristic": "Atributo",
         "Condition": "Estado",
-        "Attack": "Ataque"
+        "Attack": "Ataque",
+        "ActiveEffect": "Efecto Activo",
+        "Attachments": "Acc./Consm.",
+        "WeaponsHandling": "Manejo Armas",
+        "ChainRoll": "Tirada en Cadena / con Apoyo",
+        "Bonus": "Bono",
+        "WithChainBonus": "con bono Cadena / Apoyo",
+        "WinsRoll": "gana tirada disputa / opuesta.",
+        "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor."
       }
     },
     "Create": "Crear",
@@ -284,7 +318,7 @@
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad",
-        "IsPowered": "Alimentación de Armadura"
+        "IsPowered": "Armadura Energía"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -369,7 +403,7 @@
         "Price": "Precio",
         "Quantity": "Cantidad",
         "ShortDescription": "Opciones",
-        "SkillModifier": "Modificador Habilidad",
+        "SkillModifier": "Modificador Tirada",
         "TL": "NT",
         "Weight": "KG",
         "isAttachment": "¿Accesorio?",
@@ -415,7 +449,13 @@
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
-        "TraitName": "Nombre"
+        "TraitName": "Nombre",
+        "CreateEffect": "Crear Efecto",
+        "DeleteEffect": "Borrar Efecto",
+        "EditEffect": "Editar Efecto",
+        "CreateTrait": "Crear Talento",
+        "DeleteTrait": "Borrar Talento",
+        "ShortDescAndEffects": "Descripción resumida y lista efectos"
       },
       "Tool": {
         "Bonus": "Bono"
@@ -454,7 +494,8 @@
         "ArmorPiercing": "Valor Penetración Armadura",
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
-        "UnarmedDescription": "Ataque sin armas"
+        "UnarmedDescription": "Ataque sin armas",
+        "HandlingModifiers": "Modificador Manejo"
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -463,6 +504,22 @@
         "Level": "Nivel",
         "sorcerySkill": "Hechicería"
       }
+    },
+    "Target": {
+      "AreaEffect": "Area de Efecto",
+      "Target": "Objetivo",
+      "None": "ninguno",
+      "Radius": "radio",
+      "Sphere": "esfera",
+      "Cylinder": "cilindro",
+      "Cone": "cono",
+      "Square": "cuadrado",
+      "Cube": "cubo",
+      "Line": "línea",
+      "Wall": "pared",
+      "Width": "Anchura",
+      "Units": "Unidades",
+      "TypeArea": "Tipo Area"
     },
     "Ship": {
       "Actions": "Acciones",
@@ -566,8 +623,7 @@
       "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
       "skillTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alternativa 1|...\nHab./ATR\nHab./ 8+\nHab./ATR 8+",
       "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHab.|Hab. Alternativa 1|...=COMPONENT_ID\nHab./ATR=COMPONENT_ID\nHab./ 8+=COMPONENT_ID\nHab./ATR 8+=COMPONENT_ID",
-      "chatTooltip": "¡A la vista!",
-      "SHIPCARGO": "BODEGA DE CARGA"
+      "chatTooltip": "¡A la vista!"
     },
     "Vehicle": {
       "SystemStatus": "Estado Sistemas",
@@ -619,7 +675,11 @@
     "SpaceObject": {
       "Notes": "Notas",
       "Damage": "Daño",
-      "Information": "Información"
+      "Information": "Información",
+      "Features": "Rasgos",
+      "Thrust": "Impulso",
+      "rounds": "asaltos",
+      "RoundsActive": "Asaltos Activo"
     },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
@@ -638,7 +698,10 @@
       "Cancel": "Cancelar",
       "DamageUsing": "Daño utilizando",
       "Effect": "Efecto",
+      "ToggleDetails": "Cambiar Detalles",
       "Roll": "Tirar",
+      "RollChain": "Tirada en Cadena / Apoyo",
+      "RollOpposed": "Tirada Opuesta",
       "Rolling": "Tirada",
       "With": "con",
       "resultShows": "Resultado:",
@@ -651,7 +714,14 @@
       "RollInitiative": "Tira Iniciativa",
       "characteristic": "atributo",
       "ROF": "CdT",
-      "DodgeParry": "Esquiva/Parada"
+      "RollDamage": "Tirada Daño",
+      "DodgeParry": "Esquiva/Parada",
+      "Attachments": "Acc/Cons",
+      "WeaponsHandling": "Manejo Armas",
+      "SelectSkill": "Selecciona Habilidad",
+      "SkillName": "Nombre Habilidad",
+      "MakesOpposedRoll": "Realiza una tirada disputa / opuesta.",
+      "MakesChainRoll": "Realiza una tirada en cadena / apoyo."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -989,7 +1059,7 @@
       },
       "encumbranceFraction": {
         "hint": "La fracción aplicable en la fórmula de carga máxima para indicar que el actor esta sobrecargado. Ejemplo: 0.5 significa que el actor se encuentra sobrecargado cuando el peso supera la mitad de la carga máxima.",
-        "name": "Fracción de la carga máxima cuando el actor esta sobrecargado"
+        "name": "Fracción de carga máxima aplicable en el modificador de la tirada"
       },
       "encumbranceModifier": {
         "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
@@ -1019,6 +1089,10 @@
         "hint": "Cambiar el color resaltado. Borrar el valor para reiniciar.",
         "name": "Color Resaltado"
       },
+      "useItemActiveEffects": {
+        "hint": "Utilizar Efectos Activos en Objetos. AVISO: puede resultar en comportamientos raros del sistema.",
+        "name": "Utilizar Efectos Activos en Objetos"
+      },
       "showFeaturesInChat": {
         "hint": "Mostrar en las tiradas el texto de las características del objeto en los mensajes del chat.",
         "name": "Mostrar en Chat características del objeto"
@@ -1026,6 +1100,14 @@
       "showHitsChangesInChat": {
         "hint": "Mostrar un mensaje oculto para el Árbitro cuando se aplica daño/curación a un Actor.",
         "name": "Mostrar daño/curación en el chat del Árbitro"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite de movimiento para un cuadrado. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para moverse 1,5m/5ft"
+      },
+      "encumbFraction75pct": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite del 75% del movimiento. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para el 75% del movimiento"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1057,7 +1139,6 @@
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
       "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Falta definir el daño del arma",
       "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
       "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
       "EmptyConsumable": "Sin suministro, no te quedan consumibles. Necesitas recargar",
@@ -1069,7 +1150,8 @@
       "DropFailedWith": "Error de asignación _ERROR_MSG_",
       "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
-      "InvalidRollFormula": "Fórmula de daño no válida."
+      "InvalidRollFormula": "Fórmula de daño no válida.",
+      "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -1089,7 +1171,12 @@
       "ActorHasInitiativeAlready": "Personaje ya tiene iniciativa.",
       "NoActiveToken": "El Actor no tiene un token en la escena.",
       "InvalidReactionInputs": "No es posible realizar la Tirada de Reacción debido a que los campos de Ataque y Huida son inválidos.",
-      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave"
+      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave",
+      "CantEditCreateInCargo": "No se pueden editar o crear efectos activos mientras se está en la carga",
+      "NoActorSelected": "Un actor debe estar seleccionado o controlado",
+      "NoSkillSelected": "Debes seleccionar habilidad para realizar tirada",
+      "NoDamageForWeapon": "Este arma no tiene daño especificado.",
+      "ActionWarningNoToken": "Sin objetivo seleccionado para la acción."
     }
   },
   "VeryDifficult": "Muy Difícil"

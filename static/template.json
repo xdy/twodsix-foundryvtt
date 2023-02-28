@@ -141,15 +141,18 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       },
       "hideStoredItems": {
@@ -159,7 +162,12 @@
         "equipment": false,
         "consumable": false,
         "attachment": false
-      }
+      },
+      "experience": {
+        "value": 0,
+        "totalEarned": 0
+      },
+      "xpNotes": ""
     },
     "ship": {
       "name": "",
@@ -318,7 +326,7 @@
       },
       "weaponsType": "",
       "openVehicle": false,
-      "techLevel": "",
+      "techLevel": 0,
       "traits": "",
       "weight": ""
     },
@@ -453,7 +461,10 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
@@ -466,15 +477,18 @@
       }
     },
     "space-object": {
-      "docReference": "",
-      "pdfReference": {
-        "type": "",
-        "href": "",
-        "label": ""
+      "templates": ["referenceTemplate"],
+      "techLevel": 0,
+      "features": "",
+      "count": {
+        "value": 0,
+        "max": 0
       },
       "description": "",
       "notes": "",
       "damage": "3d6",
+      "thrust": 0,
+      "roundsActive": 0,
       "movement": {
         "burrow": 0,
         "climb": 0,
@@ -511,6 +525,14 @@
           "href": "",
           "label": ""
         }
+      },
+      "targetTemplate": {
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        }
       }
     },
     "equipment": {
@@ -526,7 +548,7 @@
       "location": ["inventory", "storage"]
     },
     "weapon": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate", "targetTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -543,7 +565,8 @@
       "rateOfFire": "",
       "recoil": false,
       "features": "",
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "handlingModifiers": ""
     },
     "armor": {
       "templates": ["gearTemplate", "referenceTemplate"],
@@ -590,7 +613,7 @@
       "key": "key"
     },
     "spell": {
-      "templates": ["referenceTemplate"],
+      "templates": ["referenceTemplate", "targetTemplate"],
       "value": 0,
       "type": "spell",
       "description": "",
