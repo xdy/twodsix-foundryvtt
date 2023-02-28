@@ -1,3 +1,10 @@
+# [2.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.2...v2.20.0) (2023-02-28)
+
+
+### Features
+
+* add consumable indicators and toggles ([#1258](https://github.com/xdy/twodsix-foundryvtt/issues/1258)) ([ef0f39d](https://github.com/xdy/twodsix-foundryvtt/commit/ef0f39d7a2cbbebfeada15892135c2a07664ed2e))
+
 ## [2.19.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.1...v2.19.2) (2023-02-27)
 
 
