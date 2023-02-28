@@ -2,7 +2,7 @@
   <div class="ship-financial-notes">
     <span class="item-title">{{localize "TWODSIX.Ship.FINANCENOTES"}}</span>
       {{#if settings.useProseMirror}}
-      {{editor richText.finances target="system.finances" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.finances target="system.finances" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
       {{else}}
         <div contenteditable="true" data-edit="system.finances">{{#if actor.system.finances}}{{{actor.system.finances}}}{{/if}}</div>
       {{/if}}

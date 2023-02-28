@@ -211,11 +211,29 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  let item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
-  return deepClone(item);
+  //handle drop from compendium
+  if (item.pack) {
+    const pack = game.packs.get(item.pack);
+    item = await pack?.getDocument(item._id);
+  }
+  const itemCopy = deepClone(item);
+
+  //Delete Active effects if not used
+  if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
+    const systemAEs = itemCopy.effects?.contents;
+    if (systemAEs?.length > 0) {
+      const idsToDelete = [];
+      for (const eff of systemAEs) {
+        idsToDelete.push(eff.id);
+      }
+      await itemCopy.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+    }
+  }
+  return itemCopy;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {
@@ -237,9 +255,9 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(sourceString:string[]): void {
+export function openPDFReference(sourceString:string): void {
   if (sourceString) {
-    const [code, page] = sourceString[0].split(' ');
+    const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
     if (ui["pdfpager"]) {
       ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
@@ -288,7 +306,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
             }
         }
       },
-      default: `Roll`
+      default: `Roll`,
     }).render(true);
   });
   return (returnText ?? "");

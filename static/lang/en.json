@@ -13,7 +13,20 @@
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Remove Active Effect",
-      "ConfirmDelete": "Do you really want to delete effect?"
+      "ConfirmDelete": "Do you really want to delete effect?",
+      "BaseValue": "Base",
+      "Modifiers": "Modifiers",
+      "EffectLabel": "Effect Label",
+      "Source": "Source",
+      "Duration": "Duration",
+      "Condition":"Condition",
+      "UnknownSource": "Unknown Source",
+      "EffectEnable": "Enable Effect",
+      "EffectDisable": "Disable Effect",
+      "Controls": "Controls",
+      "NewEffect": "New Effect",
+      "CreateEffect": "Create Effect",
+      "Add": "Add"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -69,6 +82,9 @@
       "Gender": "Gender",
       "HeroPoints": "Hero Points",
       "Hits": "Hits",
+      "healing": "healing",
+      "damage": "damage",
+      "Applied": "Applied",
       "Contamination": "Contamination",
       "Lifeblood": "Lifeblood",
       "Stamina": "Stamina",
@@ -81,7 +97,11 @@
         "BIOGRAPHY": "BIOGRAPHY",
         "CONTACTS": "CONTACTS",
         "DESCRIPTION": "DESCRIPTION",
-        "ENEMIES": "ENEMIES"
+        "ENEMIES": "ENEMIES",
+        "XP": "EXPERIENCE POINTS",
+        "Points": "points",
+        "Available": "Available",
+        "TotalEarned": "Total Earned"
       },
       "Items": {
         "Amount": "Amount",
@@ -133,6 +153,8 @@
         "DeleteItem": "Delete Item",
         "EditItem": "Edit Item",
         "EditOrRemove": "Edit / Remove",
+        "BaseLevel": "Base Level",
+        "AdjLevel": "Adj. Level",
         "Level": "Level",
         "Modifier": "Modifier",
         "SkillName": "Skill Name",
@@ -158,7 +180,14 @@
         "Info": "Info",
         "Inventory": "Inventory",
         "Notes": "Notes",
-        "Skills": "Skills"
+        "Effects": "Effects",
+        "Skills": "Skills",
+        "FinancesTabTooltip": "Cash on Hand, Debt, Pension, Living Costs, etc.",
+        "InfoTabTooltip": "Traits, Description, Contacts, and Biography",
+        "InventoryTabTooltip": "Weapons, Armor, Augments, Equipment & Tools, Consumables and Attachements",
+        "NotesTabTooltip": "Traveller Notes",
+        "EffectsTabTooltip": "Active Effects",
+        "SkillsTabTooltip": "Traveller Skills"
       },
       "UnknownActorType": "Unknown actor type",
       "using": "using",
@@ -264,7 +293,15 @@
         "DM": "DM",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
-        "Attack": "Attack"
+        "Attack": "Attack",
+        "ActiveEffect": "Active Effect",
+        "Attachments": "Attach./Consm.",
+        "WeaponsHandling": "Weapons Handling",
+        "ChainRoll": "Chain / Assisted Roll",
+        "Bonus": "Bonus",
+        "WithChainBonus": "with Chain / Assist bonus",
+        "WinsRoll": "wins contested / opposed roll.",
+        "TiedRoll": "Tied contested / opposed roll. No winner."
       }
     },
     "Create": "Create",
@@ -366,7 +403,7 @@
         "Price": "Price",
         "Quantity": "Quantity",
         "ShortDescription": "Short Description",
-        "SkillModifier": "Skill Modifier",
+        "SkillModifier": "Roll/Dice Modifier",
         "TL": "TL",
         "Weight": "Weight",
         "isAttachment": "Attachment?",
@@ -411,8 +448,14 @@
         "SkillRanks": "Skill Ranks"
       },
       "Traits": {
-        "Prerequisite": "Prerequisite",
-        "TraitName": "Trait Name"
+              "Prerequisite": "Prerequisite",
+              "TraitName": "Trait Name",
+              "CreateEffect": "Create Effect",
+              "DeleteEffect": "Delete Effect",
+              "EditEffect": "Edit Effects",
+              "CreateTrait": "Create Trait",
+              "DeleteTrait": "Delete Trait",
+              "ShortDescAndEffects": "Short description and list of effects"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -434,7 +477,9 @@
         "DropConsumablesHere": "You can drop consumables here.",
         "DropAttachmentsHere": "You can drop attachments here.",
         "RemoveConsumable": "Remove consumable",
-        "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?"
+        "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?",
+        "SelectConsumable": "Select Consumable",
+        "ActiveConsumable": "Active Consumable"
       },
       "Weapon": {
         "Ammo": "Ammo",
@@ -451,7 +496,8 @@
         "ArmorPiercing": "Armor Piercing Value",
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
-        "UnarmedDescription": "Unarmed attack"
+        "UnarmedDescription": "Unarmed attack",
+        "HandlingModifiers": "Handling Modifiers"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -460,6 +506,22 @@
         "Level": "Level",
         "sorcerySkill": "Sorcery"
       }
+    },
+    "Target": {
+      "AreaEffect": "Area of Effect",
+      "Target": "Target",
+      "None": "none",
+      "Radius": "radius",
+      "Sphere": "sphere",
+      "Cylinder": "cylinder",
+      "Cone": "cone",
+      "Square": "square",
+      "Cube": "cube",
+      "Line": "line",
+      "Wall": "wall",
+      "Width": "Width",
+      "Units": "Units",
+      "TypeArea": "Area Type"
     },
     "Ship": {
       "Actions": "Actions",
@@ -615,7 +677,11 @@
     "SpaceObject": {
       "Notes": "Notes",
       "Damage": "Damage",
-      "Information": "Information"
+      "Information": "Information",
+      "Features": "Features",
+      "Thrust": "Thrust",
+      "rounds":"round(s)",
+      "RoundsActive": "Rounds Active"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
@@ -634,7 +700,10 @@
       "Cancel": "Cancel",
       "DamageUsing": "Damage using",
       "Effect": "Effect",
+      "ToggleDetails": "Toggle Details",
       "Roll": "Roll",
+      "RollChain": "Chain / Assisted Roll",
+      "RollOpposed": "Opposed Roll",
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
@@ -646,8 +715,15 @@
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
-      "ROF" :"ROF",
-      "DodgeParry": "Dodge/Parry"
+      "ROF": "ROF",
+      "RollDamage": "Roll Damage",
+      "DodgeParry": "Dodge/Parry",
+      "Attachments": "Attch/Cons",
+      "WeaponsHandling":"Weapons Handling",
+      "SelectSkill": "Select Skill",
+      "SkillName": "Skill Name",
+      "MakesOpposedRoll": "Makes an opposed / contested roll.",
+      "MakesChainRoll": "Makes an chain / assisted roll."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -985,11 +1061,11 @@
       },
       "encumbranceFraction": {
         "hint": "The fraction applied to the maximum encumbrance formula to indicate actor is encumbered.  For example, a value of 0.5 would mean the actor becomes encumbered when carried weight exceeds one half of maximum encumbrance.",
-        "name": "Fraction of maximum encumbrance when actor becomes encumbered"
+        "name": "Fraction of maximum encumbrance when encumbrance roll modifier applies"
       },
       "encumbranceModifier": {
         "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
-        "name": "Modifier to physical characteristics when actor becomes encumbered"
+        "name": "Roll modifier using physical characteristics when actor is encumbered"
       },
       "transferDroppedItems": {
         "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
@@ -1015,9 +1091,25 @@
         "hint": "Change the theme highlight color. Delete value to reset.",
         "name": "Set Highlight Color"
       },
+      "useItemActiveEffects": {
+        "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
+        "name": "Use Item Active Effects"
+      },
       "showFeaturesInChat": {
         "hint" : "Show item features text at bottom of chat messages for rolls.",
         "name": "Show Item Features in Chat"
+      },
+      "showHitsChangesInChat": {
+        "hint": "Show a whispered chat message to GM when damage/healing is appled to an actor.",
+        "name": "Show damage / healing chat message to GM"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "This is a Drag Ruler module setting to set the one 'square' movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Fraction of maximum encumbrance for 1.5m/5ft of movement"
+      },
+      "encumbFraction75pct": {
+        "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
+        "name": "Fraction of maximum encumbrance for 75 percent movement rate"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1049,7 +1141,6 @@
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
       "NoCharacteristicForRoll": "You tried to perform a characteristics roll without specifying a characteristic",
       "NoROFForAttack": "Rate of fire must be specified for this attack",
-      "NoDamageForWeapon": "This weapon has not specified the damage it does",
       "TooFewToReload": "Too few _NAME_ to _REFILL_ACTION_",
       "NoAmmo": "You are out of ammunition. You need to reload before shooting!",
       "EmptyConsumable": "There is no consumable supply left.  You need to refill!",
@@ -1061,7 +1152,8 @@
       "DropFailedWith": "Drop failed with _ERROR_MSG_",
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
-      "InvalidRollFormula": "Not a valid damage roll formula."
+      "InvalidRollFormula": "Not a valid damage roll formula.",
+      "CantPlaceTemplate": "Error placing AOE measured Template."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
@@ -1081,7 +1173,12 @@
       "ActorHasInitiativeAlready": "Actor already has initiative.",
       "NoActiveToken": "Actor does not have an active token in scene.",
       "InvalidReactionInputs": "Reaction roll cannot be made as attack and flee inputs are invalid.",
-      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions"
+      "AnimalsCantHoldPositions": "Animals cant be placed in ship positions",
+      "CantEditCreateInCargo": "Can not edit or create effects while in cargo",
+      "NoActorSelected": "An actor must be selected or controlled",
+      "NoSkillSelected": "Must select a skill to make a roll",
+      "NoDamageForWeapon": "This weapon has not specified the damage it does.",
+      "ActionWarningNoToken": "No targets selected for action."
     }
   },
   "VeryDifficult": "Very Difficult"

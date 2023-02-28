@@ -9,27 +9,59 @@
     </div>
     <div class="space-object-stats">
       <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Information"}}</span>
-      <div class="flexcol" style="padding: 1ch;">
+      <div class="flexcol" style="padding: 1ch; gap: 1ch;">
+        <!-- TL -->
+        <div class="flexrow space-object-data">
+          <label for="system.techLevel" class="flexlabel">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
+          <input class="form-input" id="system.techLevel" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+        </div>
+        <!-- Count -->
+        <div class="flexrow space-object-data">
+          <label class="flexlabel">{{localize "TWODSIX.Items.Consumable.Count"}}</label>
+            <div>
+              <input id="system.count.value" style="width: calc(50% - 8px);" name="system.count.value" type="number" value="{{system.count.value}}" data-dtype="Number" step="1" min="0"/>
+              /
+              <input id="system.count.max" style="width: calc(50% - 8px);" name="system.count.max" type="number" value="{{system.count.max}}" data-dtype="Number" step="1" min="0"/>
+            </div>
+        </div>
+        <!--Features-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Features"}}</span>
+          <input class="form-input" type="text" name="system.features" value="{{system.features}}"/>
+        </div>
+        <!--Thrust-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Thrust"}}</span>
+          <input class="form-input" type="number" name="system.thrust" value="{{system.thrust}}"/>
+          {{localize "TWODSIX.Ship.Gs"}}
+        </div>
+        <!--Rounds Active-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.RoundsActive"}}</span>
+          <input class="form-input" type="number" name="system.roundsActive" value="{{system.roundsActive}}" step="1" min="0"/>
+          {{localize "TWODSIX.SpaceObject.rounds"}}
+        </div>
         <!-- Movement -->
-        <div class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-rocket"></i>:
-          <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" />
-          <select name="system.movement.units" style="width: 14ch;">
+        <div class="flexrow space-object-data" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>
+          <span class="flexlabel"><i class="fa-solid fa-rocket"></i>:</span>
+          <input type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>
+          <select name="system.movement.units">
             {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
           </select>
         </div>
         <!--Damage-->
-        <div class="flexrow" style="align-items: center;">
-          <span class="roll-damage orange">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
+        <div class="flexrow space-object-data">
+          <span class="roll-damage orange flexlabel">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
         </div>
         <!--Reference-->
         {{#if settings.usePDFPager}}
           <div class="item-reference">
-            <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
+            <a class="open-link flexlabel">{{localize "TWODSIX.Items.DocumentReference"}}</a>
             <input class="form-input" id="source" type="text" name="system.docReference" value="{{system.docReference}}"/>
           </div>
         {{else}}
           {{#if system.pdfReference.href}}
-            <div class="item-link centre">
+            <div class="item-link centre flexlabel">
               {{localize "TWODSIX.Items.Link"}}:
               <a href="{{actor.system.pdfReference.href}}">
                 {{#iff system.pdfReference.type "===" 'pdf'}}

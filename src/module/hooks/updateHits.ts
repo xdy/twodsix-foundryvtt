@@ -6,7 +6,7 @@ import { getDamageCharacteristics } from "../utils/actorDamage";
 import { mergeDeep } from "../utils/utils";
 import {Traveller} from "../../types/template";
 
-function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
+async function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
   const hitsCharacteristics: string[] = getDamageCharacteristics(actorType);
 
@@ -16,12 +16,18 @@ function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
       hits.max += chr.value;
     }
     return hits;
-  }, {value: 0, max: 0});
+  }, {value: 0, max: 0, lastDelta: 0});
 }
 
 Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
   if (update.system?.characteristics && (actor.type === 'traveller' || actor.type === 'animal')) {
-    update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
+    update.system.hits = await getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
+    await Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
+    if (update.system.hits.lastDelta !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
+      const appliedType = update.system.hits.lastDelta > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
+      const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
+      ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(update.system.hits.lastDelta)}`, speaker: ChatMessage.getSpeaker({ actor: actor }), whisper: ChatMessage.getWhisperRecipients("GM") });
+    }
   }
 });
 

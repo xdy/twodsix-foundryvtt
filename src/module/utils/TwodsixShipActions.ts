@@ -6,7 +6,7 @@ import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
-import { getKeyByValue } from "./sheetUtils";
+import { confirmRollFormula, getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
@@ -39,15 +39,12 @@ export class TwodsixShipActions {
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
       if(showRollDiag) {
-        rollText = await TwodsixItem.confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
+        rollText = await confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
       }
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        const msg =  new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
-        if (game.modules.get("dice-so-nice")?.active) {
-          await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
-        }
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
         return msg;
       }
     }
@@ -58,7 +55,8 @@ export class TwodsixShipActions {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
+    // eslint-disable-next-line no-useless-escape
+    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/(\w{0,4}))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
     const selectedActor = <TwodsixActor>extra.actor;
 
@@ -138,12 +136,19 @@ export class TwodsixShipActions {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
       } else {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+        await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
     }
   }
 }
 
+/**
+ * A function for getting the full characteristic label from the displayed short label.
+ *
+ * @param {string} char           The displayed characteristic short label.
+ * @param {TwodsixActor} actor    The Actor in question.
+ * @returns {string}              Full logical name of the characteristic.
+ */
 export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
   let tempObject = {};
   let charObject= {};
@@ -155,6 +160,5 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
   } else {
     tempObject = TWODSIX.CHARACTERISTICS;
   }
-
   return getKeyByValue(tempObject, char);
 }

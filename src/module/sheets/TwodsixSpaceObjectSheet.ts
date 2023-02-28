@@ -43,7 +43,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   activateListeners(html:JQuery):void {
     super.activateListeners(html);
     html.find('.roll-damage').on('click', this.onRollDamage.bind(this, this.actor));
-    html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
@@ -78,9 +78,11 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
         payload: contentData
       }
     );
-    const msg = await damage.toMessage({
+    await damage.toMessage({
       speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
       content: html,
+      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      rolls: [damage],
       flags: {
         "core.canPopout": true,
         "transfer": transfer,
@@ -89,9 +91,5 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
         "twodsix.tokenUUID": (<Actor>this.actor).getActiveTokens()[0]?.document.uuid ?? ""
       }
     });
-
-    if (game.modules.get("dice-so-nice")?.active) {
-      await game.dice3d.waitFor3DAnimationByMessageID(msg.id);
-    }
   }
 }

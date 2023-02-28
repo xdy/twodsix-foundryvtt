@@ -270,35 +270,43 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
       } else if ((droppedObject.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-        const shipPositionId = $(event.target).parents(".ship-position").data("id");
-        const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
-        await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
-      } else if (droppedObject.type === "vehicle") {
-        await this._addVehicleToComponents(droppedObject, dropData.uuid);
+        //check for double drop trigger, not clear why this occurs
+        if (event.currentTarget.className === "ship-position-box") {
+          const shipPositionId = $(event.target).parents(".ship-position").data("id");
+          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+          await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+        } else {
+          return false;
+        }
+      } else if (["vehicle", "ship"].includes(droppedObject.type)) {
+        await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
       } else if (droppedObject.type === "animal") {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
+      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable"].includes(droppedObject.type)) {
+        // this is part of a refactor *******
+        this.processDroppedItem(event, droppedObject);
       } else {
-        await super._onDrop(event); //re-order is handled in abstract actor onDrop
+        await super._onDrop(event);
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging
       return false;
     }
   }
-  async _addVehicleToComponents(droppedObject: any, uuid: string): Promise <void> {
+  async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
     const newComponent = {
       name: droppedObject.name,
       img: droppedObject.img,
       type: "component",
       system: {
-        docReference: droppedObject.system.docReference,
-        price: droppedObject.system.cost,
+        docReference: droppedObject.type === "ship" ? "" : droppedObject.system.docReference,
+        price: droppedObject.type === "ship" ? droppedObject.system.shipValue : droppedObject.system.cost,
         quantity: 1,
         status: "operational",
         subtype: "vehicle",
         techLevel: droppedObject.system.techLevel,
-        weight: droppedObject.system.weight,
+        weight: droppedObject.type === "ship" ? droppedObject.system.shipStats.mass.max : droppedObject.system.weight,
         actorLink: uuid
       }
     };

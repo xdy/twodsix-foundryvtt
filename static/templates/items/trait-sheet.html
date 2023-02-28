@@ -35,5 +35,6 @@
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
+    {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.html"}}{{/if}}
   </div>
 </form>

@@ -40,7 +40,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     //html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
-    html.find('.open-link').on('click', openPDFReference.bind(this, [this.actor.system.docReference]));
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
@@ -102,7 +102,7 @@ export function getControlledTraveller(): TwodsixActor | void {
   if (game.user?.isGM !== true) {
     const playerId = game.userId;
     if (playerId !== null) {
-      const character = game.actors?.find(a => (a.permission[playerId] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.type === "traveller") && !!a.getActiveTokens()[0]);
+      const character = game.actors?.find(a => (a.permission === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER ) && (a.type === "traveller") && !!a.getActiveTokens()[0]);
       if (character != null) {
         return <TwodsixActor>game.actors?.get(character.id);
       }

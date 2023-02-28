@@ -16,7 +16,13 @@
         <span class="items-traits">
           <span class="item-name showChat">{{item.name}}</span>
           <span class="item-name centre">{{item.system.value}}</span>
-          <span class="item-name centre">{{item.system.shortdescr}}</span>
+          <span class="item-name centre">{{item.system.shortdescr}}
+            <ul>
+              {{#each item.effects.contents.[0].changes as |change|}}
+              <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
+              {{/each}}
+            </ul>
+          </span>
           <span class="item-controls centre">
             <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                 class="fa-solid fa-pen-to-square"></i></a>
@@ -64,10 +70,23 @@
 </div>
 {{/if}}
 <div class="info-container">
+  <div class="char-xp">
+    <span class="item-title">{{localize "TWODSIX.Actor.Info.XP"}}</span>
+      {{#if settings.useProseMirror}}
+        {{editor richText.xpNotes target="system.xpNotes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+      {{else}}
+        <div contenteditable="true" data-edit="system.xpNotes">{{{system.xpNotes}}}</div>
+      {{/if}}
+  </div>
+  <div class="xp-details">
+    <span class="xp-stat centre"><label>{{localize "TWODSIX.Actor.Info.Available"}}: </label><input type="number" value="{{system.experience.value}}" name="system.experience.value" style="width: 5ch;"/><span class = "small-font">{{localize "TWODSIX.Actor.Info.Points"}}</span></span>
+    <span class="xp-stat centre"><label>{{localize "TWODSIX.Actor.Info.TotalEarned"}}: </label><input type="number" value="{{system.experience.totalEarned}}" name="system.experience.totalEarned" style="width: 5ch;"/><span class = "small-font">{{localize "TWODSIX.Actor.Info.Points"}}</span></span>
+  </div>
+
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     {{/if}}
@@ -75,7 +94,7 @@
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.contacts">{{{system.contacts}}}</div>
     {{/if}}
@@ -83,9 +102,10 @@
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=false}}
+      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
     {{else}}
       <div contenteditable="true" data-edit="system.bio">{{{system.bio}}}</div>
     {{/if}}
   </div>
 </div>
+<div><span class="pusher"></span></div>

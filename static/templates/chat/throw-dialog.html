@@ -48,6 +48,11 @@
         </label>
       </div>
       <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.ChainRoll"}}
+          <input type="number" name="rollModifiers.chain" value="{{rollModifiers.chain}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+        </label>
+      </div>
+      <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}
           <select class="select-mod" name="rollModifiers.characteristic" value={{rollModifiers.characteristic}}>
           {{selectOptions characteristicList selected=initialChoice}}
@@ -56,7 +61,6 @@
       </div>
       {{/if}}
       {{#if itemRoll}}
-        {{log rollModifiers}}
         <div class="form-group">
           <label>{{localize "TWODSIX.Chat.Roll.ItemModifier"}}
             <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
@@ -70,11 +74,26 @@
             </label>
           </div>
         {{/iff}}
+        {{#iff rollModifiers.attachments "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Attachments"}}
+              <input type="number" name="rollModifiers.attachments" value="{{rollModifiers.attachments}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/iff}}
         {{#iff rollModifiers.dodgeParry "!==" 0}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}
               <input type="number" name="rollModifiers.dodgeParry" value="{{rollModifiers.dodgeParry}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
               ({{rollModifiers.dodgeParryLabel}})
+            </label>
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.weaponsHandling "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.WeaponsHandling"}}
+              <input type="number" name="rollModifiers.weaponsHandling" value="{{rollModifiers.weaponsHandling}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{itemLabel}})
             </label>
           </div>
         {{/iff}}
@@ -107,6 +126,7 @@
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.Custom"}}
           <input type="number" name="rollModifiers.custom" value="{{rollModifiers.custom}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+          ({{rollModifiers.customLabel}})
         </label>
       </div>
       {{/if}}

@@ -74,7 +74,7 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 316px 493px;
+  grid-template-columns: 307px 500px;
   grid-template-rows: 607px;
   gap: 1px 1px;
   position: relative;
@@ -224,14 +224,25 @@ label.checkbox > input[type="checkbox"] {
 
 .space-object-content-container {
   display: grid;
-  grid-template-columns: 19em 19em;
-  grid-template-rows: 10em 11em;
+  grid-template-columns: 18em 18em;
+  grid-template-rows: 23em 8em;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
     "space-object-name-photo space-object-stats"
-    "space-object-name-photo space-object-notes";
+    "space-object-notes space-object-notes";
 }
+
+.space-object-data {
+  align-items: center;
+  gap: 1ch;
+  text-align: right;
+}
+
+.flexlabel {
+  flex-grow: 0.3;
+}
+
 .vehicle-name-photo, .space-object-name-photo {
   display: flex;
   flex-direction: column;
@@ -255,7 +266,6 @@ label.checkbox > input[type="checkbox"] {
   grid-area: space-object-stats;
   display: flex;
   flex-direction: column;
-  gap: 1ch;
 }
 
 .vehicle-notes {
@@ -351,7 +361,7 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .space-object-notes-container {
-  height: 100%;
+  height: 90%;
 }
 
 .vehicle-inset {
@@ -403,8 +413,8 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: 95%;
-  padding-right: 8px;
+  width: 97%;
+  /*padding-right: 8px;*/
   border-width: medium;
 }
 
@@ -716,7 +726,7 @@ span.stat-name-table, input.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center !important;
-  width: 5ch;
+  width: 4ch;
   height: 2ch;
   margin: 0;
   padding: 0;
@@ -782,6 +792,10 @@ span.stat-ability {
   border: solid;
   border-width: thin;
   border-radius: 15%;
+}
+
+input[data-tooltip *="("] {
+  color: var(--s2d6-damage-orange) !important;
 }
 
 span.stat-ability-table {
@@ -882,6 +896,7 @@ svg:hover {
 .sheet nav.sheet-tabs{
   height: auto !important;
   line-height: 24px !important;
+  text-align: center;
 }
 
 .sheet nav.sheet-tabs .item {
@@ -892,20 +907,20 @@ svg:hover {
   background: transparent !important;
 }
 
-.skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab {
+.skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab, .effects-tab {
   background-position-x: -2px;
-  width: 90px;
+  width: 80px;
   display: block;
   border: solid;
   border-radius: 2ch;
 }
 
-a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.actor-notes-tab:hover {
+a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.actor-notes-tab:hover, .effects-tab:hover {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-semi-opaque)
 }
 
-a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active {
+a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active, .effects-tab.active {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-background-nearly-opaque) !important;
   text-shadow: none !important;
@@ -990,9 +1005,11 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-traits, .items-spells {
   display: grid;
-  grid-template-columns: 14em 2em 14em 3em;
+  grid-template-columns: 11em 3em 16em 3em;
   gap: 1px 1px;
-  grid-template-areas: '. . . .';
+  grid-template-areas:
+    '. . . .';
+  word-wrap: break-word;
 }
 
 .items-consumable {
@@ -1044,7 +1061,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   display: block;
   position: relative;
   top: 0.1em;
-  left: 25.5em;
+  left: 26.4em;
   z-index: 51;
   color: var(--s2d6-app-color);
   background-color: var(--s2d6-background-nearly-opaque);
@@ -1146,7 +1163,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 2em 12em 3.5em 2.5em 5em 4em 4em;
+  grid-template-columns: 2em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1188,7 +1205,7 @@ span.total-output {
   width: 2ch;
   height: 2ch;
   align-self: center;
-  margin-left: 0.8em;
+  margin-left: 0.4em;
 }
 
 .resource-label {
@@ -1346,9 +1363,11 @@ span.total-output {
 .info-container {
   display: grid;
   grid-template-columns: 33.6em;
-  grid-template-rows: 11em 12em 19em;
+  grid-template-rows: 10em 2em 11em 12em 19em;
   gap: 30px 1px;
   grid-template-areas:
+      "char-xp"
+      "char-xp-details"
       "char-description"
       "char-contacts"
       "char-bio";
@@ -1368,6 +1387,19 @@ span.total-output {
   border-radius: 0 3px 3px;
 }
 
+.char-xp {
+  grid-area: char-xp;
+}
+
+.char-xp-details {
+  grid-area: char-xp-details;
+}
+
+.xp-details {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .char-description {
   grid-area: char-description;
 }
@@ -1380,7 +1412,7 @@ span.total-output {
   grid-area: char-contacts;
 }
 
-.char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable] {
+.char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable], .char-xp div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   height: 90%;
@@ -1400,6 +1432,7 @@ span.total-output {
 
 .notes-container {
   margin-left: 1ch;
+  margin-right: 1ch;
   margin-top: 5ch;
   height: 528px;
   margin-bottom: 30px;
@@ -1792,6 +1825,7 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   vertical-align: middle;
   padding: 3px 4px;
   font-size: 15px;
+  text-align: center;
 }
 
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
@@ -2182,7 +2216,8 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
-.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration {
+.item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
+.item-target-area, .item-target-width {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2194,6 +2229,7 @@ button.flexrow.flex-group-center.toggle-skills {
   text-align: center;
   margin-top: 0.3em;
   gap: 1ch;
+  align-items: center;
 }
 
 select.form-input, input.form-input, span.form-input {
@@ -2295,6 +2331,21 @@ select.form-input, input.form-input, span.form-input {
 
 .remove-consumable {
   text-align: center;
+}
+
+.effects-footer {
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.edit-active-effect, .delete-active-effect, .create-active-effect {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.consumable-toggle {
+  cursor: pointer;
+  color: var(--s2d6-nav-background);
 }
 
 /*--- Chat Log ---*/
@@ -2734,4 +2785,32 @@ form .form-group > label {
 
 input[type="text"].color {
   width: fit-content;
+}
+
+.effect-image {
+  height: auto;
+  width: auto;
+  max-width: 24px;
+  max-height: 24px;
+  background-color: var(--s2d6-background-nearly-opaque);
+  display: list-item;
+}
+
+.effects-container {
+  display: grid;
+  grid-template-columns: 30px 130px 130px 100px 60px;
+  grid-template-areas: '. . . .';
+  padding: inherit;
+  align-items: center;
+  grid-gap: 4px 2px;
+  min-height: 28px;
+}
+
+.effect:nth-of-type(even) {
+  background: var(--s2d6-skill-list-even);
+  width: fit-content;
+}
+
+.card-buttons {
+  display: inline-flex;
 }

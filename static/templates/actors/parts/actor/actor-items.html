@@ -70,7 +70,7 @@
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack weaponID= ../id}}
         {{/each}}
       </div>
       {{/unless}}
