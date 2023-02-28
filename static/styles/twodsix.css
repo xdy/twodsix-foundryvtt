@@ -2900,6 +2900,11 @@ select.form-input, input.form-input, span.form-input {
   flex-basis: 0;
   flex-grow: 1;
 }
+
+.consumable-toggle {
+  cursor: pointer;
+  color: var(--s2d6-nav-background);
+}
 /*--- Chat Log ---*/
 
 #sidebar-tabs.tabs .item.active {

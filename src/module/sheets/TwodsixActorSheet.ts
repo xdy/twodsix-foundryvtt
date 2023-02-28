@@ -108,6 +108,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     // Item State toggling
     html.find(".item-toggle").on("click", this._onToggleItem.bind(this));
     html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
+    //Consumable Toggling
+    html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
 
   }
 
@@ -263,6 +265,21 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onViewToggle(event): Promise<void> {
     const itemType: string = $(event.currentTarget).data("itemType");
     await this.actor.update({[`system.hideStoredItems.${itemType}`]: !this.actor.system.hideStoredItems[itemType]});
+  }
+
+  /**
+   * Handle toggling the active consumable.
+   * @param {Event} event   The originating click event.
+   * @private
+   */
+  private async _onToggleConsumable(event): Promise<void> {
+    const weaponId: string = $(event.currentTarget).data("weaponId");
+    const consumableId: string = $(event.currentTarget).data("consumableId");
+    const weaponItem: TwodsixItem = this.actor.items.get(weaponId);
+    if (weaponItem?.system.useConsumableForAttack != consumableId) {
+      await weaponItem.update({'system.useConsumableForAttack': consumableId});
+    }
+    //console.log("Made it to toggle");
   }
 }
 

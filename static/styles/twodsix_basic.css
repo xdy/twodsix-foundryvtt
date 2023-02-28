@@ -74,7 +74,7 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 316px 493px;
+  grid-template-columns: 307px 500px;
   grid-template-rows: 607px;
   gap: 1px 1px;
   position: relative;
@@ -413,8 +413,8 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: 95%;
-  padding-right: 8px;
+  width: 97%;
+  /*padding-right: 8px;*/
   border-width: medium;
 }
 
@@ -2341,6 +2341,11 @@ select.form-input, input.form-input, span.form-input {
 .edit-active-effect, .delete-active-effect, .create-active-effect {
   flex-basis: 0;
   flex-grow: 1;
+}
+
+.consumable-toggle {
+  cursor: pointer;
+  color: var(--s2d6-nav-background);
 }
 
 /*--- Chat Log ---*/
