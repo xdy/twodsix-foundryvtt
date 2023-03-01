@@ -273,11 +273,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    * @private
    */
   private async _onToggleConsumable(event): Promise<void> {
-    const weaponId: string = $(event.currentTarget).data("weaponId");
+    const parentId: string = $(event.currentTarget).data("parentId");
     const consumableId: string = $(event.currentTarget).data("consumableId");
-    const weaponItem: TwodsixItem = this.actor.items.get(weaponId);
-    if (weaponItem?.system.useConsumableForAttack != consumableId) {
-      await weaponItem.update({'system.useConsumableForAttack': consumableId});
+    const parentItem: TwodsixItem = this.actor.items.get(parentId);
+    if (parentItem?.system.useConsumableForAttack != consumableId) {
+      await parentItem.update({'system.useConsumableForAttack': consumableId});
     }
     //console.log("Made it to toggle");
   }
