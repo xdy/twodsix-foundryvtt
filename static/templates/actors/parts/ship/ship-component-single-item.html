@@ -28,8 +28,20 @@
       {{/if}}
       <span class="item-name centre">{{getComponentWeight item}}</span>
       <span class="item-name centre">{{getComponentPower item}}</span>
-      <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
-
+      {{#iff item.system.subtype "===" "armament"}}
+          {{#iff item.system.ammunition.max "!==" 0}}
+            <span class="item-name centre">{{item.system.ammunition.value}}
+              <span class="combined-buttons" data-field="ammo">
+                <button class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                <button class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
+              </span>
+            </span>
+          {{else}}
+            <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+          {{/iff}}
+      {{else}}
+        <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+      {{/iff}}
       <span class="item-name centre">
         {{#iff item.system.subtype "===" "armament"}}
           {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
@@ -39,10 +51,10 @@
       </span>
       <span class="item-name centre">{{#if item.system.hardened}}<i class="fa-solid fa-gem"></i>{{else}}&mdash;{{/if}}</span>
       <span class="item-name centre">{{item.system.hits}}
-      <span class="combined-buttons">
-        <button class="left-button adjust-hits" {{#iff currentCount "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-        <button class="right-button adjust-hits" {{#iff currentCount "===" 9}}disabled{{/iff}} data-value="1" >+</button>
-      </span>
+        <span class="combined-buttons" data-field="hits">
+          <button class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+          <button class="right-button adjust-counter" {{#iff item.system.hits "===" settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+        </span>
       </span>
       <span class="item-name centre component-toggle">
         {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>

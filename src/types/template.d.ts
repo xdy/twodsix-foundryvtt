@@ -523,6 +523,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   actorLink: string;
   hardened: boolean;
   associatedSkillName:string;
+  ammunition:Encumbrance;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {

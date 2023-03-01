@@ -48,7 +48,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists')
+      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
     if (context.settings.useProseMirror) {
@@ -130,7 +131,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
-    html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
+    html.find(".adjust-counter").on("click", this._onAdjustCounter.bind(this));
     html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
     html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
     html.find(".item-link").on("click", this._onDocumentLink.bind(this));
@@ -213,17 +214,29 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     }
   }
 
-  private async _onAdjustHitsCount(event): Promise<void> {
+  private async _onAdjustCounter(event): Promise<void> {
     const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
+    const field = $(event.currentTarget).parents(".combined-buttons").data("field");
     const li = $(event.currentTarget).parents(".item");
     const itemSelected = this.actor.items.get(li.data("itemId"));
-    if (itemSelected) {
-      const newHits = (<Component>itemSelected.system)?.hits + modifier;
-      if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
-        await itemSelected.update({ "system.hits": newHits });
-      }
-      if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
-        await itemSelected.update({ "system.status": "destroyed" });
+    if (itemSelected && field) {
+      if (field === "hits") {
+        const newHits = (<Component>itemSelected.system).hits + modifier;
+        if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
+          await itemSelected.update({ "system.hits": newHits });
+        }
+        if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
+          await itemSelected.update({ "system.status": "destroyed" });
+        } else if (newHits > 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "damaged" });
+        } else if (newHits === 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "operational" });
+        }
+      } else if (field === "ammo") {
+        const newAmmo = (<Component>itemSelected.system).ammunition.value + modifier;
+        if (newAmmo >= 0  && newAmmo <= (<Component>itemSelected.system).ammunition.max) {
+          await itemSelected.update({ "system.ammunition.value": newAmmo });
+        }
       }
     }
   }

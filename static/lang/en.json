@@ -331,6 +331,7 @@
         "ValueCr": "Value in Cr"
       },
       "Component": {
+        "Ammunition":"Ammuniton",
         "componentName": "Component",
         "accomodations": "accomodations",
         "armament": "armament",
