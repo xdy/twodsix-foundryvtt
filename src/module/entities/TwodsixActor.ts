@@ -937,10 +937,10 @@ export function getPower(item: Component): number{
 }
 
 export function getWeight(item: Component, actorData): number{
-  let q = item.quantity ?? 1;
-  if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
+  const q = item.quantity ?? 1;
+  /*if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
     q = parseInt(item.availableQuantity);
-  }
+  }  make true displacement and not mass*/
   let w = 0;
   if (item.weightIsPct) {
     w = (item.weight ?? 0) / 100 * actorData.system.shipStats.mass.max;

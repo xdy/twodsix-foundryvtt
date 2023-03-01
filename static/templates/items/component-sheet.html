@@ -152,6 +152,14 @@
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Component.Ammunition"}}</label>
+        <div>
+          <input id="system.ammunition.value" class="form-consumable-count" name="system.ammunition.value" type="number" value="{{system.ammunition.value}}" data-dtype="Number"/>
+          /
+          <input id="system.ammunition.max" class="form-consumable-count" name="system.ammunition.max" type="number" value="{{system.ammunition.max}}" data-dtype="Number"/>
+        </div>
+    </div>
     {{/iff}}
     <div class="item-hits">
       <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.hits"}}</label>

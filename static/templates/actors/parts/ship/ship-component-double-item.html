@@ -6,7 +6,20 @@
       {{else}}
         <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfLists}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
       {{/iff}}
-      <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+      {{#iff item.system.subtype "===" "armament"}}
+          {{#iff item.system.ammunition.max "!==" 0}}
+            <span class="item-name centre">{{item.system.ammunition.value}}
+              <span class="combined-buttons" data-field="ammo">
+                <button class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                <button class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
+              </span>
+            </span>
+          {{else}}
+            <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+          {{/iff}}
+      {{else}}
+        <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+      {{/iff}}
       <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
       <span class="item-name centre">{{item.system.rating}}</span>
       <span class="item-name centre component-toggle">

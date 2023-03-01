@@ -1990,18 +1990,21 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*border-right: 1px solid var(--s2d6-form-light);*/
 }
 
-grid-columns-double-row {
+.grid-columns-double-row {
   align-self: center;
 }
 
 .grid-columns-double-row:nth-of-type(4n+3), .grid-columns-double-row:nth-of-type(4n+4) {
   background: var(--s2d6-skill-list-even);
   border-right: 1px solid var(--s2d6-form-light);
+  height: 100%;
+  align-items: center;
+  display: grid;
 }
 
 .components-stored-single {
   display: grid;
-  grid-template-columns: 12.5em 3em 6em 3em 4em 4em 4em 4.5em 1.5em 4.5em 3.2em 3em;
+  grid-template-columns: 12.5em 2em 6em 3em 4em 4em 5.5em 4.5em 1.5em 4em 3.2em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas: ". . . . . . . . . . . .";

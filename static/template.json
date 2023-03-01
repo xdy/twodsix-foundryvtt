@@ -659,7 +659,11 @@
       "armorPiercing": 0,
       "actorLink": "",
       "hardened": false,
-      "associatedSkillName": ""
+      "associatedSkillName": "",
+      "ammunition": {
+        "value": 0,
+        "max":0
+      }
     },
     "ship_position": {
       "name": "",
