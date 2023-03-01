@@ -1,3 +1,10 @@
+# [2.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.20.1...v2.21.0) (2023-03-01)
+
+
+### Features
+
+* add armament ammo counter ([#1261](https://github.com/xdy/twodsix-foundryvtt/issues/1261)) ([6f9307f](https://github.com/xdy/twodsix-foundryvtt/commit/6f9307f6ed132bddc4638bfd8211ee4695a23c52))
+
 ## [2.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.20.0...v2.20.1) (2023-03-01)
 
 
