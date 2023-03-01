@@ -477,7 +477,9 @@
         "DropConsumablesHere": "Aquí puedes arrastrar consumibles.",
         "DropAttachmentsHere": "Aquí puedes añadir accesorios.",
         "RemoveConsumable": "Eliminar consumible",
-        "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
+        "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?",
+        "SelectConsumable": "Selecciona Consumible",
+        "ActiveConsumable": "Consumible Activo"
       },
       "Weapon": {
         "Ammo": "Cargador",
