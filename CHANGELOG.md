@@ -1,3 +1,10 @@
+## [2.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.20.0...v2.20.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* ammo buttons not working ([#1260](https://github.com/xdy/twodsix-foundryvtt/issues/1260)) ([2cb3a70](https://github.com/xdy/twodsix-foundryvtt/commit/2cb3a70ded074fb5ec6b065fd94eb60e5d193d70))
+
 # [2.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.19.2...v2.20.0) (2023-02-28)
 
 
