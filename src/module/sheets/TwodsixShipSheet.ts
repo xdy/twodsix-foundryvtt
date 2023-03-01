@@ -192,8 +192,13 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = this.actor.items.get(li.data("itemId"));
-      const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-      itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+      const type = $(event.currentTarget).data("type");
+      if (type === "status") {
+        const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
+        itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+      } else if (type === "popup") {
+        itemSelected?.update({"system.isExtended": !itemSelected.system.isExtended});
+      }
     }
   }
 

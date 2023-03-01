@@ -365,6 +365,10 @@ export default function registerHandlebarsHelpers(): void {
     return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border: 1px solid;`;
   });
 
+  Handlebars.registerHelper('twodsix_canBePopup', (item: TwodsixItem) => {
+    return ["armament", "mount"].includes(item.system.subtype);
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function (context) {
     console.log(context);

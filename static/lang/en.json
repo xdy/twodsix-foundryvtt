@@ -393,7 +393,11 @@
         "DM":"DM",
         "Hardened": "Hardened?",
         "hardened": "hardened",
-        "Hd": "Hd"
+        "Hd": "Hd",
+        "isPopup": "Is a Pop-up?",
+        "isExtended": "Is Pop-up extended?",
+        "extended": "extended",
+        "retracted": "retracted"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
