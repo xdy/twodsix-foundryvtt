@@ -2816,4 +2816,5 @@ input[type="text"].color {
 
 .card-buttons {
   display: inline-flex;
+  padding-bottom: 4px;
 }
