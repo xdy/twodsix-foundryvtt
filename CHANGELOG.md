@@ -1,3 +1,10 @@
+# [2.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.21.0...v2.22.0) (2023-03-02)
+
+
+### Features
+
+* Make popup button ([#1262](https://github.com/xdy/twodsix-foundryvtt/issues/1262)) ([eb34023](https://github.com/xdy/twodsix-foundryvtt/commit/eb34023bf67b4f73399c0d15b86151a34ca563da))
+
 # [2.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.20.1...v2.21.0) (2023-03-01)
 
 
