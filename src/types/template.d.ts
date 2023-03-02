@@ -524,6 +524,8 @@ export interface Component extends GearTemplate, LinkTemplate {
   hardened: boolean;
   associatedSkillName:string;
   ammunition:Encumbrance;
+  isPopup:boolean;
+  isExtended:boolean;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {

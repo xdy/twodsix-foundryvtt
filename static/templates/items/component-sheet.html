@@ -161,6 +161,16 @@
         </div>
     </div>
     {{/iff}}
+    {{#if (twodsix_canBePopup this)}}
+    <div class="item-data">
+      <label for="system.isPopup" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPopup"}}</label>
+      <input type="checkbox" class="checkbox" name="system.isPopup" {{checked system.isPopup}} data-dtype="Boolean" />
+      {{#if system.isPopup}}
+        <label for="system.isExtended" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isExtended"}}</label>
+        <input type="checkbox" class="checkbox" name="system.isExtended" {{checked system.isExtended}} data-dtype="Boolean" />
+      {{/if}}
+    </div>
+    {{/if}}
     <div class="item-hits">
       <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.hits"}}</label>
       <input class="form-input" id="system.hits" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>

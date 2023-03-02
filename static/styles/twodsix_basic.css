@@ -2220,7 +2220,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
-.item-target-area, .item-target-width {
+.item-target-area, .item-target-width, .item-popup {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -2816,4 +2816,5 @@ input[type="text"].color {
 
 .card-buttons {
   display: inline-flex;
+  padding-bottom: 4px;
 }
