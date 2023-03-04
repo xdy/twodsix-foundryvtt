@@ -1085,10 +1085,10 @@ span.add-skill-txt {
   width: fit-content;
 }
 
-a:hover, a.active {
+/*a:hover, a.active {
   text-shadow: 0 0 0.8em;
-  background-color: var(--s2d6-background-semi-opaque);
-}
+  background-color: var(--s2d6-background-nearly-opaque);
+}*/
 
 .item.flexrow.item-header {
   margin-top: 2em;
@@ -2264,6 +2264,20 @@ select.form-input, input.form-input, span.form-input {
 /*.tabs .item.active {
   text-shadow: 0 0 10px !important;
 }*/
+
+.sheet-navigation.tabs {
+  padding: 0.2em 0.2em 0.5em;
+  border-bottom: 1px solid var(--color-border-light-tertiary);
+  margin-bottom: 0.5em;
+
+}
+.sheet-body {
+  height: auto !important;
+}
+.tabs .item.active {
+  text-shadow: 0 0 10px var(--color-shadow-primary);
+  background-color: var(--s2d6-background-transparent);
+}
 
 /* ------ Item page - Consumables ------ */
 .consumable-row {

@@ -20,8 +20,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
       submitOnChange: true,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null}]
+      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+      dragDrop: [{dropSelector: null}],
+      resizable: true,
+      width: 550,
+      height: 'auto'
     });
   }
 
