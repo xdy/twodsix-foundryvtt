@@ -2972,6 +2972,9 @@ background: var(--s2d6-sidebar-background);
   background: var(--color-text-dark-2);
   border: 1px solid var(--s2d6-header-border);
 }
+.chat-message.emote {
+  background: var(--s2d6-background-nearly-opaque);
+}
 
 .dice-roll .dice-formula, .dice-roll .dice-total {
   flex: 0 0 100%;

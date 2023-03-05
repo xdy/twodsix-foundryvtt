@@ -131,6 +131,7 @@ declare global {
       'twodsix.showHitsChangesInChat':boolean;
       'twodsix.encumbFractionOneSquare':number;
       'twodsix.encumbFraction75Pct':number;
+      'twodsix.useTabbedViews':boolean;
     }
   }
 }

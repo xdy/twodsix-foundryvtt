@@ -1118,6 +1118,10 @@
       "encumbFraction75pct": {
         "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
         "name": "Fraction of maximum encumbrance for 75 percent movement rate"
+      },
+      "useTabbedViews": {
+        "hint": "Use a tabbbed sheet for longer item sheets rather than a flat sheet.",
+        "name": "Use tabbed views for weapons and component sheets"
       }
     },
     "CloseAndCreateNew": "Close and create new",
