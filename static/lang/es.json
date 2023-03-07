@@ -331,6 +331,7 @@
         "ValueCr": "Valor en Cr"
       },
       "Component": {
+        "Ammunition": "Munición",
         "componentName": "Componente",
         "accomodations": "habitáculos",
         "armament": "armamento",
@@ -392,7 +393,11 @@
         "DM": "MD",
         "Hardened": "¿Reforzado?",
         "hardened": "reforzado",
-        "Hd": "Ref"
+        "Hd": "Ref",
+        "isPopup": "¿Es desplegable?",
+        "isExtended": "¿Esta el desplegable extendido?",
+        "extended": "extendido",
+        "retracted": "retraído"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
