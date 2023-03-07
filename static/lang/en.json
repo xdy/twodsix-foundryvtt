@@ -505,7 +505,9 @@
         "HandlingModifiers": "Handling Modifiers",
         "Magazine": "Magazine",
         "Modifiers": "Modifiers",
-        "Attack": "Attack"
+        "Attack": "Attack",
+        "Consumables": "Consumables",
+        "DefaultMagazine": "Default Magazine Size"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
