@@ -13,7 +13,7 @@ Twodsix has been translated by users of the system into the following languages:
 * Swedish (included)
 * Spanish (included)
 * German (included)
-* Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-RU/)
+* Russian (available in the Russian translation module https://foundryvtt.com/packages/ru-ru/)
 * If you would like support for some other language, send in a translation to that language and I'll add it to the system. (Or send a link to a module that includes support for your preferred language and I'll link to it.) See [CONTRIBUTING.MD](../CONTRIBUTING.md)
 
 ## Other sources of information
