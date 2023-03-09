@@ -628,8 +628,8 @@
       "chatPlaceholder": "Chat Message",
       "skillPlaceholder": "Skill/CHR 8+",
       "firePlaceholder": "Skill/CHR 8+=COMPONENT_ID",
-      "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+",
-      "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR 8+=COMPONENT_ID",
+      "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+\nSkills/ATR|ATR2",
+      "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR|ATR2 8+=COMPONENT_ID",
       "chatTooltip": "Ahoy!"
     },
     "Vehicle": {
