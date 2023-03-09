@@ -89,7 +89,7 @@ export class TwodsixShipActions {
 
       /*get characteristic key, default to skill key if none specificed in formula */
       let characteristicKey = "";
-      const charObject = selectedActor?.system["characteristics"];
+      const charObject = selectedActor?.system["characteristics"] ?? {};
       //we need an array
       const charObjectArray = Object.keys(charObject).map(key => {
         return charObject[key];
