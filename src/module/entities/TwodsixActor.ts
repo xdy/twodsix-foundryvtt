@@ -373,81 +373,90 @@ export default class TwodsixActor extends Actor {
     }
     super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
   }*/
+  /*protected async _preCreate(data, options, user) {
+    super._preCreate(data, options, user);
+    console.log("Precreate", this);
+  }*/
 
-  protected async _onCreate() {
-    switch (this.type) {
-      case "traveller":
-        if (game.settings.get("twodsix", "defaultTokenSettings")) {
-          this.update( {
-            "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-            "token.displayBars": CONST.TOKEN_DISPLAY_MODES.ALWAYS,
-            "token.vision": true,
-            "token.brightSight": 1000,
-            "token.dimSight": 0,
-            "token.actorLink": true,
-            "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-            "token.bar1": {
-              attribute: "hits"
-            }
+  protected async _onCreate(data, options, userId) {
+    if (userId === game.user.id) {
+      super._onCreate(data, options, userId);
+      //console.log("onCreate Start", this);
+      switch (this.type) {
+        case "traveller":
+          this.update({
+            "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
+            "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
           });
-        }
-        this.update({
-          "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
-          "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
+          await this.createUntrainedSkill();
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            await this.update({
+              'img': 'systems/twodsix/assets/icons/default_actor.png'
+            });
+          }
+
+          if (game.settings.get("twodsix", "autoAddUnarmed")) {
+            await this.createUnarmedSkill();
+          }
+          this.deleteCustomAEs();
+          this.fixItemAEs();
+          if (game.settings.get("twodsix", "defaultTokenSettings")) {
+            this.update( {
+              "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "token.sight": {
+                "enabled": true,
+                "visonMode": "basic",
+                "brightness": 1
+              },
+              "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+              "token.bar1": {
+                attribute: "hits"
+              }
+            });
+          }
+          break;
+        case "animal":
+          await this.createUntrainedSkill();
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            await this.update({
+              'img': 'systems/twodsix/assets/icons/alien-bug.svg'
+            });
+          }
+
+          if (game.settings.get("twodsix", "autoAddUnarmed")) {
+            await this.createUnarmedSkill();
+          }
+          this.deleteCustomAEs();
+          this.fixItemAEs();
+          break;
+        case "ship":
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            await this.update({
+              'img': 'systems/twodsix/assets/icons/default_ship.png'
+            });
+          }
+          break;
+        case "vehicle":
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            await this.update({
+              'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+            });
+          }
+          break;
+        case "space-object":
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            await this.update({
+              'img': 'systems/twodsix/assets/icons/default_space-object.png'
+            });
+          }
+          break;
+      }
+      if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
+        await this.update({
+          'token.img': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
         });
-        await this.createUntrainedSkill();
-        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-          await this.update({
-            'img': 'systems/twodsix/assets/icons/default_actor.png'
-          });
-        }
-
-        if (game.settings.get("twodsix", "autoAddUnarmed")) {
-          await this.createUnarmedSkill();
-        }
-        this.deleteCustomAEs();
-        this.fixItemAEs();
-        break;
-      case "animal":
-        await this.createUntrainedSkill();
-        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-          await this.update({
-            'img': 'systems/twodsix/assets/icons/alien-bug.svg'
-          });
-        }
-
-        if (game.settings.get("twodsix", "autoAddUnarmed")) {
-          await this.createUnarmedSkill();
-        }
-        this.deleteCustomAEs();
-        this.fixItemAEs();
-        break;
-      case "ship":
-        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-          await this.update({
-            'img': 'systems/twodsix/assets/icons/default_ship.png'
-          });
-        }
-        break;
-      case "vehicle":
-        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-          await this.update({
-            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
-          });
-        }
-        break;
-      case "space-object":
-        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-          await this.update({
-            'img': 'systems/twodsix/assets/icons/default_space-object.png'
-          });
-        }
-        break;
-    }
-    if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
-      await this.update({
-        'token.img': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
-      });
+      }
     }
   }
 
@@ -581,9 +590,9 @@ export default class TwodsixActor extends Actor {
         "type": "weapon",
         "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
         "quantity": 1,
-        "skill": this.getUntrainedSkill().id || "",
+        "skill": this.getUntrainedSkill()?.id ?? "",
         "equipped": "equipped"
-      },
+      }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
   }
@@ -855,30 +864,34 @@ export default class TwodsixActor extends Actor {
   }
 
   public deleteCustomAEs():void {
-    const systemAEs = this.effects.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
-    const idsToDelete = [];
-    for (const eff of systemAEs) {
-      idsToDelete.push(eff.id);
+    const systemAEs = this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+    if (systemAEs) {
+      const idsToDelete = [];
+      for (const eff of systemAEs) {
+        idsToDelete.push(eff.id);
+      }
+      this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
     }
-    this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
   }
 
   public async fixItemAEs(): void {
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
       const newEffects = [];
-      const itemsWithEffects = this.items.filter(it => it.effects.size > 0);
-      for (const item of itemsWithEffects) {
-        const newEffect = item.effects.contents[0].toObject();
-        Object.assign(newEffect, {
-          disabled: item.system.equipped !== "equipped",
-          _id: "",
-          origin: item.uuid,
-          //label: item.name,
-          flags: {twodsix: {sourceId: item.effects.contents[0].id}}
-        });
-        newEffects.push(newEffect);
+      const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
+      if (itemsWithEffects) {
+        for (const item of itemsWithEffects) {
+          const newEffect = item.effects.contents[0].toObject();
+          Object.assign(newEffect, {
+            disabled: item.system.equipped !== "equipped",
+            _id: "",
+            origin: item.uuid,
+            //label: item.name,
+            flags: {twodsix: {sourceId: item.effects.contents[0].id}}
+          });
+          newEffects.push(newEffect);
+        }
+        await this.createEmbeddedDocuments("ActiveEffect", newEffects);
       }
-      await this.createEmbeddedDocuments("ActiveEffect", newEffects);
     }
   }
 
