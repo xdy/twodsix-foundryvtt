@@ -92,21 +92,11 @@ export class TwodsixShipActions {
       } else {
         //find the most advantageous characteristic to use
         const charOptions = char.split("|");
-        const candidateCharObjects = [];
-        let candidateCharObject = {};
-
-        for (const charOption of charOptions){
-          candidateCharObject = charObjectArray.find((itm: object) => itm.displayShortLabel.toUpperCase() === charOption.toUpperCase());
-          if(candidateCharObject){
-            candidateCharObjects.push(candidateCharObject);
-          }
-        }
-        if(candidateCharObjects.length > 0){
+        let candidateCharObject = undefined;
+        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+        if(candidateCharObjects?.length > 0){
           candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
         }
-
-
-
         characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, selectedActor);;
       }
 
