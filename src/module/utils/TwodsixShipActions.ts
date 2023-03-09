@@ -68,7 +68,7 @@ export class TwodsixShipActions {
       const skillObjects = selectedActor?.itemTypes.skills.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
 
       // find the most advantageous sill to use from the collection
-      if(skillObjects.length > 0){
+      if(skillObjects?.length > 0){
         skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
       }
 
