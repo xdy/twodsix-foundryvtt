@@ -63,17 +63,12 @@ export class TwodsixShipActions {
     if (parsedResult !== null) {
       const [, parsedSkills, char, diff] = parsedResult;
       const skillOptions = parsedSkills.split("|");
-      let skill = {};
+      let skill = undefined;
       /* add qualified skill objects to an array*/
-      const skillObjects = [];
-      for (const skillOption of skillOptions) {
-        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === skillOption) as TwodsixItem;
-        if(skill){
-          skillObjects.push(skill);
-        }
-      }
+      const skillObjects = selectedActor?.itemTypes.skills.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
+
       // find the most advantageous sill to use from the collection
-      if(skillObjects.length){
+      if(skillObjects.length > 0){
         skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
       }
 
@@ -91,9 +86,7 @@ export class TwodsixShipActions {
       let characteristicKey = "";
       const charObject = selectedActor?.system["characteristics"] ?? {};
       //we need an array
-      const charObjectArray = Object.keys(charObject).map(key => {
-        return charObject[key];
-      });
+      const charObjectArray = Object.values(charObject);
       if(!char) {
         characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
       } else {
@@ -103,12 +96,12 @@ export class TwodsixShipActions {
         let candidateCharObject = {};
 
         for (const charOption of charOptions){
-          candidateCharObject = charObjectArray.find((itm: object) => itm.shortLabel.toUpperCase() === charOption.toUpperCase());
+          candidateCharObject = charObjectArray.find((itm: object) => itm.displayShortLabel.toUpperCase() === charOption.toUpperCase());
           if(candidateCharObject){
             candidateCharObjects.push(candidateCharObject);
           }
         }
-        if(candidateCharObjects.length){
+        if(candidateCharObjects.length > 0){
           candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
         }
 
