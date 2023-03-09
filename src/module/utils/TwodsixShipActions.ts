@@ -73,7 +73,7 @@ export class TwodsixShipActions {
         }
       }
       // find the most advantageous sill to use from the collection
-      if(skill){
+      if(skillObjects.length){
         skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
       }
 
