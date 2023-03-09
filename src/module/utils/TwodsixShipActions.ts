@@ -94,7 +94,7 @@ export class TwodsixShipActions {
         const charOptions = char.split("|");
         let candidateCharObject = undefined;
         const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
-        if(candidateCharObjects?.length > 0){
+        if(candidateCharObjects.length > 0){
           candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
         }
         characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, selectedActor);;
