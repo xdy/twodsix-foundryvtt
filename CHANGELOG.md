@@ -1,3 +1,10 @@
+## [2.22.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.22.0...v2.22.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* Fix token drop bug ([#1268](https://github.com/xdy/twodsix-foundryvtt/issues/1268)) ([3034196](https://github.com/xdy/twodsix-foundryvtt/commit/30341963bad727e9cdfb665728669f9aaf0708d0))
+
 # [2.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.21.0...v2.22.0) (2023-03-02)
 
 
