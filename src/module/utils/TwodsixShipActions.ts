@@ -56,20 +56,22 @@ export class TwodsixShipActions {
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
     // eslint-disable-next-line no-useless-escape
-    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/(\w{0,4}))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
+    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/([\S]+))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
     const selectedActor = <TwodsixActor>extra.actor;
 
     if (parsedResult !== null) {
       const [, parsedSkills, char, diff] = parsedResult;
       const skillOptions = parsedSkills.split("|");
-      let skill = {};
-      for (const skillOption of skillOptions) {
-        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === skillOption) as TwodsixItem;
-        if(skill){
-          break;
-        }
+      let skill = undefined;
+      /* add qualified skill objects to an array*/
+      const skillObjects = selectedActor?.itemTypes.skills.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
+
+      // find the most advantageous sill to use from the collection
+      if(skillObjects?.length > 0){
+        skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
       }
+
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
@@ -82,13 +84,23 @@ export class TwodsixShipActions {
 
       /*get characteristic key, default to skill key if none specificed in formula */
       let characteristicKey = "";
+      const charObject = selectedActor?.system["characteristics"] ?? {};
+      //we need an array
+      const charObjectArray = Object.values(charObject);
       if(!char) {
         characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
       } else {
-        characteristicKey = getCharacteristicFromDisplayLabel(char, selectedActor);
+        //find the most advantageous characteristic to use
+        const charOptions = char.split("|");
+        let candidateCharObject = undefined;
+        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+        if(candidateCharObjects.length > 0){
+          candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
+        }
+        characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, selectedActor);;
       }
 
-      const charObject = selectedActor?.system["characteristics"];
+
       let shortLabel = "NONE";
       let displayLabel = "NONE";
       if (charObject && characteristicKey) {
