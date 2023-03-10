@@ -20,8 +20,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
       submitOnChange: true,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null}]
+      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+      dragDrop: [{dropSelector: null}],
+      resizable: true,
+      width: 550,
+      height: 'auto'
     });
   }
 
@@ -51,7 +54,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
-      useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects')
+      useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
+      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews')
     };
     returnData.config = TWODSIX;
     return returnData;

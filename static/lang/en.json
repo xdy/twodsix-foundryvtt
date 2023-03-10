@@ -370,6 +370,7 @@
         "damage": "Damage",
         "RadiationDamage": "Radiation Damage",
         "hits": "Hits",
+        "SustainedHits": "Sustained Hits",
         "weightIsPct": "Weight is Percentage?",
         "purchasePrice": "Purchase Price",
         "isIllegal": "Illegal?",
@@ -397,7 +398,10 @@
         "isPopup": "Is a Pop-up?",
         "isExtended": "Is Pop-up extended?",
         "extended": "extended",
-        "retracted": "retracted"
+        "retracted": "retracted",
+        "Displacement": "Displacement",
+        "Description":"Description",
+        "ComponentType": "Component Type"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -502,7 +506,12 @@
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack",
-        "HandlingModifiers": "Handling Modifiers"
+        "HandlingModifiers": "Handling Modifiers",
+        "Magazine": "Magazine",
+        "Modifiers": "Modifiers",
+        "Attack": "Attack",
+        "Consumables": "Consumables",
+        "DefaultMagazine": "Default Magazine Size"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -1115,6 +1124,10 @@
       "encumbFraction75pct": {
         "hint": "This is a Drag Ruler module setting to set the 75 percent movement limit.  The fraction applied to the maximum encumbrance formula. It only applies when the OTHER ruleset is in use.",
         "name": "Fraction of maximum encumbrance for 75 percent movement rate"
+      },
+      "useTabbedViews": {
+        "hint": "Use a tabbbed sheet for longer item sheets rather than a flat sheet.",
+        "name": "Use tabbed views for weapons and component sheets"
       }
     },
     "CloseAndCreateNew": "Close and create new",

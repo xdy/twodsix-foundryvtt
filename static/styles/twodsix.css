@@ -254,8 +254,12 @@ table tr:nth-child(even) {
 }
 .sheet header.sheet-header img {
   flex: 0 0 64px;
-  height: 64px;
   margin-right: 6px;
+  object-fit: scale-down;
+}
+
+.item-img {
+  height: auto !important; /*must make important*/
 }
 .sheet header.sheet-header h1 {
   flex: 1;
@@ -1539,6 +1543,7 @@ span.add-skill-txt {
 
 a:hover, a.active {
   text-shadow: 0 0 0.8em var(--s2d6-light-color);
+  color: var(--s2d6-light-color);
 }
 
 .item.flexrow.item-header {
@@ -2815,9 +2820,16 @@ select.form-input, input.form-input, span.form-input {
   height: 2em;
 }
 
-
+.sheet-navigation.tabs {
+  padding: 0.2em 0.2em 0.5em;
+  border-bottom: 1px solid var(--color-border-light-tertiary);
+  margin-bottom: 0.5em;
+}
+.sheet-body {
+  height: auto !important;
+}
 /*.tabs .item.active {
-  text-shadow: 0 0 10px var(--s2d6-light-color);
+  text-shadow: 0 0 10px var(--color-shadow-primary);
 }*/
 
 /* ------ Item page - Consumables ------ */
@@ -2888,6 +2900,10 @@ select.form-input, input.form-input, span.form-input {
   text-align: center;
 }
 
+.item-sheet {
+  overflow-y: hidden;
+}
+
 .remove-consumable {
   text-align: center;
 }
@@ -2955,6 +2971,9 @@ background: var(--s2d6-sidebar-background);
 .chat-message.whisper {
   background: var(--color-text-dark-2);
   border: 1px solid var(--s2d6-header-border);
+}
+.chat-message.emote {
+  background: var(--s2d6-background-nearly-opaque);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {

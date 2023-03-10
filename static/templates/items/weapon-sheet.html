@@ -1,101 +1,10 @@
-<form class="{{cssClass}}" autocomplete="off"
+<form class="{{cssClass}} item-sheet" autocomplete="off"
       data-item-id="{{_id}}"
       data-has-owner="{{hasOwner}}"
       data-actor-id="{{actor._id}}">
-  <div class="item-sheet">
-    {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
-    <div class="item-damage">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.MagazineCost"}}</label>
-      <input class="form-input" id="system.magazineCost" type="number" name="system.magazineCost" value="{{system.magazineCost}}">
-    </div>
-
-    <div class="item-damage">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
-      <input class="form-input" id="system.damage" type="text" name="system.damage" value="{{system.damage}}">
-    </div>
-
-    <div class="item-damage">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
-      <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
-    </div>
-
-    <div class="item-range">
-      {{#if settings.ShowRangeBandAndHideRange}}
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
-      <input id="system.rangeBand" type="text" name="system.rangeBand" value="{{system.rangeBand}}">
-      {{else}}
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
-      <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
-      {{/if}}
-    </div>
-
-    <div class="item-handling">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
-      <input class="form-input" id="system.handlingModifiers" type="text" placeholder="DEX 6/-3 10/+4" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
-    </div>
-    {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}
-    <div class="item-ammo">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Ammo"}}</label>
-      <input id ="system.ammo" type="text" name="system.ammo" value="{{system.ammo}}">
-    </div>
-
-    <div class="item-qty">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
-      <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
-    </div>
-
-    <div class="item-weight">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
-      <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
-    </div>
-
-    {{#if settings.ShowLawLevel}}
-    <div class="item-lawLevel">
-      <span class="resource-label">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
-      <input class="form-input" type="text" name="system.lawLevel" value="{{system.lawLevel}}">
-    </div>
-    {{/if}}
-
-    {{#if settings.ShowWeaponType}}
-    <div class="item-weaponType">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.weaponType"}}</label>
-      <input class="form-input" id="system.weaponType" type= "text" name="system.weaponType" value="{{system.weaponType}}">
-    </div>
-    {{/if}}
-
-    {{#if settings.ShowDamageType}}
-    <div class="item-damageType">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-      <input class="form-input" id="system.damageType" type="text" name="system.damageType" value= "{{system.damageType}}"></div>
-    </div>
-    {{/if}}
-
-    {{#if settings.ShowRateOfFire}}
-    <div class="item-rateOfFire">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
-      <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
-    </div>
-    {{/if}}
-
-    {{#if settings.ShowRecoil}}
-    <div class="item-recoil">
-      <span class="resource-label">{{localize "TWODSIX.Items.Weapon.recoil"}}</span>
-      <input type="checkbox" class="checkbox" name="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
-    </div>
-    {{/if}}
-
-    <div class="item-features">
-      <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Features"}}</label>
-      <input class="form-input" id="system.features" type="text" name="system.features" value="{{system.features}}">
-    </div>
-
-    <div class="item-descr">
-      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
-      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
-    </div>
-    {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
-    {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
-    {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.html"}}
-    {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.html"}}{{/if}}
-  </div>
+  {{#if settings.useTabbedViews}}
+    {{> "systems/twodsix/templates/items/parts/weapon-sheet-tabbed.html"}}
+  {{else}}
+    {{> "systems/twodsix/templates/items/parts/weapon-sheet-flat.html"}}
+  {{/if}}
 </form>
