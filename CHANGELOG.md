@@ -1,3 +1,10 @@
+# [2.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.22.1...v2.23.0) (2023-03-10)
+
+
+### Features
+
+* Ship Actions Enhancements ([#1267](https://github.com/xdy/twodsix-foundryvtt/issues/1267)) ([f22797d](https://github.com/xdy/twodsix-foundryvtt/commit/f22797dc2b0b3463815ee34c1459337fb4959ec1))
+
 ## [2.22.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.22.0...v2.22.1) (2023-03-09)
 
 
