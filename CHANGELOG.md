@@ -1,3 +1,10 @@
+# [2.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.23.0...v2.24.0) (2023-03-10)
+
+
+### Features
+
+* add tabs to weapon and component sheets ([#1264](https://github.com/xdy/twodsix-foundryvtt/issues/1264)) ([b5f3a71](https://github.com/xdy/twodsix-foundryvtt/commit/b5f3a7100a1b5ee26615ac1093839f9f03418a6d))
+
 # [2.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.22.1...v2.23.0) (2023-03-10)
 
 
