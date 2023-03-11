@@ -2825,7 +2825,7 @@ select.form-input, input.form-input, span.form-input {
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 }
-.sheet-body {
+.auto-height {
   height: auto !important;
 }
 /*.tabs .item.active {
@@ -2900,9 +2900,9 @@ select.form-input, input.form-input, span.form-input {
   text-align: center;
 }
 
-.item-sheet {
+/*.item-sheet {
   overflow-y: hidden;
-}
+}*/
 
 .remove-consumable {
   text-align: center;

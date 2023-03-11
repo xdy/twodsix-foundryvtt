@@ -2271,7 +2271,7 @@ select.form-input, input.form-input, span.form-input {
   margin-bottom: 0.5em;
 
 }
-.sheet-body {
+.auto-height {
   height: auto !important;
 }
 .tabs .item.active {
