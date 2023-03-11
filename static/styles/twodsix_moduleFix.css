@@ -62,3 +62,57 @@ div.pdf-app section.window-content {
   background: var(--s2d6-background-transparent) !important;
 }
 */
+
+/*Monk's Enhanced Journals*/
+.monks-enhanced-journal .editor-edit {
+  z-index: 100;
+  display: block;
+}
+
+.monks-enhanced-journal .directory-sidebar > section {
+  /* background: revert; */
+  background-color: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-select-light);
+}
+
+#journal-directory li.folder.collapsed > .folder-header:not(.customcolor) {
+  color: var(--s2d6-select-light);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab {
+  background: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-enhanced-journal > header a.subsheet {
+  background: var(--s2d6-background-transparent);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab.active {
+  background-color: var(--s2d6-default-color);
+  color: black;
+}
+
+.monks-journal-sheet.sheet .editor {
+  overflow: auto;
+  height: 100%;
+}
+
+.monks-journal-sheet.sheet .items-list .item .item-name {
+  color: revert;
+}
+
+.monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
+  margin-top: unset;
+}
+
+.monks-enhanced-journal .mainbar .navigation .button-group {
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-enhanced-journal .mainbar .navigation .nav-button, .monks-enhanced-journal footer.navigation .nav-button {
+  background: var(--s2d6-background-semi-opaque);
+}
+
+.monks-enhanced-journal .mainbar .navigation .nav-button.disabled, .monks-enhanced-journal footer.navigation .nav-button.disabled {
+  color: var(--s2d6-default-color);
+}
