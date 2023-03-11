@@ -1,3 +1,10 @@
+## [2.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.0...v2.24.1) (2023-03-11)
+
+
+### Bug Fixes
+
+* style clash with Monks Journal ([#1269](https://github.com/xdy/twodsix-foundryvtt/issues/1269)) ([ceaeb27](https://github.com/xdy/twodsix-foundryvtt/commit/ceaeb27184cf566899979ced6c933eeef27f131c))
+
 # [2.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.23.0...v2.24.0) (2023-03-10)
 
 
