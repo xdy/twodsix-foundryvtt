@@ -62,3 +62,27 @@ div.pdf-app section.window-content {
   background: var(--s2d6-background-transparent) !important;
 }
 */
+
+/*Monk's Enhanced Journals*/
+.monks-enhanced-journal .editor-edit {
+  z-index: 100;
+  display: block;
+}
+
+.monks-enhanced-journal .directory-sidebar > section {
+  /* background: revert; */
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+#journal-directory li.folder.collapsed > .folder-header:not(.customcolor) {
+  color: var(--s2d6-select-light);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab {
+  background: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab.active {
+  background-color: var(--s2d6-default-color);
+  color: black;
+}
