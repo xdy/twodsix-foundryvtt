@@ -414,6 +414,7 @@ const CONSUMABLES = Object.freeze({
   fuel: "TWODSIX.Items.Consumable.Types.fuel",
   magazine: "TWODSIX.Items.Consumable.Types.magazine",
   power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
+  software: "TWODSIX.Items.Consumable.Types.software",
   other: "TWODSIX.Items.Consumable.Types.other"
 });
 

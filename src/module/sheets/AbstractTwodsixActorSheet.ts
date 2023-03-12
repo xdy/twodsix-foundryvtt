@@ -352,7 +352,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Prepare Containers for sheetData
     sheetData.container = actor.itemTypes;
-    sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool);
+    sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.skills = skillsList;
     sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     if (actor.type === "traveller") {

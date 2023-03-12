@@ -501,7 +501,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position", "computer"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -590,7 +590,7 @@
       "location": ["inventory", "storage"]
     },
     "skills": {
-      "templates": ["referenceTemplate", "referenceTemplate"],
+      "templates": ["referenceTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
@@ -632,7 +632,8 @@
       "location": ["inventory", "storage"],
       "armorPiercing": 0,
       "bonusDamage": "",
-      "isAttachment": false
+      "isAttachment": false,
+      "bandwidth": 0
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],
@@ -665,13 +666,18 @@
         "max":0
       },
       "isPopup": false,
-      "isExtended": false
+      "isExtended": false,
+      "bandwidth": 0
     },
     "ship_position": {
       "name": "",
       "icon": "",
       "actions": {},
       "order": 0
+    },
+    "computer": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "processingPower": 0
     }
   }
 }

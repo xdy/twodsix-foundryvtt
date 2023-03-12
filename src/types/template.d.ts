@@ -93,6 +93,11 @@ export interface ShipPositionDataSource {
   system: ShipPosition;
 }
 
+export interface ComputerDataSource {
+  type: 'computer';
+  system: Computer;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -106,6 +111,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | SpellDataSource
   | WeaponDataSource
   | ShipPositionDataSource
+  | ComputerDataSource
   ;
 
 export type Gear = Armor
@@ -113,11 +119,13 @@ export type Gear = Armor
   | Storage
   | Weapon
   | Component
+  | Computer
   ;
 
 export type UsesConsumables = Armor
   | Equipment
   | Weapon
+  | Computer
   ;
 
 // If/when template.json is edited, this file needs to be edited to match.
@@ -476,6 +484,7 @@ export interface Item {
   spell:Spell;
   consumable:Consumable;
   component:Component;
+  computer:Computer;
 }
 
 export interface Armor extends GearTemplate, LinkTemplate {
@@ -526,6 +535,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   ammunition:Encumbrance;
   isPopup:boolean;
   isExtended:boolean;
+  bandwidth: number;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {
@@ -538,6 +548,7 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   armorPiercing:number;
   bonusDamage:string;
   isAttachment:boolean;
+  bandwidth:number;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
@@ -655,3 +666,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   armorPiercing:number;
 }
 
+export interface Computer extends GearTemplate, LinkTemplate {
+  templates:string[];
+  processingPower:number;
+}

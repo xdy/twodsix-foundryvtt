@@ -427,6 +427,7 @@
         "AssignTool": "Assign Tool",
         "AssignWeapon": "Assign Weapon",
         "AssignConsumable": "Assign Consumable",
+        "AssignComputer": "Assign Computer",
         "Inventory": "Inventory",
         "ItemType": "Type",
         "MoveStorage": "Move Storage",
@@ -477,11 +478,13 @@
           "fuel": "Fuel",
           "magazine": "Magazine",
           "power_cell": "Power Cell",
+          "software": "Software",
           "other": "Other"
         },
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
+        "Bandwidth": "Bandwidth",
         "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
         "DropAttachmentsHere": "You can drop attachments here.",
@@ -519,6 +522,9 @@
         "SpellName": "Spell Name",
         "Level": "Level",
         "sorcerySkill": "Sorcery"
+      },
+      "Computer": {
+        "ProcessingPower": "Processing Power"
       }
     },
     "Target": {

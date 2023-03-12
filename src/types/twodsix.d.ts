@@ -298,6 +298,7 @@ declare interface Game {
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
         shipPosition: TwodsixShipPositionSheetData;
+        computer: TwodsixItemSheetData;
       };
     };
   };
