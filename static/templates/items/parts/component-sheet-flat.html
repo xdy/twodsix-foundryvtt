@@ -83,10 +83,22 @@
 
 
     {{#iff system.subtype "===" "fuel" }}
-    <div class="item-refined">
-      <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
-      <input type="checkbox" class="checkbox" name="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
-    </div>
+      <div class="item-refined">
+        <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
+        <input type="checkbox" class="checkbox" name="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
+      </div>
+    {{/iff}}
+    {{#iff system.subtype "===" "computer" }}
+      <div class="item-data">
+        <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}</label>
+        <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+      </div>
+    {{/iff}}
+    {{#iff system.subtype "===" "software" }}
+      <div class="item-data">
+        <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
+        <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+      </div>
     {{/iff}}
 
     {{#iff system.subtype "!==" "cargo"}}

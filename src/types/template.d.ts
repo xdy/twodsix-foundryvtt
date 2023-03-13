@@ -116,6 +116,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
 
 export type Gear = Armor
   | Equipment
+  | Tool
   | Storage
   | Weapon
   | Component
@@ -124,6 +125,7 @@ export type Gear = Armor
 
 export type UsesConsumables = Armor
   | Equipment
+  | Tool
   | Weapon
   | Computer
   ;
@@ -204,6 +206,7 @@ export interface ShipStats {
   fuelTanks:Staterooms;
   mass:Staterooms;
   drives: Drives;
+  bandwidth:Hits;
 }
 
 export interface Staterooms {
@@ -413,7 +416,7 @@ export interface ShipPosition {
   actions: ShipActions;
   sortedActions?: ShipAction[];
   order: number;
-  actors?: TwodsixActor[];
+  actors?: Traveller[];
 }
 
 export interface Vehicle extends LinkTemplate {
@@ -421,7 +424,7 @@ export interface Vehicle extends LinkTemplate {
   cargoList:string;
   cargoCapacity:string;
   cost: string;
-  crew:VehcileCrew;
+  crew:VehicleCrew;
   damageStats:VehicleDamageStats;
   features:string;
   maneuver:VehicleManeuver;
@@ -436,8 +439,8 @@ export interface Vehicle extends LinkTemplate {
 }
 
 export interface VehicleCrew {
-  operators:text;
-  passengers:text;
+  operators:string;
+  passengers:string;
 }
 export interface VehicleDamageStats {
   armor: Hits;
@@ -552,6 +555,13 @@ export interface Consumable extends GearTemplate, LinkTemplate {
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
+  templates:string[];
+  type:string;
+  useConsumableForAttack:string;
+  location:string[];
+}
+
+export interface Tool extends GearTemplate, LinkTemplate {
   templates:string[];
   type:string;
   useConsumableForAttack:string;

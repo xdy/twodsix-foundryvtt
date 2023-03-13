@@ -69,6 +69,18 @@
           <input type="checkbox" class="checkbox" name="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
         </div>
       {{/iff}}
+      {{#iff system.subtype "===" "computer" }}
+        <div class="item-data">
+          <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}</label>
+          <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+        </div>
+      {{/iff}}
+      {{#iff system.subtype "===" "software" }}
+        <div class="item-data">
+          <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
+          <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+        </div>
+      {{/iff}}
       <div class="item-descr">
         <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
         <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
@@ -117,6 +129,11 @@
           <div class="item-qty">
             <label for="system.availableQuantity" class="resource-label">{{localize "TWODSIX.Items.Component.availableQuantity"}}</label>
             <input class="form-input" id="system.availableQuantity" type="text" name="system.availableQuantity" value="{{system.availableQuantity}}" data-dtype="Number"/>
+          </div>
+        {{else}}
+          <div class="item-short">
+            <label for="system.cargoLocation" class="resource-label">{{localize "TWODSIX.Items.Component.CargoLocation"}}</label>
+            <input class="form-input" id="system.cargoLocation" type="text" name="system.cargoLocation" value="{{system.cargoLocation}}"/>
           </div>
         {{/iff}}
       {{/if}}
@@ -219,11 +236,6 @@
         <div class="item-price">
           <label for="system.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}</label>
           <input type="checkbox" class="checkbox" name="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
-        </div>
-
-        <div class="item-short">
-          <label for="system.cargoLocation" class="resource-label">{{localize "TWODSIX.Items.Component.CargoLocation"}}</label>
-          <input class="form-input" id="system.cargoLocation" type="text" name="system.cargoLocation" value="{{system.cargoLocation}}"/>
         </div>
       {{/iff}}
     </div>

@@ -266,6 +266,11 @@
           "mDrive": {
             "rating": 0
           }
+        },
+        "bandwidth": {
+            "value": 0,
+            "min": 0,
+            "max": 0
         }
       }
     },
@@ -677,6 +682,8 @@
     },
     "computer": {
       "templates": ["gearTemplate", "referenceTemplate"],
+      "type":"computer",
+      "useConsumableForAttack": "",
       "processingPower": 0
     }
   }
