@@ -25,6 +25,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(booleanSetting('useSystemDefaultTokenIcon', false));
     settings.push(booleanSetting('showMissingCompendiumWarnings', true));
     settings.push(booleanSetting('showSingleComponentColumn', false));
+    settings.push(booleanSetting('showBandwidth', false));
     settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.push(booleanSetting('useEncumbranceStatusIndicators', false));

@@ -628,6 +628,7 @@
       },
       "Thrust": "Thrust",
       "tons": "tons",
+      "dtons": "d-tons",
       "Travellers": "Travellers",
       "USED": "USED",
       "Vehicles": "Vehicles",
@@ -900,6 +901,10 @@
       "showSingleComponentColumn": {
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
+      },
+      "showBandwidth": {
+        "hint": "Show the used and available bandwidth for computers and software.",
+        "name": "Ship computing bandwidth"
       },
       "ShowWeaponType": {
         "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",

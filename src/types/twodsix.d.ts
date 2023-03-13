@@ -68,6 +68,7 @@ declare global {
       'twodsix.showLifebloodStamina': boolean;
       'twodsix.showMissingCompendiumWarnings': boolean;
       'twodsix.showSingleComponentColumn': boolean;
+      'twodsix.showBandwidth': boolean;
       'twodsix.useFoundryStandardStyle': boolean;
       'twodsix.useSystemDefaultTokenIcon': boolean;
       'twodsix.useWoundedStatusIndicators': boolean;

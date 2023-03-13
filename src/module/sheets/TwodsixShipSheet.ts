@@ -41,6 +41,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
+      showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),

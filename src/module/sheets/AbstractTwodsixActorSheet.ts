@@ -354,7 +354,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.container = actor.itemTypes;
     sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.skills = skillsList;
-    sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;
@@ -363,6 +362,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
+      sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     sheetData.effects = actor.effects.contents;
   }

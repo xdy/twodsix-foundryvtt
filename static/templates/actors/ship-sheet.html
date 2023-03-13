@@ -44,14 +44,14 @@
       </div>
       <div class="power-grid">
         {{#if settings.showWeightUsage}}
-          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.systems}}" name="system.weightStats.systems" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
-          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Cargo"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
-          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Fuel"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.fuel}}" name="system.weightStats.fuel" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
-          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Vehicles"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.vehicles}}" name="system.weightStats.vehicles" /><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
+          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.systems}}" name="system.weightStats.systems" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Cargo"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Fuel"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.fuel}}" name="system.weightStats.fuel" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Vehicles"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.vehicles}}" name="system.weightStats.vehicles" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{#iff actor.system.weightStats.available '>=' 0}}
-            <div class="ship-stat">{{localize "TWODSIX.Ship.Avail"}}<input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
+            <div class="ship-stat">{{localize "TWODSIX.Ship.Avail"}}<input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{else}}
-            <div class="ship-stat red">{{localize "TWODSIX.Ship.Avail"}}<input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.tons"}}</span></div>
+            <div class="ship-stat red">{{localize "TWODSIX.Ship.Avail"}}<input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{/iff}}
         {{else}}
           <div class="ship-stat"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.systems}}" name="system.reqPower.systems" /><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
