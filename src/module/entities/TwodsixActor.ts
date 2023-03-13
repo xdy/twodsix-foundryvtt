@@ -160,6 +160,10 @@ export default class TwodsixActor extends Actor {
         perHullTon: 0,
         componentValue: 0,
         total: 0
+      },
+      bandwidth: {
+        used: 0,
+        available: 0
       }
     };
 
@@ -185,6 +189,9 @@ export default class TwodsixActor extends Actor {
 
       /*Calculate Cost*/
       calculateComponentCost(anComponent, weightForItem, this);
+
+      /*Calculate Cost*/
+      calculateBandwidth(anComponent);
     });
 
     /*Calculate implicit values*/
@@ -253,6 +260,16 @@ export default class TwodsixActor extends Actor {
       }
     }
 
+    function calculateBandwidth(anComponent: Component): void {
+      if (game.settings.get("twodsix", "showBandwidth")) {
+        if (anComponent.subtype === "computer") {
+          calcShipStats.bandwidth.available += anComponent.bandwidth;
+        } else if (anComponent.subtype === "software") {
+          calcShipStats.bandwidth.used += anComponent.bandwidth;
+        }
+      }
+    }
+
     function allocateWeight(anComponent: Component, weightForItem: number): void {
       switch (anComponent.subtype) {
         case "vehicle":
@@ -313,6 +330,9 @@ export default class TwodsixActor extends Actor {
       shipActor.system.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
       shipActor.system.reqPower.sensors = Math.round(calcShipStats.power.sensors);
       shipActor.system.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+
+      shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
+      shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
 
       shipActor.system.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
       shipActor.system.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
