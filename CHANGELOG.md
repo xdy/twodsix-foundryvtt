@@ -1,3 +1,10 @@
+## [2.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.1...v2.24.2) (2023-03-14)
+
+
+### Bug Fixes
+
+* creating and duplicating actors ([#1271](https://github.com/xdy/twodsix-foundryvtt/issues/1271)) ([fefee8d](https://github.com/xdy/twodsix-foundryvtt/commit/fefee8d0dddebc302a279e305978b864fac6a10f))
+
 ## [2.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.0...v2.24.1) (2023-03-11)
 
 
