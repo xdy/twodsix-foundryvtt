@@ -380,17 +380,40 @@ export default class TwodsixActor extends Actor {
 
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
-      super._onCreate(data, options, userId);
+      await super._onCreate(data, options, userId);
+
+      if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
+        return; // Don't do anything if a duplicate
+      }
+
+      let isDefaultImg = false;
+      const changeData = {};
       //console.log("onCreate Start", this);
       switch (this.type) {
         case "traveller":
-          this.update({
+          await this.createUntrainedSkill();
+          Object.assign(changeData, {
             "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
             "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
           });
-          await this.createUntrainedSkill();
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            await this.update({
+            isDefaultImg = true;
+            if (game.settings.get("twodsix", "defaultTokenSettings")) {
+              Object.assign(changeData, {
+                "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
+                "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
+                "token.sight": {
+                  "enabled": true,
+                  "visonMode": "basic",
+                  "brightness": 1
+                },
+                "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+                "token.bar1": {
+                  attribute: "hits"
+                }
+              });
+            }
+            Object.assign(changeData, {
               'img': 'systems/twodsix/assets/icons/default_actor.png'
             });
           }
@@ -400,26 +423,12 @@ export default class TwodsixActor extends Actor {
           }
           this.deleteCustomAEs();
           this.fixItemAEs();
-          if (game.settings.get("twodsix", "defaultTokenSettings")) {
-            this.update( {
-              "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "token.sight": {
-                "enabled": true,
-                "visonMode": "basic",
-                "brightness": 1
-              },
-              "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-              "token.bar1": {
-                attribute: "hits"
-              }
-            });
-          }
           break;
         case "animal":
           await this.createUntrainedSkill();
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            await this.update({
+            isDefaultImg = true;
+            Object.assign(changeData, {
               'img': 'systems/twodsix/assets/icons/alien-bug.svg'
             });
           }
@@ -432,29 +441,34 @@ export default class TwodsixActor extends Actor {
           break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            await this.update({
+            isDefaultImg = true;
+            Object.assign(changeData, {
               'img': 'systems/twodsix/assets/icons/default_ship.png'
             });
           }
           break;
         case "vehicle":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            await this.update({
+            isDefaultImg = true;
+            Object.assign(changeData, {
               'img': 'systems/twodsix/assets/icons/default_vehicle.png'
             });
           }
           break;
         case "space-object":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            await this.update({
+            isDefaultImg = true;
+            Object.assign(changeData, {
               'img': 'systems/twodsix/assets/icons/default_space-object.png'
             });
           }
           break;
       }
-      if (game.settings.get("twodsix", "useSystemDefaultTokenIcon")) {
+      await this.update(changeData);
+
+      if (game.settings.get("twodsix", "useSystemDefaultTokenIcon") && isDefaultImg) {
         await this.update({
-          'token.img': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
+          'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
         });
       }
     }
