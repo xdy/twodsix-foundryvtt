@@ -15,6 +15,7 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * [decension](https://github.com/descention) - Updates to documentation
 * TheLaundry - Improvements to macros
 * Xanastay - French translation.
+* [cholston](https://github.com/cholston) - Started with improvements to ship actions.
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
 
