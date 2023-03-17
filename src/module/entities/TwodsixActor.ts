@@ -262,7 +262,7 @@ export default class TwodsixActor extends Actor {
     }
 
     function calculateBandwidth(anComponent: Component): void {
-      if (game.settings.get("twodsix", "showBandwidth")) {
+      if (game.settings.get("twodsix", "showBandwidth") && ["operational", "damaged"].includes(anComponent.status)) {
         if (anComponent.subtype === "computer") {
           calcShipStats.bandwidth.available += anComponent.bandwidth;
         } else if (anComponent.subtype === "software") {
