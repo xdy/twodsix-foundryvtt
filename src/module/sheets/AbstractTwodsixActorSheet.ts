@@ -538,7 +538,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      new ActiveEffectConfig(selectedEffect).render(true);
+      await new ActiveEffectConfig(selectedEffect).render(true);
     };
   }
   /**
@@ -564,22 +564,24 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _modifyEffect(event): Promise<void> {
     const action = event.currentTarget["dataset"].action;
     if (action === "delete") {
-      this._onDeleteEffect(event);
+      await this._onDeleteEffect(event);
+      this.render(false);
     } else if (action === "edit") {
-      this._onEditEffect(event);
+      await this._onEditEffect(event);
+      this.render(false);
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+        this.render(false);
       }
     } else if (action === "create") {
-      this.actor.createEmbeddedDocuments("ActiveEffect", [{
+      await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
         origin: "Custom",
         disabled: false
       }]);
-
     } else {
       console.log("Unknown Action");
     }
