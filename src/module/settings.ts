@@ -39,7 +39,7 @@ export const registerSettings = function ():void {
     if (!setting) {
       TwodsixActor.resetUntrainedSkill();
     } else {
-      TwodsixActor.setUntrainedSkillForWeapons();
+      TwodsixActor.setUntrainedSkillForItems();
     }
   }
 };
