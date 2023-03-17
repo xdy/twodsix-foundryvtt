@@ -41,7 +41,7 @@
     <div class="npc-skills">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
       {{#unless limited}}
-      <div style="margin-left: 1ch;">
+      <div class="npc-list">
         <span class="fixed-item" data-item-id="{{joat-skill-input}}" >
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" id="joat-skill-input" style="text-align: center; width: 3ch;"/>,
@@ -49,9 +49,8 @@
       {{#each_sort_item container.skills as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
-                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>
+                <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>{{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
               </span>
-              {{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}" draggable="false">
@@ -65,13 +64,16 @@
     <div class="npc-armor">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       {{#unless limited}}
-      <div style="margin-left: 1ch">
+      <div class="npc-list">
         <span >
          {{#each_sort_item container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name rollable">{{item.name}} </span>
               <span class="item-controls centre">
-                <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{item.system.equipped}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>{{#unless @last}}, {{/unless}}
+                <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{item.system.equipped}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>
+                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                    class="fa-solid fa-pen-to-square"></i></a>
+                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
          {{/each_sort_item}}
@@ -82,13 +84,21 @@
     <div class="npc-weapons">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Weapons"}}</span>
       {{#unless limited}}
-      <div style="margin-left: 1ch">
+      <div class="npc-list">
         <span >
          {{#each_sort_item container.weapon as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
-              {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}{{/each}}{{#unless @last}}, {{/unless}}
+                {{#iff ../system.useConsumableForAttack '===' consumableData._id}}
+                  {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData consumableId=consumableData._id parentId= ../id}}
+                {{/iff}}
+              {{/each}}
+              <span class="item-controls centre">
+                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                    class="fa-solid fa-pen-to-square"></i></a>
+                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
+              </span>
             </span>
          {{/each_sort_item}}
         </span>
@@ -98,7 +108,7 @@
     <div class="npc-traits">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Traits"}}</span>
       {{#unless limited}}
-      <div style="margin-left: 1ch">
+      <div class="npc-list">
         <span >
          {{#each_sort_item container.trait as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
@@ -115,7 +125,7 @@
     <div class="npc-spells">
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Spells"}}</span>
       {{#unless limited}}
-      <div style="margin-left: 1ch">
+      <div class="npc-list">
         <span >
         {{#each_sort_item container.spell as |item id|}}
             <span class="item" data-item-id="{{item.id}}">

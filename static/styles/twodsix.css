@@ -521,6 +521,11 @@ h2 {
   display: inline-block;
 }
 
+.npc-list {
+  margin-top: 4px;
+  margin-left: 1ch;
+}
+
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
