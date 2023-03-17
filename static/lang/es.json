@@ -370,6 +370,7 @@
         "damage": "Daño",
         "RadiationDamage": "Daño Radiación",
         "hits": "Impactos",
+        "SustainedHits": "Impactos Recibidos",
         "weightIsPct": "¿Peso en Porcentaje?",
         "purchasePrice": "Precio Compra",
         "isIllegal": "¿Ilegal?",
@@ -397,7 +398,10 @@
         "isPopup": "¿Es desplegable?",
         "isExtended": "¿Esta el desplegable extendido?",
         "extended": "extendido",
-        "retracted": "retraído"
+        "retracted": "retraído",
+        "Displacement": "Desplazamiento",
+        "Description": "Descripción",
+        "ComponentType": " Tipo Componente"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -502,7 +506,12 @@
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
         "UnarmedDescription": "Ataque sin armas",
-        "HandlingModifiers": "Modificador Manejo"
+        "HandlingModifiers": "Modificador Manejo",
+        "Magazine": "Cargador",
+        "Modifiers": "Modificadores",
+        "Attack": "Ataque",
+        "Consumables": "Consumibles",
+        "DefaultMagazine": "Tamaño Cargador Defecto"
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -628,8 +637,8 @@
       "chatPlaceholder": "Mensaje del Chat",
       "skillPlaceholder": "Hab./CHR 8+",
       "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
-      "skillTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alternativa 1|...\nHab./ATR\nHab./ 8+\nHab./ATR 8+",
-      "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHab.|Hab. Alternativa 1|...=COMPONENT_ID\nHab./ATR=COMPONENT_ID\nHab./ 8+=COMPONENT_ID\nHab./ATR 8+=COMPONENT_ID",
+      "skillTooltip": "Opciones posibles:\nHabilidad\nHabilidad|Hab. Alt.1|...\nHabilidades/ 8+\nHabilidades/ATR 8+\nHabilidades/ATR|ATR2",
+      "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHabilidad|Hab. Alt.1|...=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ 8+=COMPONENT_ID\nHabilidades/ATR|ATR2 8+=COMPONENT_ID",
       "chatTooltip": "¡A la vista!"
     },
     "Vehicle": {
@@ -728,7 +737,7 @@
       "SelectSkill": "Selecciona Habilidad",
       "SkillName": "Nombre Habilidad",
       "MakesOpposedRoll": "Realiza una tirada disputa / opuesta.",
-      "MakesChainRoll": "Realiza una tirada en cadena / apoyo."
+      "MakesChainRoll": "Realizar tirada encadenada/asistida."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1115,6 +1124,10 @@
       "encumbFraction75pct": {
         "hint": "Configuración para el módulo Drag Ruler aplicado al límite del 75% del movimiento. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
         "name": "Fracción de carga máxima para el 75% del movimiento"
+      },
+      "useTabbedViews": {
+        "hint": "Utilizar hoja de objetos con pestañas, permitiendo mayor detalle, en vez de una hoja simple.",
+        "name": "Utilizar hoja con pestañas para armas y componentes"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
