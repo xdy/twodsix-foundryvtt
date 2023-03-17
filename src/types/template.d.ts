@@ -93,6 +93,11 @@ export interface ShipPositionDataSource {
   system: ShipPosition;
 }
 
+export interface ComputerDataSource {
+  type: 'computer';
+  system: Computer;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -106,18 +111,23 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | SpellDataSource
   | WeaponDataSource
   | ShipPositionDataSource
+  | ComputerDataSource
   ;
 
 export type Gear = Armor
   | Equipment
+  | Tool
   | Storage
   | Weapon
   | Component
+  | Computer
   ;
 
 export type UsesConsumables = Armor
   | Equipment
+  | Tool
   | Weapon
+  | Computer
   ;
 
 // If/when template.json is edited, this file needs to be edited to match.
@@ -196,6 +206,7 @@ export interface ShipStats {
   fuelTanks:Staterooms;
   mass:Staterooms;
   drives: Drives;
+  bandwidth:Hits;
 }
 
 export interface Staterooms {
@@ -405,7 +416,7 @@ export interface ShipPosition {
   actions: ShipActions;
   sortedActions?: ShipAction[];
   order: number;
-  actors?: TwodsixActor[];
+  actors?: Traveller[];
 }
 
 export interface Vehicle extends LinkTemplate {
@@ -413,7 +424,7 @@ export interface Vehicle extends LinkTemplate {
   cargoList:string;
   cargoCapacity:string;
   cost: string;
-  crew:VehcileCrew;
+  crew:VehicleCrew;
   damageStats:VehicleDamageStats;
   features:string;
   maneuver:VehicleManeuver;
@@ -428,8 +439,8 @@ export interface Vehicle extends LinkTemplate {
 }
 
 export interface VehicleCrew {
-  operators:text;
-  passengers:text;
+  operators:string;
+  passengers:string;
 }
 export interface VehicleDamageStats {
   armor: Hits;
@@ -476,6 +487,7 @@ export interface Item {
   spell:Spell;
   consumable:Consumable;
   component:Component;
+  computer:Computer;
 }
 
 export interface Armor extends GearTemplate, LinkTemplate {
@@ -526,6 +538,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   ammunition:Encumbrance;
   isPopup:boolean;
   isExtended:boolean;
+  bandwidth: number;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {
@@ -538,9 +551,17 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   armorPiercing:number;
   bonusDamage:string;
   isAttachment:boolean;
+  bandwidth:number;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
+  templates:string[];
+  type:string;
+  useConsumableForAttack:string;
+  location:string[];
+}
+
+export interface Tool extends GearTemplate, LinkTemplate {
   templates:string[];
   type:string;
   useConsumableForAttack:string;
@@ -655,3 +676,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   armorPiercing:number;
 }
 
+export interface Computer extends GearTemplate, LinkTemplate {
+  templates:string[];
+  processingPower:number;
+}

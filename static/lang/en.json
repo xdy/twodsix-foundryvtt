@@ -427,6 +427,7 @@
         "AssignTool": "Assign Tool",
         "AssignWeapon": "Assign Weapon",
         "AssignConsumable": "Assign Consumable",
+        "AssignComputer": "Assign Computer",
         "Inventory": "Inventory",
         "ItemType": "Type",
         "MoveStorage": "Move Storage",
@@ -477,11 +478,13 @@
           "fuel": "Fuel",
           "magazine": "Magazine",
           "power_cell": "Power Cell",
+          "software": "Software",
           "other": "Other"
         },
         "Size": "Size",
         "Subtype": "Type",
         "Count": "Count",
+        "Bandwidth": "Bandwidth",
         "ArmorPiercing": "Armor Piercing Value",
         "DropConsumablesHere": "You can drop consumables here.",
         "DropAttachmentsHere": "You can drop attachments here.",
@@ -519,6 +522,9 @@
         "SpellName": "Spell Name",
         "Level": "Level",
         "sorcerySkill": "Sorcery"
+      },
+      "Computer": {
+        "ProcessingPower": "Processing Power"
       }
     },
     "Target": {
@@ -622,6 +628,7 @@
       },
       "Thrust": "Thrust",
       "tons": "tons",
+      "dtons": "d-tons",
       "Travellers": "Travellers",
       "USED": "USED",
       "Vehicles": "Vehicles",
@@ -895,6 +902,10 @@
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
       },
+      "showBandwidth": {
+        "hint": "Show the used and available bandwidth for computers and software.",
+        "name": "Ship computing bandwidth"
+      },
       "ShowWeaponType": {
         "hint": "checked=Show the 'Weapon Type' field, unchecked=Hide it",
         "name": "Show the 'Weapon Type' field on weapon sheets"
@@ -926,8 +937,8 @@
         "name": "Correct some css style issues due to modules and default Twodsix style."
       },
       "useShipAutoCalcs": {
-        "hint": "When enabled, the ship summary power, weight, and price statistics are calculated based on component vaules. Otherwise, values are input by user.",
-        "name": "Automatically calculate summary ship power, weight, and price values"
+        "hint": "When enabled, the ship summary power, weight, bandwidth, and price statistics are calculated based on component vaules. Otherwise, values are input by user.",
+        "name": "Automatically calculate summary ship power, weight, bandwidth, and price values"
       },
       "useSystemDefaultTokenIcon": {
         "hint": "Use Foundry VTT system default token icon (mystery man) instead of Twodsix default icon when creating new actor.  Check this setting when using custom images so that the system automatically sets token image to be the same as the actor image.",

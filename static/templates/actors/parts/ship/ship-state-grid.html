@@ -1,6 +1,7 @@
 <div class="ship-state-grid">
   <div class="ship-mass">
-    <span>{{localize "TWODSIX.Ship.Displacement"}} ({{localize "TWODSIX.Ship.tons"}})</span>
+    <span>{{localize "TWODSIX.Ship.Displacement"}}</span>
+    <span>({{localize "TWODSIX.Ship.dtons"}})</span>
     <span><input type="number" value="{{actor.system.shipStats.mass.max}}" name="system.shipStats.mass.max" placeholder="0"/></span>
     <span>{{localize "TWODSIX.Actor.Items.TechLevel"}}</span>
     <span><input type="number" value="{{actor.system.techLevel}}" name="system.techLevel" placeholder="0"/></span>
@@ -25,14 +26,30 @@
     </span>
     <span class="overdrive-mode">{{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="system.shipStats.drives.overdrive" {{checked actor.system.shipStats.drives.overdrive}} data-dtype="Boolean"/></span>
   </div>
-  <div class="ship-hull">
-    <span class="hull-label">{{localize "TWODSIX.Ship.ShipHull"}}</span>
-    {{#unless settings.useFoundryStandardStyle}}
-    {{> "systems/twodsix/templates/actors/parts/ship/ship-hull.html"}}
-    {{/unless}}
-    <span class="ship-hull-value"><input type="number" value="{{actor.system.shipStats.hull.value}}" name="system.shipStats.hull.value" placeholder="0" min="0" max="{{actor.system.shipStats.hull.max}}" step = "1"/></span>
-    <span class="ship-hull-max"><input type="number" value="{{actor.system.shipStats.hull.max}}" name="system.shipStats.hull.max" placeholder="0" min="0" step="1"/></span>
-  </div>
+
+  {{#unless settings.showBandwidth}}
+    <div class="ship-hull">
+      <span class="hull-label">{{localize "TWODSIX.Ship.ShipHull"}}</span>
+      {{#unless settings.useFoundryStandardStyle}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-hull.html"}}
+      {{/unless}}
+      <span class="ship-hull-value"><input type="number" value="{{actor.system.shipStats.hull.value}}" name="system.shipStats.hull.value" placeholder="0" min="0" max="{{actor.system.shipStats.hull.max}}" step = "1"/></span>
+      <span class="ship-hull-max"><input type="number" value="{{actor.system.shipStats.hull.max}}" name="system.shipStats.hull.max" placeholder="0" min="0" step="1"/></span>
+    </div>
+  {{else}}
+    <div class="ship-hull-bandwidth">
+      <span class="hull-label">{{localize "TWODSIX.Ship.ShipHull"}}</span>
+      <span class="ship-fuel-value">
+        <input type="number" value="{{actor.system.shipStats.hull.value}}" name="system.shipStats.hull.value" placeholder="0" min="0" max="{{actor.system.shipStats.hull.max}}" step = "1"/>/<input type="number" value="{{actor.system.shipStats.hull.max}}" name="system.shipStats.hull.max" placeholder="0" min="0" step="1"/>
+        <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
+      </span>
+      <span class="hull-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</span>
+      <span class="ship-fuel-value">
+        <input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" {{#if settings.useShipAutoCalc}}readonly{{/if}} />/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" {{#if settings.useShipAutoCalc}}readonly{{/if}}/>
+        <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
+      </span>
+    </div>
+  {{/unless}}
 
   <div class="ship-armor">
       <span>{{localize "TWODSIX.Items.Armor.Armor"}}</span>

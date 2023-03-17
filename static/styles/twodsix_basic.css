@@ -167,6 +167,11 @@ label.checkbox > input[type="checkbox"] {
   display: inline-block;
 }
 
+.npc-list {
+  margin-top: 4px;
+  margin-left: 1ch;
+}
+
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
@@ -1467,7 +1472,7 @@ span.total-output {
 .ship-container {
   display: grid;
   grid-template-columns: 392px 406px;
-  grid-template-rows: 34px 105px 105px 65px;
+  grid-template-rows: 34px 118px 105px 65px;
   gap: 1px 1px;
   grid-template-areas:
     "ship-image ship-name"
@@ -1563,8 +1568,12 @@ img.ship-mask-bg {
   border-radius: 0.5ch;
 }
 
-.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
+.ship-fuel-value input, .ship-armor-value input {
   width: 40%;
+}
+
+.ship-drives input {
+  width: 65%
 }
 
 .overdrive-mode input[type="checkbox"] {
@@ -1586,7 +1595,7 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 100px 50px 82px 58px 82px;
+  grid-template-columns: 75px 50px 84px 86px 82px;
   grid-template-rows: 100px;
   gap: 1px 5px;
   grid-template-areas:
@@ -1625,6 +1634,12 @@ img.ship-mask-bg {
 }
 
 .ship-hull {
+  grid-area: ship-hull;
+  display: grid;
+  text-align: center;
+}
+
+.ship-hull-bandwidth {
   grid-area: ship-hull;
   display: grid;
   text-align: center;
@@ -2220,7 +2235,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
-.item-target-area, .item-target-width, .item-popup {
+.item-target-area, .item-target-width, .item-popup, .item-processingPower {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;

@@ -352,9 +352,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Prepare Containers for sheetData
     sheetData.container = actor.itemTypes;
-    sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool);
+    sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.skills = skillsList;
-    sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;
@@ -363,6 +362,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
+      sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     sheetData.effects = actor.effects.contents;
   }
@@ -538,7 +538,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      new ActiveEffectConfig(selectedEffect).render(true);
+      await new ActiveEffectConfig(selectedEffect).render(true);
     };
   }
   /**
@@ -564,22 +564,24 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   protected async _modifyEffect(event): Promise<void> {
     const action = event.currentTarget["dataset"].action;
     if (action === "delete") {
-      this._onDeleteEffect(event);
+      await this._onDeleteEffect(event);
+      this.render(false);
     } else if (action === "edit") {
-      this._onEditEffect(event);
+      await this._onEditEffect(event);
+      this.render(false);
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+        this.render(false);
       }
     } else if (action === "create") {
-      this.actor.createEmbeddedDocuments("ActiveEffect", [{
+      await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
         origin: "Custom",
         disabled: false
       }]);
-
     } else {
       console.log("Unknown Action");
     }

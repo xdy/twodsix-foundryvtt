@@ -521,6 +521,11 @@ h2 {
   display: inline-block;
 }
 
+.npc-list {
+  margin-top: 4px;
+  margin-left: 1ch;
+}
+
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
@@ -2140,6 +2145,13 @@ span.total-output {
   margin-top: 0.5em;
 }
 
+.ship-hull-bandwidth {
+  grid-area: ship-hull;
+  display: grid;
+  text-align: center;
+  margin-top: 0.5em;
+}
+
 .ship-hull-value {
   position: relative;
   top: -82px;
@@ -2785,7 +2797,7 @@ a:hover {
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
-.item-target-area, .item-target-width, .item-popup {
+.item-target-area, .item-target-width, .item-popup, .item-processingPower {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;

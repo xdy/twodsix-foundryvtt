@@ -13,8 +13,9 @@ import { simplifySkillName } from "../utils/utils";
 import { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Ship, Skills, Traveller, Weapon} from "../../types/template";
+import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
+import { applyToAllActors } from "../utils/migration-utils";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -58,7 +59,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareTravellerData(): void {
+  async _prepareTravellerData(): void {
     const {system} = this;
 
     for (const cha of Object.keys(system.characteristics)) {
@@ -96,7 +97,7 @@ export default class TwodsixActor extends Actor {
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
-    this._updateDerivedDataActiveEffects();
+    await this._updateDerivedDataActiveEffects();
   }
 
   getArmorValues():object {
@@ -160,6 +161,10 @@ export default class TwodsixActor extends Actor {
         perHullTon: 0,
         componentValue: 0,
         total: 0
+      },
+      bandwidth: {
+        used: 0,
+        available: 0
       }
     };
 
@@ -185,6 +190,9 @@ export default class TwodsixActor extends Actor {
 
       /*Calculate Cost*/
       calculateComponentCost(anComponent, weightForItem, this);
+
+      /*Calculate Cost*/
+      calculateBandwidth(anComponent);
     });
 
     /*Calculate implicit values*/
@@ -253,6 +261,16 @@ export default class TwodsixActor extends Actor {
       }
     }
 
+    function calculateBandwidth(anComponent: Component): void {
+      if (game.settings.get("twodsix", "showBandwidth") && ["operational", "damaged"].includes(anComponent.status)) {
+        if (anComponent.subtype === "computer") {
+          calcShipStats.bandwidth.available += anComponent.bandwidth;
+        } else if (anComponent.subtype === "software") {
+          calcShipStats.bandwidth.used += anComponent.bandwidth;
+        }
+      }
+    }
+
     function allocateWeight(anComponent: Component, weightForItem: number): void {
       switch (anComponent.subtype) {
         case "vehicle":
@@ -313,6 +331,9 @@ export default class TwodsixActor extends Actor {
       shipActor.system.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
       shipActor.system.reqPower.sensors = Math.round(calcShipStats.power.sensors);
       shipActor.system.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+
+      shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
+      shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
 
       shipActor.system.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
       shipActor.system.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
@@ -577,6 +598,10 @@ export default class TwodsixActor extends Actor {
     if ((<Traveller>this.system).untrainedSkill) {
       return;
     }
+    const existingSkill:Skills = this.itemTypes.skills?.find(sk => sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained"));
+    if (existingSkill) {
+      return existingSkill;
+    }
     const data = {
       "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
       "type": "skills",
@@ -611,32 +636,41 @@ export default class TwodsixActor extends Actor {
     await (this.createEmbeddedDocuments("Item", [data]));
   }
 
-  private static _applyToAllActorItems(func: (actor: TwodsixActor, item: TwodsixItem) => void): void {
-    game.actors?.forEach(actor => {
-      actor.items.forEach((item: TwodsixItem) => {
-        func(<TwodsixActor><unknown>actor, item);
-      });
-    });
-  }
-
   public static resetUntrainedSkill(): void {
-    //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
-    TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
-      if (item.type === "skills") {
-        return;
-      }
-      const skill = actor.items.get((<Gear>item.system).skill);
-      if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
-        item.update({"system.skill": ""}, {}); //TODO Should have await?
+    applyToAllActors((actor:TwodsixActor) => {
+      if (actor.type === "traveller" || actor.type === 'animal') {
+        const itemUpdates = [];
+        for (const item of actor.items) {
+          if (item.type !== "skills") {
+            const skill = actor.items.get((<Gear>item.system).skill);
+            if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
+              //CHECK FOR ASSOCIATED SKILL NAME AS FIRST OPTION
+              const associatedSkill = actor.itemTypes.skills.find((sk:TwodsixItem)=> sk.name === item.system.associatedSkillName);
+              itemUpdates.push({_id: item.id, "system.skill": associatedSkill?.id ?? "" });
+            }
+          }
+        }
+        if (itemUpdates.length > 0) {
+          actor.updateEmbeddedDocuments('Item', itemUpdates);
+        }
       }
     });
   }
 
-  public static setUntrainedSkillForWeapons(): void {
-    //TODO Some risk of race condition here, should return list of updates to do, then do the update outside the loop
-    TwodsixActor._applyToAllActorItems((actor: TwodsixActor, item: TwodsixItem) => {
-      if (item.type === "weapon" && !(<Weapon>item.system).skill && (actor.type === "traveller" || actor.type === 'animal')) {
-        item.update({"system.skill": actor.getUntrainedSkill().id}, {}); //TODO Should have await?
+  public static setUntrainedSkillForItems(): void {
+    applyToAllActors((actor: TwodsixActor) => {
+      if (actor.type === "traveller" || actor.type === 'animal') {
+        const itemUpdates = [];
+        for (const item of actor.items) {
+          if (!(item.system).skill && item.type !== "skills") {
+            //CHECK FOR ASSOCIATED SKILL NAME AS FIRST OPTION
+            const associatedSkill = actor.itemTypes.skills.find((sk)=> sk.name === item.system.associatedSkillName);
+            itemUpdates.push({_id: item.id, "system.skill": associatedSkill?.id ?? actor.getUntrainedSkill().id});
+          }
+        }
+        if (itemUpdates.length > 0) {
+          actor.updateEmbeddedDocuments('Item', itemUpdates);
+        }
       }
     });
   }
@@ -874,7 +908,7 @@ export default class TwodsixActor extends Actor {
       ...foundry.utils.flattenObject(this.overrides),
       ...overrides,
     });
-    //console.log(this.overrides);
+    this.sheet?.render(false);
   }
 
   public deleteCustomAEs():void {

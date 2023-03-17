@@ -28,6 +28,8 @@ export default class TwodsixItem extends Item {
         await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
       } else if (item?.type === 'component') {
         await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
+      } else if (item?.type === 'computer') {
+        await item.update({'img': 'systems/twodsix/assets/icons/components/computer.svg'});
       }
     }
     if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {

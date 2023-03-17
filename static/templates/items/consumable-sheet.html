@@ -19,6 +19,13 @@
       <input class="form-input" id="system.quantity" type="number" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
     </div>
 
+    {{#iff system.subtype "===" "software"}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
+      <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" data-dtype="Number"/>
+    </div>
+    {{/iff}}
+
     {{#unless system.isAttachment}}
       <div class="item-data">
         <label class="resource-label">{{localize "TWODSIX.Items.Consumable.ArmorPiercing"}}</label>
