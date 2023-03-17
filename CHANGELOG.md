@@ -1,3 +1,10 @@
+# [2.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.2...v2.25.0) (2023-03-17)
+
+
+### Features
+
+* computers, software, and npc sheet improvements ([#1270](https://github.com/xdy/twodsix-foundryvtt/issues/1270)) ([458e722](https://github.com/xdy/twodsix-foundryvtt/commit/458e72258fd14c75e385cd12fadfe3d5b4d0655a))
+
 ## [2.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.1...v2.24.2) (2023-03-14)
 
 
