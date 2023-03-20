@@ -1,3 +1,10 @@
+# [2.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.25.0...v2.26.0) (2023-03-20)
+
+
+### Features
+
+* Computer attachment changes ([#1274](https://github.com/xdy/twodsix-foundryvtt/issues/1274)) ([273e99d](https://github.com/xdy/twodsix-foundryvtt/commit/273e99de29454e99a95da3731754f2aa97a80fc4))
+
 # [2.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.24.2...v2.25.0) (2023-03-17)
 
 
