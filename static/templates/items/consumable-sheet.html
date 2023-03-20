@@ -24,6 +24,11 @@
       <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
       <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" data-dtype="Number"/>
     </div>
+
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.SoftwareActive"}}</label>
+      <input type="checkbox" class="checkbox" name="system.softwareActive" {{checked system.softwareActive}} data-dtype="Boolean" />
+    </div>
     {{/iff}}
 
     {{#unless system.isAttachment}}

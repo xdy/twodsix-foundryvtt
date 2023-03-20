@@ -552,6 +552,7 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   bonusDamage:string;
   isAttachment:boolean;
   bandwidth:number;
+  softwareActive:boolean;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {

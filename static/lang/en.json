@@ -491,7 +491,10 @@
         "RemoveConsumable": "Remove consumable",
         "RemoveConsumableFrom": "Remove consumable _CONSUMABLE_NAME_ from _ITEM_NAME_?",
         "SelectConsumable": "Select Consumable",
-        "ActiveConsumable": "Active Consumable"
+        "ActiveConsumable": "Active Consumable",
+        "SoftwareActive": "Software Active?",
+        "SoftwareOn": "Software Active",
+        "SoftwareOff": "Software Inactive"
       },
       "Weapon": {
         "Ammo": "Ammo",

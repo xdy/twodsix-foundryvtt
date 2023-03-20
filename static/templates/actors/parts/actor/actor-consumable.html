@@ -24,9 +24,18 @@
   </div>
 </div>
 {{else}}
-<div class="consumable-row" data-consumable-id="{{id}}">
+<div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
   <div class="wrapper">
     {{name}}
+    {{#iff system.subtype "===" "software"}}
+      <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+        {{#if system.softwareActive}}
+          style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"
+        {{else}}
+          data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOff'}}"
+        {{/if}}> <i class="fa-solid fa-power-off"></i>
+      </span>
+    {{/iff}}
   </div>
 </div>
 {{/unless}}
