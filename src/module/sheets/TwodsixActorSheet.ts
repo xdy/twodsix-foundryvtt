@@ -275,9 +275,16 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onToggleConsumable(event): Promise<void> {
     const parentId: string = $(event.currentTarget).data("parentId");
     const consumableId: string = $(event.currentTarget).data("consumableId");
-    const parentItem: TwodsixItem = this.actor.items.get(parentId);
-    if (parentItem?.system.useConsumableForAttack != consumableId) {
-      await parentItem.update({'system.useConsumableForAttack': consumableId});
+    const parentItem: TwodsixItem = await this.actor.items.get(parentId);
+    if (parentItem?.type === "weapon") {
+      if (parentItem?.system.useConsumableForAttack != consumableId) {
+        await parentItem.update({'system.useConsumableForAttack': consumableId});
+      }
+    } else if (parentItem?.type ===  "computer") {
+      const consumable: TwodsixItem = await this.actor.items.get(consumableId);
+      if (consumable.system.subtype === "software") {
+        await consumable.update({'system.softwareActive': !consumable.system.softwareActive});
+      }
     }
     //console.log("Made it to toggle");
   }

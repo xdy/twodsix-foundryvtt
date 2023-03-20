@@ -210,7 +210,7 @@
                   <span class="item-name centre">{{item.system.quantity}}</span>
                     {{#iff item.system.shortdescr "===" ""}}
                       {{#iff item.type "===" "computer"}}
-                        <span class="item-name centre">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{item.system.processingPower}}</span>
+                        <span class="item-name centre">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower item}}/{{item.system.processingPower}}</span>
                       {{else}}
                         <span class="item-name centre"></span>
                       {{/iff}}
@@ -226,7 +226,7 @@
             </li>
           </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../id}}

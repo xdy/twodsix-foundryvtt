@@ -255,6 +255,20 @@ export default function registerHandlebarsHelpers(): void {
     return (display && (itemLocation === "ship"));
   });
 
+  Handlebars.registerHelper('twodsix_getProcessingPower', (item:TwodsixItem) => {
+    if (item.type !== "computer") {
+      return 0;
+    } else {
+      let bandwidth = 0;
+      for (const attch of item.system.attachmentData) {
+        if (attch.system.subtype === "software" && attch.system.softwareActive) {
+          bandwidth += attch.system.bandwidth;
+        }
+      }
+      return (bandwidth);
+    }
+  });
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
 
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {

@@ -638,7 +638,8 @@
       "armorPiercing": 0,
       "bonusDamage": "",
       "isAttachment": false,
-      "bandwidth": 0
+      "bandwidth": 0,
+      "softwareActive": true
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],
