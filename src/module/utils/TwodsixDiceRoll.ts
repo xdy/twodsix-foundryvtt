@@ -56,7 +56,7 @@ export class TwodsixDiceRoll {
     // Add chain modifier
     if (this.rollSettings.rollModifiers.chain) {
       formula += this.rollSettings.rollModifiers.chain < 0 ? " - @chain" : " + @chain";
-      formulaData.cchain = this.rollSettings.rollModifiers.chain < 0 ? -this.rollSettings.rollModifiers.chain : this.rollSettings.rollModifiers.chain;
+      formulaData.chain = this.rollSettings.rollModifiers.chain < 0 ? -this.rollSettings.rollModifiers.chain : this.rollSettings.rollModifiers.chain;
     }
 
     // Add characteristic modifier
