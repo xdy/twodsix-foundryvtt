@@ -1,3 +1,10 @@
+## [2.26.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.0...v2.26.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* Chain rolls and Computer attachments ([#1275](https://github.com/xdy/twodsix-foundryvtt/issues/1275)) ([43f97a5](https://github.com/xdy/twodsix-foundryvtt/commit/43f97a530560033c0918c587201d0ab385d0ec23))
+
 # [2.26.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.25.0...v2.26.0) (2023-03-20)
 
 
