@@ -56,7 +56,7 @@ async function onChatCardAction(event: Event): Promise<any> {
   }
 
   // Validate permission to proceed with the roll
-  const isTargetted = action === "save";
+  const isTargetted = ["chain", "opposed", "expand"].includes(action);
   if ( !( isTargetted || game.user.isGM || actor.isOwner ) ) {
     return;
   }
