@@ -260,9 +260,11 @@ export default function registerHandlebarsHelpers(): void {
       return 0;
     } else {
       let bandwidth = 0;
-      for (const attch of item.system.attachmentData) {
-        if (attch.system.subtype === "software" && attch.system.softwareActive) {
-          bandwidth += attch.system.bandwidth;
+      if (item.system?.attachmentData) {
+        for (const attch of item.system.attachmentData) {
+          if (attch.system.subtype === "software" && attch.system.softwareActive) {
+            bandwidth += attch.system.bandwidth;
+          }
         }
       }
       return (bandwidth);
