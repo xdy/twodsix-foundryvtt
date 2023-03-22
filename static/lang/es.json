@@ -427,6 +427,7 @@
         "AssignTool": "Herramienta",
         "AssignWeapon": "Arma",
         "AssignConsumable": "Consumible",
+        "AssignComputer": "Asignar Computadora",
         "Inventory": "Inventario",
         "ItemType": "Tipo",
         "MoveStorage": "Mover Carga",
@@ -477,18 +478,23 @@
           "fuel": "Fuel",
           "magazine": "Cargador",
           "power_cell": "Batería Energia",
+          "software": "Software",
           "other": "Otros"
         },
         "Size": "Tamaño",
         "Subtype": "SubCat.",
         "Count": "Cant.",
+        "Bandwidth": "Ancho de Banda",
         "ArmorPiercing": "Valor Penetración Armadura",
         "DropConsumablesHere": "Aquí puedes arrastrar consumibles.",
         "DropAttachmentsHere": "Aquí puedes añadir accesorios.",
         "RemoveConsumable": "Eliminar consumible",
         "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?",
         "SelectConsumable": "Selecciona Consumible",
-        "ActiveConsumable": "Consumible Activo"
+        "ActiveConsumable": "Consumible Activo",
+        "SoftwareActive": "¿Software Activo?",
+        "SoftwareOn": "Software Activo",
+        "SoftwareOff": "Software Inactivo"
       },
       "Weapon": {
         "Ammo": "Cargador",
@@ -519,6 +525,9 @@
         "SpellName": "Nombre",
         "Level": "Nivel",
         "sorcerySkill": "Hechicería"
+      },
+      "Computer": {
+        "ProcessingPower": "Poder Procesamiento"
       }
     },
     "Target": {
@@ -622,6 +631,7 @@
       },
       "Thrust": "Propulsión",
       "tons": "toneladas",
+      "dtons": "d-tons",
       "Travellers": "Travellers",
       "USED": "USO",
       "Vehicles": "Vehículos",
@@ -895,6 +905,10 @@
         "hint": "Mostrar lista componentes de la nave en una sola columna.",
         "name": "Lista de componentes de la nave a una columna"
       },
+      "showBandwidth": {
+        "hint": "Mostrar el ancho de banda utilizado y disponible tanto en computación como software.",
+        "name": "Ancho de banda computación Nave"
+      },
       "ShowWeaponType": {
         "hint": "Marcado=Mostrar Tipo Arma; SinMarcar=Ocultar.",
         "name": "Mostrar 'Tipo Arma' en armas"
@@ -926,8 +940,8 @@
         "name": "Corrige algunos problemas de estilo en css debidos a los módulos y el estilo por defecto Twodsix."
       },
       "useShipAutoCalcs": {
-        "hint": "Activado, el resumen de la energía y carga de la nave se calcula en base a los valores en componentes. En caso contrario, los valores deben ser entrados manualmente por el usuario.",
-        "name": "Cálculo automático de los valores de energía y carga de la nave"
+        "hint": "Activado, resumen de energía, peso, ancho de banda, y precio de la nave calculados a partir de los componentes. Sino, los valores se introducen manualmente.",
+        "name": "Calcular automáticamente los valores de energía, peso, ancho de banda, y precio de la nave."
       },
       "useSystemDefaultTokenIcon": {
         "hint": "Utilizar el icono de token por defecto de Foundry VTT (mystery man) en vez del de Twodsix  al crear nuevos actores. Seleccionar para que al utilizar imágenes propias el token coincida con la imagen del actor automáticamente.",
