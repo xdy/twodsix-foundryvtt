@@ -116,3 +116,14 @@ div.pdf-app section.window-content {
 .monks-enhanced-journal .mainbar .navigation .nav-button.disabled, .monks-enhanced-journal footer.navigation .nav-button.disabled {
   color: var(--s2d6-default-color);
 }
+
+.monks-journal-sheet.sheet .items-list {
+  position: revert;
+}
+.loot-character > .character-name {
+    position: unset;
+    margin-top: unset;
+    text-align: unset;
+    z-index: unset;
+    left: unset
+}
