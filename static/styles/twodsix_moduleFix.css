@@ -103,6 +103,7 @@ div.pdf-app section.window-content {
 
 .monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
   margin-top: unset;
+  text-align: center;
 }
 
 .monks-enhanced-journal .mainbar .navigation .button-group {
@@ -126,4 +127,20 @@ div.pdf-app section.window-content {
     text-align: unset;
     z-index: unset;
     left: unset
+}
+
+.monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
+  display: unset;
+}
+
+.edit-currency .items-list {
+  position: unset;
+}
+
+.edit-currency .items-list input {
+  color: var(--s2d6-default-color);
+}
+.item-price.flexrow {
+  display: unset;
+  text-align: right;
 }

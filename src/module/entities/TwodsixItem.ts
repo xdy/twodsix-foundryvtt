@@ -37,7 +37,7 @@ export default class TwodsixItem extends Item {
     }
 
     //Remove any attached consumables - needed????
-    if (item.system.consumables?.length > 0) {
+    if (item?.system?.consumables?.length > 0) {
       await item.update({"system.consumables": []});
     }
 
