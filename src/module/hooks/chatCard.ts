@@ -137,8 +137,10 @@ function onChatCardToggleContent(event: Event) {
   event.preventDefault();
   const header = event.currentTarget;
   const card = header.closest(".chat-card");
-  const content = card.querySelector(".card-content");
-  content.style.display = content.style.display === "none" ? "block" : "none";
+  if (card) { //Check needed for MEJ Messages
+    const content = card.querySelector(".card-content");
+    content.style.display = content.style.display === "none" ? "block" : "none";
+  }
 }
 
 /* -------------------------------------------- */
