@@ -189,7 +189,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     } else if (fromUuidSync(this.item.uuid)) {
       const editSheet = this.item.effects.contents[0].sheet?.render(true);
       try {
-        editSheet.bringToTop();
+        editSheet?.bringToTop();
       } catch(err) {
         //nothing
       }
