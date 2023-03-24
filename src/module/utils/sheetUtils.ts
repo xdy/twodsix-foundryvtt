@@ -212,8 +212,8 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
   let item;
   if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
     const journalEntry = await fromUuidSync(dropData.uuid);
-    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items');
-    item = await lootItems.find((it:TwodsixItem) => it._id === dropData.itemId);
+    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
+    item = await lootItems.find((it) => it._id === dropData.itemId);
     if (item.system.consumables?.length > 0) {
       item.system.consumables = [];
     }
