@@ -1212,7 +1212,9 @@
       "NoSkillSelected": "Must select a skill to make a roll",
       "NoDamageForWeapon": "This weapon has not specified the damage it does.",
       "ActionWarningNoToken": "No targets selected for action.",
-      "CantEditEffect": "Can't edit effect for item that is not embedded in Actor."
+      "CantEditEffect": "Can't edit effect for item that is embedded in non-Actor.",
+      "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
+      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
     }
   },
   "VeryDifficult": "Very Difficult"
