@@ -1,3 +1,10 @@
+## [2.26.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.1...v2.26.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* drop Item without effects and Monk's Journal Loot & Shop Sheets ([#1277](https://github.com/xdy/twodsix-foundryvtt/issues/1277)) ([faf2613](https://github.com/xdy/twodsix-foundryvtt/commit/faf261386ce29c57cd278f4970b26a82c9032d88))
+
 ## [2.26.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.0...v2.26.1) (2023-03-21)
 
 
