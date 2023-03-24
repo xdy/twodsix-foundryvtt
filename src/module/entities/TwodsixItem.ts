@@ -36,7 +36,7 @@ export default class TwodsixItem extends Item {
       item.update({"system.value": 0});
     }
 
-    //Remove any attached consumables - needed????
+    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
     if (item?.system?.consumables?.length > 0) {
       await item.update({"system.consumables": []});
     }
