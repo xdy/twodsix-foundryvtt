@@ -69,7 +69,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "ship", "actor"],
       template: "systems/twodsix/templates/actors/ship-sheet.html",
       width: 825,
-      height: 674,
+      height: 686,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
