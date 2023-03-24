@@ -734,7 +734,13 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    const transferData = itemData.toJSON();
+    let transferData = {};
+    //Need to catach because Monk's enhanced Journal drops item data not TwodsixItem
+    try {
+      transferData = itemData.toJSON();
+    } catch(err) {
+      transferData = itemData;
+    }
     let numberToMove = itemData.system?.quantity ?? 1;
 
     //Handle moving items from another actor if enabled by settings
@@ -780,7 +786,7 @@ export default class TwodsixActor extends Actor {
     // Prepare effects
     transferData.system.equipped = "ship";
     transferData._id = "";
-    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects.length > 0) {
+    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
         transferData.effects.pop();

@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-
 //Assorted utility functions likely to be helpful when displaying characters
-
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -211,7 +209,18 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  let item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  let item;
+  if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
+    const journalEntry = await fromUuidSync(dropData.uuid);
+    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
+    item = await lootItems.find((it) => it._id === dropData.itemId);
+    if (item.system.consumables?.length > 0) {
+      item.system.consumables = [];
+    }
+  } else {
+    item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  }
+
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }

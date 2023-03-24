@@ -97,12 +97,14 @@ div.pdf-app section.window-content {
   height: 100%;
 }
 
-.monks-journal-sheet.sheet .items-list .item .item-name {
-  color: revert;
+.monks-journal-sheet.sheet .items-list .item .item-name, .monks-journal-sheet.sheet .form-group label, .monks-journal-sheet.sheet .items-list {
+  color: var(--s2d6-form-light);
 }
 
 .monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
   margin-top: unset;
+  text-align: center;
+  display: unset;
 }
 
 .monks-enhanced-journal .mainbar .navigation .button-group {
@@ -115,4 +117,29 @@ div.pdf-app section.window-content {
 
 .monks-enhanced-journal .mainbar .navigation .nav-button.disabled, .monks-enhanced-journal footer.navigation .nav-button.disabled {
   color: var(--s2d6-default-color);
+}
+
+.monks-journal-sheet.sheet .items-list {
+  position: revert;
+}
+.loot-character > .character-name {
+    position: unset;
+    margin-top: unset;
+    text-align: unset;
+    z-index: unset;
+    left: unset
+}
+
+.monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
+  display: unset;
+}
+
+.edit-currency .items-list {
+  position: unset;
+}
+
+.edit-currency .items-list input, .item-total.flexrow, .item-price.flexrow, .item-quantity.flexrow  {
+  color: var(--s2d6-default-color);
+  display: unset;
+  text-align: right;
 }

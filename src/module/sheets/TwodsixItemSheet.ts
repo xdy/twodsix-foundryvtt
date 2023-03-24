@@ -159,19 +159,23 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           flags: {twodsix: {sourceId: newId}}
 
         }).toObject()];
-        await this.item.update({effects: effects }, {recursive: true});
-        const newEffect = this.item.effects.contents[0].toObject();
-        //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
-        //await this.item.update({effects: [newEffect] }, {recursive: true});
+        if (fromUuidSync(this.item.uuid)) {
+          await this.item.update({effects: effects }, {recursive: true});
+          const newEffect = this.item.effects.contents[0].toObject();
+          //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+          //await this.item.update({effects: [newEffect] }, {recursive: true});
 
-        if (this.actor) {
-          newEffect.transfer = false;
-          const oldId = newEffect._id;
-          newEffect._id = "";
-          await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-          this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+          if (this.actor) {
+            newEffect.transfer = false;
+            const oldId = newEffect._id;
+            newEffect._id = "";
+            await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+            this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+          } else {
+            this.item.effects.contents[0].sheet?.render(true);
+          }
         } else {
-          this.item.effects.contents[0].sheet?.render(true);
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
         }
       }
     }
@@ -182,8 +186,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
     } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else if (fromUuidSync(this.item.uuid)) {
+      const editSheet = this.item.effects.contents[0].sheet?.render(true);
+      try {
+        editSheet?.bringToTop();
+      } catch(err) {
+        //nothing
+      }
     } else {
-      this.item.effects.contents[0].sheet?.render(true);
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
     }
   }
 
@@ -192,13 +203,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        if (this.actor) {
-          const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
-          if (id) {
-            this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+        if (fromUuidSync(this.item.uuid)) {
+          if (this.actor) {
+            const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+            if (id) {
+              await this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+            }
           }
+          await this.item.update({effects: [] }, {recursive: false});
+        } else {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
         }
-        await this.item.update({effects: [] }, {recursive: false});
       },
       no: () => {
         //Nothing

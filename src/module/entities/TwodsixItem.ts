@@ -35,6 +35,12 @@ export default class TwodsixItem extends Item {
     if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
       item.update({"system.value": 0});
     }
+
+    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+    if (item?.system?.consumables?.length > 0) {
+      await item.update({"system.consumables": []});
+    }
+
     return item;
   }
 

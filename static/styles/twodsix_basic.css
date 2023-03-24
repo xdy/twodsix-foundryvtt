@@ -2060,7 +2060,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*margin-top: 1.1em;*/
   overflow-y: auto;
   height: 12em;
-  width: 784px;
+  width: 778px;
   margin-left: 15px;
   /*padding: 0 0.5em;*/
 }
@@ -2846,4 +2846,49 @@ input[type="text"].color {
 .card-buttons {
   display: inline-flex;
   padding-bottom: 4px;
+}
+
+/* ******************************
+Monk's Enhanced Journals
+************************** */
+.monks-enhanced-journal .editor-edit {
+  z-index: 100;
+  display: block;
+}
+
+
+.monks-journal-sheet.sheet .editor {
+  overflow: auto;
+  height: 100%;
+}
+
+.monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
+  margin-top: unset;
+  text-align: center;
+  display: unset;
+}
+
+.monks-journal-sheet.sheet .items-list {
+  position: revert;
+}
+
+.loot-character > .character-name {
+    position: unset;
+    margin-top: unset;
+    text-align: unset;
+    z-index: unset;
+    left: unset
+}
+
+.monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
+  display: unset;
+}
+
+.edit-currency .items-list {
+  position: unset;
+}
+
+.edit-currency .items-list input, .item-total.flexrow, .item-price.flexrow, .item-quantity.flexrow  {
+  display: unset;
+  text-align: right;
 }

@@ -517,7 +517,8 @@
         "Modifiers": "Modifiers",
         "Attack": "Attack",
         "Consumables": "Consumables",
-        "DefaultMagazine": "Default Magazine Size"
+        "DefaultMagazine": "Default Magazine Size",
+        "HandlingExample": "e.g., DEX 6/-3 10/+4"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -1210,7 +1211,10 @@
       "NoActorSelected": "An actor must be selected or controlled",
       "NoSkillSelected": "Must select a skill to make a roll",
       "NoDamageForWeapon": "This weapon has not specified the damage it does.",
-      "ActionWarningNoToken": "No targets selected for action."
+      "ActionWarningNoToken": "No targets selected for action.",
+      "CantEditEffect": "Can't edit effect for item that is embedded in non-Actor.",
+      "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
+      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
     }
   },
   "VeryDifficult": "Very Difficult"
