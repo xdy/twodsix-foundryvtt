@@ -10,6 +10,7 @@
   "Normal": "Normal",
   "Routine": "Routine",
   "Simple": "Simple",
+  "VeryDifficult": "Very Difficult",
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Remove Active Effect",
@@ -1217,5 +1218,52 @@
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
     }
   },
-  "VeryDifficult": "Very Difficult"
+  "ITEM" :{
+    "TypeBackpack": "Backpack",
+    "TypeContainer": "Container",
+    "TypeConsumable": "Consumable",
+    "TypeEquipment": "Equipment",
+    "TypeSpell": "Spell",
+    "TypeTool": "Tool",
+    "TypeWeapon": "Weapon",
+    "TypeArmor": "Armor",
+    "TypeSkill": "Skill",
+    "TypeComponent": "Component",
+    "TypeComputer": "Computer",
+    "TypeAugment": "Augment",
+    "TypeStorage": "Storage",
+    "TypeJunk": "Junk",
+    "TypeSkills": "Skill",
+    "TypeTrait": "Trait",
+    "TypeShip_position": "Ship Position",
+    "TypeBackpackPl": "Backpacks",
+    "TypeContainerPl": "Containers",
+    "TypeConsumablePl": "Consumables",
+    "TypeEquipmentPl": "Equipment",
+    "TypeSpellPl": "Spells",
+    "TypeToolPl": "Tools",
+    "TypeWeaponPl": "Weapons",
+    "TypeArmorPl": "Armors",
+    "TypeSkillPl": "Skills",
+    "TypeComponentPl": "Components",
+    "TypeComputerPl": "Computers",
+    "TypeAugmentPl": "Augments",
+    "TypeStoragePl": "Storage",
+    "TypeJunkPl": "Junk",
+    "TypeSkillsPl": "Skills",
+    "TypeTraitPl": "Traits",
+    "TypeShip_positionPl": "Ship Positions"
+  },
+  "ACTOR": {
+    "TypeTraveller": "Traveller",
+    "TypeShip": "Ship",
+    "TypeVehicle": "Vehicle",
+    "TypeAnimal": "Animal",
+    "TypeSpace-object": "Space Object",
+    "TypeTravellerPl": "Travellers",
+    "TypeShipPl": "Ships",
+    "TypeVehiclePl": "Vehicles",
+    "TypeAnimalPl": "Animals",
+    "TypeSpace-objectPl": "Space Objects"
+  }
 }

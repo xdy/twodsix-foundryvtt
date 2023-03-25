@@ -884,6 +884,13 @@ export default class TwodsixActor extends Actor {
   }
 
   public async _updateDerivedDataActiveEffects(): Promise<void> {
+    //Fix for item-piles module
+    if (game.modules.get("item-piles")?.active) {
+      if (this.getFlag("item-piles", "data.enabled")) {
+        return;
+      }
+    }
+
     const derivedData = [];
     //Add characteristics mods
     for (const char of Object.keys(this.system.characteristics)) {
@@ -914,6 +921,7 @@ export default class TwodsixActor extends Actor {
       ...foundry.utils.flattenObject(this.overrides),
       ...overrides,
     });
+
     this.sheet?.render(false);
   }
 
