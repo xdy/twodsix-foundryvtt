@@ -1,3 +1,10 @@
+## [2.26.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.2...v2.26.3) (2023-03-25)
+
+
+### Bug Fixes
+
+* Better Support for Item Piles ([#1278](https://github.com/xdy/twodsix-foundryvtt/issues/1278)) ([5e5525e](https://github.com/xdy/twodsix-foundryvtt/commit/5e5525e052240fd9ee37cc8701d31dfa5bfd1d5e))
+
 ## [2.26.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.1...v2.26.2) (2023-03-24)
 
 
