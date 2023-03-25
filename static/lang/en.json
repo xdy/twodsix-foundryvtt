@@ -10,6 +10,7 @@
   "Normal": "Normal",
   "Routine": "Routine",
   "Simple": "Simple",
+  "VeryDifficult": "Very Difficult",
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Remove Active Effect",
@@ -1217,5 +1218,30 @@
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
     }
   },
-  "VeryDifficult": "Very Difficult"
+  "ITEM" :{
+    "TypeBackpack": "Backpack",
+    "TypeContainer": "Container",
+    "TypeConsumable": "Consumable",
+    "TypeEquipment": "Equipment",
+    "TypeSpell": "Spell",
+    "TypeTool": "Tool",
+    "TypeWeapon": "Weapon",
+    "TypeArmor": "Armor",
+    "TypeSkill": "Skill",
+    "TypeComponent": "Component",
+    "TypeComputer": "Computer",
+    "TypeAugment": "Augment",
+    "TypeStorage": "Storage",
+    "TypeJunk": "Junk",
+    "TypeSkills": "Skill",
+    "TypeTrait": "Trait",
+    "TypeShip_position": "Ship Position"
+  },
+  "ACTOR": {
+    "TypeTraveller": "Traveller",
+    "TypeShip": "Ship",
+    "TypeVehicle": "Vehicle",
+    "TypeAnimal": "Animal",
+    "TypeSpace-object": "Space Object"
+  }
 }

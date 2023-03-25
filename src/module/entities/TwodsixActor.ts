@@ -914,6 +914,13 @@ export default class TwodsixActor extends Actor {
       ...foundry.utils.flattenObject(this.overrides),
       ...overrides,
     });
+
+    //Fix for item-piles module
+    if (game.modules.get("item-piles")?.active) {
+      if (this.getFlag("item-piles", "data.enabled")) {
+        return;
+      }
+    }
     this.sheet?.render(false);
   }
 
