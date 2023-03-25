@@ -1235,13 +1235,35 @@
     "TypeJunk": "Junk",
     "TypeSkills": "Skill",
     "TypeTrait": "Trait",
-    "TypeShip_position": "Ship Position"
+    "TypeShip_position": "Ship Position",
+    "TypeBackpackPl": "Backpacks",
+    "TypeContainerPl": "Containers",
+    "TypeConsumablePl": "Consumables",
+    "TypeEquipmentPl": "Equipment",
+    "TypeSpellPl": "Spells",
+    "TypeToolPl": "Tools",
+    "TypeWeaponPl": "Weapons",
+    "TypeArmorPl": "Armors",
+    "TypeSkillPl": "Skills",
+    "TypeComponentPl": "Components",
+    "TypeComputerPl": "Computers",
+    "TypeAugmentPl": "Augments",
+    "TypeStoragePl": "Storage",
+    "TypeJunkPl": "Junk",
+    "TypeSkillsPl": "Skills",
+    "TypeTraitPl": "Traits",
+    "TypeShip_positionPl": "Ship Positions"
   },
   "ACTOR": {
     "TypeTraveller": "Traveller",
     "TypeShip": "Ship",
     "TypeVehicle": "Vehicle",
     "TypeAnimal": "Animal",
-    "TypeSpace-object": "Space Object"
+    "TypeSpace-object": "Space Object",
+    "TypeTravellerPl": "Travellers",
+    "TypeShipPl": "Ships",
+    "TypeVehiclePl": "Vehicles",
+    "TypeAnimalPl": "Animals",
+    "TypeSpace-objectPl": "Space Objects"
   }
 }
