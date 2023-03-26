@@ -7,6 +7,6 @@ Hooks.once("item-piles-ready", () => {
     {path: 'type', filters: 'skills'},
     {path: 'type', filters: 'trait'},
     {path: 'type', filters: 'spell'},
-    {path: 'name', filters: 'Unarmed'}
+    {path: 'name', filters: game.i18n.localize("TWODSIX.Items.Weapon.Unarmed")}
   ]);
 });

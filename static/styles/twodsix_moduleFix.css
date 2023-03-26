@@ -143,3 +143,8 @@ div.pdf-app section.window-content {
   display: unset;
   text-align: right;
 }
+
+/************Item Piles*******/
+.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even) {
+  background-color: var(--s2d6-light-background-transparent);
+}
