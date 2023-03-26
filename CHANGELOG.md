@@ -1,3 +1,10 @@
+## [2.26.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.3...v2.26.4) (2023-03-26)
+
+
+### Bug Fixes
+
+* style and localization fix for Item Piles ([#1280](https://github.com/xdy/twodsix-foundryvtt/issues/1280)) ([dfacac8](https://github.com/xdy/twodsix-foundryvtt/commit/dfacac8e0103f32f9f8192f8cf4e2123d0c8b849))
+
 ## [2.26.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.2...v2.26.3) (2023-03-25)
 
 
