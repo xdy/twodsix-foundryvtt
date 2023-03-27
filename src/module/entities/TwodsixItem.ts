@@ -437,7 +437,7 @@ export default class TwodsixItem extends Item {
     let returnValue = 0;
     if (this.system.attachmentData) {
       for (const attach of this.system.attachmentData) {
-        if (!attach.system.subtype === "software" || attach.system.softwareActive) {
+        if (attach.system.subtype !== "software" || attach.system.softwareActive) {
           returnValue += attach.system[type];
         }
       }
