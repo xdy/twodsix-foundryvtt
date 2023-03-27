@@ -1,3 +1,10 @@
+## [2.26.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.4...v2.26.5) (2023-03-27)
+
+
+### Bug Fixes
+
+* Software DM applying when Software is inactive ([#1281](https://github.com/xdy/twodsix-foundryvtt/issues/1281)) ([9675626](https://github.com/xdy/twodsix-foundryvtt/commit/9675626b249980961f51dd25bad454f8fd5c30a0))
+
 ## [2.26.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.3...v2.26.4) (2023-03-26)
 
 
