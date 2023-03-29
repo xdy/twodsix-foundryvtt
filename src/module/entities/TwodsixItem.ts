@@ -386,7 +386,7 @@ export default class TwodsixItem extends Item {
       }
 
       const contentData = {};
-      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
+      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}<br>${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
       if (damageType) {
         flavor += `, ${game.i18n.localize("TWODSIX.Items.Weapon.damageType")}: ${damageType}`;
       }

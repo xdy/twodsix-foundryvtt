@@ -68,7 +68,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
       roll: damage,
       dice: getDiceResults(damage), //damage.terms[0]["results"]
       armorPiercingValue: 0,
-      damage: (damage.total && damage.total > 0) ? damage.total : 0
+      damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
+      damageType: ""
     });
 
     const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
