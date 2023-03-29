@@ -382,14 +382,11 @@ export default class TwodsixItem extends Item {
       //Deterime Damage type
       let damageType:string = this.getConsumableDamageType();
       if (damageType === '') {
-        damageType = weapon.damageType;
+        damageType = weapon.damageType ?? ""; //components don't have damage types
       }
 
       const contentData = {};
-      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}<br>${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
-      if (damageType) {
-        flavor += `, ${game.i18n.localize("TWODSIX.Items.Weapon.damageType")}: ${damageType}`;
-      }
+      const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
 
       Object.assign(contentData, {
         flavor: flavor,
