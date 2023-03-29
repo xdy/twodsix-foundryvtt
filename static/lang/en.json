@@ -319,7 +319,8 @@
         "Armor": "Armor",
         "SecondaryArmor": "Secondary Armor",
         "RadProt": "Rad Protection",
-        "IsPowered": "Powered Armor"
+        "IsPowered": "Powered Armor",
+        "SecondaryArmorProtectionTypes": "Secondary Protection Types"
       },
       "Augmentation": {
         "Arms": "Arms",

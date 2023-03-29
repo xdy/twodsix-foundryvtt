@@ -117,6 +117,23 @@ export default class TwodsixActor extends Actor {
     return returnValue;
   }
 
+  getSecondaryProtectionValue(damageType:string): number {
+    let returnValue = 0;
+    if (damageType) {
+      const armorItems = this.itemTypes.armor;
+      for (const armor of armorItems) {
+        if (armor.system.equipped === "equipped") {
+          let protectionTypes = armor.system.secondaryArmor.protectionTypes.toLowerCase().split(",");
+          protectionTypes = protectionTypes.map(s => s.trim());
+          if (protectionTypes.includes(damageType.toLowerCase())){
+            returnValue += armor.system.secondaryArmor.value;
+          }
+        }
+      }
+    }
+    return returnValue;
+  }
+
   getMaxEncumbrance():number {
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
@@ -504,11 +521,12 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damage: number, armorPiercingValue: number, showDamageDialog = true): Promise<void> {
+  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damage: number, armorPiercingValue: number, damageId: string, tokenId?: string|null, actorId?: string|null } = {
-        damage: damage,
+      const damageData: { damageValue: number, armorPiercingValue: number, damageType:string, damageId: string, tokenId?: string|null, actorId?: string|null } = {
+        damageValue: damageValue,
         armorPiercingValue: armorPiercingValue,
+        damageType: damageType,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
@@ -520,7 +538,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damage, armorPiercingValue);
+      const stats = new Stats(this, damageValue, armorPiercingValue, damageType);
       await stats.applyDamage();
     }
   }
@@ -680,7 +698,7 @@ export default class TwodsixActor extends Actor {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, false);
+        this.damageActor(delta, 9999, "none", false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);
@@ -876,7 +894,7 @@ export default class TwodsixActor extends Actor {
 
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean) {
     if (this.type === 'traveller' || this.type === 'animal') {
-      await this.damageActor(damagePayload.damage, damagePayload.armorPiercingValue, showDamageDialog);
+      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
     }

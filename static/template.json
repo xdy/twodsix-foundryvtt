@@ -577,7 +577,8 @@
       "templates": ["gearTemplate", "referenceTemplate"],
       "armor": 0,
       "secondaryArmor": {
-        "value": 0
+        "value": 0,
+        "protectionTypes": ""
       },
       "radiationProtection": {
         "value": 0
@@ -639,7 +640,8 @@
       "bonusDamage": "",
       "isAttachment": false,
       "bandwidth": 0,
-      "softwareActive": true
+      "softwareActive": true,
+      "damageType": ""
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],

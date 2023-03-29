@@ -379,14 +379,25 @@ export default class TwodsixItem extends Item {
         }
       }
 
+      //Deterime Damage type
+      let damageType:string = this.getConsumableDamageType();
+      if (damageType === '') {
+        damageType = weapon.damageType;
+      }
+
       const contentData = {};
-      const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
+      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
+      if (damageType) {
+        flavor += `, ${game.i18n.localize("TWODSIX.Items.Weapon.damageType")}: ${damageType}`;
+      }
+
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
         dice: getDiceResults(damage), //damage.terms[0]["results"]
         armorPiercingValue: apValue,
-        damage: (damage.total && damage.total > 0) ? damage.total : 0
+        damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
+        damageType: damageType
       });
 
       if (radDamage.total) {
@@ -447,6 +458,15 @@ export default class TwodsixItem extends Item {
       if (magazine?.type === "consumable" && magazine?.system[type]) {
         returnValue += (<Consumable>magazine.system)[type];
       }
+    }
+    return returnValue;
+  }
+
+  public getConsumableDamageType():string {
+    let returnValue = "";
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      returnValue = magazine ? magazine.system.damageType : "";
     }
     return returnValue;
   }

@@ -3526,9 +3526,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   width: 30px;
 }
 
-.damage-dialog .damage, .damage-dialog .armor{
+/*.damage-dialog .damage, .damage-dialog .armor{
   width: 50px;
-}
+}*/
 
 .damage-dialog .center-table-text {
   text-align: center;

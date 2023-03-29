@@ -19,8 +19,8 @@
           </div>
         </section>
       </div>
-      {{#iff damage '>' '0'}}
-        <h4 class="dice-total">{{damage}}</h4>
+      {{#iff damageValue '>' '0'}}
+        <h4 class="dice-total">{{damageValue}}</h4>
       {{else}}
         <h4 class="dice-total">{{localize "TWODSIX.Damage.NoRegularDamage"}}</h4>
       {{/iff}}

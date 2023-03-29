@@ -254,7 +254,7 @@ export interface Traveller {
   radiationDose:Hits;
   encumbrance:Encumbrance;
   primaryArmor:PrimaryArmor;
-  secondaryArmor:PrimaryArmor;
+  secondaryArmor:SecondaryArmor;
   heroPoints:number;
   radiationProtection:PrimaryArmor;
   contacts:string;
@@ -396,6 +396,11 @@ export interface Finances {
 
 export interface PrimaryArmor {
   value:number;
+}
+
+export interface SecondaryArmor {
+  value:number;
+  protectionTypes:string;
 }
 
 export interface ShipAction {
@@ -553,6 +558,7 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   isAttachment:boolean;
   bandwidth:number;
   softwareActive:boolean;
+  damageType:string;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
