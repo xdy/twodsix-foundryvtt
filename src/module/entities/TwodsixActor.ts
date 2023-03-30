@@ -693,7 +693,16 @@ export default class TwodsixActor extends Actor {
     });
   }
 
-  public async modifyTokenAttribute(attribute, value, isDelta, isBar) {
+  /**
+   * Function to modify Traveller or Animal actor from token bar input
+   * @param {string} attribute    The characteristic attribute (full name) being changed or generic "hits" attribute
+   * @param {number} value  The change to the attribute (either a delta or direct value)
+   * @param {boolean} isDelta Whether the value is a delta or an absolute number
+   * @param {boolean} isBar Whether the value is a bar on token
+   * @returns {Promise}
+   * @public
+   */
+  public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise<void> {
     if ( attribute === "hits" && (this.type === "traveller" || this.type === 'animal')) {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
@@ -708,6 +717,12 @@ export default class TwodsixActor extends Actor {
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
 
+  /**
+   * Function to add a dropped skill to an actor
+   * @param {any} skillData    The skill document
+   * @returns {Promise} A boolean promise of whether the drop was sucessful
+   * @private
+   */
   private async _addDroppedSkills(skillData): Promise<boolean>{
     // Handle item sorting within the same Actor SHOULD NEVER DO THIS
     const sameActor = this.items.get(skillData._id);
@@ -744,6 +759,12 @@ export default class TwodsixActor extends Actor {
     return(!!addedSkill);
   }
 
+  /**
+   * Function to add a dropped item to an actor
+   * @param {any} itemData    The item document
+   * @returns {Promise} A boolean promise of whether the drop was sucessful
+   * @private
+   */
   private async _addDroppedEquipment(itemData): Promise<boolean>{
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(itemData._id);

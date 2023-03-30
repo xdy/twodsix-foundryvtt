@@ -91,6 +91,11 @@ Hooks.on("aipSetup", (packageConfig) => {
   }
 });
 
+/**
+ * Retruns the Traveller data template with .characteristics[X].mod and .skills added
+ * @returns {any} An object of the traveller actor template
+ * @private
+ */
 function _getTravellerData(): any {
   const returnObject = duplicate(game.system.template.Actor.traveller);
   for (const char of Object.keys(returnObject.characteristics)) {
@@ -99,7 +104,11 @@ function _getTravellerData(): any {
   Object.assign(returnObject, {skills: {}});
   return returnObject;
 }
-
+/**
+ * Retruns the Ship data template
+ * @returns {any}    An object of the ship actor template
+ * @private
+ */
 function _getShipData(): any {
   const returnObject = duplicate(game.system.template.Actor.ship);
   return returnObject;
