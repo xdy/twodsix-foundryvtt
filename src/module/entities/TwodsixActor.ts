@@ -702,7 +702,7 @@ export default class TwodsixActor extends Actor {
    * @returns {Promise}
    * @public
    */
-  public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise<void> {
+  public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
     if ( attribute === "hits" && (this.type === "traveller" || this.type === 'animal')) {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
