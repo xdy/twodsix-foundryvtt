@@ -99,7 +99,11 @@ export default class TwodsixActor extends Actor {
     }
     await this._updateDerivedDataActiveEffects();
   }
-
+  /**
+   * Method to evaluate the armor and radiation protection values for all armor worn.
+   * @returns {object} An object of the total for primaryArmor, secodnaryArmor, and radiationProteciton
+   * @public
+   */
   getArmorValues():object {
     const returnValue = {
       primaryArmor: 0,
@@ -116,7 +120,13 @@ export default class TwodsixActor extends Actor {
     }
     return returnValue;
   }
-
+  /**
+   * Method to evaluate the secondary armor value depending on the damge type. Returns the effective value
+   * for the secondary armor.
+   * @param {string} damageType  The damage type tp check against secondary armor
+   * @returns {number} The value added to effective armor due to secondary armor
+   * @public
+   */
   getSecondaryProtectionValue(damageType:string): number {
     let returnValue = 0;
     if (damageType) {
@@ -694,7 +704,7 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Function to modify Traveller or Animal actor from token bar input. Special processing for "hits" attribute.
+   * Method to modify Traveller or Animal actor from token bar input. Special processing for "hits" attribute.
    * @param {string} attribute    The characteristic attribute (full name) being changed or generic "hits" attribute
    * @param {number} value  The change to the attribute (either a delta or direct value)
    * @param {boolean} isDelta Whether the value is a delta or an absolute number
