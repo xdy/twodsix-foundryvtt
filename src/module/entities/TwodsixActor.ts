@@ -694,7 +694,7 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Function to modify Traveller or Animal actor from token bar input
+   * Function to modify Traveller or Animal actor from token bar input. Special processing for "hits" attribute.
    * @param {string} attribute    The characteristic attribute (full name) being changed or generic "hits" attribute
    * @param {number} value  The change to the attribute (either a delta or direct value)
    * @param {boolean} isDelta Whether the value is a delta or an absolute number
