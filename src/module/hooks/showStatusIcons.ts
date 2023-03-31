@@ -6,36 +6,34 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 
-Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>) => {
-  const firstGM = game.users.find(u => u.isGM);
+Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, _options: any, userId: string) => {
   if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal')) {
-    if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-      if (game.user?.id === firstGM?.id) {
-        await applyWoundedEffect(actor).then();
-      }
+    if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
+      await applyWoundedEffect(actor).then();
     }
     if (actor.system.hits.lastDelta !== 0 && actor.isOwner) {
       actor.scrollDamage(actor.system.hits.lastDelta);
     }
   }
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (update.system?.characteristics && (actor.type === 'traveller') && game.user?.id === firstGM?.id) {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+    if (update.system?.characteristics && (actor.type === 'traveller')) {
       await applyEncumberedEffect(actor).then();
     }
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem) => {
-  const firstGM = game.users.find(u => u.isGM);
-  const owningActor = <TwodsixActor> item.actor;
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
-    if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
-      await applyEncumberedEffect(owningActor).then();
+Hooks.on("updateItem", async (item: TwodsixItem, _update: Record<string, any>, _options: any, userId:string) => {
+  if (game.user?.id === userId) {
+    const owningActor = <TwodsixActor> item.actor;
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+      if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) ) {
+        await applyEncumberedEffect(owningActor).then();
+      }
     }
-  }
-  if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-    if ((owningActor.type === 'traveller' || owningActor.type === 'animal') && game.user?.id === firstGM?.id) {
-      await applyWoundedEffect(<TwodsixActor>item.actor).then();
+    if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+      if ((owningActor.type === 'traveller' || owningActor.type === 'animal')) {
+        await applyWoundedEffect(<TwodsixActor>item.actor).then();
+      }
     }
   }
 });
@@ -50,10 +48,9 @@ Hooks.on("updateItem", async (item: TwodsixItem) => {
   }
 });*/
 
-Hooks.on("createItem", async (item: TwodsixItem) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
-    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) && game.user?.id === firstGM?.id) {
+Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type)) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }
