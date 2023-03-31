@@ -375,8 +375,8 @@ export default class TwodsixActor extends Actor {
   }
 
   protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
+    super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     if (game.user.id === userId) {
-      super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
       if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
         documents.forEach(async (element:ActiveEffect, i) => {
           const activeEffectId = element.getFlag("twodsix", "sourceId");
