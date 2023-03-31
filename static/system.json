@@ -272,12 +272,5 @@
     }
   ],
   "relationships": {
-    "requires": [
-      {
-        "type": "module",
-        "id": "compendium-folders",
-        "manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/10x-update/module.json"
-      }
-    ]
   }
 }
