@@ -8,7 +8,7 @@ import TwodsixItem from "./entities/TwodsixItem";
 import {Skills, Component} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
-import { ObjectbyString, simplifySkillName } from "./utils/utils";
+import { simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -231,10 +231,10 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
     let returnValue = ``;
     const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-    if (ObjectbyString(actor.overrides, field)) {
+    if (getProperty(actor.overrides, field)) {
       const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
       const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-      const baseValue = ObjectbyString(actor._source, field);
+      const baseValue = getProperty(actor._source, field);
       returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
       const workingEffects = actor.effects.filter(e => !e.disabled);
       for (const effect of workingEffects) {

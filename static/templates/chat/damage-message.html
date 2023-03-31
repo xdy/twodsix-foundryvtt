@@ -1,6 +1,6 @@
 <div class='twodsix-message dice-roll' data-transfer='{{transfer}}'>
   <div class='damage-message'>
-    <div class='prefix'>{{flavor}}</div>
+    <div class='prefix'>{{{flavor}}}</div>
 
     <div class="dice-result">
       <div class="dice-formula">{{roll.formula}}</div>
@@ -19,8 +19,8 @@
           </div>
         </section>
       </div>
-      {{#iff damage '>' '0'}}
-        <h4 class="dice-total">{{damage}}</h4>
+      {{#iff damageValue '>' '0'}}
+        <h4 class="dice-total">{{damageValue}}</h4>
       {{else}}
         <h4 class="dice-total">{{localize "TWODSIX.Damage.NoRegularDamage"}}</h4>
       {{/iff}}
@@ -51,3 +51,8 @@
     {{/if}}
   </div>
 </div>
+
+<footer class="damage-footer">
+  <span> {{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}: {{armorPiercingValue}}</span>
+  {{#iff damageType "!==" ""}}<span>{{localize "TWODSIX.Items.Weapon.damageType"}}: {{damageType}}</span>{{/iff}}
+</footer>

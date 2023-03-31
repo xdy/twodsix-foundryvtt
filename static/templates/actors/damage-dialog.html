@@ -4,16 +4,29 @@
     <thead>
       <tr>
         <td>{{localize "TWODSIX.Damage.Damage"}}</td>
+        <td>{{localize "TWODSIX.Items.Armor.Armor"}}</td>
+        <td>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</td>
         <td>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</td>
         <td>{{localize "TWODSIX.Damage.TotalDamage"}}</td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><input type="number" value="{{damage}}" class="damage"></td>
-        <td><input type="number" value="{{armor}}" class="armor"></td>
+        <td><input type="number" value="{{damageValue}}" class="damage"></td>
+        <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
+        <td><input type="number" value="{{secondaryArmor}}" class="armor" readonly></td>
+        <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
         <td class="applied-damage"></td>
       </tr>
+      {{#iff damageType "!==" ""}}
+      <tr>
+        <td>({{damageType}})</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      {{/iff}}
     </tbody>
   </table>
 

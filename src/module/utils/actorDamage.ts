@@ -42,9 +42,12 @@ export class Stats {
   endurance: Attribute;
   stamina: Attribute;
   lifeblood: Attribute;
-  damage: number;
+  damageValue: number;
+  damageType: string;
   armorPiercingValue: number;
-  armor: number;
+  effectiveArmor: number;
+  primaryArmor:number;
+  secondaryArmor:number;
   edited = false;
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
@@ -52,17 +55,20 @@ export class Stats {
   useLifebloodEndurance = false;
   useLifebloodOnly = false;
 
-  constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
+  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
     this.stamina = new Attribute("stamina", actor);
     this.lifeblood = new Attribute("lifeblood", actor);
     this.actor = actor;
-    this.damage = damage;
+    this.damageValue = damageValue;
+    this.damageType = damageType;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
+      this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
+      this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
+      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
 
@@ -92,7 +98,7 @@ export class Stats {
   }
 
   remaining(): number {
-    return this.damage - this.armor - this.currentDamage();
+    return this.damageValue - this.effectiveArmor - this.currentDamage();
   }
 
   totalCurrent(): number {
@@ -103,15 +109,15 @@ export class Stats {
     return retValue;
   }
 
-  public setDamage(damage: number): void {
-    this.damage = damage;
+  public setDamage(damageValue: number): void {
+    this.damageValue = damageValue;
     if (!this.edited) {
       this.reduceStats();
     }
   }
 
-  public setArmor(armor: number): void {
-    this.armor = armor;
+  public setArmor(effectiveArmor: number): void {
+    this.effectiveArmor = effectiveArmor;
     if (!this.edited) {
       this.reduceStats();
     }
@@ -126,7 +132,7 @@ export class Stats {
   }
 
   totalDamage(): number {
-    return Math.max(this.damage - this.armor, 0);
+    return Math.max(this.damageValue - this.effectiveArmor, 0);
   }
 
   public updateActor(): void {
@@ -288,7 +294,7 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damage, armorPiercingValue} = damageData;
+  const {damageId, damageValue, armorPiercingValue, damageType} = damageData;
   let actor;
   if (damageData.actorId) {
     actor = game.actors?.get(damageData.actorId);
@@ -302,7 +308,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
 
-  const stats = new Stats(actor, damage, armorPiercingValue);
+  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);

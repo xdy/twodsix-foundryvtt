@@ -3097,6 +3097,21 @@ background: var(--s2d6-sidebar-background);
   padding: 0.25em;
 }
 
+.damage-footer {
+  padding: 3px 0 0;
+}
+
+.damage-footer span:last-child {
+  border-right: 0;
+  padding: 0;
+  font-size: 11px;
+}
+.damage-footer span {
+  border-right: 1px groove var(--s2d6-dialog-color);
+  padding: 0 3px 0 0;
+  font-size: 11px;
+}
+
 .damage-message:hover {
   box-shadow: 0 4px 8px 0 var(--s2d6-background-nearly-transparent), 0 6px 20px 0 var(--s2d6-background-nearly-transparent);
 }
@@ -3526,9 +3541,9 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   width: 30px;
 }
 
-.damage-dialog .damage, .damage-dialog .armor{
+/*.damage-dialog .damage, .damage-dialog .armor{
   width: 50px;
-}
+}*/
 
 .damage-dialog .center-table-text {
   text-align: center;

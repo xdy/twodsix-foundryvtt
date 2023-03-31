@@ -26,14 +26,14 @@ Hooks.on("aipSetup", (packageConfig) => {
           name: "TwodsixItemSheet",
           fieldConfigs: ["system"].flatMap((key) => [
             {
-              selector: `input[type="text"][name^="${key}.damage"]`,
+              selector: `input[type="text"][name="${key}.damage"]`,
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.OWNING_ACTOR_ROLL_DATA,
               inlinePrefix: "@"
             },
             {
-              selector: `input[type="text"][name^="${key}.bonusDamage"]`,
+              selector: `input[type="text"][name="${key}.bonusDamage"]`,
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.OWNING_ACTOR_ROLL_DATA,
@@ -45,30 +45,39 @@ Hooks.on("aipSetup", (packageConfig) => {
           name: "AdvancedSettings",
           fieldConfigs: [
             {
-              selector: `input[type="text"][name^="initiativeFormula"]`,
+              selector: `input[type="text"][name="initiativeFormula"]`,
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.CUSTOM,
-              customDataGetter: (sheet) =>
-                _getTravellerData() ?? _getFallbackActorRollData(sheet.object),
+              customDataGetter: () =>
+                _getTravellerData(),
               inlinePrefix: "@"
             },
             {
-              selector: `input[type="text"][name^="maxEncumbrance"]`,
+              selector: `input[type="text"][name="shipInitiativeFormula"]`,
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.CUSTOM,
-              customDataGetter: (sheet) =>
-                _getTravellerData() ?? _getFallbackActorRollData(sheet.object),
+              customDataGetter: () =>
+                _getShipData(),
               inlinePrefix: "@"
             },
             {
-              selector: `input[type="text"][name^="unarmedDamage"]`,
+              selector: `input[type="text"][name="maxEncumbrance"]`,
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.CUSTOM,
-              customDataGetter: (sheet) =>
-                _getTravellerData() ?? _getFallbackActorRollData(sheet.object),
+              customDataGetter: () =>
+                _getTravellerData(),
+              inlinePrefix: "@"
+            },
+            {
+              selector: `input[type="text"][name="unarmedDamage"]`,
+              showButton: true,
+              allowHotkey: true,
+              dataMode: DATA_MODE.CUSTOM,
+              customDataGetter: () =>
+                _getTravellerData(),
               inlinePrefix: "@"
             }
           ]
@@ -82,11 +91,25 @@ Hooks.on("aipSetup", (packageConfig) => {
   }
 });
 
+/**
+ * Retruns the Traveller data template with .characteristics[X].mod and .skills added
+ * @returns {any} An object of the traveller actor template
+ * @private
+ */
 function _getTravellerData(): any {
   const returnObject = duplicate(game.system.template.Actor.traveller);
   for (const char of Object.keys(returnObject.characteristics)) {
     Object.assign(returnObject.characteristics[char], {mod: 0});
   }
   Object.assign(returnObject, {skills: {}});
+  return returnObject;
+}
+/**
+ * Retruns the Ship data template
+ * @returns {any}    An object of the ship actor template
+ * @private
+ */
+function _getShipData(): any {
+  const returnObject = duplicate(game.system.template.Actor.ship);
   return returnObject;
 }

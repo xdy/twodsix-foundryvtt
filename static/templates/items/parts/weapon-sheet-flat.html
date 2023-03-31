@@ -10,6 +10,13 @@
     <input class="form-input" id="system.damage" type="text" name="system.damage" value="{{system.damage}}">
   </div>
 
+  {{#if settings.ShowDamageType}}
+  <div class="item-damageType">
+    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
+    <input class="form-input" id="system.damageType" type="text" name="system.damageType" value= "{{system.damageType}}"></div>
+  </div>
+  {{/if}}
+
   <div class="item-damage">
     <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
     <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
@@ -56,13 +63,6 @@
   <div class="item-weaponType">
     <label class="resource-label">{{localize "TWODSIX.Items.Weapon.weaponType"}}</label>
     <input class="form-input" id="system.weaponType" type= "text" name="system.weaponType" value="{{system.weaponType}}">
-  </div>
-  {{/if}}
-
-  {{#if settings.ShowDamageType}}
-  <div class="item-damageType">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-    <input class="form-input" id="system.damageType" type="text" name="system.damageType" value= "{{system.damageType}}"></div>
   </div>
   {{/if}}
 

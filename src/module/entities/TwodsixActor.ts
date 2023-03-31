@@ -99,7 +99,11 @@ export default class TwodsixActor extends Actor {
     }
     await this._updateDerivedDataActiveEffects();
   }
-
+  /**
+   * Method to evaluate the armor and radiation protection values for all armor worn.
+   * @returns {object} An object of the total for primaryArmor, secodnaryArmor, and radiationProteciton
+   * @public
+   */
   getArmorValues():object {
     const returnValue = {
       primaryArmor: 0,
@@ -112,6 +116,29 @@ export default class TwodsixActor extends Actor {
         returnValue.primaryArmor += armor.system.armor;
         returnValue.secondaryArmor += armor.system.secondaryArmor.value;
         returnValue.radiationProtection += armor.system.radiationProtection.value;
+      }
+    }
+    return returnValue;
+  }
+  /**
+   * Method to evaluate the secondary armor value depending on the damge type. Returns the effective value
+   * for the secondary armor.
+   * @param {string} damageType  The damage type tp check against secondary armor
+   * @returns {number} The value added to effective armor due to secondary armor
+   * @public
+   */
+  getSecondaryProtectionValue(damageType:string): number {
+    let returnValue = 0;
+    if (damageType) {
+      const armorItems = this.itemTypes.armor;
+      for (const armor of armorItems) {
+        if (armor.system.equipped === "equipped") {
+          let protectionTypes = armor.system.secondaryArmor.protectionTypes.toLowerCase().split(",");
+          protectionTypes = protectionTypes.map(s => s.trim());
+          if (protectionTypes.includes(damageType.toLowerCase())){
+            returnValue += armor.system.secondaryArmor.value;
+          }
+        }
       }
     }
     return returnValue;
@@ -349,26 +376,28 @@ export default class TwodsixActor extends Actor {
 
   protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
     super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-    if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
-      documents.forEach(async (element:ActiveEffect, i) => {
-        const activeEffectId = element.getFlag("twodsix", "sourceId");
-        if (activeEffectId) {
-          const match = element.origin?.match(/Item\.(.+)/);
-          if (match) {
-            const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
-            delete result[i]._id;
-            const newEffects = item?.effects.map(effect => {
-              if (effect.id === activeEffectId) {
-                return foundry.utils.mergeObject(effect.toObject(), result[i]);
-              } else {
-                return effect.toObject();
-              }
-            });
-            // @ts-ignore
-            await item?.update({"effects": newEffects}, {recursive: true}).then();
+    if (game.user.id === userId) {
+      if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
+        documents.forEach(async (element:ActiveEffect, i) => {
+          const activeEffectId = element.getFlag("twodsix", "sourceId");
+          if (activeEffectId) {
+            const match = element.origin?.match(/Item\.(.+)/);
+            if (match) {
+              const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
+              delete result[i]._id;
+              const newEffects = item?.effects.map(effect => {
+                if (effect.id === activeEffectId) {
+                  return foundry.utils.mergeObject(effect.toObject(), result[i]);
+                } else {
+                  return effect.toObject();
+                }
+              });
+              // @ts-ignore
+              await item?.update({"effects": newEffects}, {recursive: true}).then();
+            }
           }
-        }
-      });
+        });
+      }
     }
     //this.render();
   }
@@ -504,11 +533,12 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damage: number, armorPiercingValue: number, showDamageDialog = true): Promise<void> {
+  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damage: number, armorPiercingValue: number, damageId: string, tokenId?: string|null, actorId?: string|null } = {
-        damage: damage,
+      const damageData: { damageValue: number, armorPiercingValue: number, damageType:string, damageId: string, tokenId?: string|null, actorId?: string|null } = {
+        damageValue: damageValue,
         armorPiercingValue: armorPiercingValue,
+        damageType: damageType,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
@@ -520,7 +550,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damage, armorPiercingValue);
+      const stats = new Stats(this, damageValue, armorPiercingValue, damageType);
       await stats.applyDamage();
     }
   }
@@ -675,12 +705,21 @@ export default class TwodsixActor extends Actor {
     });
   }
 
-  public async modifyTokenAttribute(attribute, value, isDelta, isBar) {
+  /**
+   * Method to modify Traveller or Animal actor from token bar input. Special processing for "hits" attribute.
+   * @param {string} attribute    The characteristic attribute (full name) being changed or generic "hits" attribute
+   * @param {number} value  The change to the attribute (either a delta or direct value)
+   * @param {boolean} isDelta Whether the value is a delta or an absolute number
+   * @param {boolean} isBar Whether the value is a bar on token
+   * @returns {Promise}
+   * @public
+   */
+  public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
     if ( attribute === "hits" && (this.type === "traveller" || this.type === 'animal')) {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, false);
+        this.damageActor(delta, 9999, "none", false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);
@@ -690,6 +729,12 @@ export default class TwodsixActor extends Actor {
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
 
+  /**
+   * Function to add a dropped skill to an actor
+   * @param {any} skillData    The skill document
+   * @returns {Promise} A boolean promise of whether the drop was sucessful
+   * @private
+   */
   private async _addDroppedSkills(skillData): Promise<boolean>{
     // Handle item sorting within the same Actor SHOULD NEVER DO THIS
     const sameActor = this.items.get(skillData._id);
@@ -726,6 +771,12 @@ export default class TwodsixActor extends Actor {
     return(!!addedSkill);
   }
 
+  /**
+   * Function to add a dropped item to an actor
+   * @param {any} itemData    The item document
+   * @returns {Promise} A boolean promise of whether the drop was sucessful
+   * @private
+   */
   private async _addDroppedEquipment(itemData): Promise<boolean>{
     // Handle item sorting within the same Actor
     const sameActor = this.items.get(itemData._id);
@@ -876,7 +927,7 @@ export default class TwodsixActor extends Actor {
 
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean) {
     if (this.type === 'traveller' || this.type === 'animal') {
-      await this.damageActor(damagePayload.damage, damagePayload.armorPiercingValue, showDamageDialog);
+      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
     }

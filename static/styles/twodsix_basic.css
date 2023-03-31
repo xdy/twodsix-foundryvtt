@@ -2524,6 +2524,21 @@ background: var(--sidebar-background);
   padding: 0.25em;
 }
 
+.damage-footer {
+  padding: 3px 0 0;
+}
+
+.damage-footer span:last-child {
+  border-right: 0;
+  padding: 0;
+  font-size: 11px;
+}
+.damage-footer span {
+  border-right: 2px groove var(--s2d6-select-light);
+  padding: 0 3px 0 0;
+  font-size: 11px;
+}
+
 .damage-message:hover {
   box-shadow: 0 4px 8px 0 var(--s2d6-damage-stat-color), 0 6px 16px 0 var(--s2d6-damage-stat-color);
 }
@@ -2777,9 +2792,9 @@ form .form-group > label {
   width: 30px;
 }
 
-.damage-dialog .damage, .damage-dialog .armor{
+/*.damage-dialog .damage, .damage-dialog .armor{
   width: 50px;
-}
+}*/
 
 .damage-dialog .center-table-text {
   text-align: center;
