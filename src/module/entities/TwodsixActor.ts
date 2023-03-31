@@ -856,7 +856,7 @@ export default class TwodsixActor extends Actor {
       //newEffect.disabled = true;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
-      newEffect.label = addedItem.name;
+      newEffect.name = addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
@@ -998,7 +998,7 @@ export default class TwodsixActor extends Actor {
             disabled: item.system.equipped !== "equipped",
             _id: "",
             origin: item.uuid,
-            //label: item.name,
+            //name: item.name,
             flags: {twodsix: {sourceId: item.effects.contents[0].id}}
           });
           newEffects.push(newEffect);

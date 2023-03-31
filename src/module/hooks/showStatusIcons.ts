@@ -95,8 +95,8 @@ export const effectType = Object.freeze({
 
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
-  const oldWoundState = selectedActor.effects.find(eff => eff.label === effectType.wounded);
-  const isCurrentlyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
+  const oldWoundState = selectedActor.effects.find(eff => eff.name === effectType.wounded);
+  const isCurrentlyDead = selectedActor.effects.find(eff => eff.name === effectType.dead);
 
   if (!tintToApply) {
     await setConditionState(effectType.dead, selectedActor, false);
@@ -118,7 +118,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
+  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.name === effectType.encumbered);
   let state = false;
   if(selectedActor.system.encumbrance.max > 0) {
     const ratio = selectedActor.system.encumbrance.value / selectedActor.system.encumbrance.max;
@@ -135,18 +135,18 @@ async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void>
       { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
     ];
     await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-      label: effectType.encumbered,
+      name: effectType.encumbered,
       icon: "systems/twodsix/assets/icons/weight.svg",
       changes: changeData
     }]);
-    const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
+    const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
     await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
   }
 }
 
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string) {
-  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.label === effectType.unconscious);
-  const isAlreadyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
+  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.name === effectType.unconscious);
+  const isAlreadyDead = selectedActor.effects.find(eff => eff.name === effectType.dead);
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'OTHER'].includes(rulesSet)) {
@@ -167,9 +167,9 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   }
 }
 
-async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = targetActor.effects.filter(eff => eff.label === effectLabel);
-  const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
+async function setConditionState(effectName: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
+  const isAlreadySet = targetActor.effects.filter(eff => eff.name === effectName);
+  const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectName.toLocaleLowerCase()));
 
   let targetToken = {};
   if(targetActor.isToken) {
@@ -187,7 +187,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
   if ((isAlreadySet.length > 0) !== state) {
 
     if (targetToken && targetEffect) {
-      if (effectLabel === "Dead" ) {
+      if (effectName === "Dead" ) {
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
@@ -202,8 +202,8 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
   }
 }
 
-async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.label === effectLabel);
+async function setWoundedState(effectName: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.name === effectName);
   if (isAlreadySet.length > 0 && (state === false)) {
     const idList= isAlreadySet.map(i => <string>i.id);
     if(idList.length > 0) {
@@ -222,12 +222,12 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        label: effectLabel,
+        name: effectName,
         icon: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData]
       }]);
-      const newEffect = await targetActor.effects.find(eff => eff.label === effectLabel);
+      const newEffect = await targetActor.effects.find(eff => eff.name === effectName);
       newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
     } else if (isAlreadySet.length > 0 && state === true) {
       await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet[0].id, tint: tint, changes: [changeData] }]);

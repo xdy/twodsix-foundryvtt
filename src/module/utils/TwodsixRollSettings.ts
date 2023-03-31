@@ -144,7 +144,7 @@ export class TwodsixRollSettings {
     if (sourceActor) {
       const customModifiers = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
       twodsixRollSettings.rollModifiers.custom = customModifiers.value;
-      twodsixRollSettings.rollModifiers.customLabel = customModifiers.label;
+      twodsixRollSettings.rollModifiers.customLabel = customModifiers.name;
     }
     if (showThrowDialog) {
       let title:string;
@@ -318,9 +318,9 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `@skills.` + simplifySkillName(skill.name) : ``;
   let returnValue = 0;
-  let returnLabel = "";
+  let returnName = "";
   let changed = false;
-  const customEffects = selectedActor.effects.filter(eff => eff.label !== "Wounded" && eff.label !== "Encumbered");
+  const customEffects = selectedActor.effects.filter(eff => eff.name !== "Wounded" && eff.name !== "Encumbered");
   for (const effect of customEffects) {
     changed = false;
     for (const change of effect.changes) {
@@ -330,8 +330,8 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
       }
     }
     if (changed) {
-      returnLabel += effect.label + ', ';
+      returnName += effect.name + ', ';
     }
   }
-  return {label: returnLabel.slice(0, -2), value: returnValue};
+  return {name: returnName.slice(0, -2), value: returnValue};
 }

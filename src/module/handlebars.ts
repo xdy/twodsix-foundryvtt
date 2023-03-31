@@ -240,7 +240,7 @@ export default function registerHandlebarsHelpers(): void {
       for (const effect of workingEffects) {
         const realChanges = effect.changes.filter(ch => ch.key === field);
         if (realChanges.length > 0) {
-          returnValue += `${effect.label}: `;
+          returnValue += `${effect.name}: `;
           for (const change of realChanges) {
             returnValue += `${modes[change.mode]}(${change.value}), `;
           }
@@ -349,7 +349,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_getEffectSource', (effect: ActiveEffect) => {
-    if (["Wounded", "Encumbered", "Dead"].includes(effect.label)) {
+    if (["Wounded", "Encumbered", "Dead"].includes(effect.name)) {
       return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
     } else if (effect.origin) {
       const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
