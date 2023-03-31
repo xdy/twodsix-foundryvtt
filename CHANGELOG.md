@@ -1,3 +1,10 @@
+# [2.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.5...v2.27.0) (2023-03-31)
+
+
+### Features
+
+* add damage type calcs to secondary armor ([#1282](https://github.com/xdy/twodsix-foundryvtt/issues/1282)) ([e6aa30e](https://github.com/xdy/twodsix-foundryvtt/commit/e6aa30e99605fd461d05c0cf050a748f8983fa05))
+
 ## [2.26.5](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.4...v2.26.5) (2023-03-27)
 
 
