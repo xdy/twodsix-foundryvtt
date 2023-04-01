@@ -137,10 +137,11 @@ async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void>
     await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
       name: effectType.encumbered,
       icon: "systems/twodsix/assets/icons/weight.svg",
-      changes: changeData
+      changes: changeData,
+      statuses: ["encumbered"]
     }]);
-    const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
-    await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
+    //const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
+    //await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
   }
 }
 
@@ -220,15 +221,17 @@ async function setWoundedState(effectName: string, targetActor: TwodsixActor, st
         break;
     }
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
+
     if (isAlreadySet.length === 0 && state === true) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: effectName,
         icon: "icons/svg/blood.svg",
         tint: tint,
-        changes: [changeData]
+        changes: [changeData],
+        statuses: ['bleeding']
       }]);
-      const newEffect = await targetActor.effects.find(eff => eff.name === effectName);
-      newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
+      //const newEffect = await targetActor.effects.find(eff => eff.name === effectName);
+      //newEffect?.statuses.add("bleeding"); /*FIX*/
     } else if (isAlreadySet.length > 0 && state === true) {
       await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet[0].id, tint: tint, changes: [changeData] }]);
     }
