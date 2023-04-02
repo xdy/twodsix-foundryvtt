@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import migrateWorld from "../migration";
 import {createItemMacro} from "../utils/createItemMacro";
 
@@ -16,6 +18,11 @@ Hooks.once("ready", async function () {
     if (game.settings.get("combat-utility-belt", "removeDefaultEffects")) {
       game.settings.set("combat-utility-belt", "removeDefaultEffects", false);
     }
+  }
+
+  //*Set default damage options localized
+  if (game.settings.get("twodsix", "damageTypeOptions") === "") {
+    game.settings.set("twodsix", "damageTypeOptions", game.i18n.localize("TWODSIX.Settings.defaultDamageOptions"));
   }
 
   if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {

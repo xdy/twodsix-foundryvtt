@@ -133,6 +133,7 @@ declare global {
       'twodsix.encumbFractionOneSquare':number;
       'twodsix.encumbFraction75Pct':number;
       'twodsix.useTabbedViews':boolean;
+      'twodsix.damageTypeOptions':string;
     }
   }
 }

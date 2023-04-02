@@ -578,7 +578,7 @@
       "armor": 0,
       "secondaryArmor": {
         "value": 0,
-        "protectionTypes": ""
+        "protectionTypes": []
       },
       "radiationProtection": {
         "value": 0

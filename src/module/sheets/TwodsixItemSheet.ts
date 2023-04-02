@@ -55,7 +55,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
-      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews')
+      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
+      damageTypes: getDamageTypes()
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -221,7 +222,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     });
   }
 
-
   private getConsumable(event:Event):TwodsixItem | undefined {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".consumable");
@@ -373,4 +373,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ui.notifications.error(err);
     }
   }
+}
+
+export function getDamageTypes(): object {
+  const returnObject = {};
+  if (game.settings.get('twodsix', 'damageTypeOptions') !== "") {
+    let protectionTypes = game.settings.get('twodsix', 'damageTypeOptions').split(',');
+    protectionTypes = protectionTypes.map(s => s.trim());
+    for (const type of protectionTypes) {
+      Object.assign(returnObject, {[type.toLowerCase()]: type});
+    }
+  }
+  Object.assign(returnObject, {"None": "---"});
+  return returnObject;
 }

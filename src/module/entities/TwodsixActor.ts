@@ -129,13 +129,13 @@ export default class TwodsixActor extends Actor {
    */
   getSecondaryProtectionValue(damageType:string): number {
     let returnValue = 0;
-    if (damageType) {
+    if (damageType !== "None"  && damageType !== ""  && damageType) {
       const armorItems = this.itemTypes.armor;
       for (const armor of armorItems) {
         if (armor.system.equipped === "equipped") {
-          let protectionTypes = armor.system.secondaryArmor.protectionTypes.toLowerCase().split(",");
-          protectionTypes = protectionTypes.map(s => s.trim());
-          if (protectionTypes.includes(damageType.toLowerCase())){
+          //let protectionTypes = armor.system.secondaryArmor.protectionTypes.toLowerCase().split(",");
+          // = protectionTypes.map(s => s.trim());
+          if (armor.system.secondaryArmor.protectionTypes.includes(damageType)){
             returnValue += armor.system.secondaryArmor.value;
           }
         }
