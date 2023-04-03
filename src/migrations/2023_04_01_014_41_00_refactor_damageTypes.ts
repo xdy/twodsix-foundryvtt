@@ -3,11 +3,10 @@
 
 import { camelCase } from "../module/settings/settingsUtils";
 import { applyToAllItems } from "../module/utils/migration-utils";
-import { getDamageTypes } from "../module/sheets/TwodsixItemSheet";
 
 async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
   if (["weapon", "armor", "consumable"].includes(item.type)) {
-    const damageTypeList = getDamageTypes(false);
+    const damageTypeList = getDamageTypesMigrate();
     if (["weapon", "consumable"].includes(item.type)){
       const damageType  = camelCase(item.system.damageType);
       item.update({"system.damageType": damageTypeList[damageType] ? damageType : "NONE"});
@@ -23,6 +22,16 @@ async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
       item.update({"system.secondaryArmor.protectionTypes": protectionArray});
     }
   }
+}
+
+function getDamageTypesMigrate(): object {
+  const returnObject = {};
+  let protectionTypeLabels:string[] = "Ballistic, Bludgeoning, Corrosive, Energy, Fire, Laser, Piercing, Plasma, Psionic, Rad, Slashing, Stun".split(',');
+  protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+  for (const type of protectionTypeLabels) {
+    Object.assign(returnObject, {[camelCase(type)]: type});
+  }
+  return returnObject;
 }
 
 export async function migrate(): Promise<void> {
