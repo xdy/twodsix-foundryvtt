@@ -57,7 +57,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
-      damageTypes: getDamageTypes(this.item.type === "weapon")
+      damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type))
     };
     returnData.config = TWODSIX;
     return returnData;
