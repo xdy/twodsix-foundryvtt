@@ -1,25 +1,24 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+import { camelCase } from "../module/settings/settingsUtils";
 import { applyToAllItems } from "../module/utils/migration-utils";
+import { getDamageTypes } from "../module/sheets/TwodsixItemSheet";
 
 async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
   if (["weapon", "armor", "consumable"].includes(item.type)) {
-    const damageTypeList = getDamageTypes();
+    const damageTypeList = getDamageTypes(false);
     if (["weapon", "consumable"].includes(item.type)){
-      const damageTypeLC  = item.system.damageType.toLowerCase();
-      item.update({"system.damageType": Object.hasOwn(damageTypeList, damageTypeLC) ? damageTypeLC : "None"});
+      const damageType  = camelCase(item.system.damageType);
+      item.update({"system.damageType": damageTypeList[damageType] ? damageType : "NONE"});
     } else if (item.type === "armor" && !Array.isArray(item.system.secondaryArmor.protectionTypes)) {
       const protectionArray = [];
-      let protectionTypes = game.settings.get('twodsix', 'damageTypeOptions').split(',');
-      protectionTypes = protectionTypes.map(s => s.trim());
+      let protectionTypes = item.system.secondaryArmor.protectionTypes.split(',');
+      protectionTypes = protectionTypes.map((s:string) => camelCase(s));
       for (const protType of protectionTypes) {
-        if (damageTypeList[protType.toLowerCase()]) {
-          protectionArray.push(protType.toLowerCase());
+        if (damageTypeList[protType]) {
+          protectionArray.push(protType);
         }
-      }
-      if (protectionArray.length === 0) {
-        protectionArray.push("None");
       }
       item.update({"system.secondaryArmor.protectionTypes": protectionArray});
     }
@@ -29,15 +28,4 @@ async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
 export async function migrate(): Promise<void> {
   await applyToAllItems(refactorDamageTypes);
   return Promise.resolve();
-}
-
-function getDamageTypes(): object {
-  let protectionTypes = game.settings.get('twodsix', 'damageTypeOptions').split(',');
-  protectionTypes = protectionTypes.map(s => s.trim());
-  const returnObject = {};
-  for (const type of protectionTypes) {
-    Object.assign(returnObject, {[type.toLowerCase()]: type});
-  }
-  Object.assign(returnObject, {"None": "---"});
-  return returnObject;
 }

@@ -566,7 +566,7 @@
       "lawLevel": 0,
       "rangeBand": "",
       "weaponType": "",
-      "damageType": "",
+      "damageType": "NONE",
       "rateOfFire": "",
       "recoil": false,
       "features": "",
@@ -641,7 +641,7 @@
       "isAttachment": false,
       "bandwidth": 0,
       "softwareActive": true,
-      "damageType": ""
+      "damageType": "NONE"
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],

@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
+import { camelCase } from "../settings/settingsUtils";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -56,7 +57,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
-      damageTypes: getDamageTypes()
+      damageTypes: getDamageTypes(this.item.type === "weapon")
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -374,16 +375,23 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 }
-
-export function getDamageTypes(): object {
+/**
+ * Function to return an objects of the damage types from setting: 'damageTypeOptions'
+ * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
+ * @returns {object} An object with the damage type key, label pairs
+ * @export
+ */
+export function getDamageTypes(isWeapon:boolean): object {
   const returnObject = {};
   if (game.settings.get('twodsix', 'damageTypeOptions') !== "") {
-    let protectionTypes = game.settings.get('twodsix', 'damageTypeOptions').split(',');
-    protectionTypes = protectionTypes.map(s => s.trim());
-    for (const type of protectionTypes) {
-      Object.assign(returnObject, {[type.toLowerCase()]: type});
+    let protectionTypeLabels:string[] = game.settings.get('twodsix', 'damageTypeOptions').split(',');
+    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+    for (const type of protectionTypeLabels) {
+      Object.assign(returnObject, {[camelCase(type)]: type});
     }
   }
-  Object.assign(returnObject, {"None": "---"});
+  if (isWeapon) {
+    Object.assign(returnObject, {"NONE": "---"});
+  }
   return returnObject;
 }
