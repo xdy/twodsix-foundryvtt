@@ -352,7 +352,7 @@ export default function registerHandlebarsHelpers(): void {
     if (["Wounded", "Encumbered", "Dead"].includes(effect.label)) {
       return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
     } else if (effect.origin) {
-      const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
+      const attachedItem = <TwodsixItem>fromUuid(effect.origin);
       if (attachedItem) {
         return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
       } else {
