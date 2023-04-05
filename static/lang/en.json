@@ -1150,7 +1150,7 @@
         "hint": "A comma separated list that specifies the allowable damage types.",
         "name": "Damage and Protection Types"
       },
-      "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, Energy, Fire, Laser, Piercing, Plasma, Psionic, Rad, Slashing, Stun"
+      "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },
     "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",

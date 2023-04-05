@@ -26,7 +26,7 @@ async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
 
 function getDamageTypesMigrate(): object {
   const returnObject = {};
-  let protectionTypeLabels:string[] = "Ballistic, Bludgeoning, Corrosive, Energy, Fire, Laser, Piercing, Plasma, Psionic, Rad, Slashing, Stun".split(',');
+  let protectionTypeLabels:string[] = "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Plasma, Poison, Psionic, Rad, Slashing, Smoke, Stun".split(',');
   protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
   for (const type of protectionTypeLabels) {
     Object.assign(returnObject, {[camelCase(type)]: type});
