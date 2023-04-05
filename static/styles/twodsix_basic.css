@@ -2294,6 +2294,14 @@ select.form-input, input.form-input, span.form-input {
   background-color: var(--s2d6-background-transparent);
 }
 
+.protectionTypes option:checked {
+  color: var(--s2d6-item-active);
+}
+
+.protectionTypes option {
+  color: var(--s2d6-stat-input);
+}
+
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   padding-right: 3px;
