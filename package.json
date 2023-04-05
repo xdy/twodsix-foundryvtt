@@ -35,7 +35,7 @@
     "@league-of-foundry-developers/foundry-vtt-types": "^9.280.0",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-dynamic-import-vars": "^1.4.4",
-    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/exec": "^6.0.3",
