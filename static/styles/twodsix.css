@@ -2845,11 +2845,11 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .protectionTypes option:checked {
-  color: var(--s2d6-select-light);
+  color: var(--s2d6-light-color);
 }
 
 .protectionTypes option {
-  color: var(--s2d6-default-color);
+  color: var(--s2d6-header-border);
 }
 
 /* ------ Item page - Consumables ------ */
