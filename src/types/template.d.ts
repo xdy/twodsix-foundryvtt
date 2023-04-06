@@ -400,7 +400,7 @@ export interface PrimaryArmor {
 
 export interface SecondaryArmor {
   value:number;
-  protectionTypes:string;
+  protectionTypes:string[];
 }
 
 export interface ShipAction {

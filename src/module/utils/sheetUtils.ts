@@ -211,14 +211,14 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
   let item;
   if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
-    const journalEntry = await fromUuidSync(dropData.uuid);
+    const journalEntry = await fromUuid(dropData.uuid);
     const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
     item = await lootItems.find((it) => it._id === dropData.itemId);
     if (item.system.consumables?.length > 0) {
       item.system.consumables = [];
     }
   } else {
-    item = await fromUuidSync(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+    item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
   }
 
   if (!item) {

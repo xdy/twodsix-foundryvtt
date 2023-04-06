@@ -18,9 +18,9 @@
         <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
         <td class="applied-damage"></td>
       </tr>
-      {{#iff damageType "!==" ""}}
+      {{#iff damageLabel "!==" "---"}}
       <tr>
-        <td>({{damageType}})</td>
+        <td>({{damageLabel}})</td>
         <td></td>
         <td></td>
         <td></td>

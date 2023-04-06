@@ -140,7 +140,7 @@
       {{#if settings.ShowDamageType}}
         <div class="item-damageType">
           <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-          <input class="form-input" id="system.damageType" type="text" name="system.damageType" value= "{{system.damageType}}">
+          <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
         </div>
       {{/if}}
 

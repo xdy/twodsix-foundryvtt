@@ -543,14 +543,12 @@
     "equipment": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
-      "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "useConsumableForAttack": ""
     },
     "tool": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
-      "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "useConsumableForAttack": ""
     },
     "weapon": {
       "templates": ["gearTemplate", "referenceTemplate", "targetTemplate"],
@@ -562,11 +560,10 @@
       "useConsumableForAttack": "",
       "magazineCost": 0,
       "type": "weapon",
-      "location": ["inventory", "storage"],
       "lawLevel": 0,
       "rangeBand": "",
       "weaponType": "",
-      "damageType": "",
+      "damageType": "NONE",
       "rateOfFire": "",
       "recoil": false,
       "features": "",
@@ -578,22 +575,20 @@
       "armor": 0,
       "secondaryArmor": {
         "value": 0,
-        "protectionTypes": ""
+        "protectionTypes": []
       },
       "radiationProtection": {
         "value": 0
       },
       "type": "armor",
       "useConsumableForAttack": "",
-      "location": ["inventory", "storage"],
       "isPowered": false
     },
     "augment": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "auglocation": "None",
       "type": "augment",
-      "bonus": "stat increase",
-      "location": ["inventory", "storage"]
+      "bonus": "stat increase"
     },
     "skills": {
       "templates": ["referenceTemplate"],
@@ -635,13 +630,12 @@
       "max": 0,
       "type": "consumable",
       "subtype": "other",
-      "location": ["inventory", "storage"],
       "armorPiercing": 0,
       "bonusDamage": "",
       "isAttachment": false,
       "bandwidth": 0,
       "softwareActive": true,
-      "damageType": ""
+      "damageType": "NONE"
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],

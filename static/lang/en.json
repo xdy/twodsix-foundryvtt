@@ -1145,7 +1145,12 @@
       "useTabbedViews": {
         "hint": "Use a tabbbed sheet for longer item sheets rather than a flat sheet.",
         "name": "Use tabbed views for weapons and component sheets"
-      }
+      },
+      "damageTypeOptions": {
+        "hint": "A comma separated list that specifies the allowable damage types.",
+        "name": "Damage and Protection Types"
+      },
+      "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },
     "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",

@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
+import { camelCase } from "../settings/settingsUtils";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -55,7 +56,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
-      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews')
+      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
+      damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type))
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -159,7 +161,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           flags: {twodsix: {sourceId: newId}}
 
         }).toObject()];
-        if (fromUuidSync(this.item.uuid)) {
+        if (await fromUuid(this.item.uuid)) {
           await this.item.update({effects: effects }, {recursive: true});
           const newEffect = this.item.effects.contents[0].toObject();
           //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
@@ -181,12 +183,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private _onEditEffect(): void {
+  private async _onEditEffect(): void {
     if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
     } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
-    } else if (fromUuidSync(this.item.uuid)) {
+    } else if (await fromUuid(this.item.uuid)) {
       const editSheet = this.item.effects.contents[0].sheet?.render(true);
       try {
         editSheet?.bringToTop();
@@ -203,7 +205,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        if (fromUuidSync(this.item.uuid)) {
+        if (await fromUuid(this.item.uuid)) {
           if (this.actor) {
             const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
             if (id) {
@@ -220,7 +222,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       }
     });
   }
-
 
   private getConsumable(event:Event):TwodsixItem | undefined {
     if (event.currentTarget) {
@@ -373,4 +374,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ui.notifications.error(err);
     }
   }
+}
+/**
+ * Function to return an objects of the damage types from setting: 'damageTypeOptions'
+ * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
+ * @returns {object} An object with the damage type key, label pairs
+ * @export
+ */
+export function getDamageTypes(isWeapon:boolean): object {
+  const returnObject = {};
+  if (game.settings.get('twodsix', 'damageTypeOptions') !== "") {
+    let protectionTypeLabels:string[] = game.settings.get('twodsix', 'damageTypeOptions').split(',');
+    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+    for (const type of protectionTypeLabels) {
+      Object.assign(returnObject, {[camelCase(type)]: type});
+    }
+  }
+  if (isWeapon) {
+    Object.assign(returnObject, {"NONE": "---"});
+  }
+  return returnObject;
 }
