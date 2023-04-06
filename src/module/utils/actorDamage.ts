@@ -4,6 +4,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -44,6 +45,7 @@ export class Stats {
   lifeblood: Attribute;
   damageValue: number;
   damageType: string;
+  damageLabel: string;
   armorPiercingValue: number;
   effectiveArmor: number;
   primaryArmor:number;
@@ -64,6 +66,8 @@ export class Stats {
     this.actor = actor;
     this.damageValue = damageValue;
     this.damageType = damageType;
+    const damageLabels = getDamageTypes(true);
+    this.damageLabel = damageLabels[damageType];
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
       this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;

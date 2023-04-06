@@ -319,7 +319,8 @@
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad",
-        "IsPowered": "Armadura Energía"
+        "IsPowered": "Armadura Energía",
+        "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria"
       },
       "Augmentation": {
         "Arms": "Brazos",

@@ -123,21 +123,17 @@ export default class TwodsixActor extends Actor {
   /**
    * Method to evaluate the secondary armor value depending on the damge type. Returns the effective value
    * for the secondary armor.
-   * @param {string} damageType  The damage type tp check against secondary armor
+   * @param {string} damageType  The damage type key to check against secondary armor
    * @returns {number} The value added to effective armor due to secondary armor
    * @public
    */
   getSecondaryProtectionValue(damageType:string): number {
     let returnValue = 0;
-    if (damageType) {
+    if (damageType !== "NONE"  && damageType !== ""  && damageType) {
       const armorItems = this.itemTypes.armor;
       for (const armor of armorItems) {
-        if (armor.system.equipped === "equipped") {
-          let protectionTypes = armor.system.secondaryArmor.protectionTypes.toLowerCase().split(",");
-          protectionTypes = protectionTypes.map(s => s.trim());
-          if (protectionTypes.includes(damageType.toLowerCase())){
-            returnValue += armor.system.secondaryArmor.value;
-          }
+        if (armor.system.equipped === "equipped" && armor.system.secondaryArmor.protectionTypes.includes(damageType)) {
+          returnValue += armor.system.secondaryArmor.value;
         }
       }
     }
@@ -660,7 +656,8 @@ export default class TwodsixActor extends Actor {
         "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
         "quantity": 1,
         "skill": this.getUntrainedSkill()?.id ?? "",
-        "equipped": "equipped"
+        "equipped": "equipped",
+        "damageType": "bludgeoning"
       }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
@@ -719,7 +716,7 @@ export default class TwodsixActor extends Actor {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, "none", false);
+        this.damageActor(delta, 9999, "NONE", false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);

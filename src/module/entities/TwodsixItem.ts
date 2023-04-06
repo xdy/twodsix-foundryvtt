@@ -14,6 +14,7 @@ import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../.
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 import ItemTemplate from "../utils/ItemTemplate";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 //import {targetTokensInTemplate} from "../utils/ItemTemplate";
 //import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
@@ -381,10 +382,10 @@ export default class TwodsixItem extends Item {
 
       //Deterime Damage type
       let damageType:string = this.getConsumableDamageType();
-      if (damageType === '') {
-        damageType = weapon.damageType ?? ""; //components don't have damage types
+      if (damageType === '' || damageType === "NONE") {
+        damageType = weapon.damageType ?? "NONE"; //component doesn't have a specified damage type
       }
-
+      const damageLabels = getDamageTypes(true);
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
 
@@ -394,7 +395,8 @@ export default class TwodsixItem extends Item {
         dice: getDiceResults(damage), //damage.terms[0]["results"]
         armorPiercingValue: apValue,
         damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
-        damageType: damageType
+        damageType: damageType,
+        damageLabel: damageLabels[damageType] ?? ""
       });
 
       if (radDamage.total) {
@@ -463,7 +465,7 @@ export default class TwodsixItem extends Item {
     let returnValue = "";
     if (this.system.useConsumableForAttack && this.actor) {
       const magazine = this.actor.items.get(this.system.useConsumableForAttack);
-      returnValue = magazine ? magazine.system.damageType : "";
+      returnValue = magazine ? magazine.system.damageType : "NONE";
     }
     return returnValue;
   }

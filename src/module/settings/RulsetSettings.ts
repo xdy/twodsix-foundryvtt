@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import AdvancedSettings from "./AdvancedSettings";
 import {TWODSIX} from "../config";
 import {booleanSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
@@ -76,7 +79,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseLocations", false));
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
-
+    settings.push(stringSetting("damageTypeOptions", "", false, "world"));
     return settings;
   }
 }

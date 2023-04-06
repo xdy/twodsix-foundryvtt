@@ -2844,6 +2844,14 @@ select.form-input, input.form-input, span.form-input {
   text-shadow: 0 0 10px var(--color-shadow-primary);
 }*/
 
+.protectionTypes option:checked {
+  color: var(--s2d6-light-color);
+}
+
+.protectionTypes option {
+  color: var(--s2d6-header-border);
+}
+
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   /* padding: 0; */

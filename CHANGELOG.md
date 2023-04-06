@@ -1,3 +1,10 @@
+## [2.27.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.0...v2.27.1) (2023-04-06)
+
+
+### Bug Fixes
+
+* add lists to damage and protection types - compendium cleanup ([#1285](https://github.com/xdy/twodsix-foundryvtt/issues/1285)) ([f1972f8](https://github.com/xdy/twodsix-foundryvtt/commit/f1972f8a228ace8275ab11561517a76b8678b7cb))
+
 # [2.27.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.26.5...v2.27.0) (2023-03-31)
 
 
