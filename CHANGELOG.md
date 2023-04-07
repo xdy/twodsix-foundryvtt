@@ -1,3 +1,10 @@
+## [2.27.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.1...v2.27.2) (2023-04-07)
+
+
+### Bug Fixes
+
+* warning for dropping actor onto non-editing field ([#1288](https://github.com/xdy/twodsix-foundryvtt/issues/1288)) ([63199bd](https://github.com/xdy/twodsix-foundryvtt/commit/63199bd439a12c319c25667cef56657ba7a1a640))
+
 ## [2.27.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.0...v2.27.1) (2023-04-06)
 
 
