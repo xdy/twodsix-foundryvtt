@@ -261,6 +261,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
+    if (actor.type === "traveller" && dropData.type === "Actor") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragActorOntoActor"));
+      return false;
+    }
+
     if (dropData.type === 'damageItem') {
       const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
