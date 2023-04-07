@@ -1204,6 +1204,7 @@
       "CantAutoDamage": "Automatic damage of ship or vehicle is not supported",
       "CantDropOnToken": "Dropping items on ship or vehicle tokens is not supported",
       "CantDragOntoActor": "This item can't be dragged onto this actor",
+      "CantDragActorOntoActor": "Can only drag actor reference onto an active ProseMirror text box.",
       "PDFPagerNotInstalled": "PDF Pager must be installed to use source links.",
       "NoSpecfiedLink": "No document and page specified for document link.",
       "NoTargetFound": "No target for dropping found.",
