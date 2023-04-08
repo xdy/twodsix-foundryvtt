@@ -1,7 +1,9 @@
 # 2d6 system
 
 <img title="Minimum foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Minimum%20Foundry%20version&query=compatibility.minimum&style=flat-square&color=important"> <img title="Verified foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Verified%20Foundry%20version&query=compatibility.verified&style=flat-square&color=important"> <img title="Twodsix version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Twodsix%20version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://github.com/xdy/twodsix-foundryvtt/commits/) ![the latest version zip](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/twodsix.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftwodsix)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 <a href="https://gitlocalize.com/repo/7105/fr?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/fr/badge.svg" alt="French translation percentage"/> </a>
 <a href="https://gitlocalize.com/repo/7105/de?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/de/badge.svg" alt="German translation percentage"/> </a>
 <a href="https://gitlocalize.com/repo/7105/es?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/es/badge.svg" alt="Spanish translation percentage"/> </a>
