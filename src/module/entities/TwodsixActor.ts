@@ -151,7 +151,7 @@ export default class TwodsixActor extends Actor {
 
   getActorEncumbrance():number {
     let encumbrance = 0;
-    const actorItems = this.items.filter( i => !["skills", "junk", "storage", "trait", "ship_position"].includes(i.type));
+    const actorItems = this.items.filter( i => !["skills", "trait", "ship_position", "storage"].includes(i.type));
     for (const item of actorItems) {
       encumbrance += getEquipmentWeight(<TwodsixItem>item);
     }
@@ -896,7 +896,7 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
-        } else if (!["component", "junk", "storage", "ship_position"].includes(itemData.type)) {
+        } else if (!["component", "ship_position"].includes(itemData.type)) {
           return this._addDroppedEquipment(itemData);
         }
         break;
@@ -1092,7 +1092,7 @@ async function deleteIdFromShipPositions(actorId: string) {
 }
 
 function getEquipmentWeight(item:TwodsixItem):number {
-  if (["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type)) {
+  if (["weapon", "armor", "equipment", "tool", "junk", "consumable", "computer"].includes(item.type)) {
     if (item.system.equipped !== "ship") {
       let q = item.system.quantity || 0;
       const w = item.system.weight || 0;

@@ -121,6 +121,7 @@
         "HideStored": "Hiding stored items",
         "EQUIPMENT": "EQUIPMENT",
         "EQUIPMENT_TOOLS": "EQUIPMENT & TOOLS",
+        "STORAGE_JUNK": "STORAGE & JUNK",
         "EditItem": "Edit Item",
         "Effect": "Effect",
         "Location": "Location",
@@ -434,7 +435,8 @@
         "ItemType": "Type",
         "MoveStorage": "Move Storage",
         "New": "New",
-        "Storage": "Storage"
+        "Storage": "Storage",
+        "Junk": "Junk"
       },
       "Skills": {
         "DEX": "DEX",

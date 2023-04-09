@@ -43,9 +43,9 @@ export interface AugmentDataSource {
   system:Augment;
 }
 
-export interface StorageDataSource {
+export interface StorageItemDataSource {
   type:'storage';
-  system:Storage;
+  system:Equipment;
 }
 
 export interface ToolDataSource {
@@ -106,7 +106,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | ToolDataSource
   | JunkDataSource
   | SkillsDataSource
-  | StorageDataSource
+  | StorageItemDataSource
   | TraitDataSource
   | SpellDataSource
   | WeaponDataSource
@@ -117,7 +117,6 @@ export type ItemTwodsixDataSource = ArmorDataSource
 export type Gear = Armor
   | Equipment
   | Tool
-  | Storage
   | Weapon
   | Component
   | Computer
