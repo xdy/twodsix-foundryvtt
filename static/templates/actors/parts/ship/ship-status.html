@@ -1,12 +1,10 @@
 {{#each summaryStatus}}
     {{#iff @key "!==" "cargo"}}
     {{#iff @key "!==" "accomodations"}}
-    {{#iff @key "!==" "fuel"}}
     {{#iff @key "!==" "otherInternal"}}
     {{#iff @key "!==" "otherExternal"}}
     {{#iff @key "!==" "mount"}}
     {{#iff @key "!==" "vehicle"}}
-    {{#iff @key "!==" "storage"}}
     {{#iff @key "!==" "software"}}
       <span class="status-component" data-uuid="{{this.uuid}}">
         <i class= '{{twodsix_getComponentIcon @key}}'
@@ -17,5 +15,5 @@
         {{/iff}}
         data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
       </span>
-    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
 {{/each}}
