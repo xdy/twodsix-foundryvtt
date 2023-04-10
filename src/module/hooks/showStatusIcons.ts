@@ -337,8 +337,9 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
-
-  if (selectedTraveller.characteristics[lfbCharacteristic].current <= 0) {
+  const currentHits = selectedTraveller.characteristics[lfbCharacteristic].current + selectedTraveller.characteristics[endCharacteristic].current;
+  //const totalHits = selectedTraveller.characteristics[lfbCharacteristic].value + selectedTraveller.characteristics[endCharacteristic].value;
+  if (currentHits <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics[lfbCharacteristic].current < (selectedTraveller.characteristics[lfbCharacteristic].value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
