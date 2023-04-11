@@ -100,6 +100,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
+    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
   }
   private async _changeSubtype(event) {
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
@@ -120,6 +121,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
       await this.item.update({"system.hardened": false});
     }
+  }
+
+  private async _changeType(event) {
+    /*Unset active effect if storage or junk*/
+    let disableState = true;
+    if (!["storage", "junk"].includes(event.currentTarget.selectedOptions[0].value)) {
+      disableState = !(this.item.system.equipped === "equipped");
+    }
+    await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
   }
 
   /* -------------------------------------------- */

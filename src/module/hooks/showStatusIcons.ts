@@ -26,7 +26,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, _update: Record<string, any>, _
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
-      if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type) ) {
+      if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage"].includes(item.type) ) {
         await applyEncumberedEffect(owningActor).then();
       }
     }
@@ -118,14 +118,18 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
+  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
   let state = false;
-  if(selectedActor.system.encumbrance.max > 0) {
-    const ratio = selectedActor.system.encumbrance.value / selectedActor.system.encumbrance.max;
-    state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction')));
+  const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
+  if(maxEncumbrance > 0) {
+    const ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+    state = (ratio > parseFloat(await game.settings.get('twodsix', 'encumbranceFraction')));
   }
-  if (isCurrentlyEncumbered.length > 0 && (state === false)) {
+  if (isCurrentlyEncumbered.length > 0) {
     const idList= isCurrentlyEncumbered.map(i => <string>i.id);
+    if (state === true) {
+      idList.pop();
+    }
     if(idList.length > 0) {
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
