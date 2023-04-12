@@ -132,8 +132,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _changeType(event) {
     /*Unset active effect if storage or junk*/
     let disableState = true;
-    if (!["storage", "junk"].includes(event.currentTarget.selectedOptions[0].value)) {
+    if (!["storage", "junk"].includes(event.currentTarget.value)) {
       disableState = (this.item.system.equipped !== "equipped");
+    } else {
+      this.item.update({"system.priorType": this.item.type});
     }
     await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
   }

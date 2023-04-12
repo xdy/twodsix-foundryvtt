@@ -565,6 +565,7 @@ export interface Equipment extends GearTemplate, LinkTemplate {
   type:string;
   useConsumableForAttack:string;
   location:string[];
+  priorType?:string;
 }
 
 export interface Tool extends GearTemplate, LinkTemplate {

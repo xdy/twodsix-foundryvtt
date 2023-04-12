@@ -687,12 +687,14 @@
     "storage": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "storage",
-      "useConsumableForAttack": ""
+      "useConsumableForAttack": "",
+      "priorType":""
     },
     "junk": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "junk",
-      "useConsumableForAttack": ""
+      "useConsumableForAttack": "",
+      "priorType": ""
     }
   }
 }
