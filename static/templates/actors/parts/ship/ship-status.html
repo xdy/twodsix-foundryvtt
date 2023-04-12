@@ -1,6 +1,5 @@
 {{#each summaryStatus}}
     {{#iff @key "!==" "cargo"}}
-    {{#iff @key "!==" "accomodations"}}
     {{#iff @key "!==" "otherInternal"}}
     {{#iff @key "!==" "otherExternal"}}
     {{#iff @key "!==" "mount"}}
@@ -15,5 +14,5 @@
         {{/iff}}
         data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
       </span>
-    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
 {{/each}}
