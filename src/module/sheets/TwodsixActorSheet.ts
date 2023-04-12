@@ -232,18 +232,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           disableEffect = false;
           break;
       }
+      await itemSelected.toggleActiveEffectStatus(disableEffect);
 
-      if (itemSelected.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects')) {
-        const actorEffect = this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === itemSelected.effects.contents[0].id);
-        //const itemEffect = itemSelected.effects.contents[0];
-        if (actorEffect) {
-          if (actorEffect.disabled !== disableEffect || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
-            await actorEffect.setFlag("twodsix", "lastSetDisable", disableEffect);
-            await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: disableEffect}], {dontSync: true}).then();
-            //await itemEffect.update({disabled: disableEffect}, {dontSync: true});
-          }
-        }
-      }
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       await itemSelected.update({["system.equipped"]: newState}).then();
 

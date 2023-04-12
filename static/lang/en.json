@@ -121,6 +121,7 @@
         "HideStored": "Hiding stored items",
         "EQUIPMENT": "EQUIPMENT",
         "EQUIPMENT_TOOLS": "EQUIPMENT & TOOLS",
+        "STORAGE_JUNK": "STORAGE & JUNK",
         "EditItem": "Edit Item",
         "Effect": "Effect",
         "Location": "Location",
@@ -335,7 +336,7 @@
       "Component": {
         "Ammunition":"Ammuniton",
         "componentName": "Component",
-        "accomodations": "accomodations",
+        "accomodations": "accommodations",
         "armament": "armament",
         "armor": "armor",
         "bridge": "bridge",
@@ -419,7 +420,8 @@
         "Weight": "Weight",
         "isAttachment": "Attachment?",
         "NewAttachment": "New Attachment",
-        "BonusDamage": "Bonus Damage"
+        "BonusDamage": "Bonus Damage",
+        "PriorType": "Prior Item Type"
       },
       "Items": {
         "AssignArmor": "Assign Armor",
@@ -434,7 +436,8 @@
         "ItemType": "Type",
         "MoveStorage": "Move Storage",
         "New": "New",
-        "Storage": "Storage"
+        "Storage": "Storage",
+        "Junk": "Junk"
       },
       "Skills": {
         "DEX": "DEX",
@@ -1169,7 +1172,8 @@
       "consumable": "consumable",
       "trait": "trait",
       "spell": "spell",
-      "component": "component"
+      "component": "component",
+      "computer": "computer"
     },
     "speeds": {
       "walk": "walk",

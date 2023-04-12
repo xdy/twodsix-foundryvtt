@@ -145,6 +145,10 @@ div.pdf-app section.window-content {
 }
 
 /************Item Piles*******/
-.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even) {
-  background-color: var(--s2d6-light-background-transparent);
+/*.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even), .item-piles-item-row:nth-child(odd) {
+  background-color: var(--s2d6-light-background-transparent) !important;
+}*/
+
+:root {
+  --item-piles-even-color: var(--s2d6-light-background-transparent) !important;
 }
