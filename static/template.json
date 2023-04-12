@@ -161,7 +161,8 @@
         "augment": false,
         "equipment": false,
         "consumable": false,
-        "attachment": false
+        "attachment": false,
+        "junk": false
       },
       "experience": {
         "value": 0,
@@ -682,6 +683,18 @@
       "type":"computer",
       "useConsumableForAttack": "",
       "processingPower": 0
+    },
+    "storage": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "type": "storage",
+      "useConsumableForAttack": "",
+      "priorType":""
+    },
+    "junk": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "type": "junk",
+      "useConsumableForAttack": "",
+      "priorType": ""
     }
   }
 }

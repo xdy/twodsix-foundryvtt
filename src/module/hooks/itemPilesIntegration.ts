@@ -3,7 +3,7 @@
 Hooks.once("item-piles-ready", async function() {
   /// Called once Item Piles is ready to be used
   game.itempiles.API.addSystemIntegration({
-    "VERSION": "1.0.3",
+    "VERSION": "1.0.5",
 
     // The actor class type is the type of actor that will be used for the default item pile actor that is created on first item drop.
     "ACTOR_CLASS_TYPE": "traveller",
@@ -26,6 +26,15 @@ Hooks.once("item-piles-ready", async function() {
       }
     ],
 
+    "PILE_DEFAULTS": {
+      "merchantColumns": [{
+        "label": "TWODSIX.Actor.Items.TL",
+        "path": "system.techLevel",
+        "formatting": "{#}",
+        "mapping": {}
+      }]
+    },
+
     // Item similarities determines how item piles detect similarities and differences in the system
     "ITEM_SIMILARITIES": ["name", "type", "techLevel"],
 
@@ -47,5 +56,9 @@ Hooks.once("item-piles-ready", async function() {
     ],
 
     "CURRENCY_DECIMAL_DIGITS": 0.01
+    /*"CSS_VARIABLES": {
+      "even-color": "#00000080",
+      "odd-color": "#00000000",
+    }*/
   });
 });

@@ -510,6 +510,23 @@ export default class TwodsixItem extends Item {
     return skillName.replace(/\W/g, "");
   }
 
+  /**
+   * A method to change the suspened state of an Actor Active effect linked to item
+   *
+   * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
+   * @returns {Promise<void>}
+   */
+  public async toggleActiveEffectStatus(newSuspendedState:boolean): Promise<void> {
+    if (this.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects') && this.actor) {
+      const actorEffect = await this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === this.effects.contents[0].id);
+      if (actorEffect) {
+        if (actorEffect.disabled !== newSuspendedState || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
+          await actorEffect.setFlag("twodsix", "lastSetDisable", newSuspendedState);
+          await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: newSuspendedState}], {dontSync: true}).then();
+        }
+      }
+    }
+  }
   //////// CONSUMABLE ////////
   public async consume(quantity:number):Promise<void> {
     const consumableLeft = (<Consumable>this.system).currentCount - quantity;

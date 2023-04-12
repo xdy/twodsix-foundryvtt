@@ -100,26 +100,44 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
+    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
   }
   private async _changeSubtype(event) {
-    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
+    event.preventDefault(); //Needed?
+    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
+    const updates = {};
     /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      await this.item.update({"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+      Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
     }
     /*Prevent cargo from using %hull weight*/
     const anComponent = <Component> this.item.system;
     if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      await this.item.update({"system.weightIsPct": false});
+      Object.assign(updates, {"system.weightIsPct": false});
     }
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      await this.item.update({"system.isBaseHull": false});
+      Object.assign(updates, {"system.isBaseHull": false});
     }
     /*Unset hardened if fuel, cargo, storage, vehicle*/
     if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
-      await this.item.update({"system.hardened": false});
+      Object.assign(updates, {"system.hardened": false});
     }
+
+    if (Object.keys(updates).length !== 0) {
+      await this.item.update(updates);
+    }
+  }
+
+  private async _changeType(event) {
+    /*Unset active effect if storage or junk*/
+    let disableState = true;
+    if (!["storage", "junk"].includes(event.currentTarget.value)) {
+      disableState = (this.item.system.equipped !== "equipped");
+    } else {
+      this.item.update({"system.priorType": this.item.type});
+    }
+    await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
   }
 
   /* -------------------------------------------- */

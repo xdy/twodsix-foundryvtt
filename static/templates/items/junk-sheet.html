@@ -12,6 +12,11 @@
       <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
     </div>
 
+    <div class="item-priorType">
+      <label for="system.priorType" class="resource-label">{{localize "TWODSIX.Items.Equipment.PriorType"}}</label>
+      <input class="form-input" id="system.priorType" type="text" name="system.priorType" value="{{localize (concat 'TWODSIX.itemTypes.' system.priorType)}}" data-dtype="String" disabled/>
+    </div>
+
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
       <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
@@ -22,6 +27,5 @@
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
-    {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
   </div>
 </form>

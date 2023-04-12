@@ -1145,7 +1145,12 @@
       "useTabbedViews": {
         "hint": "Utilizar hoja de objetos con pestañas, permitiendo mayor detalle, en vez de una hoja simple.",
         "name": "Utilizar hoja con pestañas para armas y componentes"
-      }
+      },
+      "damageTypeOptions": {
+        "hint": "Una lista separada por comas que especifica los tipos de daño permitidos.",
+        "name": "Tipo de Daño y Protección"
+      },
+      "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
@@ -1199,6 +1204,7 @@
       "CantAutoDamage": "Daño automático en nave o vehículo no soportado",
       "CantDropOnToken": "No se permite tirar objetos sobre los tokens de nave o vehículo",
       "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
+      "CantDragActorOntoActor": "Sólo puedes arrastrar referencias de actores en la caja de texto de ProseMirror.",
       "PDFPagerNotInstalled": "Debes instalar el módulo PDF Pager para poder utilizar enlaces.",
       "NoSpecfiedLink": "Sin documento ni página especificada para el enlace.",
       "NoTargetFound": "No existe objetivo para el daño.",
