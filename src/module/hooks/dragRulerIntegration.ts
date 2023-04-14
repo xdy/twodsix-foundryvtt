@@ -30,7 +30,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
         }
       } else if (actorType === "vehicle") {
         return [];
-      } else if (actorType === "traveller" || actorType === "animal") {
+      } else if (["traveller", "animal", "robot"].includes(actorType)) {
         movementSpeed = token.actor.system.movement.walk;
         const actorData = (<Traveller>actor.system);
         switch (rulesSet) {

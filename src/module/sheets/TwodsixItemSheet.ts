@@ -202,7 +202,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onEditEffect(): void {
-    if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
+    if (["traveller", "animal", "robot"].includes(this.actor?.type)) {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
     } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));

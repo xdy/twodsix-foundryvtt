@@ -5,6 +5,7 @@ import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
 import { TwodsixVehicleSheet } from "../module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet } from "../module/sheets/TwodsixAnimalSheet";
+import { TwodsixRobotSheet } from "../module/sheets/TwodsixRobotSheet";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import {rollItemMacro} from "../module/utils/rollItemMacro";
 import { TwodsixItemSheet } from "../module/sheets/TwodsixItemSheet";
@@ -117,6 +118,7 @@ declare global {
       'twodsix.sorcerySkill':string;
       'twodsix.useNationality':boolean;
       'twodsix.animalsUseHits': boolean;
+      'twodsix.robotsUseHits': boolean;
       'twodsix.animalsUseLocations':boolean;
       'twodsix.displayReactionMorale': boolean;
       'twodsix.showComponentRating': boolean;
@@ -225,6 +227,7 @@ declare interface Game {
       TwodsixShipSheet: TwodsixShipSheet;
       TwodsixVehicleSheet: TwodsixVehicleSheet;
       TwodsixAnimalSheet: TwodsixAnimalSheet;
+      TwodsixRobotSheet: TwodsixRobotSheet;
     }
     config: TWODSIX
     entities: {
@@ -270,6 +273,14 @@ declare interface Game {
             id: 'twodsix.TwodsixAnimalSheet';
             default: boolean;
             cls: TwodsixAnimalSheet;
+            label: string;
+          };
+        };
+        robot: {
+          'twodsix.TwodsixRobotSheet': {
+            id: 'twodsix.TwodsixRobotSheet';
+            default: boolean;
+            cls: TwodsixRobotSheet;
             label: string;
           };
         };

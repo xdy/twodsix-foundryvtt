@@ -480,7 +480,7 @@ h2 {
   border-width: 2px;
 }
 
-.npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells {
+.npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -498,6 +498,10 @@ h2 {
 
 .npc-traits {
   grid-area: npc-traits;
+}
+
+.npc-augments {
+  grid-area: npc-augments;
 }
 
 .npc-spells {
@@ -547,6 +551,33 @@ h2 {
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
     "npc-name-photo npc-traits npc-notes-container"
+    "npc-skills npc-skills npc-weapons"
+    "npc-skills npc-skills npc-weapons";
+  overflow: auto;
+}
+
+.robot-content-container {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 19em 0.7fr 0.7fr 0.7fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+  "npc-name-photo npc-bgi-stats npc-augments"
+  "npc-skills npc-skills npc-notes-container"
+  "npc-weapons npc-weapons npc-notes-container"
+  "npc-traits npc-traits npc-notes-container";
+}
+
+.robot-content-container-small {
+  display: grid;
+  grid-template-columns: 15em 21em 18em;
+  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  gap: 16px 16px;
+  position: relative;
+  grid-template-areas:
+    "npc-name-photo npc-bgi-stats npc-notes-container"
+    "npc-name-photo npc-augments npc-traits"
     "npc-skills npc-skills npc-weapons"
     "npc-skills npc-skills npc-weapons";
   overflow: auto;
@@ -938,8 +969,18 @@ h2 {
   border: none;
 }
 
-.bgi-homeWorld input {
+.bgi-homeWorld input, .bgi-locomotionType input {
   width: 8em;
+  border: none;
+}
+
+.bgi-price input, .bgi-techLevel input, .bgi-opTime input{
+  width: 5em;
+  border: none;
+}
+
+.bgi-chassis input {
+  width: 6em;
   border: none;
 }
 

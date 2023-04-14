@@ -6,18 +6,20 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 
-Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, _options: any, userId: string) => {
-  if (checkForWounds(update.system, actor.type) && (actor.type === 'traveller' || actor.type === 'animal')) {
-    if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
-      await applyWoundedEffect(actor).then();
+Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
+  if (options.diff) {  //Not certain why this is needed, but opening token editor for tokenActor and cancelling fires updateActor
+    if (checkForWounds(update.system, actor.type) && (["traveller", "animal", "robot"].includes(actor.type))) {
+      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
+        await applyWoundedEffect(actor).then();
+      }
+      if (actor.system.hits.lastDelta !== 0 && actor.isOwner ) {
+        actor.scrollDamage(actor.system.hits.lastDelta);
+      }
     }
-    if (actor.system.hits.lastDelta !== 0 && actor.isOwner) {
-      actor.scrollDamage(actor.system.hits.lastDelta);
-    }
-  }
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
-    if (update.system?.characteristics && (actor.type === 'traveller')) {
-      await applyEncumberedEffect(actor).then();
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+      if (update.system?.characteristics && (actor.type === 'traveller') ) {
+        await applyEncumberedEffect(actor).then();
+      }
     }
   }
 });
@@ -31,7 +33,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, _update: Record<string, any>, _
       }
     }
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-      if ((owningActor.type === 'traveller' || owningActor.type === 'animal')) {
+      if (["traveller", "animal", "robot"].includes(owningActor.type )) {
         await applyWoundedEffect(<TwodsixActor>item.actor).then();
       }
     }
@@ -109,7 +111,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
     } else {
       await setConditionState(effectType.dead, selectedActor, false);
 
-      if (selectedActor.type !== 'animal' && !isCurrentlyDead && oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint) {
+      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead && oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       await setWoundedState(effectType.wounded, selectedActor, true, tintToApply);
@@ -241,7 +243,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
 
 export function getIconTint(selectedActor: TwodsixActor): string {
   const selectedTraveller = <Traveller>selectedActor.system;
-  if (selectedActor.type === 'animal' && game.settings.get('twodsix', 'animalsUseHits')) {
+  if ((selectedActor.type === 'animal' && game.settings.get('twodsix', 'animalsUseHits')) || (selectedActor.type === 'robot' && game.settings.get('twodsix', 'robotsUseHits'))) {
     return(getHitsTint(selectedTraveller));
   } else {
     switch (game.settings.get('twodsix', 'ruleset')) {

@@ -20,12 +20,17 @@ export interface AnimalDataSource {
   system:Animal;
 }
 
+export interface RobotDataSource {
+  type:'robot';
+  system:Robot;
+}
+
 export interface SpaceObjectDataSource {
   type:'space-object';
   system:SpaceObject;
 }
 
-export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource | AnimalDataSource;
+export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource | AnimalDataSource | RobotDataSource;
 
 // Items
 export interface EquipmentDataSource {
@@ -306,6 +311,29 @@ export interface Animal {
   movement:MovementData;
   reaction:ReactionData;
   moraleDM:string;
+}
+
+export interface Robot {
+  name:string;
+  size:string;
+  hits:Hits;
+  radiationDose:Hits;
+  encumbrance:Encumbrance;
+  primaryArmor:PrimaryArmor;
+  secondaryArmor:PrimaryArmor;
+  radiationProtection:PrimaryArmor;
+  untrainedSkill:string;
+  description:string;
+  notes:string;
+  characteristics:Characteristics;
+  woundedEffect:number;
+  characteristicEdit:boolean;
+  movement:MovementData;
+  price:string;
+  chassis:string;
+  locomotionType:string;
+  techLevel:number;
+  operationalTime:string;
 }
 
 export interface SpaceObject extends LinkTemplate {

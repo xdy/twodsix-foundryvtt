@@ -7,6 +7,9 @@
  * Software License: Apache, see License section of README.md for details
  */
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
@@ -20,7 +23,8 @@ import {switchCss} from "./module/settings";
 import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
-import { TwodsixAnimalSheet } from "./module/sheets/TwodsixAnimalSheet";
+import { TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
+import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
 import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
 
 // @ts-ignore
@@ -59,6 +63,12 @@ Hooks.once('init', async function () {
     types: ["traveller"],
     label: "NPC Sheet",
     makeDefault: false
+  });
+
+  Actors.registerSheet('twodsix', TwodsixRobotSheet, {
+    types: ["robot"],
+    label: "Robot Sheet",
+    makeDefault: true
   });
 
   Actors.registerSheet("twodsix", TwodsixShipSheet, {
