@@ -18,6 +18,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {
       ret.id = id;
       ret.placeholder = TwodsixShipActions.availableMethods[ret.type].placeholder;
+      ret.tooltip = TwodsixShipActions.availableMethods[ret.type].tooltip;
       return ret;
     });
     context.sortedActions.sort((a: ShipAction, b: ShipAction) => (a.order > b.order) ? 1 : -1);
@@ -69,14 +70,17 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     }
     command += ` ${difficulties[skillData.difficulty].target}+`;
 
-    actions[randomID()] = {
-      "order": Object.keys(actions).length,
-      "name": "New action",
-      "icon": skill.img ?? "",
-      "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-      "command": command
+    const newAction = {
+      [randomID()]: {
+        "order": Object.keys(actions).length,
+        "name": skill.name,
+        "icon": skill.img ?? "",
+        "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
+        "command": command
+      }
     };
-    await position.update({ "system.actions": actions });
+    const newActions = duplicate(Object.assign(actions, newAction));
+    await position.update({ "system.actions": newActions });
   }
 
   _onDragStart(event: DragEvent):void {

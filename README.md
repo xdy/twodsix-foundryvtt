@@ -1,16 +1,16 @@
 # 2d6 system
 
-<img title="Minimum foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Minimum%20Foundry%20version&query=minimumCoreVersion&style=flat-square&color=important"> <img title="Maximum foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Maximum%20Foundry%20version&query=compatibleCoreVersion&style=flat-square&color=important"> <img title="Twodsix version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Twodsix%20version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://github.com/xdy/twodsix-foundryvtt/commits/) ![the latest version zip](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/twodsix.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftwodsix)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/xdy/twodsix-foundryvtt.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/xdy/twodsix-foundryvtt/context:javascript)
+<img title="Minimum foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Minimum%20Foundry%20version&query=compatibility.minimum&style=flat-square&color=important"> <img title="Verified foundry version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Verified%20Foundry%20version&query=compatibility.verified&style=flat-square&color=important"> <img title="Twodsix version" src="https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/system.json&label=Twodsix%20version&query=version&style=flat-square&color=success"> ![GitHub release](https://img.shields.io/github/release-date/xdy/twodsix-foundryvtt) [![GitHub commits](https://img.shields.io/github/commits-since/xdy/twodsix-foundryvtt/latest)](https://github.com/xdy/twodsix-foundryvtt/commits/) ![the latest version zip](https://img.shields.io/github/downloads/xdy/twodsix-foundryvtt/latest/twodsix.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ftwodsix)
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 <a href="https://gitlocalize.com/repo/7105/fr?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/fr/badge.svg" alt="French translation percentage"/> </a>
 <a href="https://gitlocalize.com/repo/7105/de?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/de/badge.svg" alt="German translation percentage"/> </a>
 <a href="https://gitlocalize.com/repo/7105/es?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/es/badge.svg" alt="Spanish translation percentage"/> </a>
 <a href="https://gitlocalize.com/repo/7105/sv?utm_source=badge"> <img src="https://gitlocalize.com/repo/7105/sv/badge.svg" alt="Swedish translation percentage"/> </a>
 <a href="https://weblate.foundryvtt-hub.com/engage/twodsix/"><img src="https://weblate.foundryvtt-hub.com/widgets/twodsix/-/main/svg-badge.svg" alt="Translation status" /></a>
 
-[![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/VNFUvjv)
+[![Discord](https://img.shields.io/discord/739941799820394606?label=Discord)](https://discord.gg/KUAwPrj)
 
 A [Foundry VTT](https://foundryvtt.com/) system for running games using various 2d6-based role-playing games, specifically those based on the Cepheus Engine.
 
@@ -77,4 +77,3 @@ Font licenses:
 Asset licenses:
 * The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous authors. The full list of those can be found at: https://game-icons.net/about.html#authors
 * The icon static/assets/pause/sunburst.svg is based on  https://wiki.travellerrpg.com/File:Imperial-Sunburst-Sun-Scouts-wiki.png which is made by [Thomas Jones-Low](https://wiki.travellerrpg.com/Thomas_Jones-Low) which was provided under the terms of the [CC-By-SA](https://creativecommons.org/licenses/by-nc/3.0/) license.
-

@@ -20,6 +20,11 @@ export interface AnimalDataSource {
   system:Animal;
 }
 
+export interface SpaceObjectDataSource {
+  type:'space-object';
+  system:SpaceObject;
+}
+
 export  type ActorTwodsixDataSource = TravellerDataSource | ShipDataSource | VehicleDataSource | AnimalDataSource;
 
 // Items
@@ -38,9 +43,9 @@ export interface AugmentDataSource {
   system:Augment;
 }
 
-export interface StorageDataSource {
+export interface StorageItemDataSource {
   type:'storage';
-  system:Storage;
+  system:Equipment;
 }
 
 export interface ToolDataSource {
@@ -88,6 +93,11 @@ export interface ShipPositionDataSource {
   system: ShipPosition;
 }
 
+export interface ComputerDataSource {
+  type: 'computer';
+  system: Computer;
+}
+
 export type ItemTwodsixDataSource = ArmorDataSource
   | AugmentDataSource
   | ComponentDataSource
@@ -96,22 +106,27 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | ToolDataSource
   | JunkDataSource
   | SkillsDataSource
-  | StorageDataSource
+  | StorageItemDataSource
   | TraitDataSource
   | SpellDataSource
   | WeaponDataSource
   | ShipPositionDataSource
+  | ComputerDataSource
   ;
 
 export type Gear = Armor
   | Equipment
-  | Storage
+  | Tool
   | Weapon
+  | Component
+  | Computer
   ;
 
 export type UsesConsumables = Armor
   | Equipment
+  | Tool
   | Weapon
+  | Computer
   ;
 
 // If/when template.json is edited, this file needs to be edited to match.
@@ -128,6 +143,7 @@ export interface Actor {
   ship:Ship;
   vehicle:Vehicle;
   animal:Animal;
+  "space-object":SpaceObject;
 }
 
 export type ShipPositionActorIds = Record<string, string>
@@ -189,6 +205,7 @@ export interface ShipStats {
   fuelTanks:Staterooms;
   mass:Staterooms;
   drives: Drives;
+  bandwidth:Hits;
 }
 
 export interface Staterooms {
@@ -215,6 +232,7 @@ export interface Hits {
   value:number;
   min:number;
   max:number;
+  lastDelta?:number;
 }
 
 export interface Fuel {
@@ -235,7 +253,7 @@ export interface Traveller {
   radiationDose:Hits;
   encumbrance:Encumbrance;
   primaryArmor:PrimaryArmor;
-  secondaryArmor:PrimaryArmor;
+  secondaryArmor:SecondaryArmor;
   heroPoints:number;
   radiationProtection:PrimaryArmor;
   contacts:string;
@@ -247,10 +265,23 @@ export interface Traveller {
   notes:string;
   finances:Finances;
   characteristics:Characteristics;
-  woundedEffect:number;
+  skillRollTypes:Record<string,string>;
   characteristicEdit:boolean;
   movement:MovementData;
   hideStoredItems: StoredItemView;
+  conditions: Conditions;
+  experience: ExperiencePoints;
+  xpNotes:string;
+}
+
+export interface Conditions {
+  woundedEffect:number;
+  encumberedEffect:number;
+}
+
+export interface ExperiencePoints {
+  value: number;
+  totalEarned: number;
 }
 
 export interface Animal {
@@ -275,6 +306,18 @@ export interface Animal {
   movement:MovementData;
   reaction:ReactionData;
   moraleDM:string;
+}
+
+export interface SpaceObject extends LinkTemplate {
+  techLevel:number;
+  features:string;
+  count:Encumbrance;
+  description:string;
+  notes:string;
+  thrust:number;
+  roundsActive:number;
+  movement:MovementData;
+  damage:string;
 }
 
 export interface ReactionData {
@@ -354,6 +397,11 @@ export interface PrimaryArmor {
   value:number;
 }
 
+export interface SecondaryArmor {
+  value:number;
+  protectionTypes:string[];
+}
+
 export interface ShipAction {
   order: number;
   name: string;
@@ -372,7 +420,7 @@ export interface ShipPosition {
   actions: ShipActions;
   sortedActions?: ShipAction[];
   order: number;
-  actors?: TwodsixActor[];
+  actors?: Traveller[];
 }
 
 export interface Vehicle extends LinkTemplate {
@@ -380,7 +428,7 @@ export interface Vehicle extends LinkTemplate {
   cargoList:string;
   cargoCapacity:string;
   cost: string;
-  crew:VehcileCrew;
+  crew:VehicleCrew;
   damageStats:VehicleDamageStats;
   features:string;
   maneuver:VehicleManeuver;
@@ -395,8 +443,8 @@ export interface Vehicle extends LinkTemplate {
 }
 
 export interface VehicleCrew {
-  operators:text;
-  passengers:text;
+  operators:string;
+  passengers:string;
 }
 export interface VehicleDamageStats {
   armor: Hits;
@@ -443,6 +491,7 @@ export interface Item {
   spell:Spell;
   consumable:Consumable;
   component:Component;
+  computer:Computer;
 }
 
 export interface Armor extends GearTemplate, LinkTemplate {
@@ -490,6 +539,10 @@ export interface Component extends GearTemplate, LinkTemplate {
   actorLink: string;
   hardened: boolean;
   associatedSkillName:string;
+  ammunition:Encumbrance;
+  isPopup:boolean;
+  isExtended:boolean;
+  bandwidth: number;
 }
 
 export interface Consumable extends GearTemplate, LinkTemplate {
@@ -502,9 +555,20 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   armorPiercing:number;
   bonusDamage:string;
   isAttachment:boolean;
+  bandwidth:number;
+  softwareActive:boolean;
+  damageType:string;
 }
 
 export interface Equipment extends GearTemplate, LinkTemplate {
+  templates:string[];
+  type:string;
+  useConsumableForAttack:string;
+  location:string[];
+  priorType?:string;
+}
+
+export interface Tool extends GearTemplate, LinkTemplate {
   templates:string[];
   type:string;
   useConsumableForAttack:string;
@@ -528,6 +592,7 @@ export interface Skills extends LinkTemplate {
 export interface Templates {
   gearTemplate:GearTemplate;
   referenceTemplate:LinkTemplate;
+  targetTemplate: TargetTemplate
 }
 
 export interface LinkTemplate {
@@ -556,7 +621,23 @@ export interface GearTemplate {
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:string;
+  equipped:Equipped;
+}
+
+export interface TargetTemplate {
+  target: TemplateData
+}
+
+export interface TemplateData {
+  value: number,
+  width: number,
+  units: string,
+  type: string
+}
+export enum Equipped {
+  equipped = "equipped",
+  ship = "ship",
+  backpack = "backpack"
 }
 
 export interface Trait extends LinkTemplate {
@@ -570,7 +651,7 @@ export interface Trait extends LinkTemplate {
   key:string;
 }
 
-export interface Spell extends LinkTemplate {
+export interface Spell extends LinkTemplate, TargetTemplate {
   templates:string[];
   value:number;
   type:string;
@@ -581,7 +662,7 @@ export interface Spell extends LinkTemplate {
   subtype:string;
 }
 
-export interface Weapon extends GearTemplate, LinkTemplate {
+export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   templates:string[];
   range:number;
   damage:string;
@@ -602,3 +683,7 @@ export interface Weapon extends GearTemplate, LinkTemplate {
   armorPiercing:number;
 }
 
+export interface Computer extends GearTemplate, LinkTemplate {
+  templates:string[];
+  processingPower:number;
+}

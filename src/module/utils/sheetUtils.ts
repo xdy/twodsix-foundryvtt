@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-
 //Assorted utility functions likely to be helpful when displaying characters
-
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -211,11 +209,40 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
 }
 
 export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  const item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  let item;
+  if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
+    const journalEntry = await fromUuid(dropData.uuid);
+    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
+    item = await lootItems.find((it) => it._id === dropData.itemId);
+    if (item.system.consumables?.length > 0) {
+      item.system.consumables = [];
+    }
+  } else {
+    item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  }
+
   if (!item) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
-  return deepClone(item);
+  //handle drop from compendium
+  if (item.pack) {
+    const pack = game.packs.get(item.pack);
+    item = await pack?.getDocument(item._id);
+  }
+  const itemCopy = deepClone(item);
+
+  //Delete Active effects if not used
+  if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
+    const systemAEs = itemCopy.effects?.contents;
+    if (systemAEs?.length > 0) {
+      const idsToDelete = [];
+      for (const eff of systemAEs) {
+        idsToDelete.push(eff.id);
+      }
+      await itemCopy.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+    }
+  }
+  return itemCopy;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {
@@ -237,9 +264,9 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(sourceString:string[]): void {
+export function openPDFReference(sourceString:string): void {
   if (sourceString) {
-    const [code, page] = sourceString[0].split(' ');
+    const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
     if (ui["pdfpager"]) {
       ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
@@ -271,4 +298,25 @@ export function isDisplayableSkill(skill:Skills): boolean {
   } else {
     return false;
   }
+}
+
+export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
+  const returnText:string = await new Promise((resolve) => {
+    new Dialog({
+      title: title,
+      content:
+        `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
+      buttons: {
+        Roll: {
+          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
+          callback:
+            (html:JQuery) => {
+              resolve(html.find('[name="outputFormula"]')[0]["value"]);
+            }
+        }
+      },
+      default: `Roll`,
+    }).render(true);
+  });
+  return (returnText ?? "");
 }

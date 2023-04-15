@@ -414,6 +414,7 @@ const CONSUMABLES = Object.freeze({
   fuel: "TWODSIX.Items.Consumable.Types.fuel",
   magazine: "TWODSIX.Items.Consumable.Types.magazine",
   power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
+  software: "TWODSIX.Items.Consumable.Types.software",
   other: "TWODSIX.Items.Consumable.Types.other"
 });
 
@@ -466,6 +467,48 @@ export const MovementUnits = {
   km: "TWODSIX.Actor.Movement.DistKm",
   pc: "TWODSIX.Actor.Movement.DistPc",
   gu: "TWODSIX.Actor.Movement.DistGU"
+};
+
+/**
+ * The valid target Area Types in the game system.
+ */
+export const areaTargetTypes = {
+  none: {
+    label: "TWODSIX.Target.None",
+    template: ""
+  },
+  radius: {
+    label: "TWODSIX.Target.Radius",
+    template: "circle"
+  },
+  sphere: {
+    label: "TWODSIX.Target.Sphere",
+    template: "circle"
+  },
+  cylinder: {
+    label: "TWODSIX.Target.Cylinder",
+    template: "circle"
+  },
+  cone: {
+    label: "TWODSIX.Target.Cone",
+    template: "cone"
+  },
+  square: {
+    label: "TWODSIX.Target.Square",
+    template: "rect"
+  },
+  cube: {
+    label: "TWODSIX.Target.Cube",
+    template: "rect"
+  },
+  line: {
+    label: "TWODSIX.Target.Line",
+    template: "ray"
+  },
+  wall: {
+    label: "TWODSIX.Target.Wall",
+    template: "ray"
+  }
 };
 
 /**
@@ -623,7 +666,8 @@ export type TWODSIX = {
   OmnivoreType: typeof OmnivoreType,
   CarnivoreType: typeof CarnivoreType,
   ScavengerType: typeof ScavengerType,
-  AnimalLocations: typeof AnimalLocations
+  AnimalLocations: typeof AnimalLocations,
+  areaTargetTypes: typeof areaTargetTypes
 };
 
 export const TWODSIX = {
@@ -648,7 +692,8 @@ export const TWODSIX = {
   OmnivoreType: OmnivoreType,
   CarnivoreType: CarnivoreType,
   ScavengerType: ScavengerType,
-  AnimalLocations: AnimalLocations
+  AnimalLocations: AnimalLocations,
+  areaTargetTypes: areaTargetTypes
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

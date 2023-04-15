@@ -41,6 +41,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     context.settings = <TwodsixShipSheetSettings>{
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
+      showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
@@ -48,7 +49,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists')
+      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
     if (context.settings.useProseMirror) {
@@ -67,12 +69,12 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "ship", "actor"],
       template: "systems/twodsix/templates/actors/ship-sheet.html",
       width: 825,
-      height: 674,
+      height: 686,
       resizable: false,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
       scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
-        {dropSelector: ".ship-position-box", dragSelector: ".drag"},
+        //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
         {
           dropSelector: ".ship-position-box",
           dragSelector: ".ship-position-actor-token"
@@ -130,7 +132,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     html.find(".ship-deck-link").on("click", this._onDeckplanClick.bind(this));
     html.find(".ship-deck-unlink").on("click", this._onDeckplanUnlink.bind(this));
     html.find('.roll-damage').on('click', onRollDamage.bind(this));
-    html.find(".adjust-hits").on("click", this._onAdjustHitsCount.bind(this));
+    html.find(".adjust-counter").on("click", this._onAdjustCounter.bind(this));
     html.find(".fuel-bar").on("click", this._onAdjustFuelType.bind(this));
     html.find(".fuel-name").on("click", this._onAdjustFuelType.bind(this));
     html.find(".item-link").on("click", this._onDocumentLink.bind(this));
@@ -191,8 +193,13 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = this.actor.items.get(li.data("itemId"));
-      const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-      itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+      const type = $(event.currentTarget).data("type");
+      if (type === "status") {
+        const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
+        itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+      } else if (type === "popup") {
+        itemSelected?.update({"system.isExtended": !itemSelected.system.isExtended});
+      }
     }
   }
 
@@ -213,17 +220,29 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     }
   }
 
-  private async _onAdjustHitsCount(event): Promise<void> {
+  private async _onAdjustCounter(event): Promise<void> {
     const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
+    const field = $(event.currentTarget).parents(".combined-buttons").data("field");
     const li = $(event.currentTarget).parents(".item");
     const itemSelected = this.actor.items.get(li.data("itemId"));
-    if (itemSelected) {
-      const newHits = (<Component>itemSelected.system)?.hits + modifier;
-      if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
-        await itemSelected.update({ "system.hits": newHits });
-      }
-      if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
-        await itemSelected.update({ "system.status": "destroyed" });
+    if (itemSelected && field) {
+      if (field === "hits") {
+        const newHits = (<Component>itemSelected.system).hits + modifier;
+        if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
+          await itemSelected.update({ "system.hits": newHits });
+        }
+        if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
+          await itemSelected.update({ "system.status": "destroyed" });
+        } else if (newHits > 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "damaged" });
+        } else if (newHits === 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "operational" });
+        }
+      } else if (field === "ammo") {
+        const newAmmo = (<Component>itemSelected.system).ammunition.value + modifier;
+        if (newAmmo >= 0  && newAmmo <= (<Component>itemSelected.system).ammunition.max) {
+          await itemSelected.update({ "system.ammunition.value": newAmmo });
+        }
       }
     }
   }
@@ -270,36 +289,43 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
       } else if ((droppedObject.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
-        const shipPositionId = $(event.target).parents(".ship-position").data("id");
-        const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
-        await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
-      } else if (droppedObject.type === "vehicle") {
-        await this._addVehicleToComponents(droppedObject, dropData.uuid);
+        //check for double drop trigger, not clear why this occurs
+        if (event.currentTarget.className === "ship-position-box") {
+          const shipPositionId = $(event.target).parents(".ship-position").data("id");
+          const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
+          await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+        } else {
+          return false;
+        }
+      } else if (["vehicle", "ship"].includes(droppedObject.type)) {
+        await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
       } else if (droppedObject.type === "animal") {
-        ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions");
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
+      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable"].includes(droppedObject.type)) {
+        // this is part of a refactor *******
+        this.processDroppedItem(event, droppedObject);
       } else {
-        super._onDrop(event);
-        return this._onSortItem(event, droppedObject.toJSON());
+        await super._onDrop(event);
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging
       return false;
     }
   }
-  async _addVehicleToComponents(droppedObject: any, uuid: string): Promise <void> {
+  async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
     const newComponent = {
       name: droppedObject.name,
       img: droppedObject.img,
       type: "component",
       system: {
-        docReference: droppedObject.system.docReference,
-        price: droppedObject.system.cost,
+        docReference: droppedObject.type === "ship" ? "" : droppedObject.system.docReference,
+        price: droppedObject.type === "ship" ? droppedObject.system.shipValue : droppedObject.system.cost,
         quantity: 1,
         status: "operational",
         subtype: "vehicle",
         techLevel: droppedObject.system.techLevel,
-        weight: droppedObject.system.weight,
+        weight: droppedObject.type === "ship" ? droppedObject.system.shipStats.mass.max : droppedObject.system.weight,
         actorLink: uuid
       }
     };

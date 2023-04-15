@@ -61,16 +61,12 @@
               <input type="text" style="width: 100px;" name="system.actions.{{id}}.name" value="{{action.name}}">
             </td>
             <td>
-              <input type="text" placeholder="{{action.placeholder}}" name="system.actions.{{id}}.command"
-                value="{{action.command}}">
+              <input type="text" placeholder="{{localize action.placeholder}}" name="system.actions.{{id}}.command"
+                value="{{action.command}}" data-tooltip="{{localize action.tooltip}}">
             </td>
             <td>
-              <select style="width: 100px;" name="system.actions.{{action.id}}.type" value={{action.type}}>
-                {{#select action.type}}
-                {{#each ../availableActions as |value key|}}
-                <option value="{{key}}">{{value.name}}</option>
-                {{/each}}
-                {{/select}}
+              <select style="width: 100px;" name="system.actions.{{action.id}}.type">
+                {{selectOptions ../availableActions selected = action.type labelAttr = "name" localize=true}}
               </select>
             </td>
             <td class="centre">

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import AdvancedSettings from "./AdvancedSettings";
 import {TWODSIX} from "../config";
 import {booleanSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
@@ -63,6 +66,8 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with vales other than 0.5
     settings.push(numberSetting('encumbranceModifier', -1, false));
+    settings.push(numberSetting('encumbFractionOneSquare', 0.5));
+    settings.push(numberSetting('encumbFraction75pct', 0.33));
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
     settings.push(booleanSetting('addEffectForShipDamage', false));
@@ -75,6 +80,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseLocations", false));
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
+    settings.push(stringSetting("damageTypeOptions", "", false, "world"));
     return settings;
   }
 }

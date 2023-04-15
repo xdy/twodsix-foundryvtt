@@ -34,6 +34,23 @@ input.dice-tray__input {
   color: var(--s2d6-default) !important;
 }
 
+/*Fix for automated Automations*/
+
+#AA-autorec-settings .window-content, #AA-item-settings .window-content, #AA-ae-settings .window-content {
+	color: black !important;
+}
+
+#AA-autorec-settings .animation input, #AA-item-settings .animation input, #AA-ae-settings .animation input {
+	color: black !important;
+	background-color: rgba(182, 182, 182, 0.461) !important;
+	border-radius: var(--tjs-input-text-border-radius, var(--tjs-input-border-radius))!important
+}
+
+#AA-autorec-settings .animation select, #AA-item-settings .animation select, #AA-ae-settings .animation select {
+    background-color: rgb(160, 160, 160) !important;
+    color: black !important;
+}
+
 /*No longer needed for v10
 //Fix for Tidy UI
 #client-settings nav.tabs {
@@ -45,3 +62,93 @@ div.pdf-app section.window-content {
   background: var(--s2d6-background-transparent) !important;
 }
 */
+
+/*Monk's Enhanced Journals*/
+.monks-enhanced-journal .editor-edit {
+  z-index: 100;
+  display: block;
+}
+
+.monks-enhanced-journal .directory-sidebar > section {
+  /* background: revert; */
+  background-color: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-select-light);
+}
+
+#journal-directory li.folder.collapsed > .folder-header:not(.customcolor) {
+  color: var(--s2d6-select-light);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab {
+  background: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-enhanced-journal > header a.subsheet {
+  background: var(--s2d6-background-transparent);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab.active {
+  background-color: var(--s2d6-default-color);
+  color: black;
+}
+
+.monks-journal-sheet.sheet .editor {
+  overflow: auto;
+  height: 100%;
+}
+
+.monks-journal-sheet.sheet .items-list .item .item-name, .monks-journal-sheet.sheet .form-group label, .monks-journal-sheet.sheet .items-list {
+  color: var(--s2d6-form-light);
+}
+
+.monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
+  margin-top: unset;
+  text-align: center;
+  display: unset;
+}
+
+.monks-enhanced-journal .mainbar .navigation .button-group {
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-enhanced-journal .mainbar .navigation .nav-button, .monks-enhanced-journal footer.navigation .nav-button {
+  background: var(--s2d6-background-semi-opaque);
+}
+
+.monks-enhanced-journal .mainbar .navigation .nav-button.disabled, .monks-enhanced-journal footer.navigation .nav-button.disabled {
+  color: var(--s2d6-default-color);
+}
+
+.monks-journal-sheet.sheet .items-list {
+  position: revert;
+}
+.loot-character > .character-name {
+    position: unset;
+    margin-top: unset;
+    text-align: unset;
+    z-index: unset;
+    left: unset
+}
+
+.monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
+  display: unset;
+}
+
+.edit-currency .items-list {
+  position: unset;
+}
+
+.edit-currency .items-list input, .item-total.flexrow, .item-price.flexrow, .item-quantity.flexrow  {
+  color: var(--s2d6-default-color);
+  display: unset;
+  text-align: right;
+}
+
+/************Item Piles*******/
+/*.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even), .item-piles-item-row:nth-child(odd) {
+  background-color: var(--s2d6-light-background-transparent) !important;
+}*/
+
+:root {
+  --item-piles-even-color: var(--s2d6-light-background-transparent) !important;
+}

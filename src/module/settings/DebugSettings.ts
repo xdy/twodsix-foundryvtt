@@ -4,7 +4,8 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, stringSetting} from "./settingsUtils";
 import {refreshWindow} from "./DisplaySettings";
-
+import { applyToAllActors } from "../utils/migration-utils";
+import TwodsixActor from "../entities/TwodsixActor";
 export default class DebugSettings extends AdvancedSettings {
   static create() {
     DebugSettings.settings = DebugSettings.registerSettings();
@@ -31,6 +32,17 @@ export default class DebugSettings extends AdvancedSettings {
     settings.push(booleanSetting('useProseMirror', false));
     settings.push(booleanSetting('allowDropOnIcon', false));
     settings.push(booleanSetting('allowDragDropOfLists', false));
+    settings.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateActorAE));
     return settings;
   }
+}
+
+async function deactivateActorAE () {
+  if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
+    await applyToAllActors(deleteSystemAE);
+  }
+}
+
+async function deleteSystemAE(actor: TwodsixActor): Promise<void> {
+  actor.deleteCustomAEs();
 }

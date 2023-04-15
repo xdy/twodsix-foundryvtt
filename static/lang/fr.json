@@ -22,7 +22,8 @@
       "UnallocatedDamage": "Dégâts non alloués",
       "CharacterIsDead": "Personnage est mort",
       "DealDamageTo": "Infliger des dégâts à _ACTOR_NAME_",
-      "DamageFormula": "Formule de dégâts"
+      "DamageFormula": "Formule de dégâts",
+      "Current": "Courant"
     },
     "Dialogs": {
       "ROFPickerTitle": "Sélectionnez une cadence de tir",
@@ -741,7 +742,12 @@
       "EncumbranceFormulaInvalid": "La formule d'encombrement n'est pas valide. La valeur est définie à zéro.",
       "ActorHasInitiativeAlready": "Le Traveller a déjà l'initiative.",
       "NoActiveToken": "L'acteur n'a pas de token actif dans cette scène."
+    },
+    "ActiveEffects": {
+      "DeleteEffect": "Retirer l'effet actif",
+      "ConfirmDelete": "Voulez-vous vraiment supprimer l'effet ?"
     }
   },
-  "VeryDifficult": "Très difficile"
+  "VeryDifficult": "Très difficile",
+  "Average": "Moyenne"
 }

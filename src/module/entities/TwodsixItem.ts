@@ -10,7 +10,13 @@ import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
-import { simplifyRollFormula } from "../utils/dice";
+//import { simplifyRollFormula } from "../utils/dice";
+import { confirmRollFormula } from "../utils/sheetUtils";
+import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
+import ItemTemplate from "../utils/ItemTemplate";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+//import {targetTokensInTemplate} from "../utils/ItemTemplate";
+//import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -23,13 +29,38 @@ export default class TwodsixItem extends Item {
         await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
       } else if (item?.type === 'component') {
         await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
+      } else if (item?.type === 'computer') {
+        await item.update({'img': 'systems/twodsix/assets/icons/components/computer.svg'});
       }
     }
     if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
       item.update({"system.value": 0});
     }
+
+    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+    if (item?.system?.consumables?.length > 0) {
+      await item.update({"system.consumables": []});
+    }
+
     return item;
   }
+
+
+  /*protected override async _onCreate(data): Promise<void> {
+    if (data.effects) {
+      const newEffects = data.effects.map((effect:Record<string, any>) => {
+        effect._id = randomID();
+        if (effect.flags.twodsix === undefined) {
+          effect.flags.twodsix = {};
+        }
+        effect.flags.twodsix.sourceId = effect._id;
+        effect.origin = "";
+        return effect;
+      });
+      this.update({ "effects": newEffects });
+    }
+  }*/
+
 
   /**
    * Augment the basic Item data model with additional dynamic data.
@@ -97,6 +128,19 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    /*Apply measured template if valid AOE*/
+    if ( weapon.target?.type !== "none" ) {
+      try {
+        await (ItemTemplate.fromItem(this))?.drawPreview();
+        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
+        //if (templates?.length > 0) {
+        //  targetTokensInTemplate(templates[0]);
+        //}
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+      }
+    }
+
     let numberOfAttacks = 1;
     let bonusDamage = "0";
     const rof = parseInt(weapon.rateOfFire, 10);
@@ -135,6 +179,7 @@ export default class TwodsixItem extends Item {
         usedAmmo = rateOfFireCE || 0;
         break;
     }
+    Object.assign(tmpSettings, {bonusDamage: bonusDamage});
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry")) {
@@ -147,6 +192,26 @@ export default class TwodsixItem extends Item {
         if (dodgeParryModifier > 0) {
           Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
         }
+      }
+    }
+
+    //Get weapon characteristic modifier
+    if (this.system.handlingModifiers !== "") {
+      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
+      const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
+      if (parsedResult) {
+        let weaponHandlingMod = 0;
+        const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
+        if (checkCharacteristic) {
+          const charValue = this.actor.system.characteristics[checkCharacteristic].value;
+          if (charValue <= parseInt(parsedResult[2], 10)) {
+            weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
+          } else if (charValue >= parseInt(parsedResult[4], 10)) {
+            weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
+          }
+        }
+        Object.assign(tmpSettings.rollModifiers, {weaponsHandling: weaponHandlingMod});
+        //console.log(tmpSettings);
       }
     }
 
@@ -189,7 +254,7 @@ export default class TwodsixItem extends Item {
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
     let skill:TwodsixItem | null = null;
     let item:TwodsixItem | undefined;
-
+    let workingActor:TwodsixActor = this.actor;
     // Determine if this is a skill or an item
     const usesConsumable = <UsesConsumables>this.system;
     if (this.type == "skills") {
@@ -200,6 +265,14 @@ export default class TwodsixItem extends Item {
       skill = <TwodsixItem>this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
       if (skill === undefined) {
         skill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      }
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      item = this;
+    } else if (this.type === "component") {
+      workingActor = await fromUuid(tmpSettings?.flags.actorUUID);
+      skill = <TwodsixItem>workingActor?.items.getName(tmpSettings?.skillName);
+      if (skill === undefined) {
+        skill = workingActor.getUntrainedSkill();
       }
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
@@ -225,9 +298,16 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         workingSettings.difficulty = workingSettings.difficulties[level];
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, <TwodsixActor>this.actor);
+        if ( this.system.target?.type !== "none" ) {
+          try {
+            await (ItemTemplate.fromItem(this))?.drawPreview();
+          } catch(err) {
+            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+          }
+        }
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, workingSettings, skill, item, workingActor);
       } else {
-        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, <TwodsixActor>this.actor);
+        tmpSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, item, workingActor);
       }
       if (!tmpSettings.shouldRoll) {
         return;
@@ -236,7 +316,7 @@ export default class TwodsixItem extends Item {
 
     /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
     if (usesConsumable.useConsumableForAttack && item && item.type != "weapon") {
-      const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack);
+      const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack); //this shoould always be this.actor as components on ship, not working actor
       if (magazine) {
         try {
           await magazine.consume(1);
@@ -253,7 +333,8 @@ export default class TwodsixItem extends Item {
         return;
       }
     }
-    const diceRoll = new TwodsixDiceRoll(tmpSettings, <TwodsixActor>this.actor, skill, item);
+
+    const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
 
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);
@@ -263,27 +344,26 @@ export default class TwodsixItem extends Item {
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
-
-    if (!weapon.damage) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoDamageForWeapon"));
+    const consumableDamage = this.getConsumableBonusDamage();
+    if (!weapon.damage && !consumableDamage) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage
-      const consumableDamage = TwodsixItem.getConsumableBonusDamage(<Weapon>weapon, this.actor);
-      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? "+" + bonusDamage : "") + (consumableDamage != "" ? "+" + consumableDamage : "");
+      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? " + " + bonusDamage : "") + (consumableDamage != "" ? " + " + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
-        rollFormula = await TwodsixItem.confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
+        rollFormula = await confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
       }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
-      rollFormula = simplifyRollFormula(rollFormula);
+      //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
       let damage = <Roll>{};
-      let apValue = 0;
+      let apValue = weapon.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.system);
+        damage = new Roll(rollFormula, this.actor?.getRollData());
         await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
-        apValue = TwodsixItem.getApValue(<Weapon>weapon, this.actor);
+        apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
         return;
@@ -293,24 +373,30 @@ export default class TwodsixItem extends Item {
       let radDamage = <Roll>{};
       if (this.type === "component") {
         if (Roll.validate(this.system.radDamage)) {
-          let radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
-          radFormula = simplifyRollFormula(radFormula);
-          radDamage = new Roll(radFormula, this.actor?.system);
+          const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
+          //radFormula = simplifyRollFormula(radFormula);
+          radDamage = new Roll(radFormula, this.actor?.getRollData());
           await radDamage.evaluate({async: true});
         }
       }
 
-      const contentData = {};
-      let flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-      if (apValue !== undefined) {
-        flavor += `, ${game.i18n.localize("TWODSIX.Damage.AP")}(${apValue})`;
+      //Deterime Damage type
+      let damageType:string = this.getConsumableDamageType();
+      if (damageType === '' || damageType === "NONE") {
+        damageType = weapon.damageType ?? "NONE"; //component doesn't have a specified damage type
       }
+      const damageLabels = getDamageTypes(true);
+      const contentData = {};
+      const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
+
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
         dice: getDiceResults(damage), //damage.terms[0]["results"]
-        armorPiercingValue: apValue ?? 0,
-        damage: (damage.total && damage.total > 0) ? damage.total : 0
+        armorPiercingValue: apValue,
+        damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
+        damageType: damageType,
+        damageLabel: damageLabels[damageType] ?? ""
       });
 
       if (radDamage.total) {
@@ -331,9 +417,14 @@ export default class TwodsixItem extends Item {
         await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
+          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
           flags: {
             "core.canPopout": true,
-            "transfer": transfer
+            "transfer": transfer,
+            "twodsix.itemUUID": this.uuid,
+            "twodsix.rollClass": "Damage",
+            "twodsix.tokenUUID": (<Actor>this.actor)?.getActiveTokens()[0]?.document.uuid ?? "",
+            "twodsix.actorUUID": (<Actor>this.actor)?.uuid ?? ""
           }
         }, {rollMode: rollMode});
       }
@@ -341,21 +432,10 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public static getApValue(weapon:Weapon, actor?):number {
-    let returnValue = weapon.armorPiercing;
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
-      if (magazine?.type === "consumable" && !magazine?.isAttachment) {
-        returnValue += (<Consumable>magazine.system)?.armorPiercing || 0;
-      }
-    }
-    return returnValue;
-  }
-
-  public static getConsumableBonusDamage(weapon:Weapon, actor?):string {
+  public getConsumableBonusDamage():string {
     let returnValue = "";
-    if (weapon.useConsumableForAttack && actor) {
-      const magazine = actor.items.get(weapon.useConsumableForAttack);
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
       if (magazine?.type === "consumable") {
         returnValue = (<Consumable>magazine.system)?.bonusDamage;
       }
@@ -363,25 +443,31 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public static async confirmRollFormula(initFormula:string, title:string):Promise<string> {
-    const returnText:string = await new Promise((resolve) => {
-      new Dialog({
-        title: title,
-        content:
-          `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
-        buttons: {
-          Roll: {
-            label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
-            callback:
-              (html:JQuery) => {
-                resolve(html.find('[name="outputFormula"]')[0]["value"]);
-              }
-          }
-        },
-        default: `Roll`
-      }).render(true);
-    });
-    return (returnText ?? "");
+  public getConsumableBonus(type:string):number {
+    let returnValue = 0;
+    if (this.system.attachmentData) {
+      for (const attach of this.system.attachmentData) {
+        if (attach.system.subtype !== "software" || attach.system.softwareActive) {
+          returnValue += attach.system[type];
+        }
+      }
+    }
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable" && magazine?.system[type]) {
+        returnValue += (<Consumable>magazine.system)[type];
+      }
+    }
+    return returnValue;
+  }
+
+  public getConsumableDamageType():string {
+    let returnValue = "";
+    if (this.system.useConsumableForAttack && this.actor) {
+      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
+      returnValue = magazine ? magazine.system.damageType : "NONE";
+    }
+    return returnValue;
   }
 
   public static burstAttackDM(number:number | null):number {
@@ -424,13 +510,30 @@ export default class TwodsixItem extends Item {
     return skillName.replace(/\W/g, "");
   }
 
+  /**
+   * A method to change the suspened state of an Actor Active effect linked to item
+   *
+   * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
+   * @returns {Promise<void>}
+   */
+  public async toggleActiveEffectStatus(newSuspendedState:boolean): Promise<void> {
+    if (this.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects') && this.actor) {
+      const actorEffect = await this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === this.effects.contents[0].id);
+      if (actorEffect) {
+        if (actorEffect.disabled !== newSuspendedState || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
+          await actorEffect.setFlag("twodsix", "lastSetDisable", newSuspendedState);
+          await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: newSuspendedState}], {dontSync: true}).then();
+        }
+      }
+    }
+  }
   //////// CONSUMABLE ////////
   public async consume(quantity:number):Promise<void> {
     const consumableLeft = (<Consumable>this.system).currentCount - quantity;
     if (consumableLeft >= 0) {
       await this.update({"system.currentCount": consumableLeft}, {});
     } else {
-      throw {name: 'NoAmmoError'};
+      throw { name: 'NoAmmoError' };
     }
   }
 
@@ -488,10 +591,25 @@ export async function onRollDamage(event):Promise<void> {
  * @param {Roll} inputRoll    The original roll.
  * @returns {object[]}        The resulting simplified dice terms.
  */
-function getDiceResults(inputRoll:Roll) {
+export function getDiceResults(inputRoll:Roll) {
   const returnValue:any[] = [];
   for (const die of inputRoll.dice) {
     returnValue.push(die.results);
   }
   return returnValue.flat(2);
+}
+
+/**
+ * A function for getting a value from a roll string.
+ *
+ * @param {string} rollFormula    The original roll.
+ * @param {TwodsixItem } item     Item making the roll
+ * @returns {number}              The resulting roll value.
+ */
+export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
+  let returnValue = 0;
+  if (Roll.validate(rollFormula)) {
+    returnValue = new Roll(rollFormula, item.actor?.getRollData()).evaluate({async: false}).total;
+  }
+  return returnValue;
 }

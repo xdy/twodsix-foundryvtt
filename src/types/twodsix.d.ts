@@ -68,6 +68,7 @@ declare global {
       'twodsix.showLifebloodStamina': boolean;
       'twodsix.showMissingCompendiumWarnings': boolean;
       'twodsix.showSingleComponentColumn': boolean;
+      'twodsix.showBandwidth': boolean;
       'twodsix.useFoundryStandardStyle': boolean;
       'twodsix.useSystemDefaultTokenIcon': boolean;
       'twodsix.useWoundedStatusIndicators': boolean;
@@ -124,6 +125,16 @@ declare global {
       'twodsix.transferDroppedItems': boolean;
       'twodsix.allowDragDropOfLists':boolean;
       'twodsix.useDodgeParry':boolean;
+      'twodsix.showModifierDetails':boolean;
+      'twodsix.defaultColor':string;
+      'twodsix.lightColor':string;
+      'twodsix.useItemActiveEffects':boolean;
+      'twodsix.showFeaturesInChat':boolean;
+      'twodsix.showHitsChangesInChat':boolean;
+      'twodsix.encumbFractionOneSquare':number;
+      'twodsix.encumbFraction75Pct':number;
+      'twodsix.useTabbedViews':boolean;
+      'twodsix.damageTypeOptions':string;
     }
   }
 }
@@ -138,6 +149,11 @@ declare interface TwodsixShipSheetSettings {
 declare interface TwodsixVehicleSheetSettings {
   showHullAndArmor: string;
 }
+
+declare interface TwodsixSpaceObjectSheetSettings {
+  useProseMirror?: boolean;
+}
+
 declare interface TwodsixShipSheetData extends ActorSheet.Data {
   dtypes: ["String", "Number", "Boolean"];
   settings: TwodsixShipSheetSettings;
@@ -153,6 +169,12 @@ declare interface TwodsixVehicleSheetData extends ActorSheet.Data {
   storage: Collection<Item>;
 }
 
+declare interface TwodsixSpaceObjectSheetData extends ActorSheet.Data {
+  dtypes: ["String", "Number", "Boolean"];
+  settings: TwodsixSpaceObjectSheetSettings;
+  richText: any;
+}
+
 declare interface ExtraData {
   actor?: TwodsixActor;
   ship?: TwodsixActor;
@@ -160,6 +182,7 @@ declare interface ExtraData {
   actionName?: string;
   positionName?: string;
   diceModifier?: string;
+  component?:TwodsixItem;
 }
 
 declare interface AvailableShipActionData {
@@ -251,6 +274,14 @@ declare interface Game {
             label: string;
           };
         };
+        "space-object": {
+          'twodsix.TwodsixVehicleSheet': {
+            id: 'twodsix.TwodsixSpaceObjectSheet';
+            default: boolean;
+            cls: TwodsixSpaceObjectSheet;
+            label: string;
+          };
+        }
       };
     };
 
@@ -270,6 +301,7 @@ declare interface Game {
         consumable: TwodsixItemSheetData;
         component: TwodsixItemSheetData;
         shipPosition: TwodsixShipPositionSheetData;
+        computer: TwodsixItemSheetData;
       };
     };
   };

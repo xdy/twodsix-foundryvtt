@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship", "vehicle", "animal"],
+    "types": ["traveller", "ship", "vehicle", "animal", "space-object"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -13,7 +13,8 @@
       "hits": {
         "value": 21,
         "min": 0,
-        "max": 21
+        "max": 21,
+        "lastDelta": 0
       },
       "gender": "",
       "radiationDose": {
@@ -140,15 +141,18 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
       "movement": {
         "burrow": 0,
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       },
       "hideStoredItems": {
@@ -157,8 +161,14 @@
         "augment": false,
         "equipment": false,
         "consumable": false,
-        "attachment": false
-      }
+        "attachment": false,
+        "junk": false
+      },
+      "experience": {
+        "value": 0,
+        "totalEarned": 0
+      },
+      "xpNotes": ""
     },
     "ship": {
       "name": "",
@@ -257,6 +267,11 @@
           "mDrive": {
             "rating": 0
           }
+        },
+        "bandwidth": {
+            "value": 0,
+            "min": 0,
+            "max": 0
         }
       }
     },
@@ -317,7 +332,7 @@
       },
       "weaponsType": "",
       "openVehicle": false,
-      "techLevel": "",
+      "techLevel": 0,
       "traits": "",
       "weight": ""
     },
@@ -452,8 +467,34 @@
           "displayShortLabel": ""
         }
       },
-      "woundedEffect": 0,
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
       "characteristicEdit": false,
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
+      }
+    },
+    "space-object": {
+      "templates": ["referenceTemplate"],
+      "techLevel": 0,
+      "features": "",
+      "count": {
+        "value": 0,
+        "max": 0
+      },
+      "description": "",
+      "notes": "",
+      "damage": "3d6",
+      "thrust": 0,
+      "roundsActive": 0,
       "movement": {
         "burrow": 0,
         "climb": 0,
@@ -466,7 +507,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position", "computer"],
     "templates": {
       "gearTemplate": {
         "name": "",
@@ -490,22 +531,28 @@
           "href": "",
           "label": ""
         }
+      },
+      "targetTemplate": {
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        }
       }
     },
     "equipment": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
-      "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "useConsumableForAttack": ""
     },
     "tool": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "type": "equipment",
-      "useConsumableForAttack": "",
-      "location": ["inventory", "storage"]
+      "useConsumableForAttack": ""
     },
     "weapon": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplate", "targetTemplate"],
       "range": 0,
       "damage": "3d6",
       "damageBonus": 0,
@@ -514,39 +561,38 @@
       "useConsumableForAttack": "",
       "magazineCost": 0,
       "type": "weapon",
-      "location": ["inventory", "storage"],
       "lawLevel": 0,
       "rangeBand": "",
       "weaponType": "",
-      "damageType": "",
+      "damageType": "NONE",
       "rateOfFire": "",
       "recoil": false,
       "features": "",
-      "armorPiercing": 0
+      "armorPiercing": 0,
+      "handlingModifiers": ""
     },
     "armor": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "armor": 0,
       "secondaryArmor": {
-        "value": 0
+        "value": 0,
+        "protectionTypes": []
       },
       "radiationProtection": {
         "value": 0
       },
       "type": "armor",
       "useConsumableForAttack": "",
-      "location": ["inventory", "storage"],
       "isPowered": false
     },
     "augment": {
       "templates": ["gearTemplate", "referenceTemplate"],
       "auglocation": "None",
       "type": "augment",
-      "bonus": "stat increase",
-      "location": ["inventory", "storage"]
+      "bonus": "stat increase"
     },
     "skills": {
-      "templates": ["referenceTemplate", "referenceTemplate"],
+      "templates": ["referenceTemplate"],
       "value": -3,
       "characteristic": "STR",
       "type": "skills",
@@ -569,7 +615,7 @@
       "key": "key"
     },
     "spell": {
-      "templates": ["referenceTemplate"],
+      "templates": ["referenceTemplate", "targetTemplate"],
       "value": 0,
       "type": "spell",
       "description": "",
@@ -585,10 +631,12 @@
       "max": 0,
       "type": "consumable",
       "subtype": "other",
-      "location": ["inventory", "storage"],
       "armorPiercing": 0,
       "bonusDamage": "",
-      "isAttachment": false
+      "isAttachment": false,
+      "bandwidth": 0,
+      "softwareActive": true,
+      "damageType": "NONE"
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],
@@ -615,13 +663,38 @@
       "armorPiercing": 0,
       "actorLink": "",
       "hardened": false,
-      "associatedSkillName": ""
+      "associatedSkillName": "",
+      "ammunition": {
+        "value": 0,
+        "max":0
+      },
+      "isPopup": false,
+      "isExtended": false,
+      "bandwidth": 0
     },
     "ship_position": {
       "name": "",
       "icon": "",
       "actions": {},
       "order": 0
+    },
+    "computer": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "type":"computer",
+      "useConsumableForAttack": "",
+      "processingPower": 0
+    },
+    "storage": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "type": "storage",
+      "useConsumableForAttack": "",
+      "priorType":""
+    },
+    "junk": {
+      "templates": ["gearTemplate", "referenceTemplate"],
+      "type": "junk",
+      "useConsumableForAttack": "",
+      "priorType": ""
     }
   }
 }

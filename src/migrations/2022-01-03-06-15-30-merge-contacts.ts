@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { Traveller } from "../types/template";
-import { applyToAllActors } from "../migration-utils";
+import { applyToAllActors } from "../module/utils/migration-utils";
 
 async function mergeContacts(actor: TwodsixActor): Promise<void> {
   const actorData = actor.system as Traveller;

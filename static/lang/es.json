@@ -10,10 +10,24 @@
   "Normal": "Normal",
   "Routine": "Rutinaria",
   "Simple": "Sencilla",
+  "VeryDifficult": "Muy Difícil",
   "TWODSIX": {
     "ActiveEffects": {
       "DeleteEffect": "Eliminar Efecto Activo",
-      "ConfirmDelete": "¿Quieres realmente borrar el efecto?"
+      "ConfirmDelete": "¿Quieres realmente borrar el efecto?",
+      "BaseValue": "Base",
+      "Modifiers": "Modificadores",
+      "EffectLabel": "Etiqueta Efecto",
+      "Source": "Fuente",
+      "Duration": "Duración",
+      "Condition": "Estado",
+      "UnknownSource": "Fuente Desconocida",
+      "EffectEnable": "Activar Efecto",
+      "EffectDisable": "Desactivar Efecto",
+      "Controls": "Controles",
+      "NewEffect": "Efecto Nuevo",
+      "CreateEffect": "Crear Efecto",
+      "Add": "Añadir"
     },
     "Damage": {
       "DealDamage": "Aplicar daño",
@@ -69,6 +83,9 @@
       "Gender": "Sexo",
       "HeroPoints": "Puntos Heroe",
       "Hits": "Puntos Vida",
+      "healing": "curación",
+      "damage": "daño",
+      "Applied": "Aplicado",
       "Contamination": "Contaminación",
       "Lifeblood": "Vitalidad",
       "Stamina": "Aguante",
@@ -81,11 +98,16 @@
         "BIOGRAPHY": "BIOGRAFÍA",
         "CONTACTS": "CONTACTOS",
         "DESCRIPTION": "DESCRIPCIÓN",
-        "ENEMIES": "ENEMIGOS"
+        "ENEMIES": "ENEMIGOS",
+        "XP": "PUNTOS EXPERIENCIA",
+        "Points": "puntos",
+        "Available": "Disponible",
+        "TotalEarned": "Total Ganado"
       },
       "Items": {
         "Amount": "Cantidad",
         "ARMOR": "ARMADURA",
+        "ATTACHMENTS": "ACCESORIOS",
         "AUGMENTS": "AUMENTOS",
         "Ammo": "Cargador",
         "Armor": "Protección",
@@ -95,7 +117,10 @@
         "CreateItem": "Crear Objeto",
         "Damage": "Daño",
         "DeleteItem": "Borrar Objeto",
+        "DisplayStored": "Mostrar objetos almacenados",
+        "HideStored": "Ocultar objetos almacenados",
         "EQUIPMENT": "EQUIPO",
+        "EQUIPMENT_TOOLS": "EQUIPO/HERRAMIENTAS",
         "EditItem": "Editar Objeto",
         "Effect": "Efecto",
         "Location": "Zona",
@@ -129,6 +154,8 @@
         "DeleteItem": "Borrar Objeto",
         "EditItem": "Editar Objeto",
         "EditOrRemove": "Editar / Borrar",
+        "BaseLevel": "Nivel Base",
+        "AdjLevel": "Adj. Nivel",
         "Level": "Nivel",
         "Modifier": "Mod.",
         "SkillName": "Nombre",
@@ -154,7 +181,14 @@
         "Info": "Info",
         "Inventory": "Equipo",
         "Notes": "Notas",
-        "Skills": "Habilidades"
+        "Effects": "Efectos",
+        "Skills": "Habilidades",
+        "FinancesTabTooltip": "Dinero, Deuda, Pensión, Coste Vida, etc.",
+        "InfoTabTooltip": "Talentos, Descripción, Contactos, y Biografía",
+        "InventoryTabTooltip": "Armas, Armadura, Aumentos, Equipo y Herramientas, Consumibles y Accesorios",
+        "NotesTabTooltip": "Notas Viajero",
+        "EffectsTabTooltip": "Efectos Activos",
+        "SkillsTabTooltip": "Habilidades Viajero"
       },
       "UnknownActorType": "Tipo actor desconocido",
       "using": "utilizando",
@@ -250,10 +284,25 @@
         "ItemModifier": "Bono Equipo",
         "ROF": "Cadencia Tiro",
         "Wounds": "Heridas",
-        "Encumbered": "Carga",
+        "Encumbered": "Sobrecargado",
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
-        "Custom": "Personalizado"
+        "DodgeParry": "Modificador Esquiva/Parada",
+        "Custom": "Personalizado",
+        "Modifier": "Modificador",
+        "Description": "Descripción",
+        "DM": "MD",
+        "Characteristic": "Atributo",
+        "Condition": "Estado",
+        "Attack": "Ataque",
+        "ActiveEffect": "Efecto Activo",
+        "Attachments": "Acc./Consm.",
+        "WeaponsHandling": "Manejo Armas",
+        "ChainRoll": "Tirada en Cadena / con Apoyo",
+        "Bonus": "Bono",
+        "WithChainBonus": "con bono Cadena / Apoyo",
+        "WinsRoll": "gana tirada disputa / opuesta.",
+        "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor."
       }
     },
     "Create": "Crear",
@@ -270,7 +319,8 @@
         "Armor": "Armadura",
         "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad",
-        "IsPowered": "Alimentación de Armadura"
+        "IsPowered": "Armadura Energía",
+        "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -283,6 +333,7 @@
         "ValueCr": "Valor en Cr"
       },
       "Component": {
+        "Ammunition": "Munición",
         "componentName": "Componente",
         "accomodations": "habitáculos",
         "armament": "armamento",
@@ -321,6 +372,7 @@
         "damage": "Daño",
         "RadiationDamage": "Daño Radiación",
         "hits": "Impactos",
+        "SustainedHits": "Impactos Recibidos",
         "weightIsPct": "¿Peso en Porcentaje?",
         "purchasePrice": "Precio Compra",
         "isIllegal": "¿Ilegal?",
@@ -344,7 +396,14 @@
         "DM": "MD",
         "Hardened": "¿Reforzado?",
         "hardened": "reforzado",
-        "Hd": "Ref"
+        "Hd": "Ref",
+        "isPopup": "¿Es desplegable?",
+        "isExtended": "¿Esta el desplegable extendido?",
+        "extended": "extendido",
+        "retracted": "retraído",
+        "Displacement": "Desplazamiento",
+        "Description": "Descripción",
+        "ComponentType": " Tipo Componente"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -355,9 +414,12 @@
         "Price": "Precio",
         "Quantity": "Cantidad",
         "ShortDescription": "Opciones",
-        "SkillModifier": "Modificador Habilidad",
+        "SkillModifier": "Modificador Tirada",
         "TL": "NT",
-        "Weight": "KG"
+        "Weight": "KG",
+        "isAttachment": "¿Accesorio?",
+        "NewAttachment": "Nuevo Accesorio",
+        "BonusDamage": "Bono Daño"
       },
       "Items": {
         "AssignArmor": "Armadura",
@@ -367,6 +429,7 @@
         "AssignTool": "Herramienta",
         "AssignWeapon": "Arma",
         "AssignConsumable": "Consumible",
+        "AssignComputer": "Asignar Computadora",
         "Inventory": "Inventario",
         "ItemType": "Tipo",
         "MoveStorage": "Mover Carga",
@@ -398,7 +461,13 @@
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
-        "TraitName": "Nombre"
+        "TraitName": "Nombre",
+        "CreateEffect": "Crear Efecto",
+        "DeleteEffect": "Borrar Efecto",
+        "EditEffect": "Editar Efecto",
+        "CreateTrait": "Crear Talento",
+        "DeleteTrait": "Borrar Talento",
+        "ShortDescAndEffects": "Descripción resumida y lista efectos"
       },
       "Tool": {
         "Bonus": "Bono"
@@ -410,16 +479,24 @@
           "food": "Comida",
           "fuel": "Fuel",
           "magazine": "Cargador",
-          "power_cell": "Celda de potencia",
+          "power_cell": "Batería Energia",
+          "software": "Software",
           "other": "Otros"
         },
         "Size": "Tamaño",
         "Subtype": "SubCat.",
         "Count": "Cant.",
+        "Bandwidth": "Ancho de Banda",
         "ArmorPiercing": "Valor Penetración Armadura",
-        "DropConsumablesHere": "Puedes arrastrar consumibles aquí.",
+        "DropConsumablesHere": "Aquí puedes arrastrar consumibles.",
+        "DropAttachmentsHere": "Aquí puedes añadir accesorios.",
         "RemoveConsumable": "Eliminar consumible",
-        "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?"
+        "RemoveConsumableFrom": "¿Eliminar consumible _CONSUMABLE_NAME_ de _ITEM_NAME_?",
+        "SelectConsumable": "Selecciona Consumible",
+        "ActiveConsumable": "Consumible Activo",
+        "SoftwareActive": "¿Software Activo?",
+        "SoftwareOn": "Software Activo",
+        "SoftwareOff": "Software Inactivo"
       },
       "Weapon": {
         "Ammo": "Cargador",
@@ -431,12 +508,19 @@
         "damageType": "Tipo Daño",
         "rateOfFire": "Cadencia de Tiro/Auto X",
         "recoil": "Retroceso",
-        "UseAsAmmunitionForAttack": "Utilizar como munición para el ataque",
+        "UseAsAmmunitionForAttack": "Utilizar como munición en ataques",
         "MagazineCost": "Coste del cargador/celda",
         "ArmorPiercing": "Valor Penetración Armadura",
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
-        "UnarmedDescription": "Ataque sin armas"
+        "UnarmedDescription": "Ataque sin armas",
+        "HandlingModifiers": "Modificador Manejo",
+        "Magazine": "Cargador",
+        "Modifiers": "Modificadores",
+        "Attack": "Ataque",
+        "Consumables": "Consumibles",
+        "DefaultMagazine": "Tamaño Cargador Defecto",
+        "HandlingExample": "ej. DES 6/-3 10/+4"
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -444,20 +528,39 @@
         "SpellName": "Nombre",
         "Level": "Nivel",
         "sorcerySkill": "Hechicería"
+      },
+      "Computer": {
+        "ProcessingPower": "Poder Procesamiento"
       }
+    },
+    "Target": {
+      "AreaEffect": "Area de Efecto",
+      "Target": "Objetivo",
+      "None": "ninguno",
+      "Radius": "radio",
+      "Sphere": "esfera",
+      "Cylinder": "cilindro",
+      "Cone": "cono",
+      "Square": "cuadrado",
+      "Cube": "cubo",
+      "Line": "línea",
+      "Wall": "pared",
+      "Width": "Anchura",
+      "Units": "Unidades",
+      "TypeArea": "Tipo Area"
     },
     "Ship": {
       "Actions": "Acciones",
       "ActionType": "Tipo Acción",
       "ActionRollFormula": "Fórmula Tirada Acciones",
-      "Unknown": "Desconocido",
+      "Unknown": "desconocido",
       "ActorLacksSkill": "_ACTOR_NAME_ no dispone de habilidad _SKILL_",
       "ActorMustBeSelectedForAction": "Ya que existen varios actores, uno debe ser seleccionado para realizar la acción.",
       "AddShipPosition": "Añadir Puesto Nave",
       "Avail": "Disp.",
       "Available": "Disponible",
       "AvailableCargoWeight": "Peso Carga Disponible",
-      "CantDropActorIfPositionIsNotOnShip": "No puedes colocar un Traveller en el puesto que no se encuentra localizado en una nave.",
+      "CantDropActorIfPositionIsNotOnShip": "No puedes colocar un Viajero en el puesto que no se encuentra localizado en una nave.",
       "Cargo": "Carga",
       "CargoWeight": "Peso Total Carga",
       "CARGONOTES": "NOTAS CARGA",
@@ -514,7 +617,7 @@
       "PowerManagement": "Gestión Energía",
       "PowerWeightManagement": "Gestión de Energía y Peso",
       "PP": "PE",
-      "RemoveTraveller": "Eliminar Traveller de la nave",
+      "RemoveTraveller": "Eliminar Viajero de la nave",
       "Sensors": "Sensores",
       "ShipHull": "Casco",
       "SHIPNOTES": "CUADERNO DE BITÁCORA",
@@ -531,7 +634,8 @@
       },
       "Thrust": "Propulsión",
       "tons": "toneladas",
-      "Travellers": "Travellers",
+      "dtons": "d-tons",
+      "Travellers": "Viajeros",
       "USED": "USO",
       "Vehicles": "Vehículos",
       "Weapons": "Armas",
@@ -540,7 +644,15 @@
       "MortgagePerMonth": "Pago Est. Hipoteca",
       "MaintenancePerMonth": "Coste Mantenimiento",
       "CrPerMonth": "Cr/mes",
-      "SHIPCARGO": "BODEGA DE CARGA"
+      "Chat": "Chat",
+      "UseAComponent": "Componente",
+      "SkillRoll": "Habilidad",
+      "chatPlaceholder": "Mensaje del Chat",
+      "skillPlaceholder": "Hab./CHR 8+",
+      "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
+      "skillTooltip": "Opciones posibles:\nHabilidad\nHabilidad|Hab. Alt.1|...\nHabilidades/ 8+\nHabilidades/ATR 8+\nHabilidades/ATR|ATR2",
+      "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHabilidad|Hab. Alt.1|...=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ 8+=COMPONENT_ID\nHabilidades/ATR|ATR2 8+=COMPONENT_ID",
+      "chatTooltip": "¡A la vista!"
     },
     "Vehicle": {
       "SystemStatus": "Estado Sistemas",
@@ -589,6 +701,15 @@
       },
       "ShippingSize": "Tamaño"
     },
+    "SpaceObject": {
+      "Notes": "Notas",
+      "Damage": "Daño",
+      "Information": "Información",
+      "Features": "Rasgos",
+      "Thrust": "Impulso",
+      "rounds": "asaltos",
+      "RoundsActive": "Asaltos Activo"
+    },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
@@ -606,7 +727,10 @@
       "Cancel": "Cancelar",
       "DamageUsing": "Daño utilizando",
       "Effect": "Efecto",
+      "ToggleDetails": "Cambiar Detalles",
       "Roll": "Tirar",
+      "RollChain": "Tirada en Cadena / Apoyo",
+      "RollOpposed": "Tirada Opuesta",
       "Rolling": "Tirada",
       "With": "con",
       "resultShows": "Resultado:",
@@ -617,12 +741,21 @@
       "BonusDamage": "Bono Daño",
       "Timeframe": "Tiempo",
       "RollInitiative": "Tira Iniciativa",
-      "characteristic": "atributo"
+      "characteristic": "atributo",
+      "ROF": "CdT",
+      "RollDamage": "Tirada Daño",
+      "DodgeParry": "Esquiva/Parada",
+      "Attachments": "Acc/Cons",
+      "WeaponsHandling": "Manejo Armas",
+      "SelectSkill": "Selecciona Habilidad",
+      "SkillName": "Nombre Habilidad",
+      "MakesOpposedRoll": "Realiza una tirada disputa / opuesta.",
+      "MakesChainRoll": "Realizar tirada encadenada/asistida."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
         "hint": "Vacío por defecto (+/-1). Sin uso actual.",
-        "name": "Bonus/penaliz. incrementar tarea:"
+        "name": "Qué bono/penaliz. aplicar en cada incremento de la tarea."
       },
       "absoluteCriticalEffectValue": {
         "hint": "Por defecto 99, que ignora el efecto.",
@@ -637,12 +770,12 @@
         "name": "Nombre abreviado para el atributo alternativo 2"
       },
       "autofireRulesUsed": {
-        "hint": "Selecciona reglamento de ráfaga y fuego automático a utilizar.",
+        "hint": "Selecciona qué variante del reglamento para fuego automático/ráfagas utilizar.",
         "name": "Variante disparo automático"
       },
       "automateDamageRollOnHit": {
         "hint": "Marcado=Tirar daño modificado por el efecto; SinMarcar=No tirar daño.",
-        "name": "Daño en tirada que impacte"
+        "name": "¿Automáticamente tirar el daño en tiradas de habilidad que impacten (ejemplo: Efecto>0) en objetos que puedan generarlo?"
       },
       "criticalNaturalAffectsEffect": {
         "hint": "Marcado=Sin importar éxito considerar doble 1s como Efecto -1 y el doble 6s como Efecto 0, SinMarcar=Utilizar reglas normales",
@@ -654,11 +787,11 @@
       },
       "difficultiesAsTargetNumber": {
         "hint": "Marcado=Objetivo Dificultad numérico; SinMarcar=Modificadores.",
-        "name": "Dificultad por objetivo numérico"
+        "name": "Utilizar número objetivo en vez de modificadores de dificultad."
       },
       "difficultyListUsed": {
         "hint": "Variante del listado de dificultad.",
-        "name": "Listado dificultad:"
+        "name": "Selecciona qué variante de la lista de dificultades utilizar."
       },
       "effectOrTotal": {
         "hint": "Marcado=Mostrar Efecto (ej. tirada+mods-objetivo, normalmente 6/8); SinMarcar=Mostrar Valor (ej. tirada+mods).",
@@ -677,27 +810,27 @@
         "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder."
       },
       "initiativeFormula": {
-        "hint": "Ej: \"2d6 + @characteristics.dexterity.mod\".",
-        "name": "Fórmula para iniciativa:"
+        "hint": "Ejemplo: \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Fórmula Iniciativa"
       },
       "invertSkillRollShiftClick": {
         "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 6/8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
         "name": "Invertir funcionamiento de tecla SHIFT en clic de tiradas habilidad o arrastrar daño"
       },
       "lifebloodInsteadOfCharacteristics": {
-        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, Bárbaro!, etc.",
+        "hint": "Mostrar RES y Vitalidad (equivalente a FUE) como atributos. Utilizado en los sistemas Cepheus Atom, ¡Bárbaro!, etc.",
         "name": "Mostrar RES y Vitalidad (FUE) como atributos."
       },
       "maxSkillLevel": {
         "hint": "Vacío por defecto (9).",
-        "name": "Máximo nivel habilidad:"
+        "name": "Máximo nivel habilidad."
       },
       "modifierForZeroCharacteristic": {
         "hint": "Vacío por defecto (-2). No recalcula los mod. en PJs creados.",
-        "name": "Modificador Atributo nuevo:"
+        "name": "Modificador Atributo de valor cero."
       },
       "ruleset": {
-        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido.",
+        "hint": "Configurar los valores siguientes con las mejores opciones para el reglamento escogido. Los primeros reglamentos son los mejor soportados. Revisar https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md para más detalles. Opciones relativas al sistema estarán marcadas en verde. Y cambios aplicados por el sistema marcados en naranja.",
         "name": "Reglamento"
       },
       "settingsInterface": {
@@ -728,8 +861,8 @@
         "name": "Fórmula Iniciativa Nave"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Mostrar los atributos alternativos en vez de PSI. Sólo funciona en el estilo por defecto de Foundry.",
-        "name": "Mostrar atributos alternativos"
+        "hint": "Básico: seis atributos con PSI. Alternativo: seis atributos y alternativos. Todos: seis atributos con PSI y Alternativos.",
+        "name": "Selecciona qué atributos mostrar"
       },
       "showContaminationBelowLifeblood": {
         "hint": "Mostrar Contaminación debajo de Vitalidad. Únicamente con el ajuste activo 'Mostrar RES y Vitalidad'.",
@@ -745,7 +878,7 @@
       },
       "usePDFPagerForRefs": {
         "hint": "Mostrar un campo de texto en la hoja de objetos para utilizar por PDFoundry o como referencia. Para PDFoundry, el formato debe ser '[nombre abreviado] [número página]'.",
-        "name": "Mostrar campo de referencia en los objetos."
+        "name": "Utilizar módulo PDF-Pager para mostrar referencias"
       },
       "ShowLawLevel": {
         "hint": "Marcado=Mostrar Nivel Ley; SinMarcar=Ocultar.",
@@ -761,7 +894,7 @@
       },
       "ShowRangeBandAndHideRange": {
         "hint": "Marcado=Mostrar 'Bandas de Alcance', SinMarcar=Mostrar 'Alcance'.",
-        "name": "Banda de Alcance"
+        "name": "Mostrar \"Bandas de Alcance\" y ocultar \"Alcance\" en la hoja del arma y PJ."
       },
       "ShowRateOfFire": {
         "hint": "Marcado=Mostrar Cadencia; SinMarcar=Ocultar.",
@@ -775,6 +908,10 @@
         "hint": "Mostrar lista componentes de la nave en una sola columna.",
         "name": "Lista de componentes de la nave a una columna"
       },
+      "showBandwidth": {
+        "hint": "Mostrar el ancho de banda utilizado y disponible tanto en computación como software.",
+        "name": "Ancho de banda computación Nave"
+      },
       "ShowWeaponType": {
         "hint": "Marcado=Mostrar Tipo Arma; SinMarcar=Ocultar.",
         "name": "Mostrar 'Tipo Arma' en armas"
@@ -784,20 +921,20 @@
         "name": "Mostrar en la Hoja de la Nave la Carga en vez de la gestión Energía"
       },
       "systemMigrationVersion": {
-        "hint": "Versión schema del sistema. (No modificar)",
-        "name": "Versión Schema del sistema:"
+        "hint": "Versión del esquema del sistema Twodsix. (No modificar, a menos que sepas lo que haces)",
+        "name": "Versión Esquema del sistema"
       },
       "termForAdvantage": {
-        "hint": "No asignar igual a Desventaja.",
-        "name": "Nombre tirada Ventaja:"
+        "hint": "No utilizar el mismo término de Desventaja.",
+        "name": "Nombre tiradas con ventaja (3d6kh2)."
       },
       "termForDisadvantage": {
         "hint": "No asignar igual a Ventaja.",
-        "name": "Nombre tirada Desventaja:"
+        "name": "Nombre de tiradas con desventaja (3d6kl2)."
       },
       "useFoundryStandardStyle": {
-        "default": "Por Defecto Twodsix",
-        "foundry": "Estandar Foundry VTT",
+        "default": "Twodsix por defecto",
+        "foundry": "Estilo estándar Foundry VTT",
         "hint": "Utilizar el estilo por defecto de Foundry VTT para IU. Esto mejora la compatibilidad de los módulos con el sistema Twodsix",
         "name": "Usar IU Estilo Estandar Foundry VTT"
       },
@@ -806,8 +943,8 @@
         "name": "Corrige algunos problemas de estilo en css debidos a los módulos y el estilo por defecto Twodsix."
       },
       "useShipAutoCalcs": {
-        "hint": "Activado, el resumen de la energía y carga de la nave se calcula en base a los valores en componentes. En caso contrario, los valores deben ser entrados manualmente por el usuario.",
-        "name": "Cálculo automático de los valores de energía y carga de la nave"
+        "hint": "Activado, resumen de energía, peso, ancho de banda, y precio de la nave calculados a partir de los componentes. Sino, los valores se introducen manualmente.",
+        "name": "Calcular automáticamente los valores de energía, peso, ancho de banda, y precio de la nave."
       },
       "useSystemDefaultTokenIcon": {
         "hint": "Utilizar el icono de token por defecto de Foundry VTT (mystery man) en vez del de Twodsix  al crear nuevos actores. Seleccionar para que al utilizar imágenes propias el token coincida con la imagen del actor automáticamente.",
@@ -894,7 +1031,7 @@
         "name": "Mostrar iconos de estado en la hoja del actor"
       },
       "showHullAndArmor": {
-        "hint": "Opción para escoger información de protección en la hoja del vehículo. Las opciones son: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
+        "hint": "opción para escoger el tipo de protección en la hoja vehicular. Opciones: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
         "name": "Valor de Protección en hoja del vehículo"
       },
       "addEffectToManualDamage": {
@@ -902,7 +1039,7 @@
         "name": "Añadir Efecto al aplicar daño manual"
       },
       "showRangeSpeedNoUnits": {
-        "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo",
+        "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo.",
         "name": "No mostrar unidades de rango o velocidad"
       },
       "showInitiativeButton": {
@@ -911,7 +1048,7 @@
       },
       "showSkillCountsRanks": {
         "hint": "Mostrar el número de habilidades entrenadas y suma de niveles (rangos) en la parte inferior de la pestaña.",
-        "name": "Mostrar número Habilidades y Rangos en la Hoja Traveller"
+        "name": "Mostrar número Habilidades y Rangos en la Hoja del Viajero"
       },
       "showComponentSummaryIcons": {
         "hint": "Mostrar iconos resumen de los componentes debajo de la ilustración de la nave.",
@@ -955,7 +1092,7 @@
       },
       "encumbranceFraction": {
         "hint": "La fracción aplicable en la fórmula de carga máxima para indicar que el actor esta sobrecargado. Ejemplo: 0.5 significa que el actor se encuentra sobrecargado cuando el peso supera la mitad de la carga máxima.",
-        "name": "Fracción de la carga máxima cuando el actor esta sobrecargado"
+        "name": "Fracción de carga máxima aplicable en el modificador de la tirada"
       },
       "encumbranceModifier": {
         "hint": "Valor a añadir al modificador de atributo físico (FUE, DES, RES) sobrecargado. Ejemplo: -1 indica que se restará uno en todas las tiradas de atributos físicos.",
@@ -968,7 +1105,52 @@
       "allowDragDropOfLists": {
         "hint": "Permitir a objetos en listas moverse arrastrándolos, en vez del orden alfabético.",
         "name": "Permitir Reordenar Listas"
-      }
+      },
+      "useDodgeParry": {
+        "hint": "Añade penalizador a la tirada según la habilidad de equiva/parada del objetivo. El objetivo debe estar seleccionado y el nombre de la habilidad en el arma debe coincidir.",
+        "name": "Utilizar Modificadores Esquiva/Parada en Ataques"
+      },
+      "showModifierDetails": {
+        "hint": "Mostrar los valores de los modificadores de las tiradas dentro del mismo texto, ejemplo: FUE(+1) en vez de sólo FUE.",
+        "name": "Mostrar modificadores en el texto del chat"
+      },
+      "defaultColor": {
+        "hint": "Cambiar el color principal. Borrar el valor para reiniciar.",
+        "name": "Color por Defecto"
+      },
+      "lightColor": {
+        "hint": "Cambiar el color resaltado. Borrar el valor para reiniciar.",
+        "name": "Color Resaltado"
+      },
+      "useItemActiveEffects": {
+        "hint": "Utilizar Efectos Activos en Objetos. AVISO: puede resultar en comportamientos raros del sistema.",
+        "name": "Utilizar Efectos Activos en Objetos"
+      },
+      "showFeaturesInChat": {
+        "hint": "Mostrar en las tiradas el texto de las características del objeto en los mensajes del chat.",
+        "name": "Mostrar en Chat características del objeto"
+      },
+      "showHitsChangesInChat": {
+        "hint": "Mostrar un mensaje oculto para el Árbitro cuando se aplica daño/curación a un Actor.",
+        "name": "Mostrar daño/curación en el chat del Árbitro"
+      },
+      "encumbFractionOneSquare": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite de movimiento para un cuadrado. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para moverse 1,5m/5ft"
+      },
+      "encumbFraction75pct": {
+        "hint": "Configuración para el módulo Drag Ruler aplicado al límite del 75% del movimiento. La fracción aplicada a la fórmula de carga máxima. Esto sólo aplica cuando el sistema seleccionado es: OTRO.",
+        "name": "Fracción de carga máxima para el 75% del movimiento"
+      },
+      "useTabbedViews": {
+        "hint": "Utilizar hoja de objetos con pestañas, permitiendo mayor detalle, en vez de una hoja simple.",
+        "name": "Utilizar hoja con pestañas para armas y componentes"
+      },
+      "damageTypeOptions": {
+        "hint": "Una lista separada por comas que especifica los tipos de daño permitidos.",
+        "name": "Tipo de Daño y Protección"
+      },
+      "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
@@ -999,7 +1181,6 @@
       "NoSkillForSkillRoll": "Intentando realizar tirada de habilidad sin especificar habilidad",
       "NoCharacteristicForRoll": "Falta especificar un atributo en la tirada",
       "NoROFForAttack": "Falta Cadencia de Tiro para este tipo de ataque",
-      "NoDamageForWeapon": "Falta definir el daño del arma",
       "TooFewToReload": "Insuficientes _NAME_ para _REFILL_ACTION_",
       "NoAmmo": "Sin munición. ¡Es necesario recargar antes del disparo!",
       "EmptyConsumable": "Sin suministro, no te quedan consumibles. Necesitas recargar",
@@ -1011,7 +1192,8 @@
       "DropFailedWith": "Error de asignación _ERROR_MSG_",
       "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
-      "InvalidRollFormula": "Fórmula de daño no válida."
+      "InvalidRollFormula": "Fórmula de daño no válida.",
+      "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -1019,9 +1201,10 @@
       "MaxStatVal": "El valor supera el máximo del atributo",
       "StatValBelowZero": "El valor no puede ser inferior a cero",
       "DecreaseEnduranceFirst": "La RES debe reducirse antes que otros Atributos",
-      "CantAutoDamage": "Daño automático en nave o vehículo no soportado.",
+      "CantAutoDamage": "Daño automático en nave o vehículo no soportado",
       "CantDropOnToken": "No se permite tirar objetos sobre los tokens de nave o vehículo",
       "CantDragOntoActor": "El objeto no puede ser arrastrado sobre este actor",
+      "CantDragActorOntoActor": "Sólo puedes arrastrar referencias de actores en la caja de texto de ProseMirror.",
       "PDFPagerNotInstalled": "Debes instalar el módulo PDF Pager para poder utilizar enlaces.",
       "NoSpecfiedLink": "Sin documento ni página especificada para el enlace.",
       "NoTargetFound": "No existe objetivo para el daño.",
@@ -1031,8 +1214,63 @@
       "ActorHasInitiativeAlready": "Personaje ya tiene iniciativa.",
       "NoActiveToken": "El Actor no tiene un token en la escena.",
       "InvalidReactionInputs": "No es posible realizar la Tirada de Reacción debido a que los campos de Ataque y Huida son inválidos.",
-      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave"
+      "AnimalsCantHoldPositions": "Un animal no puede ocupar una posición de nave",
+      "CantEditCreateInCargo": "No se pueden editar o crear efectos activos mientras se está en la carga",
+      "NoActorSelected": "Un actor debe estar seleccionado o controlado",
+      "NoSkillSelected": "Debes seleccionar habilidad para realizar tirada",
+      "NoDamageForWeapon": "Este arma no tiene daño especificado.",
+      "ActionWarningNoToken": "Sin objetivo seleccionado para la acción.",
+      "CantEditEffect": "No se puede editar un efecto en un objeto que no esta en un Actor.",
+      "CantCreateEffect": "No se puede crear un efecto en un objeto que no esta en un Actor.",
+      "CantDeleteEffect": "No se puede borrar un efecto en un objeto que no esta en un Actor."
     }
   },
-  "VeryDifficult": "Muy Difícil"
+  "ITEM": {
+    "TypeBackpack": "Mochila",
+    "TypeContainer": "Contenedor",
+    "TypeConsumable": "Consumible",
+    "TypeEquipment": "Equipo",
+    "TypeSpell": "Conjuro",
+    "TypeTool": "Herramienta",
+    "TypeWeapon": "Arma",
+    "TypeArmor": "Armadura",
+    "TypeSkill": "Habilidad",
+    "TypeComponent": "Componente",
+    "TypeComputer": "Computadora",
+    "TypeAugment": "Aumento",
+    "TypeStorage": "Almacén",
+    "TypeJunk": "Basura",
+    "TypeSkills": "Habilidad",
+    "TypeTrait": "Rasgo",
+    "TypeShip_position": "Posición Nave",
+    "TypeBackpackPl": "Mochilas",
+    "TypeContainerPl": "Contenedores",
+    "TypeConsumablePl": "Consumibles",
+    "TypeEquipmentPl": "Equipo",
+    "TypeSpellPl": "Conjuros",
+    "TypeToolPl": "Herramientas",
+    "TypeWeaponPl": "Armas",
+    "TypeArmorPl": "Armaduras",
+    "TypeSkillPl": "Habilidades",
+    "TypeComponentPl": "Componentes",
+    "TypeComputerPl": "Computadoras",
+    "TypeAugmentPl": "Aumentos",
+    "TypeStoragePl": "Almacén",
+    "TypeJunkPl": "Basura",
+    "TypeSkillsPl": "Habilidades",
+    "TypeTraitPl": "Rasgos",
+    "TypeShip_positionPl": "Posiciones Nave"
+  },
+  "ACTOR": {
+    "TypeTraveller": "Viajero",
+    "TypeShip": "Nave",
+    "TypeVehicle": "Vehículo",
+    "TypeAnimal": "Animal",
+    "TypeSpace-object": "Objeto Espacial",
+    "TypeTravellerPl": "Viajeros",
+    "TypeShipPl": "Naves",
+    "TypeVehiclePl": "Vehículos",
+    "TypeAnimalPl": "Animales",
+    "TypeSpace-objectPl": "Objetos Espaciales"
+  }
 }

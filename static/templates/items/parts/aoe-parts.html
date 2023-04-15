@@ -1,0 +1,25 @@
+<!-- Ability Target -->
+<div class="item-target-area">
+  <label class="resource-label">{{ localize "TWODSIX.Target.AreaEffect" }}</label>
+  <div class="form-fields">
+    <select name="system.target.type" data-tooltip="TWODSIX.Target.TypeArea" style="width: max-content">
+      {{selectOptions config.areaTargetTypes selected=system.target.type localize=true inverted=false labelAttr="label"}}
+    </select>
+    <input type="number" step="any" name="system.target.value" style="width: 5ch;"
+        value="{{system.target.value}}" placeholder="&mdash;" {{#iff system.target.type "===" "none"}} disabled {{/iff}}>
+    <select name="system.target.units" data-tooltip="TWODSIX.Target.Units" style="width: max-content"  {{#iff system.target.type "===" "none"}} disabled {{/iff}}>
+      {{selectOptions config.MovementUnits selected=system.target.units localize=true inverted=false}}
+    </select>
+  </div>
+</div>
+
+<!-- Ability Target Width -->
+{{#iff system.target.type "===" "line"}}
+<div class="item-target-width">
+  <label class="resource-label">{{ localize "TWODSIX.Target.Width" }}</label>
+  <div class="form-fields">
+      <input type="number" step="any" name="system.target.width"
+          value="{{system.target.width}}" placeholder="&mdash;">
+  </div>
+</div>
+{{/iff}}

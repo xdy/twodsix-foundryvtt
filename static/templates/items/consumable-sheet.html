@@ -1,4 +1,4 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} item-class" autocomplete="off">
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
 
@@ -18,6 +18,18 @@
       <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
       <input class="form-input" id="system.quantity" type="number" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
     </div>
+
+    {{#iff system.subtype "===" "software"}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
+      <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.SoftwareActive"}}</label>
+      <input type="checkbox" class="checkbox" name="system.softwareActive" {{checked system.softwareActive}} data-dtype="Boolean" />
+    </div>
+    {{/iff}}
 
     {{#unless system.isAttachment}}
       <div class="item-data">
@@ -44,6 +56,13 @@
       <label class="resource-label">{{localize "TWODSIX.Items.Equipment.BonusDamage"}}</label>
       <input class="form-input" id="system.bonusDamage" type="text" name="system.bonusDamage" value="{{system.bonusDamage}}" data-dtype="String"/>
     </div>
+
+    {{#if settings.ShowDamageType}}
+      <div class="item-damageType">
+        <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
+        <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
+      </div>
+    {{/if}}
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>

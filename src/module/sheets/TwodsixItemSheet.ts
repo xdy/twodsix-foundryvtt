@@ -5,7 +5,8 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
-import { Component } from "src/types/template";
+import { Component, Gear } from "src/types/template";
+import { camelCase } from "../settings/settingsUtils";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -20,8 +21,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
       submitOnChange: true,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null}]
+      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+      dragDrop: [{dropSelector: null}],
+      resizable: true,
+      width: 550,
+      height: 'auto'
     });
   }
 
@@ -50,7 +54,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]
+      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
+      useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
+      useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
+      damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type))
     };
     returnData.config = TWODSIX;
     return returnData;
@@ -83,31 +90,54 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
     html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
     html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
+
+    html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
+    html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
+    html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
+
     this.handleContentEditable(html);
-    html.find('.open-link').on('click', openPDFReference.bind(this, [this.item.system.docReference]));
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
+    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
   }
   private async _changeSubtype(event) {
-    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value});
+    event.preventDefault(); //Needed?
+    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
+    const updates = {};
     /*Update from default other image*/
     if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      await this.item.update({"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+      Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
     }
     /*Prevent cargo from using %hull weight*/
     const anComponent = <Component> this.item.system;
     if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      await this.item.update({"system.weightIsPct": false});
+      Object.assign(updates, {"system.weightIsPct": false});
     }
     /*Unset isBaseHull if not hull component*/
     if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      await this.item.update({"system.isBaseHull": false});
+      Object.assign(updates, {"system.isBaseHull": false});
     }
     /*Unset hardened if fuel, cargo, storage, vehicle*/
     if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
-      await this.item.update({"system.hardened": false});
+      Object.assign(updates, {"system.hardened": false});
     }
+
+    if (Object.keys(updates).length !== 0) {
+      await this.item.update(updates);
+    }
+  }
+
+  private async _changeType(event) {
+    /*Unset active effect if storage or junk*/
+    let disableState = true;
+    if (!["storage", "junk"].includes(event.currentTarget.value)) {
+      disableState = (this.item.system.equipped !== "equipped");
+    } else {
+      this.item.update({"system.priorType": this.item.type});
+    }
+    await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
   }
 
   /* -------------------------------------------- */
@@ -132,16 +162,99 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private getConsumable(event) {
-    const li = $(event.currentTarget).parents(".consumable");
-    return this.item.actor?.items.get(li.data("consumableId"));
+  private async _onCreateEffect(): Promise<void> {
+    if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else {
+      const newId = randomID();
+      if(game.settings.get('twodsix', 'useItemActiveEffects')) {
+        const effects = [new ActiveEffect({
+          origin: this.item.uuid,
+          icon: this.item.img,
+          tint: "#ffffff",
+          label: this.item.name,
+          transfer: true,
+          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["augment", "trait"].includes(this.item.type),
+          _id: newId,
+          flags: {twodsix: {sourceId: newId}}
+
+        }).toObject()];
+        if (await fromUuid(this.item.uuid)) {
+          await this.item.update({effects: effects }, {recursive: true});
+          const newEffect = this.item.effects.contents[0].toObject();
+          //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
+          //await this.item.update({effects: [newEffect] }, {recursive: true});
+
+          if (this.actor) {
+            newEffect.transfer = false;
+            const oldId = newEffect._id;
+            newEffect._id = "";
+            await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+            this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+          } else {
+            this.item.effects.contents[0].sheet?.render(true);
+          }
+        } else {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
+        }
+      }
+    }
   }
 
-  private _onEditConsumable(event): void {
+  private async _onEditEffect(): void {
+    if (this.actor?.type === "traveller" || this.actor?.type === "animal") {
+      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
+    } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+    } else if (await fromUuid(this.item.uuid)) {
+      const editSheet = this.item.effects.contents[0].sheet?.render(true);
+      try {
+        editSheet?.bringToTop();
+      } catch(err) {
+        //nothing
+      }
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
+    }
+  }
+
+  private async _onDeleteEffect(): Promise<void> {
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        if (await fromUuid(this.item.uuid)) {
+          if (this.actor) {
+            const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+            if (id) {
+              await this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
+            }
+          }
+          await this.item.update({effects: [] }, {recursive: false});
+        } else {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
+        }
+      },
+      no: () => {
+        //Nothing
+      }
+    });
+  }
+
+  private getConsumable(event:Event):TwodsixItem | undefined {
+    if (event.currentTarget) {
+      const li = $(event.currentTarget).parents(".consumable");
+      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+    } else {
+      return undefined;
+    }
+  }
+
+  private _onEditConsumable(event:Event): void {
     this.getConsumable(event)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event): Promise<void> {
+  private async _onDeleteConsumable(event:Event): Promise<void> {
     const consumable = this.getConsumable(event);
     if (!consumable) {
       (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?
@@ -279,4 +392,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ui.notifications.error(err);
     }
   }
+}
+/**
+ * Function to return an objects of the damage types from setting: 'damageTypeOptions'
+ * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
+ * @returns {object} An object with the damage type key, label pairs
+ * @export
+ */
+export function getDamageTypes(isWeapon:boolean): object {
+  const returnObject = {};
+  if (game.settings.get('twodsix', 'damageTypeOptions') !== "") {
+    let protectionTypeLabels:string[] = game.settings.get('twodsix', 'damageTypeOptions').split(',');
+    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+    for (const type of protectionTypeLabels) {
+      Object.assign(returnObject, {[camelCase(type)]: type});
+    }
+  }
+  if (isWeapon) {
+    Object.assign(returnObject, {"NONE": "---"});
+  }
+  return returnObject;
 }

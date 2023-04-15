@@ -21,6 +21,7 @@ import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
 import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet } from "./module/sheets/TwodsixAnimalSheet";
+import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -77,6 +78,12 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
+  Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
+    types: ["space-object"],
+    label: "Space Object Sheet",
+    makeDefault: true,
+  });
+
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
@@ -101,6 +108,9 @@ Hooks.once('init', async function () {
     ]
   };
 
+  /*Add time for a combat round default*/
+  CONFIG.time.roundTime = 6;
+
   /*Register CSS Styles*/
   let sheetName = "systems/twodsix/styles/";
   if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
@@ -109,6 +119,10 @@ Hooks.once('init', async function () {
     sheetName += "twodsix.css";
   }
   switchCss(sheetName);
+  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+    document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+  }
 
   if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");

@@ -4,6 +4,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -42,9 +43,13 @@ export class Stats {
   endurance: Attribute;
   stamina: Attribute;
   lifeblood: Attribute;
-  damage: number;
+  damageValue: number;
+  damageType: string;
+  damageLabel: string;
   armorPiercingValue: number;
-  armor: number;
+  effectiveArmor: number;
+  primaryArmor:number;
+  secondaryArmor:number;
   edited = false;
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
@@ -53,17 +58,22 @@ export class Stats {
   useLifebloodOnly = false;
   damageFormula: string;
 
-  constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
+  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
     this.stamina = new Attribute("stamina", actor);
     this.lifeblood = new Attribute("lifeblood", actor);
     this.actor = actor;
-    this.damage = damage;
+    this.damageValue = damageValue;
+    this.damageType = damageType;
+    const damageLabels = getDamageTypes(true);
+    this.damageLabel = damageLabels[damageType];
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
+      this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
+      this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
+      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
@@ -94,11 +104,11 @@ export class Stats {
   }
 
   totalDamage(): number {
-    const totalDamage = Roll.safeEval(this.damageFormula.replaceAll("dmg",this.damage).replaceAll("armor",this.armor));
+    const totalDamage = Roll.safeEval(this.damageFormula.replaceAll("dmg",this.damageValue).replaceAll("armor",this.effectiveArmor));
     if ( totalDamage !== null ) {
       return Math.round(Math.max(totalDamage, 0));
     }
-    return Math.max(this.damage - this.armor, 0);
+    return Math.max(this.damageValue - this.effectiveArmor, 0);
   }
 
   remaining(): number {
@@ -113,15 +123,15 @@ export class Stats {
     return retValue;
   }
 
-  public setDamage(damage: number): void {
-    this.damage = damage;
+  public setDamage(damageValue: number): void {
+    this.damageValue = damageValue;
     if (!this.edited) {
       this.reduceStats();
     }
   }
 
-  public setArmor(armor: number): void {
-    this.armor = armor;
+  public setArmor(effectiveArmor: number): void {
+    this.effectiveArmor = effectiveArmor;
     if (!this.edited) {
       this.reduceStats();
     }
@@ -214,7 +224,9 @@ class DamageDialogHandler {
       if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+          if (stat.original.damage === 0) {
+            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+          }
         }
       } else {
         chrHtml.find(`.damage-input`).removeClass("orange-border");
@@ -292,21 +304,21 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damage, armorPiercingValue} = damageData;
+  const {damageId, damageValue, armorPiercingValue, damageType} = damageData;
   let actor;
   if (damageData.actorId) {
     actor = game.actors?.get(damageData.actorId);
   } else {
     actor = (canvas.tokens?.placeables?.find((t: Token) => t.id === damageData.tokenId) || null)?.actor || null;
   }
-  const actorUsers = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3)) || null;
-  if ((game.user?.isGM && actorUsers && actorUsers.length > 1) || (!game.user?.isGM && !actor.isOwner)) {
+  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3) && !user.isGM) || null;
+  if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
     return;
   }
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
 
-  const stats = new Stats(actor, damage, armorPiercingValue);
+  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);

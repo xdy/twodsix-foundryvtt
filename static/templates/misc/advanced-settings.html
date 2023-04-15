@@ -22,16 +22,22 @@
                     <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
                 </span>
                 {{/iff}}
+
+                {{#iff setting.htmlType "===" "Color"}}
+                <span class = "color-select" name="{{key}}">
+                  {{colorPicker name=key value = setting.value default=setting.value}}
+                </span>
+                {{/iff}}
             </div>
             <p class="notes">{{{localize setting.hint}}}</p>
         </div>
     {{/each}}
     <footer class="sheet-footer flexrow">
       <button type="submit" name="submit">
-          <i class="far fa-save"></i> Save Changes
+          <i class="far fa-save"></i> {{localize "Save Changes"}}
       </button>
       <button name="cancel">
-          <i class="fa-solid fa-circle-x"></i> Close without saving
+          <i class="fa-solid fa-circle-x"></i> {{localize "Cancel"}}
       </button>
     </footer>
 </form>

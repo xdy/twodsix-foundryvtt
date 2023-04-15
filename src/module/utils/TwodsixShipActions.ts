@@ -5,7 +5,8 @@ import { Component, Skills } from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getKeyByValue } from "./sheetUtils";
+import TwodsixActor from "../entities/TwodsixActor";
+import { confirmRollFormula, getKeyByValue } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
@@ -13,68 +14,93 @@ export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{
     [TWODSIX.SHIP_ACTION_TYPE.chatMessage]: <AvailableShipActionData>{
       action: TwodsixShipActions.chatMessage,
-      name: "Chat",
-      placeholder: "Message"
+      name: "TWODSIX.Ship.Chat",
+      placeholder: "TWODSIX.Ship.chatPlaceholder",
+      tooltip: "TWODSIX.Ship.chatTooltip"
     },
     [TWODSIX.SHIP_ACTION_TYPE.skillRoll]: <AvailableShipActionData>{
       action: TwodsixShipActions.skillRoll,
-      name: "Skill Roll",
-      placeholder: "Skill/CHR 8+"
+      name: "TWODSIX.Ship.SkillRoll",
+      placeholder: "TWODSIX.Ship.skillPlaceholder",
+      tooltip: "TWODSIX.Ship.skillTooltip"
     },
     [TWODSIX.SHIP_ACTION_TYPE.fireEnergyWeapons]: <AvailableShipActionData>{
       action: TwodsixShipActions.fireEnergyWeapons,
-      name: "Fire Energy Weapons",
-      placeholder: "Skill/CHR 8+=COMPONENT_ID"
+      name: "TWODSIX.Ship.UseAComponent",
+      placeholder: "TWODSIX.Ship.firePlaceholder",
+      tooltip: "TWODSIX.Ship.fireTooltip"
     }
   };
 
-  public static async chatMessage(msg: string, extra: ExtraData) {
+  public static async chatMessage(msgStr: string, extra: ExtraData) {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
-    if (msg.startsWith("/r") || msg.startsWith("/R")) {
-      let rollText = msg.substring(msg.indexOf(' ') + 1); /* return roll formula after first space */
+    if (msgStr.startsWith("/r") || msgStr.startsWith("/R")) {
+      let rollText = msgStr.substring(msgStr.indexOf(' ') + 1); /* return roll formula after first space */
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
       if(showRollDiag) {
-        rollText = await TwodsixItem.confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
+        rollText = await confirmRollFormula(rollText, (extra.positionName + " " + game.i18n.localize("TWODSIX.Ship.ActionRollFormula")));
       }
       if (Roll.validate(rollText)) {
         const rollData = extra.actor?.getRollData();
         const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        return new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt});
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
+        return msg;
       }
     }
-    return ChatMessage.create({ content: msg, speaker: speakerData });
+    return ChatMessage.create({ content: msgStr, speaker: speakerData });
   }
 
   public static async skillRoll(text: string, extra: ExtraData) {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
     const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    const re = new RegExp(/^(.[^/]+)\/?([a-zA-Z]{0,3}) ?(\d{0,2})\+? ?=? ?(.*?)$/);
+    // eslint-disable-next-line no-useless-escape
+    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/([\S]+))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
     const parsedResult: RegExpMatchArray | null = re.exec(text);
+    const selectedActor = <TwodsixActor>extra.actor;
 
     if (parsedResult !== null) {
-      const [, parsedSkill, char, diff] = parsedResult;
-      let skill = extra.actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === parsedSkill) as TwodsixItem;
+      const [, parsedSkills, char, diff] = parsedResult;
+      const skillOptions = parsedSkills.split("|");
+      let skill = undefined;
+      /* add qualified skill objects to an array*/
+      const skillObjects = selectedActor?.itemTypes.skills.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
+
+      // find the most advantageous sill to use from the collection
+      if(skillObjects?.length > 0){
+        skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
+      }
+
 
       /*if skill missing, try to use Untrained*/
       if (!skill) {
-        skill = (<TwodsixActor>extra.actor)?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
         if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", extra.actor?.name ?? "").replace("_SKILL_", parsedSkill));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkills));
           return false;
         }
       }
 
       /*get characteristic key, default to skill key if none specificed in formula */
       let characteristicKey = "";
+      const charObject = selectedActor?.system["characteristics"] ?? {};
+      //we need an array
+      const charObjectArray = Object.values(charObject);
       if(!char) {
         characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
       } else {
-        characteristicKey = getCharacteristicFromDisplayLabel(char, extra.actor);
+        //find the most advantageous characteristic to use
+        const charOptions = char.split("|");
+        let candidateCharObject = undefined;
+        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+        if(candidateCharObjects.length > 0){
+          candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
+        }
+        characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, selectedActor);;
       }
 
-      const charObject = extra.actor?.system["characteristics"];
+
       let shortLabel = "NONE";
       let displayLabel = "NONE";
       if (charObject && characteristicKey) {
@@ -84,16 +110,22 @@ export class TwodsixShipActions {
       const settings = {
         displayLabel: displayLabel,
         extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
-        rollModifiers: {characteristic: shortLabel, item: extra.diceModifier ? parseInt(extra.diceModifier) : 0}
+        rollModifiers: {characteristic: shortLabel, item: extra.diceModifier ? parseInt(extra.diceModifier) : 0},
+        flags: {tokenUUID: extra.ship?.uuid}
       };
       if (diff) {
         settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
       }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, undefined, extra.actor);
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, selectedActor);
       if (!options.shouldRoll) {
         return false;
       }
-      return skill.skillRoll(showTrowDiag, options);
+
+      if (extra.component) {
+        return extra.component.skillRoll(showTrowDiag, options);
+      } else {
+        return skill.skillRoll(showTrowDiag, options);
+      }
 
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
@@ -102,13 +134,10 @@ export class TwodsixShipActions {
   }
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
-    const [skilText, componentId] = text.split("=");
+    const [skillText, componentId] = text.split("=");
     const component = extra.ship?.items.find(item => item.id === componentId);
-    if ((<Component>component?.system)?.rollModifier) {
-      extra.diceModifier = (<Component>component?.system)?.rollModifier;
-    }
-
-    const result = await TwodsixShipActions.skillRoll(skilText, extra);
+    extra.component = <TwodsixItem>component;
+    const result = await TwodsixShipActions.skillRoll(skillText, extra);
     if (!result) {
       return false;
     }
@@ -119,12 +148,19 @@ export class TwodsixShipActions {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
       } else {
-        TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
+        await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
     }
   }
 }
 
+/**
+ * A function for getting the full characteristic label from the displayed short label.
+ *
+ * @param {string} char           The displayed characteristic short label.
+ * @param {TwodsixActor} actor    The Actor in question.
+ * @returns {string}              Full logical name of the characteristic.
+ */
 export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
   let tempObject = {};
   let charObject= {};
@@ -136,6 +172,5 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
   } else {
     tempObject = TWODSIX.CHARACTERISTICS;
   }
-
   return getKeyByValue(tempObject, char);
 }
