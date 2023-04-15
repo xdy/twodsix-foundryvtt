@@ -354,10 +354,10 @@ export function destroyDamageDialog(damageId: string): void {
 }
 
 export function getDamageCharacteristics(actorType:string): string[] {
-  if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-    return ["endurance", "strength"];
-  } else if ((game.settings.get("twodsix", "animalsUseHits") && actorType === 'animal') || (game.settings.get("twodsix", "robotsUseHits") && actorType === 'robot')) {
+  if ((game.settings.get("twodsix", "animalsUseHits") && actorType === 'animal') || (game.settings.get("twodsix", "robotsUseHits") && actorType === 'robot')) {
     return ["lifeblood"];
+  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    return ["endurance", "strength"];
   } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
     return ["stamina", "lifeblood"];
   } else {
