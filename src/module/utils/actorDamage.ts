@@ -51,6 +51,7 @@ export class Stats {
   useLifebloodStamina = false;
   useLifebloodEndurance = false;
   useLifebloodOnly = false;
+  damageFormula: string;
 
   constructor(actor: TwodsixActor, damage: number, armorPiercingValue: number) {
     this.strength = new Attribute("strength", actor);
@@ -65,6 +66,7 @@ export class Stats {
       this.armor = Math.max((<Traveller>actor.system).primaryArmor.value - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
+    this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
 
     if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
       this.useLifebloodStamina = false;
@@ -91,8 +93,16 @@ export class Stats {
     return retValue;
   }
 
+  totalDamage(): number {
+    const totalDamage = Roll.safeEval(this.damageFormula.replaceAll("dmg",this.damage).replaceAll("armor",this.armor));
+    if ( totalDamage !== null ) {
+      return Math.round(Math.max(totalDamage, 0));
+    }
+    return Math.max(this.damage - this.armor, 0);
+  }
+
   remaining(): number {
-    return this.damage - this.armor - this.currentDamage();
+    return this.totalDamage() - this.currentDamage();
   }
 
   totalCurrent(): number {
@@ -123,10 +133,6 @@ export class Stats {
       retValue -= this[characteristic].damage;
     }
     return retValue;
-  }
-
-  totalDamage(): number {
-    return Math.max(this.damage - this.armor, 0);
   }
 
   public updateActor(): void {
