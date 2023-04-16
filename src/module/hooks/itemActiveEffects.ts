@@ -3,7 +3,7 @@
 
 Hooks.on("updateActiveEffect", (actorEffect, changes, options, userId: string) => {
   if (game.user.id === userId) {
-    if (!options.flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) { //options.flags condition needed, when??
+    if (!changes.flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) { //changes.flags condition needed, when??
       const itemActiveEffectId = actorEffect.getFlag("twodsix", "sourceId");
       if (itemActiveEffectId) {
         const match = actorEffect.origin?.match(/Item\.(.+)/);
