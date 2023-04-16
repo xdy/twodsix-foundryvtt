@@ -370,60 +370,6 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  /*protected override _onUpdateDecendantDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
-    super._onUpdateDecendantDocuments(embeddedName, documents, result, options, userId);
-    if (game.user.id === userId) {
-      if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
-        documents.forEach(async (element:ActiveEffect, i) => {
-          const activeEffectId = element.getFlag("twodsix", "sourceId");
-          if (activeEffectId) {
-            const match = element.origin?.match(/Item\.(.+)/);
-            if (match) {
-              const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
-              delete result[i]._id;
-              const newEffects = item?.effects.map(effect => {
-                if (effect.id === activeEffectId) {
-                  return foundry.utils.mergeObject(effect.toObject(), result[i]);
-                } else {
-                  return effect.toObject();
-                }
-              });
-              // @ts-ignore
-              await item?.update({"effects": newEffects}, {recursive: true}).then();
-            }
-          }
-        });
-      }
-    }
-    //this.render();
-  }*/
-
-  /*protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
-    super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-    //Try to get rid of duplicate effects - This shouldn't be needed
-    if(embeddedName === "Item") {
-      while (documents[0].effects.size > 1) {
-        documents[0].delete(documents[0].effects.contents[1].id);
-      }
-    }
-    console.log(embeddedName, documents, result, options, userId );
-  }*/
-  /*protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
-    if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
-      const ownedItem = <TwodsixItem>documents[0];
-      const selectedActor = <TwodsixActor>ownedItem.actor;
-      const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
-      if (effectToDelete?.id) {
-        await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
-      }
-    }
-    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
-  }*/
-  /*protected async _preCreate(data, options, user) {
-    super._preCreate(data, options, user);
-    console.log("Precreate", this);
-  }*/
-
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
       await super._onCreate(data, options, userId);
