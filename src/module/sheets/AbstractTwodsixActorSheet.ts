@@ -554,17 +554,20 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onDeleteEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
-    const selectedEffect = await fromUuid(effectUuid);
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        await selectedEffect?.delete();
-      },
-      no: () => {
-        //Nothing
-      }
-    });
+    const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
+    if (selectedEffect) {
+      await Dialog.confirm({
+        title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+        content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+        yes: async () => {
+          //await selectedEffect?.delete();
+          await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect.id]);
+        },
+        no: () => {
+          //Nothing
+        }
+      });
+    }
   }
 
   protected async _modifyEffect(event): Promise<void> {
