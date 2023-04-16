@@ -71,6 +71,10 @@
         "ALT2": "ALT2"
       },
       "CharacteristicEdit": "Toggle Edit Mode for Characteristic Short Names",
+      "Chassis": "Chassis",
+      "OperationalTime": "Operational Time",
+      "Price": "Price",
+      "LocomotionType": "Locomotion Type",
       "DeleteOwnedItem": "Delete owned item",
       "Finances": {
         "CASH_ON_HAND": "CASH ON HAND",
@@ -109,6 +113,7 @@
         "ARMOR": "ARMOR",
         "ATTACHMENTS": "ATTACHMENTS",
         "AUGMENTS": "AUGMENTS",
+        "Augments": "Augments",
         "Ammo": "Ammo",
         "Armor": "Armor",
         "EffectiveArmor": "Effective Armor",
@@ -254,6 +259,7 @@
       },
       "Location": "Location",
       "AnimalNotes": "Animal Notes",
+      "RobotNotes": "Robot Notes",
       "AttackWeapons": "Attacks / Weapons",
       "Reaction": "Reaction Roll",
       "Attack": "Attack",
@@ -1081,6 +1087,10 @@
         "hint": "Show reaction and morale information on animal sheet.",
         "name": "Show animal reaction and morale"
       },
+      "robotsUseHits": {
+        "hint": "Robots have only one damage statistic: hits.",
+        "name": "Robots use hits for damage"
+      },
       "showComponentRating": {
         "hint": "Show rating field on ship component item sheet.",
         "name": "Show component rating"
@@ -1270,11 +1280,13 @@
     "TypeShip": "Ship",
     "TypeVehicle": "Vehicle",
     "TypeAnimal": "Animal",
+    "TypeRobot": "Robot",
     "TypeSpace-object": "Space Object",
     "TypeTravellerPl": "Travellers",
     "TypeShipPl": "Ships",
     "TypeVehiclePl": "Vehicles",
     "TypeAnimalPl": "Animals",
+    "TypeRobotPl": "Robots",
     "TypeSpace-objectPl": "Space Objects"
   }
 }

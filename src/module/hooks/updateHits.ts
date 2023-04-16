@@ -20,7 +20,7 @@ async function getCurrentHits(actorType: string, ...args: Record<string, any>[])
 }
 
 Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
-  if (update.system?.characteristics && (actor.type === 'traveller' || actor.type === 'animal')) {
+  if (update.system?.characteristics && (["traveller", "animal", "robot"].includes(actor.type))) {
     update.system.hits = await getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
     await Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
     if (update.system.hits.lastDelta !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {

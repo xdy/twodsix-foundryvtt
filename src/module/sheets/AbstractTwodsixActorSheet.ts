@@ -326,7 +326,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
         item.prepareConsumable();
       }
-      if (actor.type === "traveller" || actor.type === "animal") {
+      if (["traveller", "animal", "robot"].includes(actor.type)) {
         if (item.type === "skills") {
           if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
             numberOfSkills += 1;
