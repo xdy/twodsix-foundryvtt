@@ -57,7 +57,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       animalsUseHits: game.settings.get('twodsix', 'animalsUseHits'),
-      dontShowStatBlock: (game.settings.get('twodsix', 'animalsUseHits') | game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
+      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills')

@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["traveller", "ship", "vehicle", "animal", "space-object"],
+    "types": ["traveller", "ship", "vehicle", "animal", "robot", "space-object"],
     "traveller": {
       "name": "",
       "homeWorld": "",
@@ -481,6 +481,145 @@
         "units": "m",
         "hover": false
       }
+    },
+    "robot": {
+      "name": "",
+      "size": "",
+      "hits": {
+        "value": 21,
+        "min": 0,
+        "max": 21
+      },
+      "radiationDose": {
+        "value": 0,
+        "max": 0,
+        "min": 0
+      },
+      "encumbrance": {
+        "value": 0,
+        "max": 0
+      },
+      "primaryArmor": {
+        "value": 0
+      },
+      "secondaryArmor": {
+        "value": 0
+      },
+      "radiationProtection": {
+        "value": 0
+      },
+      "untrainedSkill": "",
+      "description": "",
+      "notes": "",
+      "characteristics": {
+        "strength": {
+          "key": "strength",
+          "value": 7,
+          "damage": 0,
+          "label": "Strength",
+          "shortLabel": "STR",
+          "displayShortLabel": ""
+        },
+        "dexterity": {
+          "key": "dexterity",
+          "value": 7,
+          "damage": 0,
+          "label": "Dexterity",
+          "shortLabel": "DEX",
+          "displayShortLabel": ""
+        },
+        "endurance": {
+          "key": "endurance",
+          "value": 7,
+          "damage": 0,
+          "label": "Endurance",
+          "shortLabel": "END",
+          "displayShortLabel": ""
+        },
+        "intelligence": {
+          "key": "intelligence",
+          "value": 7,
+          "damage": 0,
+          "label": "Intelligence",
+          "shortLabel": "INT",
+          "displayShortLabel": ""
+        },
+        "education": {
+          "key": "education",
+          "value": 7,
+          "damage": 0,
+          "label": "Education",
+          "shortLabel": "EDU",
+          "displayShortLabel": "EDU"
+        },
+        "socialStanding": {
+          "key": "socialStanding",
+          "value": 7,
+          "damage": 0,
+          "label": "Social Standing",
+          "shortLabel": "SOC",
+          "displayShortLabel": "SOC"
+        },
+        "psionicStrength": {
+          "key": "psionicStrength",
+          "value": 7,
+          "damage": 0,
+          "label": "Psionic Strength",
+          "shortLabel": "PSI",
+          "displayShortLabel": ""
+        },
+        "stamina": {
+          "key": "stamina",
+          "value": 7,
+          "damage": 0,
+          "label": "Stamina",
+          "shortLabel": "STA",
+          "displayShortLabel": ""
+        },
+        "lifeblood": {
+          "key": "lifeblood",
+          "value": 14,
+          "damage": 0,
+          "label": "Lifeblood",
+          "shortLabel": "LFB",
+          "displayShortLabel": ""
+        },
+        "alternative1": {
+          "key": "alternative1",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 1",
+          "shortLabel": "ALT1",
+          "displayShortLabel": ""
+        },
+        "alternative2": {
+          "key": "alternative2",
+          "value": 7,
+          "damage": 0,
+          "label": "Alternative 2",
+          "shortLabel": "ALT2",
+          "displayShortLabel": ""
+        }
+      },
+      "conditions": {
+        "woundedEffect": 0,
+        "encumberedEffect": 0
+      },
+      "characteristicEdit": false,
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "fly": 0,
+        "swim": 0,
+        "walk": 10,
+        "units": "m",
+        "hover": false
+      },
+      "locomotionType": "",
+      "price": "",
+      "chassis": "",
+      "techLevel": 0,
+      "operationalTime": ""
     },
     "space-object": {
       "templates": ["referenceTemplate"],
