@@ -121,6 +121,7 @@
         "HideStored": "Ocultar objetos almacenados",
         "EQUIPMENT": "EQUIPO",
         "EQUIPMENT_TOOLS": "EQUIPO/HERRAMIENTAS",
+        "STORAGE_JUNK": "ALMACEN Y BASURA",
         "EditItem": "Editar Objeto",
         "Effect": "Efecto",
         "Location": "Zona",
@@ -335,7 +336,7 @@
       "Component": {
         "Ammunition": "Munición",
         "componentName": "Componente",
-        "accomodations": "habitáculos",
+        "accomodations": "alojamiento",
         "armament": "armamento",
         "armor": "armadura",
         "bridge": "puente",
@@ -419,13 +420,14 @@
         "Weight": "KG",
         "isAttachment": "¿Accesorio?",
         "NewAttachment": "Nuevo Accesorio",
-        "BonusDamage": "Bono Daño"
+        "BonusDamage": "Bono Daño",
+        "PriorType": "Tipo Objeto Anterior"
       },
       "Items": {
         "AssignArmor": "Armadura",
         "AssignAugment": "Aumento",
         "AssignEquipment": "Equipo",
-        "AssignJunk": "Chatarra",
+        "AssignJunk": "Asignar Chatarra",
         "AssignTool": "Herramienta",
         "AssignWeapon": "Arma",
         "AssignConsumable": "Consumible",
@@ -434,7 +436,8 @@
         "ItemType": "Tipo",
         "MoveStorage": "Mover Carga",
         "New": "Nuevo",
-        "Storage": "Carga"
+        "Storage": "Carga",
+        "Junk": "Chatarra"
       },
       "Skills": {
         "DEX": "DES",
@@ -1169,7 +1172,8 @@
       "consumable": "consumible",
       "trait": "rasgo",
       "spell": "conjuro",
-      "component": "componente"
+      "component": "componente",
+      "computer": "computadora"
     },
     "speeds": {
       "walk": "Andar",
@@ -1240,7 +1244,7 @@
       "computer": "Computadora",
       "augment": "Aumento",
       "storage": "Almacén",
-      "junk": "Basura",
+      "junk": "Chatarra",
       "skills": "Habilidad",
       "trait": "Rasgo",
       "ship_position": "Posición Nave",
@@ -1257,7 +1261,7 @@
       "computerPl": "Computadoras",
       "augmentPl": "Aumentos",
       "storagePl": "Almacén",
-      "junkPl": "Basura",
+      "junkPl": "Chatarra",
       "skillsPl": "Habilidades",
       "traitPl": "Rasgos",
       "ship_positionPl": "Posiciones Nave"
