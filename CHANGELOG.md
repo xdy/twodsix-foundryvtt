@@ -1,3 +1,10 @@
+# [2.28.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.3...v2.28.0) (2023-04-16)
+
+
+### Features
+
+* add robot sheet ([#1293](https://github.com/xdy/twodsix-foundryvtt/issues/1293)) ([1158bad](https://github.com/xdy/twodsix-foundryvtt/commit/1158bad14459afabf50b93f5325c857022681851))
+
 ## [2.27.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.2...v2.27.3) (2023-04-12)
 
 
