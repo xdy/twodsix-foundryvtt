@@ -1,5 +1,6 @@
 <div class="character-characteristics">
   <div class="stat endurance" data-characteristic="endurance">
+    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
     <span class="stat-name" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}"
     style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.END"}}
   </span>
@@ -15,6 +16,7 @@
   </div>
 
   <div class="stat strength" data-characteristic="strength">
+    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
     <span class="stat-name" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}"
     style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.LFB"}}</span>
 
@@ -32,7 +34,8 @@
   </div>
 
   {{#if settings.showContaminationBelowLifeblood}}
-    <div class="stat psionicStrength" data-characteristic="intelligence">
+    <div class="stat psionicStrength" data-characteristic="psionicStrength">
+      {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
       <span class="stat-name" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}"
       style="text-align: center;">{{localize "TWODSIX.Actor.Characteristics.CTM"}}
     </span>
