@@ -46,24 +46,24 @@
         <tr class="stamina">
           <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.STA"}}</td>
           <td class="original-value">{{originalCharacteristics.stamina.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.stamina.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.stamina.current}}</span></td>
           <td><input class="damage-input" data-stat="stamina" type="number" value="{{stamina.damage}}"></td>
-          <td><span class="result-value"></span> <span class="mod"></span></td>
+          <td><span class="result-value"></span></td>
         </tr>
         <tr class="lifeblood">
           <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.LFB"}}</td>
           <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span></td>
           <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
-          <td><span class="result-value"></span> <span class="mod"></span></td>
+          <td><span class="result-value"></span></td>
         </tr>
       {{else if useLifebloodOnly}}
         <tr class="lifeblood">
           <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.HIT"}}</td>
           <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span></td>
           <td><input class="damage-input" data-stat="lifeblood" type="number" value="{{lifeblood.damage}}"></td>
-          <td><span class="result-value"></span> <span class="mod"></span></td>
+          <td><span class="result-value"></span></td>
         </tr>
       {{else}}
         <tr class="strength">
@@ -73,15 +73,15 @@
             <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.STR"}}</td>
           {{/if}}
           <td class="original-value">{{originalCharacteristics.strength.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.strength.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.strength.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
           <td><input class="damage-input" data-stat="strength" type="number" value="{{strength.damage}}"></td>
-          <td><span class="result-value"></span> <span class="mod"></span></td>
+          <td><span class="result-value"></span>{{#unless useLifebloodEndurance}} <span class="mod"></span>{{/unless}}</td>
         </tr>
         {{#unless useLifebloodEndurance}}
         <tr class="dexterity">
           <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.DEX"}}</td>
           <td class="original-value">{{originalCharacteristics.dexterity.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.dexterity.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.dexterity.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
           <td><input class="damage-input" data-stat="dexterity" type="number" value="{{dexterity.damage}}"></td>
           <td><span class="result-value"></span> <span class="mod"></span></td>
         </tr>
@@ -89,9 +89,9 @@
         <tr class="endurance">
           <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.END"}}</td>
           <td class="original-value">{{originalCharacteristics.endurance.value}}</td>
-          <td><span class="original-current">{{originalCharacteristics.endurance.current}}</span> <span class="current-mod"></span></td>
+          <td><span class="original-current">{{originalCharacteristics.endurance.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
           <td><input class="damage-input" data-stat="endurance" type="number" value="{{endurance.damage}}"></td>
-          <td><span class="result-value"></span> <span class="mod"></span></td>
+          <td><span class="result-value"></span>{{#unless useLifebloodEndurance}} <span class="mod"></span>{{/unless}}</td>
         </tr>
       {{/if}}
     </tbody>

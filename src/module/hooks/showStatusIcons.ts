@@ -123,7 +123,9 @@ async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void>
   const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.name === effectType.encumbered);
   let state = false;
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
-  if(maxEncumbrance > 0) {
+  if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
+    state = true;
+  } else if (maxEncumbrance > 0) {
     const ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
     state = (ratio > parseFloat(await game.settings.get('twodsix', 'encumbranceFraction')));
   }
@@ -209,14 +211,21 @@ async function setConditionState(effectName: string, targetActor: TwodsixActor, 
   }
 }
 
-async function setWoundedState(effectName: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.name === effectName);
-  if (isAlreadySet.length > 0 && (state === false)) {
+async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.name === effectLabel);
+  let currentEffectId = "";
+  //Clean up effects
+  if (isAlreadySet.length > 0) {
     const idList= isAlreadySet.map(i => <string>i.id);
+    if (state) {
+      currentEffectId = idList.pop();
+    }
     if(idList.length > 0) {
       await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
-  } else {
+  }
+  //Set effect if state true
+  if (state) {
     let woundModifier = 0;
     switch (tint) {
       case DAMAGECOLORS.minorWoundTint:
@@ -227,8 +236,7 @@ async function setWoundedState(effectName: string, targetActor: TwodsixActor, st
         break;
     }
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
-
-    if (isAlreadySet.length === 0 && state === true) {
+    if (!currentEffectId) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: effectName,
         icon: "icons/svg/blood.svg",
@@ -236,10 +244,11 @@ async function setWoundedState(effectName: string, targetActor: TwodsixActor, st
         changes: [changeData],
         statuses: ['bleeding']
       }]);
-      //const newEffect = await targetActor.effects.find(eff => eff.name === effectName);
-      //newEffect?.statuses.add("bleeding"); /*FIX*/
-    } else if (isAlreadySet.length > 0 && state === true) {
-      await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: isAlreadySet[0].id, tint: tint, changes: [changeData] }]);
+    } else {
+      const currentEfffect = targetActor.effects.get(currentEffectId);
+      if (currentEfffect.tint !== tint) {
+        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
+      }
     }
   }
 }

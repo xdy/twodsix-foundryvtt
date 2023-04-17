@@ -76,14 +76,14 @@ export class Stats {
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
 
-    if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-      this.useLifebloodStamina = false;
-      this.useLifebloodEndurance = true;
-      this.useLifebloodOnly = false;
-    } else if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
+    if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
       this.useLifebloodStamina = false;
       this.useLifebloodEndurance = false;
       this.useLifebloodOnly = true;
+    } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+      this.useLifebloodStamina = false;
+      this.useLifebloodEndurance = true;
+      this.useLifebloodOnly = false;
     } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
       this.useLifebloodStamina = true;
       this.useLifebloodEndurance = false;

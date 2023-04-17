@@ -1,3 +1,10 @@
+## [2.28.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.28.0...v2.28.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* Misc small fixes ([#1297](https://github.com/xdy/twodsix-foundryvtt/issues/1297)) ([c9efedc](https://github.com/xdy/twodsix-foundryvtt/commit/c9efedccda0606f11a7d4ce9b02942402cbd22f2))
+
 # [2.28.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.27.3...v2.28.0) (2023-04-16)
 
 
