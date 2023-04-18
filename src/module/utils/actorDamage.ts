@@ -78,14 +78,14 @@ export class Stats {
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
 
-    if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-      this.useLifebloodStamina = false;
-      this.useLifebloodEndurance = true;
-      this.useLifebloodOnly = false;
-    } else if (game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal') {
+    if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
       this.useLifebloodStamina = false;
       this.useLifebloodEndurance = false;
       this.useLifebloodOnly = true;
+    } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+      this.useLifebloodStamina = false;
+      this.useLifebloodEndurance = true;
+      this.useLifebloodOnly = false;
     } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
       this.useLifebloodStamina = true;
       this.useLifebloodEndurance = false;
@@ -361,10 +361,10 @@ export function destroyDamageDialog(damageId: string): void {
 }
 
 export function getDamageCharacteristics(actorType:string): string[] {
-  if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
-    return ["endurance", "strength"];
-  } else if (actorType === "animal" && game.settings.get("twodsix", "animalsUseHits")) {
+  if ((game.settings.get("twodsix", "animalsUseHits") && actorType === 'animal') || (game.settings.get("twodsix", "robotsUseHits") && actorType === 'robot')) {
     return ["lifeblood"];
+  } else if (game.settings.get("twodsix", "lifebloodInsteadOfCharacteristics")) {
+    return ["endurance", "strength"];
   } else if (game.settings.get("twodsix", "showLifebloodStamina")) {
     return ["stamina", "lifeblood"];
   } else {

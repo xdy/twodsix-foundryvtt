@@ -29,6 +29,7 @@ export default class TwodsixActor extends Actor {
     switch (this.type) {
       case 'traveller':
       case 'animal':
+      case 'robot':
         this._prepareTravellerData();
         break;
       case 'ship':
@@ -485,6 +486,17 @@ export default class TwodsixActor extends Actor {
           this.deleteCustomAEs();
           this.fixItemAEs();
           break;
+        case "robot":
+          await this.createUntrainedSkill();
+          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+            isDefaultImg = true;
+            Object.assign(changeData, {
+              'img': 'systems/twodsix/assets/icons/default_robot.svg'
+            });
+          }
+          this.deleteCustomAEs();
+          this.fixItemAEs();
+          break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
             isDefaultImg = true;
@@ -552,7 +564,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async healActor(healing: number): Promise<void> {
-    if (this.type === "traveller" || this.type === "animal") {
+    if (["traveller", "animal", "robot"].includes(this.type)) {
       let damageCharacteristics: string[] = [];
       if (game.settings.get('twodsix', 'reverseHealingOrder')) {
         damageCharacteristics = getDamageCharacteristics(this.type).reverse();
@@ -665,7 +677,7 @@ export default class TwodsixActor extends Actor {
 
   public static resetUntrainedSkill(): void {
     applyToAllActors((actor:TwodsixActor) => {
-      if (actor.type === "traveller" || actor.type === 'animal') {
+      if (["traveller", "animal", "robot"].includes(actor.type)) {
         const itemUpdates = [];
         for (const item of actor.items) {
           if (item.type !== "skills") {
@@ -686,7 +698,7 @@ export default class TwodsixActor extends Actor {
 
   public static setUntrainedSkillForItems(): void {
     applyToAllActors((actor: TwodsixActor) => {
-      if (actor.type === "traveller" || actor.type === 'animal') {
+      if (["traveller", "animal", "robot"].includes(actor.type)) {
         const itemUpdates = [];
         for (const item of actor.items) {
           if (!(item.system).skill && item.type !== "skills") {
@@ -703,7 +715,7 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Method to modify Traveller or Animal actor from token bar input. Special processing for "hits" attribute.
+   * Method to modify Traveller, Robot or Animal actor from token bar input. Special processing for "hits" attribute.
    * @param {string} attribute    The characteristic attribute (full name) being changed or generic "hits" attribute
    * @param {number} value  The change to the attribute (either a delta or direct value)
    * @param {boolean} isDelta Whether the value is a delta or an absolute number
@@ -712,7 +724,7 @@ export default class TwodsixActor extends Actor {
    * @public
    */
   public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
-    if ( attribute === "hits" && (this.type === "traveller" || this.type === 'animal')) {
+    if ( attribute === "hits" && ["traveller", "animal", "robot"].includes(this.type)) {
       const hits = getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
@@ -907,6 +919,13 @@ export default class TwodsixActor extends Actor {
           return this._addDroppedEquipment(itemData);
         }
         break;
+      case 'robot':
+        if (itemData.type === 'skills') {
+          return this._addDroppedSkills(itemData);
+        } else if (["weapon", "trait", "augment"].includes(itemData.type)) {
+          return this._addDroppedEquipment(itemData);
+        }
+        break;
       case 'ship':
         if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
           return this._addDroppedEquipment(itemData);
@@ -923,7 +942,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean) {
-    if (this.type === 'traveller' || this.type === 'animal') {
+    if (["traveller", "animal", "robot"].includes(this.type)) {
       await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
