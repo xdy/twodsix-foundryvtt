@@ -2,18 +2,18 @@
   <div class="ship-mass">
     <span>{{localize "TWODSIX.Ship.Displacement"}}</span>
     <span>({{localize "TWODSIX.Ship.dtons"}})</span>
-    <span><input type="number" value="{{actor.system.shipStats.mass.max}}" name="system.shipStats.mass.max" placeholder="0"/></span>
+    <span class="ship-mass-max"><input type="number" value="{{actor.system.shipStats.mass.max}}" name="system.shipStats.mass.max" placeholder="0"/></span>
     <span>{{localize "TWODSIX.Actor.Items.TechLevel"}}</span>
-    <span><input type="number" value="{{actor.system.techLevel}}" name="system.techLevel" placeholder="0"/></span>
+    <span class="ship-tl"><input type="number" value="{{actor.system.techLevel}}" name="system.techLevel" placeholder="0"/></span>
   </div>
   <div class="ship-drives">
     <!--<span>{{localize "TWODSIX.Ship.Drives"}}</span>-->
     <span>{{localize "TWODSIX.Ship.Jump"}}</span>
-    <span>
+    <span class="j-drive">
       <input type="number" value="{{actor.system.shipStats.drives.jDrive.rating}}" name="system.shipStats.drives.jDrive.rating" placeholder="0" min="0" max="15" step="1"/><abbr data-tooltip='{{localize "TWODSIX.Ship.Parsecs"}}'>{{localize "TWODSIX.Ship.pc"}}</abbr>
     </span>
     <span>{{localize "TWODSIX.Ship.Thrust"}}</span>
-    <span>
+    <span class="m-drive">
       <input type="number" value="{{actor.system.shipStats.drives.mDrive.rating}}" name="system.shipStats.drives.mDrive.rating" placeholder="0" min="0" max="15" step="1"/>
       {{localize "TWODSIX.Ship.Gs"}}
     </span>
@@ -44,7 +44,7 @@
         <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
       </span>
       <span class="hull-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</span>
-      <span class="ship-fuel-value">
+      <span class="ship-fuel-value ship-bandwidth">
         <input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" {{#if settings.useShipAutoCalc}}readonly{{/if}} />/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" {{#if settings.useShipAutoCalc}}readonly{{/if}}/>
         <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
       </span>
