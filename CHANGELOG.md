@@ -1,3 +1,10 @@
+# [2.29.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.28.1...v2.29.0) (2023-04-18)
+
+
+### Features
+
+* Allow user defined armor handling ([#1294](https://github.com/xdy/twodsix-foundryvtt/issues/1294)) ([132e1f7](https://github.com/xdy/twodsix-foundryvtt/commit/132e1f77718411eed4e892bd3ca5e9425a21f28e))
+
 ## [2.28.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.28.0...v2.28.1) (2023-04-17)
 
 
