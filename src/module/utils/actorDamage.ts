@@ -56,6 +56,7 @@ export class Stats {
   useLifebloodStamina = false;
   useLifebloodEndurance = false;
   useLifebloodOnly = false;
+  damageFormula: string;
 
   constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string) {
     this.strength = new Attribute("strength", actor);
@@ -75,6 +76,7 @@ export class Stats {
       this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
+    this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
 
     if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
       this.useLifebloodStamina = false;
@@ -101,8 +103,18 @@ export class Stats {
     return retValue;
   }
 
+  totalDamage(): number {
+    const rollData = duplicate(this.actor.system);
+    Object.assign(rollData, {damage: this.damageValue, effectiveArmor: this.effectiveArmor});
+    if (Roll.validate(this.damageFormula)) {
+      const totalDamage = new Roll(this.damageFormula, rollData).evaluate({async: false}).total;
+      return Math.round(Math.max(totalDamage, 0));
+    }
+    return Math.max(this.damageValue - this.effectiveArmor, 0);
+  }
+
   remaining(): number {
-    return this.damageValue - this.effectiveArmor - this.currentDamage();
+    return this.totalDamage() - this.currentDamage();
   }
 
   totalCurrent(): number {
@@ -133,10 +145,6 @@ export class Stats {
       retValue -= this[characteristic].damage;
     }
     return retValue;
-  }
-
-  totalDamage(): number {
-    return Math.max(this.damageValue - this.effectiveArmor, 0);
   }
 
   public updateActor(): void {
