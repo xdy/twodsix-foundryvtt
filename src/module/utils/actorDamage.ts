@@ -104,9 +104,10 @@ export class Stats {
   }
 
   totalDamage(): number {
-    const finalDamageFormula = this.damageFormula.replaceAll("@damage",this.damageValue).replaceAll("@effectiveArmor",this.effectiveArmor);
-    if (Roll.validate(finalDamageFormula)) {
-      const totalDamage = new Roll(finalDamageFormula, this.actor.system).evaluate({async: false}).total;
+    const rollData = duplicate(this.actor.system);
+    Object.assign(rollData, {damage: this.damageValue, effectiveArmor: this.effectiveArmor});
+    if (Roll.validate(this.damageFormula)) {
+      const totalDamage = new Roll(this.damageFormula, rollData).evaluate({async: false}).total;
       return Math.round(Math.max(totalDamage, 0));
     }
     return Math.max(this.damageValue - this.effectiveArmor, 0);
