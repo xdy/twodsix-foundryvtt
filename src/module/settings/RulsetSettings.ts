@@ -38,6 +38,7 @@ export default class RulesetSettings extends AdvancedSettings {
 
     const settings: string[] = [];
     settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
+    settings.push(stringSetting('armorDamageFormula', "@damage - @effectiveArmor", false, 'world'));
     settings.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
     settings.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
     settings.push(booleanSetting('difficultiesAsTargetNumber', false));

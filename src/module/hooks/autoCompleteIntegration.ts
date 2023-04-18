@@ -79,6 +79,15 @@ Hooks.on("aipSetup", (packageConfig) => {
               customDataGetter: () =>
                 _getTravellerData(),
               inlinePrefix: "@"
+            },
+            {
+              selector: `input[type="text"][name="armorDamageFormula"]`,
+              showButton: true,
+              allowHotkey: true,
+              dataMode: DATA_MODE.CUSTOM,
+              customDataGetter: () =>
+                _getArmorData(),
+              inlinePrefix: "@"
             }
           ]
         }
@@ -111,5 +120,15 @@ function _getTravellerData(): any {
  */
 function _getShipData(): any {
   const returnObject = duplicate(game.system.template.Actor.ship);
+  return returnObject;
+}
+/**
+ * Retruns the Traveller data template with .characteristics[X].mod, .skills and .damage and .effectiveArmor added
+ * @returns {any} An object of the traveller actor template
+ * @private
+ */
+function _getArmorData(): any {
+  const returnObject = _getTravellerData();
+  Object.assign(returnObject, {damage: "", effectiveArmor: ""});
   return returnObject;
 }

@@ -88,6 +88,7 @@ declare global {
       'twodsix.alternativeShort2': string;
       'twodsix.maxComponentHits':number;
       'twodsix.initiativeFormula': string;
+      'twodsix.armorDamageFormula': string;
       'twodsix.systemMigrationVersion': string;
       'twodsix.termForAdvantage': string;
       'twodsix.termForDisadvantage': string;
