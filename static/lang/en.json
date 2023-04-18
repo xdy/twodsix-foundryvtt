@@ -817,7 +817,7 @@
         "name": "Initiative Formula"
       },
       "armorDamageFormula": {
-        "hint": "Use VTT roll math without dices '@damage'/'@effectiveArmor' are replaced with the damage/effective armor. default behaviour: \"@damage-@effectiveArmor\"",
+        "hint": "Use VTT roll math without dice terms '@damage'/'@effectiveArmor' are replaced with the damage/effective armor. default behaviour: \"@damage-@effectiveArmor\"",
         "name": "Armor damage reduction formula"
       },
       "invertSkillRollShiftClick": {
