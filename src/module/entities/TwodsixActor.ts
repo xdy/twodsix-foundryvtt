@@ -1057,7 +1057,7 @@ export default class TwodsixActor extends Actor {
     const returnObject = {};
     for (const skill of this.itemTypes.skills) {
       if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills')) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
-        Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${skill.system.value})`});
+        Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
       }
     }
     return returnObject;

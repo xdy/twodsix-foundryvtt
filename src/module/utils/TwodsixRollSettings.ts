@@ -264,12 +264,20 @@ export class TwodsixRollSettings {
         content: html,
         buttons: buttons,
         default: 'ok',
+        render: handleRender,
         close: () => {
           resolve();
         },
       }).render(true);
     });
   }
+}
+function handleRender(html) {
+  html.on("change", ".select-skill", () => {
+    const characteristicVal = html.find('[name="rollModifiers.characteristic"]');
+    const newSkillUuid = html.find('[name="rollModifiers.selectedSkill"]').val();
+    characteristicVal.val(fromUuidSync(newSkillUuid).system.characteristic);
+  });
 }
 
 export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {

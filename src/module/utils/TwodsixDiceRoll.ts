@@ -8,6 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
+import { simplifySkillName } from "./utils";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -49,8 +50,9 @@ export class TwodsixDiceRoll {
 
     // Add skill modifier
     if (this.rollSettings.skillRoll) {
-      formula += this.skill?.system.value < 0 ? " - @skillValue" : " + @skillValue";
-      formulaData.skillValue = this.skill?.system.value < 0 ? -this.skill?.system.value : this.skill?.system.value;
+      const skillValue = this.actor.system.skills[simplifySkillName(this.skill?.name)];
+      formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
+      formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
     }
 
     // Add chain modifier
@@ -206,7 +208,7 @@ export class TwodsixDiceRoll {
 
     //Skill Level
     if (this.rollSettings.skillRoll) {
-      const skillValue = TwodsixDiceRoll.addSign(this.skill?.system.value);
+      const skillValue = TwodsixDiceRoll.addSign(this.actor.system.skills[simplifySkillName(this.skill?.name)]);
       flavorText += ` ${usingString} ${this.skill?.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill?.name}</td><td class="centre">${skillValue}</td></tr>`;
 
