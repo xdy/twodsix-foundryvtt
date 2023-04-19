@@ -2,6 +2,15 @@
 <form>
   <fieldset>
   <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
+    {{#if skillRoll}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Actor.Skills.SkillName"}}
+          <select class="select-skill" name="rollModifiers.selectedSkill" value={{rollModifiers.selectedSkill}}>
+          {{selectOptions skillsList selected=initialSkill}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
         <select name="difficulty">
@@ -43,7 +52,7 @@
       {{#if skillRoll}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.SkillModifier"}}
-          <input type="number" name="rollModifiers.skill" value="{{rollModifiers.skill}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+          <input type="number" name="rollModifiers.skillValue" value="{{rollModifiers.skillValue}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
           ({{skillLabel}})
         </label>
       </div>
