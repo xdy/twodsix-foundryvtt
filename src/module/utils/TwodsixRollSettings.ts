@@ -218,7 +218,7 @@ export class TwodsixRollSettings {
           this.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          this.rollModifiers.skillValue = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skillValue"]').val(), 10) : this.rollModifiers.skillValue;
+          //this.rollModifiers.skillValue = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skillValue"]').val(), 10) : this.rollModifiers.skillValue;
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
@@ -274,9 +274,21 @@ export class TwodsixRollSettings {
 }
 function handleRender(html) {
   html.on("change", ".select-skill", () => {
-    const characteristicVal = html.find('[name="rollModifiers.characteristic"]');
+    const characteristicElement = html.find('[name="rollModifiers.characteristic"]');
     const newSkillUuid = html.find('[name="rollModifiers.selectedSkill"]').val();
-    characteristicVal.val(fromUuidSync(newSkillUuid).system.characteristic);
+    const newSkill = fromUuidSync(newSkillUuid);
+    characteristicElement.val(newSkill.system.characteristic);
+    let title = "";
+    const titleElement = html.parent().parent().find('.window-title')[0];
+    if (titleElement) {
+      const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
+      if (titleElement.innerText.includes(usingWord)) {
+        title = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill.name}`;
+      } else {
+        title = newSkill.name || "";
+      }
+      titleElement.innerText = title;
+    }
   });
 }
 

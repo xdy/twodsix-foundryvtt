@@ -49,8 +49,8 @@ export class TwodsixDiceRoll {
     }
 
     // Add skill modifier
-    if (this.rollSettings.skillRoll) {
-      const skillValue = this.actor.system.skills[simplifySkillName(this.skill?.name)];
+    if (this.skill) {
+      const skillValue = this.actor.system.skills[simplifySkillName(this.skill.name)];
       formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
       formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
     }
@@ -207,10 +207,10 @@ export class TwodsixDiceRoll {
     }
 
     //Skill Level
-    if (this.rollSettings.skillRoll) {
-      const skillValue = TwodsixDiceRoll.addSign(this.actor.system.skills[simplifySkillName(this.skill?.name)]);
-      flavorText += ` ${usingString} ${this.skill?.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill?.name}</td><td class="centre">${skillValue}</td></tr>`;
+    if (this.skill) {
+      const skillValue = TwodsixDiceRoll.addSign(this.actor.system.skills[simplifySkillName(this.skill.name)]);
+      flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
       //Chain Roll
       if (this.rollSettings.rollModifiers.chain) {
