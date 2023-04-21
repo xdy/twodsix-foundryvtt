@@ -4,7 +4,7 @@
           name="system.homeWorld" type="text" value="{{system.homeWorld}}"
           placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
 {{else}}
-  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'><i class="fa-solid fa-flag"></i>:<input
+  <span class="bgi-homeWorld bgi-nationality" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'><i class="fa-solid fa-flag"></i>:<input
     name="system.nationality" type="text" value="{{system.nationality}}"
     placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
 {{/unless}}
@@ -12,7 +12,7 @@
   <i class="fa-solid fa-calendar-days"></i>:<input type="text" name="system.age.value" value="{{system.age.value}}" placeholder="0"  /></span>
 <!-- Hero Points Information-->
 {{#if settings.showHeroPoints}}
-  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
+  <span class="bgi-armor bgi-heroPoints" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
   <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
         step="1" placeholder="2" /></span>
 {{/if}}
@@ -29,7 +29,7 @@
 <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
         style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
        readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
-<span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
+<span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
         name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
 <span class="bgi-encumbrance" data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
@@ -46,20 +46,20 @@
 
 <!-- Damage Stats Information-->
 {{#if settings.showLifebloodStamina}}
-<span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'>
+<span class="bgi-char-narrow bgi-stamina-value" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'>
     {{#iff system.characteristics.stamina.value ">" system.characteristics.stamina.damage}}
     <i class="fa-solid fa-battery-half"></i>
     {{else}}
         <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
     {{/iff}}:<input type="number" name="system.characteristics.stamina.value" value="{{system.characteristics.stamina.value}}" min="0" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.stamina.value'}}"/>-</span>
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
+<span class="bgi-char-wide bgi-stamina-damage" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
         name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
-<span class="bgi-char-narrow" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
+<span class="bgi-char-narrow bgi-lifeblood-value" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
         type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"/>-</span>
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+<span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
     <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
 {{/if}}
-<span class="bgi-char-wide" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
+<span class="bgi-char-wide bgi-radiationDose" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
         name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
 
 <!-- Movement -->
