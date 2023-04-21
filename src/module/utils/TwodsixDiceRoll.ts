@@ -8,6 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
+import { simplifySkillName } from "./utils";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -23,7 +24,7 @@ export class TwodsixDiceRoll {
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.rollSettings = rollSettings;
     this.actor = actor;
-    this.skill = skill;
+    this.skill = fromUuidSync(rollSettings.rollModifiers.selectedSkill) ?? skill;
     this.item = item;
 
     this.createRoll();
@@ -48,9 +49,10 @@ export class TwodsixDiceRoll {
     }
 
     // Add skill modifier
-    if (this.rollSettings.skillRoll) {
-      formula += this.rollSettings.rollModifiers.skill < 0 ? " - @skill" : " + @skill";
-      formulaData.skill = this.rollSettings.rollModifiers.skill < 0 ? -this.rollSettings.rollModifiers.skill : this.rollSettings.rollModifiers.skill;
+    if (this.skill) {
+      const skillValue = this.actor.system.skills[simplifySkillName(this.skill.name)];
+      formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
+      formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
     }
 
     // Add chain modifier
@@ -205,10 +207,10 @@ export class TwodsixDiceRoll {
     }
 
     //Skill Level
-    if (this.rollSettings.skillRoll) {
-      const skillValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.skill);
-      flavorText += ` ${usingString} ${this.rollSettings.skillName}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.rollSettings.skillName}</td><td class="centre">${skillValue}</td></tr>`;
+    if (this.skill) {
+      const skillValue = TwodsixDiceRoll.addSign(this.actor.system.skills[simplifySkillName(this.skill.name)]);
+      flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
       //Chain Roll
       if (this.rollSettings.rollModifiers.chain) {

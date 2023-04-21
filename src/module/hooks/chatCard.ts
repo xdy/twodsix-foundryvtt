@@ -217,7 +217,7 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
     return;
   }
 
-  const skillList = await secondActor.getSkilNameList();
+  const skillList = await secondActor.getSkillNameList();
   const selectedSkillUuid = await skillDialog(skillList);
   const originalEffect = message.getFlag("twodsix", "effect");
   if (selectedSkillUuid === "") {

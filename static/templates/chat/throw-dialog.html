@@ -42,9 +42,10 @@
     <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
       {{#if skillRoll}}
       <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.SkillModifier"}}
-          <input type="number" name="rollModifiers.skill" value="{{rollModifiers.skill}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-          ({{skillLabel}})
+        <label>{{localize "TWODSIX.Actor.Skills.SkillName"}} ({{localize "TWODSIX.Items.Skills.Level"}})
+          <select class="select-skill" name="rollModifiers.selectedSkill" value={{rollModifiers.selectedSkill}}>
+          {{selectOptions skillsList selected=initialSkill}}
+          </select>
         </label>
       </div>
       <div class="form-group">
