@@ -3,7 +3,7 @@
 <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="system.gender" type="text"
     value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}
-  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
+  <span class="bgi-armor bgi-heroPoints" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
   <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
    step="1" placeholder="2" /></span>
 {{/if}}<br>
@@ -14,7 +14,7 @@
     name="system.homeWorld" type="text" value="{{system.homeWorld}}"
     placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
 {{else}}
-  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'>{{localize "TWODSIX.Actor.Nationality"}}:<input
+  <span class="bgi-homeWorld bgi-nationality" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'>{{localize "TWODSIX.Actor.Nationality"}}:<input
     name="system.nationality" type="text" value="{{system.nationality}}"
     placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
 {{/unless}}
@@ -23,7 +23,7 @@
 <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.primaryArmor.value" style="text-align: right;" type="number" value="{{system.primaryArmor.value}}"
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
-<span class="bgi-armor">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
+<span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span><br>
 
 <span class="bgi-encumbrance" data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"

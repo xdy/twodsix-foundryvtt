@@ -1,3 +1,10 @@
+## [2.29.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.29.0...v2.29.1) (2023-04-21)
+
+
+### Bug Fixes
+
+* add unique class or sub-classes to actor inputs ([#1299](https://github.com/xdy/twodsix-foundryvtt/issues/1299)) ([a9cde6b](https://github.com/xdy/twodsix-foundryvtt/commit/a9cde6bd3bf4d8c1eda212102bee0883c0504090))
+
 # [2.29.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.28.1...v2.29.0) (2023-04-18)
 
 
