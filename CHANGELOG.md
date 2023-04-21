@@ -1,3 +1,10 @@
+# [2.30.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.29.1...v2.30.0) (2023-04-21)
+
+
+### Features
+
+* basic skills select ([#1300](https://github.com/xdy/twodsix-foundryvtt/issues/1300)) ([bbb3ae8](https://github.com/xdy/twodsix-foundryvtt/commit/bbb3ae89b890f30a6f2723368a42b5eb3a2f0760))
+
 ## [2.29.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.29.0...v2.29.1) (2023-04-21)
 
 
