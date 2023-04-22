@@ -117,7 +117,7 @@ export class TwodsixRollSettings {
       rof: settings?.rollModifiers?.rof ?? 0,
       characteristic: characteristic,
       wounds: woundsValue,
-      skill: skillValue ?? 0,
+      skillValue: skillValue ?? 0,
       item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
       attachments: anItem?.system?.consumables?.length > 0 ? anItem?.getConsumableBonus("skillModifier") ?? 0 : 0,
       other: settings?.diceModifier ?? 0,
@@ -127,7 +127,8 @@ export class TwodsixRollSettings {
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       custom: 0,
       customLabel: "",
-      chain: settings?.rollModifiers?.chain ?? 0
+      chain: settings?.rollModifiers?.chain ?? 0,
+      selectedSkill: aSkill?.uuid
     };
     this.flags = {
       rollClass: rollClass,
@@ -189,10 +190,12 @@ export class TwodsixRollSettings {
       rollTypes: TWODSIX.ROLLTYPES,
       difficulty: getKeyByValue(this.difficulties, this.difficulty),
       difficulties: this.difficulties,
+      skillsList: await skill?.actor?.getSkillNameList(),
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
       characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>skill?.actor),
       initialChoice: this.rollModifiers.characteristic,
+      initialSkill: this.rollModifiers.selectedSkill,
       rollModifiers: this.rollModifiers,
       skillLabel: this.skillName,
       itemLabel: this.itemName,
@@ -215,7 +218,7 @@ export class TwodsixRollSettings {
           this.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          this.rollModifiers.skill = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skill"]').val(), 10) : this.rollModifiers.skill;
+          //this.rollModifiers.skillValue = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skillValue"]').val(), 10) : this.rollModifiers.skillValue;
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
@@ -225,6 +228,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(buttonHtml.find('[name="rollModifiers.attachments"]').val(), 10) : this.rollModifiers.attachments;
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
+          this.rollModifiers.selectedSkill = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.selectedSkill"]').val() : "";
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
             //either dont show modifier or not a physical characterisitc
@@ -260,12 +264,32 @@ export class TwodsixRollSettings {
         content: html,
         buttons: buttons,
         default: 'ok',
+        render: handleRender,
         close: () => {
           resolve();
         },
       }).render(true);
     });
   }
+}
+function handleRender(html) {
+  html.on("change", ".select-skill", () => {
+    const characteristicElement = html.find('[name="rollModifiers.characteristic"]');
+    const newSkillUuid = html.find('[name="rollModifiers.selectedSkill"]').val();
+    const newSkill = fromUuidSync(newSkillUuid);
+    characteristicElement.val(newSkill.system.characteristic);
+    let title = "";
+    const titleElement = html.parent().parent().find('.window-title')[0];
+    if (titleElement) {
+      const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
+      if (titleElement.innerText.includes(usingWord)) {
+        title = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill.name}`;
+      } else {
+        title = newSkill.name || "";
+      }
+      titleElement.innerText = title;
+    }
+  });
 }
 
 export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
