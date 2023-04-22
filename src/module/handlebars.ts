@@ -255,8 +255,7 @@ export default function registerHandlebarsHelpers(): void {
     return (display && (itemLocation === "ship"));
   });
 
-  Handlebars.registerHelper('twodsix_getProcessingPower', (itemUuid:string) => {
-    const item = fromUuidSync(itemUuid);
+  Handlebars.registerHelper('twodsix_getProcessingPower', (item:TwodsixItem) => {
     if (!item) {
       return 0;
     } else {
