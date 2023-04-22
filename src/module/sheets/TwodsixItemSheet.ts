@@ -105,27 +105,31 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
-    const updates = {};
-    /*Update from default other image*/
-    if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
-    }
-    /*Prevent cargo from using %hull weight*/
-    const anComponent = <Component> this.item.system;
-    if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      Object.assign(updates, {"system.weightIsPct": false});
-    }
-    /*Unset isBaseHull if not hull component*/
-    if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      Object.assign(updates, {"system.isBaseHull": false});
-    }
-    /*Unset hardened if fuel, cargo, storage, vehicle*/
-    if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
-      Object.assign(updates, {"system.hardened": false});
-    }
+    if (this.item.type === "component") {
+      const updates = {};
+      /*Update from default other image*/
+      if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
+        Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+      }
+      /*Prevent cargo from using %hull weight*/
+      const anComponent = <Component> this.item.system;
+      if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
+        Object.assign(updates, {"system.weightIsPct": false});
+      }
+      /*Unset isBaseHull if not hull component*/
+      if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
+        Object.assign(updates, {"system.isBaseHull": false});
+      }
+      /*Unset hardened if fuel, cargo, storage, vehicle*/
+      if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+        Object.assign(updates, {"system.hardened": false});
+      }
 
-    if (Object.keys(updates).length !== 0) {
-      await this.item.update(updates);
+      if (Object.keys(updates).length !== 0) {
+        await this.item.update(updates);
+      }
+    } else if (this.item.type === "consumable" && ["software", "processor"].includes(this.item.system.subtype)) {
+      await this.item.update({"system.isAttachment": true});
     }
   }
 
@@ -306,7 +310,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
                 currentCount: max,
                 max: max,
-                equipped: equippedState
+                equipped: equippedState,
+                isAttachment: ["processor", "software"].includes(buttonHtml.find('.consumable-subtype').val())
               }
             };
             const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
