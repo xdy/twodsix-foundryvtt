@@ -266,12 +266,12 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const parentId: string = $(event.currentTarget).data("parentId");
     const consumableId: string = $(event.currentTarget).data("consumableId");
     const parentItem: TwodsixItem = await this.actor.items.get(parentId);
-    if (parentItem?.type === "weapon") {
+    const consumable: TwodsixItem = await this.actor.items.get(consumableId);
+    if (parentItem?.type === "weapon" && !["software", "processor"].includes(consumable.system.subtype)) {
       if (parentItem?.system.useConsumableForAttack != consumableId) {
         await parentItem.update({'system.useConsumableForAttack': consumableId});
       }
-    } else if (parentItem?.type ===  "computer") {
-      const consumable: TwodsixItem = await this.actor.items.get(consumableId);
+    } else {
       if (consumable.system.subtype === "software") {
         await consumable.update({'system.softwareActive': !consumable.system.softwareActive});
       }
