@@ -18,25 +18,39 @@ Hooks.on("getSceneControlButtons", (controls) => {
 });
 
 async function requestRoll(): Promise<void> {
-  const selectedPlayerActorNames = await getSelectedActorNames();
-  console.log(selectedPlayerActorNames);
+  const selectedPlayers = await getSelectedPlayers();
+  console.log(selectedPlayers);
+  const allPlayerActorNames = await getAllPlayerActorNames();
+  console.log(allPlayerActorNames);
   const skillsList = await getAllSkills();
   console.log(skillsList);
 }
 
-async function getSelectedActorNames(): Promise<any> {
+async function getSelectedPlayers(): Promise<string[]> {
   const tokens = canvas.tokens.controlled;
-  const selectedPlayers = {};
+  const selectedPlayers = [];
   if (tokens.length > 0) {
     const activePlayers = await game.users.filter(user => !user.isGM && user.active );
     for (const player of activePlayers) {
       const matchingToken = await tokens.find((t) => t.actor.hasPlayerOwner && t.actor.ownership[player.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER);
       if (matchingToken) {
-        Object.assign(selectedPlayers, {[player.id]: matchingToken.actor.name});
+        selectedPlayers.push(player.id);
       }
     }
   }
   return selectedPlayers;
+}
+
+async function getAllPlayerActorNames(): Promise<any> {
+  const actorPlayerNames = {};
+  const activePlayers = await game.users.filter(user => !user.isGM && user.active );
+  for (const player of activePlayers) {
+    const matchingActor = await game.actors.find( actor => actor.ownership[player.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER);
+    if (matchingActor) {
+      Object.assign(actorPlayerNames, {[player.id]: matchingActor.name});
+    }
+  }
+  return actorPlayerNames;
 }
 
 async function getAllSkills(): Promise<string[]> {
