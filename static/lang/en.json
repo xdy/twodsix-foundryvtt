@@ -309,7 +309,9 @@
         "Bonus": "Bonus",
         "WithChainBonus": "with Chain / Assist bonus",
         "WinsRoll": "wins contested / opposed roll.",
-        "TiedRoll": "Tied contested / opposed roll. No winner."
+        "TiedRoll": "Tied contested / opposed roll. No winner.",
+        "GMUtils": "GM Utilities",
+        "RequestRoll": "Request Roll"
       }
     },
     "Create": "Create",
