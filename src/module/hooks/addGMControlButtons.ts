@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import {TWODSIX} from "../config";
 //import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import { TwodsixRollSettings, _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
+import { _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
 //import {getKeyByValue} from "./sheetUtils";
 import { simplifySkillName } from "../utils/utils.ts";
 
@@ -30,7 +30,7 @@ async function requestRoll(): Promise<void> {
   //console.log(skillsList);
   const samplePlayer = game.users.find(user => !user.isGM && user.active);
   if (samplePlayer) {
-    const selections = await throwDialog(samplePlayer.character, skillsList, selectedPlayers, allPlayerActorNames);
+    const selections = await throwDialog(skillsList, selectedPlayers, allPlayerActorNames);
     console.log(selections);
   } else {
     //no valid players
@@ -38,7 +38,7 @@ async function requestRoll(): Promise<void> {
 }
 
 async function getSelectedPlayers(): Promise<string[]> {
-  const tokens = canvas.tokens.controlled;
+  const tokens = canvas.tokens.controlled.filter((t) => t.actor.type === "traveller");
   const selectedPlayers = [];
   if (tokens.length > 0) {
     const activePlayers = await game.users.filter(user => !user.isGM && user.active);
@@ -65,7 +65,7 @@ async function getAllPlayerActorNames(): Promise<any> {
 }
 
 async function getAllSkills(): Promise<string[]> {
-  const returnValue = {"NONE": ["---"]};
+  const returnValue = {"NONE": "---"};
   let selectedActors = await canvas.tokens.controlled.map((t) => t.actor);
   if (selectedActors.length === 0) {
     selectedActors = await game.users.filter(user => !user.isGM && user.active).map((u) => u.character);
@@ -80,7 +80,7 @@ async function getAllSkills(): Promise<string[]> {
   return returnValue;
 }
 
-async function throwDialog(actor:TwodsixActor, skillsList:string[], selectedPlayerIds:string[], allPlayerActorNames:any):Promise<void> {
+async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allPlayerActorNames:any):Promise<void> {
   const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
   const dialogData = {
     initialPlayers: selectedPlayerIds,

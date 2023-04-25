@@ -3,7 +3,7 @@
   <fieldset>
     <legend>{{localize "TWODSIX.Actor.CharacterNames"}}</legend>
     <div class="form-group">
-      <select class="protectionTypes" name="selectedPlayers" value="{{selectedPlayers}}" multiple>
+      <select class="protectionTypes" name="selectedPlayers" multiple>
         {{selectOptions allPlayerActorNames selected=initialPlayers}}
       </select>
     </div>
@@ -50,14 +50,14 @@
     <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
     <div class="form-group">
       <label>{{localize "TWODSIX.Actor.Skills.SkillName"}} ({{localize "TWODSIX.Items.Skills.Level"}})
-        <select class="select-skill" name="selectedSkill" value="{{selectedSkill}}">
+        <select class="select-skill" name="selectedSkill">
         {{selectOptions skillsList selected=initialSkill}}
         </select>
       </label>
     </div>
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}
-        <select class="select-mod" name="characteristic" value="{{characteristic}}">
+        <select class="select-mod" name="characteristic">
         {{selectOptions characteristicList selected=initialChoice}}
         </select>
       </label>
