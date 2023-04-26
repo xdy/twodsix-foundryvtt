@@ -96,7 +96,7 @@ async function getAllSkills(): Promise<string[]> {
   return returnValue;
 }
 
-async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allPlayerActorNames:any):Promise<void> {
+async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allPlayerActorNames:any):Promise<any> {
   const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
   const dialogData = {
     initialPlayers: selectedPlayerIds,
