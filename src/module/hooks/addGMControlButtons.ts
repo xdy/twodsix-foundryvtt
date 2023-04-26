@@ -23,15 +23,31 @@ Hooks.on("getSceneControlButtons", (controls) => {
 
 async function requestRoll(): Promise<void> {
   const selectedPlayers = await getSelectedPlayers();
-  //console.log(selectedPlayers);
   const allPlayerActorNames = await getAllPlayerActorNames();
-  //console.log(allPlayerActorNames);
   const skillsList = await getAllSkills();
-  //console.log(skillsList);
   const samplePlayer = game.users.find(user => !user.isGM && user.active);
   if (samplePlayer) {
     const selections = await throwDialog(skillsList, selectedPlayers, allPlayerActorNames);
-    console.log(selections);
+    if (selections.shouldRoll) {
+      let flavor = `<section>${game.i18n.localize("TWODSIX.Chat.Roll.GMRequestsRoll")}<section>`;
+      if (selections.skillName !== "---") {
+        flavor = flavor.replace("_TYPE_", selections.skillName);
+      } else if (selections.characteristic !== "NONE") {
+        flavor = flavor.replace("_TYPE_", selections.characteristic);
+      } else {
+        flavor = flavor.replace("_TYPE_", game.i18n.localize("TWODSIX.Chat.Roll.normal"));
+      }
+      flavor += `<section class="card-buttons"><button data-action="abilityCheck" data-tooltip="${game.i18n.localize("TWODSIX.Chat.Roll.AbilityCheck")}"><i class="fa-solid fa-dice"></i></button><section>`;
+      ChatMessage.create({
+        flavor: flavor,
+        flags: {
+          twodsix: {
+            rollSettings: selections
+          }
+        },
+        whisper: selections.selectedPlayers
+      });
+    }
   } else {
     //no valid players
   }

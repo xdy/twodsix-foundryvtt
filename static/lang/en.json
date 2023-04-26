@@ -312,7 +312,10 @@
         "WinsRoll": "wins contested / opposed roll.",
         "TiedRoll": "Tied contested / opposed roll. No winner.",
         "GMUtils": "GM Utilities",
-        "RequestRoll": "Request Roll"
+        "RequestRoll": "Request Roll",
+        "GMRequestsRoll": "GM requests a _TYPE_ roll.",
+        "normal": "normal",
+        "AbilityCheck": "Ability / Characteristic Check"
       }
     },
     "Create": "Create",
