@@ -67,8 +67,6 @@
           </li>
         </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{log ../this}}
-
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id parentItem= ../this}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}

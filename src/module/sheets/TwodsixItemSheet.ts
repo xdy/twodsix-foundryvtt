@@ -59,7 +59,14 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type))
     };
-    returnData.config = TWODSIX;
+    //prevent processor attachemetns to software
+    returnData.config = duplicate(TWODSIX);
+    if (this.actor && this.item.type === "consumable" ) {
+      const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
+      if(onComputer) {
+        delete returnData.config.CONSUMABLES.processor;
+      }
+    }
     return returnData;
   }
 
@@ -128,8 +135,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       if (Object.keys(updates).length !== 0) {
         await this.item.update(updates);
       }
-    } else if (this.item.type === "consumable" && ["software", "processor"].includes(this.item.system.subtype)) {
-      await this.item.update({"system.isAttachment": true});
+    } else if (this.item.type === "consumable" ) {
+      if (["software", "processor"].includes(this.item.system.subtype)) {
+        await this.item.update({"system.isAttachment": true});
+      }
+      if (this.item.actor) {
+        const parentItem = this.item.actor.items.find(it => it.system.consumables?.includes(this.item.id));
+        if (parentItem){
+          parentItem.sheet.render(false);
+        }
+      }
     }
   }
 
@@ -287,8 +302,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       return;
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
+    const consumablesList = duplicate(TWODSIX.CONSUMABLES);
+    if (this.item.type === "computer" ) {
+      delete consumablesList["processor"];
+    }
     const html = await renderTemplate(template, {
-      consumables: TWODSIX.CONSUMABLES
+      consumables: consumablesList
     });
     new Dialog({
       title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
