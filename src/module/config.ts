@@ -424,6 +424,7 @@ const CONSUMABLES = Object.freeze({
   magazine: "TWODSIX.Items.Consumable.Types.magazine",
   power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
   software: "TWODSIX.Items.Consumable.Types.software",
+  processor: "TWODSIX.Items.Consumable.Types.processor",
   other: "TWODSIX.Items.Consumable.Types.other"
 });
 
