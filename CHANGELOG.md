@@ -1,3 +1,10 @@
+# [2.31.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.30.0...v2.31.0) (2023-04-27)
+
+
+### Features
+
+* add processor component and allow software on any item ([#1301](https://github.com/xdy/twodsix-foundryvtt/issues/1301)) ([343d2da](https://github.com/xdy/twodsix-foundryvtt/commit/343d2daa036e43c6b5863dfa798651c97ad009a8))
+
 # [2.30.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.29.1...v2.30.0) (2023-04-21)
 
 
