@@ -85,7 +85,7 @@
   var(--s2d6-default-color);
   --s2d6-pie-background-color:
   var(--s2d6-background-opaque);
-  --sidebar-width: 318px;
+  /*--sidebar-width: 318px;*/
 }
 
 body {
