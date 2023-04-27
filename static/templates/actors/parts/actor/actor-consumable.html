@@ -36,6 +36,9 @@
         {{/if}}> <i class="fa-solid fa-power-off"></i>
       </span>
     {{/iff}}
+    {{#iff system.subtype "===" "processor"}}
+       - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
+    {{/iff}}
   </div>
 </div>
 {{/unless}}

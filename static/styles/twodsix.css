@@ -3038,6 +3038,10 @@ background: var(--s2d6-sidebar-background);
   background: var(--s2d6-background-nearly-opaque);
 }
 
+.chat-message .message-header {
+  color: var(--s2d6-default-color);
+}
+
 .dice-roll .dice-formula, .dice-roll .dice-total {
   flex: 0 0 100%;
   position: relative;

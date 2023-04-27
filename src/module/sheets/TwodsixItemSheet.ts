@@ -59,7 +59,14 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type))
     };
-    returnData.config = TWODSIX;
+    //prevent processor attachemetns to software
+    returnData.config = duplicate(TWODSIX);
+    if (this.actor && this.item.type === "consumable" ) {
+      const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
+      if(onComputer) {
+        delete returnData.config.CONSUMABLES.processor;
+      }
+    }
     return returnData;
   }
 
@@ -105,27 +112,39 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
-    const updates = {};
-    /*Update from default other image*/
-    if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-      Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
-    }
-    /*Prevent cargo from using %hull weight*/
-    const anComponent = <Component> this.item.system;
-    if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
-      Object.assign(updates, {"system.weightIsPct": false});
-    }
-    /*Unset isBaseHull if not hull component*/
-    if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
-      Object.assign(updates, {"system.isBaseHull": false});
-    }
-    /*Unset hardened if fuel, cargo, storage, vehicle*/
-    if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
-      Object.assign(updates, {"system.hardened": false});
-    }
+    if (this.item.type === "component") {
+      const updates = {};
+      /*Update from default other image*/
+      if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
+        Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+      }
+      /*Prevent cargo from using %hull weight*/
+      const anComponent = <Component> this.item.system;
+      if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
+        Object.assign(updates, {"system.weightIsPct": false});
+      }
+      /*Unset isBaseHull if not hull component*/
+      if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
+        Object.assign(updates, {"system.isBaseHull": false});
+      }
+      /*Unset hardened if fuel, cargo, storage, vehicle*/
+      if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+        Object.assign(updates, {"system.hardened": false});
+      }
 
-    if (Object.keys(updates).length !== 0) {
-      await this.item.update(updates);
+      if (Object.keys(updates).length !== 0) {
+        await this.item.update(updates);
+      }
+    } else if (this.item.type === "consumable" ) {
+      if (["software", "processor"].includes(this.item.system.subtype)) {
+        await this.item.update({"system.isAttachment": true});
+      }
+      if (this.item.actor) {
+        const parentItem = this.item.actor.items.find(it => it.system.consumables?.includes(this.item.id));
+        if (parentItem){
+          parentItem.sheet.render(false);
+        }
+      }
     }
   }
 
@@ -283,8 +302,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       return;
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
+    const consumablesList = duplicate(TWODSIX.CONSUMABLES);
+    if (this.item.type === "computer" ) {
+      delete consumablesList["processor"];
+    }
     const html = await renderTemplate(template, {
-      consumables: TWODSIX.CONSUMABLES
+      consumables: consumablesList
     });
     new Dialog({
       title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
@@ -306,7 +329,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 quantity: parseInt(buttonHtml.find('.consumable-quantity').val() as string, 10) || 0,
                 currentCount: max,
                 max: max,
-                equipped: equippedState
+                equipped: equippedState,
+                isAttachment: ["processor", "software"].includes(buttonHtml.find('.consumable-subtype').val())
               }
             };
             const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};

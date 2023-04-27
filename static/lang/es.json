@@ -71,6 +71,10 @@
         "ALT2": "ALT2"
       },
       "CharacteristicEdit": "Modo Edición para los Nombres Cortos de Características.",
+      "Chassis": "Chasis",
+      "OperationalTime": "Tiempo Operativo",
+      "Price": "Precio",
+      "LocomotionType": "Tipo Locomoción",
       "DeleteOwnedItem": "Borrar objeto",
       "Finances": {
         "CASH_ON_HAND": "DINERO DISPONIBLE",
@@ -109,6 +113,7 @@
         "ARMOR": "ARMADURA",
         "ATTACHMENTS": "ACCESORIOS",
         "AUGMENTS": "AUMENTOS",
+        "Augments": "Aumentos",
         "Ammo": "Cargador",
         "Armor": "Protección",
         "EffectiveArmor": "Armadura",
@@ -254,6 +259,7 @@
       },
       "Location": "Emplazamiento",
       "AnimalNotes": "Notas del Animal",
+      "RobotNotes": "Notas Robot",
       "AttackWeapons": "Ataques / Armas",
       "Reaction": "Tirada Reacción",
       "Attack": "Ataque",
@@ -816,6 +822,10 @@
         "hint": "Ejemplo: \"2d6 + @characteristics.dexterity.mod\"",
         "name": "Fórmula Iniciativa"
       },
+      "armorDamageFormula": {
+        "hint": "Utilizar las tiradas en la VTT sin dados, términos '@damage'/'@effectiveArmor' se reemplazan con daño/armadura. Por defecto: \"@damage-@effectiveArmor\"",
+        "name": "Formula para reducción del daño por armadura"
+      },
       "invertSkillRollShiftClick": {
         "hint": "Haciendo clic en una tirada de habilidad o arrastrando el daño a un token normalmente muestra un dialogo, pulsando SHIFT aplica los valores por defecto (Tirada dificultad normal 6/8 o distribución automática del daño). Marcar esta casilla invierte el funcionamiento.",
         "name": "Invertir funcionamiento de tecla SHIFT en clic de tiradas habilidad o arrastrar daño"
@@ -1081,6 +1091,10 @@
         "hint": "Mostrar información de reacción y moral en la hoja de animales.",
         "name": "Mostrar reacción y moral animal"
       },
+      "robotsUseHits": {
+        "hint": "Robots sólo tienen un atributo para el daño: impactos.",
+        "name": "Robots utilizan puntos para el daño"
+      },
       "showComponentRating": {
         "hint": "Mostrar el campo de grado en la hoja de componentes de la nave.",
         "name": "Mostrar el grado del componente"
@@ -1270,11 +1284,13 @@
     "TypeShip": "Nave",
     "TypeVehicle": "Vehículo",
     "TypeAnimal": "Animal",
+    "TypeRobot": "Robot",
     "TypeSpace-object": "Objeto Espacial",
     "TypeTravellerPl": "Viajeros",
     "TypeShipPl": "Naves",
     "TypeVehiclePl": "Vehículos",
     "TypeAnimalPl": "Animales",
+    "TypeRobotPl": "Robots",
     "TypeSpace-objectPl": "Objetos Espaciales"
   }
 }
