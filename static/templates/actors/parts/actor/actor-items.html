@@ -67,7 +67,7 @@
           </li>
         </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id parentItem= ../this}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../id}}
@@ -121,7 +121,7 @@
           </li>
         </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id parentItem= ../this}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../id}}
@@ -167,7 +167,7 @@
           </li>
         </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id parentItem= ../this}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
         {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../id}}
@@ -222,10 +222,10 @@
             </li>
           </ol>
         {{#each item.system.attachmentData as |attachmentData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" attachmentData consumableId=attachmentData._id parentId= ../id parentItem= ../this}}
         {{/each}}
         {{#each item.system.consumableData as |consumableData|}}
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../id}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.html" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= @root.item}}
         {{/each}}
         </div>
         {{/unless}}

@@ -490,6 +490,7 @@
           "magazine": "Magazine",
           "power_cell": "Power Cell",
           "software": "Software",
+          "processor": "Processor",
           "other": "Other"
         },
         "Size": "Size",
