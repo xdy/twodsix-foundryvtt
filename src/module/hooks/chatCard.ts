@@ -49,8 +49,9 @@ async function onChatCardAction(event: Event): Promise<any> {
   }
   const action = button.dataset.action;
 
+  // Handle different actions
   if (action === "expand") {
-    onExpandClick(event);
+    onExpandClick(message);
     return;
   } else if (action === "abilityCheck") {
     return;
@@ -74,8 +75,6 @@ async function onChatCardAction(event: Event): Promise<any> {
       return ui.notifications.error(err);
     }
 
-    // Handle different actions
-    //let targets;
     const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
     const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
@@ -97,7 +96,6 @@ async function onChatCardAction(event: Event): Promise<any> {
         break;
     }
   }
-
 }
 
 /* -------------------------------------------- */
@@ -157,20 +155,13 @@ async function getChatCardActor(message:ChatMessage): Actor | null {
   * @param {Event} event
   * @private
   */
-function onExpandClick(event: Event) {
+async function onExpandClick(message:ChatMessage) {
   // Toggle the message flag
-  //must be an easier way to get the higher target
-  const roll = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
 
-  // Expand or collapse chattips
-  const tip = roll.querySelector(".dice-chattip");
-  //for ( const tip of chattips ) {
-  if ( $(tip).css("display") !== "none" ) {
-    //$(tip).slideUp(200);
-    $(tip).css("display", "none");
+  if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
+    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"')});
   } else {
-    //$(tip).slideDown(200);
-    $(tip).css("display", "contents");
+    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"')});
   }
 }
 /**
