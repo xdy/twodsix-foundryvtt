@@ -6,6 +6,7 @@ import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TWODSIX } from "../config";
 
 Hooks.on("renderChatLog", (_app, html, _data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
@@ -54,6 +55,7 @@ async function onChatCardAction(event: Event): Promise<any> {
     onExpandClick(message);
     return;
   } else if (action === "abilityCheck") {
+    makeRequestedRoll(message);
     return;
   } else {
     // Recover the actor for the chat card
@@ -307,5 +309,35 @@ function getChainRollBonus(effect:number): number {
     return ranges["1 to 5"];
   } else if (effect >= 6) {
     return ranges["6+"];
+  }
+}
+
+/**
+ * Makes roll per chat message flag settings using default actor
+ * @param {ChatMessage} message    clicked Chat message
+ */
+async function makeRequestedRoll(message:ChatMessage):void {
+  const rollingActor = getControlledTraveller();
+  const messageSettings = message.getFlag("twodsix", "rollSettings");
+  const selectedSkill = messageSettings.skillName !== "---" ? await rollingActor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? rollingActor.items.get(rollingActor.system.untrainedSkill) : undefined;
+  let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
+  if (selectedSkill && selectedCharacteristic === "NONE") {
+    selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
+  }
+  const tmpSettings = {
+    difficulty: messageSettings.difficulty,
+    rollType: messageSettings.rollType,
+    rollMode: messageSettings.rollMode,
+    skillRoll: messageSettings.skillName !== "---",
+    rollModifiers: {
+      characteristic: selectedCharacteristic
+    }
+  };
+  const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, rollingActor);
+  if (rollSettings.shouldRoll) {
+    const diceRoll = new TwodsixDiceRoll(rollSettings, rollingActor);
+    if (diceRoll) {
+      await diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
+    }
   }
 }

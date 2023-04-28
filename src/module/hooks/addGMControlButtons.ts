@@ -115,8 +115,8 @@ async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allP
   const returnValue = {};
   const buttons = {
     ok: {
-      label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-      icon: '<i class="fa-solid fa-dice"></i>',
+      label: game.i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
+      icon: '<i class="fa-solid fa-message"></i>',
       callback: (buttonHtml) => {
         returnValue.selectedPlayers = buttonHtml.find('[name="selectedPlayers"]').val();
         returnValue.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];

@@ -24,7 +24,7 @@ export class TwodsixDiceRoll {
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.rollSettings = rollSettings;
     this.actor = actor;
-    this.skill = fromUuidSync(rollSettings.rollModifiers.selectedSkill) ?? skill;
+    this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
     this.item = item;
 
     this.createRoll();
