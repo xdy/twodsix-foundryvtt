@@ -111,6 +111,7 @@ async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allP
     characteristicList: _genUntranslatedCharacteristicList(),
     initialChoice: "NONE",
     initialSkill: "NONE",
+    other: 0
   };
   const returnValue = {};
   const buttons = {
@@ -125,6 +126,7 @@ async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allP
         returnValue.characteristic = buttonHtml.find('[name="characteristic"]').val();
         returnValue.skillName = skillsList[buttonHtml.find('[name="selectedSkill"]').val()];
         returnValue.shouldRoll = true;
+        returnValue.other = parseInt(buttonHtml.find('[name="other"]').val());
       }
     },
     cancel: {

@@ -120,7 +120,7 @@ export class TwodsixRollSettings {
       skillValue: skillValue ?? 0,
       item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
       attachments: anItem?.system?.consumables?.length > 0 ? anItem?.getConsumableBonus("skillModifier") ?? 0 : 0,
-      other: settings?.diceModifier ?? 0,
+      other: settings?.rollModifiers?.other ?? 0,
       encumbered: encumberedValue,
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",

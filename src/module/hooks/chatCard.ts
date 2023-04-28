@@ -330,7 +330,8 @@ async function makeRequestedRoll(message:ChatMessage):void {
     rollMode: messageSettings.rollMode,
     skillRoll: messageSettings.skillName !== "---",
     rollModifiers: {
-      characteristic: selectedCharacteristic
+      characteristic: selectedCharacteristic,
+      other: messageSettings.other
     }
   };
   const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, rollingActor);
