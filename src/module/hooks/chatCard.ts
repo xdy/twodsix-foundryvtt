@@ -336,8 +336,6 @@ async function makeRequestedRoll(message:ChatMessage):void {
   const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, rollingActor);
   if (rollSettings.shouldRoll) {
     const diceRoll = new TwodsixDiceRoll(rollSettings, rollingActor);
-    if (diceRoll) {
-      await diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
-    }
+    diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
   }
 }
