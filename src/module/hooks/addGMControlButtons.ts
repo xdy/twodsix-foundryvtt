@@ -22,8 +22,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
 });
 
 async function requestRoll(): Promise<void> {
-  const tokenData = await getSelectedTokenData();
-  console.log(tokenData);
+  const tokenData = getSelectedTokenData();
   const skillsList = await getAllSkills();
   if (Object.keys(tokenData).length > 0) {
     const selections = await throwDialog(skillsList, tokenData);
