@@ -22,13 +22,13 @@ Hooks.on("getSceneControlButtons", (controls) => {
 });
 
 async function requestRoll(): Promise<void> {
-  const selectedPlayers = await getSelectedPlayers();
-  const allPlayerActorNames = await getAllPlayerActorNames();
+  const tokenData = await getSelectedTokenData();
+  console.log(tokenData);
   const skillsList = await getAllSkills();
-  const samplePlayer = game.users.find(user => !user.isGM && user.active);
-  if (samplePlayer) {
-    const selections = await throwDialog(skillsList, selectedPlayers, allPlayerActorNames);
+  if (Object.keys(tokenData).length > 0) {
+    const selections = await throwDialog(skillsList, tokenData);
     if (selections.shouldRoll) {
+      selections.userActorList = getUserActorList(selections, tokenData);
       let flavor = `<section>${game.i18n.localize("TWODSIX.Chat.Roll.GMRequestsRoll")}<section>`;
       if (selections.skillName !== "---") {
         flavor = flavor.replace("_TYPE_", selections.skillName);
@@ -45,7 +45,7 @@ async function requestRoll(): Promise<void> {
             rollSettings: selections
           }
         },
-        whisper: selections.selectedPlayers
+        whisper: Object.keys(selections.userActorList)
       });
     }
   } else {
@@ -53,31 +53,19 @@ async function requestRoll(): Promise<void> {
   }
 }
 
-async function getSelectedPlayers(): Promise<string[]> {
-  const tokens = canvas.tokens.controlled.filter((t) => t.actor.type === "traveller");
-  const selectedPlayers = [];
-  if (tokens.length > 0) {
-    const activePlayers = await game.users.filter(user => !user.isGM && user.active);
-    for (const player of activePlayers) {
-      const matchingToken = await tokens.find((t) => t.actor.hasPlayerOwner && t.actor.ownership[player.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER);
-      if (matchingToken) {
-        selectedPlayers.push(player.id);
+function getUserActorList (selections:any, tokenData:any): any {
+  //Note that unlinked token.actor uuid's are links to token not actor.
+  const returnData = {};
+  for (const tokenId of selections.selectedTokens) {
+    if (tokenData[tokenId].userId ) {
+      if (tokenData[tokenId].userId in returnData) {
+        returnData[tokenData[tokenId].userId].push(tokenData[tokenId].token.actor.uuid);
+      } else {
+        returnData[tokenData[tokenId].userId] = [tokenData[tokenId].token.actor.uuid];
       }
     }
   }
-  return selectedPlayers;
-}
-
-async function getAllPlayerActorNames(): Promise<any> {
-  const actorPlayerNames = {};
-  const activePlayers = await game.users.filter(user => !user.isGM && user.active );
-  for (const player of activePlayers) {
-    //const matchingActor = await game.actors.find( actor => actor.ownership[player.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER  && actor.type === "traveller");
-    if (player.character) {
-      Object.assign(actorPlayerNames, {[player.id]: player.character.name});
-    }
-  }
-  return actorPlayerNames;
+  return returnData;
 }
 
 async function getAllSkills(): Promise<string[]> {
@@ -96,11 +84,15 @@ async function getAllSkills(): Promise<string[]> {
   return returnValue;
 }
 
-async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allPlayerActorNames:any):Promise<any> {
+async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
   const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
+  const tokenNames = {};
+  for (const tokenId in tokenData) {
+    tokenNames[tokenId] = tokenData[tokenId].token.name ?? tokenData[tokenId].token.actor.name;
+  }
   const dialogData = {
-    initialPlayers: selectedPlayerIds,
-    allPlayerActorNames: allPlayerActorNames,
+    initialTokens: Object.keys(tokenData),
+    allTokenNames: tokenNames,
     rollType: "Normal",
     rollTypes: TWODSIX.ROLLTYPES,
     difficulty: "Average",
@@ -119,13 +111,13 @@ async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allP
       label: game.i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
       icon: '<i class="fa-solid fa-message"></i>',
       callback: (buttonHtml) => {
-        returnValue.selectedPlayers = buttonHtml.find('[name="selectedPlayers"]').val();
+        returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
         returnValue.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
         returnValue.rollType = buttonHtml.find('[name="rollType"]').val();
         returnValue.rollMode = buttonHtml.find('[name="rollMode"]').val();
         returnValue.characteristic = buttonHtml.find('[name="characteristic"]').val();
         returnValue.skillName = skillsList[buttonHtml.find('[name="selectedSkill"]').val()];
-        returnValue.shouldRoll = true;
+        returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
         returnValue.other = parseInt(buttonHtml.find('[name="other"]').val());
       }
     },
@@ -152,7 +144,35 @@ async function throwDialog(skillsList:string[], selectedPlayerIds:string[], allP
   });
 }
 
+function getSelectedTokenData(): any {
+  const returnValue = {};
+  const validTokens = canvas.tokens.controlled.filter((t) => ["traveller", "animal", "robot"].includes(t.actor.type));
+  for (const token of validTokens) {
+    returnValue[token.id] = {
+      userId: getControllingUser(token),
+      token: token,
+    };
+  }
+  return returnValue;
+}
 
+function getControllingUser(token:Token): string {
+  let userId = "";
+  const owningUsers = game.users.filter((user) => !user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER);
+  if (owningUsers.length > 1) {
+    const characterUser = owningUsers.find((user) => user.character.id === token.actor.id);
+    if (characterUser) {
+      userId = characterUser.id;
+    } else {
+      userId = owningUsers[0].id;
+    }
+  } else if (owningUsers.length === 1) {
+    userId = owningUsers[0].id;
+  } else {
+    userId = game.users.find((user) => user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER).id;
+  }
+  return userId;
+}
 /*const newControl: SceneControl =
     {
       activeTool: "select",

@@ -317,26 +317,37 @@ function getChainRollBonus(effect:number): number {
  * @param {ChatMessage} message    clicked Chat message
  */
 async function makeRequestedRoll(message:ChatMessage):void {
-  const rollingActor = getControlledTraveller();
   const messageSettings = message.getFlag("twodsix", "rollSettings");
-  const selectedSkill = messageSettings.skillName !== "---" ? await rollingActor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? rollingActor.items.get(rollingActor.system.untrainedSkill) : undefined;
-  let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
-  if (selectedSkill && selectedCharacteristic === "NONE") {
-    selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
-  }
   const tmpSettings = {
     difficulty: messageSettings.difficulty,
     rollType: messageSettings.rollType,
     rollMode: messageSettings.rollMode,
     skillRoll: messageSettings.skillName !== "---",
     rollModifiers: {
-      characteristic: selectedCharacteristic,
+      characteristic: "NONE",
       other: messageSettings.other
     }
   };
-  const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, rollingActor);
-  if (rollSettings.shouldRoll) {
-    const diceRoll = new TwodsixDiceRoll(rollSettings, rollingActor);
-    diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
+  const rollingActorsUuids = messageSettings.userActorList[game.user.id];
+
+  for (const actorUuid of rollingActorsUuids) {
+    let actor:TwodsixActor;
+    //Fix for token.actor.uuid a link only to token document, not actor document
+    if (actorUuid.includes("Token")) {
+      actor = <TwodsixActor>fromUuidSync(actorUuid).actor;
+    } else {
+      actor = <TwodsixActor>fromUuidSync(actorUuid);
+    }
+    const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
+    let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
+    if (selectedSkill && selectedCharacteristic === "NONE") {
+      selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
+    }
+    tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
+    const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
+    if (rollSettings.shouldRoll) {
+      const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
+      diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
+    }
   }
 }
