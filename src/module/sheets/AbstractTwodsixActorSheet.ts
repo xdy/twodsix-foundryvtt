@@ -561,7 +561,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       yes: async () => {
         if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
           const itemWithEffect = await fromUuid(selectedEffect.origin);
-          await itemWithEffect.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
+          await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
         }
         await selectedEffect?.delete();
       },
