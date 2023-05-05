@@ -554,20 +554,22 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onDeleteEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
-    const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
-    if (selectedEffect) {
-      await Dialog.confirm({
-        title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-        content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-        yes: async () => {
-          //await selectedEffect?.delete();
-          await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect.id]);
-        },
-        no: () => {
-          //Nothing
+    const selectedEffect = await fromUuid(effectUuid);
+    await Dialog.confirm({
+      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
+      yes: async () => {
+        if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
+          const itemWithEffect = await fromUuid(selectedEffect.origin);
+          await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
         }
-      });
-    }
+        //await selectedEffect?.delete();
+        await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect.id]);
+      },
+      no: () => {
+        //Nothing
+      }
+    });
   }
 
   protected async _modifyEffect(event): Promise<void> {

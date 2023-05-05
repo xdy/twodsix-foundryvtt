@@ -1,3 +1,10 @@
+# [2.32.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.31.0...v2.32.0) (2023-05-05)
+
+
+### Features
+
+* add token button to request roll ([#1303](https://github.com/xdy/twodsix-foundryvtt/issues/1303)) ([cf14f36](https://github.com/xdy/twodsix-foundryvtt/commit/cf14f3634f90f2522265a8fda0405cc3c21cef7d))
+
 # [2.31.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.30.0...v2.31.0) (2023-04-27)
 
 

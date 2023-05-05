@@ -24,7 +24,7 @@ export class TwodsixDiceRoll {
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.rollSettings = rollSettings;
     this.actor = actor;
-    this.skill = fromUuidSync(rollSettings.rollModifiers.selectedSkill) ?? skill;
+    this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
     this.item = item;
 
     this.createRoll();
@@ -304,7 +304,7 @@ export class TwodsixDiceRoll {
     flavorText +=`</section></section>`;
     flavorTable += `</table>`;
 
-    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="dice-roll"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
+    const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="flavor-message"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 
     await this.roll?.toMessage(
       {
