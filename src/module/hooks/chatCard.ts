@@ -1,17 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import TwodsixItem from "../entities/TwodsixItem";
-import ItemTemplate from "../utils/ItemTemplate";
+//import ItemTemplate from "../utils/ItemTemplate";
 import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TWODSIX } from "../config";
 
-Hooks.on("renderChatLog", (app, html, data) => {
+Hooks.on("renderChatLog", (_app, html, _data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
 });
-Hooks.on("renderChatPopout", (app, html, data) => {
+Hooks.on("renderChatPopout", (_app, html, _data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
 });
@@ -49,81 +50,54 @@ async function onChatCardAction(event: Event): Promise<any> {
   }
   const action = button.dataset.action;
 
-  // Recover the actor for the chat card
-  const actor = await getChatCardActor(message);
-  if ( !actor ) {
-    return;
-  }
-
-  // Validate permission to proceed with the roll
-  const isTargetted = ["chain", "opposed", "expand"].includes(action);
-  if ( !( isTargetted || game.user.isGM || actor.isOwner ) ) {
-    return;
-  }
-  // Get the Item from stored flag data
-  const storedData = message.getFlag("twodsix", "itemUUID");
-  const item:TwodsixItem = storedData ? await fromUuid(storedData) : {};
-  if ( !item ) {
-    const err = game.i18n.format("DND5E.ActionWarningNoItem", {item: card.dataset.itemId, name: actor.name});
-    return ui.notifications.error(err);
-  }
-
   // Handle different actions
-  //let targets;
-  const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-  const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-  const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
-  const effect = message.getFlag("twodsix", "effect") ?? 0;
-  const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${effect} + ${bonusDamage}` : `${effect}`;
-  switch ( action ) {
-    case "attack":
-      break;
-    case "damage":
-      await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
-      break;
-    case "versatile":
-      break;
-    case "formula":
-      break;
-    case "save":
-      //targets = getChatCardTargets();
-      //for ( const token of targets ) {
-      //  const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
-      //  await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
-      //}
-      break;
-    case "toolCheck":
-      //await item.rollToolCheck({event});
-      break;
-    case "placeTemplate":
-      try {
-        await ItemTemplate.fromItem(item)?.drawPreview();
-      } catch(err) {/*blank*/}
-      break;
-    case "abilityCheck":
-      //targets = getChatCardTargets();
-      //for ( const token of targets ) {
-      //  const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
-      //  await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
-      //}
-      break;
-    case "expand":
-      onExpandClick(event);
-      break;
-    case "opposed":
-      //opposed roll
-      makeSecondaryRoll(message, "opposed", showFormulaDialog);
-      break;
-    case "chain":
-      //chain roll
-      makeSecondaryRoll(message, "chain", showFormulaDialog);
-      break;
-    default:
-      break;
-  }
+  if (action === "expand") {
+    onExpandClick(message);
+    return;
+  } else if (action === "abilityCheck") {
+    makeRequestedRoll(message);
+    return;
+  } else {
+    // Recover the actor for the chat card
+    const actor = await getChatCardActor(message);
+    if ( !actor ) {
+      return;
+    }
 
-  // Re-enable the button
-  //button.disabled = false;
+    // Validate permission to proceed with the roll
+    const isTargettedAction = ["chain", "opposed"].includes(action);
+    if ( !( isTargettedAction || game.user.isGM || actor.isOwner ) ) {
+      return;
+    }
+    // Get the Item from stored flag data
+    const storedData = message.getFlag("twodsix", "itemUUID");
+    const item:TwodsixItem = storedData ? await fromUuid(storedData) : {};
+    if ( !item ) {
+      const err = game.i18n.format("DND5E.ActionWarningNoItem", {item: card.dataset.itemId, name: actor.name});
+      return ui.notifications.error(err);
+    }
+
+    const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+    const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
+    const effect = message.getFlag("twodsix", "effect") ?? 0;
+    const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${effect} + ${bonusDamage}` : `${effect}`;
+    switch ( action ) {
+      case "damage":
+        await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
+        break;
+      case "opposed":
+        //opposed roll
+        makeSecondaryRoll(message, "opposed", showFormulaDialog);
+        break;
+      case "chain":
+        //chain roll
+        makeSecondaryRoll(message, "chain", showFormulaDialog);
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 /* -------------------------------------------- */
@@ -183,24 +157,13 @@ async function getChatCardActor(message:ChatMessage): Actor | null {
   * @param {Event} event
   * @private
   */
-function onExpandClick(event: Event) {
-  event.preventDefault();
-
+async function onExpandClick(message:ChatMessage) {
   // Toggle the message flag
-  const roll = event.currentTarget;
-  //message._rollExpanded = !message._rollExpanded;
 
-  // Expand or collapse chattips
-  const chattips = roll.querySelectorAll(".dice-chattip");
-  for ( const tip of chattips ) {
-    if ( $(tip).css("display") !== "none" ) {
-      //$(tip).slideUp(200);
-      $(tip).css("display", "none");
-    } else {
-      //$(tip).slideDown(200);
-      $(tip).css("display", "contents");
-    }
-    //tip.classList.toggle("expanded", message._rollExpanded);
+  if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
+    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"')});
+  } else {
+    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"')});
   }
 }
 /**
@@ -346,5 +309,45 @@ function getChainRollBonus(effect:number): number {
     return ranges["1 to 5"];
   } else if (effect >= 6) {
     return ranges["6+"];
+  }
+}
+
+/**
+ * Makes roll per chat message flag settings using default actor
+ * @param {ChatMessage} message    clicked Chat message
+ */
+async function makeRequestedRoll(message:ChatMessage):void {
+  const messageSettings = message.getFlag("twodsix", "rollSettings");
+  const tmpSettings = {
+    difficulty: messageSettings.difficulty,
+    rollType: messageSettings.rollType,
+    rollMode: messageSettings.rollMode,
+    skillRoll: messageSettings.skillName !== "---",
+    rollModifiers: {
+      characteristic: "NONE",
+      other: messageSettings.other
+    }
+  };
+  const rollingActorsUuids = messageSettings.userActorList[game.user.id];
+
+  for (const actorUuid of rollingActorsUuids) {
+    let actor:TwodsixActor;
+    //Fix for token.actor.uuid a link only to token document, not actor document
+    if (actorUuid.includes("Token")) {
+      actor = <TwodsixActor>fromUuidSync(actorUuid).actor;
+    } else {
+      actor = <TwodsixActor>fromUuidSync(actorUuid);
+    }
+    const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
+    let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
+    if (selectedSkill && selectedCharacteristic === "NONE") {
+      selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
+    }
+    tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
+    const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
+    if (rollSettings.shouldRoll) {
+      const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
+      diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
+    }
   }
 }

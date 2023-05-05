@@ -56,6 +56,7 @@
       "Age": "Age",
       "CharacterImage": "Character Image",
       "CharacterName": "Character Name",
+      "CharacterNames": "Character Names",
       "Characteristics": {
         "DEX": "DEX",
         "EDU": "EDU",
@@ -309,7 +310,12 @@
         "Bonus": "Bonus",
         "WithChainBonus": "with Chain / Assist bonus",
         "WinsRoll": "wins contested / opposed roll.",
-        "TiedRoll": "Tied contested / opposed roll. No winner."
+        "TiedRoll": "Tied contested / opposed roll. No winner.",
+        "GMUtils": "GM Utilities",
+        "RequestRoll": "Request Roll",
+        "GMRequestsRoll": "GM requests a _TYPE_ roll.",
+        "normal": "normal",
+        "AbilityCheck": "Ability / Characteristic Check"
       }
     },
     "Create": "Create",

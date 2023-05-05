@@ -559,6 +559,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
+        if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
+          const itemWithEffect = await fromUuid(selectedEffect.origin);
+          await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
+        }
         await selectedEffect?.delete();
       },
       no: () => {
