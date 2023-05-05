@@ -490,6 +490,7 @@
           "magazine": "Cargador",
           "power_cell": "Batería Energia",
           "software": "Software",
+          "processor": "Procesador",
           "other": "Otros"
         },
         "Size": "Tamaño",
