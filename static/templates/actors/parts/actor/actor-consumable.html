@@ -21,6 +21,9 @@
         data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
       {{/iff}}> <i class="fa-solid fa-circle-check"></i>
     </span>
+    <span class="item-controls centre">
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+    </span>
   </div>
 </div>
 {{else}}
@@ -39,6 +42,9 @@
     {{#iff system.subtype "===" "processor"}}
        - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
     {{/iff}}
+    <span class="item-controls centre">
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+    </span>
   </div>
 </div>
 {{/unless}}
