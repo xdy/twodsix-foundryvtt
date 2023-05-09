@@ -5,7 +5,6 @@ import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
-import { TwodsixShipSheetData } from "../../types/twodsix";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 //import { getKeyByValue } from "../utils/sheetUtils";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
@@ -30,6 +29,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     html.find('.item-edit').on('click', (ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
+      item?.sheet?.render(true);
+    }));
+
+    // Update Consumable Item
+    html.find('.consumable-edit').on('click', (ev => {
+      const li = $(ev.currentTarget).parents(".consumable-row");
+      const item = this.actor.items.get(li.data("consumableId"));
       item?.sheet?.render(true);
     }));
 
@@ -309,7 +315,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return await (<TwodsixActor>this.actor).handleDroppedItem(itemData);
   }
 
-  protected static _prepareItemContainers(actor:TwodsixActor, sheetData:TwodsixShipSheetData|any):void {
+  protected static _prepareItemContainers(actor:TwodsixActor, sheetData:any):void {
 
     // Initialize containers.
     const items = actor.items;
@@ -337,6 +343,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           }
         }
       }
+      //Add consumable labels
+      if (["traveller"].includes(actor.type)  && item.type === "consumable") {
+        const parentItem = sheetData.items.find((i) => i.system.consumables?.includes(item.id));
+        if (parentItem) {
+          item.system.parentName = parentItem.name;
+        }
+      }
+      //prepare ship summary status
       if (item.type === "component") {
         if(component[(<Component>item.system).subtype] === undefined) {
           component[(<Component>item.system).subtype] = [];

@@ -1,6 +1,6 @@
 {{#unless system.isAttachment}}
 <div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
-  <div class="wrapper">
+  <span class="wrapper">
     {{name}}:
     {{#with system}}
     <span class="consumable-count">
@@ -14,20 +14,27 @@
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
-    <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
-      {{#iff isSelected '===' consumableId}}
-        style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
-      {{else}}
-        data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
-      {{/iff}}> <i class="fa-solid fa-circle-check"></i>
+    <span class="item-controls centre">
+      <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+        {{#iff isSelected '===' consumableId}}
+          style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
+        {{else}}
+          data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
+        {{/iff}}> <i class="fa-solid fa-circle-check"></i>
+      </span>
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
     </span>
-  </div>
+  </span>
 </div>
 {{else}}
 <div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
-  <div class="wrapper">
+  <span class="wrapper">
     {{name}}
-    {{#iff system.subtype "===" "software"}}
+    {{#iff system.subtype "===" "processor"}}
+       - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
+    {{/iff}}
+    <span class="item-controls centre">
+      {{#iff system.subtype "===" "software"}}
       <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
         {{#if system.softwareActive}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"
@@ -35,10 +42,9 @@
           data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOff'}}"
         {{/if}}> <i class="fa-solid fa-power-off"></i>
       </span>
-    {{/iff}}
-    {{#iff system.subtype "===" "processor"}}
-       - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
-    {{/iff}}
-  </div>
+      {{/iff}}
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+    </span>
+  </span>
 </div>
 {{/unless}}
