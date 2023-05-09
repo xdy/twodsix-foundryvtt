@@ -349,10 +349,10 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_getEffectSource', (effect: ActiveEffect) => {
-    if (["Wounded", "Encumbered", "Dead"].includes(effect.name)) {
+    if (["Wounded", "Encumbered", "Dead", "Unconscious"].includes(effect.name)) {
       return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
     } else if (effect.origin) {
-      const attachedItem = <TwodsixItem>fromUuid(effect.origin);
+      const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
       if (attachedItem) {
         return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
       } else {

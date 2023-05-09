@@ -1289,5 +1289,9 @@
       "animalPl": "Animals",
       "space-objectPl": "Space Objects"
     }
+  },
+  "EFFECT": {
+   "StatusWounded": "Wounded",
+   "StatusEncumbered": "Encumbered"
   }
 }
