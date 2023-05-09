@@ -9,20 +9,20 @@ const plugins = [
   nodeResolve(),
   commonjs(),
   esbuild.default({
-    include: /\.[jt]sx?$/, // TODO Might have to include d.ts here
+    include: /\.[j]sx?$/,
     sourceMap: true,
     minify: process.env.NODE_ENV === 'production',
   }),
   dynamicImportVars.default({}),
 ];
 
-module.exports = function() {
-  const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
-  const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
-  const templates = JSON.stringify(glob.sync('static/templates/**/*.html').filter(name => name.slice(0, 1) !== "." ).map(file => file.replace("static", "systems/twodsix")));
+module.exports = function () {
+  const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(name => name.slice(0, 1) !== ".").map(name => name.slice(0, -3)));
+  const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(name => name.slice(0, 1) !== ".").map(name => name.slice(0, -3)));
+  const templates = JSON.stringify(glob.sync('static/templates/**/*.html').filter(name => name.slice(0, 1) !== ".").map(file => file.replace("static", "systems/twodsix")));
 
   return {
-    input: 'src/twodsix.ts',
+    input: 'src/twodsix.js',
     output: {
       file: 'dist/twodsix.bundle.js',
       format: 'es',
@@ -32,4 +32,4 @@ module.exports = function() {
     },
     plugins: plugins,
   };
-}
+};

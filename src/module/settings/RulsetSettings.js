@@ -1,0 +1,82 @@
+import AdvancedSettings from "./AdvancedSettings";
+import {TWODSIX} from "../config";
+import {booleanSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
+
+export default class RulesetSettings extends AdvancedSettings {
+  static create() {
+    RulesetSettings.settings = RulesetSettings.registerSettings();
+    return RulesetSettings;
+  }
+
+  constructor(object, options) {
+    super(object, RulesetSettings.settings, options);
+  }
+
+  /** @override */
+  getData() {
+    const data = super.getData();
+    const ruleset = TWODSIX.RULESETS[game.settings.get("twodsix", "ruleset")];
+    const rulesetSettings = TWODSIX.RULESETS[ruleset.key].settings;
+    const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
+      return game.settings.get("twodsix", settingName) === value;
+    });
+    const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
+    const rulesetName = ruleset.name + (settings.every(v => v) ? "" : ` (${modified})`);
+    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.intro`)}: ${rulesetName}</h2><br>`;
+    return data;
+  }
+
+  static registerSettings() {
+    const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
+    // TODO: With the new ship positions this should be changed to take the pilot's piloting skill into consideration.
+    const DEFAULT_SHIP_INITIATIVE_FORMULA = "2d6";
+    const DEFAULT_MAX_ENCUMBRANCE_FORMULA = "12 * @characteristics.strength.current";
+    const settings = [];
+    settings.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
+    settings.push(stringSetting('armorDamageFormula', "@damage - @effectiveArmor", false, 'world'));
+    settings.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
+    settings.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
+    settings.push(booleanSetting('difficultiesAsTargetNumber', false));
+    settings.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
+    settings.push(numberSetting('modifierForZeroCharacteristic', -2));
+    settings.push(stringSetting('termForAdvantage', 'advantage'));
+    settings.push(stringSetting('termForDisadvantage', 'disadvantage'));
+    settings.push(numberSetting('absoluteBonusValueForEachTimeIncrement', -1));
+    settings.push(numberSetting('maxSkillLevel', 9));
+    settings.push(booleanSetting('criticalNaturalAffectsEffect', false));
+    settings.push(numberSetting('absoluteCriticalEffectValue', 99));
+    settings.push(booleanSetting('showLifebloodStamina', false));
+    settings.push(numberSetting('minorWoundsRollModifier', 0));
+    settings.push(numberSetting('seriousWoundsRollModifier', 0));
+    settings.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
+    settings.push(booleanSetting('showContaminationBelowLifeblood', true));
+    settings.push(booleanSetting('showHeroPoints', false));
+    settings.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
+    settings.push(stringSetting("alternativeShort1", "ALT1"));
+    settings.push(stringSetting("alternativeShort2", "ALT2"));
+    settings.push(numberSetting('maxComponentHits', 3));
+    settings.push(numberSetting('mortgagePayment', 240, false));
+    settings.push(numberSetting('massProductionDiscount', 0.10, false));
+    settings.push(booleanSetting('reverseHealingOrder', false));
+    settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
+    settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with vales other than 0.5
+    settings.push(numberSetting('encumbranceModifier', -1, false));
+    settings.push(numberSetting('encumbFractionOneSquare', 0.5));
+    settings.push(numberSetting('encumbFraction75pct', 0.33));
+    settings.push(numberSetting('defaultMovement', 10));
+    settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
+    settings.push(booleanSetting('addEffectForShipDamage', false));
+    settings.push(stringSetting("unarmedDamage", "1d6", false, "world"));
+    settings.push(booleanSetting("showTimeframe", false));
+    settings.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
+    settings.push(stringSetting("sorcerySkill", "Sorcery", false, "world"));
+    settings.push(booleanSetting("useNationality", false));
+    settings.push(booleanSetting("animalsUseHits", false));
+    settings.push(booleanSetting("robotsUseHits", false));
+    settings.push(booleanSetting("animalsUseLocations", false));
+    settings.push(booleanSetting("displayReactionMorale", false));
+    settings.push(booleanSetting("useDodgeParry", false));
+    settings.push(stringSetting("damageTypeOptions", "", false, "world"));
+    return settings;
+  }
+}

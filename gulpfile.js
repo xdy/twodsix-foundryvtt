@@ -1,25 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {rollup} = require('rollup');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const argv = require('yargs').argv;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const chalk = require('chalk');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs-extra');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const gulp = require('gulp');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const rollupConfig = require('./rollup.config');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const semver = require('semver');
 
 /********************/
 /*  CONFIGURATION   */
 /********************/
 
-// eslint-disable-next-line @typescript-eslint/no-shadow
 const name = "twodsix*";
 const sourceDirectory = './src';
 const staticDirectory = './static';
@@ -27,7 +18,7 @@ const templateDirectory = `${staticDirectory}/templates`;
 const distDirectory = './dist';
 const stylesDirectory = `${staticDirectory}/styles`;
 const stylesExtension = 'css';
-const sourceFileExtension = 'ts';
+const sourceFileExtension = 'js';
 const templateFileExtension = 'html';
 const staticFiles = ['assets', 'fonts', 'lang', 'packs', 'templates', 'system.json', 'template.json'];
 const buildFiles = [
