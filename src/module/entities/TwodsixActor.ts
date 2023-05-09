@@ -810,7 +810,7 @@ export default class TwodsixActor extends Actor {
       //newEffect.disabled = true;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
-      newEffect.name = addedItem.name;
+      newEffect.name = transferData.effects[0].name ?? addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
