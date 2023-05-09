@@ -219,7 +219,7 @@ async function setConditionState(effectName: string, targetActor: TwodsixActor, 
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
-      if (effectLabel === "Dead") {
+      if (effectName === "Dead") {
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
