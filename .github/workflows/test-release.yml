@@ -59,7 +59,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: 'npm'
 
       - name: Install

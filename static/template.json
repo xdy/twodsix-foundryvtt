@@ -775,7 +775,8 @@
       "isAttachment": false,
       "bandwidth": 0,
       "softwareActive": true,
-      "damageType": "NONE"
+      "damageType": "NONE",
+      "parentName": ""
     },
     "component": {
       "templates": ["gearTemplate", "referenceTemplate"],

@@ -2897,7 +2897,7 @@ select.form-input, input.form-input, span.form-input {
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   /* padding: 0; */
-  width: 98%;
+  width: 96%;
   /* height: 30px; */
   text-align: right;
 }

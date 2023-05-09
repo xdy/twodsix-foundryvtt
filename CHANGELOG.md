@@ -1,3 +1,10 @@
+## [2.32.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.0...v2.32.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* Consumables qol issues ([#1312](https://github.com/xdy/twodsix-foundryvtt/issues/1312)) ([d9901f5](https://github.com/xdy/twodsix-foundryvtt/commit/d9901f5fc0f2a61151e26e82a0bf2a4778d5d40e))
+
 # [2.32.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.31.0...v2.32.0) (2023-05-05)
 
 

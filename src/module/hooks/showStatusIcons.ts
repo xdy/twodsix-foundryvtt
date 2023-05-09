@@ -24,17 +24,18 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem, _update: Record<string, any>, _options: any, userId:string) => {
+Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer"].includes(item.type) ) {
-        await applyEncumberedEffect(owningActor).then();
+        await applyEncumberedEffect(owningActor);
       }
     }
+    //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-      if (["traveller", "animal", "robot"].includes(owningActor.type )) {
-        await applyWoundedEffect(<TwodsixActor>item.actor).then();
+      if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+        await applyWoundedEffect(<TwodsixActor>item.actor);
       }
     }
   }
@@ -52,6 +53,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, _update: Record<string, any>, _
 
 Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+    //NEEDS TO INCLUDE augments with update
     if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type)) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
@@ -66,6 +68,22 @@ function checkForWounds(systemUpdates: Record<string, any>, actorType:string): b
       if (systemUpdates.characteristics) {
         if (characteristic in systemUpdates.characteristics) {
           return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function checkForDamageStat (update: any, actorType: string): boolean {
+  if (update.effects?.length > 0) {
+    const damageCharacteristics = getDamageCharacteristics(actorType);
+    for (const effect of update.effects) {
+      for (const change of effect.changes) {
+        for (const char of damageCharacteristics) {
+          if (change.key.includes(char)) {
+            return true;
+          }
         }
       }
     }
@@ -183,12 +201,16 @@ async function setConditionState(effectName: string, targetActor: TwodsixActor, 
   const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectName.toLocaleLowerCase()));
 
   let targetToken = {};
-  if (targetActor.isToken) {
-    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.id === targetActor.token?.id);
+  if(targetActor.isToken) {
+    targetToken = <Token>targetActor.token.object;
   } else {
     targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.actor?.id === targetActor.id);
+    if (!targetToken?.document.isLinked) {
+      return; //unlinked actor token found
+    }
   }
-  if (isAlreadySet.length > 1) {
+
+  if (isAlreadySet.length > 1  && targetToken) {
     //Need to get rid of duplicates
     for (let i = 1; i < isAlreadySet.length; i++) {
       await (<Token>targetToken).toggleEffect(targetEffect, {active: false});
@@ -196,9 +218,8 @@ async function setConditionState(effectName: string, targetActor: TwodsixActor, 
   }
 
   if ((isAlreadySet.length > 0) !== state) {
-
     if (targetToken && targetEffect) {
-      if (effectName === "Dead" ) {
+      if (effectLabel === "Dead") {
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;

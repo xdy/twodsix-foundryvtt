@@ -312,7 +312,7 @@
                       <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">
                         <i class="fa-solid fa-dice" alt="d6" ></i>
                       </span>
-                      <span class="item-name rollable">{{item.name}}</span>
+                      <span class="item-name rollable">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
                       <span class="item-name centre">{{twodsix_localizeConsumable item.system.subtype}}</span>
                       <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.system.quantity}}"/>
                       <span class="item-name centre">{{item.system.currentCount}}/{{item.system.max}}</span>
@@ -365,7 +365,7 @@
                 <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">
                   <i class="fa-solid fa-dice" alt="d6" ></i>
                 </span>
-                <span class="item-name rollable">{{item.name}}</span>
+                <span class="item-name rollable">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
                 <span class="item-name centre">{{twodsix_localizeConsumable item.system.subtype}}</span>
                 <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.system.quantity}}"/>
                 <span class="item-name centre">{{item.system.techLevel}}</span>
