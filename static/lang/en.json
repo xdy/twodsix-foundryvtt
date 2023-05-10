@@ -961,7 +961,7 @@
         "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
       "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds. Roll modifiers below are applied to all rolls.",
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconsciousness saves on serious wounds. Roll modifiers below are applied to all rolls.",
         "name": "Display wounded status indicators and apply roll modifiers"
       },
       "minorWoundsRollModifier": {
@@ -1292,6 +1292,8 @@
   },
   "EFFECT": {
    "StatusWounded": "Wounded",
-   "StatusEncumbered": "Encumbered"
+   "StatusEncumbered": "Encumbered",
+   "StatusDead": "Dead",
+   "StatusUnconscious": "Unconscious"
   }
 }
