@@ -71,6 +71,22 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       ret[ value ] = key;
       return ret;
     }, {});
+
+    //Add custom source labels for active effects
+    for(const effect of returnData.effects) {
+      if (["Wounded", "Encumbered", "Dead", "Unconscious"].includes(effect.name)) {
+        effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.Condition");
+      } else if (effect.origin && !effect.origin?.includes("Compendium")) {
+        const attachedItem:TwodsixItem = fromUuidSync(effect.origin);
+        if (attachedItem) {
+          effect.sourceLabel = (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
+        } else {
+          effect.sourceLabel = effect.origin;
+        }
+      } else {
+        effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
+      }
+    }
     returnData.config = TWODSIX;
 
     return returnData;

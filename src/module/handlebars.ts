@@ -348,21 +348,6 @@ export default function registerHandlebarsHelpers(): void {
     return returnValue;
   });
 
-  Handlebars.registerHelper('twodsix_getEffectSource', (effect: ActiveEffect) => {
-    if (["Wounded", "Encumbered", "Dead", "Unconscious"].includes(effect.name)) {
-      return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
-    } else if (effect.origin) {
-      const attachedItem = <TwodsixItem>fromUuidSync(effect.origin);
-      if (attachedItem) {
-        return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
-      } else {
-        return effect.origin;
-      }
-    } else {
-      return game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
-    }
-  });
-
   Handlebars.registerHelper('makePieImage', (text: string) => {
     //const re = new RegExp(/([0-9]*\.?[0-9]*)\s*%/gm);
     const re = new RegExp(/(\d+)(\s?)\/(\s?)(\d+)/gm);
