@@ -144,6 +144,12 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Location"}}</span>
       <span class="item-name centre">
         <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="augment"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-viewToggle" data-item-type="augment">
+          {{#unless system.hideStoredItems.augment}}
+          <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
+          {{else}}
+          <i class="fa-solid fa-eye-slash" data-tooltip='{{localize "TWODSIX.Actor.Items.HideStored"}}'></i></a>
+          {{/unless}}
       </span>
     </div>
     <section class="item-list">
@@ -160,6 +166,7 @@
               <span class="item-name centre">{{item.system.bonus}}</span>
               <span class="item-name centre">{{item.system.auglocation}}</span>
               <span class="item-controls centre">
+                <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{item.system.equipped}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
               </span>

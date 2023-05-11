@@ -303,7 +303,6 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
       } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable"].includes(droppedObject.type)) {
-        // this is part of a refactor *******
         this.processDroppedItem(event, droppedObject);
       } else {
         await super._onDrop(event);

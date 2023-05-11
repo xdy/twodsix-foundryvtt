@@ -933,7 +933,7 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case 'ship':
-        if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
+        if (!["skills", "trait", "spell"].includes(itemData.type)) {
           return this._addDroppedEquipment(itemData);
         }
         break;
@@ -1117,7 +1117,7 @@ async function deleteIdFromShipPositions(actorId: string) {
 }
 
 function getEquipmentWeight(item:TwodsixItem):number {
-  if (["weapon", "armor", "equipment", "tool", "junk", "consumable", "computer"].includes(item.type)) {
+  if (!["skills", "spell", "trait"].includes(item.type)) {
     if (item.system.equipped !== "ship") {
       let q = item.system.quantity || 0;
       const w = item.system.weight || 0;

@@ -381,7 +381,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "augment", "component"].includes(i.type));
+      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "component"].includes(i.type));
       sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     sheetData.effects = actor.effects.contents;

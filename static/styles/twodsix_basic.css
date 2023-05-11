@@ -1035,7 +1035,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.7em 11.5em 1.6em 1.6em 10.5em 4em 3em;
+  grid-template-columns: 1.7em 10.5em 1.6em 1.6em 10.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . . . . .';

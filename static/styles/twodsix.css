@@ -1482,7 +1482,7 @@ a.actor-notes-tab.active {
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 9.5em 4em 3em;
+  grid-template-columns: 1.5em 10.5em 1.6em 1.6em 9.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . . . . .';
