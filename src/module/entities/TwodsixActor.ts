@@ -256,6 +256,9 @@ export default class TwodsixActor extends Actor {
             case "pctHull":
               calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
               break;
+            case "pctHullPerUnit":
+              calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) * anComponent.quantity / 100);
+              break;
             case "perHullTon":
               calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
               break;
@@ -273,6 +276,9 @@ export default class TwodsixActor extends Actor {
               break;
             case "pctHull":
               calcShipStats.cost.percentHull += Number(anComponent.price);
+              break;
+            case "pctHullPerUnit":
+              calcShipStats.cost.percentHull += Number(anComponent.price) * anComponent.quantity;
               break;
             case "perHullTon":
               calcShipStats.cost.perHullTon += Number(anComponent.price);

@@ -1266,7 +1266,7 @@ span.total-output {
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  max-width: 14ch;
+  max-width: 12ch;
 }
 
 .multi-line {

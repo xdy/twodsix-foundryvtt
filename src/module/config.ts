@@ -529,7 +529,8 @@ export const PricingOptions = {
   perCompTon: "TWODSIX.Items.Component.perCompTon",
   perHullTon: "TWODSIX.Items.Component.perHullTon",
   per100HullTon: "TWODSIX.Items.Component.per100HullTon",
-  pctHull: "TWODSIX.Items.Component.pctHull"
+  pctHull: "TWODSIX.Items.Component.pctHull",
+  pctHullPerUnit: "TWODSIX.Items.Component.pctHullPerUnit"
 };
 
 /**
