@@ -879,7 +879,7 @@
         }
       },
       "shipInitiativeFormula": {
-        "hint": "Like: \"2d6",
+        "hint": "Like: \"2d6\"",
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {
