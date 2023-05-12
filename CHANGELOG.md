@@ -1,3 +1,10 @@
+## [2.32.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.1...v2.32.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* QOL Issues related to component pricing, augments, and vehicles ([#1318](https://github.com/xdy/twodsix-foundryvtt/issues/1318)) ([87b0f5d](https://github.com/xdy/twodsix-foundryvtt/commit/87b0f5dcf949ae9352aaeda213d09ebd18aa6bdb))
+
 ## [2.32.1](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.0...v2.32.1) (2023-05-09)
 
 
