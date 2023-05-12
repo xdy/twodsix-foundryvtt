@@ -1,6 +1,6 @@
 <div class="storage-wrapper-auto">
-  <div class="grid-columns-weapon weapons-header">
-    <div class="weapons-stored">
+  <div class="grid-columns-component components-header">
+    <div class="components-stored">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.DM"}}</span>
@@ -8,17 +8,17 @@
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "armament"> <i class="fa-solid fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "otherInternal"> <i class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
 
-  <div class="grid-columns-weapon">
+  <div class="grid-columns-component">
     {{#each componentObject}}
     {{#each this as |item id|}}
     <div class="grid-columns-single-row">
       <ol class="ol-no-indent">
-        <li class="item weapons-stored " data-item-id="{{item.id}}">
-          <span class="item-name">{{item.name}}</span>
+        <li class="item components-stored" data-item-id="{{item.id}}">
+          <span class="item-name">{{item.name}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i></span>
           <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>

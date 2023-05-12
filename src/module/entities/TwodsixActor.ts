@@ -938,7 +938,7 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case 'vehicle':
-        if (itemData.type === "component" && itemData.system.subtype === "armament") {
+        if (itemData.type === "component") {
           return this._addDroppedEquipment(itemData);
         }
         break;
