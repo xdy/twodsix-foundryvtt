@@ -256,6 +256,9 @@ export default class TwodsixActor extends Actor {
             case "pctHull":
               calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
               break;
+            case "pctHullPerUnit":
+              calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) * anComponent.quantity / 100);
+              break;
             case "perHullTon":
               calcShipStats.cost.hullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
               break;
@@ -273,6 +276,9 @@ export default class TwodsixActor extends Actor {
               break;
             case "pctHull":
               calcShipStats.cost.percentHull += Number(anComponent.price);
+              break;
+            case "pctHullPerUnit":
+              calcShipStats.cost.percentHull += Number(anComponent.price) * anComponent.quantity;
               break;
             case "perHullTon":
               calcShipStats.cost.perHullTon += Number(anComponent.price);
@@ -927,12 +933,12 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case 'ship':
-        if (!["augment", "skills", "trait", "spell"].includes(itemData.type)) {
+        if (!["skills", "trait", "spell"].includes(itemData.type)) {
           return this._addDroppedEquipment(itemData);
         }
         break;
       case 'vehicle':
-        if (itemData.type === "component" && itemData.system.subtype === "armament") {
+        if (itemData.type === "component") {
           return this._addDroppedEquipment(itemData);
         }
         break;
@@ -1111,7 +1117,7 @@ async function deleteIdFromShipPositions(actorId: string) {
 }
 
 function getEquipmentWeight(item:TwodsixItem):number {
-  if (["weapon", "armor", "equipment", "tool", "junk", "consumable", "computer"].includes(item.type)) {
+  if (!["skills", "spell", "trait"].includes(item.type)) {
     if (item.system.equipped !== "ship") {
       let q = item.system.quantity || 0;
       const w = item.system.weight || 0;
@@ -1134,8 +1140,8 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
       title: game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer"),
       content:
         `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
-        `<div><label>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" id="amount" value="` +
-        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></div>`,
+        `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `<input type="number" name="amount" id="amount" value="` +
+        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></label></div>`,
       buttons: {
         Transfer: {
           label: `<i class="fa-solid fa-arrow-right-arrow-left"></i> ` + game.i18n.localize("TWODSIX.Actor.Items.Transfer"),

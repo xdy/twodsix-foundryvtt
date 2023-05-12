@@ -63,7 +63,7 @@ Content Usage and Licensing:
 * Cepheus Engine and Samardan Press:tm: are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press:tm:.    
 * Cepheus Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing.
 * Cepheus Faster Than Light and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
-* Barbaric!, Sword of Cepheus, Cepheus Light, and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
+* Barbaric!, Sword of Cepheus, Cepheus Light, Cepheus Atom, Cepheus Deluxe and Stellagama Publishing are the trademarks of Stellagama Publishing; I am not affiliated with Stellagama Publishing. 
 * The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises. Traveller is a registered trademark of Far
 Future Enterprises. Far Future permits web sites and fanzines for this game, provided it contains this notice, that Far Future is notified, and subject to a withdrawal of permission on 90 days notice. The contents of this site are for personal, non-commercial use only. Any use of Far Future Enterprises's copyrighted material or trademarks anywhere on this web site and its files should not be viewed as a challenge to those copyrights or trademarks. In addition, any program/articles/file on this site cannot be republished or distributed without the consent of the author who contributed it.
 

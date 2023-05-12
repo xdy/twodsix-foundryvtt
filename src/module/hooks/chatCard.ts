@@ -237,7 +237,7 @@ async function skillDialog(skillList:object):Promise<string> {
     options += `<option value="${key}">${value}</option>`;
   }
   const select = `<select name="item-select">${options}</select>`;
-  const content = `<form><div class="form-group"><label>Select the scroll:</label>${select}</div></form>`;
+  const content = `<form><div class="form-group"><label>${game.i18n.localize("TWODSIX.Rolls.SkillName")} (${game.i18n.localize("TWODSIX.Actor.Skills.Level")}): ${select}</label></div></form>`;
 
   const buttons = {
     ok: {

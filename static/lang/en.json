@@ -404,6 +404,7 @@
         "perHullTon": "MCr per hull ton",
         "per100HullTon": "MCr per 100 hull tons",
         "pctHull": "Percent of base hull value",
+        "pctHullPerUnit": "Percent of base hull value per unit",
         "isBaseHull":"Is Baseline Hull?",
         "RollModifier":"Roll Modifier",
         "DM":"DM",
@@ -702,6 +703,7 @@
       "Protection": "Protection",
       "skillToOperate": "Skill to operate",
       "Weapons": "Weapons",
+      "Components": "Components",
       "OpenVehicle": "Open Vehicle",
       "techLevel": "TL",
       "Cost": "Cost",
@@ -877,7 +879,7 @@
         }
       },
       "shipInitiativeFormula": {
-        "hint": "Like: \"2d6",
+        "hint": "Like: \"2d6\"",
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {

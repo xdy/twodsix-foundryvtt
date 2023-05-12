@@ -1,23 +1,33 @@
 <form class="{{cssClass}} item-class" autocomplete="off">
   <div class="item-sheet">
     {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
-      <div class="item-bonus">
-        <label for="system.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
-        <input class="form-input" id="system.bonus" type="text" name="system.bonus" value="{{system.bonus}}"/>
-      </div>
+    <div class="item-bonus">
+      <label for="system.bonus" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugEffect"}}</label>
+      <input class="form-input" id="system.bonus" type="text" name="system.bonus" value="{{system.bonus}}"/>
+    </div>
 
-      <div class="item-augmentLoc">
-        <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
-        <select class="form-input" name="system.auglocation" value={{system.auglocation}}>
-          {{#select system.auglocation}}
-          <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
-          <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
-          <option value="Arms">{{localize "TWODSIX.Items.Augmentation.Arms"}}</option>
-          <option value="Legs">{{localize "TWODSIX.Items.Augmentation.Legs"}}</option>
-          <option value="Full-Body">{{localize "TWODSIX.Items.Augmentation.FullBody"}}</option>
-          {{/select}}
-        </select>
-      </div>
+    <div class="item-augmentLoc">
+      <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
+      <select class="form-input" name="system.auglocation" value={{system.auglocation}}>
+        {{#select system.auglocation}}
+        <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
+        <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
+        <option value="Arms">{{localize "TWODSIX.Items.Augmentation.Arms"}}</option>
+        <option value="Legs">{{localize "TWODSIX.Items.Augmentation.Legs"}}</option>
+        <option value="Full-Body">{{localize "TWODSIX.Items.Augmentation.FullBody"}}</option>
+        {{/select}}
+      </select>
+    </div>
+
+    <div class="item-qty">
+      <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+      <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-weight">
+      <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+      <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+    </div>
 
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
