@@ -428,6 +428,7 @@ label.checkbox > input[type="checkbox"] {
   border-color: var(--s2d6-background-opaque);
   position: sticky;
   top:0%;
+  background: url(../../../ui/parchment.jpg) repeat;
   /*min-height: 4ch;*/
 }
 
