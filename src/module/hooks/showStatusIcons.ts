@@ -28,7 +28,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _o
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
-      if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer"].includes(item.type) ) {
+      if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer", "augment"].includes(item.type) ) {
         await applyEncumberedEffect(owningActor);
       }
     }
@@ -53,8 +53,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _o
 
 Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
-    //NEEDS TO INCLUDE augments with update
-    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable"].includes(item.type)) {
+    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "augment"].includes(item.type)) {
       applyEncumberedEffect(<TwodsixActor>item.actor).then();
     }
   }

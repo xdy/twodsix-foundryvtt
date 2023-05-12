@@ -56,6 +56,7 @@
       "Age": "Edad",
       "CharacterImage": "Imagen Personaje",
       "CharacterName": "Nombre Personaje",
+      "CharacterNames": "Nombre Personajes",
       "Characteristics": {
         "DEX": "DES",
         "EDU": "EDU",
@@ -309,7 +310,12 @@
         "Bonus": "Bono",
         "WithChainBonus": "con bono Cadena / Apoyo",
         "WinsRoll": "gana tirada disputa / opuesta.",
-        "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor."
+        "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor.",
+        "GMUtils": "Herramientas DJ",
+        "RequestRoll": "Petición Tirada",
+        "GMRequestsRoll": "El DJ pide tirada de _TYPE_.",
+        "normal": "normal",
+        "AbilityCheck": "Prueba de Habilidad / Característica"
       }
     },
     "Create": "Crear",

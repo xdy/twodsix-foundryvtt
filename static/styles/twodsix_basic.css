@@ -255,7 +255,7 @@ label.checkbox > input[type="checkbox"] {
     "vehicle-name-photo vehicle-stats vehicle-armor"
     "vehicle-name-photo vehicle-stats vehicle-traits"
     "vehicle-systems vehicle-systems vehicle-notes"
-    "vehicle-weapons vehicle-weapons vehicle-notes";
+    "vehicle-components vehicle-components vehicle-notes";
 }
 
 .space-object-content-container {
@@ -318,7 +318,7 @@ label.checkbox > input[type="checkbox"] {
   padding-left: 1ch;
 }
 
-.vehicle-systems, .vehicle-weapons, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
   border: 2px solid;
   border-radius: 2ch;
 }
@@ -327,8 +327,8 @@ label.checkbox > input[type="checkbox"] {
   grid-area: vehicle-systems;
 }
 
-.vehicle-weapons {
-  grid-area: vehicle-weapons;
+.vehicle-components {
+  grid-area: vehicle-components;
 }
 
 .vehicle-armor {
@@ -404,7 +404,7 @@ label.checkbox > input[type="checkbox"] {
   margin: 1ch 2ch;
 }
 
-.weapons-stored {
+.components-stored {
   display: grid;
   grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
@@ -412,7 +412,7 @@ label.checkbox > input[type="checkbox"] {
   grid-template-areas: ". . . . . . . .";
 }
 
-.grid-columns-weapon {
+.grid-columns-component {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -422,12 +422,13 @@ label.checkbox > input[type="checkbox"] {
   border: solid 1px var(--s2d6-input-background);
 }
 
-.weapons-header {
+.components-header {
   border-width: 1px;
   border-style: solid none;
   border-color: var(--s2d6-background-opaque);
   position: sticky;
   top:0%;
+  background: url(../../../ui/parchment.jpg) repeat;
   /*min-height: 4ch;*/
 }
 
@@ -1035,7 +1036,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.7em 11.5em 1.6em 1.6em 10.5em 4em 3em;
+  grid-template-columns: 1.7em 10.5em 1.6em 1.6em 10.5em 4em 4em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . . . . .';
@@ -1266,7 +1267,7 @@ span.total-output {
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
-  max-width: 14ch;
+  max-width: 12ch;
 }
 
 .multi-line {
