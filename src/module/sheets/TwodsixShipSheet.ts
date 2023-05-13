@@ -277,7 +277,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       }
       const droppedObject:any = await getItemDataFromDropData(dropData);
 
-      if (droppedObject.type === "traveller") {
+      if (["traveller", "robot"].includes(droppedObject.type)) {
         const actorId = droppedObject._id;
         const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
         if (event.target !== null && $(event.target).parents(".ship-position").length === 1) {
