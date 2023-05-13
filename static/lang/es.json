@@ -402,8 +402,9 @@
         "perUnit": "MCr por unidad",
         "perCompTon": "MCr por ton. componentes",
         "perHullTon": "MCr por ton. casco",
-        "per100HullTon": "MCr por 100 toneladas de caso",
+        "per100HullTon": "MCr por 100 toneladas de casco",
         "pctHull": "Porcentaje coste del casco",
+        "pctHullPerUnit": "Porcentaje de casco por unidad",
         "isBaseHull": "¿Casco Atmostérico?",
         "RollModifier": "Modificador Tirada",
         "DM": "MD",
@@ -702,6 +703,7 @@
       "Protection": "Protección",
       "skillToOperate": "Habilidad para Operar",
       "Weapons": "Armamento",
+      "Components": "Componentes",
       "OpenVehicle": "Vehículo Abierto",
       "techLevel": "NT",
       "Cost": "Coste",
@@ -877,7 +879,7 @@
         }
       },
       "shipInitiativeFormula": {
-        "hint": "Ejemplo: \"2d6",
+        "hint": "Ejemplo: \"2d6\"",
         "name": "Fórmula Iniciativa Nave"
       },
       "showAlternativeCharacteristics": {
