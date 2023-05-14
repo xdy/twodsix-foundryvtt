@@ -305,7 +305,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       } else if (droppedObject.type === "animal") {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
-      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable"].includes(droppedObject.type)) {
+      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
         this.processDroppedItem(event, droppedObject);
         return true;
       } else {
