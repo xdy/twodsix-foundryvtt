@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
+import { effectType } from "../hooks/showStatusIcons";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -74,7 +75,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Add custom source labels for active effects
     for(const effect of returnData.effects) {
-      if (["Wounded", "Encumbered", "Dead", "Unconscious"].includes(effect.name)) {
+      if ([game.i18n.localize(effectType.wounded), game.i18n.localize(effectType.encumbered), game.i18n.localize(effectType.dead), game.i18n.localize(effectType.unconscious)].includes(effect.name)) {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.Condition");
       } else if (effect.origin && !effect.origin?.includes("Compendium")) {
         const attachedItem:TwodsixItem = fromUuidSync(effect.origin);

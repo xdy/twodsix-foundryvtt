@@ -8,6 +8,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
+import { effectType } from "../hooks/showStatusIcons";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -344,7 +345,7 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   let returnValue = 0;
   let returnName = "";
   let changed = false;
-  const customEffects = selectedActor.effects.filter(eff => eff.name !== "Wounded" && eff.name !== "Encumbered");
+  const customEffects = selectedActor.effects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
   for (const effect of customEffects) {
     changed = false;
     for (const change of effect.changes) {
