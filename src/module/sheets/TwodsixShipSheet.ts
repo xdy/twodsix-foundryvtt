@@ -277,7 +277,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       }
       const droppedObject:any = await getItemDataFromDropData(dropData);
 
-      if (droppedObject.type === "traveller") {
+      if (["traveller", "robot"].includes(droppedObject.type)) {
         const actorId = droppedObject._id;
         const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
         if (event.target !== null && $(event.target).parents(".ship-position").length === 1) {
@@ -288,24 +288,29 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
           await this.actor.update({[`system.shipPositionActorIds.-=${actorId}`]: null});
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
+        return true;
       } else if ((droppedObject.type === "skills") && event.target !== null && $(event.target).parents(".ship-position").length === 1) {
         //check for double drop trigger, not clear why this occurs
         if (event.currentTarget.className === "ship-position-box") {
           const shipPositionId = $(event.target).parents(".ship-position").data("id");
           const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
           await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
+          return true;
         } else {
           return false;
         }
       } else if (["vehicle", "ship"].includes(droppedObject.type)) {
         await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
+        return true;
       } else if (droppedObject.type === "animal") {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
         return false;
-      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable"].includes(droppedObject.type)) {
+      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
         this.processDroppedItem(event, droppedObject);
+        return true;
       } else {
         await super._onDrop(event);
+        return true;
       }
     } catch (err) {
       console.warn(err); // uncomment when debugging
