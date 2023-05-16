@@ -26,7 +26,12 @@
           <span class="item-name centre">
               {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
           </span>
-          <span class="item-name centre">{{item.system.hits}}</span>
+          <span class="item-name centre">{{item.system.hits}}
+            <span class="combined-buttons" data-field="hits">
+              <button class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+              <button class="right-button adjust-counter" {{#iff item.system.hits "===" settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+            </span>
+          </span>
           <span class="item-name centre component-toggle">
             {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}

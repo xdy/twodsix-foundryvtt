@@ -1284,12 +1284,14 @@
       "ship": "Ship",
       "vehicle": "Vehicle",
       "animal": "Animal",
+      "robot": "Robot",
       "space-object": "Space Object",
       "travellerPl": "Travellers",
       "shipPl": "Ships",
       "vehiclePl": "Vehicles",
       "animalPl": "Animals",
-      "space-objectPl": "Space Objects"
+      "space-objectPl": "Space Objects",
+      "robotPl": "Robots"
     }
   },
   "EFFECT": {
