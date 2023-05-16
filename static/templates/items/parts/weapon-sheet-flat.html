@@ -1,94 +1,94 @@
 <div class="item-sheet">
   {{> "systems/twodsix/templates/items/parts/common-parts.html"}}
   <div class="item-damage">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.MagazineCost"}}</label>
+    <label class="resource-label" for="system.magazineCost">{{localize "TWODSIX.Items.Weapon.MagazineCost"}}</label>
     <input class="form-input" id="system.magazineCost" type="number" name="system.magazineCost" value="{{system.magazineCost}}">
   </div>
 
   <div class="item-damage">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
+    <label class="resource-label" for="system.damage">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
     <input class="form-input" id="system.damage" type="text" name="system.damage" value="{{system.damage}}">
   </div>
 
   {{#if settings.ShowDamageType}}
   <div class="item-damageType">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-    <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
+    <label class="resource-label" for="system.damageType">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
+    <select name="system.damageType" id="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
     <!-- <input class="form-input" id="system.damageType" type="text" name="system.damageType" value= "{{system.damageType}}"></div> -->
   </div>
   {{/if}}
 
   <div class="item-damage">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
+    <label class="resource-label" for="system.armorPiercing">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
     <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
   </div>
 
   <div class="item-range">
     {{#if settings.ShowRangeBandAndHideRange}}
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
+    <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
     <input id="system.rangeBand" type="text" name="system.rangeBand" value="{{system.rangeBand}}">
     {{else}}
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
+    <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
     <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
     {{/if}}
   </div>
 
   <div class="item-handling">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
+    <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
     <input class="form-input" id="system.handlingModifiers" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
   </div>
   {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}
   <div class="item-ammo">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.DefaultMagazine"}}</label>
+    <label class="resource-label" for="system.ammo">{{localize "TWODSIX.Items.Weapon.DefaultMagazine"}}</label>
     <input id ="system.ammo" type="text" name="system.ammo" value="{{system.ammo}}">
   </div>
 
   <div class="item-qty">
-    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+    <label class="resource-label" for="system.quantity">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
     <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
   </div>
 
   <div class="item-weight">
-    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+    <label class="resource-label" for="system.weight">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
     <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
   </div>
 
   {{#if settings.ShowLawLevel}}
   <div class="item-lawLevel">
-    <span class="resource-label">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
-    <input class="form-input" type="text" name="system.lawLevel" value="{{system.lawLevel}}">
+    <span class="resource-label" for="system.lawLevel">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
+    <input class="form-input" type="text" name="system.lawLevel" id="system.lawLevel" value="{{system.lawLevel}}">
   </div>
   {{/if}}
 
   {{#if settings.ShowWeaponType}}
   <div class="item-weaponType">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.weaponType"}}</label>
+    <label class="resource-label" for="system.weaponType">{{localize "TWODSIX.Items.Weapon.weaponType"}}</label>
     <input class="form-input" id="system.weaponType" type= "text" name="system.weaponType" value="{{system.weaponType}}">
   </div>
   {{/if}}
 
   {{#if settings.ShowRateOfFire}}
   <div class="item-rateOfFire">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+    <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
     <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
   </div>
   {{/if}}
 
   {{#if settings.ShowRecoil}}
   <div class="item-recoil">
-    <span class="resource-label">{{localize "TWODSIX.Items.Weapon.recoil"}}</span>
-    <input type="checkbox" class="checkbox" name="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
+    <label class="resource-label" for="system.recoil">{{localize "TWODSIX.Items.Weapon.recoil"}}</label>
+    <input type="checkbox" class="checkbox" id="system.recoil" name="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
   </div>
   {{/if}}
 
   <div class="item-features">
-    <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Features"}}</label>
+    <label class="resource-label" for="system.features">{{localize "TWODSIX.Items.Weapon.Features"}}</label>
     <input class="form-input" id="system.features" type="text" name="system.features" value="{{system.features}}">
   </div>
 
   <div class="item-descr">
-    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
-    <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
+    <label class="resource-label" for="system.description">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
+    <div contenteditable="true" id="system.description" data-edit="system.description">{{{system.description}}}</div>
   </div>
   {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
   {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}

@@ -305,7 +305,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
     new Dialog({
       title: title,
       content:
-        `<label>Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
+        `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
       buttons: {
         Roll: {
           label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),

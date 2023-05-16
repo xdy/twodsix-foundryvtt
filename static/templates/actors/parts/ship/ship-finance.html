@@ -10,10 +10,10 @@
   <div class="financial-calcs">
     <span class="item-title">{{localize "TWODSIX.Ship.SHIPVALUE"}}</span>
     <div class="ship-value">
-      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.IsMassProduced"}}:</label><br><input type="checkbox" class="checkbox" name="system.isMassProduced" {{checked actor.system.isMassProduced}} data-dtype="Boolean" /></span>
-      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.ShipValue"}}:</label><br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.shipValue}}" name="system.shipValue" /> {{localize "TWODSIX.Ship.MCr"}}</span>
-      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.MortgagePerMonth"}}:</label><br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.mortgageCost}}" name="system.mortgageCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
-      <span class="ship-stat-finance centre"><label>{{localize "TWODSIX.Ship.MaintenancePerMonth"}}:</label><br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.maintenanceCost}}" name="system.maintenanceCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
+      <span class="ship-stat-finance centre">{{localize "TWODSIX.Ship.IsMassProduced"}}:<br><input type="checkbox" class="checkbox" name="system.isMassProduced" {{checked actor.system.isMassProduced}} data-dtype="Boolean" /></span>
+      <span class="ship-stat-finance centre">{{localize "TWODSIX.Ship.ShipValue"}}:<br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.shipValue}}" name="system.shipValue" /> {{localize "TWODSIX.Ship.MCr"}}</span>
+      <span class="ship-stat-finance centre">{{localize "TWODSIX.Ship.MortgagePerMonth"}}:<br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.mortgageCost}}" name="system.mortgageCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
+      <span class="ship-stat-finance centre">{{localize "TWODSIX.Ship.MaintenancePerMonth"}}:<br><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="text" value="{{actor.system.maintenanceCost}}" name="system.maintenanceCost" /> {{localize "TWODSIX.Ship.CrPerMonth"}}</span>
       </div>
   </div>
 </div>
