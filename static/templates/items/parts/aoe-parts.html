@@ -1,6 +1,6 @@
 <!-- Ability Target -->
 <div class="item-target-area">
-  <label class="resource-label">{{ localize "TWODSIX.Target.AreaEffect" }}</label>
+  <span class="resource-label">{{ localize "TWODSIX.Target.AreaEffect" }}</span>
   <div class="form-fields">
     <select name="system.target.type" data-tooltip="TWODSIX.Target.TypeArea" style="width: max-content">
       {{selectOptions config.areaTargetTypes selected=system.target.type localize=true inverted=false labelAttr="label"}}
@@ -16,9 +16,9 @@
 <!-- Ability Target Width -->
 {{#iff system.target.type "===" "line"}}
 <div class="item-target-width">
-  <label class="resource-label">{{ localize "TWODSIX.Target.Width" }}</label>
+  <label class="resource-label" for="system.target.width">{{ localize "TWODSIX.Target.Width" }}</label>
   <div class="form-fields">
-      <input type="number" step="any" name="system.target.width"
+      <input type="number" step="any" name="system.target.width" id="system.target.width"
           value="{{system.target.width}}" placeholder="&mdash;">
   </div>
 </div>

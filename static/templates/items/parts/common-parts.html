@@ -9,7 +9,7 @@
       <th>
         <div class="item-name">
           <label for="item.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-          <input class="form-input" id="item.name" name="name" type="text" value="{{name}}"/>
+          <input class="form-input" id="item.name" name="name" type="text" value="{{name}}" autocomplete="off"/>
         </div>
       </th>
     </tr>
@@ -37,7 +37,7 @@
   {{#iff owner.type "!==" "ship"}}
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
-        <select class="form-input" name="system.skill" >
+        <select class="form-input" name="system.skill" id="system.skill">
           {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
         </select>
     </div>

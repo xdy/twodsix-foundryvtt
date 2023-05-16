@@ -83,7 +83,7 @@
       </div>
 
       <div class="item-descr">
-        <label class="resource-label" for="system.description">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
+        <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
         <div contenteditable="true" id="system.description" data-edit="system.description">{{{system.description}}}</div>
       </div>
       {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
@@ -95,7 +95,7 @@
         {{#iff owner.type "!==" "ship"}}
           <div class="item-skill">
             <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
-              <select class="form-input" name="system.skill" >
+              <select class="form-input" name="system.skill" id="system.skill">
                 {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
               </select>
           </div>
@@ -113,7 +113,7 @@
       {{/if}}
 
       <div class="item-skillModifier">
-        <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
+        <label for="system.skillModifier" class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
         <input class="form-input" id="system.skillModifier" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
                 data-dtype="Number"/>
       </div>
@@ -164,7 +164,7 @@
       {{#if settings.ShowRecoil}}
         <div class="item-recoil">
           <label class="resource-label" for="system.recoil">{{localize "TWODSIX.Items.Weapon.recoil"}}</label>
-          <input type="checkbox" class="checkbox" name="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
+          <input type="checkbox" class="checkbox" name="system.recoil" id="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
         </div>
       {{/if}}
 
