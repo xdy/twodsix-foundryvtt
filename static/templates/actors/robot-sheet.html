@@ -17,7 +17,7 @@
         {{/if}}
       </div>
       <div class="character-name npc" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
-                                         onClick="this.select();"/></div>
+                                         onClick="this.select();" autocomplete="off"/></div>
       {{#if settings.showInitiativeButton}}
         <div class = "initiative">
           <button class="roll-initiative"><i class="fa-solid fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
@@ -56,7 +56,7 @@
                   disabled
                 {{else}}
                   class= "item-value-edit" value="{{item.system.value}}"
-                {{/if}} />
+                {{/if}} id="{{concat 'system.skills.' (skillName item.name)}}"/>
                 <span class="item-controls centre">
                   <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                       class="fa-solid fa-pen-to-square"></i></a>
@@ -68,7 +68,7 @@
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
-          <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
+          <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" id="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"readonly/>
       </span>
       {{/if}}
       </div>

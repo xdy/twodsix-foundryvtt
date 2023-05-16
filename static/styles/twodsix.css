@@ -2343,7 +2343,7 @@ span.total-output {
 
 /*--- Labels ---*/
 
-.ship-power label {
+span.ship-power-label {
   display: block;
   width: 75px;
   font-size: 18px;

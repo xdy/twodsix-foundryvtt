@@ -1822,7 +1822,7 @@ img.ship-mask-bg {
 
 /*--- Labels ---*/
 
-.ship-power label {
+span.ship-power-label {
   display: block;
   width: 4.2em;
   font-size: 18px;
