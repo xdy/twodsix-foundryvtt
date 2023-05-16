@@ -220,33 +220,6 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     }
   }
 
-  private async _onAdjustCounter(event): Promise<void> {
-    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
-    const field = $(event.currentTarget).parents(".combined-buttons").data("field");
-    const li = $(event.currentTarget).parents(".item");
-    const itemSelected = this.actor.items.get(li.data("itemId"));
-    if (itemSelected && field) {
-      if (field === "hits") {
-        const newHits = (<Component>itemSelected.system).hits + modifier;
-        if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
-          await itemSelected.update({ "system.hits": newHits });
-        }
-        if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
-          await itemSelected.update({ "system.status": "destroyed" });
-        } else if (newHits > 0 && (<Component>itemSelected.system).status !== "off") {
-          await itemSelected.update({ "system.status": "damaged" });
-        } else if (newHits === 0 && (<Component>itemSelected.system).status !== "off") {
-          await itemSelected.update({ "system.status": "operational" });
-        }
-      } else if (field === "ammo") {
-        const newAmmo = (<Component>itemSelected.system).ammunition.value + modifier;
-        if (newAmmo >= 0  && newAmmo <= (<Component>itemSelected.system).ammunition.max) {
-          await itemSelected.update({ "system.ammunition.value": newAmmo });
-        }
-      }
-    }
-  }
-
   _onDragStart(event: DragEvent):void {
     if (event.dataTransfer !== null && event.target !== null && $(event.target).data("drag") === "actor") {
       const actor = game.actors?.get($(event.target).data("id"));
