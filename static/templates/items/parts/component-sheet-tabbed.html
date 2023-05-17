@@ -45,7 +45,7 @@
           {{#iff system.subtype "!==" "fuel"}}
             <div class = "item-hardened">
               <label for="system.hardened" class="resource-label short-label">{{localize "TWODSIX.Items.Component.Hardened"}}</label>
-              <input type="checkbox" class="checkbox" name="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
+              <input type="checkbox" class="checkbox" name="system.hardened" id="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
             </div>
           {{/iff}}{{/iff}}{{/iff}}
           <div class="item-hits">
@@ -66,7 +66,7 @@
       {{#iff system.subtype "===" "fuel" }}
         <div class="item-refined">
           <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
-          <input type="checkbox" class="checkbox" name="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
+          <input type="checkbox" class="checkbox" name="system.isRefined"  id="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
         </div>
       {{/iff}}
       {{#iff system.subtype "===" "computer" }}
@@ -91,7 +91,7 @@
       {{#iff system.subtype "===" "hull" }}
         <div class="item-weight">
           <label for="system.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}}</label>
-          <input type="checkbox" class="checkbox" name="system.isBaseHull" {{checked system.isBaseHull}} data-dtype="Boolean" />
+          <input type="checkbox" class="checkbox" name="system.isBaseHull" id="system.isBaseHull" {{checked system.isBaseHull}} data-dtype="Boolean" />
         </div>
       {{/iff}}
 
@@ -105,7 +105,7 @@
         {{#iff system.subtype "!==" "cargo" }}
           <div class="item-weight">
             <label for="system.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}</label>
-            <input type="checkbox" class="checkbox" name="system.weightIsPct" {{checked system.weightIsPct}} data-dtype="Boolean" />
+            <input type="checkbox" class="checkbox" name="system.weightIsPct" id="system.weightIsPct" {{checked system.weightIsPct}} data-dtype="Boolean" />
           </div>
         {{/iff}}
 
@@ -143,7 +143,7 @@
         {{#iff system.subtype "!==" "fuel"}}
           <div class="item-power">
             <label for="system.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}
-            <input type="checkbox" class="checkbox" name="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
+            <input type="checkbox" class="checkbox" name="system.generatesPower" id="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
 
             <label for="system.powerDraw" class="short-label" style="align-self: center;">
             {{#if system.generatesPower}}
@@ -172,11 +172,11 @@
           <input class="form-input" type="text" name="system.range" value="{{system.range}}"/>
         </div>
         <div class="item-damage">
-          <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
+          <label class="resource-label" for="system.armorPiercing">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
           <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
         </div>
         <div class="item-rateOfFire">
-          <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+          <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
           <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
         </div>
         <div class="item-features">
@@ -188,7 +188,7 @@
           <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
         </div>
         <div class="item-data">
-          <label class="resource-label">{{localize "TWODSIX.Items.Component.Ammunition"}}</label>
+          <span class="resource-label">{{localize "TWODSIX.Items.Component.Ammunition"}}</span>
             <div>
               <input id="system.ammunition.value" class="form-consumable-count" name="system.ammunition.value" type="number" value="{{system.ammunition.value}}" data-dtype="Number"/>
               /
@@ -199,10 +199,10 @@
       {{#if (twodsix_canBePopup this)}}
           <div class="item-data">
             <label for="system.isPopup" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPopup"}}</label>
-            <input type="checkbox" class="checkbox" name="system.isPopup" {{checked system.isPopup}} data-dtype="Boolean" />
+            <input type="checkbox" class="checkbox" name="system.isPopup" id="system.isPopup" {{checked system.isPopup}} data-dtype="Boolean" />
             {{#if system.isPopup}}
               <label for="system.isExtended" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isExtended"}}</label>
-              <input type="checkbox" class="checkbox" name="system.isExtended" {{checked system.isExtended}} data-dtype="Boolean" />
+              <input type="checkbox" class="checkbox" name="system.isExtended" id="system.isExtended"  {{checked system.isExtended}} data-dtype="Boolean" />
             {{/if}}
           </div>
         {{/if}}
@@ -235,7 +235,7 @@
 
         <div class="item-price">
           <label for="system.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}</label>
-          <input type="checkbox" class="checkbox" name="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
+          <input type="checkbox" class="checkbox" name="system.isIllegal" id="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
         </div>
       {{/iff}}
     </div>
