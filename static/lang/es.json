@@ -1294,11 +1294,13 @@
       "ship": "Nave",
       "vehicle": "Vehículo",
       "animal": "Animal",
+      "robot": "Robot",
       "space-object": "Objeto Espacial",
       "travellerPl": "Viajeros",
       "shipPl": "Naves",
       "vehiclePl": "Vehículos",
       "animalPl": "Animales",
+      "robotPl": "Robots",
       "space-objectPl": "Objetos Espaciales"
     }
   }
