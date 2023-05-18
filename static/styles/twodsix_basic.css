@@ -441,7 +441,8 @@ label.checkbox > input[type="checkbox"] {
   margin-top: 0.5em;
   margin-left: 2px;
   margin-right: 2px;
-  overflow-y: auto;
+  overflow-y: hidden;
+  height: calc(95% - 3ch);
 }
 .content-background {
   top: 0.7em;

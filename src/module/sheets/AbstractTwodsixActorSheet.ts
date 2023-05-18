@@ -617,7 +617,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return <TwodsixItem>this.actor.items.get(itemId);
   }
 
-  private async _onAdjustCounter(event): Promise<void> {
+  public async _onAdjustCounter(event): Promise<void> {
     const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
     const field = $(event.currentTarget).parents(".combined-buttons").data("field");
     const li = $(event.currentTarget).parents(".item");
