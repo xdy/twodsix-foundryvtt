@@ -10,7 +10,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {
     controls.find((c) => c.name === "token").tools.push({
       name: "requestRoll",
-      title: "TWODSIX.Chat.Roll.RequestRoll",
+      title: "TWODSIX.Chat.Roll.RequestRoll" + (game.settings.get("core", "showToolclips") ? "Clip" : ""),
       icon: "fa-solid fa-dice",
       button: true,
       visible: game.user.isGM,
