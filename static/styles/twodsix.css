@@ -806,8 +806,8 @@ h2 {
   margin-top: 0.5em;
   margin-left: 2px;
   margin-right: 2px;
-  overflow-y: auto;
-  /*height: 72%;*/
+  overflow-y: hidden;
+  height: calc(95% - 3ch);
 }
 
 .content-background {
