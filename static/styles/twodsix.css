@@ -3211,7 +3211,7 @@ form button {
 
 button {
   position: relative;
-  margin: 0.5em 0;
+  margin: 0.3em 0.1em;
   background-color: var(--s2d6-background-opaque);
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);
