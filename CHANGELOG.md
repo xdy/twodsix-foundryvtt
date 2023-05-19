@@ -1,3 +1,10 @@
+## [2.32.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.2...v2.32.3) (2023-05-15)
+
+
+### Bug Fixes
+
+* allow robot actors in the ship positions. ([#1320](https://github.com/xdy/twodsix-foundryvtt/issues/1320)) ([bccb32e](https://github.com/xdy/twodsix-foundryvtt/commit/bccb32edf3a5bb74d9dee7e966ac842636d85b0e))
+
 ## [2.32.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.1...v2.32.2) (2023-05-12)
 
 

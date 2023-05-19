@@ -83,6 +83,9 @@ jobs:
       - name: Get tag
         run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
+      - name: Install playwright
+        run: npx playwright install
+
       - name: Publish to Foundry VTT Repo
         id: publish_foundry_repo
         run: npx @ghost-fvtt/foundry-publish
