@@ -688,6 +688,7 @@ h2 {
 
 .vehicle-components {
   grid-area: vehicle-components;
+  overflow-y: hidden;
 }
 
 .vehicle-traits {
@@ -806,8 +807,8 @@ h2 {
   margin-top: 0.5em;
   margin-left: 2px;
   margin-right: 2px;
-  overflow-y: hidden;
-  height: calc(95% - 3ch);
+  /*overflow-y: hidden;
+  height: calc(95% - 3ch);*/
 }
 
 .content-background {
