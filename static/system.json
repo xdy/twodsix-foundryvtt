@@ -252,6 +252,70 @@
       "type": "RollTable"
     }
   ],
+  "packFolders": [
+    {
+      "name": "Cepheus Light",
+      "sorting": "m",
+      "packs": [
+        "ce-light-gm-screen",
+        "ce-light-robots",
+        "cepheus-light-items"
+      ]
+    },
+    {
+      "name": "CE SRD",
+      "sorting": "m",
+      "packs": [
+        "ce-srd-gm-screen",
+        "ce-srd-items",
+        "ce-srd-roll-tables"
+      ]
+    },
+    {
+      "name": "Cepheus Atom",
+      "sorting": "m",
+      "packs": [
+        "cepheus-atom-items",
+        "cepheus-atom-actors",
+        "cepheus-atom-rolltables",
+        "cepheus-atom-gm-screen"
+      ]
+    },
+    {
+      "name": "Cepheus Deluxe",
+      "sorting": "m",
+      "packs": [
+        "cepheus-deluxe-items",
+        "cepheus-deluxe-actors",
+        "cepheus-deluxe-tables",
+        "cepheus-deluxe-gm-screen"
+      ]
+    },
+    {
+      "name": "Cepheus FTL",
+      "sorting": "m",
+      "packs": [
+        "cepheus-faster-than-light-items"
+      ]
+    },
+    {
+      "name": "Cepheus Quantum",
+      "sorting": "m",
+      "packs": [
+        "cepheus-quantum-items",
+        "cepheus-quantum-careers",
+        "cepheus-quantum-gm-screen"
+      ]
+    },
+    {
+      "name": "Twodsix Utilities",
+      "sorting": "m",
+      "packs": [
+        "twodsix-macros",
+        "twodsix-macros-rolltables"
+      ]
+    }
+  ],
   "primaryTokenAttribute": "hits",
   "styles": [],
   "templateVersion": 2,
