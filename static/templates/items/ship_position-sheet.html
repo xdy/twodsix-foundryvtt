@@ -43,6 +43,7 @@
             <td>{{localize "TWODSIX.Ship.Order"}}</td>
             <td>{{localize "TWODSIX.Ship.Name"}}</td>
             <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
+            <td>{{localize "TWODSIX.Ship.Component"}}</td>
             <td>{{localize "TWODSIX.Ship.ActionType"}}</td>
             <td class="centre">
               <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}'>
@@ -63,6 +64,18 @@
             <td>
               <input type="text" placeholder="{{localize action.placeholder}}" name="system.actions.{{id}}.command"
                 value="{{action.command}}" data-tooltip="{{localize action.tooltip}}">
+            </td>
+            <td>
+              <select name="system.actions.{{id}}.component">
+                {{#each components as |component|}}
+                  <option value="">None</option>
+                    {{#if action.component===component.id}}
+                      <option selected value="{{component.id}}"><img src="{{component.img}}" width="20" height="20"> {{component.name}}</option>
+                    {{#else}}
+                      <option value="{{component.id}}"><img src="{{component.img}}" width="20" height="20"> {{component.name}}</option>
+                    {{/if}}
+                {{/each}}
+              </select>
             </td>
             <td>
               <select style="width: 100px;" name="system.actions.{{action.id}}.type">

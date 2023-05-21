@@ -29,6 +29,12 @@ export class TwodsixShipActions {
       name: "TWODSIX.Ship.UseAComponent",
       placeholder: "TWODSIX.Ship.firePlaceholder",
       tooltip: "TWODSIX.Ship.fireTooltip"
+    },
+    [TWODSIX.SHIP_ACTION_TYPE.executeMacro]: <AvailableShipActionData>{
+      action: TwodsixShipActions.executeMacro,
+      name: "TWODSIX.Ship.ExecuteMacro",
+      placeholder: "TWODSIX.Ship.MacroPlaceholder",
+      tooltip: "TWODSIX.Ship.MacroTooltip"
     }
   };
 
@@ -150,6 +156,14 @@ export class TwodsixShipActions {
       } else {
         await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
+    }
+  }
+
+  public static async executeMacro(text: string, extra: ExtraData) {
+    const foundMacros = game.macros.contents.find((macro) => macro.name === text);
+    if (foundMacros) {
+      const scope={actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
+      foundMacros[0].execute(scope);
     }
   }
 }

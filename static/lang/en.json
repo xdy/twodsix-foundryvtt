@@ -612,6 +612,7 @@
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
+      "Component": "Component to use",
       "MakesChatRollAction": "Uses the _ACTION_NAME_ action from the _POSITION_NAME_ position.",
       "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
       "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
@@ -663,12 +664,15 @@
       "CrPerMonth": "Cr/month",
       "Chat": "Chat",
       "UseAComponent": "Component",
+      "executeMacro": "Macro",
       "SkillRoll": "Skill",
       "chatPlaceholder": "Chat Message",
       "skillPlaceholder": "Skill/CHR 8+",
       "firePlaceholder": "Skill/CHR 8+=COMPONENT_ID",
+      "macroPlaceholder": "Macro name",
       "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+\nSkills/ATR|ATR2",
       "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR|ATR2 8+=COMPONENT_ID",
+      "macroTooltip": "Macro name",
       "chatTooltip": "Ahoy!"
     },
     "Vehicle": {

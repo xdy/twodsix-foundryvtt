@@ -76,7 +76,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "name": skill.name,
         "icon": skill.img ?? "",
         "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-        "command": command
+        "command": command,
+        "component": ""
       }
     };
     const newActions = duplicate(Object.assign(actions, newAction));
@@ -146,6 +147,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",
       "command": "",
+      "component": "",
       "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
     this.item.update({ "system.actions": actions });
