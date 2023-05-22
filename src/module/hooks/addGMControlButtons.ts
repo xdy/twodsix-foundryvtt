@@ -163,7 +163,7 @@ function getControllingUser(token:Token): string {
     if (characterUser) {
       userId = characterUser.id;
     } else {
-      const randomSelection = Math.floor(Math.random() * owningUsers.length);
+      const randomSelection = new Roll("1d@length - 1", {length: owningUsers.length}).evaluate({async: false}).total;
       userId = owningUsers[randomSelection].id;
     }
   } else if (owningUsers.length === 1) {
