@@ -69,11 +69,11 @@
               <select name="system.actions.{{id}}.component">
                 {{#each components as |component|}}
                   <option value="">None</option>
-                    {{#if action.component===component.id}}
+                    {{#iff action.component '===' component.id}}
                       <option selected value="{{component.id}}"><img src="{{component.img}}" width="20" height="20"> {{component.name}}</option>
-                    {{#else}}
+                    {{else}}
                       <option value="{{component.id}}"><img src="{{component.img}}" width="20" height="20"> {{component.name}}</option>
-                    {{/if}}
+                    {{/iff}}
                 {{/each}}
               </select>
             </td>
