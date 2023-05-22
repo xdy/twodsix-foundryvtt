@@ -161,7 +161,7 @@ export class TwodsixShipActions {
 
   public static async executeMacro(text: string, extra: ExtraData) {
     const foundMacros = game.macros.contents.find((macro) => macro.name === text);
-    if (foundMacros) {
+    if (foundMacros && foundMacros[0].canExecute()) {
       const scope={actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
       foundMacros[0].execute(scope);
     }
