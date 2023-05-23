@@ -12,7 +12,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   getData(): TwodsixShipPositionSheetData {
     const context = <TwodsixShipPositionSheetData>super.getData();
-    context.components = this.item.actor?.itemTypes.component ?? [];
+    context.nonCargoComponents = this.item.actor?.itemTypes.component.filter( i => i.system.subtype !== "cargo") ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
     const actions = (<ShipPosition>this.item.system).actions ?? [];
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {

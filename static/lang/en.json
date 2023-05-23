@@ -578,6 +578,7 @@
       "Available": "Available",
       "AvailableCargoWeight": "Available Cargo Weight",
       "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
+      "CannotParseArgument": "Cannot Parse Position Action String",
       "Cargo": "Cargo",
       "CargoWeight": "Total Cargo Weight",
       "CARGONOTES": "CARGO NOTES",
@@ -672,8 +673,10 @@
       "macroPlaceholder": "Macro name",
       "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+\nSkills/ATR|ATR2",
       "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR|ATR2 8+=COMPONENT_ID",
-      "macroTooltip": "Macro name",
-      "chatTooltip": "Ahoy!"
+      "MacroTooltip": "Macro Name",
+      "chatTooltip": "Ahoy!",
+      "ExecuteMacro": "Execute Macro",
+      "None": "None"
     },
     "Vehicle": {
       "SystemStatus": "System Status",
