@@ -1,3 +1,10 @@
+## [2.32.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.3...v2.32.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* Consider Default Ownership in Request Roll Function ([#1333](https://github.com/xdy/twodsix-foundryvtt/issues/1333)) ([8fd7dce](https://github.com/xdy/twodsix-foundryvtt/commit/8fd7dcef55f7066f3e58b551a177fcf4869898c3))
+
 ## [2.32.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.2...v2.32.3) (2023-05-15)
 
 
