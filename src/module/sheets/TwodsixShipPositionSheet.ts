@@ -99,11 +99,12 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   async _onDrop(event: DragEvent): Promise<boolean | any> {
+    event.preventDefault();
     const dropData:any = getDataFromDropEvent(event);
     const droppedObject:any = await getItemDataFromDropData(dropData);
     if (droppedObject.type === "skills") {
       await TwodsixShipPositionSheet.createActionFromSkill(this.item, droppedObject);
-    } else if (droppedObject.type === "traveller") {
+    } else if (["traveller", "robot"].includes(droppedObject.type)) {
       if (this.actor) {
         const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[droppedObject._id];
         await this.actor.update({[`system.shipPositionActorIds.${droppedObject._id}`]: this.item.id});
@@ -113,10 +114,13 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         }
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip"));
+        return false;
       }
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForShipPosition"));
+      return false;
     }
+    return true;
   }
 
   private async _onDeleteAction(event: Event) {

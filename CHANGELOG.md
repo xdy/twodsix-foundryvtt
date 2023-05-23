@@ -1,3 +1,17 @@
+## [2.32.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.3...v2.32.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* Consider Default Ownership in Request Roll Function ([#1333](https://github.com/xdy/twodsix-foundryvtt/issues/1333)) ([8fd7dce](https://github.com/xdy/twodsix-foundryvtt/commit/8fd7dcef55f7066f3e58b551a177fcf4869898c3))
+
+## [2.32.3](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.2...v2.32.3) (2023-05-15)
+
+
+### Bug Fixes
+
+* allow robot actors in the ship positions. ([#1320](https://github.com/xdy/twodsix-foundryvtt/issues/1320)) ([bccb32e](https://github.com/xdy/twodsix-foundryvtt/commit/bccb32edf3a5bb74d9dee7e966ac842636d85b0e))
+
 ## [2.32.2](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.1...v2.32.2) (2023-05-12)
 
 
