@@ -157,13 +157,14 @@ function getSelectedTokenData(): any {
 
 function getControllingUser(token:Token): string {
   let userId = "";
-  const owningUsers = game.users.filter((user) => !user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER);
+  const owningUsers = game.users.filter((user) => !user.isGM && user.active && (token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER || (token.actor.ownership.default === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER  && !(user.id in token.actor.ownership))));
   if (owningUsers.length > 1) {
     const characterUser = owningUsers.find((user) => user.character.id === token.actor.id);
     if (characterUser) {
       userId = characterUser.id;
     } else {
-      userId = owningUsers[0].id;
+      const randomSelection = new Roll("1d@length - 1", {length: owningUsers.length}).evaluate({async: false}).total;
+      userId = owningUsers[randomSelection].id;
     }
   } else if (owningUsers.length === 1) {
     userId = owningUsers[0].id;
