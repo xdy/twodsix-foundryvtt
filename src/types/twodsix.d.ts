@@ -67,7 +67,6 @@ declare global {
       'twodsix.showContaminationBelowLifeblood': boolean;
       'twodsix.showHeroPoints': boolean;
       'twodsix.showLifebloodStamina': boolean;
-      'twodsix.showMissingCompendiumWarnings': boolean;
       'twodsix.showSingleComponentColumn': boolean;
       'twodsix.showBandwidth': boolean;
       'twodsix.useFoundryStandardStyle': boolean;

@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.4...v3.0.0) (2023-05-24)
+
+
+### Features
+
+* V11 update ([#1283](https://github.com/xdy/twodsix-foundryvtt/issues/1283)) ([cc8d8ff](https://github.com/xdy/twodsix-foundryvtt/commit/cc8d8ffa06431f876adf37b2c234edc6c321299a))
+
+
+### BREAKING CHANGES
+
+* this shifts to the FVTT v11 base.
+
 ## [2.32.4](https://github.com/xdy/twodsix-foundryvtt/compare/v2.32.3...v2.32.4) (2023-05-23)
 
 

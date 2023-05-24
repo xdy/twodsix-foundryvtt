@@ -240,7 +240,7 @@ export default function registerHandlebarsHelpers(): void {
       for (const effect of workingEffects) {
         const realChanges = effect.changes.filter(ch => ch.key === field);
         if (realChanges.length > 0) {
-          returnValue += `${effect.label}: `;
+          returnValue += `${effect.name}: `;
           for (const change of realChanges) {
             returnValue += `${modes[change.mode]}(${change.value}), `;
           }
@@ -346,21 +346,6 @@ export default function registerHandlebarsHelpers(): void {
       returnValue = _genUntranslatedCharacteristicList();
     }
     return returnValue;
-  });
-
-  Handlebars.registerHelper('twodsix_getEffectSource', (effect: ActiveEffect) => {
-    if (["Wounded", "Encumbered", "Dead"].includes(effect.label)) {
-      return game.i18n.localize("TWODSIX.ActiveEffects.Condition");
-    } else if (effect.origin) {
-      const attachedItem = <TwodsixItem>fromUuid(effect.origin);
-      if (attachedItem) {
-        return (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
-      } else {
-        return effect.origin;
-      }
-    } else {
-      return game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
-    }
   });
 
   Handlebars.registerHelper('makePieImage', (text: string) => {

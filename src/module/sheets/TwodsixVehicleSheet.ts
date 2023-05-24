@@ -19,7 +19,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits')
+      showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
     return context;
@@ -42,6 +43,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
     html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
+    html.find(".adjust-counter").on("click", this._onAdjustCounter.bind(this));
   }
 
   private _onToggleComponent(event:Event):void {

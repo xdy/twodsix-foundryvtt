@@ -12,12 +12,11 @@
     </div>
   </div>
 
-  <div class="grid-columns-component">
-    {{#each componentObject}}
-    {{#each this as |item id|}}
-    <div class="grid-columns-single-row">
+  <div class="item-list grid-columns-component">
+    {{#each_sort_item container.component as |item id|}}
+    <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
-        <li class="item components-stored" data-item-id="{{item.id}}">
+        <li class="components-stored">
           <span class="item-name">{{item.name}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i></span>
           <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
@@ -26,7 +25,12 @@
           <span class="item-name centre">
               {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
           </span>
-          <span class="item-name centre">{{item.system.hits}}</span>
+          <span class="item-name centre">{{item.system.hits}}
+            <span class="combined-buttons" data-field="hits">
+              <button class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+              <button class="right-button adjust-counter" {{#iff item.system.hits "===" ../settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+            </span>
+          </span>
           <span class="item-name centre component-toggle">
             {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
             {{else}}
@@ -46,7 +50,6 @@
         </li>
       </ol>
     </div>
-    {{/each}}
-    {{/each}}
+    {{/each_sort_item}}
   </div>
 </div>

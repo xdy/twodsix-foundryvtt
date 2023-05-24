@@ -73,6 +73,7 @@ Hooks.once('init', async function () {
 
   Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
+    label: "Ship Sheet",
     makeDefault: true,
   });
 
@@ -98,8 +99,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
 
-  Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true});
-  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true});
+  Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
+  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();
