@@ -331,13 +331,7 @@ async function makeRequestedRoll(message:ChatMessage):void {
   const rollingActorsUuids = messageSettings.userActorList[game.user.id];
 
   for (const actorUuid of rollingActorsUuids) {
-    let actor:TwodsixActor;
-    //Fix for token.actor.uuid a link only to token document, not actor document
-    if (actorUuid.includes("Token")) {
-      actor = <TwodsixActor>fromUuidSync(actorUuid).actor;
-    } else {
-      actor = <TwodsixActor>fromUuidSync(actorUuid);
-    }
+    const actor = <TwodsixActor>fromUuidSync(actorUuid);
     const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
     let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
     if (selectedSkill && selectedCharacteristic === "NONE") {

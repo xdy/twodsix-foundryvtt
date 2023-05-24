@@ -18,7 +18,7 @@
     </div>
 
     <div class="ship-name">
-      <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();"/>
+      <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
     </div>
     {{#unless limited}}
     <div class="ship-info">
@@ -33,7 +33,8 @@
     {{else}}
     <span class ="power-title">{{localize "TWODSIX.Ship.PowerManagement"}}</span>
     {{/if}}
-      <div class="ship-power"><label>{{localize "TWODSIX.Ship.Power"}}</label>
+      <div class="ship-power">
+        <span class="ship-power-label">{{localize "TWODSIX.Ship.Power"}}</span>
         <span class="power-now">{{localize "TWODSIX.Ship.USED"}}</span>
         {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
           <input {{#if settings.useShipAutoCalc}}readonly{{/if}} class="power-current red" id="ship-stat-red" type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0"/>
@@ -44,21 +45,21 @@
       </div>
       <div class="power-grid">
         {{#if settings.showWeightUsage}}
-          <div class="ship-stat systems-weight"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.systems}}" name="system.weightStats.systems" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
-          <div class="ship-stat cargo-load-weight"><label>{{localize "TWODSIX.Ship.Cargo"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
-          <div class="ship-stat fuel-weight"><label>{{localize "TWODSIX.Ship.Fuel"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.fuel}}" name="system.weightStats.fuel" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
-          <div class="ship-stat vehicle-weight"><label>{{localize "TWODSIX.Ship.Vehicles"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.vehicles}}" name="system.weightStats.vehicles" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat systems-weight"><label for="system.weightStats.systems">{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.systems}}" name="system.weightStats.systems" id="system.weightStats.systems"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat cargo-load-weight"><label for="system.weightStats.cargo">{{localize "TWODSIX.Ship.Cargo"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" id="system.weightStats.cargo"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat fuel-weight"><label for="system.weightStats.fuel">{{localize "TWODSIX.Ship.Fuel"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.fuel}}" name="system.weightStats.fuel" id="system.weightStats.fuel"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+          <div class="ship-stat vehicle-weight"><label for="system.weightStats.vehicles">{{localize "TWODSIX.Ship.Vehicles"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.vehicles}}" name="system.weightStats.vehicles" id="system.weightStats.vehicles"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{#iff actor.system.weightStats.available '>=' 0}}
             <div class="ship-stat available-weight">{{localize "TWODSIX.Ship.Avail"}}<input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{else}}
             <div class="ship-stat red available-weight">{{localize "TWODSIX.Ship.Avail"}}<input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
           {{/iff}}
         {{else}}
-          <div class="ship-stat systems-power"><label>{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.systems}}" name="system.reqPower.systems" /><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
-          <div class="ship-stat m-drive-power"><label>{{localize "TWODSIX.Ship.MDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.m-drive}}" name="system.reqPower.m-drive" /><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
-          <div class="ship-stat j-drive-power"><label>{{localize "TWODSIX.Ship.JDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.j-drive}}" name="system.reqPower.j-drive" /><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
-          <div class="ship-stat sensors-power"><label>{{localize "TWODSIX.Ship.Sensors"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.sensors}}" name="system.reqPower.sensors" /><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
-          <div class="ship-stat weapons-power">{{localize "TWODSIX.Ship.Weapons"}}<input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.reqPower.weapons}}" name="system.reqPower.weapons" ><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          <div class="ship-stat systems-power"><label for="system.reqPower.systems">{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.systems}}" name="system.reqPower.systems" id="system.reqPower.systems"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          <div class="ship-stat m-drive-power"><label for="system.reqPower.m-drive">{{localize "TWODSIX.Ship.MDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.m-drive}}" name="system.reqPower.m-drive" id="system.reqPower.m-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          <div class="ship-stat j-drive-power"><label for="system.reqPower.j-drive">{{localize "TWODSIX.Ship.JDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.j-drive}}" name="system.reqPower.j-drive" id="system.reqPower.j-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          <div class="ship-stat sensors-power"><label for="system.reqPower.sensors">{{localize "TWODSIX.Ship.Sensors"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.sensors}}" name="system.reqPower.sensors" id="system.reqPower.sensors"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          <div class="ship-stat weapons-power"><label for="system.reqPower.weapons">{{localize "TWODSIX.Ship.Weapons"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.weapons}}" name="system.reqPower.weapons" id="system.reqPower.weapons"><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
         {{/if}}
       </div>
     </div>

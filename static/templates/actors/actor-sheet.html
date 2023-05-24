@@ -15,7 +15,7 @@
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             <!--{{actor.effects}}-->
-              {{#unless anEffect.disabled}}<img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
+              {{#unless anEffect.disabled}}<img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
             {{/each}}
         {{/if}}
         </span>

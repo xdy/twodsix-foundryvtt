@@ -85,7 +85,7 @@
   var(--s2d6-default-color);
   --s2d6-pie-background-color:
   var(--s2d6-background-opaque);
-  --sidebar-width: 318px;
+  /*--sidebar-width: 318px;*/
 }
 
 body {
@@ -604,7 +604,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 13em 5em 9em;
+  grid-template-rows: 15em 13em 5em 9fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -688,6 +688,7 @@ h2 {
 
 .vehicle-components {
   grid-area: vehicle-components;
+  overflow-y: hidden;
 }
 
 .vehicle-traits {
@@ -750,6 +751,11 @@ h2 {
   height: 16ch;
 }
 
+.vehicle-cargo-list textarea {
+  min-height: 16ch;
+  resize: vertical;
+}
+
 .vehicle-traits-details textarea, .space-object-notes textarea {
   overflow-wrap: break-word;
   resize: none;
@@ -771,7 +777,7 @@ h2 {
 
 .components-stored {
   display: grid;
-  grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-columns: 11.5em 3em 3em 4em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas: ". . . . . . . .";
@@ -799,8 +805,10 @@ h2 {
 
 .storage-wrapper-auto {
   margin-top: 0.5em;
-  overflow-y: auto;
-  height: 72%;
+  margin-left: 2px;
+  margin-right: 2px;
+  /*overflow-y: hidden;
+  height: calc(95% - 3ch);*/
 }
 
 .content-background {
@@ -2343,7 +2351,7 @@ span.total-output {
 
 /*--- Labels ---*/
 
-.ship-power label {
+span.ship-power-label {
   display: block;
   width: 75px;
   font-size: 18px;
@@ -3204,7 +3212,7 @@ form button {
 
 button {
   position: relative;
-  margin: 0.5em 0;
+  margin: 0.3em 0.1em;
   background-color: var(--s2d6-background-opaque);
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);

@@ -23,7 +23,6 @@ export default class DisplaySettings extends AdvancedSettings {
     const settings: string[] = [];
     settings.push(booleanSetting('defaultTokenSettings', true));
     settings.push(booleanSetting('useSystemDefaultTokenIcon', false));
-    settings.push(booleanSetting('showMissingCompendiumWarnings', true));
     settings.push(booleanSetting('showSingleComponentColumn', false));
     settings.push(booleanSetting('showBandwidth', false));
     settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));

@@ -313,6 +313,7 @@
         "TiedRoll": "Tied contested / opposed roll. No winner.",
         "GMUtils": "GM Utilities",
         "RequestRoll": "Request Roll",
+        "RequestRollClip":"<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Request Roll</h4><p>Select any Tokens from which you would like to request a skill roll. A pop-up dialog opens where you can select the particulars of the roll.</p><p class='faint'>Disable Toolclips in the Settings</p></div>",
         "GMRequestsRoll": "GM requests a _TYPE_ roll.",
         "normal": "normal",
         "AbilityCheck": "Ability / Characteristic Check"
@@ -733,12 +734,6 @@
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
       "MigrationError0.6.25": "Migration error: Couldn't parse price for ${name}, it was ${price} but is now 0."
     },
-    "Modules": {
-      "compendiumFolders": {
-        "missing": "The included compendiums for the various Cepheus variants often use the 'Compendium Folders' module. If you use those, please install the Compendium Folders module in Foundry VTT. Or turn off this warning in System Settings.",
-        "disabled": "Please enable the 'Compendium Folders' module in this world if you intend to use the included compendiums. Or turn off this warning in System Settings."
-      }
-    },
     "No": "No",
     "Rolls": {
       "AdjustedDamage": "Damage adjusted by effect",
@@ -910,10 +905,6 @@
         "hint": "Show Lifeblood and Stamina characteristics on actor sheet.  Damage will be applied to these characteristics.  Useful for Cepheus Deluxe.",
         "name": "Show Lifeblood and Stamina characteristics and use for damage."
       },
-      "showMissingCompendiumWarnings": {
-        "hint": "Whether to show warnings for missing/disabled modules on world start.",
-        "name": "Show warnings about missing/disabled modules."
-      },
       "ShowRangeBandAndHideRange": {
         "hint": "checked=Shows 'Range Band', unchecked=Shows 'Range'",
         "name": "Show 'Range Band' and *hide* 'Range' on weapon sheets and the character sheet"
@@ -973,7 +964,7 @@
         "name": "Use Foundry VTT rather than Twodsix default token icon for new actors."
       },
       "useWoundedStatusIndicators": {
-        "hint": "Uses status indicators to indicate wounded status and automatically roll unconcious saves on serious wounds. Roll modifiers below are applied to all rolls.",
+        "hint": "Uses status indicators to indicate wounded status and automatically roll unconsciousness saves on serious wounds. Roll modifiers below are applied to all rolls.",
         "name": "Display wounded status indicators and apply roll modifiers"
       },
       "minorWoundsRollModifier": {
@@ -1252,54 +1243,62 @@
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
     }
   },
-  "ITEM" :{
-    "TypeBackpack": "Backpack",
-    "TypeContainer": "Container",
-    "TypeConsumable": "Consumable",
-    "TypeEquipment": "Equipment",
-    "TypeSpell": "Spell",
-    "TypeTool": "Tool",
-    "TypeWeapon": "Weapon",
-    "TypeArmor": "Armor",
-    "TypeSkill": "Skill",
-    "TypeComponent": "Component",
-    "TypeComputer": "Computer",
-    "TypeAugment": "Augment",
-    "TypeStorage": "Storage",
-    "TypeJunk": "Junk",
-    "TypeSkills": "Skill",
-    "TypeTrait": "Trait",
-    "TypeShip_position": "Ship Position",
-    "TypeBackpackPl": "Backpacks",
-    "TypeContainerPl": "Containers",
-    "TypeConsumablePl": "Consumables",
-    "TypeEquipmentPl": "Equipment",
-    "TypeSpellPl": "Spells",
-    "TypeToolPl": "Tools",
-    "TypeWeaponPl": "Weapons",
-    "TypeArmorPl": "Armors",
-    "TypeSkillPl": "Skills",
-    "TypeComponentPl": "Components",
-    "TypeComputerPl": "Computers",
-    "TypeAugmentPl": "Augments",
-    "TypeStoragePl": "Storage",
-    "TypeJunkPl": "Junk",
-    "TypeSkillsPl": "Skills",
-    "TypeTraitPl": "Traits",
-    "TypeShip_positionPl": "Ship Positions"
+  "TYPES": {
+    "Item" :{
+      "backpack": "Backpack",
+      "container": "Container",
+      "consumable": "Consumable",
+      "equipment": "Equipment",
+      "spell": "Spell",
+      "tool": "Tool",
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "skill": "Skill",
+      "component": "Component",
+      "computer": "Computer",
+      "augment": "Augment",
+      "storage": "Storage",
+      "junk": "Junk",
+      "skills": "Skill",
+      "trait": "Trait",
+      "ship_position": "Ship Position",
+      "backpackPl": "Backpacks",
+      "containerPl": "Containers",
+      "consumablePl": "Consumables",
+      "equipmentPl": "Equipment",
+      "spellPl": "Spells",
+      "toolPl": "Tools",
+      "weaponPl": "Weapons",
+      "armorPl": "Armors",
+      "skillPl": "Skills",
+      "componentPl": "Components",
+      "computerPl": "Computers",
+      "augmentPl": "Augments",
+      "storagePl": "Storage",
+      "junkPl": "Junk",
+      "skillsPl": "Skills",
+      "traitPl": "Traits",
+      "ship_positionPl": "Ship Positions"
+    },
+    "Actor": {
+      "traveller": "Traveller",
+      "ship": "Ship",
+      "vehicle": "Vehicle",
+      "animal": "Animal",
+      "robot": "Robot",
+      "space-object": "Space Object",
+      "travellerPl": "Travellers",
+      "shipPl": "Ships",
+      "vehiclePl": "Vehicles",
+      "animalPl": "Animals",
+      "space-objectPl": "Space Objects",
+      "robotPl": "Robots"
+    }
   },
-  "ACTOR": {
-    "TypeTraveller": "Traveller",
-    "TypeShip": "Ship",
-    "TypeVehicle": "Vehicle",
-    "TypeAnimal": "Animal",
-    "TypeRobot": "Robot",
-    "TypeSpace-object": "Space Object",
-    "TypeTravellerPl": "Travellers",
-    "TypeShipPl": "Ships",
-    "TypeVehiclePl": "Vehicles",
-    "TypeAnimalPl": "Animals",
-    "TypeRobotPl": "Robots",
-    "TypeSpace-objectPl": "Space Objects"
+  "EFFECT": {
+   "StatusWounded": "Wounded",
+   "StatusEncumbered": "Encumbered",
+   "StatusDead": "Dead",
+   "StatusUnconscious": "Unconscious"
   }
 }

@@ -18,8 +18,8 @@
           <div class="item-name">
               <img class="effect-image" src="{{effect.icon}}" style="border-color: {{effect.tint}} !important;"/>
           </div>
-          <div class="effect-name">{{effect.label}}</div>
-          <div class="effect-source">{{twodsix_getEffectSource effect}}</div>
+          <div class="effect-name">{{effect.name}}</div>
+          <div class="effect-source">{{effect.sourceLabel}}</div>
           <div class="effect-duration">{{effect.duration.label}}</div>
           <div class="item-controls effect-controls flexrow">
               {{#if @root.editable}}

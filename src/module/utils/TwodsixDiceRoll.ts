@@ -293,12 +293,12 @@ export class TwodsixDiceRoll {
     }
 
     //Add buttons
-    flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question"></i></button>`;
+    flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question" style="margin-left: 3px;"></i></button>`;
     if (this.isSuccess() && !game.settings.get("twodsix", "automateDamageRollOnHit") && (this.item?.type === "weapon" || (this.item?.type === "component" && this.item?.system?.subtype === "armament"))) {
-      flavorText += `<button data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst"></i></button>`;
+      flavorText += `<button data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button>`;
     } else if (this.rollSettings.skillRoll && this.item?.type !== "weapon" && !(this.item?.type === "component" && this.item?.system?.subtype === "armament")) {
-      flavorText += `<button data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link"></i></button>`;
-      flavorText += `<button data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>`;
+      flavorText += `<button data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link" style="margin-left: 3px;"></i></button>`;
+      flavorText += `<button data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center" style="margin-left: 3px;"></i></button>`;
     }
 
     flavorText +=`</section></section>`;

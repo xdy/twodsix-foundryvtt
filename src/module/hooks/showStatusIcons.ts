@@ -106,16 +106,16 @@ export const DAMAGECOLORS = Object.freeze({
 });
 
 export const effectType = Object.freeze({
-  dead: 'Dead',
-  wounded: 'Wounded',
-  unconscious: 'Unconscious',
-  encumbered: 'Encumbered'
+  dead: 'EFFECT.StatusDead',
+  wounded: 'EFFECT.StatusWounded',
+  unconscious: 'EFFECT.StatusUnconscious',
+  encumbered: 'EFFECT.StatusEncumbered'
 });
 
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
-  const oldWoundState = selectedActor.effects.find(eff => eff.label === effectType.wounded);
-  const isCurrentlyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
+  const oldWoundState = selectedActor.effects.find(eff => eff.name === game.i18n.localize(effectType.wounded));
+  const isCurrentlyDead = selectedActor.effects.find(eff => eff.name === game.i18n.localize(effectType.dead));
 
   if (!tintToApply) {
     await setConditionState(effectType.dead, selectedActor, false);
@@ -128,7 +128,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
     } else {
       await setConditionState(effectType.dead, selectedActor, false);
 
-      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead && oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint) {
+      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       await setWoundedState(effectType.wounded, selectedActor, true, tintToApply);
@@ -137,7 +137,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.label === effectType.encumbered);
+  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.name === game.i18n.localize(effectType.encumbered));
   let state = false;
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
   if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
@@ -156,22 +156,25 @@ async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void>
     }
   } else if (state === true  && isCurrentlyEncumbered.length === 0) {
     const modifier = game.settings.get('twodsix', 'encumbranceModifier');
-    const changeData = [
-      { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: modifier.toString() },
-    ];
+    const changeData = [{
+      key: "system.conditions.encumberedEffect",
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: modifier.toString()
+    }];
     await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-      label: effectType.encumbered,
+      name: game.i18n.localize(effectType.encumbered),
       icon: "systems/twodsix/assets/icons/weight.svg",
-      changes: changeData
+      changes: changeData,
+      statuses: ["encumbered"]
     }]);
-    const newEffect = selectedActor.effects.find(eff => eff.label === effectType.encumbered);
-    await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
+    //const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
+    //await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
   }
 }
 
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string) {
-  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.label === effectType.unconscious);
-  const isAlreadyDead = selectedActor.effects.find(eff => eff.label === effectType.dead);
+  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.name === game.i18n.localize(effectType.unconscious));
+  const isAlreadyDead = selectedActor.effects.find(eff => eff.name === game.i18n.localize(effectType.dead));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'OTHER'].includes(rulesSet)) {
@@ -193,8 +196,8 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
 }
 
 async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = targetActor.effects.filter(eff => eff.label === effectLabel);
-  const targetEffect = CONFIG.statusEffects.find(effect => (effect.id === effectLabel.toLocaleLowerCase()));
+  const isAlreadySet = targetActor.effects.filter(eff => eff.name === game.i18n.localize(effectLabel));
+  const targetEffect = CONFIG.statusEffects.find(effect => (effect.label === effectLabel));
 
   let targetToken = {};
   if(targetActor.isToken) {
@@ -215,7 +218,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
-      if (effectLabel === "Dead") {
+      if (effectLabel === effectType.dead) {
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
@@ -231,7 +234,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 }
 
 async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.label === effectLabel);
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.name === game.i18n.localize(effectLabel));
   let currentEffectId = "";
   //Clean up effects
   if (isAlreadySet.length > 0) {
@@ -257,13 +260,12 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (!currentEffectId) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        label: effectLabel,
+        name: game.i18n.localize(effectLabel),
         icon: "icons/svg/blood.svg",
         tint: tint,
-        changes: [changeData]
+        changes: [changeData],
+        statuses: ['bleeding']
       }]);
-      const newEffect = await targetActor.effects.find(eff => eff.label === effectLabel);
-      newEffect?.setFlag("core", "statusId", "bleeding"); /*FIX*/
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);
       if (currentEfffect.tint !== tint) {

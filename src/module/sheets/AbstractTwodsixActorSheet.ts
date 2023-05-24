@@ -578,6 +578,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
         }
         await selectedEffect?.delete();
+        //await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect.id]);
       },
       no: () => {
         //Nothing
@@ -614,6 +615,33 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   private getItem(event): TwodsixItem {
     const itemId = $(event.currentTarget).parents('.item').data('item-id');
     return <TwodsixItem>this.actor.items.get(itemId);
+  }
+
+  public async _onAdjustCounter(event): Promise<void> {
+    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
+    const field = $(event.currentTarget).parents(".combined-buttons").data("field");
+    const li = $(event.currentTarget).parents(".item");
+    const itemSelected = this.actor.items.get(li.data("itemId"));
+    if (itemSelected && field) {
+      if (field === "hits") {
+        const newHits = (<Component>itemSelected.system).hits + modifier;
+        if (newHits <= game.settings.get('twodsix', 'maxComponentHits') && newHits >= 0) {
+          await itemSelected.update({ "system.hits": newHits });
+        }
+        if (newHits === game.settings.get('twodsix', 'maxComponentHits')) {
+          await itemSelected.update({ "system.status": "destroyed" });
+        } else if (newHits > 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "damaged" });
+        } else if (newHits === 0 && (<Component>itemSelected.system).status !== "off") {
+          await itemSelected.update({ "system.status": "operational" });
+        }
+      } else if (field === "ammo") {
+        const newAmmo = (<Component>itemSelected.system).ammunition.value + modifier;
+        if (newAmmo >= 0  && newAmmo <= (<Component>itemSelected.system).ammunition.max) {
+          await itemSelected.update({ "system.ammunition.value": newAmmo });
+        }
+      }
+    }
   }
 }
 

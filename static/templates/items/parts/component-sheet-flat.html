@@ -105,7 +105,7 @@
       {{#iff system.subtype "!==" "fuel"}}
         <div class="item-power">
           <label for="system.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}
-          <input type="checkbox" class="checkbox" name="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
+          <input type="checkbox" class="checkbox" name="system.generatesPower" id="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" /></label>
 
           <label for="system.powerDraw" class="short-label" style="align-self: center;">
           {{#if system.generatesPower}}
@@ -130,11 +130,11 @@
         <input class="form-input" type="text" name="system.range" value="{{system.range}}"/>
       </div>
       <div class="item-damage">
-        <label class="resource-label">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
+        <label class="resource-label" for="system.armorPiercing">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
         <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1" oninput="this.value = Math.round(this.value);">
       </div>
       <div class="item-rateOfFire">
-        <label class="resource-label">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+        <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
         <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
       </div>
       <div class="item-features">
@@ -142,11 +142,11 @@
         <input class="form-input" type="text" name="system.features" value="{{system.features}}"/>
       </div>
       <div class="item-skill">
-        <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+        <label for="system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
         <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
       </div>
       <div class="item-data">
-        <label class="resource-label">{{localize "TWODSIX.Items.Component.Ammunition"}}</label>
+        <span class="resource-label">{{localize "TWODSIX.Items.Component.Ammunition"}}</span>
           <div>
             <input id="system.ammunition.value" class="form-consumable-count" name="system.ammunition.value" type="number" value="{{system.ammunition.value}}" data-dtype="Number"/>
             /
@@ -157,10 +157,10 @@
       {{#if (twodsix_canBePopup this)}}
         <div class="item-data">
           <label for="system.isPopup" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isPopup"}}</label>
-          <input type="checkbox" class="checkbox" name="system.isPopup" {{checked system.isPopup}} data-dtype="Boolean" />
+          <input type="checkbox" class="checkbox" name="system.isPopup" id="system.isPopup" {{checked system.isPopup}} data-dtype="Boolean" />
           {{#if system.isPopup}}
             <label for="system.isExtended" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isExtended"}}</label>
-            <input type="checkbox" class="checkbox" name="system.isExtended" {{checked system.isExtended}} data-dtype="Boolean" />
+            <input type="checkbox" class="checkbox" name="system.isExtended" id="system.isExtended" {{checked system.isExtended}} data-dtype="Boolean" />
           {{/if}}
         </div>
       {{/if}}
@@ -202,7 +202,7 @@
 
       <div class="item-price">
         <label for="system.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}</label>
-        <input type="checkbox" class="checkbox" name="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
+        <input type="checkbox" class="checkbox" name="system.isIllegal" id="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
       </div>
 
       <div class="item-short">

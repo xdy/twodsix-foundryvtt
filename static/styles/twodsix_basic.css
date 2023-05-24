@@ -248,7 +248,7 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 15em 5em 9em;
+  grid-template-rows: 15em 15em 5em 9fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -329,6 +329,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-components {
   grid-area: vehicle-components;
+  overflow-y: hidden;
 }
 
 .vehicle-armor {
@@ -376,6 +377,11 @@ label.checkbox > input[type="checkbox"] {
   height: 16ch;
 }
 
+.vehicle-cargo-list textarea {
+  min-height: 16ch;
+  resize: vertical;
+}
+
 .vehicle-traits-details textarea, .space-object-notes textarea {
   overflow-wrap: break-word;
   resize: none;
@@ -406,7 +412,7 @@ label.checkbox > input[type="checkbox"] {
 
 .components-stored {
   display: grid;
-  grid-template-columns:10em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-columns: 11.5em 3em 3em 4em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas: ". . . . . . . .";
@@ -434,8 +440,10 @@ label.checkbox > input[type="checkbox"] {
 
 .storage-wrapper-auto {
   margin-top: 0.5em;
-  overflow-y: auto;
-  height: 72%;
+  margin-left: 2px;
+  margin-right: 2px;
+  /*overflow-y: hidden;
+  height: calc(95% - 3ch);*/
 }
 .content-background {
   top: 0.7em;
@@ -1822,7 +1830,7 @@ img.ship-mask-bg {
 
 /*--- Labels ---*/
 
-.ship-power label {
+span.ship-power-label {
   display: block;
   width: 4.2em;
   font-size: 18px;

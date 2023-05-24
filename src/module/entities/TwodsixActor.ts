@@ -10,7 +10,6 @@ import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { simplifySkillName } from "../utils/utils";
-import { DocumentModificationOptions } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
@@ -376,60 +375,6 @@ export default class TwodsixActor extends Actor {
       shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
-
-  protected override _onUpdateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
-    super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-    if (game.user.id === userId) {
-      if (embeddedName === "ActiveEffect" && !result[0].flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) {
-        documents.forEach(async (element:ActiveEffect, i) => {
-          const activeEffectId = element.getFlag("twodsix", "sourceId");
-          if (activeEffectId) {
-            const match = element.origin?.match(/Item\.(.+)/);
-            if (match) {
-              const item = (<TwodsixActor>element.parent)?.items.get(match[1]);
-              delete result[i]._id;
-              const newEffects = item?.effects.map(effect => {
-                if (effect.id === activeEffectId) {
-                  return foundry.utils.mergeObject(effect.toObject(), result[i]);
-                } else {
-                  return effect.toObject();
-                }
-              });
-              // @ts-ignore
-              await item?.update({"effects": newEffects}, {recursive: true}).then();
-            }
-          }
-        });
-      }
-    }
-    //this.render();
-  }
-
-  /*protected override _onCreateEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result:Record<string, unknown>[], options: DocumentModificationOptions, userId: string): void {
-    super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-    //Try to get rid of duplicate effects - This shouldn't be needed
-    if(embeddedName === "Item") {
-      while (documents[0].effects.size > 1) {
-        documents[0].delete(documents[0].effects.contents[1].id);
-      }
-    }
-    console.log(embeddedName, documents, result, options, userId );
-  }*/
-  /*protected async _onDeleteEmbeddedDocuments(embeddedName:string, documents:foundry.abstract.Document<any, any>[], result, options, userId: string): void {
-    if (game.settings.get('twodsix', 'useItemActiveEffects') && embeddedName === "Item") {
-      const ownedItem = <TwodsixItem>documents[0];
-      const selectedActor = <TwodsixActor>ownedItem.actor;
-      const effectToDelete = <ActiveEffect>selectedActor?.effects.find(effect => effect.getFlag("twodsix", "sourceId") === ownedItem.effects.contents[0]?.id);
-      if (effectToDelete?.id) {
-        await selectedActor?.deleteEmbeddedDocuments('ActiveEffect', [effectToDelete?.id]);
-      }
-    }
-    super._onDeleteEmbeddedDocuments(embeddedName, documents, result, options, userId);
-  }*/
-  /*protected async _preCreate(data, options, user) {
-    super._preCreate(data, options, user);
-    console.log("Precreate", this);
-  }*/
 
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
@@ -871,7 +816,7 @@ export default class TwodsixActor extends Actor {
       //newEffect.disabled = true;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
-      newEffect.label = addedItem.name;
+      newEffect.name = transferData.effects[0].name ?? addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
@@ -1020,7 +965,7 @@ export default class TwodsixActor extends Actor {
             disabled: item.system.equipped !== "equipped",
             _id: "",
             origin: item.uuid,
-            //label: item.name,
+            //name: item.name,
             flags: {twodsix: {sourceId: item.effects.contents[0].id}}
           });
           newEffects.push(newEffect);
