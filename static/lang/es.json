@@ -313,6 +313,7 @@
         "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor.",
         "GMUtils": "Herramientas DJ",
         "RequestRoll": "Petición Tirada",
+        "RequestRollClip": "<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Pedir Tirada</h4><p>Selecciona cualquier Token al que quieras pedir una tirada. Después podrás escoger los detalles de la misma en una ventana emergente.</p><p class='faint'>Deshabilita Ayudas en Configuración</p></div>",
         "GMRequestsRoll": "El DJ pide tirada de _TYPE_.",
         "normal": "normal",
         "AbilityCheck": "Prueba de Habilidad / Característica"
@@ -733,12 +734,6 @@
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
       "MigrationError0.6.25": "Error de Migración: No se ha podido procesar el precio de ${name}, era ${price} ahora 0."
     },
-    "Modules": {
-      "compendiumFolders": {
-        "missing": "Los compendios incluidos en el sistema para Cepheus requieren el módulo 'Compendium Folders'. Si los vas a utilizar, por favor instala el módulo en Foundry VTT o sino desactiva este aviso en la Configuración del Sistema.",
-        "disabled": "Por favor activa el módulo 'Compendium Folders' si utilizas los compendios incluidos, sino desactiva este aviso en la Configuración del Sistema."
-      }
-    },
     "No": "No",
     "Rolls": {
       "AdjustedDamage": "Daño ajustado (+Efecto)",
@@ -909,10 +904,6 @@
       "showLifebloodStamina": {
         "hint": "Mostrar Aguante y Vitalidad en la hoja de personaje. Necesario con Cepheus Deluxe.",
         "name": "Mostrar las características derivadas Aguante y Vitalidad."
-      },
-      "showMissingCompendiumWarnings": {
-        "hint": "Si se muestra al inicio un aviso sobre los módulos desactivados o que falten.",
-        "name": "Mostrar aviso sobre módulos desactivados/faltan."
       },
       "ShowRangeBandAndHideRange": {
         "hint": "Marcado=Mostrar 'Bandas de Alcance', SinMarcar=Mostrar 'Alcance'.",
@@ -1300,8 +1291,14 @@
       "shipPl": "Naves",
       "vehiclePl": "Vehículos",
       "animalPl": "Animales",
-      "robotPl": "Robots",
-      "space-objectPl": "Objetos Espaciales"
+      "space-objectPl": "Objetos Espaciales",
+      "robotPl": "Robots"
     }
+  },
+  "EFFECT": {
+    "StatusWounded": "Herido",
+    "StatusEncumbered": "Sobrecargado",
+    "StatusDead": "Muerto",
+    "StatusUnconscious": "Inconsciente"
   }
 }
