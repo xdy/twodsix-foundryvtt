@@ -16,11 +16,11 @@ A [Foundry VTT](https://foundryvtt.com/) system for running games using various 
 
 Install by either searching for Twodsix in in [FoundryVTT's](https://foundryvtt.com/) Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 
-**TAKE A BACKUP** before you switch from any 1.x version of Twodsix to a Twodsix 2.x version, as that requires Foundry v10. The conversion to v10 is **one-way**. The only way to go back is to restore a backup.
+**TAKE A BACKUP** before you switch from any 1.x or 2.x version of Twodsix to a Twodsix 3.x version, as that requires Foundry v11. The conversion to v11 is **one-way**. The only way to go back is to restore a backup.
 
 In play - using a number of Foundry modules - it can look something like this:
 
-![Twodsix in action](https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/static/assets/twodsix_screenshot.webp)
+<img width="1368" alt="Screenshot 2023-05-26 at 12 18 03 PM" src="https://github.com/xdy/twodsix-foundryvtt/assets/72580196/02292d5c-51fa-4810-9921-dc73fcec8770">
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 
@@ -77,3 +77,4 @@ Font licenses:
 Asset licenses:
 * The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous authors. The full list of those can be found at: https://game-icons.net/about.html#authors
 * The icon static/assets/pause/sunburst.svg is based on  https://wiki.travellerrpg.com/File:Imperial-Sunburst-Sun-Scouts-wiki.png which is made by [Thomas Jones-Low](https://wiki.travellerrpg.com/Thomas_Jones-Low) which was provided under the terms of the [CC-By-SA](https://creativecommons.org/licenses/by-nc/3.0/) license.
+* Traveller art created with Portrait Workshop™ by Worldspinner™.
