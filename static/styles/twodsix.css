@@ -3645,15 +3645,29 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   color: var(--s2d6-form-light);
 }
 
+.prosemirror menu .pm-dropdown li:hover {
+  color: var(--s2d6-background-opaque);
+}
+
 .prosemirror menu {
   flex-wrap: nowrap;
-  padding: 4px 2px;
+  justify-content: space-around;
+}
+
+.prosemirror menu > li {
+  margin: 6px 0px;
+}
+
+.prosemirror.menu-dialog form {
+  background-image: url(../assets/workbg2.webp);
+  color: var(--s2d6-default-color);
+  box-shadow: 0 0 8px 0 var(--s2d6-default-color);
 }
 
 .prosemirror menu button, .prosemirror menu .pm-dropdown {
   padding: 0 2px;
-  height: auto;
-  background: var(--s2d6-background-transparent);
+  /*height: auto;*/
+  background-color: var(--s2d6-background-transparent);
   border: solid 1px var(--s2d6-form-light);
   color: var(--s2d6-form-light);
 }
