@@ -3650,6 +3650,10 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   padding: 4px 2px;
 }
 
+.prosemirror menu > li {
+  margin: 6px 0px;
+}
+
 .prosemirror menu button, .prosemirror menu .pm-dropdown {
   padding: 0 2px;
   /*height: auto;*/
