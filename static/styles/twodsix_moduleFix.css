@@ -7,7 +7,7 @@
 
 /* fix for dice-tray input box shift for default mode*/
 input.dice-tray__input {
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 /* Fix GM Screen background for dark formats*/
