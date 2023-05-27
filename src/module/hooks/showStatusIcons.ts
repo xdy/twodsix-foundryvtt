@@ -147,7 +147,7 @@ async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void>
     state = (ratio > parseFloat(await game.settings.get('twodsix', 'encumbranceFraction')));
   }
   if (isCurrentlyEncumbered.length > 0) {
-    const idList= isCurrentlyEncumbered.map(i => <string>i.id);
+    const idList= isCurrentlyEncumbered.map(i => i.id);
     if (state === true) {
       idList.pop();
     }
@@ -238,7 +238,7 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
   let currentEffectId = "";
   //Clean up effects
   if (isAlreadySet.length > 0) {
-    const idList= isAlreadySet.map(i => <string>i.id);
+    const idList= isAlreadySet.map(i => i.id);
     if (state) {
       currentEffectId = idList.pop();
     }

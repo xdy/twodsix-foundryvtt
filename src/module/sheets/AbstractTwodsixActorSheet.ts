@@ -60,7 +60,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           yes: async () => {
             const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
             await ownedItem.update({'system.equipped': 'ship'});
-            await selectedActor?.deleteEmbeddedDocuments("Item", [<string>ownedItem.id]);
+            await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
             if (ownedItem.type === "consumable") {
               selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
