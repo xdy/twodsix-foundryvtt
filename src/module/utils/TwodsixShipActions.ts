@@ -140,9 +140,14 @@ export class TwodsixShipActions {
   }
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
-    const [skillText, componentId] = text.split("=");
-    const component = extra.ship?.items.find(item => item.id === componentId);
-    extra.component = <TwodsixItem>component;
+    const skillTextAndComponentId = text.split("=");
+    if(skillTextAndComponentId.length>1 && !extra.component){
+      // still suport depecated old xx=COMPONENT style but use the component from selection if one is given
+      const componentId = skillTextAndComponentId[1];
+      const component = extra.ship?.items.find(item => item.id === componentId);
+      extra.component = <TwodsixItem>component;
+    }
+    const skillText=skillTextAndComponentId[0];
     const result = await TwodsixShipActions.skillRoll(skillText, extra);
     if (!result) {
       return false;

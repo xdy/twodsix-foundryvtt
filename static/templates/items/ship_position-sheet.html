@@ -66,7 +66,7 @@
                 value="{{action.command}}" data-tooltip="{{localize action.tooltip}}">
             </td>
             <td>
-              <select name="system.actions.{{id}}.component" {{#iff action.type "!==" "executeMacro"}} disabled {{/iff}}>
+              <select name="system.actions.{{id}}.component" {{#iff action.type "===" "chatMessage"}} disabled {{/iff}}>
                 <option value="">{{localize TWODSIX.Ship.None}}</option>
                 {{#each ../nonCargoComponents as |component|}}
                   <option {{#iff action.component '===' component.id}} selected {{/iff}} value="{{component.id}}">{{component.name}}</option>
@@ -88,25 +88,4 @@
         </tbody>
       </table>
     </div>
-
-    <div class="form-section">
-      {{localize "TWODSIX.Ship.Tabs.Components"}}: <br>
-      <table>
-        <thead>
-          <tr>
-            <td>{{localize "TWODSIX.Ship.Name"}}</td>
-            <td>COMPONENT_ID</td>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each nonCargoComponents as |component|}}
-          <tr class="ship-position-details-component">
-            <td><img src="{{component.img}}" width="20" height="20"> {{component.name}}</td>
-            <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </div>
 </form>
