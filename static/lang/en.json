@@ -140,6 +140,11 @@
         "SPELLS": "SPELLS",
         "Spells": "Spells",
         "ShortDescr": "Short Descr",
+        "LocationState": {
+          "equipped": "Equipped",
+          "ship": "Ship",
+          "backpack": "Backpack"
+        },
         "Subtype": "Type",
         "TRAITS": "TRAITS",
         "Traits": "Traits",
