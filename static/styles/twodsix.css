@@ -1450,7 +1450,7 @@ a.actor-notes-tab.active {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.5em 12.5em 1.6em 1.6em 1.6em 3em 5em 5.5em;
+  grid-template-columns: 1.5em 11.5em 1.6em 2.6em 1.6em 4em 4em 5.5em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . . . . . .';
