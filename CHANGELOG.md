@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.2...v3.0.3) (2023-05-27)
+
+
+### Bug Fixes
+
+* bug with encumbered effect ([#1339](https://github.com/xdy/twodsix-foundryvtt/issues/1339)) ([e841fce](https://github.com/xdy/twodsix-foundryvtt/commit/e841fce9d4f1bdc9de85e79d0f00e6b56890c857))
+
 ## [3.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.1...v3.0.2) (2023-05-27)
 
 
