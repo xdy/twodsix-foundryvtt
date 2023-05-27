@@ -140,6 +140,11 @@
         "SPELLS": "CONJUROS",
         "Spells": "Conjuros",
         "ShortDescr": "Opciones",
+        "LocationState": {
+          "equipped": "Equipado",
+          "ship": "Nave",
+          "backpack": "Mochila"
+        },
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
         "Traits": "Detalles",
