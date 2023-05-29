@@ -15,6 +15,7 @@ import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
+import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -96,6 +97,9 @@ export default class TwodsixActor extends Actor {
       system.primaryArmor.value = armorValues.primaryArmor;
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+        applyEncumberedEffect(this);
+      }
     }
     await this._updateDerivedDataActiveEffects();
   }
@@ -858,33 +862,33 @@ export default class TwodsixActor extends Actor {
     switch (this.type) {
       case 'traveller':
         if (itemData.type === 'skills') {
-          return this._addDroppedSkills(itemData);
+          return await this._addDroppedSkills(itemData);
         } else if (!["component", "ship_position"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'animal':
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
         } else if (["weapon", "trait"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'robot':
         if (itemData.type === 'skills') {
-          return this._addDroppedSkills(itemData);
+          return await this._addDroppedSkills(itemData);
         } else if (["weapon", "trait", "augment"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'ship':
         if (!["skills", "trait", "spell"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'vehicle':
         if (itemData.type === "component") {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
     }
