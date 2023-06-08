@@ -16,22 +16,22 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
         actor.scrollDamage(actor.system.hits.lastDelta);
       }
     }
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+    /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
       if (update.system?.characteristics && (actor.type === 'traveller') ) {
         await applyEncumberedEffect(actor).then();
       }
-    }
+    }*/
   }
 });
 
 Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+    /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer", "augment"].includes(item.type) ) {
         await applyEncumberedEffect(owningActor);
       }
-    }
+    }*/
     //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
       if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
@@ -136,6 +136,7 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 }
 
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
+
   //Clean-up a localization issue
   if (game.i18n.localize(effectType.encumbered) !== "Encumbered") {
     const oldEncumbered = await selectedActor.effects.filter(eff => eff.name === "Encumbered");
@@ -146,6 +147,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   }
 
   const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => [game.i18n.localize(effectType.encumbered), "Encumbered"].includes(eff.name));
+
   let state = false;
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
   if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {

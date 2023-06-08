@@ -15,7 +15,6 @@ import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
-//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -97,9 +96,6 @@ export default class TwodsixActor extends Actor {
       system.primaryArmor.value = armorValues.primaryArmor;
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
-      /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        applyEncumberedEffect(this);
-      }*/
     }
     await this._updateDerivedDataActiveEffects();
   }

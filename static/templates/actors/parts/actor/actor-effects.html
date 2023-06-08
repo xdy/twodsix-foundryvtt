@@ -30,9 +30,11 @@
               <a class="effect-control" data-action="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
                   <i class="fa-solid fa-edit"></i>
               </a>
+              {{#iff effect.name "!==" (localize 'EFFECT.StatusEncumbered')}}
               <a class="effect-control" data-action="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
                   <i class="fa-solid fa-trash"></i>
               </a>
+              {{/iff}}
               {{/if}}
           </div>
       </li>
