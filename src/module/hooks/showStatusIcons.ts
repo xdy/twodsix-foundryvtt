@@ -16,22 +16,22 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
         actor.scrollDamage(actor.system.hits.lastDelta);
       }
     }
-    /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
       if (update.system?.characteristics && (actor.type === 'traveller') ) {
         await applyEncumberedEffect(actor).then();
       }
-    }*/
+    }
   }
 });
 
 Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
-    /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer", "augment"].includes(item.type) ) {
         await applyEncumberedEffect(owningActor);
       }
-    }*/
+    }
     //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
       if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {

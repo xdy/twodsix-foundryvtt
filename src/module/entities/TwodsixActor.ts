@@ -794,10 +794,11 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
-    // Prepare effects
-    //transferData.system.equipped = "ship";
+    transferData.system.quantity = numberToMove;
     transferData.system.equipped = "backpack";
     transferData._id = "";
+
+    // Prepare effects
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
@@ -809,7 +810,6 @@ export default class TwodsixActor extends Actor {
       transferData.effects[0].origin = "";
       transferData.effects[0].disabled = true;
     }
-    transferData.system.quantity = numberToMove;
 
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
