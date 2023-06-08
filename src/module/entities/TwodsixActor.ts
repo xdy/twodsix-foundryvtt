@@ -15,7 +15,7 @@ import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
-import { applyEncumberedEffect } from "../hooks/showStatusIcons";
+//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -97,9 +97,9 @@ export default class TwodsixActor extends Actor {
       system.primaryArmor.value = armorValues.primaryArmor;
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+      /*if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
         applyEncumberedEffect(this);
-      }
+      }*/
     }
     await this._updateDerivedDataActiveEffects();
   }
@@ -799,7 +799,8 @@ export default class TwodsixActor extends Actor {
 
     // Create the owned item
     // Prepare effects
-    transferData.system.equipped = "ship";
+    //transferData.system.equipped = "ship";
+    transferData.system.equipped = "backpack";
     transferData._id = "";
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
       //clear extra item effects - should be fixed
@@ -812,36 +813,34 @@ export default class TwodsixActor extends Actor {
       transferData.effects[0].origin = "";
       transferData.effects[0].disabled = true;
     }
+    transferData.system.quantity = numberToMove;
 
+    //Link an actor skill with name defined by item.associatedSkillName
+    let skillId = "";
+    if (transferData.system.associatedSkillName !== "") {
+      skillId = this.items.getName(transferData.system.associatedSkillName)?.id ?? "";
+      //Try to link Untrained if no match
+      if (skillId === "") {
+        skillId = this.getUntrainedSkill()?.id ?? "";
+      }
+    }
+    transferData.system.skill = skillId;
+
+    //Remove any attached consumables
+    transferData.system.consumables = [];
+
+    //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-    await addedItem.update({"system.quantity": numberToMove});
+
+    //Transfer Active Effect is applicable
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
       const newEffect = addedItem.effects.contents[0].toObject();
-      //newEffect.disabled = true;
+      newEffect.disabled = true;
       newEffect._id = "";
       newEffect.origin = addedItem.uuid;
       newEffect.name = transferData.effects[0].name ?? addedItem.name;
       const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
       await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
-    }
-    await addedItem.update({"system.equipped": "backpack"});
-
-    //Link an actor skill with name defined by item.associatedSkillName
-    let skillId = "";
-    if (addedItem.system.associatedSkillName !== "") {
-      skillId = this.items.getName(addedItem.system.associatedSkillName)?.id ?? "";
-      //Try to link Untrained if no match
-      if (skillId === "") {
-        skillId = this.getUntrainedSkill()?.id ?? "";
-      }
-      await addedItem.update({"system.skill": skillId});
-    }
-
-    //Remove any attached consumables
-    if (addedItem.system.consumables !== undefined) {
-      if (addedItem.system.consumables.length > 0) {
-        await addedItem.update({"system.consumables": []});
-      }
     }
 
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
