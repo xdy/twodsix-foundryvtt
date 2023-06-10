@@ -797,7 +797,6 @@ export default class TwodsixActor extends Actor {
     // Create the owned item
     transferData.system.quantity = numberToMove;
     transferData.system.equipped = "backpack";
-    //transferData._id = "";
     delete transferData._id;
     // Prepare effects
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
@@ -807,8 +806,7 @@ export default class TwodsixActor extends Actor {
       }
       //use Object.assign() ?
       transferData.effects[0].transfer = false;
-      //transferData.effects[0]._id = randomID(); //dont need random, just blank?
-      delete transferData.effects[0]._id;
+      delete transferData.effects[0]._id; //might need to revert to random id or ""
       transferData.effects[0].origin = "";
       transferData.effects[0].disabled = true;
     }
@@ -839,7 +837,6 @@ export default class TwodsixActor extends Actor {
       newEffect.name = transferData.effects[0].name ?? addedItem.name;
       newEffect.flags.twodsix.sourceId = addedItem.effects.contents[0].id;
       await this.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-      //await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
 
     await applyEncumberedEffect(this);
