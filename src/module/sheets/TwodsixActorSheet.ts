@@ -259,13 +259,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       //if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
       for (const consumeableID of itemSelected.system.consumables) {
         const consumableSelected = await itemSelected.actor.items.get(consumeableID);
-        if(consumableSelected) {
+        if (consumableSelected) {
           //consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
       //}
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
     }
   }
 
