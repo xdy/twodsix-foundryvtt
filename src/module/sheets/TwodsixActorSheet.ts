@@ -257,14 +257,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
       // Sync associated consumables equipped state - need to gate due to race condition
       //if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        for (const consumeableID of itemSelected.system.consumables) {
-          const consumableSelected = await itemSelected.actor.items.get(consumeableID);
-          if(consumableSelected) {
-            //consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
-            itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
-          }
+      for (const consumeableID of itemSelected.system.consumables) {
+        const consumableSelected = await itemSelected.actor.items.get(consumeableID);
+        if(consumableSelected) {
+          //consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
+          itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
-     //}
+      }
+      //}
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
     }
   }
