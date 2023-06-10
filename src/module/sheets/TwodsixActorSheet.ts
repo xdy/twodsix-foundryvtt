@@ -250,17 +250,22 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           break;
       }
       await itemSelected.toggleActiveEffectStatus(disableEffect);
-
+      const itemUpdates = [];
       //change equipped state after toggling active effects so that encumbrance calcs correctly
-      await itemSelected.update({["system.equipped"]: newState}).then();
+      //await itemSelected.update({["system.equipped"]: newState}).then();
+      itemUpdates.push({_id: itemSelected.id, "system.equipped": newState});
 
-      // Sync associated consumables equipped state
-      for (const consumeableID of itemSelected.system.consumables) {
-        const consumableSelected = itemSelected.actor.items.get(consumeableID);
-        if(consumableSelected) {
-          await consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
+      // Sync associated consumables equipped state - need to gate due to race condition
+      //if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+        for (const consumeableID of itemSelected.system.consumables) {
+          const consumableSelected = await itemSelected.actor.items.get(consumeableID);
+          if(consumableSelected) {
+            //consumableSelected.update({["system.equipped"]: itemSelected.system.equipped});
+            itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
+          }
         }
-      }
+     //}
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
     }
   }
 

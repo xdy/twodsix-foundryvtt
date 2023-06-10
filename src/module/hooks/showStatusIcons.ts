@@ -24,12 +24,14 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _options: any, userId:string) => {
+Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "storage", "computer", "augment"].includes(item.type) ) {
-        await applyEncumberedEffect(owningActor);
+        if (item.type !== "consumable" || (item.type === "consumable" && !options.dontSync)) {
+          await applyEncumberedEffect(owningActor);
+        }
       }
     }
     //Needed - for active effects changing damage stats
@@ -50,14 +52,14 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, _o
     }
   }
 });*/
-
-Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
+//Moved to TwodsixActor drop item (creating new item has zero wieght) due to some race condition with update and encumbered effect
+/*Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
     if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "augment"].includes(item.type)) {
-      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
+      await applyEncumberedEffect(<TwodsixActor>item.actor);
     }
   }
-});
+});*/
 
 function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
   if (systemUpdates !== undefined) {

@@ -15,6 +15,7 @@ import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
+import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -796,8 +797,8 @@ export default class TwodsixActor extends Actor {
     // Create the owned item
     transferData.system.quantity = numberToMove;
     transferData.system.equipped = "backpack";
-    transferData._id = "";
-
+    //transferData._id = "";
+    delete transferData._id;
     // Prepare effects
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
       //clear extra item effects - should be fixed
@@ -806,7 +807,8 @@ export default class TwodsixActor extends Actor {
       }
       //use Object.assign() ?
       transferData.effects[0].transfer = false;
-      transferData.effects[0]._id = randomID(); //dont need random, just blank?
+      //transferData.effects[0]._id = randomID(); //dont need random, just blank?
+      delete transferData.effects[0]._id;
       transferData.effects[0].origin = "";
       transferData.effects[0].disabled = true;
     }
@@ -832,13 +834,15 @@ export default class TwodsixActor extends Actor {
     if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect.disabled = true;
-      newEffect._id = "";
+      delete newEffect._id; //might need to revert to random id
       newEffect.origin = addedItem.uuid;
       newEffect.name = transferData.effects[0].name ?? addedItem.name;
-      const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
-      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
+      newEffect.flags.twodsix.sourceId = addedItem.effects.contents[0].id;
+      await this.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+      //await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
     }
 
+    await applyEncumberedEffect(this);
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);
   }
