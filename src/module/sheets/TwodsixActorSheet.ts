@@ -123,7 +123,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
     // Item State toggling
-    html.find(".item-toggle").on("click", await this._onToggleItem.bind(this));
+    html.find(".item-toggle").on("click", await Promise.all(this._onToggleItem.bind(this)));
     html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
     //Consumable Toggling
     html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
