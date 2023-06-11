@@ -109,7 +109,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
 
-  public activateListeners(html: JQuery): void {
+  public async activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     html.find('#joat-skill-input').on('input', this._updateJoatSkill.bind(this));
@@ -123,7 +123,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
     // Item State toggling
-    html.find(".item-toggle").on("click", this._onToggleItem.bind(this));
+    html.find(".item-toggle").on("click", await this._onToggleItem.bind(this));
     html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
     //Consumable Toggling
     html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
