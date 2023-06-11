@@ -9,7 +9,6 @@ import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 //import { getKeyByValue } from "../utils/sheetUtils";
 import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
 import { TWODSIX } from "../config";
-//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -577,8 +576,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           const itemWithEffect = await fromUuid(selectedEffect.origin);
           await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
         }
-        await selectedEffect?.delete();
-        //await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect.id]);
+        //await selectedEffect?.delete();
+        await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect?.id]);
       },
       no: () => {
         //Nothing

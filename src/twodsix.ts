@@ -139,7 +139,6 @@ Hooks.once('init', async function () {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
   }
 
-
   //@ts-ignore
   await loadTemplates(handlebarsTemplateFiles);
 
