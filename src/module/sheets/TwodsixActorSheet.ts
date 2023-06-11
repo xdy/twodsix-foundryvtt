@@ -265,6 +265,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
     }
+    return Promise.resolve();
   }
 
   /**
