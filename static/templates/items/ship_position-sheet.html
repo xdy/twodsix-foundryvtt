@@ -43,6 +43,7 @@
             <td>{{localize "TWODSIX.Ship.Order"}}</td>
             <td>{{localize "TWODSIX.Ship.Name"}}</td>
             <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
+            <td>{{localize "TWODSIX.Ship.Component"}}</td>
             <td>{{localize "TWODSIX.Ship.ActionType"}}</td>
             <td class="centre">
               <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}'>
@@ -58,14 +59,22 @@
                 value="{{action.order}}" data-dtype="Number"></td>
             <td data-id="{{action.id}}">
               <img src="{{action.icon}}" data-edit="system.actions.{{action.id}}.icon" width="24" height="24" style="vertical-align: middle;">
-              <input type="text" style="width: 100px;" name="system.actions.{{id}}.name" value="{{action.name}}">
+              <input style="width: calc(100% - 30px); vertical-align: middle;" type="text" name="system.actions.{{id}}.name" value="{{action.name}}">
             </td>
             <td>
               <input type="text" placeholder="{{localize action.placeholder}}" name="system.actions.{{id}}.command"
                 value="{{action.command}}" data-tooltip="{{localize action.tooltip}}">
             </td>
             <td>
-              <select style="width: 100px;" name="system.actions.{{action.id}}.type">
+              <select style="width: calc(100% - 2px);" name="system.actions.{{id}}.component" {{#iff action.type "===" "chatMessage"}} disabled {{/iff}}>
+                <option value="">{{localize TWODSIX.Ship.None}}</option>
+                {{#each ../nonCargoComponents as |component|}}
+                  <option {{#iff action.component '===' component.id}} selected {{/iff}} value="{{component.id}}">{{component.name}}</option>
+                {{/each}}
+              </select>
+            </td>
+            <td>
+              <select style="width: calc(100% - 2px);" name="system.actions.{{action.id}}.type">
                 {{selectOptions ../availableActions selected = action.type labelAttr = "name" localize=true}}
               </select>
             </td>
@@ -79,25 +88,4 @@
         </tbody>
       </table>
     </div>
-
-    <div class="form-section">
-      {{localize "TWODSIX.Ship.Tabs.Components"}}: <br>
-      <table>
-        <thead>
-          <tr>
-            <td>{{localize "TWODSIX.Ship.Name"}}</td>
-            <td>COMPONENT_ID</td>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each components as |component|}}
-          <tr class="ship-position-details-component">
-            <td><img src="{{component.img}}" width="20" height="20"> {{component.name}}</td>
-            <td><input type="text" style="width: 150px;" value="{{component.id}}" readonly></td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </div>
 </form>

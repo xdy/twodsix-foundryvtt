@@ -584,6 +584,7 @@
       "Available": "Available",
       "AvailableCargoWeight": "Available Cargo Weight",
       "CantDropActorIfPositionIsNotOnShip": "You can't drop a Traveller on a ship position that is not on a ship",
+      "CannotParseArgument": "Cannot Parse Position Action String",
       "Cargo": "Cargo",
       "CargoWeight": "Total Cargo Weight",
       "CARGONOTES": "CARGO NOTES",
@@ -618,6 +619,7 @@
       "JDrive": "J-Drive",
       "Jump": "Jump",
       "MacroSkill": "Macro/Skill",
+      "Component": "Component to use",
       "MakesChatRollAction": "Uses the _ACTION_NAME_ action from the _POSITION_NAME_ position.",
       "ActionHits": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_",
       "ActionHitsAndDamage": "Hits _WHILE_USING_with an effect of _EFFECT_VALUE_ causing _DAMAGE_TOTAL_ points of standard damage",
@@ -668,14 +670,19 @@
       "MaintenancePerMonth": "Maintenance Cost",
       "CrPerMonth": "Cr/month",
       "Chat": "Chat",
-      "UseAComponent": "Component",
+      "UseAComponent": "Fire weapon",
+      "executeMacro": "Macro",
       "SkillRoll": "Skill",
       "chatPlaceholder": "Chat Message",
       "skillPlaceholder": "Skill/CHR 8+",
-      "firePlaceholder": "Skill/CHR 8+=COMPONENT_ID",
+      "firePlaceholder": "Skill/CHR 8+",
+      "macroPlaceholder": "Macro name",
       "skillTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR 8+\nSkills/ATR|ATR2",
-      "fireTooltip": "Possible options:\nSkill=COMPONENT_ID\nSkill|Alternative Skill 1|...=COMPONENT_ID\nSkills/ATR=COMPONENT_ID\nSkills/ 8+=COMPONENT_ID\nSkills/ATR|ATR2 8+=COMPONENT_ID",
-      "chatTooltip": "Ahoy!"
+      "fireTooltip": "Possible options:\nSkill\nSkill|Alternative Skill 1|...\nSkills/ATR\nSkills/ 8+\nSkills/ATR|ATR2 8+",
+      "MacroTooltip": "Macro Name",
+      "chatTooltip": "Ahoy!",
+      "ExecuteMacro": "Execute Macro",
+      "None": "None"
     },
     "Vehicle": {
       "SystemStatus": "System Status",
@@ -1245,7 +1252,9 @@
       "ActionWarningNoToken": "No targets selected for action.",
       "CantEditEffect": "Can't edit effect for item that is embedded in non-Actor.",
       "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
-      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
+      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor.",
+      "PlayerDoesNotHavePermission": "Player does not have permission to execute macro.",
+      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found."
     }
   },
   "TYPES": {

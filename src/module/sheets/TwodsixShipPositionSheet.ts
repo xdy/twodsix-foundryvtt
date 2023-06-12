@@ -12,7 +12,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   getData(): TwodsixShipPositionSheetData {
     const context = <TwodsixShipPositionSheetData>super.getData();
-    context.components = this.item.actor?.itemTypes.component ?? [];
+    context.nonCargoComponents = this.item.actor?.itemTypes.component.filter( i => i.system.subtype !== "cargo") ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
     const actions = (<ShipPosition>this.item.system).actions ?? [];
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {
@@ -43,7 +43,10 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       submitOnClose: true,
       scrollY: [".ship-positions-list"],
       submitOnChange: true,
-      dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"},]
+      dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"}],
+      width: 'auto',
+      height: 'auto',
+      resizable: true
     });
   }
 
@@ -76,7 +79,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "name": skill.name,
         "icon": skill.img ?? "",
         "type": TWODSIX.SHIP_ACTION_TYPE.skillRoll,
-        "command": command
+        "command": command,
+        "component": ""
       }
     };
     const newActions = duplicate(Object.assign(actions, newAction));
@@ -150,6 +154,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",
       "command": "",
+      "component": "",
       "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
     this.item.update({ "system.actions": actions });

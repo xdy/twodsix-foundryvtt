@@ -106,9 +106,11 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       const shipPosition = this.actor.items.get(shipPositionId);
       const action = (<ShipPosition>shipPosition?.system)?.actions[actionId];
       if (action) {
+        const component = this.actor.items.find(item => item.id === action.component);
         const extra = {
           actor: game.actors?.get(actorId),
           ship: this.actor,
+          component: <TwodsixItem>component,
           event: event,
           actionName: action.name,
           positionName: shipPosition?.name ?? "",
