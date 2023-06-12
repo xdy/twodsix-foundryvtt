@@ -59,14 +59,14 @@
                 value="{{action.order}}" data-dtype="Number"></td>
             <td data-id="{{action.id}}">
               <img src="{{action.icon}}" data-edit="system.actions.{{action.id}}.icon" width="24" height="24" style="vertical-align: middle;">
-              <input type="text" style="width: 100px;" name="system.actions.{{id}}.name" value="{{action.name}}">
+              <input style="width: calc(100% - 30px); vertical-align: middle;" type="text" name="system.actions.{{id}}.name" value="{{action.name}}">
             </td>
             <td>
               <input type="text" placeholder="{{localize action.placeholder}}" name="system.actions.{{id}}.command"
                 value="{{action.command}}" data-tooltip="{{localize action.tooltip}}">
             </td>
             <td>
-              <select name="system.actions.{{id}}.component" {{#iff action.type "===" "chatMessage"}} disabled {{/iff}}>
+              <select style="width: calc(100% - 2px);" name="system.actions.{{id}}.component" {{#iff action.type "===" "chatMessage"}} disabled {{/iff}}>
                 <option value="">{{localize TWODSIX.Ship.None}}</option>
                 {{#each ../nonCargoComponents as |component|}}
                   <option {{#iff action.component '===' component.id}} selected {{/iff}} value="{{component.id}}">{{component.name}}</option>
@@ -74,7 +74,7 @@
               </select>
             </td>
             <td>
-              <select style="width: 100px;" name="system.actions.{{action.id}}.type">
+              <select style="width: calc(100% - 2px);" name="system.actions.{{action.id}}.type">
                 {{selectOptions ../availableActions selected = action.type labelAttr = "name" localize=true}}
               </select>
             </td>
