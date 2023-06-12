@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.5...v3.1.0) (2023-06-12)
+
+
+### Features
+
+* execute macros from ship positions ([#1330](https://github.com/xdy/twodsix-foundryvtt/issues/1330)) ([5f2f7b4](https://github.com/xdy/twodsix-foundryvtt/commit/5f2f7b410f65eda0ad5b777b3aa99e16cac652c6))
+
 ## [3.0.5](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.4...v3.0.5) (2023-06-11)
 
 
