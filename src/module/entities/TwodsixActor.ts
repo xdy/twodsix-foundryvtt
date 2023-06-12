@@ -15,6 +15,7 @@ import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
+import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -794,9 +795,10 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
+    transferData.system.quantity = numberToMove;
+    transferData.system.equipped = "backpack";
+    delete transferData._id;
     // Prepare effects
-    transferData.system.equipped = "ship";
-    transferData._id = "";
     if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
@@ -804,42 +806,40 @@ export default class TwodsixActor extends Actor {
       }
       //use Object.assign() ?
       transferData.effects[0].transfer = false;
-      transferData.effects[0]._id = randomID(); //dont need random, just blank?
+      delete transferData.effects[0]._id; //might need to revert to random id or ""
       transferData.effects[0].origin = "";
       transferData.effects[0].disabled = true;
     }
 
-    const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-    await addedItem.update({"system.quantity": numberToMove});
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
-      const newEffect = addedItem.effects.contents[0].toObject();
-      //newEffect.disabled = true;
-      newEffect._id = "";
-      newEffect.origin = addedItem.uuid;
-      newEffect.name = transferData.effects[0].name ?? addedItem.name;
-      const newActorEffect = (await this.createEmbeddedDocuments("ActiveEffect", [newEffect]))[0];
-      await newActorEffect?.setFlag('twodsix', 'sourceId', addedItem.effects.contents[0].id);
-    }
-    await addedItem.update({"system.equipped": "backpack"});
-
     //Link an actor skill with name defined by item.associatedSkillName
     let skillId = "";
-    if (addedItem.system.associatedSkillName !== "") {
-      skillId = this.items.getName(addedItem.system.associatedSkillName)?.id ?? "";
+    if (transferData.system.associatedSkillName !== "") {
+      skillId = this.items.getName(transferData.system.associatedSkillName)?.id ?? "";
       //Try to link Untrained if no match
       if (skillId === "") {
         skillId = this.getUntrainedSkill()?.id ?? "";
       }
-      await addedItem.update({"system.skill": skillId});
     }
+    transferData.system.skill = skillId;
 
     //Remove any attached consumables
-    if (addedItem.system.consumables !== undefined) {
-      if (addedItem.system.consumables.length > 0) {
-        await addedItem.update({"system.consumables": []});
-      }
+    transferData.system.consumables = [];
+
+    //Create Item
+    const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
+
+    //Transfer Active Effect is applicable
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
+      const newEffect = addedItem.effects.contents[0].toObject();
+      newEffect.disabled = true;
+      delete newEffect._id; //might need to revert to random id
+      newEffect.origin = addedItem.uuid;
+      newEffect.name = transferData.effects[0].name ?? addedItem.name;
+      newEffect.flags.twodsix.sourceId = addedItem.effects.contents[0].id;
+      await this.createEmbeddedDocuments("ActiveEffect", [newEffect]);
     }
 
+    await applyEncumberedEffect(this);
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
     return (!!addedItem);
   }
@@ -858,33 +858,33 @@ export default class TwodsixActor extends Actor {
     switch (this.type) {
       case 'traveller':
         if (itemData.type === 'skills') {
-          return this._addDroppedSkills(itemData);
+          return await this._addDroppedSkills(itemData);
         } else if (!["component", "ship_position"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'animal':
         if (itemData.type === 'skills') {
           return this._addDroppedSkills(itemData);
         } else if (["weapon", "trait"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'robot':
         if (itemData.type === 'skills') {
-          return this._addDroppedSkills(itemData);
+          return await this._addDroppedSkills(itemData);
         } else if (["weapon", "trait", "augment"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'ship':
         if (!["skills", "trait", "spell"].includes(itemData.type)) {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
       case 'vehicle':
         if (itemData.type === "component") {
-          return this._addDroppedEquipment(itemData);
+          return await this._addDroppedEquipment(itemData);
         }
         break;
     }

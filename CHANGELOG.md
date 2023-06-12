@@ -1,3 +1,31 @@
+## [3.0.5](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.4...v3.0.5) (2023-06-11)
+
+
+### Bug Fixes
+
+* retry fixing encumbrance icons ([#1346](https://github.com/xdy/twodsix-foundryvtt/issues/1346)) ([c9742ec](https://github.com/xdy/twodsix-foundryvtt/commit/c9742ecfbbeef300e9bda2a2243f5971408b9bc8))
+
+## [3.0.4](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.3...v3.0.4) (2023-05-29)
+
+
+### Bug Fixes
+
+* temp fixes to encumbrance indicators ([#1341](https://github.com/xdy/twodsix-foundryvtt/issues/1341)) ([8428500](https://github.com/xdy/twodsix-foundryvtt/commit/842850059dddec09a24e76219231e1bb2ff2322f))
+
+## [3.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.2...v3.0.3) (2023-05-27)
+
+
+### Bug Fixes
+
+* bug with encumbered effect ([#1339](https://github.com/xdy/twodsix-foundryvtt/issues/1339)) ([e841fce](https://github.com/xdy/twodsix-foundryvtt/commit/e841fce9d4f1bdc9de85e79d0f00e6b56890c857))
+
+## [3.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.1...v3.0.2) (2023-05-27)
+
+
+### Bug Fixes
+
+* More format fixes ([#1338](https://github.com/xdy/twodsix-foundryvtt/issues/1338)) ([7e01752](https://github.com/xdy/twodsix-foundryvtt/commit/7e01752a1163d1241dc4673fa7271bc7667a30e4))
+
 ## [3.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.0...v3.0.1) (2023-05-26)
 
 

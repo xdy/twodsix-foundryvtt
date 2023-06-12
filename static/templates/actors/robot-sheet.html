@@ -12,7 +12,7 @@
         <span class="status-icons">
             {{#each actor.effects as |anEffect|}}
             {{actor.effects}}
-              <img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.label}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
+              <img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>
             {{/each}}
         {{/if}}
       </div>
