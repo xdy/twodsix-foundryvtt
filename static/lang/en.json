@@ -1252,7 +1252,9 @@
       "ActionWarningNoToken": "No targets selected for action.",
       "CantEditEffect": "Can't edit effect for item that is embedded in non-Actor.",
       "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
-      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor."
+      "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor.",
+      "PlayerDoesNotHavePermission": "Player does not have permission to execute macro.",
+      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found."
     }
   },
   "TYPES": {

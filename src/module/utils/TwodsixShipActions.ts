@@ -163,11 +163,17 @@ export class TwodsixShipActions {
     }
   }
 
-  public static async executeMacro(text: string, extra: ExtraData) {
-    const foundMacros = await game.macros.find((macro) => macro.name === text);
-    if (foundMacros?.canExecute) {
-      const scope = {actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
-      foundMacros.execute(scope);
+  public static async executeMacro(macroName: string, extra: ExtraData) {
+    const foundMacros = await game.macros.find((macro) => macro.name === macroName);
+    if (!foundMacros) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MacroNotFound").replace("_MACRO_NAME_", macroName));
+    } else {
+      if (foundMacros.canExecute) {
+        const scope = {actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
+        foundMacros.execute(scope);
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PlayerDoesNotHavePermission"));
+      }
     }
   }
 }
