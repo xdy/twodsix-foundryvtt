@@ -43,7 +43,10 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       submitOnClose: true,
       scrollY: [".ship-positions-list"],
       submitOnChange: true,
-      dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"},]
+      dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"}],
+      width: 'auto',
+      height: 'auto',
+      resizable: true
     });
   }
 
