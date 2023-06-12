@@ -140,24 +140,23 @@ export class TwodsixShipActions {
   }
 
   public static async fireEnergyWeapons(text: string, extra: ExtraData) {
-    const skillTextAndComponentId = text.split("=");
-    if(skillTextAndComponentId.length>1 && !extra.component){
+    const skillTextAndComponentId = text.trim().split("=");
+    if (skillTextAndComponentId.length > 1 && !extra.component) {
       // still suport depecated old xx=COMPONENT style but use the component from selection if one is given
       const componentId = skillTextAndComponentId[1];
-      const component = extra.ship?.items.find(item => item.id === componentId);
-      extra.component = <TwodsixItem>component;
+      extra.component = <TwodsixItem>extra.ship?.items.find(item => item.id === componentId);
     }
-    const skillText=skillTextAndComponentId[0];
+    const skillText = skillTextAndComponentId[0];
     const result = await TwodsixShipActions.skillRoll(skillText, extra);
     if (!result) {
       return false;
     }
 
-    const usingCompStr = component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + component.name + ` `) : '';
-    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>component?.system)?.subtype === "armament") {
-      if (result.effect >= 0 && component) {
+    const usingCompStr = extra.component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + extra.component.name + ` `) : '';
+    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>extra.component?.system)?.subtype === "armament") {
+      if (result.effect >= 0 && extra.component) {
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
-        await (<TwodsixItem>component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
+        await (<TwodsixItem>extra.component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false);
       } else {
         await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }
