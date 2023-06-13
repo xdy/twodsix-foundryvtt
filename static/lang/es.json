@@ -584,6 +584,7 @@
       "Available": "Disponible",
       "AvailableCargoWeight": "Peso Carga Disponible",
       "CantDropActorIfPositionIsNotOnShip": "No puedes colocar un Viajero en el puesto que no se encuentra localizado en una nave.",
+      "CannotParseArgument": "No es posible procesar la Acción de Puesto",
       "Cargo": "Carga",
       "CargoWeight": "Peso Total Carga",
       "CARGONOTES": "NOTAS CARGA",
@@ -618,6 +619,7 @@
       "JDrive": "MotorS",
       "Jump": "Salto",
       "MacroSkill": "Macro/Hab.",
+      "Component": "Componente a utilizar",
       "MakesChatRollAction": "Ejecuta la acción _ACTION_NAME_ desde el puesto _POSITION_NAME_",
       "ActionHits": "_WHILE_USING_with impacta con efecto _EFFECT_VALUE_",
       "ActionHitsAndDamage": "_WHILE_USING_with impacta con efecto _EFFECT_VALUE_ generando _DAMAGE_TOTAL_ puntos de daño estándar",
@@ -668,14 +670,19 @@
       "MaintenancePerMonth": "Coste Mantenimiento",
       "CrPerMonth": "Cr/mes",
       "Chat": "Chat",
-      "UseAComponent": "Componente",
+      "UseAComponent": "Disparar arma",
+      "executeMacro": "Macro",
       "SkillRoll": "Habilidad",
       "chatPlaceholder": "Mensaje del Chat",
-      "skillPlaceholder": "Hab./CHR 8+",
-      "firePlaceholder": "Hab./CHR 8+=COMPONENT_ID",
-      "skillTooltip": "Opciones posibles:\nHabilidad\nHabilidad|Hab. Alt.1|...\nHabilidades/ 8+\nHabilidades/ATR 8+\nHabilidades/ATR|ATR2",
-      "fireTooltip": "Opciones posibles:\nHabilidad=COMPONENT_ID\nHabilidad|Hab. Alt.1|...=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ATR=COMPONENT_ID\nHabilidades/ 8+=COMPONENT_ID\nHabilidades/ATR|ATR2 8+=COMPONENT_ID",
-      "chatTooltip": "¡A la vista!"
+      "skillPlaceholder": "Hab./ATR 8+",
+      "firePlaceholder": "Hab./ATR 8+",
+      "macroPlaceholder": "Nombre Macro",
+      "skillTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alt.1|...\nHab./ATR\nHab./ 8+\nHab./ATR 8+\nHab./ATR|ATR2",
+      "fireTooltip": "Opciones posibles:\nHabilidad\nHab.|Hab. Alt. 1|...\nHab./ATR\nHab./ 8+\nHab./ATR|ATR2 8+",
+      "MacroTooltip": "Nombre Macro",
+      "chatTooltip": "¡A la vista!",
+      "ExecuteMacro": "Ejecutar Macro",
+      "None": "Ninguno"
     },
     "Vehicle": {
       "SystemStatus": "Estado Sistemas",
@@ -1245,7 +1252,9 @@
       "ActionWarningNoToken": "Sin objetivo seleccionado para la acción.",
       "CantEditEffect": "No se puede editar un efecto en un objeto que no esta en un Actor.",
       "CantCreateEffect": "No se puede crear un efecto en un objeto que no esta en un Actor.",
-      "CantDeleteEffect": "No se puede borrar un efecto en un objeto que no esta en un Actor."
+      "CantDeleteEffect": "No se puede borrar un efecto en un objeto que no esta en un Actor.",
+      "PlayerDoesNotHavePermission": "Jugador sin permisos para ejecutar la macro.",
+      "MacroNotFound": "Macro llamada, _MACRO_NAME_, no disponible."
     }
   },
   "TYPES": {
