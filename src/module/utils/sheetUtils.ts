@@ -320,3 +320,9 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
   });
   return (returnText ?? "");
 }
+
+export async function wait(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
