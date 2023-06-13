@@ -40,7 +40,7 @@
       <table>
         <thead>
           <tr>
-            <td>{{localize "TWODSIX.Ship.Order"}}</td>
+            <td style="min-width: 6ch;">{{localize "TWODSIX.Ship.Order"}}</td>
             <td>{{localize "TWODSIX.Ship.Name"}}</td>
             <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
             <td>{{localize "TWODSIX.Ship.Component"}}</td>
@@ -55,7 +55,7 @@
         <tbody>
           {{#each sortedActions as |action|}}
           <tr class="ship-position-details-action">
-            <td><input type="number" style="width: 15px;" name="system.actions.{{action.id}}.order"
+            <td><input type="number" style="width: 5ch;" name="system.actions.{{action.id}}.order"
                 value="{{action.order}}" data-dtype="Number"></td>
             <td data-id="{{action.id}}">
               <img src="{{action.icon}}" data-edit="system.actions.{{action.id}}.icon" width="24" height="24" style="vertical-align: middle;">
