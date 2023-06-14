@@ -943,14 +943,14 @@ export default class TwodsixActor extends Actor {
     this.sheet?.render(false);
   }
 
-  public deleteCustomAEs():void {
-    const systemAEs = this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+  public async deleteCustomAEs():void {
+    const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
     if (systemAEs) {
       const idsToDelete = [];
       for (const eff of systemAEs) {
         idsToDelete.push(eff.id);
       }
-      this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+      await this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
     }
   }
 

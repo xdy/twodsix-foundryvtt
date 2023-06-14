@@ -177,7 +177,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
           }
         }
       });
-      this.actor.deleteEmbeddedDocuments("Item", [shipPositionId]);
+      await this.actor.deleteEmbeddedDocuments("Item", [shipPositionId]);
     }
   }
 

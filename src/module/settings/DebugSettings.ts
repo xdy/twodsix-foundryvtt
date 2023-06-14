@@ -44,5 +44,5 @@ async function deactivateActorAE () {
 }
 
 async function deleteSystemAE(actor: TwodsixActor): Promise<void> {
-  actor.deleteCustomAEs();
+  await actor.deleteCustomAEs();
 }

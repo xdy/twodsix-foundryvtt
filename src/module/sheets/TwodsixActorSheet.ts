@@ -7,6 +7,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
 import { effectType } from "../hooks/showStatusIcons";
+import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -262,8 +263,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
-
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
+      await wait(100); ///try adding delay to lessen the db error of clicking to fast
     }
   }
 
