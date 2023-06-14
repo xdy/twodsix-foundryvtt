@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.1.0...v3.1.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* Style fixes to action sheet ([#1354](https://github.com/xdy/twodsix-foundryvtt/issues/1354)) ([5326776](https://github.com/xdy/twodsix-foundryvtt/commit/5326776ff692ad4d6146773ea04114ca16fc7490))
+
 # [3.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.0.5...v3.1.0) (2023-06-12)
 
 
