@@ -436,7 +436,7 @@
         "ShortDescription": "Opciones",
         "SkillModifier": "Modificador Tirada",
         "TL": "NT",
-        "Weight": "KG",
+        "Weight": "Masa",
         "isAttachment": "¿Accesorio?",
         "NewAttachment": "Nuevo Accesorio",
         "BonusDamage": "Bono Daño",
@@ -592,14 +592,14 @@
       "CreateAction": "Crear Acción",
       "Crew": {
         "ADMIN": "ADMINISTRADOR",
-        "ASTROGATOR": "ASTRONAVEGADOR",
+        "ASTROGATOR": "ASTRONAVEGANTE",
         "BROKER": "BRÓKER",
         "CAPTAIN": "CAPITÁN",
         "ENGINEER": "INGENIERO(S)",
         "GUNNER": "ARTILLERO(S)",
         "MAINTENANCE": "MANTENIMIENTO",
         "MARINE": "MARINE(S)",
-        "MEDIC": "DOCTOR",
+        "MEDIC": "MÉDICO",
         "OTHER": "OTRO",
         "PILOT": "PILOTO",
         "STEWARD": "AUXILIAR"
@@ -988,8 +988,8 @@
         "name": "Modificador Tiradas con Heridas Graves"
       },
       "weightModifierForWornArmor": {
-        "hint": "Factor multiplicador del peso de la armadura si esta es equipada.",
-        "name": "Factor multiplicador del peso armadura equipada."
+        "hint": "Factor multiplicador de la masa de la armadura si esta es equipada.",
+        "name": "Factor multiplicador de la masa armadura equipada."
       },
       "useProseMirror": {
         "hint": "Utiliza el editor HTML incorporado para introducir texto extenso.",
