@@ -15,17 +15,17 @@ Hooks.on("getChatLogEntryContext", addChatMessageContextOptions);
 function addChatMessageContextOptions(html, options) {
   const canApply = li => {
     const message = game.messages.get(li.data("messageId"));
-    return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length  && message.flags.transfer;
+    return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
   };
   options.push(
     {
-      name: game.i18n.localize("Damage"),
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
       icon: '<i class="fas fa-user-minus"></i>',
       condition: canApply,
       callback: li => applyChatCardDamage(li, 1)
     },
     {
-      name: game.i18n.localize("Heal"),
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
       icon: '<i class="fas fa-user-plus"></i>',
       condition: canApply,
       callback: li => applyChatCardDamage(li, -1)
@@ -43,14 +43,15 @@ function addChatMessageContextOptions(html, options) {
  */
 function applyChatCardDamage(li, multiplier) {
   const message = game.messages.get(li.data("messageId"));
-  const transfer = JSON.parse(message.flags.transfer);
-  if (transfer.type === "damageItem") {
+  const transfer = message.flags.transfer ? JSON.parse(message.flags.transfer) : undefined;
+  const effect = transfer?.payload.damageValue ?? message.flags.twodsix?.effect;
+  if (effect > 0) {
     return Promise.all(canvas.tokens.controlled.map(t => {
       if (["traveller", "robot", "animal"].includes(t.actor.type)) {
         if (multiplier > 0) {
-          t.actor.damageActor(transfer.payload.damageValue, transfer.payload.armorPiercingValue, transfer.payload.damageType, true);
+          t.actor.damageActor(effect, transfer?.payload.armorPiercingValue ?? 0, transfer?.payload.damageType ?? "", true);
         } else {
-          t.actor.healActor(transfer.payload.damageValue);
+          t.actor.healActor(effect);
         }
       }
     }));
