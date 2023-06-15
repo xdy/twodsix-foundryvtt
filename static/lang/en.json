@@ -323,6 +323,8 @@
         "normal": "normal",
         "AbilityCheck": "Ability / Characteristic Check",
         "ApplyDamage": "Apply Damage",
+        "ApplyDestructiveDamage": "Apply Destructive Damage (10x)",
+        "ApplyReducedDamage": "Apply Scale Reduced Damage (0.1x)",
         "ApplyHealing": "Apply Healing"
       }
     },
