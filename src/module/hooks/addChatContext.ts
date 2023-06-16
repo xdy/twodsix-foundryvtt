@@ -68,5 +68,7 @@ function applyChatCardDamage(li, multiplier) {
         }
       }
     }));
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageToApply"));
   }
 }

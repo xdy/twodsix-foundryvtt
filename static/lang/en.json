@@ -1258,7 +1258,8 @@
       "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor.",
       "PlayerDoesNotHavePermission": "Player does not have permission to execute macro.",
-      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found."
+      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found.",
+      "NoDamageToApply": "Damage or healing values must greater than zero."
     }
   },
   "TYPES": {
