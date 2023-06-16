@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.1.1...v3.2.0) (2023-06-16)
+
+
+### Features
+
+* Add chat context items for damage and healing menu ([#1363](https://github.com/xdy/twodsix-foundryvtt/issues/1363)) ([7fe486c](https://github.com/xdy/twodsix-foundryvtt/commit/7fe486cfbf78ddaef178e3debf19aa9a76cfa3ee))
+
 ## [3.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.1.0...v3.1.1) (2023-06-14)
 
 
