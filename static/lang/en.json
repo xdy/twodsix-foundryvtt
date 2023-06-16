@@ -321,7 +321,11 @@
         "RequestRollClip":"<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Request Roll</h4><p>Select any Tokens from which you would like to request a skill roll. A pop-up dialog opens where you can select the particulars of the roll.</p><p class='faint'>Disable Toolclips in the Settings</p></div>",
         "GMRequestsRoll": "GM requests a _TYPE_ roll.",
         "normal": "normal",
-        "AbilityCheck": "Ability / Characteristic Check"
+        "AbilityCheck": "Ability / Characteristic Check",
+        "ApplyDamage": "Apply Damage",
+        "ApplyDestructiveDamage": "Apply Destructive Damage (10x)",
+        "ApplyReducedDamage": "Apply Scale Reduced Damage (0.1x)",
+        "ApplyHealing": "Apply Healing"
       }
     },
     "Create": "Create",
@@ -1254,7 +1258,8 @@
       "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor.",
       "PlayerDoesNotHavePermission": "Player does not have permission to execute macro.",
-      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found."
+      "MacroNotFound": "Macro with name, _MACRO_NAME_, not found.",
+      "NoDamageToApply": "Damage or healing values must greater than zero."
     }
   },
   "TYPES": {
