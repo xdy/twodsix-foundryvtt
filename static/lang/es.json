@@ -321,7 +321,11 @@
         "RequestRollClip": "<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Pedir Tirada</h4><p>Selecciona cualquier Token al que quieras pedir una tirada. Después podrás escoger los detalles de la misma en una ventana emergente.</p><p class='faint'>Deshabilita Ayudas en Configuración</p></div>",
         "GMRequestsRoll": "El DJ pide tirada de _TYPE_.",
         "normal": "normal",
-        "AbilityCheck": "Prueba de Habilidad / Característica"
+        "AbilityCheck": "Prueba de Habilidad / Característica",
+        "ApplyDamage": "Aplicar Daño",
+        "ApplyDestructiveDamage": "Aplicar Daño Destructivo (x10)",
+        "ApplyReducedDamage": "Aplicar Daño Reducido (x0.1)",
+        "ApplyHealing": "Aplicar Curación"
       }
     },
     "Create": "Crear",
@@ -634,7 +638,7 @@
       "NewAction": "Nueva Acción",
       "NoActorsForAction": "Sin actor disponible para la acción",
       "Order": "Orden",
-      "Overdrive": "Overdrive",
+      "Overdrive": "Sobrecarga",
       "Parsecs": "Parsecs",
       "pc": "pc",
       "PositionName": "Nombre Puesto",
@@ -1254,7 +1258,8 @@
       "CantCreateEffect": "No se puede crear un efecto en un objeto que no esta en un Actor.",
       "CantDeleteEffect": "No se puede borrar un efecto en un objeto que no esta en un Actor.",
       "PlayerDoesNotHavePermission": "Jugador sin permisos para ejecutar la macro.",
-      "MacroNotFound": "Macro llamada, _MACRO_NAME_, no disponible."
+      "MacroNotFound": "Macro llamada, _MACRO_NAME_, no disponible.",
+      "NoDamageToApply": "El valor de daño o curación debe ser mayor que cero."
     }
   },
   "TYPES": {
