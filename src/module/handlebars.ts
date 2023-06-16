@@ -236,7 +236,7 @@ export default function registerHandlebarsHelpers(): void {
       const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
       const baseValue = getProperty(actor._source, field);
       returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
-      const workingEffects = actor.effects.filter(e => !e.disabled);
+      const workingEffects = actor.appliedEffects;
       for (const effect of workingEffects) {
         const realChanges = effect.changes.filter(ch => ch.key === field);
         if (realChanges.length > 0) {

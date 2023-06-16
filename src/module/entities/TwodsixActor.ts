@@ -799,7 +799,7 @@ export default class TwodsixActor extends Actor {
     transferData.system.equipped = "backpack";
     delete transferData._id;
     // Prepare effects
-    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
+    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0 && CONFIG.ActiveEffect.legacyTransferral) {
       //clear extra item effects - should be fixed
       while (transferData.effects.length > 1) {
         transferData.effects.pop();
@@ -829,7 +829,7 @@ export default class TwodsixActor extends Actor {
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
 
     //Transfer Active Effect is applicable
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
+    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0 && CONFIG.ActiveEffect.legacyTransferral) {
       const newEffect = addedItem.effects.contents[0].toObject();
       newEffect.disabled = true;
       delete newEffect._id; //might need to revert to random id
@@ -925,7 +925,7 @@ export default class TwodsixActor extends Actor {
     const overrides = {};
 
     // Apply all changes
-    for (const effect of this.effects.filter( e => !e.disabled)) {
+    for (const effect of this.appliedEffects) {
       for (const change of effect.changes) {
         if (derivedData.includes(change.key)) {
           const changes = await (<ActiveEffect>effect).apply(this, change);
@@ -944,7 +944,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async deleteCustomAEs():void {
-    const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+    const systemAEs = await this.allApplicableEffects()?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
     if (systemAEs) {
       const idsToDelete = [];
       for (const eff of systemAEs) {
@@ -958,7 +958,7 @@ export default class TwodsixActor extends Actor {
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
       const newEffects = [];
       const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
-      if (itemsWithEffects) {
+      if (itemsWithEffects && CONFIG.ActiveEffect.legacyTransferral) {
         for (const item of itemsWithEffects) {
           const newEffect = item.effects.contents[0].toObject();
           Object.assign(newEffect, {

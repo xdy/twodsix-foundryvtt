@@ -188,7 +188,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       const newId = randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
         const effects = [new ActiveEffect({
-          origin: this.item.uuid,
+          origin: CONFIG.ActiveEffect.legacyTransferral ? this.item.uuid : undefined,
           icon: this.item.img,
           tint: "#ffffff",
           label: this.item.name,
@@ -204,12 +204,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
           //await this.item.update({effects: [newEffect] }, {recursive: true});
 
-          if (this.actor) {
+          if (this.actor && CONFIG.ActiveEffect.legacyTransferral) {
             newEffect.transfer = false;
             const oldId = newEffect._id;
             newEffect._id = "";
             await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-            this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+            await this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
           } else {
             this.item.effects.contents[0].sheet?.render(true);
           }
@@ -221,7 +221,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onEditEffect(): void {
-    if (["traveller", "animal", "robot"].includes(this.actor?.type)) {
+    if (["traveller", "animal", "robot"].includes(this.actor?.type) && CONFIG.ActiveEffect.legacyTransferral) {
       this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
     } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
@@ -243,8 +243,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
         if (await fromUuid(this.item.uuid)) {
-          if (this.actor) {
-            const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+          if (this.actor && CONFIG.ActiveEffect.legacyTransferral) {
+            const id = this.actor.allApplicableEffects().find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
             if (id) {
               await this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
             }

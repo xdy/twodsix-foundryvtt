@@ -345,7 +345,7 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   let returnValue = 0;
   let returnName = "";
   let changed = false;
-  const customEffects = selectedActor.effects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
+  const customEffects = await selectedActor.effects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
   for (const effect of customEffects) {
     changed = false;
     for (const change of effect.changes) {
