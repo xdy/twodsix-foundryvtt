@@ -747,7 +747,7 @@ export default class TwodsixActor extends Actor {
     }
 
     let transferData = {};
-    //Need to catach because Monk's enhanced Journal drops item data not TwodsixItem
+    //Need to catch because Monk's enhanced Journal drops item data not TwodsixItem
     try {
       transferData = itemData.toJSON();
     } catch(err) {
@@ -808,6 +808,8 @@ export default class TwodsixActor extends Actor {
       transferData.effects[0].transfer = false;
       delete transferData.effects[0]._id; //might need to revert to random id or ""
       transferData.effects[0].origin = "";
+      transferData.effects[0].disabled = true;
+    } else {
       transferData.effects[0].disabled = true;
     }
 
@@ -944,7 +946,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public async deleteCustomAEs():void {
-    const systemAEs = await this.allApplicableEffects()?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
+    const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
     if (systemAEs) {
       const idsToDelete = [];
       for (const eff of systemAEs) {
@@ -955,10 +957,10 @@ export default class TwodsixActor extends Actor {
   }
 
   public async fixItemAEs(): void {
-    if (game.settings.get('twodsix', "useItemActiveEffects")) {
+    if (game.settings.get('twodsix', "useItemActiveEffects") && CONFIG.ActiveEffect.legacyTransferral) {
       const newEffects = [];
       const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
-      if (itemsWithEffects && CONFIG.ActiveEffect.legacyTransferral) {
+      if (itemsWithEffects ) {
         for (const item of itemsWithEffects) {
           const newEffect = item.effects.contents[0].toObject();
           Object.assign(newEffect, {

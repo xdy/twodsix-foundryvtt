@@ -3,7 +3,7 @@
 
 Hooks.on("updateActiveEffect", (activeEffect, changes, options, userId: string) => {
   if (game.user.id === userId  && activeEffect.parent?.documentName === "Actor") {
-    if (!changes.flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects')) { //changes.flags condition needed, when??
+    if (!changes.flags && !options.dontSync && game.settings.get('twodsix', 'useItemActiveEffects') && CONFIG.ActiveEffect.legacyTransferral) { //changes.flags condition needed, when??
       const itemActiveEffectId = activeEffect.getFlag("twodsix", "sourceId");
       if (itemActiveEffectId) {
         const match = activeEffect.origin?.match(/Item\.(.+)/);

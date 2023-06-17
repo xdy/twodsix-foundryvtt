@@ -383,7 +383,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "component"].includes(i.type));
       sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
-    sheetData.effects = actor.effects.contents;
+    sheetData.effects = Array.from(actor.allApplicableEffects());
   }
 
   protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
@@ -572,12 +572,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
-          const itemWithEffect = await fromUuid(selectedEffect.origin);
-          await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
+        if (CONFIG.ActiveEffect.legacyTransferral) {
+          if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
+            const itemWithEffect = await fromUuid(selectedEffect.origin);
+            await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
+          }
+          //await selectedEffect?.delete();
+          await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect?.id]);
+        } else {
+          selectedEffect.delete();
         }
-        //await selectedEffect?.delete();
-        await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect?.id]);
       },
       no: () => {
         //Nothing
@@ -596,7 +600,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
-        await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+        if (CONFIG.ActiveEffect.legacyTransferral) {
+          await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
+        } else {
+          await selectedEffect.update({disabled: !selectedEffect.disabled});
+        }
         this.render(false);
       }
     } else if (action === "create") {

@@ -85,6 +85,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         } else {
           effect.sourceLabel = effect.origin;
         }
+      } else if (effect.parent.documentName === "Item") {
+        effect.sourceLabel = effect.parent.name;
       } else {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
       }

@@ -192,26 +192,27 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           icon: this.item.img,
           tint: "#ffffff",
           label: this.item.name,
-          transfer: true,
+          transfer: !CONFIG.ActiveEffect.legacyTransferral, ///or should it be true?
           disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["trait"].includes(this.item.type),
           _id: newId,
           flags: {twodsix: {sourceId: newId}}
-
         }).toObject()];
         if (await fromUuid(this.item.uuid)) {
-          await this.item.update({effects: effects }, {recursive: true});
-          const newEffect = this.item.effects.contents[0].toObject();
-          //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
-          //await this.item.update({effects: [newEffect] }, {recursive: true});
-
-          if (this.actor && CONFIG.ActiveEffect.legacyTransferral) {
-            newEffect.transfer = false;
-            const oldId = newEffect._id;
-            newEffect._id = "";
-            await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-            await this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+          if (CONFIG.ActiveEffect.legacyTransferral) {
+            await this.item.update({effects: effects }, {recursive: true});
+            if (this.actor) {
+              const newEffect = this.item.effects.contents[0].toObject();
+              newEffect.transfer = false;
+              const oldId = newEffect._id;
+              newEffect._id = "";
+              await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
+              await this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
+            } else {
+              await this.item.effects.contents[0]?.sheet?.render(true);
+            }
           } else {
-            this.item.effects.contents[0].sheet?.render(true);
+            await this.item.createEmbeddedDocuments('ActiveEffect', effects);
+            await this.item.effects.contents[0]?.sheet?.render(true);
           }
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
@@ -244,7 +245,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       yes: async () => {
         if (await fromUuid(this.item.uuid)) {
           if (this.actor && CONFIG.ActiveEffect.legacyTransferral) {
-            const id = this.actor.allApplicableEffects().find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
+            const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
             if (id) {
               await this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
             }
