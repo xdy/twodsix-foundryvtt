@@ -799,18 +799,20 @@ export default class TwodsixActor extends Actor {
     transferData.system.equipped = "backpack";
     delete transferData._id;
     // Prepare effects
-    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0 && CONFIG.ActiveEffect.legacyTransferral) {
-      //clear extra item effects - should be fixed
-      while (transferData.effects.length > 1) {
-        transferData.effects.pop();
+    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
+      if (CONFIG.ActiveEffect.legacyTransferral) {
+        //clear extra item effects - should be fixed
+        while (transferData.effects.length > 1) {
+          transferData.effects.pop();
+        }
+        //use Object.assign() ?
+        transferData.effects[0].transfer = false;
+        delete transferData.effects[0]._id; //might need to revert to random id or ""
+        transferData.effects[0].origin = "";
+        transferData.effects[0].disabled = true;
+      } else {
+        transferData.effects[0].disabled = true;
       }
-      //use Object.assign() ?
-      transferData.effects[0].transfer = false;
-      delete transferData.effects[0]._id; //might need to revert to random id or ""
-      transferData.effects[0].origin = "";
-      transferData.effects[0].disabled = true;
-    } else {
-      transferData.effects[0].disabled = true;
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
