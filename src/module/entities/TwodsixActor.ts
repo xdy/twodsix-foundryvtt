@@ -628,7 +628,7 @@ export default class TwodsixActor extends Actor {
   }
 
   public static resetUntrainedSkill(): void {
-    applyToAllActors((actor:TwodsixActor) => {
+    applyToAllActors(async (actor:TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
         const itemUpdates = [];
         for (const item of actor.items) {
@@ -644,12 +644,13 @@ export default class TwodsixActor extends Actor {
         if (itemUpdates.length > 0) {
           actor.updateEmbeddedDocuments('Item', itemUpdates);
         }
+        await correctMissingUntrainedSkill(actor);
       }
     });
   }
 
   public static setUntrainedSkillForItems(): void {
-    applyToAllActors((actor: TwodsixActor) => {
+    applyToAllActors(async (actor: TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
         const itemUpdates = [];
         for (const item of actor.items) {
@@ -662,6 +663,7 @@ export default class TwodsixActor extends Actor {
         if (itemUpdates.length > 0) {
           actor.updateEmbeddedDocuments('Item', itemUpdates);
         }
+        await correctMissingUntrainedSkill(actor);
       }
     });
   }
@@ -812,15 +814,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
-    let skillId = "";
-    if (transferData.system.associatedSkillName !== "") {
-      skillId = this.items.getName(transferData.system.associatedSkillName)?.id ?? "";
-      //Try to link Untrained if no match
-      if (skillId === "") {
-        skillId = this.getUntrainedSkill()?.id ?? "";
-      }
-    }
-    transferData.system.skill = skillId;
+    transferData.system.skill = this.items.getName(transferData.system.associatedSkillName)?.id ?? this.getUntrainedSkill()?.id;
 
     //Remove any attached consumables
     transferData.system.consumables = [];
@@ -1102,6 +1096,21 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   return Math.round(returnNumber);
 }
 
+export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise<void> {
+  if (["traveller", "robot", "animal"].includes(actor.type)) {
+    //Check for missing untrained skill
+    const untrainedSkill = actor.getUntrainedSkill();
+    if (!untrainedSkill) {
+      console.log(`TWODSIX: Fixing missing untrained skill in ${actor.id} (${actor.name}).`);
+      const existingSkill:Skills = await actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+      if (existingSkill) {
+        await actor.update({"system.untrainedSkill": existingSkill.id});
+      } else {
+        await actor.createUntrainedSkill();
+      }
+    }
+  }
+}
 /*function isSameActor(actor: Actor, itemData: any): boolean {
   return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }*/

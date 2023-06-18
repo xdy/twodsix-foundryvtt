@@ -2,6 +2,8 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import migrateWorld from "../migration";
 import {createItemMacro} from "../utils/createItemMacro";
+import { applyToAllActors } from "../utils/migration-utils";
+import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
 
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
@@ -30,6 +32,13 @@ Hooks.once("ready", async function () {
   // Perform the migration
   if (game.user?.isGM) {
     await migrateWorld(worldVersion);
+  }
+
+  // Check for missing untrained skills
+  if (game.user?.isGM) {
+    await applyToAllActors(async (actor: TwodsixActor) => {
+      await correctMissingUntrainedSkill(actor);
+    });
   }
 
   // A socket hook proxy
