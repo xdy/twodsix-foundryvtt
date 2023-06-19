@@ -62,7 +62,7 @@
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-typescript2": "^0.34.1",
-    "sass": "^1.62.1",
+    "sass": "^1.63.4",
     "semantic-release": "^21.0.5",
     "simple-git": "^3.19.0",
     "socket.io-client": "^4.6.2",
