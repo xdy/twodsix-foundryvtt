@@ -379,7 +379,7 @@ export default class TwodsixActor extends Actor {
 
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
-      await super._onCreate(data, options, userId);
+      //await super._onCreate(data, options, userId);
 
       if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
         return; // Don't do anything if a duplicate
@@ -420,8 +420,8 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "animal":
           await this.createUntrainedSkill();
@@ -435,8 +435,8 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "robot":
           await this.createUntrainedSkill();
@@ -446,8 +446,8 @@ export default class TwodsixActor extends Actor {
               'img': 'systems/twodsix/assets/icons/default_robot.svg'
             });
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -480,6 +480,10 @@ export default class TwodsixActor extends Actor {
         await this.update({
           'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
         });
+      }
+
+      if ( options.renderSheet ) {
+        this.sheet?.render(true, {action: "create", data: data});
       }
     }
   }
@@ -937,7 +941,7 @@ export default class TwodsixActor extends Actor {
     this.sheet?.render(false);
   }
 
-  public async deleteCustomAEs():void {
+  public async deleteCustomAEs():Promise<void> {
     const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
     if (systemAEs) {
       const idsToDelete = [];
@@ -948,7 +952,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async fixItemAEs(): void {
+  public async fixItemAEs(): Promise<void> {
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
       const newEffects = [];
       const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
