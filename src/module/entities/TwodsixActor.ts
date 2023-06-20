@@ -376,14 +376,16 @@ export default class TwodsixActor extends Actor {
       shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
-
+  /** @override */
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
-      await super._onCreate(data, options, userId);
-
       if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
-        return; // Don't do anything if a duplicate
+        return; // Don't do anything if a duplicate - THIS NO LONGER DOES ANYTHING
       }
+
+      const oldRenderSheet = options.renderSheet;
+      options.renderSheet = false;
+      await super._onCreate(data, options, userId);
 
       let isDefaultImg = false;
       const changeData = {};
@@ -420,8 +422,8 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "animal":
           await this.createUntrainedSkill();
@@ -435,8 +437,8 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "robot":
           await this.createUntrainedSkill();
@@ -446,8 +448,8 @@ export default class TwodsixActor extends Actor {
               'img': 'systems/twodsix/assets/icons/default_robot.svg'
             });
           }
-          this.deleteCustomAEs();
-          this.fixItemAEs();
+          await this.deleteCustomAEs();
+          await this.fixItemAEs();
           break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -480,6 +482,10 @@ export default class TwodsixActor extends Actor {
         await this.update({
           'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
         });
+      }
+
+      if ( oldRenderSheet ) {
+        this.sheet?.render(true, {action: "create", data: data});
       }
     }
   }
@@ -628,8 +634,9 @@ export default class TwodsixActor extends Actor {
   }
 
   public static resetUntrainedSkill(): void {
-    applyToAllActors((actor:TwodsixActor) => {
+    applyToAllActors(async (actor:TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
+        await correctMissingUntrainedSkill(actor);
         const itemUpdates = [];
         for (const item of actor.items) {
           if (item.type !== "skills") {
@@ -649,8 +656,9 @@ export default class TwodsixActor extends Actor {
   }
 
   public static setUntrainedSkillForItems(): void {
-    applyToAllActors((actor: TwodsixActor) => {
+    applyToAllActors(async (actor: TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
+        await correctMissingUntrainedSkill(actor);
         const itemUpdates = [];
         for (const item of actor.items) {
           if (!(item.system).skill && item.type !== "skills") {
@@ -812,15 +820,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
-    let skillId = "";
-    if (transferData.system.associatedSkillName !== "") {
-      skillId = this.items.getName(transferData.system.associatedSkillName)?.id ?? "";
-      //Try to link Untrained if no match
-      if (skillId === "") {
-        skillId = this.getUntrainedSkill()?.id ?? "";
-      }
-    }
-    transferData.system.skill = skillId;
+    transferData.system.skill = this.items.getName(transferData.system.associatedSkillName)?.id ?? this.getUntrainedSkill()?.id;
 
     //Remove any attached consumables
     transferData.system.consumables = [];
@@ -943,7 +943,7 @@ export default class TwodsixActor extends Actor {
     this.sheet?.render(false);
   }
 
-  public async deleteCustomAEs():void {
+  public async deleteCustomAEs():Promise<void> {
     const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
     if (systemAEs) {
       const idsToDelete = [];
@@ -954,7 +954,7 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async fixItemAEs(): void {
+  public async fixItemAEs(): Promise<void> {
     if (game.settings.get('twodsix', "useItemActiveEffects")) {
       const newEffects = [];
       const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
@@ -1102,6 +1102,21 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   return Math.round(returnNumber);
 }
 
+export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise<void> {
+  if (["traveller", "robot", "animal"].includes(actor.type)) {
+    //Check for missing untrained skill
+    const untrainedSkill = actor.getUntrainedSkill();
+    if (!untrainedSkill) {
+      console.log(`TWODSIX: Fixing missing untrained skill in ${actor.id} (${actor.name}).`);
+      const existingSkill:Skills = await actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+      if (existingSkill) {
+        await actor.update({"system.untrainedSkill": existingSkill.id});
+      } else {
+        await actor.createUntrainedSkill();
+      }
+    }
+  }
+}
 /*function isSameActor(actor: Actor, itemData: any): boolean {
   return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
 }*/

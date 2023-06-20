@@ -2607,6 +2607,7 @@ background: var(--sidebar-background);
   min-width: 40px;
   object-fit: contain;
   height: auto;
+  background-color: var(--s2d6-background-opaque);
 }
 
 .flavor-line {

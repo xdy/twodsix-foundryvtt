@@ -1647,7 +1647,7 @@ input.item-value-edit {
   top: 34px;
   height: 535px;
   overflow-x: auto;
-  padding-left: 8px;
+  padding-left: 4px;
 }
 
 .item-controls .item-toggle i {
