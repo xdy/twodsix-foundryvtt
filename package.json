@@ -41,7 +41,7 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.3",
-    "@semantic-release/release-notes-generator": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^11.0.3",
     "@types/fs-extra": "^11.0.1",
     "@types/jquery": "^3.5.16",
     "@types/node": "^20.3.0",
