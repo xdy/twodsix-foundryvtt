@@ -634,6 +634,7 @@ export default class TwodsixActor extends Actor {
   public static resetUntrainedSkill(): void {
     applyToAllActors(async (actor:TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
+        await correctMissingUntrainedSkill(actor);
         const itemUpdates = [];
         for (const item of actor.items) {
           if (item.type !== "skills") {
@@ -648,7 +649,6 @@ export default class TwodsixActor extends Actor {
         if (itemUpdates.length > 0) {
           actor.updateEmbeddedDocuments('Item', itemUpdates);
         }
-        await correctMissingUntrainedSkill(actor);
       }
     });
   }
@@ -656,6 +656,7 @@ export default class TwodsixActor extends Actor {
   public static setUntrainedSkillForItems(): void {
     applyToAllActors(async (actor: TwodsixActor) => {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
+        await correctMissingUntrainedSkill(actor);
         const itemUpdates = [];
         for (const item of actor.items) {
           if (!(item.system).skill && item.type !== "skills") {
@@ -667,7 +668,6 @@ export default class TwodsixActor extends Actor {
         if (itemUpdates.length > 0) {
           actor.updateEmbeddedDocuments('Item', itemUpdates);
         }
-        await correctMissingUntrainedSkill(actor);
       }
     });
   }
