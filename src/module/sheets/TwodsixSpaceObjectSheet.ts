@@ -9,6 +9,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { simplifyRollFormula } from "../utils/dice";
 import { getDiceResults } from "../entities/TwodsixItem";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 
 export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   /** @override */
@@ -63,13 +64,16 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
 
     const contentData = {};
     const flavor = game.i18n.localize("TWODSIX.Damage.Damage");
+    const damageLabels = getDamageTypes(true);
+    const damageType = "NONE";
     Object.assign(contentData, {
       flavor: flavor,
       roll: damage,
       dice: getDiceResults(damage), //damage.terms[0]["results"]
       armorPiercingValue: 0,
       damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
-      damageType: ""
+      damageType: damageType,
+      damageLabel: damageLabels[damageType] ?? ""
     });
 
     const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
