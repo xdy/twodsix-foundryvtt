@@ -376,14 +376,16 @@ export default class TwodsixActor extends Actor {
       shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
-
+  /** @override */
   protected async _onCreate(data, options, userId) {
     if (userId === game.user.id) {
-      //await super._onCreate(data, options, userId);
-
       if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
-        return; // Don't do anything if a duplicate
+        return; // Don't do anything if a duplicate - THIS NO LONGER DOES ANYTHING
       }
+
+      const oldRenderSheet = options.renderSheet;
+      options.renderSheet = false;
+      await super._onCreate(data, options, userId);
 
       let isDefaultImg = false;
       const changeData = {};
@@ -482,7 +484,7 @@ export default class TwodsixActor extends Actor {
         });
       }
 
-      if ( options.renderSheet ) {
+      if ( oldRenderSheet ) {
         this.sheet?.render(true, {action: "create", data: data});
       }
     }
