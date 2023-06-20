@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.0...v3.2.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* missing untrained skills on actor ([#1368](https://github.com/xdy/twodsix-foundryvtt/issues/1368)) ([096e076](https://github.com/xdy/twodsix-foundryvtt/commit/096e076954127688f5e2e5bef6c070256056bab4))
+
 # [3.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.1.1...v3.2.0) (2023-06-16)
 
 

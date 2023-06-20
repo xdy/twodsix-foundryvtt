@@ -43,6 +43,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       if (untrainedSkill) {
         returnData.untrainedSkill = untrainedSkill;
         returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
+      } else {
+        //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
+        const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+        if (existingSkill) {
+          returnData.untrainedSkill = existingSkill;
+          returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
+        } else {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
+        }
       }
       AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
     }

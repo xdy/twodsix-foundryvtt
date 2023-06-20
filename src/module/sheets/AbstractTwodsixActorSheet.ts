@@ -542,7 +542,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const picture = item.img;
     const capType = item.type.capitalize();
     if (item.type === "trait"  || item.type === "spell") {
-      const msg = `<div style ="display: table-cell"><img src="${picture}" alt="" height=40px max-width=40px></img>  <strong>${capType}: ${item.name}</strong></div><br>${item.system["description"]}`;
+      const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
