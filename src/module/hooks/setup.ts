@@ -5,5 +5,6 @@ import {TwodsixSystem} from "../TwodsixSystem";
 Hooks.once('setup', async function () {
   // Do anything after initialization but before ready
   CONFIG.statusEffects.push({id: 'encumbered', label: 'EFFECT.StatusEncumbered', icon: "systems/twodsix/assets/icons/weight.svg"});
+  CONFIG.ActiveEffect.legacyTransferral = false;
   window["Twodsix"] = new TwodsixSystem();
 });
