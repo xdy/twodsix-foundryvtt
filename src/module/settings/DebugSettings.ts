@@ -38,11 +38,9 @@ export default class DebugSettings extends AdvancedSettings {
 }
 
 async function deactivateActorAE () {
-  if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
-    await applyToAllActors(deleteSystemAE);
-  }
+  await applyToAllActors(toggleTransferState);
 }
 
-async function deleteSystemAE(actor: TwodsixActor): Promise<void> {
-  await actor.deleteCustomAEs();
+async function toggleTransferState(actor: TwodsixActor): Promise<void> {
+  await actor.toggleItemAEs(game.settings.get('twodsix', 'useItemActiveEffects'));
 }

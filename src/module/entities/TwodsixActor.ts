@@ -422,7 +422,6 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          await this.deleteCustomAEs();
           break;
         case "animal":
           await this.createUntrainedSkill();
@@ -436,7 +435,6 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          await this.deleteCustomAEs();
           break;
         case "robot":
           await this.createUntrainedSkill();
@@ -446,8 +444,6 @@ export default class TwodsixActor extends Actor {
               'img': 'systems/twodsix/assets/icons/default_robot.svg'
             });
           }
-          await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -923,14 +919,13 @@ export default class TwodsixActor extends Actor {
     this.sheet?.render(false);
   }
 
-  public async deleteCustomAEs():Promise<void> {
-    const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
-    if (systemAEs) {
-      const idsToDelete = [];
-      for (const eff of systemAEs) {
-        idsToDelete.push(eff.id);
+  public async toggleItemAEs(transferState:boolean):Promise<void> {
+    for ( const item of this.items ) {
+      for ( const effect of item.effects ) {
+        if ( effect.transfer !== transferState ) {
+          await effect.update({"transfer": transferState});
+        }
       }
-      await this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
     }
   }
 
