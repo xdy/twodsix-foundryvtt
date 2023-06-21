@@ -423,7 +423,6 @@ export default class TwodsixActor extends Actor {
             await this.createUnarmedSkill();
           }
           await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "animal":
           await this.createUntrainedSkill();
@@ -438,7 +437,6 @@ export default class TwodsixActor extends Actor {
             await this.createUnarmedSkill();
           }
           await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "robot":
           await this.createUntrainedSkill();
@@ -807,20 +805,9 @@ export default class TwodsixActor extends Actor {
     transferData.system.equipped = "backpack";
     delete transferData._id;
     // Prepare effects
-    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
-      if (CONFIG.ActiveEffect.legacyTransferral) {
-        //clear extra item effects - should be fixed
-        while (transferData.effects.length > 1) {
-          transferData.effects.pop();
-        }
-        //use Object.assign() ?
-        transferData.effects[0].transfer = false;
-        delete transferData.effects[0]._id; //might need to revert to random id or ""
-        transferData.effects[0].origin = "";
-        transferData.effects[0].disabled = true;
-      } else {
-        transferData.effects[0].disabled = true;
-      }
+    if ( transferData.effects?.length > 0) {
+      transferData.effects[0].disabled = (transferData.type !== "trait");
+      transferData.effects[0].transfer =  game.settings.get('twodsix', "useItemActiveEffects");
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
@@ -831,17 +818,6 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-
-    //Transfer Active Effect is applicable
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0 && CONFIG.ActiveEffect.legacyTransferral) {
-      const newEffect = addedItem.effects.contents[0].toObject();
-      newEffect.disabled = true;
-      delete newEffect._id; //might need to revert to random id
-      newEffect.origin = addedItem.uuid;
-      newEffect.name = transferData.effects[0].name ?? addedItem.name;
-      newEffect.flags.twodsix.sourceId = addedItem.effects.contents[0].id;
-      await this.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-    }
 
     await applyEncumberedEffect(this);
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
@@ -955,27 +931,6 @@ export default class TwodsixActor extends Actor {
         idsToDelete.push(eff.id);
       }
       await this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
-    }
-  }
-
-  public async fixItemAEs(): Promise<void> {
-    if (game.settings.get('twodsix', "useItemActiveEffects") && CONFIG.ActiveEffect.legacyTransferral) {
-      const newEffects = [];
-      const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
-      if (itemsWithEffects ) {
-        for (const item of itemsWithEffects) {
-          const newEffect = item.effects.contents[0].toObject();
-          Object.assign(newEffect, {
-            disabled: item.system.equipped !== "equipped",
-            _id: "",
-            origin: item.uuid,
-            //name: item.name,
-            flags: {twodsix: {sourceId: item.effects.contents[0].id}}
-          });
-          newEffects.push(newEffect);
-        }
-        await this.createEmbeddedDocuments("ActiveEffect", newEffects);
-      }
     }
   }
 

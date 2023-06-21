@@ -572,16 +572,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        if (CONFIG.ActiveEffect.legacyTransferral) {
-          if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
-            const itemWithEffect = await fromUuid(selectedEffect.origin);
-            await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
-          }
-          //await selectedEffect?.delete();
-          await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect?.id]);
-        } else {
-          selectedEffect.delete();
-        }
+        selectedEffect.delete();
       },
       no: () => {
         //Nothing
@@ -600,11 +591,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
-        if (CONFIG.ActiveEffect.legacyTransferral) {
-          await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
-        } else {
-          await selectedEffect.update({disabled: !selectedEffect.disabled});
-        }
+        await selectedEffect.update({disabled: !selectedEffect.disabled});
         this.render(false);
       }
     } else if (action === "create") {
