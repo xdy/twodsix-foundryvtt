@@ -918,16 +918,6 @@ export default class TwodsixActor extends Actor {
     this.sheet?.render(false);
   }
 
-  public async toggleItemAEs(transferState:boolean):Promise<void> {
-    for ( const item of this.items ) {
-      for ( const effect of item.effects ) {
-        if ( effect.transfer !== transferState ) {
-          await effect.update({"transfer": transferState});
-        }
-      }
-    }
-  }
-
   /**
    * Display changes to health as scrolling combat text.
    * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
