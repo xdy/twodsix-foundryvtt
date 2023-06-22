@@ -9,22 +9,24 @@ async function refactorLinkedEffects (actor: TwodsixActor): Promise<void> {
     for (const effect of itemEffects) {
       const linkedItem = await fromUuid(effect.origin);
       if (linkedItem) {
-        await linkedItem.effects.contents[0].update({"transfer": true, "disabled": (linkedItem.system.equipped !== "equipped" && !["trait"].includes(linkedItem.type)), "sourceLabel": linkedItem.name});
+        await linkedItem.effects.contents[0].update({"transfer": game.settings.get('twodsix', 'useItemActiveEffects'), "disabled": (linkedItem.system.equipped !== "equipped" && !["trait"].includes(linkedItem.type)), "sourceLabel": linkedItem.name});
         await effect.delete();
       }
     }
   }
 }
-async function refactorLinkTransfer(item: TwodsixItem): Promise<void> {
+async function refactorItemTransfer(item: TwodsixItem): Promise<void> {
   if (item.effects.size > 0) {
-    if (!item.effects.contents[0].transfer) {
-      await item.effects.contents[0].update({"transfer": true});
+    for (const effect of item.effects.contents) {
+      if (effect.transfer !== game.settings.get('twodsix', 'useItemActiveEffects')) {
+        await effect.update({"transfer": game.settings.get('twodsix', 'useItemActiveEffects')});
+      }
     }
   }
 }
 
 export async function migrate(): Promise<void> {
   await applyToAllActors(refactorLinkedEffects);
-  await applyToAllItems(refactorLinkTransfer);
+  await applyToAllItems(refactorItemTransfer);
   return Promise.resolve();
 }
