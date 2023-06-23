@@ -884,32 +884,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     // Re do overrides to include derived data (code from core FVTT)
-    // Organize non-disabled effects by their application priority
-    const changes = [];
-    for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10);
-        return c;
-      }));
-      for ( const statusId of effect.statuses ) {
-        this.statuses.add(statusId);
-      }
-    }
-    changes.sort((a, b) => a.priority - b.priority);
-
-    // Apply all changes
-    const overrides = {};
-    for ( const change of changes ) {
-      if (change.key) {
-        const newChanges = change.effect.apply(this, change);
-        Object.assign(overrides, newChanges);
-      }
-    }
-
-    // Expand the set of final overrides
-    this.overrides = foundry.utils.expandObject(overrides);
+    this.applyActiveEffects();
   }
 
   /**
