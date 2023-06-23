@@ -883,39 +883,33 @@ export default class TwodsixActor extends Actor {
         return;
       }
     }
-
-    const derivedData = [];
-    //Add characteristics mods
-    for (const char of Object.keys(this.system.characteristics)) {
-      derivedData.push(`system.characteristics.${char}.mod`);
+    // Re do overrides to include derived data (code from core FVTT)
+    // Organize non-disabled effects by their application priority
+    const changes = [];
+    for ( const effect of this.appliedEffects ) {
+      changes.push(...effect.changes.map(change => {
+        const c = foundry.utils.deepClone(change);
+        c.effect = effect;
+        c.priority = c.priority ?? (c.mode * 10);
+        return c;
+      }));
+      for ( const statusId of effect.statuses ) {
+        this.statuses.add(statusId);
+      }
     }
-    //Add skills
-    for (const shortName of Object.keys(this.system.skills)) {
-      derivedData.push(`system.skills.${shortName}`);
-    }
-    //Add other values
-    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
-    //console.log(derivedData);
-
-    const overrides = {};
+    changes.sort((a, b) => a.priority - b.priority);
 
     // Apply all changes
-    for (const effect of this.appliedEffects) {
-      for (const change of effect.changes) {
-        if (derivedData.includes(change.key)) {
-          const changes = await (<ActiveEffect>effect).apply(this, change);
-          Object.assign(overrides, changes);
-        }
+    const overrides = {};
+    for ( const change of changes ) {
+      if (change.key) {
+        const newChanges = change.effect.apply(this, change);
+        Object.assign(overrides, newChanges);
       }
     }
 
     // Expand the set of final overrides
-    this.overrides = await foundry.utils.expandObject({
-      ...foundry.utils.flattenObject(this.overrides),
-      ...overrides,
-    });
-
-    this.sheet?.render(false);
+    this.overrides = foundry.utils.expandObject(overrides);
   }
 
   /**
