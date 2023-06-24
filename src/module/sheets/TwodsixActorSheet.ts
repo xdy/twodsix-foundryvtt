@@ -6,7 +6,6 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
-import { effectType } from "../hooks/showStatusIcons";
 import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
