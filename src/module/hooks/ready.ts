@@ -56,7 +56,7 @@ Hooks.once("ready", async function () {
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
 async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
-  if (actor.isToken) {
+  if (actor.isToken  && actor.isOwner) {
     const tokenEffects = Array.from(actor.allApplicableEffects());
     if (tokenEffects.length > 0) {
       await tokenEffects[0].update({'disabled': !tokenEffects[0].disabled});
