@@ -876,6 +876,15 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
+  /**
+     * We override this with an empty implementation because we have our own custom way of applying
+     * {@link ActiveEffect}s and {@link Actor#prepareEmbeddedDocuments} calls this.
+     * @override
+     */
+  override applyActiveEffects() {
+    return;
+  }
+
   public async _updateDerivedDataActiveEffects(): Promise<void> {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
@@ -884,7 +893,61 @@ export default class TwodsixActor extends Actor {
       }
     }
     // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffects();
+    this.applyActiveEffectsPost();
+  }
+
+  /**
+   * Apply any transformations to the Actor data which are caused by ActiveEffects.
+   */
+  applyActiveEffectsPost() {
+    //Define derived data keys that can have active effects
+    const overrides = {};
+
+    this.statuses ??= new Set();
+    // Identify which special statuses had been active
+    const specialStatuses = new Map();
+    for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
+      specialStatuses.set(statusId, this.statuses.has(statusId));
+    }
+    this.statuses.clear();
+
+    // Organize non-disabled effects by their application priority
+    const changes = [];
+    for ( const effect of this.appliedEffects ) {
+      changes.push(...effect.changes.map(change => {
+        const c = foundry.utils.deepClone(change);
+        c.effect = effect;
+        c.priority = c.priority ?? (c.mode * 10);
+        return c;
+      }));
+      for ( const statusId of effect.statuses ) {
+        this.statuses.add(statusId);
+      }
+    }
+    changes.sort((a, b) => a.priority - b.priority);
+
+    // Apply all changes
+    for ( const change of changes ) {
+      if (change.key) {
+        const newChanges = change.effect.apply(this, change);
+        Object.assign(overrides, newChanges);
+      }
+    }
+
+    // Expand the set of final overrides
+    this.overrides = Object.assign({}, foundry.utils.expandObject(overrides));
+
+    //Apply special statuses that changed to active tokens
+    let tokens;
+    for ( const [statusId, wasActive] of specialStatuses ) {
+      const isActive = this.statuses.has(statusId);
+      if ( isActive !== wasActive ) {
+        tokens ??= this.getActiveTokens();
+        for ( const token of tokens ) {
+          token._onApplyStatusEffect(statusId, isActive);
+        }
+      }
+    }
   }
 
   /**
