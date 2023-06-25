@@ -37,9 +37,11 @@ export default class TwodsixActor extends Actor {
           this._prepareShipData();
         }
         this._checkCrewTitles();
+        super.applyActiveEffects();
         break;
       case 'vehicle':
       case 'space-object':
+        super.applyActiveEffects();
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -61,6 +63,7 @@ export default class TwodsixActor extends Actor {
    * Prepare Character type specific data
    */
   async _prepareTravellerData(): void {
+    this._updateActiveEffects(false);
     const {system} = this;
 
     for (const cha of Object.keys(system.characteristics)) {
@@ -98,7 +101,7 @@ export default class TwodsixActor extends Actor {
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
-    await this._updateDerivedDataActiveEffects();
+    await this._updateActiveEffects(true);
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -885,7 +888,7 @@ export default class TwodsixActor extends Actor {
     return;
   }
 
-  public async _updateDerivedDataActiveEffects(): Promise<void> {
+  public async _updateActiveEffects(isPost:boolean): Promise<void> {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled")) {
@@ -893,23 +896,37 @@ export default class TwodsixActor extends Actor {
       }
     }
     // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffectsPost();
+    this.applyActiveEffectsCustom(isPost);
   }
 
   /**
    * Apply any transformations to the Actor data which are caused by ActiveEffects.
    */
-  applyActiveEffectsPost() {
+  applyActiveEffectsCustom(isPost: boolean) {
+    const derivedData = [];
+
+    //Add characteristics mods
+    for (const char of Object.keys(this.system.characteristics)) {
+      derivedData.push(`system.characteristics.${char}.mod`);
+    }
+    //Add skills
+    for (const skill of this.itemTypes.skills) {
+      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
+    }
+    //Add specials
+    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+
     //Define derived data keys that can have active effects
     const overrides = {};
-
-    this.statuses ??= new Set();
-    // Identify which special statuses had been active
     const specialStatuses = new Map();
-    for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
-      specialStatuses.set(statusId, this.statuses.has(statusId));
+    if (!isPost) {
+      this.statuses ??= new Set();
+      // Identify which special statuses had been active
+      for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
+        specialStatuses.set(statusId, this.statuses.has(statusId));
+      }
+      this.statuses.clear();
     }
-    this.statuses.clear();
 
     // Organize non-disabled effects by their application priority
     const changes = [];
@@ -928,23 +945,29 @@ export default class TwodsixActor extends Actor {
 
     // Apply all changes
     for ( const change of changes ) {
-      if (change.key) {
+      if (isPost ? derivedData.includes(change.key) : !derivedData.includes(change.key)) {
         const newChanges = change.effect.apply(this, change);
         Object.assign(overrides, newChanges);
       }
     }
 
     // Expand the set of final overrides
-    this.overrides = Object.assign({}, foundry.utils.expandObject(overrides));
+    if (!isPost) {
+      this.overrides = foundry.utils.expandObject(overrides);
+    } else if (Object.keys(overrides).length > 0) {
+      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
+    }
 
     //Apply special statuses that changed to active tokens
-    let tokens;
-    for ( const [statusId, wasActive] of specialStatuses ) {
-      const isActive = this.statuses.has(statusId);
-      if ( isActive !== wasActive ) {
-        tokens ??= this.getActiveTokens();
-        for ( const token of tokens ) {
-          token._onApplyStatusEffect(statusId, isActive);
+    if (!isPost) {
+      let tokens;
+      for ( const [statusId, wasActive] of specialStatuses ) {
+        const isActive = this.statuses.has(statusId);
+        if ( isActive !== wasActive ) {
+          tokens ??= this.getActiveTokens();
+          for ( const token of tokens ) {
+            token._onApplyStatusEffect(statusId, isActive);
+          }
         }
       }
     }
