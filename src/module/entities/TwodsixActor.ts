@@ -75,7 +75,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max((skill.system as Skills).value, (this.getUntrainedSkill().system as Skills).value)]
     );
 
     const handler = {
