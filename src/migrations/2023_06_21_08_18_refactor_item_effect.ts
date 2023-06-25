@@ -13,6 +13,10 @@ async function refactorLinkedEffects (actor: TwodsixActor): Promise<void> {
         await effect.delete();
       }
     }
+    const woundedEffects = actor.effects.find(eff => eff.statuses.has('bleeding'));
+    if (woundedEffects) {
+      woundedEffects.update({"statuses": ['wounded']});
+    }
   }
 }
 async function refactorItemTransfer(item: TwodsixItem): Promise<void> {

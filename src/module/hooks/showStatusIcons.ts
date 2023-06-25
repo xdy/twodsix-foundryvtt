@@ -97,7 +97,7 @@ export const effectType = Object.freeze({
 
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
-  const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("bleeding"));
+  const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
   const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
 
   if (!tintToApply) {
@@ -228,7 +228,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
 }
 
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('bleeding'));
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
   let currentEffectId = "";
   //Clean up effects
   if (isAlreadySet.length > 0) {
@@ -258,7 +258,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         icon: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData],
-        statuses: ['bleeding']
+        statuses: ['wounded']
       }]);
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);
