@@ -84,7 +84,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Add custom source labels for active effects
     for(const effect of returnData.effects) {
-      if (["dead", "unconscious", "bleeding", "encumbered"].includes(Array.from(effect.statuses)[0])) {
+      if (["dead", "unconscious", "wounded", "encumbered"].includes(Array.from(effect.statuses)[0])) {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.Condition");
       } else if (effect.origin && !effect.origin?.includes("Compendium")) {
         const attachedItem:TwodsixItem = fromUuidSync(effect.origin);
