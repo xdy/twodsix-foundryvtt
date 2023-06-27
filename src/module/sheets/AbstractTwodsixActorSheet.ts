@@ -558,7 +558,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     //console.log(selectedEffect);
     if (selectedEffect) {
       await new ActiveEffectConfig(selectedEffect).render(true);
-    };
+    }
   }
   /**
    * Handle when the right clicking on status icon.
@@ -572,7 +572,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        selectedEffect.delete();
+        await selectedEffect.delete();
+        await this.render(false); //needed because can right-click on icon over image instead of toggle icons
       },
       no: () => {
         //Nothing
@@ -584,15 +585,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const action = event.currentTarget["dataset"].action;
     if (action === "delete") {
       await this._onDeleteEffect(event);
-      this.render(false);
     } else if (action === "edit") {
       await this._onEditEffect(event);
-      this.render(false);
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
-        this.render(false);
       }
     } else if (action === "create") {
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
@@ -604,6 +602,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else {
       console.log("Unknown Action");
     }
+    await this.render(false);
   }
 
   private getItem(event): TwodsixItem {

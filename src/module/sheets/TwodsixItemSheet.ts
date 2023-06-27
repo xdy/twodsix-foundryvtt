@@ -229,6 +229,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       yes: async () => {
         if (await fromUuid(this.item.uuid)) {
           await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+          if (this.item.actor) {
+            this.item.actor.sheet.render(false);
+          }
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
         }
