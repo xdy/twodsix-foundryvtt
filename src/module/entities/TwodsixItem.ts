@@ -499,7 +499,9 @@ export default class TwodsixItem extends Item {
    */
   public async toggleActiveEffectStatus(newSuspendedState:boolean): Promise<void> {
     for (const effect of this.effects) {
-      await effect.update({disabled: newSuspendedState});
+      if (effect.disabled !== newSuspendedState) {
+        await effect.update({disabled: newSuspendedState});
+      }
     }
   }
   //////// CONSUMABLE ////////

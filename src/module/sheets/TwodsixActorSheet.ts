@@ -6,7 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
-import { wait } from "../utils/sheetUtils";
+//import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -274,7 +274,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         }
       }
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
-      await wait(100); ///try adding delay to lessen the db error of clicking to fast
+      //await wait(100); ///try adding delay to lessen the db error of clicking to fast
     }
   }
 
