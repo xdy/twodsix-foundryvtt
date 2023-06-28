@@ -37,9 +37,11 @@ export default class TwodsixActor extends Actor {
           this._prepareShipData();
         }
         this._checkCrewTitles();
+        super.applyActiveEffects();
         break;
       case 'vehicle':
       case 'space-object':
+        super.applyActiveEffects();
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -61,6 +63,7 @@ export default class TwodsixActor extends Actor {
    * Prepare Character type specific data
    */
   async _prepareTravellerData(): void {
+    this._updateActiveEffects(false);
     const {system} = this;
 
     for (const cha of Object.keys(system.characteristics)) {
@@ -72,7 +75,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), (skill.system as Skills).value]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max((skill.system as Skills).value, (this.getUntrainedSkill().system as Skills).value)]
     );
 
     const handler = {
@@ -98,7 +101,7 @@ export default class TwodsixActor extends Actor {
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
     }
-    await this._updateDerivedDataActiveEffects();
+    await this._updateActiveEffects(true);
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -422,8 +425,6 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "animal":
           await this.createUntrainedSkill();
@@ -437,8 +438,6 @@ export default class TwodsixActor extends Actor {
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
-          await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "robot":
           await this.createUntrainedSkill();
@@ -448,8 +447,6 @@ export default class TwodsixActor extends Actor {
               'img': 'systems/twodsix/assets/icons/default_robot.svg'
             });
           }
-          await this.deleteCustomAEs();
-          await this.fixItemAEs();
           break;
         case "ship":
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
@@ -560,7 +557,6 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
     if (!tmpSettings.rollModifiers?.characteristic) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
@@ -755,7 +751,7 @@ export default class TwodsixActor extends Actor {
     }
 
     let transferData = {};
-    //Need to catach because Monk's enhanced Journal drops item data not TwodsixItem
+    //Need to catch because Monk's enhanced Journal drops item data not TwodsixItem
     try {
       transferData = itemData.toJSON();
     } catch(err) {
@@ -807,16 +803,9 @@ export default class TwodsixActor extends Actor {
     transferData.system.equipped = "backpack";
     delete transferData._id;
     // Prepare effects
-    if (game.settings.get('twodsix', "useItemActiveEffects")  && transferData.effects?.length > 0) {
-      //clear extra item effects - should be fixed
-      while (transferData.effects.length > 1) {
-        transferData.effects.pop();
-      }
-      //use Object.assign() ?
-      transferData.effects[0].transfer = false;
-      delete transferData.effects[0]._id; //might need to revert to random id or ""
-      transferData.effects[0].origin = "";
-      transferData.effects[0].disabled = true;
+    if ( transferData.effects?.length > 0) {
+      transferData.effects[0].disabled = (transferData.type !== "trait");
+      transferData.effects[0].transfer =  game.settings.get('twodsix', "useItemActiveEffects");
     }
 
     //Link an actor skill with name defined by item.associatedSkillName
@@ -827,17 +816,6 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-
-    //Transfer Active Effect is applicable
-    if (game.settings.get('twodsix', "useItemActiveEffects") && this.type !== "ship" && this.type !== "vehicle" && addedItem.effects.size > 0) {
-      const newEffect = addedItem.effects.contents[0].toObject();
-      newEffect.disabled = true;
-      delete newEffect._id; //might need to revert to random id
-      newEffect.origin = addedItem.uuid;
-      newEffect.name = transferData.effects[0].name ?? addedItem.name;
-      newEffect.flags.twodsix.sourceId = addedItem.effects.contents[0].id;
-      await this.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-    }
 
     await applyEncumberedEffect(this);
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
@@ -901,76 +879,96 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
-  public async _updateDerivedDataActiveEffects(): Promise<void> {
+  /**
+     * We override this with an empty implementation because we have our own custom way of applying
+     * {@link ActiveEffect}s and {@link Actor#prepareEmbeddedDocuments} calls this.
+     * @override
+     */
+  override applyActiveEffects() {
+    return;
+  }
+
+  public async _updateActiveEffects(isPost:boolean): Promise<void> {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled")) {
         return;
       }
     }
+    // Re do overrides to include derived data (code from core FVTT)
+    this.applyActiveEffectsCustom(isPost);
+  }
 
+  /**
+   * Apply any transformations to the Actor data which are caused by ActiveEffects.
+   */
+  applyActiveEffectsCustom(isPost: boolean) {
     const derivedData = [];
+
     //Add characteristics mods
     for (const char of Object.keys(this.system.characteristics)) {
       derivedData.push(`system.characteristics.${char}.mod`);
     }
     //Add skills
-    for (const shortName of Object.keys(this.system.skills)) {
-      derivedData.push(`system.skills.${shortName}`);
+    for (const skill of this.itemTypes.skills) {
+      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
     }
-    //Add other values
+    //Add specials
     derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
-    //console.log(derivedData);
 
+    //Define derived data keys that can have active effects
     const overrides = {};
+    const specialStatuses = new Map();
+    if (!isPost) {
+      this.statuses ??= new Set();
+      // Identify which special statuses had been active
+      for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
+        specialStatuses.set(statusId, this.statuses.has(statusId));
+      }
+      this.statuses.clear();
+    }
+
+    // Organize non-disabled effects by their application priority
+    const changes = [];
+    for ( const effect of this.appliedEffects ) {
+      changes.push(...effect.changes.map(change => {
+        const c = foundry.utils.deepClone(change);
+        c.effect = effect;
+        c.priority = c.priority ?? (c.mode * 10);
+        return c;
+      }));
+      for ( const statusId of effect.statuses ) {
+        this.statuses.add(statusId);
+      }
+    }
+    changes.sort((a, b) => a.priority - b.priority);
 
     // Apply all changes
-    for (const effect of this.effects.filter( e => !e.disabled)) {
-      for (const change of effect.changes) {
-        if (derivedData.includes(change.key)) {
-          const changes = await (<ActiveEffect>effect).apply(this, change);
-          Object.assign(overrides, changes);
-        }
+    for ( const change of changes ) {
+      if (isPost ? derivedData.includes(change.key) : !derivedData.includes(change.key)) {
+        const newChanges = change.effect.apply(this, change);
+        Object.assign(overrides, newChanges);
       }
     }
 
     // Expand the set of final overrides
-    this.overrides = await foundry.utils.expandObject({
-      ...foundry.utils.flattenObject(this.overrides),
-      ...overrides,
-    });
-
-    this.sheet?.render(false);
-  }
-
-  public async deleteCustomAEs():Promise<void> {
-    const systemAEs = await this.effects?.filter(eff => !!eff.getFlag("twodsix", "sourceId"));
-    if (systemAEs) {
-      const idsToDelete = [];
-      for (const eff of systemAEs) {
-        idsToDelete.push(eff.id);
-      }
-      await this.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
+    if (!isPost) {
+      this.overrides = foundry.utils.expandObject(overrides);
+    } else if (Object.keys(overrides).length > 0) {
+      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     }
-  }
 
-  public async fixItemAEs(): Promise<void> {
-    if (game.settings.get('twodsix', "useItemActiveEffects")) {
-      const newEffects = [];
-      const itemsWithEffects = this.items?.filter(it => it.effects.size > 0);
-      if (itemsWithEffects) {
-        for (const item of itemsWithEffects) {
-          const newEffect = item.effects.contents[0].toObject();
-          Object.assign(newEffect, {
-            disabled: item.system.equipped !== "equipped",
-            _id: "",
-            origin: item.uuid,
-            //name: item.name,
-            flags: {twodsix: {sourceId: item.effects.contents[0].id}}
-          });
-          newEffects.push(newEffect);
+    //Apply special statuses that changed to active tokens
+    if (!isPost) {
+      let tokens;
+      for ( const [statusId, wasActive] of specialStatuses ) {
+        const isActive = this.statuses.has(statusId);
+        if ( isActive !== wasActive ) {
+          tokens ??= this.getActiveTokens();
+          for ( const token of tokens ) {
+            token._onApplyStatusEffect(statusId, isActive);
+          }
         }
-        await this.createEmbeddedDocuments("ActiveEffect", newEffects);
       }
     }
   }

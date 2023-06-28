@@ -383,7 +383,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "component"].includes(i.type));
       sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
-    sheetData.effects = actor.effects.contents;
+    sheetData.effects = Array.from(actor.allApplicableEffects());
   }
 
   protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
@@ -558,7 +558,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     //console.log(selectedEffect);
     if (selectedEffect) {
       await new ActiveEffectConfig(selectedEffect).render(true);
-    };
+    }
   }
   /**
    * Handle when the right clicking on status icon.
@@ -572,12 +572,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
-        if (selectedEffect?.origin  && selectedEffect?.getFlag('twodsix', "sourceId")) {
-          const itemWithEffect = await fromUuid(selectedEffect.origin);
-          await itemWithEffect?.update({effects: [] }, {recursive: false});  //can't directly delete using deleteEmbeddedDocuments
-        }
-        //await selectedEffect?.delete();
-        await this.actor.deleteEmbeddedDocuments('ActiveEffect', [selectedEffect?.id]);
+        await selectedEffect.delete();
+        await this.render(false); //needed because can right-click on icon over image instead of toggle icons
       },
       no: () => {
         //Nothing
@@ -589,15 +585,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const action = event.currentTarget["dataset"].action;
     if (action === "delete") {
       await this._onDeleteEffect(event);
-      this.render(false);
     } else if (action === "edit") {
       await this._onEditEffect(event);
-      this.render(false);
     } else if (action === "toggle") {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
-        await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: selectedEffect.id, disabled: !selectedEffect.disabled}]);
-        this.render(false);
+        await selectedEffect.update({disabled: !selectedEffect.disabled});
       }
     } else if (action === "create") {
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
@@ -609,6 +602,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else {
       console.log("Unknown Action");
     }
+    await this.render(false);
   }
 
   private getItem(event): TwodsixItem {

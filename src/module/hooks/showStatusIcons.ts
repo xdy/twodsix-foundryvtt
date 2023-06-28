@@ -43,24 +43,6 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, op
   }
 });
 
-//Below not necessary now force a equip to ship before delete
-/*Hooks.on("deleteItem", async (item: TwodsixItem) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    const firstGM = game.users.find(u => u.isGM);
-    if ((item?.actor?.type === 'traveller') && game.user?.id === firstGM?.id) {
-      await applyEncumberedEffect(<TwodsixActor>item.actor).then();
-    }
-  }
-});*/
-//Moved to TwodsixActor drop item (creating new item has zero wieght) due to some race condition with update and encumbered effect
-/*Hooks.on("createItem", async (item: TwodsixItem, _options:any, userId:string) => {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
-    if ((item?.actor?.type === 'traveller') && ["weapon", "armor", "equipment", "tool", "junk", "consumable", "augment"].includes(item.type)) {
-      await applyEncumberedEffect(<TwodsixActor>item.actor);
-    }
-  }
-});*/
-
 function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
   if (systemUpdates !== undefined) {
     const damageCharacteristics = getDamageCharacteristics(actorType);
@@ -115,24 +97,24 @@ export const effectType = Object.freeze({
 
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
-  const oldWoundState = selectedActor.effects.find(eff => [game.i18n.localize(effectType.wounded), "Wounded"].includes(eff.name));
-  const isCurrentlyDead = selectedActor.effects.find(eff => [game.i18n.localize(effectType.dead), "Dead"].includes(eff.name));
+  const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
+  const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
 
   if (!tintToApply) {
-    await setConditionState(effectType.dead, selectedActor, false);
-    await setWoundedState(effectType.wounded, selectedActor, false, tintToApply);
+    await setConditionState('dead', selectedActor, false);
+    await setWoundedState(selectedActor, false, tintToApply);
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
-      await setConditionState(effectType.dead, selectedActor, true);
-      await setWoundedState(effectType.wounded, selectedActor, false, tintToApply);
-      await setConditionState(effectType.unconscious, selectedActor, false);
+      await setConditionState('dead', selectedActor, true);
+      await setWoundedState(selectedActor, false, tintToApply);
+      await setConditionState('unconscious', selectedActor, false);
     } else {
-      await setConditionState(effectType.dead, selectedActor, false);
+      await setConditionState('dead', selectedActor, false);
 
       if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
-      await setWoundedState(effectType.wounded, selectedActor, true, tintToApply);
+      await setWoundedState(selectedActor, true, tintToApply);
     }
   }
 }
@@ -140,15 +122,15 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
 
   //Clean-up a localization issue
-  if (game.i18n.localize(effectType.encumbered) !== "Encumbered") {
-    const oldEncumbered = await selectedActor.effects.filter(eff => eff.name === "Encumbered");
+  /*if (game.i18n.localize(effectType.encumbered) !== "Encumbered") {
+    const oldEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has("encumbered"));
     if (oldEncumbered.length > 0) {
       const oldIdList = await oldEncumbered.map(i => i.id);
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", oldIdList);
     }
-  }
+  }*/
 
-  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => [game.i18n.localize(effectType.encumbered), "Encumbered"].includes(eff.name));
+  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
 
   let state = false;
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
@@ -185,32 +167,31 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 }
 
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string) {
-  const isAlreadyUnconscious = selectedActor.effects.find(eff => [game.i18n.localize(effectType.unconscious), "Unconscious"].includes(eff.name));
-  const isAlreadyDead = selectedActor.effects.find(eff => [game.i18n.localize(effectType.dead), "Dead"].includes(eff.name));
+  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.statuses.has('unconscious'));
+  const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
-        await setConditionState(effectType.unconscious, selectedActor, true);
+        await setConditionState('unconscious', selectedActor, true);
       }
     } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
-        await setConditionState(effectType.unconscious, selectedActor, true); // Automatic unconsciousness or out of combat
+        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
         const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
         const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
-          await setConditionState(effectType.unconscious, selectedActor, true);
+          await setConditionState('unconscious', selectedActor, true);
         }
       }
     }
   }
 }
 
-async function setConditionState(effectLabel: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const englishEffectName = effectLabel.slice(effectLabel.lastIndexOf("EFFECT.Status") + "EFFECT.Status".length);
-  const isAlreadySet = targetActor.effects.filter(eff => [game.i18n.localize(effectLabel), englishEffectName].includes(eff.name));
-  const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.label === effectLabel));
+async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
+  const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
+  const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
 
   let targetToken = {};
   if(targetActor.isToken) {
@@ -231,7 +212,7 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
-      if (effectLabel === effectType.dead) {
+      if (effectStatus === effectType.dead) {
         await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
@@ -246,8 +227,8 @@ async function setConditionState(effectLabel: string, targetActor: TwodsixActor,
   }
 }
 
-async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => [game.i18n.localize(effectType.wounded), "Wounded"].includes(eff.name));
+async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
+  const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
   let currentEffectId = "";
   //Clean up effects
   if (isAlreadySet.length > 0) {
@@ -273,11 +254,11 @@ async function setWoundedState(effectLabel: string, targetActor: TwodsixActor, s
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (!currentEffectId) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(effectLabel),
+        name: game.i18n.localize(effectType.wounded),
         icon: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData],
-        statuses: ['bleeding']
+        statuses: ['wounded']
       }]);
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);

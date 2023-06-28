@@ -41,6 +41,9 @@ Hooks.once("ready", async function () {
     });
   }
 
+  //Toggle token actors' effect to correct off calc on refresh
+  await applyToAllActors(toggleTokenEffect);
+
   // A socket hook proxy
   game.socket?.on("system.twodsix", (data) => {
     Hooks.call(data[0], ...data.slice(1));
@@ -50,3 +53,14 @@ Hooks.once("ready", async function () {
   Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 
 });
+
+//This function is a kludge to reset token actors overrides not being calculated correctly on initialize
+async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
+  if (actor.isToken  && actor.isOwner) {
+    const tokenEffects = Array.from(actor.allApplicableEffects());
+    if (tokenEffects.length > 0) {
+      await tokenEffects[0].update({'disabled': !tokenEffects[0].disabled});
+      await tokenEffects[0].update({'disabled': !tokenEffects[0].disabled});
+    }
+  }
+}

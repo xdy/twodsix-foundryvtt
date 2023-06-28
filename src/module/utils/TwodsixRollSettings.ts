@@ -73,6 +73,7 @@ export class TwodsixRollSettings {
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
+       //aSkill = selectedActor.getUntrainedSkill();
       } else {
         //skillValue = skill?.value;
         this.skillName = aSkill?.name ?? "?";
@@ -145,7 +146,7 @@ export class TwodsixRollSettings {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
     if (sourceActor) {
       const customModifiers = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
-      twodsixRollSettings.rollModifiers.custom = customModifiers.value;
+      twodsixRollSettings.rollModifiers.custom = 0;
       twodsixRollSettings.rollModifiers.customLabel = customModifiers.name;
     }
     if (showThrowDialog) {
@@ -219,7 +220,6 @@ export class TwodsixRollSettings {
           this.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          //this.rollModifiers.skillValue = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.skillValue"]').val(), 10) : this.rollModifiers.skillValue;
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
@@ -341,22 +341,15 @@ export function _genUntranslatedCharacteristicList(): object {
 
 export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills) : Promise<any> {
   const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-  const simpleSkillRef = skill ? `@skills.` + simplifySkillName(skill.name) : ``;
-  let returnValue = 0;
+  const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   let returnName = "";
-  let changed = false;
-  const customEffects = selectedActor.effects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
+  const customEffects = await selectedActor.appliedEffects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
   for (const effect of customEffects) {
-    changed = false;
     for (const change of effect.changes) {
       if (change.key === `system.characteristics.${keyByValue}.mod` || (change.key === simpleSkillRef) && simpleSkillRef) {
-        changed = true;
-        returnValue += parseInt(change.value);
+        returnName += `${effect.name} for ${change.key.replace('system.', '')}(${change.value}), `;
       }
     }
-    if (changed) {
-      returnName += effect.name + ', ';
-    }
   }
-  return {name: returnName.slice(0, -2), value: returnValue};
+  return {name: returnName.slice(0, -2)};
 }

@@ -6,8 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Gear, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
-import { effectType } from "../hooks/showStatusIcons";
-import { wait } from "../utils/sheetUtils";
+//import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
@@ -85,15 +84,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Add custom source labels for active effects
     for(const effect of returnData.effects) {
-      if ([game.i18n.localize(effectType.wounded), game.i18n.localize(effectType.encumbered), game.i18n.localize(effectType.dead), game.i18n.localize(effectType.unconscious)].includes(effect.name)) {
+      if (["dead", "unconscious", "wounded", "encumbered"].includes(Array.from(effect.statuses)[0])) {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.Condition");
       } else if (effect.origin && !effect.origin?.includes("Compendium")) {
         const attachedItem:TwodsixItem = fromUuidSync(effect.origin);
         if (attachedItem) {
           effect.sourceLabel = (attachedItem.name ?? game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource"));
         } else {
-          effect.sourceLabel = effect.origin;
+          effect.sourceLabel = effect.parent.name;
         }
+      } else if (effect.parent.documentName === "Item") {
+        effect.sourceLabel = effect.parent.name;
       } else {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
       }
@@ -273,7 +274,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         }
       }
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
-      await wait(100); ///try adding delay to lessen the db error of clicking to fast
+      //await wait(100); ///try adding delay to lessen the db error of clicking to fast
     }
   }
 

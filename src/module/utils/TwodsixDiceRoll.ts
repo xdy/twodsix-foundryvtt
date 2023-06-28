@@ -273,9 +273,9 @@ export class TwodsixDiceRoll {
       flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}` + (showModifiers ? `(${this.rollSettings.rollModifiers.encumbered})` : ``);
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}</td><td class="centre">${this.rollSettings.rollModifiers.encumbered}</td></tr>`;
     }
-    if (this.rollSettings.rollModifiers.custom !== 0) {
-      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}`+ (showModifiers ? `(${this.rollSettings.rollModifiers.custom})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}</td><td>${this.rollSettings.rollModifiers.customLabel}</td><td class="centre">${this.rollSettings.rollModifiers.custom}</td></tr>`;
+    if (this.rollSettings.rollModifiers.customLabel !== "") {
+      flavorText += showModifiers ? `. ${game.i18n.localize("TWODSIX.ActiveEffects.IncludingEffects")} ${this.rollSettings.rollModifiers.customLabel}` : ``;
+      //flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}</td><td>${this.rollSettings.rollModifiers.customLabel}</td><td class="centre">${this.rollSettings.rollModifiers.custom}</td></tr>`;
     }
     flavorText +=`</p>`;
 

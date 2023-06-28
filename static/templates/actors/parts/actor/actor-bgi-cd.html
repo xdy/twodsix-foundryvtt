@@ -30,7 +30,7 @@
         style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
        readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
 <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
-        name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
+        name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
 <span class="bgi-encumbrance" data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
   {{#iff system.encumbrance.max ">" "0"}}
@@ -60,7 +60,7 @@
     <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
 {{/if}}
 <span class="bgi-char-wide bgi-radiationDose" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
-        name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
+        name="system.radiationDose.value" value={{system.radiationDose.value}} min="0" type="number" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
 
 <!-- Movement -->
 <span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}: {{localize "TWODSIX.Actor.Movement.MovementWalk"}}'><i class="fa-solid fa-person-walking"></i>:

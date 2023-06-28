@@ -152,7 +152,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     /*Unset active effect if storage or junk*/
     let disableState = true;
     if (!["storage", "junk"].includes(event.currentTarget.value)) {
-      disableState = (this.item.system.equipped !== "equipped");
+      disableState = (this.item.system.equipped !== "equipped" && !["trait"].includes(event.currentTarget.value));
     } else {
       this.item.update({"system.priorType": this.item.type});
     }
@@ -161,7 +161,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /* -------------------------------------------- */
   /** @override */
-  // cludge to fix consumables dissapearing when updating item sheet
+  // Kludge to fix consumables dissapearing when updating item sheet
   async _onChangeInput(event) {
     //console.log(event);
     await super._onChangeInput(event);
@@ -188,31 +188,18 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       const newId = randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
         const effects = [new ActiveEffect({
-          origin: this.item.uuid,
+          origin: undefined, //UUID? this.item.uuid
           icon: this.item.img,
           tint: "#ffffff",
           label: this.item.name,
-          transfer: true,
+          transfer: game.settings.get('twodsix', "useItemActiveEffects"),
           disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["trait"].includes(this.item.type),
           _id: newId,
           flags: {twodsix: {sourceId: newId}}
-
         }).toObject()];
         if (await fromUuid(this.item.uuid)) {
-          await this.item.update({effects: effects }, {recursive: true});
-          const newEffect = this.item.effects.contents[0].toObject();
-          //newEffect.flags = {twodsix: {sourceId: newEffect._id}};
-          //await this.item.update({effects: [newEffect] }, {recursive: true});
-
-          if (this.actor) {
-            newEffect.transfer = false;
-            const oldId = newEffect._id;
-            newEffect._id = "";
-            await this.actor.createEmbeddedDocuments("ActiveEffect", [newEffect]);
-            this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === oldId)?.sheet?.render(true);
-          } else {
-            this.item.effects.contents[0].sheet?.render(true);
-          }
+          await this.item.createEmbeddedDocuments('ActiveEffect', effects);
+          await this.item.effects.contents[0]?.sheet?.render(true);
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
         }
@@ -221,9 +208,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onEditEffect(): void {
-    if (["traveller", "animal", "robot"].includes(this.actor?.type)) {
-      this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.sheet?.render(true);
-    } else if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
+    if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else if (await fromUuid(this.item.uuid)) {
       const editSheet = this.item.effects.contents[0].sheet?.render(true);
@@ -243,13 +228,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
       yes: async () => {
         if (await fromUuid(this.item.uuid)) {
-          if (this.actor) {
-            const id = this.actor.effects.find(effect => effect.getFlag("twodsix", "sourceId") === this.item.effects.contents[0].id)?.id;
-            if (id) {
-              await this.actor.deleteEmbeddedDocuments("ActiveEffect", [id]);
-            }
+          await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+          if (this.item.actor) {
+            this.item.actor.sheet.render(false);
           }
-          await this.item.update({effects: [] }, {recursive: false});
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
         }

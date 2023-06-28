@@ -10,13 +10,10 @@ import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
-//import { simplifyRollFormula } from "../utils/dice";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../sheets/TwodsixItemSheet";
-//import {targetTokensInTemplate} from "../utils/ItemTemplate";
-//import { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -44,22 +41,6 @@ export default class TwodsixItem extends Item {
 
     return item;
   }
-
-
-  /*protected override async _onCreate(data): Promise<void> {
-    if (data.effects) {
-      const newEffects = data.effects.map((effect:Record<string, any>) => {
-        effect._id = randomID();
-        if (effect.flags.twodsix === undefined) {
-          effect.flags.twodsix = {};
-        }
-        effect.flags.twodsix.sourceId = effect._id;
-        effect.origin = "";
-        return effect;
-      });
-      this.update({ "effects": newEffects });
-    }
-  }*/
 
 
   /**
@@ -517,13 +498,9 @@ export default class TwodsixItem extends Item {
    * @returns {Promise<void>}
    */
   public async toggleActiveEffectStatus(newSuspendedState:boolean): Promise<void> {
-    if (this.effects.size > 0 && game.settings.get('twodsix', 'useItemActiveEffects') && this.actor) {
-      const actorEffect = await this.actor.effects.find(e => e.getFlag("twodsix", "sourceId") === this.effects.contents[0].id);
-      if (actorEffect) {
-        if (actorEffect.disabled !== newSuspendedState || actorEffect.getFlag("twodsix", "lastSetDisable") === undefined) {
-          await actorEffect.setFlag("twodsix", "lastSetDisable", newSuspendedState);
-          await this.actor.updateEmbeddedDocuments("ActiveEffect", [{_id: actorEffect.id , disabled: newSuspendedState}], {dontSync: true}).then();
-        }
+    for (const effect of this.effects) {
+      if (effect.disabled !== newSuspendedState) {
+        await effect.update({disabled: newSuspendedState});
       }
     }
   }

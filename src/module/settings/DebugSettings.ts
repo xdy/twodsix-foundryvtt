@@ -4,7 +4,7 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, stringSetting} from "./settingsUtils";
 import {refreshWindow} from "./DisplaySettings";
-import { applyToAllActors } from "../utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from "../utils/migration-utils";
 import TwodsixActor from "../entities/TwodsixActor";
 export default class DebugSettings extends AdvancedSettings {
   static create() {
@@ -38,11 +38,20 @@ export default class DebugSettings extends AdvancedSettings {
 }
 
 async function deactivateActorAE () {
-  if (!game.settings.get('twodsix', 'useItemActiveEffects')) {
-    await applyToAllActors(deleteSystemAE);
+  await applyToAllActors(toggleActorItemAEs);
+  await applyToAllItems(toggleItemAEs);
+}
+
+async function toggleActorItemAEs(actor: TwodsixActor): Promise<void> {
+  for ( const item of actor.items) {
+    await toggleItemAEs(item);
   }
 }
 
-async function deleteSystemAE(actor: TwodsixActor): Promise<void> {
-  await actor.deleteCustomAEs();
+async function toggleItemAEs(item:TwodsixItem): Promise<void> {
+  for ( const effect of item.effects.contents ) {
+    if ( effect.transfer !== game.settings.get('twodsix', 'useItemActiveEffects') ) {
+      await effect.update({"transfer": game.settings.get('twodsix', 'useItemActiveEffects')});
+    }
+  }
 }

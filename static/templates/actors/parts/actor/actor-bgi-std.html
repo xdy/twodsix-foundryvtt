@@ -31,7 +31,7 @@
     placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/></span>
 
 <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
-      type="number" value="{{system.radiationDose.value}}" placeholder='0' onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
+      type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
 
 <!-- Movement -->
 <span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
