@@ -1259,7 +1259,8 @@
       "CantDeleteEffect": "No se puede borrar un efecto en un objeto que no esta en un Actor.",
       "PlayerDoesNotHavePermission": "Jugador sin permisos para ejecutar la macro.",
       "MacroNotFound": "Macro llamada, _MACRO_NAME_, no disponible.",
-      "NoDamageToApply": "El valor de daño o curación debe ser mayor que cero."
+      "NoDamageToApply": "El valor de daño o curación debe ser mayor que cero.",
+      "MissingUntrainedSkill": "Actor sin habilidad \"sin entrenar\". Refresca la aplicación para corregir."
     }
   },
   "TYPES": {
