@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.1...v3.2.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* Item active effect transfer code rebaseline ([#1367](https://github.com/xdy/twodsix-foundryvtt/issues/1367)) ([05f9eb8](https://github.com/xdy/twodsix-foundryvtt/commit/05f9eb8d8f4ae0d6cce1a776372b98517c623c29))
+
 ## [3.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.0...v3.2.1) (2023-06-20)
 
 
