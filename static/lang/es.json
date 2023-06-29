@@ -27,7 +27,8 @@
       "Controls": "Controles",
       "NewEffect": "Efecto Nuevo",
       "CreateEffect": "Crear Efecto",
-      "Add": "Añadir"
+      "Add": "Añadir",
+      "IncludingEffects": "Incluyendo Efectos Activos:"
     },
     "Damage": {
       "DealDamage": "Aplicar daño",
