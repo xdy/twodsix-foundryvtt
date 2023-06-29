@@ -5,7 +5,7 @@ import { applyToAllActors} from "../module/utils/migration-utils";
 
 async function refactorLinkedEffects (actor: TwodsixActor): Promise<void> {
   if (["traveller", "animal", "robot"].includes(actor.type)) {
-    if(!isNaN(actor.system.radiationProteciton)) {
+    if(!isNaN(actor.system.radiationProtection)) {
       actor.update({"system.radiationProtection": {value: 0}});
       console.log(`Updating ${actor.name}'s radiation protection`);
     }
