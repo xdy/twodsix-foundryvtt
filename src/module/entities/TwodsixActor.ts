@@ -548,11 +548,10 @@ export default class TwodsixActor extends Actor {
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
-    } else if (this.type === 'ship') {
+    } else if (['ship', 'vehicle', 'space-object'].includes(this.type)) {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-      //return calcModFor((<Traveller>this.system).characteristics[keyByValue].current);
       return (<Traveller>this.system).characteristics[keyByValue].mod;
     }
   }
