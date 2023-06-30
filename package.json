@@ -64,7 +64,7 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "^1.63.6",
     "semantic-release": "^21.0.5",
-    "simple-git": "^3.19.0",
+    "simple-git": "^3.19.1",
     "socket.io-client": "^4.6.2",
     "ssri": "^10.0.4",
     "ts-node": "^10.9.1",
