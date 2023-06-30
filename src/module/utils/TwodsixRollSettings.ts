@@ -73,7 +73,7 @@ export class TwodsixRollSettings {
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
-       //aSkill = selectedActor.getUntrainedSkill();
+        //aSkill = selectedActor.getUntrainedSkill();
       } else {
         //skillValue = skill?.value;
         this.skillName = aSkill?.name ?? "?";
