@@ -66,6 +66,8 @@ function applyChatCardDamage(li, multiplier) {
         } else if (multiplier < 0) {
           t.actor.healActor(effect);
         }
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
       }
     }));
   } else {
