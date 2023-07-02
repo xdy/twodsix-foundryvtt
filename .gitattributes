@@ -9,3 +9,4 @@
 *.png binary
 *.pdf binary
 *.ldb binary
+packs/** binary
