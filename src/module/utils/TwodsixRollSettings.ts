@@ -130,7 +130,8 @@ export class TwodsixRollSettings {
       custom: 0,
       customLabel: "",
       chain: settings?.rollModifiers?.chain ?? 0,
-      selectedSkill: aSkill?.uuid
+      selectedSkill: aSkill?.uuid,
+      skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined
     };
     this.flags = {
       rollClass: rollClass,
