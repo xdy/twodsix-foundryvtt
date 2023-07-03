@@ -1,3 +1,10 @@
+## [3.2.4](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.3...v3.2.4) (2023-07-03)
+
+
+### Bug Fixes
+
+* missing settings for CDEE ([#1391](https://github.com/xdy/twodsix-foundryvtt/issues/1391)) ([fa5c97a](https://github.com/xdy/twodsix-foundryvtt/commit/fa5c97a7db72ae65cf2cbc540c693a11cf8c8d2b))
+
 ## [3.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.2...v3.2.3) (2023-07-03)
 
 
