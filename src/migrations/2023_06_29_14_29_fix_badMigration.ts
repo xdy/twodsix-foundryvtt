@@ -3,7 +3,7 @@
 
 import { applyToAllActors} from "../module/utils/migration-utils";
 
-async function refactorLinkedEffects (actor: TwodsixActor): Promise<void> {
+async function radProtectionObject (actor: TwodsixActor): Promise<void> {
   if (["traveller", "animal", "robot"].includes(actor.type)) {
     if(!isNaN(actor.system.radiationProtection)) {
       actor.update({"system.radiationProtection": {value: 0}});
@@ -24,7 +24,7 @@ async function clearBadMessages() {
 }
 
 export async function migrate(): Promise<void> {
-  await applyToAllActors(refactorLinkedEffects);
+  await applyToAllActors(radProtectionObject);
   await clearBadMessages();
   return Promise.resolve();
 }
