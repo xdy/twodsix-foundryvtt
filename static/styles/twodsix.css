@@ -3095,7 +3095,7 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-tooltip .dice-rolls .roll.discarded, .dice-tooltip .dice-rolls .roll.rerolled {
-  filter: sepia(0.5) contrast(0.75) opacity(0.4) !important; /*must keep this important*/
+  filter: sepia(0.5) contrast(0.75) opacity(0.4);
 }
 
 .dice-tooltip .dice-rolls .roll {

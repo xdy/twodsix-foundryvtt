@@ -2523,12 +2523,17 @@ background: var(--sidebar-background);
 
 .dice-tooltip .dice-rolls .roll.max {
   color: var(--s2d6-crit-success);
-  filter: none !important;
+  /*filter: none !important;*/
 }
 
 .dice-tooltip .dice-rolls .roll.min {
   color: var(--s2d6-crit-fail);
-  filter: none !important;
+  /*filter: none !important;*/
+}
+
+.dice-tooltip .dice-rolls .roll.discarded {
+  color: inherit;
+  filter: sepia(0.5) contrast(0.75) opacity(0.4);
 }
 /*
 .dice-tooltip .dice-rolls .roll {
