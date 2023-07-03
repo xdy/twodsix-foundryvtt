@@ -124,6 +124,7 @@ export default class TwodsixItem extends Item {
 
     let numberOfAttacks = 1;
     let bonusDamage = "0";
+    let skillLevelMax = undefined;
     const rof = parseInt(weapon.rateOfFire, 10);
     const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 0);
     if (attackType && !rateOfFire) {
@@ -145,9 +146,10 @@ export default class TwodsixItem extends Item {
       case "auto-full":
         numberOfAttacks = rateOfFire;
         usedAmmo = 3 * rateOfFire;
+        skillLevelMax =  game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
         break;
       case "auto-burst":
-        bonusDamage = rateOfFire.toString();
+        bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh`: rateOfFire.toString(); //special rule for CD-EE
         usedAmmo = parseInt(weapon.rateOfFire, 10);
         break;
       case "burst-attack-dm":
@@ -161,6 +163,7 @@ export default class TwodsixItem extends Item {
         break;
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
+    Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry")) {

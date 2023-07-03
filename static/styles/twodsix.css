@@ -1051,7 +1051,7 @@ span.bgi-age {
 }
 
 span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
-  margin-right: 0.5em;
+  margin-right: 0.4em;
   height: auto;
   /*font-size: 16px;
   font-weight: bold;
@@ -1059,7 +1059,7 @@ span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
 }
 
 span.bgi-charEdit {
-  margin-left: 0.5em;
+  margin-left: 0.4em;
 }
 
 .bgi-armor input {
@@ -1067,6 +1067,10 @@ span.bgi-charEdit {
   margin-bottom: -0.5em;
   width: 3ch;
   border: none;
+}
+
+.bgi-radProtect input {
+  width: 4ch;
 }
 
 .bgi-encumbrance input {
@@ -3091,7 +3095,7 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-tooltip .dice-rolls .roll.discarded, .dice-tooltip .dice-rolls .roll.rerolled {
-  filter: sepia(0.5) contrast(0.75) opacity(0.4) !important; /*must keep this important*/
+  filter: sepia(0.5) contrast(0.75) opacity(0.4);
 }
 
 .dice-tooltip .dice-rolls .roll {

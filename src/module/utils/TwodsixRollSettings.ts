@@ -73,7 +73,7 @@ export class TwodsixRollSettings {
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
-       //aSkill = selectedActor.getUntrainedSkill();
+        //aSkill = selectedActor.getUntrainedSkill();
       } else {
         //skillValue = skill?.value;
         this.skillName = aSkill?.name ?? "?";
@@ -130,7 +130,8 @@ export class TwodsixRollSettings {
       custom: 0,
       customLabel: "",
       chain: settings?.rollModifiers?.chain ?? 0,
-      selectedSkill: aSkill?.uuid
+      selectedSkill: aSkill?.uuid,
+      skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined
     };
     this.flags = {
       rollClass: rollClass,

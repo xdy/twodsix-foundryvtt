@@ -693,7 +693,7 @@ span.bgi-age {
 }
 
 span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure {
-  margin-right: 0.5em;
+  margin-right: 0.4em;
   /*height: 26px;
   font-size: 16px;
   color: inherit !important;*/
@@ -708,6 +708,10 @@ span.bgi-charEdit {
   margin-bottom: -0.5em;
   width: 3ch;
   border: none;
+}
+
+.bgi-radProtect input {
+  width: 4ch;
 }
 
 .bgi-encumbrance input {
@@ -2519,12 +2523,17 @@ background: var(--sidebar-background);
 
 .dice-tooltip .dice-rolls .roll.max {
   color: var(--s2d6-crit-success);
-  filter: none !important;
+  /*filter: none !important;*/
 }
 
 .dice-tooltip .dice-rolls .roll.min {
   color: var(--s2d6-crit-fail);
-  filter: none !important;
+  /*filter: none !important;*/
+}
+
+.dice-tooltip .dice-rolls .roll.discarded {
+  color: inherit;
+  filter: sepia(0.5) contrast(0.75) opacity(0.4);
 }
 /*
 .dice-tooltip .dice-rolls .roll {

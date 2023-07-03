@@ -271,6 +271,19 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_die_style', (die:any) => {
+    let style = "roll die d6";
+    if (die.discarded) {
+      style += " discarded";
+    }
+    if (die.result === 6) {
+      style += " max";
+    } else if (die.result === 1) {
+      style += " min";
+    }
+    return style;
+  });
+
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
 
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {

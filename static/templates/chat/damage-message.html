@@ -13,7 +13,7 @@
             </header>
             <ol class="dice-rolls">
               {{#each dice as |die|}}
-                <li class="roll">{{die.result}}</li>
+                <li class="{{twodsix_die_style die}}">{{die.result}}</li>
               {{/each}}
             </ol>
           </div>
@@ -40,7 +40,7 @@
             </header>
             <ol class="dice-rolls">
               {{#each radDice as |die|}}
-                <li class="roll">{{die.result}}</li>
+                <li class="{{twodsix_die_style die}}">{{die.result}}</li>
               {{/each}}
             </ol>
           </div>
