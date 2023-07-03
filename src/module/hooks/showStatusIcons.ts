@@ -277,6 +277,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
     switch (game.settings.get('twodsix', 'ruleset')) {
       case 'CD':
       case 'CLU':
+      case 'CDEE':
         return (getCDWoundTint(selectedTraveller));
       case 'CEL':
       case 'CEFTL':

@@ -288,6 +288,7 @@ function getChainRollBonus(effect:number): number {
       break;
     case "CLU":
     case "CD":
+    case "CDEE":
       return (effect < 0 ? 0 : 1);
     case "CEFTL":
     case "CEATOM":
