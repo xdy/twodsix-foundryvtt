@@ -181,7 +181,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         } else {
           itemData.system.value = 0;
         }
-        itemData.system.characteristic = "NONE";
         break;
       case "weapon":
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {

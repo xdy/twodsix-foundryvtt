@@ -733,7 +733,7 @@
     "skills": {
       "templates": ["referenceTemplate"],
       "value": -3,
-      "characteristic": "STR",
+      "characteristic": "NONE",
       "type": "skills",
       "description": "",
       "shortdescr": "",
