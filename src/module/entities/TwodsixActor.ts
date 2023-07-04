@@ -75,7 +75,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max((skill.system as Skills).value, (this.getUntrainedSkill().system as Skills).value)]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? -3)]
     );
 
     const handler = {
@@ -601,8 +601,8 @@ export default class TwodsixActor extends Actor {
       "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
     };
 
-    const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));
-    //const data1: Skills = <Skills><unknown>await (this.createEmbeddedDocuments("Item", [data]));
+    //const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));
+    const data1 = await (this.createEmbeddedDocuments("Item", [data]));
     return data1[0];
   }
 
