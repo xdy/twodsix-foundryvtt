@@ -1,3 +1,10 @@
+## [3.2.5](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.4...v3.2.5) (2023-07-04)
+
+
+### Bug Fixes
+
+* error on create actor - untrained not created yet ([#1394](https://github.com/xdy/twodsix-foundryvtt/issues/1394)) ([cc80a5f](https://github.com/xdy/twodsix-foundryvtt/commit/cc80a5f0d73228512e9eb468ee3b686b9880d5fc))
+
 ## [3.2.4](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.3...v3.2.4) (2023-07-03)
 
 
