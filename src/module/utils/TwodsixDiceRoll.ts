@@ -211,7 +211,7 @@ export class TwodsixDiceRoll {
 
     //Skill Level
     if (this.skill) {
-      const skillValue = TwodsixDiceRoll.addSign(this.roll.data.skillValue); //Allow for clamp of level
+      const skillValue = TwodsixDiceRoll.addSign(this.actor.system.skills[simplifySkillName(this.skill.name)]); //Allow for clamp of level
       flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
