@@ -87,7 +87,7 @@ export default class TwodsixActor extends Actor {
           const newName = property[property.length - 1] === "_" ? property.slice(0, -1) : property;
           return newName in target && target[newName] > 0 ? target[newName] : 0;
         } else {
-          return property in target ? target[property] : (this.getUntrainedSkill().system as Skills).value;
+          return property in target ? target[property] : this.getUntrainedSkill()?.system.value ?? -3;
         }
       }
     };
@@ -397,8 +397,8 @@ export default class TwodsixActor extends Actor {
         case "traveller":
           await this.createUntrainedSkill();
           Object.assign(changeData, {
-            "system.movement.walk": this.system.movement.walk ?? game.settings.get("twodsix", "defaultMovement"),
-            "system.movement.units": this.system.movement.units ?? game.settings.get("twodsix", "defaultMovementUnits")
+            "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
+            "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
           });
           if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
             isDefaultImg = true;
@@ -736,7 +736,7 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Function to add a dropped item to an actor
+   * Method to add a dropped item to an actor
    * @param {any} itemData    The item document
    * @returns {Promise} A boolean promise of whether the drop was sucessful
    * @private
@@ -869,9 +869,17 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
-  public async handleDamageData(damagePayload:any, showDamageDialog:boolean) {
+  /**
+   * Method to add handle a dropped damage payload
+   * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type)
+   * @param {boolean} showDamageDialog Whethter to show apply damage dialog
+   * @returns {boolean}
+   * @private
+   */
+  public async handleDamageData(damagePayload:any, showDamageDialog:boolean):boolean {
     if (["traveller", "animal", "robot"].includes(this.type)) {
       await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
+      return true;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
     }
@@ -879,14 +887,18 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-     * We override this with an empty implementation because we have our own custom way of applying
-     * {@link ActiveEffect}s and {@link Actor#prepareEmbeddedDocuments} calls this.
-     * @override
-     */
+   * We override this with an empty implementation because we have our own custom way of applying
+   * {@link ActiveEffect}s and {@link Actor#prepareEmbeddedDocuments} calls this.
+   * @override
+   */
   override applyActiveEffects() {
     return;
   }
 
+  /**
+   * The TWODSIX override for applying active effects to traveller actors.  Depends on whenther this is before or after derived data calc.
+   *  @param {boolean} isPost after derived values calculated
+   */
   public async _updateActiveEffects(isPost:boolean): Promise<void> {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
@@ -900,6 +912,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Apply any transformations to the Actor data which are caused by ActiveEffects.
+   *  @param {boolean} isPost after derived values calculated
    */
   applyActiveEffectsCustom(isPost: boolean) {
     const derivedData = [];
@@ -1012,7 +1025,13 @@ export default class TwodsixActor extends Actor {
   }
 
 }
-
+/**
+ * Calculates the power draw for a ship component.
+ * @param {Component} item the ship component
+ * @return {number} the power draw of the ship component
+ * @public
+ * @function
+ */
 export function getPower(item: Component): number{
   if ((item.status === "operational") || (item.status === "damaged")) {
     let q = item.quantity || 1;
@@ -1025,7 +1044,14 @@ export function getPower(item: Component): number{
     return 0;
   }
 }
-
+/**
+ * Calculates the displacement weight for a ship component.
+ * @param {Component} item the ship component
+ * @param {any} actorData the ship's actor data
+ * @return {number} the displacement of the ship component
+ * @public
+ * @function
+ */
 export function getWeight(item: Component, actorData): number{
   const q = item.quantity ?? 1;
   /*if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
@@ -1039,13 +1065,18 @@ export function getWeight(item: Component, actorData): number{
   }
   return (w * q);
 }
-
+/**
+ * A function to delete a player actor from ship positions when that player actor is deleted.
+ * @param {string} actorId the id of the actor deleted
+ * @return {void}
+ * @function
+ */
 async function deleteIdFromShipPositions(actorId: string) {
   const allShips = (game.actors?.contents.filter(actor => actor.type === "ship") ?? []) as TwodsixActor[];
 
   for (const scene of game.scenes ?? []) {
     for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.actorLink && token.actor.type === "ship") {  //token.data.actorLink becomes what?????
+      if (token.actor && !token.actorLink && token.actor.type === "ship") {
         allShips.push(token.actor as TwodsixActor);
       }
     }
@@ -1057,7 +1088,12 @@ async function deleteIdFromShipPositions(actorId: string) {
     }
   }
 }
-
+/**
+ * Calculates the carried weight for personal equipment. Includes offset for worn armor.
+ * @param {Component} item the equipment carried
+ * @return {number} the weight of the carried item
+ * @function
+ */
 function getEquipmentWeight(item:TwodsixItem):number {
   if (!["skills", "spell", "trait"].includes(item.type)) {
     if (item.system.equipped !== "ship") {
@@ -1075,7 +1111,12 @@ function getEquipmentWeight(item:TwodsixItem):number {
   }
   return 0;
 }
-
+/**
+ * A function that opens a dialog to determined the quantity moved when transfering an item.
+ * @param {Component} item the equipment being transfered
+ * @return {number} the quantity transfered
+ * @function
+ */
 async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   const returnNumber:number = await new Promise((resolve) => {
     new Dialog({
@@ -1098,7 +1139,13 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   });
   return Math.round(returnNumber);
 }
-
+/**
+ * A function to check and correct when an actor is missing the Untrained skill.
+ * @param {TwodsixActor} actor the actor being checked
+ * @return {void}
+ * @function
+ * @public
+ */
 export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise<void> {
   if (["traveller", "robot", "animal"].includes(actor.type)) {
     //Check for missing untrained skill
@@ -1114,7 +1161,3 @@ export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise
     }
   }
 }
-/*function isSameActor(actor: Actor, itemData: any): boolean {
-  return (itemData.actor?.id === actor.id) || (actor.isToken && (itemData.actor?.id === actor.token?.id));
-}*/
-
