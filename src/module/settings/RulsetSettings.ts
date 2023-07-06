@@ -64,7 +64,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(numberSetting('massProductionDiscount', 0.10, false));
     settings.push(booleanSetting('reverseHealingOrder', false));
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
-    settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with vales other than 0.5
+    settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5
     settings.push(numberSetting('encumbranceModifier', -1, false));
     settings.push(numberSetting('encumbFractionOneSquare', 0.5));
     settings.push(numberSetting('encumbFraction75pct', 0.33));
@@ -79,6 +79,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("animalsUseHits", false));
     settings.push(booleanSetting("robotsUseHits", false));
     settings.push(booleanSetting("animalsUseLocations", false));
+    settings.push(booleanSetting("animalTypesIndependentofNiche", false));
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
     settings.push(stringSetting("damageTypeOptions", "", false, "world"));
