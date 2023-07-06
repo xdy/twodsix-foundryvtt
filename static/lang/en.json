@@ -354,6 +354,7 @@
         "Head": "Head",
         "Legs": "Legs",
         "Torso": "Torso",
+        "None": "None",
         "ValueCr": "Value in Cr"
       },
       "Component": {
