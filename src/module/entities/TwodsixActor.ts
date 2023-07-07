@@ -579,7 +579,9 @@ export default class TwodsixActor extends Actor {
 
   public async buildUntrainedSkill(): Promise<Skills | void> {
     if ((<Traveller>this.system).untrainedSkill) {
-      return;
+      if (this.items.get(this.system.untrainedSkill)) {
+        return;
+      }
     }
     const existingSkill:Skills = this.itemTypes.skills?.find(sk => sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained"));
     if (existingSkill) {
