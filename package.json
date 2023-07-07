@@ -63,7 +63,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "^1.63.6",
-    "semantic-release": "^21.0.5",
+    "semantic-release": "^21.0.7",
     "simple-git": "^3.19.1",
     "socket.io-client": "^4.7.1",
     "ssri": "^10.0.4",
