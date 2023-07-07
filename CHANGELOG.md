@@ -1,3 +1,10 @@
+## [3.2.6](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.5...v3.2.6) (2023-07-07)
+
+
+### Bug Fixes
+
+* misc. bugs ([#1397](https://github.com/xdy/twodsix-foundryvtt/issues/1397)) ([7c63bef](https://github.com/xdy/twodsix-foundryvtt/commit/7c63befc8f88c4313aec54513f397f5f9443831b))
+
 ## [3.2.5](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.4...v3.2.5) (2023-07-04)
 
 
