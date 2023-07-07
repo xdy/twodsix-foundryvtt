@@ -702,6 +702,8 @@ export const AnimalLocations = {
   forest: "TWODSIX.Animal.Locations.ForestJungle"
 };
 
+export const AllAnimalTypes = Object.assign({}, HerbivoreType, OmnivoreType, CarnivoreType, ScavengerType);
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -724,6 +726,7 @@ export type TWODSIX = {
   OmnivoreType: typeof OmnivoreType,
   CarnivoreType: typeof CarnivoreType,
   ScavengerType: typeof ScavengerType,
+  AllAnimalTypes: typeof AllAnimalTypes,
   AnimalLocations: typeof AnimalLocations,
   areaTargetTypes: typeof areaTargetTypes
 };
@@ -750,6 +753,7 @@ export const TWODSIX = {
   OmnivoreType: OmnivoreType,
   CarnivoreType: CarnivoreType,
   ScavengerType: ScavengerType,
+  AllAnimalTypes: AllAnimalTypes,
   AnimalLocations: AnimalLocations,
   areaTargetTypes: areaTargetTypes
 };

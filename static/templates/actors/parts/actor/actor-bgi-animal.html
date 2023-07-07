@@ -21,16 +21,20 @@
         <input class="short-input" name="system.animalType.subtype" type="text" value="{{system.animalType.subtype}}" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'/>
       </span>
     {{else}}
-      <select name="system.animalType.subtype" >
-        {{#iff system.animalType.niche "===" "herbivore"}}
-          {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
-        {{else iff system.animalType.niche "===" "omnivore"}}
-          {{selectOptions config.OmnivoreType selected=system.animalType.subtype localize=true inverted=false}}
-        {{else iff system.animalType.niche "===" "carnivore"}}
-          {{selectOptions config.CarnivoreType selected=system.animalType.subtype localize=true inverted=false}}
-        {{else iff system.animalType.niche "===" "scavenger"}}
-          {{selectOptions config.ScavengerType selected=system.animalType.subtype localize=true inverted=false}}
-        {{/iff}}
+      <select name="system.animalType.subtype">
+        {{#unless settings.useAllAnimalTypes}}
+          {{#iff system.animalType.niche "===" "herbivore"}}
+              {{selectOptions config.HerbivoreType selected=system.animalType.subtype localize=true inverted=false}}
+          {{else iff system.animalType.niche "===" "omnivore"}}
+            {{selectOptions config.OmnivoreType selected=system.animalType.subtype localize=true inverted=false}}
+          {{else iff system.animalType.niche "===" "carnivore"}}
+            {{selectOptions config.CarnivoreType selected=system.animalType.subtype localize=true inverted=false}}
+          {{else iff system.animalType.niche "===" "scavenger"}}
+            {{selectOptions config.ScavengerType selected=system.animalType.subtype localize=true inverted=false}}
+          {{/iff}}
+        {{else}}
+          {{selectOptions config.AllAnimalTypes selected=system.animalType.subtype localize=true inverted=false}}
+        {{/unless}}
       </select>
     {{/iff}}
 

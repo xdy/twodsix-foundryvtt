@@ -354,6 +354,7 @@
         "Head": "Head",
         "Legs": "Legs",
         "Torso": "Torso",
+        "None": "None",
         "ValueCr": "Value in Cr"
       },
       "Component": {
@@ -1183,6 +1184,10 @@
       "damageTypeOptions": {
         "hint": "A comma separated list that specifies the allowable damage types.",
         "name": "Damage and Protection Types"
+      },
+      "animalTypesIndependentofNiche": {
+        "hint": "Animals may have any type, indpependent of the niche chosen.",
+        "name": "Animal Types Are Independent of Niche"
       },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },

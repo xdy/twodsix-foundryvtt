@@ -136,6 +136,7 @@ declare global {
       'twodsix.encumbFraction75Pct':number;
       'twodsix.useTabbedViews':boolean;
       'twodsix.damageTypeOptions':string;
+      'twodsix.animalTypesIndependentofNiche':boolean;
     }
   }
 }

@@ -477,8 +477,8 @@
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       }
     },
@@ -611,8 +611,8 @@
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       },
       "locomotionType": "",
@@ -639,8 +639,8 @@
         "climb": 0,
         "fly": 0,
         "swim": 0,
-        "walk": 10,
-        "units": "m",
+        "walk": 0,
+        "units": "",
         "hover": false
       }
     }

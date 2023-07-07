@@ -56,6 +56,7 @@ export class TwodsixDiceRoll {
       }
       formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
       formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
+      formulaData.actualSkillValue = skillValue; //needed to enforce clam value in description
     }
 
     // Add chain modifier
@@ -211,7 +212,7 @@ export class TwodsixDiceRoll {
 
     //Skill Level
     if (this.skill) {
-      const skillValue = TwodsixDiceRoll.addSign(this.roll.data.skillValue); //Allow for clamp of level
+      const skillValue = TwodsixDiceRoll.addSign(this.roll.data.actualSkillValue); //Allow for clamp of level
       flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
