@@ -354,6 +354,7 @@
         "Head": "Cabeza",
         "Legs": "Piernas",
         "Torso": "Torso",
+        "None": "Ninguna",
         "ValueCr": "Valor en Cr"
       },
       "Component": {
@@ -1183,6 +1184,10 @@
       "damageTypeOptions": {
         "hint": "Una lista separada por comas que especifica los tipos de daño permitidos.",
         "name": "Tipo de Daño y Protección"
+      },
+      "animalTypesIndependentofNiche": {
+        "hint": "Los animales pueden tener cualquier tipo, independiente del nicho escogido.",
+        "name": "Tipo de Animal es independiente de Nicho"
       },
       "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
     },
