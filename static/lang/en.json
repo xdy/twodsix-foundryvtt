@@ -1325,6 +1325,10 @@
    "StatusWounded": "Wounded",
    "StatusEncumbered": "Encumbered",
    "StatusDead": "Dead",
-   "StatusUnconscious": "Unconscious"
+   "StatusUnconscious": "Unconscious",
+   "StatusAiming": "Aiming",
+   "StatusFatigued": "Fatigued",
+   "StatusInCover": "In Cover",
+   "StatusThrust": "Thrust"
   }
 }
