@@ -43,6 +43,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     settings.push(booleanSetting('showHitsChangesInChat', false));
+    settings.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     return settings;
   }
 }
@@ -63,4 +64,13 @@ export const changeLightColor = function () {
     game.settings.set('twodsix', 'lightColor', "#00e5ff");
   }
   document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+};
+
+export const updateStatusIcons = function () {
+  if (game.settings.get('twodsix', 'reduceStatusIcons')) {
+    CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "sleep", "stun", "prone", "restrain", "paralysis", "fly",
+      "invisible", "target", "encumbered", "aiming", "fatigued", "cover", "thrust"].includes(se.id));
+  } else {
+    window.location.reload();
+  }
 };
