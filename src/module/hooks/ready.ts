@@ -42,7 +42,9 @@ Hooks.once("ready", async function () {
   }
 
   //Toggle token actors' effect to correct off calc on refresh
-  await applyToAllActors(toggleTokenEffect);
+  if (game.user?.isGM) {
+    await applyToAllActors(toggleTokenEffect);
+  }
 
   // A socket hook proxy
   game.socket?.on("system.twodsix", (data) => {
