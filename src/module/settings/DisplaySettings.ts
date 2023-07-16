@@ -69,7 +69,7 @@ export const changeLightColor = function () {
 export const updateStatusIcons = function () {
   if (game.settings.get('twodsix', 'reduceStatusIcons')) {
     CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "sleep", "stun", "prone", "restrain", "paralysis", "fly",
-      "invisible", "target", "encumbered", "aiming", "fatigued", "cover", "thrust"].includes(se.id));
+      "invisible", "target", "encumbered", "aiming", "fatigued", "cover", "thrust", "blind"].includes(se.id));
   } else {
     window.location.reload();
   }
