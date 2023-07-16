@@ -13,7 +13,6 @@ Hooks.once('setup', async function () {
     {id: 'cover', label: 'EFFECT.StatusInCover', icon: "systems/twodsix/assets/icons/defensive-wall.svg"},
     {id: 'thrust', label: 'EFFECT.StatusThrust', icon: "systems/twodsix/assets/icons/thrust.svg"}
   );
-  CONFIG.statusEffects.push({id: 'encumbered', label: 'EFFECT.StatusEncumbered', icon: "systems/twodsix/assets/icons/weight.svg"});
   const woundedSE = CONFIG.statusEffects.find(se => se.id === 'bleeding');
   if(woundedSE) {
     woundedSE.id = 'wounded';
