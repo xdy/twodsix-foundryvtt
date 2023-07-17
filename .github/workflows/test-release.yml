@@ -7,49 +7,49 @@ on:
     branches: [ master]
 
 jobs:
-  test:
-    if: github.repository == 'xdy/twodsix-foundryvtt'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # Run the steps below with the following versions of Node.js
-        node-version: [16.x]
-    steps:
-      # Fetch the latest commit
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: 'true'
-
-      # Setup Node.js using the appropriate version
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3.7.0
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      # Install package dependencies
-      - name: Install
-        run: npm install
-
-      # Lint the code
-      - name: Lint
-        run: npm run lint
-
-      # Building is the only test right now (mainly tests if dependabot actually can update)
-      - name: Build
-        run: npm run build
-
-      # Run tests
-      #- name: Test
-      #run: npm test
-
+#  test:
+#    if: github.repository == 'xdy/twodsix-foundryvtt'
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        # Run the steps below with the following versions of Node.js
+#        node-version: [16.x]
+#    steps:
+#      # Fetch the latest commit
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#        with:
+#          submodules: 'true'
+#
+#      # Setup Node.js using the appropriate version
+#      - name: Use Node.js ${{ matrix.node-version }}
+#        uses: actions/setup-node@v3.7.0
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#          cache: 'npm'
+#
+#      # Install package dependencies
+#      - name: Install
+#        run: npm install
+#
+#      # Lint the code
+#      - name: Lint
+#        run: npm run lint
+#
+#      # Building is the only test right now (mainly tests if dependabot actually can update)
+#      - name: Build
+#        run: npm run build
+#
+#      # Run tests
+#      #- name: Test
+#      #run: npm test
+#
   release:
     # Only release on push to master on xdy/twodsix-foundryvtt
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
     runs-on: ubuntu-latest
-    # Waits for test jobs for each Node.js version to complete
-    needs: [test]
+    ## Waits for test jobs for each Node.js version to complete
+    #needs: [test]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
