@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, colorSetting} from "./settingsUtils";
 
@@ -68,8 +70,8 @@ export const changeLightColor = function () {
 
 export const updateStatusIcons = function () {
   if (game.settings.get('twodsix', 'reduceStatusIcons')) {
-    CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "sleep", "stun", "prone", "restrain", "paralysis", "fly",
-      "invisible", "target", "encumbered", "aiming", "fatigued", "cover", "thrust", "blind"].includes(se.id));
+    CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "stun", "sleep", "prone", "restrain", "paralysis", "fly", "blind", "corrode", "burning", "poison",
+      "invisible", "target", "encumbered", "wounded", "aiming", "fatigued", "cover", "thrust", "irradiated", "target-lock"].includes(se.id));
   } else {
     window.location.reload();
   }

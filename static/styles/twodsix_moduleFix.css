@@ -152,3 +152,11 @@ div.pdf-app section.window-content {
 :root {
   --item-piles-even-color: var(--s2d6-light-background-transparent) !important;
 }
+
+.polyglot-lang-select select {
+  background-color: var(--s2d6-background-semi-opaque);
+}
+
+.polyglot-lang-select label {
+  margin-top: 4px;
+}

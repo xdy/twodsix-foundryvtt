@@ -7,11 +7,13 @@ Hooks.once('setup', async function () {
 
   //Configure TWODSIX custom conditions
   CONFIG.statusEffects.push(
-    {id: 'encumbered', label: 'EFFECT.StatusEncumbered', icon: "systems/twodsix/assets/icons/weight.svg"},
     {id: 'aiming', label: 'EFFECT.StatusAiming', icon: "systems/twodsix/assets/icons/aiming.svg"},
-    {id: 'fatigued', label: 'EFFECT.StatusFatigued', icon: "systems/twodsix/assets/icons/tired-eye.svg"},
     {id: 'cover', label: 'EFFECT.StatusInCover', icon: "systems/twodsix/assets/icons/defensive-wall.svg"},
-    {id: 'thrust', label: 'EFFECT.StatusThrust', icon: "systems/twodsix/assets/icons/thrust.svg"}
+    {id: 'fatigued', label: 'EFFECT.StatusFatigued', icon: "systems/twodsix/assets/icons/tired-eye.svg"},
+    {id: 'encumbered', label: 'EFFECT.StatusEncumbered', icon: "systems/twodsix/assets/icons/weight.svg"},
+    {id: 'irradiated', label: 'EFFECT.StatusIrradiated', icon: "systems/twodsix/assets/icons/irradiated.svg"},
+    {id: 'thrust', label: 'EFFECT.StatusThrust', icon: "systems/twodsix/assets/icons/thrust.svg"},
+    {id: 'target-lock', label: 'EFFECT.StatusTargetLock', icon: "systems/twodsix/assets/icons/convergence-target.svg"}
   );
   const woundedSE = CONFIG.statusEffects.find(se => se.id === 'bleeding');
   if(woundedSE) {
