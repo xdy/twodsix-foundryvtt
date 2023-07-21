@@ -22,7 +22,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       submitOnClose: true,
       submitOnChange: true,
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null}],
+      dragDrop: [{dropSelector: null, dragSelector: null}],
       resizable: true,
       width: 550,
       height: 'auto'
@@ -34,7 +34,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const path = "systems/twodsix/templates/items";
     return `${path}/${this.item.type}-sheet.html`;
   }
-
+  /** @override */
+  _canDragDrop() {
+    //console.log("got to drop check", selector);
+    return this.isEditable && this.item.isOwner;
+  }
   /* -------------------------------------------- */
 
   /** @override */
@@ -371,7 +375,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       } else {
         //This part handles just comsumables
         TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-        TwodsixItemSheet.check(this.item.type === "skills", "SkillsConsumables");
+        TwodsixItemSheet.check(["skills", "trait", "spell"].includes(this.item.type), "TraitsandSkillsNoConsumables");
 
         TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
 
