@@ -42,8 +42,8 @@ Hooks.once("ready", async function () {
     });
   }
 
-  //Toggle token actors' effect to correct off calc on refresh
-  if (game.user?.isGM) {
+  //Toggle token actors' effect to correct off calc on refresh, should be fixed in version 11.306 onward
+  if (game.user?.isGM && (game.release.build < 306)) {
     await applyToAllActors(toggleTokenEffect);
   }
 
