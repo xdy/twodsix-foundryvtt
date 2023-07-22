@@ -4,6 +4,7 @@ import migrateWorld from "../migration";
 import {createItemMacro} from "../utils/createItemMacro";
 import { applyToAllActors } from "../utils/migration-utils";
 import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
+import { updateStatusIcons } from "../settings/DisplaySettings";
 
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
@@ -41,8 +42,10 @@ Hooks.once("ready", async function () {
     });
   }
 
-  //Toggle token actors' effect to correct off calc on refresh
-  await applyToAllActors(toggleTokenEffect);
+  //Toggle token actors' effect to correct off calc on refresh, should be fixed in version 11.306 onward
+  if (game.user?.isGM && (game.release.build < 306)) {
+    await applyToAllActors(toggleTokenEffect);
+  }
 
   // A socket hook proxy
   game.socket?.on("system.twodsix", (data) => {
@@ -51,6 +54,11 @@ Hooks.once("ready", async function () {
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+
+  //set status icons
+  if (game.settings.get('twodsix', 'reduceStatusIcons')) {
+    updateStatusIcons();
+  }
 
 });
 

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, colorSetting} from "./settingsUtils";
 
@@ -43,6 +45,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     settings.push(booleanSetting('showHitsChangesInChat', false));
+    settings.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     return settings;
   }
 }
@@ -63,4 +66,13 @@ export const changeLightColor = function () {
     game.settings.set('twodsix', 'lightColor', "#00e5ff");
   }
   document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+};
+
+export const updateStatusIcons = function () {
+  if (game.settings.get('twodsix', 'reduceStatusIcons')) {
+    CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "stun", "sleep", "prone", "restrain", "paralysis", "fly", "blind", "corrode", "burning", "poison",
+      "invisible", "target", "encumbered", "wounded", "aiming", "fatigued", "cover", "thrust", "irradiated", "target-lock"].includes(se.id));
+  } else {
+    window.location.reload();
+  }
 };

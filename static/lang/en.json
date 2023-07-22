@@ -1189,6 +1189,10 @@
         "hint": "Animals may have any type, indpependent of the niche chosen.",
         "name": "Animal Types Are Independent of Niche"
       },
+      "reduceStatusIcons": {
+        "hint": "Remove unneeded status conditions from default Foundry that don't apply to a science fiction setting, e.g. cursed. WARNING: changing this setting from true (checked) to false (unchecked) will reload the world.",
+        "name": "Simplify default condition icon list for a science fiction setting"
+      },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1233,7 +1237,8 @@
       "CouldNotFindItem": "Could not find an item with id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
       "InvalidRollFormula": "Not a valid damage roll formula.",
-      "CantPlaceTemplate": "Error placing AOE measured Template."
+      "CantPlaceTemplate": "Error placing AOE measured Template.",
+      "TraitsandSkillsNoConsumables": "Spells, Traits and Skills can't have consumables."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
@@ -1325,6 +1330,13 @@
    "StatusWounded": "Wounded",
    "StatusEncumbered": "Encumbered",
    "StatusDead": "Dead",
-   "StatusUnconscious": "Unconscious"
+   "StatusUnconscious": "Unconscious",
+   "StatusAiming": "Aiming",
+   "StatusFatigued": "Fatigued",
+   "StatusInCover": "In Cover",
+   "StatusThrust": "Thrust",
+   "StatusInvisible": "Stealthed",
+   "StatusIrradiated": "Irradiated",
+   "StatusTargetLock": "Target Lock"
   }
 }
