@@ -1189,6 +1189,10 @@
         "hint": "Los animales pueden tener cualquier tipo, independiente del nicho escogido.",
         "name": "Tipo de Animal es independiente de Nicho"
       },
+      "reduceStatusIcons": {
+        "hint": "Eliminar los estados por defecto innecesarios que no aplican en una ambientación de ciencia ficción. Ej: Maldito. AVISO: cambiar esta opción de marcada a desmarcada recarga el mundo.",
+        "name": "Simplificar los iconos de estado por defecto para ciencia ficción"
+      },
       "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1233,7 +1237,8 @@
       "CouldNotFindItem": "No se pudo encontrar el objeto con id: _ITEM_ID_",
       "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
       "InvalidRollFormula": "Fórmula de daño no válida.",
-      "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto."
+      "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto.",
+      "TraitsandSkillsNoConsumables": "Los Conjuros, Rasgos y Habilidades no pueden tener consumibles."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -1325,6 +1330,13 @@
     "StatusWounded": "Herido",
     "StatusEncumbered": "Sobrecargado",
     "StatusDead": "Muerto",
-    "StatusUnconscious": "Inconsciente"
+    "StatusUnconscious": "Inconsciente",
+    "StatusAiming": "Apuntando",
+    "StatusFatigued": "Fatigado",
+    "StatusInCover": "A Cubierto",
+    "StatusThrust": "Impulsado",
+    "StatusInvisible": "Sigiloso",
+    "StatusIrradiated": "Irradiado",
+    "StatusTargetLock": "Objetivo Fijado"
   }
 }
