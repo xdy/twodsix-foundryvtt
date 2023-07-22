@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.7...v3.3.0) (2023-07-22)
+
+
+### Features
+
+* Custom status effects icons ([#1403](https://github.com/xdy/twodsix-foundryvtt/issues/1403)) ([28c930a](https://github.com/xdy/twodsix-foundryvtt/commit/28c930a02c8a484a3c298b2f832006a20940d223))
+
 ## [3.2.7](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.6...v3.2.7) (2023-07-22)
 
 
