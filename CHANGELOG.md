@@ -1,3 +1,12 @@
+## [3.2.7](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.6...v3.2.7) (2023-07-22)
+
+
+### Reverts
+
+* Revert "chore(deps-dev): bump @typescript-eslint/eslint-plugin (#1406)" (#1412) ([97ba0df](https://github.com/xdy/twodsix-foundryvtt/commit/97ba0df2605f9e84810de5cd1b53f8686a78576b)), closes [#1406](https://github.com/xdy/twodsix-foundryvtt/issues/1406) [#1412](https://github.com/xdy/twodsix-foundryvtt/issues/1412)
+* Revert "chore(deps-dev): bump @rollup/plugin-commonjs from 24.1.0 to 25.0.3 (#1404)" (#1411) ([7d75c0a](https://github.com/xdy/twodsix-foundryvtt/commit/7d75c0ab99f8eeaf59475051217e265eb3075ed5)), closes [#1404](https://github.com/xdy/twodsix-foundryvtt/issues/1404) [#1411](https://github.com/xdy/twodsix-foundryvtt/issues/1411)
+* Revert "chore(deps-dev): bump prettier from 2.8.8 to 3.0.0 (#1405)" (#1409) ([499bfb4](https://github.com/xdy/twodsix-foundryvtt/commit/499bfb40e11757e4f8e24cec64f0eed0f652ca39)), closes [#1405](https://github.com/xdy/twodsix-foundryvtt/issues/1405) [#1409](https://github.com/xdy/twodsix-foundryvtt/issues/1409)
+
 ## [3.2.6](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.5...v3.2.6) (2023-07-07)
 
 
