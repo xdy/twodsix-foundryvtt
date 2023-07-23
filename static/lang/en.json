@@ -51,7 +51,8 @@
       "ROFPickerTitle": "Select a rate of fire",
       "ROFSingle": "Single Fire",
       "ROFBurst": "Burst Fire",
-      "ROFFull": "Full Auto"
+      "ROFFull": "Full Auto",
+      "ROFDoubleTap": "Double Tap"
     },
     "Actor": {
       "Age": "Age",
@@ -536,6 +537,7 @@
         "weaponType": "Weapon Type",
         "damageType": "Damage Type",
         "rateOfFire": "Rate of Fire/Auto X",
+        "doubleTap": "Double Tap",
         "recoil": "Recoil",
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost",
@@ -769,7 +771,11 @@
       "using": "using {characteristic}",
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
+      "Damage": "Damage",
       "BonusDamage": "Bonus Damage",
+      "BurstDamage": "Burst Damage",
+      "FullAuto": "Full Auto",
+      "DoubleTap": "Double Tap",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
@@ -934,6 +940,10 @@
       "ShowRecoil": {
         "hint": "checked=Show the 'Recoil' field, unchecked=Hide it",
         "name": "Show the 'Recoil' field on weapon sheets"
+      },
+      "ShowDoubleTap": {
+        "hint": "checked=Show the 'Double Tap' field, unchecked=Hide it",
+        "name": "Show the 'Double Tap' field on weapon sheets"
       },
       "showSingleComponentColumn": {
         "hint": "Show the ship components list as a single row.",

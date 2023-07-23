@@ -709,6 +709,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   recoil:boolean;
   features:string;
   armorPiercing:number;
+  doubleTap:boolean;
 }
 
 export interface Computer extends GearTemplate, LinkTemplate {

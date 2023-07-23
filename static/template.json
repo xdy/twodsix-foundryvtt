@@ -705,6 +705,7 @@
       "weaponType": "",
       "damageType": "NONE",
       "rateOfFire": "",
+      "doubleTap": false,
       "recoil": false,
       "features": "",
       "armorPiercing": 0,

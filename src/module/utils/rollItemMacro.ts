@@ -40,7 +40,7 @@ export function shouldShowCELAutoFireDialog(weapon: TwodsixItem): boolean {
   const rateOfFire: string = (<Weapon>weapon.system).rateOfFire;
   return (
     (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
-    (Number(rateOfFire) > 1)
+    (Number(rateOfFire) > 1  || (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')))
   );
 }
 
@@ -52,31 +52,53 @@ export function shouldShowCEAutoFireDialog(weapon: TwodsixItem): boolean {
   );
 }
 
-export async function promptForCELROF(): Promise<string> {
-  return new Promise((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-      content: "",
-      buttons: {
-        single: {
-          label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-            resolve('');
+export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
+  if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          single: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+              resolve('');
+            }
+          },
+          doubleTap: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFDoubleTap"), callback: () => {
+              resolve('double-tap');
+            }
           }
         },
-        burst: {
-          label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-            resolve('auto-burst');
+        default: 'single',
+      }).render(true);
+    });
+  } else {
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          single: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+              resolve('');
+            }
+          },
+          burst: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
+              resolve('auto-burst');
+            }
+          },
+          full: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
+              resolve('auto-full');
+            }
           }
         },
-        full: {
-          label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-            resolve('auto-full');
-          }
-        }
-      },
-      default: 'single',
-    }).render(true);
-  });
+        default: 'single',
+      }).render(true);
+    });
+  }
 }
 
 export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
@@ -127,7 +149,7 @@ export async function resolveUnknownAutoMode(item: TwodsixItem) {
   switch (game.settings.get('twodsix', 'autofireRulesUsed')) {
     case TWODSIX.RULESETS.CEL.key:
       if (shouldShowCELAutoFireDialog(item)) {
-        attackType = await promptForCELROF();
+        attackType = await promptForCELROF(item);
       }
       await item.performAttack(attackType, true);
       break;
