@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.3.0...v3.4.0) (2023-07-24)
+
+
+### Features
+
+* add double tap ([#1419](https://github.com/xdy/twodsix-foundryvtt/issues/1419)) ([9e0eb43](https://github.com/xdy/twodsix-foundryvtt/commit/9e0eb4355ef06595684130abfddb3bc64f744ebc))
+
 # [3.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.2.7...v3.3.0) (2023-07-22)
 
 
