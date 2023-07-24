@@ -162,10 +162,12 @@
       {{/if}}
 
       {{#if settings.ShowRateOfFire}}
+      {{#iff (not system.doubleTap) "||" (not settings.ShowDoubleTap)}}
           <div class="item-rateOfFire">
             <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
-            <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}" {{#iff system.doubleTap "&&" settings.ShowDoubleTap}} disabled {{/iff}}>
+            <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
           </div>
+      {{/iff}}
       {{/if}}
 
       {{#if settings.ShowRecoil}}
