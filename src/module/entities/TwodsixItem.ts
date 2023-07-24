@@ -153,13 +153,16 @@ export default class TwodsixItem extends Item {
         usedAmmo = parseInt(weapon.rateOfFire, 10);
         break;
       case "burst-attack-dm":
-        //tmpSettings.diceModifier = TwodsixItem.burstAttackDM(rateOfFireCE);  // ***Delete on refactor of Roll Settings
         Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFireCE)});
         usedAmmo = rateOfFireCE || 0;
         break;
       case "burst-bonus-damage":
         bonusDamage = TwodsixItem.burstBonusDamage(rateOfFireCE);
         usedAmmo = rateOfFireCE || 0;
+        break;
+      case "double-tap":
+        Object.assign(tmpSettings.rollModifiers, {rof: 1});
+        usedAmmo = 2;
         break;
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});

@@ -52,16 +52,20 @@
               {{#each (twodsix_burstModes item.system) as |mode|}}
                 <span class="items-weapons-abilities">
                   <span class="item-name">Burst {{mode}}</span>
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-attack-dm">[+{{twodsix_burstAttackDM mode}} Attack DM]</span>
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-bonus-damage">[+{{twodsix_burstBonusDamage mode}} Damage]</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-attack-dm">[+{{twodsix_burstAttackDM mode}} {{localize "TWODSIX.Rolls.AttackDM"}}]</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-bonus-damage">[+{{twodsix_burstBonusDamage mode}} {{localize "TWODSIX.Rolls.Damage"}}]</span>
                 </span>
               {{/each}}
             {{/if}}
             {{#if (twodsix_useCELAutofireRules item.system)}}
               <span class="items-weapons-abilities">
-                <span class="item-name">Auto {{item.system.rateOfFire}}</span>
-                <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst">[Burst Damage]</span>
-                <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full">[Full Auto]</span>
+                {{#iff item.system.doubleTap "&&" ../settings.ShowDoubleTap}}
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="double-tap">[{{localize "TWODSIX.Rolls.DoubleTap"}}]</span>
+                {{else}}
+                  <span class="item-name">Auto {{item.system.rateOfFire}}</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst">[{{localize "TWODSIX.Rolls.BurstDamage"}}]</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
+                {{/iff}}
               </span>
             {{/if}}
           </li>

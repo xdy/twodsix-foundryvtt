@@ -67,6 +67,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showIcons: game.settings.get("twodsix", "showIcons"),
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
+      ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),

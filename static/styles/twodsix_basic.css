@@ -2287,7 +2287,7 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .item-tl, .item-price, .item-skill, .item-skillModifier, .item-ammo, .item-qty, .item-weight, .item-power, .item-damage, .item-hits, .item-lvl, .item-armor, .item-range, .item-short,
 .item-secondaryArmor, .item-radiationProtection, .item-prereq, .item-features, .item-subtype, .item-type, .item-reference, .item-hardened, .item-refined,
-.item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-augmentLoc, .item-bonus,
+.item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-doubleTap, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
 .item-priorType {

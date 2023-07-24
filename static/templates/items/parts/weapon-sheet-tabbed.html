@@ -154,11 +154,20 @@
         {{/if}}
       </div>
 
-      {{#if settings.ShowRateOfFire}}
-        <div class="item-rateOfFire">
-          <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
-          <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
+      {{#if settings.ShowDoubleTap}}
+        <div class="item-doubleTap">
+          <label class="resource-label" for="system.doubleTap">{{localize "TWODSIX.Items.Weapon.doubleTap"}}</label>
+          <input type="checkbox" class="checkbox" id="system.doubleTap" name="system.doubleTap" {{checked system.doubleTap}} data-dtype="Boolean"/>
         </div>
+      {{/if}}
+
+      {{#if settings.ShowRateOfFire}}
+      {{#iff (not system.doubleTap) "||" (not settings.ShowDoubleTap)}}
+          <div class="item-rateOfFire">
+            <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+            <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
+          </div>
+      {{/iff}}
       {{/if}}
 
       {{#if settings.ShowRecoil}}

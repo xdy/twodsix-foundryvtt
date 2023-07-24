@@ -142,7 +142,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_useCELAutofireRules', (weapon) => {
-    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && (weapon.rateOfFire > 1));
+    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && (weapon.rateOfFire > 1 || (weapon.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap'))));
   });
 
   Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize: string) => {
