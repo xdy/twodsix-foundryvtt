@@ -37,16 +37,11 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
   }
 
   for (const skill of actor.itemTypes.skills) {
-    const prop = simplifySkillName(skill.name);
-    //let charModifier = 0;
-    let fullCharLabel = "";
-    if (skill.system.characteristic !== "NONE") {
-      fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.system.characteristic);
-      //charModifier = actor.system["characteristics"][fullCharLabel]?.mod ?? 0;
-    }
-    const formula = `(@skills.${prop}` + (fullCharLabel !== "" ? ` + @characteristics.${fullCharLabel}.mod` : ``) + `)[${skill.name}]`;
-    whitelist.twodsix.custom.abilities[prop] = {
-      label: prop,
+    const simpleSkillName = simplifySkillName(skill.name);
+    const fullCharLabel = skill.system.characteristic !== "NONE" ? getKeyByValue(TWODSIX.CHARACTERISTICS, skill.system.characteristic) : "";
+    const formula = `(@skills.${simpleSkillName}` + (fullCharLabel !== "" ? ` + @characteristics.${fullCharLabel}.mod` : ``) + `)[${skill.name}]`;
+    whitelist.twodsix.custom.abilities[simpleSkillName] = {
+      label: simpleSkillName,
       name: `${skill.name}`,
       formula: formula
     };
