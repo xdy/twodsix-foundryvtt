@@ -29,47 +29,47 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
         strength: {
           label: actor.system.characteristics.strength.key,
           name: actor.system.characteristics.strength.displayShortLabel,
-          formula: actor.system.characteristics.strength.mod !== undefined ? `(@characteristics.strength.mod) [${actor.system.characteristics.strength.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.strength.mod !== undefined ? `(@characteristics.strength.mod)[${actor.system.characteristics.strength.displayShortLabel}]` : ``
         },
         dexterity: {
           label: actor.system.characteristics.dexterity.key,
           name: actor.system.characteristics.dexterity.displayShortLabel,
-          formula: actor.system.characteristics.dexterity.mod !== undefined ? `(@characteristics.dexterity.mod) [${actor.system.characteristics.dexterity.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.dexterity.mod !== undefined ? `(@characteristics.dexterity.mod)[${actor.system.characteristics.dexterity.displayShortLabel}]` : ``
         },
         endurance: {
           label: actor.system.characteristics.endurance.key,
           name: actor.system.characteristics.endurance.displayShortLabel,
-          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.endurance.mod) [${actor.system.characteristics.endurance.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.endurance.mod)[${actor.system.characteristics.endurance.displayShortLabel}]` : ``
         },
         intelligence: {
           label: actor.system.characteristics.intelligence.key,
           name: actor.system.characteristics.intelligence.displayShortLabel,
-          formula: actor.system.characteristics.intelligence.mod !== undefined ? `(@characteristics.intelligence.mod) [${actor.system.characteristics.intelligence.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.intelligence.mod !== undefined ? `(@characteristics.intelligence.mod)[${actor.system.characteristics.intelligence.displayShortLabel}]` : ``
         },
         education: {
           label: actor.system.characteristics.education.key,
           name: actor.system.characteristics.education.displayShortLabel,
-          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.education.mod) [${actor.system.characteristics.education.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.education.mod)[${actor.system.characteristics.education.displayShortLabel}]` : ``
         },
         socialStanding: {
           label: actor.system.characteristics.socialStanding.key,
           name: actor.system.characteristics.socialStanding.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.socialStanding.mod) [${actor.system.characteristics.socialStanding.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.socialStanding.mod)[${actor.system.characteristics.socialStanding.displayShortLabel}]` : ``
         },
         psionicStrength: {
           label: actor.system.characteristics.psionicStrength.key,
           name: actor.system.characteristics.psionicStrength.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.psionicStrength.mod) [${actor.system.characteristics.psionicStrength.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.psionicStrength.mod)[${actor.system.characteristics.psionicStrength.displayShortLabel}]` : ``
         },
         alternative1: {
           label: actor.system.characteristics.alternative1.key,
           name: actor.system.characteristics.alternative1.displayShortLabel,
-          formula: actor.system.characteristics.alternative1.mod !== undefined ? `(@characteristics.alternative1.mod) [${actor.system.characteristics.alternative1.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.alternative1.mod !== undefined ? `(@characteristics.alternative1.mod)[${actor.system.characteristics.alternative1.displayShortLabel}]` : ``
         },
         alternative2: {
           label: actor.system.characteristics.alternative2.key,
           name: actor.system.characteristics.alternative2.displayShortLabel,
-          formula: actor.system.characteristics.alternative2.mod !== undefined ? `(@characteristics.alternative2.mod) [${actor.system.characteristics.alternative2.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.alternative2.mod !== undefined ? `(@characteristics.alternative2.mod)[${actor.system.characteristics.alternative2.displayShortLabel}]` : ``
         },
       }
     }
@@ -95,7 +95,7 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
       fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, skill.system.characteristic);
       //charModifier = actor.system["characteristics"][fullCharLabel]?.mod ?? 0;
     }
-    const formula = `(@skills.${prop}` + (fullCharLabel !== "" ? ` + @characteristics.${fullCharLabel}.mod)` : `)`) + ` [${skill.name}]`;
+    const formula = `(@skills.${prop}` + (fullCharLabel !== "" ? ` + @characteristics.${fullCharLabel}.mod` : ``) + `)[${skill.name}]`;
     whitelist.twodsix.custom.abilities[prop] = {
       label: prop,
       name: `${skill.name}`,
