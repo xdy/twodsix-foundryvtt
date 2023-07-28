@@ -51,7 +51,8 @@
       "ROFPickerTitle": "Seleccionar modo disparo",
       "ROFSingle": "Simple",
       "ROFBurst": "Ráfaga",
-      "ROFFull": "Automático"
+      "ROFFull": "Automático",
+      "ROFDoubleTap": "Disparo Doble"
     },
     "Actor": {
       "Age": "Edad",
@@ -536,6 +537,7 @@
         "weaponType": "Tipo Arma",
         "damageType": "Tipo Daño",
         "rateOfFire": "Cadencia de Tiro/Auto X",
+        "doubleTap": "Disparo Doble",
         "recoil": "Retroceso",
         "UseAsAmmunitionForAttack": "Utilizar como munición en ataques",
         "MagazineCost": "Coste del cargador/celda",
@@ -769,7 +771,11 @@
       "using": "de {characteristic}",
       "Wounds": "Heridas",
       "AttackDM": "MD Ataque",
+      "Damage": "Daño",
       "BonusDamage": "Bono Daño",
+      "BurstDamage": "Daño Ráfaga",
+      "FullAuto": "Automático",
+      "DoubleTap": "Disparo Doble",
       "Timeframe": "Tiempo",
       "RollInitiative": "Tira Iniciativa",
       "characteristic": "atributo",
@@ -934,6 +940,10 @@
       "ShowRecoil": {
         "hint": "Marcado=Mostrar Retroceso; SinMarcar=Ocultar.",
         "name": "Mostrar 'Retroceso' en armas"
+      },
+      "ShowDoubleTap": {
+        "hint": "Marcado=Mostrar 'Disparo Doble', SinMarcar=Ocultar",
+        "name": "Mostrar campo 'Disparo Doble' en la hoja del arma"
       },
       "showSingleComponentColumn": {
         "hint": "Mostrar lista componentes de la nave en una sola columna.",
