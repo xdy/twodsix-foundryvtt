@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.4.0...v3.5.0) (2023-07-28)
+
+
+### Features
+
+* add dice-tray support ([#1424](https://github.com/xdy/twodsix-foundryvtt/issues/1424)) ([22f38f5](https://github.com/xdy/twodsix-foundryvtt/commit/22f38f5752b164f80049584f78ed5ffe1b9f93a9))
+
 # [3.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.3.0...v3.4.0) (2023-07-24)
 
 
