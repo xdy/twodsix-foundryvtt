@@ -54,22 +54,22 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
         socialStanding: {
           label: actor.system.characteristics.socialStanding.key,
           name: actor.system.characteristics.socialStanding.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `@characteristics.socialStanding.mod [${actor.system.characteristics.socialStanding.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.socialStanding.mod) [${actor.system.characteristics.socialStanding.displayShortLabel}]` : ``
         },
         psionicStrength: {
           label: actor.system.characteristics.psionicStrength.key,
           name: actor.system.characteristics.psionicStrength.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `@characteristics.psionicStrength.mod [${actor.system.characteristics.psionicStrength.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.psionicStrength.mod) [${actor.system.characteristics.psionicStrength.displayShortLabel}]` : ``
         },
         alternative1: {
           label: actor.system.characteristics.alternative1.key,
           name: actor.system.characteristics.alternative1.displayShortLabel,
-          formula: actor.system.characteristics.alternative1.mod !== undefined ? `@characteristics.alternative1.mod [${actor.system.characteristics.alternative1.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.alternative1.mod !== undefined ? `(@characteristics.alternative1.mod) [${actor.system.characteristics.alternative1.displayShortLabel}]` : ``
         },
         alternative2: {
           label: actor.system.characteristics.alternative2.key,
           name: actor.system.characteristics.alternative2.displayShortLabel,
-          formula: actor.system.characteristics.alternative2.mod !== undefined ? `@characteristics.alternative2.mod [${actor.system.characteristics.alternative2.displayShortLabel}]` : ``
+          formula: actor.system.characteristics.alternative2.mod !== undefined ? `(@characteristics.alternative2.mod) [${actor.system.characteristics.alternative2.displayShortLabel}]` : ``
         },
       }
     }
