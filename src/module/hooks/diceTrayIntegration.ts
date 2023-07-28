@@ -8,73 +8,22 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
   console.log("Made it to Whitelist");
   // Add whitelist support for the calculator.
   whitelist.twodsix = {
-    // Currently, the only flag that's supported is the adv flag (whether to
-    // say "Adv." or "kh" on the kh/kl buttons).
-    flags: {
-      adv: false
-    },
-    // List any abilities on actor.data.data.abilities that should be allowed.
-    abilities: [],
-    // List any attributes on actor.data.data.attributes that should be allowed.
-    // Level is automatically pulled from actor.data.data.details and added to
-    // this array as well.
     attributes: [],
-    // The custom section can be used to replace abilities or attributes outright,
-    // or it can be used to add a third row of custom buttons. Anything added
-    // to this section needs to have 3 keys: label, name, and formula.
+    abilities: [],
     custom: {
+      attributes: {},
       abilities: {},
-      custom: {},
-      attributes: {
-        strength: {
-          label: actor.system.characteristics.strength.key,
-          name: actor.system.characteristics.strength.displayShortLabel,
-          formula: actor.system.characteristics.strength.mod !== undefined ? `(@characteristics.strength.mod)[${actor.system.characteristics.strength.displayShortLabel}]` : ``
-        },
-        dexterity: {
-          label: actor.system.characteristics.dexterity.key,
-          name: actor.system.characteristics.dexterity.displayShortLabel,
-          formula: actor.system.characteristics.dexterity.mod !== undefined ? `(@characteristics.dexterity.mod)[${actor.system.characteristics.dexterity.displayShortLabel}]` : ``
-        },
-        endurance: {
-          label: actor.system.characteristics.endurance.key,
-          name: actor.system.characteristics.endurance.displayShortLabel,
-          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.endurance.mod)[${actor.system.characteristics.endurance.displayShortLabel}]` : ``
-        },
-        intelligence: {
-          label: actor.system.characteristics.intelligence.key,
-          name: actor.system.characteristics.intelligence.displayShortLabel,
-          formula: actor.system.characteristics.intelligence.mod !== undefined ? `(@characteristics.intelligence.mod)[${actor.system.characteristics.intelligence.displayShortLabel}]` : ``
-        },
-        education: {
-          label: actor.system.characteristics.education.key,
-          name: actor.system.characteristics.education.displayShortLabel,
-          formula: actor.system.characteristics.endurance.mod !== undefined ? `(@characteristics.education.mod)[${actor.system.characteristics.education.displayShortLabel}]` : ``
-        },
-        socialStanding: {
-          label: actor.system.characteristics.socialStanding.key,
-          name: actor.system.characteristics.socialStanding.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.socialStanding.mod)[${actor.system.characteristics.socialStanding.displayShortLabel}]` : ``
-        },
-        psionicStrength: {
-          label: actor.system.characteristics.psionicStrength.key,
-          name: actor.system.characteristics.psionicStrength.displayShortLabel,
-          formula: actor.system.characteristics.socialStanding.mod !== undefined ? `(@characteristics.psionicStrength.mod)[${actor.system.characteristics.psionicStrength.displayShortLabel}]` : ``
-        },
-        alternative1: {
-          label: actor.system.characteristics.alternative1.key,
-          name: actor.system.characteristics.alternative1.displayShortLabel,
-          formula: actor.system.characteristics.alternative1.mod !== undefined ? `(@characteristics.alternative1.mod)[${actor.system.characteristics.alternative1.displayShortLabel}]` : ``
-        },
-        alternative2: {
-          label: actor.system.characteristics.alternative2.key,
-          name: actor.system.characteristics.alternative2.displayShortLabel,
-          formula: actor.system.characteristics.alternative2.mod !== undefined ? `(@characteristics.alternative2.mod)[${actor.system.characteristics.alternative2.displayShortLabel}]` : ``
-        },
-      }
+      custom: {}
     }
   };
 
+  for( const char in actor.system.characteristics) {
+    whitelist.twodsix.custom.attributes[char] = {
+      label: actor.system.characteristics[char].key,
+      name: actor.system.characteristics[char].displayShortLabel,
+      formula: actor.system.characteristics[char].mod !== undefined ? `(@characteristics.${char}.mod)[${actor.system.characteristics[char].displayShortLabel}]` : ``
+    };
+  }
   switch (game.settings.get('twodsix', 'showAlternativeCharacteristics')) {
     case 'base':
       delete whitelist.twodsix.custom.attributes.alternative1;
