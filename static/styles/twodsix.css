@@ -1187,7 +1187,7 @@ input.stat-name-table {
 input.stat-name, input.special-name {
   position: relative;
   left: 0.7em;
-  top: -1.1em;
+  top: -1.0em;
   font-size: 1.2em;
   display: block;
   width: 75%;
@@ -1252,10 +1252,11 @@ span.special-name {
 }
 
 span.stat-ability {
+  position: absolute;
   margin: -0.3em;
-  position: relative;
+  /* position: relative; */
   left: 15px;
-  top: -13px;
+  top: 9px;
 }
 
 input[data-tooltip *="("] {
@@ -1269,9 +1270,9 @@ span.stat-ability-table {
 
 span.stat-modifier {
   margin: -6px;
-  position: relative;
-  left: 29px;
-  top: -13px;
+  position: absolute;
+  left: 44px;
+  top: 10px;
 }
 span.stat-modifier-table {
   text-align: center;
@@ -1285,9 +1286,9 @@ span.stat-ability-table input, span.stat-modifier-table input {
 }
 
 span.stat-damage {
-  position: relative;
-  top: 8px;
-  left: 1px;
+  position: absolute;
+  top: 26px;
+  left: 25px;
 }
 
 span.stat-damage-table {
@@ -1312,22 +1313,23 @@ span.stat-damage input, span.special-damage input {
 }
 
 span.special-ability {
-  position: relative;
-  top: -16px;
+  position: absolute;
+  /* position: relative; */
+  top: 2px;
   left: 9px;
 }
 
 span.special-modifier {
   margin: -6px;
-  position: relative;
-  left: -2px;
-  top: -28px;
+  position: absolute;
+  left: 29px;
+  top: 19px;
 }
 
 span.special-damage {
-  position: relative;
-  padding-left: 0.6em;
-  top: -14px;
+  position: absolute;
+  left: 9px;
+  top: 26px;
 }
 
 svg:hover {
