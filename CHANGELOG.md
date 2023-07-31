@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.5.0...v3.5.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* add Macro and some style fixes ([#1425](https://github.com/xdy/twodsix-foundryvtt/issues/1425)) ([f75a6e0](https://github.com/xdy/twodsix-foundryvtt/commit/f75a6e0fe1686f8e887da30e069193a694eba014))
+
 # [3.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.4.0...v3.5.0) (2023-07-28)
 
 
