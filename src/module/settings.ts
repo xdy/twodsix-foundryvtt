@@ -29,18 +29,18 @@ export const registerSettings = function ():void {
     return 0;
   });
   stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, false, Object.fromEntries(rulesetOptions), true);
-
+  //need a custom setting to use requiresReload
   game.settings.register("twodsix", "overrideDamageRoll", {
     name: game.i18n.localize("TWODSIX.Settings.overrideDamageRoll.name"),
     hint: game.i18n.localize("TWODSIX.Settings.overrideDamageRoll.hint"),
-    scope: "world",      // This specifies a world-level setting
-    config: true,        // This specifies that the setting appears in the configuration view
-    requiresReload: true, // This will prompt the GM to have all clients reload the application for the setting to
+    scope: "world",
+    config: true,
+    requiresReload: true,
     type: Boolean,
-    default: true,         // The default value for the setting
+    default: false,
     onChange: _overrideDamageRollSetting
   });
-  //booleanSetting('overrideDamageRoll', true, true, 'world', _overrideDamageRollSetting);
+
   booleanSetting('automateDamageRollOnHit', true, true, game.settings.get('twodsix', 'overrideDamageRoll')? 'world' : 'client');
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
