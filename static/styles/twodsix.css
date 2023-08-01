@@ -3383,6 +3383,10 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background-color: var(--sidebar-dark-background);
 }
 
+.directory .directory-header .header-search input {
+  background-color: var(--s2d6-background-semi-opaque);
+}
+
 #sidebar-tabs > .item.active {
   color: var(--s2d6-light-color);
   border: 1px solid var(--s2d6-light-color);

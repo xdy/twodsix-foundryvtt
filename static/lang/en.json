@@ -1203,6 +1203,10 @@
         "hint": "Remove unneeded status conditions from default Foundry that don't apply to a science fiction setting, e.g. cursed. WARNING: changing this setting from true (checked) to false (unchecked) will reload the world.",
         "name": "Simplify default condition icon list for a science fiction setting"
       },
+      "overrideDamageRoll": {
+        "hint": "Set the automatic damage roll to a wolrd scope and override client settings.  WARNING: Requires all clients to reload when setting changed.",
+        "name": "Override automatic damage rolls for clients to GM setting."
+      },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },
     "CloseAndCreateNew": "Close and create new",
