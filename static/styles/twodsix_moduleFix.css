@@ -160,3 +160,25 @@ div.pdf-app section.window-content {
 .polyglot-lang-select label {
   margin-top: 4px;
 }
+
+/******** Monk's Active Tile Trigggers********/
+
+.action-sheet .display-value, .multiple-dropdown {
+  color: var(--s2d6-light-color);
+  background-color: var(--s2d6-background-semi-opaque);
+  border-color: var(--s2d6-background-opaque);
+}
+
+.multiple-dropdown .multiple-dropdown-option {
+  color: var(--s2d6-light-color);
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+.monks-active-tiles.sheet .items-list, .monks-active-tiles.sheet .items-list .item .item-name,
+.monks-active-tiles div[data-tab="triggers"] .action-items .action-style,
+.monks-active-tiles .file-list,
+.monks-active-tiles .file-list li a,
+.monks-active-tiles.sheet .items-list .items-header {
+  color: var(--s2d6-default-color);
+  border-color: var(--s2d6-default-color);
+}
