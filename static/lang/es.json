@@ -1203,6 +1203,10 @@
         "hint": "Eliminar los estados por defecto innecesarios que no aplican en una ambientación de ciencia ficción. Ej: Maldito. AVISO: cambiar esta opción de marcada a desmarcada recarga el mundo.",
         "name": "Simplificar los iconos de estado por defecto para ciencia ficción"
       },
+      "overrideDamageRoll": {
+        "hint": "Configurar la tirada de daño automático en el mundo sobre escribiendo el valor del cliente. AVISO: Requiere que todos los clientes recarguen la página al cambiar esta configuración.",
+        "name": "Fijar el daño automático en las tiradas con la configuración del Árbitro."
+      },
       "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
