@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.5.1...v3.6.0) (2023-08-01)
+
+
+### Features
+
+* add setting to override auto damage roll for clients ([#1426](https://github.com/xdy/twodsix-foundryvtt/issues/1426)) ([e35f20b](https://github.com/xdy/twodsix-foundryvtt/commit/e35f20bbed2ea3402adef8531a1ab3d46b8af0f1))
+
 ## [3.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.5.0...v3.5.1) (2023-07-31)
 
 
