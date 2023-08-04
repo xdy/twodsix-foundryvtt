@@ -224,15 +224,18 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    const targets = Array.from(game.user.targets);
+    if (targets.length > numberOfAttacks) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
+    }
+
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
-      if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
+      if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (game.user?.targets.size === 1 && damagePayload) {
-          game.user?.targets.values().next().value.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-        } else if (game.user?.targets && game.user?.targets.size > 1) {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
+        if (targets.length >= 1 && damagePayload) {
+          targets[i%targets.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
       }
     }
