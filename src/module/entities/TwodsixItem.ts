@@ -229,10 +229,10 @@ export default class TwodsixItem extends Item {
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (game.user?.targets.size === 1 && damagePayload) {
-          game.user?.targets.values().next().value.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
-        } else if (game.user?.targets && game.user?.targets.size > 1) {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AutoDamageForMultipleTargetsNotImplemented"));
+        if (game.user?.targets.size >= 1 && damagePayload) {
+          for (const target of game.user.targets) {
+            target.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          }
         }
       }
     }
