@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.6.0...v3.6.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* update applying damage to targeted token ([#1430](https://github.com/xdy/twodsix-foundryvtt/issues/1430)) ([fafebd0](https://github.com/xdy/twodsix-foundryvtt/commit/fafebd00c54e1f299d0228dbd44658252348579f))
+
 # [3.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.5.1...v3.6.0) (2023-08-01)
 
 
