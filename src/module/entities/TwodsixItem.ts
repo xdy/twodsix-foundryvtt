@@ -230,7 +230,7 @@ export default class TwodsixItem extends Item {
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll && roll.isSuccess()) {
         const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (targets?.length >= 1 && damagePayload) {
+        if (targets.length >= 1 && damagePayload) {
           targets[i%targets.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
       }
