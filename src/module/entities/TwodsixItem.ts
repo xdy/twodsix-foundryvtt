@@ -225,6 +225,10 @@ export default class TwodsixItem extends Item {
     }
 
     const targets = Array.from(game.user.targets);
+    if (targets.length > numberOfAttacks) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
+    }
+
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
