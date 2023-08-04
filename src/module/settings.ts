@@ -42,6 +42,7 @@ export const registerSettings = function ():void {
   });
 
   booleanSetting('automateDamageRollOnHit', true, true, game.settings.get('twodsix', 'overrideDamageRoll')? 'world' : 'client');
+  booleanSetting('autoDamageTarget', false, true, "world");
   booleanSetting('hideUntrainedSkills', false, true, "world", _onHideUntrainedSkillsChange);
   booleanSetting('invertSkillRollShiftClick', false, true);
   booleanSetting('transferDroppedItems', false, true);
