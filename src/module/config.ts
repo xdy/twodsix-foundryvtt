@@ -73,7 +73,8 @@ const RULESETS = Object.freeze({
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -1
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: true
     }
   },
   CEL: {
@@ -113,7 +114,8 @@ const RULESETS = Object.freeze({
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -1
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: false
     }
   },
   CEFTL: {
@@ -151,7 +153,8 @@ const RULESETS = Object.freeze({
       showComponentRating: false,
       showComponentDM: false,
       encumbranceFraction: "0.33",
-      encumbranceModifier: 0
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: false
     },
   },
   CEATOM: {
@@ -189,7 +192,8 @@ const RULESETS = Object.freeze({
       showComponentRating: false,
       showComponentDM: false,
       encumbranceFraction: "0.5",
-      encumbranceModifier: 0
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: false
     }
   },
   BARBARIC: {
@@ -226,7 +230,8 @@ const RULESETS = Object.freeze({
       showComponentRating: false,
       showComponentDM: false,
       encumbranceFraction: "0.5",
-      encumbranceModifier: 0
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: false
     },
   },
   CEQ: {
@@ -265,7 +270,8 @@ const RULESETS = Object.freeze({
       showComponentRating: false,
       showComponentDM: false,
       encumbranceFraction: "0.33",
-      encumbranceModifier: 0
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: false
     }
   },
   CD: {
@@ -312,7 +318,8 @@ const RULESETS = Object.freeze({
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -2
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: false
     }
   },
   CDEE: {
@@ -359,7 +366,8 @@ const RULESETS = Object.freeze({
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -2
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: false
     }
   },
   CLU: {
@@ -406,7 +414,8 @@ const RULESETS = Object.freeze({
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -2
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: false
     }
   },
 
@@ -454,14 +463,17 @@ const RULESETS = Object.freeze({
       showComponentRating: false,
       showComponentDM: false,
       encumbranceFraction: "0.33",
-      encumbranceModifier: -1
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: false
     }
   },
 
   OTHER: {
     key: "OTHER",
     name: "Other",
-    settings: {}
+    settings: {
+      useDegreesOfSuccess: true
+    }
   }
 })
 ;
