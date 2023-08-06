@@ -137,7 +137,7 @@ declare global {
       'twodsix.useTabbedViews':boolean;
       'twodsix.damageTypeOptions':string;
       'twodsix.animalTypesIndependentofNiche':boolean;
-      'twodsix.useDegreesOfSuccess': boolean;
+      'twodsix.useDegreesOfSuccess': string;
       'twodsix.autoDamageTarget': boolean;
       'twodsix.overrideDamageRoll': boolean;
     }

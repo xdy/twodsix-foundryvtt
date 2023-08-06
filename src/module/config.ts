@@ -74,7 +74,7 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: true
+      useDegreesOfSuccess: 'CE'
     }
   },
   CEL: {
@@ -115,7 +115,7 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
   CEFTL: {
@@ -154,7 +154,7 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     },
   },
   CEATOM: {
@@ -193,7 +193,7 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
   BARBARIC: {
@@ -231,7 +231,7 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     },
   },
   CEQ: {
@@ -271,7 +271,7 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
   CD: {
@@ -319,7 +319,7 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
   CDEE: {
@@ -367,7 +367,7 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
   CLU: {
@@ -415,7 +415,7 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
 
@@ -464,7 +464,7 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: false
+      useDegreesOfSuccess: 'none'
     }
   },
 
@@ -472,7 +472,7 @@ const RULESETS = Object.freeze({
     key: "OTHER",
     name: "Other",
     settings: {
-      useDegreesOfSuccess: true
+      useDegreesOfSuccess: 'other'
     }
   }
 })
@@ -724,6 +724,12 @@ export const AnimalLocations = {
   forest: "TWODSIX.Animal.Locations.ForestJungle"
 };
 
+export const SuccessTypes = {
+  none: "TWODSIX.Chat.Roll.DegreesOfSuccess.none",
+  CE: "TWODSIX.Chat.Roll.DegreesOfSuccess.CE",
+  other: "TWODSIX.Chat.Roll.DegreesOfSuccess.other"
+};
+
 export const AllAnimalTypes = Object.assign({}, HerbivoreType, OmnivoreType, CarnivoreType, ScavengerType);
 
 export type TWODSIX = {
@@ -750,7 +756,8 @@ export type TWODSIX = {
   ScavengerType: typeof ScavengerType,
   AllAnimalTypes: typeof AllAnimalTypes,
   AnimalLocations: typeof AnimalLocations,
-  areaTargetTypes: typeof areaTargetTypes
+  areaTargetTypes: typeof areaTargetTypes,
+  SuccessTypes: typeof SuccessTypes
 };
 
 export const TWODSIX = {
@@ -777,7 +784,8 @@ export const TWODSIX = {
   ScavengerType: ScavengerType,
   AllAnimalTypes: AllAnimalTypes,
   AnimalLocations: AnimalLocations,
-  areaTargetTypes: areaTargetTypes
+  areaTargetTypes: areaTargetTypes,
+  SuccessTypes: SuccessTypes
 };
 
 export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

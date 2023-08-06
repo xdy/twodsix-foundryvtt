@@ -27,7 +27,7 @@ Hooks.on('renderChatMessage', (app, html) => {
         diceTotalText += (`\n${timeString}: ${timeframe}`);
       }
 
-      if (game.settings.get("twodsix", "useDegreesOfSuccess") && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
+      if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
         diceTotalText += (`\n${app.getFlag("twodsix", "degreeOfSuccess")}`);
       }
 

@@ -297,7 +297,7 @@ export class TwodsixDiceRoll {
     }
     // Add degree of Success
     let degreeOfSuccess = ``;
-    if (!["Attack", "ShipWeapon", "Unknown"].includes(this.rollSettings.flags.rollClass) && game.settings.get('twodsix', 'useDegreesOfSuccess')) {
+    if (!["Attack", "ShipWeapon", "Unknown"].includes(this.rollSettings.flags.rollClass) && game.settings.get('twodsix', 'useDegreesOfSuccess') !== 'none') {
       degreeOfSuccess = getDegreeOfSuccess(this.effect);
     }
 
@@ -341,7 +341,7 @@ export class TwodsixDiceRoll {
 }
 
 function getDegreeOfSuccess(effect: number): string {
-  if (game.settings.get("twodsix", "ruleset") !== "OTHER") {
+  if (game.settings.get("twodsix", 'useDegreesOfSuccess') === "CE") {
     if (effect <= -6) {
       return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalFailure");
     } else if (effect <= -1 ) {
@@ -353,7 +353,7 @@ function getDegreeOfSuccess(effect: number): string {
     } else {
       return "";
     }
-  } else {
+  } else if (game.settings.get("twodsix", 'useDegreesOfSuccess') === "other"){
     if (effect <= -6) {
       return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalFailure");
     } else if (effect <= -2 ) {
@@ -369,5 +369,7 @@ function getDegreeOfSuccess(effect: number): string {
     } else {
       return "";
     }
+  } else {
+    return "";
   }
 }

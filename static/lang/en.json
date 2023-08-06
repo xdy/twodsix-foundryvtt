@@ -336,7 +336,10 @@
           "MarginalSuccess": "Marginal Success",
           "AverageSuccess": "Average Success",
           "Success": "Success",
-          "ExceptionalSuccess": "Exceptional Success"
+          "ExceptionalSuccess": "Exceptional Success",
+          "none": "None",
+          "CE": "Cepheus Engine",
+          "other": "Other"
         }
       }
     },
