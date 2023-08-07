@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.6.1...v3.7.0) (2023-08-07)
+
+
+### Features
+
+* add degrees of success ([#1435](https://github.com/xdy/twodsix-foundryvtt/issues/1435)) ([b7845ef](https://github.com/xdy/twodsix-foundryvtt/commit/b7845efaa49863f6ef899e2ca48ea708f4524dae))
+
 ## [3.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.6.0...v3.6.1) (2023-08-04)
 
 
