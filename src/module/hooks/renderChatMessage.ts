@@ -19,19 +19,18 @@ Hooks.on('renderChatMessage', (app, html) => {
     if (!isNaN(Number(effect))) {
       const sumString = game.i18n.localize('TWODSIX.Rolls.sum').capitalize();
       const effectString = game.i18n.localize('TWODSIX.Rolls.Effect');
-      let diceTotalText = `${sumString}: ${diceTotal.text()} ${effectString}: ${effect}`;
+      let diceTotalText = `<section>${sumString}: ${diceTotal.text()} ${effectString}: ${effect}</section>`;
 
       if (game.settings.get("twodsix", "showTimeframe") && <string>app.getFlag("twodsix", "timeframe") !== '' && <string>app.getFlag("twodsix", "timeframe")) {
         const timeframe = <string>app.getFlag("twodsix", "timeframe");
         const timeString = game.i18n.localize('TWODSIX.Rolls.Timeframe');
-        diceTotalText += (`\n${timeString}: ${timeframe}`);
+        diceTotalText += `<section class="roll-detail">${timeString}: ${timeframe}</section>`;
       }
 
       if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
-        diceTotalText += (`\n${app.getFlag("twodsix", "degreeOfSuccess")}`);
+        diceTotalText += `<section class="roll-detail">${app.getFlag("twodsix", "degreeOfSuccess")}</section>`;
       }
-
-      diceTotal.text(diceTotalText);
+      diceTotal.html(diceTotalText);
     }
 
     // Color crits

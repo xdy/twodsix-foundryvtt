@@ -1252,6 +1252,10 @@ span.total-output {
   margin-left: 1em;
 }
 
+.roll-detail {
+  border-top: 1px dashed var(--color-border-light-2);
+}
+
 .skill-total {
   text-align: center;
 }
@@ -2507,6 +2511,10 @@ background: var(--sidebar-background);
 }*/
 .dice-total {
   white-space: pre-wrap;
+}
+
+.dice-roll .dice-total {
+  font-size: var(--font-size-16);
 }
 
 .dice-roll .dice-total.crit-fail-roll {

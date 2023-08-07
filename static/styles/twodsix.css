@@ -1714,6 +1714,10 @@ span.total-output {
   margin-left: 1em;
 }
 
+.roll-detail {
+  border-top: 1px dashed var(--s2d6-form-light);
+}
+
 .skill-total {
   text-align: center;
 }

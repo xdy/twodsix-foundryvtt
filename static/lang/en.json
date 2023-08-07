@@ -1225,7 +1225,7 @@
         "name": "Auto Damage Targets"
       },
       "useDegreesOfSuccess": {
-        "hint": "Show degrees of success.  OTHER ruleset include marginal success/failure; all others follow Cepheus Engine",
+        "hint": "Show degrees of success.  The 'Other' setting uses exceptional, marginal, and average descriptions for success & failure. The 'Cepheus Engine' setting does not use the marginal descriptor (per rules).  The 'None' setting omits all success or failure descriptions.",
         "name": "Show degrees of success for non-attack rolls"
       },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
