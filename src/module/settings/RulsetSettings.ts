@@ -83,6 +83,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("displayReactionMorale", false));
     settings.push(booleanSetting("useDodgeParry", false));
     settings.push(stringSetting("damageTypeOptions", "", false, "world"));
+    settings.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
     return settings;
   }
 }

@@ -295,6 +295,11 @@ export class TwodsixDiceRoll {
         timeToComplete = new Roll(this.rollSettings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
       }
     }
+    // Add degree of Success
+    let degreeOfSuccess = ``;
+    if (!["Attack", "ShipWeapon", "Unknown"].includes(this.rollSettings.flags.rollClass) && game.settings.get('twodsix', 'useDegreesOfSuccess') !== 'none') {
+      degreeOfSuccess = getDegreeOfSuccess(this.effect);
+    }
 
     //Add buttons
     flavorText += `<section class="card-buttons"><button data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question" style="margin-left: 3px;"></i></button>`;
@@ -321,6 +326,7 @@ export class TwodsixDiceRoll {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),
           "twodsix.effect": this.effect,
+          "twodsix.degreeOfSuccess": degreeOfSuccess,
           "twodsix.timeframe": timeToComplete,
           "twodsix.itemUUID": this.rollSettings.flags.itemUUID ?? "",
           "twodsix.tokenUUID": this.rollSettings.flags.tokenUUID ?? "",
@@ -331,5 +337,39 @@ export class TwodsixDiceRoll {
       },
       {rollMode: this.rollSettings.rollMode}
     );
+  }
+}
+
+function getDegreeOfSuccess(effect: number): string {
+  if (game.settings.get("twodsix", 'useDegreesOfSuccess') === "CE") {
+    if (effect <= -6) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalFailure");
+    } else if (effect <= -1 ) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.Failure");
+    } else if (effect <= 5 ){
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.Success");
+    } else if (effect >= 6) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalSuccess");
+    } else {
+      return "";
+    }
+  } else if (game.settings.get("twodsix", 'useDegreesOfSuccess') === "other"){
+    if (effect <= -6) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalFailure");
+    } else if (effect <= -2 ) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.AverageFailure");
+    } else if (effect === -1 ) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.MarginalFailure");
+    } else if (effect === 0 ) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.MarginalSuccess");
+    } else if (effect <= 5 ){
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.AverageSuccess");
+    } else if (effect >= 6) {
+      return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalSuccess");
+    } else {
+      return "";
+    }
+  } else {
+    return "";
   }
 }
