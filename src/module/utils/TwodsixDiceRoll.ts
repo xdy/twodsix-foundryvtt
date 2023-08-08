@@ -178,7 +178,7 @@ export class TwodsixDiceRoll {
 
   public getDegreeOfSuccess(): string {
     //Check for override for natural 2 or 12
-    if (game.settings.get("twodsix", 'useDegreesOfSuccess') !== "None" && game.settings.get("twodsix", 'overrideSuccessWithNaturalCrit')) {
+    if (game.settings.get("twodsix", 'overrideSuccessWithNaturalCrit')) {
       if (this.naturalTotal === 2) {
         return game.i18n.localize("TWODSIX.Chat.Roll.DegreesOfSuccess.ExceptionalFailure");
       } else if (this.naturalTotal === 12) {
