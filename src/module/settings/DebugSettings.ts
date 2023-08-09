@@ -23,16 +23,20 @@ export default class DebugSettings extends AdvancedSettings {
     return data;
   }
 
-  static registerSettings(): string[] {
-    const settings: string[] = [];
-    settings.push(booleanSetting('ExperimentalFeatures', false));
-    settings.push(stringSetting('systemMigrationVersion', game.system.version));
-    settings.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
-    settings.push(booleanSetting('useShipAutoCalcs', false, false, 'world', refreshWindow));
-    settings.push(booleanSetting('useProseMirror', false));
-    settings.push(booleanSetting('allowDropOnIcon', false));
-    settings.push(booleanSetting('allowDragDropOfLists', false));
-    settings.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateActorAE));
+  static registerSettings(): any {
+    const settings = {
+      general: [],
+      style: [],
+      dragDrop: []
+    };
+    settings.general.push(booleanSetting('ExperimentalFeatures', false));
+    settings.general.push(stringSetting('systemMigrationVersion', game.system.version));
+    settings.style.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
+    settings.general.push(booleanSetting('useShipAutoCalcs', false, false, 'world', refreshWindow));
+    settings.style.push(booleanSetting('useProseMirror', false));
+    settings.dragDrop.push(booleanSetting('allowDropOnIcon', false));
+    settings.dragDrop.push(booleanSetting('allowDragDropOfLists', false));
+    settings.general.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateActorAE));
     return settings;
   }
 }
