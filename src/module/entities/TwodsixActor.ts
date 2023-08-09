@@ -232,7 +232,7 @@ export default class TwodsixActor extends Actor {
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.hullValue * ( 1 + calcShipStats.cost.percentHull / 100 ) * calcShipStats.cost.hullOffset
       + calcShipStats.cost.perHullTon * (this.system.shipStats.mass.max || calcShipStats.weight.baseHull);
     if(this.system.isMassProduced) {
-      calcShipStats.cost.total *= (1 - game.settings.get("twodsix", "massProductionDiscount"));
+      calcShipStats.cost.total *= (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount")));
     }
     /*Push values to ship actor*/
     updateShipData(this);

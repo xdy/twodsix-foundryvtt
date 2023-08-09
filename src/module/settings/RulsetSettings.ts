@@ -61,13 +61,13 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(stringSetting("alternativeShort2", "ALT2"));
     settings.push(numberSetting('maxComponentHits', 3));
     settings.push(numberSetting('mortgagePayment', 240, false));
-    settings.push(numberSetting('massProductionDiscount', 0.10, false));
+    settings.push(stringSetting('massProductionDiscount', "0.10", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5
     settings.push(booleanSetting('reverseHealingOrder', false));
     settings.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5
     settings.push(numberSetting('encumbranceModifier', -1, false));
-    settings.push(numberSetting('encumbFractionOneSquare', 0.5));
-    settings.push(numberSetting('encumbFraction75pct', 0.33));
+    settings.push(stringSetting('encumbFractionOneSquare', "0.5")); //Should be a number setting, but FVTT unhappy with values other than 0.5
+    settings.push(stringSetting('encumbFraction75pct', "0.33")); //Should be a number setting, but FVTT unhappy with values other than 0.5
     settings.push(numberSetting('defaultMovement', 10));
     settings.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
     settings.push(booleanSetting('addEffectForShipDamage', false));
@@ -84,6 +84,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.push(booleanSetting("useDodgeParry", false));
     settings.push(stringSetting("damageTypeOptions", "", false, "world"));
     settings.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
+    settings.push(booleanSetting("overrideSuccessWithNaturalCrit", false));
     return settings;
   }
 }

@@ -1228,6 +1228,10 @@
         "hint": "Show degrees of success.  The 'Other' setting uses exceptional, marginal, and average descriptions for success & failure. The 'Cepheus Engine' setting does not use the marginal descriptor (per rules).  The 'None' setting omits all success or failure descriptions.",
         "name": "Show degrees of success for non-attack rolls"
       },
+      "overrideSuccessWithNaturalCrit": {
+        "hint": "Override the degree of success to be exceptional on a natural 2 or 12 - independent of effect.",
+        "name": "Override degree of success on critical roll (2 or 12)"
+      },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
     },
     "CloseAndCreateNew": "Close and create new",
