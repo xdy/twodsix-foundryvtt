@@ -98,7 +98,7 @@ declare global {
       'twodsix.minorWoundsRollModifier': number;
       'twodsix.seriousWoundsRollModifier': number;
       'twodsix.mortgagePayment': number;
-      'twodsix.massProductionDiscount': number;
+      'twodsix.massProductionDiscount': string;
       'twodsix.maxEncumbrance': string;
       'twodsix.useEncumbrance': boolean;
       'twodsix.defaultMovement': number;
@@ -132,8 +132,8 @@ declare global {
       'twodsix.useItemActiveEffects':boolean;
       'twodsix.showFeaturesInChat':boolean;
       'twodsix.showHitsChangesInChat':boolean;
-      'twodsix.encumbFractionOneSquare':number;
-      'twodsix.encumbFraction75Pct':number;
+      'twodsix.encumbFractionOneSquare':string;
+      'twodsix.encumbFraction75Pct':string;
       'twodsix.useTabbedViews':boolean;
       'twodsix.damageTypeOptions':string;
       'twodsix.animalTypesIndependentofNiche':boolean;
