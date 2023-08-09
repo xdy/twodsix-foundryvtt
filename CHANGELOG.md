@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.7.0...v3.7.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* change settings that are fractions from numbers to string and add setting for critical rolls ([#1441](https://github.com/xdy/twodsix-foundryvtt/issues/1441)) ([2f6e35d](https://github.com/xdy/twodsix-foundryvtt/commit/2f6e35df4abdf5a596e3c6929f814ce1d4a75b42))
+
 # [3.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.6.1...v3.7.0) (2023-08-07)
 
 
