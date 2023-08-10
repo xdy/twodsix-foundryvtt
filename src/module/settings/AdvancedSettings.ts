@@ -15,13 +15,17 @@ export default class AdvancedSettings extends FormApplication {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
-      width: 600
+      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+      resizable: true,
+      width: 675,
+      height: 'auto'
     });
   }
 
   /** @override */
   getData(): any {
     const data: any = super.getData();
+    data.useTabbedViews = game.settings.get('twodsix', 'useTabbedViews');
     data.settings = {};
     for(const group in this.settings) {
       const settings = this.settings[group].map((settingName) => {

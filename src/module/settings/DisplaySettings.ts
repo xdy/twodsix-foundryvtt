@@ -51,6 +51,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
+    settings.general.push(booleanSetting('useTabbedViews', false));
     return settings;
   }
 }

@@ -1201,8 +1201,8 @@
         "name": "Fraction of maximum encumbrance for 75 percent movement rate"
       },
       "useTabbedViews": {
-        "hint": "Use a tabbbed sheet for longer item sheets rather than a flat sheet.",
-        "name": "Use tabbed views for weapons and component sheets"
+        "hint": "Use a tabbbed sheet for longer item sheets and system settings rather than a flat sheet.",
+        "name": "Use tabbed views for weapons sheets, component sheets, and system settings"
       },
       "damageTypeOptions": {
         "hint": "A comma separated list that specifies the allowable damage types.",

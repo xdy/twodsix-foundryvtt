@@ -22,11 +22,10 @@ export default class ItemSettings extends AdvancedSettings {
 
   static registerSettings(): any {
     const settings = {
-      general: [],
       weapon: [],
       ship: []
     };
-    settings.general.push(booleanSetting('ShowLawLevel', false));
+    settings.weapon.push(booleanSetting('ShowLawLevel', false));
     settings.weapon.push(booleanSetting('ShowRangeBandAndHideRange', false));
     settings.weapon.push(booleanSetting('ShowWeaponType', false));
     settings.weapon.push(booleanSetting('ShowDamageType', false));
@@ -35,7 +34,6 @@ export default class ItemSettings extends AdvancedSettings {
     settings.weapon.push(booleanSetting('ShowDoubleTap', false));
     settings.ship.push(booleanSetting('showComponentRating', true));
     settings.ship.push(booleanSetting('showComponentDM', true));
-    settings.general.push(booleanSetting('useTabbedViews', false));
     return settings;
   }
 }
