@@ -20,32 +20,38 @@ export default class DisplaySettings extends AdvancedSettings {
     return data;
   }
 
-  static registerSettings(): string[] {
+  static registerSettings(): any {
 
-    const settings: string[] = [];
-    settings.push(booleanSetting('defaultTokenSettings', true));
-    settings.push(booleanSetting('useSystemDefaultTokenIcon', false));
-    settings.push(booleanSetting('showSingleComponentColumn', false));
-    settings.push(booleanSetting('showBandwidth', false));
-    settings.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
-    settings.push(booleanSetting('useWoundedStatusIndicators', false));
-    settings.push(booleanSetting('useEncumbranceStatusIndicators', false));
-    settings.push(booleanSetting('showWeightUsage', false));
-    settings.push(booleanSetting('usePDFPagerForRefs', false));
-    settings.push(booleanSetting('showIcons', false));
-    settings.push(booleanSetting('useEncumbrance', false));
-    settings.push(booleanSetting('showStatusIcons', true));
-    settings.push(booleanSetting('showRangeSpeedNoUnits', false));
-    settings.push(booleanSetting('showInitiativeButton', false));
-    settings.push(booleanSetting('showSkillCountsRanks', true));
-    settings.push(booleanSetting('showComponentSummaryIcons', false));
-    settings.push(booleanSetting('showSpells', false));
-    settings.push(booleanSetting('showModifierDetails', false));
-    settings.push(booleanSetting('showFeaturesInChat', false));
-    settings.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
-    settings.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
-    settings.push(booleanSetting('showHitsChangesInChat', false));
-    settings.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
+    const settings = {
+      general: [],
+      token: [],
+      actor: [],
+      ship: []
+    };
+    settings.token.push(booleanSetting('defaultTokenSettings', true));
+    settings.token.push(booleanSetting('useSystemDefaultTokenIcon', false));
+    settings.ship.push(booleanSetting('showSingleComponentColumn', false));
+    settings.ship.push(booleanSetting('showBandwidth', false));
+    settings.general.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
+    settings.actor.push(booleanSetting('useWoundedStatusIndicators', false));
+    settings.actor.push(booleanSetting('useEncumbranceStatusIndicators', false));
+    settings.ship.push(booleanSetting('showWeightUsage', false));
+    settings.general.push(booleanSetting('usePDFPagerForRefs', false));
+    settings.actor.push(booleanSetting('showIcons', false));
+    settings.actor.push(booleanSetting('useEncumbrance', false));
+    settings.actor.push(booleanSetting('showStatusIcons', true));
+    settings.actor.push(booleanSetting('showRangeSpeedNoUnits', false));
+    settings.actor.push(booleanSetting('showInitiativeButton', false));
+    settings.actor.push(booleanSetting('showSkillCountsRanks', true));
+    settings.ship.push(booleanSetting('showComponentSummaryIcons', false));
+    settings.actor.push(booleanSetting('showSpells', false));
+    settings.general.push(booleanSetting('showModifierDetails', false));
+    settings.general.push(booleanSetting('showFeaturesInChat', false));
+    settings.general.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
+    settings.general.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
+    settings.general.push(booleanSetting('showHitsChangesInChat', false));
+    settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
+    settings.general.push(booleanSetting('useTabbedViews', false));
     return settings;
   }
 }

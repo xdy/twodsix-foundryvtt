@@ -2340,7 +2340,7 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .sheet-navigation.tabs {
-  padding: 0.2em 0.2em 0.5em;
+  padding-bottom: 0.5em;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 

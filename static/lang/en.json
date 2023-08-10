@@ -1089,8 +1089,8 @@
         "name": "Protection values on vehicle sheets"
       },
       "addEffectToManualDamage": {
-        "hint": "This option addts the effect to a manual damage roll from the most recent chat message.",
-        "name": "Add effect when making manual damage"
+        "hint": "This option adds the effect from the most recent chat message to a manual damage roll.",
+        "name": "Add effect when rolling manual damage"
       },
       "showRangeSpeedNoUnits": {
         "hint": "Omit the range and speed units (e.g. km/hr) on vehicle sheet.",
@@ -1201,8 +1201,8 @@
         "name": "Fraction of maximum encumbrance for 75 percent movement rate"
       },
       "useTabbedViews": {
-        "hint": "Use a tabbbed sheet for longer item sheets rather than a flat sheet.",
-        "name": "Use tabbed views for weapons and component sheets"
+        "hint": "Use a tabbbed sheet for longer item sheets and system settings rather than a flat sheet.",
+        "name": "Use tabbed views for weapons sheets, component sheets, and system settings"
       },
       "damageTypeOptions": {
         "hint": "A comma separated list that specifies the allowable damage types.",
@@ -1232,7 +1232,24 @@
         "hint": "Override the degree of success to be exceptional on a natural 2 or 12 - independent of effect.",
         "name": "Override degree of success on critical roll (2 or 12)"
       },
-      "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun"
+      "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun",
+      "menuLabels": {
+        "general": "General",
+        "roll": "Rolls",
+        "characteristics": "Characteristics",
+        "formulas": "Formulas",
+        "damage": "Damage",
+        "movement": "Movement",
+        "encumbrance": "Encumbrance",
+        "wounds": "Wounds",
+        "ship": "Ship",
+        "animals_robots": "Animals & Robots",
+        "weapon": "Weapon",
+        "token": "Token",
+        "actor": "Actor",
+        "dragDrop": "Drag & Drop",
+        "style": "Style"
+      }
     },
     "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",

@@ -20,19 +20,20 @@ export default class ItemSettings extends AdvancedSettings {
     return data;
   }
 
-  static registerSettings(): string[] {
-    const settings: string[] = [];
-    settings.push(booleanSetting('ShowLawLevel', false));
-    settings.push(booleanSetting('ShowRangeBandAndHideRange', false));
-    settings.push(booleanSetting('ShowWeaponType', false));
-    settings.push(booleanSetting('ShowDamageType', false));
-    settings.push(booleanSetting('ShowRateOfFire', true));
-    settings.push(booleanSetting('ShowRecoil', false));
-    settings.push(booleanSetting('ShowDoubleTap', false));
-    settings.push(booleanSetting('addEffectToManualDamage', false));
-    settings.push(booleanSetting('showComponentRating', true));
-    settings.push(booleanSetting('showComponentDM', true));
-    settings.push(booleanSetting('useTabbedViews', false));
+  static registerSettings(): any {
+    const settings = {
+      weapon: [],
+      ship: []
+    };
+    settings.weapon.push(booleanSetting('ShowLawLevel', false));
+    settings.weapon.push(booleanSetting('ShowRangeBandAndHideRange', false));
+    settings.weapon.push(booleanSetting('ShowWeaponType', false));
+    settings.weapon.push(booleanSetting('ShowDamageType', false));
+    settings.weapon.push(booleanSetting('ShowRateOfFire', true));
+    settings.weapon.push(booleanSetting('ShowRecoil', false));
+    settings.weapon.push(booleanSetting('ShowDoubleTap', false));
+    settings.ship.push(booleanSetting('showComponentRating', true));
+    settings.ship.push(booleanSetting('showComponentDM', true));
     return settings;
   }
 }

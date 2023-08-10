@@ -224,6 +224,43 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_getSettingIcon', (componentType: string) => {
+    switch (componentType) {
+      case 'general':
+        return "fa-solid fa-gear";
+      case 'roll':
+        return "fa-solid fa-dice-six";
+      case 'characteristics':
+        return "fa-solid fa-clipboard-user";
+      case 'formulas':
+        return "fa-solid fa-calculator";
+      case 'damage':
+        return "fa-solid fa-burst";
+      case 'movement':
+        return "fa-solid fa-person-walking";
+      case 'encumbrance':
+        return "fa-solid fa-weight-scale";
+      case 'wounds':
+        return "fa-solid fa-user-injured";
+      case 'ship':
+        return "fa-solid fa-rocket";
+      case 'animals_robots':
+        return "fa-solid fa-ghost";
+      case 'weapon':
+        return "fa-solid fa-gun";
+      case 'token':
+        return "fa-solid fa-chess-pawn";
+      case 'actor':
+        return "fa-regular fa-person";
+      case "dragDrop":
+        return "fa-solid fa-square-caret-down";
+      case "style":
+        return "fa-solid fa-file-code";
+      default:
+        return "fa-solid fa-circle-question";
+    }
+  });
+
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
     return game.settings.get('twodsix', 'showTimeframe');
   });

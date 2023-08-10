@@ -1,8 +1,11 @@
-export default class AdvancedSettings extends FormApplication {
-  settings: string[];
-  static settings:string[];
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-  constructor(object, settings:string[], options?) {
+export default class AdvancedSettings extends FormApplication {
+  settings: any;
+  static settings:any;
+
+  constructor(object, settings:any, options?) {
     super(object, options);
     this.settings = settings;
   }
@@ -12,26 +15,33 @@ export default class AdvancedSettings extends FormApplication {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
-      width: 600
+      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+      resizable: true,
+      width: 675,
+      height: 'auto'
     });
   }
 
   /** @override */
   getData(): any {
     const data: any = super.getData();
-    const settings = this.settings.map((settingName) => {
-      const setting: any = game.settings.settings.get("twodsix." + settingName);
-      setting.value = game.settings.get(setting.namespace ?? setting.module, settingName);
-      if (setting.choices === "Color") {
-        setting.htmlType = "Color";
-      } else if (setting.choices) {
-        setting.htmlType = "Select";
-      } else {
-        setting.htmlType = setting.type.name;
-      }
-      return [settingName, setting];
-    });
-    data.settings = Object.fromEntries(settings);
+    data.useTabbedViews = game.settings.get('twodsix', 'useTabbedViews');
+    data.settings = {};
+    for(const group in this.settings) {
+      const settings = this.settings[group].map((settingName) => {
+        const setting: any = game.settings.settings.get("twodsix." + settingName);
+        setting.value = game.settings.get(setting.namespace ?? setting.module, settingName);
+        if (setting.choices === "Color") {
+          setting.htmlType = "Color";
+        } else if (setting.choices) {
+          setting.htmlType = "Select";
+        } else {
+          setting.htmlType = setting.type.name;
+        }
+        return [settingName, setting];
+      });
+      data.settings[group] = Object.fromEntries(settings);
+    }
     return data;
   }
 
