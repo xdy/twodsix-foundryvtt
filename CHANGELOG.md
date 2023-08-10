@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.7.1...v3.8.0) (2023-08-10)
+
+
+### Features
+
+* add settings divisions and tabs ([#1443](https://github.com/xdy/twodsix-foundryvtt/issues/1443)) ([72b0d56](https://github.com/xdy/twodsix-foundryvtt/commit/72b0d56290b443f879827e6211ab763dd6d30ef6))
+
 ## [3.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.7.0...v3.7.1) (2023-08-09)
 
 
