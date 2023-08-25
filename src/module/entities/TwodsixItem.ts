@@ -14,6 +14,7 @@ import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/TwodsixShipActions";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { TWODSIX } from "../config";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -500,6 +501,46 @@ export default class TwodsixItem extends Item {
     return skillName.replace(/\W/g, "");
   }
 
+  public async resolveUnknownAutoMode() {
+    let attackType = "";
+    const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);;
+    switch (game.settings.get('twodsix', 'autofireRulesUsed')) {
+      case TWODSIX.RULESETS.CEL.key:
+        if (this.shouldShowCELAutoFireDialog()) {
+          attackType = await promptForCELROF(this);
+        }
+        await this.performAttack(attackType, true);
+        break;
+      case TWODSIX.RULESETS.CE.key:
+        if (modes.length > 1) {
+          await promptAndAttackForCE(modes, this);
+        } else {
+          await this.performAttack("", true, Number(modes[0]));
+        }
+        break;
+      default:
+        await this.performAttack(attackType, true);
+        break;
+    }
+  }
+
+  public shouldShowCELAutoFireDialog(): boolean {
+    const rateOfFire: string = (<Weapon>this.system).rateOfFire;
+    return (
+      (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
+      (Number(rateOfFire) > 1  || (this.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')))
+    );
+  }
+
+  public shouldShowCEAutoFireDialog(): boolean {
+    const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
+    return (
+      (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key) &&
+      (modes.length > 1)
+    );
+  }
+
+  ////// ACTIVE EFFECTS //////
   /**
    * A method to change the suspened state of an Actor Active effect linked to item
    *
@@ -513,6 +554,7 @@ export default class TwodsixItem extends Item {
       }
     }
   }
+
   //////// CONSUMABLE ////////
   public async consume(quantity:number):Promise<void> {
     const consumableLeft = (<Consumable>this.system).currentCount - quantity;
@@ -598,4 +640,95 @@ export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): n
     returnValue = new Roll(rollFormula, item.actor?.getRollData()).evaluate({async: false}).total;
   }
   return returnValue;
+}
+
+export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
+  if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          single: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+              resolve('');
+            }
+          },
+          doubleTap: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFDoubleTap"), callback: () => {
+              resolve('double-tap');
+            }
+          }
+        },
+        default: 'single',
+      }).render(true);
+    });
+  } else {
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          single: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+              resolve('');
+            }
+          },
+          burst: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
+              resolve('auto-burst');
+            }
+          },
+          full: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
+              resolve('auto-full');
+            }
+          }
+        },
+        default: 'single',
+      }).render(true);
+    });
+  }
+}
+
+export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
+  const buttons = {};
+
+  for ( const mode of modes) {
+    const number = Number(mode);
+    const attackDM = TwodsixItem.burstAttackDM(number);
+    const bonusDamage =TwodsixItem.burstBonusDamage(number);
+
+    if (number === 1) {
+      buttons["single"] = {
+        "label": game.i18n.localize("TWODSIX.Dialogs.ROFSingle"),
+        "callback": () => {
+          item.performAttack("", true, 1);
+        }
+      };
+    } else if (number > 1){
+      let key = game.i18n.localize("TWODSIX.Rolls.AttackDM")+ ' +' + attackDM;
+      buttons[key] = {
+        "label": key,
+        "callback": () => {
+          item.performAttack('burst-attack-dm', true, number);
+        }
+      };
+
+      key = game.i18n.localize("TWODSIX.Rolls.BonusDamage") + ' +' + bonusDamage;
+      buttons[key] = {
+        "label": key,
+        "callback": () => {
+          item.performAttack('burst-bonus-damage', true, number);
+        }
+      };
+    }
+  }
+
+  await new Dialog({
+    title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+    content: "",
+    buttons: buttons,
+    default: "single"
+  }).render(true);
 }

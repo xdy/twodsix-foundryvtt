@@ -6,8 +6,7 @@ import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from 
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
-//import { getKeyByValue } from "../utils/sheetUtils";
-import { resolveUnknownAutoMode } from "../utils/rollItemMacro";
+//import { getKeyByValue } from "../utils/sheetUtils"
 import { TWODSIX } from "../config";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -147,7 +146,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const item = this.getItem(event);
     //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet")) {
-      resolveUnknownAutoMode(item);
+      item.resolveUnknownAutoMode();
     } else {
       await item.performAttack(attackType, showThrowDiag, rof);
     }
