@@ -1089,8 +1089,8 @@
         "name": "Valor de Protección en hoja del vehículo"
       },
       "addEffectToManualDamage": {
-        "hint": "Esta opción añade el Efecto, de la última tirada en el chat, al daño aplicado manualmente.",
-        "name": "Añadir Efecto al aplicar daño manual"
+        "hint": "Esta opción añade el valor del efecto de la última tirada en el chat, al daño tirado manualmente.",
+        "name": "Añadir el efecto cuando se tira manualmente el daño"
       },
       "showRangeSpeedNoUnits": {
         "hint": "Omitir unidades de alcance y velocidad (ej. Km/h) en hoja del vehículo.",
@@ -1201,8 +1201,8 @@
         "name": "Fracción de carga máxima para el 75% del movimiento"
       },
       "useTabbedViews": {
-        "hint": "Utilizar hoja de objetos con pestañas, permitiendo mayor detalle, en vez de una hoja simple.",
-        "name": "Utilizar hoja con pestañas para armas y componentes"
+        "hint": "Utilizar una hoja tabulada por secciones, en vez de un listado enorme de opciones de configuración.",
+        "name": "Visión por secciones en configuración de armas, componentes y sistema"
       },
       "damageTypeOptions": {
         "hint": "Una lista separada por comas que especifica los tipos de daño permitidos.",
@@ -1228,7 +1228,28 @@
         "hint": "Mostrar grado de éxito. La opción 'Otros' utiliza excepcional, menor y regular en las descripciones del éxito. 'Cepheus' no utiliza menor. 'Ninguno' omite todas las descripciones.",
         "name": "Mostrar el grado del éxito en tiradas normales"
       },
-      "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor"
+      "overrideSuccessWithNaturalCrit": {
+        "hint": "Grado de éxito excepcional en tiradas naturales de 2 ó 12 - independientemente del efecto.",
+        "name": "Grado de éxito en tiradas críticas (2 ó 12)"
+      },
+      "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor",
+      "menuLabels": {
+        "general": "General",
+        "roll": "Tiradas",
+        "characteristics": "Atributos",
+        "formulas": "Formulas",
+        "damage": "Daño",
+        "movement": "Movimiento",
+        "encumbrance": "Carga",
+        "wounds": "Heridas",
+        "ship": "Naves",
+        "animals_robots": "Animales y Robots",
+        "weapon": "Armas",
+        "token": "Token",
+        "actor": "Actor",
+        "dragDrop": "Drag & Drop",
+        "style": "Estilo"
+      }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
     "Copy": "Copiar",
