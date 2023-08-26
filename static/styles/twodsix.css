@@ -392,7 +392,7 @@ form .form-group span.units {
 }
 /*div {border: thin dotted #FFF;}*/
 
-.window-content, .window-app .window-content, .app-content, .window-content, section.app-content, section.window-app, section.window-content {
+.window-content, .window-app .window-content, .app-content, section.app-content, section.window-app, section.window-content {
   background-attachment: fixed;
   background-image: url(../assets/bg2.jpg);
   background-repeat: repeat-x;
