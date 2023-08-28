@@ -392,7 +392,7 @@ form .form-group span.units {
 }
 /*div {border: thin dotted #FFF;}*/
 
-.window-content, .window-app .window-content, .app-content, .window-content, section.app-content, section.window-app, section.window-content {
+.window-content, .window-app .window-content, .app-content, section.app-content, section.window-app, section.window-content {
   background-attachment: fixed;
   background-image: url(../assets/bg2.jpg);
   background-repeat: repeat-x;
@@ -3260,7 +3260,7 @@ form .notes, form .hint {
   color: var(--s2d6-form-light);
 }
 
-.dialog .dialog-buttons button:last-child {
+.dialog .dialog-buttons button {
   margin-right: 0;
   border: 2px groove var(--s2d6-item-border);
   color: var(--s2d6-dialog-color);
@@ -3273,10 +3273,10 @@ form .notes, form .hint {
   border-color: var(--s2d6-light-color)!important; /*must keep important*/
 }
 
-.dialog .dialog-buttons button.default {
+/*.dialog .dialog-buttons button.default {
   background: var(--s2d6-item-active);
   border: 2px groove var(--s2d6-item-border);
-}
+}*/
 
 option {
   background-color: var(--s2d6-item-active);

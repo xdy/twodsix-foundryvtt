@@ -182,3 +182,14 @@ div.pdf-app section.window-content {
   color: var(--s2d6-default-color);
   border-color: var(--s2d6-default-color);
 }
+
+/******** Token Action HUD ******/
+
+.tah-dialog-light-button {
+  background: var(--s2d6-background-nearly-opaque);
+  border: 1px solid var(--color-border-light-primary);
+}
+
+.tagify__tag__removeBtn, .tagify__tag>div, .tah-dialog-tagify .tagify__input, .tagify__input:focus:empty::before {
+  color: var(--s2d6-default-color);
+}
