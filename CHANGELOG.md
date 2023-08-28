@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.0...v3.8.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* Updates to better integrate Token Action HUB ([#1453](https://github.com/xdy/twodsix-foundryvtt/issues/1453)) ([8c907b0](https://github.com/xdy/twodsix-foundryvtt/commit/8c907b09cd86b8ad85d1c83c475cd8418770f864))
+
 # [3.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.7.1...v3.8.0) (2023-08-10)
 
 
