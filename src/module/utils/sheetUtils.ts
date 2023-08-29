@@ -282,7 +282,7 @@ export function openPDFReference(sourceString:string): void {
 export async function deletePDFReference(event): Promise<void> {
   event.preventDefault();
   if (this.object.system.pdfReference.href !== "") {
-    await this.actor.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
+    await this.object.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
   }
