@@ -931,7 +931,7 @@
         "name": "Show Hero Points"
       },
       "usePDFPagerForRefs": {
-        "hint": "Use with PDF Pager to show references.  The format must be '[code name] [page number]'. If setting is false, uri links to references are used instead.",
+        "hint": "Use with PDF Pager to show references.  The format must be '[code name] [page number]'. If setting is false, url links to references are used instead.",
         "name": "Use PDF-Pager module to show references"
       },
       "ShowLawLevel": {
