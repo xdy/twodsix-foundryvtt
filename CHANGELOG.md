@@ -1,3 +1,10 @@
+## [3.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.1...v3.8.2) (2023-08-30)
+
+
+### Bug Fixes
+
+* Fix pdf references for items and space-objects ([#1455](https://github.com/xdy/twodsix-foundryvtt/issues/1455)) ([b1233c0](https://github.com/xdy/twodsix-foundryvtt/commit/b1233c0c1ebc9cb1305b780e20fde009d38119e7))
+
 ## [3.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.0...v3.8.1) (2023-08-28)
 
 
