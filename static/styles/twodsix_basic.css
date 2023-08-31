@@ -1062,12 +1062,21 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
     '. . . . . .';
 }
 
-.items-traits, .items-spells {
+.items-traits {
   display: grid;
   grid-template-columns: 11em 3em 16em 3em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
+  word-wrap: break-word;
+}
+
+.items-spells {
+  display: grid;
+  grid-template-columns: 10em 3em 5em 12em 3em;
+  gap: 1px 1px;
+  grid-template-areas:
+    '. . . . .';
   word-wrap: break-word;
 }
 

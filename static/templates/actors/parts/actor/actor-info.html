@@ -40,9 +40,10 @@
 {{#if settings.showSpells}}
 <div><span class="pusher"></span>
   <span class="item-title">{{localize "TWODSIX.Actor.Items.SPELLS"}}</span>
-  <div class="items-traits gear-header">
+  <div class="items-spells gear-header">
     <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
     <span class="item-name centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Damage"}}</span>
     <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
     <span class="item-name centre"><a class="item-control item-create"
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="spell"><i class="fa-solid fa-plus"></i></a></span>
@@ -55,6 +56,7 @@
         <span class="items-spells">
           <span class="item-name showChat">{{item.name}}</span>
           <span class="item-name centre rollable"><i class="fa-solid fa-dice" alt="2d6"></i>{{item.system.value}}</span>
+          <span class="item-name centre roll-damage">{{twodsix_limitLength item.system.damage 8}}</span>
           <span class="item-name centre">{{item.system.shortdescr}}</span>
           <span class="item-controls centre">
             <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i

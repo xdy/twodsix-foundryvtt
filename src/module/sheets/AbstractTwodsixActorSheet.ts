@@ -201,6 +201,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         if (!itemData?.img) {
           itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
         }
+        if (!itemData.system.associatedSkillName) {
+          itemData.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill") ?? "";
+        }
         break;
       case "consumable":
         itemData.system.subtype = "other";

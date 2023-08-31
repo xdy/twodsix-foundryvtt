@@ -763,7 +763,9 @@
       "duration": "",
       "shortdescr": "",
       "subtype": "",
-      "key": "key"
+      "key": "key",
+      "associatedSkillName": "",
+      "damage": ""
     },
     "consumable": {
       "templates": ["gearTemplate", "referenceTemplate"],

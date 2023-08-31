@@ -1113,8 +1113,8 @@
         "name": "Show Spells"
       },
       "sorcerySkill": {
-        "hint": "The name of the skill used for spellcasting / sorcery.",
-        "name": "Sorcery skill name"
+        "hint": "The name of the default skill used for spellcasting / sorcery.",
+        "name": "Default sorcery skill name"
       },
       "useNationality": {
         "hint": "Display nationality field instead of home world field on actor sheet.",

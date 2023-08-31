@@ -1510,12 +1510,21 @@ a.actor-notes-tab.active {
     '. . . . . .';
 }
 
-.items-traits, .items-spells {
+.items-traits {
   display: grid;
   grid-template-columns: 14em 3em 13em 3em;
   gap: 1px 1px;
   grid-template-areas:
     '. . . .';
+  word-wrap: break-word;
+}
+
+.items-spells {
+  display: grid;
+  grid-template-columns: 12em 3em 5em 10em 3em;
+  gap: 1px 1px;
+  grid-template-areas:
+    '. . . . .';
   word-wrap: break-word;
 }
 
