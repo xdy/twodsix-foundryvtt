@@ -185,7 +185,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
           itemData.system.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
         }
-        if (!itemData?.img) {
+        if (!itemData.img) {
           itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
         }
         break;
@@ -198,8 +198,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         itemData.img = "systems/twodsix/assets/icons/components/" + itemData.system.subtype + ".svg";
         break;
       case "spell":
-        if (!itemData?.img) {
+        if (!itemData.img) {
           itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
+        }
+        if (!itemData.system.associatedSkillName) {
+          itemData.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill") ?? "";
         }
         break;
       case "consumable":

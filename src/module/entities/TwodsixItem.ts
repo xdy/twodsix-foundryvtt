@@ -24,7 +24,11 @@ export default class TwodsixItem extends Item {
       if (item?.type === 'weapon') {
         await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
       } else if (item?.type === "spell") {
-        await item.update({'img': 'systems/twodsix/assets/icons/spell-book.svg'});
+        const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
+        await item.update({
+          img: 'systems/twodsix/assets/icons/spell-book.svg',
+          'system.associatedSkillName': defaultSkill
+        });
       } else if (item?.type === 'component') {
         await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
       } else if (item?.type === 'computer') {
@@ -253,9 +257,9 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = undefined;
     } else if (this.type === "spell") {
-      skill = <TwodsixItem>this.actor?.items.getName(game.settings.get("twodsix", "sorcerySkill"));
-      if (skill === undefined) {
-        skill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      skill =  <TwodsixItem>(workingActor?.itemTypes.skills.find(sk => sk.name === this.system?.associatedSkillName) ?? workingActor?.itemTypes.skills.find(sk => sk.name === game.settings.get("twodsix", "sorcerySkill")));
+      if (skill === undefined  && workingActor) {
+        skill = workingActor.getUntrainedSkill();
       }
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;

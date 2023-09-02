@@ -688,6 +688,8 @@ export interface Spell extends LinkTemplate, TargetTemplate {
   duration:string;
   shortdescr:string;
   subtype:string;
+  associatedSkillName:string;
+  damage:string;
 }
 
 export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {

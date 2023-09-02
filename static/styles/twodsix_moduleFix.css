@@ -64,84 +64,164 @@ div.pdf-app section.window-content {
 */
 
 /*Monk's Enhanced Journals*/
-.monks-enhanced-journal .editor-edit {
-  z-index: 100;
-  display: block;
+
+.monks-enhanced-journal .window-content,
+.monks-enhanced-journal .directory-sidebar {
+  background-image: url(../assets/bg2.jpg) !important;
 }
 
-.monks-enhanced-journal .directory-sidebar > section {
-  /* background: revert; */
-  background-color: var(--s2d6-background-nearly-opaque);
-  color: var(--s2d6-select-light);
+.monks-enhanced-journal .enhanced-journal .journal-sheet-container .sidebar.directory {
+  background: revert;
 }
 
-#journal-directory li.folder.collapsed > .folder-header:not(.customcolor) {
-  color: var(--s2d6-select-light);
+.monks-enhanced-journal .enhanced-journal .sheet.journal-entry .journal-entry-content {
+  background: revert;
+  background-color: var(--s2d6-background-nearly-transparent);
 }
 
-.monks-enhanced-journal .tab-bar .journal-tab {
+.monks-enhanced-journal .directory-sidebar > section .directory-header,
+.monks-enhanced-journal .tab-bar .tab-button,
+.monks-enhanced-journal .enhanced-journal-header,
+.monks-enhanced-journal .enhanced-journal-footer,
+.monks-enhanced-journal .enhanced-journal-header .navigation,
+.monks-enhanced-journal .enhanced-journal-header .navigation .nav-input,
+.monks-enhanced-journal .directory li.folder.collapsed > .folder-header:not(.customcolor) {
+  background: revert;
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-app-color);
+}
+
+.monks-enhanced-journal .directory li.folder:not(.collapsed) > .folder-header {
   background: var(--s2d6-background-nearly-opaque);
 }
 
-.monks-enhanced-journal > header a.subsheet {
-  background: var(--s2d6-background-transparent);
+.monks-enhanced-journal .tab-bar .tab-button:hover,
+.monks-journal-sheet.sheet .journal-subsheet.blank .recent-link:hover,
+.monks-journal-sheet.sheet .journal-subsheet.blank .new-link:hover,
+.monks-enhanced-journal .tab-bar .journal-tab:hover  {
+  color: var(--s2d6-light-color);
+}
+
+.sheet.journal-entry .journal-entry-page h1 {
+  font-family: unset;
+  font-weight: unset;
+  font-size: 2em;
+  border-bottom: 2px solid var(--color-underline-header);
+  margin: unset;
+}
+
+.monks-enhanced-journal .directory .directory-header .header-actions.action-buttons button,
+.monks-enhanced-journal .enhanced-journal-footer .nav-button,
+.monks-enhanced-journal .enhanced-journal-header .bookmark-bar .bookmark-button.add-bookmark,
+.monks-enhanced-journal .enhanced-journal-header .navigation .nav-button,
+.monks-journal-sheet .items-list .item-header .item-control {
+  background-color: var(--s2d6-background-opaque);
+  border: 2px groove var(--s2d6-default-color);
+  color: var(--s2d6-app-color);
+  height: auto;
+}
+
+.monks-enhanced-journal .directory li.journalentry, .monks-enhanced-journal .directory li.journalentrypage  {
+  color: var(--s2d6-app-color);
+}
+
+.monks-enhanced-journal .directory .directory-list .directory-item,
+.monks-enhanced-journal .directory li.journalentry,
+.monks-enhanced-journal .directory li.journalentrypage {
+  border-bottom: 1px solid var(--color-border-dark-3);
+  border-top: 1px solid var(--s2d6-background-transparent);
+}
+
+.monks-journal-sheet.sheet .journal-sheet-header .sheet-image img.profile {
+  background-color: var(--s2d6-background-opaque);
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab {
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-dialog-color);
+}
+
+.monks-journal-sheet.sheet .journal-sheet-header .header-details .form-group label,
+.monks-journal-sheet.sheet .journal-sheet-header .header-details .form-group input,
+.monks-journal-sheet.sheet .sheet-container,
+.monks-journal-sheet.sheet .sheet-body .details-section label,
+.monks-journal-sheet.sheet .journal-sheet-header .header-details .header-name input[type="text"],
+.monks-journal-sheet.sheet .journal-sheet-header .header-details .form-group select,
+.monks-journal-sheet .currency-group .form-fields input,
+.monks-journal-sheet.sheet .sheet-body .details-section input, .monks-journal-sheet.sheet .sheet-body .details-section textarea {
+  color: var(--s2d6-default-color);
+}
+
+.monks-journal-sheet.sheet .sheet-body .details-section textarea,
+.monks-journal-sheet.sheet .sheet-body .details-section input,
+.monks-journal-sheet.sheet .journal-subsheet.blank .recently-viewed  {
+  background-color: var(--s2d6-background-opaque);
+}
+
+.monks-journal-sheet .tab.notes .notes-container {
+  width: 95%;
 }
 
 .monks-enhanced-journal .tab-bar .journal-tab.active {
   background-color: var(--s2d6-default-color);
-  color: black;
+  color: var(--s2d6-background-opaque);
 }
 
-.monks-journal-sheet.sheet .editor {
-  overflow: auto;
-  height: 100%;
-}
-
-.monks-journal-sheet.sheet .items-list .item .item-name, .monks-journal-sheet.sheet .form-group label, .monks-journal-sheet.sheet .items-list {
-  color: var(--s2d6-form-light);
-}
-
-.monks-journal-sheet.sheet .journal-subsheet .items-list .item-controls {
+.monks-journal-sheet.sheet .loot-container .loot-characters .loot-character-list .loot-character .character-name {
   margin-top: unset;
-  text-align: center;
-  display: unset;
+  left: unset;
 }
 
-.monks-enhanced-journal .mainbar .navigation .button-group {
-  background-color: var(--s2d6-background-nearly-opaque);
+.monks-journal-sheet.sheet .loot-container .loot-characters .loot-character-list .loot-character img {
+  border-color: var(--s2d6-default-color);
 }
 
-.monks-enhanced-journal .mainbar .navigation .nav-button, .monks-enhanced-journal footer.navigation .nav-button {
-  background: var(--s2d6-background-semi-opaque);
-}
-
-.monks-enhanced-journal .mainbar .navigation .nav-button.disabled, .monks-enhanced-journal footer.navigation .nav-button.disabled {
+.monks-journal-sheet .items-list .item-controls a,
+.monks-journal-sheet.sheet .journal-subsheet.blank {
   color: var(--s2d6-default-color);
 }
 
-.monks-journal-sheet.sheet .items-list {
+.monks-journal-sheet .items-list .item-header,
+.monks-journal-sheet .items-list .item-header h3,
+.monks-journal-sheet .items-list .item .item-name,
+.monks-journal-sheet .items-list .item {
+  color: var(--s2d6-default-color);
+  border-color: var(--mej-sheet-tab-background);
+}
+
+.monks-journal-sheet .items-list .item-detail {
+  margin-top: unset;
+  display: unset;
+}
+
+.monks-journal-sheet .items-list .item input {
+  border-color: unset;
+  color: unset;
+  background-color: unset;
+}
+
+.monks-journal-sheet .items-list {
+  top: unset;
   position: revert;
 }
-.loot-character > .character-name {
-    position: unset;
-    margin-top: unset;
-    text-align: unset;
-    z-index: unset;
-    left: unset
-}
 
-.monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
-  display: unset;
-}
-
-.edit-currency .items-list {
-  position: unset;
-}
-
-.edit-currency .items-list input, .item-total.flexrow, .item-price.flexrow, .item-quantity.flexrow  {
+.monks-journal-sheet .items-list .item-list {
   color: var(--s2d6-default-color);
-  display: unset;
-  text-align: right;
+  border-color: var(--s2d6-default-color);
+}
+
+.monks-journal-sheet.sheet .sheet-body .details-section input, .monks-journal-sheet.sheet .sheet-body .details-section textarea {
+  border: var(--s2d6-default-color);
+}
+
+.monks-enhanced-journal > header a.subsheet {
+  background-color: var(--s2d6-background-transparent);
+}
+
+.monks-enhanced-journal .enhanced-journal-header > *,
+.monks-enhanced-journal .directory-sidebar > section .directory-header,
+.monks-enhanced-journal .directory-sidebar {
+  border-color: var(--mej-sheet-tab-background);
 }
 
 /************Item Piles*******/
@@ -182,6 +262,7 @@ div.pdf-app section.window-content {
   color: var(--s2d6-default-color);
   border-color: var(--s2d6-default-color);
 }
+
 
 /******** Token Action HUD ******/
 
