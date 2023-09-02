@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.2...v3.9.0) (2023-09-02)
+
+
+### Features
+
+* Updates to add associatedSkills and damage to spells ([#1457](https://github.com/xdy/twodsix-foundryvtt/issues/1457)) ([2f5b302](https://github.com/xdy/twodsix-foundryvtt/commit/2f5b302cbc5ee86710d04be1f6fa22ab0da68d49))
+
 ## [3.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.1...v3.8.2) (2023-08-30)
 
 
