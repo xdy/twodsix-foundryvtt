@@ -358,7 +358,7 @@
         "SecondaryArmor": "Secondary Armor",
         "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor",
-        "Unstackable": "Unstackable",
+        "Nonstackable": "Non-stackable",
         "SecondaryArmorProtectionTypes": "Secondary Protection Types"
       },
       "Augmentation": {
@@ -1329,7 +1329,7 @@
       "NoDamageToApply": "Damage or healing values must greater than zero.",
       "MissingUntrainedSkill": "Actor is missing untrained skill. Reload application to fix.",
       "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected.",
-      "WearingMultipleLayers": "Multiple armor layers equipped while wearing unstackable armor."
+      "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor."
     }
   },
   "TYPES": {

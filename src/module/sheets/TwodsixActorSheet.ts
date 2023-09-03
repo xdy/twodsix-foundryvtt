@@ -277,8 +277,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
 
-      //check for equipping more than one armor with unstackable
-      if (this.actor.system.layersWorn > 1 && this.actor.system.wearingUnstackable && itemSelected.type === 'armor') {
+      //check for equipping more than one armor with nonstackable
+      if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
       }
     }

@@ -531,7 +531,7 @@ export interface Armor extends GearTemplate, LinkTemplate {
   useConsumableForAttack:string;
   location:string[];
   isPowered:boolean;
-  unstackable:boolean;
+  nonstackable:boolean;
 }
 
 export interface Augment extends GearTemplate, LinkTemplate {
