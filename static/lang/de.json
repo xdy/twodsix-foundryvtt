@@ -5,7 +5,7 @@
   "Difficult": "Schwierig",
   "Disadvantage": "Nachteil",
   "Easy": "Einfach",
-  "Formidable": "Hervorragend",
+  "Formidable": "Erheblich",
   "Impossible": "Unmöglich",
   "Normal": "Normal",
   "Routine": "Routine",
@@ -17,15 +17,17 @@
       "Characteristics": {
         "DEX": "GES",
         "EDU": "BIL",
-        "END": "AUS",
+        "END": "KON",
         "INT": "INT",
         "PSI": "PSI",
         "SOC": "SOZ",
         "STR": "STA",
         "LFB": "LFB",
-        "STA": "STA"
+        "STA": "STA",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2"
       },
-      "CharacterName": "Charakter Name",
+      "CharacterName": "Charaktername",
       "Contamination": "Kontamination",
       "DeleteOwnedItem": "Lösche Gegenstand im Besitz",
       "Finances": {
@@ -43,14 +45,18 @@
         "BIOGRAPHY": "BIOGRAPHIE",
         "CONTACTS": "KONTAKTE",
         "DESCRIPTION": "BESCHREIBUNG",
-        "ENEMIES": "FEINDE"
+        "ENEMIES": "FEINDE",
+        "XP": "ERFAHRUNGSPUNKTE",
+        "Points": "Punkte",
+        "TotalEarned": "Gesamt Verdient",
+        "Available": "Verfügbar"
       },
       "Items": {
         "Ammo": "Mun",
         "ARMOR": "RÜSTUNG",
         "Armor": "Rüstung",
-        "AUGMENTS": "ANPASSUNGEN",
-        "CONSUMABLES": "Verbrauchsmaterialien",
+        "AUGMENTS": "AUGMENTIERUNGEN",
+        "CONSUMABLES": "VERBRAUCHSGEGENSTÄNDE",
         "Count": "Zählen",
         "CreateItem": "Gegenstand erschaffen",
         "Damage": "DMG",
@@ -60,16 +66,42 @@
         "EQUIPMENT": "AUSRÜSTUNG",
         "Location": "Ort",
         "Name": "Name",
-        "Qty": "Qty",
-        "Range": "Range",
-        "ShortDescr": "Kurzbeschreibung",
+        "Qty": "Anzahl",
+        "Range": "Reichweite",
+        "ShortDescr": "Kurzbeschr.",
         "TL": "TL",
         "WEAPONS": "WAFFEN",
-        "Weight": "Gew."
+        "Weight": "Gew.",
+        "EffectiveArmor": "Effektive Rüstung",
+        "HideStored": "Verstecke gelagerte Gegenstände",
+        "Value": "Wert",
+        "LocationState": {
+          "equipped": "Ausgerüstet",
+          "ship": "Schiff",
+          "backpack": "Rucksack"
+        },
+        "Traits": "Merkmale",
+        "TechLevel": "Technologiestufe",
+        "Transfer": "Transfergegenstände",
+        "DisplayStored": "Zeige gelagerte Gegenstände an",
+        "Amount": "Menge",
+        "Augments": "Augmentierungen",
+        "ATTACHMENTS": "ERWEITERUNGEN",
+        "QuantityToTransfer": "Übertragungsmenge",
+        "Refill": "Auffüllen",
+        "Reload": "Nachladen",
+        "SPELLS": "SPRÜCHE",
+        "Spells": "Sprüche",
+        "Subtype": "Typ",
+        "TRAITS": "MERKMALE",
+        "Weapons": "Waffen",
+        "EQUIPMENT_TOOLS": "AUSRÜSTUNG & WERKZEUGE",
+        "STORAGE_JUNK": "LAGER & MÜLL"
       },
       "Lifeblood": "Lebensblut",
       "Notes": {
-        "NOTES": "CHARAKTER NOTIZEN"
+        "NOTES": "CHARAKTER NOTIZEN",
+        "Notes": "Charakternotizen"
       },
       "Rolling": "Würfle",
       "Skills": {
@@ -77,14 +109,25 @@
         "DeleteItem": "Gegenstand löschen",
         "EditItem": "Gegenstand bearbeiten",
         "EditOrRemove": "Edit/Delete",
-        "InvertedSkillRollTooltip": "Führt eine Fertigkeitsprüfung ohne Modifikator aus und nimmt einen Schwierigkeitsgrad von 8 an. Wenn Sie bei gedrückter Umschalttaste klicken, wird der",
-        "JOAT": "Jack aller Gewerke",
-        "Level": "Level",
-        "Modifier": "Mod",
-        "SkillName": "Fertigkeits Name",
-        "SkillRollTooltip": "Zeigt den Skill-Roll-Dialog an. Wenn Sie bei gedrückter Umschalttaste klicken, wird eine Fertigkeitsprüfung ohne Modifikator ausgeführt und eine Schwierigkeit von 8",
+        "InvertedSkillRollTooltip": "Führt eine Fertigkeitsprüfung mit Schwierigkeitsgrad 8 ohne Modifikator aus. Bei gedrückter Umschalttaste wird der Fertigkeitsprüfungsdialog gezeigt",
+        "JOAT": "Tausendsassa",
+        "Level": "Stufe",
+        "Modifier": "Modifikator",
+        "SkillName": "Fertigkeitsname",
+        "SkillRollTooltip": "Zeigt den Fertigkeitsprüfungsdialog an. Bei gedrückter Umschalttaste wird mit durchnschnittlichen Schwierigkeit von 6 oder 8 ohne Modifikator gewürfelt",
         "Total": "Total",
-        "Untrained": "Untrainiert"
+        "Untrained": "Untrainiert",
+        "Timeframe": {
+          "none": "---",
+          "secs": "Sekunde(n)",
+          "mins": "Minute(n)",
+          "hrs": "Stunde(n)",
+          "days": "Tag(e)",
+          "weeks": "Woche(n)",
+          "months": "Monat(e)",
+          "rounds": "Runde(n)"
+        },
+        "BaseLevel": "Grundstufe"
       },
       "Species": "Spezies",
       "Tabs": {
@@ -92,17 +135,111 @@
         "Info": "Info",
         "Inventory": "Inventar",
         "Notes": "Notizen",
-        "Skills": "Fertigkeiten"
+        "Skills": "Fertigkeiten",
+        "InventoryTabTooltip": "Waffen, Rüstungen, Augmentierungen, Ausrüstung & Werkzeuge, Verbrauchsgegenstände und Erweiterungen",
+        "Effects": "Effekte",
+        "FinancesTabTooltip": "Bargeld, Schulden, Pension, Lebenserhaltungskosten, etc.",
+        "InfoTabTooltip": "Merkmale, Beschreibung, Kontakte und Biografie",
+        "EffectsTabTooltip": "Aktive Effekte",
+        "NotesTabTooltip": "Reisender-Notizen",
+        "SkillsTabTooltip": "Reisender-Fähigkeiten"
       },
       "UnknownActorType": "Unbekannter Charaktertyp",
-      "using": "benutzt"
+      "using": "benutzt",
+      "Endurance": "Konstitution",
+      "Movement": {
+        "MovementClimb": "Klettern",
+        "MovementBurrow": "Graben",
+        "MovementSwim": "Schwimmen",
+        "MovementConfigHint": "Passe das Bewegungstempo und Spezialbewegungsattribut der Kreatur an.",
+        "MovementUnits": "Einheiten",
+        "MovementWalk": "Gehen",
+        "MovementHover": "Schweben",
+        "MovementFly": "Fliegen",
+        "DistFt": "Fuß",
+        "DistKm": "Kilometer",
+        "DistM": "Meter",
+        "DistMi": "Meilen",
+        "DistPc": "Parsec",
+        "DistGU": "Rastereinheiten",
+        "MovementRate": "Bewegungsrate",
+        "MovementConfig": "Passe Bewegungstempo an"
+      },
+      "Hits": "Treffer",
+      "Stamina": "Ausdauer",
+      "CharacterNames": "Charakternamen",
+      "Applied": "Angewandt",
+      "RadiationExposure": "Strahlungsbelastung",
+      "OperationalTime": "Einsatzzeit",
+      "Chassis": "Karosse",
+      "CharDisplay": {
+        "Alternate": "Alternativ",
+        "Base": "Grund",
+        "All": "Alle"
+      },
+      "Price": "Preis",
+      "LocomotionType": "Fortbewegungstyp",
+      "HeroPoints": "Heldenpunkte",
+      "healing": "Heilung",
+      "damage": "Schaden",
+      "CharacteristicEdit": "Wechsel zu Editiermodus der Charakteristik-Kurznamen",
+      "Nationality": "Nationalität"
     },
     "Chat": {
       "Roll": {
-        "Difficulty": "Wurf Schwierigkeiten",
-        "Mode": "Wurf-Mod.",
-        "OtherModifiers": "Andere modifizierer",
-        "Type": "Wurf Typ"
+        "Difficulty": "Schwierigkeitsgrad",
+        "Mode": "Würfelmodus",
+        "OtherModifiers": "Andere Modifikatoren",
+        "Type": "Wurftyp",
+        "CharacteristicModifier": "Charakteristikmodifikator",
+        "WeaponsHandling": "Waffenumgang",
+        "ChainRoll": "Ketten- / Unterstützungswurf",
+        "Units": "Einheiten",
+        "taskDuration": "Die Aufgabe braucht _TIME_ _UNITS_ bis zum Abschluss.",
+        "RollModifiers": "Wurfmodifikatoren",
+        "SkillModifier": "Fähigkeitsstufe",
+        "ItemModifier": "Gegenstandsbonus",
+        "RollFormula": "Wurfformel",
+        "Modifier": "Modifikator",
+        "Description": "Beschreibung",
+        "DegreesOfSuccess": {
+          "ExceptionalFailure": "Aussergewöhnlicher Fehlschlag",
+          "Failure": "Fehlschlag",
+          "AverageFailure": "Durschnittlicher Fehlschlag",
+          "MarginalFailure": "Knapper Fehlschlag",
+          "MarginalSuccess": "Knapper Erfolg",
+          "AverageSuccess": "Durchschnittlicher Erfolg",
+          "Success": "Erfolg",
+          "ExceptionalSuccess": "Aussergewöhnlicher Erfolg",
+          "none": "Kein",
+          "CE": "Cepheus Engine",
+          "other": "Anderer"
+        },
+        "ApplyDestructiveDamage": "Destruktiven Schaden (10x) anwenden",
+        "ApplyDamage": "Schaden anwenden",
+        "RollDetails": "Wurfdetails",
+        "Timeframe": "Zeitrahmen",
+        "Bonus": "Bonus",
+        "WithChainBonus": "mit Ketten- / Unterstützungsbonus",
+        "WinsRoll": "",
+        "GMUtils": "GM Hilfsmittel",
+        "RequestRoll": "Fordere Wurf an",
+        "GMRequestsRoll": "GM fordert ein _TYPE_ Wurf an.",
+        "normal": "normal",
+        "AbilityCheck": "Fertigkeits-/Charakteristikprüfung",
+        "ROF": "Feuerrate",
+        "Wounds": "Wunden",
+        "Conditions": "Zustandsmodifikator",
+        "Encumbered": "Belastet",
+        "DodgeParry": "Ausweich-/Pariermodifikator",
+        "Custom": "Individuell",
+        "DM": "WM",
+        "Characteristic": "Charakteristik",
+        "Condition": "Zustand",
+        "Attack": "Angriff",
+        "ActiveEffect": "Aktiver Effekt",
+        "ApplyReducedDamage": "Runterskalierten Schaden (0.1x) anwenden",
+        "ApplyHealing": "Heilung anwenden"
       }
     },
     "Create": "Erstellen",
@@ -111,7 +248,7 @@
       "Characteristics": "Eigenschaften",
       "Current": "Aktuell",
       "Damage": "Schaden",
-      "DealDamage": "Verursacht Schaden",
+      "DealDamage": "Verursache Schaden",
       "DealDamageTo": "Fügt _ACTOR_NAME_ Schaden zu",
       "Max": "Max.",
       "ResultingStat": "Resultierender Wert",
@@ -120,14 +257,15 @@
       "NoRegularDamage": "Keine regulären Schäden",
       "AP": "AP",
       "Mod": "Mod",
-      "Dmg": "Dmg",
+      "Dmg": "Schaden",
       "DamageFormula": "Schadensformel"
     },
     "Dialogs": {
-      "ROFBurst": "Burst Feuer",
-      "ROFFull": "Vollständige Automatik",
-      "ROFPickerTitle": "Wählen Sie eine Feuerrate",
-      "ROFSingle": "Einzelnes Feuer"
+      "ROFBurst": "Stoßfeuer",
+      "ROFFull": "Vollautomatik",
+      "ROFPickerTitle": "Wähle eine Feuerrate",
+      "ROFSingle": "Einzelfeuer",
+      "ROFDoubleTap": "Feuersalve"
     },
     "Handlebars": {
       "CantShowCharacteristic": "Sie müssen das Merkmal für alle mit XXX markierten Fähigkeiten erneut auswählen. Entschuldigung..."
@@ -136,7 +274,9 @@
       "Armor": {
         "Armor": "Rüstung",
         "RadProt": "Rad Prot",
-        "SecondaryArmor": "Zweite Rüstung"
+        "SecondaryArmor": "Zweite Rüstung",
+        "IsPowered": "Angetriebene Rüstung",
+        "SecondaryArmorProtectionTypes": "Sekundäre Schutztypen"
       },
       "Augmentation": {
         "Arms": "Arme",
@@ -146,7 +286,8 @@
         "Head": "Kopf",
         "Legs": "Beine",
         "Torso": "Torso",
-        "ValueCr": "Menge in Cr."
+        "ValueCr": "Wert in Cr",
+        "None": "Kein"
       },
       "Consumable": {
         "Count": "Zählen",
@@ -162,8 +303,18 @@
           "fuel": "Kraftstoff",
           "magazine": "Magazin",
           "other": "Sonstiges",
-          "power_cell": "Power-Zelle"
-        }
+          "power_cell": "Power-Zelle",
+          "software": "Software",
+          "processor": "Prozessor"
+        },
+        "DropAttachmentsHere": "Sie können Erweiterungen hier fallen lassen.",
+        "ArmorPiercing": "Rüstungsdurchschlagswert",
+        "SoftwareOff": "Software Inaktiv",
+        "Bandwidth": "Bandweite",
+        "SelectConsumable": "Wähle Verbrauchsgegenstand aus",
+        "ActiveConsumable": "Aktiver Verbrauchsgegenstand",
+        "SoftwareOn": "Software Aktiv",
+        "SoftwareActive": "Software Aktiv?"
       },
       "Encumbrance": "Belastung",
       "Equipment": {
@@ -174,9 +325,12 @@
         "Price": "Preis",
         "Quantity": "Menge",
         "ShortDescription": "Kurzbeschreibung",
-        "SkillModifier": "Fertigkeit Modifikator",
+        "SkillModifier": "Würfelmodifikator",
         "TL": "TL",
-        "Weight": "Gewicht"
+        "Weight": "Gewicht",
+        "isAttachment": "Erweiterung?",
+        "NewAttachment": "Neue Erweiterung",
+        "BonusDamage": "Bonusschaden"
       },
       "Items": {
         "AssignArmor": "Rüstung zuweisen",
@@ -189,20 +343,29 @@
         "ItemType": "Typ",
         "MoveStorage": "Aufbewahrung verschieben",
         "New": "Neu",
-        "Storage": "Aufbewahrung"
+        "Storage": "Aufbewahrung",
+        "AssignComputer": "Computer zuweisen",
+        "AssignConsumable": "Verbrauchsgegenstand zuweisen",
+        "Junk": "Müll"
       },
       "Skills": {
         "DEX": "GES",
         "EDU": "BIL",
-        "END": "AUS",
+        "END": "KON",
         "INT": "INT",
-        "Level": "Level",
+        "Level": "Stufe",
         "Modifier": "Modifikator",
         "NONE": "---",
         "PSI": "PSI",
         "SkillName": "Fertigkeit Name",
         "SOC": "SOZ",
-        "STR": "STA"
+        "STR": "STA",
+        "STA": "STA",
+        "NumberOfSkills": "Anzahl der Fertigkeiten",
+        "SkillRanks": "Fertigkeitsränge",
+        "ALT1": "ALT1",
+        "ALT2": "ALT2",
+        "TrainingNotes": "Trainingsnotizen"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -217,9 +380,116 @@
         "rangeBand": "Reichweite Bande",
         "rateOfFire": "Dauerfeuer/Auto X",
         "recoil": "Rückstoss",
-        "UseAsAmmunitionForAttack": "Verwenden Sie als Munition für Angriffe",
-        "weaponType": "Waffen Typ"
-      }
+        "UseAsAmmunitionForAttack": "Für Würfe als Verbrauchsgegenstand nutzen",
+        "weaponType": "Waffen Typ",
+        "Magazine": "Magazin",
+        "Unarmed": "Unbewaffnet",
+        "UnarmedDescription": "Unbewaffneter Angriff",
+        "HandlingModifiers": "Waffenhandhabungsmodifikatoren",
+        "doubleTap": "Feuersalve",
+        "ArmorPiercing": "Rüstungsdurchschlagswert",
+        "DefaultMagazine": "Standard-Magazingröße",
+        "Features": "Funktionen / Merkmale",
+        "Attack": "Angriff",
+        "Consumables": "Verbrauchsgegenstände",
+        "Modifiers": "Modifikatoren",
+        "HandlingExample": "z.B., GES 6/-3 10/+4"
+      },
+      "Enc": "Bel",
+      "Component": {
+        "SustainedHits": "Erleidete Treffer",
+        "CargoLocation": "Fracht Standort",
+        "Description": "Beschreibung",
+        "accomodations": "Unterkünfte",
+        "computer": "Computer",
+        "drone": "Drone",
+        "otherInternal": "Anderes - Intern",
+        "powerDraw": "Energieverbrauch pro Einheit",
+        "Range": "Entfernung",
+        "isIllegal": "Illegal?",
+        "DM": "WM",
+        "armament": "Bewaffnung",
+        "CargoItem": "Frachtgut",
+        "Price": "Preis",
+        "Value": "Wert",
+        "GeneratesPower": "Erzeugt Energie?",
+        "IsRefined": "Verarbeitet?",
+        "PricingBasis": "Preis von",
+        "perUnit": "MCr pro Einheit",
+        "dock": "Dock",
+        "drive": "Antrieb",
+        "electronics": "Elektronik",
+        "fuel": "Treibstoff",
+        "hull": "Hülle",
+        "mount": "Befestigungspunkt",
+        "sensor": "Sensor",
+        "power": "Energie",
+        "shield": "Schild",
+        "software": "Software",
+        "storage": "Lager",
+        "vehicle": "Fahrzeug",
+        "other": "Anderes",
+        "otherExternal": "Anderes - Extern",
+        "operational": "lauffähig",
+        "damaged": "beschädigt",
+        "destroyed": "zerstört",
+        "off": "aus",
+        "powerGenerated": "Energie erzeugt pro Einheit",
+        "Power": "Energie",
+        "status": "Status",
+        "rating": "Bewertung",
+        "totalQuantity": "Vollständige Menge",
+        "damage": "Schaden",
+        "RadiationDamage": "Strahlungsschaden",
+        "hits": "Treffer",
+        "weightIsPct": "Gewicht ist Prozentual?",
+        "purchasePrice": "Kaufspreis",
+        "unitWeight": "Gewicht pro Einheit",
+        "pctDisplacement": "% Verdrängungsmasse",
+        "Features": "Funktionen / Merkmale",
+        "perCompTon": "MCr pro Tonne Komponenten",
+        "perHullTon": "MCr pro Tonne Hülle",
+        "per100HullTon": "MCr pro 100 Tonnen Hülle",
+        "pctHull": "Prozent des Grundhüllenwerts",
+        "pctHullPerUnit": "Prozent des Grundhüllenwerts pro Einheit",
+        "RollModifier": "Wurfmodifikator",
+        "hardened": "gehärtet",
+        "isBaseHull": "Ist Basishülle?",
+        "extended": "ausgefahren",
+        "retracted": "eingefahren",
+        "ComponentType": "Komponententyp",
+        "Hardened": "Gehärtet?",
+        "cargo": "Fracht",
+        "Ammunition": "Munition",
+        "componentName": "Komponente",
+        "armor": "Rüstung",
+        "bridge": "Brücke",
+        "Displacement": "Verdrängung",
+        "availableQuantity": "Verfügbare Menge"
+      },
+      "Traits": {
+        "DeleteEffect": "Effekt löschen",
+        "EditEffect": "Effekte bearbeiten",
+        "CreateTrait": "Merkmal erstellen",
+        "DeleteTrait": "Merkmal löschen",
+        "Prerequisite": "Voraussetzung",
+        "TraitName": "Merkmalsname",
+        "CreateEffect": "Effekt erstellen",
+        "ShortDescAndEffects": "Kurzbeschreibung und Effektliste"
+      },
+      "Spells": {
+        "Duration": "Dauer",
+        "CircleSchool": "Spruchkreis/-schule",
+        "SpellName": "Spruchname",
+        "Level": "Stufe",
+        "sorcerySkill": "Zauberei"
+      },
+      "DocumentReference": "Dokumentreferenz",
+      "DeleteReference": "Referenz entfernen",
+      "Computer": {
+        "ProcessingPower": "Rechenleistung"
+      },
+      "Link": "Link"
     },
     "Migration": {
       "Completed": "Twodsix System-Migration auf Version {Version} abgeschlossen!",
@@ -397,7 +667,160 @@
     "VeryDifficult": "Sehr schwierig",
     "ActiveEffects": {
       "DeleteEffect": "Aktiven Effekt entfernen",
-      "ConfirmDelete": "Wollen Sie den Effekt wirklich löschen?"
+      "ConfirmDelete": "Wollen Sie den Effekt wirklich löschen?",
+      "Modifiers": "Modifikatoren",
+      "Source": "Quelle",
+      "Duration": "Dauer",
+      "UnknownSource": "Unbekannte Quelle",
+      "EffectLabel": "Effektname",
+      "Add": "Neu",
+      "EffectEnable": "Aktiviere Effekt",
+      "EffectDisable": "Deaktiviere Effekt",
+      "Condition": "Zustand",
+      "NewEffect": "Neuer Effekt",
+      "CreateEffect": "Effekt erstellen",
+      "Controls": "Steuert",
+      "BaseValue": "Basis",
+      "IncludingEffects": "Einschließlich aktiver Effekte:"
+    },
+    "Animal": {
+      "Subtype": {
+        "Chaser": "Verfolger",
+        "Trapper": "Fallensteller",
+        "Siren": "Sirene",
+        "Filter": "Filter",
+        "Grazer": "Weidetier",
+        "Gatherer": "Sammler",
+        "Hunter": "Jäger",
+        "Eater": "Fresser",
+        "Intimidator": "Einschüchterer",
+        "CarrionEater": "Aasfresser"
+      },
+      "AttackWeapons": "Angriffsart / Waffen",
+      "NoReactionMessage": "Tier reagiert nicht",
+      "NicheType": {
+        "Herbivore": "Pflanzenfresser",
+        "Omnivore": "Allesfresser",
+        "Carnivore": "Fleischfresser",
+        "Scavenger": "Aasfresser",
+        "Other": "Andere"
+      },
+      "Niche": "Nische",
+      "Locations": {
+        "CityUrban": "Stadt oder Urban",
+        "DesertBadlands": "Wüste oder Ödland",
+        "SwampAquatic": "Sumpf oder Aquatisch",
+        "PlainsGrassland": "Flach- oder Grasland",
+        "HillsMountains": "Hügel oder Berge",
+        "ForestJungle": "Wald oder Dschungel"
+      },
+      "MoraleDM": "Moral-DM",
+      "KeepFighting": "Weiterkämpfen",
+      "Reaction": "Reaktions-Wurf",
+      "AttacksMessage": "Tier greift Gruppe an!",
+      "FleesMessage": "Tier flieht vor Gruppe!",
+      "MoraleRoll": "Moral-Wurf",
+      "Type": "Art",
+      "Location": "Habitat",
+      "AnimalNotes": "Tiernotizen",
+      "RobotNotes": "Roboternotizen",
+      "Attack": "Angriff",
+      "Flee": "Flüchten",
+      "Retreat": "Rückzug",
+      "FightingWithdrawal": "Kämpfender Rückzug",
+      "Advance": "Vorrücken",
+      "FightToTheDeath": "Bis zum Tode kämpfen!"
+    },
+    "Target": {
+      "Cone": "Kegel",
+      "AreaEffect": "Wirkungsbereich",
+      "None": "kein",
+      "Radius": "Radius",
+      "Sphere": "Kugel",
+      "Cylinder": "Zylinder",
+      "Square": "Quadrat",
+      "Cube": "Würfel",
+      "Line": "Linie",
+      "Wall": "Wand",
+      "Units": "Einheiten",
+      "TypeArea": "Bereichstyp",
+      "Width": "Breite",
+      "Target": "Ziel"
+    },
+    "Ship": {
+      "Unknown": "unbekannt",
+      "AvailableCargoWeight": "Verfügbares Frachtgewicht",
+      "Available": "Verfügbar",
+      "ActorLacksSkill": "_ACTOR_NAME_ fehlt die Fertigkeit _SKILL_",
+      "CantDropActorIfPositionIsNotOnShip": "Du kannst einen Reisenden nicht auf einer Schiffsposition absetzen die nicht auf einem Schiff ist",
+      "Actions": "Aktionen",
+      "ActionType": "Aktionstyp",
+      "ActionRollFormula": "Aktions-Würfelformel",
+      "ActorMustBeSelectedForAction": "Da es mehrere Aktoren gibt, muss einer ausgewählt werden um die Aktion durchzuführen",
+      "AddShipPosition": "Füge Schiffsposition hinzu",
+      "Avail": "Verf.",
+      "RemoveTraveller": "Entferne Reisenden von einem Schiff",
+      "Travellers": "Reisende"
+    },
+    "Settings": {
+      "showStatusIcons": {
+        "name": "Zeige Zustandssymbole auf Charakterseiten"
+      },
+      "defaultMovement": {
+        "hint": "Die Standardbewegung für neue Reisende (meistens eine insiginifikante Aktion), z.B. 10 für 10m"
+      },
+      "lifebloodInsteadOfCharacteristics": {
+        "hint": "Zeige KON und 'Lebensblut' (nutzt STR unter der Haube) als Charakteristiken. Nützlich für Cepheon Atom, Barabaric!, etc.",
+        "name": "Zeige KON und 'Lebensblut' (nutzt STR unter der Haube) als Charakteristiken."
+      },
+      "showContaminationBelowLifeblood": {
+        "hint": "Zeige Kontamination unter Lebensblut. Nur nützlich wenn 'Zeige KON und Lebensblut' als Einstellung aktiv ist."
+      },
+      "encumbranceModifier": {
+        "hint": "Die Zahl die den physischen (STA, KON, GES) Charakteristikmodifikatoren zugerechnet wird wenn man belastet ist. Z.B. -1 zeigt an, dass von allen Würfen mit physischen Charakteristiken eins abgezogen werden sollte."
+      },
+      "showSkillCountsRanks": {
+        "name": "Zeige Fertigkeitsanzahl und -ränge auf Charakterseiten"
+      },
+      "defaultMovementUnits": {
+        "hint": "Die Standardbewegungseinheiten für neue Reisende (meistens eine insiginifikante Aktion), z.B. m für 10m"
+      },
+      "animalTypesIndependentofNiche": {
+        "hint": "Tiere können jeden Typ haben, unabhängig von der gewählten Nische.",
+        "name": "Tiertypen sind unabhängig von Nischen"
+      }
+    },
+    "Warnings": {
+      "DecreaseEnduranceFirst": "Konstitution/Ausdauer sollte vor allen anderen Werten reduziert werden"
     }
+  },
+  "VeryDifficult": "Sehr Schwierig",
+  "TYPES": {
+    "Actor": {
+      "robotPl": "Roboter",
+      "travellerPl": "Reisende",
+      "space-objectPl": "Raumobjekte",
+      "traveller": "Reisender",
+      "animalPl": "Tiere",
+      "vehiclePl": "Fahrzeuge",
+      "shipPl": "Schiffe",
+      "space-object": "Raumobjekt"
+    },
+    "Item": {
+      "consumablePl": "Verbrauchsgegenstände"
+    }
+  },
+  "EFFECT": {
+    "StatusAiming": "Zielend",
+    "StatusThrust": "Gestoßen",
+    "StatusInCover": "In Deckung",
+    "StatusFatigued": "Ermüdet",
+    "StatusUnconscious": "Ohnmächtig",
+    "StatusTargetLock": "Zielerfassung",
+    "StatusIrradiated": "Verstrahlt",
+    "StatusInvisible": "Getarnt",
+    "StatusDead": "Tot",
+    "StatusEncumbered": "Belastet",
+    "StatusWounded": "Verwundet"
   }
 }
