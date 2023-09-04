@@ -931,7 +931,7 @@
         "name": "Mostrar Puntos Heroe"
       },
       "usePDFPagerForRefs": {
-        "hint": "Mostrar un campo de texto en la hoja de objetos para utilizar por PDFoundry o como referencia. Para PDFoundry, el formato debe ser '[nombre abreviado] [número página]'.",
+        "hint": "Utilizar PDF Pager para mostrar referencias.  El formato debe ser '[nombre clave] [número página]'. Si el valor es falso, se utilizan los enlaces a la url.",
         "name": "Utilizar módulo PDF-Pager para mostrar referencias"
       },
       "ShowLawLevel": {
@@ -1113,8 +1113,8 @@
         "name": "Mostrar Conjuros"
       },
       "sorcerySkill": {
-        "hint": "El nombre de la habilidad utilizada para Conjurar/Hechicería.",
-        "name": "Nombre habilidad para Magia"
+        "hint": "El nombre por defecto para la habilidad utilizada para lanzar conjuros/hechiceros.",
+        "name": "Nombre por defecto para habilidad de conjuros"
       },
       "useNationality": {
         "hint": "Mostrar el campo de nacionalidad en vez de mundo natal en la hoja de personaje.",
