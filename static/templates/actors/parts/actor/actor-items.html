@@ -111,7 +111,16 @@
           <li class="flexrow" >
             <span class="items-armor">
               <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fa-solid fa-dice" alt="d6" ></i></span>
-              <span class="item-name rollable">{{item.name}}</span>
+              <span class="item-name rollable">
+                {{item.name}}
+                {{#if item.system.nonstackable}}
+                  {{#iff item.system.equipped "===" "equipped"}}
+                    <i class="fa-solid fa-layer-group red" data-tooltip='{{localize "TWODSIX.Items.Armor.Nonstackable"}}'></i>
+                  {{else}}
+                    <i class="fa-solid fa-layer-group" data-tooltip='{{localize "TWODSIX.Items.Armor.Nonstackable"}}'></i>
+                  {{/iff}}
+                {{/if}}
+              </span>
               <span class="item-name centre">{{item.system.techLevel}}</span>
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.weight}}</span>
