@@ -113,6 +113,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
     html.find(`[name="type"]`).on('change', this._changeType.bind(this));
+    html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
   }
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
@@ -183,6 +184,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     /*Unset isWeightPct if changing to base hull*/
     if (newValue && anComponent.weightIsPct) {
       await this.item.update({"system.weightIsPct": false});
+    }
+  }
+
+  private _changeNonstackable() {
+    if (this.item.actor) {
+      const newValue = !this.item.system.nonstackable;
+      //check for having more than one equipped armor when changing to nonstackable
+      if (this.item.actor.system.layersWorn > 1 && newValue && this.item.system.equipped === 'equipped') {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
+      }
     }
   }
 
@@ -404,6 +415,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 }
+
 /**
  * Function to return an objects of the damage types from setting: 'damageTypeOptions'
  * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
