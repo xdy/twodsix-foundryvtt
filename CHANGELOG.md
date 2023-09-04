@@ -1,3 +1,10 @@
+# [3.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.9.0...v3.10.0) (2023-09-04)
+
+
+### Features
+
+* add non-stackable armor ([#1458](https://github.com/xdy/twodsix-foundryvtt/issues/1458)) ([f3a1a1f](https://github.com/xdy/twodsix-foundryvtt/commit/f3a1a1f782360de5699b50c4f6edb975a29880f9))
+
 # [3.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.8.2...v3.9.0) (2023-09-02)
 
 
