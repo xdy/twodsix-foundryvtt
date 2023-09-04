@@ -358,6 +358,7 @@
         "SecondaryArmor": "Secondary Armor",
         "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor",
+        "Nonstackable": "Non-stackable",
         "SecondaryArmorProtectionTypes": "Secondary Protection Types"
       },
       "Augmentation": {
@@ -1327,7 +1328,8 @@
       "MacroNotFound": "Macro with name, _MACRO_NAME_, not found.",
       "NoDamageToApply": "Damage or healing values must greater than zero.",
       "MissingUntrainedSkill": "Actor is missing untrained skill. Reload application to fix.",
-      "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected."
+      "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected.",
+      "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor."
     }
   },
   "TYPES": {

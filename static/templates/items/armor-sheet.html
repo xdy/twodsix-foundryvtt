@@ -39,6 +39,11 @@
       <input type="checkbox" class="checkbox" name="system.isPowered" {{checked system.isPowered}} data-dtype="Boolean" />
     </div>
 
+    <div class="item-nonstackable">
+      <span class="resource-label">{{localize "TWODSIX.Items.Armor.Nonstackable"}}</span>
+      <input type="checkbox" class="checkbox" name="system.nonstackable" {{checked system.nonstackable}} data-dtype="Boolean" />
+    </div>
+
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
       <div contenteditable="true" data-edit="system.description" >{{{system.description}}}</div>

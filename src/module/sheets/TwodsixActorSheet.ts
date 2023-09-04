@@ -274,8 +274,13 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
-      this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
+
+      //check for equipping more than one armor with nonstackable
+      if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
+      }
     }
   }
 

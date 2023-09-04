@@ -100,6 +100,8 @@ export default class TwodsixActor extends Actor {
       system.primaryArmor.value = armorValues.primaryArmor;
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
+      system.layersWorn = armorValues.layersWorn;
+      system.wearingNonstackable = armorValues.wearingNonstackable;
     }
     await this._updateActiveEffects(true);
   }
@@ -112,7 +114,9 @@ export default class TwodsixActor extends Actor {
     const returnValue = {
       primaryArmor: 0,
       secondaryArmor: 0,
-      radiationProtection: 0
+      radiationProtection: 0,
+      layersWorn: 0,
+      wearingNonstackable: false
     };
     const armorItems = this.itemTypes.armor;
     for (const armor of armorItems) {
@@ -120,6 +124,10 @@ export default class TwodsixActor extends Actor {
         returnValue.primaryArmor += armor.system.armor;
         returnValue.secondaryArmor += armor.system.secondaryArmor.value;
         returnValue.radiationProtection += armor.system.radiationProtection.value;
+        returnValue.layersWorn += 1;
+        if (armor.system.nonstackable) {
+          returnValue.wearingNonstackable = true;
+        }
       }
     }
     return returnValue;

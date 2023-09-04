@@ -723,7 +723,8 @@
       },
       "type": "armor",
       "useConsumableForAttack": "",
-      "isPowered": false
+      "isPowered": false,
+      "nonstackable": false
     },
     "augment": {
       "templates": ["gearTemplate", "referenceTemplate"],

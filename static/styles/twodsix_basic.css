@@ -2303,7 +2303,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-doubleTap, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
-.item-priorType {
+.item-priorType, .item-nonstackable {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;

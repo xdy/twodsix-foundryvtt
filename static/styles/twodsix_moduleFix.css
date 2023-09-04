@@ -224,6 +224,27 @@ div.pdf-app section.window-content {
   border-color: var(--mej-sheet-tab-background);
 }
 
+.journal-select > div > i {
+  color: var(--s2d6-default-color);
+}
+
+.journal-select {
+  height: unset;
+  background-color: var(--s2d6-background-semi-opaque);
+  color: revert;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  border: 1px solid var(--s2d6-background-opaque);
+  border-radius: 0;
+}
+
+
 /************Item Piles*******/
 /*.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even), .item-piles-item-row:nth-child(odd) {
   background-color: var(--s2d6-light-background-transparent) !important;
