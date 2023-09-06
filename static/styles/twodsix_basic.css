@@ -1668,7 +1668,7 @@ img.ship-mask-bg {
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: 12px;
-  margin-left: 5px;
+  margin-left: 2px;
 }
 
 .ship-state-grid span {
@@ -1736,10 +1736,8 @@ img.ship-mask-bg {
 
 .ship-mass {
   grid-area: ship-mass;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   justify-content: space-between;
-  width: max-content;
 }
 
 .ship-mass input, .ship-tl input {
@@ -2026,9 +2024,9 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px 1px;
   grid-template-areas:
     ". .";
-  width: 54.4em;
+  width: 55.5em;
   align-items: center;
-  /* border-right: 1px solid var(--s2d6-form-light); */
+  border-right: 1px solid var(--s2d6-form-light);
 }
 
 .grid-columns-single {
@@ -2049,7 +2047,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px 1px;
   grid-template-areas:
     ". . . . . .";
-  border-right: 1px solid var(--s2d6-form-light);
+  /*border-right: 1px solid var(--s2d6-form-light);*/
 }
 
 .storage-header {
@@ -2062,7 +2060,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /* width: fit-content; */
 }
 
-.components-stored-double {
+.components-stored-double, .cargo-stored-double {
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
