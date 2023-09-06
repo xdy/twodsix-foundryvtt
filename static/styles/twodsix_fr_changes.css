@@ -1,0 +1,42 @@
+.ship-fuel {
+  grid-template-rows: 22px 25px 47px 20px;
+}
+
+.power-grid {
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.storage-header {
+  height: auto;
+  min-height: 3ch;
+}
+
+.ship-payments .item-title {
+  font-size: 11px;
+  padding-top: 4px;
+}
+
+span.add-skill-txt {
+  margin-left: 0.6em;
+}
+
+.info-tab {
+  width: 75px;
+}
+
+.item-tab {
+  width: 98px;
+}
+
+.skill-tab {
+  width: 110px;
+}
+
+.effects-tab {
+  width: 80px;
+}
+
+.items-traits {
+  grid-template-columns: 13em 5em 12em 3em;
+}

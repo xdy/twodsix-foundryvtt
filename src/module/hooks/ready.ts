@@ -73,6 +73,9 @@ Hooks.once("ready", async function () {
     case 'sv':
       switchCss("systems/twodsix/styles/twodsix_sv_changes.css");
       break;
+    case 'fr':
+      switchCss("systems/twodsix/styles/twodsix_fr_changes.css");
+      break;
     default:
       break;
   }
