@@ -41,7 +41,11 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 }
 
 .bgi-type select, .bgi-movement select {
-	 width: 19ch;
+	 width: 17ch;
+}
+
+.character-bgi-std {
+  font-size: 1.9ch;
 }
 
 .bgi-reaction input {
