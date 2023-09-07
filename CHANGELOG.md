@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.10.0...v3.11.0) (2023-09-07)
+
+
+### Features
+
+* language sheet customization ([#1463](https://github.com/xdy/twodsix-foundryvtt/issues/1463)) ([8ed5c9c](https://github.com/xdy/twodsix-foundryvtt/commit/8ed5c9cbaa5965fe2bfd477fbd79d9cfc7394b68))
+
 # [3.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.9.0...v3.10.0) (2023-09-04)
 
 
