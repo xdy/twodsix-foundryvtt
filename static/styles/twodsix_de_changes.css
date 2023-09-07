@@ -1,0 +1,77 @@
+.items-weapons {
+	grid-template-columns: 1.5em 11.5em 1.6em 2.7em 2.2em 3.8em 3.6em 5.5em;
+}
+
+.item-title {
+	font-size: 1.82ch;
+	padding: 3px 2px 2px 6px;
+}
+
+.ship-mass, .ship-drives,.ship-fuel, .ship-hull-bandwidth, .ship-armor {
+	margin-top: 0.25em;
+}
+
+.ship-fuel {
+	grid-template-rows: 20px 20px 47px 20px;
+}
+
+.ship-mass {
+	grid-template-rows: 16px 14px 27px 30px;
+}
+
+.power-grid {
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+a.ship-crew-tab, a.ship-positions-tab,
+a.ship-storage-tab, a.ship-cargo-tab,
+a.ship-finance-tab, a.ship-component-tab,
+a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
+	padding: 1ch 0.3ch;
+	font-size: 1.8ch;
+}
+
+.character-bgi-npc {
+	font-size: 1.8ch;
+}
+
+.bgi-niche select {
+	width: 18ch;
+}
+
+.bgi-type select, .bgi-movement select {
+	 width: 17ch;
+}
+
+.character-bgi-std {
+  font-size: 1.9ch;
+}
+
+.bgi-reaction input {
+	width: 2.5em;
+}
+.components-stored-single {
+	grid-template-columns: 12em 2em 6em 3em 4em 4em 5.5em 4.5em 2em 4em 3.2em 3em;
+}
+
+.components-stored-double {
+    grid-template-columns: 139px 50px 31px 72px 46px 42px;
+}
+
+.ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
+	font-size: 16px;
+	height: 2.5ch
+}
+
+.fuel-bar {
+	height: 26px;
+}
+
+.ship-state-grid {
+	margin-left: 2px;
+}
+
+.skill-tab, .item.skill-tab {
+  width: 104px;
+}

@@ -8,7 +8,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
       <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
     </div>
-    <div class="components-stored-double ">
+    <div class="components-stored-double">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="grid-columns-single">
+  <div class="grid-columns-double">
     {{#if settings.allowDragDropOfLists}}
     <div class="item-list grid-columns-double">
       {{#each_sort_item container.nonCargo as |item id|}}

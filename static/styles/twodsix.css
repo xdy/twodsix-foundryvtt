@@ -2590,7 +2590,7 @@ a.ship-notes-tab.active {
 
 .storage-wrapper {
   margin-top: 17px;
-  margin-left: 17px;
+  margin-left: 12px;
   overflow-y: auto;
   height: 286px;
   /* align-self: center; */
@@ -2621,7 +2621,7 @@ a.ship-notes-tab.active {
 
 .storage-stored {
   display: grid;
-  grid-template-columns: 7.5em 5em 3em 3em 4em 3em;
+  grid-template-columns: 8.5em 5.5em 3em 3em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
   grid-template-areas:
@@ -2639,7 +2639,7 @@ a.ship-notes-tab.active {
   height: 3ch;
 }
 
-.components-stored-double {
+.components-stored-double, .cargo-stored-double {
   display: grid;
   grid-template-columns: 148px 54px 31px 51px 49px 42px;
   grid-template-rows: 1fr;

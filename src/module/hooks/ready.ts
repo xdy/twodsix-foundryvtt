@@ -5,7 +5,7 @@ import {createItemMacro} from "../utils/createItemMacro";
 import { applyToAllActors } from "../utils/migration-utils";
 import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
 import { updateStatusIcons } from "../settings/DisplaySettings";
-
+import { switchCss } from "../settings";
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
   if (game.modules.get("combat-utility-belt")?.active) {
@@ -58,6 +58,26 @@ Hooks.once("ready", async function () {
   //set status icons
   if (game.settings.get('twodsix', 'reduceStatusIcons')) {
     updateStatusIcons();
+  }
+
+  //Customize style for core language
+  switch (game.settings.get('core', 'language')) {
+    case 'en':
+      break;
+    case 'es':
+      switchCss("systems/twodsix/styles/twodsix_es_changes.css");
+      break;
+    case 'de':
+      switchCss("systems/twodsix/styles/twodsix_de_changes.css");
+      break;
+    case 'sv':
+      switchCss("systems/twodsix/styles/twodsix_sv_changes.css");
+      break;
+    case 'fr':
+      switchCss("systems/twodsix/styles/twodsix_fr_changes.css");
+      break;
+    default:
+      break;
   }
 
 });
