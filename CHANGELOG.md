@@ -1,3 +1,10 @@
+# [3.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.11.0...v3.12.0) (2023-09-08)
+
+
+### Features
+
+* ruleset setting to use max armor value rather than sum ([#1464](https://github.com/xdy/twodsix-foundryvtt/issues/1464)) ([f5807f9](https://github.com/xdy/twodsix-foundryvtt/commit/f5807f967e4b068221c618b11cbee3e7dc57f045))
+
 # [3.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.10.0...v3.11.0) (2023-09-07)
 
 
