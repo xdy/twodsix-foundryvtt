@@ -4,6 +4,7 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {TWODSIX} from "../config";
 import {booleanSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
+import { refreshWindow } from "./DisplaySettings";
 
 export default class RulesetSettings extends AdvancedSettings {
   static create() {
@@ -49,6 +50,7 @@ export default class RulesetSettings extends AdvancedSettings {
     };
     settings.general.push(stringSetting('initiativeFormula', DEFAULT_INITIATIVE_FORMULA, false, 'world'));
     settings.damage.push(stringSetting('armorDamageFormula', "@damage - @effectiveArmor", false, 'world'));
+    settings.damage.push(booleanSetting('useMaxArmorValue', false, false, 'world', refreshWindow));
     settings.ship.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
     settings.roll.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
     settings.roll.push(booleanSetting('difficultiesAsTargetNumber', false));

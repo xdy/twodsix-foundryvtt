@@ -1250,6 +1250,10 @@
         "actor": "Actor",
         "dragDrop": "Drag & Drop",
         "style": "Style"
+      },
+      "useMaxArmorValue": {
+        "hint": "Use the maximum armor value to determine protection if more than one armor layer is being worn.  The default (false) adds all the armor values for each layer worn. WARNING: Requires all clients to reload when setting changed.",
+        "name": "Use max armor value rather than sum when wearing multiple layers"
       }
     },
     "CloseAndCreateNew": "Close and create new",
