@@ -119,11 +119,19 @@ export default class TwodsixActor extends Actor {
       wearingNonstackable: false
     };
     const armorItems = this.itemTypes.armor;
+    const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
-        returnValue.primaryArmor += armor.system.armor;
-        returnValue.secondaryArmor += armor.system.secondaryArmor.value;
-        returnValue.radiationProtection += armor.system.radiationProtection.value;
+        if (useMaxArmorValue) {
+          returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
+          returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
+          returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
+        } else {
+          returnValue.primaryArmor += armor.system.armor;
+          returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+          returnValue.radiationProtection += armor.system.radiationProtection.value;
+        }
+
         returnValue.layersWorn += 1;
         if (armor.system.nonstackable) {
           returnValue.wearingNonstackable = true;
@@ -143,9 +151,14 @@ export default class TwodsixActor extends Actor {
     let returnValue = 0;
     if (damageType !== "NONE"  && damageType !== ""  && damageType) {
       const armorItems = this.itemTypes.armor;
+      const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
       for (const armor of armorItems) {
         if (armor.system.equipped === "equipped" && armor.system.secondaryArmor.protectionTypes.includes(damageType)) {
-          returnValue += armor.system.secondaryArmor.value;
+          if (useMaxArmorValue) {
+            returnValue = Math.max(armor.system.secondaryArmor.value, returnValue);
+          } else {
+            returnValue += armor.system.secondaryArmor.value;
+          }
         }
       }
     }
