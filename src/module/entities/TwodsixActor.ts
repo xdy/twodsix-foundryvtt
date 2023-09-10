@@ -834,7 +834,7 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !["skills", "trait"].includes(addedItem.type)) {
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !["skills", "trait", "spell"].includes(addedItem.type)) {
       await applyEncumberedEffect(this);
     }
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
