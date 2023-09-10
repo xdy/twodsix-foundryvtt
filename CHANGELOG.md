@@ -1,3 +1,10 @@
+## [3.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.12.0...v3.12.1) (2023-09-10)
+
+
+### Bug Fixes
+
+* Ship sheet bugs ([#1465](https://github.com/xdy/twodsix-foundryvtt/issues/1465)) ([97106dd](https://github.com/xdy/twodsix-foundryvtt/commit/97106ddf83f04c7d0d6e2c844ea48f88bb27d723))
+
 # [3.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.11.0...v3.12.0) (2023-09-08)
 
 
