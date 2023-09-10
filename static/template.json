@@ -535,7 +535,7 @@
       "trainingNotes": ""
     },
     "trait": {
-      "templates": ["referenceTemplate"],
+      "templates": ["referenceTemplateItem"],
       "value": 0,
       "type": "trait",
       "description": "",
@@ -545,7 +545,7 @@
       "key": "key"
     },
     "spell": {
-      "templates": ["referenceTemplate", "targetTemplate"],
+      "templates": ["referenceTemplateItem", "targetTemplate"],
       "value": 0,
       "type": "spell",
       "description": "",
@@ -558,7 +558,7 @@
       "damage": ""
     },
     "consumable": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplateItem"],
       "currentCount": 1,
       "max": 0,
       "type": "consumable",
@@ -572,7 +572,7 @@
       "parentName": ""
     },
     "component": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplateItem"],
       "subtype": "otherInternal",
       "powerDraw": 0,
       "rating": "",
@@ -612,19 +612,19 @@
       "order": 0
     },
     "computer": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplateItem"],
       "type":"computer",
       "useConsumableForAttack": "",
       "processingPower": 0
     },
     "storage": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplateItem"],
       "type": "storage",
       "useConsumableForAttack": "",
       "priorType":""
     },
     "junk": {
-      "templates": ["gearTemplate", "referenceTemplate"],
+      "templates": ["gearTemplate", "referenceTemplateItem"],
       "type": "junk",
       "useConsumableForAttack": "",
       "priorType": ""
