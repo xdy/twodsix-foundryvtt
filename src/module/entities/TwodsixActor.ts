@@ -834,7 +834,7 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !["skills", "trait", "spell"].includes(addedItem.type)) {
       await applyEncumberedEffect(this);
     }
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
@@ -842,12 +842,6 @@ export default class TwodsixActor extends Actor {
   }
 
   public async handleDroppedItem(itemData): Promise<boolean> {
-    //handle drop from compendium
-    //if (itemData?.pack) {
-    //  const pack = game.packs.get(itemData.pack);
-    //  itemData = await pack?.getDocument(itemData._id);
-    //}
-
     if(!itemData) {
       return false;
     }
