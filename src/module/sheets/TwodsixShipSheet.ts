@@ -283,6 +283,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
         this.processDroppedItem(event, droppedObject);
         return true;
+      } else if (event.currentTarget.className === 'ship-position-box ship-position-add-box' && droppedObject.type === 'ship_position') {
+        return false; //avoid double add
       } else {
         await super._onDrop(event);
         return true;
