@@ -358,6 +358,7 @@
         "SecondaryArmor": "Armadura 2ª",
         "RadProt": "Prot Rad",
         "IsPowered": "Armadura Energía",
+        "Nonstackable": "No apilable",
         "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria"
       },
       "Augmentation": {
@@ -1249,6 +1250,10 @@
         "actor": "Actor",
         "dragDrop": "Drag & Drop",
         "style": "Estilo"
+      },
+      "useMaxArmorValue": {
+        "hint": "Utilizar el valor más elevado de armadura para determinar la protección, cuando se llevan varias capas. Por defecto (falso) se suman todos los valores de armadura de cada capa. AVISO: Requiere que los clientes refresquen el navegador tras el cambio.",
+        "name": "Al llevar varias capas de armadura, utilizar la de mayor valor en vez de sumar ambas"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1327,7 +1332,8 @@
       "MacroNotFound": "Macro llamada, _MACRO_NAME_, no disponible.",
       "NoDamageToApply": "El valor de daño o curación debe ser mayor que cero.",
       "MissingUntrainedSkill": "Actor sin habilidad \"sin entrenar\". Refresca la aplicación para corregir.",
-      "TooManyTargets": "Más objetivos que número de ataques, los objetivos se escogen por orden de selección."
+      "TooManyTargets": "Más objetivos que número de ataques, los objetivos se escogen por orden de selección.",
+      "WearingMultipleLayers": "Múltiples capas de armadura equipadas, y se lleva una que es no apilable."
     }
   },
   "TYPES": {
