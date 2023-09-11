@@ -137,10 +137,16 @@
           "max": 0,
           "min": 0
         }
+      },
+      "encumbranceTemplate": {
+        "encumbrance": {
+          "value": 0,
+          "max": 0
+        }
       }
     },
     "traveller": {
-      "templates": ["characteristicsTemplate", "armorTemplate", "conditionsTemplate", "radDoseTemplate", "movementTemplate", "referenceTemplateActor"],
+      "templates": ["characteristicsTemplate", "armorTemplate", "conditionsTemplate", "radDoseTemplate", "encumbranceTemplate", "movementTemplate", "referenceTemplateActor"],
       "name": "",
       "homeWorld": "",
       "nationality": "",
@@ -156,11 +162,6 @@
         "lastDelta": 0
       },
       "gender": "",
-
-      "encumbrance": {
-        "value": 0,
-        "max": 0
-      },
       "heroPoints": 2,
       "contacts": "",
       "allies": "",
@@ -298,6 +299,7 @@
       }
     },
     "vehicle": {
+      "templates": ["referenceTemplateActor"],
       "cargoList": "",
       "cargoCapacity": "",
       "cost": "",
@@ -327,12 +329,6 @@
           "critical": 0
         }
       },
-      "docReference": "",
-      "pdfReference": {
-        "type": "",
-        "href": "",
-        "label": ""
-      },
       "features": "",
       "maneuver": {
         "speed": "0",
@@ -359,7 +355,7 @@
       "weight": ""
     },
     "animal": {
-      "templates": ["armorTemplate", "characteristicsTemplate", "radDoseTemplate", "conditionsTemplate", "movementTemplate", "referenceTemplateActor"],
+      "templates": ["armorTemplate", "characteristicsTemplate", "radDoseTemplate", "encumbranceTemplate", "conditionsTemplate", "movementTemplate", "referenceTemplateActor"],
       "name": "",
       "homeWorld": "",
       "animalType": {
@@ -379,10 +375,6 @@
         "min": 0,
         "max": 21
       },
-      "encumbrance": {
-        "value": 0,
-        "max": 0
-      },
       "untrainedSkill": "",
       "description": "",
       "notes": "",
@@ -398,17 +390,13 @@
       }
     },
     "robot": {
-      "templates": ["characteristicsTemplate", "armorTemplate", "radDoseTemplate", "movementTemplate", "conditionsTemplate", "referenceTemplateActor"],
+      "templates": ["characteristicsTemplate", "armorTemplate", "radDoseTemplate", "encumbranceTemplate", "movementTemplate", "conditionsTemplate", "referenceTemplateActor"],
       "name": "",
       "size": "",
       "hits": {
         "value": 21,
         "min": 0,
         "max": 21
-      },
-      "encumbrance": {
-        "value": 0,
-        "max": 0
       },
       "untrainedSkill": "",
       "description": "",
