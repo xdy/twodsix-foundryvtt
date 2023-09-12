@@ -179,7 +179,7 @@ label.checkbox > input[type="checkbox"] {
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 20em 0.5fr 0.5fr;
+  grid-template-rows: 24em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -191,7 +191,7 @@ label.checkbox > input[type="checkbox"] {
 .animal-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  grid-template-rows: 14.5em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -204,7 +204,7 @@ label.checkbox > input[type="checkbox"] {
 .robot-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 20em 0.7fr 0.7fr 0.7fr;
+  grid-template-rows: 23.5em 0.7fr 0.7fr 0.7fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -217,7 +217,7 @@ label.checkbox > input[type="checkbox"] {
 .robot-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  grid-template-rows: 14em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -226,6 +226,16 @@ label.checkbox > input[type="checkbox"] {
     "npc-skills npc-skills npc-weapons"
     "npc-skills npc-skills npc-weapons";
   overflow: auto;
+}
+
+.bgi-secondary {
+  margin: 0.5ch 0;
+  align-items: center;
+  display: inline-block;
+}
+
+.bgi-secondary .protectionTypes {
+  height: 5ch;
 }
 
 .short-input {

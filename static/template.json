@@ -387,6 +387,9 @@
           "label": "Pack",
           "displayShortLabel": "PAK"
         }
+      },
+      "secondaryArmor": {
+        "protectionTypes": []
       }
     },
     "robot": {
@@ -405,7 +408,10 @@
       "price": "",
       "chassis": "",
       "techLevel": 0,
-      "operationalTime": ""
+      "operationalTime": "",
+      "secondaryArmor": {
+        "protectionTypes": []
+      }
     },
     "space-object": {
       "templates": ["referenceTemplateActor", "movementTemplate"],
