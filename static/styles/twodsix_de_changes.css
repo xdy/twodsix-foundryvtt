@@ -50,7 +50,7 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 
 .robot-content-container, .robot-content-container-small,
 .animal-content-container, .animal-content-container-small  {
-  grid-template-columns: 15em 23em 18em;
+  grid-template-columns: 15em 25em 18em;
 }
 
 .components-stored-single {

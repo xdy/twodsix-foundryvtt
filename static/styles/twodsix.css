@@ -533,7 +533,7 @@ h2 {
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 23em 0.5fr 0.5fr;
+  grid-template-rows: 21em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -545,7 +545,7 @@ h2 {
 .animal-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 13em 10em 0.5fr 0.5fr;
+  grid-template-rows: 11.5em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -559,7 +559,7 @@ h2 {
 .robot-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 22em 0.7fr 0.7fr 0.7fr;
+  grid-template-rows: 21em 0.7fr 0.7fr 0.7fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -572,7 +572,7 @@ h2 {
 .robot-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 13em 10em 0.5fr 0.5fr;
+  grid-template-rows: 11.5em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -586,7 +586,7 @@ h2 {
 .bgi-secondary {
   margin: 0.5ch 0;
   align-items: center;
-  display: inline-block;
+  display: inline-flex;
 }
 
 .bgi-secondary .protectionTypes {
