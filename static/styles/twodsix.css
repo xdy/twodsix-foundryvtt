@@ -572,7 +572,7 @@ h2 {
 .robot-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 14em 10em 0.5fr 0.5fr;
+  grid-template-rows: 13em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
