@@ -63,7 +63,9 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche'),
-      damageTypes: getDamageTypes(false)
+      damageTypes: getDamageTypes(false),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

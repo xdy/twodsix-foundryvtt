@@ -129,6 +129,13 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
+.npc-notes-ce {
+  height: 90%;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 2px;
+}
+
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
   border: 2px solid;
   border-radius: 2ch;
@@ -502,10 +509,14 @@ img.character-info-mask {
   z-index: -1;
 }
 
+.character-photo.npc {
+  min-height: 65%;
+}
+
 .status-icons {
   position: absolute;
-  left: 1em;
-  top: 1em;
+  left: 0.5em;
+  top: 0.5em;
   z-index: 1;
   flex-direction: column;
   display: flex;
@@ -1108,7 +1119,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .roll-initiative {
   max-width: fit-content;
   cursor: pointer;
-  line-height: 4ch;
+  line-height: 3ch;
 }
 
 .skill-list {

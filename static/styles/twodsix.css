@@ -480,6 +480,13 @@ h2 {
   border-width: 2px;
 }
 
+.npc-notes-ce {
+  height: 90% !important;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 2px;
+}
+
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
   border: solid;
   border-radius: 2ch;
@@ -857,6 +864,10 @@ h2 {
   vertical-align: middle;
   max-height: 100%;
   z-index: -1;
+}
+
+.character-photo.npc {
+  min-height: 65%;
 }
 
 .status-icons {
@@ -1562,7 +1573,7 @@ a.actor-notes-tab.active {
   /* padding: 0; */
   /* vertical-align: middle; */
   font-size: inherit;
-  line-height: 4ch;
+  line-height: 3ch;
 }
 
 .skill-list {

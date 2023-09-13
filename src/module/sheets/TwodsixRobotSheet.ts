@@ -59,7 +59,9 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
       robotsUseHits: game.settings.get('twodsix', 'robotsUseHits'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
-      damageTypes: getDamageTypes(false)
+      damageTypes: getDamageTypes(false),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;
