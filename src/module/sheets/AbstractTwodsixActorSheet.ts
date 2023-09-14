@@ -296,7 +296,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Handle droped pdf reference for sheet
     if (dropData.type === 'html' || dropData.type === 'pdf'){
       if (dropData.href) {
-        await this.actor.update({"system.pdfReference.type": dropData.type, "system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
+        await this.actor.update({ system: { pdfReference: { type: dropData.type, href: dropData.href, label: dropData.label}}});
       }
       return false;
     }
