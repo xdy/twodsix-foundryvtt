@@ -41,7 +41,15 @@
           {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
         </select>
     </div>
-    {{else}}
+    {{#if (twodsix_canBeEquipped this)}}
+      <div class="item-type">
+        <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+          <select class="form-input" name="system.equipped" id="system.equipped">
+            {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+          </select>
+      </div>
+    {{/if}}
+  {{else}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />

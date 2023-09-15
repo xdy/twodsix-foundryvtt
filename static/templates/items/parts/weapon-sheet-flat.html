@@ -52,6 +52,16 @@
     <label class="resource-label" for="system.weight">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
     <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
   </div>
+  {{#if owner}}
+    {{#iff owner.type "!==" "ship"}}
+      <div class="item-type">
+        <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+        <select class="form-input" name="system.equipped" id="system.equipped">
+          {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+        </select>
+      </div>
+    {{/iff}}
+  {{/if}}
 
   {{#if settings.ShowLawLevel}}
   <div class="item-lawLevel">

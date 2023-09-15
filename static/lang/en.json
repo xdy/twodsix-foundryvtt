@@ -133,6 +133,7 @@
         "EditItem": "Edit Item",
         "Effect": "Effect",
         "Location": "Location",
+        "EquippedLocation": "Equipped Location",
         "Name": "Name",
         "QuantityToTransfer": "Quantity to Transfer",
         "Qty": "Qty",
@@ -364,7 +365,7 @@
       "Augmentation": {
         "Arms": "Arms",
         "AugEffect": "Effect",
-        "AugLocation": "Location",
+        "AugLocation": "Augment Location",
         "FullBody": "Full Body",
         "Head": "Head",
         "Legs": "Legs",
