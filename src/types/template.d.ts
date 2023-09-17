@@ -650,7 +650,7 @@ export interface GearTemplate {
   skillModifier:number;
   skill:string;
   associatedSkillName:string;
-  equipped:Equipped;
+  equipped:string;
 }
 
 export interface TargetTemplate {
@@ -662,11 +662,6 @@ export interface TemplateData {
   width: number,
   units: string,
   type: string
-}
-export enum Equipped {
-  equipped = "equipped",
-  ship = "ship",
-  backpack = "backpack"
 }
 
 export interface Trait extends LinkTemplate {

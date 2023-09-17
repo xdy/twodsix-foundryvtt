@@ -837,6 +837,7 @@ export default class TwodsixActor extends Actor {
 
     //Remove any attached consumables
     transferData.system.consumables = [];
+    transferData.system.useConsumableForAttack = '';
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
