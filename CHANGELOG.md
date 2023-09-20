@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.12.1...v4.0.0) (2023-09-20)
+
+
+### Features
+
+* refactor template.json and add misc user requests ([#1467](https://github.com/xdy/twodsix-foundryvtt/issues/1467)) ([15ae8bb](https://github.com/xdy/twodsix-foundryvtt/commit/15ae8bb97737531f5e529911a6d7d8db0d541495))
+
+
+### BREAKING CHANGES
+
+* This update refactors template.json.  So there is a possibility of data loss.  Please backup before installing.
+
 ## [3.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v3.12.0...v3.12.1) (2023-09-10)
 
 
