@@ -16,7 +16,7 @@ A [Foundry VTT](https://foundryvtt.com/) system for running games using various 
 
 Install by either searching for Twodsix in in [FoundryVTT's](https://foundryvtt.com/) Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 
-**TAKE A BACKUP** before you switch from any 1.x or 2.x version of Twodsix to a Twodsix 3.x version, as that requires Foundry v11. The conversion to v11 is **one-way**. The only way to go back is to restore a backup.
+**TAKE A BACKUP** before you switch from any 1.x or 2.x version of Twodsix to a Twodsix 3.x or 4.x version, as that requires Foundry v11. The conversion to v11 is **one-way**. The only way to go back is to restore a backup.
 
 In play - using a number of Foundry modules - it can look something like this:
 
