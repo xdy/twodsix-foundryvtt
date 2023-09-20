@@ -8,6 +8,7 @@ import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 //import { getKeyByValue } from "../utils/sheetUtils"
 import { TWODSIX } from "../config";
+import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -132,6 +133,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
       html.find('.effect-control').on('click', this._modifyEffect.bind(this));
+
+      //Document links
+      html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
+      html.find('.delete-link').on('click', deletePDFReference.bind(this));
     }
   }
 
@@ -288,10 +293,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       return false;
     }
 
-    //Handle droped pdf reference for vehicle or space object sheet
+    // Handle droped pdf reference for sheet
     if (dropData.type === 'html' || dropData.type === 'pdf'){
-      if (dropData.href &&  ['vehicle', 'space-object'].includes(this.actor.type)) {
-        await this.actor.update({"system.pdfReference.type": dropData.type, "system.pdfReference.href": dropData.href, "system.pdfReference.label": dropData.label});
+      if (dropData.href) {
+        await this.actor.update({ system: { pdfReference: { type: dropData.type, href: dropData.href, label: dropData.label}}});
       }
       return false;
     }

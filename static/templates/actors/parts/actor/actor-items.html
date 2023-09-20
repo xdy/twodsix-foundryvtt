@@ -40,7 +40,10 @@
               {{/if}}
               <span class="item-name centre roll-damage">{{twodsix_limitLength item.system.damage 8}}</span>
               <span class="item-controls centre">
-                <a class="item-control item-fill-consumable" data-tooltip='{{localize "TWODSIX.Actor.Items.Refill"}}'><i class="fa-solid fa-battery-full"></i></a>
+                {{#unless item.system.useConsumableForAttack}}
+                {{#unless item.system.consumableData}}
+                  <a class="item-control item-fill-consumable" data-tooltip='{{localize "TWODSIX.Actor.Items.Refill"}}'><i class="fa-solid fa-battery-full"></i></a>
+                {{/unless}}{{/unless}}
                 <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>

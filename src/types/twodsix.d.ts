@@ -141,6 +141,7 @@ declare global {
       'twodsix.useDegreesOfSuccess': string;
       'twodsix.autoDamageTarget': boolean;
       'twodsix.overrideDamageRoll': boolean;
+      'twodsix.showActorReferences': boolean;
     }
   }
 }

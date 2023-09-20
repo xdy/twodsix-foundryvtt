@@ -1,0 +1,22 @@
+{{#if settings.showActorReferences}}
+  {{#if settings.usePDFPager}}
+    <div class="item-reference">
+      <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
+      <input class="form-input" id="source" type="text" name="system.docReference" value="{{actor.system.docReference}}"/>
+    </div>
+  {{else}}
+    {{#if actor.system.pdfReference.href}}
+      <div class="item-link centre">
+        {{localize "TWODSIX.Items.Link"}}:
+        <a href="{{actor.system.pdfReference.href}}">
+          {{#iff actor.system.pdfReference.type "===" 'pdf'}}
+            <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+          {{else}}
+            <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+          {{/iff}}
+          {{actor.system.pdfReference.label}}</a>
+        <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
+      </div>
+    {{/if}}
+  {{/if}}
+{{/if}}

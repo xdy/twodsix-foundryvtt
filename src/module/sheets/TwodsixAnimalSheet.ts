@@ -5,6 +5,7 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   /**
@@ -61,7 +62,10 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
-      useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche')
+      useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche'),
+      damageTypes: getDamageTypes(false),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

@@ -133,6 +133,7 @@
         "EditItem": "Edit Item",
         "Effect": "Effect",
         "Location": "Location",
+        "EquippedLocation": "Equipped Location",
         "Name": "Name",
         "QuantityToTransfer": "Quantity to Transfer",
         "Qty": "Qty",
@@ -364,7 +365,7 @@
       "Augmentation": {
         "Arms": "Arms",
         "AugEffect": "Effect",
-        "AugLocation": "Location",
+        "AugLocation": "Augment Location",
         "FullBody": "Full Body",
         "Head": "Head",
         "Legs": "Legs",
@@ -1254,6 +1255,10 @@
       "useMaxArmorValue": {
         "hint": "Use the maximum armor value to determine protection if more than one armor layer is being worn.  The default (false) adds all the armor values for each layer worn. WARNING: Requires all clients to reload when setting changed.",
         "name": "Use max armor value rather than sum when wearing multiple layers"
+      },
+      "showActorReferences": {
+        "hint": "Display pdf references (using pdf pager module) or url links on all actor sheets.",
+        "name": "Show PDF References or URL links on actor sheets"
       }
     },
     "CloseAndCreateNew": "Close and create new",

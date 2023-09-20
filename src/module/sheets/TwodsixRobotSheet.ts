@@ -4,6 +4,8 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
+import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+
 export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
   /**
@@ -56,7 +58,10 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       robotsUseHits: game.settings.get('twodsix', 'robotsUseHits'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
-      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills')
+      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
+      damageTypes: getDamageTypes(false),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

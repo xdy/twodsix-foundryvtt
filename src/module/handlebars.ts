@@ -420,6 +420,10 @@ export default function registerHandlebarsHelpers(): void {
     return ["armament", "mount"].includes(item.system.subtype);
   });
 
+  Handlebars.registerHelper('twodsix_canBeEquipped', (item: TwodsixItem) => {
+    return !["skills", "trait", "spell", "component", "ship_position"].includes(item.type);
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function (context) {
     console.log(context);

@@ -54,7 +54,7 @@
     </span>
     <span class="roll-morale orange" style="align-self: center;"><i class="fa-solid fa-hand-fist" data-tooltip='{{localize "TWODSIX.Animal.MoraleRoll"}}'></i>:</span>
     <input name="system.moraleDM" type="text" value="{{system.moraleDM}}" data-tooltip="{{twodsix_getTooltip actor 'system.moraleDM'}}" placeholder='{{localize "TWODSIX.Items.Component.DM"}}'/>
-  </span>
+    </span>
   <br>
   {{/if}}
   <!-- Protection Information-->
@@ -63,6 +63,9 @@
           data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}" /></span>
   <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
           name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
+  <span class="bgi-secondary" data-tooltip='{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}'><label for="system.secondaryArmor.protectionTypes"><i class="fa-solid fa-shield-halved"></i>: </label>
+    <select class="protectionTypes" name="system.secondaryArmor.protectionTypes" multiple>{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</select>
+  </span>
   <br>
 
   <!-- Damage Stats Information-->

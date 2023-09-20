@@ -74,7 +74,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       useNationality: game.settings.get('twodsix', 'useNationality'),
-      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills')
+      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {

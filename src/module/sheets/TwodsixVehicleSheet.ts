@@ -6,7 +6,6 @@ import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/t
 import TwodsixItem from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 
 export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
@@ -19,6 +18,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
@@ -41,8 +41,6 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
     //html.find('.roll-damage').on('click', onRollDamage.bind(this));
     html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
-    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
-    html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(".adjust-counter").on("click", this._onAdjustCounter.bind(this));
   }
 

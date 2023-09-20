@@ -32,10 +32,6 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 	font-size: 1.8ch;
 }
 
-.character-bgi-npc {
-	font-size: 1.8ch;
-}
-
 .bgi-niche select {
 	width: 18ch;
 }
@@ -44,13 +40,19 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 	 width: 17ch;
 }
 
+.bgi-reaction input {
+	width: 2.5em;
+}
+
 .character-bgi-std {
   font-size: 1.9ch;
 }
 
-.bgi-reaction input {
-	width: 2.5em;
+.robot-content-container, .robot-content-container-small,
+.animal-content-container, .animal-content-container-small  {
+  grid-template-columns: 15em 25em 18em;
 }
+
 .components-stored-single {
 	grid-template-columns: 12em 2em 6em 3em 4em 4em 5.5em 4.5em 2em 4em 3.2em 3em;
 }

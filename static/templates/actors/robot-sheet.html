@@ -6,7 +6,7 @@
   {{/if}}
 
     <div class="npc-name-photo">
-      <div class="character-photo npc" style="min-height: 75%;">
+      <div class="character-photo npc">
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}} data-edit="img" {{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
         {{#if settings.showStatusIcons}}
         <span class="status-icons">
@@ -22,6 +22,7 @@
           <button class="roll-initiative"><i class="fa-solid fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
         </div>
       {{/if}}
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-reference.html"}}
     </div>
     <div class="npc-bgi-stats">
       <div class="character-bgi-npc">

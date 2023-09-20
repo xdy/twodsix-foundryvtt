@@ -129,6 +129,13 @@ label.checkbox > input[type="checkbox"] {
   border-radius: 2ch;
 }
 
+.npc-notes-ce {
+  height: 90%;
+  border-radius: 0 0 2ch 2ch !important;
+  overflow-y: auto;
+  padding-left: 2px;
+}
+
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
   border: 2px solid;
   border-radius: 2ch;
@@ -178,8 +185,8 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 20em 0.5fr 0.5fr;
+  grid-template-columns: 15em 22em 18em;
+  grid-template-rows: 23em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -190,8 +197,8 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container-small {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  grid-template-columns: 15em 22em 18em;
+  grid-template-rows: 13em 9em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -203,8 +210,8 @@ label.checkbox > input[type="checkbox"] {
 
 .robot-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 20em 0.7fr 0.7fr 0.7fr;
+  grid-template-columns: 15em 22em 18em;
+  grid-template-rows: 22.5em 0.7fr 0.7fr 0.7fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -216,8 +223,8 @@ label.checkbox > input[type="checkbox"] {
 
 .robot-content-container-small {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 10.5em 10em 0.5fr 0.5fr;
+  grid-template-columns: 15em 22em 18em;
+  grid-template-rows: 13em 9em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -226,6 +233,16 @@ label.checkbox > input[type="checkbox"] {
     "npc-skills npc-skills npc-weapons"
     "npc-skills npc-skills npc-weapons";
   overflow: auto;
+}
+
+.bgi-secondary {
+  margin: 0.5ch 0;
+  align-items: center;
+  display: inline-flex;
+}
+
+.bgi-secondary .protectionTypes {
+  height: 5ch;
 }
 
 .short-input {
@@ -492,10 +509,14 @@ img.character-info-mask {
   z-index: -1;
 }
 
+.character-photo.npc {
+  min-height: 65%;
+}
+
 .status-icons {
   position: absolute;
-  left: 1em;
-  top: 1em;
+  left: 0.5em;
+  top: 0.5em;
   z-index: 1;
   flex-direction: column;
   display: flex;
@@ -1098,7 +1119,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .roll-initiative {
   max-width: fit-content;
   cursor: pointer;
-  line-height: 4ch;
+  line-height: 3ch;
 }
 
 .skill-list {

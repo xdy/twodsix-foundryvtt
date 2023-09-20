@@ -732,6 +732,12 @@ export const SuccessTypes = {
 
 export const AllAnimalTypes = Object.assign({}, HerbivoreType, OmnivoreType, CarnivoreType, ScavengerType);
 
+export const EQUIPPED_STATES = {
+  backpack: "TWODSIX.Actor.Items.LocationState.backpack",
+  equipped: "TWODSIX.Actor.Items.LocationState.equipped",
+  ship: "TWODSIX.Actor.Items.LocationState.ship"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -757,7 +763,8 @@ export type TWODSIX = {
   AllAnimalTypes: typeof AllAnimalTypes,
   AnimalLocations: typeof AnimalLocations,
   areaTargetTypes: typeof areaTargetTypes,
-  SuccessTypes: typeof SuccessTypes
+  SuccessTypes: typeof SuccessTypes,
+  EQUIPPED_STATES: typeof EQUIPPED_STATES
 };
 
 export const TWODSIX = {
@@ -785,7 +792,6 @@ export const TWODSIX = {
   AllAnimalTypes: AllAnimalTypes,
   AnimalLocations: AnimalLocations,
   areaTargetTypes: areaTargetTypes,
-  SuccessTypes: SuccessTypes
+  SuccessTypes: SuccessTypes,
+  EQUIPPED_STATES: EQUIPPED_STATES
 };
-
-export const EQUIPPED_STATES = ["equipped", "ship", "backpack"];

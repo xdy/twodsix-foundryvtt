@@ -4,7 +4,7 @@
 //import { SpaceObject } from "src/types/template";
 import {TwodsixSpaceObjectSheetData, TwodsixSpaceObjectSheetSettings } from "src/types/twodsix";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { openPDFReference, deletePDFReference, confirmRollFormula } from "../utils/sheetUtils";
+import {confirmRollFormula } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { simplifyRollFormula } from "../utils/dice";
@@ -19,7 +19,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     context.dtypes = ["String", "Number", "Boolean"];
     AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
     context.settings = <TwodsixSpaceObjectSheetSettings>{
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs')
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
@@ -44,8 +45,6 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   activateListeners(html:JQuery):void {
     super.activateListeners(html);
     html.find('.roll-damage').on('click', this.onRollDamage.bind(this, this.actor));
-    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
-    html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
   private async onRollDamage(actor:TwodsixActor) {

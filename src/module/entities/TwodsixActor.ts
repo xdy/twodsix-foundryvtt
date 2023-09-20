@@ -141,7 +141,7 @@ export default class TwodsixActor extends Actor {
     return returnValue;
   }
   /**
-   * Method to evaluate the secondary armor value depending on the damge type. Returns the effective value
+   * Method to evaluate the secondary armor value depending on the damge type and actor type. Returns the effective value
    * for the secondary armor.
    * @param {string} damageType  The damage type key to check against secondary armor
    * @returns {number} The value added to effective armor due to secondary armor
@@ -150,15 +150,21 @@ export default class TwodsixActor extends Actor {
   getSecondaryProtectionValue(damageType:string): number {
     let returnValue = 0;
     if (damageType !== "NONE"  && damageType !== ""  && damageType) {
-      const armorItems = this.itemTypes.armor;
-      const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
-      for (const armor of armorItems) {
-        if (armor.system.equipped === "equipped" && armor.system.secondaryArmor.protectionTypes.includes(damageType)) {
-          if (useMaxArmorValue) {
-            returnValue = Math.max(armor.system.secondaryArmor.value, returnValue);
-          } else {
-            returnValue += armor.system.secondaryArmor.value;
+      if (['traveller'].includes(this.type)) {
+        const armorItems = this.itemTypes.armor;
+        const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+        for (const armor of armorItems) {
+          if (armor.system.equipped === "equipped" && armor.system.secondaryArmor.protectionTypes.includes(damageType)) {
+            if (useMaxArmorValue) {
+              returnValue = Math.max(armor.system.secondaryArmor.value, returnValue);
+            } else {
+              returnValue += armor.system.secondaryArmor.value;
+            }
           }
+        }
+      } else if (['robot', 'animal'].includes(this.type)) {
+        if (this.system.secondaryArmor.protectionTypes.includes(damageType)) {
+          returnValue = this.system.secondaryArmor.value;
         }
       }
     }
@@ -831,6 +837,7 @@ export default class TwodsixActor extends Actor {
 
     //Remove any attached consumables
     transferData.system.consumables = [];
+    transferData.system.useConsumableForAttack = '';
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];

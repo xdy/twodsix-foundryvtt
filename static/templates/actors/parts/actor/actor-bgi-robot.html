@@ -18,9 +18,13 @@
 <!-- Protection Information-->
 <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
     style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
-    data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}" /></span>
+    data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}" />
+</span>
 <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
     name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
+<span class="bgi-secondary" data-tooltip='{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}'><label for="system.secondaryArmor.protectionTypes"><i class="fa-solid fa-shield-halved"></i>: </label>
+  <select class="protectionTypes" name="system.secondaryArmor.protectionTypes" multiple>{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</select>
+</span>
 <br>
 
 <!-- Damage Stats Information-->
