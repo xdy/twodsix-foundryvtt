@@ -150,7 +150,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
     const item = this.getItem(event);
     //console.log("Sheet Item Attack: ", item);
-    if (this.options.template?.includes("npc-sheet")) {
+    if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {
       item.resolveUnknownAutoMode();
     } else {
       await item.performAttack(attackType, showThrowDiag, rof);
