@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.0...v4.0.1) (2023-09-23)
+
+
+### Bug Fixes
+
+* Use resolve unknown auto mode method for robots and animals ([#1471](https://github.com/xdy/twodsix-foundryvtt/issues/1471)) ([f71363c](https://github.com/xdy/twodsix-foundryvtt/commit/f71363c95dab8dfbee97e94165cae26724c378b6))
+
 # [4.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v3.12.1...v4.0.0) (2023-09-20)
 
 
