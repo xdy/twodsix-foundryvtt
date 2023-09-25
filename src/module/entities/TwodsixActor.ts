@@ -16,6 +16,7 @@ import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../ty
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { applyEncumberedEffect } from "../hooks/showStatusIcons";
+import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 
 export default class TwodsixActor extends Actor {
   /**
@@ -1043,6 +1044,10 @@ export default class TwodsixActor extends Actor {
       }
     }
     return returnObject;
+  }
+
+  public doShipAction(action, extra):void {
+    TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
   }
 
 }
