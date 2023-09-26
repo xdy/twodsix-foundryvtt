@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.1...v4.0.2) (2023-09-26)
+
+
+### Bug Fixes
+
+* make a ship action method to work with TAH ([#1472](https://github.com/xdy/twodsix-foundryvtt/issues/1472)) ([f0fc56c](https://github.com/xdy/twodsix-foundryvtt/commit/f0fc56c360e40a50cc5b560f5e23088ad0e080ca))
+
 ## [4.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.0...v4.0.1) (2023-09-23)
 
 
