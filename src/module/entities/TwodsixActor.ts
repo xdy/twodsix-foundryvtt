@@ -1046,8 +1046,16 @@ export default class TwodsixActor extends Actor {
     return returnObject;
   }
 
-  public doShipAction(action, extra):void {
-    TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
+  /**
+   * Method stub to execute a ship action as a method from Token Action HUD.
+   * @action {object} Ship Action type
+   * @extra {object} Object of data defining the ship action
+   * @public
+   */
+  public doShipAction(action: object, extra: object):void {
+    if (this.type === 'ship') {
+      TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
+    }
   }
 
 }
