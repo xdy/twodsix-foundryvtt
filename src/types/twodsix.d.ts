@@ -79,7 +79,7 @@ declare global {
       'twodsix.absoluteCriticalEffectValue': number;
       'twodsix.maxSkillLevel': number;
       'twodsix.modifierForZeroCharacteristic': number;
-      'twodsix.weightModifierForWornArmor': number;
+      'twodsix.weightModifierForWornArmor': string;
       'twodsix.autofireRulesUsed': string; //TODO Should be more specific, really
       'twodsix.difficultyListUsed': number; //TODO Should be more specific, really
       'twodsix.ruleset': string; //TODO Should be more specific, really
@@ -142,6 +142,7 @@ declare global {
       'twodsix.autoDamageTarget': boolean;
       'twodsix.overrideDamageRoll': boolean;
       'twodsix.showActorReferences': boolean;
+      'twodsix.maxSpellLevel': number;
     }
   }
 }

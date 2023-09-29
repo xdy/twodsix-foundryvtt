@@ -7,7 +7,7 @@ import DebugSettings from "./settings/DebugSettings";
 
 import {TWODSIX} from "./config";
 import TwodsixActor from "./entities/TwodsixActor";
-import { booleanSetting, numberSetting, stringChoiceSetting } from "./settings/settingsUtils";
+import { booleanSetting, stringChoiceSetting } from "./settings/settingsUtils";
 
 
 
