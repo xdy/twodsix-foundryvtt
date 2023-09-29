@@ -50,7 +50,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
-      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
     };
 
     if (context.settings.useProseMirror) {
@@ -247,8 +249,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     try {
       const dropData:any = getDataFromDropEvent(event);
-      if (dropData.type === 'html') {
-        return false;
+      if (dropData.type === 'html' || dropData.type === 'pdf') {
+        await super._onDrop(event);
+        return true;
       }
       const droppedObject:any = await getItemDataFromDropData(dropData);
 

@@ -133,11 +133,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
       html.find('.effect-control').on('click', this._modifyEffect.bind(this));
-
-      //Document links
-      html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
-      html.find('.delete-link').on('click', deletePDFReference.bind(this));
     }
+
+    //Document links
+    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
+    html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
   /**
