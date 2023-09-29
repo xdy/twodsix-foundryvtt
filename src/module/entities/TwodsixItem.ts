@@ -287,7 +287,7 @@ export default class TwodsixItem extends Item {
       if(this.type === "spell") {
         // Spells under SOC and Barbaric have a sequential difficulty class based on spell level.  Create an override to system difficulties.
         const workingSettings = {"difficulties": {}, "difficulty": ""};
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= game.settings.get("twodsix", "maxSpellLevel"); i++) {
           const levelKey = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + i;
           workingSettings.difficulties[levelKey] = {mod: -i, target: i+6};
         }

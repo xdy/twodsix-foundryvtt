@@ -1259,6 +1259,10 @@
       "showActorReferences": {
         "hint": "Display pdf references (using pdf pager module) or url links on all actor sheets.",
         "name": "Show PDF References or URL links on actor sheets"
+      },
+      "maxSpellLevel": {
+        "hint": "Maximum spell level that can be used in a spell roll.",
+        "name": "Maximum Spell Level"
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -47,7 +47,6 @@ export const registerSettings = function ():void {
   booleanSetting('invertSkillRollShiftClick', false, true);
   booleanSetting('transferDroppedItems', false, true);
   booleanSetting('autoAddUnarmed', false, true);
-  numberSetting('weightModifierForWornArmor', 1.0, true);
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {
