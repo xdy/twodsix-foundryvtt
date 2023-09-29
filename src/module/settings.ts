@@ -7,7 +7,7 @@ import DebugSettings from "./settings/DebugSettings";
 
 import {TWODSIX} from "./config";
 import TwodsixActor from "./entities/TwodsixActor";
-import { booleanSetting, numberSetting, stringChoiceSetting } from "./settings/settingsUtils";
+import { booleanSetting, stringChoiceSetting } from "./settings/settingsUtils";
 
 
 
@@ -47,7 +47,6 @@ export const registerSettings = function ():void {
   booleanSetting('invertSkillRollShiftClick', false, true);
   booleanSetting('transferDroppedItems', false, true);
   booleanSetting('autoAddUnarmed', false, true);
-  numberSetting('weightModifierForWornArmor', 1.0, true);
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {

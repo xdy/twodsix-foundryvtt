@@ -78,6 +78,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.encumbrance.push(stringSetting("maxEncumbrance", DEFAULT_MAX_ENCUMBRANCE_FORMULA, false, "world"));
     settings.encumbrance.push(stringSetting('encumbranceFraction', "0.5", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5
     settings.encumbrance.push(numberSetting('encumbranceModifier', -1, false));
+    settings.encumbrance.push(stringSetting('weightModifierForWornArmor', "1.0", false));
     settings.movement.push(numberSetting('defaultMovement', 10));
     settings.movement.push(stringChoiceSetting('defaultMovementUnits', "m", true, TWODSIX.MovementUnits));
     settings.movement.push(stringSetting('encumbFractionOneSquare', "0.5")); //Should be a number setting, but FVTT unhappy with values other than 0.5
@@ -87,6 +88,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.roll.push(booleanSetting("showTimeframe", false));
     settings.general.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
     settings.general.push(stringSetting("sorcerySkill", "Sorcery", false, "world"));
+    settings.general.push(numberSetting("maxSpellLevel", 7, false, "world"));
     settings.general.push(booleanSetting("useNationality", false));
     settings.animals_robots.push(booleanSetting("animalsUseHits", false));
     settings.animals_robots.push(booleanSetting("robotsUseHits", false));

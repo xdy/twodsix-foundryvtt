@@ -194,6 +194,7 @@
       "xpNotes": ""
     },
     "ship": {
+      "templates": ["referenceTemplateActor"],
       "name": "",
       "deckPlan": "",
       "techLevel": 0,

@@ -36,6 +36,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.actor.push(booleanSetting('useEncumbranceStatusIndicators', false));
     settings.ship.push(booleanSetting('showWeightUsage', false));
+    settings.general.push(booleanSetting('showActorReferences', true));
     settings.general.push(booleanSetting('usePDFPagerForRefs', false));
     settings.actor.push(booleanSetting('showIcons', false));
     settings.actor.push(booleanSetting('useEncumbrance', false));
@@ -52,7 +53,6 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
-    settings.actor.push(booleanSetting('showActorReferences', true));
     return settings;
   }
 }

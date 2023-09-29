@@ -2746,7 +2746,8 @@ a.ship-notes-tab.active {
   padding: 0.2em;
   overflow-y: auto;
 }
-.ship-notes-container, .ship-finances-container {
+
+.ship-notes-container, .ship-notes-container-short, .ship-finances-container {
   margin-left: 17px;
   padding-top: 24px;
   height: 294px;
@@ -2754,7 +2755,7 @@ a.ship-notes-tab.active {
   overflow-x: hidden;
 }
 
-.ship-notes-container .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
+.ship-notes-container .editor, .ship-notes-container-short .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0 3px 3px;
   width: 100%;
@@ -2762,7 +2763,7 @@ a.ship-notes-tab.active {
   overflow: auto;
 }
 
-.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable] {
+.ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0 3px 3px;
   font-size: 15px;
@@ -2771,6 +2772,14 @@ a.ship-notes-tab.active {
   padding: 0.2em;
   height: 90%;
   overflow-y: auto;
+}
+
+.ship-notes-container-short .editor {
+  height: 81%;
+}
+
+.ship-notes-container-short >div[contenteditable] {
+  height: 80%;
 }
 
 .ship-finances-container {
@@ -3695,7 +3704,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .prosemirror menu {
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .prosemirror menu > li {

@@ -42,6 +42,7 @@ export default class AdvancedSettings extends FormApplication {
       });
       data.settings[group] = Object.fromEntries(settings);
     }
+    data.dtypes = ["String", "Number", "Boolean"];
     return data;
   }
 

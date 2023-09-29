@@ -2175,7 +2175,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 10em;
 }*/
 
-.ship-notes-container, .ship-finances-container {
+.ship-notes-container, .ship-notes-container-short, .ship-finances-container {
   margin-left: 15px;
   padding-top: 14px;
   height: 302px;
@@ -2183,7 +2183,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   overflow-x: hidden;
 }
 
-.ship-notes-container .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
+.ship-notes-container .editor, .ship-notes-container-short .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 100%;
@@ -2192,7 +2192,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background-color: var(--s2d6-input-background) !important;
 }
 
-.ship-notes-container >div[contenteditable], .ship-finances-container >div[contenteditable], .cargo-wrapper >div[contenteditable] {
+.ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable], .cargo-wrapper >div[contenteditable] {
   border: 1px solid var(--color-border-light-tertiary) !important;
   border-radius: 0 3px 3px;
   font-size: 15px;
@@ -2202,6 +2202,15 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 90%;
   overflow-y: auto;
 }
+
+.ship-notes-container-short .editor {
+  height: 81%;
+}
+
+.ship-notes-container-short >div[contenteditable] {
+  height: 80%;
+}
+
 .ship-finances-container {
   display: flex;
   justify-content: space-around;
