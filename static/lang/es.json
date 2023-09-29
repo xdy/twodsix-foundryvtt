@@ -133,6 +133,7 @@
         "EditItem": "Editar Objeto",
         "Effect": "Efecto",
         "Location": "Zona",
+        "EquippedLocation": "Ubicación equipo",
         "Name": "Nombre",
         "QuantityToTransfer": "Cantidad a Transferir",
         "Qty": "Cant.",
@@ -364,7 +365,7 @@
       "Augmentation": {
         "Arms": "Brazos",
         "AugEffect": "Efecto Aumento",
-        "AugLocation": "Zona Aumento",
+        "AugLocation": "Ubicación mejora",
         "FullBody": "Cuerpo Entero",
         "Head": "Cabeza",
         "Legs": "Piernas",
@@ -1254,6 +1255,10 @@
       "useMaxArmorValue": {
         "hint": "Utilizar el valor más elevado de armadura para determinar la protección, cuando se llevan varias capas. Por defecto (falso) se suman todos los valores de armadura de cada capa. AVISO: Requiere que los clientes refresquen el navegador tras el cambio.",
         "name": "Al llevar varias capas de armadura, utilizar la de mayor valor en vez de sumar ambas"
+      },
+      "showActorReferences": {
+        "hint": "Mostrar referencias (utilizando el módulo PDF pager) o enlaces, en las hojas del actor.",
+        "name": "Mostrar referencias PDF o enlaces en hoja PJ"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
