@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.2...v4.1.0) (2023-09-29)
+
+
+### Features
+
+* add maximum spell level setting and ship references ([#1476](https://github.com/xdy/twodsix-foundryvtt/issues/1476)) ([0485ce2](https://github.com/xdy/twodsix-foundryvtt/commit/0485ce2f1f61eaac955f7e01083a781e3dc1a74a))
+
 ## [4.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.1...v4.0.2) (2023-09-26)
 
 
