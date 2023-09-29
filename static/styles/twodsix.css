@@ -3704,7 +3704,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 .prosemirror menu {
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .prosemirror menu > li {
