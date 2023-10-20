@@ -269,6 +269,7 @@ export interface Traveller {
   bio:string;
   notes:string;
   finances:Finances;
+  financeValues:FinanceValues;
   characteristics:Characteristics;
   skillRollTypes:Record<string,string>;
   characteristicEdit:boolean;
@@ -419,6 +420,14 @@ export interface Finances {
   payments:string;
   livingCosts:string;
   financialNotes:string;
+}
+
+export interface FinanceValues {
+  cash:number;
+  pension:number;
+  debt:number;
+  payments:number;
+  livingCosts:number;
 }
 
 export interface PrimaryArmor {
