@@ -15,10 +15,12 @@ export async function updateFinances(actor:TwodsixActor, update:Record<string, a
 
 async function updateFinanceValues(update:Record<string, any>) {
   for (const financeField in update.system.finances) {
-    const parsedText = getParsedFinanceText(update.system.finances[financeField]);
-    if (parsedText) {
-      const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
-      await Object.assign(update.system, {financeValues: {[financeField]: newValue}});
+    if (financeField !== "financial-notes") {
+      const parsedText = getParsedFinanceText(update.system.finances[financeField]);
+      if (parsedText) {
+        const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
+        await Object.assign(update.system, {financeValues: {[financeField]: newValue}});
+      }
     }
   }
 }
@@ -41,7 +43,7 @@ async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>)
  * @param {string} stringNumber - the localized number
  * @returns {number} - the float value of localized number
  */
-function parseLocaleNumber(stringNumber:string): number {
+export function parseLocaleNumber(stringNumber:string): number {
   const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
   const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
 
@@ -56,7 +58,7 @@ function parseLocaleNumber(stringNumber:string): number {
  * @param {string} stringNumber - the localized number
  * @returns {Record<any>} - object with keys num and units
  */
-function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
+export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
   const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.]*)(?<sp>\s*)(?<units>.*?)$/);
   const parsedResult: RegExpMatchArray | null = re.exec(financeString);
   return parsedResult?.groups;
@@ -67,7 +69,7 @@ function getParsedFinanceText(financeString: string): Record<string, any> | unde
  * @param {string} stringNumber - the units
  * @returns number - magnitude for units
  */
-function getMultiplier(units: string): number {
+export function getMultiplier(units: string): number {
   switch (units[0]) {
     case 'G':
       return 1e+9;
