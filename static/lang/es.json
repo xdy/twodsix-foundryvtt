@@ -1259,6 +1259,10 @@
       "showActorReferences": {
         "hint": "Mostrar referencias (utilizando el módulo PDF pager) o enlaces, en las hojas del actor.",
         "name": "Mostrar referencias PDF o enlaces en hoja PJ"
+      },
+      "maxSpellLevel": {
+        "hint": "Nivel de conjuro máximo utilizable en las tiradas.",
+        "name": "Nivel Conjuro Máximo"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
