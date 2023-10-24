@@ -178,6 +178,13 @@
         "livingCosts": "0",
         "financial-notes": ""
       },
+      "financeValues": {
+        "cash": 0,
+        "pension": 0,
+        "debt": 0,
+        "payments": 0,
+        "livingCosts": 0
+      },
       "hideStoredItems": {
         "weapon": false,
         "armor": false,

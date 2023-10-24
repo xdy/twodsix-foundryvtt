@@ -19,7 +19,7 @@ async function getCurrentHits(actorType: string, ...args: Record<string, any>[])
   }, {value: 0, max: 0, lastDelta: 0});
 }
 
-Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
+export async function updateHits(actor:TwodsixActor, update:Record<string, any>): Promise<void> {
   if (update.system?.characteristics && (["traveller", "animal", "robot"].includes(actor.type))) {
     update.system.hits = await getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
     await Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
@@ -29,7 +29,7 @@ Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>
       ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(update.system.hits.lastDelta)}`, speaker: ChatMessage.getSpeaker({ actor: actor }), whisper: ChatMessage.getWhisperRecipients("GM") });
     }
   }
-});
+};
 
 //Not needed???
 /*
