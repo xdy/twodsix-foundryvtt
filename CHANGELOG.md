@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.1.0...v4.2.0) (2023-10-24)
+
+
+### Features
+
+* initial cut at values for Traveller finances ([#1487](https://github.com/xdy/twodsix-foundryvtt/issues/1487)) ([22da079](https://github.com/xdy/twodsix-foundryvtt/commit/22da079ceb3b9ac2bcd06872b7f0c184b0228e72))
+
 # [4.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.0.2...v4.1.0) (2023-09-29)
 
 
