@@ -37,26 +37,30 @@
           </div>
         {{/if}}
         {{#unless limited}}
-        {{#if settings.lifebloodInsteadOfCharacteristics}}
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
-        {{else}}
-          {{#if settings.useFoundryStandardStyle}}
-          <table class="stat-table">
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-          </table>
+          {{#if settings.lifebloodInsteadOfCharacteristics}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
           {{else}}
-            {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
-              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
-            {{/iff}}
-            {{#iff settings.showAlternativeCharacteristics "===" "all"}}
-            <table class="stat-table-small">
-              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-            </table>
-            {{/iff}}
+            {{#if settings.useFoundryStandardStyle}}
+              <table class="stat-table">
+                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+              </table>
+            {{else}}
+              {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
+                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+              {{/iff}}
+              {{#iff settings.showAlternativeCharacteristics "===" "all"}}
+                {{#if settings.showAllCharWithTable}}
+                  <table class="stat-table-small">
+                    {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+                  </table>
+                {{else}}
+                  {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.html"}}
+                {{/if}}
+              {{/iff}}
+            {{/if}}
           {{/if}}
-        {{/if}}
-      {{/unless}}
-    </div>
+        {{/unless}}
+      </div>
     {{#unless limited}}
     {{!-- Sheet Body --}}
     <div class="character-tabs-info sheet-body">

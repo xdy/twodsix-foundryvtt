@@ -53,6 +53,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
+    settings.actor.push(booleanSetting('showAllCharWithTable', true));
     return settings;
   }
 }

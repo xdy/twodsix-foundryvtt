@@ -1263,6 +1263,10 @@
       "maxSpellLevel": {
         "hint": "Maximum spell level that can be used in a spell roll.",
         "name": "Maximum Spell Level"
+      },
+      "showAllCharWithTable": {
+        "hint": "Use a table, instead of hex graphics, when displaying characteristics (when selected characteristics to display is all). Foundry Standard Style always uses table.",
+        "name": "Use table when displaying all characteristics"
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -1239,11 +1239,9 @@ input.special-name {
 }
 
 .special {
-  /* background-image: url(../assets/actor/Stat-Psi.svg); */
-  height: 56px;
+  height: 70px;
   width: 46px;
   background-size: cover;
-  position: relative;
 }
 
 .special img {
@@ -1254,7 +1252,7 @@ input.special-name {
   display: inline-block;
 }
 
-.special.psionicStrength {
+/*.special.psionicStrength {
   left: 196px;
   top: -119px;
 }
@@ -1267,16 +1265,14 @@ input.special-name {
 .special.alternative2 {
   left: 199px;
   top: -129px;
-}
+}*/
 
 span.special-name {
   position: relative;
   top: -1.1em;
-  right: -0.2em;
-  /* font-size: 15px; */
   cursor: pointer;
   display: inline-block;
-  min-width: 3ch;
+  min-width: 4ch;
   text-align: center;
 }
 
@@ -1342,23 +1338,22 @@ span.stat-damage input, span.special-damage input {
 }
 
 span.special-ability {
-  position: absolute;
-  /* position: relative; */
-  top: 2px;
+  position: relative;
+  top: -15px;
   left: 9px;
 }
 
 span.special-modifier {
   margin: -6px;
-  position: absolute;
-  left: 29px;
-  top: 19px;
+  position: relative;
+  left: 7px;
+  top: -3px;
 }
 
 span.special-damage {
-  position: absolute;
+  position: relative;
   left: 9px;
-  top: 26px;
+  top: -14px;
 }
 
 svg:hover {
