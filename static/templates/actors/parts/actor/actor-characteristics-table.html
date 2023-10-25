@@ -1,154 +1,50 @@
   <thead>
     <tr class="table-header-row">
-      {{#if system.characteristicEdit}}
-        <td></td>
-        <td><input type = "text" name= "system.characteristics.strength.displayShortLabel" data-label = "system.characteristics.strength.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.strength.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.dexterity.displayShortLabel" data-label = "system.characteristics.dexterity.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.dexterity.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.endurance.displayShortLabel" data-label = "system.characteristics.endurance.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.endurance.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.intelligence.displayShortLabel" data-label = "system.characteristics.intelligence.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.intelligence.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.education.displayShortLabel" data-label = "system.characteristics.education.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.education.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.socialStanding.displayShortLabel" data-label = "system.characteristics.socialStanding.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.socialStanding.displayShortLabel}}" maxlength="3"/></td>
-        {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-        <td><input type = "text" name= "system.characteristics.alternative1.displayShortLabel" data-label = "system.characteristics.alternative1.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.alternative1.displayShortLabel}}" maxlength="3"/></td>
-        <td><input type = "text" name= "system.characteristics.alternative2.displayShortLabel" data-label = "system.characteristics.alternative2.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.alternative2.displayShortLabel}}" maxlength="3"/></td>
-        {{/iff}}
-        {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-        <td><input type = "text" name= "system.characteristics.psionicStrength.displayShortLabel" data-label = "system.characteristics.psionicStrength.displayShortLabel"
-          class="stat-name-table" value="{{system.characteristics.psionicStrength.displayShortLabel}}" maxlength="3"/></td>
-        {{/iff}}
-      {{else}}
-        <td><i class="fa-solid fa-dice"></i></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}">
-          {{system.characteristics.strength.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.dexterity.mod}}" data-label="{{system.characteristics.dexterity.shortLabel}}">
-          {{system.characteristics.dexterity.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}">
-          {{system.characteristics.endurance.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.intelligence.mod}}" data-label="{{system.characteristics.intelligence.shortLabel}}">
-          {{system.characteristics.intelligence.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.education.mod}}" data-label="{{system.characteristics.education.shortLabel}}">
-          {{system.characteristics.education.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.socialStanding.mod}}" data-label="{{system.characteristics.socialStanding.shortLabel}}">
-          {{system.characteristics.socialStanding.displayShortLabel}}</span></td>
-        {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative1.mod}}" data-label="{{system.characteristics.alternative1.shortLabel}}">
-          {{system.characteristics.alternative1.displayShortLabel}}</span></td>
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative2.mod}}" data-label="{{system.characteristics.alternative2.shortLabel}}">
-          {{system.characteristics.alternative2.displayShortLabel}}</span></td>
-        {{/iff}}
-        {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-        <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}">
-          {{system.characteristics.psionicStrength.displayShortLabel}}</span></td>
-        {{/iff}}
-      {{/if}}
+      <td>{{#unless system.characteristicEdit}}<i class="fa-solid fa-dice"></i>{{/unless}}</td>
+      {{#each system.characteristics as |char key|}}
+        {{#if char.displayChar}}
+          {{#if ../system.characteristicEdit}}
+            <td><input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
+              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="3"/></td>
+          {{else}}
+            <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
+              {{char.displayShortLabel}}</span></td>
+          {{/if}}
+        {{/if}}
+      {{/each}}
     </tr>
   </thead>
   <tbody>
       <tr>
         <td>{{localize "TWODSIX.Damage.Max"}}:</td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.strength.value"
-          data-label="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.dexterity.value"
-          data-label="system.characteristics.dexterity.value" value="{{system.characteristics.dexterity.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.endurance.value"
-          data-label="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.intelligence.value"
-          data-label="system.characteristics.intelligence.value" value="{{system.characteristics.intelligence.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.education.value"
-          data-label="system.characteristics.education.value" value="{{system.characteristics.education.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.socialStanding.value"
-          data-label="system.characteristics.socialStanding.value" value="{{system.characteristics.socialStanding.value}}"
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-
-          {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-            <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.alternative1.value"
-              data-label="system.characteristics.alternative1.value" value="{{system.characteristics.alternative1.value}}"
-              data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-            <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.alternative2.value"
-              data-label="system.characteristics.alternative2.value" value="{{system.characteristics.alternative2.value}}"
-              data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-          {{/iff}}
-          {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-            <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.psionicStrength.value"
-            data-label="system.characteristics.psionicStrength.value" value="{{system.characteristics.psionicStrength.value}}"
-            data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.value'}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-          {{/iff}}
+        {{#each system.characteristics as |char key|}}
+          {{#if char.displayChar}}
+            <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.{{key}}.value"
+              data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
+              data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value')}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+          {{/if}}
+        {{/each}}
       </tr>
 
       <tr>
         <td>{{localize "TWODSIX.Damage.Mod"}}:</td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.mod'}}"
-          value="{{numberFormat system.characteristics.strength.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.mod'}}"
-          value="{{numberFormat system.characteristics.dexterity.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.mod'}}"
-          value="{{numberFormat system.characteristics.endurance.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.mod'}}"
-          value="{{numberFormat system.characteristics.intelligence.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.mod'}}"
-          value="{{numberFormat system.characteristics.education.mod decimals=0 sign=true}}"/></span></td>
-        <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.mod'}}"
-          value="{{numberFormat system.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span></td>
-
-        {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-          <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.mod'}}"
-            value="{{numberFormat system.characteristics.alternative1.mod decimals=0 sign=true}}"/></span></td>
-          <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.mod'}}"
-            value="{{numberFormat system.characteristics.alternative2.mod decimals=0 sign=true}}"/></span></td>
-        {{/iff}}
-        {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-          <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.mod'}}"
-          value="{{numberFormat system.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span></td>
-        {{/iff}}
+        {{#each system.characteristics as |char key|}}
+          {{#if char.displayChar}}
+          <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.mod')}}"
+            value="{{numberFormat char.mod decimals=0 sign=true}}"/></span></td>
+          {{/if}}
+        {{/each}}
       </tr>
 
      <tr>
         <td>{{localize "TWODSIX.Damage.Dmg"}}:</td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.strength.value}}" min="0"
-          name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.dexterity.value}}" min="0"
-          name="system.characteristics.dexterity.damage" value="{{system.characteristics.dexterity.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.endurance.value}}" min="0"
-          name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.intelligence.value}}" min="0"
-          name="system.characteristics.intelligence.damage" value="{{system.characteristics.intelligence.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.education.value}}" min="0"
-          name="system.characteristics.education.damage" value="{{system.characteristics.education.damage}}"
-          placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.socialStanding.value}}" min="0"
-          name="system.characteristics.socialStanding.damage" value="{{system.characteristics.socialStanding.damage}}" placeholder="0"
-          data-dtype="Number" onClick="this.select();"/></span></td>
-
-        {{#iff settings.showAlternativeCharacteristics "!==" "base"}}
-          <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.alternative1.value}}" min="0"
-            name="system.characteristics.alternative1.damage" value="{{system.characteristics.alternative1.damage}}"
-            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-          <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.alternative2.value}}" min="0"
-            name="system.characteristics.alternative2.damage" value="{{system.characteristics.alternative2.damage}}"
-            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        {{/iff}}
-        {{#iff settings.showAlternativeCharacteristics "!==" "alternate"}}
-          <td><span class="stat-damage-table"><input type="number" max="{{system.characteristics.psionicStrength.value}}" min="0"
-            name="system.characteristics.psionicStrength.damage" value="{{system.characteristics.psionicStrength.damage}}"
-            placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
-        {{/iff}}
+        {{#each system.characteristics as |char key|}}
+          {{#if char.displayChar}}
+            <td><span class="stat-damage-table"><input type="number" max="{{char.value}}" min="0"
+              name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
+              placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+          {{/if}}
+        {{/each}}
       </tr>
   </tbody>
 
