@@ -1113,14 +1113,22 @@ span.bgi-charEdit {
 }
 
 .character-characteristics {
-  width: 250px;
+  width: 252px;
   top: 478px;
-  left: 44px;
+  left: 39px;
   position: absolute;
   z-index: 6;
   height: 120px;
   color: var(--s2d6-default-color);
   font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.narrow {
+  width: 243px;
 }
 
 .edit-mode {

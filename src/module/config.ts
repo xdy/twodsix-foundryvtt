@@ -615,6 +615,7 @@ export const HullPricingOptions = {
  * The valid choices for characteristic displays in the game system.
  */
 export const CharacteristicDisplayTypes = {
+  core: "Core",
   base: "Base",
   alternate: "Alternate",
   all: "All"
