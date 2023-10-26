@@ -1118,17 +1118,22 @@ span.bgi-charEdit {
   left: 39px;
   position: absolute;
   z-index: 6;
-  height: 120px;
+  height: 143px;
   color: var(--s2d6-default-color);
   font-size: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
-.narrow {
+.character-characteristics.narrow {
   width: 243px;
+  left: 49px;
+}
+
+.character-characteristics.wide {
+  left: 44px;
 }
 
 .edit-mode {
@@ -1142,9 +1147,8 @@ span.bgi-charEdit {
   /*background-size: cover !important;*/
   height: 48px;
   width: 61px;
-  display: inline-block;
   position: relative;
-  margin-bottom: 1.5em;
+  margin-bottom: 22px;
 }
 
 .stat-table {
@@ -1162,7 +1166,7 @@ span.bgi-charEdit {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
   margin-left: 39px;
-  margin-top: 15px;
+  margin-top: 0px;
   width: 82%;
 }
 .table-header-row {

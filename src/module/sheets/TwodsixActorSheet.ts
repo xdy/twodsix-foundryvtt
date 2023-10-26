@@ -56,6 +56,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Prepare characteristic display values
     setCharacteristicDisplay(returnData);
+    returnData.system.characteristics.displayOrder = getDisplayOrder();
     //}
 
     // Add relevant data from system settings
@@ -349,4 +350,26 @@ export function setCharacteristicDisplay(returnData: object): void {
   returnData.system.characteristics.socialStanding.displayChar = true;
   returnData.system.characteristics.stamina.displayChar = false;
   returnData.system.characteristics.strength.displayChar = true;
+}
+
+export function getDisplayOrder(): string[] {
+  const returnValue = ['strength', 'intelligence', 'dexterity', 'education', 'endurance', 'socialStanding'];
+  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
+
+  switch (charMode) {
+    case 'core':
+      break;
+    case 'base':
+      returnValue.push('psionicStrength');
+      break;
+    case 'alternate':
+      returnValue.push('alternative1', 'alternative2');
+      break;
+    case 'all':
+      returnValue.push('alternative1', 'alternative2', 'psionicStrength');
+      break;
+    default:
+      break;
+  }
+  return returnValue;
 }
