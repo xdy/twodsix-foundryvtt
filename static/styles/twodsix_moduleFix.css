@@ -295,3 +295,9 @@ div.pdf-app section.window-content {
 .tagify__tag__removeBtn, .tagify__tag>div, .tah-dialog-tagify .tagify__input, .tagify__input:focus:empty::before {
   color: var(--s2d6-default-color);
 }
+
+/******** Monk's Sound Enhancements *****/
+.sheet .sound-sheet .items-list,
+.sheet .sound-sheet .items-list .item .item-name {
+    color: var(--s2d6-default-color);
+}

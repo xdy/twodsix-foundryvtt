@@ -917,7 +917,7 @@
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Base: core six plus PSI. Alternative: core six plus alternative. All: core six plus PSI plus Alternative",
+        "hint": " Core: six basic chararcteristics (STR, DEX, END, INT, EDU, and SOC).  Base: core six plus PSI. Alternative: core six plus Alternative characteristics. All: core six plus PSI plus Alternative characteristics.",
         "name": "Select characteristics to display"
       },
       "showContaminationBelowLifeblood": {
