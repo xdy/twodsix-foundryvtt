@@ -1,0 +1,27 @@
+<div class="character-characteristics wide">
+  {{#each system.characteristics.displayOrder as |key|}}
+    {{#with ../actor as |actor|}}
+    {{#with (lookup actor.system.characteristics key) as |char|}}
+    <div  class="special {{key}}" data-characteristic="{{key}}">
+      {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-psi.html"}}
+      {{#if ../system.characteristicEdit}}
+        <input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
+          class="stat-name" value="{{char.displayShortLabel}}" maxlength="4"/>
+      {{else}}
+        <span class="special-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
+          {{char.displayShortLabel}}
+        </span>
+      {{/if}}
+      <span class="special-ability" ><input type="number" min="0" name="system.characteristics.{{key}}.value" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+                                        data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
+                                        placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+      <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
+                                        value="{{numberFormat char.mod decimals=0 sign=true}}"/></span>
+      <span class="special-damage"><input type="number" max="{{char.value}}" min="0"
+                                      name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
+                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    </div>
+    {{/with}}
+    {{/with}}
+  {{/each}}
+</div>

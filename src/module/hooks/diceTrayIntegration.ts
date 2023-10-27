@@ -47,6 +47,11 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
       }
     }
     switch (game.settings.get('twodsix', 'showAlternativeCharacteristics')) {
+      case 'core':
+        delete whitelist.twodsix.custom.attributes.psionicStrength;
+        delete whitelist.twodsix.custom.attributes.alternative1;
+        delete whitelist.twodsix.custom.attributes.alternative2;
+        break;
       case 'base':
         delete whitelist.twodsix.custom.attributes.alternative1;
         delete whitelist.twodsix.custom.attributes.alternative2;

@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
 import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { setCharacteristicDisplay } from "./TwodsixActorSheet";
 export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   /**
@@ -38,6 +39,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
         returnData.untrainedSkill = untrainedSkill;
       }
       AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
+      //Prepare characteristic display values
+      setCharacteristicDisplay(returnData);
     }
 
     // Add relevant data from system settings

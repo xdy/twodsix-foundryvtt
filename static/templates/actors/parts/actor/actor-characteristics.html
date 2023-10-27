@@ -1,184 +1,27 @@
-<div class="character-characteristics">
-
-  <div  class="stat strength" data-characteristic="strength">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.strength.displayShortLabel" data-label = "system.characteristics.strength.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.strength.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.strength.mod}}" data-label="{{system.characteristics.strength.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.strength.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability" ><input type="number" min="0" name="system.characteristics.strength.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}"
-                                      data-label="system.characteristics.strength.value" value="{{system.characteristics.strength.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.mod'}}"
-                                       value="{{numberFormat system.characteristics.strength.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.strength.value}}" min="0"
-                                     name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  <div class="stat dexterity" data-characteristic="dexterity">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.dexterity.displayShortLabel" data-label = "system.characteristics.dexterity.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.dexterity.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.dexterity.mod}}" data-label="{{system.characteristics.dexterity.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.dexterity.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.dexterity.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.value'}}"
-                                      data-label="system.characteristics.dexterity.value" value="{{system.characteristics.dexterity.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.dexterity.mod'}}"
-                                       value="{{numberFormat system.characteristics.dexterity.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.dexterity.value}}" min="0"
-                                     name="system.characteristics.dexterity.damage" value="{{system.characteristics.dexterity.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  <div class="stat endurance" data-characteristic="endurance">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.endurance.displayShortLabel" data-label = "system.characteristics.endurance.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.endurance.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.endurance.mod}}" data-label="{{system.characteristics.endurance.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.endurance.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.endurance.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}"
-                                      data-label="system.characteristics.endurance.value" value="{{system.characteristics.endurance.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.mod'}}"
-                                       value="{{numberFormat system.characteristics.endurance.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.endurance.value}}" min="0"
-                                     name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  <div class="stat intelligence" data-characteristic="intelligence">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.intelligence.displayShortLabel" data-label = "system.characteristics.intelligence.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.intelligence.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.intelligence.mod}}" data-label="{{system.characteristics.intelligence.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.intelligence.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.intelligence.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.value'}}"
-                                      data-label="system.characteristics.intelligence.value" value="{{system.characteristics.intelligence.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.intelligence.mod'}}"
-                                       value="{{numberFormat system.characteristics.intelligence.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.intelligence.value}}" min="0"
-                                     name="system.characteristics.intelligence.damage" value="{{system.characteristics.intelligence.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  <div class="stat education" data-characteristic="education">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.education.displayShortLabel" data-label = "system.characteristics.education.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.education.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.education.mod}}" data-label="{{system.characteristics.education.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.education.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.education.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.value'}}"
-                                      data-label="system.characteristics.education.value" value="{{system.characteristics.education.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.education.mod'}}"
-                                       value="{{numberFormat system.characteristics.education.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.education.value}}" min="0"
-                                     name="system.characteristics.education.damage" value="{{system.characteristics.education.damage}}"
-                                     placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  <div class="stat socialStanding" data-characteristic="socialStanding">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.socialStanding.displayShortLabel" data-label = "system.characteristics.socialStanding.displayShortLabel"
-      class="stat-name" value="{{system.characteristics.socialStanding.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.socialStanding.mod}}" data-label="{{system.characteristics.socialStanding.shortLabel}}">
-        <i class="fa-solid fa-dice" alt="d6"></i>{{system.characteristics.socialStanding.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="stat-ability"><input type="number" min="0" name="system.characteristics.socialStanding.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.value'}}"
-                                      data-label="system.characteristics.socialStanding.value" value="{{system.characteristics.socialStanding.value}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.socialStanding.mod'}}"
-                                       value="{{numberFormat system.characteristics.socialStanding.mod decimals=0 sign=true}}"/></span>
-    <span class="stat-damage"><input type="number" max="{{system.characteristics.socialStanding.value}}" min="0"
-                                     name="system.characteristics.socialStanding.damage" value="{{system.characteristics.socialStanding.damage}}" placeholder="0"
-                                     data-dtype="Number" onClick="this.select();"/></span>
-  </div>
-
-  {{#iff settings.showAlternativeCharacteristics "===" "alternate"}}
-  <div class="special alternative1" data-characteristic="alternative1">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-psi.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.alternative1.displayShortLabel" data-label = "system.characteristics.alternative1.displayShortLabel"
-      class="special-name" value="{{system.characteristics.alternative1.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="special-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative1.mod}}" data-label="{{system.characteristics.alternative1.shortLabel}}">
-        {{system.characteristics.alternative1.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative1.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.value'}}"
-      data-label="system.characteristics.alternative1.value" value="{{system.characteristics.alternative1.value}}"
-      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-damage"><input type="number" max="{{system.characteristics.alternative1.value}}" min="0"
-      name="system.characteristics.alternative1.damage" value="{{system.characteristics.alternative1.damage}}"
-      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative1.mod'}}"
-      value="{{numberFormat system.characteristics.alternative1.mod decimals=0 sign=true}}"/></span>
-    </div>
-  <div class="special alternative2" data-characteristic="alternative2">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-psi.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.alternative2.displayShortLabel" data-label = "system.characteristics.alternative2.displayShortLabel"
-      class="special-name" value="{{system.characteristics.alternative2.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="special-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.alternative2.mod}}" data-label="{{system.characteristics.alternative2.shortLabel}}">
-        {{system.characteristics.alternative2.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.alternative2.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.value'}}"
-      data-label="system.characteristics.alternative2.value" value="{{system.characteristics.alternative2.value}}"
-      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-damage"><input type="number" max="{{system.characteristics.alternative2.value}}" min="0"
-      name="system.characteristics.alternative2.damage" value="{{system.characteristics.alternative2.damage}}"
-      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.alternative2.mod'}}"
-      value="{{numberFormat system.characteristics.alternative2.mod decimals=0 sign=true}}"/></span>
-  </div>
-  {{/iff}}
-  {{#iff settings.showAlternativeCharacteristics "===" "base"}}
-  <div class="special psionicStrength" data-characteristic="psionicStrength">
-    {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-psi.html"}}
-    {{#if system.characteristicEdit}}
-    <input type = "text" name= "system.characteristics.psionicStrength.displayShortLabel" data-label = "system.characteristics.psionicStrength.displayShortLabel"
-      class="special-name" value="{{system.characteristics.psionicStrength.displayShortLabel}}" maxlength="3"/>
-    {{else}}
-      <span class="special-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{system.characteristics.psionicStrength.mod}}" data-label="{{system.characteristics.psionicStrength.shortLabel}}">
-        {{system.characteristics.psionicStrength.displayShortLabel}}
-      </span>
-    {{/if}}
-    <span class="special-ability"><input type="number" min="0" name="system.characteristics.psionicStrength.value" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.value'}}"
-                                         data-label="system.characteristics.psionicStrength.value" value="{{system.characteristics.psionicStrength.value}}"
-                                         placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-damage"><input type="number" max="{{system.characteristics.psionicStrength.value}}" min="0"
-                                        name="system.characteristics.psionicStrength.damage" value="{{system.characteristics.psionicStrength.damage}}"
+<div class="character-characteristics {{#iff settings.showAlternativeCharacteristics "===" "core"}} narrow {{/iff}}">
+  {{#each system.characteristics.displayOrder as |key|}}
+  {{#with ../actor as |actor|}}
+  {{#with (lookup actor.system.characteristics key) as |char|}}
+    <div  class="stat {{key}}" data-characteristic="{{key}}">
+      {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
+      {{#if actor.system.characteristicEdit}}
+      <input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
+        class="stat-name" value="{{char.displayShortLabel}}" maxlength="4"/>
+      {{else}}
+        <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
+          <i class="fa-solid fa-dice" alt="d6"></i>{{char.displayShortLabel}}
+        </span>
+      {{/if}}
+      <span class="stat-ability" ><input type="number" min="0" name="system.characteristics.{{key}}.value" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+                                        data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
                                         placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
-    <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.mod'}}"
-                                          value="{{numberFormat system.characteristics.psionicStrength.mod decimals=0 sign=true}}"/></span>
-  </div>
-  {{/iff}}
+      <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
+                                        value="{{numberFormat char.mod decimals=0 sign=true}}"/></span>
+      <span class="stat-damage"><input type="number" max="{{char.value}}" min="0"
+                                      name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
+                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+    </div>
+  {{/with}}
+  {{/with}}
+  {{/each}}
 </div>

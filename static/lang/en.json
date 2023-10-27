@@ -917,7 +917,7 @@
         "name": "Ship Initiative Formula"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Base: core six plus PSI. Alternative: core six plus alternative. All: core six plus PSI plus Alternative",
+        "hint": " Core: six basic chararcteristics (STR, DEX, END, INT, EDU, and SOC).  Base: core six plus PSI. Alternative: core six plus Alternative characteristics. All: core six plus PSI plus Alternative characteristics.",
         "name": "Select characteristics to display"
       },
       "showContaminationBelowLifeblood": {
@@ -1263,6 +1263,10 @@
       "maxSpellLevel": {
         "hint": "Maximum spell level that can be used in a spell roll.",
         "name": "Maximum Spell Level"
+      },
+      "showAllCharWithTable": {
+        "hint": "Use a table, instead of hex graphics, when displaying characteristics (when selected characteristics to display is all). Foundry Standard Style always uses table.",
+        "name": "Use table when displaying all characteristics"
       }
     },
     "CloseAndCreateNew": "Close and create new",

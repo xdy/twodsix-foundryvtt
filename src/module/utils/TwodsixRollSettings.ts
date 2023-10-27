@@ -303,11 +303,11 @@ export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
     returnValue["INT"] = getCharacteristicLabelWithMod(actor, "intelligence");
     returnValue["EDU"] = getCharacteristicLabelWithMod(actor, "education");
     returnValue["SOC"] = getCharacteristicLabelWithMod(actor, "socialStanding");
-    if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "base") {
+    if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
       returnValue["ALT1"] = getCharacteristicLabelWithMod(actor, "alternative1");
       returnValue["ALT2"] =  getCharacteristicLabelWithMod(actor, "alternative2");
     }
-    if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "alternate") {
+    if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
       returnValue["PSI"] =  getCharacteristicLabelWithMod(actor, "psionicStrength");
     }
   }
@@ -329,11 +329,11 @@ export function _genUntranslatedCharacteristicList(): object {
   returnValue["INT"] = game.i18n.localize("TWODSIX.Items.Skills.INT");
   returnValue["EDU"] = game.i18n.localize("TWODSIX.Items.Skills.EDU");
   returnValue["SOC"] = game.i18n.localize("TWODSIX.Items.Skills.SOC");
-  if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "base") {
+  if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
     returnValue["ALT1"] = game.settings.get('twodsix', 'alternativeShort1');
     returnValue["ALT2"] = game.settings.get('twodsix', 'alternativeShort2');
   }
-  if (game.settings.get('twodsix', 'showAlternativeCharacteristics') !== "alternate") {
+  if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
     returnValue["PSI"] = game.i18n.localize("TWODSIX.Items.Skills.PSI");
   }
   returnValue["NONE"] = "---";

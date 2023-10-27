@@ -36,24 +36,28 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     returnData.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
-    if (this.actor.type === 'traveller') {
-      const actor: TwodsixActor = <TwodsixActor>this.actor;
-      const untrainedSkill = actor.getUntrainedSkill();
-      if (untrainedSkill) {
-        returnData.untrainedSkill = untrainedSkill;
+    //if (this.actor.type === 'traveller') {  //NEEDED??
+    const actor: TwodsixActor = <TwodsixActor>this.actor;
+    const untrainedSkill = actor.getUntrainedSkill();
+    if (untrainedSkill) {
+      returnData.untrainedSkill = untrainedSkill;
+      returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
+    } else {
+      //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
+      const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+      if (existingSkill) {
+        returnData.untrainedSkill = existingSkill;
         returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
       } else {
-        //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
-        const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
-        if (existingSkill) {
-          returnData.untrainedSkill = existingSkill;
-          returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
-        } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
-        }
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
       }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
     }
+    AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
+
+    //Prepare characteristic display values
+    setCharacteristicDisplay(returnData);
+    returnData.system.characteristics.displayOrder = getDisplayOrder();
+    //}
 
     // Add relevant data from system settings
     returnData.settings = {
@@ -76,7 +80,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useNationality: game.settings.get('twodsix', 'useNationality'),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
+      showAllCharWithTable: game.settings.get('twodsix', 'showAllCharWithTable')
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
@@ -330,4 +335,41 @@ export class TwodsixNPCSheet extends TwodsixActorSheet {
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
+}
+
+export function setCharacteristicDisplay(returnData: object): void {
+  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
+  returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode);
+  returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode);
+  returnData.system.characteristics.dexterity.displayChar = true;
+  returnData.system.characteristics.education.displayChar = true;
+  returnData.system.characteristics.endurance.displayChar = true;
+  returnData.system.characteristics.intelligence.displayChar = true;
+  returnData.system.characteristics.lifeblood.displayChar = false;
+  returnData.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode);
+  returnData.system.characteristics.socialStanding.displayChar = true;
+  returnData.system.characteristics.stamina.displayChar = false;
+  returnData.system.characteristics.strength.displayChar = true;
+}
+
+export function getDisplayOrder(): string[] {
+  const returnValue = ['strength', 'intelligence', 'dexterity', 'education', 'endurance', 'socialStanding'];
+  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
+
+  switch (charMode) {
+    case 'core':
+      break;
+    case 'base':
+      returnValue.push('psionicStrength');
+      break;
+    case 'alternate':
+      returnValue.push('alternative1', 'alternative2');
+      break;
+    case 'all':
+      returnValue.push('alternative1', 'alternative2', 'psionicStrength');
+      break;
+    default:
+      break;
+  }
+  return returnValue;
 }

@@ -143,6 +143,7 @@ declare global {
       'twodsix.overrideDamageRoll': boolean;
       'twodsix.showActorReferences': boolean;
       'twodsix.maxSpellLevel': number;
+      'twodsix.showAllCharWithTable': boolean;
     }
   }
 }
