@@ -147,6 +147,7 @@ declare global {
       'twodsix.defaultItemPartial': string;
       'twodsix.defaultCompendiumPartial': string;
       'twodsix.showTLonItemsTab': boolean;
+      'twodsix.omitPSIifZero': boolean;
     }
   }
 }

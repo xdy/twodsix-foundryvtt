@@ -55,6 +55,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('useTabbedViews', false));
     settings.actor.push(booleanSetting('showAllCharWithTable', true));
     settings.general.push(booleanSetting('showTLonItemsTab', false, false, 'world', setDocumentPartials));
+    settings.actor.push(booleanSetting('omitPSIifZero', false));
     return settings;
   }
 }
