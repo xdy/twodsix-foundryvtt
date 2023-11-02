@@ -431,7 +431,7 @@ export default function registerHandlebarsHelpers(): void {
       if(isNaN(itemData.system.techLevel)) {
         return "";
       } else {
-        return ` (${game.i18n.localize("TWODSIX.Items.Equipment.TL")} ${itemData.system.techLevel})`;
+        return `(${game.i18n.localize("TWODSIX.Items.Equipment.TL")} ${itemData.system.techLevel})`;
       }
     } else {
       return "";
