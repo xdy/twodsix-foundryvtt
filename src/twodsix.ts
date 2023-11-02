@@ -142,6 +142,9 @@ Hooks.once('init', async function () {
   //@ts-ignore
   await loadTemplates(handlebarsTemplateFiles);
 
+  //Add TL to compendium index
+  CONFIG.Item.compendiumIndexFields.push('system.techLevel');
+
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
 });

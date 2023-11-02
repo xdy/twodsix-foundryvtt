@@ -315,6 +315,7 @@ div.pdf-app section.window-content {
 	border: none !important;
 }
 
+/**** Custom CSS ***/
 .customCssSettings .stylesheet-editor {
 	background-color: var(--s2d6-form-light);
 }

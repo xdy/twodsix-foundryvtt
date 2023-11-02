@@ -144,6 +144,9 @@ declare global {
       'twodsix.showActorReferences': boolean;
       'twodsix.maxSpellLevel': number;
       'twodsix.showAllCharWithTable': boolean;
+      'twodsix.defaultItemPartial': string;
+      'twodsix.defaultCompendiumPartial': string;
+      'twodsix.showTLonItemsTab': boolean;
     }
   }
 }
