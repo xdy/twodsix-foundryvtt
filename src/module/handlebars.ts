@@ -5,7 +5,7 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import {Skills, Component} from "../types/template";
+import {Skills} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
@@ -371,13 +371,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
-    return getWeight(<Component>item.system, item.actor).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+    return getWeight(item).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    const anComponent = <Component>item.system;
-    const retValue:number = getPower(anComponent);
-    if (anComponent.generatesPower) {
+    const retValue:number = getPower(item);
+    if (item.system.generatesPower) {
       return "+" + retValue.toLocaleString(game.i18n.lang);
     } else {
       return retValue.toLocaleString(game.i18n.lang);

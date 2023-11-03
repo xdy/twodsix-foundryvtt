@@ -234,8 +234,8 @@ export default class TwodsixActor extends Actor {
 
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
-      const powerForItem = getPower(anComponent);
-      const weightForItem = getWeight(anComponent, this);
+      const powerForItem = getPower(item);
+      const weightForItem = getWeight(item);
 
       /* Allocate Power */
       allocatePower(anComponent, powerForItem, item);
@@ -268,8 +268,7 @@ export default class TwodsixActor extends Actor {
     function estimateDisplacement(shipActor): number {
       let returnValue = 0;
       shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
-        const anComponent = <Component>item.system;
-        returnValue += getWeight(anComponent, shipActor);
+        returnValue += getWeight(item);
       });
       return Math.round(returnValue);
     }
@@ -1066,13 +1065,13 @@ export default class TwodsixActor extends Actor {
  * @public
  * @function
  */
-export function getPower(item: Component): number{
-  if ((item.status === "operational") || (item.status === "damaged")) {
-    let q = item.quantity || 1;
-    if (item.subtype === "armament"  && item.availableQuantity) {
-      q = parseInt(item.availableQuantity);
+export function getPower(item: TwodsixItem): number{
+  if ((item.system.status === "operational") || (item.system.status === "damaged")) {
+    let q = item.system.quantity || 1;
+    if (item.system.subtype === "armament"  && item.system.availableQuantity) {
+      q = parseInt(item.system.availableQuantity);
     }
-    const p = item.powerDraw || 0;
+    const p = item.system.powerDraw || 0;
     return (q * p);
   } else {
     return 0;
@@ -1086,16 +1085,16 @@ export function getPower(item: Component): number{
  * @public
  * @function
  */
-export function getWeight(item: Component, actorData): number{
-  const q = item.quantity ?? 1;
+export function getWeight(item: TwodsixItem): number{
+  const q = item.system.quantity ?? 1;
   /*if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
     q = parseInt(item.availableQuantity);
   }  make true displacement and not mass*/
   let w = 0;
-  if (item.weightIsPct) {
-    w = (item.weight ?? 0) / 100 * actorData.system.shipStats.mass.max;
+  if (item.system.weightIsPct) {
+    w = (item.system.weight ?? 0) / 100 * (item.actor?.system.shipStats.mass.max ?? 0);
   } else {
-    w = item.weight ?? 0;
+    w = item.system.weight ?? 0;
   }
   return (w * q);
 }
