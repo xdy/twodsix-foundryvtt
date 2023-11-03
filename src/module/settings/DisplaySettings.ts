@@ -54,6 +54,8 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
     settings.actor.push(booleanSetting('showAllCharWithTable', true));
+    settings.general.push(booleanSetting('showTLonItemsTab', false, false, 'world', setDocumentPartials));
+    settings.actor.push(booleanSetting('omitPSIifZero', false));
     return settings;
   }
 }
@@ -83,4 +85,15 @@ export const updateStatusIcons = function () {
   } else {
     window.location.reload();
   }
+};
+
+export const setDocumentPartials = function () {
+  if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+    ItemDirectory.entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.html';
+    Compendium.entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.html';
+  } else {
+    ItemDirectory.entryPartial = game.settings.get('twodsix', 'defaultItemPartial');
+    Compendium.entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
+  }
+  ui.items.render();
 };

@@ -296,8 +296,26 @@ div.pdf-app section.window-content {
   color: var(--s2d6-default-color);
 }
 
+.tah-fieldset > legend {
+  color: var(--s2d6-default-color);
+  text-shadow: 1px 1px 1px var(--s2d6-nav-background);
+}
+
 /******** Monk's Sound Enhancements *****/
 .sheet .sound-sheet .items-list,
 .sheet .sound-sheet .items-list .item .item-name {
     color: var(--s2d6-default-color);
+}
+
+/****** Code Mirror ******/
+.CodeMirror-code {
+	color: revert !important;
+	background: revert !important;
+	background-color: revert !important;
+	border: none !important;
+}
+
+/**** Custom CSS ***/
+.customCssSettings .stylesheet-editor {
+	background-color: var(--s2d6-form-light);
 }

@@ -1267,6 +1267,16 @@
       "showAllCharWithTable": {
         "hint": "Use a table, instead of hex graphics, when displaying characteristics (when selected characteristics to display is all). Foundry Standard Style always uses table.",
         "name": "Use table when displaying all characteristics"
+      },
+      "showTLonItemsTab": {
+        "hint": "Displays the items tech level after the name for compendium item lists and items listed in the items tab.",
+        "name": "Display Tech Level in Compendium and Item Tab lists"
+
+      },
+      "omitPSIifZero": {
+        "hint": "Does not display PSI characteristic if value set to zero.",
+        "name": "Omit PSI from actor sheets if value zero"
+
       }
     },
     "CloseAndCreateNew": "Close and create new",

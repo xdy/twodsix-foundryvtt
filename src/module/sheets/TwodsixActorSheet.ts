@@ -56,7 +56,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     //Prepare characteristic display values
     setCharacteristicDisplay(returnData);
-    returnData.system.characteristics.displayOrder = getDisplayOrder();
+    returnData.system.characteristics.displayOrder = getDisplayOrder(returnData);
     //}
 
     // Add relevant data from system settings
@@ -346,13 +346,14 @@ export function setCharacteristicDisplay(returnData: object): void {
   returnData.system.characteristics.endurance.displayChar = true;
   returnData.system.characteristics.intelligence.displayChar = true;
   returnData.system.characteristics.lifeblood.displayChar = false;
-  returnData.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode);
+  returnData.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode) &&
+        (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero'));
   returnData.system.characteristics.socialStanding.displayChar = true;
   returnData.system.characteristics.stamina.displayChar = false;
   returnData.system.characteristics.strength.displayChar = true;
 }
 
-export function getDisplayOrder(): string[] {
+export function getDisplayOrder(returnData: any): string[] {
   const returnValue = ['strength', 'intelligence', 'dexterity', 'education', 'endurance', 'socialStanding'];
   const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
 
@@ -360,13 +361,18 @@ export function getDisplayOrder(): string[] {
     case 'core':
       break;
     case 'base':
-      returnValue.push('psionicStrength');
+      if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
+        returnValue.push('psionicStrength');
+      }
       break;
     case 'alternate':
       returnValue.push('alternative1', 'alternative2');
       break;
     case 'all':
-      returnValue.push('alternative1', 'alternative2', 'psionicStrength');
+      returnValue.push('alternative1', 'alternative2');
+      if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
+        returnValue.push('psionicStrength');
+      }
       break;
     default:
       break;

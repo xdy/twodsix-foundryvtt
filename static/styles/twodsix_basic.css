@@ -3021,3 +3021,9 @@ Monk's Enhanced Journals
   display: unset;
   text-align: right;
 }
+
+.revised-partial {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1ch;
+}

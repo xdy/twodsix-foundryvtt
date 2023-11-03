@@ -4,7 +4,7 @@ import migrateWorld from "../migration";
 import {createItemMacro} from "../utils/createItemMacro";
 import { applyToAllActors } from "../utils/migration-utils";
 import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
-import { updateStatusIcons } from "../settings/DisplaySettings";
+import { setDocumentPartials, updateStatusIcons } from "../settings/DisplaySettings";
 import { switchCss } from "../settings";
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
@@ -78,6 +78,17 @@ Hooks.once("ready", async function () {
       break;
     default:
       break;
+  }
+
+  //Set up custom partial on item tab
+  if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+    setDocumentPartials();
+  }
+  //Add index
+  for (const pack of game.packs) {
+    if (pack.metadata.type === 'Item') {
+      pack.getIndex({fields: ['system.techLevel']});
+    }
   }
 
 });

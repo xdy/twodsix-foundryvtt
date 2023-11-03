@@ -424,6 +424,20 @@ export default function registerHandlebarsHelpers(): void {
     return !["skills", "trait", "spell", "component", "ship_position"].includes(item.type);
   });
 
+  Handlebars.registerHelper('twodsix_getTLString', (itemData: any) => {
+    if(["skills", "trait", "spell", "ship_position"].includes(itemData.type)) {
+      return "";
+    } else if (itemData.system?.techLevel !== null && itemData.system?.techLevel !== undefined) {
+      if(isNaN(itemData.system.techLevel)) {
+        return "";
+      } else {
+        return `(${game.i18n.localize("TWODSIX.Items.Equipment.TL")} ${itemData.system.techLevel})`;
+      }
+    } else {
+      return "";
+    }
+  });
+
   // Handy for debugging
   Handlebars.registerHelper('debug', function (context) {
     console.log(context);
