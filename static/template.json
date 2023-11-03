@@ -592,6 +592,7 @@
       "isRefined": false,
       "features": "",
       "pricingBasis": "perUnit",
+      "powerBasis": "perUnit",
       "isBaseHull": false,
       "rollModifier": "",
       "rateOfFire": "",

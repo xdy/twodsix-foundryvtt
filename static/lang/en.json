@@ -445,7 +445,10 @@
         "retracted": "retracted",
         "Displacement": "Displacement",
         "Description":"Description",
-        "ComponentType": "Component Type"
+        "ComponentType": "Component Type",
+        "powerPerUnit": "per unit",
+        "powerPerCompTon": "per component ton",
+        "powerPerHullTon": "per hull ton"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

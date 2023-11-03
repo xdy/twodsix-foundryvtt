@@ -603,6 +603,15 @@ export const PricingOptions = {
 };
 
 /**
+ * The valid power bases for components other than base hull.
+ */
+export const PowerOptions = {
+  perUnit: "TWODSIX.Items.Component.powerPerUnit",
+  perCompTon: "TWODSIX.Items.Component.powerPerCompTon",
+  perHullTon: "TWODSIX.Items.Component.powerPerHullTon"
+};
+
+/**
  * The valid pricing bases for base hull.
  */
 export const HullPricingOptions = {
@@ -750,6 +759,7 @@ export type TWODSIX = {
   MovementUnits: typeof MovementUnits,
   MovementType: typeof MovementTypes,
   PricingOptions: typeof PricingOptions,
+  PowerOptions: typeof PowerOptions,
   HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
   ComponentTypes: typeof ComponentTypes,
@@ -779,6 +789,7 @@ export const TWODSIX = {
   MovementUnits: MovementUnits,
   MovementType: MovementTypes,
   PricingOptions: PricingOptions,
+  PowerOptions: PowerOptions,
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
   ComponentTypes: ComponentTypes,
