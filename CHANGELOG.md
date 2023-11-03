@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.3.0...v4.4.0) (2023-11-03)
+
+
+### Features
+
+* Misc Display Improvements ([#1492](https://github.com/xdy/twodsix-foundryvtt/issues/1492)) ([a71c549](https://github.com/xdy/twodsix-foundryvtt/commit/a71c549d6c4678f79a3fd92626f23277f17f587f))
+
 # [4.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.2.0...v4.3.0) (2023-10-27)
 
 
