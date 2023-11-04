@@ -1,0 +1,49 @@
+{{#iff system.subtype "===" "hull" }}
+  <div class="item-weight">
+    <label for="system.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}}</label>
+    <input type="checkbox" class="checkbox" name="system.isBaseHull" id="system.isBaseHull" {{checked system.isBaseHull}} data-dtype="Boolean" />
+  </div>
+{{/iff}}
+
+{{#if system.isBaseHull}}
+  <div class="item-weight">
+    <label for="system.weight" class="resource-label short-label">{{localize "TWODSIX.Items.Component.unitWeight"}}</label>
+    <input class="form-input" class = "short-label" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+  </div>
+
+{{else}}
+  <div class="item-qty">
+    <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Component.totalQuantity"}}</label>
+    <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+  </div>
+
+  {{#iff system.subtype "!==" "cargo"}}
+    <div class="item-qty">
+      <label for="system.availableQuantity" class="resource-label">{{localize "TWODSIX.Items.Component.availableQuantity"}}</label>
+      <input class="form-input" id="system.availableQuantity" type="text" name="system.availableQuantity" value="{{system.availableQuantity}}" data-dtype="Number"/>
+    </div>
+  {{else}}
+    <div class="item-short">
+      <label for="system.cargoLocation" class="resource-label">{{localize "TWODSIX.Items.Component.CargoLocation"}}</label>
+      <input class="form-input" id="system.cargoLocation" type="text" name="system.cargoLocation" value="{{system.cargoLocation}}"/>
+    </div>
+  {{/iff}}
+
+  {{#iff system.subtype "!==" "cargo" }}
+    <div class="item-weight">
+      <label for="system.weightIsPct" class="resource-label short-label">{{localize "TWODSIX.Items.Component.weightIsPct"}}</label>
+      <input type="checkbox" class="checkbox" name="system.weightIsPct" id="system.weightIsPct" {{checked system.weightIsPct}} data-dtype="Boolean" />
+    </div>
+  {{/iff}}
+
+  <div class="item-weight">
+    <label for="system.weight" class="resource-label">
+    {{#if system.weightIsPct}}
+      {{localize "TWODSIX.Items.Component.pctDisplacement"}}
+    {{else}}
+      {{localize "TWODSIX.Items.Component.unitWeight"}}
+    {{/if}}
+    </label>
+    <span class="form-input"> <input class = "form-input short-label" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number" style="max-width: 25ch; align-self: center;"/>{{#if system.weightIsPct}}%{{/if}}</span>
+  </div>
+{{/if}}

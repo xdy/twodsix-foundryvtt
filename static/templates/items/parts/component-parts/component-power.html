@@ -1,0 +1,23 @@
+{{#iff system.subtype "!==" "cargo"}}
+  {{#iff system.subtype "!==" "fuel"}}
+    <div class="item-power">
+      <label for="system.generatesPower" class="resource-label short-label">{{localize "TWODSIX.Items.Component.GeneratesPower"}}</label>
+      <input type="checkbox" class="checkbox" name="system.generatesPower" id="system.generatesPower" {{checked system.generatesPower}} data-dtype="Boolean" />
+    </div>
+    <div class="item-power">
+      <label for="system.powerDraw" class="resource-label">
+      {{#if system.generatesPower}}
+        {{localize "TWODSIX.Items.Component.powerGenerated"}}
+      {{else}}
+        {{localize "TWODSIX.Items.Component.powerDraw"}}
+      {{/if}}
+      </label>
+      <span class="short-label">
+        <input class="short-label" id="system.powerDraw" type="number" name="system.powerDraw" value="{{system.powerDraw}}" data-dtype="Number"/>
+        <select id = "system.powerBasis" name = "system.powerBasis" >
+            {{selectOptions config.PowerOptions selected = system.powerBasis localize = true}}
+        </select>
+      </span>
+    </div>
+  {{/iff}}
+{{/iff}}
