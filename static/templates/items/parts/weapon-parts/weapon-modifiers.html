@@ -1,0 +1,31 @@
+{{#if owner}}
+  {{#iff owner.type "!==" "ship"}}
+    <div class="item-skill">
+      <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
+        <select class="form-input" name="system.skill" id="system.skill">
+          {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
+        </select>
+    </div>
+    {{else}}
+    <div class="item-skill">
+      <label for="system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+      <input class="form-input" id="system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+    </div>
+  {{/iff}}
+{{else}}
+  <div class="item-skill">
+    <label for="system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+    <input class="form-input" id="system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+  </div>
+{{/if}}
+
+<div class="item-skillModifier">
+  <label for="system.skillModifier" class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
+  <input class="form-input" id="system.skillModifier" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
+          data-dtype="Number"/>
+</div>
+
+<div class="item-handling">
+  <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
+  <input class="form-input" id="system.handlingModifiers" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
+</div>
