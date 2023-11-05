@@ -1,21 +1,5 @@
 <div class="item-sheet">
-  <div>
-    <table>
-      <tr>
-        <th>
-          <div class="item-img">
-            <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
-                  height="128"/></div>
-        </th>
-        <th>
-          <div class="item-name">
-            <label for="item.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-            <input class="form-input" id="item.name" name="name" type="text" value="{{name}}"/>
-          </div>
-        </th>
-      </tr>
-    </table>
-  </div>
+  {{> "systems/twodsix/templates/items/parts/image-name.html"}}
 
   {{!-- Item Sheet Navigation --}}
   <nav class="sheet-navigation tabs" data-group="primary">
@@ -28,23 +12,7 @@
   {{!-- Item Sheet Body --}}
   <section class="sheet-body auto-height">
     <div class="tab description" data-group="primary" data-tab="description">
-      <div class="item-type">
-        <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}} </label>
-          <select class="form-input" id="type" name="type" value={{item.type}}>
-            {{#select type}}
-              <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
-              <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
-              <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
-              <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
-              <option value="computer">{{localize "TWODSIX.Items.Items.AssignComputer"}}</option>
-              <option value="consumable">{{localize "TWODSIX.Items.Items.AssignConsumable"}}</option>
-              <option value="tool">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
-              <option value="junk">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
-              <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
-            {{/select}}
-          </select>
-      </div>
-
+      {{> "systems/twodsix/templates/items/parts/item-type.html"}}
       <div class="item-tl">
         <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
         <input class="form-input" id="system.techLevel" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>

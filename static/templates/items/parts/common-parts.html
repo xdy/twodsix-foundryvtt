@@ -1,37 +1,5 @@
-<div>
-  <table>
-    <tr>
-      <th>
-        <div class="item-img">
-          <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
-               height="128"/></div>
-      </th>
-      <th>
-        <div class="item-name">
-          <label for="item.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-          <input class="form-input" id="item.name" name="name" type="text" value="{{name}}" autocomplete="off"/>
-        </div>
-      </th>
-    </tr>
-  </table>
-</div>
-
-<div class="item-type">
-  <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}} </label>
-    <select class="form-input" id="type" name="type" value={{item.type}}>
-      {{#select type}}
-        <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
-        <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
-        <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
-        <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
-        <option value="consumable">{{localize "TWODSIX.Items.Items.AssignConsumable"}}</option>
-        <option value="computer">{{localize "TWODSIX.Items.Items.AssignComputer"}}</option>
-        <option value="tool">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
-        <option value="junk">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
-        <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
-      {{/select}}
-    </select>
-</div>
+{{> "systems/twodsix/templates/items/parts/image-name.html"}}
+{{> "systems/twodsix/templates/items/parts/item-type.html"}}
 
 {{#if owner}}
   {{#iff owner.type "!==" "ship"}}
