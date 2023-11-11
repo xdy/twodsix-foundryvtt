@@ -402,8 +402,8 @@
         "damaged": "damaged",
         "destroyed": "destroyed",
         "off": "off",
-        "powerDraw": "Power Draw per Unit",
-        "powerGenerated": "Power Generated per Unit",
+        "powerDraw": "Power Draw",
+        "powerGenerated": "Power Generated",
         "Power": "Power",
         "status": "Status",
         "rating": "Rating",
@@ -445,7 +445,10 @@
         "retracted": "retracted",
         "Displacement": "Displacement",
         "Description":"Description",
-        "ComponentType": "Component Type"
+        "ComponentType": "Component Type",
+        "powerPerUnit": "per unit",
+        "powerPerCompTon": "per component ton",
+        "powerPerHullTon": "per hull ton"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

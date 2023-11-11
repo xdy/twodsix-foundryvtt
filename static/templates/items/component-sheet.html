@@ -1,26 +1,9 @@
 <form class="{{cssClass}} item-class" autocomplete="off">
   <div class="item-sheet">
-    <div>
-      <table>
-        <tr>
-          <th>
-            <div class="item-img">
-              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
-                   height="128"/></div>
-          </th>
-          <th>
-            <div class="item-name">
-              <label for="name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-              <input id="name" name="name" type="text" value="{{name}}"/>
-            </div>
-          </th>
-        </tr>
-      </table>
-    </div>
-
+    {{> "systems/twodsix/templates/items/parts/image-name.html"}}
     {{#if settings.useTabbedViews}}
-    {{> "systems/twodsix/templates/items/parts/component-sheet-tabbed.html"}}
-  {{else}}
-    {{> "systems/twodsix/templates/items/parts/component-sheet-flat.html"}}
-  {{/if}}
+        {{> "systems/twodsix/templates/items/parts/component-sheet-tabbed.html"}}
+    {{else}}
+        {{> "systems/twodsix/templates/items/parts/component-sheet-flat.html"}}
+    {{/if}}
 </form>

@@ -570,6 +570,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   isRefined:boolean;
   features:string;
   pricingBasis:string;
+  powerBasis:string;
   isBaseHull:boolean;
   rollModifier:string;
   rateOfFire: string;

@@ -234,8 +234,8 @@ export default class TwodsixActor extends Actor {
 
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
-      const powerForItem = getPower(anComponent);
-      const weightForItem = getWeight(anComponent, this);
+      const powerForItem = getPower(item);
+      const weightForItem = getWeight(item);
 
       /* Allocate Power */
       allocatePower(anComponent, powerForItem, item);
@@ -268,8 +268,7 @@ export default class TwodsixActor extends Actor {
     function estimateDisplacement(shipActor): number {
       let returnValue = 0;
       shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
-        const anComponent = <Component>item.system;
-        returnValue += getWeight(anComponent, shipActor);
+        returnValue += getWeight(item);
       });
       return Math.round(returnValue);
     }
@@ -1059,46 +1058,53 @@ export default class TwodsixActor extends Actor {
   }
 
 }
+
 /**
  * Calculates the power draw for a ship component.
- * @param {Component} item the ship component
- * @return {number} the power draw of the ship component
+ * @param {TwodsixItem} item the ship component
+ * @return {number} the power draw of the ship component (power units)
  * @public
  * @function
  */
-export function getPower(item: Component): number{
-  if ((item.status === "operational") || (item.status === "damaged")) {
-    let q = item.quantity || 1;
-    if (item.subtype === "armament"  && item.availableQuantity) {
-      q = parseInt(item.availableQuantity);
+export function getPower(item: TwodsixItem): number{
+  if (["operational", "damaged"].includes(item.system.status)) {
+    const pf = item.system.powerDraw || 0;
+    if (item.system.powerBasis === 'perUnit') {
+      let quant = item.system.quantity || 1;
+      if (item.system.subtype === "armament"  && item.system.availableQuantity) {
+        quant = parseInt(item.system.availableQuantity);
+      }
+      return (quant * pf);
+    } else if (item.system.powerBasis === 'perHullTon') {
+      return pf * (item.actor?.system.shipStats.mass.max ?? 0);
+    } else if (item.system.powerBasis === 'perCompTon') {
+      return pf * getWeight(item);
     }
-    const p = item.powerDraw || 0;
-    return (q * p);
-  } else {
-    return 0;
   }
+  return 0;
 }
+
 /**
  * Calculates the displacement weight for a ship component.
- * @param {Component} item the ship component
- * @param {any} actorData the ship's actor data
- * @return {number} the displacement of the ship component
+ * @param {TwodsixItem} item the ship component
+ * @return {number} the displacement of the ship component (dtons)
  * @public
  * @function
  */
-export function getWeight(item: Component, actorData): number{
-  const q = item.quantity ?? 1;
+export function getWeight(item: TwodsixItem): number{
+  const quant = item.system.quantity ?? 1;
   /*if (["armament", "fuel"].includes(item.subtype) && item.availableQuantity) {
     q = parseInt(item.availableQuantity);
   }  make true displacement and not mass*/
-  let w = 0;
-  if (item.weightIsPct) {
-    w = (item.weight ?? 0) / 100 * actorData.system.shipStats.mass.max;
+  let wf = 0;
+  if (item.system.weightIsPct) {
+    wf = (item.system.weight ?? 0) / 100 * (item.actor?.system.shipStats.mass.max ?? 0);
   } else {
-    w = item.weight ?? 0;
+    wf = item.system.weight ?? 0;
   }
-  return (w * q);
+  return (wf * quant);
 }
+
 /**
  * A function to delete a player actor from ship positions when that player actor is deleted.
  * @param {string} actorId the id of the actor deleted
@@ -1122,6 +1128,7 @@ async function deleteIdFromShipPositions(actorId: string) {
     }
   }
 }
+
 /**
  * Calculates the carried weight for personal equipment. Includes offset for worn armor.
  * @param {Component} item the equipment carried
@@ -1145,6 +1152,7 @@ function getEquipmentWeight(item:TwodsixItem):number {
   }
   return 0;
 }
+
 /**
  * A function that opens a dialog to determined the quantity moved when transfering an item.
  * @param {Component} item the equipment being transfered
@@ -1173,6 +1181,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   });
   return Math.round(returnNumber);
 }
+
 /**
  * A function to check and correct when an actor is missing the Untrained skill.
  * @param {TwodsixActor} actor the actor being checked

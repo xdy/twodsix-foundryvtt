@@ -877,8 +877,8 @@ h2 {
   z-index: 1;
   flex-direction: column;
   display: flex;
-  height: 20px;
-  width: 20px;
+  flex-wrap: wrap;
+  height: 90%;
 }
 .condition-icon {
   height: 20px;
