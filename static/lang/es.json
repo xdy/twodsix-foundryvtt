@@ -917,7 +917,7 @@
         "name": "Fórmula Iniciativa Nave"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Básico: seis atributos con PSI. Alternativo: seis atributos y alternativos. Todos: seis atributos con PSI y Alternativos.",
+        "hint": "Esenciales: seis atributos (FUE, DES, RES, INT, EDU, y SOC).  Base: seis esenciales más PSI. Alternativo: seis esenciales más atributos Alternativos. Todos: seis esenciales con PSI y Alternativos.",
         "name": "Selecciona qué atributos mostrar"
       },
       "showContaminationBelowLifeblood": {
@@ -1263,6 +1263,18 @@
       "maxSpellLevel": {
         "hint": "Nivel de conjuro máximo utilizable en las tiradas.",
         "name": "Nivel Conjuro Máximo"
+      },
+      "showAllCharWithTable": {
+        "hint": "Utilizar una tabla para mostrar los atributos en vez de hexágonos (cuando se selecciona mostrar todos los atributos). El Estilo Estándar de Foundry siempre utiliza una tabla.",
+        "name": "Usar una tabla para mostrar todos los atributos"
+      },
+      "showTLonItemsTab": {
+        "hint": "Mostrar el nivel de tecnología de los objetos detrás del nombre en las listas dentro de Compendios y pestaña de Objetos.",
+        "name": "Mostrar Nivel Tecnología en Compendios y listas de Objetos"
+      },
+      "omitPSIifZero": {
+        "hint": "No mostrar atributo PSI si el valor es cero.",
+        "name": "Omitir PSI de la hoja con valor cero"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
