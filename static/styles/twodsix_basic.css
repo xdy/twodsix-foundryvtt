@@ -520,6 +520,8 @@ img.character-info-mask {
   z-index: 1;
   flex-direction: column;
   display: flex;
+  flex-wrap: wrap;
+  height: 90%;
 }
 .condition-icon {
   height: 20px;
