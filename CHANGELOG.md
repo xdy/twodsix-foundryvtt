@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.4.0...v4.5.0) (2023-11-11)
+
+
+### Features
+
+* Add more component power options ([#1494](https://github.com/xdy/twodsix-foundryvtt/issues/1494)) ([e8a3ba7](https://github.com/xdy/twodsix-foundryvtt/commit/e8a3ba70e75160ccec71f70231732ba8c925117e))
+
 # [4.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.3.0...v4.4.0) (2023-11-03)
 
 
