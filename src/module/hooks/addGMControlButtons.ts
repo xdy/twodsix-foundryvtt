@@ -75,7 +75,7 @@ async function getAllSkills(): Promise<object> {
   }
   for (const actor of selectedActors) {
     for (const skill of actor.itemTypes.skills) {
-      if (!(skill.name in skillList)) {
+      if (!(simplifySkillName(skill.name) in skillList)) {
         Object.assign(skillList, { [simplifySkillName(skill.name)]: skill.name});
       }
     }
