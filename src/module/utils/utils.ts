@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 // https://stackoverflow.com/a/34749873
 /**
  * Simple object check.
@@ -64,4 +67,11 @@ export function ObjectbyString(o, s) {
     }
   }
   return o;
+}
+
+export function sortObj(obj) {
+  return Object.keys(obj).sort().reduce(function (result, key) {
+    result[key] = obj[key];
+    return result;
+  }, {});
 }
