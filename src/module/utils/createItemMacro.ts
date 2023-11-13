@@ -7,7 +7,7 @@
  * @param {Object} dropData     Document type and uuid
  * @param {number} slot     The hotbar slot to use
  */
-export function createItemMacro(dropData, slot) {
+export function createItemMacro(dropData: object, slot: number) {
   //console.log(dropData.uuid.split("."));
   if (dropData.type === "Item") {
     addItemMacro(dropData, slot).then();
@@ -15,7 +15,7 @@ export function createItemMacro(dropData, slot) {
   }
 }
 
-async function addItemMacro(dropData, slot): Promise<void> {
+async function addItemMacro(dropData:object, slot:number): Promise<void> {
   const item = await fromUuid(dropData.uuid);
   if (item?.id) {
     if (dropData.type === "Macro") {

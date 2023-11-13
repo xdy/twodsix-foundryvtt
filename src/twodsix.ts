@@ -26,6 +26,7 @@ import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
 import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
 import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
+import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -46,7 +47,8 @@ Hooks.once('init', async function () {
   game['twodsix'] = {
     TwodsixActor,
     TwodsixItem,
-    rollItemMacro
+    rollItemMacro,
+    TwodsixDiceRoll
   };
 
   // Actor
@@ -106,6 +108,8 @@ Hooks.once('init', async function () {
   registerHandlebarsHelpers();
 
   registerSettings();
+  //Dice Rolls
+  CONFIG.Dice.rolls.push(TwodsixDiceRoll);
 
   /* add fonts */
   // @ts-ignore
