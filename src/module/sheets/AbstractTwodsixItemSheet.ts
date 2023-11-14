@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { isDisplayableSkill } from "../utils/sheetUtils";
+import { sortByItemName } from "../utils/utils";
 
 export abstract class AbstractTwodsixItemSheet extends ItemSheet {
 
@@ -26,13 +27,13 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     data.owner = this.actor;
     if (data.owner){
       //build Skills Pick List
-      const skillsList: Item[] = [];
+      const skillsList: TwodsixItem[] = [];
       for (const skill of data.owner.itemTypes.skills) {
-        if (isDisplayableSkill(<Item>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
-          skillsList.push(<Item>skill);
+        if (isDisplayableSkill(<TwodsixItem>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+          skillsList.push(<TwodsixItem>skill);
         }
       }
-      data.skillsList = skillsList.sort((a:any,b:any) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+      data.skillsList = sortByItemName(skillsList);
     }
     return data;
   }
