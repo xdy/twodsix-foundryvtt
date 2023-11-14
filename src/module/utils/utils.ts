@@ -69,17 +69,31 @@ export function ObjectbyString(o, s) {
   return o;
 }
 
-export function sortObj(obj) {
+/**
+ * Sort an object alphabettically by key
+ * @param {object} obj
+ * @returns {object} the sorted object
+ */
+export function sortObj(obj: object): object {
   return Object.keys(obj).sort().reduce(function (result, key) {
     result[key] = obj[key];
     return result;
   }, {});
 }
 
+/**
+ * Sort an Array of TwodsixItems by item.name
+ * @param {TwodsixItem[]} itemArray
+ * @returns {TwodsixItem[]} the sorted item array
+ */
 export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
   return itemArray.sort(function (a:TwodsixItem, b:TwodsixItem) {
-    if (a.name < b.name) {return -1;}
-    if (a.name > b.name) {return 1;}
-    return 0;
+    if (a.name < b.name) {
+      return -1;
+    } else if (a.name > b.name) {
+      return 1;
+    } else {
+      return 0;
+    }
   });
 }
