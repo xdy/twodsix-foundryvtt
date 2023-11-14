@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.0...v4.5.1) (2023-11-14)
+
+
+### Bug Fixes
+
+* sort skills names alphabetically in select lists  ([#1497](https://github.com/xdy/twodsix-foundryvtt/issues/1497)) ([44b1f7f](https://github.com/xdy/twodsix-foundryvtt/commit/44b1f7fb54ec4ac16201d4b366b5e4e6dd37d48e))
+
 # [4.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.4.0...v4.5.0) (2023-11-11)
 
 
