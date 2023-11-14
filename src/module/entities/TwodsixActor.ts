@@ -9,7 +9,7 @@ import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
-import { simplifySkillName } from "../utils/utils";
+import { simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
@@ -1037,7 +1037,8 @@ export default class TwodsixActor extends Actor {
    */
   public async getSkillNameList(): any {
     const returnObject = {};
-    for (const skill of this.itemTypes.skills) {
+    const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
+    for (const skill of skillsArray) {
       if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills')) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
         Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
       }

@@ -75,3 +75,11 @@ export function sortObj(obj) {
     return result;
   }, {});
 }
+
+export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
+  return itemArray.sort(function (a:TwodsixItem, b:TwodsixItem) {
+    if (a.name < b.name) {return -1;}
+    if (a.name > b.name) {return 1;}
+    return 0;
+  });
+}
