@@ -1009,7 +1009,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Display changes to health as scrolling combat text.
    * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
-   * @param {number} damageApplied     The change in hit points that was applied
+   * @param {number} damageApplied  The change in hit points that was applied
    * @public
    */
   public scrollDamage(damageApplied:number): void {
