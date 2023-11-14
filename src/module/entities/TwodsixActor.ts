@@ -1,10 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-/**
- * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
- * @extends {Actor}
- */
 import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
@@ -18,6 +14,10 @@ import { applyToAllActors } from "../utils/migration-utils";
 import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 
+/**
+ * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
+ * @extends {Actor}
+ */
 export default class TwodsixActor extends Actor {
   /**
    * Augment the basic actor data with additional dynamic data.
