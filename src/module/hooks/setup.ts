@@ -20,7 +20,6 @@ Hooks.once('setup', async function () {
     woundedSE.id = 'wounded';
     woundedSE.name = "EFFECT.StatusWounded";
   }
-  CONFIG.ActiveEffect.legacyTransferral = false;
 
   window["Twodsix"] = new TwodsixSystem();
 });

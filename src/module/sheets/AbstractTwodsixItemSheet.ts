@@ -16,7 +16,6 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
     );
   }
 
-
   public activateListeners(html:JQuery):void {
     super.activateListeners(html);
   }
