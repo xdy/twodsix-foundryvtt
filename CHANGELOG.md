@@ -1,3 +1,10 @@
+## [4.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.1...v4.5.2) (2023-11-15)
+
+
+### Bug Fixes
+
+* AE not active for linked actors on load ([#1498](https://github.com/xdy/twodsix-foundryvtt/issues/1498)) ([8026f2e](https://github.com/xdy/twodsix-foundryvtt/commit/8026f2ec9c181bee43b0708aabe6af25fdcb420a))
+
 ## [4.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.0...v4.5.1) (2023-11-14)
 
 
