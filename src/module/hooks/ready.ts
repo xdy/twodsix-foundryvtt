@@ -102,9 +102,9 @@ async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
 }
 
 //This function is a kludge to reset linked actors overrides not being calculated correctly on initialize
-async function toggleActorEffect(actor:TwodsixActor): Promise<void> {
-  await toggleFirstActiveEffect(actor, false);
-}
+//async function toggleActorEffect(actor:TwodsixActor): Promise<void> {
+//  await toggleFirstActiveEffect(actor, false);
+//}
 
 /**
  * Toggles first AE on actor so that AE are correctly calculated on load.  This is a hack to fix an issue with FVTT or Twodsix that I can't find
