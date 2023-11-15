@@ -49,6 +49,8 @@ Hooks.once('init', async function () {
     rollItemMacro
   };
 
+  CONFIG.ActiveEffect.legacyTransferral = false;
+
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
