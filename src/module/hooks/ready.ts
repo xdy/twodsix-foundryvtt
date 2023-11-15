@@ -31,20 +31,23 @@ Hooks.once("ready", async function () {
   }
 
   // Perform the migration
-  if (game.user?.isGM) {
+  if (game.users.activeGM?.isSelf) {
     await migrateWorld(worldVersion);
   }
 
   // Check for missing untrained skills
-  if (game.user?.isGM) {
+  if (game.users.activeGM?.isSelf) {
     await applyToAllActors(async (actor: TwodsixActor) => {
       await correctMissingUntrainedSkill(actor);
     });
   }
 
-  //Toggle token actors' effect to correct off calc on refresh, should be fixed in version 11.306 onward
-  if (game.user?.isGM && (game.release.build < 306)) {
-    await applyToAllActors(toggleTokenEffect);
+  //Toggle actors' effect to correct off calc on refresh, should be fixed in version 11.306 onward for tokens
+  if (game.users.activeGM?.isSelf) {
+    if (game.release.build < 306) {
+      await applyToAllActors(toggleTokenEffect);
+    }
+    //await applyToAllActors(toggleActorEffect);
   }
 
   // A socket hook proxy
@@ -53,7 +56,7 @@ Hooks.once("ready", async function () {
   });
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+  Hooks.on("hotbarDrop", (_bar, data, slot) => createItemMacro(data, slot));
 
   //set status icons
   if (game.settings.get('twodsix', 'reduceStatusIcons')) {
@@ -95,11 +98,26 @@ Hooks.once("ready", async function () {
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
 async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
-  if (actor.isToken  && actor.isOwner) {
-    const tokenEffects = Array.from(actor.allApplicableEffects());
-    if (tokenEffects.length > 0) {
-      await tokenEffects[0].update({'disabled': !tokenEffects[0].disabled});
-      await tokenEffects[0].update({'disabled': !tokenEffects[0].disabled});
+  await toggleFirstActiveEffect(actor, true);
+}
+
+//This function is a kludge to reset linked actors overrides not being calculated correctly on initialize
+//async function toggleActorEffect(actor:TwodsixActor): Promise<void> {
+//  await toggleFirstActiveEffect(actor, false);
+//}
+
+/**
+ * Toggles first AE on actor so that AE are correctly calculated on load.  This is a hack to fix an issue with FVTT or Twodsix that I can't find
+ * @param {TwodsixActor} actor the actor to toggle
+ * @param {boolean} isToken whether the actor is unlinked (Token actor) or not
+ * @function
+ */
+async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Promise<void> {
+  if (actor.isToken === isToken  && actor.isOwner) {
+    const actorEffects = Array.from(actor.allApplicableEffects());
+    if (actorEffects.length > 0) {
+      await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
+      await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
     }
   }
 }

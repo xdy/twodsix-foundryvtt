@@ -51,6 +51,8 @@ Hooks.once('init', async function () {
     TwodsixDiceRoll
   };
 
+  CONFIG.ActiveEffect.legacyTransferral = false;
+
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);

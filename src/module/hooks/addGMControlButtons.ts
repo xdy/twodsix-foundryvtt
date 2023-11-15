@@ -4,7 +4,7 @@ import {TWODSIX} from "../config";
 //import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import { _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
 //import {getKeyByValue} from "./sheetUtils";
-import { simplifySkillName } from "../utils/utils.ts";
+import { simplifySkillName, sortObj } from "../utils/utils.ts";
 
 Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {
@@ -67,20 +67,21 @@ function getUserActorList (selections:any, tokenData:any): any {
   return returnData;
 }
 
-async function getAllSkills(): Promise<string[]> {
-  const returnValue = {"NONE": "---"};
+async function getAllSkills(): Promise<object> {
+  const skillList = {};
   let selectedActors = await canvas.tokens.controlled.map((t) => t.actor);
   if (selectedActors.length === 0) {
     selectedActors = await game.users.filter(user => !user.isGM && user.active).map((u) => u.character);
   }
   for (const actor of selectedActors) {
     for (const skill of actor.itemTypes.skills) {
-      if (!(skill.name in returnValue)) {
-        Object.assign(returnValue, { [simplifySkillName(skill.name)]: skill.name});
+      if (!(simplifySkillName(skill.name) in skillList)) {
+        Object.assign(skillList, { [simplifySkillName(skill.name)]: skill.name});
       }
     }
   }
-  return returnValue;
+  const sortedSkills = sortObj(skillList);
+  return {"NONE": "---", ...sortedSkills};
 }
 
 async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
