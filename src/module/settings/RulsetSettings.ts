@@ -97,9 +97,17 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.animals_robots.push(booleanSetting("displayReactionMorale", false));
     settings.damage.push(booleanSetting("useDodgeParry", false));
     settings.damage.push(stringSetting("damageTypeOptions", "", false, "world"));
-    settings.damage.push(booleanSetting('addEffectToManualDamage', false));
+    settings.damage.push(booleanSetting('addEffectToDamage', true, false, "world", checkManualDamageSetting));
+    settings.damage.push(booleanSetting('addEffectToManualDamage', false, false, "world", checkManualDamageSetting));
     settings.roll.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
     settings.roll.push(booleanSetting("overrideSuccessWithNaturalCrit", false));
     return settings;
   }
 }
+
+export const checkManualDamageSetting = function () {
+  if (!game.settings.get('twodsix', 'addEffectToDamage') && game.settings.get('twodsix', 'addEffectToManualDamage')) {
+    game.settings.set('twodsix', 'addEffectToManualDamage', false);
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ResetEffectForManualDamage"));
+  }
+};

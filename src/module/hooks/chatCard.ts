@@ -81,7 +81,10 @@ async function onChatCardAction(event: Event): Promise<any> {
     const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
     const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
     const effect = message.getFlag("twodsix", "effect") ?? 0;
-    const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${effect} + ${bonusDamage}` : `${effect}`;
+    let totalBonusDamage = game.settings.get("twodsix", "addEffectToDamage") ? `${effect}` : ``;
+    if (bonusDamage !== "0" && bonusDamage !== "") {
+      totalBonusDamage += (game.settings.get('twodsix', 'addEffectToDamage') ? ` + `: ``) + `${bonusDamage}`;
+    }
     switch ( action ) {
       case "damage":
         await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
