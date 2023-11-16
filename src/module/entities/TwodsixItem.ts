@@ -236,10 +236,11 @@ export default class TwodsixItem extends Item {
 
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
+      const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
-        let totalBonusDamage = game.settings.get('twodsix', 'addEffectToDamage') ? `${roll.effect}` : ``;
+        let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
         if (bonusDamage !== "0" && bonusDamage !== "") {
-          totalBonusDamage += (game.settings.get('twodsix', 'addEffectToDamage') ? ` + `: ``) + `${bonusDamage}`;
+          totalBonusDamage += (addEffect ? ` + `: ``) + `${bonusDamage}`;
         }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (targets.length >= 1 && damagePayload) {
