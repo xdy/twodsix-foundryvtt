@@ -101,20 +101,21 @@ Hooks.on("aipSetup", (packageConfig) => {
 });
 
 /**
- * Retruns the Traveller data template with .characteristics[X].mod and .skills added
+ * Returns the Traveller data template with .characteristics[X].mod and .skills added
  * @returns {any} An object of the traveller actor template
  * @private
  */
 function _getTravellerData(): any {
   const returnObject = duplicate(game.system.template.Actor.traveller);
-  for (const char of Object.keys(returnObject.characteristics)) {
-    Object.assign(returnObject.characteristics[char], {mod: 0});
+  Object.assign(returnObject, {characteristics: {}});
+  for (const char of Object.keys(game.system.template.Actor.templates.characteristicsTemplate.characteristics)) {
+    Object.assign(returnObject.characteristics, {[char]: {mod: 0}});
   }
   Object.assign(returnObject, {skills: {}});
   return returnObject;
 }
 /**
- * Retruns the Ship data template
+ * Returns the Ship data template
  * @returns {any}    An object of the ship actor template
  * @private
  */
@@ -123,7 +124,7 @@ function _getShipData(): any {
   return returnObject;
 }
 /**
- * Retruns the Traveller data template with .characteristics[X].mod, .skills and .damage and .effectiveArmor added
+ * Returns the Traveller data template with .characteristics[X].mod, .skills and .damage and .effectiveArmor added
  * @returns {any} An object of the traveller actor template
  * @private
  */
