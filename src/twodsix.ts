@@ -27,6 +27,7 @@ import { TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
 import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
 import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
 import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
+import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -48,7 +49,8 @@ Hooks.once('init', async function () {
     TwodsixActor,
     TwodsixItem,
     rollItemMacro,
-    TwodsixDiceRoll
+    TwodsixDiceRoll,
+    TwodsixRollSettings
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
