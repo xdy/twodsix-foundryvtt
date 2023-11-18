@@ -101,20 +101,31 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
 
   if (!tintToApply) {
-    await setConditionState('dead', selectedActor, false);
-    await setWoundedState(selectedActor, false, tintToApply);
+    if (isCurrentlyDead) {
+      await setConditionState('dead', selectedActor, false);
+    }
+    if (oldWoundState) {
+      await setWoundedState(selectedActor, false, tintToApply);
+    }
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
-      await setConditionState('dead', selectedActor, true);
-      await setWoundedState(selectedActor, false, tintToApply);
+      if (!isCurrentlyDead) {
+        await setConditionState('dead', selectedActor, true);
+      }
+      if (oldWoundState) {
+        await setWoundedState(selectedActor, false, tintToApply);
+      }
       await setConditionState('unconscious', selectedActor, false);
     } else {
-      await setConditionState('dead', selectedActor, false);
-
+      if (isCurrentlyDead) {
+        await setConditionState('dead', selectedActor, false);
+      }
       if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
-      await setWoundedState(selectedActor, true, tintToApply);
+      if (tintToApply !== oldWoundState?.tint) {
+        await setWoundedState(selectedActor, true, tintToApply);
+      }
     }
   }
 }
@@ -212,8 +223,8 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
-      if (effectStatus === effectType.dead) {
-        await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: true});
+      if (effectStatus === 'dead') {
+        await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: false});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
         const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
