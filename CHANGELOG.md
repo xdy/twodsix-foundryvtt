@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.2...v4.6.0) (2023-11-18)
+
+
+### Features
+
+* add setting to ignore effect for damage rolls ([#1496](https://github.com/xdy/twodsix-foundryvtt/issues/1496)) ([f83651c](https://github.com/xdy/twodsix-foundryvtt/commit/f83651c241bb29b42e06fdf3dcc1a20de7dca49a))
+
 ## [4.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.1...v4.5.2) (2023-11-15)
 
 
