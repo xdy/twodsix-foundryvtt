@@ -236,8 +236,12 @@ export default class TwodsixItem extends Item {
 
     for (let i = 0; i < numberOfAttacks; i++) {
       const roll = await this.skillRoll(false, settings, showInChat);
+      const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
-        const totalBonusDamage = (bonusDamage !== "0" && bonusDamage !== "") ? `${roll.effect} + ${bonusDamage}` : `${roll.effect}`;
+        let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
+        if (bonusDamage !== "0" && bonusDamage !== "") {
+          totalBonusDamage += (addEffect ? ` + `: ``) + `${bonusDamage}`;
+        }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (targets.length >= 1 && damagePayload) {
           targets[i%targets.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
@@ -604,7 +608,7 @@ export async function onRollDamage(event):Promise<void> {
 
   const element = $(event.currentTarget);
   let bonusDamageFormula = String(element.data('bonus-damage') || 0);
-  if (game.settings.get('twodsix', 'addEffectToManualDamage')) {
+  if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
       bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));

@@ -110,6 +110,7 @@ declare global {
       'twodsix.showTimeframe': boolean;
       'twodsix.showStatusIcons': boolean;
       'twodsix.showHullAndArmor': string;
+      'twodsix.addEffectToDamage': boolean;
       'twodsix.addEffectToManualDamage': boolean;
       'twodsix.showRangeSpeedNoUnits': boolean;
       'twodsix.showInitiativeButton': boolean;

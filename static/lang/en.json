@@ -1093,8 +1093,12 @@
         "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
         "name": "Protection values on vehicle sheets"
       },
+      "addEffectToDamage": {
+        "hint": "This option adds the roll effect to the damage roll.",
+        "name": "Add effect when rolling damage"
+      },
       "addEffectToManualDamage": {
-        "hint": "This option adds the effect from the most recent chat message to a manual damage roll.",
+        "hint": "This option adds the effect from the most recent chat message to a manual damage roll.  Above setting (Add effect when rolling damage) must be enabled",
         "name": "Add effect when rolling manual damage"
       },
       "showRangeSpeedNoUnits": {
@@ -1359,7 +1363,8 @@
       "NoDamageToApply": "Damage or healing values must greater than zero.",
       "MissingUntrainedSkill": "Actor is missing untrained skill. Reload application to fix.",
       "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected.",
-      "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor."
+      "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor.",
+      "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false."
     }
   },
   "TYPES": {
