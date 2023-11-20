@@ -264,7 +264,7 @@ div.pdf-app section.window-content {
 
 /******** Monk's Active Tile Trigggers********/
 
-.action-sheet .display-value, .multiple-dropdown {
+.action-sheet .display-value, .multiple-dropdown, .action-sheet .display-value {
   color: var(--s2d6-light-color);
   background-color: var(--s2d6-background-semi-opaque);
   border-color: var(--s2d6-background-opaque);
@@ -279,7 +279,10 @@ div.pdf-app section.window-content {
 .monks-active-tiles div[data-tab="triggers"] .action-items .action-style,
 .monks-active-tiles .file-list,
 .monks-active-tiles .file-list li a,
-.monks-active-tiles.sheet .items-list .items-header {
+.monks-active-tiles.sheet .items-list .items-header,
+.monks-active-tiles div[data-tab="triggers"] .action-items .entity-style,
+.monks-active-tiles div[data-tab="triggers"] .action-items .value-style,
+.action *  {
   color: var(--s2d6-default-color);
   border-color: var(--s2d6-default-color);
 }
