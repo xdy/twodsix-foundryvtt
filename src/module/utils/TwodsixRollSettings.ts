@@ -9,6 +9,7 @@ import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { effectType } from "../hooks/showStatusIcons";
+import { addSign } from "./utils";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -347,8 +348,8 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   const customEffects = await selectedActor.appliedEffects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
   for (const effect of customEffects) {
     for (const change of effect.changes) {
-      if (change.key === `system.characteristics.${keyByValue}.mod` || (change.key === simpleSkillRef) && simpleSkillRef) {
-        returnName += `${effect.name} for ${change.key.replace('system.', '')}(${change.value}), `;
+      if (change.key === `system.characteristics.${keyByValue}.mod` || change.key === `system.characteristics.${keyByValue}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
+        returnName += `${effect.name} for ${change.key.replace('system.', '')}(${addSign(change.value)}), `;
       }
     }
   }
