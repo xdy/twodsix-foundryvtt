@@ -8,7 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import { simplifySkillName } from "./utils";
+import { simplifySkillName, addSign } from "./utils";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -172,10 +172,6 @@ export class TwodsixDiceRoll {
     this.effect = effect;
   }
 
-  private static addSign(value:number):string {
-    return `${value <= 0 ? "" : "+"}${value}`;
-  }
-
   public getDegreeOfSuccess(): string {
     //Check for override for natural 2 or 12
     if (game.settings.get("twodsix", 'overrideSuccessWithNaturalCrit')) {
@@ -241,7 +237,7 @@ export class TwodsixDiceRoll {
       flavorText += showModifiers ? `(${this.rollSettings.difficulty.target}+)` : ``;
       flavorTable += `<td class="centre">${this.rollSettings.difficulty.target}+</td></tr>`;
     } else {
-      const difficultyMod = TwodsixDiceRoll.addSign(this.rollSettings.difficulty.mod);
+      const difficultyMod = addSign(this.rollSettings.difficulty.mod);
       flavorText += showModifiers ? `(${difficultyMod})` : ``;
       flavorTable += `<td class="centre">${difficultyMod}</td></tr>`;
     }
@@ -255,13 +251,13 @@ export class TwodsixDiceRoll {
 
     //Skill Level
     if (this.skill) {
-      const skillValue = TwodsixDiceRoll.addSign(this.roll.data.actualSkillValue); //Allow for clamp of level
+      const skillValue = addSign(this.roll.data.actualSkillValue); //Allow for clamp of level
       flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
       //Chain Roll
       if (this.rollSettings.rollModifiers.chain) {
-        const chainValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.chain);
+        const chainValue = addSign(this.rollSettings.rollModifiers.chain);
         flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}` + (showModifiers ? `(${chainValue})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ChainRoll")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Bonus")}</td><td class="centre">${chainValue}</td></tr>`;
       }
@@ -270,7 +266,7 @@ export class TwodsixDiceRoll {
     //Characterisitic Modifier
     if (this.rollSettings.rollModifiers.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
       const characteristicLabel = game.i18n.localize("TWODSIX.Rolls.characteristic");
-      const characteristicValue = TwodsixDiceRoll.addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
+      const characteristicValue = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
       const charShortName:string = this.rollSettings.displayLabel;
       flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${characteristicLabel}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Characteristic")}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
@@ -278,27 +274,27 @@ export class TwodsixDiceRoll {
 
     //Item & Attack Modifiers
     if (this.rollSettings.itemRoll) {
-      const itemValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.item);
+      const itemValue = addSign(this.rollSettings.rollModifiers.item);
       flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`)   + ` ${this.rollSettings.itemName}` + (showModifiers ? `(${itemValue})` : ``);
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ItemModifier")}</td><td>${this.rollSettings.itemName}</td><td class="centre">${itemValue}</td></tr>`;
       if (this.rollSettings.rollModifiers.attachments) {
-        const attachments = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.attachments);
+        const attachments = addSign(this.rollSettings.rollModifiers.attachments);
         flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.Attachments")}` + (showModifiers ? `(${attachments})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attachments")}</td><td class="centre">${attachments}</td></tr>`;
       }
 
       if (this.rollSettings.rollModifiers.rof) {
-        const rofValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.rof);
+        const rofValue = addSign(this.rollSettings.rollModifiers.rof);
         flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.ROF")}` + (showModifiers ? `(${rofValue})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.ROF")}</td><td class="centre">${rofValue}</td></tr>`;
       }
       if (this.rollSettings.rollModifiers.weaponsHandling) {
-        const weaponsHandling = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.weaponsHandling);
+        const weaponsHandling = addSign(this.rollSettings.rollModifiers.weaponsHandling);
         flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.WeaponsHandling")}` + (showModifiers ? `(${weaponsHandling})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.WeaponsHandling")}</td><td class="centre">${weaponsHandling}</td></tr>`;
       }
       if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
-        const dodgeParryValue = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.dodgeParry);
+        const dodgeParryValue = addSign(this.rollSettings.rollModifiers.dodgeParry);
         flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.DodgeParry")}` + (showModifiers ? `(${dodgeParryValue})` : ``);
         flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Rolls.DodgeParry")}</td><td class="centre">${dodgeParryValue}</td></tr>`;
       }
@@ -306,7 +302,7 @@ export class TwodsixDiceRoll {
 
     //Custom Modifier
     if (this.rollSettings.rollModifiers.other !== 0) {
-      const customDM = TwodsixDiceRoll.addSign(this.rollSettings.rollModifiers.other);
+      const customDM = addSign(this.rollSettings.rollModifiers.other);
       flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}` + (showModifiers ? `(${customDM})` : ``);
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td>&mdash;</td><td class="centre">${customDM}</td></tr>`;
     }

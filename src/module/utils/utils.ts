@@ -99,3 +99,12 @@ export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
     }
   });
 }
+
+/**
+ * Return a value as a string with added +/- sign
+ * @param {number} value
+ * @returns {string} the value as string with sign
+ */
+export function addSign(value:number):string {
+  return `${value <= 0 ? "" : "+"}${value}`;
+}
