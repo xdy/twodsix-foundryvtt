@@ -264,7 +264,7 @@ div.pdf-app section.window-content {
 
 /******** Monk's Active Tile Trigggers********/
 
-.action-sheet .display-value, .multiple-dropdown, .action-sheet .display-value {
+.action-sheet .display-value, .multiple-dropdown {
   color: var(--s2d6-light-color);
   background-color: var(--s2d6-background-semi-opaque);
   border-color: var(--s2d6-background-opaque);
