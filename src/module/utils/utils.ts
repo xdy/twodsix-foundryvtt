@@ -111,12 +111,12 @@ export function addSign(value:number):string {
 
 /**
  * Simple function to return a string with first character capitalized
- * @param {string} string
+ * @param {string} inputString
  * @returns {string} the string with first letter capitalized
  */
-export function capitalizeFirstLetter(string:number):string {
-  if (string[0]) {
-    return string[0].toUpperCase() + string.slice(1);
+export function capitalizeFirstLetter(inputString:string):string {
+  if (inputString[0]) {
+    return inputString[0].toUpperCase() + inputString.slice(1);
   } else {
     return "";
   }
