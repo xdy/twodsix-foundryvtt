@@ -8,7 +8,7 @@ import {advantageDisadvantageTerm} from "../i18n";
 import {getKeyByValue} from "./sheetUtils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
-import { simplifySkillName, addSign } from "./utils";
+import { simplifySkillName, addSign, capitalizeFirstLetter } from "./utils";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -20,6 +20,7 @@ export class TwodsixDiceRoll {
   effect:number;
   roll:Roll | null = null;
   woundedEffect:number;
+  modifierList:string[] | null;
 
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
     this.rollSettings = rollSettings;
@@ -56,67 +57,20 @@ export class TwodsixDiceRoll {
       }
       formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
       formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
-      formulaData.actualSkillValue = skillValue; //needed to enforce clam value in description
+      formulaData.actualSkillValue = skillValue; //needed to enforce clamp value in description
     }
+    // Process rollModifiers
+    this.modifierList = this.getRollModifierList();
 
-    // Add chain modifier
-    if (this.rollSettings.rollModifiers.chain) {
-      formula += this.rollSettings.rollModifiers.chain < 0 ? " - @chain" : " + @chain";
-      formulaData.chain = this.rollSettings.rollModifiers.chain < 0 ? -this.rollSettings.rollModifiers.chain : this.rollSettings.rollModifiers.chain;
-    }
-
-    // Add characteristic modifier
-    if (this.rollSettings.rollModifiers.characteristic !== "NONE" && this.actor) {
-      const charMod = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic);
-      formula += charMod < 0 ? ' - @characteristicModifier' : ' + @characteristicModifier';
-      formulaData.characteristicModifier = charMod < 0 ? -charMod : charMod;
-    }
-
-    // Add item related modifiers
-    if (this.rollSettings.itemRoll) {
-      formula += this.rollSettings.rollModifiers.item < 0 ? " - @item": " + @item";
-      formulaData.item = this.rollSettings.rollModifiers.item < 0 ? -this.rollSettings.rollModifiers.item : this.rollSettings.rollModifiers.item;
-
-      if (this.rollSettings.rollModifiers.rof) {
-        formula += this.rollSettings.rollModifiers.rof < 0 ? " - @rof": " + @rof";
-        formulaData.rof = this.rollSettings.rollModifiers.rof < 0 ? -this.rollSettings.rollModifiers.rof : this.rollSettings.rollModifiers.rof;
+    for (const modifierName of this.modifierList) {
+      if (modifierName === "characteristic") {
+        const charMod = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic);
+        formula += charMod < 0 ? ' - @characteristic' : ' + @characteristic';
+        formulaData.characteristic = charMod < 0 ? -charMod : charMod;
+      } else {
+        formula += this.rollSettings.rollModifiers[modifierName] < 0 ? ` - @${modifierName}` : ` + @${modifierName}`;
+        formulaData[modifierName] = this.rollSettings.rollModifiers[modifierName] < 0 ? -this.rollSettings.rollModifiers[modifierName] : this.rollSettings.rollModifiers[modifierName];
       }
-      if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
-        formula += this.rollSettings.rollModifiers.dodgeParry < 0 ? " - @dodgeParry": " + @dodgeParry";
-        formulaData.dodgeParry = this.rollSettings.rollModifiers.dodgeParry < 0 ? -this.rollSettings.rollModifiers.dodgeParry : this.rollSettings.rollModifiers.dodgeParry;
-      }
-      if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {
-        formula += this.rollSettings.rollModifiers.weaponsHandling < 0 ? " - @weaponsHandling": " + @weaponsHandling";
-        formulaData.weaponsHandling = this.rollSettings.rollModifiers.weaponsHandling < 0 ? -this.rollSettings.rollModifiers.weaponsHandling : this.rollSettings.rollModifiers.weaponsHandling;
-      }
-      if(this.rollSettings.rollModifiers.attachments !== 0) {
-        formula += this.rollSettings.rollModifiers.attachments < 0 ? " - @attachments": " + @attachments";
-        formulaData.attachments = this.rollSettings.rollModifiers.attachments < 0 ? -this.rollSettings.rollModifiers.attachments : this.rollSettings.rollModifiers.attachments;
-      }
-    }
-
-    // Add other modifier
-    if (this.rollSettings.rollModifiers.other) {
-      formula += this.rollSettings.rollModifiers.other < 0 ? " - @DM" : " + @DM";
-      formulaData.DM = this.rollSettings.rollModifiers.other < 0 ? -this.rollSettings.rollModifiers.other : this.rollSettings.rollModifiers.other;
-    }
-
-    //Subtract Modifier for wound status
-    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.rollSettings.rollModifiers.wounds < 0) {
-      formula += " - @woundedEffect";
-      formulaData.woundedEffect = -this.rollSettings.rollModifiers.wounds;
-    }
-
-    //Subtract Modifier for encumbered status
-    if(game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.rollSettings.rollModifiers.encumbered < 0) {
-      formula += " - @encumberedEffect";
-      formulaData.encumberedEffect = -this.rollSettings.rollModifiers.encumbered;
-    }
-
-    //Allow custom .mod effect
-    if(this.rollSettings.rollModifiers.custom !== 0) {
-      formula += this.rollSettings.rollModifiers.custom < 0 ? " - @customEffect": " + @customEffect";
-      formulaData.customEffect = this.rollSettings.rollModifiers.custom < 0 ? -this.rollSettings.rollModifiers.custom : this.rollSettings.rollModifiers.custom;
     }
 
     this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -215,11 +169,58 @@ export class TwodsixDiceRoll {
     }
   }
 
+  public getRollModifierList(): string[] {
+    const returnValue = [];
+    // Add chain modifier
+    if (this.rollSettings.rollModifiers.chain) {
+      returnValue.push("chain");
+    }
+
+    // Add characteristic modifier
+    if (this.rollSettings.rollModifiers.characteristic !== "NONE" && this.actor) {
+      returnValue.push("characteristic");
+    }
+
+    // Add item related modifiers
+    if (this.rollSettings.itemRoll) {
+      returnValue.push("item");
+      if (this.rollSettings.rollModifiers.rof) {
+        returnValue.push("rof");
+      }
+      if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
+        returnValue.push("dodgeParry");
+      }
+      if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {
+        returnValue.push("weaponsHandling");
+      }
+      if(this.rollSettings.rollModifiers.attachments !== 0) {
+        returnValue.push("attachments");
+      }
+    }
+
+    // Add other modifier
+    if (this.rollSettings.rollModifiers.other) {
+      returnValue.push("other");
+    }
+
+    //wound status
+    if(game.settings.get('twodsix', 'useWoundedStatusIndicators') && this.rollSettings.rollModifiers.wounds < 0) {
+      returnValue.push("wounds");
+    }
+
+    //encumbered status
+    if(game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.rollSettings.rollModifiers.encumbered < 0) {
+      returnValue.push("encumbered");
+    }
+
+    return returnValue;
+  }
+
   public async sendToChat(difficultyList: object):Promise<void> {
-    const rollingString = game.i18n.localize("TWODSIX.Rolls.Rolling");
-    const usingString = game.i18n.localize("TWODSIX.Actor.using");
+    const rollingString: string = game.i18n.localize("TWODSIX.Rolls.Rolling");
+    const usingString:string = game.i18n.localize("TWODSIX.Actor.using");
     const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.rollSettings.difficulty));
-    const showModifiers = game.settings.get('twodsix', "showModifierDetails");
+    const showModifiers: boolean = game.settings.get('twodsix', "showModifierDetails");
 
     //Initialize flavor strings
     let flavorText = ``;
@@ -255,72 +256,61 @@ export class TwodsixDiceRoll {
       flavorText += ` ${usingString} ${this.skill.name}` + (showModifiers ? `(${skillValue})` : ``) + ` ${game.i18n.localize("TWODSIX.itemTypes.skill")}`;
       flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.SkillModifier")}</td><td>${this.skill.name}</td><td class="centre">${skillValue}</td></tr>`;
 
-      //Chain Roll
-      if (this.rollSettings.rollModifiers.chain) {
-        const chainValue = addSign(this.rollSettings.rollModifiers.chain);
-        flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}` + (showModifiers ? `(${chainValue})` : ``);
-        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ChainRoll")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Bonus")}</td><td class="centre">${chainValue}</td></tr>`;
-      }
     }
 
-    //Characterisitic Modifier
-    if (this.rollSettings.rollModifiers.characteristic !== 'NONE' && this.actor) { //TODO Maybe this should become a 'characteristic'? Would mean characteristic could be typed rather than a string...
-      const characteristicLabel = game.i18n.localize("TWODSIX.Rolls.characteristic");
-      const characteristicValue = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
-      const charShortName:string = this.rollSettings.displayLabel;
-      flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${characteristicLabel}`;
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Characteristic")}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
-    }
-
-    //Item & Attack Modifiers
-    if (this.rollSettings.itemRoll) {
-      const itemValue = addSign(this.rollSettings.rollModifiers.item);
-      flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`)   + ` ${this.rollSettings.itemName}` + (showModifiers ? `(${itemValue})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ItemModifier")}</td><td>${this.rollSettings.itemName}</td><td class="centre">${itemValue}</td></tr>`;
-      if (this.rollSettings.rollModifiers.attachments) {
-        const attachments = addSign(this.rollSettings.rollModifiers.attachments);
-        flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.Attachments")}` + (showModifiers ? `(${attachments})` : ``);
-        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attachments")}</td><td class="centre">${attachments}</td></tr>`;
+    for (const modifierName of this.modifierList) {
+      const description = game.i18n.localize(`TWODSIX.Chat.Roll.${capitalizeFirstLetter(modifierName)}`);
+      if (modifierName === "characteristic") {
+        const characteristicValue = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
+        const charShortName:string = this.rollSettings.displayLabel;
+        flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${description}`;
+        flavorTable += `<tr><td>${description}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
+      } else {
+        switch (modifierName) {
+          case "item":
+            flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`)   + ` ${this.rollSettings.itemName}`;
+            flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ItemModifier")}</td><td>${this.rollSettings.itemName}</td>`;
+            break;
+          case "chain":
+            flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}`;
+            flavorTable += `<tr><td>${description}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Bonus")}</td>`;
+            break;
+          case "attachments":
+          case "rof":
+          case "weaponsHandling":
+          case "dodgeParry":
+            flavorText += ` + ${description}`;
+            flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${description}</td>`;
+            break;
+          case "wounds":
+          case "encumbered":
+            flavorText += ` + ${description}`;
+            flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${description}</td>`;
+            break;
+          case "other":
+            flavorText += ` + ${description}`;
+            flavorTable += `<tr><td>${description}</td><td>&mdash;</td>`;
+            break;
+          default:
+            break;
+        }
+        const modValue = addSign(this.rollSettings.rollModifiers[modifierName]);
+        flavorText += showModifiers ? `(${modValue})` : ``;
+        flavorTable += `<td class="centre">${modValue}</td></tr>`;
       }
-
-      if (this.rollSettings.rollModifiers.rof) {
-        const rofValue = addSign(this.rollSettings.rollModifiers.rof);
-        flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.ROF")}` + (showModifiers ? `(${rofValue})` : ``);
-        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.ROF")}</td><td class="centre">${rofValue}</td></tr>`;
-      }
-      if (this.rollSettings.rollModifiers.weaponsHandling) {
-        const weaponsHandling = addSign(this.rollSettings.rollModifiers.weaponsHandling);
-        flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.WeaponsHandling")}` + (showModifiers ? `(${weaponsHandling})` : ``);
-        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.WeaponsHandling")}</td><td class="centre">${weaponsHandling}</td></tr>`;
-      }
-      if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
-        const dodgeParryValue = addSign(this.rollSettings.rollModifiers.dodgeParry);
-        flavorText += ` + ${game.i18n.localize("TWODSIX.Rolls.DodgeParry")}` + (showModifiers ? `(${dodgeParryValue})` : ``);
-        flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize("TWODSIX.Rolls.DodgeParry")}</td><td class="centre">${dodgeParryValue}</td></tr>`;
-      }
-    }
-
-    //Custom Modifier
-    if (this.rollSettings.rollModifiers.other !== 0) {
-      const customDM = addSign(this.rollSettings.rollModifiers.other);
-      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}` + (showModifiers ? `(${customDM})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Custom")}</td><td>&mdash;</td><td class="centre">${customDM}</td></tr>`;
-    }
-
-    //Condition Modifiers
-    if (this.rollSettings.rollModifiers.wounds !== 0) {
-      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Wounds")}` + (showModifiers ? `(${this.rollSettings.rollModifiers.wounds})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Wounds")}</td><td class="centre">${this.rollSettings.rollModifiers.wounds}</td></tr>`;
-    }
-    if (this.rollSettings.rollModifiers.encumbered !== 0) {
-      flavorText += ` + ${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}` + (showModifiers ? `(${this.rollSettings.rollModifiers.encumbered})` : ``);
-      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Condition")}</td><td>${game.i18n.localize("TWODSIX.Chat.Roll.Encumbered")}</td><td class="centre">${this.rollSettings.rollModifiers.encumbered}</td></tr>`;
-    }
-    if (this.rollSettings.rollModifiers.customLabel !== "") {
-      flavorText += showModifiers ? `. ${game.i18n.localize("TWODSIX.ActiveEffects.IncludingEffects")} ${this.rollSettings.rollModifiers.customLabel}` : ``;
-      //flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ActiveEffect")}</td><td>${this.rollSettings.rollModifiers.customLabel}</td><td class="centre">${this.rollSettings.rollModifiers.custom}</td></tr>`;
     }
     flavorText +=`</p>`;
+    flavorTable += `</table>`;
+
+    //Show applied active effects
+    if (this.rollSettings.rollModifiers.custom.length > 0 && showModifiers) {
+      flavorTable += `<section style="margin-top: 1em;">${game.i18n.localize("TWODSIX.ActiveEffects.IncludingEffects")}</section>`;
+      flavorTable += `<table><tr><th>${game.i18n.localize("TWODSIX.ActiveEffects.Source")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
+      for (const customMod of this.rollSettings.rollModifiers.custom) {
+        flavorTable += `<tr><td>${customMod.name}</td><td>${customMod.stat}</td><td class="centre">${customMod.value}</td></tr>`;
+      }
+      flavorTable += `</table>`;
+    }
 
     //add features
     if (this.rollSettings.itemRoll && this.item?.system?.features !== ""  && this.item?.system.features && game.settings.get("twodsix", "showFeaturesInChat")) {
@@ -350,7 +340,6 @@ export class TwodsixDiceRoll {
     }
 
     flavorText +=`</section></section>`;
-    flavorTable += `</table>`;
 
     const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="flavor-message"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 

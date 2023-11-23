@@ -108,3 +108,16 @@ export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
 export function addSign(value:number):string {
   return `${value <= 0 ? "" : "+"}${value}`;
 }
+
+/**
+ * Simple function to return a string with first character capitalized
+ * @param {string} string
+ * @returns {string} the string with first letter capitalized
+ */
+export function capitalizeFirstLetter(string:number):string {
+  if (string[0]) {
+    return string[0].toUpperCase() + string.slice(1);
+  } else {
+    return "";
+  }
+}

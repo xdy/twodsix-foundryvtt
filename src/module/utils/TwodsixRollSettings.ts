@@ -147,9 +147,7 @@ export class TwodsixRollSettings {
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
     if (sourceActor) {
-      const customModifiers = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
-      twodsixRollSettings.rollModifiers.custom = 0;
-      twodsixRollSettings.rollModifiers.customLabel = customModifiers.name;
+      twodsixRollSettings.rollModifiers.custom = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
     }
     if (showThrowDialog) {
       let title:string;
@@ -208,7 +206,7 @@ export class TwodsixRollSettings {
       timeUnits: TWODSIX.TimeUnits,
       selectedTimeUnit: this.selectedTimeUnit,
       timeRollFormula: this.timeRollFormula,
-      showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators') || this.rollModifiers.custom),
+      showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators')),
       showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
     };
@@ -246,7 +244,7 @@ export class TwodsixRollSettings {
             }
           }
 
-          this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
+          //this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
@@ -341,17 +339,21 @@ export function _genUntranslatedCharacteristicList(): object {
   return returnValue;
 }
 
-export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills) : Promise<any> {
-  const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Promise<any> {
+  const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
-  let returnName = "";
+  const returnObject = [];
   const customEffects = await selectedActor.appliedEffects.filter(eff => eff.name !== game.i18n.localize(effectType.wounded) && eff.name !== game.i18n.localize(effectType.encumbered));
   for (const effect of customEffects) {
     for (const change of effect.changes) {
-      if (change.key === `system.characteristics.${keyByValue}.mod` || change.key === `system.characteristics.${keyByValue}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
-        returnName += `${effect.name} for ${change.key.replace('system.', '')}(${addSign(change.value)}), `;
+      if (change.key === `system.characteristics.${characteristicKey}.mod` || change.key === `system.characteristics.${characteristicKey}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
+        returnObject.push({
+          name: effect.name,
+          stat: change.key.replace('system.', ''),
+          value: addSign(change.value)
+        });
       }
     }
   }
-  return {name: returnName.slice(0, -2)};
+  return returnObject;
 }
