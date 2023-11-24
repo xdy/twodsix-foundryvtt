@@ -45,8 +45,8 @@ export class TwodsixDiceRoll {
     let formula = rollType;
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
-      formula += this.rollSettings.difficulty.mod < 0 ? " - @difficultyMod" : " + @difficultyMod";
-      formulaData.difficultyMod = this.rollSettings.difficulty.mod < 0 ? -this.rollSettings.difficulty.mod : this.rollSettings.difficulty.mod;
+      formula += `${getOperatorString(this.rollSettings.difficulty.mod)} @difficultyMod`;
+      formulaData.difficultyMod = Math.abs(this.rollSettings.difficulty.mod);
     }
 
     // Add skill modifier
@@ -55,22 +55,22 @@ export class TwodsixDiceRoll {
       if (this.rollSettings.rollModifiers.skillLevelMax) {
         skillValue = Math.min(skillValue, this.rollSettings.rollModifiers.skillLevelMax);
       }
-      formula += skillValue < 0 ? " - @skillValue" : " + @skillValue";
-      formulaData.skillValue = skillValue < 0 ? -skillValue : skillValue;
+      formula += `${getOperatorString(skillValue)} @skillValue`;
+      formulaData.skillValue = Math.abs(skillValue);
       formulaData.actualSkillValue = skillValue; //needed to enforce clamp value in description
     }
     // Process rollModifiers
     this.modifierList = this.getRollModifierList();
 
     for (const modifierName of this.modifierList) {
+      let modifierValue = 0;
       if (modifierName === "characteristic") {
-        const charMod = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic);
-        formula += charMod < 0 ? ' - @characteristic' : ' + @characteristic';
-        formulaData.characteristic = charMod < 0 ? -charMod : charMod;
+        modifierValue = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers[modifierName]);
       } else {
-        formula += this.rollSettings.rollModifiers[modifierName] < 0 ? ` - @${modifierName}` : ` + @${modifierName}`;
-        formulaData[modifierName] = this.rollSettings.rollModifiers[modifierName] < 0 ? -this.rollSettings.rollModifiers[modifierName] : this.rollSettings.rollModifiers[modifierName];
+        modifierValue = this.rollSettings.rollModifiers[modifierName];
       }
+      formula += `${getOperatorString(modifierValue)} @${modifierName}`;
+      formulaData[modifierName] = Math.abs(modifierValue);
     }
 
     this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
@@ -259,9 +259,9 @@ export class TwodsixDiceRoll {
     }
 
     for (const modifierName of this.modifierList) {
-      const description = game.i18n.localize(`TWODSIX.Chat.Roll.${capitalizeFirstLetter(modifierName)}`);
+      const description:string = game.i18n.localize(`TWODSIX.Chat.Roll.${capitalizeFirstLetter(modifierName)}`);
       if (modifierName === "characteristic") {
-        const characteristicValue = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
+        const characteristicValue:string = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
         const charShortName:string = this.rollSettings.displayLabel;
         flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${description}`;
         flavorTable += `<tr><td>${description}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
@@ -368,4 +368,17 @@ export class TwodsixDiceRoll {
   }
 }
 
-
+/**
+ * Returns roll formula operator (+/-) depending on input value
+ * @param {number} value
+ * @returns {string} the string as ` + ` or ` - `
+ */
+function getOperatorString(value: number):string {
+  if (isNaN(value)) {
+    return ``;
+  } else if (value < 0) {
+    return ` -`;
+  } else {
+    return ` +`;
+  }
+}
