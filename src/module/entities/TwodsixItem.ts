@@ -47,7 +47,6 @@ export default class TwodsixItem extends Item {
     return item;
   }
 
-
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -172,41 +171,27 @@ export default class TwodsixItem extends Item {
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
     Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
+    const targetTokens = Array.from(game.user.targets);
+    const controlledTokens = this.actor.getActiveTokens();
 
     //Get Dodge Parry information
-    if (game.settings.get("twodsix", "useDodgeParry")) {
-      const weaponSkill = this.actor?.items.get(this.system.skill);
-      const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
-      if(game.user?.targets) {
-        const selectedTarget = (<Token> Array.from(game.user.targets)[0])?.actor;
-        const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk => sk.name === skillName);
-        const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
-        if (dodgeParryModifier > 0) {
-          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
-        }
+    if (game.settings.get("twodsix", "useDodgeParry") && targetTokens.length === 1) {
+      const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
+      if (dodgeParryInfo.dodgeParry > 0) {
+        Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
       }
     }
 
     //Get weapon characteristic modifier
     if (this.system.handlingModifiers !== "") {
-      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
-      const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
-      if (parsedResult) {
-        let weaponHandlingMod = 0;
-        const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
-        if (checkCharacteristic) {
-          const charValue = this.actor.system.characteristics[checkCharacteristic].value;
-          if (charValue <= parseInt(parsedResult[2], 10)) {
-            weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
-          } else if (charValue >= parseInt(parsedResult[4], 10)) {
-            weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
-          }
-        }
-        Object.assign(tmpSettings.rollModifiers, {weaponsHandling: weaponHandlingMod});
-        //console.log(tmpSettings);
-      }
+      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod()});
     }
 
+    if (targetTokens.length === 1 && controlledTokens.length === 1) {
+      // allow single target range modifier to be changed
+      const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+      tmpSettings.rollModifiers.weaponsRange = this.getRangeModifier(targetRange);
+    }
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
     if (!settings.shouldRoll) {
@@ -229,8 +214,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    const targets = Array.from(game.user.targets);
-    if (targets.length > numberOfAttacks) {
+    if (targetTokens.length > numberOfAttacks) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
     }
 
@@ -243,11 +227,42 @@ export default class TwodsixItem extends Item {
           totalBonusDamage += (addEffect ? ` + `: ``) + `${bonusDamage}`;
         }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (targets.length >= 1 && damagePayload) {
-          targets[i%targets.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+        if (targetTokens.length >= 1 && damagePayload) {
+          targetTokens[i%targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
       }
     }
+  }
+
+  public getRangeModifier(): number {
+    return 1;
+  }
+
+  public getDodgeParryValues(target: Token): object {
+    const weaponSkill = this.actor?.items.get(this.system.skill);
+    const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
+    const selectedTarget = target.actor;
+    const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk => sk.name === skillName);
+    const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
+    return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
+  }
+
+  public getWeaponsHandlingMod(): number {
+    let weaponHandlingMod = 0;
+    const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
+    const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
+    if (parsedResult) {
+      const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
+      if (checkCharacteristic) {
+        const charValue = this.actor.system.characteristics[checkCharacteristic].value;
+        if (charValue <= parseInt(parsedResult[2], 10)) {
+          weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
+        } else if (charValue >= parseInt(parsedResult[4], 10)) {
+          weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
+        }
+      }
+    }
+    return weaponHandlingMod;
   }
 
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {

@@ -193,6 +193,9 @@ export class TwodsixDiceRoll {
       if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {
         returnValue.push("weaponsHandling");
       }
+      if(this.rollSettings.rollModifiers.weaponsRange !== 0) {
+        returnValue.push("weaponsRange");
+      }
       if(this.rollSettings.rollModifiers.attachments !== 0) {
         returnValue.push("attachments");
       }
@@ -278,6 +281,7 @@ export class TwodsixDiceRoll {
           case "attachments":
           case "rof":
           case "weaponsHandling":
+          case "weaponsRange":
           case "dodgeParry":
             flavorText += ` + ${description}`;
             flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${description}</td>`;
