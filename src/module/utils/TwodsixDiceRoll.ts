@@ -303,11 +303,11 @@ export class TwodsixDiceRoll {
     flavorTable += `</table>`;
 
     //Show applied active effects
-    if (this.rollSettings.rollModifiers.custom.length > 0 && showModifiers) {
+    if (this.rollSettings.rollModifiers.appliedEffects.length > 0 && showModifiers) {
       flavorTable += `<section style="margin-top: 1em;">${game.i18n.localize("TWODSIX.ActiveEffects.IncludingEffects")}</section>`;
       flavorTable += `<table><tr><th>${game.i18n.localize("TWODSIX.ActiveEffects.Source")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
-      for (const customMod of this.rollSettings.rollModifiers.custom) {
-        flavorTable += `<tr><td>${customMod.name}</td><td>${customMod.stat}</td><td class="centre">${customMod.value}</td></tr>`;
+      for (const appliedAE of this.rollSettings.rollModifiers.appliedEffects) {
+        flavorTable += `<tr><td>${appliedAE.name}</td><td>${appliedAE.stat}</td><td class="centre">${appliedAE.value}</td></tr>`;
       }
       flavorTable += `</table>`;
     }

@@ -128,8 +128,7 @@ export class TwodsixRollSettings {
       dodgeParry: settings?.rollModifiers?.dodgeParry ?? 0,
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
-      custom: 0,
-      customLabel: "",
+      appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
       skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined
@@ -147,7 +146,7 @@ export class TwodsixRollSettings {
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
     if (sourceActor) {
-      twodsixRollSettings.rollModifiers.custom = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
+      twodsixRollSettings.rollModifiers.appliedEffects = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
     }
     if (showThrowDialog) {
       let title:string;
@@ -244,7 +243,6 @@ export class TwodsixRollSettings {
             }
           }
 
-          //this.rollModifiers.custom = this.rollModifiers.custom ? parseInt(buttonHtml.find('[name="rollModifiers.custom"]').val(), 10) : 0;
           this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
