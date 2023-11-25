@@ -172,7 +172,7 @@ export default class TwodsixItem extends Item {
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
     Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
     const targetTokens = Array.from(game.user.targets);
-    const controlledTokens = this.actor.getActiveTokens();
+    const controlledTokens = this.actor?.getActiveTokens();
 
     //Get Dodge Parry information
     if (game.settings.get("twodsix", "useDodgeParry") && targetTokens.length === 1) {
