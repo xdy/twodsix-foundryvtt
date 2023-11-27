@@ -840,91 +840,91 @@ function getRangeBand(range: number):string {
 }
 
 /**
- * A function for returning range modifier based on Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
- *
+ * A function for returning range modifier based on RangeTable constant
  * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
  * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
  * @returns {number} Range Modifier
  */
 function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
-  const rangeTable = {
-    closeQuarters: {
-      personal: 0,
-      close: -2,
-      short: -99,
-      medium: -99,
-      long: -99,
-      veryLong: -99,
-      distant: -99
-    },
-    extendedReach: {
-      personal: -2,
-      close: 0,
-      short: -99,
-      medium: -99,
-      long: -99,
-      veryLong: -99,
-      distant: -99
-    },
-    thrown: {
-      personal: -99,
-      close: 0,
-      short: -2,
-      medium: -2,
-      long: -99,
-      veryLong: -99,
-      distant: -99
-    },
-    pistol: {
-      personal: -2,
-      close: 0,
-      short: 0,
-      medium: -2,
-      long: -4,
-      veryLong: -99,
-      distant: -99
-    },
-    rifle: {
-      personal: -4,
-      close: -2,
-      short: 0,
-      medium: 0,
-      long: 0,
-      veryLong: -2,
-      distant: -4
-    },
-    shotgun: {
-      personal: -2,
-      close: 0,
-      short: -2,
-      medium: -2,
-      long: -4,
-      veryLong: -99,
-      distant: -99
-    },
-    assaultWeapon: {
-      personal: -2,
-      close: 0,
-      short: 0,
-      medium: 0,
-      long: -2,
-      veryLong: -4,
-      distant: -6
-    },
-    rocket: {
-      personal: -4,
-      close: -2,
-      short: -2,
-      medium: 0,
-      long: 0,
-      veryLong: -2,
-      distant: -4
-    }
-  };
-
   if (targetDistanceBand === 'unknown') {
     return 0;
   } else {
-    return rangeTable[weaponBand][targetDistanceBand];
+    return CE_Range_Table[weaponBand][targetDistanceBand];
   }
 }
+
+// CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
+const CE_Range_Table = Object.freeze({
+  closeQuarters: {
+    personal: 0,
+    close: -2,
+    short: -99,
+    medium: -99,
+    long: -99,
+    veryLong: -99,
+    distant: -99
+  },
+  extendedReach: {
+    personal: -2,
+    close: 0,
+    short: -99,
+    medium: -99,
+    long: -99,
+    veryLong: -99,
+    distant: -99
+  },
+  thrown: {
+    personal: -99,
+    close: 0,
+    short: -2,
+    medium: -2,
+    long: -99,
+    veryLong: -99,
+    distant: -99
+  },
+  pistol: {
+    personal: -2,
+    close: 0,
+    short: 0,
+    medium: -2,
+    long: -4,
+    veryLong: -99,
+    distant: -99
+  },
+  rifle: {
+    personal: -4,
+    close: -2,
+    short: 0,
+    medium: 0,
+    long: 0,
+    veryLong: -2,
+    distant: -4
+  },
+  shotgun: {
+    personal: -2,
+    close: 0,
+    short: -2,
+    medium: -2,
+    long: -4,
+    veryLong: -99,
+    distant: -99
+  },
+  assaultWeapon: {
+    personal: -2,
+    close: 0,
+    short: 0,
+    medium: 0,
+    long: -2,
+    veryLong: -4,
+    distant: -6
+  },
+  rocket: {
+    personal: -4,
+    close: -2,
+    short: -2,
+    medium: 0,
+    long: 0,
+    veryLong: -2,
+    distant: -4
+  }
+});
