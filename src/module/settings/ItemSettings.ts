@@ -26,7 +26,6 @@ export default class ItemSettings extends AdvancedSettings {
       ship: []
     };
     settings.weapon.push(booleanSetting('ShowLawLevel', false));
-    settings.weapon.push(booleanSetting('ShowRangeBandAndHideRange', false));
     settings.weapon.push(booleanSetting('ShowWeaponType', false));
     settings.weapon.push(booleanSetting('ShowDamageType', false));
     settings.weapon.push(booleanSetting('ShowRateOfFire', true));

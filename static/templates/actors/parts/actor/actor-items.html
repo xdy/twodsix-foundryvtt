@@ -33,8 +33,8 @@
               <span class="item-name centre">{{item.system.techLevel}}</span>
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.weight}}</span>
-              {{#if settings.ShowRangeBandAndHideRange}}
-              <span class="item-name centre">{{item.system.rangeBand}}</span>
+              {{#if ../settings.ShowRangeBandAndHideRange}}
+              <span class="item-name centre" data-tooltip='{{localize (concat "TWODSIX.Chat.Roll.WeaponRangeTypes." item.system.rangeBand)}}'>{{localize (lookup ../config.WEAPON_RANGE_TYPES.short item.system.rangeBand)}}</span>
               {{else}}
               <span class="item-name centre">{{item.system.range}}</span>
               {{/if}}

@@ -101,6 +101,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.damage.push(booleanSetting('addEffectToManualDamage', false, false, "world", checkManualDamageSetting));
     settings.roll.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
     settings.roll.push(booleanSetting("overrideSuccessWithNaturalCrit", false));
+    settings.general.push(stringChoiceSetting('rangeModifierType', "none", true, TWODSIX.RANGE_MODIFIERS_TYPES));
     return settings;
   }
 }

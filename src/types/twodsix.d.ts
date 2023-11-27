@@ -52,7 +52,6 @@ declare global {
       'twodsix.ExperimentalFeatures': boolean;
       'twodsix.ShowDamageType': boolean;
       'twodsix.ShowLawLevel': boolean;
-      'twodsix.ShowRangeBandAndHideRange': boolean;
       'twodsix.ShowRateOfFire': boolean;
       'twodsix.ShowRecoil': boolean;
       'twodsix.ShowWeaponType': boolean;
@@ -149,6 +148,7 @@ declare global {
       'twodsix.defaultCompendiumPartial': string;
       'twodsix.showTLonItemsTab': boolean;
       'twodsix.omitPSIifZero': boolean;
+      'twodsix.rangeModifierType': string;
     }
   }
 }

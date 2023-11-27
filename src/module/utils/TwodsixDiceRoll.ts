@@ -187,7 +187,7 @@ export class TwodsixDiceRoll {
       if (this.rollSettings.rollModifiers.rof) {
         returnValue.push("rof");
       }
-      if (this.rollSettings.rollModifiers.dodgeParry && game.settings.get("twodsix", "useDodgeParry")) {
+      if (this.rollSettings.rollModifiers.dodgeParry !== 0) {
         returnValue.push("dodgeParry");
       }
       if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {

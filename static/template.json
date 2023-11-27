@@ -492,7 +492,7 @@
       "magazineCost": 0,
       "type": "weapon",
       "lawLevel": 0,
-      "rangeBand": "",
+      "rangeBand": "extendedReach",
       "weaponType": "",
       "damageType": "NONE",
       "rateOfFire": "",
