@@ -186,7 +186,7 @@ export default class TwodsixItem extends Item {
     }
 
     //Get single target weapons range modifier
-    if (controlledTokens.length === 1) {
+    if (controlledTokens?.length === 1) {
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
         Object.assign(tmpSettings.rollModifiers, {weaponsRange: this.getRangeModifier(targetRange), rangeLabel: `${targetRange} ${canvas.scene.grid.units}`});
