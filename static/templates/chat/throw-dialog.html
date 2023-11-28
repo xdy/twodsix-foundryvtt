@@ -98,14 +98,14 @@
             </label>
           </div>
         {{/iff}}
-        {{#iff rollModifiers.weaponsRange "!==" 0}}
+        {{#if showRangeModifier}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.WeaponsRange"}}
               <input type="number" name="rollModifiers.weaponsRange" value="{{rollModifiers.weaponsRange}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-              ({{itemLabel}})
+              ({{rollModifiers.rangeLabel}})
             </label>
           </div>
-        {{/iff}}
+        {{/if}}
       {{/if}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.Other"}}

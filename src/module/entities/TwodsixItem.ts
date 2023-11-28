@@ -186,9 +186,13 @@ export default class TwodsixItem extends Item {
     }
 
     //Get single target weapons range modifier
-    if (targetTokens.length === 1 && controlledTokens.length === 1) {
-      const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-      tmpSettings.rollModifiers.weaponsRange = this.getRangeModifier(targetRange);
+    if (controlledTokens.length === 1) {
+      if (targetTokens.length === 1) {
+        const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+        Object.assign(tmpSettings.rollModifiers, {weaponsRange: this.getRangeModifier(targetRange), rangeLabel: `${targetRange} ${canvas.scene.grid.units}`});
+      } else if (targetTokens.length === 0) {
+        Object.assign(tmpSettings.rollModifiers, {weaponsRange: 0, rangeLabel: game.i18n.localize("TWODSIX.Ship.Unknown")});
+      }
     }
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
@@ -243,8 +247,17 @@ export default class TwodsixItem extends Item {
   }
 
   public getRangeModifier(range:number): number {
+    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    //Handle special case of melee
+    if (!['rangeBands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
+      if (range <= canvas.scene.grid.distance) {
+        return 0;
+      } else {
+        return INFEASIBLE;
+      }
+    }
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
-    switch (game.settings.get('twodsix', 'rangeModifierType')) {
+    switch (rangeModifierType) {
       case 'none': {
         return 0;
       }
@@ -260,7 +273,7 @@ export default class TwodsixItem extends Item {
         } else if (range <= rangeValues[0] * 4) {
           return -4;
         } else {
-          return -99;
+          return INFEASIBLE;
         }
       }
       case 'doubleBand': {
@@ -269,7 +282,7 @@ export default class TwodsixItem extends Item {
         } else if (range <= rangeValues[1]) {
           return -2;
         } else {
-          return -99;
+          return INFEASIBLE;
         }
       }
       case 'rangeBands': {
@@ -854,33 +867,34 @@ function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): n
 }
 
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
+const INFEASIBLE = -99;
 const CE_Range_Table = Object.freeze({
   closeQuarters: {
     personal: 0,
     close: -2,
-    short: -99,
-    medium: -99,
-    long: -99,
-    veryLong: -99,
-    distant: -99
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
   },
   extendedReach: {
     personal: -2,
     close: 0,
-    short: -99,
-    medium: -99,
-    long: -99,
-    veryLong: -99,
-    distant: -99
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
   },
   thrown: {
-    personal: -99,
+    personal: INFEASIBLE,
     close: 0,
     short: -2,
     medium: -2,
-    long: -99,
-    veryLong: -99,
-    distant: -99
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
   },
   pistol: {
     personal: -2,
@@ -888,8 +902,8 @@ const CE_Range_Table = Object.freeze({
     short: 0,
     medium: -2,
     long: -4,
-    veryLong: -99,
-    distant: -99
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
   },
   rifle: {
     personal: -4,
@@ -906,8 +920,8 @@ const CE_Range_Table = Object.freeze({
     short: -2,
     medium: -2,
     long: -4,
-    veryLong: -99,
-    distant: -99
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
   },
   assaultWeapon: {
     personal: -2,

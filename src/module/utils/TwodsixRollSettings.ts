@@ -21,6 +21,7 @@ export class TwodsixRollSettings {
   skillRoll:boolean;
   itemRoll:boolean;
   itemName: string;
+  showRangeModifier: boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
@@ -112,6 +113,7 @@ export class TwodsixRollSettings {
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
     this.itemName = settings?.itemName ?? itemName;
+    this.showRangeModifier =  (game.settings.get('twodsix', 'rangeModifierType') !== 'none' && anItem?.type === "weapon"  && settings?.rollModifiers?.rangeLabel) ?? false;
     this.displayLabel = settings?.displayLabel ?? displayLabel;
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
@@ -129,6 +131,7 @@ export class TwodsixRollSettings {
       dodgeParryLabel: settings?.rollModifiers?.dodgeParryLabel ?? "",
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       weaponsRange: settings?.rollModifiers?.weaponsRange ?? 0,
+      rangeLabel: settings?.rollModifiers?.rangeLabel ?? "",
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
@@ -201,6 +204,7 @@ export class TwodsixRollSettings {
       rollModifiers: this.rollModifiers,
       skillLabel: this.skillName,
       itemLabel: this.itemName,
+      showRangeModifier: this.showRangeModifier,
       skillRoll: this.skillRoll,
       itemRoll: this.itemRoll,
       timeUnits: TWODSIX.TimeUnits,
