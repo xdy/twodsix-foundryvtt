@@ -1,3 +1,10 @@
+# [4.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.6.0...v4.7.0) (2023-12-01)
+
+
+### Features
+
+* Add basic weapon range modifier support ([#1501](https://github.com/xdy/twodsix-foundryvtt/issues/1501)) ([b1ed4a0](https://github.com/xdy/twodsix-foundryvtt/commit/b1ed4a0b6150a3f8e98ff03439467239ec8a7451))
+
 # [4.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.5.2...v4.6.0) (2023-11-18)
 
 
