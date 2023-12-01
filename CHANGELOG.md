@@ -1,3 +1,10 @@
+## [4.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.7.0...v4.7.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* missing range field on flat weapons sheet ([#1503](https://github.com/xdy/twodsix-foundryvtt/issues/1503)) ([a066036](https://github.com/xdy/twodsix-foundryvtt/commit/a0660365b2ede0e6f1ea73f67c9f29c8c4764a36))
+
 # [4.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.6.0...v4.7.0) (2023-12-01)
 
 
