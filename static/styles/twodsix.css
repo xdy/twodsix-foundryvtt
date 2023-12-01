@@ -551,7 +551,7 @@ h2 {
 
 .animal-content-container-small {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
+  grid-template-columns: 15em 22em 18em;
   grid-template-rows: 11.5em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;

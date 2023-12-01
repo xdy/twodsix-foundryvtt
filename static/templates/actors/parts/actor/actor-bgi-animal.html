@@ -1,7 +1,11 @@
 <!-- Biographical Information-->
 <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fa-solid fa-globe"></i>:<input
         name="system.homeWorld" type="text" value="{{system.homeWorld}}"
-        placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+        placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/>
+</span>
+<span class="bgi-species" data-tooltip='{{localize "TWODSIX.Actor.Species"}}'><i class="fa-solid fa-dna"></i>:
+  <input name="system.species" type="text" value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/>
+</span>
 <br>
 {{#if settings.animalsUseLocations}}
 <span class="bgi-location" data-tooltip='{{localize "TWODSIX.Animal.Location"}}'><i class="fa-solid fa-mountain-city"></i>:
@@ -10,12 +14,12 @@
   </select>
 </span>
 {{else}}
-  <span class="bgi-niche" data-tooltip='{{localize "TWODSIX.Animal.Niche"}}'><i class="fa-solid fa-bowl-food"></i>:
+  <span class="bgi-niche" data-tooltip='{{localize "TWODSIX.Animal.Niche"}}'><i class="fa-solid fa-utensils"></i>:
     <select name="system.animalType.niche" >
       {{selectOptions config.AnimalNiche selected=system.animalType.niche localize=true inverted=false}}
     </select>
   </span>
-  <span class="bgi-type" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'><i class="fa-solid fa-dna"></i>:
+  <span class="bgi-type" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'><i class="fa-solid fa-bowl-food"></i>:
     {{#iff system.animalType.niche "===" "other"}}
       <span class="short-input">
         <input class="short-input" name="system.animalType.subtype" type="text" value="{{system.animalType.subtype}}" data-tooltip='{{localize "TWODSIX.Animal.Type"}}'/>

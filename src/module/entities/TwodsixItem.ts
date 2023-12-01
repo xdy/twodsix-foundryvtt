@@ -47,7 +47,6 @@ export default class TwodsixItem extends Item {
     return item;
   }
 
-
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
@@ -172,39 +171,34 @@ export default class TwodsixItem extends Item {
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
     Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
+    const targetTokens = Array.from(game.user.targets);
+    const controlledTokens = this.actor?.getActiveTokens();
 
-    //Get Dodge Parry information
-    if (game.settings.get("twodsix", "useDodgeParry")) {
-      const weaponSkill = this.actor?.items.get(this.system.skill);
-      const skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
-      if(game.user?.targets) {
-        const selectedTarget = (<Token> Array.from(game.user.targets)[0])?.actor;
-        const targetMatchingSkill = selectedTarget?.itemTypes.skills.find(sk => sk.name === skillName);
-        const dodgeParryModifier:number = targetMatchingSkill?.system.value || 0;
-        if (dodgeParryModifier > 0) {
-          Object.assign(tmpSettings.rollModifiers, {dodgeParry: -dodgeParryModifier, dodgeParryLabel: skillName});
-        }
-      }
+    //Get Single Target Dodge Parry information
+    if (targetTokens.length === 1) {
+      const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
+      Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
     }
 
     //Get weapon characteristic modifier
     if (this.system.handlingModifiers !== "") {
-      const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
-      const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
-      if (parsedResult) {
-        let weaponHandlingMod = 0;
-        const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
-        if (checkCharacteristic) {
-          const charValue = this.actor.system.characteristics[checkCharacteristic].value;
-          if (charValue <= parseInt(parsedResult[2], 10)) {
-            weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
-          } else if (charValue >= parseInt(parsedResult[4], 10)) {
-            weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
-          }
-        }
-        Object.assign(tmpSettings.rollModifiers, {weaponsHandling: weaponHandlingMod});
-        //console.log(tmpSettings);
+      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod()});
+    }
+
+    //Get single target weapons range modifier
+    if (controlledTokens?.length === 1) {
+      let rangeLabel = "";
+      let rangeModifier = 0;
+      const isCEBands =  game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands';
+      const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
+      if (targetTokens.length === 1) {
+        const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+        rangeModifier = this.getRangeModifier(targetRange);
+        rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange} ${canvas.scene.grid.units}`;
+      } else if (targetTokens.length === 0) {
+        rangeLabel = isCEBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
+      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
     }
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
@@ -229,12 +223,20 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    const targets = Array.from(game.user.targets);
-    if (targets.length > numberOfAttacks) {
+    if (targetTokens.length > numberOfAttacks) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
     }
 
     for (let i = 0; i < numberOfAttacks; i++) {
+      if (targetTokens.length > 1) {
+        //need to update dodgeParry and weapons range modifiers for each target
+        const dodgeParryInfo = this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
+        Object.assign(settings.rollModifiers, dodgeParryInfo);
+        if (controlledTokens.length === 1) {
+          const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
+          settings.rollModifiers.weaponsRange = this.getRangeModifier(targetRange);
+        }
+      }
       const roll = await this.skillRoll(false, settings, showInChat);
       const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
@@ -243,11 +245,94 @@ export default class TwodsixItem extends Item {
           totalBonusDamage += (addEffect ? ` + `: ``) + `${bonusDamage}`;
         }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (targets.length >= 1 && damagePayload) {
-          targets[i%targets.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+        if (targetTokens.length >= 1 && damagePayload) {
+          targetTokens[i%targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
       }
     }
+  }
+
+  public getRangeModifier(range:number): number {
+    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    //Handle special case of melee
+    if (!['CE_Bands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
+      if (range <= canvas.scene.grid.distance) {
+        return 0;
+      } else {
+        return INFEASIBLE;
+      }
+    }
+    const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
+    switch (rangeModifierType) {
+      case 'none': {
+        return 0;
+      }
+      case 'singleBand': {
+        if (isNaN(rangeValues[0]) || (rangeValues[0] === 0 && range === 0)) {
+          return 0;
+        } else if (range <= rangeValues[0] * 0.25) {
+          return 1;
+        } else if (range <= rangeValues[0]) {
+          return 0;
+        } else if (range <= rangeValues[0] * 2) {
+          return -2;
+        } else if (range <= rangeValues[0] * 4) {
+          return -4;
+        } else {
+          return INFEASIBLE;
+        }
+      }
+      case 'doubleBand': {
+        if (isNaN(rangeValues[0]) || rangeValues[0] > rangeValues[1] || range <= rangeValues[0]) {
+          return 0;
+        } else if (range <= rangeValues[1]) {
+          return -2;
+        } else {
+          return INFEASIBLE;
+        }
+      }
+      case 'CE_Bands': {
+        const targetBand:string = getRangeBand(range);
+        if (targetBand === "unknown") {
+          return 0;
+        } else {
+          return getRangeBandModifier(this.system.rangeBand, targetBand);
+        }
+      }
+      default: {
+        return 0;
+      }
+    }
+  }
+
+  public getDodgeParryValues(target: Token): object {
+    let dodgeParryModifier = 0;
+    let skillName = "";
+    if (game.settings.get("twodsix", "useDodgeParry") && target) {
+      const weaponSkill = this.actor?.items.get(this.system.skill);
+      skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
+      const targetMatchingSkill = target.actor?.itemTypes.skills?.find(sk => sk.name === skillName);
+      dodgeParryModifier = targetMatchingSkill?.system.value || 0;
+    }
+    return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
+  }
+
+  public getWeaponsHandlingMod(): number {
+    let weaponHandlingMod = 0;
+    const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
+    const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
+    if (parsedResult) {
+      const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
+      if (checkCharacteristic) {
+        const charValue = this.actor.system.characteristics[checkCharacteristic].value;
+        if (charValue <= parseInt(parsedResult[2], 10)) {
+          weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
+        } else if (charValue >= parseInt(parsedResult[4], 10)) {
+          weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
+        }
+      }
+    }
+    return weaponHandlingMod;
   }
 
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
@@ -740,3 +825,126 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
     default: "single"
   }).render(true);
 }
+
+/**
+ * A function for returning qualitative range band. Per CE rules https://www.orffenspace.com/cepheus-srd/personal-combat.html#range
+ *
+ * @param {number} range    The range in meters
+ * @returns {string}        The resulting range band
+ */
+function getRangeBand(range: number):string {
+  //Convert ft to m if necessay
+  const units = canvas.scene.grid.units.toLowerCase();
+  if (units === 'ft' || units === 'feet') {
+    range /= 3.28;
+  }
+
+  if (range < 1.5) {
+    return 'personal';
+  } else if (range <= 3) {
+    return 'close';
+  } else if (range <= 12) {
+    return 'short';
+  } else if (range <= 50) {
+    return 'medium';
+  } else if (range <= 250) {
+    return 'long';
+  } else if (range <= 500) {
+    return 'veryLong';
+  } else if (range > 500) {
+    return 'distant';
+  } else {
+    return 'unknown';
+  }
+}
+
+/**
+ * A function for returning range modifier based on RangeTable constant
+ * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
+ * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
+ * @returns {number} Range Modifier
+ */
+function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
+  if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
+    return 0;
+  } else {
+    return CE_Range_Table[weaponBand][targetDistanceBand];
+  }
+}
+
+// CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
+const INFEASIBLE = -99;
+const CE_Range_Table = Object.freeze({
+  closeQuarters: {
+    personal: 0,
+    close: -2,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  extendedReach: {
+    personal: -2,
+    close: 0,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  thrown: {
+    personal: INFEASIBLE,
+    close: 0,
+    short: -2,
+    medium: -2,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  pistol: {
+    personal: -2,
+    close: 0,
+    short: 0,
+    medium: -2,
+    long: -4,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  rifle: {
+    personal: -4,
+    close: -2,
+    short: 0,
+    medium: 0,
+    long: 0,
+    veryLong: -2,
+    distant: -4
+  },
+  shotgun: {
+    personal: -2,
+    close: 0,
+    short: -2,
+    medium: -2,
+    long: -4,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  assaultWeapon: {
+    personal: -2,
+    close: 0,
+    short: 0,
+    medium: 0,
+    long: -2,
+    veryLong: -4,
+    distant: -6
+  },
+  rocket: {
+    personal: -4,
+    close: -2,
+    short: -2,
+    medium: 0,
+    long: 0,
+    veryLong: -2,
+    distant: -4
+  }
+});

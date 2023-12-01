@@ -197,7 +197,7 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container-small {
   display: grid;
-  grid-template-columns: 15em 22em 18em;
+  grid-template-columns: 15em 24em 18em;
   grid-template-rows: 13em 9em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;

@@ -45,7 +45,7 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
       ShowLawLevel: true,
-      ShowRangeBandAndHideRange: true,
+      rangeModifierType: "CE_Bands",
       ShowWeaponType: true,
       ShowDamageType: true,
       ShowRateOfFire: true,
@@ -135,6 +135,7 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       maxEncumbrance: "0",
@@ -175,6 +176,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: true,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: -1,
       seriousWoundsRollModifier: -1,
       maxEncumbrance: "2 * @characteristics.endurance.value",
@@ -214,6 +216,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: false,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: -1,
       seriousWoundsRollModifier: -1,
       maxEncumbrance: "2 * @characteristics.endurance.value",
@@ -252,6 +255,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: true,
       showLifebloodStamina: false,
       showContaminationBelowLifeblood: false,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       maxEncumbrance: "0",
@@ -293,7 +297,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       showContaminationBelowLifeblood: false,
       ShowLawLevel: false,
-      ShowRangeBandAndHideRange: false,
+      rangeModifierType: "doubleBand",
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
@@ -341,7 +345,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       showContaminationBelowLifeblood: false,
       ShowLawLevel: false,
-      ShowRangeBandAndHideRange: false,
+      rangeModifierType: "doubleBand",
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
@@ -389,7 +393,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       showContaminationBelowLifeblood: false,
       ShowLawLevel: false,
-      ShowRangeBandAndHideRange: false,
+      rangeModifierType: "doubleBand",
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
@@ -438,7 +442,7 @@ const RULESETS = Object.freeze({
       lifebloodInsteadOfCharacteristics: false,
       showContaminationBelowLifeblood: false,
       ShowLawLevel: false,
-      ShowRangeBandAndHideRange: false,
+      rangeModifierType: "doubleBand",
       ShowWeaponType: true,
       ShowDamageType: false,
       ShowRateOfFire: true,
@@ -472,7 +476,8 @@ const RULESETS = Object.freeze({
     key: "OTHER",
     name: "Other",
     settings: {
-      useDegreesOfSuccess: 'other'
+      useDegreesOfSuccess: 'other',
+      rangeModifierType: "singleBand",
     }
   }
 })
@@ -748,6 +753,38 @@ export const EQUIPPED_STATES = {
   ship: "TWODSIX.Actor.Items.LocationState.ship"
 };
 
+export const RANGE_MODIFIERS_TYPES = {
+  none: "TWODSIX.Chat.Roll.RangeModifierTypes.none",
+  CE_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CE_Bands",
+  singleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.singleBand",
+  doubleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.doubleBand"
+};
+
+export const WEAPON_RANGE_TYPES = {
+  long: {
+    closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.closeQuarters",
+    extendedReach: "TWODSIX.Chat.Roll.WeaponRangeTypes.extendedReach",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrown",
+    pistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.pistol",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.assaultWeapon",
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.CQ",
+    extendedReach: "TWODSIX.Chat.Roll.WeaponRangeTypes.reach",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrown",
+    pistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.pistol",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.AW",
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -775,7 +812,9 @@ export type TWODSIX = {
   AnimalLocations: typeof AnimalLocations,
   areaTargetTypes: typeof areaTargetTypes,
   SuccessTypes: typeof SuccessTypes,
-  EQUIPPED_STATES: typeof EQUIPPED_STATES
+  EQUIPPED_STATES: typeof EQUIPPED_STATES,
+  RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
+  WEAPON_RANGE_TYPES: typeof WEAPON_RANGE_TYPES
 };
 
 export const TWODSIX = {
@@ -805,5 +844,7 @@ export const TWODSIX = {
   AnimalLocations: AnimalLocations,
   areaTargetTypes: areaTargetTypes,
   SuccessTypes: SuccessTypes,
-  EQUIPPED_STATES: EQUIPPED_STATES
+  EQUIPPED_STATES: EQUIPPED_STATES,
+  RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
+  WEAPON_RANGE_TYPES: WEAPON_RANGE_TYPES
 };

@@ -29,3 +29,13 @@
   <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
   <input class="form-input" id="system.handlingModifiers" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
 </div>
+
+<div class="item-range">
+  {{#if settings.ShowRangeBandAndHideRange}}
+    <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
+    <select id="system.rangeBand" name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
+  {{else}}
+    <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
+    <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
+  {{/if}}
+</div>

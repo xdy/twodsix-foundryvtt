@@ -483,7 +483,7 @@
     },
     "weapon": {
       "templates": ["gearTemplate", "referenceTemplateItem", "targetTemplate"],
-      "range": 0,
+      "range": "",
       "damage": "3d6",
       "damageBonus": 0,
       "magazineSize": 0,
@@ -492,7 +492,7 @@
       "magazineCost": 0,
       "type": "weapon",
       "lawLevel": 0,
-      "rangeBand": "",
+      "rangeBand": "none",
       "weaponType": "",
       "damageType": "NONE",
       "rateOfFire": "",

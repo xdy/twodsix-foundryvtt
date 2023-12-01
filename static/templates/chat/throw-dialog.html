@@ -49,7 +49,7 @@
         </label>
       </div>
       <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.ChainRoll"}}
+        <label>{{localize "TWODSIX.Chat.Roll.Chain"}}
           <input type="number" name="rollModifiers.chain" value="{{rollModifiers.chain}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
         </label>
       </div>
@@ -70,7 +70,7 @@
         </div>
         {{#iff rollModifiers.rof "!==" 0}}
           <div class="form-group">
-            <label>{{localize "TWODSIX.Chat.Roll.ROF"}}
+            <label>{{localize "TWODSIX.Chat.Roll.Rof"}}
               <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
             </label>
           </div>
@@ -98,56 +98,56 @@
             </label>
           </div>
         {{/iff}}
+        {{#if showRangeModifier}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.WeaponsRange"}}
+              <input type="number" name="rollModifiers.weaponsRange" value="{{rollModifiers.weaponsRange}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{rollModifiers.rangeLabel}})
+            </label>
+          </div>
+        {{/if}}
       {{/if}}
       <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
+        <label>{{localize "TWODSIX.Chat.Roll.Other"}}
           <input type="number" name="rollModifiers.other" value="{{rollModifiers.other}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
         </label>
       </div>
   </fieldset>
   <br>
   {{#if showConditions}}
-  <fieldset>
-    <legend>{{localize "TWODSIX.Chat.Roll.Conditions"}}</legend>
-      {{#if showWounds}}
-      <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.Wounds"}}
-          <input type="number" name="rollModifiers.wounds" value="{{rollModifiers.wounds}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-        </label>
-      </div>
-      {{/if}}
-      {{#if showEncumbered}}
-      <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.Encumbered"}}
-          <input type="number" name="rollModifiers.encumbered" value="{{rollModifiers.encumbered}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-        </label>
-      </div>
-      {{/if}}
-      {{#if rollModifiers.custom}}
-      <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.Custom"}}
-          <input type="number" name="rollModifiers.custom" value="{{rollModifiers.custom}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-          ({{rollModifiers.customLabel}})
-        </label>
-      </div>
-      {{/if}}
-  </fieldset>
-  <br>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Chat.Roll.Conditions"}}</legend>
+        {{#if showWounds}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Wounds"}}
+              <input type="number" name="rollModifiers.wounds" value="{{rollModifiers.wounds}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/if}}
+        {{#if showEncumbered}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Encumbered"}}
+              <input type="number" name="rollModifiers.encumbered" value="{{rollModifiers.encumbered}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+            </label>
+          </div>
+        {{/if}}
+    </fieldset>
+    <br>
   {{/if}}
   {{#if (twodsix_showTimeframe)}}
-  <fieldset>
-    <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
-    <div class="form-group">
-      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}<br>
-        <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
-      </label>
-      <label>{{localize "TWODSIX.Chat.Roll.Units"}}<br>
-        <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
-          {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
-        </select>
-      </label>
-    </div>
-  </fieldset>
-  <br>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}<br>
+          <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
+        </label>
+        <label>{{localize "TWODSIX.Chat.Roll.Units"}}<br>
+          <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
+            {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
+          </select>
+        </label>
+      </div>
+    </fieldset>
+    <br>
   {{/if}}
 </form>

@@ -99,3 +99,25 @@ export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
     }
   });
 }
+
+/**
+ * Return a value as a string with added +/- sign
+ * @param {number} value
+ * @returns {string} the value as string with sign
+ */
+export function addSign(value:number):string {
+  return `${value <= 0 ? "" : "+"}${value}`;
+}
+
+/**
+ * Simple function to return a string with first character capitalized
+ * @param {string} inputString
+ * @returns {string} the string with first letter capitalized
+ */
+export function capitalizeFirstLetter(inputString:string):string {
+  if (inputString[0]) {
+    return inputString[0].toUpperCase() + inputString.slice(1);
+  } else {
+    return "";
+  }
+}
