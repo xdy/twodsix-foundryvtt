@@ -402,8 +402,8 @@
         "damaged": "dañado",
         "destroyed": "destruido",
         "off": "apagado",
-        "powerDraw": "Consumo Energía",
-        "powerGenerated": "Energía Generada por Unidad",
+        "powerDraw": "Energía Consumida",
+        "powerGenerated": "Energía Generada",
         "Power": "Energía",
         "status": "Estado",
         "rating": "Valor",
@@ -445,7 +445,10 @@
         "retracted": "retraído",
         "Displacement": "Desplazamiento",
         "Description": "Descripción",
-        "ComponentType": " Tipo Componente"
+        "ComponentType": " Tipo Componente",
+        "powerPerUnit": "por unidad",
+        "powerPerCompTon": "por tonelada componentes",
+        "powerPerHullTon": "por tonelada casco"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -1090,8 +1093,12 @@
         "hint": "opción para escoger el tipo de protección en la hoja vehicular. Opciones: sólo blindaje (campo de texto), umbrales (valores para impactos normales y críticos) y blindaje, casco, estructura (tabla con tres campos para el daño).",
         "name": "Valor de Protección en hoja del vehículo"
       },
+      "addEffectToDamage": {
+        "hint": "Esta opción añade el efecto de la tirada al daño.",
+        "name": "Añadir efecto cuando se tira el daño"
+      },
       "addEffectToManualDamage": {
-        "hint": "Esta opción añade el valor del efecto de la última tirada en el chat, al daño tirado manualmente.",
+        "hint": "Esta opción añade el efecto de la tirada en chat más reciente al daño de una tirada manual. La opción anterior debe activarse (Añadir efecto cuando se tira el daño)",
         "name": "Añadir el efecto cuando se tira manualmente el daño"
       },
       "showRangeSpeedNoUnits": {
@@ -1354,7 +1361,8 @@
       "NoDamageToApply": "El valor de daño o curación debe ser mayor que cero.",
       "MissingUntrainedSkill": "Actor sin habilidad \"sin entrenar\". Refresca la aplicación para corregir.",
       "TooManyTargets": "Más objetivos que número de ataques, los objetivos se escogen por orden de selección.",
-      "WearingMultipleLayers": "Múltiples capas de armadura equipadas, y se lleva una que es no apilable."
+      "WearingMultipleLayers": "Múltiples capas de armadura equipadas, y se lleva una que es no apilable.",
+      "ResetEffectForManualDamage": "Efecto no incluido en la tirada de daño. Desactivando los efectos en las tiradas manuales."
     }
   },
   "TYPES": {
