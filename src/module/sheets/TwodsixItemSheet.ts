@@ -50,7 +50,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     // Add relevant data from system settings
     returnData.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
-      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'rangeModifierType') === 'rangeBands',
+      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands',
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),

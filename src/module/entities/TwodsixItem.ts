@@ -187,12 +187,18 @@ export default class TwodsixItem extends Item {
 
     //Get single target weapons range modifier
     if (controlledTokens?.length === 1) {
+      let rangeLabel = "";
+      let rangeModifier = 0;
+      const isCEBands =  game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands';
+      const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        Object.assign(tmpSettings.rollModifiers, {weaponsRange: this.getRangeModifier(targetRange), rangeLabel: `${targetRange} ${canvas.scene.grid.units}`});
+        rangeModifier = this.getRangeModifier(targetRange);
+        rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange} ${canvas.scene.grid.units}`;
       } else if (targetTokens.length === 0) {
-        Object.assign(tmpSettings.rollModifiers, {weaponsRange: 0, rangeLabel: game.i18n.localize("TWODSIX.Ship.Unknown")});
+        rangeLabel = isCEBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
+      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
     }
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
@@ -249,7 +255,7 @@ export default class TwodsixItem extends Item {
   public getRangeModifier(range:number): number {
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     //Handle special case of melee
-    if (!['rangeBands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
+    if (!['CE_Bands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
       if (range <= canvas.scene.grid.distance) {
         return 0;
       } else {
@@ -285,7 +291,7 @@ export default class TwodsixItem extends Item {
           return INFEASIBLE;
         }
       }
-      case 'rangeBands': {
+      case 'CE_Bands': {
         const targetBand:string = getRangeBand(range);
         if (targetBand === "unknown") {
           return 0;
@@ -859,7 +865,7 @@ function getRangeBand(range: number):string {
  * @returns {number} Range Modifier
  */
 function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
-  if (targetDistanceBand === 'unknown') {
+  if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
     return 0;
   } else {
     return CE_Range_Table[weaponBand][targetDistanceBand];

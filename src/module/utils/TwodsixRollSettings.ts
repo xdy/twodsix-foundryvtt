@@ -171,7 +171,7 @@ export class TwodsixRollSettings {
 
       //Get display label
       if (skill && skill.actor) {
-        if (twodsixRollSettings.rollModifiers.characteristic === "NONE") { //*****************CHECK THIS
+        if (twodsixRollSettings.rollModifiers.characteristic === "NONE") {
           twodsixRollSettings.displayLabel = "";
         } else {
           const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, twodsixRollSettings.rollModifiers.characteristic);

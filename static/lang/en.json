@@ -345,9 +345,9 @@
         },
         "RangeModifierTypes" : {
           "none": "None",
-          "singleBand": "Single Range Value",
-          "doubleBand": "Double Range Value",
-          "rangeBands": "Range Bands by Weapon Type"
+          "singleBand": "Single Value",
+          "doubleBand": "Double Value",
+          "CE_Bands": "Cepheus Engine Bands"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Close Quarters",
@@ -360,7 +360,18 @@
           "shotgun": "Shotgun",
           "assaultWeapon": "Assault Weapon",
           "AW": "AW",
-          "rocket": "Rocket"
+          "rocket": "Rocket",
+          "none": "None"
+        },
+        "RangeBandTypes": {
+          "personal": "Personal",
+          "close": "Close",
+          "short": "Short",
+          "medium": "Medium",
+          "long": "Long",
+          "veryLong": "Very Long",
+          "distant": "Distant",
+          "none": "None"
         }
       }
     },

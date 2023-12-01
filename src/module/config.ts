@@ -45,7 +45,7 @@ const RULESETS = Object.freeze({
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
       ShowLawLevel: true,
-      rangeModifierType: "rangeBands",
+      rangeModifierType: "CE_Bands",
       ShowWeaponType: true,
       ShowDamageType: true,
       ShowRateOfFire: true,
@@ -755,7 +755,7 @@ export const EQUIPPED_STATES = {
 
 export const RANGE_MODIFIERS_TYPES = {
   none: "TWODSIX.Chat.Roll.RangeModifierTypes.none",
-  rangeBands: "TWODSIX.Chat.Roll.RangeModifierTypes.rangeBands",
+  CE_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CE_Bands",
   singleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.singleBand",
   doubleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.doubleBand"
 };
@@ -769,7 +769,8 @@ export const WEAPON_RANGE_TYPES = {
     rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
     shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
     assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.assaultWeapon",
-    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket"
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
   },
   short: {
     closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.CQ",
@@ -779,7 +780,8 @@ export const WEAPON_RANGE_TYPES = {
     rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
     shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
     assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.AW",
-    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket"
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
   }
 };
 
