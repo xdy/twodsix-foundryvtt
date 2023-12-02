@@ -146,7 +146,12 @@
         "LocationState": {
           "equipped": "Equipped",
           "ship": "Ship",
-          "backpack": "Backpack"
+          "backpack": "Backpack",
+          "vehicle": "Vehicle",
+          "base": "Base",
+          "core": "Core (backpack and equipped only)",
+          "default": "Default (backpack, equipped and ship)",
+          "all": "All"
         },
         "Subtype": "Type",
         "TRAITS": "TRAITS",

@@ -224,6 +224,23 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('twodsix_getEquippedIcon', (equipped: string) => {
+    switch (equipped) {
+      case 'backpack':
+        return "fa-solid fa-person-hiking";
+      case 'equipped':
+        return "fa-solid fa-child-reaching";
+      case 'ship':
+        return "fa-solid fa-shuttle-space";
+      case 'vehicle':
+        return "fa-solid fa-truck-plane";
+      case 'base':
+        return "fa-solid fa-house-user";
+      default:
+        return "fa-solid fa-person-hiking";
+    }
+  });
+
   Handlebars.registerHelper('twodsix_getSettingIcon', (componentType: string) => {
     switch (componentType) {
       case 'general':
@@ -289,7 +306,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {
-    return (display && (itemLocation === "ship"));
+    return (display && (["ship", "vehicle", "base"].includes(itemLocation)));
   });
 
   Handlebars.registerHelper('twodsix_getProcessingPower', (item:TwodsixItem) => {

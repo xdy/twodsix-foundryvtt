@@ -4,7 +4,7 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
-import { Consumable, Gear, Skills } from "../../types/template";
+import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
 //import { wait } from "../utils/sheetUtils";
 
@@ -250,25 +250,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
-      let newState = "";
-
-      let disableEffect: boolean;
-      switch ((<Gear>itemSelected.system).equipped) {
-        case "equipped":
-          newState = "ship";
-          disableEffect = true;
-          break;
-        case "ship":
-          newState = "backpack";
-          disableEffect = true;
-          break;
-        case "backpack":
-        default:
-          newState = "equipped";
-          disableEffect = false;
-          break;
-      }
-      await itemSelected.toggleActiveEffectStatus(disableEffect);
+      const newState = getNewEquippedState(itemSelected);
+      await itemSelected.toggleActiveEffectStatus(newState !== "equipped");
 
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       const itemUpdates = [];
@@ -378,4 +361,26 @@ export function getDisplayOrder(returnData: any): string[] {
       break;
   }
   return returnValue;
+}
+
+/**
+ * Determine the new equipped state after toggling.
+ * @param {TwodsixItem} itemSelected   The item to change the equipped state.
+ * @returns {string} The new equipped state based on old one ans display setting
+ */
+function getNewEquippedState(itemSelected: TwodsixItem): string {
+  const currentState = itemSelected.system.equipped;
+  if (!currentState) {
+    return 'backpack';
+  } else {
+    switch (game.settings.get('twodsix', 'equippedToggleStates')) {
+      case 'all':
+        return {'vehicle': 'ship', 'ship': 'base',  'base': 'backpack', 'backpack': 'equipped', 'equipped': 'vehicle'}[currentState];
+      case 'core':
+        return {'vehicle': 'backpack', 'ship': 'backpack', 'base': 'backpack', 'backpack': 'equipped', 'equipped': 'backpack'}[currentState];
+      case 'default':
+      default:
+        return {'vehicle': 'backpack', 'ship': 'backpack',  'base': 'backpack', 'backpack': 'equipped', 'equipped': 'ship'}[currentState];
+    }
+  }
 }

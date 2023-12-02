@@ -71,7 +71,7 @@
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name rollable">{{item.name}} </span>
               <span class="item-controls centre">
-                <a class="item-control item-toggle {{item.system.equipped}}" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="fa-solid fa-child-reaching"></i><i class="fa-solid fa-shuttle-space"></i><i class="fa-solid fa-person-hiking"></i></a>
+                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                     class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}

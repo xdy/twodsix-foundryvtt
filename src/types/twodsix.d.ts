@@ -149,6 +149,7 @@ declare global {
       'twodsix.showTLonItemsTab': boolean;
       'twodsix.omitPSIifZero': boolean;
       'twodsix.rangeModifierType': string;
+      'twodsix.equippedToggleStates': string;
     }
   }
 }
