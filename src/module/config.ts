@@ -750,7 +750,15 @@ export const AllAnimalTypes = Object.assign({}, HerbivoreType, OmnivoreType, Car
 export const EQUIPPED_STATES = {
   backpack: "TWODSIX.Actor.Items.LocationState.backpack",
   equipped: "TWODSIX.Actor.Items.LocationState.equipped",
-  ship: "TWODSIX.Actor.Items.LocationState.ship"
+  vehicle: "TWODSIX.Actor.Items.LocationState.vehicle",
+  ship: "TWODSIX.Actor.Items.LocationState.ship",
+  base: "TWODSIX.Actor.Items.LocationState.base"
+};
+
+export const EQUIPPED_TOGGLE_OPTIONS = {
+  core: "TWODSIX.Actor.Items.LocationState.core",
+  default: "TWODSIX.Actor.Items.LocationState.default",
+  all: "TWODSIX.Actor.Items.LocationState.all",
 };
 
 export const RANGE_MODIFIERS_TYPES = {
@@ -813,6 +821,7 @@ export type TWODSIX = {
   areaTargetTypes: typeof areaTargetTypes,
   SuccessTypes: typeof SuccessTypes,
   EQUIPPED_STATES: typeof EQUIPPED_STATES,
+  EQUIPPED_TOGGLE_OPTIONS: typeof EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
   WEAPON_RANGE_TYPES: typeof WEAPON_RANGE_TYPES
 };
@@ -845,6 +854,7 @@ export const TWODSIX = {
   areaTargetTypes: areaTargetTypes,
   SuccessTypes: SuccessTypes,
   EQUIPPED_STATES: EQUIPPED_STATES,
+  EQUIPPED_TOGGLE_OPTIONS: EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
   WEAPON_RANGE_TYPES: WEAPON_RANGE_TYPES
 };

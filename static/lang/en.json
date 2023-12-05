@@ -146,7 +146,12 @@
         "LocationState": {
           "equipped": "Equipped",
           "ship": "Ship",
-          "backpack": "Backpack"
+          "backpack": "Backpack",
+          "vehicle": "Vehicle",
+          "base": "Base",
+          "core": "Core (backpack and equipped only)",
+          "default": "Default (backpack, equipped and ship)",
+          "all": "All"
         },
         "Subtype": "Type",
         "TRAITS": "TRAITS",
@@ -1317,6 +1322,10 @@
       "rangeModifierType": {
         "hint": "Type of modifier to use for ranged weapons. Single Range Value (e.g. XX, for MgT2). Double Range Value (e.g. XX/YY for CD, CDEE, CQ, etc.). Range Bands by weapon type (e.g. 'Shotgun' for CE and MgT1).",
         "name": "Range Modifier Types for Weapons"
+      },
+      "equippedToggleStates": {
+        "hint": "Equipment location toggle states to use for actor sheet. Core: backpack and equipped only, Default: backpack, equipped and ship, All: backpack, equipped, vehicle, ship, and base",
+        "name": "Allowable equipment locations for actor sheet"
       }
     },
     "CloseAndCreateNew": "Close and create new",

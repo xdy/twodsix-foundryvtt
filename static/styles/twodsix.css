@@ -1695,17 +1695,6 @@ input.item-value-edit {
 }
 
 .item-controls .item-toggle i {
-  display: none;
-}
-.item-controls .item-toggle .fa-person-hiking {
-  display: inline;
-}
-.item-controls .item-toggle.ship .fa-person-hiking,
-.item-controls .item-toggle.equipped .fa-person-hiking {
-   display: none;
-}
-.item-controls .item-toggle.ship .fa-shuttle-space,
-.item-controls .item-toggle.equipped .fa-child-reaching {
   display: inline;
 }
 

@@ -1138,7 +1138,7 @@ async function deleteIdFromShipPositions(actorId: string) {
  */
 function getEquipmentWeight(item:TwodsixItem):number {
   if (!["skills", "spell", "trait"].includes(item.type)) {
-    if (item.system.equipped !== "ship") {
+    if (["backpack", "equipped"].includes(item.system.equipped)) {
       let q = item.system.quantity || 0;
       const w = item.system.weight || 0;
       if (item.type === "armor" && item.system.equipped === "equipped") {
