@@ -28,6 +28,7 @@ import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
 import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
 import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
+import { addCustomEnrichers } from "./module/utils/enrichers";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -112,8 +113,12 @@ Hooks.once('init', async function () {
   registerHandlebarsHelpers();
 
   registerSettings();
+
   //Dice Rolls
   CONFIG.Dice.rolls.push(TwodsixDiceRoll);
+
+  //Add custom Enrichers
+  addCustomEnrichers();
 
   /* add fonts */
   // @ts-ignore
