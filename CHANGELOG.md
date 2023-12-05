@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.7.1...v4.8.0) (2023-12-05)
+
+
+### Features
+
+* add additional equipment toggle locations ([#1505](https://github.com/xdy/twodsix-foundryvtt/issues/1505)) ([41b1ff6](https://github.com/xdy/twodsix-foundryvtt/commit/41b1ff633975d311b8d8167e951a83578e5eb03e))
+
 ## [4.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.7.0...v4.7.1) (2023-12-01)
 
 
