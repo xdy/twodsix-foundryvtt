@@ -227,7 +227,7 @@ export async function handleSkillRoll(event: Event): Promise<void> {
  * @param {any} options The optional find strings
  * @returns {TwodsixItem} The RollTable document
  */
-function findSkill(skillName:string, _options?:any): TwodsixItem {
+function findSkill(skillName:string): TwodsixItem {
   const actorToUse = getControlledTraveller();
   if (actorToUse) {
     let skill = actorToUse.itemTypes.skills?.find(i => i.name.toLowerCase() == skillName.toLowerCase()) || fromUuidSync(skillName);
