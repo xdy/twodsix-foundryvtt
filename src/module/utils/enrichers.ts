@@ -18,7 +18,7 @@ export function addCustomEnrichers() {
       enricher: rollTable
     },
     {
-      pattern: /@SkillRoll(?:{(.+?)})?/gm,
+      pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
       enricher: rollSkill
     }
   );
@@ -85,12 +85,13 @@ async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> 
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
 async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement> {
-  const skillName = match[1] ?? match[2];
+  const skillName = match[1] || match[2];
+  const descrip = match[2] || match[1];
   const a = document.createElement("a");
   a.classList.add("inline-roll");
   a.classList.add("skill-roll");
   a.dataset.skillName = skillName;
-  a.innerHTML = `<i class="fas fa-dice-d20"></i> ${skillName}`;
+  a.innerHTML = `<i class="fas fa-dice-d20"></i> ${descrip}`;
   return a;
 }
 
