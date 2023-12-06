@@ -380,6 +380,9 @@
         }
       }
     },
+    "Table": {
+      "TableResults": "Table Results"
+    },
     "Create": "Create",
     "Handlebars": {
       "CantShowCharacteristic": "You need to reselect the characteristic for all skills marked with XXX. Sorry..."
@@ -1406,7 +1409,9 @@
       "MissingUntrainedSkill": "Actor is missing untrained skill. Reload application to fix.",
       "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected.",
       "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor.",
-      "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false."
+      "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
+      "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
+      "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable."
     }
   },
   "TYPES": {

@@ -1,8 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-//Adapted from https://github.com/pafvel/dragonbane/blob/master/modules/journal.js
+import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
+import TwodsixItem  from "../entities/TwodsixItem";
 
+// Adapted from https://github.com/pafvel/dragonbane/blob/master/modules/journal.js
+
+// Add custom enrichers during init phase
 export function addCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push(
     {
@@ -12,11 +16,21 @@ export function addCustomEnrichers() {
     {
       pattern: /@Table\[(.+?)\](?:{(.+?)})?/gm,
       enricher: rollTable
+    },
+    {
+      pattern: /@SkillRoll(?:{(.+?)})?/gm,
+      enricher: rollSkill
     }
   );
 }
 
-async function enrichDisplayTable (match, options) {
+/**
+ * Convert a rollTable link in a journal entry with a nice format of the table based on roll table name or uuid.
+ * @param {any} match   An array matching the RegEx expression. Match[0] is the unernriched JE string.  Match[1] is the table name or UUID.  Match[2] is the user entered table label.
+ * @param {any} options Options to the roll action
+ * @returns {Promise<HTMLDivElement>} The displayed html element for the enriched RollTable reference
+ */
+async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivElement> {
   const table = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("div");
@@ -36,7 +50,13 @@ async function enrichDisplayTable (match, options) {
   return a;
 }
 
-async function rollTable (match, options) {
+/**
+ * A rollable link in a journal entry to a RollTable.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unernriched JE string.  Match[1] is the table name or UUID.  Match[2] is the user entered table label.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> {
   const table = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("a");
@@ -58,29 +78,40 @@ async function rollTable (match, options) {
   return a;
 }
 
-function displayTable(uuid, table, tableName) {
+/**
+ * A rollable link in a skill.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unenriched JE string.  Match[1] is the skill name.  Match[2] is the user entered skill label.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement> {
+  const skillName = match[1] ?? match[2];
+  const a = document.createElement("a");
+  a.classList.add("inline-roll");
+  a.classList.add("skill-roll");
+  a.dataset.skillName = skillName;
+  a.innerHTML = `<i class="fas fa-dice-d20"></i> ${skillName}`;
+  return a;
+}
+
+/**
+ * Convert a rollTable link in a journal entry with a nice format of the table based on roll table name or uuid.
+ * @param {string} uuid   The rolltable UUID.
+ * @param {string} tableName The string name of the table
+ * @returns {string} The rolltable in an html format
+ */
+function displayTable(uuid: string, table:any, tableName: string): string {
   if (!table) {
     return "";
   }
-
-  /*
-  // Rollable table in caption
-  let html = `
-  <table>
-      <caption>@Table[${uuid}]{${tableName}}</caption>
-      <tr>
-          <th>[[/roll ${table.formula}]]</th>
-          <th>${game.i18n.localize("DoD.journal.tableResult")}</th>
-      </tr>`;
-  */
 
   // Rollable table in roll column header
   let html = `
   <table>
       <caption class="table-caption">${tableName}</caption>
       <tr>
-          <th style="text-transform: uppercase;">@Table[${uuid}]{${table.formula}}</th>
-          <th>${game.i18n.localize("Table Result")}</th>
+          <th style="text-transform: uppercase; text-align: left;">@Table[${uuid}]{${table.formula}}</th>
+          <th style="text-align: left;">${game.i18n.localize("TWODSIX.Table.TableResults")}</th>
       </tr>`;
 
   for (const result of table.results) {
@@ -122,17 +153,23 @@ function displayTable(uuid, table, tableName) {
   return html;
 }
 
-function findTable(tableName:string, options?:any) {
+/**
+ * Finds a RollTable document based on either the RollTable name or uuid.
+ * @param {string} tableName   The rolltable UUID or name.
+ * @param {any} options The optional find strings
+ * @returns {RollTable} The RollTable document
+ */
+function findTable(tableName:string, options?:any): RollTable {
   const table = game.tables.find(i => i.name.toLowerCase() == tableName.toLowerCase()) || fromUuidSync(tableName);
   if (!table) {
     if (!options?.noWarnings){
-      sendWarning("WARNING.tableNotFound", {id: tableName});
+      sendWarning("TWODSIX.Warnings.tableNotFound", {id: tableName});
     }
     return null;
   }
   if (!(table instanceof RollTable)) {
     if (!options?.noWarning){
-      sendWarning("WARNING.typeMismatch", {id: tableName});
+      sendWarning("TWODSIX.Warnings.typeMismatch", {id: tableName});
     }
     return null;
   }
@@ -147,10 +184,16 @@ function sendWarning(msg, params) {
   }
 }
 
-export async function handleTableRoll(event) {
+/**
+ * Make a roll from a RollTable from a clickable link in JournalEntry.
+ * @param {Event} event   The click event.
+ */
+export async function handleTableRoll(event: Event): Promise<void> {
+  event.preventDefault();
+  event.stopPropagation();
   const tableId = event.currentTarget.dataset.tableId;
   const tableName = event.currentTarget.dataset.tableName;
-  const table = fromUuidSync(tableId) || this.findTable(tableName);
+  const table = fromUuidSync(tableId) || findTable(tableName);
   if (table) {
     if (event.type == "click") { // left click
       table.draw();
@@ -158,6 +201,41 @@ export async function handleTableRoll(event) {
       table.sheet.render(true);
     }
   }
+}
+
+/**
+ * Make a roll from a RollTable from a clickable link in JournalEntry.
+ * @param {Event} event   The click event.
+ */
+export async function handleSkillRoll(event: Event): Promise<void> {
   event.preventDefault();
   event.stopPropagation();
+  const skillName:string = event.currentTarget.dataset.skillName;
+  const skill:TwodsixItem = findSkill(skillName);
+  if (skill) {
+    if (event.type == "click") { // left click
+      await skill.skillRoll(true);
+    } else { // right click
+      skill.sheet.render(true);
+    }
+  }
+}
+
+/**
+ * Finds a Skill Item document based on either the name or uuid.
+ * @param {string} skillName   The skill name or UUID.
+ * @param {any} options The optional find strings
+ * @returns {TwodsixItem} The RollTable document
+ */
+function findSkill(skillName:string, _options?:any): TwodsixItem {
+  const actorToUse = getControlledTraveller();
+  if (actorToUse) {
+    let skill = actorToUse.itemTypes.skills?.find(i => i.name.toLowerCase() == skillName.toLowerCase()) || fromUuidSync(skillName);
+    if (!skill) {
+      skill = actorToUse.getUntrainedSkill();
+    }
+    return skill;
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+  }
 }
