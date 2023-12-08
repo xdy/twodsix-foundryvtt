@@ -1,3 +1,10 @@
+# [4.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.9.3...v4.10.0) (2023-12-08)
+
+
+### Features
+
+* add @SkillRoll to chat cards ([#1507](https://github.com/xdy/twodsix-foundryvtt/issues/1507)) ([66ba20a](https://github.com/xdy/twodsix-foundryvtt/commit/66ba20a8c9517ede6ff24ba1be5e1f9fc24295f9))
+
 ## [4.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.9.2...v4.9.3) (2023-12-08)
 
 
