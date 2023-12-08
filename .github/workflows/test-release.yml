@@ -86,14 +86,24 @@ jobs:
       - name: Install playwright
         run: npx playwright install
 
-      - name: Publish to Foundry VTT Repo
-        id: publish_foundry_repo
-        run: npx @ghost-fvtt/foundry-publish
-        env:
-          FVTT_MANIFEST_PATH: 'static/system.json'
-          FVTT_PACKAGE_ID: ${{ 468 }}
-          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+#      - name: Publish to Foundry VTT Repo
+#        id: publish_foundry_repo
+#        run: npx @ghost-fvtt/foundry-publish
+#        env:
+#          FVTT_MANIFEST_PATH: 'static/system.json'
+#          FVTT_PACKAGE_ID: ${{ 468 }}
+#          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+#          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+
+      # Publish the release to FoundryVTT's package repository.
+      - name: Publish Module to FoundryVTT Website
+        uses: Varriount/fvtt-autopublish@latest
+        with:
+          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+          module-id: 468
+          manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
+          manifest-file: 'static/system.json'
 
 #      # Publish the release to FoundryVTT's package repository
 #      - name: Publish to Foundry Admin
