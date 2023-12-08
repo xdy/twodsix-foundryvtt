@@ -101,7 +101,7 @@ jobs:
         with:
           username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          module-id: 468
+          module-id: "twodsix-foundryvtt"
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
           manifest-file: 'static/system.json'
 
