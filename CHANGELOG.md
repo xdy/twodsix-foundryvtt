@@ -1,3 +1,10 @@
+# [4.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.8.0...v4.9.0) (2023-12-08)
+
+
+### Features
+
+* New Enhancer Buttons for Journal pages ([#1506](https://github.com/xdy/twodsix-foundryvtt/issues/1506)) ([7fa5a85](https://github.com/xdy/twodsix-foundryvtt/commit/7fa5a85dcc243a280eaa7e29f695c73bffd064f5))
+
 # [4.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.7.1...v4.8.0) (2023-12-05)
 
 
