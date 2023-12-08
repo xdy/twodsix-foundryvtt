@@ -3071,6 +3071,12 @@ select.form-input, input.form-input, span.form-input {
   color: var(--s2d6-stat-input);
 }
 
+.table-caption {
+  color: var(--s2d6-stat-input);
+  font-size: 1.5em;
+  font-style: italic;
+}
+
 .chat-message .table-draw .table-results .table-result .result-text {
   color: var(--s2d6-dialog-color);
 }

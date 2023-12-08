@@ -1,13 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { Component, Skills } from "src/types/template";
+import { Component} from "src/types/template";
 import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
-import { confirmRollFormula, getKeyByValue } from "./sheetUtils";
-import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { confirmRollFormula} from "./sheetUtils";
+import { TwodsixRollSettings, getInitialSettingsFromFormula } from "./TwodsixRollSettings";
 import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 export class TwodsixShipActions {
@@ -59,78 +59,26 @@ export class TwodsixShipActions {
 
   public static async skillRoll(text: string, extra: ExtraData) {
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-    const showTrowDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
-    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
-    // eslint-disable-next-line no-useless-escape
-    const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/([\S]+))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
-    const parsedResult: RegExpMatchArray | null = re.exec(text);
-    const selectedActor = <TwodsixActor>extra.actor;
+    const showTrowDiag:boolean = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
 
-    if (parsedResult !== null) {
-      const [, parsedSkills, char, diff] = parsedResult;
-      const skillOptions = parsedSkills.split("|");
-      let skill = undefined;
-      /* add qualified skill objects to an array*/
-      const skillObjects = selectedActor?.itemTypes.skills.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
-
-      // find the most advantageous sill to use from the collection
-      if(skillObjects?.length > 0){
-        skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
-      }
-
-
-      /*if skill missing, try to use Untrained*/
-      if (!skill) {
-        skill = selectedActor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
-        if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", selectedActor?.name ?? "").replace("_SKILL_", parsedSkills));
-          return false;
-        }
-      }
-
-      /*get characteristic key, default to skill key if none specificed in formula */
-      let characteristicKey = "";
-      const charObject = selectedActor?.system["characteristics"] ?? {};
-      //we need an array
-      const charObjectArray = Object.values(charObject);
-      if(!char) {
-        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
-      } else {
-        //find the most advantageous characteristic to use
-        const charOptions = char.split("|");
-        let candidateCharObject = undefined;
-        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
-        if(candidateCharObjects.length > 0){
-          candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
-        }
-        characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, selectedActor);;
-      }
-
-
-      let shortLabel = "NONE";
-      let displayLabel = "NONE";
-      if (charObject && characteristicKey) {
-        shortLabel = charObject[characteristicKey].shortLabel;
-        displayLabel = charObject[characteristicKey].displayShortLabel;
-      }
-      const settings = {
-        displayLabel: displayLabel,
+    const settings = getInitialSettingsFromFormula(text, extra.actor);
+    if (settings) {
+      Object.assign (settings, {
         extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
-        rollModifiers: {characteristic: shortLabel, item: extra.diceModifier ? parseInt(extra.diceModifier) : 0},
         flags: {tokenUUID: extra.ship?.uuid}
-      };
-      if (diff) {
-        settings["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
-      }
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, selectedActor);
+      });
+      Object.assign(settings.rollModifiers, {item: extra.diceModifier ? parseInt(extra.diceModifier) : 0});
+      const skill:TwodsixItem = settings.skill;
+      delete settings.skill;
+      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, extra.actor);
       if (!options.shouldRoll) {
         return false;
       }
 
       if (extra.component) {
-        return extra.component.skillRoll(showTrowDiag, options);
+        return extra.component.skillRoll(false, options);
       } else {
-        return skill.skillRoll(showTrowDiag, options);
+        return skill.skillRoll(false, options);
       }
 
     } else {
@@ -176,25 +124,4 @@ export class TwodsixShipActions {
       }
     }
   }
-}
-
-/**
- * A function for getting the full characteristic label from the displayed short label.
- *
- * @param {string} char           The displayed characteristic short label.
- * @param {TwodsixActor} actor    The Actor in question.
- * @returns {string}              Full logical name of the characteristic.
- */
-export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
-  let tempObject = {};
-  let charObject= {};
-  if (actor) {
-    charObject = actor.system["characteristics"];
-    for (const key in charObject) {
-      tempObject[key] = charObject[key].displayShortLabel;
-    }
-  } else {
-    tempObject = TWODSIX.CHARACTERISTICS;
-  }
-  return getKeyByValue(tempObject, char);
 }

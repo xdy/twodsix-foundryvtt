@@ -2543,6 +2543,12 @@ background: var(--sidebar-background);
   word-break: break-all;
   font-size: inherit;
 }*/
+
+.table-caption {
+  font-size: 1.5em;
+  font-style: italic;
+}
+
 .dice-total {
   white-space: pre-wrap;
 }

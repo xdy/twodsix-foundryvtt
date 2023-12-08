@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+import { getKeyByValue } from "./sheetUtils";
 
 // https://stackoverflow.com/a/34749873
 /**
@@ -120,4 +121,24 @@ export function capitalizeFirstLetter(inputString:string):string {
   } else {
     return "";
   }
+}
+
+/**
+ * A function for getting the full characteristic key from the displayed short label.
+ * @param {string} char           The displayed characteristic short label.
+ * @param {TwodsixActor} actor    The Actor in question.
+ * @returns {string}              Full logical name (key) of the characteristic.
+ */
+export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixActor):string {
+  let tempObject = {};
+  let charObject= {};
+  if (actor) {
+    charObject = actor.system["characteristics"];
+    for (const key in charObject) {
+      tempObject[key] = charObject[key].displayShortLabel;
+    }
+  } else {
+    tempObject = TWODSIX.CHARACTERISTICS;
+  }
+  return getKeyByValue(tempObject, char);
 }
