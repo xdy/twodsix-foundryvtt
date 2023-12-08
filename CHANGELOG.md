@@ -1,3 +1,11 @@
+## [4.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.9.0...v4.9.1) (2023-12-08)
+
+
+### Bug Fixes
+
+* Update test-release.yml ([5891df7](https://github.com/xdy/twodsix-foundryvtt/commit/5891df71f693018c58ac9c4ec39c22daa4515203))
+* Update test-release.yml ([6cfa00d](https://github.com/xdy/twodsix-foundryvtt/commit/6cfa00d7a189c669bddff1295d40f6bfbd65edb2))
+
 # [4.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.8.0...v4.9.0) (2023-12-08)
 
 
