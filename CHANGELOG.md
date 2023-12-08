@@ -1,3 +1,10 @@
+## [4.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.0...v4.10.1) (2023-12-08)
+
+
+### Bug Fixes
+
+* Update test-release.yml ([daa0f83](https://github.com/xdy/twodsix-foundryvtt/commit/daa0f83082c1c7cfdb94cadc45ff249a29e5bd1c))
+
 # [4.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.9.3...v4.10.0) (2023-12-08)
 
 
