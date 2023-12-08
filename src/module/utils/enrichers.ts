@@ -3,6 +3,8 @@
 
 import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
 import TwodsixItem  from "../entities/TwodsixItem";
+import { getInitialSettingsFromFormula } from "./TwodsixRollSettings";
+import { TwodsixRollSettings } from "./TwodsixRollSettings";
 
 // Adapted from https://github.com/pafvel/dragonbane/blob/master/modules/journal.js
 
@@ -85,12 +87,12 @@ async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> 
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
 async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement> {
-  const skillName = match[1] || match[2];
+  const skillName = match[1] || "";
   const descrip = match[2] || match[1];
   const a = document.createElement("a");
   a.classList.add("inline-roll");
   a.classList.add("skill-roll");
-  a.dataset.skillName = skillName;
+  a.dataset.parseString = skillName;
   a.innerHTML = `<i class="fas fa-dice-d20"></i> ${descrip}`;
   return a;
 }
@@ -205,20 +207,31 @@ export async function handleTableRoll(event: Event): Promise<void> {
 }
 
 /**
- * Make a roll from a RollTable from a clickable link in JournalEntry.
+ * Make a roll from a skill formula using a clickable link in JournalEntry.
  * @param {Event} event   The click event.
  */
 export async function handleSkillRoll(event: Event): Promise<void> {
   event.preventDefault();
   event.stopPropagation();
-  const skillName:string = event.currentTarget.dataset.skillName;
-  const skill:TwodsixItem = findSkill(skillName);
-  if (skill) {
-    if (event.type == "click") { // left click
-      await skill.skillRoll(true);
-    } else { // right click
-      skill.sheet.render(true);
+  const parseString:string = event.currentTarget.dataset.parseString;
+  const actorToUse = getControlledTraveller();
+  if (actorToUse) {
+    const parsedValues:any = getInitialSettingsFromFormula(parseString, actorToUse);
+    if (parsedValues) {
+      const skill:TwodsixItem = parsedValues.skill;
+      if (event.type == "click") { // left click
+        delete parsedValues.skill;
+        const settings:TwodsixRollSettings = await TwodsixRollSettings.create(true, parsedValues, skill, undefined, actorToUse);
+        if (!settings.shouldRoll) {
+          return;
+        }
+        await skill.skillRoll(false, settings);
+      } else { // right click
+        skill.sheet.render(true);
+      }
     }
+  } else {
+    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
   }
 }
 
