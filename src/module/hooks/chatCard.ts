@@ -7,14 +7,17 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TWODSIX } from "../config";
+import { handleSkillRoll } from "../utils/enrichers";
 
 Hooks.on("renderChatLog", (_app, html, _data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
+  html.on("click", ".skill-roll", handleSkillRoll);
 });
 Hooks.on("renderChatPopout", (_app, html, _data) => {
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
+  html.on("click", ".skill-roll", handleSkillRoll);
 });
 
 /* -------------------------------------------- */
