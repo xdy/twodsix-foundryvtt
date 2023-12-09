@@ -1218,21 +1218,19 @@ input.stat-name-table {
   appearance: textfield;
 }
 
-input.stat-name, input.special-name {
-  position: relative;
-  left: 0.7em;
-  top: -1.0em;
-  font-size: 1.2em;
-  display: block;
-  width: 75%;
-  cursor: pointer;
-  text-align: center;
-  height: 19px;
+input.stat-name {
+  left: 0.5em;
 }
 
-input.special-name {
-  left: -0.05em;
+input.stat-name, input.special-name {
+  position: relative;
+  top: -1em;
+  font-size: 1.1em;
+  display: block;
   width: 90%;
+  cursor: pointer;
+  text-align: center;
+  height: 17px;
 }
 
 .stat img {
