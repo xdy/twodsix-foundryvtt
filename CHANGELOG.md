@@ -1,3 +1,10 @@
+## [4.10.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.1...v4.10.2) (2023-12-09)
+
+
+### Bug Fixes
+
+* enable button in DisplayTable for chat messages ([#1508](https://github.com/xdy/twodsix-foundryvtt/issues/1508)) ([271c922](https://github.com/xdy/twodsix-foundryvtt/commit/271c922e83b5199591b404d5e6a8958cea707fc9))
+
 ## [4.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.0...v4.10.1) (2023-12-08)
 
 
