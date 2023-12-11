@@ -48,7 +48,7 @@ Hooks.once("item-piles-ready", async function() {
         img: "systems/twodsix/assets/icons/id-card.svg",
         abbreviation: "Cr {#}",
         data: {
-          path: "system.finances.cash"
+          path: "system.financeValues.cash"
         },
         primary: true,
         exchangeRate: 1

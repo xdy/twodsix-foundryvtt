@@ -1,0 +1,32 @@
+{{#each this as |setting key|}}
+  <div class="form-group">
+    <label>{{{localize setting.name}}}</label>
+      <div class="form-fields">
+        {{#iff setting.htmlType "===" "Number"}}
+        <input type="number" name="{{key}}" value="{{setting.value}}" data-dtype="Number">
+        {{/iff}}
+        {{#iff setting.htmlType "===" "String"}}
+        <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
+        {{/iff}}
+
+        {{#iff setting.htmlType "===" "Select"}}
+        <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
+          {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
+        </select>
+        {{/iff}}
+
+        {{#iff setting.htmlType "===" "Boolean"}}
+        <span class="advanced-settings-checkbox-wrapper">
+            <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>
+        </span>
+        {{/iff}}
+
+        {{#iff setting.htmlType "===" "Color"}}
+        <span class = "color-select" name="{{key}}">
+          {{colorPicker name=key value = setting.value default=setting.value}}
+        </span>
+        {{/iff}}
+      </div>
+    <p class="notes">{{{localize setting.hint}}}</p>
+  </div>
+{{/each}}
