@@ -4,14 +4,14 @@
 import { TWODSIX } from "../config";
 
 export function generateTargetDMObject() {
-  const parseString:string = game.settings.get('twodsix', 'customDMList');
+  const modifierObject = {
+    "key0": {
+      label: game.i18n.localize("TWODSIX.Chat.Roll.RangeModifierTypes.none"),
+      value: 0
+    }
+  };
+  const parseString:string = game.settings.get('twodsix', 'targetDMList');
   if (parseString !== "") {
-    const modifierObject = {
-      "key0": {
-        label: game.i18n.localize("TWODSIX.Chat.Roll.RangeModifierTypes.none"),
-        value: 0
-      }
-    };
     let i = 1;
     const customDMs:string[] = parseString.split(',');
     for (const modifier of customDMs) {
@@ -29,9 +29,9 @@ export function generateTargetDMObject() {
         ++i;
       }
     }
-    TWODSIX.TARGET_DM = modifierObject;
-    console.log(TWODSIX.TARGET_DM, Object.keys(TWODSIX.TARGET_DM).length, getTargetDMSelectObject());
   }
+  TWODSIX.TARGET_DM = modifierObject;
+  console.log(TWODSIX.TARGET_DM, Object.keys(TWODSIX.TARGET_DM).length, getTargetDMSelectObject());
 }
 
 export function getTargetDMSelectObject(): object {
