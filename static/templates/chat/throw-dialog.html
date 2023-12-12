@@ -1,4 +1,5 @@
 <!-- TODO Move this file -->
+{{log this}}
 <form>
   <fieldset>
   <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
@@ -106,13 +107,15 @@
             </label>
           </div>
         {{/if}}
-        <div class="form-group">
-          <label>{{localize "TWODSIX.Chat.Roll.TargetModifier"}}
-            <select class="select-mod" name="rollModifiers.targetModifier" value={{rollModifiers.targetModifier}}>
-            {{selectOptions targetDMList selected=targetModifier}}
-            </select>
-          </label>
-        </div>
+        {{#if showTargetModifier}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.TargetModifier"}}
+              <select class="select-mod" name="rollModifiers.targetModifier" value={{rollModifiers.targetModifier}}>
+              {{selectOptions targetDMList selected=targetModifier}}
+              </select>
+            </label>
+          </div>
+        {{/if}}
       {{/if}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.Other"}}
