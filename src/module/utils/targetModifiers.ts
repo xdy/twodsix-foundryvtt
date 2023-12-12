@@ -31,7 +31,7 @@ export function generateTargetDMObject() {
     }
   }
   TWODSIX.TARGET_DM = modifierObject;
-  console.log(TWODSIX.TARGET_DM, Object.keys(TWODSIX.TARGET_DM).length, getTargetDMSelectObject());
+  // console.log(TWODSIX.TARGET_DM, Object.keys(TWODSIX.TARGET_DM).length, getTargetDMSelectObject());
 }
 
 export function getTargetDMSelectObject(): object {
