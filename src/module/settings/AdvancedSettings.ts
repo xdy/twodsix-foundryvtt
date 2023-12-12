@@ -33,6 +33,8 @@ export default class AdvancedSettings extends FormApplication {
         setting.value = game.settings.get(setting.namespace ?? setting.module, settingName);
         if (setting.choices === "Color") {
           setting.htmlType = "Color";
+        } else if (setting.choices === "textarea") {
+          setting.htmlType = "Textarea";
         } else if (setting.choices) {
           setting.htmlType = "Select";
         } else {

@@ -6,6 +6,8 @@ import { applyToAllActors } from "../utils/migration-utils";
 import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
 import { setDocumentPartials, updateStatusIcons } from "../settings/DisplaySettings";
 import { switchCss } from "../settings";
+import { generateTargetDMObject } from "../utils/targetModifiers";
+
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
   if (game.modules.get("combat-utility-belt")?.active) {
@@ -93,6 +95,9 @@ Hooks.once("ready", async function () {
       pack.getIndex({fields: ['system.techLevel']});
     }
   }
+
+  //create custom DM List Object
+  generateTargetDMObject();
 
 });
 

@@ -313,6 +313,7 @@
         "Modifier": "Modifier",
         "Description": "Description",
         "DM": "DM",
+        "TargetModifier": "Target DM",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
         "Attack": "Attack",

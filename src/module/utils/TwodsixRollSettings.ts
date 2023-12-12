@@ -10,6 +10,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { effectType } from "../hooks/showStatusIcons";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
+import { getTargetDMSelectObject } from "./targetModifiers";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -132,6 +133,7 @@ export class TwodsixRollSettings {
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       weaponsRange: settings?.rollModifiers?.weaponsRange ?? 0,
       rangeLabel: settings?.rollModifiers?.rangeLabel ?? "",
+      targetModifier: settings?.rollModifiers?.targetModifier ?? "key0",
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
@@ -205,6 +207,8 @@ export class TwodsixRollSettings {
       skillLabel: this.skillName,
       itemLabel: this.itemName,
       showRangeModifier: this.showRangeModifier,
+      targetModifier: this.rollModifiers.targetModifier,
+      targetDMList: getTargetDMSelectObject(),
       skillRoll: this.skillRoll,
       itemRoll: this.itemRoll,
       timeUnits: TWODSIX.TimeUnits,
@@ -235,6 +239,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
           this.rollModifiers.selectedSkill = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.selectedSkill"]').val() : "";
+          this.rollModifiers.targetModifier = dialogData.targetModifier ? buttonHtml.find('[name="rollModifiers.targetModifier"]').val() : this.rollModifiers.targetModifier;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
             //either dont show modifier or not a physical characterisitc

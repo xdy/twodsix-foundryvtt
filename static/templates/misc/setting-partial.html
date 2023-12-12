@@ -9,6 +9,10 @@
         <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
         {{/iff}}
 
+        {{#iff setting.htmlType "===" "Textarea"}}
+        <textarea type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">{{~setting.value~}}</textarea>
+        {{/iff}}
+
         {{#iff setting.htmlType "===" "Select"}}
         <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
           {{selectOptions setting.choices selected = setting.value localize = setting.localize}}

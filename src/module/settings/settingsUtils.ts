@@ -36,6 +36,11 @@ export function stringSetting(key: string, defaultValue: string, config = false,
   return key;
 }
 
+export function largeStringSetting(key: string, defaultValue: string, config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
+  registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, "textarea");
+  return key;
+}
+
 export function colorSetting(key: string, defaultValue: string, choices = "Color", config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
   registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, choices);
   return key;
