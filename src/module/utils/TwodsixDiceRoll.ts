@@ -68,7 +68,7 @@ export class TwodsixDiceRoll {
         modifierValue = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers[modifierName]);
       } else if (modifierName === "targetModifier") {
         modifierValue = TWODSIX.TARGET_DM[this.rollSettings.rollModifiers.targetModifier].value;
-      }else {
+      } else {
         modifierValue = this.rollSettings.rollModifiers[modifierName];
       }
       formula += `${getOperatorString(modifierValue)} @${modifierName}`;
