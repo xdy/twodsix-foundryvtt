@@ -3,7 +3,12 @@
 
 import { TWODSIX } from "../config";
 
-export function generateTargetDMObject() {
+/**
+ * A function that parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.
+ * Always adds a {key0: {value: 0, label:'None'}} entry to object
+ * @returns {void}
+ */
+export function generateTargetDMObject():void {
   const modifierObject = {
     "key0": {
       label: game.i18n.localize("TWODSIX.Chat.Roll.RangeModifierTypes.none"),
@@ -13,10 +18,10 @@ export function generateTargetDMObject() {
   const parseString:string = game.settings.get('twodsix', 'targetDMList');
   if (parseString !== "") {
     let i = 1;
-    const customDMs:string[] = parseString.split(',');
+    const customDMs:string[] = parseString.replace(/[\t\n\r]/gm, ' ').split(',');
     for (const modifier of customDMs) {
       // eslint-disable-next-line no-useless-escape
-      const re = new RegExp(/([^0-9]*?)([-+]?\d+$)/g);
+      const re = new RegExp(/([^\d]*?)([-+]?\d+$)/g);
       const parsedResult: RegExpMatchArray | null = re.exec(modifier);
       if (parsedResult) {
         const keyValue = `key${i}`;
@@ -34,6 +39,10 @@ export function generateTargetDMObject() {
   // console.log(TWODSIX.TARGET_DM, Object.keys(TWODSIX.TARGET_DM).length, getTargetDMSelectObject());
 }
 
+/**
+ * A function that takes the string setting 'targetDMList' parses it into an object and saves it to TWODSIX.TARGET_DM
+ * @returns {object} A select object with format {key# : 'Target DM Label (DM Val)'} useable for selectObject handlebar helper
+ */
 export function getTargetDMSelectObject(): object {
   const returnValue = {};
   for (const key of Object.keys(TWODSIX.TARGET_DM)) {
