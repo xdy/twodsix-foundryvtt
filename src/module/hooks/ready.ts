@@ -26,7 +26,6 @@ Hooks.once("ready", async function () {
   }
 
   // Determine whether a system migration is required and feasible
-
   let worldVersion = <string>game.settings.get("twodsix", "systemMigrationVersion");
   if (worldVersion == "null" || worldVersion == null) {
     worldVersion = "";
