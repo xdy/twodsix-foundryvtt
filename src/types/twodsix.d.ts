@@ -150,6 +150,7 @@ declare global {
       'twodsix.omitPSIifZero': boolean;
       'twodsix.rangeModifierType': string;
       'twodsix.equippedToggleStates': string;
+      'twodsix.targetDMList': string;
     }
   }
 }

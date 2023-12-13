@@ -3,8 +3,9 @@
 
 import AdvancedSettings from "./AdvancedSettings";
 import {TWODSIX} from "../config";
-import {booleanSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
+import {booleanSetting, largeStringSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
 import { refreshWindow } from "./DisplaySettings";
+import { generateTargetDMObject } from "../utils/targetModifiers";
 
 export default class RulesetSettings extends AdvancedSettings {
   static create() {
@@ -96,12 +97,13 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.animals_robots.push(booleanSetting("animalTypesIndependentofNiche", false));
     settings.animals_robots.push(booleanSetting("displayReactionMorale", false));
     settings.damage.push(booleanSetting("useDodgeParry", false));
-    settings.damage.push(stringSetting("damageTypeOptions", "", false, "world"));
+    settings.damage.push(largeStringSetting("damageTypeOptions", "", false, "world"));
     settings.damage.push(booleanSetting('addEffectToDamage', true, false, "world", checkManualDamageSetting));
     settings.damage.push(booleanSetting('addEffectToManualDamage', false, false, "world", checkManualDamageSetting));
     settings.roll.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
     settings.roll.push(booleanSetting("overrideSuccessWithNaturalCrit", false));
     settings.general.push(stringChoiceSetting('rangeModifierType', "none", true, TWODSIX.RANGE_MODIFIERS_TYPES));
+    settings.roll.push(largeStringSetting('targetDMList', "", false, "world", generateTargetDMObject));
     return settings;
   }
 }

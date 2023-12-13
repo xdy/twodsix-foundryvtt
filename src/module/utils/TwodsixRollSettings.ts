@@ -10,6 +10,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { effectType } from "../hooks/showStatusIcons";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
+import { getTargetDMSelectObject } from "./targetModifiers";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -22,6 +23,7 @@ export class TwodsixRollSettings {
   itemRoll:boolean;
   itemName: string;
   showRangeModifier: boolean;
+  showTargetModifier: boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
@@ -114,6 +116,7 @@ export class TwodsixRollSettings {
     this.itemRoll = !!(anItem);
     this.itemName = settings?.itemName ?? itemName;
     this.showRangeModifier =  (game.settings.get('twodsix', 'rangeModifierType') !== 'none' && anItem?.type === "weapon"  && settings?.rollModifiers?.rangeLabel) ?? false;
+    this.showTargetModifier = Object.keys(TWODSIX.TARGET_DM).length > 1;
     this.displayLabel = settings?.displayLabel ?? displayLabel;
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
@@ -132,6 +135,7 @@ export class TwodsixRollSettings {
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       weaponsRange: settings?.rollModifiers?.weaponsRange ?? 0,
       rangeLabel: settings?.rollModifiers?.rangeLabel ?? "",
+      targetModifier: settings?.rollModifiers?.targetModifier ?? "key0",
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
@@ -205,6 +209,9 @@ export class TwodsixRollSettings {
       skillLabel: this.skillName,
       itemLabel: this.itemName,
       showRangeModifier: this.showRangeModifier,
+      showTargetModifier: this.showTargetModifier,
+      targetModifier: this.rollModifiers.targetModifier,
+      targetDMList: getTargetDMSelectObject(),
       skillRoll: this.skillRoll,
       itemRoll: this.itemRoll,
       timeUnits: TWODSIX.TimeUnits,
@@ -235,6 +242,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
           this.rollModifiers.selectedSkill = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.selectedSkill"]').val() : "";
+          this.rollModifiers.targetModifier = (dialogData.showTargetModifier) ? buttonHtml.find('[name="rollModifiers.targetModifier"]').val() : this.rollModifiers.targetModifier;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
             //either dont show modifier or not a physical characterisitc

@@ -262,6 +262,10 @@ div.pdf-app section.window-content {
   margin-top: 4px;
 }
 
+.item-piles-chat-card li:nth-child(odd) {
+  background-color: var(--s2d6-light-background-transparent);
+}
+
 /******** Monk's Active Tile Trigggers********/
 
 .action-sheet .display-value, .multiple-dropdown {

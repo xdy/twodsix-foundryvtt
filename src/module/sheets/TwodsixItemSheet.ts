@@ -425,8 +425,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
  */
 export function getDamageTypes(isWeapon:boolean): object {
   const returnObject = {};
-  if (game.settings.get('twodsix', 'damageTypeOptions') !== "") {
-    let protectionTypeLabels:string[] = game.settings.get('twodsix', 'damageTypeOptions').split(',');
+  const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
+  if (damageTypeOptions !== "") {
+    let protectionTypeLabels:string[] = damageTypeOptions.split(',');
     protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
     for (const type of protectionTypeLabels) {
       Object.assign(returnObject, {[camelCase(type)]: type});

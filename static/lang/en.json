@@ -313,6 +313,7 @@
         "Modifier": "Modifier",
         "Description": "Description",
         "DM": "DM",
+        "TargetModifier": "Target DM",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
         "Attack": "Attack",
@@ -1329,6 +1330,10 @@
       "equippedToggleStates": {
         "hint": "Equipment location toggle states to use for actor sheet. Core: backpack and equipped only, Default: backpack, equipped and ship, All: backpack, equipped, vehicle, ship, and base",
         "name": "Allowable equipment locations for actor sheet"
+      },
+      "targetDMList": {
+        "hint": "A comma separated list of target difficulty modifiers.  The list has the format of 'label1 number1, label2 number2...'.  For example, 'Obscure -1, Prone (melee) +1, Prone (Ranged) -1'.",
+        "name": "List of target modifiers"
       }
     },
     "CloseAndCreateNew": "Close and create new",

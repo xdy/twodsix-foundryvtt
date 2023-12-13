@@ -66,6 +66,8 @@ export class TwodsixDiceRoll {
       let modifierValue = 0;
       if (modifierName === "characteristic") {
         modifierValue = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers[modifierName]);
+      } else if (modifierName === "targetModifier") {
+        modifierValue = TWODSIX.TARGET_DM[this.rollSettings.rollModifiers.targetModifier].value;
       } else {
         modifierValue = this.rollSettings.rollModifiers[modifierName];
       }
@@ -196,6 +198,9 @@ export class TwodsixDiceRoll {
       if(this.rollSettings.rollModifiers.weaponsRange !== 0) {
         returnValue.push("weaponsRange");
       }
+      if(this.rollSettings.rollModifiers.targetModifier !== "key0") {
+        returnValue.push("targetModifier");
+      }
       if(this.rollSettings.rollModifiers.attachments !== 0) {
         returnValue.push("attachments");
       }
@@ -268,6 +273,12 @@ export class TwodsixDiceRoll {
         const charShortName:string = this.rollSettings.displayLabel;
         flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${description}`;
         flavorTable += `<tr><td>${description}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
+      } else if (modifierName === "targetModifier") {
+        const modifierObj = TWODSIX.TARGET_DM[this.rollSettings.rollModifiers.targetModifier];
+        const modValue = addSign(modifierObj.value);
+        flavorText += ` + ${description}`;
+        flavorText += showModifiers ? `(${modValue})` : ``;
+        flavorTable += `<tr><td>${description}</td><td>${modifierObj.label}</td><td class="centre">${modValue}</td></tr>`;
       } else {
         switch (modifierName) {
           case "item":

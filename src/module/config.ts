@@ -74,7 +74,8 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: 'CE'
+      useDegreesOfSuccess: 'CE',
+      targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2"
     }
   },
   CEL: {
@@ -115,7 +116,8 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
     }
   },
   CEFTL: {
@@ -155,7 +157,8 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
     },
   },
   CEATOM: {
@@ -195,7 +198,8 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: ""
     }
   },
   BARBARIC: {
@@ -234,7 +238,8 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: ""
     },
   },
   CEQ: {
@@ -275,7 +280,8 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: 0,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: ""
     }
   },
   CD: {
@@ -323,7 +329,8 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
     }
   },
   CDEE: {
@@ -371,7 +378,8 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
     }
   },
   CLU: {
@@ -419,7 +427,8 @@ const RULESETS = Object.freeze({
       showComponentDM: true,
       encumbranceFraction: "0.33",
       encumbranceModifier: -2,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
     }
   },
 
@@ -468,7 +477,8 @@ const RULESETS = Object.freeze({
       showComponentDM: false,
       encumbranceFraction: "0.33",
       encumbranceModifier: -1,
-      useDegreesOfSuccess: 'none'
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1"
     }
   },
 
@@ -793,6 +803,8 @@ export const WEAPON_RANGE_TYPES = {
   }
 };
 
+export const TARGET_DM = {};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -823,7 +835,8 @@ export type TWODSIX = {
   EQUIPPED_STATES: typeof EQUIPPED_STATES,
   EQUIPPED_TOGGLE_OPTIONS: typeof EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
-  WEAPON_RANGE_TYPES: typeof WEAPON_RANGE_TYPES
+  WEAPON_RANGE_TYPES: typeof WEAPON_RANGE_TYPES,
+  TARGET_DM: object
 };
 
 export const TWODSIX = {
@@ -856,5 +869,6 @@ export const TWODSIX = {
   EQUIPPED_STATES: EQUIPPED_STATES,
   EQUIPPED_TOGGLE_OPTIONS: EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
-  WEAPON_RANGE_TYPES: WEAPON_RANGE_TYPES
+  WEAPON_RANGE_TYPES: WEAPON_RANGE_TYPES,
+  TARGET_DM: TARGET_DM
 };
