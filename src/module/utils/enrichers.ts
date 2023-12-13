@@ -218,16 +218,20 @@ export async function handleSkillRoll(event: Event): Promise<void> {
   if (actorToUse) {
     const parsedValues:any = getInitialSettingsFromFormula(parseString, actorToUse);
     if (parsedValues) {
-      const skill:TwodsixItem = parsedValues.skill;
-      if (event.type == "click") { // left click
-        delete parsedValues.skill;
-        const settings:TwodsixRollSettings = await TwodsixRollSettings.create(true, parsedValues, skill, undefined, actorToUse);
-        if (!settings.shouldRoll) {
-          return;
+      if (parsedValues.skill === 'None') {
+        actorToUse.characteristicRoll({rollModifiers: {characteristic: parsedValues.rollModifiers.characteristic}, difficulty: parsedValues.difficulty}, true);
+      } else {
+        const skill:TwodsixItem = parsedValues.skill;
+        if (event.type == "click") { // left click
+          delete parsedValues.skill;
+          const settings:TwodsixRollSettings = await TwodsixRollSettings.create(true, parsedValues, skill, undefined, actorToUse);
+          if (!settings.shouldRoll) {
+            return;
+          }
+          await skill.skillRoll(false, settings);
+        } else { // right click
+          skill.sheet.render(true);
         }
-        await skill.skillRoll(false, settings);
-      } else { // right click
-        skill.sheet.render(true);
       }
     }
   } else {
