@@ -1,3 +1,10 @@
+# [4.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.3...v4.11.0) (2023-12-13)
+
+
+### Features
+
+*  Add Target DM roll setting ([#1512](https://github.com/xdy/twodsix-foundryvtt/issues/1512)) ([b4dec3f](https://github.com/xdy/twodsix-foundryvtt/commit/b4dec3f3c80632d8a554addb25d758170c7f2cf6))
+
 ## [4.10.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.2...v4.10.3) (2023-12-11)
 
 
