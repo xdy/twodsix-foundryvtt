@@ -146,7 +146,12 @@
         "LocationState": {
           "equipped": "Equipado",
           "ship": "Nave",
-          "backpack": "Mochila"
+          "backpack": "Mochila",
+          "vehicle": "Vehículo",
+          "base": "Base",
+          "core": "Básico (sólo mochila y equipado)",
+          "default": "Por defecto (mochila, equipado y nave)",
+          "all": "Todos"
         },
         "Subtype": "Tipo",
         "TRAITS": "RASGOS",
@@ -298,13 +303,13 @@
         "RollModifiers": "Modificador Tirada",
         "SkillModifier": "Nivel Habilidad",
         "ItemModifier": "Bono Equipo",
-        "ROF": "Cadencia Tiro",
+        "Rof": "Cadencia de Tiro",
         "Wounds": "Heridas",
         "Encumbered": "Sobrecargado",
         "CharacteristicModifier": "Modificador Atributo",
         "Conditions": "Modificador Estado",
         "DodgeParry": "Modificador Esquiva/Parada",
-        "Custom": "Personalizado",
+        "Other": "MD Personalizado",
         "Modifier": "Modificador",
         "Description": "Descripción",
         "DM": "MD",
@@ -314,7 +319,8 @@
         "ActiveEffect": "Efecto Activo",
         "Attachments": "Acc./Consm.",
         "WeaponsHandling": "Manejo Armas",
-        "ChainRoll": "Tirada en Cadena / con Apoyo",
+        "WeaponsRange": "Rango Arma",
+        "Chain": "Tirada Encadenada / Asistida",
         "Bonus": "Bono",
         "WithChainBonus": "con bono Cadena / Apoyo",
         "WinsRoll": "gana tirada disputa / opuesta.",
@@ -341,8 +347,41 @@
           "none": "Ninguno",
           "CE": "Cepheus Engine",
           "other": "Otros"
+        },
+        "RangeModifierTypes": {
+          "none": "Ninguno",
+          "singleBand": "Valor Único",
+          "doubleBand": "Valor Doble",
+          "CE_Bands": "Rangos de CE"
+        },
+        "WeaponRangeTypes": {
+          "closeQuarters": "Cuerpo a Cuerpo",
+          "CQ": "CC",
+          "extendedReach": "Alcance Extendido",
+          "reach": "Alcance",
+          "thrown": "Arrojadiza",
+          "pistol": "Pistola",
+          "rifle": "Rifle",
+          "shotgun": "Escopeta",
+          "assaultWeapon": "Arma de Asalto",
+          "AW": "AW",
+          "rocket": "Cohete",
+          "none": "Ninguno"
+        },
+        "RangeBandTypes": {
+          "personal": "Personal",
+          "close": "Cerca",
+          "short": "Corto",
+          "medium": "Medio",
+          "long": "Largo",
+          "veryLong": "Muy Largo",
+          "distant": "Distante",
+          "none": "Ninguno"
         }
       }
+    },
+    "Table": {
+      "TableResults": "Tabla Resultados"
     },
     "Create": "Crear",
     "Handlebars": {
@@ -1282,6 +1321,14 @@
       "omitPSIifZero": {
         "hint": "No mostrar atributo PSI si el valor es cero.",
         "name": "Omitir PSI de la hoja con valor cero"
+      },
+      "rangeModifierType": {
+        "hint": "Tipo de modificador a utilizar por armas a distancia. Valor Único (ej. XX, en MGT2E). Valor Doble (ej. XX/YY en CD, CDEE, CQ, etc.). Bandas de Rango por tipo arma (ej. 'Escopeta' en CE y MGT1E).",
+        "name": "Tipo Modificador Alcance en Armas"
+      },
+      "equippedToggleStates": {
+        "hint": "Estados del Equipo en Hoja del Actor. Básico: sólo mochila y equipado, Por Defecto: mochila, equipado y nave, Todos: mochila, equipado, vehículo, nave, y base",
+        "name": "Localizaciones del equipo permitidas en la hoja"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1362,7 +1409,9 @@
       "MissingUntrainedSkill": "Actor sin habilidad \"sin entrenar\". Refresca la aplicación para corregir.",
       "TooManyTargets": "Más objetivos que número de ataques, los objetivos se escogen por orden de selección.",
       "WearingMultipleLayers": "Múltiples capas de armadura equipadas, y se lleva una que es no apilable.",
-      "ResetEffectForManualDamage": "Efecto no incluido en la tirada de daño. Desactivando los efectos en las tiradas manuales."
+      "ResetEffectForManualDamage": "Efecto no incluido en la tirada de daño. Desactivando los efectos en las tiradas manuales.",
+      "tableNotFound": "No se puede localizar la Tabla del Enlace en el Diario.",
+      "typeMismatch": "El enlace/UUID dentro del Diario no es una Tabla."
     }
   },
   "TYPES": {
