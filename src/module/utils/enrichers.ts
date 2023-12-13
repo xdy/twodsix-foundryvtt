@@ -93,7 +93,7 @@ async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement>
   a.classList.add("inline-roll");
   a.classList.add("skill-roll");
   a.dataset.parseString = skillName;
-  a.innerHTML = `<i class="fas fa-dice-d20"></i> ${descrip}`;
+  a.innerHTML = `<i class="fa-solid fa-dice"></i> ${descrip}`;
   return a;
 }
 
