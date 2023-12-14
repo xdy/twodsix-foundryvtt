@@ -21,7 +21,7 @@ export function generateTargetDMObject():void {
     const customDMs:string[] = parseString.replace(/[\t\n\r]/gm, ' ').split(',');
     for (const modifier of customDMs) {
       // eslint-disable-next-line no-useless-escape
-      const re = new RegExp(/([^\d]*?)([-+]?\d+$)/g);
+      const re = new RegExp(/(.+?)([+-]?\d+)$/);
       const parsedResult: RegExpMatchArray | null = re.exec(modifier);
       if (parsedResult) {
         const keyValue = `key${i}`;
