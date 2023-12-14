@@ -1,3 +1,10 @@
+## [4.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.0...v4.11.1) (2023-12-14)
+
+
+### Bug Fixes
+
+* allow SkillRoll Enricher to make characteristic  checks ([#1513](https://github.com/xdy/twodsix-foundryvtt/issues/1513)) ([dd643cd](https://github.com/xdy/twodsix-foundryvtt/commit/dd643cd3ea414f85f9e8bd2b4f6770bde3251868))
+
 # [4.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.10.3...v4.11.0) (2023-12-13)
 
 
