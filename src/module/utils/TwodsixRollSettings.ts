@@ -378,59 +378,69 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
 
   if (parsedResult !== null) {
     const [, parsedSkills, char, diff] = parsedResult;
-    const skillOptions = parsedSkills.split("|");
-    let skill:TwodsixItem|undefined = undefined;
-    /* add qualified skill objects to an array*/
-    const skillObjects = actor?.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
-
-    // find the most advantageous skill to use from the collection
-    if(skillObjects?.length > 0){
-      skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
-    }
-
-    // If skill missing, try to use Untrained
-    if (!skill) {
-      skill = actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
-      if (!skill) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor?.name ?? "").replace("_SKILL_", parsedSkills));
-        return false;
-      }
-    }
-
-    // get characteristic key, default to skill key if none specificed in formula
-    let characteristicKey = "";
-    const charObject = actor?.system["characteristics"] ?? {};
-    //we need an array
-    const charObjectArray = Object.values(charObject);
-    if(!char) {
-      characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
+    if (parsedSkills === 'None') {
+      return {
+        skill: 'None',
+        rollModifiers: {
+          characteristic: char,
+        },
+        difficulty: Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0]
+      };
     } else {
-      //find the most advantageous characteristic to use based on the displayed (custom) short label
-      const charOptions = char.split("|");
-      let candidateCharObject = undefined;
-      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
-      if(candidateCharObjects.length > 0){
-        candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
-      }
-      characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, actor);
-    }
+      const skillOptions = parsedSkills.split("|");
+      let skill:TwodsixItem|undefined = undefined;
+      /* add qualified skill objects to an array*/
+      const skillObjects = actor?.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
 
-    let shortLabel = "NONE";
-    let displayLabel = "NONE";
-    if (charObject && characteristicKey) {
-      shortLabel = charObject[characteristicKey].shortLabel;
-      displayLabel = charObject[characteristicKey].displayShortLabel;
+      // find the most advantageous skill to use from the collection
+      if(skillObjects?.length > 0){
+        skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
+      }
+
+      // If skill missing, try to use Untrained
+      if (!skill) {
+        skill = actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+        if (!skill) {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor?.name ?? "").replace("_SKILL_", parsedSkills));
+          return false;
+        }
+      }
+
+      // get characteristic key, default to skill key if none specificed in formula
+      let characteristicKey = "";
+      const charObject = actor?.system["characteristics"] ?? {};
+      //we need an array
+      const charObjectArray = Object.values(charObject);
+      if(!char) {
+        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
+      } else {
+        //find the most advantageous characteristic to use based on the displayed (custom) short label
+        const charOptions = char.split("|");
+        let candidateCharObject = undefined;
+        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+        if(candidateCharObjects.length > 0){
+          candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
+        }
+        characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, actor);
+      }
+
+      let shortLabel = "NONE";
+      let displayLabel = "NONE";
+      if (charObject && characteristicKey) {
+        shortLabel = charObject[characteristicKey].shortLabel;
+        displayLabel = charObject[characteristicKey].displayShortLabel;
+      }
+      const returnValues = {
+        skill: skill,
+        skillRoll: true,
+        displayLabel: displayLabel,
+        rollModifiers: {characteristic: shortLabel}
+      };
+      if (diff) {
+        returnValues["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
+      }
+      return returnValues;
     }
-    const returnValues = {
-      skill: skill,
-      skillRoll: true,
-      displayLabel: displayLabel,
-      rollModifiers: {characteristic: shortLabel}
-    };
-    if (diff) {
-      returnValues["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
-    }
-    return returnValues;
   } else {
     ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
     return false;
