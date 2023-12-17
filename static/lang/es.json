@@ -313,6 +313,7 @@
         "Modifier": "Modificador",
         "Description": "Descripción",
         "DM": "MD",
+        "TargetModifier": "MD Objetivo",
         "Characteristic": "Atributo",
         "Condition": "Estado",
         "Attack": "Ataque",
@@ -1329,6 +1330,10 @@
       "equippedToggleStates": {
         "hint": "Estados del Equipo en Hoja del Actor. Básico: sólo mochila y equipado, Por Defecto: mochila, equipado y nave, Todos: mochila, equipado, vehículo, nave, y base",
         "name": "Localizaciones del equipo permitidas en la hoja"
+      },
+      "targetDMList": {
+        "hint": "Lista separada por comas con los modificadores de dificultad para los objetivos 'etiqueta1 número1, etiqueta2 número2...'. Por ejemplo, 'Oscuridad -1, Derribado (melé) +1, Derribado (distancia) -1'.",
+        "name": "Lista de modificadores para objetivos"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
