@@ -705,7 +705,7 @@ export default class TwodsixActor extends Actor {
    */
   public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
     if ( attribute === "hits" && ["traveller", "animal", "robot"].includes(this.type)) {
-      const hits = getProperty(this.system, attribute);
+      const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
         this.damageActor(delta, 9999, "NONE", false);
