@@ -746,8 +746,8 @@ export default class TwodsixActor extends Actor {
       await matching.update({"system.value": updateValue});
       return false;
     }
-    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(duplicate(skillData)))[0];
-    //const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(foundry.utils.duplicate(skillData)))[0];
+    //const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skills: Skills = <Skills>game.system.template.Item?.skills;

@@ -104,7 +104,7 @@ export class Stats {
   }
 
   totalDamage(): number {
-    const rollData = duplicate(this.actor.system);
+    const rollData = foundry.utils.duplicate(this.actor.system);
     Object.assign(rollData, {damage: this.damageValue, effectiveArmor: this.effectiveArmor});
     const damageFormula = this.armorPiercingValue === 9999 ? "@damage" : this.damageFormula;
     if (Roll.validate(damageFormula)) {

@@ -66,7 +66,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long
     };
     //prevent processor attachemetns to software
-    returnData.config = duplicate(TWODSIX);
+    returnData.config = foundry.utils.duplicate(TWODSIX);
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
@@ -301,7 +301,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       return;
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
-    const consumablesList = duplicate(TWODSIX.CONSUMABLES);
+    const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
     if (this.item.type === "computer" ) {
       delete consumablesList["processor"];
     }

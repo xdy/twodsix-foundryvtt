@@ -106,7 +106,7 @@ Hooks.on("aipSetup", (packageConfig) => {
  * @private
  */
 function _getTravellerData(): any {
-  const returnObject = duplicate(game.system.template.Actor.traveller);
+  const returnObject = foundry.utils.duplicate(game.system.template.Actor.traveller);
   Object.assign(returnObject, {characteristics: {}});
   for (const char of Object.keys(game.system.template.Actor.templates.characteristicsTemplate.characteristics)) {
     Object.assign(returnObject.characteristics, {[char]: {mod: 0}});
@@ -120,7 +120,7 @@ function _getTravellerData(): any {
  * @private
  */
 function _getShipData(): any {
-  const returnObject = duplicate(game.system.template.Actor.ship);
+  const returnObject = foundry.utils.duplicate(game.system.template.Actor.ship);
   return returnObject;
 }
 /**

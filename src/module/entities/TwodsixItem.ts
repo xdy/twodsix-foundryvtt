@@ -664,7 +664,7 @@ export default class TwodsixItem extends Item {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
         if (consumable.currentCount > 0) {
-          const partialConsumable = duplicate(this);
+          const partialConsumable = foundry.utils.duplicate(this);
           (<Consumable>partialConsumable.system).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
         }
