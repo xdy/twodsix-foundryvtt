@@ -83,9 +83,9 @@ function checkForDamageStat (update: any, actorType: string): boolean {
 }*/
 
 export const DAMAGECOLORS = Object.freeze({
-  minorWoundTint: '#FFFF00', // Yellow
-  seriousWoundTint: '#FF0000', // Red
-  deadTint: '#FFFFFF'  // White
+  minorWoundTint: '#ffff00', // Yellow
+  seriousWoundTint: '#ff0000', // Red
+  deadTint: '#ffffff'  // White
 });
 
 export const effectType = Object.freeze({
@@ -120,10 +120,10 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       if (isCurrentlyDead) {
         await setConditionState('dead', selectedActor, false);
       }
-      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
+      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
-      if (tintToApply !== oldWoundState?.tint) {
+      if (tintToApply !== oldWoundState?.tint.css) {
         await setWoundedState(selectedActor, true, tintToApply);
       }
     }
@@ -186,7 +186,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
-    } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
+    } else if (oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
         await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
