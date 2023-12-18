@@ -159,7 +159,6 @@ export default class ItemTemplate extends MeasuredTemplate {
       return;
     }
     const center = event.data.getLocalPosition(this.layer);
-    //const interval = canvas.grid.type === CONST.GRID_TYPES.GRIDLESS ? 0 : 2;
     const snapped = canvas.grid.getSnappedPoint(center, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
     this.document.updateSource({x: snapped.x, y: snapped.y});
     this.refresh();
@@ -192,7 +191,6 @@ export default class ItemTemplate extends MeasuredTemplate {
    */
   async _onConfirmPlacement(event) {
     await this._finishPlacement(event);
-    //const interval = canvas.grid.type === CONST.GRID_TYPES.GRIDLESS ? 0 : 2;
     const destination = canvas.grid.getSnappedPoint(this.document, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
     this.document.updateSource(destination);
     this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
