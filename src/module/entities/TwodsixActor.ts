@@ -988,7 +988,7 @@ export default class TwodsixActor extends Actor {
     if (!isPost) {
       this.overrides = foundry.utils.expandObject(overrides);
     } else if (Object.keys(overrides).length > 0) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
+      this.overrides = foundry.utils.foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     }
 
     //Apply special statuses that changed to active tokens

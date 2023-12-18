@@ -37,7 +37,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       template: "systems/twodsix/templates/items/ship_position-sheet.html",
       submitOnClose: true,

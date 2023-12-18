@@ -115,7 +115,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 825,
@@ -309,7 +309,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
 export class TwodsixNPCSheet extends TwodsixActorSheet {
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "npc-actor"],
       template: "systems/twodsix/templates/actors/npc-sheet.html",
       width: 830,

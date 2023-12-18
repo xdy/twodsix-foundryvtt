@@ -27,7 +27,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
   }
 
   static get defaultOptions():ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
       width: 835,

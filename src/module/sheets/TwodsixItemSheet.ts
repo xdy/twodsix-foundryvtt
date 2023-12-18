@@ -17,7 +17,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
   static get defaultOptions(): ItemSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
       submitOnChange: true,

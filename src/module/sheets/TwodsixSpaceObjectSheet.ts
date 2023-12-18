@@ -33,7 +33,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   }
 
   static get defaultOptions():ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "space-object", "actor"],
       template: "systems/twodsix/templates/actors/space-object-sheet.html",
       width: 'auto',

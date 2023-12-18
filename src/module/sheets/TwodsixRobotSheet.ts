@@ -73,7 +73,7 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "robot-actor"],
       template: "systems/twodsix/templates/actors/robot-sheet.html",
       width: 'auto',

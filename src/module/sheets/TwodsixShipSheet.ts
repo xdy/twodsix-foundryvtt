@@ -67,7 +67,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   }
 
   static get defaultOptions():ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "ship", "actor"],
       template: "systems/twodsix/templates/actors/ship-sheet.html",
       width: 825,

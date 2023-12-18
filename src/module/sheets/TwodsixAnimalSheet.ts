@@ -79,7 +79,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "animal-actor"],
       template: "systems/twodsix/templates/actors/animal-sheet.html",
       width: 830,
