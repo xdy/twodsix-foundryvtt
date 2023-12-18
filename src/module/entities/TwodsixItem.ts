@@ -192,7 +192,7 @@ export default class TwodsixItem extends Item {
       const isCEBands =  game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands';
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
-        const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+        const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
         rangeModifier = this.getRangeModifier(targetRange);
         rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
       } else if (targetTokens.length === 0) {
@@ -233,7 +233,7 @@ export default class TwodsixItem extends Item {
         const dodgeParryInfo = this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
         Object.assign(settings.rollModifiers, dodgeParryInfo);
         if (controlledTokens.length === 1) {
-          const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
+          const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
           settings.rollModifiers.weaponsRange = this.getRangeModifier(targetRange);
         }
       }
