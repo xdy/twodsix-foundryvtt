@@ -6,7 +6,7 @@ import { getDamageCharacteristics } from "../utils/actorDamage";
 import { mergeDeep } from "../utils/utils";
 import {Traveller} from "../../types/template";
 
-async function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
+function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
   const characteristics = mergeDeep({}, ...args);
   const hitsCharacteristics: string[] = getDamageCharacteristics(actorType);
 
@@ -19,10 +19,10 @@ async function getCurrentHits(actorType: string, ...args: Record<string, any>[])
   }, {value: 0, max: 0, lastDelta: 0});
 }
 
-export async function updateHits(actor:TwodsixActor, update:Record<string, any>): Promise<void> {
+export function updateHits(actor:TwodsixActor, update:Record<string, any>): Promise<void> {
   if (update.system?.characteristics && (["traveller", "animal", "robot"].includes(actor.type))) {
-    update.system.hits = await getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
-    await Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
+    update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, update.system.characteristics);
+    Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
     if (update.system.hits.lastDelta !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
       const appliedType = update.system.hits.lastDelta > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
       const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
