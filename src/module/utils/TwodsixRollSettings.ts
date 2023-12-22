@@ -378,13 +378,17 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
 
   if (parsedResult !== null) {
     const [, parsedSkills, char, diff] = parsedResult;
+    let diffSelected = parseInt(diff, 10);
+    const otherMod = diffSelected % 2 ? 1 : 0;
+    diffSelected += diffSelected % 2;
     if (parsedSkills === 'None') {
       return {
         skill: 'None',
         rollModifiers: {
           characteristic: char,
+          other: otherMod
         },
-        difficulty: Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0]
+        difficulty: Object.values(difficulties).find((difficulty: Record<string, number>) => difficulty.target === diffSelected)
       };
     } else {
       const skillOptions = parsedSkills.split("|");
@@ -434,10 +438,10 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
         skill: skill,
         skillRoll: true,
         displayLabel: displayLabel,
-        rollModifiers: {characteristic: shortLabel}
+        rollModifiers: {characteristic: shortLabel, other: otherMod}
       };
       if (diff) {
-        returnValues["difficulty"] = Object.values(difficulties).filter((difficulty: Record<string, number>) => difficulty.target === parseInt(diff, 10))[0];
+        returnValues["difficulty"] = Object.values(difficulties).find((difficulty: Record<string, number>) => difficulty.target === diffSelected);
       }
       return returnValues;
     }
