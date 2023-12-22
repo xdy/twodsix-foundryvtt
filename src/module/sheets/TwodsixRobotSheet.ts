@@ -18,14 +18,14 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  getData(): any {
+  async getData(): any {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
     returnData.container = {};
     if (game.settings.get('twodsix', 'useProseMirror')) {
       returnData.richText = {
-        description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
-        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false})
+        description: await TextEditor.enrichHTML(returnData.system.description),
+        notes: await TextEditor.enrichHTML(returnData.system.notes)
       };
     }
 

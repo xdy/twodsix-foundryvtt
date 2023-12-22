@@ -13,7 +13,7 @@ import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
-  getData(): TwodsixShipSheetData {
+  async getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
     AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>(this.actor), context);
@@ -57,9 +57,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
 
     if (context.settings.useProseMirror) {
       context.richText = {
-        cargo: TextEditor.enrichHTML(this.actor.system.cargo, {async: false}),
-        finances: TextEditor.enrichHTML(this.actor.system.finances, {async: false}),
-        notes: TextEditor.enrichHTML(this.actor.system.notes, {async: false})
+        cargo: await TextEditor.enrichHTML(this.actor.system.cargo),
+        finances: await TextEditor.enrichHTML(this.actor.system.finances),
+        notes: await TextEditor.enrichHTML(this.actor.system.notes)
       };
     }
 

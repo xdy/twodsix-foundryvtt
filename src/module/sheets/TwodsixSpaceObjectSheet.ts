@@ -13,7 +13,7 @@ import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 
 export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   /** @override */
-  getData(): TwodsixSpaceObjectSheetData {
+  async getData(): TwodsixSpaceObjectSheetData {
     const context = <any>super.getData();
     context.system = this.actor.system;
     context.dtypes = ["String", "Number", "Boolean"];
@@ -24,8 +24,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     };
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
-        description: TextEditor.enrichHTML(context.system.description, {async: false}),
-        notes: TextEditor.enrichHTML(context.system.notes, {async: false})
+        description: await TextEditor.enrichHTML(context.system.description, {async: false}),
+        notes: await TextEditor.enrichHTML(context.system.notes, {async: false})
       };
     }
     context.config = TWODSIX;

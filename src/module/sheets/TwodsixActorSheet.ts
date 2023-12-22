@@ -19,17 +19,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  getData(): any {
+  async getData(): any {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
     returnData.container = {};
     if (game.settings.get('twodsix', 'useProseMirror')) {
       returnData.richText = {
-        description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
-        contacts: TextEditor.enrichHTML(returnData.system.contacts, {async: false}),
-        bio: TextEditor.enrichHTML(returnData.system.bio, {async: false}),
-        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false}),
-        xpNotes: TextEditor.enrichHTML(returnData.system.xpNotes, {async: false})
+        description: await TextEditor.enrichHTML(returnData.system.description),
+        contacts: await TextEditor.enrichHTML(returnData.system.contacts),
+        bio: await TextEditor.enrichHTML(returnData.system.bio),
+        notes: await TextEditor.enrichHTML(returnData.system.notes),
+        xpNotes: await TextEditor.enrichHTML(returnData.system.xpNotes)
       };
     }
 
