@@ -1,3 +1,10 @@
+## [4.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.1...v4.11.2) (2023-12-22)
+
+
+### Bug Fixes
+
+* allow odd difficulties for SkillRoll ([#1516](https://github.com/xdy/twodsix-foundryvtt/issues/1516)) ([bc9763f](https://github.com/xdy/twodsix-foundryvtt/commit/bc9763f8f8ecfdb9c5fa5bbfba030ded76db2902))
+
 ## [4.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.0...v4.11.1) (2023-12-14)
 
 
