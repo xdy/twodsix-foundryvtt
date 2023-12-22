@@ -229,7 +229,7 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = deepClone(item);
+  const itemCopy = foundry.utils.deepClone(item);
 
   //Delete Active effects if not used
   if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
