@@ -422,7 +422,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
       //find the most advantageous characteristic to use based on the displayed (custom) short label
       const charOptions = char.split("|");
       let candidateCharObject = undefined;
-      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel) || charOptions.includes(ch.shortLabel));
       if(candidateCharObjects.length > 0){
         candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
       }
