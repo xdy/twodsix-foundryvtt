@@ -378,29 +378,28 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
 
   if (parsedResult !== null) {
     const [, parsedSkills, char, diff] = parsedResult;
-    let diffSelected = parseInt(diff, 10);
-    const otherMod = diffSelected % 2 ? 1 : 0;
-    diffSelected += diffSelected % 2;
-    if (parsedSkills === 'None') {
-      return {
-        skill: 'None',
-        rollModifiers: {
-          characteristic: char,
-          other: otherMod
-        },
-        difficulty: Object.values(difficulties).find((difficulty: Record<string, number>) => difficulty.target === diffSelected)
-      };
-    } else {
+
+    // Set difficulty
+    let difficulty: string|undefined = undefined;
+    let otherMod = 0;
+    if (diff) {
+      let diffSelected = parseInt(diff, 10);
+      // Adjust for odd difficulty values
+      otherMod = diffSelected % 2 ? 1 : 0;
+      diffSelected += diffSelected % 2;
+      difficulty = Object.values(difficulties).find((dif: Record<string, number>) => dif.target === diffSelected);
+    }
+
+    // Select Skill if required
+    let skill:TwodsixItem|undefined = undefined;
+    if (parsedSkills !== "") {
       const skillOptions = parsedSkills.split("|");
-      let skill:TwodsixItem|undefined = undefined;
       /* add qualified skill objects to an array*/
       const skillObjects = actor?.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
-
       // find the most advantageous skill to use from the collection
       if(skillObjects?.length > 0){
         skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
       }
-
       // If skill missing, try to use Untrained
       if (!skill) {
         skill = actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
@@ -409,42 +408,46 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
           return false;
         }
       }
-
-      // get characteristic key, default to skill key if none specificed in formula
-      let characteristicKey = "";
-      const charObject = actor?.system["characteristics"] ?? {};
-      //we need an array
-      const charObjectArray = Object.values(charObject);
-      if(!char) {
-        characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
-      } else {
-        //find the most advantageous characteristic to use based on the displayed (custom) short label
-        const charOptions = char.split("|");
-        let candidateCharObject = undefined;
-        const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
-        if(candidateCharObjects.length > 0){
-          candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
-        }
-        characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, actor);
-      }
-
-      let shortLabel = "NONE";
-      let displayLabel = "NONE";
-      if (charObject && characteristicKey) {
-        shortLabel = charObject[characteristicKey].shortLabel;
-        displayLabel = charObject[characteristicKey].displayShortLabel;
-      }
-      const returnValues = {
-        skill: skill,
-        skillRoll: true,
-        displayLabel: displayLabel,
-        rollModifiers: {characteristic: shortLabel, other: otherMod}
-      };
-      if (diff) {
-        returnValues["difficulty"] = Object.values(difficulties).find((difficulty: Record<string, number>) => difficulty.target === diffSelected);
-      }
-      return returnValues;
     }
+
+    // get characteristic key (displayLabelShort), default to skill key if none specificed in formula
+    let characteristicKey = "";
+    const charObject = actor?.system["characteristics"] ?? {};
+    //we need an array
+    const charObjectArray = Object.values(charObject);
+    if(!char && skill) {
+      //Try to get characteristic key from skill
+      characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
+    } else if (char) {
+      //find the most advantageous characteristic to use based on the displayed (custom) short label
+      const charOptions = char.split("|");
+      let candidateCharObject = undefined;
+      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+      if(candidateCharObjects.length > 0){
+        candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
+      }
+      characteristicKey = candidateCharObject?.key ?? getCharacteristicFromDisplayLabel(char, actor);
+    }
+
+    let shortLabel = "NONE";
+    let displayLabel = "NONE";
+    if (charObject && characteristicKey) {
+      shortLabel = charObject[characteristicKey].shortLabel;
+      displayLabel = charObject[characteristicKey].displayShortLabel;
+    }
+
+    const returnValues = {
+      skill: parsedSkills === 'None' ? 'None': skill,
+      skillRoll: !!skill,
+      displayLabel: displayLabel,
+      rollModifiers: {
+        characteristic: shortLabel,
+        other: otherMod}
+    };
+    if (diff) {
+      returnValues["difficulty"] = difficulty;
+    }
+    return returnValues;
   } else {
     ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
     return false;
