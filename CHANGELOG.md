@@ -1,3 +1,10 @@
+## [4.11.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.2...v4.11.3) (2023-12-23)
+
+
+### Bug Fixes
+
+* make @SkillRoll always use the displayed char label ([#1517](https://github.com/xdy/twodsix-foundryvtt/issues/1517)) ([8b500ce](https://github.com/xdy/twodsix-foundryvtt/commit/8b500ce82f65212d487499cb1726214068643494))
+
 ## [4.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.1...v4.11.2) (2023-12-22)
 
 
