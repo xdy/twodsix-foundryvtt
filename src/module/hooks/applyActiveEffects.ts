@@ -3,10 +3,14 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 //This hook applies CUSTOM active effects values as a formula that is evaluated and not a static
-Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any, delta: any) => {
+Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any, _delta: any) => {
   let update = 0;
-  if (Roll.validate(delta)) {
-    const r = Roll.safeEval(Roll.replaceFormulaData(delta, actor));
+  let changeFormula = change.value;
+  if (foundry.utils.getType(changeFormula) !== 'string') {
+    changeFormula = changeFormula.toString();
+  }
+  if (Roll.validate(changeFormula)) {
+    const r = Roll.safeEval(Roll.replaceFormulaData(changeFormula, actor));
     const ct = foundry.utils.getType(current);
     switch ( ct ) {
       case "string": {
