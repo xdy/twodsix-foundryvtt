@@ -723,14 +723,14 @@ export function getDiceResults(inputRoll:Roll) {
 /**
  * A function for getting a value from a roll string.
  *
- * @param {string} rollFormula    The original roll.
+ * @param {string} rollFormula    The original roll. It must be deterministic
  * @param {TwodsixItem } item     Item making the roll
  * @returns {number}              The resulting roll value.
  */
 export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
   let returnValue = 0;
   if (Roll.validate(rollFormula)) {
-    returnValue = new Roll(rollFormula, item.actor?.getRollData()).evaluate({async: false}).total;
+    returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData())) ?? 0;
   }
   return returnValue;
 }
