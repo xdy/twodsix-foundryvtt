@@ -1,3 +1,10 @@
+# [4.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.3...v4.12.0) (2023-12-26)
+
+
+### Features
+
+* add active effects custom mode ([#1518](https://github.com/xdy/twodsix-foundryvtt/issues/1518)) ([3f128a9](https://github.com/xdy/twodsix-foundryvtt/commit/3f128a9452082f54d2aec046f0712a4cdb5374d7))
+
 ## [4.11.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.2...v4.11.3) (2023-12-23)
 
 
