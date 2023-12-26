@@ -3760,3 +3760,7 @@ input[type="text"].color {
   justify-content: space-between;
   padding-right: 1ch;
 }
+
+.active-effect-sheet .effect-change .value {
+  flex: 3;
+}

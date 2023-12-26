@@ -30,3 +30,7 @@ Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any, _de
   }
   foundry.utils.setProperty(actor, change.key, update);
 });
+
+Hooks.on(`renderActiveEffectConfig`, (app, _html, _data) => {
+  app.setPosition({width: 700});
+});
