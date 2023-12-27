@@ -103,6 +103,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.roll.push(stringChoiceSetting('useDegreesOfSuccess', "none", true, TWODSIX.SuccessTypes));
     settings.roll.push(booleanSetting("overrideSuccessWithNaturalCrit", false));
     settings.general.push(stringChoiceSetting('rangeModifierType', "none", true, TWODSIX.RANGE_MODIFIERS_TYPES));
+    settings.general.push(numberSetting("meleeRange", 2, false, "world"));
     settings.roll.push(largeStringSetting('targetDMList', "", false, "world", generateTargetDMObject));
     return settings;
   }
