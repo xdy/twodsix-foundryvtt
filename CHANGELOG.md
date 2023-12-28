@@ -1,3 +1,10 @@
+# [4.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.12.0...v4.13.0) (2023-12-28)
+
+
+### Features
+
+* add melee range modifier ([#1519](https://github.com/xdy/twodsix-foundryvtt/issues/1519)) ([dc5b194](https://github.com/xdy/twodsix-foundryvtt/commit/dc5b194278faff95c7174058cdac6ec62c73c7b7))
+
 # [4.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.11.3...v4.12.0) (2023-12-26)
 
 
