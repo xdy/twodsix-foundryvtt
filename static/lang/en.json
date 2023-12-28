@@ -609,7 +609,8 @@
         "Attack": "Attack",
         "Consumables": "Consumables",
         "DefaultMagazine": "Default Magazine Size",
-        "HandlingExample": "e.g., DEX 6/-3 10/+4"
+        "HandlingExample": "e.g., DEX 6/-3 10/+4",
+        "MeleeRangeModifier": "Melee Range DM"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -1334,6 +1335,10 @@
       "targetDMList": {
         "hint": "A comma separated list of target difficulty modifiers.  The list has the format of 'label1 number1, label2 number2...'.  For example, 'Obscure -1, Prone (melee) +1, Prone (Ranged) -1'.",
         "name": "List of target modifiers"
+      },
+      "meleeRange": {
+        "hint": "The distance where combat is in melee range.  Typically on grid unit or less (e.g. 1.5m).",
+        "name": "Melee combat range"
       }
     },
     "CloseAndCreateNew": "Close and create new",

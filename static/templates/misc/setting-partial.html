@@ -3,7 +3,7 @@
     <label>{{{localize setting.name}}}</label>
       <div class="form-fields">
         {{#iff setting.htmlType "===" "Number"}}
-        <input type="number" name="{{key}}" value="{{setting.value}}" data-dtype="Number">
+        <input type="number" name="{{key}}" value="{{setting.value}}" data-dtype="Number" step="0.01">
         {{/iff}}
         {{#iff setting.htmlType "===" "String"}}
         <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
