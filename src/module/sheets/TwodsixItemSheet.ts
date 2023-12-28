@@ -65,13 +65,18 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
       rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long
     };
-    //prevent processor attachemetns to software
+    //prevent processor attachements to software
     returnData.config = duplicate(TWODSIX);
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
         delete returnData.config.CONSUMABLES.processor;
       }
+    }
+
+    // Disable Melee Range DM if designated as Melee weapon
+    if (this.item.type === 'weapon') {
+      returnData.disableMeleeRangeDM = this.item.system.range.toLowerCase() === 'melee';
     }
     return returnData;
   }

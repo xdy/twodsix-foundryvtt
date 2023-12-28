@@ -40,8 +40,10 @@
     <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
     <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
   </div>
+  {{#unless disableMeleeRangeDM}}
   <div class="item-range">
     <label class="resource-label" for="system.meleeRangeModifier">{{localize "TWODSIX.Items.Weapon.MeleeRangeModifier"}}</label>
     <input class="form-input" id="system.meleeRangeModifier" type="number" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
   </div>
+  {{/unless}}
 {{/if}}
