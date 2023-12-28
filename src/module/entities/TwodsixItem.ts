@@ -254,9 +254,9 @@ export default class TwodsixItem extends Item {
 
   public getRangeModifier(range:number): number {
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
-    //Handle special case of melee
+    //Handle special case of melee weapon
     if (!['CE_Bands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
-      if (range <= canvas.scene.grid.distance) {
+      if (range <= game.settings.get('twodsix', 'meleeRange')) {
         return 0;
       } else {
         return INFEASIBLE;
@@ -270,6 +270,8 @@ export default class TwodsixItem extends Item {
       case 'singleBand': {
         if (isNaN(rangeValues[0]) || (rangeValues[0] === 0 && range === 0)) {
           return 0;
+        } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
+          return this.system.meleeRangeModifier ?? 0;
         } else if (range <= rangeValues[0] * 0.25) {
           return 1;
         } else if (range <= rangeValues[0]) {
@@ -283,7 +285,11 @@ export default class TwodsixItem extends Item {
         }
       }
       case 'doubleBand': {
-        if (isNaN(rangeValues[0]) || rangeValues[0] > rangeValues[1] || range <= rangeValues[0]) {
+        if (isNaN(rangeValues[0]) || rangeValues[0] > rangeValues[1] || (rangeValues[0] === 0 && range === 0)) {
+          return 0;
+        } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
+          return this.system.meleeRangeModifier ?? 0;
+        } else if (range <= rangeValues[0]) {
           return 0;
         } else if (range <= rangeValues[1]) {
           return -2;

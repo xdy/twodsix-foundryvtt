@@ -500,7 +500,8 @@
       "recoil": false,
       "features": "",
       "armorPiercing": 0,
-      "handlingModifiers": ""
+      "handlingModifiers": "",
+      "meleeRangeModifier": 0
     },
     "armor": {
       "templates": ["gearTemplate", "referenceTemplateItem"],
