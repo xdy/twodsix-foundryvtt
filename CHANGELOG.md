@@ -1,3 +1,10 @@
+## [4.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.13.0...v4.13.1) (2023-12-29)
+
+
+### Bug Fixes
+
+* missing melee range modifier on flat weapons sheets ([#1520](https://github.com/xdy/twodsix-foundryvtt/issues/1520)) ([a3cbd78](https://github.com/xdy/twodsix-foundryvtt/commit/a3cbd780d03e5d1a05c63b509e1bebfcecc94854))
+
 # [4.13.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.12.0...v4.13.0) (2023-12-28)
 
 
