@@ -279,7 +279,7 @@ export default class TwodsixItem extends Item {
       } else if (game.settings.get('twodsix', 'termForDisadvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()) {
         rollType = 'Disadvantage';
       } else {
-        rangeModifier = parseInt(this.system.meleeRangeModifier) ?? 0;
+        rangeModifier = parseInt(this.system.meleeRangeModifier) || 0;
       }
     } else {
       switch (rangeModifierType) {
