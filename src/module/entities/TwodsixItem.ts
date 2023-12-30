@@ -335,7 +335,7 @@ export default class TwodsixItem extends Item {
       const weaponSkill = this.actor?.items.get(this.system.skill);
       skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
       const targetMatchingSkill = target.actor?.itemTypes.skills?.find(sk => sk.name === skillName);
-      dodgeParryModifier = targetMatchingSkill?.system.value || 0;
+      dodgeParryModifier = -targetMatchingSkill?.system.value || 0;
     }
     return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
   }
