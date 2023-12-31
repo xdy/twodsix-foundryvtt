@@ -275,11 +275,11 @@ export default class TwodsixItem extends Item {
       if (range > game.settings.get('twodsix', 'meleeRange')) {
         rangeModifier = INFEASIBLE;
       }
+    } else if (isNaN(rangeValues[0]) /*|| (rangeValues[0] === 0 && range === 0)*/) {
+      //rangeModifier = 0;
     } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
       // Handle within melee range
-      if (isNaN(rangeValues[0]) /*|| (rangeValues[0] === 0 && range === 0)*/) {
-        //rangeModifier = 0;
-      } else if (range > (rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0])) {
+      if (range > (rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0])) {
         rangeModifier = INFEASIBLE;
       } else if (game.settings.get('twodsix', 'termForAdvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()){
         rollType = 'Advantage';
