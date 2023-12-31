@@ -263,12 +263,19 @@ export default class TwodsixItem extends Item {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
-    if (!['CE_Bands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
+    if (rangeModifierType === 'none') {
+      //rangeModifier = 0;
+    } else if (rangeModifierType === 'CE_Bands') {
+      const targetBand:string = getRangeBand(range);
+      if (targetBand !== "unknown") {
+        rangeModifier =  getRangeBandModifier(this.system.rangeBand, targetBand);
+      }
+    } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
       if (range > game.settings.get('twodsix', 'meleeRange')) {
         rangeModifier = INFEASIBLE;
       }
-    } else if (!['CE_Bands', 'none'].includes(rangeModifierType) && range <= game.settings.get('twodsix', 'meleeRange')) {
+    } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
       // Handle within melee range
       if (isNaN(rangeValues[0]) /*|| (rangeValues[0] === 0 && range === 0)*/) {
         //rangeModifier = 0;
@@ -281,48 +288,27 @@ export default class TwodsixItem extends Item {
       } else {
         rangeModifier = parseInt(this.system.meleeRangeModifier) || 0;
       }
-    } else {
-      switch (rangeModifierType) {
-        case 'none': {
-          //rangeModifier = 0;
-          break;
-        }
-        case 'singleBand': {
-          if (range <= rangeValues[0] * 0.25) {
-            rangeModifier = 1;
-          } else if (range <= rangeValues[0]) {
-            //rangeModifier = 0;
-          } else if (range <= rangeValues[0] * 2) {
-            rangeModifier = -2;
-          } else if (range <= rangeValues[0] * 4) {
-            rangeModifier = -4;
-          } else {
-            rangeModifier = INFEASIBLE;
-          }
-          break;
-        }
-        case 'doubleBand': {
-          if (rangeValues[0] > rangeValues[1]) {
-            //rangeModifier = 0;
-          } else if (range <= rangeValues[0]) {
-            //rangeModifier = 0;
-          } else if (range <= rangeValues[1]) {
-            rangeModifier = -2;
-          } else {
-            rangeModifier = INFEASIBLE;
-          }
-          break;
-        }
-        case 'CE_Bands': {
-          const targetBand:string = getRangeBand(range);
-          if (targetBand !== "unknown") {
-            rangeModifier =  getRangeBandModifier(this.system.rangeBand, targetBand);
-          }
-          break;
-        }
-        default: {
-          //rangeModifier = 0;
-        }
+    } else if (rangeModifierType === 'singleBand') {
+      if (range <= rangeValues[0] * 0.25) {
+        rangeModifier = 1;
+      } else if (range <= rangeValues[0]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[0] * 2) {
+        rangeModifier = -2;
+      } else if (range <= rangeValues[0] * 4) {
+        rangeModifier = -4;
+      } else {
+        rangeModifier = INFEASIBLE;
+      }
+    } else if (rangeModifierType === 'doubleBand') {
+      if (rangeValues[0] > rangeValues[1]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[0]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[1]) {
+        rangeModifier = -2;
+      } else {
+        rangeModifier = INFEASIBLE;
       }
     }
     return {rangeModifier: rangeModifier, rollType: rollType};
