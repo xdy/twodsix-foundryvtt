@@ -135,7 +135,7 @@ function displayTable(uuid: string, table:any, tableName: string): string {
           }
         }
         html += `</td>
-                  <td>${subTable?.description} @DisplayTable[RollTable.${result.documentId}]{${subTableName}}</td>
+                  <td>${subTable?.description} @UUID[RollTable.${result.documentId}]{${subTableName}}</td>
               </tr>`;
       } else {
         html += `</td>
