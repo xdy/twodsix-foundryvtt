@@ -6,7 +6,11 @@
         <input type="number" name="{{key}}" value="{{setting.value}}" data-dtype="Number" step="0.01">
         {{/iff}}
         {{#iff setting.htmlType "===" "String"}}
-        <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
+          {{#if setting.localize}}
+            <input type="text" name="{{key}}" value="{{localize setting.value}}" data-dtype="String">
+          {{else}}
+            <input type="text" name="{{key}}" value="{{setting.value}}" data-dtype="String">
+          {{/if}}
         {{/iff}}
 
         {{#iff setting.htmlType "===" "Textarea"}}

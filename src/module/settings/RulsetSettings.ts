@@ -70,6 +70,13 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.characteristics.push(booleanSetting('showHeroPoints', false));
     settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
+    settings.characteristics.push(stringSetting("shortSTR", "TWODSIX.Items.Skills.STR", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortDEX", "TWODSIX.Items.Skills.DEX", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortEND", "TWODSIX.Items.Skills.END", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortINT", "TWODSIX.Items.Skills.INT", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortEDU", "TWODSIX.Items.Skills.EDU", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortSOC", "TWODSIX.Items.Skills.SOC", false, "world", undefined, true));
+    settings.characteristics.push(stringSetting("shortPSI", "TWODSIX.Items.Skills.PSI", false, "world", undefined, true));
     settings.characteristics.push(stringSetting("alternativeShort1", "ALT1"));
     settings.characteristics.push(stringSetting("alternativeShort2", "ALT2"));
     settings.ship.push(numberSetting('maxComponentHits', 3));
