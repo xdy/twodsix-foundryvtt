@@ -1,3 +1,10 @@
+# [4.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.13.1...v4.14.0) (2024-01-01)
+
+
+### Features
+
+* add melee range modifier as boon-bane ([#1522](https://github.com/xdy/twodsix-foundryvtt/issues/1522)) ([248da9e](https://github.com/xdy/twodsix-foundryvtt/commit/248da9e4bc1cafbcead8b4edd713ca56b5ca5e60))
+
 ## [4.13.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.13.0...v4.13.1) (2023-12-29)
 
 
