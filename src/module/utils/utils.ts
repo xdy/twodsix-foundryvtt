@@ -50,7 +50,7 @@ export function getCharShortName(char: string): string {
     case "HIT":
       return game.i18n.localize("TWODSIX.Items.Skills." + char);
     default:
-      return game.settings.get('twodsix', 'short' + char);
+      return game.i18n.localize(game.settings.get('twodsix', 'short' + char));
   }
 }
 

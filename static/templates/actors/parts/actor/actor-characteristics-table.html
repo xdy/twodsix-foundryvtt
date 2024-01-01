@@ -5,10 +5,10 @@
         {{#if char.displayChar}}
           {{#if ../system.characteristicEdit}}
             <td><input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
-              class="stat-name-table" value="{{localize char.displayShortLabel}}" maxlength="3"/></td>
+              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="3"/></td>
           {{else}}
             <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
-              {{localize char.displayShortLabel}}</span></td>
+              {{char.displayShortLabel}}</span></td>
           {{/if}}
         {{/if}}
       {{/each}}
