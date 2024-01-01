@@ -501,7 +501,7 @@
       "features": "",
       "armorPiercing": 0,
       "handlingModifiers": "",
-      "meleeRangeModifier": 0
+      "meleeRangeModifier": "0"
     },
     "armor": {
       "templates": ["gearTemplate", "referenceTemplateItem"],

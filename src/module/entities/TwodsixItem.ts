@@ -189,16 +189,20 @@ export default class TwodsixItem extends Item {
     if (controlledTokens?.length === 1) {
       let rangeLabel = "";
       let rangeModifier = 0;
+      let rollType = 'Normal';
       const isCEBands =  game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands';
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        rangeModifier = this.getRangeModifier(targetRange);
+        const rangeData = this.getRangeModifier(targetRange);
+        rangeModifier = rangeData.rangeModifier;
+        rollType = rangeData.rollType;
         rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
       } else if (targetTokens.length === 0) {
         rangeLabel = isCEBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
+      Object.assign(tmpSettings, {rollType: rollType});
     }
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
@@ -234,7 +238,9 @@ export default class TwodsixItem extends Item {
         Object.assign(settings.rollModifiers, dodgeParryInfo);
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          settings.rollModifiers.weaponsRange = this.getRangeModifier(targetRange);
+          const rangeData = this.getRangeModifier(targetRange);
+          Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
+          Object.assign(settings, {rollType: rangeData.rollType});
         }
       }
       const roll = await this.skillRoll(false, settings, showInChat);
@@ -252,63 +258,60 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public getRangeModifier(range:number): number {
+  public getRangeModifier(range:number): any {
+    let rangeModifier = 0;
+    let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
-    //Handle special case of melee weapon
-    if (!['CE_Bands', 'none'].includes(rangeModifierType) && this.system.range?.toLowerCase().includes('melee')) {
-      if (range <= game.settings.get('twodsix', 'meleeRange')) {
-        return 0;
-      } else {
-        return INFEASIBLE;
-      }
-    }
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
-    switch (rangeModifierType) {
-      case 'none': {
-        return 0;
+    if (rangeModifierType === 'none') {
+      //rangeModifier = 0;
+    } else if (rangeModifierType === 'CE_Bands') {
+      const targetBand:string = getRangeBand(range);
+      if (targetBand !== "unknown") {
+        rangeModifier =  getRangeBandModifier(this.system.rangeBand, targetBand);
       }
-      case 'singleBand': {
-        if (isNaN(rangeValues[0]) || (rangeValues[0] === 0 && range === 0)) {
-          return 0;
-        } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
-          return this.system.meleeRangeModifier ?? 0;
-        } else if (range <= rangeValues[0] * 0.25) {
-          return 1;
-        } else if (range <= rangeValues[0]) {
-          return 0;
-        } else if (range <= rangeValues[0] * 2) {
-          return -2;
-        } else if (range <= rangeValues[0] * 4) {
-          return -4;
-        } else {
-          return INFEASIBLE;
-        }
+    } else if (this.system.range?.toLowerCase().includes('melee')) {
+      // Handle special case of melee weapon
+      if (range > game.settings.get('twodsix', 'meleeRange')) {
+        rangeModifier = INFEASIBLE;
       }
-      case 'doubleBand': {
-        if (isNaN(rangeValues[0]) || rangeValues[0] > rangeValues[1] || (rangeValues[0] === 0 && range === 0)) {
-          return 0;
-        } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
-          return this.system.meleeRangeModifier ?? 0;
-        } else if (range <= rangeValues[0]) {
-          return 0;
-        } else if (range <= rangeValues[1]) {
-          return -2;
-        } else {
-          return INFEASIBLE;
-        }
+    } else if (isNaN(rangeValues[0]) /*|| (rangeValues[0] === 0 && range === 0)*/) {
+      //rangeModifier = 0;
+    } else if (range <= game.settings.get('twodsix', 'meleeRange')) {
+      // Handle within melee range
+      if (range > (rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0])) {
+        rangeModifier = INFEASIBLE;
+      } else if (game.settings.get('twodsix', 'termForAdvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()){
+        rollType = 'Advantage';
+      } else if (game.settings.get('twodsix', 'termForDisadvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()) {
+        rollType = 'Disadvantage';
+      } else {
+        rangeModifier = parseInt(this.system.meleeRangeModifier) || 0;
       }
-      case 'CE_Bands': {
-        const targetBand:string = getRangeBand(range);
-        if (targetBand === "unknown") {
-          return 0;
-        } else {
-          return getRangeBandModifier(this.system.rangeBand, targetBand);
-        }
+    } else if (rangeModifierType === 'singleBand') {
+      if (range <= rangeValues[0] * 0.25) {
+        rangeModifier = 1;
+      } else if (range <= rangeValues[0]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[0] * 2) {
+        rangeModifier = -2;
+      } else if (range <= rangeValues[0] * 4) {
+        rangeModifier = -4;
+      } else {
+        rangeModifier = INFEASIBLE;
       }
-      default: {
-        return 0;
+    } else if (rangeModifierType === 'doubleBand') {
+      if (rangeValues[0] > rangeValues[1]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[0]) {
+        //rangeModifier = 0;
+      } else if (range <= rangeValues[1]) {
+        rangeModifier = -2;
+      } else {
+        rangeModifier = INFEASIBLE;
       }
     }
+    return {rangeModifier: rangeModifier, rollType: rollType};
   }
 
   public getDodgeParryValues(target: Token): object {
@@ -318,7 +321,7 @@ export default class TwodsixItem extends Item {
       const weaponSkill = this.actor?.items.get(this.system.skill);
       skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
       const targetMatchingSkill = target.actor?.itemTypes.skills?.find(sk => sk.name === skillName);
-      dodgeParryModifier = targetMatchingSkill?.system.value || 0;
+      dodgeParryModifier = -targetMatchingSkill?.system.value || 0;
     }
     return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
   }
