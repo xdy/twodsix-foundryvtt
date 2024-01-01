@@ -719,7 +719,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   armorPiercing:number;
   doubleTap:boolean;
   handlingModifier:string;
-  meleeRangeModifier:number;
+  meleeRangeModifier:string;
 }
 
 export interface Computer extends GearTemplate, LinkTemplate {

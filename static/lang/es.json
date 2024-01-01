@@ -609,7 +609,8 @@
         "Attack": "Ataque",
         "Consumables": "Consumibles",
         "DefaultMagazine": "Tamaño Cargador Defecto",
-        "HandlingExample": "ej. DES 6/-3 10/+4"
+        "HandlingExample": "ej. DES 6/-3 10/+4",
+        "MeleeRangeModifier": "MD Melé"
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -1334,6 +1335,10 @@
       "targetDMList": {
         "hint": "Lista separada por comas con los modificadores de dificultad para los objetivos 'etiqueta1 número1, etiqueta2 número2...'. Por ejemplo, 'Oscuridad -1, Derribado (melé) +1, Derribado (distancia) -1'.",
         "name": "Lista de modificadores para objetivos"
+      },
+      "meleeRange": {
+        "hint": "La distancia donde se considera el ataque como Melé. Normalmente una casilla de la rejilla (ej: 1,5m).",
+        "name": "Distancia combate Melé"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
