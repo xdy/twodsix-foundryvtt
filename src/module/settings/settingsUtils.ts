@@ -3,7 +3,7 @@
 
 function registerSetting(key, scope, config, defaultValue, type, onChange, choices?, localize?) {
   const settingData = {
-    name: game.i18n.localize(`TWODSIX.Settings.${key}.name`),
+    name: game.i18n.localize(`TWODSIX.Settings.${key}.name`), //localization doesn't function at this point FVTT automatically localizes later
     hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
     scope: scope,
     config: config,
