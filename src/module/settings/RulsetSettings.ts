@@ -70,6 +70,13 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.characteristics.push(booleanSetting('showHeroPoints', false));
     settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
+    settings.characteristics.push(stringSetting("shortSTR", "TWODSIX.Items.Skills.STR", false, "world", updateSTRShortLabel, true));
+    settings.characteristics.push(stringSetting("shortDEX", "TWODSIX.Items.Skills.DEX", false, "world", updateDEXShortLabel, true));
+    settings.characteristics.push(stringSetting("shortEND", "TWODSIX.Items.Skills.END", false, "world", updateENDShortLabel, true));
+    settings.characteristics.push(stringSetting("shortINT", "TWODSIX.Items.Skills.INT", false, "world", updateINTShortLabel, true));
+    settings.characteristics.push(stringSetting("shortEDU", "TWODSIX.Items.Skills.EDU", false, "world", updateEDUShortLabel, true));
+    settings.characteristics.push(stringSetting("shortSOC", "TWODSIX.Items.Skills.SOC", false, "world", updateSOCShortLabel, true));
+    settings.characteristics.push(stringSetting("shortPSI", "TWODSIX.Items.Skills.PSI", false, "world", updatePSIShortLabel, true));
     settings.characteristics.push(stringSetting("alternativeShort1", "ALT1"));
     settings.characteristics.push(stringSetting("alternativeShort2", "ALT2"));
     settings.ship.push(numberSetting('maxComponentHits', 3));
@@ -113,5 +120,47 @@ export const checkManualDamageSetting = function () {
   if (!game.settings.get('twodsix', 'addEffectToDamage') && game.settings.get('twodsix', 'addEffectToManualDamage')) {
     game.settings.set('twodsix', 'addEffectToManualDamage', false);
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ResetEffectForManualDamage"));
+  }
+};
+
+export const updateSTRShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortSTR", "TWODSIX.Items.Skills.STR");
+  }
+};
+
+export const updateDEXShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortDEX", "TWODSIX.Items.Skills.DEX");
+  }
+};
+
+export const updateENDShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortEND", "TWODSIX.Items.Skills.END");
+  }
+};
+
+export const updateINTShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortINT", "TWODSIX.Items.Skills.INT");
+  }
+};
+
+export const updateEDUShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortEDU", "TWODSIX.Items.Skills.EDU");
+  }
+};
+
+export const updateSOCShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortSOC", "TWODSIX.Items.Skills.SOC");
+  }
+};
+
+export const updatePSIShortLabel = function (value:string) {
+  if (!value) {
+    game.settings.set('twodsix', "shortPSI", "TWODSIX.Items.Skills.PSI");
   }
 };

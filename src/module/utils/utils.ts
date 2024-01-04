@@ -45,8 +45,12 @@ export function getCharShortName(char: string): string {
       return game.settings.get('twodsix', 'alternativeShort1');
     case "ALT2":
       return game.settings.get('twodsix', 'alternativeShort2');
-    default:
+    case "LFB":
+    case "STA":
+    case "HIT":
       return game.i18n.localize("TWODSIX.Items.Skills." + char);
+    default:
+      return game.i18n.localize(game.settings.get('twodsix', 'short' + char));
   }
 }
 

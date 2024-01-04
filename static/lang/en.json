@@ -414,7 +414,7 @@
         "ValueCr": "Value in Cr"
       },
       "Component": {
-        "Ammunition":"Ammuniton",
+        "Ammunition":"Ammunition",
         "componentName": "Component",
         "accomodations": "accommodations",
         "armament": "armament",
@@ -856,6 +856,34 @@
       "absoluteCriticalEffectValue": {
         "hint": "Defaults to 99, which means that effect is ignored.",
         "name": "What effect is required for a throw to be considered a critical success/failure (i.e. be colored green/red)."
+      },
+      "shortSTR": {
+        "hint": "Short name for strength characteristic. It should be four characters or fewer.",
+        "name": "Short name for strength characteristic"
+      },
+      "shortDEX": {
+        "hint": "Short name for dexterity characteristic. It should be four characters or fewer.",
+        "name": "Short name for dexterity characteristic"
+      },
+      "shortEND": {
+        "hint": "Short name for endurance characteristic. It should be four characters or fewer.",
+        "name": "Short name for endurance characteristic"
+      },
+      "shortINT": {
+        "hint": "Short name for intelligence characteristic. It should be four characters or fewer.",
+        "name": "Short name for intelligence characteristic"
+      },
+      "shortSOC": {
+        "hint": "Short name for social standing characteristic. It should be four characters or fewer.",
+        "name": "Short name for social standing characteristic"
+      },
+      "shortEDU": {
+        "hint": "Short name for education characteristic. It should be four characters or fewer.",
+        "name": "Short name for education characteristic"
+      },
+      "shortPSI": {
+        "hint": "Short name for psionic strength characteristic. It should be four characters or fewer.",
+        "name": "Short name for psionic strength characteristic"
       },
       "alternativeShort1": {
         "hint": "Short name for first alternative characteristic. It should be four characters or fewer.",
