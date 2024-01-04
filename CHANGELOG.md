@@ -1,3 +1,10 @@
+# [4.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.14.0...v4.15.0) (2024-01-04)
+
+
+### Features
+
+* Settings for all characteristic display short names ([#1524](https://github.com/xdy/twodsix-foundryvtt/issues/1524)) ([04f9651](https://github.com/xdy/twodsix-foundryvtt/commit/04f9651db4050142827ab20a875eb80bbfd37312))
+
 # [4.14.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.13.1...v4.14.0) (2024-01-01)
 
 
