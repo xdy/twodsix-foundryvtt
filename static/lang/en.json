@@ -181,6 +181,7 @@
         "SkillName": "Skill Name",
         "Total": "Total",
         "Untrained": "Untrained",
+        "NoGroup": "No Group",
         "SkillRollTooltip": "Shows the skill roll dialog. Shift-clicking rolls a skill check applying no modifier and assumes an average difficulty of 6 or 8",
         "InvertedSkillRollTooltip": "Rolls a skill check applying no modifier and assumes a difficulty of 8. Shift-clicking shows the skill roll dialog",
         "JOAT": "Jack of all trades",
@@ -544,7 +545,8 @@
         "ALT2": "ALT2",
         "TrainingNotes": "Training Notes",
         "NumberOfSkills": "Number of Skills",
-        "SkillRanks": "Skill Ranks"
+        "SkillRanks": "Skill Ranks",
+        "GroupLabel": "Group Label"
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
@@ -1367,6 +1369,10 @@
       "meleeRange": {
         "hint": "The distance where combat is in melee range.  Typically on grid unit or less (e.g. 1.5m).",
         "name": "Melee combat range"
+      },
+      "showSkillGroups": {
+        "hint": "Group skills on actor sheet by group labels.",
+        "name": "Group skills by labels"
       }
     },
     "CloseAndCreateNew": "Close and create new",

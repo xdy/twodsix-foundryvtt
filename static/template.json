@@ -535,7 +535,8 @@
       "key": "key",
       "difficulty": "Average",
       "rolltype": "Normal",
-      "trainingNotes": ""
+      "trainingNotes": "",
+      "groupLabel": ""
     },
     "trait": {
       "templates": ["referenceTemplateItem"],

@@ -151,6 +151,7 @@ declare global {
       'twodsix.rangeModifierType': string;
       'twodsix.equippedToggleStates': string;
       'twodsix.targetDMList': string;
+      'twodsix.showSkillGroups': boolean;
     }
   }
 }
