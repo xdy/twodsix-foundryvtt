@@ -1,3 +1,10 @@
+## [4.16.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.1...v4.16.2) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try ([44d8c97](https://github.com/xdy/twodsix-foundryvtt/commit/44d8c97cb532a3126086f42c18e339faee705c31))
+
 ## [4.16.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.0...v4.16.1) (2024-01-06)
 
 
