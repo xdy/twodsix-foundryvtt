@@ -6,10 +6,11 @@ on:
   push:
     branches: [ master]
 
-#TODO Parse out fvtt_minimum and fvtt_verified from the system.json, for now they're hardcoded.
+#TODO Parse out these, for now they're hardcoded.
 env:
   fvtt_minimum: 11
   fvtt_verified: 11.315
+  fvtt_maximum: 11
 
 jobs:
 #  test:
@@ -153,7 +154,8 @@ jobs:
                 "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
                 "compatibility": {
                   "minimum": "${{ env.fvtt_minimum }}",
-                  "verified": "${{ env.fvtt_verified }}"
+                  "verified": "${{ env.fvtt_verified }}",
+                  "maximum": "${{ env.fvtt_maximum }}"
                 }
               }
             }'
