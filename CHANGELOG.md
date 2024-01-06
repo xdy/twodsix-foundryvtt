@@ -1,3 +1,11 @@
+## [4.16.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.3...v4.16.4) (2024-01-06)
+
+
+### Bug Fixes
+
+* curl ftw? ([e00ae94](https://github.com/xdy/twodsix-foundryvtt/commit/e00ae9402ac1cff791a4300c7d8481048dde26d7))
+* Recurl ([689258a](https://github.com/xdy/twodsix-foundryvtt/commit/689258aade485f9c361c4e289c93a64caeb6f622))
+
 ## [4.16.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.2...v4.16.3) (2024-01-06)
 
 
