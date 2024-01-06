@@ -83,8 +83,8 @@ jobs:
       - name: Get tag
         run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      - name: Install playwright
-        run: npx playwright install
+#      - name: Install playwright
+#        run: npx playwright install
 
 #      - name: Publish to Foundry VTT Repo
 #        id: publish_foundry_repo
@@ -119,11 +119,12 @@ jobs:
 
       # Publish to FoundryVTT
       - name: Publish to Foundry VTT Repo
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main') && github.repository == 'xdy/twodsix-foundryvtt'
         id: publish_foundry_repo
         run: npx @ghost-fvtt/foundry-publish
         env:
-          FVTT_MANIFEST_PATH: "static/system.json"
-          FVTT_PACKAGE_ID: "twodsix"
+          FVTT_MANIFEST_PATH: 'static/system.json'
+          FVTT_PACKAGE_ID: 'twodsix'
           FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
           FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
