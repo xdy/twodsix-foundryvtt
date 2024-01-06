@@ -137,7 +137,7 @@ jobs:
 
   publish:
     needs:
-    - build
+    - release
     runs-on: ubuntu-latest
     steps:
       - name: Submit package to FoundryVTT Package Release API
