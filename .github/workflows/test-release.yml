@@ -117,15 +117,15 @@ jobs:
 #          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 #          manifest-file: static/system.json
 
-      # Publish to FoundryVTT
-      - name: Publish to Foundry VTT Repo
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
-        id: publish_foundry_repo
-        run: npx @ghost-fvtt/foundry-publish
-        env:
-          FVTT_MANIFEST_PATH: 'static/system.json'
-          FVTT_PACKAGE_ID: 'twodsix'
-          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
-          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
+#      # Publish to FoundryVTT
+#      - name: Publish to Foundry VTT Repo
+#        if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
+#        id: publish_foundry_repo
+#        run: npx @ghost-fvtt/foundry-publish
+#        env:
+#          FVTT_MANIFEST_PATH: 'static/system.json'
+#          FVTT_PACKAGE_ID: 'twodsix'
+#          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+#          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+#          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+#          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
