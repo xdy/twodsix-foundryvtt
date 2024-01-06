@@ -1,0 +1,25 @@
+<div class="item skill" data-item-id="{{item.id}}">
+  <ol class="ol-no-indent">
+    <li class=" flexrow" >
+      <span class="skill-container">
+        <span class="mini-dice centre rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">
+          <i class="fa-solid fa-dice" alt="d6"></i>
+        </span>
+        <span class="item-name rollable" data-label="{{item.name}}">{{item.name}}</span>
+        <input class= "item-value-edit" type="number" value="{{item.system.value}}"/>
+        <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic actor item.system.characteristic}}</span>
+        <span class="item-name centre">{{{twodsix_adjustedSkillValue actor item}}}</span>
+        <span class="total-output flex1 skill-mod">{{twodsix_skillTotal actor item}}</span>
+        {{#iff item.system.trainingNotes "!==" ""}}
+          <span class="pie-chart" style ='{{makePieImage item.system.trainingNotes}}'></span>
+        {{else}}
+          <span></span>
+        {{/iff}}
+        <span class="item-controls centre">
+          <a class="skl item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+          <a class="skl item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+        </span>
+      </span>
+    </li>
+  </ol>
+</div>

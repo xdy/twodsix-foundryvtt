@@ -626,6 +626,7 @@ export interface Skills extends LinkTemplate {
   difficulty:string;
   rolltype:string;
   trainingNotes:string;
+  groupLabel:string;
 }
 
 export interface Templates {
