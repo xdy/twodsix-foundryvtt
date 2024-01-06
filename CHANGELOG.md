@@ -1,3 +1,10 @@
+## [4.16.8](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.7...v4.16.8) (2024-01-06)
+
+
+### Bug Fixes
+
+* Newer token, who dis? ([a56f841](https://github.com/xdy/twodsix-foundryvtt/commit/a56f8417139d717b4371543bd25879bb82666759))
+
 ## [4.16.7](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.6...v4.16.7) (2024-01-06)
 
 
