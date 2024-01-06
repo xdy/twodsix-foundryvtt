@@ -119,7 +119,7 @@ jobs:
 
       # Publish to FoundryVTT
       - name: Publish to Foundry VTT Repo
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/main') && github.repository == 'xdy/twodsix-foundryvtt'
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
         id: publish_foundry_repo
         run: npx @ghost-fvtt/foundry-publish
         env:
