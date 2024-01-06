@@ -6,6 +6,11 @@ on:
   push:
     branches: [ master]
 
+#TODO Parse out fvtt_minimum and fvtt_verified from the system.json, for now they're hardcoded.
+env:
+  fvtt_minimum: 11
+  fvtt_verified: 11.315
+  
 jobs:
 #  test:
 #    if: github.repository == 'xdy/twodsix-foundryvtt'
@@ -129,3 +134,27 @@ jobs:
 #          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
 #          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 #          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
+
+  publish:
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit package to FoundryVTT Package Release API
+        run: |
+          curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
+            -d '{
+              "id": "twodsix",
+              "dry-run": false,
+              "release": {
+                "version": "${{ github.ref_name }}",
+                "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
+                "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
+                "compatibility": {
+                  "minimum": "${{ env.fvtt_minimum }}",
+                  "verified": "${{ env.fvtt_verified }}"
+                }
+              }
+            }'
