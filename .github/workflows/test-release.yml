@@ -10,7 +10,7 @@ on:
 env:
   fvtt_minimum: 11
   fvtt_verified: 11.315
-  
+
 jobs:
 #  test:
 #    if: github.repository == 'xdy/twodsix-foundryvtt'
@@ -135,11 +135,10 @@ jobs:
 #          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 #          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
 
-  publish:
-    needs:
-    - release
-    runs-on: ubuntu-latest
-    steps:
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
       - name: Submit package to FoundryVTT Package Release API
         run: |
           curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
@@ -149,7 +148,7 @@ jobs:
               "id": "twodsix",
               "dry-run": false,
               "release": {
-                "version": "${{ github.ref_name }}",
+                "version": "${{ steps.package-version.outputs.current-version}}",
                 "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
                 "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
                 "compatibility": {
