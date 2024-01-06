@@ -1,3 +1,10 @@
+# [4.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.15.0...v4.16.0) (2024-01-06)
+
+
+### Features
+
+* Add skill groups ([#1525](https://github.com/xdy/twodsix-foundryvtt/issues/1525)) ([bc8e712](https://github.com/xdy/twodsix-foundryvtt/commit/bc8e7122d4c779f381179624b3ead00cf5484523))
+
 # [4.15.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.14.0...v4.15.0) (2024-01-04)
 
 
