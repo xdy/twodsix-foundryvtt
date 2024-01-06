@@ -198,7 +198,8 @@
         "value": 0,
         "totalEarned": 0
       },
-      "xpNotes": ""
+      "xpNotes": "",
+      "displaySkillGroup": {}
     },
     "ship": {
       "templates": ["referenceTemplateActor"],
