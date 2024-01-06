@@ -315,7 +315,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
    */
   private async _onSkillHeaderToggle(event): Promise<void> {
     const parentKey: string = $(event.currentTarget).data("parentKey");
-    console.log(parentKey);
     this.actor.system.displaySkillGroup[parentKey] = !this.actor.system.displaySkillGroup[parentKey];
     this.render(false);
   }
