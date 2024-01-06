@@ -331,6 +331,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     let skillRanks = 0;
     const summaryStatus = {};
     const skillsList = [];
+    const skillGroups = {};
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, calculating derived data
@@ -346,6 +347,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
             skillRanks += Number(item.system.value);
           }
           if (isDisplayableSkill(<Skills>item)) {
+            if (actor.type === 'traveller') {
+              // Create and Organize by Group Labels
+              const groupLabel = item.system.groupLabel || game.i18n.localize('TWODSIX.Actor.Skills.NoGroup');
+              if(skillGroups[groupLabel] === undefined) {
+                skillGroups[groupLabel] = [];
+              }
+              skillGroups[groupLabel].push(item);
+            }
             skillsList.push(item);
           }
         }
@@ -381,6 +390,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.storageAndJunk = actor.itemTypes.storage.concat(actor.itemTypes.junk);
     sheetData.container.skills = skillsList;
+    sheetData.container.skillGroups = skillGroups;
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;

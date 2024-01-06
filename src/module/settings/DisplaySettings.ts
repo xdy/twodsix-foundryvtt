@@ -58,6 +58,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('showTLonItemsTab', false, false, 'world', setDocumentPartials));
     settings.actor.push(booleanSetting('omitPSIifZero', false));
     settings.actor.push(stringChoiceSetting('equippedToggleStates', "default", true, TWODSIX.EQUIPPED_TOGGLE_OPTIONS));
+    settings.actor.push(booleanSetting('showSkillGroups', false));
     return settings;
   }
 }

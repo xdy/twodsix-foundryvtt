@@ -37,49 +37,46 @@
       </ol>
     </span>
   </div>
-{{#each_sort_item container.skills as |item id|}}
-      <div class="item skill" data-item-id="{{item.id}}">
-          <ol class="ol-no-indent">
-            <li class=" flexrow" >
-              <span class="skill-container">
-                <span class="mini-dice centre rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">
-                  <i class="fa-solid fa-dice" alt="d6"></i>
-                </span>
-                <span class="item-name rollable" data-label="{{item.name}}">{{item.name}}</span>
-                <input class= "item-value-edit" type="number" value="{{item.system.value}}"/>
-                <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic ../actor item.system.characteristic}}</span>
-                <span class="item-name centre">{{{twodsix_adjustedSkillValue ../actor item}}}</span>
-                <span class="total-output flex1 skill-mod">{{twodsix_skillTotal ../actor item}}</span>
-                {{#iff item.system.trainingNotes "!==" ""}}
-                  <span class="pie-chart" style ='{{makePieImage item.system.trainingNotes}}'></span>
-                {{else}}
-                  <span></span>
-                {{/iff}}
-                <span class="item-controls centre">
-                  <a class="skl item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Skills.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a class="skl item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Skills.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
-                </span>
-              </span>
-            </li>
-          </ol>
-
+  {{#unless settings.showSkillGroups}}
+    {{#each_sort_item container.skills as |item id|}}
+      {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../actor}}
+    {{/each_sort_item}}
+  {{else}}
+    {{#each container.skillGroups}}
+      <div class="grid-columns-single-row">
+        <ol class="ol-no-indent header-row">
+          {{twodsix_titleCase @key}}
+        </ol>
       </div>
-{{/each_sort_item}}
+      <div class="item-list grid-columns-single">
+        {{#each_sort_item this as |item id|}}
+          {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
+        {{/each_sort_item}}
+      </div>
+    {{/each}}
+  {{/unless}}
 {{#if settings.hideUntrainedSkills}}
-    <div class="item skill" data-item-id="{{untrainedSkill.id}}" >
-      <ol class="ol-no-indent" >
-        <li class="flexrow" draggable="false">
-          <span class="skill-container">
-            <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"><i class="fa-solid fa-dice" alt="d6"></i></span>
-            <span class="item-name rollable">{{untrainedSkill.name}}</span>
-            <input class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
-            <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
-            <span class="centre">&mdash;</span>
-            <span class="total-output flex1 skill-mod">{{untrainedSkill.system.value}}</span>
-          </span>
-        </li>
-      </ol>
-    </div>
+  {{#if settings.showSkillGroups}}
+  <div class="grid-columns-single-row">
+    <ol class="ol-no-indent header-row">
+      {{twodsix_titleCase untrainedSkill.name}}
+    </ol>
+  </div>
+  {{/if}}
+  <div class="item skill" data-item-id="{{untrainedSkill.id}}" >
+    <ol class="ol-no-indent" >
+      <li class="flexrow" draggable="false">
+        <span class="skill-container">
+          <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"><i class="fa-solid fa-dice" alt="d6"></i></span>
+          <span class="item-name rollable">{{untrainedSkill.name}}</span>
+          <input class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
+          <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
+          <span class="centre">&mdash;</span>
+          <span class="total-output flex1 skill-mod">{{untrainedSkill.system.value}}</span>
+        </span>
+      </li>
+    </ol>
+  </div>
 {{/if}}
 </section>
 
