@@ -1,3 +1,10 @@
+## [4.16.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.0...v4.16.1) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try at using ghost's foundry-publish now that the new api is required. ([f769134](https://github.com/xdy/twodsix-foundryvtt/commit/f76913408ab60b9d057adcd50a54a8127fee2b73))
+
 # [4.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.15.0...v4.16.0) (2024-01-06)
 
 
