@@ -95,16 +95,16 @@ jobs:
 #          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
 #          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
 
-      # Publish the release to FoundryVTT's package repository.
-      - name: Publish Module to FoundryVTT Website
-        uses: Varriount/fvtt-autopublish@v2.0.1
-        with:
-          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          module-id: "twodsix"
-          #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
-          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
-          manifest-file: 'static/system.json'
+#      # Publish the release to FoundryVTT's package repository.
+#      - name: Publish Module to FoundryVTT Website
+#        uses: Varriount/fvtt-autopublish@v2.0.1
+#        with:
+#          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+#          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+#          module-id: "twodsix"
+#          #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
+#          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+#          manifest-file: 'static/system.json'
 
 #      # Publish the release to FoundryVTT's package repository
 #      - name: Publish to Foundry Admin
@@ -116,3 +116,15 @@ jobs:
 #          #manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/download/${{ env.TWODSIX_VERSION }}/system.json
 #          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 #          manifest-file: static/system.json
+
+      # Publish to FoundryVTT
+      - name: Publish to Foundry VTT Repo
+        id: publish_foundry_repo
+        run: npx @ghost-fvtt/foundry-publish
+        env:
+          FVTT_MANIFEST_PATH: "static/system.json"
+          FVTT_PACKAGE_ID: "twodsix"
+          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
