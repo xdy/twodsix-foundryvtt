@@ -181,6 +181,7 @@
         "SkillName": "Nombre",
         "Total": "Total",
         "Untrained": "Sin Entrenar",
+        "NoGroup": "Sin Grupo",
         "SkillRollTooltip": "Diálogo con opciones para tiradas de habilidad. Con tecla SHIFT se tiran dados sin aplicar modificadores y dificultad normal (6/8)",
         "InvertedSkillRollTooltip": "Tirada de habilidad sin modificadores y dificultad normal 6/8. Con tecla SHIFT se muestra diálogo opciones para tiradas ",
         "JOAT": "Polivalencia",
@@ -544,7 +545,8 @@
         "ALT2": "ALT2",
         "TrainingNotes": "Notas Estudio",
         "NumberOfSkills": "Número de Habilidades",
-        "SkillRanks": "Rangos Habilidad"
+        "SkillRanks": "Rangos Habilidad",
+        "GroupLabel": "Etiqueta de Grupo"
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
@@ -856,6 +858,34 @@
       "absoluteCriticalEffectValue": {
         "hint": "Por defecto 99, que ignora el efecto.",
         "name": "Qué valor de efecto es necesario en una tirada para ser considerada un Éxito/Fallo Crítico (marcadas en verde/rojo)."
+      },
+      "shortSTR": {
+        "hint": "Nombre abreviado para el atributo de fuerza. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo fuerza"
+      },
+      "shortDEX": {
+        "hint": "Nombre abreviado para el atributo de destreza. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo destreza"
+      },
+      "shortEND": {
+        "hint": "Nombre abreviado para el atributo de resistencia. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo resistencia"
+      },
+      "shortINT": {
+        "hint": "Nombre abreviado para el atributo de inteligencia. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo inteligencia"
+      },
+      "shortSOC": {
+        "hint": "Nombre abreviado para el atributo de nivel social. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo social"
+      },
+      "shortEDU": {
+        "hint": "Nombre abreviado para el atributo de educación. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo educación"
+      },
+      "shortPSI": {
+        "hint": "Nombre abreviado para el atributo de fuerza psiónica. Debe tener cuatro letras como máximo.",
+        "name": "Nombre abreviado para atributo psiónica"
       },
       "alternativeShort1": {
         "hint": "Nombre abreviado para el primer atributo alternativo. Debe tener cuatro caracteres como máximo.",
@@ -1339,6 +1369,10 @@
       "meleeRange": {
         "hint": "La distancia donde se considera el ataque como Melé. Normalmente una casilla de la rejilla (ej: 1,5m).",
         "name": "Distancia combate Melé"
+      },
+      "showSkillGroups": {
+        "hint": "Agrupar las habilidades en la hoja del actor por etiquetas.",
+        "name": "Agrupar habilidades por etiqueta"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
