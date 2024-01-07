@@ -1650,6 +1650,11 @@ a:hover, a.active {
   padding: 1em;
 }
 
+.skill-header {
+  cursor: pointer;
+  width: 34.2em
+}
+
 /* Style overrides */
 
 .skills input[type='number'] {
