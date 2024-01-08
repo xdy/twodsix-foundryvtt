@@ -1,3 +1,10 @@
+# [4.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.8...v4.17.0) (2024-01-08)
+
+
+### Features
+
+* allow skill headers to be toggled ([#1526](https://github.com/xdy/twodsix-foundryvtt/issues/1526)) ([615fb44](https://github.com/xdy/twodsix-foundryvtt/commit/615fb44c5146ba6c4855942611f375196528f07b))
+
 ## [4.16.8](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.7...v4.16.8) (2024-01-06)
 
 
