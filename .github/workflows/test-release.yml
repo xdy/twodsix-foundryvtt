@@ -6,6 +6,12 @@ on:
   push:
     branches: [ master]
 
+#TODO Parse out these, for now they're hardcoded.
+env:
+  fvtt_minimum: 11
+  fvtt_verified: 11.315
+  fvtt_maximum: 11
+
 jobs:
 #  test:
 #    if: github.repository == 'xdy/twodsix-foundryvtt'
@@ -83,8 +89,8 @@ jobs:
       - name: Get tag
         run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      - name: Install playwright
-        run: npx playwright install
+#      - name: Install playwright
+#        run: npx playwright install
 
 #      - name: Publish to Foundry VTT Repo
 #        id: publish_foundry_repo
@@ -95,16 +101,16 @@ jobs:
 #          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
 #          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
 
-      # Publish the release to FoundryVTT's package repository.
-      - name: Publish Module to FoundryVTT Website
-        uses: Varriount/fvtt-autopublish@v2.0.1
-        with:
-          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          module-id: "twodsix"
-          #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
-          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
-          manifest-file: 'static/system.json'
+#      # Publish the release to FoundryVTT's package repository.
+#      - name: Publish Module to FoundryVTT Website
+#        uses: Varriount/fvtt-autopublish@v2.0.1
+#        with:
+#          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+#          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+#          module-id: "twodsix"
+#          #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
+#          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+#          manifest-file: 'static/system.json'
 
 #      # Publish the release to FoundryVTT's package repository
 #      - name: Publish to Foundry Admin
@@ -116,3 +122,40 @@ jobs:
 #          #manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/download/${{ env.TWODSIX_VERSION }}/system.json
 #          manifest-url: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 #          manifest-file: static/system.json
+
+#      # Publish to FoundryVTT
+#      - name: Publish to Foundry VTT Repo
+#        if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
+#        id: publish_foundry_repo
+#        run: npx @ghost-fvtt/foundry-publish
+#        env:
+#          FVTT_MANIFEST_PATH: 'static/system.json'
+#          FVTT_PACKAGE_ID: 'twodsix'
+#          FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+#          FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+#          FVTT_MANIFEST_URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
+#          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Submit package to FoundryVTT Package Release API
+        run: |
+          curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
+            -d '{
+              "id": "twodsix",
+              "dry-run": false,
+              "release": {
+                "version": "${{ steps.package-version.outputs.current-version}}",
+                "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
+                "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
+                "compatibility": {
+                  "minimum": "${{ env.fvtt_minimum }}",
+                  "verified": "${{ env.fvtt_verified }}",
+                  "maximum": "${{ env.fvtt_maximum }}"
+                }
+              }
+            }'

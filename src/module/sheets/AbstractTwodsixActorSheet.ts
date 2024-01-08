@@ -349,11 +349,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           if (isDisplayableSkill(<Skills>item)) {
             if (actor.type === 'traveller') {
               // Create and Organize by Group Labels
-              const groupLabel = item.system.groupLabel || game.i18n.localize('TWODSIX.Actor.Skills.NoGroup');
-              if(skillGroups[groupLabel] === undefined) {
+              const groupLabel:string = item.system.groupLabel || game.i18n.localize('TWODSIX.Actor.Skills.NoGroup');
+              if(!Object.hasOwn(skillGroups, groupLabel)) {
                 skillGroups[groupLabel] = [];
               }
               skillGroups[groupLabel].push(item);
+
+              // Create toggle states
+              if (!Object.hasOwn(actor.system.displaySkillGroup, groupLabel)) {
+                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: true});
+              }
             }
             skillsList.push(item);
           }

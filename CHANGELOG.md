@@ -1,3 +1,67 @@
+# [4.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.8...v4.17.0) (2024-01-08)
+
+
+### Features
+
+* allow skill headers to be toggled ([#1526](https://github.com/xdy/twodsix-foundryvtt/issues/1526)) ([615fb44](https://github.com/xdy/twodsix-foundryvtt/commit/615fb44c5146ba6c4855942611f375196528f07b))
+
+## [4.16.8](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.7...v4.16.8) (2024-01-06)
+
+
+### Bug Fixes
+
+* Newer token, who dis? ([a56f841](https://github.com/xdy/twodsix-foundryvtt/commit/a56f8417139d717b4371543bd25879bb82666759))
+
+## [4.16.7](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.6...v4.16.7) (2024-01-06)
+
+
+### Bug Fixes
+
+* New token, who dis? ([8e32a3a](https://github.com/xdy/twodsix-foundryvtt/commit/8e32a3a541cd652a2ba240844b28b67293b707b3))
+
+## [4.16.6](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.5...v4.16.6) (2024-01-06)
+
+
+### Bug Fixes
+
+* I ungave up... ([9b4dcf2](https://github.com/xdy/twodsix-foundryvtt/commit/9b4dcf2bc44cc72f79fc2319aa6bad8ab8594703))
+
+## [4.16.5](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.4...v4.16.5) (2024-01-06)
+
+
+### Bug Fixes
+
+* Try with new token ([ed3ae85](https://github.com/xdy/twodsix-foundryvtt/commit/ed3ae85b8926384f9bef9ed251ba0ad750db9f96))
+
+## [4.16.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.3...v4.16.4) (2024-01-06)
+
+
+### Bug Fixes
+
+* curl ftw? ([e00ae94](https://github.com/xdy/twodsix-foundryvtt/commit/e00ae9402ac1cff791a4300c7d8481048dde26d7))
+* Recurl ([689258a](https://github.com/xdy/twodsix-foundryvtt/commit/689258aade485f9c361c4e289c93a64caeb6f622))
+
+## [4.16.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.2...v4.16.3) (2024-01-06)
+
+
+### Bug Fixes
+
+* Yet another try ([08c4acc](https://github.com/xdy/twodsix-foundryvtt/commit/08c4acc5e1d7cbc9ed66ca28051a20451bd4edd8))
+
+## [4.16.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.1...v4.16.2) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try ([44d8c97](https://github.com/xdy/twodsix-foundryvtt/commit/44d8c97cb532a3126086f42c18e339faee705c31))
+
+## [4.16.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.0...v4.16.1) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try at using ghost's foundry-publish now that the new api is required. ([f769134](https://github.com/xdy/twodsix-foundryvtt/commit/f76913408ab60b9d057adcd50a54a8127fee2b73))
+
 # [4.16.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.15.0...v4.16.0) (2024-01-06)
 
 

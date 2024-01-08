@@ -69,7 +69,7 @@ Or, if you prefer to do it as a separate module, make sure to mention it on the 
     1. Builds the prerequisites
        `npm install`
     1. Runs the system in 'developer mode', watching for changes in the code as they happen
-       `npm run build:dev`
+       `npm run build:watch`
 
 ## Coding conventions
 
