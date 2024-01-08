@@ -643,7 +643,8 @@ export default class TwodsixActor extends Actor {
         "quantity": 1,
         "skill": this.getUntrainedSkill()?.id ?? "",
         "equipped": "equipped",
-        "damageType": "bludgeoning"
+        "damageType": "bludgeoning",
+        "range": "Melee"
       }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
