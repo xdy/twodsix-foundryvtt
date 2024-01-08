@@ -1173,7 +1173,7 @@ span.add-skill-txt {
 
 .skill {
   /* padding: 0.1em 0 0.1em 0.1em; */
-  width: fit-content;
+  width: 34em;
 }
 
 /*a:hover, a.active {
@@ -1187,6 +1187,11 @@ span.add-skill-txt {
 
 .skills.flexrow.flex-group-center {
   padding: 1em;
+}
+
+.skill-header {
+  cursor: pointer;
+  width: 34em
 }
 
 /* Style overrides */
@@ -2054,7 +2059,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px;
   grid-template-areas:
     ".";
-  width: 54.4em;
+  width: fit-content;
   /* border: solid 1px var(--s2d6-input-background); */
 }
 

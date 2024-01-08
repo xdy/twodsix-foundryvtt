@@ -43,21 +43,23 @@
     {{/each_sort_item}}
   {{else}}
     {{#each container.skillGroups}}
-      <div class="grid-columns-single-row">
+      <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}">
         <ol class="ol-no-indent header-row">
-          {{twodsix_titleCase @key}}
+          {{twodsix_titleCase @key}} {{#unless (lookup ../actor.system.displaySkillGroup @key)}}<i class="fa-solid fa-eye"></i>{{else}}<i class="fa-solid fa-eye-slash" ></i>{{/unless}}
         </ol>
       </div>
+      {{#if (lookup ../actor.system.displaySkillGroup @key)}}
       <div class="item-list grid-columns-single">
         {{#each_sort_item this as |item id|}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
         {{/each_sort_item}}
       </div>
+      {{/if}}
     {{/each}}
   {{/unless}}
 {{#if settings.hideUntrainedSkills}}
   {{#if settings.showSkillGroups}}
-  <div class="grid-columns-single-row">
+  <div class="grid-columns-single-row skill-header" style="cursor: auto;">
     <ol class="ol-no-indent header-row">
       {{twodsix_titleCase untrainedSkill.name}}
     </ol>

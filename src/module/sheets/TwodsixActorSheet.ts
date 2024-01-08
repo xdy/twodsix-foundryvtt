@@ -147,7 +147,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
     //Consumable Toggling
     html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
-
+    //Skill list toggling
+    html.find(".skill-header").on("click", this._onSkillHeaderToggle.bind(this));
   }
 
   /**
@@ -305,6 +306,19 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       }
     }
     //console.log("Made it to toggle");
+  }
+
+  /**
+   * Handle toggling the skill header.
+   * @param {Event} event   The originating click event.
+   * @private
+   */
+  private async _onSkillHeaderToggle(event): Promise<void> {
+    const parentKey: string = $(event.currentTarget).data("parentKey");
+    if (parentKey) {
+      this.actor.system.displaySkillGroup[parentKey] = !this.actor.system.displaySkillGroup[parentKey];
+      this.render(false);
+    }
   }
 }
 
