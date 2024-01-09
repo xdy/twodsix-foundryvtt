@@ -76,7 +76,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
-      returnData.disableMeleeRangeDM = this.item.system.range.toLowerCase() === 'melee';
+      returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
     return returnData;
   }

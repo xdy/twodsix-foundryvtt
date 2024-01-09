@@ -1,3 +1,10 @@
+## [4.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.17.0...v4.17.1) (2024-01-09)
+
+
+### Bug Fixes
+
+* missing migration for weapon range ([#1528](https://github.com/xdy/twodsix-foundryvtt/issues/1528)) ([9c665a2](https://github.com/xdy/twodsix-foundryvtt/commit/9c665a29fb8c30eb69c6caae17af9f68fbb24438))
+
 # [4.17.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.16.8...v4.17.0) (2024-01-08)
 
 
