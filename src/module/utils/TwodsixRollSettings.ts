@@ -402,7 +402,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     if (parsedSkills !== "" && parsedSkills !== 'None') {
       skill = getBestSkill(parsedSkills, actor, !char);
       if (!skill) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor?.name ?? "").replace("_SKILL_", parsedSkills));
+        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor.name ?? "").replace("_SKILL_", parsedSkills));
         return false;
       }
     }
@@ -466,14 +466,14 @@ export function getBestSkill(skillList: string, actor:TwodsixActor, includeChar:
   // find the most advantageous skill to use from the collection
   if(skillObjects?.length > 0){
     skill = skillObjects.reduce((prev, current) => {
-      const prevValue = prev.system.value + includeChar ? getCharMoD(actor, prev.system.characteristic) : 0;
-      const currentValue = current.system.value + includeChar ? getCharMoD(actor, current.system.characteristic) : 0;
+      const prevValue = prev.system.value + (includeChar ? getCharMoD(actor, prev.system.characteristic) : 0);
+      const currentValue = current.system.value + (includeChar ? getCharMoD(actor, current.system.characteristic) : 0);
       return (prevValue > currentValue) ? prev : current;
     });
   }
   // If skill missing, try to use Untrained
   if (!skill) {
-    skill = actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+    skill = actor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
   }
   return skill;
 }
