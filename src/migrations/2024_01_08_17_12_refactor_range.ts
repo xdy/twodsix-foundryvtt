@@ -13,7 +13,7 @@ export async function refactorRange(item: TwodsixItem): Promise<void> {
 
 async function refactorWeapons (actor:TwodsixActor): Promise<void> {
   for (const weapon of actor.itemTypes.weapon) {
-    refactorRange(weapon);
+    await refactorRange(weapon);
   }
 }
 
