@@ -2,11 +2,11 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { applyToAllItems, applyToAllActors } from "../module/utils/migration-utils";
 
-async function refactorRange(item: TwodsixItem): Promise<void> {
+export async function refactorRange(item: TwodsixItem): Promise<void> {
   if (item.type === 'weapon') {
     if (typeof item.system.range === 'number') {
       const newString = item.system.range === 0 ? "" : item.system.range.toString();
-      item.update({'system.range': newString});
+      await item.update({'system.range': newString});
     }
   }
 }
