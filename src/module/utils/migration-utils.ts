@@ -12,33 +12,41 @@ export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void
     }
   }
 
-  const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && !pack.locked);
-  for (const pack of actorPacks) {
-    for (const actor of await pack.getDocuments()) {
-      allActors.push(actor as unknown as TwodsixActor);
-    }
-  }
-
   for (const actor of allActors) {
     await fn(actor);
   }
+
+  const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && pack.metadata.packageType !== 'system');
+  await applyToAllPacks(fn, actorPacks);
 
   return Promise.resolve();
 }
 
 export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>)): Promise<void> {
-  const allItems = (game.items?.contents ?? []) as TwodsixItem[];
-  const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && !pack.locked);
-  for (const pack of itemPacks) {
-    for (const item of await pack.getDocuments()) {
-      allItems.push(item as unknown as TwodsixItem);
-    }
-  }
+  const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && pack.metadata.packageType !== 'system');
+  await applyToAllPacks(fn, itemPacks);
 
+  const allItems = (game.items?.contents ?? []) as TwodsixItem[];
   for (const item of allItems) {
     await fn(item);
   }
 
   return Promise.resolve();
 
+}
+
+async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs:Compendium[]): Promise<void> {
+  for (const pack of packs) {
+    let wasLocked = false;
+    if (pack.locked) {
+      await pack.configure({locked: false});
+      wasLocked = true;
+    }
+    for (const doc of await pack.getDocuments()) {
+      await fn(doc);
+    }
+    if (wasLocked) {
+      await pack.configure({locked: true});
+    }
+  }
 }

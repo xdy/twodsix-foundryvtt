@@ -701,7 +701,7 @@ export interface Spell extends LinkTemplate, TargetTemplate {
 
 export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   templates:string[];
-  range:number;
+  range:string;
   damage:string;
   damageBonus:number;
   magazineSize:number;

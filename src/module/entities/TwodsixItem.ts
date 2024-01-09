@@ -261,6 +261,11 @@ export default class TwodsixItem extends Item {
   public getRangeModifier(range:number): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
+    // Return immediately with default if bad migration
+    if (typeof this.system.range === 'number'){
+      return {rangeModifier: rangeModifier, rollType: rollType};
+    }
+
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
     if (rangeModifierType === 'none') {

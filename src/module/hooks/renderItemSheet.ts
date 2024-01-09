@@ -1,11 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import TwodsixItem from "../entities/TwodsixItem";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 Hooks.on('renderItemSheet', async (app, html) => {
   const item = app.item;
 
   // Check if item was just created
-  if (item && item.getFlag('twodsix', 'newItem')) {
+  if (item && item.getFlag('twodsix', 'newItem') && !item.uuid.includes('Compendium')) {
     // Mark item as no longer being new so that it won't show up when opening the item in the future
     await item.unsetFlag('twodsix', 'newItem');
 
