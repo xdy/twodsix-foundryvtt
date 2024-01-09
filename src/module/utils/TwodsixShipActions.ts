@@ -68,19 +68,27 @@ export class TwodsixShipActions {
         flags: {tokenUUID: extra.ship?.uuid}
       });
       Object.assign(settings.rollModifiers, {item: extra.diceModifier ? parseInt(extra.diceModifier) : 0});
-      const skill:TwodsixItem = settings.skill;
+      const skill:TwodsixItem|undefined = settings.skill;
       delete settings.skill;
-      const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, extra.actor);
-      if (!options.shouldRoll) {
-        return false;
-      }
-
-      if (extra.component) {
-        return extra.component.skillRoll(false, options);
+      if (!settings.skillRoll) {
+        // Special case of characteristic roll
+        if (settings.rollModifiers.characteristic) {
+          extra.actor.characteristicRoll({rollModifiers: settings.rollModifiers, difficulty: settings.difficulty}, true);
+        } else {
+          return false;
+        }
       } else {
-        return skill.skillRoll(false, options);
-      }
+        const options = await TwodsixRollSettings.create(showTrowDiag, settings, skill, <TwodsixItem>extra.component, extra.actor);
+        if (!options.shouldRoll) {
+          return false;
+        }
 
+        if (extra.component) {
+          return extra.component.skillRoll(false, options);
+        } else {
+          return skill.skillRoll(false, options);
+        }
+      }
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
       return false;
