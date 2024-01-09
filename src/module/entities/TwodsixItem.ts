@@ -15,7 +15,6 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../sheets/TwodsixItemSheet";
 import { TWODSIX } from "../config";
-import { refactorRange } from "../../migrations/2024_01_08_17_12_refactor_range";
 
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -195,7 +194,7 @@ export default class TwodsixItem extends Item {
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        const rangeData = await this.getRangeModifier(targetRange);
+        const rangeData = this.getRangeModifier(targetRange);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
         rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
@@ -239,7 +238,7 @@ export default class TwodsixItem extends Item {
         Object.assign(settings.rollModifiers, dodgeParryInfo);
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          const rangeData = await this.getRangeModifier(targetRange);
+          const rangeData = this.getRangeModifier(targetRange);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
@@ -259,13 +258,12 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async getRangeModifier(range:number): Promise<any> {
+  public getRangeModifier(range:number): Promise<any> {
     let rangeModifier = 0;
     let rollType = 'Normal';
-
-    //Fix missing migration
-    if ( typeof this.system.range === 'number') {
-      await refactorRange(this);
+    // Return immediately with default if bad migration
+    if (typeof this.system.range === 'number'){
+      return {rangeModifier: rangeModifier, rollType: rollType};
     }
 
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
