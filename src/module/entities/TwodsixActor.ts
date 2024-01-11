@@ -3,7 +3,7 @@
 
 import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
@@ -660,7 +660,7 @@ export default class TwodsixActor extends Actor {
             const skill = actor.items.get((<Gear>item.system).skill);
             if (skill && skill.getFlag("twodsix", "untrainedSkill")) {
               //CHECK FOR ASSOCIATED SKILL NAME AS FIRST OPTION
-              const associatedSkill = actor.itemTypes.skills.find((sk:TwodsixItem)=> sk.name === item.system.associatedSkillName);
+              const associatedSkill = actor.getBestSkill(item.system.associatedSkillName, false);
               itemUpdates.push({_id: item.id, "system.skill": associatedSkill?.id ?? "" });
             }
           }
@@ -683,7 +683,7 @@ export default class TwodsixActor extends Actor {
             const attachedSkill = await actor.items.get(item.system.skill);
             if (!attachedSkill || (untrainedSkill.system.value === actor.system.skills[simplifySkillName(attachedSkill?.name)]) && !attachedSkill?.getFlag("twodsix", "untrainedSkill")) {
               //CHECK FOR ASSOCIATED SKILL NAME AS FIRST OPTION
-              const associatedSkill = await actor.itemTypes.skills.find((sk)=> sk.name === item.system.associatedSkillName);
+              const associatedSkill = actor.getBestSkill(item.system.associatedSkillName, false);
               itemUpdates.push({_id: item.id, "system.skill": associatedSkill?.id ?? untrainedSkill.id});
             }
           }
@@ -833,8 +833,8 @@ export default class TwodsixActor extends Actor {
       transferData.effects[0].transfer =  game.settings.get('twodsix', "useItemActiveEffects");
     }
 
-    //Link an actor skill with name defined by item.associatedSkillName
-    transferData.system.skill = this.items.getName(transferData.system.associatedSkillName)?.id ?? this.getUntrainedSkill()?.id;
+    //Link an actor skill with names defined by item.associatedSkillName
+    transferData.system.skill = this.getBestSkill(transferData.system.associatedSkillName, false)?.id ?? this.getUntrainedSkill()?.id;
 
     //Remove any attached consumables
     transferData.system.consumables = [];
@@ -910,7 +910,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * We override this with an empty implementation because we have our own custom way of applying
-   * {@link ActiveEffect}s and {@link Actor#prepareEmbeddedDocuments} calls this.
+   * {@link ActiveEffect} and {@link Actor#prepareEmbeddedDocuments} calls this.
    * @override
    */
   override applyActiveEffects() {
@@ -1066,6 +1066,46 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+  /**
+   * Returns skill with highest value from an actor based on a list of skills
+   * @param {string} skillList A string of skills separated by pipe, e.g. "Admin | Combat"
+   * @param {boolean} includeChar Whether to include default charactrisic in selection
+   * @returns {TwodsixItem|undefined} the skill document selected
+   */
+  public getBestSkill(skillList: string, includeChar: boolean): TwodsixItem|undefined {
+    let skill:TwodsixItem|undefined = undefined;
+    const skillOptions = skillList.split("|").map(str => str.trim());
+    /* add qualified skill objects to an array*/
+    const skillObjects = this.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
+    // find the most advantageous skill to use from the collection
+    if(skillObjects?.length > 0){
+      skill = skillObjects.reduce((prev, current) => {
+        //use this.system.skills[simplfiedSkillName] not system.value to account for Active Effects
+        const prevValue = this.system.skills[simplifySkillName(prev.name)] + (includeChar ? this.getCharMoD(prev.system.characteristic) : 0);
+        const currentValue = this.system.skills[simplifySkillName(current.name)] + (includeChar ? this.getCharMoD(current.system.characteristic) : 0);
+        return (prevValue > currentValue) ? prev : current;
+      });
+    }
+    // If skill missing, try to use Untrained
+    if (!skill) {
+      skill = this.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
+    }
+    return skill;
+  }
+
+  /**
+   * Returns characteristic modifier based on the core short label (not the display label)
+   * @param {string} charShort A string of the core short characteristic label (uncustomized). This is the static label and not the display label.
+   * @returns {number} the characteristic value
+   */
+  private getCharMoD(charShort: string):number {
+    if (charShort !== 'NONE' && charShort) {
+      const key = getKeyByValue(TWODSIX.CHARACTERISTICS, charShort);
+      return /*ObjectbyString(this.overrides, `system.characteristics.${key}`) ??*/ this.system.characteristics[key]?.mod ?? 0;
+    } else {
+      return 0;
+    }
+  }
 }
 
 /**

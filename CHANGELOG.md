@@ -1,3 +1,10 @@
+# [4.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.17.1...v4.18.0) (2024-01-11)
+
+
+### Features
+
+* allow associated skill to list multiple skills ([#1529](https://github.com/xdy/twodsix-foundryvtt/issues/1529)) ([5a9e1fd](https://github.com/xdy/twodsix-foundryvtt/commit/5a9e1fd33217977c137eb9fdeef7e3be37bd9526))
+
 ## [4.17.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.17.0...v4.17.1) (2024-01-09)
 
 

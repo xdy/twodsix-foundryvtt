@@ -218,7 +218,7 @@ export async function handleSkillRoll(event: Event): Promise<void> {
   if (actorToUse) {
     const parsedValues:any = getInitialSettingsFromFormula(parseString, actorToUse);
     if (parsedValues) {
-      if (parsedValues.skill === 'None') {
+      if (!parsedValues.skillRoll) {
         actorToUse.characteristicRoll({rollModifiers: parsedValues.rollModifiers, difficulty: parsedValues.difficulty}, true);
       } else {
         const skill:TwodsixItem = parsedValues.skill;

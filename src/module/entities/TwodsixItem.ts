@@ -360,10 +360,9 @@ export default class TwodsixItem extends Item {
       skill = this;
       item = undefined;
     } else if (this.type === "spell") {
-      skill =  <TwodsixItem>(workingActor?.itemTypes.skills.find(sk => sk.name === this.system?.associatedSkillName) ?? workingActor?.itemTypes.skills.find(sk => sk.name === game.settings.get("twodsix", "sorcerySkill")));
-      if (skill === undefined  && workingActor) {
-        skill = workingActor.getUntrainedSkill();
-      }
+      const skillList = `${game.settings.get("twodsix", "sorcerySkill")}|` + this.system?.associatedSkillName;
+      skill =  <TwodsixItem>(workingActor.getBestSkill(skillList, false));
+
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
     } else if (this.type === "component") {
