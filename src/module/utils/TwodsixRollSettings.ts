@@ -400,7 +400,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     // Select Skill if required
     let skill:TwodsixItem|undefined = undefined;
     if (parsedSkills !== "" && parsedSkills !== 'None') {
-      skill = getBestSkill(parsedSkills, actor, !char);
+      skill = actor.getBestSkill(parsedSkills, !char);
       if (!skill) {
         ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor.name ?? "").replace("_SKILL_", parsedSkills));
         return false;
@@ -448,40 +448,5 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
   } else {
     ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
     return false;
-  }
-}
-
-/**
- * Returns skill with highest value from an actor based on a list of skills
- * @param {string} skillList A string of skills separated by pipe, e.g. "Admin | Combat"
- * @param {TwodsixActor} actor The actor that posesses the skill
- * @param {boolean} includeChar Whether to include default charactrisic in selection
- * @returns {TwodsixItem|undefined} the skill document selected
- */
-export function getBestSkill(skillList: string, actor:TwodsixActor, includeChar: boolean): TwodsixItem|undefined {
-  let skill:TwodsixItem|undefined = undefined;
-  const skillOptions = skillList.split("|").map(str => str.trim());
-  /* add qualified skill objects to an array*/
-  const skillObjects = actor.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
-  // find the most advantageous skill to use from the collection
-  if(skillObjects?.length > 0){
-    skill = skillObjects.reduce((prev, current) => {
-      const prevValue = prev.system.value + (includeChar ? getCharMoD(actor, prev.system.characteristic) : 0);
-      const currentValue = current.system.value + (includeChar ? getCharMoD(actor, current.system.characteristic) : 0);
-      return (prevValue > currentValue) ? prev : current;
-    });
-  }
-  // If skill missing, try to use Untrained
-  if (!skill) {
-    skill = actor.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
-  }
-  return skill;
-}
-
-function getCharMoD(actor:TwodsixActor, charShort: string):number {
-  if (charShort !== 'NONE' && charShort) {
-    return actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, charShort)].mod;
-  } else {
-    return 0;
   }
 }
