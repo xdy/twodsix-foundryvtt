@@ -39,6 +39,13 @@ export function mergeDeep(target:Record<string, any>, ...sources:Record<string, 
   return mergeDeep(target, ...sources);
 }
 
+/**
+ * Returns the localized, default short label based on logical shortLabel
+ * @param {string} char the logical, characteristic shortLabel (not the display label)
+ * @return {string} the value from the object
+ * @public
+ * @function
+ */
 export function getCharShortName(char: string): string {
   switch (char) {
     case "ALT1":
@@ -54,10 +61,25 @@ export function getCharShortName(char: string): string {
   }
 }
 
+/**
+ * Returns the simplified skill name by removing white space from the skill's full name
+ * @param {string} skillName the skill's full name
+ * @return {string} the skill's name with whitespace removed
+ * @public
+ * @function
+ */
 export function simplifySkillName(skillName:string): string {
   return skillName.replace(/\W/g, "");
 }
 
+/**
+ * Returns the value for an object based on the keys in the key string
+ * @param {object} o the object
+ * @param {string} s they key(s) as a string path with each lower sub key separated by dots, e.g. "key.subKey.subsubKey"
+ * @return {any} the value form the object
+ * @public
+ * @function
+ */
 export function ObjectbyString(o, s) {
   //https://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-and-arrays-by-string-path
   s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties

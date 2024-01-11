@@ -370,7 +370,14 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   return returnObject;
 }
 
-export function getInitialSettingsFromFormula(parseString: string, actor: TwodsixActor): any {
+/**
+ * Returns initial roll settings based on a coded string for a roll formula
+ * @param {string} parseString A string of roll parameters.  It has the format 'Skill 1 | Skill 2/Char1 | Char 2 Difficulty+ =Item Id'
+ * e.g. 'Engineering|Mechanic/INT|EDU 6+'.  For a characteristic Roll, use 'None' instead of a skill name.
+ * @param {TwodsixActor} actor The actor that posesses the skill
+ * @returns {TwodsixRollSettings | any} an object of the initial RollSettings
+ */
+export function getInitialSettingsFromFormula(parseString: string, actor: TwodsixActor): TwodsixRollSettings|any {
   const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
   // eslint-disable-next-line no-useless-escape
   const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/([\S]+))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
@@ -392,21 +399,11 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
 
     // Select Skill if required
     let skill:TwodsixItem|undefined = undefined;
-    if (parsedSkills !== "") {
-      const skillOptions = parsedSkills.split("|");
-      /* add qualified skill objects to an array*/
-      const skillObjects = actor?.itemTypes.skills?.filter((itm: TwodsixItem) => skillOptions.includes(itm.name));
-      // find the most advantageous skill to use from the collection
-      if(skillObjects?.length > 0){
-        skill = skillObjects.reduce((prev, current) => (prev.system.value > current.system.value) ? prev : current);
-      }
-      // If skill missing, try to use Untrained
+    if (parsedSkills !== "" && parsedSkills !== 'None') {
+      skill = actor.getBestSkill(parsedSkills, !char);
       if (!skill) {
-        skill = actor?.itemTypes.skills.find((itm: TwodsixItem) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) as TwodsixItem;
-        if (!skill) {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor?.name ?? "").replace("_SKILL_", parsedSkills));
-          return false;
-        }
+        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.ActorLacksSkill").replace("_ACTOR_NAME_", actor.name ?? "").replace("_SKILL_", parsedSkills));
+        return false;
       }
     }
 
@@ -420,7 +417,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
       characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
     } else if (char) {
       //find the most advantageous characteristic to use based on the displayed (custom) short label
-      const charOptions = char.split("|");
+      const charOptions = char.split("|").map(str => str.trim());
       let candidateCharObject = undefined;
       const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
       if(candidateCharObjects.length > 0){
@@ -437,8 +434,8 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     }
 
     const returnValues = {
-      skill: parsedSkills === 'None' ? 'None': skill,
-      skillRoll: !!skill,
+      skill: skill,
+      skillRoll: parsedSkills === 'None' ? false : !!skill,
       displayLabel: displayLabel,
       rollModifiers: {
         characteristic: shortLabel,

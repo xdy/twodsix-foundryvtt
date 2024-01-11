@@ -493,7 +493,7 @@
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
-        "AssociatedSkillName": "Associated Skill Name",
+        "AssociatedSkillName": "Associated Skill Name(s)",
         "Description": "Description",
         "ItemName": "Item Name",
         "Location": "Location",

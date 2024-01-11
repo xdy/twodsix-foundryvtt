@@ -37,10 +37,9 @@ export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>))
 
 async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs:Compendium[]): Promise<void> {
   for (const pack of packs) {
-    let wasLocked = false;
+    const wasLocked = pack.locked;
     if (pack.locked) {
       await pack.configure({locked: false});
-      wasLocked = true;
     }
     for (const doc of await pack.getDocuments()) {
       await fn(doc);
