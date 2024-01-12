@@ -1373,6 +1373,10 @@
       "showSkillGroups": {
         "hint": "Group skills on actor sheet by group labels.",
         "name": "Group skills by labels"
+      },
+      "NoDuplicatesOnHotbar": {
+        "hint": "Prevent duplicate item macros when drag-dropping items onto hotbar",
+        "name": "No duplicate item macros on hotbar"
       }
     },
     "CloseAndCreateNew": "Close and create new",

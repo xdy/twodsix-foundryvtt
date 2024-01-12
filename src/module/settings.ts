@@ -47,6 +47,7 @@ export const registerSettings = function ():void {
   booleanSetting('invertSkillRollShiftClick', false, true);
   booleanSetting('transferDroppedItems', false, true);
   booleanSetting('autoAddUnarmed', false, true);
+  booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
   //Store default partials for items and compendium tab - hidden
   stringSetting('defaultItemPartial', ItemDirectory.entryPartial, false, "client");
   stringSetting('defaultCompendiumPartial', Compendium.entryPartial, false, "client");

@@ -63,7 +63,7 @@ async function addItemMacro(dropData:object, slot:number): Promise<void> {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MacroNameExists"));
           await macro.update({command: command});
         }
-        if (Object.values(game.user.hotbar).includes(macro.id)) {
+        if (Object.values(game.user.hotbar).includes(macro.id) && game.settings.get('twodsix', 'NoDuplicatesOnHotbar')) {
           return;
         }
       }
