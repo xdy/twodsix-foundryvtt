@@ -5,21 +5,22 @@ import TwodsixItem from "../entities/TwodsixItem";
 
 /**
  * Use a previously created macro.
- * @param {string} itemId
+ * @param {string} itemId Item's id
+ * @param {string}  itemName Item's name
  * @return {Promise}
  */
-export async function rollItemMacro(itemId: string): Promise<void> {
+export async function rollItemMacro(itemId: string, itemName?:string): Promise<void> {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) {
-    actor = game.actors?.tokens[speaker.token];
+    actor = game.actors.tokens[speaker.token];
   }
   if (!actor && speaker.actor) {
-    actor = game.actors?.get(speaker.actor);
+    actor = game.actors.get(speaker.actor);
   }
-  const item:TwodsixItem = actor ? actor.items.find((i) => i.id === itemId) : null;
+  const item:TwodsixItem = actor ? (actor.items.get(itemId) ?? actor.items.getName(itemName)) : undefined;
   if (!item) {
-    const unattachedItem = game.items?.get(itemId);
+    const unattachedItem = game.items.get(itemId) ?? game.items.getName(itemName);
     if (unattachedItem?.type != "weapon" && !actor && unattachedItem) {
       await (<TwodsixItem><unknown>unattachedItem).skillRoll(true);
     } else {

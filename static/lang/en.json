@@ -1455,7 +1455,8 @@
       "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor.",
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
-      "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable."
+      "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
+      "MacroNameExists": "Macro by that name exists, but command is different.  Updating command."
     }
   },
   "TYPES": {
