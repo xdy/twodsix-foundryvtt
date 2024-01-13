@@ -170,7 +170,7 @@
       },
       "Rolling": "Tirada de",
       "Skills": {
-        "AddSkill": ">>Añadir<<",
+        "AddSkill": "Añadir",
         "DeleteItem": "Borrar Objeto",
         "EditItem": "Editar Objeto",
         "EditOrRemove": "Editar / Borrar",

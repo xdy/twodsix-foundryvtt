@@ -97,7 +97,7 @@
         "Notes": "Notes de personnage"
       },
       "Skills": {
-        "AddSkill": "+ Compétence",
+        "AddSkill": "Compétence",
         "DeleteItem": "Supprimer objet",
         "EditItem": "Editer objet",
         "EditOrRemove": "Modifier / suppr.",
