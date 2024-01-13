@@ -52,7 +52,8 @@
       "ROFSingle": "Single Fire",
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
-      "ROFDoubleTap": "Double Tap"
+      "ROFDoubleTap": "Double Tap",
+      "ReplaceMacroCommand": "Update Macro Command"
     },
     "Actor": {
       "Age": "Age",
@@ -1460,7 +1461,7 @@
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
-      "MacroNameExists": "Macro by that name exists, but command is different.  Updating command."
+      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?"
     }
   },
   "TYPES": {
