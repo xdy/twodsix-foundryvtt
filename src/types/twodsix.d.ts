@@ -152,6 +152,7 @@ declare global {
       'twodsix.equippedToggleStates': string;
       'twodsix.targetDMList': string;
       'twodsix.showSkillGroups': boolean;
+      'twodsix.NoDuplicatesOnHotbar': boolean;
     }
   }
 }

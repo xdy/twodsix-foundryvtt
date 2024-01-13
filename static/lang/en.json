@@ -52,7 +52,8 @@
       "ROFSingle": "Single Fire",
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
-      "ROFDoubleTap": "Double Tap"
+      "ROFDoubleTap": "Double Tap",
+      "ReplaceMacroCommand": "Update Macro Command"
     },
     "Actor": {
       "Age": "Age",
@@ -1373,6 +1374,10 @@
       "showSkillGroups": {
         "hint": "Group skills on actor sheet by group labels.",
         "name": "Group skills by labels"
+      },
+      "NoDuplicatesOnHotbar": {
+        "hint": "Prevent duplicate item macros when drag-dropping items onto hotbar",
+        "name": "No duplicate item macros on hotbar"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1455,7 +1460,8 @@
       "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor.",
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
-      "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable."
+      "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
+      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?"
     }
   },
   "TYPES": {

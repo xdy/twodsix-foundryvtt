@@ -1,3 +1,10 @@
+## [4.18.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.0...v4.18.1) (2024-01-13)
+
+
+### Bug Fixes
+
+* make item macros more robust ([#1530](https://github.com/xdy/twodsix-foundryvtt/issues/1530)) ([90a2130](https://github.com/xdy/twodsix-foundryvtt/commit/90a21304d38baedb197e4629db8b9e9cf2f05470))
+
 # [4.18.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.17.1...v4.18.0) (2024-01-11)
 
 

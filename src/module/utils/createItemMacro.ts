@@ -25,8 +25,8 @@ async function addItemMacro(dropData:object, slot:number): Promise<void> {
       let img = "";
       let command = "";
       if (dropData.type === "Item") {
-        command = `game.twodsix.rollItemMacro("${item.id ? item.id : item._id}");`;
         itemName = item.name || "";
+        command = `game.twodsix.rollItemMacro("${item.id ? item.id : item._id}", "${itemName}");`;
         img = item.img || foundry.documents.BaseMacro.DEFAULT_ICON;
 
         //handle case for unattached item
@@ -58,6 +58,22 @@ async function addItemMacro(dropData:object, slot:number): Promise<void> {
           img: img,
           flags: { 'twodsix.itemMacro': true },
         }, { renderSheet: false }) as Macro;
+      } else {
+        if (macro.command !== command) {
+          await Dialog.confirm({
+            title: game.i18n.localize("TWODSIX.Dialogs.ReplaceMacroCommand"),
+            content: game.i18n.localize("TWODSIX.Warnings.MacroNameExists"),
+            yes: async () => {
+              await macro.update({command: command});
+            },
+            no: () => {
+              //Nothing
+            },
+          });
+        }
+        if (Object.values(game.user.hotbar).includes(macro.id) && game.settings.get('twodsix', 'NoDuplicatesOnHotbar')) {
+          return;
+        }
       }
       await game.user?.assignHotbarMacro(macro, slot);
     }
