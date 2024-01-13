@@ -1,3 +1,10 @@
+## [4.18.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.1...v4.18.2) (2024-01-13)
+
+
+### Bug Fixes
+
+* dropping traits ([#1533](https://github.com/xdy/twodsix-foundryvtt/issues/1533)) ([d411558](https://github.com/xdy/twodsix-foundryvtt/commit/d41155892bdef97a1b069c2567dd49e6a71aaf10))
+
 ## [4.18.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.0...v4.18.1) (2024-01-13)
 
 
