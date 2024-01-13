@@ -1073,8 +1073,8 @@ export default class TwodsixActor extends Actor {
    * @returns {TwodsixItem|undefined} the skill document selected
    */
   public getBestSkill(skillList: string, includeChar: boolean): TwodsixItem|undefined {
-    if (!skillList) {
-      return undefined;  //return if associatedSkillName doesn't exist (skillList).
+    if (skillList === undefined) {
+      return undefined;  //return if associatedSkillName doesn't exist (skillList is undefined, empty string is OK).
     }
     let skill:TwodsixItem|undefined = undefined;
     const skillOptions = skillList.split("|").map(str => str.trim());
