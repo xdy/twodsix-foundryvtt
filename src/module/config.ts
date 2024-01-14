@@ -72,7 +72,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.1667",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'CE',
       targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2"

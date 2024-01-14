@@ -144,36 +144,44 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
 
   let state = false;
+  let ratio = 1;
+  let idToKeep = "";
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
   if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
     state = true;
   } else if (maxEncumbrance > 0) {
-    const ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+    ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
     state = (ratio > parseFloat(await game.settings.get('twodsix', 'encumbranceFraction')));
   }
   if (isCurrentlyEncumbered.length > 0) {
     const idList = await isCurrentlyEncumbered.map(i => i.id);
     if (state === true) {
-      await idList.pop();
+      idToKeep = idList.pop();
     }
     if(idList.length > 0) {
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
-  } else if (state === true  && isCurrentlyEncumbered.length === 0) {
-    const modifier = game.settings.get('twodsix', 'encumbranceModifier');
+  }
+
+  if (state === true) {
+    const modifier = getEncumbranceModifier(ratio);
     const changeData = [{
       key: "system.conditions.encumberedEffect",
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
       value: modifier.toString()
     }];
-    await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-      name: game.i18n.localize(effectType.encumbered),
-      icon: "systems/twodsix/assets/icons/weight.svg",
-      changes: changeData,
-      statuses: ["encumbered"]
-    }]);
-    //const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
-    //await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
+    if (isCurrentlyEncumbered.length === 0) {
+      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+        name: game.i18n.localize(effectType.encumbered),
+        icon: "systems/twodsix/assets/icons/weight.svg",
+        changes: changeData,
+        statuses: ["encumbered"]
+      }]);
+    } else {
+      if (changeData[0].value !== selectedActor.effects.get(idToKeep)?.changes[0].value  && !!idToKeep) {
+        await selectedActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: idToKeep, changes: changeData }]);
+      }
+    }
   }
 }
 
@@ -395,4 +403,14 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-
+function getEncumbranceModifier(ratio:number):number {
+  if (game.settings.get("twodsix", "ruleset") === 'CE') {
+    if (ratio <= 0.33) {
+      return game.settings.get('twodsix', 'encumbranceModifier');
+    } else if (ratio <= 1) {
+      return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+    }
+  } else {
+    return game.settings.get('twodsix', 'encumbranceModifier');
+  }
+}
