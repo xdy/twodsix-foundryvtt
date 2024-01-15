@@ -362,7 +362,7 @@ export default class TwodsixActor extends Actor {
       } else {
         switch (anComponent.subtype) {
           case 'drive': {
-            const componentName = item.name?.toLowerCase();
+            const componentName = item.name?.toLowerCase() || "";
             const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
             const mDriveLabel = game.i18n.localize("TWODSIX.Ship.MDrive").toLowerCase();
             if (componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes(jDriveLabel)) {
