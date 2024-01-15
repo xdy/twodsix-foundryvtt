@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import AdvancedSettings from "./AdvancedSettings";
-import {booleanSetting, colorSetting, stringChoiceSetting} from "./settingsUtils";
+import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
 import {TWODSIX} from "../config";
 
 export default class DisplaySettings extends AdvancedSettings {
@@ -59,6 +59,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(booleanSetting('omitPSIifZero', false));
     settings.actor.push(stringChoiceSetting('equippedToggleStates', "default", true, TWODSIX.EQUIPPED_TOGGLE_OPTIONS));
     settings.actor.push(booleanSetting('showSkillGroups', false));
+    settings.ship.push(stringSetting('jDriveLabel', "TWODSIX.Ship.JDrive", false, "world", updateJDrive, true));
     return settings;
   }
 }
@@ -99,4 +100,10 @@ export const setDocumentPartials = function () {
     Compendium.entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
   }
   ui.items.render();
+};
+
+export const updateJDrive = function (value) {
+  if (value === "") {
+    game.settings.set('twodsix', 'jDriveLabel', "TWODSIX.Ship.JDrive");
+  }
 };
