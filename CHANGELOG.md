@@ -1,3 +1,10 @@
+## [4.18.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.2...v4.18.3) (2024-01-16)
+
+
+### Bug Fixes
+
+* improve add skill graphic ([#1531](https://github.com/xdy/twodsix-foundryvtt/issues/1531)) ([aff8b34](https://github.com/xdy/twodsix-foundryvtt/commit/aff8b3403143d2e6a400cbde2adf96e4c461f314))
+
 ## [4.18.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.1...v4.18.2) (2024-01-13)
 
 
