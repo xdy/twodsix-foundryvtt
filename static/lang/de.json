@@ -106,7 +106,7 @@
       },
       "Rolling": "Würfeln",
       "Skills": {
-        "AddSkill": ">>Fertigkeit<<",
+        "AddSkill": "Fertigkeit",
         "DeleteItem": "Gegenstand löschen",
         "EditItem": "Gegenstand bearbeiten",
         "EditOrRemove": "Edit / Delete",
