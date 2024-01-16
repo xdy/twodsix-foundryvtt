@@ -1144,31 +1144,19 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   width: 2em !important;
 }
 
+.skill-top-row {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 20px;
+}
+
 .add-skill {
-  background-size: cover;
-  width: 7.67em;
-  border-radius: 1ch 1ch 0 0;
-  height: 22px;
-  display: block;
-  position: relative;
-  top: 0.1em;
-  left: 26.4em;
-  z-index: 51;
-  color: var(--s2d6-app-color);
+  width: 10ch;
+  text-align: center;
   background-color: var(--s2d6-background-nearly-opaque);
-  font-weight: bold;
-}
-
-.add-skill:hover {
-  background-size: cover;
-}
-
-span.add-skill-txt {
-  height: 2ch;
-  display: inline-block;
-  position: relative;
-  margin-top: -0.4em;
-  margin-left: 0.95em;
+  color: var(--s2d6-app-color);
+  border-radius: 1ch 1ch 0 0;
+  padding-top: 2px;
 }
 
 .skill {

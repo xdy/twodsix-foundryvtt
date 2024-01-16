@@ -1600,36 +1600,25 @@ a.actor-notes-tab.active {
   width: 25px;
 }
 
+.skill-top-row {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 10px;
+}
+
 .add-skill {
-  -webkit-mask-image: url(../assets/actor/sheet-button1.svg);
-  mask-image: url(../assets/actor/sheet-button1.svg);
-  background-size: cover;
-  width: 15ch;
-  height: 2.5ch;
-  display: block;
-  position: relative;
-  top: 0.1em;
-  left: 26.4em;
-  z-index: 51;
+  width: 10ch;
+  text-align: center;
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
-  /* font-weight: bold; */
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  border-radius: 2ch 2ch 0 0;
+  padding-top: 2px;
 }
 
 .add-skill:hover {
-  background-image: url(../assets/actor/sheet-button1-hover.svg);
-  background-size: cover;
   color: var(--s2d6-item-hover);
-}
-
-span.add-skill-txt {
-  height: 1.5ch;
-  display: inline-block;
-  position: relative;
-  margin-top: -0.4em;
-  margin-left: 0.95em;
+  /*background-color: var(--s2d6-light-color);*/
+  text-shadow: 0 0 8px var(--color-shadow-primary);
 }
 
 .skill {

@@ -17,8 +17,8 @@
   padding-top: 4px;
 }
 
-span.add-skill-txt {
-  margin-left: 0.6em;
+.add-skill {
+  width: 15ch;
 }
 
 .info-tab {
