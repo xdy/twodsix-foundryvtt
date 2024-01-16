@@ -20,8 +20,8 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
   grid-template-columns: 145px 54px 31px 51px 52px 42px;
 }
 
-span.add-skill-txt {
-  margin-left: 1em;
+.add-skill {
+  width: 15ch;
 }
 
 .actor-notes-tab {
