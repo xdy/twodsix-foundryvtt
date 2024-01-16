@@ -1612,11 +1612,13 @@ a.actor-notes-tab.active {
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
   border-radius: 2ch 2ch 0 0;
+  padding-top: 2px;
 }
 
 .add-skill:hover {
   color: var(--s2d6-item-hover);
-  background-color: var(--s2d6-light-color);
+  /*background-color: var(--s2d6-light-color);*/
+  text-shadow: 0 0 8px var(--color-shadow-primary);
 }
 
 .skill {
