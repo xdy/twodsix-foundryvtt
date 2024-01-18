@@ -395,7 +395,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.storageAndJunk = actor.itemTypes.storage.concat(actor.itemTypes.junk);
     sheetData.container.skills = skillsList;
-    sheetData.container.skillGroups = skillGroups;
+    sheetData.container.skillGroups = sortObj(skillGroups);
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
       sheetData.numberListedSkills = numberOfSkills;
