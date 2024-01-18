@@ -72,7 +72,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.1667",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'CE',
       targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2"
@@ -114,7 +114,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: false,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
@@ -155,7 +155,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: false,
       showComponentRating: false,
       showComponentDM: false,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
@@ -278,7 +278,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: false,
       showComponentRating: false,
       showComponentDM: false,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
       targetDMList: ""
@@ -327,7 +327,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
@@ -376,7 +376,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
@@ -425,7 +425,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
@@ -475,7 +475,7 @@ const RULESETS = Object.freeze({
       displayReactionMorale: true,
       showComponentRating: false,
       showComponentDM: false,
-      encumbranceFraction: "0.33",
+      encumbranceFraction: "0.334",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1"

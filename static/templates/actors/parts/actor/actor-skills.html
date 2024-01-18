@@ -45,7 +45,7 @@
     {{#each container.skillGroups}}
       <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}">
         <ol class="ol-no-indent header-row">
-          {{twodsix_titleCase @key}} {{#unless (lookup ../actor.system.displaySkillGroup @key)}}<i class="fa-solid fa-eye"></i>{{else}}<i class="fa-solid fa-eye-slash" ></i>{{/unless}}
+          {{@key}} {{#unless (lookup ../actor.system.displaySkillGroup @key)}}<i class="fa-solid fa-eye"></i>{{else}}<i class="fa-solid fa-eye-slash" ></i>{{/unless}}
         </ol>
       </div>
       {{#if (lookup ../actor.system.displaySkillGroup @key)}}

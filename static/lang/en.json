@@ -1378,6 +1378,10 @@
       "NoDuplicatesOnHotbar": {
         "hint": "Prevent duplicate item macros when drag-dropping items onto hotbar",
         "name": "No duplicate item macros on hotbar"
+      },
+      "jDriveLabel": {
+        "hint": "The display label for the jump drive on the power management settings",
+        "name": "Jump Drive Label"
       }
     },
     "CloseAndCreateNew": "Close and create new",

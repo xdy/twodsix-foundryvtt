@@ -73,15 +73,6 @@ function checkForDamageStat (update: any, actorType: string): boolean {
   return false;
 }
 
-/*function checkForEncumbered(systemUpdates: Record<string, any>): boolean {
-  if (systemUpdates !== undefined) {
-    if (systemUpdates.equipped) {
-      return true;
-    }
-  }
-  return false;
-}*/
-
 export const DAMAGECOLORS = Object.freeze({
   minorWoundTint: '#FFFF00', // Yellow
   seriousWoundTint: '#FF0000', // Red
@@ -95,6 +86,11 @@ export const effectType = Object.freeze({
   encumbered: 'EFFECT.StatusEncumbered'
 });
 
+/**
+ * Determine whether wounded effect applies to actor.  Update encumbered AE & tint, if necessary.
+ * @param {TwodsixActor} selectedActor  The actor to check
+ * @public
+ */
 async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
   const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
@@ -130,54 +126,69 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   }
 }
 
+/**
+ * Determine whether encumbered effect applies to actor.  Update encumbered AE, if necessary.
+ * @param {TwodsixActor} selectedActor  The actor to check
+ * @public
+ */
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-
-  //Clean-up a localization issue
-  /*if (game.i18n.localize(effectType.encumbered) !== "Encumbered") {
-    const oldEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has("encumbered"));
-    if (oldEncumbered.length > 0) {
-      const oldIdList = await oldEncumbered.map(i => i.id);
-      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", oldIdList);
-    }
-  }*/
-
   const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
-
   let state = false;
+  let ratio = 0;
+  let idToKeep = "";
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
+
+  //Determined whether encumbered
   if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
     state = true;
+    ratio = 1;
   } else if (maxEncumbrance > 0) {
-    const ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
-    state = (ratio > parseFloat(await game.settings.get('twodsix', 'encumbranceFraction')));
+    ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+    state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
   }
+
+  // Delete encumbered AE's if uneeded or more than one
   if (isCurrentlyEncumbered.length > 0) {
-    const idList = await isCurrentlyEncumbered.map(i => i.id);
+    const idList = isCurrentlyEncumbered.map(i => i.id); //remove await???
     if (state === true) {
-      await idList.pop();
+      idToKeep = idList.pop();
     }
     if(idList.length > 0) {
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
-  } else if (state === true  && isCurrentlyEncumbered.length === 0) {
-    const modifier = game.settings.get('twodsix', 'encumbranceModifier');
+  }
+
+  //Define AE if actor is encumbered
+  if (state === true) {
+    const modifier = getEncumbranceModifier(ratio);
     const changeData = [{
       key: "system.conditions.encumberedEffect",
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
       value: modifier.toString()
     }];
-    await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-      name: game.i18n.localize(effectType.encumbered),
-      icon: "systems/twodsix/assets/icons/weight.svg",
-      changes: changeData,
-      statuses: ["encumbered"]
-    }]);
-    //const newEffect = selectedActor.effects.find(eff => eff.name === effectType.encumbered);
-    //await newEffect?.setFlag("core", "statusId", "weakened"); //Kludge to make icon appear on token
+    if (isCurrentlyEncumbered.length === 0) {
+      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+        name: game.i18n.localize(effectType.encumbered),
+        icon: "systems/twodsix/assets/icons/weight.svg",
+        changes: changeData,
+        statuses: ["encumbered"]
+      }]);
+    } else {
+      if (changeData[0].value !== selectedActor.effects.get(idToKeep)?.changes[0].value  && !!idToKeep) {
+        await selectedActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: idToKeep, changes: changeData }]);
+      }
+    }
   }
 }
 
-async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string) {
+
+/**
+ * Determine whether actor becomes unconscious based on ruleset. Depending on ruleset, may make endurance roll.
+ * @param {TwodsixActor} selectedActor  The actor to check
+ * @param {ActiveEffect | undefined} oldWoundState The current wounded AE for actor
+ * @param {string} tintToApply The wounded state tint to be applied (the updated tint)
+ */
+async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string): Promise<void> {
   const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.statuses.has('unconscious'));
   const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
@@ -200,6 +211,12 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   }
 }
 
+/**
+ * Toggles an effect status/condition on an actor.
+ * @param {string} effectStatus status/condition name to change
+ * @param {TwodsixActor} targetActor  The actor to update
+ * @param {boolean} state Whether the status is enabled
+ */
 async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
   const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
   const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
@@ -238,6 +255,12 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   }
 }
 
+/**
+ * Determine whether wounded effect applies to actor.  Update wounded AE, if necessary.
+ * @param {TwodsixActor} targetActor  The actor to check
+ * @param {boolean} state whether wounded effect applies
+ * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. DAMAGECOLORS.minorWoundTint and DAMAGECOLORS.seriousWoundTint
+ */
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
   let currentEffectId = "";
@@ -280,6 +303,11 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
   }
 }
 
+/**
+ * Determine the wounded tint that applies to actor.  Depends on ruleset.
+ * @param {TwodsixActor} selectedActor  The actor to check
+ * @returns {string} The wounded tint color (as a hex code string).  Color indicates the severity of wounds. DAMAGECOLORS.minorWoundTint and DAMAGECOLORS.seriousWoundTint
+ */
 export function getIconTint(selectedActor: TwodsixActor): string {
   const selectedTraveller = <Traveller>selectedActor.system;
   if ((selectedActor.type === 'animal' && game.settings.get('twodsix', 'animalsUseHits')) || (selectedActor.type === 'robot' && game.settings.get('twodsix', 'robotsUseHits'))) {
@@ -395,4 +423,24 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-
+/**
+ * Determine the encumbrance modifier based on the  ratio of encumbrance to the maximum encumbrance.
+ * @param {number} ratio  encumbrance/max encumbrance
+ * @return {number} encumbrance roll modifier value that gets applied to the encumbered AE
+ * @function
+ */
+function getEncumbranceModifier(ratio:number):number {
+  if (ratio === 0 ) {
+    return 0; //Shoudn't get here
+  } else if (game.settings.get("twodsix", "ruleset") === 'CE') {
+    if (ratio <= game.settings.get('twodsix', 'encumbranceFraction')) {
+      return 0;
+    } else if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 2) {
+      return game.settings.get('twodsix', 'encumbranceModifier');
+    } else if (ratio <= 1) {
+      return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+    }
+  } else {
+    return game.settings.get('twodsix', 'encumbranceModifier');
+  }
+}
