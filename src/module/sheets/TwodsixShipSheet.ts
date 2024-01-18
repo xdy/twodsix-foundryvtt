@@ -52,7 +52,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
+      jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive"
     };
 
     if (context.settings.useProseMirror) {

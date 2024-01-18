@@ -52,7 +52,8 @@
       "ROFSingle": "Simple",
       "ROFBurst": "Ráfaga",
       "ROFFull": "Automático",
-      "ROFDoubleTap": "Disparo Doble"
+      "ROFDoubleTap": "Disparo Doble",
+      "ReplaceMacroCommand": "Actualizar Macro"
     },
     "Actor": {
       "Age": "Edad",
@@ -1373,6 +1374,10 @@
       "showSkillGroups": {
         "hint": "Agrupar las habilidades en la hoja del actor por etiquetas.",
         "name": "Agrupar habilidades por etiqueta"
+      },
+      "NoDuplicatesOnHotbar": {
+        "hint": "Evita objetos duplicados cuando se arrastran macros a la barra",
+        "name": "No duplicar macros en la barra"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1455,7 +1460,8 @@
       "WearingMultipleLayers": "Múltiples capas de armadura equipadas, y se lleva una que es no apilable.",
       "ResetEffectForManualDamage": "Efecto no incluido en la tirada de daño. Desactivando los efectos en las tiradas manuales.",
       "tableNotFound": "No se puede localizar la Tabla del Enlace en el Diario.",
-      "typeMismatch": "El enlace/UUID dentro del Diario no es una Tabla."
+      "typeMismatch": "El enlace/UUID dentro del Diario no es una Tabla.",
+      "MacroNameExists": "Existe una macro con ese nombre, pero el comando es diferente. ¿Actualizar al nuevo?"
     }
   },
   "TYPES": {

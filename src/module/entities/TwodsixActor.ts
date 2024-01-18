@@ -361,15 +361,19 @@ export default class TwodsixActor extends Actor {
         calcShipStats.power.max += powerForItem;
       } else {
         switch (anComponent.subtype) {
-          case 'drive':
-            if (item.name?.toLowerCase().includes('j-drive') || item.name?.toLowerCase().includes('j drive')) {
+          case 'drive': {
+            const componentName = item.name?.toLowerCase() ?? "";
+            const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
+            const mDriveLabel = game.i18n.localize("TWODSIX.Ship.MDrive").toLowerCase();
+            if (componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes(jDriveLabel)) {
               calcShipStats.power.jDrive += powerForItem;
-            } else if (item.name?.toLowerCase().includes('m-drive') || item.name?.toLowerCase().includes('m drive')) {
+            } else if (componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes(mDriveLabel)) {
               calcShipStats.power.mDrive += powerForItem;
             } else {
               calcShipStats.power.systems += powerForItem;
             }
             break;
+          }
           case 'sensor':
             calcShipStats.power.sensors += powerForItem;
             break;

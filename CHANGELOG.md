@@ -1,3 +1,10 @@
+# [4.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.3...v4.19.0) (2024-01-18)
+
+
+### Features
+
+* Improve compatibility with CE and Clement Sector rules ([#1534](https://github.com/xdy/twodsix-foundryvtt/issues/1534)) ([94668b8](https://github.com/xdy/twodsix-foundryvtt/commit/94668b806281377cd35e830e697dfeb0141f56bf))
+
 ## [4.18.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.2...v4.18.3) (2024-01-16)
 
 

@@ -153,6 +153,7 @@ declare global {
       'twodsix.targetDMList': string;
       'twodsix.showSkillGroups': boolean;
       'twodsix.NoDuplicatesOnHotbar': boolean;
+      'twodsix.jDriveLabel': string;
     }
   }
 }
