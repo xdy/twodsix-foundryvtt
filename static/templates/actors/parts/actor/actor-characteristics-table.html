@@ -16,7 +16,6 @@
   </thead>
   <tbody>
       <tr>
-        {{log this}}
         <td {{#iff this.actor.type "===" "traveller"}} style="font-size: smaller;"{{/iff}}>{{localize "TWODSIX.Damage.Max"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
