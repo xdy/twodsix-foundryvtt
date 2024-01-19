@@ -1309,7 +1309,7 @@ span.stat-modifier-table {
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 3ch;
+  width: 4ch;
   height: 3.5ch;
   color: var(--s2d6-stat-input);
 }
