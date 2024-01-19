@@ -640,10 +640,10 @@ export const HullPricingOptions = {
  * The valid choices for characteristic displays in the game system.
  */
 export const CharacteristicDisplayTypes = {
-  core: "Core",
-  base: "Base",
-  alternate: "Alternate",
-  all: "All"
+  core: "TWODSIX.Actor.CharDisplay.Core",
+  base: "TWODSIX.Actor.CharDisplay.Base",
+  alternate: "TWODSIX.Actor.CharDisplay.Alternate",
+  all: "TWODSIX.Actor.CharDisplay.All"
 };
 
 /**

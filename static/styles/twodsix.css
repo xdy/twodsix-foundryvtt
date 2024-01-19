@@ -1195,9 +1195,9 @@ span.stat-name-table, input.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center;
-  width: 3ch;
+  width: 4ch;
   height: 2ch;
-  transform: rotate(-45deg);
+  transform: rotate(-50deg);
   margin: 0;
   padding: 0;
 }
@@ -1330,7 +1330,7 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin;
   border-radius: 15%;
-  width: 3ch;
+  width: 4ch;
   height: 3.5ch;
   border-color: var(--s2d6-default-color);
 }

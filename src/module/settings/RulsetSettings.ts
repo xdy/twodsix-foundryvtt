@@ -69,7 +69,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
     settings.characteristics.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.characteristics.push(booleanSetting('showHeroPoints', false));
-    settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
+    settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", true, TWODSIX.CharacteristicDisplayTypes));
     settings.characteristics.push(stringSetting("shortSTR", "TWODSIX.Items.Skills.STR", false, "world", updateSTRShortLabel, true));
     settings.characteristics.push(stringSetting("shortDEX", "TWODSIX.Items.Skills.DEX", false, "world", updateDEXShortLabel, true));
     settings.characteristics.push(stringSetting("shortEND", "TWODSIX.Items.Skills.END", false, "world", updateENDShortLabel, true));
