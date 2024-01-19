@@ -1166,9 +1166,10 @@ span.bgi-charEdit {
 .stat-table-small {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
-  margin-left: 39px;
+  margin-left: 37px;
   margin-top: 0px;
-  width: 82%;
+  margin-right: 14px;
+  width: -webkit-fill-available;
 }
 .table-header-row {
   height: 5ch;
@@ -1194,7 +1195,7 @@ span.stat-name-table, input.stat-name-table {
   display: block;
   cursor: pointer;
   text-align: center;
-  width: 4ch;
+  width: 3ch;
   height: 2ch;
   transform: rotate(-45deg);
   margin: 0;
@@ -1308,7 +1309,7 @@ span.stat-modifier-table {
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 4ch;
+  width: 3ch;
   height: 3.5ch;
   color: var(--s2d6-stat-input);
 }
@@ -1329,7 +1330,7 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin;
   border-radius: 15%;
-  width: 4ch;
+  width: 3ch;
   height: 3.5ch;
   border-color: var(--s2d6-default-color);
 }

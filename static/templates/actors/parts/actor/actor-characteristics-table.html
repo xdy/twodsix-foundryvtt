@@ -16,7 +16,7 @@
   </thead>
   <tbody>
       <tr>
-        <td>{{localize "TWODSIX.Damage.Max"}}:</td>
+        <td>{{localize "TWODSIX.Damage.Max"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
             <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.{{key}}.value"
@@ -27,7 +27,7 @@
       </tr>
 
       <tr>
-        <td>{{localize "TWODSIX.Damage.Mod"}}:</td>
+        <td>{{localize "TWODSIX.Damage.Mod"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
           <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.mod')}}"
@@ -37,7 +37,7 @@
       </tr>
 
      <tr>
-        <td>{{localize "TWODSIX.Damage.Dmg"}}:</td>
+        <td>{{localize "TWODSIX.Damage.Dmg"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
             <td><span class="stat-damage-table"><input type="number" max="{{char.value}}" min="0"
