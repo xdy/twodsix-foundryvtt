@@ -317,6 +317,8 @@ export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
     if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
       returnValue["ALT1"] = getCharacteristicLabelWithMod(actor, "alternative1");
       returnValue["ALT2"] =  getCharacteristicLabelWithMod(actor, "alternative2");
+    }
+    if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
       returnValue["ALT3"] =  getCharacteristicLabelWithMod(actor, "alternative3");
     }
     if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
@@ -344,6 +346,8 @@ export function _genUntranslatedCharacteristicList(): object {
   if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
     returnValue["ALT1"] = game.settings.get('twodsix', 'alternativeShort1');
     returnValue["ALT2"] = game.settings.get('twodsix', 'alternativeShort2');
+  }
+  if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
     returnValue["ALT3"] = game.settings.get('twodsix', 'alternativeShort3');
   }
   if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
