@@ -167,6 +167,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.settings.get('twodsix', 'alternativeShort2');
   });
 
+  Handlebars.registerHelper('alternativeShort3', () => {
+    return game.settings.get('twodsix', 'alternativeShort3');
+  });
+
   Handlebars.registerHelper('skillName', (skillName) => {
     return simplifySkillName(skillName);
   });

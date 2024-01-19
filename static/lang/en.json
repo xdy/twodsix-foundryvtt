@@ -896,6 +896,10 @@
         "hint": "Short name for second alternative characteristic. It should be four characters or fewer.",
         "name": "Short name for alternative characteristic 2"
       },
+      "alternativeShort3": {
+        "hint": "Short name for third alternative characteristic. It should be four characters or fewer.",
+        "name": "Short name for alternative characteristic 3"
+      },
       "autofireRulesUsed": {
         "hint": "Select which variant's auto/burst fire rules should be used.",
         "name": "Select which variant's auto/burst fire rules should be used."

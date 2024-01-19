@@ -79,6 +79,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(stringSetting("shortPSI", "TWODSIX.Items.Skills.PSI", false, "world", updatePSIShortLabel, true));
     settings.characteristics.push(stringSetting("alternativeShort1", "ALT1"));
     settings.characteristics.push(stringSetting("alternativeShort2", "ALT2"));
+    settings.characteristics.push(stringSetting("alternativeShort3", "ALT3"));
     settings.ship.push(numberSetting('maxComponentHits', 3));
     settings.ship.push(numberSetting('mortgagePayment', 240, false));
     settings.ship.push(stringSetting('massProductionDiscount', "0.10", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5
