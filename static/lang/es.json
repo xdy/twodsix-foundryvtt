@@ -1378,6 +1378,10 @@
       "NoDuplicatesOnHotbar": {
         "hint": "Evita objetos duplicados cuando se arrastran macros a la barra",
         "name": "No duplicar macros en la barra"
+      },
+      "jDriveLabel": {
+        "hint": "Mostrar etiqueta para la gestión de potencia del motor de salto.",
+        "name": "Etiqueta Motor-S"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
