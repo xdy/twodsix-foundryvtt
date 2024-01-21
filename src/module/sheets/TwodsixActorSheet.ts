@@ -339,7 +339,7 @@ export function setCharacteristicDisplay(returnData: object): void {
   const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
   returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode);
   returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode);
-  returnData.system.characteristics.alternative3.displayChar = ['alternate', 'all'].includes(charMode);
+  returnData.system.characteristics.alternative3.displayChar = ['all'].includes(charMode);
   returnData.system.characteristics.dexterity.displayChar = true;
   returnData.system.characteristics.education.displayChar = true;
   returnData.system.characteristics.endurance.displayChar = true;
