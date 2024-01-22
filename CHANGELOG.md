@@ -1,3 +1,10 @@
+# [4.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.19.0...v4.20.0) (2024-01-22)
+
+
+### Features
+
+* add third alternate characteristic ([#1536](https://github.com/xdy/twodsix-foundryvtt/issues/1536)) ([1cb2ca0](https://github.com/xdy/twodsix-foundryvtt/commit/1cb2ca08fc4c18563fdb4d5b8ebfa140eb900126))
+
 # [4.19.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.18.3...v4.19.0) (2024-01-18)
 
 
