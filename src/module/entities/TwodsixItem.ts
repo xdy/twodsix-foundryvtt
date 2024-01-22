@@ -13,7 +13,7 @@ import {Component, Consumable, Gear, Skills, UsesConsumables, Weapon} from "../.
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
-import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 
 export default class TwodsixItem extends Item {

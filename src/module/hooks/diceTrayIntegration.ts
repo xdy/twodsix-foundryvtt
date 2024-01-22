@@ -51,13 +51,16 @@ Hooks.on('dcCalcWhitelist', (whitelist, actor) => {
         delete whitelist.twodsix.custom.attributes.psionicStrength;
         delete whitelist.twodsix.custom.attributes.alternative1;
         delete whitelist.twodsix.custom.attributes.alternative2;
+        delete whitelist.twodsix.custom.attributes.alternative3;
         break;
       case 'base':
         delete whitelist.twodsix.custom.attributes.alternative1;
         delete whitelist.twodsix.custom.attributes.alternative2;
+        delete whitelist.twodsix.custom.attributes.alternative3;
         break;
       case 'alternate':
         delete whitelist.twodsix.custom.attributes.psionicStrength;
+        delete whitelist.twodsix.custom.attributes.alternative3;
         break;
       case 'all':
         break;

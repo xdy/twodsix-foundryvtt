@@ -318,6 +318,9 @@ export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
       returnValue["ALT1"] = getCharacteristicLabelWithMod(actor, "alternative1");
       returnValue["ALT2"] =  getCharacteristicLabelWithMod(actor, "alternative2");
     }
+    if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+      returnValue["ALT3"] =  getCharacteristicLabelWithMod(actor, "alternative3");
+    }
     if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
       returnValue["PSI"] =  getCharacteristicLabelWithMod(actor, "psionicStrength");
     }
@@ -344,10 +347,23 @@ export function _genUntranslatedCharacteristicList(): object {
     returnValue["ALT1"] = game.settings.get('twodsix', 'alternativeShort1');
     returnValue["ALT2"] = game.settings.get('twodsix', 'alternativeShort2');
   }
+  if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+    returnValue["ALT3"] = game.settings.get('twodsix', 'alternativeShort3');
+  }
   if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
     returnValue["PSI"] = game.i18n.localize("TWODSIX.Items.Skills.PSI");
   }
   returnValue["NONE"] = "---";
+  return returnValue;
+}
+
+export function getCharacteristicList(actor?:TwodsixActor|undefined): any {
+  let returnValue = {};
+  if (actor) {
+    returnValue = _getTranslatedCharacteristicList(actor);
+  } else {
+    returnValue = _genUntranslatedCharacteristicList();
+  }
   return returnValue;
 }
 

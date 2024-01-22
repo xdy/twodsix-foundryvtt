@@ -395,6 +395,7 @@ export interface Characteristics {
   lifeblood:Characteristic;
   alternative1:Characteristic;
   alternative2:Characteristic;
+  alternative3:Characteristic;
 }
 
 export interface Characteristic {

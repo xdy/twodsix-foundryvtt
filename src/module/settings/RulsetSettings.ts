@@ -69,7 +69,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(booleanSetting('lifebloodInsteadOfCharacteristics', false));
     settings.characteristics.push(booleanSetting('showContaminationBelowLifeblood', true));
     settings.characteristics.push(booleanSetting('showHeroPoints', false));
-    settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", false, TWODSIX.CharacteristicDisplayTypes));
+    settings.characteristics.push(stringChoiceSetting('showAlternativeCharacteristics', "base", true, TWODSIX.CharacteristicDisplayTypes));
     settings.characteristics.push(stringSetting("shortSTR", "TWODSIX.Items.Skills.STR", false, "world", updateSTRShortLabel, true));
     settings.characteristics.push(stringSetting("shortDEX", "TWODSIX.Items.Skills.DEX", false, "world", updateDEXShortLabel, true));
     settings.characteristics.push(stringSetting("shortEND", "TWODSIX.Items.Skills.END", false, "world", updateENDShortLabel, true));
@@ -79,6 +79,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.characteristics.push(stringSetting("shortPSI", "TWODSIX.Items.Skills.PSI", false, "world", updatePSIShortLabel, true));
     settings.characteristics.push(stringSetting("alternativeShort1", "ALT1"));
     settings.characteristics.push(stringSetting("alternativeShort2", "ALT2"));
+    settings.characteristics.push(stringSetting("alternativeShort3", "ALT3"));
     settings.ship.push(numberSetting('maxComponentHits', 3));
     settings.ship.push(numberSetting('mortgagePayment', 240, false));
     settings.ship.push(stringSetting('massProductionDiscount', "0.10", false)); //Should be a number setting, but FVTT unhappy with values other than 0.5

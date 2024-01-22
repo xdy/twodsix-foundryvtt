@@ -7,7 +7,7 @@ import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import {Skills} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
-import { _getTranslatedCharacteristicList, _genUntranslatedCharacteristicList } from "./utils/TwodsixRollSettings";
+import { getCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
 
 export default function registerHandlebarsHelpers(): void {
@@ -165,6 +165,10 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('alternativeShort2', () => {
     return game.settings.get('twodsix', 'alternativeShort2');
+  });
+
+  Handlebars.registerHelper('alternativeShort3', () => {
+    return game.settings.get('twodsix', 'alternativeShort3');
   });
 
   Handlebars.registerHelper('skillName', (skillName) => {
@@ -405,13 +409,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
-    let returnValue = {};
-    if (actor) {
-      returnValue = _getTranslatedCharacteristicList(actor);
-    } else {
-      returnValue = _genUntranslatedCharacteristicList();
-    }
-    return returnValue;
+    return getCharacteristicList(actor);
   });
 
   Handlebars.registerHelper('makePieImage', (text: string) => {

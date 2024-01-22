@@ -4,7 +4,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
-import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { getDamageTypes } from "./sheetUtils";
 
 /**
  * This class handles an individual attribute, such as strength and dexterity

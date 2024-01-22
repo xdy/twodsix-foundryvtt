@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 //Assorted utility functions likely to be helpful when displaying characters
+import { camelCase } from "../settings/settingsUtils";
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -325,4 +326,26 @@ export async function wait(ms) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
+}
+
+/**
+ * Function to return an object of the damage types from setting: 'damageTypeOptions'
+ * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
+ * @returns {object} An object with the damage type key, label pairs
+ * @export
+ */
+export function getDamageTypes(isWeapon:boolean): object {
+  const returnObject = {};
+  const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
+  if (damageTypeOptions !== "") {
+    let protectionTypeLabels:string[] = damageTypeOptions.split(',');
+    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+    for (const type of protectionTypeLabels) {
+      Object.assign(returnObject, {[camelCase(type)]: type});
+    }
+  }
+  if (isWeapon) {
+    Object.assign(returnObject, {"NONE": "---"});
+  }
+  return returnObject;
 }

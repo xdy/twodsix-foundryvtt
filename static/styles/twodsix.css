@@ -994,7 +994,7 @@ h2 {
 }
 
 .bgi-species input {
-  width: 8em;
+  width: 7em;
   border: none;
 }
 
@@ -1166,9 +1166,10 @@ span.bgi-charEdit {
 .stat-table-small {
   background-color: var(--s2d6-nav-background);
   font-size: 11px;
-  margin-left: 39px;
+  margin-left: 37px;
   margin-top: 0px;
-  width: 82%;
+  margin-right: 14px;
+  width: -webkit-fill-available;
 }
 .table-header-row {
   height: 5ch;
@@ -1196,7 +1197,7 @@ span.stat-name-table, input.stat-name-table {
   text-align: center;
   width: 4ch;
   height: 2ch;
-  transform: rotate(-45deg);
+  transform: rotate(-50deg);
   margin: 0;
   padding: 0;
 }

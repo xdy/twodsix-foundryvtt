@@ -5,7 +5,7 @@
         {{#if char.displayChar}}
           {{#if ../system.characteristicEdit}}
             <td><input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
-              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="3"/></td>
+              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="4"/></td>
           {{else}}
             <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
               {{char.displayShortLabel}}</span></td>
@@ -16,7 +16,7 @@
   </thead>
   <tbody>
       <tr>
-        <td>{{localize "TWODSIX.Damage.Max"}}:</td>
+        <td {{#iff this.actor.type "===" "traveller"}} style="font-size: smaller;"{{/iff}}>{{localize "TWODSIX.Damage.Max"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
             <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.{{key}}.value"
@@ -27,7 +27,7 @@
       </tr>
 
       <tr>
-        <td>{{localize "TWODSIX.Damage.Mod"}}:</td>
+        <td {{#iff this.actor.type "===" "traveller"}} style="font-size: smaller;"{{/iff}}>{{localize "TWODSIX.Damage.Mod"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
           <td><span class="stat-modifier-table"><input readonly type="text" data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.mod')}}"
@@ -37,7 +37,7 @@
       </tr>
 
      <tr>
-        <td>{{localize "TWODSIX.Damage.Dmg"}}:</td>
+        <td {{#iff this.actor.type "===" "traveller"}} style="font-size: smaller;"{{/iff}}>{{localize "TWODSIX.Damage.Dmg"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
             <td><span class="stat-damage-table"><input type="number" max="{{char.value}}" min="0"
