@@ -35,13 +35,13 @@ Hooks.on('dice-calculator.calculator', (calculators, Template) => {
           const filter = ['stamina', 'lifeblood'];
           switch (game.settings.get('twodsix', 'showAlternativeCharacteristics')) {
             case 'core':
-              filter.push(...['psionicStrength', 'alternative1', 'alternative2']);
+              filter.push(...['psionicStrength', 'alternative1', 'alternative2', 'alternative3']);
               break;
             case 'base':
-              filter.push(...['alternative1', 'alternative2']);
+              filter.push(...['alternative1', 'alternative2', 'alternative3']);
               break;
             case 'alternate':
-              filter.push(...['psionicStrength']);
+              filter.push(...['psionicStrength', 'alternative3']);
               break;
             case 'all':
               break;
