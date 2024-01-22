@@ -52,6 +52,8 @@ export function getCharShortName(char: string): string {
       return game.settings.get('twodsix', 'alternativeShort1');
     case "ALT2":
       return game.settings.get('twodsix', 'alternativeShort2');
+    case "ALT3":
+      return game.settings.get('twodsix', 'alternativeShort3');
     case "LFB":
     case "STA":
     case "HIT":

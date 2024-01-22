@@ -339,6 +339,7 @@ export function setCharacteristicDisplay(returnData: object): void {
   const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
   returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode);
   returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode);
+  returnData.system.characteristics.alternative3.displayChar = ['all'].includes(charMode);
   returnData.system.characteristics.dexterity.displayChar = true;
   returnData.system.characteristics.education.displayChar = true;
   returnData.system.characteristics.endurance.displayChar = true;
@@ -367,7 +368,7 @@ export function getDisplayOrder(returnData: any): string[] {
       returnValue.push('alternative1', 'alternative2');
       break;
     case 'all':
-      returnValue.push('alternative1', 'alternative2');
+      returnValue.push('alternative1', 'alternative2', 'alternative3');
       if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
         returnValue.push('psionicStrength');
       }

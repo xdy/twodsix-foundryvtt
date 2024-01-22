@@ -91,6 +91,14 @@
             "label": "Alternative 2",
             "shortLabel": "ALT2",
             "displayShortLabel": ""
+          },
+          "alternative3": {
+            "key": "alternative3",
+            "value": 7,
+            "damage": 0,
+            "label": "Alternative 3",
+            "shortLabel": "ALT3",
+            "displayShortLabel": ""
           }
         },
         "characteristicEdit": false

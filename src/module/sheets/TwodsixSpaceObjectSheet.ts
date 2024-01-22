@@ -9,7 +9,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { simplifyRollFormula } from "../utils/dice";
 import { getDiceResults } from "../entities/TwodsixItem";
-import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { getDamageTypes } from "../utils/sheetUtils";
 
 export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
   /** @override */
