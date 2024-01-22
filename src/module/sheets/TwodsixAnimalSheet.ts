@@ -5,7 +5,7 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
-import { getDamageTypes } from "../sheets/TwodsixItemSheet";
+import { getDamageTypes } from "../utils/sheetUtils";
 import { setCharacteristicDisplay } from "./TwodsixActorSheet";
 export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 

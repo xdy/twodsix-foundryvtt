@@ -6,7 +6,8 @@ import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
-import { camelCase } from "../settings/settingsUtils";
+import { getDamageTypes } from "../utils/sheetUtils";
+import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -63,7 +64,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
-      rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long
+      rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long,
+      characteristicsList: getCharacteristicList(this.item.actor)
     };
     //prevent processor attachements to software
     returnData.config = duplicate(TWODSIX);
@@ -78,6 +80,14 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (this.item.type === 'weapon') {
       returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
+
+    //Set characterisitic, making certin it is valid choice
+    if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
+      returnData.system.initialCharacteristic = this.item.system.characteristic;
+    } else {
+      returnData.system.initialCharacteristic = 'NONE';
+    }
+
     return returnData;
   }
 
@@ -420,26 +430,4 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       ui.notifications.error(err);
     }
   }
-}
-
-/**
- * Function to return an objects of the damage types from setting: 'damageTypeOptions'
- * @param {boolean} isWeapon  Whether the item is a weapon. If so, add {NONE: "---"} to list.
- * @returns {object} An object with the damage type key, label pairs
- * @export
- */
-export function getDamageTypes(isWeapon:boolean): object {
-  const returnObject = {};
-  const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
-  if (damageTypeOptions !== "") {
-    let protectionTypeLabels:string[] = damageTypeOptions.split(',');
-    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
-    for (const type of protectionTypeLabels) {
-      Object.assign(returnObject, {[camelCase(type)]: type});
-    }
-  }
-  if (isWeapon) {
-    Object.assign(returnObject, {"NONE": "---"});
-  }
-  return returnObject;
 }

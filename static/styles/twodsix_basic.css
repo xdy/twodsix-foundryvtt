@@ -186,7 +186,7 @@ label.checkbox > input[type="checkbox"] {
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 23em 0.5fr 0.5fr;
+  grid-template-rows: 22em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -626,7 +626,7 @@ img.character-info-mask {
 }
 
 .bgi-species input {
-  width: 8em;
+  width: 7em;
   border: none;
 }
 

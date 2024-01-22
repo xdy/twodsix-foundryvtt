@@ -357,6 +357,16 @@ export function _genUntranslatedCharacteristicList(): object {
   return returnValue;
 }
 
+export function getCharacteristicList(actor?:TwodsixActor|undefined): any {
+  let returnValue = {};
+  if (actor) {
+    returnValue = _getTranslatedCharacteristicList(actor);
+  } else {
+    returnValue = _genUntranslatedCharacteristicList();
+  }
+  return returnValue;
+}
+
 export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Promise<any> {
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;

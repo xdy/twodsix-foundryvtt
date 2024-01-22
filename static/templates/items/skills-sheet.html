@@ -43,7 +43,7 @@
       <div class="item-type">
         <label for="system.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
         <select class="form-input" name="system.characteristic" value={{characteristic}}>
-          {{selectOptions (getCharacteristicList owner) selected=system.characteristic }}
+          {{selectOptions settings.characteristicsList selected=system.initialCharacteristic }}
         </select>
       </div>
       <div class="item-rollDifficulty">
