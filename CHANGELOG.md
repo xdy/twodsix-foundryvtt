@@ -1,3 +1,10 @@
+## [4.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.20.0...v4.20.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* unable to open ship items ([#1539](https://github.com/xdy/twodsix-foundryvtt/issues/1539)) ([827fd48](https://github.com/xdy/twodsix-foundryvtt/commit/827fd48c5fe944856df7981d8771aa27e6ab5e1f))
+
 # [4.20.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.19.0...v4.20.0) (2024-01-22)
 
 
