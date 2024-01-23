@@ -65,8 +65,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
       rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long,
-      characteristicsList: getCharacteristicList(this.item.actor)
     };
+    if (this.item.type === 'skills') {
+      returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
+      //Set characterisitic, making certin it is valid choice
+      if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
+        returnData.system.initialCharacteristic = this.item.system.characteristic;
+      } else {
+        returnData.system.initialCharacteristic = 'NONE';
+      }
+    }
+
     //prevent processor attachements to software
     returnData.config = duplicate(TWODSIX);
     if (this.actor && this.item.type === "consumable" ) {
@@ -79,13 +88,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
       returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
-    }
-
-    //Set characterisitic, making certin it is valid choice
-    if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
-      returnData.system.initialCharacteristic = this.item.system.characteristic;
-    } else {
-      returnData.system.initialCharacteristic = 'NONE';
     }
 
     return returnData;
