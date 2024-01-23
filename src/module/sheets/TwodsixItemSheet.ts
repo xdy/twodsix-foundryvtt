@@ -78,8 +78,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
 
     //prevent processor attachements to software
-    returnData.config = duplicate(TWODSIX);
-    
+    returnData.config = foundry.utils.duplicate(TWODSIX);
+
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
