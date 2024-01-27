@@ -74,9 +74,9 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 307px 500px;
+  grid-template-columns: 301px 504px;
   grid-template-rows: 607px;
-  gap: 1px 1px;
+  gap: 0 4px;
   position: relative;
   top: -10px;
   left: -6px;
@@ -475,7 +475,7 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: 97%;
+  width: 100%;
   /*padding-right: 8px;*/
   border-width: medium;
 }
