@@ -3763,10 +3763,12 @@ input[type="text"].color {
 /* Chrome scrollbar fix */
 * {
   scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+  scrollbar-width: thin;
 }
 
 @-moz-document url-prefix() {
   * {
       scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+      scrollbar-width: thin;
   }
 }

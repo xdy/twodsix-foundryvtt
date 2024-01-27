@@ -3027,3 +3027,14 @@ Monk's Enhanced Journals
 .active-effect-sheet .effect-change .value {
   flex: 3;
 }
+
+/* Chrome scrollbar fix */
+* {
+  scrollbar-width: thin;
+}
+
+@-moz-document url-prefix() {
+  * {
+      scrollbar-width: thin;
+  }
+}
