@@ -896,7 +896,7 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Method to add handle a dropped damage payload
+   * Method to handle a dropped damage payload
    * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type)
    * @param {boolean} showDamageDialog Whethter to show apply damage dialog
    * @returns {boolean}
