@@ -480,7 +480,7 @@
         "RollModifier":"Roll Modifier",
         "DM":"DM",
         "Hardened": "Hardened?",
-        "hardened": "hardened",
+        "hardened": "Hardened",
         "Hd": "Hd",
         "isPopup": "Is a Pop-up?",
         "isExtended": "Is Pop-up extended?",
@@ -491,7 +491,16 @@
         "ComponentType": "Component Type",
         "powerPerUnit": "per unit",
         "powerPerCompTon": "per component ton",
-        "powerPerHullTon": "per hull ton"
+        "powerPerHullTon": "per hull ton",
+        "installedCost": "Installed Cost (MCr)",
+        "techLevel": "Tech Level",
+        "diceModifier": "Dice Modifier",
+        "displacementWeight": "Displacement Weight (d-tons)",
+        "PowerUsed": "Power Consumed or Generated (+)",
+        "Quantity": "Quantity",
+        "AttackDamage": "Attack Damage",
+        "numberHits": "Number of Hits",
+        "opStatus": "Operational Status"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -1387,6 +1396,10 @@
       "jDriveLabel": {
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
+      },
+      "showCostInsteadOfWeight": {
+        "hint": "List the ship component's cost in MCr instead of displacement weight for the single-line component list on the ship sheet.",
+        "name": "Display Cost instead of Displacement Weight"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1470,7 +1483,8 @@
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
-      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?"
+      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
+      "DragDropOnIconsDisabled": "The system setting for dragging and dropping items on tokens has been disabled as it conflicts with the Item Piles module."
     }
   },
   "TYPES": {

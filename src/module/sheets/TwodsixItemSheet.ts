@@ -138,9 +138,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
     if (this.item.type === "component") {
       const updates = {};
-      /*Update from default other image*/
-      if (this.item.img === "systems/twodsix/assets/icons/components/otherInternal.svg" || this.item.img === "systems/twodsix/assets/icons/components/other.svg") {
-        Object.assign(updates, {"img": "systems/twodsix/assets/icons/components/" + event.currentTarget.selectedOptions[0].value + ".svg"});
+      /*Update default image if using system images*/
+      const componentImagePath = "systems/twodsix/assets/icons/components/";
+      if (this.item.img.includes(componentImagePath)) {
+        Object.assign(updates, {"img": componentImagePath + event.currentTarget.selectedOptions[0].value + ".svg"});
       }
       /*Prevent cargo from using %hull weight*/
       const anComponent = <Component> this.item.system;

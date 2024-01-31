@@ -26,7 +26,11 @@
       {{#if settings.showComponentDM}}
       <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
       {{/if}}
-      <span class="item-name centre">{{getComponentWeight item}}</span>
+      {{#if settings.showCostInsteadOfWeight}}
+        <span class="item-name centre">{{getComponentCost item}}</span>
+      {{else}}
+        <span class="item-name centre">{{getComponentWeight item}}</span>
+      {{/if}}
       <span class="item-name centre">{{getComponentPower item}}</span>
       {{#iff item.system.subtype "===" "armament"}}
           {{#iff item.system.ammunition.max "!==" 0}}

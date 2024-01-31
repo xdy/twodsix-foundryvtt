@@ -391,6 +391,14 @@ export default function registerHandlebarsHelpers(): void {
     return Handlebars.helpers.each(sortedArray, options);
   });
 
+  Handlebars.registerHelper('getComponentCost', (item: TwodsixItem) => {
+    if (item.system.installedCost) {
+      return item.system.installedCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+    } else {
+      return "\u2014";
+    }
+  });
+
   Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
     return getWeight(item).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
