@@ -3759,3 +3759,16 @@ input[type="text"].color {
 .active-effect-sheet .effect-change .value {
   flex: 3;
 }
+
+/* Chrome scrollbar fix */
+* {
+  scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+  scrollbar-width: thin;
+}
+
+@-moz-document url-prefix() {
+  * {
+      scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+      scrollbar-width: thin;
+  }
+}

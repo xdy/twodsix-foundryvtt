@@ -74,9 +74,9 @@ label.checkbox > input[type="checkbox"] {
 
 .content-container {
   display: grid;
-  grid-template-columns: 307px 500px;
+  grid-template-columns: 301px 504px;
   grid-template-rows: 607px;
-  gap: 1px 1px;
+  gap: 0 4px;
   position: relative;
   top: -10px;
   left: -6px;
@@ -475,7 +475,7 @@ label.checkbox > input[type="checkbox"] {
   position: relative;
   border-style: none solid none none;
   border-color: inherit;
-  width: 97%;
+  width: 100%;
   /*padding-right: 8px;*/
   border-width: medium;
 }
@@ -1604,13 +1604,12 @@ img.ship-mask-bg {
   grid-area: ship-name;
   z-index: 2;
   font-size: 27px;
-  padding: 2px 2px 2px 4px;
+  padding: 0 2px 2px 4px;
 }
 
 .ship-name input[type="text"] {
   height: 1.3em;
   position: relative;
-  top: -0.35em;
   border-bottom: 2px solid;
   text-align: center;
   border-radius: 0.5ch;
@@ -1680,6 +1679,7 @@ img.ship-mask-bg {
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: 12px;
   margin-left: 2px;
+  margin-top: 2px;
 }
 
 .ship-state-grid span {
@@ -3026,4 +3026,15 @@ Monk's Enhanced Journals
 
 .active-effect-sheet .effect-change .value {
   flex: 3;
+}
+
+/* Chrome scrollbar fix */
+* {
+  scrollbar-width: thin;
+}
+
+@-moz-document url-prefix() {
+  * {
+      scrollbar-width: thin;
+  }
 }

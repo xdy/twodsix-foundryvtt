@@ -53,7 +53,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive"
+      jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
+      showCostInsteadOfWeight: game.settings.get('twodsix', 'showCostInsteadOfWeight'),
     };
 
     if (context.settings.useProseMirror) {

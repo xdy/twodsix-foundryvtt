@@ -633,7 +633,8 @@ export const PowerOptions = {
 export const HullPricingOptions = {
   perUnit: "TWODSIX.Items.Component.perUnit",
   perCompTon: "TWODSIX.Items.Component.perCompTon",
-  perHullTon: "TWODSIX.Items.Component.perHullTon"
+  perHullTon: "TWODSIX.Items.Component.perHullTon",
+  per100HullTon: "TWODSIX.Items.Component.per100HullTon"
 };
 
 /**

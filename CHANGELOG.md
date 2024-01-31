@@ -1,3 +1,17 @@
+# [4.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.20.2...v4.21.0) (2024-01-31)
+
+
+### Features
+
+* scrollbar update for chrome and component cost using base hull ([#1540](https://github.com/xdy/twodsix-foundryvtt/issues/1540)) ([28225ba](https://github.com/xdy/twodsix-foundryvtt/commit/28225ba78ff2635adbbd373ad05e714b1c2b9238))
+
+## [4.20.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.20.1...v4.20.2) (2024-01-23)
+
+
+### Bug Fixes
+
+* update dice-tray button integration ([#1538](https://github.com/xdy/twodsix-foundryvtt/issues/1538)) ([adedb6b](https://github.com/xdy/twodsix-foundryvtt/commit/adedb6bc12cbaf7274d2bd8414ee2b1246bc18f2))
+
 ## [4.20.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.20.0...v4.20.1) (2024-01-23)
 
 

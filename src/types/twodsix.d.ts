@@ -155,6 +155,7 @@ declare global {
       'twodsix.showSkillGroups': boolean;
       'twodsix.NoDuplicatesOnHotbar': boolean;
       'twodsix.jDriveLabel': string;
+      'twodsix.showCostInsteadOfWeight': boolean;
     }
   }
 }
