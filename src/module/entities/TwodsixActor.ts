@@ -232,6 +232,8 @@ export default class TwodsixActor extends Actor {
       }
     }
 
+    const massProducedMultiplier = this.system.isMassProduced ? (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount"))) : 1;
+
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
       const powerForItem = getPower(item);
@@ -244,10 +246,18 @@ export default class TwodsixActor extends Actor {
       allocateWeight(anComponent, weightForItem);
 
       /*Calculate Cost*/
-      calculateComponentCost(anComponent, weightForItem, this);
+      calculateComponentCost(anComponent, weightForItem, this, massProducedMultiplier);
 
       /*Calculate Cost*/
       calculateBandwidth(anComponent);
+    });
+
+    //Update component costs for those that depend on base hull value
+    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
+      item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) / 100;
+      if (item.system.pricingBasis === "pctHullPerUnit") {
+        item.system.installedCost *= item.system.quantity;
+      }
     });
 
     /*Calculate implicit values*/
@@ -257,11 +267,8 @@ export default class TwodsixActor extends Actor {
     calcShipStats.weight.available = this.system.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
-    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 ) * calcShipStats.cost.hullOffset
-      + calcShipStats.cost.perHullTon * (this.system.shipStats.mass.max || calcShipStats.weight.baseHull);
-    if(this.system.isMassProduced) {
-      calcShipStats.cost.total *= (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount")));
-    }
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 );
+
     /*Push values to ship actor*/
     updateShipData(this);
 
@@ -273,36 +280,31 @@ export default class TwodsixActor extends Actor {
       return Math.round(returnValue);
     }
 
-    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor): void {
+    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor:TwodsixActor, multiplier:number): void {
       if (!["fuel", "cargo", "vehicle"].includes(anComponent.subtype)) {
         if (anComponent.subtype === "hull" && anComponent.isBaseHull) {
           switch (anComponent.pricingBasis) {
             case "perUnit":
-              calcShipStats.cost.baseHullValue += Number(anComponent.price) * anComponent.quantity;
+              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
               break;
             case "perCompTon":
-              calcShipStats.cost.baseHullValue += Number(anComponent.price) * weightForItem;
-              break;
-            case "pctHull":
-              calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) / 100);
-              break;
-            case "pctHullPerUnit":
-              calcShipStats.cost.hullOffset *= (1 + Number(anComponent.price) * anComponent.quantity / 100);
+              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
               break;
             case "perHullTon":
-              calcShipStats.cost.baseHullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price);
+              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price) * multiplier;
               break;
             case "per100HullTon":
-              calcShipStats.cost.baseHullValue += (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100;
+              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100 * multiplier;
               break;
           }
+          calcShipStats.cost.baseHullValue += anComponent.installedCost;
         } else {
           switch (anComponent.pricingBasis) {
             case "perUnit":
-              calcShipStats.cost.componentValue += Number(anComponent.price) * anComponent.quantity;
+              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
               break;
             case "perCompTon":
-              calcShipStats.cost.componentValue += Number(anComponent.price) * weightForItem;
+              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
               break;
             case "pctHull":
               calcShipStats.cost.percentHull += Number(anComponent.price);
@@ -311,11 +313,14 @@ export default class TwodsixActor extends Actor {
               calcShipStats.cost.percentHull += Number(anComponent.price) * anComponent.quantity;
               break;
             case "perHullTon":
-              calcShipStats.cost.perHullTon += Number(anComponent.price);
+              anComponent.installedCost = Number(anComponent.price) * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
               break;
             case "per100HullTon":
-              calcShipStats.cost.perHullTon += Number(anComponent.price)/100;
+              anComponent.installedCost = Number(anComponent.price)/100 * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
               break;
+          }
+          if (!["pctHull", "pctHullPerUnit"].includes(anComponent.pricingBasis)) {
+            calcShipStats.cost.componentValue += anComponent.installedCost;
           }
         }
       }
