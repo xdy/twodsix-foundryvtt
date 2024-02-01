@@ -61,10 +61,4 @@ Hooks.once("item-piles-ready", async function() {
       "odd-color": "#00000000",
     }*/
   });
-
-  // Item piles conflict with drag drop on icon
-  if (game.settings.get('twodsix', 'allowDropOnIcon')) {
-    await game.settings.set('twodsix', 'allowDropOnIcon', false);
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DragDropOnIconsDisabled"));
-  }
 });
