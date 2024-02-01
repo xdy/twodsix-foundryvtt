@@ -1260,7 +1260,7 @@
         "name":"Allow Drag-Drop in Lists"
       },
       "useDodgeParry" : {
-        "hint": "Add a roll penalty to refect targets ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
+        "hint": "Add a roll penalty that reflects a target's ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
         "name": "Use Dodge / Parry Attack Modifers"
       },
       "showModifierDetails": {
