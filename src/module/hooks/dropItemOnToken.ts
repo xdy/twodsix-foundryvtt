@@ -6,7 +6,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { getItemDataFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
-  if ((dropData.type === 'damageItem' || dropData.type === "Item") && game.settings.get("twodsix", "allowDropOnIcon")) {
+  if ((dropData.type === 'damageItem' || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
     catchDrop(canvasObject, dropData).then();
     return false;
   }

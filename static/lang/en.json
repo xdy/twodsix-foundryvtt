@@ -1483,8 +1483,7 @@
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
-      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
-      "DragDropOnIconsDisabled": "The system setting for dragging and dropping items on tokens has been disabled as it conflicts with the Item Piles module."
+      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?"
     }
   },
   "TYPES": {
