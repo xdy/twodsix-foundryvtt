@@ -1,3 +1,10 @@
+## [4.21.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.0...v4.21.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* allow item-piles module to work with damage drop ([#1541](https://github.com/xdy/twodsix-foundryvtt/issues/1541)) ([e489bea](https://github.com/xdy/twodsix-foundryvtt/commit/e489beadb9d766b149dab217cd528934a541e369))
+
 # [4.21.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.20.2...v4.21.0) (2024-01-31)
 
 
