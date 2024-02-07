@@ -24,8 +24,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     };
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description, {async: false}),
-        notes: await TextEditor.enrichHTML(context.system.notes, {async: false})
+        description: await TextEditor.enrichHTML(context.system.description),
+        notes: await TextEditor.enrichHTML(context.system.notes)
       };
     }
     context.config = TWODSIX;
