@@ -217,7 +217,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
-    } if (['CT'].includes(rulesSet)) {
+    } else if (['CT'].includes(rulesSet)) {
       if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
         await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
