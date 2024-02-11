@@ -190,16 +190,16 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let rollType = 'Normal';
-      const isCEBands =  game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands';
+      const isQualitativeBands =  ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
         const rangeData = this.getRangeModifier(targetRange);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
-        rangeLabel = isCEBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
+        rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
       } else if (targetTokens.length === 0) {
-        rangeLabel = isCEBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
+        rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
       Object.assign(tmpSettings, {rollType: rollType});
@@ -270,7 +270,7 @@ export default class TwodsixItem extends Item {
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
     if (rangeModifierType === 'none') {
       //rangeModifier = 0;
-    } else if (rangeModifierType === 'CE_Bands') {
+    } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
         rangeModifier =  getRangeBandModifier(this.system.rangeBand, targetBand);
@@ -841,6 +841,7 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
 
 /**
  * A function for returning qualitative range band. Per CE rules https://www.orffenspace.com/cepheus-srd/personal-combat.html#range
+ * or per Classic Traveller Rules https://www.drivethrurpg.com/product/80192/CTTTBThe-Traveller-Book?cPath=21_4767
  *
  * @param {number} range    The range in meters
  * @returns {string}        The resulting range band
@@ -851,21 +852,40 @@ function getRangeBand(range: number):string {
   if (units === 'ft' || units === 'feet') {
     range /= 3.28;
   }
-
-  if (range < 1.5) {
-    return 'personal';
-  } else if (range <= 3) {
-    return 'close';
-  } else if (range <= 12) {
-    return 'short';
-  } else if (range <= 50) {
-    return 'medium';
-  } else if (range <= 250) {
-    return 'long';
-  } else if (range <= 500) {
-    return 'veryLong';
-  } else if (range > 500) {
-    return 'distant';
+  if (game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands') {
+    if (range < 1.5) {
+      return 'personal';
+    } else if (range <= 3) {
+      return 'close';
+    } else if (range <= 12) {
+      return 'short';
+    } else if (range <= 50) {
+      return 'medium';
+    } else if (range <= 250) {
+      return 'long';
+    } else if (range <= 500) {
+      return 'veryLong';
+    } else if (range > 500) {
+      return 'distant';
+    } else {
+      return 'unknown';
+    }
+  } else if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+    if (range < 1) {
+      return 'close';
+    } else if (range <= 5) {
+      return 'short';
+    } else if (range <= 50) {
+      return 'medium';
+    } else if (range <= 250) {
+      return 'long';
+    } else if (range <= 500) {
+      return 'veryLong';
+    } else if (range > 500) {
+      return 'distant';
+    } else {
+      return 'unknown';
+    }
   } else {
     return 'unknown';
   }
@@ -878,10 +898,16 @@ function getRangeBand(range: number):string {
  * @returns {number} Range Modifier
  */
 function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
+  const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
   if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
     return 0;
-  } else {
+  } else if (rangeSettings === 'CE_Bands') {
     return CE_Range_Table[weaponBand][targetDistanceBand];
+  } else if (rangeSettings === 'CT_Bands') {
+    return CT_Range_Table[weaponBand][targetDistanceBand];
+  } else {
+    console.log("No valid weapon range band");
+    return 0;
   }
 }
 
@@ -959,5 +985,211 @@ const CE_Range_Table = Object.freeze({
     long: 0,
     veryLong: -2,
     distant: -4
+  }
+});
+//Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition
+const CT_Range_Table = Object.freeze({
+  hands: {
+    close: 2,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  claws: {
+    close: 1,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  teeth: {
+    close: 2,
+    short: 0,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  horns: {
+    close: -1,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  hooves: {
+    close: -1,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  stinger: {
+    close: 4,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  thrasher: {
+    close: 5,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  club: {
+    close: 1,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  dagger: {
+    close: 1,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  blade: {
+    close: 1,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  foil: {
+    close: -1,
+    short: 0,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  cutlass: {
+    close: -4,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  sword: {
+    close: -2,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  broadsword: {
+    close: -8,
+    short: 3,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  bayonet: {
+    close: -1,
+    short: 2,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  spear: {
+    close: -2,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  halberd: {
+    close: 0,
+    short: 1,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  pike: {
+    close: -4,
+    short: 4,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  cudgel: {
+    close: 0,
+    short: 0,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  bodyPistol: {
+    close: 2,
+    short: 1,
+    medium: -6,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+  },
+  autoPistol: {
+    close: 1,
+    short: 2,
+    medium: -4,
+    long: -6,
+    veryLong: INFEASIBLE,
+  },
+  revolver: {
+    close: 1,
+    short: 2,
+    medium: -3,
+    long: -5,
+    veryLong: INFEASIBLE,
+  },
+  carbine: {
+    close: -4,
+    short: 1,
+    medium: -2,
+    long: -4,
+    veryLong: -5,
+  },
+  rifle: {
+    close: -4,
+    short: 1,
+    medium: 0,
+    long: -1,
+    veryLong: -3,
+  },
+  autoRifle: {
+    close: -8,
+    short: 0,
+    medium: 2,
+    long: 1,
+    veryLong: -2,
+  },
+  shotgun: {
+    close: -8,
+    short: 1,
+    medium: 3,
+    long: -6,
+    veryLong: INFEASIBLE,
+  },
+  submachinegun: {
+    close: -4,
+    short: 3,
+    medium: 3,
+    long: -3,
+    veryLong: -9,
+  },
+  laserCarbine: {
+    close: -2,
+    short: 1,
+    medium: 1,
+    long: 1,
+    veryLong: 0,
+  },
+  laserRifle: {
+    close: -4,
+    short: 2,
+    medium: 2,
+    long: 2,
+    veryLong: 1,
   }
 });

@@ -41,7 +41,7 @@ export class TwodsixRollSettings {
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
     const gear = <Gear>anItem?.system;
     const itemName = anItem?.name ?? "";
-    const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill ? skill.characteristic : "NONE");
+    const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill && game.settings.get('twodsix', 'ruleset') !== 'CT' ? skill.characteristic : "NONE");
     //Create Flag data for Automated Automations Module
     const itemUUID:string =  settings?.flags?.itemUUID ?? anItem?.uuid ?? aSkill?.uuid ?? "";
     const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";

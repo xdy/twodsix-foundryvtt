@@ -640,6 +640,7 @@ export default class TwodsixActor extends Actor {
     if (this.items?.getName(game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"))) {
       return;
     }
+    const bandSetting = game.settings.get('twodsix', 'rangeModifierType');
     const data = {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
@@ -653,7 +654,8 @@ export default class TwodsixActor extends Actor {
         "skill": this.getUntrainedSkill()?.id ?? "",
         "equipped": "equipped",
         "damageType": "bludgeoning",
-        "range": "Melee"
+        "range": "Melee",
+        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : "")
       }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
