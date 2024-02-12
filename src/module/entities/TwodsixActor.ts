@@ -655,7 +655,8 @@ export default class TwodsixActor extends Actor {
         "equipped": "equipped",
         "damageType": "bludgeoning",
         "range": "Melee",
-        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : "")
+        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : ""),
+        "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
       }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
