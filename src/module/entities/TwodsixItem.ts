@@ -104,10 +104,11 @@ export default class TwodsixItem extends Item {
 
   //////// WEAPON ////////
 
-  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number | null = null, showInChat = true, weapon:Weapon = <Weapon>this.system):Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
+    const weapon:Weapon = <Weapon>this.system;
     if (!weapon.skill) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
       return;
@@ -119,50 +120,57 @@ export default class TwodsixItem extends Item {
         await (ItemTemplate.fromItem(this))?.drawPreview();
         //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
         //if (templates?.length > 0) {
-        //  targetTokensInTemplate(templates[0]);
+        //  ItemTemplate.targetTokensInTemplate(templates[0]);
         //}
       } catch(err) {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
       }
     }
 
-    let numberOfAttacks = 1;
-    let bonusDamage = "0";
-    let skillLevelMax = undefined;
-    const rof = parseInt(weapon.rateOfFire, 10);
-    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 0);
-    if (attackType && !rateOfFire) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
-    }
-    const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
+    // Initialize settings
     const tmpSettings = {
       rollModifiers: {
         characteristic: "",
         other: 0
       }
     };
+
+    // Set characteristic from skill
+    const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
     if (skill) {
       tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
     }
 
-    let usedAmmo = 1;
+    // Set fire mode parameters
+    let numberOfAttacks = 1;
+    let bonusDamage = "0";
+    let skillLevelMax: number|undefined = undefined;
+    const rof = parseInt(weapon.rateOfFire, 10);
+    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
+    if (attackType !== 'single' && !rateOfFire) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
+    }
+
+    let usedAmmo = rateOfFire;
+    const autoFireRules:string = game.settings.get('twodsix', 'autofireRulesUsed');
     switch (attackType) {
+      case "single":
+        break;
       case "auto-full":
-        numberOfAttacks = rateOfFire;
-        usedAmmo = 3 * rateOfFire;
+        numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
+        usedAmmo = (autoFireRules === 'CT') ? weapon.ammo : 3 * rateOfFire;
         skillLevelMax =  game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
         break;
       case "auto-burst":
-        bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh`: rateOfFire.toString(); //special rule for CD-EE
-        usedAmmo = parseInt(weapon.rateOfFire, 10);
+        if (autoFireRules !== 'CT') {
+          bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh`: rateOfFire.toString(); //special rule for CD-EE
+        }
         break;
       case "burst-attack-dm":
-        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFireCE)});
-        usedAmmo = rateOfFireCE || 0;
+        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFire)});
         break;
       case "burst-bonus-damage":
-        bonusDamage = TwodsixItem.burstBonusDamage(rateOfFireCE);
-        usedAmmo = rateOfFireCE || 0;
+        bonusDamage = TwodsixItem.burstBonusDamage(rateOfFire);
         break;
       case "double-tap":
         Object.assign(tmpSettings.rollModifiers, {rof: 1});
@@ -171,16 +179,18 @@ export default class TwodsixItem extends Item {
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
     Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
+
+    // Define Targets
     const targetTokens = Array.from(game.user.targets);
     const controlledTokens = this.actor?.getActiveTokens();
 
-    //Get Single Target Dodge Parry information
+    // Get Single Target Dodge Parry information
     if (targetTokens.length === 1) {
       const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
     }
 
-    //Get weapon characteristic modifier
+    // Get weapon handling modifier
     if (this.system.handlingModifiers !== "") {
       Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod()});
     }
@@ -190,11 +200,11 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let rollType = 'Normal';
-      const isQualitativeBands =  ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
+      const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        const rangeData = this.getRangeModifier(targetRange);
+        const rangeData = this.getRangeModifier(targetRange, attackType);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
         rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
@@ -238,7 +248,7 @@ export default class TwodsixItem extends Item {
         Object.assign(settings.rollModifiers, dodgeParryInfo);
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          const rangeData = this.getRangeModifier(targetRange);
+          const rangeData = this.getRangeModifier(targetRange, attackType);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
@@ -258,7 +268,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public getRangeModifier(range:number): any {
+  public getRangeModifier(range:number, attackType: string): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
     // Return immediately with default if bad migration
@@ -273,7 +283,7 @@ export default class TwodsixItem extends Item {
     } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier =  getRangeBandModifier(this.system.rangeBand, targetBand);
+        rangeModifier = getRangeBandModifier(this.system.rangeBand, targetBand, attackType);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -608,24 +618,35 @@ export default class TwodsixItem extends Item {
   }
 
   public async resolveUnknownAutoMode() {
-    let attackType = "";
-    const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);;
+    let attackType = 'single';
+    let rof = 1;
+    const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
     switch (game.settings.get('twodsix', 'autofireRulesUsed')) {
       case TWODSIX.RULESETS.CEL.key:
         if (this.shouldShowCELAutoFireDialog()) {
           attackType = await promptForCELROF(this);
         }
-        await this.performAttack(attackType, true);
+        rof = (attackType === 'single') ? 1 : Number(modes[0]);
+        await this.performAttack(attackType, true, rof);
+        break;
+      case TWODSIX.RULESETS.CT.key:
+        if (modes.length > 1) {
+          attackType = await promptForCTROF(modes);
+          rof = (attackType === 'single') ? 1 : Number(modes[1]);
+          await this.performAttack(attackType, true, rof);
+        } else {
+          await this.performAttack(attackType, true, Number(modes[0]));
+        }
         break;
       case TWODSIX.RULESETS.CE.key:
         if (modes.length > 1) {
           await promptAndAttackForCE(modes, this);
         } else {
-          await this.performAttack("", true, Number(modes[0]));
+          await this.performAttack(attackType, true, Number(modes[0]));
         }
         break;
       default:
-        await this.performAttack(attackType, true);
+        await this.performAttack(attackType, true, 1);
         break;
     }
   }
@@ -633,18 +654,18 @@ export default class TwodsixItem extends Item {
   public shouldShowCELAutoFireDialog(): boolean {
     const rateOfFire: string = (<Weapon>this.system).rateOfFire;
     return (
-      (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) &&
+      /*(game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && */
       (Number(rateOfFire) > 1  || (this.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')))
     );
   }
 
-  public shouldShowCEAutoFireDialog(): boolean {
+  /*public shouldShowCEAutoFireDialog(): boolean {
     const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
     return (
       (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key) &&
       (modes.length > 1)
     );
-  }
+  }*/
 
   ////// ACTIVE EFFECTS //////
   /**
@@ -757,7 +778,7 @@ export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
         buttons: {
           single: {
             label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('');
+              resolve('single');
             }
           },
           doubleTap: {
@@ -777,7 +798,7 @@ export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
         buttons: {
           single: {
             label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('');
+              resolve('single');
             }
           },
           burst: {
@@ -809,7 +830,7 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
       buttons["single"] = {
         "label": game.i18n.localize("TWODSIX.Dialogs.ROFSingle"),
         "callback": () => {
-          item.performAttack("", true, 1);
+          item.performAttack("single", true, 1);
         }
       };
     } else if (number > 1){
@@ -831,6 +852,35 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
     }
   }
 
+  await new Dialog({
+    title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+    content: "",
+    buttons: buttons,
+    default: "single"
+  }).render(true);
+}
+
+export async function promptForCTROF(modes: string[]): Promise<string> {
+  const buttons = {
+    single: {
+      label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+        resolve('single');
+      }
+    },
+    burst: {
+      label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
+        resolve('auto-burst');
+      }
+    },
+    full: {
+      label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
+        resolve('auto-full');
+      }
+    }
+  };
+  if (parseInt(modes[0]) === 0) {
+    delete buttons.single;
+  }
   await new Dialog({
     title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
     content: "",
@@ -897,14 +947,21 @@ function getRangeBand(range: number):string {
  * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
  * @returns {number} Range Modifier
  */
-function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
+function getRangeBandModifier(weaponBand: string, targetDistanceBand: string, attackType: string): number {
   const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
   if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
     return 0;
   } else if (rangeSettings === 'CE_Bands') {
     return CE_Range_Table[weaponBand][targetDistanceBand];
   } else if (rangeSettings === 'CT_Bands') {
-    return CT_Range_Table[weaponBand][targetDistanceBand];
+    /*special cases of single fire auto weapons */
+    if (attackType === 'single' && weaponBand === 'autoRifle') {
+      return CT_Range_Table['rifle'][targetDistanceBand];
+    } else if (attackType === 'single' && weaponBand === 'submachinegun') {
+      return CT_Range_Table['autoPistol'][targetDistanceBand];
+    } else {
+      return CT_Range_Table[weaponBand][targetDistanceBand];
+    }
   } else {
     console.log("No valid weapon range band");
     return 0;
@@ -914,282 +971,44 @@ function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): n
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;
 const CE_Range_Table = Object.freeze({
-  closeQuarters: {
-    personal: 0,
-    close: -2,
-    short: INFEASIBLE,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-    distant: INFEASIBLE
-  },
-  extendedReach: {
-    personal: -2,
-    close: 0,
-    short: INFEASIBLE,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-    distant: INFEASIBLE
-  },
-  thrown: {
-    personal: INFEASIBLE,
-    close: 0,
-    short: -2,
-    medium: -2,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-    distant: INFEASIBLE
-  },
-  pistol: {
-    personal: -2,
-    close: 0,
-    short: 0,
-    medium: -2,
-    long: -4,
-    veryLong: INFEASIBLE,
-    distant: INFEASIBLE
-  },
-  rifle: {
-    personal: -4,
-    close: -2,
-    short: 0,
-    medium: 0,
-    long: 0,
-    veryLong: -2,
-    distant: -4
-  },
-  shotgun: {
-    personal: -2,
-    close: 0,
-    short: -2,
-    medium: -2,
-    long: -4,
-    veryLong: INFEASIBLE,
-    distant: INFEASIBLE
-  },
-  assaultWeapon: {
-    personal: -2,
-    close: 0,
-    short: 0,
-    medium: 0,
-    long: -2,
-    veryLong: -4,
-    distant: -6
-  },
-  rocket: {
-    personal: -4,
-    close: -2,
-    short: -2,
-    medium: 0,
-    long: 0,
-    veryLong: -2,
-    distant: -4
-  }
+  closeQuarters: { personal: 0, close: -2, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  extendedReach: { personal: -2, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  thrown: { personal: INFEASIBLE, close: 0, short: -2, medium: -2, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  pistol: { personal: -2, close: 0, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  rifle: { personal: -4, close: -2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
+  shotgun: { personal: -2, close: 0, short: -2, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  assaultWeapon: { personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6 },
+  rocket: { personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4 }
 });
 //Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition
 const CT_Range_Table = Object.freeze({
-  hands: {
-    close: 2,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  claws: {
-    close: 1,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  teeth: {
-    close: 2,
-    short: 0,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  horns: {
-    close: -1,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  hooves: {
-    close: -1,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  stinger: {
-    close: 4,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  thrasher: {
-    close: 5,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  club: {
-    close: 1,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  dagger: {
-    close: 1,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  blade: {
-    close: 1,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  foil: {
-    close: -1,
-    short: 0,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  cutlass: {
-    close: -4,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  sword: {
-    close: -2,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  broadsword: {
-    close: -8,
-    short: 3,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  bayonet: {
-    close: -1,
-    short: 2,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  spear: {
-    close: -2,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  halberd: {
-    close: 0,
-    short: 1,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  pike: {
-    close: -4,
-    short: 4,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  cudgel: {
-    close: 0,
-    short: 0,
-    medium: INFEASIBLE,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  bodyPistol: {
-    close: 2,
-    short: 1,
-    medium: -6,
-    long: INFEASIBLE,
-    veryLong: INFEASIBLE,
-  },
-  autoPistol: {
-    close: 1,
-    short: 2,
-    medium: -4,
-    long: -6,
-    veryLong: INFEASIBLE,
-  },
-  revolver: {
-    close: 1,
-    short: 2,
-    medium: -3,
-    long: -5,
-    veryLong: INFEASIBLE,
-  },
-  carbine: {
-    close: -4,
-    short: 1,
-    medium: -2,
-    long: -4,
-    veryLong: -5,
-  },
-  rifle: {
-    close: -4,
-    short: 1,
-    medium: 0,
-    long: -1,
-    veryLong: -3,
-  },
-  autoRifle: {
-    close: -8,
-    short: 0,
-    medium: 2,
-    long: 1,
-    veryLong: -2,
-  },
-  shotgun: {
-    close: -8,
-    short: 1,
-    medium: 3,
-    long: -6,
-    veryLong: INFEASIBLE,
-  },
-  submachinegun: {
-    close: -4,
-    short: 3,
-    medium: 3,
-    long: -3,
-    veryLong: -9,
-  },
-  laserCarbine: {
-    close: -2,
-    short: 1,
-    medium: 1,
-    long: 1,
-    veryLong: 0,
-  },
-  laserRifle: {
-    close: -4,
-    short: 2,
-    medium: 2,
-    long: 2,
-    veryLong: 1,
-  }
+  hands: { close: 2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  claws: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  teeth: { close: 2, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  horns: { close: -1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  hooves: { close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  stinger: { close: 4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  thrasher: { close: 5, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  club: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  dagger: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  blade: { close: 1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  foil: { close: -1, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  cutlass: { close: -4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  sword: { close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  broadsword: { close: -8, short: 3, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  bayonet: { close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  spear: { close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  halberd: { close: 0, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  pike: { close: -4, short: 4, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  cudgel: { close: 0, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  bodyPistol: { close: 2, short: 1, medium: -6, long: INFEASIBLE, veryLong: INFEASIBLE },
+  autoPistol: { close: 1, short: 2, medium: -4, long: -6, veryLong: INFEASIBLE },
+  revolver: { close: 1, short: 2, medium: -3, long: -5, veryLong: INFEASIBLE },
+  carbine: { close: -4, short: 1, medium: -2, long: -4, veryLong: -5 },
+  rifle: { close: -4, short: 1, medium: 0, long: -1, veryLong: -3 },
+  autoRifle: { close: -8, short: 0, medium: 2, long: 1, veryLong: -2 },
+  shotgun: { close: -8, short: 1, medium: 3, long: -6, veryLong: INFEASIBLE },
+  submachinegun: { close: -4, short: 3, medium: 3, long: -3, veryLong: -9 },
+  laserCarbine: { close: -2, short: 1, medium: 1, long: 1, veryLong: 0 },
+  laserRifle: { close: -4, short: 2, medium: 2, long: 2, veryLong: 1 }
 });

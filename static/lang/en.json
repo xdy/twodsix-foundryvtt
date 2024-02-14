@@ -885,6 +885,8 @@
       "Damage": "Damage",
       "BonusDamage": "Bonus Damage",
       "BurstDamage": "Burst Damage",
+      "Burst" : "Burst",
+      "Auto": "Auto",
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
       "Timeframe": "Time",

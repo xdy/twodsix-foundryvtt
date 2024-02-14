@@ -17,13 +17,24 @@ const CHARACTERISTICS = Object.freeze({
 });
 
 /**
- * Rules variants one can use.
+ * Difficulty variants one can use.
  * Note that only variants that actually have different rules implementations are listed here.
  * @type {Object}
  */
-const VARIANTS = Object.freeze({
+const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
+});
+
+/**
+ * Autofire variants one can use.
+ * Note that only variants that actually have different rules implementations are listed here.
+ * @type {Object}
+ */
+const AUTOFIRE_VARIANTS = Object.freeze({
+  "CE": "CE",
+  "CEL": "CEL",
+  "CT": "CT"
 });
 
 //TODO VARIANTS and RULESETS should really be combined/refactored.
@@ -38,7 +49,7 @@ const RULESETS = Object.freeze({
       initiativeFormula: "2d6 + @characteristics.dexterity.value/100",
       difficultyListUsed: "CE",
       difficultiesAsTargetNumber: false,
-      autofireRulesUsed: "CE",
+      autofireRulesUsed: "CT",
       modifierForZeroCharacteristic: 0,
       termForAdvantage: "advantage",
       termForDisadvantage: "disadvantage",
@@ -950,7 +961,8 @@ export const TARGET_DM = {};
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
-  VARIANTS: typeof VARIANTS,
+  DIFFICULTY_VARIANTS: typeof DIFFICULTY_VARIANTS,
+  AUTOFIRE_VARIANTS: typeof AUTOFIRE_VARIANTS,
   ROLLTYPES: typeof ROLLTYPES,
   DIFFICULTIES: typeof DIFFICULTIES,
   RULESETS: typeof RULESETS,
@@ -985,7 +997,8 @@ export type TWODSIX = {
 export const TWODSIX = {
   CHARACTERISTICS: CHARACTERISTICS,
   CONSUMABLES: CONSUMABLES,
-  VARIANTS: VARIANTS,
+  DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
+  AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS,
