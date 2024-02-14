@@ -42,10 +42,6 @@ The hands acquire shakes
 The shakes become a warning
 It is by caffeine alone I set my mind in motion
 ```
-
-* Help xdy stay awake long enough to add more bugs! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/xdy1337)
-* Help ultra_kev stay awake long enough to make xdy's bugs look pretty! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/https://ko-fi.com/ultra_kev)
-
 ### Patch Notes:
 See [CHANGELOG.md](CHANGELOG.md)
 
