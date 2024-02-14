@@ -619,7 +619,7 @@ export default class TwodsixItem extends Item {
 
   public async resolveUnknownAutoMode() {
     let attackType = 'single';
-    let rof = 1;
+    let rof:number;
     const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
     switch (game.settings.get('twodsix', 'autofireRulesUsed')) {
       case TWODSIX.RULESETS.CEL.key:
