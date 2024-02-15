@@ -152,9 +152,18 @@ export default class TwodsixItem extends Item {
     }
 
     let usedAmmo = rateOfFire;
+    let weaponBandOverride = "";
     const autoFireRules:string = game.settings.get('twodsix', 'autofireRulesUsed');
     switch (attackType) {
       case "single":
+        // Need a single fire override for auto weapons
+        if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+          if (weapon.rangeBand === 'autoRifle') {
+            weaponBandOverride = 'rifle';
+          } else if ( weapon.rangeBand === 'submachinegun') {
+            weaponBandOverride = 'autoPistol';
+          }
+        }
         break;
       case "auto-full":
         numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
@@ -204,7 +213,7 @@ export default class TwodsixItem extends Item {
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        const rangeData = this.getRangeModifier(targetRange, attackType);
+        const rangeData = this.getRangeModifier(targetRange, weaponBandOverride);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
         rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
@@ -248,7 +257,7 @@ export default class TwodsixItem extends Item {
         Object.assign(settings.rollModifiers, dodgeParryInfo);
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          const rangeData = this.getRangeModifier(targetRange, attackType);
+          const rangeData = this.getRangeModifier(targetRange, weaponBandOverride);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
@@ -268,7 +277,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public getRangeModifier(range:number, attackType: string): any {
+  public getRangeModifier(range:number, weaponOverride: string): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
     // Return immediately with default if bad migration
@@ -283,7 +292,7 @@ export default class TwodsixItem extends Item {
     } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier = getRangeBandModifier(this.system.rangeBand, targetBand, attackType);
+        rangeModifier = getRangeBandModifier(this.system.rangeBand, targetBand, weaponOverride);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -947,7 +956,7 @@ function getRangeBand(range: number):string {
  * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
  * @returns {number} Range Modifier
  */
-function getRangeBandModifier(weaponBand: string, targetDistanceBand: string, attackType: string): number {
+function getRangeBandModifier(weaponBand: string, targetDistanceBand: string, weaponOverride: string): number {
   const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
   if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
     return 0;
@@ -955,10 +964,8 @@ function getRangeBandModifier(weaponBand: string, targetDistanceBand: string, at
     return CE_Range_Table[weaponBand][targetDistanceBand];
   } else if (rangeSettings === 'CT_Bands') {
     /*special cases of single fire auto weapons */
-    if (attackType === 'single' && weaponBand === 'autoRifle') {
-      return CT_Range_Table['rifle'][targetDistanceBand];
-    } else if (attackType === 'single' && weaponBand === 'submachinegun') {
-      return CT_Range_Table['autoPistol'][targetDistanceBand];
+    if (weaponOverride !== '') {
+      return CT_Range_Table[weaponOverride][targetDistanceBand];
     } else {
       return CT_Range_Table[weaponBand][targetDistanceBand];
     }
