@@ -108,7 +108,7 @@ export default class TwodsixActor extends Actor {
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
-   * @returns {object} An object of the total for primaryArmor, secodnaryArmor, and radiationProteciton
+   * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
    * @public
    */
   getArmorValues():object {
@@ -910,8 +910,10 @@ export default class TwodsixActor extends Actor {
    * @returns {boolean}
    * @private
    */
-  public async handleDamageData(damagePayload:any, showDamageDialog:boolean):boolean {
-    if (["traveller", "animal", "robot"].includes(this.type)) {
+  public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
+    if (!this.isOwner && !showDamageDialog) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+    } else if (["traveller", "animal", "robot"].includes(this.type)) {
       await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
       return true;
     } else {
