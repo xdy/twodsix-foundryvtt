@@ -35,7 +35,6 @@ input.dice-tray__input {
 }
 
 /*Fix for automated Automations*/
-
 #AA-autorec-settings .window-content, #AA-item-settings .window-content, #AA-ae-settings .window-content {
 	color: black !important;
 }
@@ -49,6 +48,11 @@ input.dice-tray__input {
 #AA-autorec-settings .animation select, #AA-item-settings .animation select, #AA-ae-settings .animation select {
     background-color: rgb(160, 160, 160) !important;
     color: black !important;
+}
+
+#AA-autorec-settings .animation option {
+  background-color: revert;
+  color: revert;
 }
 
 /*No longer needed for v10

@@ -3335,9 +3335,10 @@ form .notes, form .hint {
   border: 2px groove var(--s2d6-item-border);
 }*/
 
-/*option {
+option {
+  color: var(--s2d6-default-color);
   background-color: var(--s2d6-item-active);
-}*/
+}
 
 .window-app .window-header {
   background-color: var(--s2d6-background-transparent);
