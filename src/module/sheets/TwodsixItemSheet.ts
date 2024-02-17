@@ -182,6 +182,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       this.item.update({"system.priorType": this.item.type});
     }
     await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
+    this.item.update({"system.type": event.currentTarget.value});
   }
 
   /* -------------------------------------------- */
