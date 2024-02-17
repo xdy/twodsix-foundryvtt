@@ -103,7 +103,13 @@ export default class TwodsixItem extends Item {
   }
 
   //////// WEAPON ////////
-
+  /**
+   * Perform a weapon attack.
+   * @param attackType {string} Type of autofire attack (e.g. 'single', 'auto-full', 'auto-burst')
+   * @param showThrowDialog {boolean} Whether to show roll/through dialog
+   * @param rateOfFireCE {number} Fire rate / consumables used
+   * @param showInChat Whehter to show attack in chat
+   */
   public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true):Promise<void> {
     if (this.type !== "weapon") {
       return;
@@ -626,6 +632,10 @@ export default class TwodsixItem extends Item {
     return skillName.replace(/\W/g, "");
   }
 
+  /**
+   * A function to resolve autofire mode when a weapon is fired without selecting mode.
+   * Through an NPC sheet or macro, typically.
+   */
   public async resolveUnknownAutoMode() {
     let attackType = 'single';
     let rof:number;
@@ -692,6 +702,10 @@ export default class TwodsixItem extends Item {
   }
 
   //////// CONSUMABLE ////////
+  /**
+   * A function decrement a consumable selected consumbles from inventory.
+   * @param {number} quantity The amount to decrement consumable count
+   */
   public async consume(quantity:number):Promise<void> {
     const consumableLeft = (<Consumable>this.system).currentCount - quantity;
     if (consumableLeft >= 0) {
@@ -700,7 +714,9 @@ export default class TwodsixItem extends Item {
       throw { name: 'NoAmmoError' };
     }
   }
-
+  /**
+   * A function refill selected consumbles from inventory.
+   */
   public async refill():Promise<void> {
     const consumable = <Consumable>this.system;
     if (consumable.currentCount < consumable.max) {
