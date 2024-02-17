@@ -1,3 +1,10 @@
+## [4.21.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.1...v4.21.2) (2024-02-17)
+
+
+### Bug Fixes
+
+* Misc Fixes ([#1545](https://github.com/xdy/twodsix-foundryvtt/issues/1545)) ([d5e1f55](https://github.com/xdy/twodsix-foundryvtt/commit/d5e1f55bae7444e27dfe9d06bebcc26b35a29b71))
+
 ## [4.21.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.0...v4.21.1) (2024-02-01)
 
 
