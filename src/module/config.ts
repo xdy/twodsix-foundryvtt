@@ -956,6 +956,16 @@ export const CT_WEAPON_RANGE_TYPES = {
   }
 };
 
+export const CT_ARMOR_TYPES = {
+  nothing: "TWODSIX.Chat.Roll.ArmorTypes.nothing",
+  jack: "TWODSIX.Chat.Roll.ArmorTypes.jack",
+  mesh: "TWODSIX.Chat.Roll.ArmorTypes.mesh",
+  cloth: "TWODSIX.Chat.Roll.ArmorTypes.cloth",
+  reflec: "TWODSIX.Chat.Roll.ArmorTypes.reflec",
+  ablat: "TWODSIX.Chat.Roll.ArmorTypes.ablat",
+  combat: "TWODSIX.Chat.Roll.ArmorTypes.combat"
+};
+
 export const TARGET_DM = {};
 
 export type TWODSIX = {
@@ -991,6 +1001,7 @@ export type TWODSIX = {
   RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
   CE_WEAPON_RANGE_TYPES: typeof CE_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: typeof CT_WEAPON_RANGE_TYPES,
+  CT_ARMOR_TYPES: typeof  CT_ARMOR_TYPES,
   TARGET_DM: object
 };
 
@@ -1027,5 +1038,6 @@ export const TWODSIX = {
   RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
   CE_WEAPON_RANGE_TYPES: CE_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: CT_WEAPON_RANGE_TYPES,
+  CT_ARMOR_TYPES: CT_ARMOR_TYPES,
   TARGET_DM: TARGET_DM
 };

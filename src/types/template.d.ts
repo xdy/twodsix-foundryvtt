@@ -261,6 +261,7 @@ export interface Traveller {
   secondaryArmor:SecondaryArmor;
   heroPoints:number;
   radiationProtection:PrimaryArmor;
+  armorType:string;
   contacts:string;
   allies:string;
   enemies:string;
@@ -303,6 +304,8 @@ export interface Animal {
   primaryArmor:PrimaryArmor;
   secondaryArmor:PrimaryArmor;
   radiationProtection:PrimaryArmor;
+  armorType:string;
+  armorDM:number;
   untrainedSkill:string;
   description:string;
   notes:string;
@@ -323,6 +326,8 @@ export interface Robot {
   primaryArmor:PrimaryArmor;
   secondaryArmor:PrimaryArmor;
   radiationProtection:PrimaryArmor;
+  armorType:string;
+  armorDM:number;
   untrainedSkill:string;
   description:string;
   notes:string;
@@ -537,6 +542,8 @@ export interface Armor extends GearTemplate, LinkTemplate {
   armor:number;
   secondaryArmor:PrimaryArmor;
   radiationProtection:PrimaryArmor;
+  armorType:string;
+  armorDM:number;
   type:string;
   useConsumableForAttack:string;
   location:string[];

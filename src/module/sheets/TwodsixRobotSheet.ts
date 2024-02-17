@@ -64,7 +64,8 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;

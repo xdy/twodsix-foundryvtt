@@ -136,7 +136,11 @@
               <span class="item-name centre">{{item.system.techLevel}}</span>
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.weight}}</span>
-              <span class="item-name centre">{{item.system.armor}}</span>
+              {{#if ../settings.useCTData}}
+                <span class="item-name centre">{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' item.system.armorType)}}</span>
+              {{else}}
+                <span class="item-name centre">{{item.system.armor}}</span>
+              {{/if}}
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>

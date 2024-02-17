@@ -420,6 +420,15 @@
           "veryLong": "Very Long",
           "distant": "Distant",
           "none": "None"
+        },
+        "ArmorTypes" : {
+          "nothing": "Nothing",
+          "jack": "Jack",
+          "mesh": "Mesh",
+          "cloth": "Cloth",
+          "reflec": "Reflec",
+          "ablat": "Ablat",
+          "combat": "Combat"
         }
       }
     },
@@ -442,7 +451,11 @@
         "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor",
         "Nonstackable": "Non-stackable",
-        "SecondaryArmorProtectionTypes": "Secondary Protection Types"
+        "SecondaryArmorProtectionTypes": "Secondary Protection Types",
+        "armorDM": "DM",
+        "ArmorModifier": "Armor Modifier",
+        "ArmorType": "Armor Type",
+        "WearingReflec": "Wearing Reflec"
       },
       "Augmentation": {
         "Arms": "Arms",

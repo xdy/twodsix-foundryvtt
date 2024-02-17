@@ -778,7 +778,7 @@ export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): n
   return returnValue;
 }
 
-export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
+async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
   if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
     return new Promise((resolve) => {
       new Dialog({
@@ -827,7 +827,7 @@ export async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
   }
 }
 
-export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
+async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
   const buttons = {};
 
   for ( const mode of modes) {
@@ -869,33 +869,53 @@ export async function promptAndAttackForCE(modes: string[], item: TwodsixItem) {
   }).render(true);
 }
 
-export async function promptForCTROF(modes: string[]): Promise<string> {
-  const buttons = {
-    single: {
-      label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-        resolve('single');
-      }
-    },
-    burst: {
-      label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-        resolve('auto-burst');
-      }
-    },
-    full: {
-      label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-        resolve('auto-full');
-      }
-    }
-  };
+async function promptForCTROF(modes: string[]): Promise<string> {
   if (parseInt(modes[0]) === 0) {
-    delete buttons.single;
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          burst: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
+              resolve('auto-burst');
+            }
+          },
+          full: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
+              resolve('auto-full');
+            }
+          }
+        },
+        default: 'burst',
+      }).render(true);
+    });
+  } else {
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+        content: "",
+        buttons: {
+          single: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
+              resolve('single');
+            }
+          },
+          burst: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
+              resolve('auto-burst');
+            }
+          },
+          full: {
+            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
+              resolve('auto-full');
+            }
+          }
+        },
+        default: 'single',
+      }).render(true);
+    });
   }
-  await new Dialog({
-    title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-    content: "",
-    buttons: buttons,
-    default: "single"
-  }).render(true);
 }
 
 /**
@@ -1018,4 +1038,36 @@ const CT_Range_Table = Object.freeze({
   submachinegun: { close: -4, short: 3, medium: 3, long: -3, veryLong: -9 },
   laserCarbine: { close: -2, short: 1, medium: 1, long: 1, veryLong: 0 },
   laserRifle: { close: -4, short: 2, medium: 2, long: 2, veryLong: 1 }
+});
+
+const CT_Armor_Table = Object.freeze({
+  hands: { nothing: 1, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -1, combat: -6 },
+  claws: { nothing: 3, jack: 0, mesh: 0, cloth: 1, reflec: -1, ablat: -3, combat: -7 },
+  teeth: { nothing: 2, jack: 1, mesh: -1, cloth: 0, reflec: -2, ablat: -4, combat: -7 },
+  horns: { nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -5 },
+  hooves: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: 3, ablat: 2, combat: -6 },
+  stinger: { nothing: 4, jack: 3, mesh: 0, cloth: 1, reflec: 2, ablat: 0, combat: -6 },
+  thrasher: { nothing: 7, jack: 7, mesh: 4, cloth: 4, reflec: 7, ablat: 4, combat: 0 },
+  club: { nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7 },
+  dagger: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
+  blade: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
+  foil: { nothing: 2, jack: 0, mesh: -4, cloth: -3, reflec: 2, ablat: -2, combat: -8 },
+  cutlass: { nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -6 },
+  sword: { nothing: 3, jack: 3, mesh: -3, cloth: -3, reflec: 3, ablat: -2, combat: -6 },
+  broadsword: { nothing: 5, jack: 5, mesh: 1, cloth: 0, reflec: 5, ablat: 1, combat: -4 },
+  bayonet: { nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -6 },
+  spear: { nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6 },
+  halberd: { nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -5 },
+  pike: { nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6 },
+  cudgel: { nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7 },
+  bodyPistol: { nothing: 0, jack: 0, mesh: -2, cloth: -4, reflec: -4, ablat: -2, combat: -7 },
+  autoPistol: { nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5 },
+  revolver: {nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5 },
+  carbine: { nothing: 2, jack: 2, mesh: 0, cloth: -3, reflec: 2, ablat: -1, combat: -5 },
+  rifle: { nothing: 3, jack: 3, mesh: 0, cloth: -3, reflec: 2, ablat: 1, combat: -5 },
+  autoRifle: { nothing: 6, jack: 6, mesh: 2, cloth: -1, reflec: 6, ablat: 3, combat: -3 },
+  shotgun: { nothing: 5, jack: 5, mesh: -1, cloth: -3, reflec: 5, ablat: 2, combat: -5 },
+  submachinegun: { nothing: 5, jack: 5, mesh: 0, cloth: -3, reflec: 5, ablat: 2, combat: -4 },
+  laserCarbine: { nothing: 2, jack: 2, mesh: 1, cloth: 1, reflec: -8, ablat: -7, combat: -6 },
+  laserRifle: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6 }
 });

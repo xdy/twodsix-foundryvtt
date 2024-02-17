@@ -26,12 +26,21 @@
 <br>
 {{#unless limited}}
 <!-- Protection Information-->
-<span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
-        style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
-       readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
-<span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
-        name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
-<span class="bgi-encumbrance" data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
+{{#if settings.useCTData}}
+    <span class="bgi-armorType" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input name="system.armorType" type="text" value="{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' system.armorType)}}"
+      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorType'}}"/>
+      {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up" data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
+    </span>
+    <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input name="system.armorDM" type="number" value="{{system.armorDM}}"
+      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}"/></span><br>
+{{else}}
+  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
+          style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
+        readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
+  <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
+          name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
+{{/if}}
+<span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
   {{#iff system.encumbrance.max ">" "0"}}
     <i class="fa-solid fa-weight-hanging" style="color:brown;"></i>
@@ -42,7 +51,7 @@
   <i class="fa-solid fa-weight-hanging"></i>
   {{/iff}}:<input name="system.encumbrance.value" style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>
       /<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/></span>
-<br>
+  {{#unless settings.useCTData}}<br>{{/unless}}
 
 <!-- Damage Stats Information-->
 {{#if settings.showLifebloodStamina}}

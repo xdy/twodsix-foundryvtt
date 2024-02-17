@@ -20,29 +20,36 @@
 {{/unless}}
 <br>
 {{#unless limited}}
-<span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.primaryArmor.value" style="text-align: right;" type="number" value="{{system.primaryArmor.value}}"
-      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
-      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
-<span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
-      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span><br>
+  {{#if settings.useCTData}}
+    <span class="bgi-armorType">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.armorType" type="text" value="{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' system.armorType)}}"
+      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorType'}}"/>
+      {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up" data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
+    </span>
+    <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input name="system.armorDM" type="number" value="{{system.armorDM}}"
+      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}"/></span><br>
+  {{else}}
+    <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.primaryArmor.value" style="text-align: right;" type="number" value="{{system.primaryArmor.value}}"
+          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
+          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
+    <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
+          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span><br>
+  {{/if}}
+  <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"
+      type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>/<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}"
+      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/></span>
+  <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
+        type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
 
-<span class="bgi-encumbrance" data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"
-    type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>/<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}"
-    placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/></span>
+  <!-- Movement -->
+  <span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
+    <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" data-tooltip="{{twodsix_getTooltip actor 'system.movement.walk'}}"/>
+    <select name="system.movement.units" >
+      {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
+    </select>
+  </span>
 
-<span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
-      type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
-
-<!-- Movement -->
-<span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>{{localize "TWODSIX.Actor.Movement.MovementWalk"}}:
-  <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" data-tooltip="{{twodsix_getTooltip actor 'system.movement.walk'}}"/>
-  <select name="system.movement.units" >
-    {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
-  </select>
-</span>
-
-<!-- Characteristic Edit Mode -->
-<span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
-  <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
-</span>
+  <!-- Characteristic Edit Mode -->
+  <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
+    <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
+  </span>
 {{/unless}}

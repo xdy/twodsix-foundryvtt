@@ -47,8 +47,8 @@ export default class TwodsixActor extends Actor {
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
     }
-
   }
+
   /**
   * Check Crew Titles for missing and set to localized default
   */
@@ -103,6 +103,8 @@ export default class TwodsixActor extends Actor {
       system.radiationProtection.value = armorValues.radiationProtection;
       system.layersWorn = armorValues.layersWorn;
       system.wearingNonstackable = armorValues.wearingNonstackable;
+      system.armorType = armorValues.CTLabel;
+      system.reflectOn = armorValues.reflectOn;
     }
     await this._updateActiveEffects(true);
   }
@@ -117,12 +119,21 @@ export default class TwodsixActor extends Actor {
       secondaryArmor: 0,
       radiationProtection: 0,
       layersWorn: 0,
-      wearingNonstackable: false
+      wearingNonstackable: false,
+      CTLabel: "nothing",
+      reflectOn: false
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
+        if (armor.system.armorType === 'reflec') {
+          returnValue.reflectOn = true;
+        } else {
+          returnValue.CTLabel = armor.system.armorType;
+        }
+
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
           returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
@@ -138,6 +149,10 @@ export default class TwodsixActor extends Actor {
           returnValue.wearingNonstackable = true;
         }
       }
+    }
+    // Case where only wearing reflec
+    if (returnValue.reflectOn && returnValue.CTLabel === 'nothing') {
+      returnValue.CTLabel = 'reflec';
     }
     return returnValue;
   }

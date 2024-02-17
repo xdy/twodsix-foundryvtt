@@ -64,7 +64,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.long : TWODSIX.CE_WEAPON_RANGE_TYPES.long
+      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.long : TWODSIX.CE_WEAPON_RANGE_TYPES.long,
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
     if (this.item.type === 'skills') {
       returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
