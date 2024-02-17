@@ -51,6 +51,11 @@ input.dice-tray__input {
     color: black !important;
 }
 
+#AA-autorec-settings .animation option {
+  background-color: revert;
+  color: revert;
+}
+
 /*No longer needed for v10
 //Fix for Tidy UI
 #client-settings nav.tabs {

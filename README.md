@@ -24,7 +24,7 @@ In play - using a number of Foundry modules - it can look something like this:
 
 It is compatible with the core rules of Cepheus Engine, but the intention is to make it flexible enough to play other 2d6 rules variants.
 
-System settings and compendiums are available that make it compatible with Cepheus Light, Cepheus Faster Than Light, Cepheus Atom, Cepheus Quantum and to some extent Barbaric!. (See [docs.md](docs/docs.md) for more information on how to set up Twodsix.)
+System settings and compendiums are available that make it compatible with Cepheus Light, Cepheus Faster Than Light, Cepheus Atom, Cepheus Quantum and to some extent Barbaric!. (See [the wiki](https://github.com/xdy/twodsix-foundryvtt/wiki/System-Configuration-Guide) for more information on how to set up Twodsix.)
 
 Due to licensing restrictions the user will themselves have to fill compendiums for other variants with skills, items, etc.
 
@@ -42,10 +42,6 @@ The hands acquire shakes
 The shakes become a warning
 It is by caffeine alone I set my mind in motion
 ```
-
-* Help xdy stay awake long enough to add more bugs! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/xdy1337)
-* Help ultra_kev stay awake long enough to make xdy's bugs look pretty! [![Donate via Ko-Fi](https://img.shields.io/badge/support-ko--fi-ff4646?style=flat-square&logo=ko-fi)](https://ko-fi.com/https://ko-fi.com/ultra_kev)
-
 ### Patch Notes:
 See [CHANGELOG.md](CHANGELOG.md)
 

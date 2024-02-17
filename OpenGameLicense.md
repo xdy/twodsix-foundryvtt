@@ -132,5 +132,5 @@ Quick Robots, Copyright © 2019; Author: Michael Brown.
 Modern War © 2020 Zozer Games; Author Paul Elliott.
 Modern War – Gun Conversion © 2020 Zozer Games; Author Paul Elliott.
 Cepheus Deluxe © 2021 Stellagama Publishing; authors Omer Golan-Joel, Josh Peters, Richard Hazlewood, and Robert L. S. Weaver.
-Twodsix © 2020-2023, The developers of Twodsix (including but not necessarily limited to those listed in https://github.com/xdy/twodsix-foundryvtt/blob/master/CONTRIBUTORS.md)
+Twodsix © 2020-2024, The developers of Twodsix (including but not necessarily limited to those listed in https://github.com/xdy/twodsix-foundryvtt/blob/master/CONTRIBUTORS.md)
 </pre>
