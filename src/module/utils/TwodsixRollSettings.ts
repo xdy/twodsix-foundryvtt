@@ -24,6 +24,7 @@ export class TwodsixRollSettings {
   itemName: string;
   showRangeModifier: boolean;
   showTargetModifier: boolean;
+  showArmorWeaponModifier: boolean;
   difficulties:CE_DIFFICULTIES | CEL_DIFFICULTIES;
   displayLabel:string;
   extraFlavor:string;
@@ -117,6 +118,7 @@ export class TwodsixRollSettings {
     this.itemName = settings?.itemName ?? itemName;
     this.showRangeModifier =  (game.settings.get('twodsix', 'rangeModifierType') !== 'none' && anItem?.type === "weapon"  && settings?.rollModifiers?.rangeLabel) ?? false;
     this.showTargetModifier = Object.keys(TWODSIX.TARGET_DM).length > 1;
+    this.showArmorWeaponModifier = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT';
     this.displayLabel = settings?.displayLabel ?? displayLabel;
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
@@ -139,7 +141,9 @@ export class TwodsixRollSettings {
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
-      skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined
+      skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined,
+      armorModifier: settings?.rollModifiers?.armorModifier ?? 0,
+      armorLabel: settings?.rollModifiers?.armorLabel ?? "",
     };
     this.flags = {
       rollClass: rollClass,
@@ -210,6 +214,9 @@ export class TwodsixRollSettings {
       itemLabel: this.itemName,
       showRangeModifier: this.showRangeModifier,
       showTargetModifier: this.showTargetModifier,
+      showArmorWeaponModifier: this.showArmorWeaponModifier,
+      armorModifier: this.rollModifiers.armorModifier,
+      armorLabel: this.rollModifiers.armorLabel,
       targetModifier: this.rollModifiers.targetModifier,
       targetDMList: getTargetDMSelectObject(),
       skillRoll: this.skillRoll,
@@ -243,6 +250,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
           this.rollModifiers.selectedSkill = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.selectedSkill"]').val() : "";
           this.rollModifiers.targetModifier = (dialogData.showTargetModifier) ? buttonHtml.find('[name="rollModifiers.targetModifier"]').val() : this.rollModifiers.targetModifier;
+          this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(buttonHtml.find('[name="rollModifiers.armorModifier"]').val(), 10) : 0;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
             //either dont show modifier or not a physical characterisitc

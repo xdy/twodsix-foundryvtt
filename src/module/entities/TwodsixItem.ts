@@ -158,16 +158,17 @@ export default class TwodsixItem extends Item {
     }
 
     let usedAmmo = rateOfFire;
-    let weaponBandOverride = "";
+    let weaponTypeOverride = "";
     const autoFireRules:string = game.settings.get('twodsix', 'autofireRulesUsed');
+    const useCTBands:boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
     switch (attackType) {
       case "single":
         // Need a single fire override for auto weapons
-        if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+        if (useCTBands) {
           if (weapon.rangeBand === 'autoRifle') {
-            weaponBandOverride = 'rifle';
+            weaponTypeOverride = 'rifle';
           } else if ( weapon.rangeBand === 'submachinegun') {
-            weaponBandOverride = 'autoPistol';
+            weaponTypeOverride = 'autoPistol';
           }
         }
         break;
@@ -194,15 +195,23 @@ export default class TwodsixItem extends Item {
     }
     Object.assign(tmpSettings, {bonusDamage: bonusDamage});
     Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
+    const weaponType:string = weaponTypeOverride || weapon.rangeBand;
 
     // Define Targets
     const targetTokens = Array.from(game.user.targets);
     const controlledTokens = this.actor?.getActiveTokens();
 
-    // Get Single Target Dodge Parry information
+
     if (targetTokens.length === 1) {
+      // Get Single Target Dodge Parry information
       const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
+
+      //Get single target weapon-armor modifier
+      if (useCTBands) {
+        const weaponArmorInfo = getWeaponArmorValues(targetTokens[0], weaponType);
+        Object.assign(tmpSettings.rollModifiers, weaponArmorInfo);
+      }
     }
 
     // Get weapon handling modifier
@@ -219,7 +228,7 @@ export default class TwodsixItem extends Item {
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        const rangeData = this.getRangeModifier(targetRange, weaponBandOverride);
+        const rangeData = this.getRangeModifier(targetRange, weaponType);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
         rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
@@ -261,9 +270,16 @@ export default class TwodsixItem extends Item {
         //need to update dodgeParry and weapons range modifiers for each target
         const dodgeParryInfo = this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
         Object.assign(settings.rollModifiers, dodgeParryInfo);
+
+        // Get armor modifier, if necessary
+        if (useCTBands) {
+          const weaponArmorInfo = getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType);
+          Object.assign(settings.rollModifiers, weaponArmorInfo);
+        }
+
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          const rangeData = this.getRangeModifier(targetRange, weaponBandOverride);
+          const rangeData = this.getRangeModifier(targetRange, weaponType);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
@@ -283,7 +299,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public getRangeModifier(range:number, weaponOverride: string): any {
+  public getRangeModifier(range:number, weaponBand: string): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
     // Return immediately with default if bad migration
@@ -298,7 +314,7 @@ export default class TwodsixItem extends Item {
     } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier = getRangeBandModifier(this.system.rangeBand, targetBand, weaponOverride);
+        rangeModifier = getRangeBandModifier(weaponBand, targetBand);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -992,23 +1008,54 @@ function getRangeBand(range: number):string {
  * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
  * @returns {number} Range Modifier
  */
-function getRangeBandModifier(weaponBand: string, targetDistanceBand: string, weaponOverride: string): number {
+function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
   const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
   if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
     return 0;
   } else if (rangeSettings === 'CE_Bands') {
     return CE_Range_Table[weaponBand][targetDistanceBand];
   } else if (rangeSettings === 'CT_Bands') {
-    /*special cases of single fire auto weapons */
-    if (weaponOverride !== '') {
-      return CT_Range_Table[weaponOverride][targetDistanceBand];
-    } else {
-      return CT_Range_Table[weaponBand][targetDistanceBand];
-    }
+    return CT_Range_Table[weaponBand][targetDistanceBand];
   } else {
     console.log("No valid weapon range band");
     return 0;
   }
+}
+
+/**
+ * A function for returning the weapons-armor modifier based on target and weapon type used
+ * @param {Token} targetToken Token for target
+ * @param {string} weaponType Weapon's type description, (e.g., club, rifle, hands)
+ * @returns {object} Object of {armorModifier:number, armorLabel:string}
+ */
+function getWeaponArmorValues(targetToken:Token, weaponType:string): object {
+  let armorModifier = 0;
+  let armorLabel = "";
+  if (targetToken?.actor && weaponType) {
+    const targetActor = targetToken.actor;
+    if (targetActor.type === 'traveller') {
+      const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
+      if (wornArmor.length > 2) {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyLayersOnTarget"));
+      } else if (targetActor.system.reflectOn && wornArmor.length === 2) {
+        const armor0Mod = CT_Armor_Table[weaponType][wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
+        const armor1Mod = CT_Armor_Table[weaponType][wornArmor[1].system.armorType] + (wornArmor[1].system.armorDM ?? 0);
+        armorModifier = armor0Mod < armor1Mod ? armor0Mod : armor1Mod;
+        armorLabel = armor0Mod < armor1Mod ? wornArmor[0].system.armorType : wornArmor[1].system.armorType;
+      } else if (wornArmor.length === 1) {
+        armorModifier = CT_Armor_Table[weaponType][wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
+        armorLabel = wornArmor[0].system.armorType;
+      } else if (wornArmor.length === 0) {
+        armorModifier = CT_Armor_Table[weaponType]['nothing'];
+        armorLabel = 'nothing';
+      }
+    } else if (['animal', 'robot'].includes(targetActor.type)) {
+      armorModifier = CT_Armor_Table[weaponType][targetActor.system.armorType] + (targetActor.system.armorDM ?? 0);
+      armorLabel = targetActor.system.armorType;
+    }
+  }
+  armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
+  return {armorModifier: armorModifier, armorLabel: armorLabel };
 }
 
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
