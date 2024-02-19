@@ -233,6 +233,7 @@
         "MovementRate": "Velocidad"
       },
       "CharDisplay": {
+        "Core": "Básico",
         "Base": "Base",
         "Alternate": "Alternativo",
         "All": "Todos"
@@ -460,7 +461,7 @@
         "purchasePrice": "Precio Compra",
         "isIllegal": "¿Ilegal?",
         "unitWeight": "Unidad Peso",
-        "pctDisplacement": "% Peso Desplazado",
+        "pctDisplacement": "% Peso",
         "CargoItem": "Objeto Carga",
         "CargoLocation": "Localización Carga",
         "Price": "Precio",
@@ -479,7 +480,7 @@
         "RollModifier": "Modificador Tirada",
         "DM": "MD",
         "Hardened": "¿Reforzado?",
-        "hardened": "reforzado",
+        "hardened": "Reforzado",
         "Hd": "Ref",
         "isPopup": "¿Es desplegable?",
         "isExtended": "¿Esta el desplegable extendido?",
@@ -490,7 +491,16 @@
         "ComponentType": " Tipo Componente",
         "powerPerUnit": "por unidad",
         "powerPerCompTon": "por tonelada componentes",
-        "powerPerHullTon": "por tonelada casco"
+        "powerPerHullTon": "por tonelada casco",
+        "installedCost": "Coste Instalación (MCr)",
+        "techLevel": "Nivel Tecnológico",
+        "diceModifier": "Modificador Dado",
+        "displacementWeight": "Peso (d-tons)",
+        "PowerUsed": "Energía Consumida o Generada (+)",
+        "Quantity": "Cantidad",
+        "AttackDamage": "Daño Ataque",
+        "numberHits": "Número de Impactos",
+        "opStatus": "Estado Operacional"
       },
       "Equipment": {
         "AssignSkill": "Asignar Habilidad",
@@ -896,6 +906,10 @@
         "hint": "Nombre abreviado para el segundo atributo alternativo. Debe tener cuatro caracteres como máximo.",
         "name": "Nombre abreviado para el atributo alternativo 2"
       },
+      "alternativeShort3": {
+        "hint": "Nombre abreviado para un atributo alternativo. Debe tener máx. cuatro caracteres.",
+        "name": "Nombre abreviado para atributo alternativo 3"
+      },
       "autofireRulesUsed": {
         "hint": "Selecciona qué variante del reglamento para fuego automático/ráfagas utilizar.",
         "name": "Variante disparo automático"
@@ -992,7 +1006,7 @@
         "name": "Fórmula Iniciativa Nave"
       },
       "showAlternativeCharacteristics": {
-        "hint": "Esenciales: seis atributos (FUE, DES, RES, INT, EDU, y SOC).  Base: seis esenciales más PSI. Alternativo: seis esenciales más atributos Alternativos. Todos: seis esenciales con PSI y Alternativos.",
+        "hint": "Básico: seis atributos básicos (FUE, DES, RES, INT, EDU, y SOC). Base: seis básicos más PSI. Alternativa: seis básicos más dos atrib. Alternativos. Todos: seis básicos más PSI más tres atrib. Alternativos.",
         "name": "Selecciona qué atributos mostrar"
       },
       "showContaminationBelowLifeblood": {
@@ -1382,6 +1396,10 @@
       "jDriveLabel": {
         "hint": "Mostrar etiqueta para la gestión de potencia del motor de salto.",
         "name": "Etiqueta Motor-S"
+      },
+      "showCostInsteadOfWeight": {
+        "hint": "Mostrar el coste de los componentes de la nave en MCr, en vez del Peso; en las líneas de  la hoja de la nave.",
+        "name": "Mostrar Coste en vez de Peso"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
