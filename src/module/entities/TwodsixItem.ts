@@ -302,12 +302,13 @@ export default class TwodsixItem extends Item {
   public getRangeModifier(range:number, weaponBand: string): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
+    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     // Return immediately with default if bad migration
-    if (typeof this.system.range === 'number'){
+    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands'].includes(rangeModifierType)){
+      console.log("Bad weapon system.range value - should be string");
       return {rangeModifier: rangeModifier, rollType: rollType};
     }
 
-    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
     if (rangeModifierType === 'none') {
       //rangeModifier = 0;
