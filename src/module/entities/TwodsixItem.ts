@@ -1010,16 +1010,26 @@ function getRangeBand(range: number):string {
  */
 function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
   const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
+  let returnVal = 0;
   if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
-    return 0;
+    // do nothing
   } else if (rangeSettings === 'CE_Bands') {
-    return CE_Range_Table[weaponBand][targetDistanceBand];
+    try {
+      returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+    } catch(err) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+    }
   } else if (rangeSettings === 'CT_Bands') {
-    return CT_Range_Table[weaponBand][targetDistanceBand];
+    try {
+      returnVal = CT_Range_Table[weaponBand][targetDistanceBand];
+    } catch(err) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+    }
   } else {
-    console.log("No valid weapon range band");
+    console.log("Not a valid weapon range band type");
     return 0;
   }
+  return returnVal;
 }
 
 /**
@@ -1031,7 +1041,7 @@ function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): n
 function getWeaponArmorValues(targetToken:Token, weaponType:string): object {
   let armorModifier = 0;
   let armorLabel = "";
-  if (targetToken?.actor && weaponType) {
+  if (targetToken?.actor && weaponType && CT_Armor_Table[weaponType]) {
     const targetActor = targetToken.actor;
     if (targetActor.type === 'traveller') {
       const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
@@ -1053,6 +1063,8 @@ function getWeaponArmorValues(targetToken:Token, weaponType:string): object {
       armorModifier = CT_Armor_Table[weaponType][targetActor.system.armorType] + (targetActor.system.armorDM ?? 0);
       armorLabel = targetActor.system.armorType;
     }
+  } else {
+    ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidWeaponArmor"));
   }
   armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
   return {armorModifier: armorModifier, armorLabel: armorLabel };
