@@ -1,3 +1,10 @@
+## [4.21.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.2...v4.21.3) (2024-02-20)
+
+
+### Bug Fixes
+
+* add dice rolls to details ([#1546](https://github.com/xdy/twodsix-foundryvtt/issues/1546)) ([c01a19d](https://github.com/xdy/twodsix-foundryvtt/commit/c01a19d3c5f3be85dab2c2e83e18e55a6486ddda))
+
 ## [4.21.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.1...v4.21.2) (2024-02-17)
 
 
