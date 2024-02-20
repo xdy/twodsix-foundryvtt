@@ -381,7 +381,8 @@
           "veryLong": "Very Long",
           "distant": "Distant",
           "none": "None"
-        }
+        },
+        "Dice": "Dice"
       }
     },
     "Table": {
