@@ -239,6 +239,12 @@ export class TwodsixDiceRoll {
     }
     let flavorTable = `<table><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
 
+    //Add roll data
+    if (this.roll?.dice[0]?.values) {
+      const diceDetails = getDiceSymbols(this.roll.dice[0].values); // this.roll.dice[0].values.join()
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Dice")}</td><td style= "font-size: larger;">${diceDetails}</td><td class="centre">${this.roll.dice[0].total}</td></tr>`;
+    }
+
     //Difficulty Text
     flavorText += `<section><p><b>${rollingString}</b>: ${difficulty}`;
     flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Difficulty")}</td><td>${difficulty}</td>`;
@@ -396,4 +402,17 @@ function getOperatorString(value: number):string {
   } else {
     return ` +`;
   }
+}
+
+/**
+ * Returns a string of Font Awesome d6 icons for a roll
+ * @param {number[]} values an array of roll values
+ * @returns {string} html string of font awesome codes for the roll
+ */
+function getDiceSymbols (values:number[]): string {
+  let returnVal = ``;
+  for (const value of values) {
+    returnVal += `<i class="fa-solid fa-dice-` + [`one">`, `two">`, `three">`, `four">`, `five">`, `six">`][value - 1] + `</i> `;
+  }
+  return returnVal;
 }
