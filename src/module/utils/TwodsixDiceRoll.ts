@@ -239,6 +239,12 @@ export class TwodsixDiceRoll {
     }
     let flavorTable = `<table><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
 
+    //Add roll data
+    if (this.roll?.dice[0]?.values) {
+      const diceDetails = this.roll.dice[0].values.join();
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Dice")}</td><td>${diceDetails}</td><td class="centre">${this.roll.dice[0].total}</td></tr>`;
+    }
+
     //Difficulty Text
     flavorText += `<section><p><b>${rollingString}</b>: ${difficulty}`;
     flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Difficulty")}</td><td>${difficulty}</td>`;
