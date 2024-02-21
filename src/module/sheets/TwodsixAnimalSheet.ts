@@ -101,7 +101,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     if (this.actor.system.woundedEffect) {
       rollString += " + @woundedEffect";
     }
-    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await (new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE}));
 
     let flavor = "";
 
@@ -118,7 +118,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       await roll.toMessage(
         { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
           flavor: flavor,
-          style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         },
         {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
       );
@@ -150,7 +150,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     await roll.toMessage(
       { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
         flavor: flavor,
-        style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [roll]
       },
       {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}

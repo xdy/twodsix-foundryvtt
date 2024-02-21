@@ -156,7 +156,7 @@ function getSelectedTokenData(): any {
   return returnValue;
 }
 
-function getControllingUser(token:Token): string {
+async function getControllingUser(token:Token): string {
   let userId = "";
   const owningUsers = game.users.filter((user) => !user.isGM && user.active && (token.actor.ownership[user.id] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER || (token.actor.ownership.default === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER  && !(user.id in token.actor.ownership))));
   if (owningUsers.length > 1) {
@@ -164,7 +164,7 @@ function getControllingUser(token:Token): string {
     if (characterUser) {
       userId = characterUser.id;
     } else {
-      const randomSelection = new Roll("1d@length - 1", {length: owningUsers.length}).evaluateSync().total;
+      const randomSelection =  (await (new Roll("1d@length - 1", {length: owningUsers.length})).evaluate()).total;
       userId = owningUsers[randomSelection].id;
     }
   } else if (owningUsers.length === 1) {

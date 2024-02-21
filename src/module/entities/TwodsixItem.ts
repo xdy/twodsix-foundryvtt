@@ -459,7 +459,7 @@ export default class TwodsixItem extends Item {
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
-        await damage.evaluate(); // async: true will be default in foundry 0.10
+        await damage.evaluate();
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -514,7 +514,7 @@ export default class TwodsixItem extends Item {
         await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
-          style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
           flags: {
             "core.canPopout": true,
             "transfer": transfer,

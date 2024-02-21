@@ -85,7 +85,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     await damage.toMessage({
       speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
       content: html,
-      style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER,
       rolls: [damage],
       flags: {
         "core.canPopout": true,

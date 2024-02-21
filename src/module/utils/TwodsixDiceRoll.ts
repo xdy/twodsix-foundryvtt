@@ -37,7 +37,7 @@ export class TwodsixDiceRoll {
     })();
   }
 
-  async createRoll():void {
+  private async createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.rollSettings.rollType].formula;
     const formulaData = {};
@@ -75,7 +75,7 @@ export class TwodsixDiceRoll {
       formulaData[modifierName] = Math.abs(modifierValue);
     }
 
-    this.roll = await (new Roll(formula, formulaData).evaluate()); // async:true will be default in foundry 0.10
+    this.roll = await (new Roll(formula, formulaData).evaluate());
   }
 
   public getCrit():Crit {
@@ -342,7 +342,7 @@ export class TwodsixDiceRoll {
     let timeToComplete = ``;
     if (game.settings.get("twodsix", "showTimeframe")  && this.rollSettings.selectedTimeUnit !== "none") {
       if (Roll.validate(this.rollSettings.timeRollFormula)) {
-        timeToComplete = new Roll(this.rollSettings.timeRollFormula).evaluate({async: false}).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
+        timeToComplete = (await new Roll(this.rollSettings.timeRollFormula).evaluate()).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
       }
     }
     // Add degree of Success
@@ -367,7 +367,7 @@ export class TwodsixDiceRoll {
     await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        style: CONST.CHAT_MESSAGE_STYLES.ROLL,
+        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],
         flavor: flavor,
         rollMode: this.rollSettings.rollMode,

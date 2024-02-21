@@ -74,7 +74,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     command += ` ${difficulties[skillData.difficulty].target}+`;
 
     const newAction = {
-      [randomID()]: {
+      [foundry.utils.randomID()]: {
         "order": Object.keys(actions).length,
         "name": skill.name,
         "icon": skill.img ?? "",
@@ -149,7 +149,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   private _onCreateAction() {
     const actions = (<ShipPosition>this.item.system).actions;
-    actions[randomID()] = {
+    actions[foundry.utils.randomID()] = {
       "order": Object.values(actions).length === 0 ? 1 : Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",
