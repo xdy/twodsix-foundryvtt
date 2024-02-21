@@ -431,7 +431,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
+    const diceRoll = await new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
 
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);
@@ -459,7 +459,7 @@ export default class TwodsixItem extends Item {
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
-        await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
+        await damage.evaluate(); // async: true will be default in foundry 0.10
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -473,7 +473,7 @@ export default class TwodsixItem extends Item {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
           radDamage = new Roll(radFormula, this.actor?.getRollData());
-          await radDamage.evaluate({async: true});
+          await radDamage.evaluate();
         }
       }
 
@@ -514,7 +514,7 @@ export default class TwodsixItem extends Item {
         await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.ROLL,
           flags: {
             "core.canPopout": true,
             "transfer": transfer,

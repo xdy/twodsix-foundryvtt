@@ -23,21 +23,21 @@ export class TwodsixDiceRoll {
   modifierList:string[] | null;
 
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
-    this.rollSettings = rollSettings;
-    this.actor = actor;
-    this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
-    this.item = item;
-
-    this.createRoll();
-
-    this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
-      return dice.active ? total + dice.result : total;
-    }, 0) || 0;
-
-    this.calculateEffect();
+    return (async () => {
+      this.rollSettings = rollSettings;
+      this.actor = actor;
+      this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
+      this.item = item;
+      await this.createRoll();
+      this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
+        return dice.active ? total + dice.result : total;
+      }, 0) || 0;
+      this.calculateEffect();
+      return this; // Return the newly-created instance
+    })();
   }
 
-  private createRoll():void {
+  async createRoll():void {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.rollSettings.rollType].formula;
     const formulaData = {};
@@ -75,7 +75,7 @@ export class TwodsixDiceRoll {
       formulaData[modifierName] = Math.abs(modifierValue);
     }
 
-    this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
+    this.roll = await (new Roll(formula, formulaData).evaluate()); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {
@@ -367,7 +367,7 @@ export class TwodsixDiceRoll {
     await this.roll?.toMessage(
       {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        style: CONST.CHAT_MESSAGE_STYLES.ROLL,
         rolls: [this.roll],
         flavor: flavor,
         rollMode: this.rollSettings.rollMode,

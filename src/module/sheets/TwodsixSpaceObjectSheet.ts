@@ -55,7 +55,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
 
     if (Roll.validate(rollFormula)) {
       damage = new Roll(rollFormula, this.actor?.system);
-      await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
+      await damage.evaluate(); // async: true will be default in foundry 0.10
     } else {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
       return;
@@ -85,7 +85,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     await damage.toMessage({
       speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
       content: html,
-      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      style: CONST.CHAT_MESSAGE_STYLES.ROLL,
       rolls: [damage],
       flags: {
         "core.canPopout": true,

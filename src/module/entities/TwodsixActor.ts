@@ -594,7 +594,7 @@ export default class TwodsixActor extends Actor {
       return;
     }
 
-    const diceRoll = new TwodsixDiceRoll(settings, this);
+    const diceRoll = await new TwodsixDiceRoll(settings, this);
     if (showInChat) {
       await diceRoll.sendToChat(settings.difficulties);
     }
