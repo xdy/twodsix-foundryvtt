@@ -169,7 +169,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),
-        icon: "systems/twodsix/assets/icons/weight.svg",
+        img: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
         statuses: ["encumbered"]
       }]);
@@ -234,14 +234,14 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   if (isAlreadySet.length > 1  && targetToken) {
     //Need to get rid of duplicates
     for (let i = 1; i < isAlreadySet.length; i++) {
-      await (<Token>targetToken).toggleEffect(targetEffect, {active: false});
+      await (<Token>targetToken).toggleStatusEffect(targetEffect, {active: false});
     }
   }
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
       if (effectStatus === 'dead') {
-        await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: false});
+        await (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state, overlay: false});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
         const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
@@ -249,7 +249,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
           await combatant.update({defeated: state});
         }
       } else {
-        await (<Token>targetToken).toggleEffect(targetEffect, {active: state});
+        await (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state});
       }
     }
   }
@@ -289,7 +289,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     if (!currentEffectId) {
       await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.wounded),
-        icon: "icons/svg/blood.svg",
+        img: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData],
         statuses: ['wounded']
