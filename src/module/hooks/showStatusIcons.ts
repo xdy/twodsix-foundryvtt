@@ -160,7 +160,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
   //Define AE if actor is encumbered
   if (state === true) {
-    const modifier = getEncumbranceModifier(ratio);
+    const modifier = getEncumbranceModifier(ratio) ?? 0;
     const changeData = [{
       key: "system.conditions.encumberedEffect",
       mode: CONST.ACTIVE_EFFECT_MODES.ADD,
@@ -430,15 +430,25 @@ export function getCEAWoundTint(selectedTraveller: Traveller): string {
  * @function
  */
 function getEncumbranceModifier(ratio:number):number {
+  const ruleset = game.settings.get("twodsix", "ruleset");
   if (ratio === 0 ) {
     return 0; //Shoudn't get here
-  } else if (game.settings.get("twodsix", "ruleset") === 'CE') {
+  } else if (['CE', 'CT'].includes(ruleset)) {
     if (ratio <= game.settings.get('twodsix', 'encumbranceFraction')) {
       return 0;
     } else if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 2) {
       return game.settings.get('twodsix', 'encumbranceModifier');
-    } else if (ratio <= 1) {
-      return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+    } else {
+      if (ruleset === 'CE') {
+        if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 3) {
+          return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+        } else {
+          console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
+          return game.settings.get('twodsix', 'encumbranceModifier') * 20; //Cannot take any actions other than push
+        }
+      } else {
+        return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+      }
     }
   } else {
     return game.settings.get('twodsix', 'encumbranceModifier');
