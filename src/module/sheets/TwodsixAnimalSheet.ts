@@ -133,7 +133,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     if (this.actor.system.moraleDM) {
       rollString += " + @moraleDM";
     }
-    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
 
     let flavor = "";
     if (roll.total <= 5) {
