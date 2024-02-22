@@ -160,12 +160,32 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
   //Define AE if actor is encumbered
   if (state === true) {
-    const modifier = getEncumbranceModifier(ratio) ?? 0;
-    const changeData = [{
-      key: "system.conditions.encumberedEffect",
-      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-      value: modifier.toString()
-    }];
+    const modifier:string = getEncumbranceModifier(ratio).toString();
+    let changeData: { key: string; mode: any; value: string; }[];
+    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+      changeData = [{
+        key: "system.characteristics.strength.value",
+        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        value: modifier
+      },
+      {
+        key: "system.characteristics.dexterity.value",
+        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        value: modifier
+      },
+      {
+        key: "system.characteristics.endurance.value",
+        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        value: modifier
+      }];
+    } else {
+      changeData = [{
+        key: "system.conditions.encumberedEffect",
+        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        value: modifier
+      }];
+    }
+
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),
@@ -196,6 +216,10 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
     if (['CE', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
+      }
+    } else if (['CT'].includes(rulesSet)) {
+      if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
+        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
     } else if (oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
@@ -321,6 +345,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CEL':
       case 'CEFTL':
       case 'SOC':
+      case 'CT':
         return (getCELWoundTint(selectedTraveller));
       case 'CE':
       case 'OTHER':

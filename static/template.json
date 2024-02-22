@@ -112,7 +112,9 @@
         },
         "radiationProtection": {
           "value": 0
-        }
+        },
+        "armorType": "nothing",
+        "armorDM": 0
       },
       "conditionsTemplate": {
         "conditions": {
@@ -525,7 +527,8 @@
       "type": "armor",
       "useConsumableForAttack": "",
       "isPowered": false,
-      "nonstackable": false
+      "nonstackable": false,
+      "armorType": "nothing"
     },
     "augment": {
       "templates": ["gearTemplate", "referenceTemplateItem"],

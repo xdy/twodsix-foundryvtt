@@ -147,8 +147,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    */
   protected async _onPerformAttack(event, showThrowDiag: boolean): Promise<void> {
-    const attackType = event.currentTarget["dataset"].attackType;
-    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : null;
+    const attackType = event.currentTarget["dataset"].attackType || "single";
+    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : 1;
     const item = this.getItem(event);
     //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {

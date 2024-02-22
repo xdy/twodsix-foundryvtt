@@ -171,9 +171,12 @@ import { camelCase } from "../settings/settingsUtils";
 // }
 
 export function calcModFor(characteristic:number):number {
-  let modifier = Math.floor((characteristic - 6) / 3);
-  if (characteristic <= 0) {
-    modifier = (<number>game.settings.get('twodsix', 'modifierForZeroCharacteristic'));
+  let modifier = 0;
+  if (game.settings.get('twodsix', 'ruleset' ) !== 'CT') {
+    modifier = Math.floor((characteristic - 6) / 3);
+    if (characteristic <= 0) {
+      modifier = (<number>game.settings.get('twodsix', 'modifierForZeroCharacteristic'));
+    }
   }
   return modifier;
 }

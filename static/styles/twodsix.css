@@ -1071,7 +1071,7 @@ span.bgi-age {
   margin-right: 0;
 }
 
-span.bgi-armor, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
+span.bgi-armor, span.bgi-armorType, span.bgi-encumbrance, span.bgi-radExposure, span.bgi-charEdit {
   margin-right: 0.4em;
   height: auto;
   /*font-size: 16px;
@@ -1090,6 +1090,20 @@ span.bgi-charEdit {
   border: none;
 }
 
+.bgi-armorType input {
+  position: relative;
+  margin-bottom: -0.5em;
+  width: 8ch;
+  border: none;
+}
+
+.bgi-armorDM input {
+  position: relative;
+  margin-bottom: -0.5em;
+  width: 8ch;
+  border: none;
+}
+
 .bgi-radProtect input {
   width: 4ch;
 }
@@ -1098,6 +1112,13 @@ span.bgi-charEdit {
   position: relative;
   margin-bottom: -0.5em;
   width: 4ch;
+  border: none;
+}
+
+.bgi-encumbrance-wide input {
+  position: relative;
+  margin-bottom: -0.5em;
+  width: 7ch;
   border: none;
 }
 
@@ -2939,6 +2960,7 @@ select.form-input, input.form-input, span.form-input {
 
 .protectionTypes option {
   color: var(--s2d6-header-border);
+  background-color: var(--s2d6-item-active);
 }
 
 /* ------ Item page - Consumables ------ */

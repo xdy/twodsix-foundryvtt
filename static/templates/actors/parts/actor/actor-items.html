@@ -34,7 +34,7 @@
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.weight}}</span>
               {{#if ../settings.ShowRangeBandAndHideRange}}
-              <span class="item-name centre" data-tooltip='{{localize (concat "TWODSIX.Chat.Roll.WeaponRangeTypes." item.system.rangeBand)}}'>{{localize (lookup ../config.WEAPON_RANGE_TYPES.short item.system.rangeBand)}}</span>
+              <span class="item-name centre" data-tooltip='{{localize (concat "TWODSIX.Chat.Roll.WeaponRangeTypes." item.system.rangeBand)}}'>{{localize (lookup ../settings.rangeTypes item.system.rangeBand)}}</span>
               {{else}}
               <span class="item-name centre">{{item.system.range}}</span>
               {{/if}}
@@ -50,26 +50,35 @@
               </span>
             </span>
           </li>
+          <!-- Automatic fire buttons -->
           <li class="item flexrow" data-item-id="{{item.id}}">
-            {{#if (twodsix_useCEAutofireRules)}}
-              {{#each (twodsix_burstModes item.system) as |mode|}}
+            {{#if ../settings.useCEAutofireRules}}
+              {{#each (twodsix_burstModes item) as |mode|}}
                 <span class="items-weapons-abilities">
-                  <span class="item-name">Burst {{mode}}</span>
+                  <span class="item-name">{{localize "TWODSIX.Rolls.Burst"}} {{mode}}</span>
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-attack-dm">[+{{twodsix_burstAttackDM mode}} {{localize "TWODSIX.Rolls.AttackDM"}}]</span>
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-rof="{{mode}}" data-attack-type="burst-bonus-damage">[+{{twodsix_burstBonusDamage mode}} {{localize "TWODSIX.Rolls.Damage"}}]</span>
                 </span>
               {{/each}}
-            {{/if}}
-            {{#if (twodsix_useCELAutofireRules item.system)}}
-              <span class="items-weapons-abilities">
-                {{#iff item.system.doubleTap "&&" ../settings.ShowDoubleTap}}
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="double-tap">[{{localize "TWODSIX.Rolls.DoubleTap"}}]</span>
-                {{else}}
-                  <span class="item-name">Auto {{item.system.rateOfFire}}</span>
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst">[{{localize "TWODSIX.Rolls.BurstDamage"}}]</span>
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
-                {{/iff}}
-              </span>
+            {{else if ../settings.useCELAutofireRules}}
+              {{#if (twodsix_useCELAuto item)}}
+                <span class="items-weapons-abilities">
+                  {{#iff item.system.doubleTap "&&" ../settings.ShowDoubleTap}}
+                    <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="double-tap" data-rof="2">[{{localize "TWODSIX.Rolls.DoubleTap"}}]</span>
+                  {{else}}
+                    <span class="item-name">{{localize "TWODSIX.Rolls.Auto"}} {{item.system.rateOfFire}}</span>
+                    <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst" data-rof="{{item.system.rateOfFire}}">[{{localize "TWODSIX.Rolls.BurstDamage"}}]</span>
+                    <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full" data-rof="{{item.system.rateOfFire}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
+                  {{/iff}}
+                </span>
+              {{/if}}
+            {{else if ../settings.useCTAutofireRules}}
+              {{#if (twodsix_useCTAuto item)}}
+                <span class="items-weapons-abilities">
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.Burst"}}]</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
+                </span>
+              {{/if}}
             {{/if}}
           </li>
         </ol>
@@ -127,7 +136,11 @@
               <span class="item-name centre">{{item.system.techLevel}}</span>
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.weight}}</span>
-              <span class="item-name centre">{{item.system.armor}}</span>
+              {{#if ../settings.useCTData}}
+                <span class="item-name centre">{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' item.system.armorType)}}</span>
+              {{else}}
+                <span class="item-name centre">{{item.system.armor}}</span>
+              {{/if}}
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>

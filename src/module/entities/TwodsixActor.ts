@@ -47,8 +47,8 @@ export default class TwodsixActor extends Actor {
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
     }
-
   }
+
   /**
   * Check Crew Titles for missing and set to localized default
   */
@@ -103,12 +103,14 @@ export default class TwodsixActor extends Actor {
       system.radiationProtection.value = armorValues.radiationProtection;
       system.layersWorn = armorValues.layersWorn;
       system.wearingNonstackable = armorValues.wearingNonstackable;
+      system.armorType = armorValues.CTLabel;
+      system.reflectOn = armorValues.reflectOn;
     }
     await this._updateActiveEffects(true);
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
-   * @returns {object} An object of the total for primaryArmor, secodnaryArmor, and radiationProteciton
+   * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
    * @public
    */
   getArmorValues():object {
@@ -117,12 +119,21 @@ export default class TwodsixActor extends Actor {
       secondaryArmor: 0,
       radiationProtection: 0,
       layersWorn: 0,
-      wearingNonstackable: false
+      wearingNonstackable: false,
+      CTLabel: "nothing",
+      reflectOn: false
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
+        if (armor.system.armorType === 'reflec') {
+          returnValue.reflectOn = true;
+        } else {
+          returnValue.CTLabel = armor.system.armorType;
+        }
+
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
           returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
@@ -138,6 +149,10 @@ export default class TwodsixActor extends Actor {
           returnValue.wearingNonstackable = true;
         }
       }
+    }
+    // Case where only wearing reflec
+    if (returnValue.reflectOn && returnValue.CTLabel === 'nothing') {
+      returnValue.CTLabel = 'reflec';
     }
     return returnValue;
   }
@@ -640,6 +655,7 @@ export default class TwodsixActor extends Actor {
     if (this.items?.getName(game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"))) {
       return;
     }
+    const bandSetting = game.settings.get('twodsix', 'rangeModifierType');
     const data = {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
@@ -653,7 +669,9 @@ export default class TwodsixActor extends Actor {
         "skill": this.getUntrainedSkill()?.id ?? "",
         "equipped": "equipped",
         "damageType": "bludgeoning",
-        "range": "Melee"
+        "range": "Melee",
+        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : ""),
+        "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
       }
     };
     await (this.createEmbeddedDocuments("Item", [data]));
@@ -907,8 +925,10 @@ export default class TwodsixActor extends Actor {
    * @returns {boolean}
    * @private
    */
-  public async handleDamageData(damagePayload:any, showDamageDialog:boolean):boolean {
-    if (["traveller", "animal", "robot"].includes(this.type)) {
+  public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
+    if (!this.isOwner && !showDamageDialog) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+    } else if (["traveller", "animal", "robot"].includes(this.type)) {
       await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
       return true;
     } else {
