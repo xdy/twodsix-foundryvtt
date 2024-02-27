@@ -90,7 +90,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Cover (full) -4, Evade (short) -1, Evade (medium) -2, Evade (long) -4, Darkness (total) -9, Darkness (partial) -6",
       armorDamageFormula: "@damage",
       addEffectToDamage: false,
-      addEffectToManualDamage: false
+      addEffectToManualDamage: false,
+      weightModifierForWornArmor: 0
     }
   },
   CE: {
