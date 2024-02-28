@@ -201,8 +201,10 @@ export default class TwodsixItem extends Item {
     const targetTokens = Array.from(game.user.targets);
     const controlledTokens = this.actor?.getActiveTokens();
 
-
-    if (targetTokens.length === 1) {
+    // Get target Modifiers
+    if (targetTokens.length === 0 && useCTBands) {
+      Object.assign(tmpSettings.rollModifiers, {armorModifier: 0, armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')});
+    } else if (targetTokens.length === 1) {
       // Get Single Target Dodge Parry information
       const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
