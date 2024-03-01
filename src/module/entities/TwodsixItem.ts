@@ -1,10 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-/**
- * @extends {Item}
- */
-
 import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
@@ -16,6 +12,10 @@ import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 
+/**
+ * Extend the base Item entity
+ * @extends {Item}
+ */
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
@@ -201,8 +201,10 @@ export default class TwodsixItem extends Item {
     const targetTokens = Array.from(game.user.targets);
     const controlledTokens = this.actor?.getActiveTokens();
 
-
-    if (targetTokens.length === 1) {
+    // Get target Modifiers
+    if (targetTokens.length === 0 && useCTBands) {
+      Object.assign(tmpSettings.rollModifiers, {armorModifier: 0, armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')});
+    } else if (targetTokens.length === 1) {
       // Get Single Target Dodge Parry information
       const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
@@ -245,6 +247,7 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    // Update consumables for use
     if (weapon.useConsumableForAttack) {
       const magazine = this.actor?.items.get(weapon.useConsumableForAttack) as TwodsixItem;
       if (magazine) {
@@ -265,6 +268,7 @@ export default class TwodsixItem extends Item {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
     }
 
+    //Make attack rolls
     for (let i = 0; i < numberOfAttacks; i++) {
       if (targetTokens.length > 1) {
         //need to update dodgeParry and weapons range modifiers for each target
@@ -299,6 +303,13 @@ export default class TwodsixItem extends Item {
     }
   }
 
+  /**
+   * A method to get the weapons range modifer based on the weapon type and measured range (distance).
+   * Valid for Classic Traveller and Cepheus Engine rule sets.
+   * @param {number} range  The measured distance to the target
+   * @param {string} weaponBand The type of weapon used - as key string
+   * @returns {any} {rangeModifier: rangeModifier, rollType: rollType}
+   */
   public getRangeModifier(range:number, weaponBand: string): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
@@ -361,6 +372,11 @@ export default class TwodsixItem extends Item {
     return {rangeModifier: rangeModifier, rollType: rollType};
   }
 
+  /**
+   * A method to get the dodge / parry modifer based on the target's corresponding skill used for attack.
+   * @param {Token} target  The target token
+   * @returns {any} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
+   */
   public getDodgeParryValues(target: Token): object {
     let dodgeParryModifier = 0;
     let skillName = "";
@@ -373,6 +389,10 @@ export default class TwodsixItem extends Item {
     return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
   }
 
+  /**
+   * A method to parse and return the weapon's handling modifier based on attacker's charactersiticis.
+   * @returns {number} The DM for the actor firing the weapon used
+   */
   public getWeaponsHandlingMod(): number {
     let weaponHandlingMod = 0;
     const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);

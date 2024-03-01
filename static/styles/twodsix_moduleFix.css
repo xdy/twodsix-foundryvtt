@@ -10,6 +10,10 @@ input.dice-tray__input {
     margin-top: 4px;
 }
 
+.dice-tray .dice-tray__stacked {
+  margin-top: 2px;
+}
+
 /* Fix GM Screen background for dark formats*/
 .gm-screen-app, .gm-screen-actions button  {
   background: #0d0d0d !important;

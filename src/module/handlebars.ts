@@ -298,23 +298,25 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
     let returnValue = ``;
-    const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-    if (foundry.utils.getProperty(actor.overrides, field) !== undefined) {
-      const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
-      const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-      const baseValue = foundry.utils.getProperty(actor._source, field);
-      returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
-      const workingEffects = actor.appliedEffects;
-      for (const effect of workingEffects) {
-        const realChanges = effect.changes.filter(ch => ch.key === field);
-        if (realChanges.length > 0) {
-          returnValue += `${effect.name}: `;
-          for (const change of realChanges) {
-            returnValue += `${modes[change.mode]}(${change.value}), `;
+    if (actor) {
+      const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
+      if (getProperty(actor.overrides, field) !== undefined) {
+        const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
+        const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
+        const baseValue = getProperty(actor._source, field);
+        returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
+        const workingEffects = actor.appliedEffects;
+        for (const effect of workingEffects) {
+          const realChanges = effect.changes.filter(ch => ch.key === field);
+          if (realChanges.length > 0) {
+            returnValue += `${effect.name}: `;
+            for (const change of realChanges) {
+              returnValue += `${modes[change.mode]}(${change.value}), `;
+            }
           }
         }
+        returnValue = returnValue.slice(0, -2);
       }
-      returnValue = returnValue.slice(0, -2);
     }
     return returnValue;
   });

@@ -254,6 +254,9 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       if (dropData.type === 'html' || dropData.type === 'pdf') {
         await super._onDrop(event);
         return true;
+      } else if (dropData.type === 'damageItem') {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+        return false;
       }
       const droppedObject:any = await getItemDataFromDropData(dropData);
 

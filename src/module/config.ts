@@ -90,7 +90,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Cover (full) -4, Evade (short) -1, Evade (medium) -2, Evade (long) -4, Darkness (total) -9, Darkness (partial) -6",
       armorDamageFormula: "@damage",
       addEffectToDamage: false,
-      addEffectToManualDamage: false
+      addEffectToManualDamage: false,
+      weightModifierForWornArmor: "0"
     }
   },
   CE: {
@@ -140,7 +141,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'CE',
       targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CEL: {
@@ -184,7 +186,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CEFTL: {
@@ -227,7 +230,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     },
   },
   CEATOM: {
@@ -270,7 +274,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   BARBARIC: {
@@ -312,7 +317,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     },
   },
   CEQ: {
@@ -407,7 +413,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CDEE: {
@@ -458,7 +465,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CLU: {
@@ -509,10 +517,10 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
-
   SOC: {
     key: "SOC",
     name: "The Sword of Cepheus",
@@ -561,10 +569,10 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
-
   OTHER: {
     key: "OTHER",
     name: "Other",
