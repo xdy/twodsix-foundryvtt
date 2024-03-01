@@ -1,3 +1,10 @@
+# [4.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.3...v4.22.0) (2024-03-01)
+
+
+### Features
+
+* Add Classic Traveller Support ([#1542](https://github.com/xdy/twodsix-foundryvtt/issues/1542)) ([3549a70](https://github.com/xdy/twodsix-foundryvtt/commit/3549a7072c286b00e40e19403b294f0c1cd609b4))
+
 ## [4.21.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.2...v4.21.3) (2024-02-20)
 
 
