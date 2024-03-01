@@ -93,6 +93,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
             ];
           case "CEQ":
           case "CEFTL":
+          case "CT": //NEED TO CHECK THIS
           default:
             return [
               { range: movementSpeed, color: "walk" },

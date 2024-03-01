@@ -61,7 +61,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands',
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
@@ -82,7 +83,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       showAllCharWithTable: game.settings.get('twodsix', 'showAllCharWithTable'),
-      showSkillGroups: game.settings.get('twodsix', 'showSkillGroups')
+      showSkillGroups: game.settings.get('twodsix', 'showSkillGroups'),
+      useCEAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key,
+      useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
+      useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
@@ -181,11 +186,19 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   private static untrainedToJoat(skillValue: number): number {
-    return skillValue - (<Skills>game.system.template?.Item?.skills)?.value;
+    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+      return skillValue >= 0 ? 1 : 0;
+    } else {
+      return skillValue - (<Skills>game.system.template?.Item?.skills)?.value;
+    }
   }
 
   private static joatToUntrained(joatValue: number): number {
-    return joatValue + (<Skills>game.system.template?.Item?.skills)?.value;
+    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+      return joatValue > 0 ? 0 : (<Skills>game.system.template?.Item?.skills)?.value;
+    } else {
+      return joatValue + (<Skills>game.system.template?.Item?.skills)?.value;
+    }
   }
 
   private getConsumableItem(event): TwodsixItem {

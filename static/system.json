@@ -4,8 +4,8 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v4.21.3/twodsix.zip",
-  "version": "4.21.3",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v4.22.0/twodsix.zip",
+  "version": "4.22.0",
   "socket": true,
   "background": "systems/twodsix/assets/pause/sunburst.svg",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -62,6 +62,15 @@
   ],
   "license": "LICENSE",
   "packs": [
+    {
+      "name": "ct-items",
+      "label": "Classic Traveller Items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ct-items",
+      "entity": "Item",
+      "type": "Item"
+    },
     {
       "name": "twoe-skills",
       "label": "2e skills",
@@ -269,6 +278,13 @@
         "ce-srd-gm-screen",
         "ce-srd-items",
         "ce-srd-roll-tables"
+      ]
+    },
+    {
+      "name": "Classic Traveller",
+      "sorting": "m",
+      "packs": [
+        "ct-items"
       ]
     },
     {

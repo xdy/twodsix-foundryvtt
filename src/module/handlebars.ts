@@ -130,19 +130,29 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_burstModes', (weapon) => {
+  Handlebars.registerHelper('twodsix_burstModes', (weapon: TwodsixItem) => {
     // Parse rates of fire, and ignore the first number (usually 1, but can be 0, which means no single fire)
-    const modes = (weapon.rateOfFire ?? "").split(/[-/]/);
+    const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
     modes.shift();
     return modes;
   });
 
-  Handlebars.registerHelper('twodsix_useCEAutofireRules', () => {
-    return (game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key);
+  Handlebars.registerHelper('twodsix_useCELAuto', (weapon: TwodsixItem) => {
+    return (parseInt(weapon.system.rateOfFire) > 1 || (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')));
   });
 
-  Handlebars.registerHelper('twodsix_useCELAutofireRules', (weapon) => {
-    return ((game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && (weapon.rateOfFire > 1 || (weapon.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap'))));
+  Handlebars.registerHelper('twodsix_useCTAuto', (weapon: TwodsixItem) => {
+    const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
+    return (modes.length > 1);
+  });
+
+  Handlebars.registerHelper('twodsix_CTBurstSize', (weapon: TwodsixItem) => {
+    const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
+    if (modes.length > 1) {
+      return Number(modes[1]);
+    } else {
+      return 1;
+    }
   });
 
   Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize: string) => {
@@ -288,23 +298,25 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
     let returnValue = ``;
-    const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-    if (getProperty(actor.overrides, field) !== undefined) {
-      const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
-      const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-      const baseValue = getProperty(actor._source, field);
-      returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
-      const workingEffects = actor.appliedEffects;
-      for (const effect of workingEffects) {
-        const realChanges = effect.changes.filter(ch => ch.key === field);
-        if (realChanges.length > 0) {
-          returnValue += `${effect.name}: `;
-          for (const change of realChanges) {
-            returnValue += `${modes[change.mode]}(${change.value}), `;
+    if (actor) {
+      const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
+      if (getProperty(actor.overrides, field) !== undefined) {
+        const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
+        const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
+        const baseValue = getProperty(actor._source, field);
+        returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
+        const workingEffects = actor.appliedEffects;
+        for (const effect of workingEffects) {
+          const realChanges = effect.changes.filter(ch => ch.key === field);
+          if (realChanges.length > 0) {
+            returnValue += `${effect.name}: `;
+            for (const change of realChanges) {
+              returnValue += `${modes[change.mode]}(${change.value}), `;
+            }
           }
         }
+        returnValue = returnValue.slice(0, -2);
       }
-      returnValue = returnValue.slice(0, -2);
     }
     return returnValue;
   });

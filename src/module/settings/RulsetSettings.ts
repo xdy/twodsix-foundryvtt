@@ -53,9 +53,9 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.damage.push(stringSetting('armorDamageFormula', "@damage - @effectiveArmor", false, 'world'));
     settings.damage.push(booleanSetting('useMaxArmorValue', false, false, 'world', refreshWindow));
     settings.ship.push(stringSetting('shipInitiativeFormula', DEFAULT_SHIP_INITIATIVE_FORMULA, false, 'world'));
-    settings.roll.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
+    settings.roll.push(stringChoiceSetting('difficultyListUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.DIFFICULTY_VARIANTS));
     settings.roll.push(booleanSetting('difficultiesAsTargetNumber', false));
-    settings.general.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.VARIANTS));
+    settings.general.push(stringChoiceSetting('autofireRulesUsed', TWODSIX.RULESETS.CE.key, false, TWODSIX.AUTOFIRE_VARIANTS));
     settings.characteristics.push(numberSetting('modifierForZeroCharacteristic', -2));
     settings.roll.push(stringSetting('termForAdvantage', 'advantage'));
     settings.roll.push(stringSetting('termForDisadvantage', 'disadvantage'));

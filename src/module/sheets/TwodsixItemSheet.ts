@@ -51,7 +51,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     // Add relevant data from system settings
     returnData.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
-      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands',
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
@@ -64,7 +64,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
-      rangeTypes: TWODSIX.WEAPON_RANGE_TYPES.long,
+      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.long : TWODSIX.CE_WEAPON_RANGE_TYPES.long,
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
     if (this.item.type === 'skills') {
       returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);

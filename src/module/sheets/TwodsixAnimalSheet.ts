@@ -45,7 +45,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands',
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
@@ -68,7 +69,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche'),
       damageTypes: getDamageTypes(false),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
     //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
     returnData.config = TWODSIX;
