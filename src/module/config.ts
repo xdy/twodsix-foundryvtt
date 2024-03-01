@@ -17,13 +17,24 @@ const CHARACTERISTICS = Object.freeze({
 });
 
 /**
- * Rules variants one can use.
+ * Difficulty variants one can use.
  * Note that only variants that actually have different rules implementations are listed here.
  * @type {Object}
  */
-const VARIANTS = Object.freeze({
+const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
+});
+
+/**
+ * Autofire variants one can use.
+ * Note that only variants that actually have different rules implementations are listed here.
+ * @type {Object}
+ */
+const AUTOFIRE_VARIANTS = Object.freeze({
+  "CE": "CE",
+  "CEL": "CEL",
+  "CT": "CT"
 });
 
 //TODO VARIANTS and RULESETS should really be combined/refactored.
@@ -31,6 +42,58 @@ const VARIANTS = Object.freeze({
  * Sets of Twodsix settings that best match each supported ruleset.
  */
 const RULESETS = Object.freeze({
+  CT: {
+    key: "CT",
+    name: "Classic Traveller",
+    settings: {
+      initiativeFormula: "2d6 + @characteristics.dexterity.value/100",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "CT",
+      modifierForZeroCharacteristic: 0,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: true,
+      rangeModifierType: "CT_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3000 * @characteristics.strength.value",
+      defaultMovement: 25,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6",
+      showTimeframe: false,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.33334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Cover (full) -4, Evade (short) -1, Evade (medium) -2, Evade (long) -4, Darkness (total) -9, Darkness (partial) -6",
+      armorDamageFormula: "@damage",
+      addEffectToDamage: false,
+      addEffectToManualDamage: false,
+      weightModifierForWornArmor: "0"
+    }
+  },
   CE: {
     key: "CE",
     name: "Cepheus Engine",
@@ -76,7 +139,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.1667",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'CE',
-      targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2"
+      targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CEL: {
@@ -118,7 +184,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CEFTL: {
@@ -159,7 +228,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     },
   },
   CEATOM: {
@@ -200,7 +272,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
-      targetDMList: ""
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   BARBARIC: {
@@ -240,7 +315,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.5",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
-      targetDMList: ""
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     },
   },
   CEQ: {
@@ -282,7 +360,9 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: 0,
       useDegreesOfSuccess: 'none',
-      targetDMList: ""
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true
     }
   },
   CD: {
@@ -331,7 +411,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CDEE: {
@@ -380,7 +463,10 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
   CLU: {
@@ -429,10 +515,12 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2"
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
-
   SOC: {
     key: "SOC",
     name: "The Sword of Cepheus",
@@ -479,17 +567,20 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -1,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1"
+      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1"
     }
   },
-
   OTHER: {
     key: "OTHER",
     name: "Other",
     settings: {
       useDegreesOfSuccess: 'other',
       rangeModifierType: "singleBand",
-    }
+      armorDamageFormula: "@damage - @effectiveArmor",
+    },
   }
 })
 ;
@@ -775,12 +866,13 @@ export const EQUIPPED_TOGGLE_OPTIONS = {
 
 export const RANGE_MODIFIERS_TYPES = {
   none: "TWODSIX.Chat.Roll.RangeModifierTypes.none",
+  CT_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CT_Bands",
   CE_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CE_Bands",
   singleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.singleBand",
   doubleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.doubleBand"
 };
 
-export const WEAPON_RANGE_TYPES = {
+export const CE_WEAPON_RANGE_TYPES = {
   long: {
     closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.closeQuarters",
     extendedReach: "TWODSIX.Chat.Roll.WeaponRangeTypes.extendedReach",
@@ -805,12 +897,90 @@ export const WEAPON_RANGE_TYPES = {
   }
 };
 
+export const CT_WEAPON_RANGE_TYPES = {
+  long: {
+    hands: "TWODSIX.Chat.Roll.WeaponRangeTypes.hands",
+    claws: "TWODSIX.Chat.Roll.WeaponRangeTypes.claws",
+    teeth: "TWODSIX.Chat.Roll.WeaponRangeTypes.teeth",
+    horns: "TWODSIX.Chat.Roll.WeaponRangeTypes.horns",
+    hooves: "TWODSIX.Chat.Roll.WeaponRangeTypes.hooves",
+    stinger: "TWODSIX.Chat.Roll.WeaponRangeTypes.stinger",
+    thrasher: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrasher",
+    club: "TWODSIX.Chat.Roll.WeaponRangeTypes.club",
+    dagger: "TWODSIX.Chat.Roll.WeaponRangeTypes.dagger",
+    blade: "TWODSIX.Chat.Roll.WeaponRangeTypes.blade",
+    foil: "TWODSIX.Chat.Roll.WeaponRangeTypes.foil",
+    cutlass: "TWODSIX.Chat.Roll.WeaponRangeTypes.cutlass",
+    sword: "TWODSIX.Chat.Roll.WeaponRangeTypes.sword",
+    broadsword: "TWODSIX.Chat.Roll.WeaponRangeTypes.broadsword",
+    bayonet: "TWODSIX.Chat.Roll.WeaponRangeTypes.bayonet",
+    spear: "TWODSIX.Chat.Roll.WeaponRangeTypes.spear",
+    halberd: "TWODSIX.Chat.Roll.WeaponRangeTypes.halberd",
+    pike: "TWODSIX.Chat.Roll.WeaponRangeTypes.pike",
+    cudgel: "TWODSIX.Chat.Roll.WeaponRangeTypes.cudgel",
+    bodyPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.bodyPistol",
+    autoPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.autoPistol",
+    revolver: "TWODSIX.Chat.Roll.WeaponRangeTypes.revolver",
+    carbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.carbine",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    autoRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.autoRifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.submachinegun",
+    laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserCarbine",
+    laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserRifle",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    hands: "TWODSIX.Chat.Roll.WeaponRangeTypes.hands",
+    claws: "TWODSIX.Chat.Roll.WeaponRangeTypes.claws",
+    teeth: "TWODSIX.Chat.Roll.WeaponRangeTypes.teeth",
+    horns: "TWODSIX.Chat.Roll.WeaponRangeTypes.horns",
+    hooves: "TWODSIX.Chat.Roll.WeaponRangeTypes.hooves",
+    stinger: "TWODSIX.Chat.Roll.WeaponRangeTypes.stinger",
+    thrasher: "TWODSIX.Chat.Roll.WeaponRangeTypes.thras",
+    club: "TWODSIX.Chat.Roll.WeaponRangeTypes.club",
+    dagger: "TWODSIX.Chat.Roll.WeaponRangeTypes.dagger",
+    blade: "TWODSIX.Chat.Roll.WeaponRangeTypes.blade",
+    foil: "TWODSIX.Chat.Roll.WeaponRangeTypes.foil",
+    cutlass: "TWODSIX.Chat.Roll.WeaponRangeTypes.cutl",
+    sword: "TWODSIX.Chat.Roll.WeaponRangeTypes.sword",
+    broadsword: "TWODSIX.Chat.Roll.WeaponRangeTypes.brdswd",
+    bayonet: "TWODSIX.Chat.Roll.WeaponRangeTypes.bynt",
+    spear: "TWODSIX.Chat.Roll.WeaponRangeTypes.spear",
+    halberd: "TWODSIX.Chat.Roll.WeaponRangeTypes.halb",
+    pike: "TWODSIX.Chat.Roll.WeaponRangeTypes.pike",
+    cudgel: "TWODSIX.Chat.Roll.WeaponRangeTypes.cudgel",
+    bodyPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.bPistl",
+    autoPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.aPistl",
+    revolver: "TWODSIX.Chat.Roll.WeaponRangeTypes.revolver",
+    carbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.carbine",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    autoRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.AR",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.subm",
+    laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.LC",
+    laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.LR",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
+export const CT_ARMOR_TYPES = {
+  nothing: "TWODSIX.Chat.Roll.ArmorTypes.nothing",
+  jack: "TWODSIX.Chat.Roll.ArmorTypes.jack",
+  mesh: "TWODSIX.Chat.Roll.ArmorTypes.mesh",
+  cloth: "TWODSIX.Chat.Roll.ArmorTypes.cloth",
+  reflec: "TWODSIX.Chat.Roll.ArmorTypes.reflec",
+  ablat: "TWODSIX.Chat.Roll.ArmorTypes.ablat",
+  combat: "TWODSIX.Chat.Roll.ArmorTypes.combat"
+};
+
 export const TARGET_DM = {};
 
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
-  VARIANTS: typeof VARIANTS,
+  DIFFICULTY_VARIANTS: typeof DIFFICULTY_VARIANTS,
+  AUTOFIRE_VARIANTS: typeof AUTOFIRE_VARIANTS,
   ROLLTYPES: typeof ROLLTYPES,
   DIFFICULTIES: typeof DIFFICULTIES,
   RULESETS: typeof RULESETS,
@@ -837,14 +1007,17 @@ export type TWODSIX = {
   EQUIPPED_STATES: typeof EQUIPPED_STATES,
   EQUIPPED_TOGGLE_OPTIONS: typeof EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
-  WEAPON_RANGE_TYPES: typeof WEAPON_RANGE_TYPES,
+  CE_WEAPON_RANGE_TYPES: typeof CE_WEAPON_RANGE_TYPES,
+  CT_WEAPON_RANGE_TYPES: typeof CT_WEAPON_RANGE_TYPES,
+  CT_ARMOR_TYPES: typeof  CT_ARMOR_TYPES,
   TARGET_DM: object
 };
 
 export const TWODSIX = {
   CHARACTERISTICS: CHARACTERISTICS,
   CONSUMABLES: CONSUMABLES,
-  VARIANTS: VARIANTS,
+  DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
+  AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS,
@@ -871,6 +1044,8 @@ export const TWODSIX = {
   EQUIPPED_STATES: EQUIPPED_STATES,
   EQUIPPED_TOGGLE_OPTIONS: EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
-  WEAPON_RANGE_TYPES: WEAPON_RANGE_TYPES,
+  CE_WEAPON_RANGE_TYPES: CE_WEAPON_RANGE_TYPES,
+  CT_WEAPON_RANGE_TYPES: CT_WEAPON_RANGE_TYPES,
+  CT_ARMOR_TYPES: CT_ARMOR_TYPES,
   TARGET_DM: TARGET_DM
 };

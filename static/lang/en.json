@@ -324,6 +324,7 @@
         "Attachments": "Attach./Consm.",
         "WeaponsHandling": "Weapons Handling",
         "WeaponsRange": "Weapon Range",
+        "ArmorModifier":"Armor Modifier",
         "Chain": "Chain / Assisted Roll",
         "Bonus": "Bonus",
         "WithChainBonus": "with Chain / Assist bonus",
@@ -356,7 +357,8 @@
           "none": "None",
           "singleBand": "Single Value",
           "doubleBand": "Double Value",
-          "CE_Bands": "Cepheus Engine Bands"
+          "CE_Bands": "Cepheus Engine Bands",
+          "CT_Bands": "Classic Traveller Bands"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Close Quarters",
@@ -370,7 +372,45 @@
           "assaultWeapon": "Assault Weapon",
           "AW": "AW",
           "rocket": "Rocket",
-          "none": "None"
+          "none": "None",
+          "hands": "Hands",
+          "claws": "Claws",
+          "teeth": "Teeth",
+          "horns": "Horns",
+          "hooves": "Hooves",
+          "stinger": "Stinger",
+          "thrasher": "Thrasher",
+          "club": "Club",
+          "dagger": "Dagger",
+          "blade": "Blade",
+          "foil": "Foil",
+          "cutlass": "Cutlass",
+          "sword": "Sword",
+          "broadsword": "Broadsword",
+          "bayonet": "Bayonet",
+          "spear": "Spear",
+          "halberd": "Halberd",
+          "pike": "Pike",
+          "cudgel": "Cudgel",
+          "bodyPistol": "Body Pistol",
+          "autoPistol": "Automatic Pistol",
+          "revolver": "Revolver",
+          "carbine": "Carbine",
+          "autoRifle": "Automatic Rifle",
+          "submachinegun": "Submachinegun",
+          "laserCarbine": "Laser Carbine",
+          "laserRifle": "Laser Rifle",
+          "thras": "Thras",
+          "cutl": "Cutl",
+          "brdswd": "Brdswrd",
+          "bynt": "Bynt",
+          "halb": "Halb",
+          "bPistl": "Bpistl",
+          "aPistl": "Apistl",
+          "AR": "AR",
+          "subm": "Subm",
+          "LC": "LC",
+          "LR": "LR"
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -381,6 +421,15 @@
           "veryLong": "Very Long",
           "distant": "Distant",
           "none": "None"
+        },
+        "ArmorTypes" : {
+          "nothing": "Nothing",
+          "jack": "Jack",
+          "mesh": "Mesh",
+          "cloth": "Cloth",
+          "reflec": "Reflec",
+          "ablat": "Ablat",
+          "combat": "Combat"
         },
         "Dice": "Dice"
       }
@@ -404,7 +453,11 @@
         "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor",
         "Nonstackable": "Non-stackable",
-        "SecondaryArmorProtectionTypes": "Secondary Protection Types"
+        "SecondaryArmorProtectionTypes": "Secondary Protection Types",
+        "armorDM": "DM",
+        "ArmorModifier": "Armor Modifier",
+        "ArmorType": "Armor Type",
+        "WearingReflec": "Wearing Reflec"
       },
       "Augmentation": {
         "Arms": "Arms",
@@ -847,6 +900,8 @@
       "Damage": "Damage",
       "BonusDamage": "Bonus Damage",
       "BurstDamage": "Burst Damage",
+      "Burst" : "Burst",
+      "Auto": "Auto",
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
       "Timeframe": "Time",
@@ -1261,7 +1316,7 @@
         "name":"Allow Drag-Drop in Lists"
       },
       "useDodgeParry" : {
-        "hint": "Add a roll penalty to refect targets ability to dodge / parry.  A target must be selected and the skill name for weapon action must match.",
+        "hint": "Add a roll penalty that reflects a target's ability to dodge / parry.  A target must be selected and the skill name for the weapon's action must match.",
         "name": "Use Dodge / Parry Attack Modifers"
       },
       "showModifierDetails": {
@@ -1446,7 +1501,9 @@
       "DraggedCompendiumIsNotItem": "The dragged compendium object is not an item.",
       "InvalidRollFormula": "Not a valid damage roll formula.",
       "CantPlaceTemplate": "Error placing AOE measured Template.",
-      "TraitsandSkillsNoConsumables": "Spells, Traits and Skills can't have consumables."
+      "TraitsandSkillsNoConsumables": "Spells, Traits and Skills can't have consumables.",
+      "InvalidRangeBand": "Weapon type and/or range band not allowed for ruleset.",
+      "InvalidWeaponArmor": "Weapon type and/or Armor type not allowed for ruleset."
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
@@ -1484,7 +1541,9 @@
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable in Journal Entry Link.",
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
-      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?"
+      "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
+      "TooManyLayersOnTarget": "Target is wearing too many layers of armor",
+      "ActorOverloaded": "Current actor is carrying more than its capacity."
     }
   },
   "TYPES": {

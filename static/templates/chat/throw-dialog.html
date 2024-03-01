@@ -106,6 +106,14 @@
             </label>
           </div>
         {{/if}}
+        {{#if showArmorWeaponModifier}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.ArmorModifier"}}
+              <input type="number" name="rollModifiers.armorModifier" value="{{rollModifiers.armorModifier}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+              ({{rollModifiers.armorLabel}})
+            </label>
+          </div>
+        {{/if}}
         {{#if showTargetModifier}}
           <div class="form-group">
             <label>{{localize "TWODSIX.Chat.Roll.TargetModifier"}}

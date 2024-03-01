@@ -6,7 +6,7 @@ import { applyToAllItems } from "../module/utils/migration-utils";
 
 async function refactorRangeBands(item: TwodsixItem): Promise<void> {
   if (item.type === 'weapon') {
-    if(Object.hasOwn(TWODSIX.WEAPON_RANGE_TYPES, item.system.rangeBand)) {
+    if(Object.hasOwn(TWODSIX.CE_WEAPON_RANGE_TYPES.long, item.system.rangeBand)) {
       return;
     }
 

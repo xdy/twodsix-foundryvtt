@@ -198,6 +198,9 @@ export class TwodsixDiceRoll {
       if(this.rollSettings.rollModifiers.weaponsRange !== 0) {
         returnValue.push("weaponsRange");
       }
+      if(this.rollSettings.rollModifiers.armorModifier !== 0) {
+        returnValue.push("armorModifier");
+      }
       if(this.rollSettings.rollModifiers.targetModifier !== "key0") {
         returnValue.push("targetModifier");
       }
@@ -300,6 +303,7 @@ export class TwodsixDiceRoll {
           case "weaponsHandling":
           case "weaponsRange":
           case "dodgeParry":
+          case "armorModifier":
             flavorText += ` + ${description}`;
             flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${description}</td>`;
             break;

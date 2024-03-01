@@ -63,6 +63,15 @@
   "license": "LICENSE",
   "packs": [
     {
+      "name": "ct-items",
+      "label": "Classic Traveller Items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ct-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
       "name": "twoe-skills",
       "label": "2e skills",
       "system": "twodsix",
@@ -269,6 +278,13 @@
         "ce-srd-gm-screen",
         "ce-srd-items",
         "ce-srd-roll-tables"
+      ]
+    },
+    {
+      "name": "Classic Traveller",
+      "sorting": "m",
+      "packs": [
+        "ct-items"
       ]
     },
     {

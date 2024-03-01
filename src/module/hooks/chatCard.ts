@@ -289,16 +289,14 @@ function getChainRollBonus(effect:number): number {
     case "OTHER": //MgT2
       ranges ={"-6": -3, "-5 to -2": -2, "-1": -1, "0": 1, "1 to 5": 2, "6+": 3};
       break;
-    case "CLASSIC": //Traveller SRD
-      ranges ={"-6": -3, "-5 to -2": -2, "-1": -1, "0": 0, "1 to 5": 1, "6+": 2};
-      break;
-    case "CE":
+    case "CE": //Traveller SRD
       ranges ={"-6": -2, "-5 to -2": -1, "-1": -1, "0": 1, "1 to 5": 1, "6+": 2};
       break;
     case "CLU":
     case "CD":
     case "CDEE":
       return (effect < 0 ? 0 : 1);
+    case "CT":
     case "CEFTL":
     case "CEATOM":
     case "CL":
