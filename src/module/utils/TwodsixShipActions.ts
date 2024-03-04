@@ -41,7 +41,15 @@ export class TwodsixShipActions {
   public static async chatMessage(msgStr: string, extra: ExtraData) {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
     if (msgStr.startsWith("/r") || msgStr.startsWith("/R")) {
-      let rollText = msgStr.substring(msgStr.indexOf(' ') + 1); /* return roll formula after first space */
+      let rollText = "";
+      let flavorText = "";
+      const flavorStart =  msgStr.indexOf('#');
+      if (flavorStart > 2) {
+        rollText = msgStr.substring(msgStr.indexOf(' ') + 1, flavorStart); /* return roll formula after first space w/o flavor text*/
+        flavorText = msgStr.substring(flavorStart + 1);
+      } else {
+        rollText = msgStr.substring(msgStr.indexOf(' ') + 1);
+      }
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showRollDiag = useInvertedShiftClick ? extra.event["shiftKey"] : !extra.event["shiftKey"];
       if(showRollDiag) {
@@ -50,8 +58,10 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor.getRollData() ?? {};
         Object.assign(rollData, {ship: extra.ship.getRollData()});
-        const flavorTxt:string = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
-        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorTxt, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
+        if (!flavorText) {
+          flavorText = game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace( "_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown")));
+        }
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorText, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
         return msg;
       }
     }
