@@ -38,7 +38,7 @@ export class TwodsixShipActions {
     }
   };
 
-  public static async chatMessage(msgStr: string, extra: ExtraData) {
+  public static async chatMessage(msgStr: string, extra: ExtraData): Promise<any> {
     const speakerData = ChatMessage.getSpeaker({ actor: extra.actor });
     if (msgStr.startsWith("/r") || msgStr.startsWith("/R")) {
       const parsedText: string[] = msgStr.split('#');
