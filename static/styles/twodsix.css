@@ -203,6 +203,10 @@ table tr:nth-child(even) {
   background-color: var(--s2d6-light-background-transparent);
 }
 
+.inline-roll .dice-tooltip {
+  background: var(--s2d6-background-opaque);
+  border-color: var(--s2d6-item-border);
+}
 /******************************/
 /* ----------------------------------------- */
 /* General Sheet Styling
