@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
+import { calcModFor, getDamageTypes, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
@@ -96,6 +96,7 @@ export default class TwodsixActor extends Actor {
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
     system.encumbrance.max = this.getMaxEncumbrance();
     system.encumbrance.value = this.getActorEncumbrance();
+
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
@@ -105,8 +106,13 @@ export default class TwodsixActor extends Actor {
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
       system.reflectOn = armorValues.reflectOn;
+      const damageTypes = getDamageTypes(false);
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map((type:string) => damageTypes[type]).join(', ') : "";
     }
     await this._updateActiveEffects(true);
+    if (this.type === 'traveller') {
+      system.totalArmor = system.primaryArmor.value + system.secondaryArmor.value;
+    }
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -121,7 +127,8 @@ export default class TwodsixActor extends Actor {
       layersWorn: 0,
       wearingNonstackable: false,
       CTLabel: "nothing",
-      reflectOn: false
+      reflectOn: false,
+      protectionTypes: []
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
@@ -136,11 +143,15 @@ export default class TwodsixActor extends Actor {
 
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
+          if (armor.system.secondaryArmor.value > returnValue.secondaryArmor) {
+            returnValue.protectionTypes = armor.system.secondaryArmor.protectionTypes;
+          }
           returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
           returnValue.primaryArmor += armor.system.armor;
           returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+          returnValue.protectionTypes = returnValue.protectionTypes.concat(armor.system.secondaryArmor.protectionTypes);
           returnValue.radiationProtection += armor.system.radiationProtection.value;
         }
 
