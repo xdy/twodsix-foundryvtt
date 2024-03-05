@@ -108,10 +108,12 @@ export default class TwodsixActor extends Actor {
       system.reflectOn = armorValues.reflectOn;
       const damageTypes = getDamageTypes(false);
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map((type:string) => damageTypes[type]).join(', ') : "";
+      system.totalArmor = armorValues.totalArmor;
     }
+    const baseArmor = system.primaryArmor.value;
     await this._updateActiveEffects(true);
-    if (this.type === 'traveller') {
-      system.totalArmor = system.primaryArmor.value + system.secondaryArmor.value;
+    if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
+      system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
     }
   }
   /**
@@ -128,7 +130,8 @@ export default class TwodsixActor extends Actor {
       wearingNonstackable: false,
       CTLabel: "nothing",
       reflectOn: false,
-      protectionTypes: []
+      protectionTypes: [],
+      totalArmor: 0
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
@@ -140,17 +143,19 @@ export default class TwodsixActor extends Actor {
         } else {
           returnValue.CTLabel = armor.system.armorType;
         }
-
+        const totArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
-          if (armor.system.secondaryArmor.value > returnValue.secondaryArmor) {
+          if (totArmor > returnValue.totalArmor) {
             returnValue.protectionTypes = armor.system.secondaryArmor.protectionTypes;
+            returnValue.secondaryArmor = armor.system.secondaryArmor.value;
+            returnValue.totalArmor = totArmor;
           }
-          returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
           returnValue.primaryArmor += armor.system.armor;
           returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+          returnValue.totalArmor += totArmor;
           returnValue.protectionTypes = returnValue.protectionTypes.concat(armor.system.secondaryArmor.protectionTypes);
           returnValue.radiationProtection += armor.system.radiationProtection.value;
         }
