@@ -106,8 +106,7 @@ export default class TwodsixActor extends Actor {
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
       system.reflectOn = armorValues.reflectOn;
-      const damageTypes = getDamageTypes(false);
-      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map((type:string) => damageTypes[type]).join(', ') : "";
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
     }
     const baseArmor = system.primaryArmor.value;
@@ -130,11 +129,12 @@ export default class TwodsixActor extends Actor {
       wearingNonstackable: false,
       CTLabel: "nothing",
       reflectOn: false,
-      protectionTypes: [],
+      protectionTypes: [] as string[],
       totalArmor: 0
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+    const damageTypes = getDamageTypes(false);
 
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
@@ -143,23 +143,26 @@ export default class TwodsixActor extends Actor {
         } else {
           returnValue.CTLabel = armor.system.armorType;
         }
-        const totArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
+        const totalArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
+        const protectionDetails:string[] = armor.system.secondaryArmor.protectionTypes.map((type:string) => `${damageTypes[type]}`);
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
-          if (totArmor > returnValue.totalArmor) {
-            returnValue.protectionTypes = armor.system.secondaryArmor.protectionTypes;
+          if (totalArmor > returnValue.totalArmor) {
             returnValue.secondaryArmor = armor.system.secondaryArmor.value;
-            returnValue.totalArmor = totArmor;
+            returnValue.totalArmor = totalArmor;
           }
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
           returnValue.primaryArmor += armor.system.armor;
           returnValue.secondaryArmor += armor.system.secondaryArmor.value;
-          returnValue.totalArmor += totArmor;
-          returnValue.protectionTypes = returnValue.protectionTypes.concat(armor.system.secondaryArmor.protectionTypes);
+          returnValue.totalArmor += totalArmor;
           returnValue.radiationProtection += armor.system.radiationProtection.value;
         }
-
+        protectionDetails.forEach((type:string) => {
+          if (!returnValue.protectionTypes.includes(type)) {
+            returnValue.protectionTypes.push(type);
+          }
+        });
         returnValue.layersWorn += 1;
         if (armor.system.nonstackable) {
           returnValue.wearingNonstackable = true;
