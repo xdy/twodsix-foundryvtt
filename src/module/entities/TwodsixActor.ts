@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { calcModFor, getKeyByValue } from "../utils/sheetUtils";
+import { calcModFor, getDamageTypes, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
@@ -96,6 +96,7 @@ export default class TwodsixActor extends Actor {
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
     system.encumbrance.max = this.getMaxEncumbrance();
     system.encumbrance.value = this.getActorEncumbrance();
+
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
@@ -105,8 +106,14 @@ export default class TwodsixActor extends Actor {
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
       system.reflectOn = armorValues.reflectOn;
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
+      system.totalArmor = armorValues.totalArmor;
     }
+    const baseArmor = system.primaryArmor.value;
     await this._updateActiveEffects(true);
+    if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
+      system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+    }
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -121,10 +128,13 @@ export default class TwodsixActor extends Actor {
       layersWorn: 0,
       wearingNonstackable: false,
       CTLabel: "nothing",
-      reflectOn: false
+      reflectOn: false,
+      protectionTypes: [] as string[],
+      totalArmor: 0
     };
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+    const damageTypes = getDamageTypes(false);
 
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
@@ -133,17 +143,26 @@ export default class TwodsixActor extends Actor {
         } else {
           returnValue.CTLabel = armor.system.armorType;
         }
-
+        const totalArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
+        const protectionDetails:string[] = armor.system.secondaryArmor.protectionTypes.map((type:string) => `${damageTypes[type]}`);
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
-          returnValue.secondaryArmor = Math.max(armor.system.secondaryArmor.value, returnValue.secondaryArmor);
+          if (totalArmor > returnValue.totalArmor) {
+            returnValue.secondaryArmor = armor.system.secondaryArmor.value;
+            returnValue.totalArmor = totalArmor;
+          }
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
           returnValue.primaryArmor += armor.system.armor;
           returnValue.secondaryArmor += armor.system.secondaryArmor.value;
+          returnValue.totalArmor += totalArmor;
           returnValue.radiationProtection += armor.system.radiationProtection.value;
         }
-
+        protectionDetails.forEach((type:string) => {
+          if (!returnValue.protectionTypes.includes(type)) {
+            returnValue.protectionTypes.push(type);
+          }
+        });
         returnValue.layersWorn += 1;
         if (armor.system.nonstackable) {
           returnValue.wearingNonstackable = true;
