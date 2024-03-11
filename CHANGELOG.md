@@ -1,3 +1,10 @@
+# [4.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.22.0...v4.23.0) (2024-03-11)
+
+
+### Features
+
+* Add ship context to position rolls and display of total armor ([#1548](https://github.com/xdy/twodsix-foundryvtt/issues/1548)) ([4689123](https://github.com/xdy/twodsix-foundryvtt/commit/4689123d8c51c720638dc6c67282b3bafe30d72d))
+
 # [4.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.3...v4.22.0) (2024-03-01)
 
 
