@@ -29,8 +29,10 @@
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}"/></span><br>
   {{else}}
     <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:<input name="system.primaryArmor.value" style="text-align: right;" type="number" value="{{system.primaryArmor.value}}"
-          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.primaryArmor.value'}}"/>/<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
-          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.secondaryArmor.value'}}"/></span>
+          placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>{{#unless settings.showTotalArmor}}+<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
+          placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>{{else}}/<input name="system.totalArmor" type="number" value="{{system.totalArmor}}"
+          placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.TotalArmor') system.protectionTypes}}"/>{{/unless}}
+    </span>
     <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}"
           placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span><br>
   {{/if}}

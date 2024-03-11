@@ -76,15 +76,18 @@ div.pdf-app section.window-content {
 .monks-enhanced-journal .window-content,
 .monks-enhanced-journal .directory-sidebar {
   background-image: url(../assets/bg2.jpg) !important;
+  /*background-color: var(--s2d6-background-transparent) !important;*/
 }
 
 .monks-enhanced-journal .enhanced-journal .journal-sheet-container .sidebar.directory {
   background: revert;
+  background-color: var(--s2d6-background-nearly-transparent);
 }
 
 .monks-enhanced-journal .enhanced-journal .sheet.journal-entry .journal-entry-content {
   background: revert;
-  background-color: var(--s2d6-background-nearly-transparent);
+  background-image: url(../assets/bg2.jpg);
+  background-color: var(--s2d6-background-transparent);
 }
 
 .monks-enhanced-journal .directory-sidebar > section .directory-header,
@@ -171,6 +174,7 @@ div.pdf-app section.window-content {
 }
 
 .monks-enhanced-journal .tab-bar .journal-tab.active {
+  background: revert;
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
 }
@@ -252,7 +256,31 @@ div.pdf-app section.window-content {
   border-radius: 0;
 }
 
+.monks-journal-sheet.sheet .editor .editor-content {
+  height: 100%;
+  background-color: var(--s2d6-background-transparent);
+  border: none;
+  box-shadow: none;
+  overflow-y: auto;
+}
 
+.monks-journal-sheet.sheet .editor {
+  background-color: var(--s2d6-background-transparent);
+}
+
+.monks-journal-sheet .sheet-container .journal-sheet-header .sheet-icon  {
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-app-color);
+}
+
+.monks-journal-sheet .journal-sheet-header.header-name input[type="text"]  {
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
+}
+
+.monks-journal-sheet.sheet .editor-edit {
+  margin-right: 0.5ch;
+}
 /************Item Piles*******/
 /*.item-piles-odd-color:nth-child(odd), .item-piles-even-color:nth-child(even), .item-piles-item-row:nth-child(odd) {
   background-color: var(--s2d6-light-background-transparent) !important;
@@ -298,7 +326,6 @@ div.pdf-app section.window-content {
   color: var(--s2d6-default-color);
   border-color: var(--s2d6-default-color);
 }
-
 
 /******** Token Action HUD ******/
 

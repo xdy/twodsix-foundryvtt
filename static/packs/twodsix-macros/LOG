@@ -1,9 +1,15 @@
-2023/08/01-12:44:36.700029 70000b24f000 Recovering log #51
-2023/08/01-12:44:36.701537 70000b24f000 Delete type=3 #48
-2023/08/01-12:44:36.701780 70000b24f000 Delete type=0 #51
-2023/08/01-12:44:36.702041 70000b24f000 Delete type=3 #32
-2023/08/01-12:45:10.332792 70000cadb000 Level-0 table #57: started
-2023/08/01-12:45:10.332830 70000cadb000 Level-0 table #57: 0 bytes OK
-2023/08/01-12:45:10.333011 70000cadb000 Delete type=0 #55
-2023/08/01-12:45:10.333292 70000cadb000 Manual compaction at level-0 from '!macros!4d9MaEr7rJdWS1NY' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
-2023/08/01-12:45:10.333348 70000cadb000 Manual compaction at level-1 from '!macros!4d9MaEr7rJdWS1NY' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
+2024/03/09-09:35:29.831165 700013869000 Recovering log #64
+2024/03/09-09:35:29.832394 700013869000 Delete type=0 #64
+2024/03/09-09:35:29.832511 700013869000 Delete type=3 #63
+2024/03/09-10:53:41.223694 7000140ef000 Level-0 table #68: started
+2024/03/09-10:53:41.224439 7000140ef000 Level-0 table #68: 2110 bytes OK
+2024/03/09-10:53:41.224992 7000140ef000 Delete type=0 #66
+2024/03/09-10:53:41.225438 7000140ef000 Manual compaction at level-0 from '!macros!4d9MaEr7rJdWS1NY' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
+2024/03/09-10:53:41.225526 7000140ef000 Manual compaction at level-1 from '!macros!4d9MaEr7rJdWS1NY' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at '!macros!xpgbOkPeYsAcjDrm' @ 57 : 1
+2024/03/09-10:53:41.225586 7000140ef000 Compacting 1@1 + 1@2 files
+2024/03/09-10:53:41.229697 7000140ef000 Generated table #69@1: 19 keys, 52454 bytes
+2024/03/09-10:53:41.229740 7000140ef000 Compacted 1@1 + 1@2 files => 52454 bytes
+2024/03/09-10:53:41.229941 7000140ef000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/03/09-10:53:41.230051 7000140ef000 Delete type=2 #68
+2024/03/09-10:53:41.230559 7000140ef000 Delete type=2 #53
+2024/03/09-10:53:41.233615 7000140ef000 Manual compaction at level-1 from '!macros!xpgbOkPeYsAcjDrm' @ 57 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)

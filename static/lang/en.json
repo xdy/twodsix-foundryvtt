@@ -449,7 +449,9 @@
       "DeleteReference": "Delete Reference",
       "Armor": {
         "Armor": "Armor",
+        "PrimaryArmor": "Primary Armor",
         "SecondaryArmor": "Secondary Armor",
+        "TotalArmor": "Total Armor",
         "RadProt": "Rad Protection",
         "IsPowered": "Powered Armor",
         "Nonstackable": "Non-stackable",
@@ -1382,6 +1384,10 @@
       "overrideSuccessWithNaturalCrit": {
         "hint": "Override the degree of success to be exceptional on a natural 2 or 12 - independent of effect.",
         "name": "Override degree of success on critical roll (2 or 12)"
+      },
+      "showTotalArmor": {
+        "hint": "Display the total armor value (promary + secondary values) instead of the secondary armor value for Traveller sheet.",
+        "name": "Display total armor value on Traveller"
       },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun",
       "menuLabels": {
