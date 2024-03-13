@@ -170,3 +170,28 @@ export function getCharacteristicFromDisplayLabel(char:string, actor?:TwodsixAct
   }
   return getKeyByValue(tempObject, char);
 }
+
+/**
+ * Round half away from zero ('commercial' rounding)
+ * Uses correction to offset floating-point inaccuracies. Works symmetrically for positive and negative numbers.
+ * @param {number} num the number to be rounded to a specific decimal position
+ * @param {number} decimalPlaces number of decimal places
+ * @returns {number} num rounded to a specific decimal postion
+ */
+export function roundToDecimal(num:number, decimalPlaces:number): number {
+  const p = Math.pow(10, decimalPlaces);
+  const e = Number.EPSILON * num * p;
+  return Math.round((num * p) + e) / p;
+}
+
+/**
+ * Round to use a maximum number of decimals depending on size of num
+ * Uses correction to offset floating-point inaccuracies. Works symmetrically for positive and negative numbers.
+ * @param {number} num the number to be rounded to a specific decimal position
+ * @param {number} maxDecimals max number of decimals
+ * @returns {number} num rounded to a specific decimal postion
+ */
+export function roundToMaxDecimals(num:number, maxDecimals:number): number {
+  const decimalsToShow = Math.min(maxDecimals, Math.max(0, maxDecimals - Math.floor(Math.log10(Math.abs(num)))));
+  return roundToDecimal(num, decimalsToShow);
+}
