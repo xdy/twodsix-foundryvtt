@@ -1,3 +1,10 @@
+## [4.23.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.0...v4.23.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* ship cargo price and displacement display and Traveller Tools importer ([#1550](https://github.com/xdy/twodsix-foundryvtt/issues/1550)) ([2a1db91](https://github.com/xdy/twodsix-foundryvtt/commit/2a1db916bcc3ceec4c8969fa7985d6b03456961b))
+
 # [4.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.22.0...v4.23.0) (2024-03-11)
 
 
