@@ -5,7 +5,7 @@ import { calcModFor, getDamageTypes, getKeyByValue } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
-import { simplifySkillName, sortByItemName } from "../utils/utils";
+import { roundToMaxDecimals, simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
@@ -438,11 +438,11 @@ export default class TwodsixActor extends Actor {
       shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
       shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
 
-      shipActor.system.weightStats.vehicles = Math.round(calcShipStats.weight.vehicles);
-      shipActor.system.weightStats.cargo = Math.round(calcShipStats.weight.cargo);
-      shipActor.system.weightStats.fuel = Math.round(calcShipStats.weight.fuel);
-      shipActor.system.weightStats.systems = Math.round(calcShipStats.weight.systems);
-      shipActor.system.weightStats.available = Math.round(calcShipStats.weight.available);
+      shipActor.system.weightStats.vehicles = roundToMaxDecimals(calcShipStats.weight.vehicles, 2);
+      shipActor.system.weightStats.cargo = roundToMaxDecimals(calcShipStats.weight.cargo, 2);
+      shipActor.system.weightStats.fuel = roundToMaxDecimals(calcShipStats.weight.fuel, 2);
+      shipActor.system.weightStats.systems = roundToMaxDecimals(calcShipStats.weight.systems, 2);
+      shipActor.system.weightStats.available = roundToMaxDecimals(calcShipStats.weight.available, 2);
 
       shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
       shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
