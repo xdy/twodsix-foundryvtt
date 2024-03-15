@@ -91,7 +91,7 @@ export default function registerHandlebarsHelpers(): void {
     let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (adjValue === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+    if (adjValue === (<Skills>game.model.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
       adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
