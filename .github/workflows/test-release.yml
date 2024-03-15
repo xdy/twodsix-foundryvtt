@@ -69,9 +69,9 @@ jobs:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "compatibility.verified"
 
-      - name: Extract tag version number
-        id: get_version
-        uses: battila7/get-version-action@v2
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
 
       - name: Submit package to FoundryVTT Package Release API
         run: |
@@ -82,7 +82,7 @@ jobs:
               "id": "twodsix",
               "dry-run": false,
               "release": {
-                "version": "${{ steps.get_version.outputs.version-without-v }}",
+                "version": "${{ steps.package-version.outputs.current-version}}",
                 "manifest": "https://github.com/${{ github.repository }}/releases/latest/download/system.json",
                 "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
                 "compatibility": {
