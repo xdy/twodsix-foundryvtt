@@ -416,6 +416,10 @@ export default function registerHandlebarsHelpers(): void {
     return getWeight(item).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
   });
 
+  Handlebars.registerHelper('getComponentPrice', (item: TwodsixItem) => {
+    return Number(item.system.purchasePrice).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
+  });
+
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
     const retValue:number = getPower(item);
     if (item.system.generatesPower) {
