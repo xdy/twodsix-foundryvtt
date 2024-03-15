@@ -1,3 +1,10 @@
+## [4.23.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.3...v4.23.4) (2024-03-15)
+
+
+### Bug Fixes
+
+* Test release process ([cb95246](https://github.com/xdy/twodsix-foundryvtt/commit/cb9524648c58202c898129500a8a0d0b1464cafc))
+
 ## [4.23.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.2...v4.23.3) (2024-03-15)
 
 
