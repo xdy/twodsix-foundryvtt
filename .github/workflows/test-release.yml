@@ -69,13 +69,6 @@ jobs:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "compatibility.verified"
 
-      - name: Get maximum
-        id: maximum
-        uses: notiz-dev/github-action-json-property@release
-        with:
-          path: "./dist/${{ env.package_type }}.json"
-          prop_path: "compatibility.maximum"
-
       - name: Extract tag version number
         id: get_version
         uses: battila7/get-version-action@v2
@@ -95,7 +88,7 @@ jobs:
                 "compatibility": {
                   "minimum": "${{ steps.minimum.outputs.prop }}",
                   "verified": "${{ steps.verified.outputs.prop }}",
-                  "maximum": "${{ steps.maximum.outputs.prop }}"
+                  "maximum": ""
                 }
               }
             }'
