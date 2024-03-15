@@ -417,7 +417,7 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentPrice', (item: TwodsixItem) => {
-    return (Number(item.system.purchasePrice) ?? 0).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
+    return Number(item.system.purchasePrice).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
