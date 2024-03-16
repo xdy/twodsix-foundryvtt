@@ -1,3 +1,38 @@
+## [4.23.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.3...v4.23.4) (2024-03-15)
+
+
+### Bug Fixes
+
+* Test release process ([cb95246](https://github.com/xdy/twodsix-foundryvtt/commit/cb9524648c58202c898129500a8a0d0b1464cafc))
+
+## [4.23.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.2...v4.23.3) (2024-03-15)
+
+
+### Bug Fixes
+
+* Test release process ([a11e2ac](https://github.com/xdy/twodsix-foundryvtt/commit/a11e2ac505c6f45e099d80869df01d9db47a3c3f))
+
+## [4.23.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.1...v4.23.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* Testing release process ([16a2582](https://github.com/xdy/twodsix-foundryvtt/commit/16a25824d367a5cf3754bcdf564ef754669ba624))
+
+## [4.23.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.0...v4.23.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* ship cargo price and displacement display and Traveller Tools importer ([#1550](https://github.com/xdy/twodsix-foundryvtt/issues/1550)) ([2a1db91](https://github.com/xdy/twodsix-foundryvtt/commit/2a1db916bcc3ceec4c8969fa7985d6b03456961b))
+
+# [4.23.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.22.0...v4.23.0) (2024-03-11)
+
+
+### Features
+
+* Add ship context to position rolls and display of total armor ([#1548](https://github.com/xdy/twodsix-foundryvtt/issues/1548)) ([4689123](https://github.com/xdy/twodsix-foundryvtt/commit/4689123d8c51c720638dc6c67282b3bafe30d72d))
+
 # [4.22.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.21.3...v4.22.0) (2024-03-01)
 
 
