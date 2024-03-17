@@ -224,7 +224,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
-      const newId = randomID();
+      const newId = foundry.utils.randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
         const effects = [new ActiveEffect({
           origin: undefined, //UUID? this.item.uuid
