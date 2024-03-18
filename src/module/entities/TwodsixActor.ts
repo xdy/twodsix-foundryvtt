@@ -212,7 +212,7 @@ export default class TwodsixActor extends Actor {
     if (Roll.validate(encumbFormula)) {
       maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, this.system));
     }
-    return maxEncumbrance;
+    return Math.max(maxEncumbrance, 0);
   }
 
   getActorEncumbrance():number {
