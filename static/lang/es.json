@@ -324,6 +324,7 @@
         "Attachments": "Acc./Consm.",
         "WeaponsHandling": "Manejo Armas",
         "WeaponsRange": "Rango Arma",
+        "ArmorModifier": "Mod. Armadura",
         "Chain": "Tirada Encadenada / Asistida",
         "Bonus": "Bono",
         "WithChainBonus": "con bono Cadena / Apoyo",
@@ -356,7 +357,8 @@
           "none": "Ninguno",
           "singleBand": "Valor Único",
           "doubleBand": "Valor Doble",
-          "CE_Bands": "Rangos de CE"
+          "CE_Bands": "Rangos de CE",
+          "CT_Bands": "Rangos Traveller Clásico"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Cuerpo a Cuerpo",
@@ -370,7 +372,45 @@
           "assaultWeapon": "Arma de Asalto",
           "AW": "AW",
           "rocket": "Cohete",
-          "none": "Ninguno"
+          "none": "Ninguno",
+          "hands": "Manos",
+          "claws": "Garras",
+          "teeth": "Dientes",
+          "horns": "Cuernos",
+          "hooves": "Patas",
+          "stinger": "Picadura",
+          "thrasher": "Apalear",
+          "club": "Garrote",
+          "dagger": "Daga",
+          "blade": "Hoja",
+          "foil": "Florete",
+          "cutlass": "Sable",
+          "sword": "Espada",
+          "broadsword": "Espadón",
+          "bayonet": "Bayoneta",
+          "spear": "Lanza",
+          "halberd": "Alabarda",
+          "pike": "Pica",
+          "cudgel": "Porra",
+          "bodyPistol": "Pistola",
+          "autoPistol": "Automática",
+          "revolver": "Revolver",
+          "carbine": "Carabina",
+          "autoRifle": "Rifle automático",
+          "submachinegun": "Ametralladora",
+          "laserCarbine": "Carabina Laser",
+          "laserRifle": "Rifle Laser",
+          "thras": "Golpe",
+          "cutl": "Sabl",
+          "brdswd": "Espdón",
+          "bynt": "Bynt",
+          "halb": "Alab",
+          "bPistl": "Pistol",
+          "aPistl": "PAuto",
+          "AR": "RAuto",
+          "subm": "Amet",
+          "LC": "CLsr",
+          "LR": "RLsr"
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -381,7 +421,17 @@
           "veryLong": "Muy Largo",
           "distant": "Distante",
           "none": "Ninguno"
-        }
+        },
+        "ArmorTypes": {
+          "nothing": "Nada",
+          "jack": "Chaqueta",
+          "mesh": "Malla",
+          "cloth": "Ropa",
+          "reflec": "Reflec",
+          "ablat": "Ablat",
+          "combat": "Combate"
+        },
+        "Dice": "Dado"
       }
     },
     "Table": {
@@ -399,11 +449,17 @@
       "DeleteReference": "Borrar Referencia",
       "Armor": {
         "Armor": "Armadura",
+        "PrimaryArmor": "Armadura Primaria",
         "SecondaryArmor": "Armadura 2ª",
+        "TotalArmor": "Armadura Total",
         "RadProt": "Prot Rad",
         "IsPowered": "Armadura Energía",
         "Nonstackable": "No apilable",
-        "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria"
+        "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria",
+        "armorDM": "MD",
+        "ArmorModifier": "Mod. Armadura",
+        "ArmorType": "Tipo Armadura",
+        "WearingReflec": "Reflec Puesta"
       },
       "Augmentation": {
         "Arms": "Brazos",
@@ -846,6 +902,8 @@
       "Damage": "Daño",
       "BonusDamage": "Bono Daño",
       "BurstDamage": "Daño Ráfaga",
+      "Burst": "Ráfaga",
+      "Auto": "Auto",
       "FullAuto": "Automático",
       "DoubleTap": "Disparo Doble",
       "Timeframe": "Tiempo",
@@ -1260,7 +1318,7 @@
         "name": "Permitir Reordenar Listas"
       },
       "useDodgeParry": {
-        "hint": "Añade penalizador a la tirada según la habilidad de equiva/parada del objetivo. El objetivo debe estar seleccionado y el nombre de la habilidad en el arma debe coincidir.",
+        "hint": "Añadir un penalizador en la tirada que represente la habilidad de esquiva/parada. El objetivo debe seleccionarse y la habilidad del arma que actúa debe coincidir.",
         "name": "Utilizar Modificadores Esquiva/Parada en Ataques"
       },
       "showModifierDetails": {
@@ -1326,6 +1384,10 @@
       "overrideSuccessWithNaturalCrit": {
         "hint": "Grado de éxito excepcional en tiradas naturales de 2 ó 12 - independientemente del efecto.",
         "name": "Grado de éxito en tiradas críticas (2 ó 12)"
+      },
+      "showTotalArmor": {
+        "hint": "Mostrar el valor total de armadura (primaria + secundaria) en vez del valor secundario en la hoja.",
+        "name": "Mostrar el valor de la armadura total al jugador"
       },
       "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor",
       "menuLabels": {
@@ -1445,7 +1507,9 @@
       "DraggedCompendiumIsNotItem": "Lo arrastrado del compendio no es un objeto.",
       "InvalidRollFormula": "Fórmula de daño no válida.",
       "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto.",
-      "TraitsandSkillsNoConsumables": "Los Conjuros, Rasgos y Habilidades no pueden tener consumibles."
+      "TraitsandSkillsNoConsumables": "Los Conjuros, Rasgos y Habilidades no pueden tener consumibles.",
+      "InvalidRangeBand": "El tipo de Arma y/o rango no pertenece a las reglas.",
+      "InvalidWeaponArmor": "El tipo de Arma y/o Armadura no pertenece a las reglas."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
@@ -1483,7 +1547,9 @@
       "ResetEffectForManualDamage": "Efecto no incluido en la tirada de daño. Desactivando los efectos en las tiradas manuales.",
       "tableNotFound": "No se puede localizar la Tabla del Enlace en el Diario.",
       "typeMismatch": "El enlace/UUID dentro del Diario no es una Tabla.",
-      "MacroNameExists": "Existe una macro con ese nombre, pero el comando es diferente. ¿Actualizar al nuevo?"
+      "MacroNameExists": "Existe una macro con ese nombre, pero el comando es diferente. ¿Actualizar al nuevo?",
+      "TooManyLayersOnTarget": "El objetivo lleva demasiadas capas de armadura",
+      "ActorOverloaded": "El actor actual carga más de su capacidad."
     }
   },
   "TYPES": {
