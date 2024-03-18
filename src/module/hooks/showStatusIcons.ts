@@ -6,11 +6,11 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 
-Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
+Hooks.on('updateActor', (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
   if (options.diff) {  //Not certain why this is needed, but opening token editor for tokenActor and cancelling fires updateActor
     if (checkForWounds(update.system, actor.type) && (["traveller", "animal", "robot"].includes(actor.type))) {
       if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
-        await applyWoundedEffect(actor).then();
+        applyWoundedEffect(actor);
       }
       if (actor.system.hits.lastDelta !== 0 && actor.isOwner ) {
         actor.scrollDamage(actor.system.hits.lastDelta);
@@ -18,26 +18,26 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
     }
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
       if (update.system?.characteristics && (actor.type === 'traveller') ) {
-        await applyEncumberedEffect(actor).then();
+        applyEncumberedEffect(actor);
       }
     }
   }
 });
 
-Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
+Hooks.on("updateItem", (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && !["skills", "trait", "spell"].includes(item.type) ) {
-        if (item.type !== "consumable" || !options.dontSync) {
-          await applyEncumberedEffect(owningActor);
+        if (update.system?.weight && !options.dontSync) {
+          applyEncumberedEffect(owningActor);
         }
       }
     }
     //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
       if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-        await applyWoundedEffect(<TwodsixActor>item.actor);
+        applyWoundedEffect(<TwodsixActor>item.actor);
       }
     }
   }
@@ -91,36 +91,36 @@ export const effectType = Object.freeze({
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
-async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
+function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
   const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
   const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
 
   if (!tintToApply) {
     if (isCurrentlyDead) {
-      await setConditionState('dead', selectedActor, false);
+      setConditionState('dead', selectedActor, false);
     }
     if (oldWoundState) {
-      await setWoundedState(selectedActor, false, tintToApply);
+      setWoundedState(selectedActor, false, tintToApply);
     }
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
       if (!isCurrentlyDead) {
-        await setConditionState('dead', selectedActor, true);
+        setConditionState('dead', selectedActor, true);
       }
       if (oldWoundState) {
-        await setWoundedState(selectedActor, false, tintToApply);
+        setWoundedState(selectedActor, false, tintToApply);
       }
-      await setConditionState('unconscious', selectedActor, false);
+      setConditionState('unconscious', selectedActor, false);
     } else {
       if (isCurrentlyDead) {
-        await setConditionState('dead', selectedActor, false);
+        setConditionState('dead', selectedActor, false);
       }
       if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
-        await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
+        checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       if (tintToApply !== oldWoundState?.tint) {
-        await setWoundedState(selectedActor, true, tintToApply);
+        setWoundedState(selectedActor, true, tintToApply);
       }
     }
   }
@@ -187,7 +187,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     }
 
     if (isCurrentlyEncumbered.length === 0) {
-      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+      selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),
         icon: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
@@ -195,7 +195,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }]);
     } else {
       if (changeData[0].value !== selectedActor.effects.get(idToKeep)?.changes[0].value  && !!idToKeep) {
-        await selectedActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: idToKeep, changes: changeData }]);
+        selectedActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: idToKeep, changes: changeData }]);
       }
     }
   }
@@ -215,20 +215,20 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
-        await setConditionState('unconscious', selectedActor, true);
+        setConditionState('unconscious', selectedActor, true);
       }
     } else if (['CT'].includes(rulesSet)) {
       if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
-        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+        setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
     } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
-        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+        setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
         const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
         const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
-          await setConditionState('unconscious', selectedActor, true);
+          setConditionState('unconscious', selectedActor, true);
         }
       }
     }
@@ -265,15 +265,15 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
       if (effectStatus === 'dead') {
-        await (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: false});
+        (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: false});
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
         const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
         if (combatant !== undefined) {
-          await combatant.update({defeated: state});
+          combatant.update({defeated: state});
         }
       } else {
-        await (<Token>targetToken).toggleEffect(targetEffect, {active: state});
+        (<Token>targetToken).toggleEffect(targetEffect, {active: state});
       }
     }
   }
@@ -311,7 +311,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     }
     const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
     if (!currentEffectId) {
-      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
+      targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.wounded),
         icon: "icons/svg/blood.svg",
         tint: tint,
@@ -321,7 +321,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);
       if (currentEfffect.tint !== tint) {
-        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
+        targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
       }
     }
   }
@@ -468,7 +468,7 @@ function getEncumbranceModifier(ratio:number):number {
         if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 3) {
           return game.settings.get('twodsix', 'encumbranceModifier') * 2;
         } else {
-          console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
+          //console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
           return game.settings.get('twodsix', 'encumbranceModifier') * 20; //Cannot take any actions other than push
         }
       } else {
