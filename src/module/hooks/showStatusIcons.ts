@@ -28,8 +28,8 @@ Hooks.on("updateItem", (item: TwodsixItem, update: Record<string, any>, options:
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
-      if ((owningActor.type === 'traveller') && !["skills", "trait", "spell"].includes(item.type) ) {
-        if (update.system?.weight && !options.dontSync) {
+      if ((owningActor.type === 'traveller') && !["skills", "trait", "spell"].includes(item.type) && update.system) {
+        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || Object.hasOwn(update.system, "equipped")) && !options.dontSync) {
           applyEncumberedEffect(owningActor);
         }
       }
