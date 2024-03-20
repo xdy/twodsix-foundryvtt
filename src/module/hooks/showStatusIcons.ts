@@ -194,8 +194,9 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
         statuses: ["encumbered"]
       }]);
     } else {
-      if (changeData[0].value !== selectedActor.effects.get(idToKeep)?.changes[0].value  && !!idToKeep) {
-        selectedActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: idToKeep, changes: changeData }]);
+      const encumberedEffect = await selectedActor.effects.get(idToKeep);
+      if (changeData[0].value !== encumberedEffect?.changes[0].value  && encumberedEffect) {
+        encumberedEffect.update({changes: changeData });
       }
     }
   }
