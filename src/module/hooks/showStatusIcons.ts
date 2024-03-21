@@ -149,9 +149,9 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
   // Delete encumbered AE's if uneeded or more than one
   if (isCurrentlyEncumbered.length > 0) {
-    const idList = await isCurrentlyEncumbered.map(i => i.id);
+    const idList = isCurrentlyEncumbered.map(i => i.id);
     if (state === true) {
-      idToKeep = await idList.pop();
+      idToKeep = idList.pop();
     }
     if(idList.length > 0) {
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
