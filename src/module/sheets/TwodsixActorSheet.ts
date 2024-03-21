@@ -268,7 +268,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
       const newState = getNewEquippedState(itemSelected);
-      itemSelected.toggleActiveEffectStatus(newState !== "equipped");
+      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true});
 
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       const itemUpdates = [];
