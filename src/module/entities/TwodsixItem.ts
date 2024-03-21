@@ -730,11 +730,15 @@ export default class TwodsixItem extends Item {
    * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
    * @returns {Promise<void>}
    */
-  public async toggleActiveEffectStatus(newSuspendedState:boolean): Promise<void> {
+  public async toggleActiveEffectStatus(newSuspendedState:boolean, options = {}): Promise<void> {
+    const changes = [];
     for (const effect of this.effects) {
       if (effect.disabled !== newSuspendedState) {
-        await effect.update({disabled: newSuspendedState});
+        changes.push({_id: effect.id, disabled: newSuspendedState});
       }
+    }
+    if (changes.length > 0 ) {
+      await this.updateEmbeddedDocuments("ActiveEffect", changes, options);
     }
   }
 
