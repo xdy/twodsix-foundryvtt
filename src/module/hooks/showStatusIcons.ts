@@ -6,11 +6,11 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 
-Hooks.on('updateActor', (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
+Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
   if (options.diff) {  //Not certain why this is needed, but opening token editor for tokenActor and cancelling fires updateActor
     if (checkForWounds(update.system, actor.type) && (["traveller", "animal", "robot"].includes(actor.type))) {
       if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
-        applyWoundedEffect(actor);
+        await applyWoundedEffect(actor);
       }
       if (actor.system.hits.lastDelta !== 0 && actor.isOwner ) {
         actor.scrollDamage(actor.system.hits.lastDelta);
@@ -18,26 +18,26 @@ Hooks.on('updateActor', (actor: TwodsixActor, update: Record<string, any>, optio
     }
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
       if (update.system?.characteristics && (actor.type === 'traveller') ) {
-        applyEncumberedEffect(actor);
+        await applyEncumberedEffect(actor);
       }
     }
   }
 });
 
-Hooks.on("updateItem", (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
+Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor = <TwodsixActor> item.actor;
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
       if ((owningActor.type === 'traveller') && !["skills", "trait", "spell"].includes(item.type) && update.system) {
-        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || Object.hasOwn(update.system, "equipped")) && !options.dontSync) {
-          applyEncumberedEffect(owningActor);
+        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || (Object.hasOwn(update.system, "equipped")) && item.system.weight > 0) && !options.dontSync) {
+          await applyEncumberedEffect(owningActor);
         }
       }
     }
     //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
       if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-        applyWoundedEffect(<TwodsixActor>item.actor);
+        await applyWoundedEffect(<TwodsixActor>item.actor);
       }
     }
   }
@@ -91,36 +91,36 @@ export const effectType = Object.freeze({
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
-function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
+async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
   const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
   const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
 
   if (!tintToApply) {
     if (isCurrentlyDead) {
-      setConditionState('dead', selectedActor, false);
+      await setConditionState('dead', selectedActor, false);
     }
     if (oldWoundState) {
-      setWoundedState(selectedActor, false, tintToApply);
+      await setWoundedState(selectedActor, false, tintToApply);
     }
   } else {
     if (tintToApply === DAMAGECOLORS.deadTint) {
       if (!isCurrentlyDead) {
-        setConditionState('dead', selectedActor, true);
+        await setConditionState('dead', selectedActor, true);
       }
       if (oldWoundState) {
-        setWoundedState(selectedActor, false, tintToApply);
+        await setWoundedState(selectedActor, false, tintToApply);
       }
       setConditionState('unconscious', selectedActor, false);
     } else {
       if (isCurrentlyDead) {
-        setConditionState('dead', selectedActor, false);
+        await setConditionState('dead', selectedActor, false);
       }
       if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
-        checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
+        await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       if (tintToApply !== oldWoundState?.tint) {
-        setWoundedState(selectedActor, true, tintToApply);
+        await setWoundedState(selectedActor, true, tintToApply);
       }
     }
   }
@@ -149,9 +149,9 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
   // Delete encumbered AE's if uneeded or more than one
   if (isCurrentlyEncumbered.length > 0) {
-    const idList = isCurrentlyEncumbered.map(i => i.id); //remove await???
+    const idList = await isCurrentlyEncumbered.map(i => i.id);
     if (state === true) {
-      idToKeep = idList.pop();
+      idToKeep = await idList.pop();
     }
     if(idList.length > 0) {
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
@@ -187,16 +187,16 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     }
 
     if (isCurrentlyEncumbered.length === 0) {
-      selectedActor.createEmbeddedDocuments("ActiveEffect", [{
+      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),
         icon: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
         statuses: ["encumbered"]
-      }]);
+      }], {dontSync: true});
     } else {
       const encumberedEffect = await selectedActor.effects.get(idToKeep);
       if (changeData[0].value !== encumberedEffect?.changes[0].value  && encumberedEffect) {
-        encumberedEffect.update({changes: changeData });
+        await encumberedEffect.update({changes: changeData });
       }
     }
   }

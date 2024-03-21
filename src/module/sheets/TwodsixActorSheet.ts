@@ -284,7 +284,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        applyEncumberedEffect(this.actor);
+        await applyEncumberedEffect(this.actor);
       }
       //check for equipping more than one armor with nonstackable
       if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
