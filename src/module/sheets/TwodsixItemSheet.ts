@@ -221,7 +221,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   private _changeEquipped(event) {
     if (this.item.isEmbedded) {
-      const newDiabledState = $(event.currentTarget).val() !== 'equipped' ?? true;
+      const newDiabledState = $(event.currentTarget).val() !== 'equipped';
       for (const effect of this.item.effects) {
         if (effect.disabled !== newDiabledState) {
           effect.update({disabled: newDiabledState});
