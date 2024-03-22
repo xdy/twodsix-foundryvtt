@@ -26,10 +26,10 @@ Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>,
 
 Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
   if (game.user?.id === userId) {
-    const owningActor = <TwodsixActor> item.actor;
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor) {
+    const owningActor: TwodsixActor = item.actor;
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor && !options.dontSync) {
       if ((owningActor.type === 'traveller') && !["skills", "trait", "spell"].includes(item.type) && update.system) {
-        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || (Object.hasOwn(update.system, "equipped")) && item.system.weight > 0) && !options.dontSync) {
+        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || (Object.hasOwn(update.system, "equipped")) && item.system.weight > 0)) {
           await applyEncumberedEffect(owningActor);
         }
       }
@@ -37,7 +37,7 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, op
     //Needed - for active effects changing damage stats
     if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
       if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-        await applyWoundedEffect(<TwodsixActor>item.actor);
+        await applyWoundedEffect(owningActor);
       }
     }
   }
@@ -361,7 +361,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
   }
 }
 
-export function getHitsTint(selectedTraveller: Traveller): string {
+export function getHitsTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
@@ -373,7 +373,7 @@ export function getHitsTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-export function getCDWoundTint(selectedTraveller: Traveller): string {
+export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
@@ -385,7 +385,7 @@ export function getCDWoundTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-export function getCELWoundTint(selectedTraveller: Traveller): string {
+export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
@@ -402,7 +402,7 @@ export function getCELWoundTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-export function getCEWoundTint(selectedTraveller: Traveller): string {
+export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
@@ -428,12 +428,12 @@ export function getCEWoundTint(selectedTraveller: Traveller): string {
   return returnVal;
 }
 
-export function isUnconsciousCE(selectedTraveller: Traveller): boolean {
+export function isUnconsciousCE(selectedTraveller: TwodsixActor): boolean {
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   return (testArray.filter(chr => chr.current <= 0 && chr.value !== 0).length === 2);
 }
 
-export function getCEAWoundTint(selectedTraveller: Traveller): string {
+export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
