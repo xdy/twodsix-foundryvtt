@@ -23,21 +23,23 @@ export class TwodsixDiceRoll {
   modifierList:string[] | null;
 
   constructor(rollSettings:TwodsixRollSettings, actor:TwodsixActor, skill:TwodsixItem | null = null, item:TwodsixItem | null = null) {
-    return (async () => {
-      this.rollSettings = rollSettings;
-      this.actor = actor;
-      this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
-      this.item = item;
-      await this.createRoll();
-      this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
-        return dice.active ? total + dice.result : total;
-      }, 0) || 0;
-      this.calculateEffect();
-      return this; // Return the newly-created instance
-    })();
+    this.rollSettings = rollSettings;
+    this.actor = actor;
+    this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
+    this.item = item;
   }
 
-  private async createRoll():void {
+  public async evaluateRoll(): Promise<void> {
+    await this.createRoll();
+
+    this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
+      return dice.active ? total + dice.result : total;
+    }, 0) || 0;
+
+    this.calculateEffect();
+  }
+
+  private async createRoll(): Promise<void> {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.rollSettings.rollType].formula;
     const formulaData = {};
