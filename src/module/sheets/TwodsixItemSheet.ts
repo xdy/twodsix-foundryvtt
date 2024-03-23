@@ -133,6 +133,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
     html.find(`[name="type"]`).on('change', this._changeType.bind(this));
     html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
+    html.find(`[name="system.equipped"]`).on('change', this._changeEquipped.bind(this));
   }
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
@@ -214,6 +215,21 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       //check for having more than one equipped armor when changing to nonstackable
       if (this.item.actor.system.layersWorn > 1 && newValue && this.item.system.equipped === 'equipped') {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
+      }
+    }
+  }
+
+  private _changeEquipped(event) {
+    if (this.item.isEmbedded) {
+      const newDiabledState = event.currentTarget.value !== 'equipped';
+      const updates = [];
+      for (const effect of this.item.effects) {
+        if (effect.disabled !== newDiabledState) {
+          updates.push({_id: effect.id, disabled: newDiabledState});
+        }
+      }
+      if (updates.length > 0) {
+        this.item.updateEmbeddedDocuments('ActiveEffect', updates);
       }
     }
   }

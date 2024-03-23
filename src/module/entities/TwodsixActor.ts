@@ -212,14 +212,14 @@ export default class TwodsixActor extends Actor {
     if (Roll.validate(encumbFormula)) {
       maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, this.system));
     }
-    return maxEncumbrance;
+    return Math.max(maxEncumbrance, 0);
   }
 
   getActorEncumbrance():number {
     let encumbrance = 0;
-    const actorItems = this.items.filter( i => !["skills", "trait", "ship_position", "storage"].includes(i.type));
+    const actorItems = this.items.filter( i => !["skills", "trait", "ship_position", "storage", "spell"].includes(i.type));
     for (const item of actorItems) {
-      encumbrance += getEquipmentWeight(<TwodsixItem>item);
+      encumbrance += getEquipmentWeight(item);
     }
     return encumbrance;
   }
