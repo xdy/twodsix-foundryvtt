@@ -27,8 +27,10 @@ export class TwodsixDiceRoll {
     this.actor = actor;
     this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
     this.item = item;
+  }
 
-    this.createRoll();
+  public async evaluateRoll(): Promise<void> {
+    await this.createRoll();
 
     this.naturalTotal = this.roll?.dice[0].results.reduce((total:number, dice) => {
       return dice.active ? total + dice.result : total;
@@ -37,7 +39,7 @@ export class TwodsixDiceRoll {
     this.calculateEffect();
   }
 
-  private createRoll():void {
+  private async createRoll(): Promise<void> {
     const difficultiesAsTargetNumber = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
     const rollType = TWODSIX.ROLLTYPES[this.rollSettings.rollType].formula;
     const formulaData = {};
@@ -75,7 +77,7 @@ export class TwodsixDiceRoll {
       formulaData[modifierName] = Math.abs(modifierValue);
     }
 
-    this.roll = new Roll(formula, formulaData).evaluate({async: false}); // async:true will be default in foundry 0.10
+    this.roll = await (new Roll(formula, formulaData)).evaluate(); // async:true will be default in foundry 0.10
   }
 
   public getCrit():Crit {
