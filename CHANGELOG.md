@@ -1,3 +1,10 @@
+## [4.23.5](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.4...v4.23.5) (2024-03-23)
+
+
+### Bug Fixes
+
+* Try to streamline encumbrance calcs ([#1552](https://github.com/xdy/twodsix-foundryvtt/issues/1552)) ([bf8c4d0](https://github.com/xdy/twodsix-foundryvtt/commit/bf8c4d0e996ae675e0c8f42e8f25a46a4d98ecda))
+
 ## [4.23.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.3...v4.23.4) (2024-03-15)
 
 
