@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
+import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 //import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
@@ -267,7 +268,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
       const newState = getNewEquippedState(itemSelected);
-      await itemSelected.toggleActiveEffectStatus(newState !== "equipped");
+      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true});
 
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       const itemUpdates = [];
@@ -280,9 +281,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: itemSelected.type !== "consumable"});
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
-
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+        await applyEncumberedEffect(this.actor);
+      }
       //check for equipping more than one armor with nonstackable
       if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
