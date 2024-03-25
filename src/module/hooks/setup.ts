@@ -7,13 +7,13 @@ Hooks.once('setup', async function () {
 
   //Configure TWODSIX custom conditions
   CONFIG.statusEffects.push(
-    {id: 'aiming', label: 'EFFECT.StatusAiming', icon: "systems/twodsix/assets/icons/aiming.svg"},
-    {id: 'cover', label: 'EFFECT.StatusInCover', icon: "systems/twodsix/assets/icons/defensive-wall.svg"},
-    {id: 'fatigued', label: 'EFFECT.StatusFatigued', icon: "systems/twodsix/assets/icons/tired-eye.svg"},
-    {id: 'encumbered', label: 'EFFECT.StatusEncumbered', icon: "systems/twodsix/assets/icons/weight.svg"},
-    {id: 'irradiated', label: 'EFFECT.StatusIrradiated', icon: "systems/twodsix/assets/icons/irradiated.svg"},
-    {id: 'thrust', label: 'EFFECT.StatusThrust', icon: "systems/twodsix/assets/icons/thrust.svg"},
-    {id: 'target-lock', label: 'EFFECT.StatusTargetLock', icon: "systems/twodsix/assets/icons/convergence-target.svg"}
+    {id: 'aiming', name: 'EFFECT.StatusAiming', img: "systems/twodsix/assets/icons/aiming.svg"},
+    {id: 'cover', name: 'EFFECT.StatusInCover', img: "systems/twodsix/assets/icons/defensive-wall.svg"},
+    {id: 'fatigued', name: 'EFFECT.StatusFatigued', img: "systems/twodsix/assets/icons/tired-eye.svg"},
+    {id: 'encumbered', name: 'EFFECT.StatusEncumbered', img: "systems/twodsix/assets/icons/weight.svg"},
+    {id: 'irradiated', name: 'EFFECT.StatusIrradiated', img: "systems/twodsix/assets/icons/irradiated.svg"},
+    {id: 'thrust', name: 'EFFECT.StatusThrust', img: "systems/twodsix/assets/icons/thrust.svg"},
+    {id: 'target-lock', name: 'EFFECT.StatusTargetLock', img: "systems/twodsix/assets/icons/convergence-target.svg"}
   );
   const woundedSE = CONFIG.statusEffects.find(se => se.id === 'bleeding');
   if(woundedSE) {

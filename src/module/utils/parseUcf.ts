@@ -28,7 +28,7 @@
 //
 // // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 // function parseUCF(data:any, ucf:string):unknown {
-//   const ucfData = duplicate(data);
+//   const ucfData = foundry.utils.duplicate(data);
 //   const ucfline = ucf.replace(/(\r\n|\n|\r)/gm, "");
 //   const strings:string[] = ucfline.split("\t");
 //   ucfData.name = strings[0];

@@ -70,11 +70,11 @@ export class TwodsixRollSettings {
       }
       //Check for active effect override of skill
       if (aSkill) {
-        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? (<Skills>game.system.template?.Item?.skills)?.value
+        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? (<Skills>game.model?.Item?.skills)?.value
       }
 
       //Check for "Untrained" value and use if better to account for JOAT
-      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
+      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.model?.Item?.skills)?.value;
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
@@ -443,7 +443,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
       //find the most advantageous characteristic to use based on the displayed (custom) short label
       const charOptions = char.split("|").map(str => str.trim());
       let candidateCharObject = undefined;
-      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel) || charOptions.includes(ch.shortLabel));
       if(candidateCharObjects.length > 0){
         candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
       }

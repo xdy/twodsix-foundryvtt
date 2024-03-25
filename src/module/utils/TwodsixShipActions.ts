@@ -53,7 +53,7 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor.getRollData() ?? {};
         Object.assign(rollData, {ship: extra.ship.getRollData()});
-        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorText, type: CONST.CHAT_MESSAGE_TYPES.ROLL});
+        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorText, type: CONST.CHAT_MESSAGE_TYPES.OTHER});
         return msg;
       }
     }

@@ -22,7 +22,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
 });
 
 async function requestRoll(): Promise<void> {
-  const tokenData = getSelectedTokenData();
+  const tokenData = await getSelectedTokenData();
   const skillsList = await getAllSkills();
   if (Object.keys(tokenData).length > 0) {
     const selections = await throwDialog(skillsList, tokenData);
@@ -144,33 +144,33 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
   });
 }
 
-function getSelectedTokenData(): any {
+async function getSelectedTokenData(): any {
   const returnValue = {};
   const validTokens = canvas.tokens.controlled.filter((t) => ["traveller", "animal", "robot"].includes(t.actor.type));
   for (const token of validTokens) {
     returnValue[token.id] = {
-      userId: getControllingUser(token),
+      userId: await getControllingUser(token),
       token: token,
     };
   }
   return returnValue;
 }
 
-function getControllingUser(token:Token): string {
+async function getControllingUser(token:Token): string {
   let userId = "";
-  const owningUsers = game.users.filter((user) => !user.isGM && user.active && (token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER || (token.actor.ownership.default === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER  && !(user.id in token.actor.ownership))));
+  const owningUsers = await game.users.filter((user) => !user.isGM && user.active && (token.actor.ownership[user.id] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER || (token.actor.ownership.default === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER  && !(user.id in token.actor.ownership))));
   if (owningUsers.length > 1) {
-    const characterUser = owningUsers.find((user) => user.character.id === token.actor.id);
+    const characterUser = await owningUsers.find((user) => user.character.id === token.actor.id);
     if (characterUser) {
       userId = characterUser.id;
     } else {
-      const randomSelection = new Roll("1d@length - 1", {length: owningUsers.length}).evaluate({async: false}).total;
+      const randomSelection =  (await new Roll("1d@length - 1", {length: owningUsers.length}).evaluate()).total;
       userId = owningUsers[randomSelection].id;
     }
   } else if (owningUsers.length === 1) {
     userId = owningUsers[0].id;
   } else {
-    userId = game.users.find((user) => user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_PERMISSION_LEVELS.OWNER).id;
+    userId = await game.users.find((user) => user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER).id;
   }
   return userId;
 }

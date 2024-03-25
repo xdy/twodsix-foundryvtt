@@ -91,7 +91,7 @@ export default function registerHandlebarsHelpers(): void {
     let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (adjValue === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+    if (adjValue === (<Skills>game.model.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
       adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
@@ -300,11 +300,11 @@ export default function registerHandlebarsHelpers(): void {
     let returnValue = ``;
     if (actor) {
       const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-      if (getProperty(actor.overrides, field) !== undefined) {
+      if (foundry.utils.getProperty(actor.overrides, field) !== undefined) {
         returnValue += field.includes('Armor') && actor.type === 'traveller' ? `- ` : ``;
         const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
         const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-        const baseValue = getProperty(actor._source, field);
+        const baseValue = foundry.utils.getProperty(actor._source, field);
         returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
         const workingEffects = actor.appliedEffects;
         for (const effect of workingEffects) {

@@ -181,7 +181,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          const skills:Skills = <Skills>game.system.template?.Item?.skills;
+          const skills:Skills = <Skills>game.model?.Item?.skills;
           itemData.system.value = skills?.value;
         } else {
           itemData.system.value = 0;
@@ -235,7 +235,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const {type} = header.dataset;
 
     // Grab any data associated with this control.
-    //const data = duplicate(header.dataset) as Record<string, any>;
+    //const data = foundry.utils.duplicate(header.dataset) as Record<string, any>;
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);

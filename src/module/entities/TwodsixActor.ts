@@ -76,7 +76,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? game.system.template.Item.skills.value)]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? game.model.Item.skills.value)]
     );
 
     const handler = {
@@ -88,7 +88,7 @@ export default class TwodsixActor extends Actor {
           const newName = property[property.length - 1] === "_" ? property.slice(0, -1) : property;
           return newName in target && target[newName] > 0 ? target[newName] : 0;
         } else {
-          return property in target ? target[property] : this.getUntrainedSkill()?.system.value ?? game.system.template.Item.skills.value;
+          return property in target ? target[property] : this.getUntrainedSkill()?.system.value ?? game.model.Item.skills.value;
         }
       }
     };
@@ -629,6 +629,7 @@ export default class TwodsixActor extends Actor {
     }
 
     const diceRoll = new TwodsixDiceRoll(settings, this);
+    await diceRoll.evaluateRoll();
     if (showInChat) {
       await diceRoll.sendToChat(settings.difficulties);
     }
@@ -752,7 +753,7 @@ export default class TwodsixActor extends Actor {
    */
   public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
     if ( attribute === "hits" && ["traveller", "animal", "robot"].includes(this.type)) {
-      const hits = getProperty(this.system, attribute);
+      const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
         this.damageActor(delta, 9999, "NONE", false);
@@ -793,11 +794,11 @@ export default class TwodsixActor extends Actor {
       await matching.update({"system.value": updateValue});
       return false;
     }
-    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(duplicate(skillData)))[0];
-    //const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
+    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(foundry.utils.duplicate(skillData)))[0];
+    //const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        const skills: Skills = <Skills>game.system.template.Item?.skills;
+        const skills: Skills = <Skills>game.model.Item?.skills;
         addedSkill.update({"system.value": skills?.value});
       } else {
         addedSkill.update({"system.value": 0});
@@ -1074,7 +1075,7 @@ export default class TwodsixActor extends Actor {
     }
     const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
     for ( const t of tokens ) {
-      const pct = Math.clamped(Math.abs(damageApplied) / this.system.hits.max, 0, 1);
+      const pct = Math.clamp(Math.abs(damageApplied) / this.system.hits.max, 0, 1);
       canvas.interface.createScrollingText(t.center, -damageApplied.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
         fontSize: 22 + (32 * pct), // Range between [22, 54]

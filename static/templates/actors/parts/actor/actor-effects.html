@@ -16,7 +16,7 @@
   {{#each effects as |effect|}}
       <li class="effect effects-container" data-uuid="{{effect.uuid}}">
           <div class="item-name">
-              <img class="effect-image" src="{{effect.icon}}" style="border-color: {{effect.tint}} !important;"/>
+              <img class="effect-image" src="{{effect.img}}" style="border-color: {{effect.tint.css}} !important;"/>
           </div>
           <div class="effect-name">{{effect.name}}</div>
           <div class="effect-source">{{effect.sourceLabel}}</div>

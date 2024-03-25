@@ -104,11 +104,11 @@ export class Stats {
   }
 
   totalDamage(): number {
-    const rollData = duplicate(this.actor.system);
+    const rollData = foundry.utils.duplicate(this.actor.system);
     Object.assign(rollData, {damage: this.damageValue, effectiveArmor: this.effectiveArmor});
     const damageFormula = this.armorPiercingValue === 9999 ? "@damage" : this.damageFormula;
     if (Roll.validate(damageFormula)) {
-      const totalDamage = new Roll(damageFormula, rollData).evaluate({async: false}).total;
+      const totalDamage = Roll.safeEval(Roll.replaceFormulaData(damageFormula, rollData)); // new Roll(damageFormula, rollData).evaluateSync().total;  //
       return Math.round(Math.max(totalDamage, 0));
     }
     return Math.max(this.damageValue - this.effectiveArmor, 0);

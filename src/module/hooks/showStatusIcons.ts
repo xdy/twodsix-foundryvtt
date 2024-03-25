@@ -74,9 +74,9 @@ function checkForDamageStat (update: any, actorType: string): boolean {
 }
 
 export const DAMAGECOLORS = Object.freeze({
-  minorWoundTint: '#FFFF00', // Yellow
-  seriousWoundTint: '#FF0000', // Red
-  deadTint: '#FFFFFF'  // White
+  minorWoundTint: '#ffff00', // Yellow
+  seriousWoundTint: '#ff0000', // Red
+  deadTint: '#ffffff'  // White
 });
 
 export const effectType = Object.freeze({
@@ -116,10 +116,10 @@ async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
       if (isCurrentlyDead) {
         await setConditionState('dead', selectedActor, false);
       }
-      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint*/) {
+      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
-      if (tintToApply !== oldWoundState?.tint) {
+      if (tintToApply !== oldWoundState?.tint.css) {
         await setWoundedState(selectedActor, true, tintToApply);
       }
     }
@@ -189,7 +189,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),
-        icon: "systems/twodsix/assets/icons/weight.svg",
+        img: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
         statuses: ["encumbered"]
       }], {dontSync: true});
@@ -222,7 +222,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
         setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
-    } else if (oldWoundState?.tint !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
+    } else if (oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
         setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
@@ -259,14 +259,15 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   if (isAlreadySet.length > 1  && targetToken) {
     //Need to get rid of duplicates
     for (let i = 1; i < isAlreadySet.length; i++) {
-      await (<Token>targetToken).toggleEffect(targetEffect, {active: false});
+      await (<Token>targetToken).toggleStatusEffect(targetEffect, {active: false});
     }
   }
 
   if ((isAlreadySet.length > 0) !== state) {
     if (targetToken && targetEffect) {
       if (effectStatus === 'dead') {
-        (<Token>targetToken).toggleEffect(targetEffect, {active: state, overlay: false});
+        (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state, overlay: false});
+
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
         const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
@@ -274,7 +275,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
           combatant.update({defeated: state});
         }
       } else {
-        (<Token>targetToken).toggleEffect(targetEffect, {active: state});
+        (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state});
       }
     }
   }
@@ -314,7 +315,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     if (!currentEffectId) {
       targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.wounded),
-        icon: "icons/svg/blood.svg",
+        img: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData],
         statuses: ['wounded']

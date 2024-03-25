@@ -229,7 +229,7 @@ export default class TwodsixItem extends Item {
       const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
-        const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+        const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
         const rangeData = this.getRangeModifier(targetRange, weaponType);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
@@ -282,7 +282,7 @@ export default class TwodsixItem extends Item {
         }
 
         if (controlledTokens.length === 1) {
-          const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
+          const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
           const rangeData = this.getRangeModifier(targetRange, weaponType);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
@@ -494,6 +494,7 @@ export default class TwodsixItem extends Item {
     }
 
     const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
+    await diceRoll.evaluateRoll();
 
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);
@@ -521,7 +522,7 @@ export default class TwodsixItem extends Item {
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
-        await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
+        await damage.evaluate();
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -535,7 +536,7 @@ export default class TwodsixItem extends Item {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
           radDamage = new Roll(radFormula, this.actor?.getRollData());
-          await radDamage.evaluate({async: true});
+          await radDamage.evaluate();
         }
       }
 
@@ -576,7 +577,7 @@ export default class TwodsixItem extends Item {
         await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
           flags: {
             "core.canPopout": true,
             "transfer": transfer,
@@ -765,7 +766,7 @@ export default class TwodsixItem extends Item {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
         if (consumable.currentCount > 0) {
-          const partialConsumable = duplicate(this);
+          const partialConsumable = foundry.utils.duplicate(this);
           (<Consumable>partialConsumable.system).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
         }

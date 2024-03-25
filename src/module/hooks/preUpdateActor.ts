@@ -5,7 +5,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { updateFinances } from "./updateFinances";
 import { updateHits } from "./updateHits";
 
-Hooks.on('preUpdateActor', async (actor:TwodsixActor, update:Record<string, any>) => {
-  await updateHits(actor, update);
-  await updateFinances(actor, update);
+Hooks.on('preUpdateActor', (actor:TwodsixActor, update:Record<string, any>) => {
+  updateHits(actor, update);
+  updateFinances(actor, update);
 });
