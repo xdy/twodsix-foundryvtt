@@ -29,6 +29,7 @@ import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet
 import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
+import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -101,6 +102,10 @@ Hooks.once('init', async function () {
     label: "Space Object Sheet",
     makeDefault: true,
   });
+
+  CONFIG.Actor.dataModels.traveller = TravellerData;
+  CONFIG.Actor.dataModels.animal = AnimalData;
+  CONFIG.Actor.dataModels.robot = RobotData;
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;

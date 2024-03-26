@@ -72,7 +72,8 @@
         "STA": "STA",
         "CTM": "CTM",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "ALT3": "ALT3"
       },
       "CharacteristicEdit": "Toggle Edit Mode for Characteristic Short Names",
       "Chassis": "Chassis",
@@ -610,6 +611,7 @@
         "HIT": "HIT",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
+        "ALT3": "ALT3",
         "TrainingNotes": "Training Notes",
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
@@ -876,6 +878,12 @@
       "Thrust": "Thrust",
       "rounds":"round(s)",
       "RoundsActive": "Rounds Active"
+    },
+    "Resource": {
+      "Value": "Value",
+      "Min": "Min",
+      "Max": "Max",
+      "Label": "Label"
     },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",

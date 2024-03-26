@@ -640,7 +640,8 @@ export const MovementTypes = {
   climb: "TWODSIX.Actor.Movement.MovementClimb",
   fly: "TWODSIX.Actor.Movement.MovementFly",
   swim: "TWODSIX.Actor.Movement.MovementSwim",
-  walk: "TWODSIX.Actor.Movement.MovementWalk"
+  walk: "TWODSIX.Actor.Movement.MovementWalk",
+  hover: "TWODSIX.Actor.Movement.MovementHover"
 };
 
 /**
