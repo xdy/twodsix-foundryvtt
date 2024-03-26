@@ -30,6 +30,7 @@ import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
 import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
+import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -103,9 +104,15 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
-  CONFIG.Actor.dataModels.traveller = TravellerData;
-  CONFIG.Actor.dataModels.animal = AnimalData;
-  CONFIG.Actor.dataModels.robot = RobotData;
+  // Load Schemas
+  Object.assign(CONFIG.Actor.dataModels, {
+    "traveller": TravellerData,
+    "animal": AnimalData,
+    "robot": RobotData,
+    "ship": ShipData,
+    "vehicle": VehicleData,
+    "space-object": SpaceObjectData
+  });
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;

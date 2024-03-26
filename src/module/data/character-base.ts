@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { Characteristic } from "src/types/template";
-import { makeResourceField, makeValueField } from "./CommonSchema";
+import { makeResourceField, makeValueField } from "./commonSchemaUtils";
 import { TWODSIX } from "../config";
 
 const fields = foundry.data.fields;
