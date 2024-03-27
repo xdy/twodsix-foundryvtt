@@ -66,7 +66,11 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     schema.radiationDose = makeResourceField(0, 0);
 
     /* Encumbrance Data */
-    schema.encumbrance = makeResourceField(0, 0);
+    schema.encumbrance = new fields.SchemaField({
+      value: new fields.NumberField({required: true, integer: false, initial: initialValue, labels: "TWODSIX.Resource.Value"}),
+      max: new fields.NumberField({required: true, integer: false, initial: initialMax, labels: "TWODSIX.Resource.Max"}),
+      min: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Min"})
+    });
 
     /* Hits Data */
     schema.hits = new fields.SchemaField({

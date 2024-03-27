@@ -48,11 +48,11 @@ export class ShipData extends TwodsixVehicleBaseData {
       weapons: new fields.NumberField({ ...requiredInteger, initial: 0 })
     });
     schema.weightStats= new fields.SchemaField( {
-      systems: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      cargo: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      fuel: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      vehicles: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      available: new fields.NumberField({ ...requiredInteger, initial: 0 })
+      systems: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
+      cargo: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
+      fuel: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
+      vehicles: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
+      available: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 })
     });
     schema.shipPositionActorIds = new fields.ObjectField({required: true, initial: {}});
     schema.shipStats = new fields.SchemaField({
