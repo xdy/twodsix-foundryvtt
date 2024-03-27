@@ -67,8 +67,8 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
 
     /* Encumbrance Data */
     schema.encumbrance = new fields.SchemaField({
-      value: new fields.NumberField({required: true, integer: false, initial: initialValue, labels: "TWODSIX.Resource.Value"}),
-      max: new fields.NumberField({required: true, integer: false, initial: initialMax, labels: "TWODSIX.Resource.Max"}),
+      value: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Value"}),
+      max: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Max"}),
       min: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Min"})
     });
 
