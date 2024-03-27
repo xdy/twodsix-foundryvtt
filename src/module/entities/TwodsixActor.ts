@@ -506,6 +506,15 @@ export default class TwodsixActor extends Actor {
             });
           }
 
+          if (this.type === "animal") {
+            Object.assign(changeData, {
+              'system.characteristics.education.label': 'Instinct',
+              'system.characteristics.education.displayShortLabel': 'INS',
+              'system.characteristics.socialStanding.label': 'Pack',
+              'system.characteristics.socialStanding.displayShortLabel': 'PAK'
+            });
+          }
+
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
