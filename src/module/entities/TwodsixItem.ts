@@ -19,34 +19,34 @@ import { TWODSIX } from "../config";
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
-    const updates = {};
-    item?.setFlag('twodsix', 'newItem', true);
-    if ((item?.img === "" || item?.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
-      if (item?.type === 'weapon') {
-        Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
-      } else if (item?.type === "spell") {
-        const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
-        Object.assign(updates, {
-          img: 'systems/twodsix/assets/icons/spell-book.svg',
-          'system.associatedSkillName': defaultSkill
-        });
-      } else if (item?.type === 'component') {
-        Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
-      } else if (item?.type === 'computer') {
-        Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+    if (item) {
+      const updates = {};
+      item.setFlag('twodsix', 'newItem', true);
+      if ((item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
+        if (item.type === 'weapon') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
+        } else if (item.type === "spell") {
+          const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
+          Object.assign(updates, {
+            img: 'systems/twodsix/assets/icons/spell-book.svg',
+            'system.associatedSkillName': defaultSkill
+          });
+        } else if (item.type === 'component') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
+        } else if (item.type === 'computer') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+        }
       }
+      if (item.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        Object.assign(updates, {"system.value": 0});
+      }
+      //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+      if (item.system.consumables?.length > 0) {
+        Object.assign(updates, {"system.consumables": []});
+      }
+      Object.assign(updates, {"system.type": item.type});
+      await item.update(updates);
     }
-    if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
-      Object.assign(updates, {"system.value": 0});
-    }
-
-    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
-    if (item?.system?.consumables?.length > 0) {
-      Object.assign(updates, {"system.consumables": []});
-    }
-
-    Object.assign(updates, {"system.type": item.type});
-    await item.update(updates);
     return item;
   }
 
