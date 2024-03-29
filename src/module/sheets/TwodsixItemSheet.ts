@@ -181,10 +181,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (!["storage", "junk"].includes(event.currentTarget.value)) {
       disableState = (this.item.system.equipped !== "equipped" && !["trait"].includes(event.currentTarget.value));
     } else {
-      this.item.update({"system.priorType": this.item.type});
+      await this.item.update({"system.priorType": this.item.type});
     }
     await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
-    this.item.update({"system.type": event.currentTarget.value});
+    //await this.item.update({"system.type": event.currentTarget.value});
   }
 
   /* -------------------------------------------- */
@@ -192,7 +192,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   // Kludge to fix consumables dissapearing when updating item sheet
   async _onChangeInput(event) {
     //console.log(event);
-    await super._onChangeInput(event);
+    if (event.currentTarget?.name !== 'type') {
+      await super._onChangeInput(event);
+    } else {
+      await this.item.update({"system.type": event.currentTarget.value, "type": event.currentTarget.value});
+    }
     //await (<TwodsixItem>this.item).prepareConsumable();
     this.item?.sheet?.render();
   }

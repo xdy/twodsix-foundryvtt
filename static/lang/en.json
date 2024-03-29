@@ -1490,7 +1490,8 @@
       "trait": "trait",
       "spell": "spell",
       "component": "component",
-      "computer": "computer"
+      "computer": "computer",
+      "unknown": "unknown"
     },
     "speeds": {
       "walk": "walk",

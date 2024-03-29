@@ -19,6 +19,13 @@ Hooks.on("aipSetup", (packageConfig) => {
               showButton: true,
               allowHotkey: true,
               dataMode: DATA_MODE.OWNING_ACTOR_DATA,
+            },
+            {
+              selector: `.tab[data-tab="effects"] .value input[type="text"]`,
+              defaultpath: "system",
+              showButton: true,
+              allowHotkey: true,
+              dataMode: DATA_MODE.OWNING_ACTOR_DATA,
             }
           ]
         },
@@ -106,9 +113,10 @@ Hooks.on("aipSetup", (packageConfig) => {
  * @private
  */
 function _getTravellerData(): any {
-  const returnObject = duplicate(game.system.template.Actor.traveller);
+  const returnObject = CONFIG.Actor.dataModels.traveller.schema.getInitialValue();
+  const characteristicList = returnObject.characteristics;
   Object.assign(returnObject, {characteristics: {}});
-  for (const char of Object.keys(game.system.template.Actor.templates.characteristicsTemplate.characteristics)) {
+  for (const char of Object.keys(characteristicList)) {
     Object.assign(returnObject.characteristics, {[char]: {mod: 0}});
   }
   Object.assign(returnObject, {skills: {}});
@@ -120,7 +128,7 @@ function _getTravellerData(): any {
  * @private
  */
 function _getShipData(): any {
-  const returnObject = duplicate(game.system.template.Actor.ship);
+  const returnObject = CONFIG.Actor.dataModels.ship.schema.getInitialValue();
   return returnObject;
 }
 /**
