@@ -215,7 +215,7 @@ export interface ShipStats {
 
 export interface Staterooms {
   name:string;
-  weight:string;
+  weight:number;
   cost:string;
   power?:string;
   value?:number;
@@ -479,7 +479,7 @@ export interface Vehicle extends LinkTemplate {
   systemStatus: VehicleSystemStatus;
   weapons:string;
   openVehicle:boolean;
-  techLevel:string;
+  techLevel:number;
   traits:string;
   weight:string;
   shippingSize:string;
