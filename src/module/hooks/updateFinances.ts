@@ -44,13 +44,17 @@ async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>)
  * @returns {number} - the float value of localized number
  */
 export function parseLocaleNumber(stringNumber:string): number {
-  const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
-  const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
+  if (stringNumber) {
+    const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
+    const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
 
-  return parseFloat(stringNumber
-    .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
-    .replace(new RegExp('\\' + decimalSeparator), '.')
-  );
+    return parseFloat(stringNumber
+      .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
+      .replace(new RegExp('\\' + decimalSeparator), '.')
+    );
+  } else {
+    return NaN;
+  }
 }
 
 /**
