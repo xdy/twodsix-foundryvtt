@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { parseLocaleNumber } from "../hooks/updateFinances";
 import { makeResourceField, makeValueField } from "./commonSchemaUtils";
 import { GearData, makeTargetTemplate, migrateStringToNumber, TwodsixItemBaseData } from "./item-base";
 
