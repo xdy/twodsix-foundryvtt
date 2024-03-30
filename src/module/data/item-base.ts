@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { parseLocaleNumber } from "../hooks/updateFinances";
+import { migrateStringToNumber } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -54,12 +54,4 @@ export function makeTargetTemplate() {
     units: new fields.StringField({ required: true, blank: true, initial: "m"}),
     type: new fields.StringField({ required: true, blank: true, initial: "none"})
   });
-}
-
-export function migrateStringToNumber(source:any, field:string):void {
-  if ( field in source ) {
-    if ( typeof source[field] !== 'number') {
-      source[field] = parseLocaleNumber(source[field]) || 0;
-    }
-  }
 }

@@ -59,7 +59,7 @@ export function parseLocaleNumber(stringNumber:string): number {
 
 /**
  * Parse a finance text field into separate value and units.
- * @param {string} stringNumber - the localized number
+ * @param {string} financeString - the localized number
  * @returns {Record<any>} - object with keys num and units
  */
 export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
@@ -70,7 +70,7 @@ export function getParsedFinanceText(financeString: string): Record<string, any>
 
 /**
  * Lookup the first letter of units and determine magnitude
- * @param {string} stringNumber - the units
+ * @param {string} units - the units
  * @returns number - magnitude for units
  */
 export function getMultiplier(units: string): number {

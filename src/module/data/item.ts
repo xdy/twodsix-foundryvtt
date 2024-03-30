@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { makeResourceField, makeValueField } from "./commonSchemaUtils";
-import { GearData, makeTargetTemplate, migrateStringToNumber, TwodsixItemBaseData } from "./item-base";
+import { makeResourceField, makeValueField, migrateStringToNumber } from "./commonSchemaUtils";
+import { GearData, makeTargetTemplate, TwodsixItemBaseData } from "./item-base";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
