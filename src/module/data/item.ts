@@ -39,6 +39,9 @@ export class WeaponData extends GearData {
     schema.meleeRangeModifier = new fields.StringField({ required: true, blank: true, initial: "0"});
     return schema;
   }
+  static migrateData(source:any) {
+    migrateStringToNumber(source, "ammo");
+  }
 }
 
 export class ArmorData extends GearData {

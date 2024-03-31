@@ -40,7 +40,7 @@ export function makeValueField(initialValue = 0, schemaOptions: object={}):any {
  * @returns {ResourceData}
  */
 export function migrateStringToNumber(source:any, field:string):void {
-  if ( field in source ) {
+  if ( Object.hasOwn(source, field)) {
     if ( typeof source[field] !== 'number') {
       source[field] = parseLocaleNumber(source[field]) || 0;
     }
