@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { makeResourceField, makeValueField, migrateStringToNumber } from "./commonSchemaUtils";
+import { makeResourceField, makeValueField} from "./commonSchemaUtils";
 import { GearData, makeTargetTemplate, TwodsixItemBaseData } from "./item-base";
 
 const fields = foundry.data.fields;
@@ -39,9 +39,9 @@ export class WeaponData extends GearData {
     schema.meleeRangeModifier = new fields.StringField({ required: true, blank: true, initial: "0"});
     return schema;
   }
-  static migrateData(source:any) {
+  /*static migrateData(source:any) {
     migrateStringToNumber(source, "ammo");
-  }
+  }*/
 }
 
 export class ArmorData extends GearData {
@@ -157,9 +157,9 @@ export class ComponentData extends GearData {
     schema.bandwidth = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }
-  static migrateData(source:any) {
+  /*static migrateData(source:any) {
     migrateStringToNumber(source, "purchasePrice");
-  }
+  }*/
 }
 
 export class ShipPositionData extends TwodsixItemBaseData {
