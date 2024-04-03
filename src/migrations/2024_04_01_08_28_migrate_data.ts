@@ -5,10 +5,10 @@ import { applyToAllItems, applyToAllActors } from "../module/utils/migration-uti
 
 async function convertToNumber(item: TwodsixItem): Promise<void> {
   const updates  = {system: {}};
-  migrateStringToNumber2(item, updates, "price");
-  migrateStringToNumber2(item, updates, "weight");
-  migrateStringToNumber2(item, updates, "purchasePrice");
-  migrateStringToNumber2(item, updates, "ammo");
+  migrateLocaleStringToNumber(item, updates, "price");
+  migrateLocaleStringToNumber(item, updates, "weight");
+  migrateLocaleStringToNumber(item, updates, "purchasePrice");
+  migrateLocaleStringToNumber(item, updates, "ammo");
   if (Object.keys(updates.system).length > 0) {
     await item.update(updates);
   }
@@ -33,7 +33,7 @@ export async function migrate(): Promise<void> {
  * @param {any} updates update object
  * @param {string} field  system field to convert.
  */
-function migrateStringToNumber2(item:TwodsixItem, updates:any, field:string):void {
+function migrateLocaleStringToNumber(item:TwodsixItem, updates:any, field:string):void {
   if ( Object.hasOwn(item.system, field)) {
     if ( typeof item.system[field] === 'string') {
       Object.assign(updates.system, { [field]: parseLocaleNumber(item.system[field]) || 0});
