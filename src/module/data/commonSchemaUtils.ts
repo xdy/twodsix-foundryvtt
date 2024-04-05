@@ -14,10 +14,10 @@ const fields = foundry.data.fields;
  */
 export function makeResourceField(initialValue:number, initialMax:number, schemaOptions: object={}):ResourceData {
   return new fields.SchemaField({
-    value: new fields.NumberField({required: true, integer: true, initial: initialValue, labels: "TWODSIX.Resource.Value"}),
-    max: new fields.NumberField({required: true, integer: true, initial: initialMax, labels: "TWODSIX.Resource.Max"}),
-    min: new fields.NumberField({required: true, integer: true, initial: 0, labels: "TWODSIX.Resource.Min"}),
-    label: new fields.StringField({required: true, labels: "TWODSIX.Resource.Label"})
+    value: new fields.NumberField({required: true, integer: true, initial: initialValue}),
+    max: new fields.NumberField({required: true, integer: true, initial: initialMax}),
+    min: new fields.NumberField({required: true, integer: true, initial: 0}),
+    label: new fields.StringField({required: true})
   }, schemaOptions);
 }
 
@@ -29,7 +29,7 @@ export function makeResourceField(initialValue:number, initialMax:number, schema
  */
 export function makeValueField(initialValue = 0, schemaOptions: object={}):any {
   return new fields.SchemaField({
-    value: new fields.NumberField({required: true, integer: true, initial: initialValue, labels: "TWODSIX.Resource.Value"}),
+    value: new fields.NumberField({required: true, integer: true, initial: initialValue}),
   }, schemaOptions);
 }
 

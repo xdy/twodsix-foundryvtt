@@ -67,16 +67,16 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
 
     /* Encumbrance Data */
     schema.encumbrance = new fields.SchemaField({
-      value: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Value"}),
-      max: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Max"}),
-      min: new fields.NumberField({required: true, integer: false, initial: 0, labels: "TWODSIX.Resource.Min"})
+      value: new fields.NumberField({required: true, integer: false, initial: 0}),
+      max: new fields.NumberField({required: true, integer: false, initial: 0}),
+      min: new fields.NumberField({required: true, integer: false, initial: 0})
     });
 
     /* Hits Data */
     schema.hits = new fields.SchemaField({
-      value: new fields.NumberField({...requiredInteger, initial: 21, labels: "TWODSIX.Resource.Value"}),
-      max: new fields.NumberField({...requiredInteger, initial: 21, labels: "TWODSIX.Resource.Max"}),
-      min: new fields.NumberField({...requiredInteger, initial: 0, labels: "TWODSIX.Resource.Min"}),
+      value: new fields.NumberField({...requiredInteger, initial: 21}),
+      max: new fields.NumberField({...requiredInteger, initial: 21}),
+      min: new fields.NumberField({...requiredInteger, initial: 0}),
       lastDelta: new fields.NumberField({...requiredInteger, initial: 0})
     });
 
