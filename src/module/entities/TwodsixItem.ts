@@ -892,7 +892,7 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
   let returnVal = 0;
   if (parsedInput.length > 0) {
     returnVal = parseInt(parsedInput[isAuto? 1:0]);
-    if (isNaN(returnVal) & isAuto) { // base case where no slash and auto is default, e.g. submachinegun
+    if (isNaN(returnVal) && isAuto) { // base case where no slash and auto is default, e.g. submachinegun
       returnVal = parseInt(parsedInput[0]);
     }
   }
