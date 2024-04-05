@@ -411,7 +411,9 @@
           "AR": "AR",
           "subm": "Subm",
           "LC": "LC",
-          "LR": "LR"
+          "LR": "LR",
+          "custom": "Custom",
+          "cust": "Cust"
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -681,7 +683,11 @@
         "Consumables": "Consumables",
         "DefaultMagazine": "Default Magazine Size",
         "HandlingExample": "e.g., DEX 6/-3 10/+4",
-        "MeleeRangeModifier": "Melee Range DM"
+        "MeleeRangeModifier": "Melee Range DM",
+        "CustomModifier": {
+          "range": "Custom Range Modifier",
+          "armor": "Custom Armor Modifier"
+        }
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -914,6 +920,7 @@
       "Auto": "Auto",
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
+      "Single": "Single",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",

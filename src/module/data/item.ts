@@ -37,6 +37,24 @@ export class WeaponData extends GearData {
     schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
     schema.handlingModifiers = new fields.StringField({...requiredBlankString});
     schema.meleeRangeModifier = new fields.StringField({ required: true, blank: true, initial: "0"});
+    schema.customCT = new fields.SchemaField({
+      armor: new fields.SchemaField({
+        nothing: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        jack: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        mesh: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        cloth: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        reflec: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        ablat: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        combat: new fields.StringField({ required: true, blank: true, initial: "0"})
+      }),
+      range: new fields.SchemaField({
+        close: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        short: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        medium: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        long: new fields.StringField({ required: true, blank: true, initial: "0"}),
+        veryLong: new fields.StringField({ required: true, blank: true, initial: "0"})
+      })
+    });
     return schema;
   }
   /*static migrateData(source:any) {

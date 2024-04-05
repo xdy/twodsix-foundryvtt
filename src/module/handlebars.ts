@@ -145,6 +145,11 @@ export default function registerHandlebarsHelpers(): void {
     return (modes.length > 1);
   });
 
+  Handlebars.registerHelper('twodsix_useCTSingle', (weapon: TwodsixItem) => {
+    const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
+    return Number(modes[0]) === 1;
+  });
+
   Handlebars.registerHelper('twodsix_CTBurstSize', (weapon: TwodsixItem) => {
     const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
     if (modes.length > 1) {

@@ -1,0 +1,25 @@
+{{#each system.customCT}}
+<br>
+<label class="resource-label" for="system.customCT.range">{{localize (concat "TWODSIX.Items.Weapon.CustomModifier." @key)}}</label>
+<table>
+  <thead>
+    <tr class="table-header-row">
+      {{#each this as |modifier key|}}
+        {{#iff @../key '===' 'range'}}
+          <th><span class="centre">{{localize (concat "TWODSIX.Chat.Roll.RangeBandTypes." key)}}</span></th>
+        {{else}}
+          <th><span class="centre">{{localize (concat "TWODSIX.Chat.Roll.ArmorTypes." key)}}</span></th>
+        {{/iff}}
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        {{#each this as |modifier key|}}
+            <td><span class="centre"><input type="text" name="system.customCT.{{@../key}}.{{key}}"
+              data-label="system.customCT.{{@../key}}.{{key}}" value="{{modifier}}"
+               placeholder="0" data-dtype="String" onClick="this.select();"/></span></td>
+        {{/each}}
+      </tr>
+</table>
+{{/each}}
