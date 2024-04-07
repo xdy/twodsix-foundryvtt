@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -128,6 +128,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
     this.handleContentEditable(html);
     html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
+    html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
@@ -425,7 +426,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             "system.pdfReference.label": dropData.label
           });
         }
-      } else {
+      } else if (['JournalEntry', 'JournalEntryPage'].includes(dropData.type)) {
+        const journalEntry = await fromUuid(dropData.uuid);
+        if (journalEntry) {
+          await this.item.update({
+            "system.pdfReference.type": 'JournalEntry',
+            "system.pdfReference.href": dropData.uuid,
+            "system.pdfReference.label": journalEntry.name
+          });
+        }
+      } else if (dropData.type === 'Item'){
         //This part handles just comsumables
         TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
         TwodsixItemSheet.check(["skills", "trait", "spell"].includes(this.item.type), "TraitsandSkillsNoConsumables");

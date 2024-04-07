@@ -1317,7 +1317,7 @@ span.total-output {
   align-self: center;
 }
 
-.open-link {
+.open-link, .open-journal-entry {
   text-align: left;
   align-self: center;
   color: var(--color-text-hyperlink);

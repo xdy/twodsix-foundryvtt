@@ -1565,7 +1565,8 @@
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
       "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
       "TooManyLayersOnTarget": "Target is wearing too many layers of armor",
-      "ActorOverloaded": "Current actor is carrying more than its capacity."
+      "ActorOverloaded": "Current actor is carrying more than its capacity.",
+      "NoJournalFound": "Can't find linked Journal Entry"
     }
   },
   "TYPES": {
