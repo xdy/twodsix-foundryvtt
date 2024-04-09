@@ -617,10 +617,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
     } else if (action === "create") {
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
-        label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
+        name: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
         origin: "Custom",
-        disabled: false
+        disabled: false,
+        description: ""
       }]);
     } else {
       console.log("Unknown Action");

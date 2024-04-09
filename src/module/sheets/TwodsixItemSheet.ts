@@ -249,7 +249,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           origin: undefined, //UUID? this.item.uuid
           icon: this.item.img,
           tint: "#ffffff",
-          label: this.item.name,
+          name: this.item.name,
+          description: "",
           transfer: game.settings.get('twodsix', "useItemActiveEffects"),
           disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["trait"].includes(this.item.type),
           _id: newId,
