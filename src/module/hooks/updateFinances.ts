@@ -44,18 +44,22 @@ async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>)
  * @returns {number} - the float value of localized number
  */
 export function parseLocaleNumber(stringNumber:string): number {
-  const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
-  const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
+  if (stringNumber) {
+    const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
+    const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
 
-  return parseFloat(stringNumber
-    .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
-    .replace(new RegExp('\\' + decimalSeparator), '.')
-  );
+    return parseFloat(stringNumber
+      .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
+      .replace(new RegExp('\\' + decimalSeparator), '.')
+    );
+  } else {
+    return NaN;
+  }
 }
 
 /**
  * Parse a finance text field into separate value and units.
- * @param {string} stringNumber - the localized number
+ * @param {string} financeString - the localized number
  * @returns {Record<any>} - object with keys num and units
  */
 export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
@@ -66,7 +70,7 @@ export function getParsedFinanceText(financeString: string): Record<string, any>
 
 /**
  * Lookup the first letter of units and determine magnitude
- * @param {string} stringNumber - the units
+ * @param {string} units - the units
  * @returns number - magnitude for units
  */
 export function getMultiplier(units: string): number {

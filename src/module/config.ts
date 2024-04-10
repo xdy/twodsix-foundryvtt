@@ -640,7 +640,8 @@ export const MovementTypes = {
   climb: "TWODSIX.Actor.Movement.MovementClimb",
   fly: "TWODSIX.Actor.Movement.MovementFly",
   swim: "TWODSIX.Actor.Movement.MovementSwim",
-  walk: "TWODSIX.Actor.Movement.MovementWalk"
+  walk: "TWODSIX.Actor.Movement.MovementWalk",
+  hover: "TWODSIX.Actor.Movement.MovementHover"
 };
 
 /**
@@ -928,6 +929,7 @@ export const CT_WEAPON_RANGE_TYPES = {
     submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.submachinegun",
     laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserCarbine",
     laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserRifle",
+    custom: "TWODSIX.Chat.Roll.WeaponRangeTypes.custom",
     none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
   },
   short: {
@@ -960,6 +962,7 @@ export const CT_WEAPON_RANGE_TYPES = {
     submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.subm",
     laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.LC",
     laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.LR",
+    custom: "TWODSIX.Chat.Roll.WeaponRangeTypes.cust",
     none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
   }
 };

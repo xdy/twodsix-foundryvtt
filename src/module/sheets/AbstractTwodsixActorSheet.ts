@@ -181,8 +181,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     switch (type) {
       case "skills":
         if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          const skills:Skills = <Skills>game.system.template?.Item?.skills;
-          itemData.system.value = skills?.value;
+          const initialValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+          itemData.system.value = initialValue;
         } else {
           itemData.system.value = 0;
         }
@@ -617,10 +617,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
     } else if (action === "create") {
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
-        label: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
+        name: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
         origin: "Custom",
-        disabled: false
+        disabled: false,
+        description: ""
       }]);
     } else {
       console.log("Unknown Action");

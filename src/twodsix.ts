@@ -29,6 +29,9 @@ import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet
 import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
+import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
+import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
+import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, EquipmentToolData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -102,12 +105,40 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
+  /* Load Schemas */
+  Object.assign(CONFIG.Actor.dataModels, {
+    "traveller": TravellerData,
+    "animal": AnimalData,
+    "robot": RobotData,
+    "ship": ShipData,
+    "vehicle": VehicleData,
+    "space-object": SpaceObjectData
+  });
+
+
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", ItemSheet);
 
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
   Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
+  /* Load Schemas */
+  Object.assign(CONFIG.Item.dataModels, {
+    "equipment": EquipmentToolData,
+    "weapon": WeaponData,
+    "armor": ArmorData,
+    "augment": AugmentData,
+    "storage": JunkStorageData,
+    "tool": EquipmentToolData,
+    "junk": JunkStorageData,
+    "skills": SkillData,
+    "spell": SpellData,
+    "trait": TraitData,
+    "consumable": ConsumableData,
+    "component": ComponentData,
+    "ship_position": ShipPositionData,
+    "computer": ComputerData
+  });
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();

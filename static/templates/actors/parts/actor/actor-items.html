@@ -75,7 +75,9 @@
             {{else if ../settings.useCTAutofireRules}}
               {{#if (twodsix_useCTAuto item)}}
                 <span class="items-weapons-abilities">
-                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-burst" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.Burst"}}]</span>
+                  {{#if (twodsix_useCTSingle item)}}
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="single" data-rof="1">[{{localize "TWODSIX.Rolls.Single"}}]</span>
+                  {{/if}}
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
                 </span>
               {{/if}}

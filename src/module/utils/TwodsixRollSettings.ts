@@ -70,11 +70,11 @@ export class TwodsixRollSettings {
       }
       //Check for active effect override of skill
       if (aSkill) {
-        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? (<Skills>game.system.template?.Item?.skills)?.value
+        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? CONFIG.Item.dataModels.skills.schema.getInitialValue().value
       }
 
       //Check for "Untrained" value and use if better to account for JOAT
-      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? (<Skills>game.system.template?.Item?.skills)?.value;
+      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");

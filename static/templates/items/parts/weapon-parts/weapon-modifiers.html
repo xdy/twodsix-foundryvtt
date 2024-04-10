@@ -35,6 +35,9 @@
     <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
     <select id="system.rangeBand" name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
   </div>
+  {{#iff system.rangeBand '===' 'custom'}}
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-customCTModifier.html"}}
+  {{/iff}}
 {{else}}
   <div class="item-range">
     <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>

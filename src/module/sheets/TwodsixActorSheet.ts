@@ -191,15 +191,15 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (game.settings.get('twodsix', 'ruleset') === 'CT') {
       return skillValue >= 0 ? 1 : 0;
     } else {
-      return skillValue - (<Skills>game.system.template?.Item?.skills)?.value;
+      return skillValue - CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
     }
   }
 
   private static joatToUntrained(joatValue: number): number {
     if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-      return joatValue > 0 ? 0 : (<Skills>game.system.template?.Item?.skills)?.value;
+      return joatValue > 0 ? 0 : CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
     } else {
-      return joatValue + (<Skills>game.system.template?.Item?.skills)?.value;
+      return joatValue + CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
     }
   }
 

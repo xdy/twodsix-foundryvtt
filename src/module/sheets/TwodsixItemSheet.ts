@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -128,6 +128,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
     this.handleContentEditable(html);
     html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
+    html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
@@ -181,10 +182,10 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (!["storage", "junk"].includes(event.currentTarget.value)) {
       disableState = (this.item.system.equipped !== "equipped" && !["trait"].includes(event.currentTarget.value));
     } else {
-      this.item.update({"system.priorType": this.item.type});
+      await this.item.update({"system.priorType": this.item.type});
     }
     await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
-    this.item.update({"system.type": event.currentTarget.value});
+    //await this.item.update({"system.type": event.currentTarget.value});
   }
 
   /* -------------------------------------------- */
@@ -192,7 +193,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   // Kludge to fix consumables dissapearing when updating item sheet
   async _onChangeInput(event) {
     //console.log(event);
-    await super._onChangeInput(event);
+    if (event.currentTarget?.name !== 'type') {
+      await super._onChangeInput(event);
+    } else {
+      await this.item.update({"system.type": event.currentTarget.value, "type": event.currentTarget.value});
+    }
     //await (<TwodsixItem>this.item).prepareConsumable();
     this.item?.sheet?.render();
   }
@@ -244,7 +249,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           origin: undefined, //UUID? this.item.uuid
           icon: this.item.img,
           tint: "#ffffff",
-          label: this.item.name,
+          name: this.item.name,
+          description: "",
           transfer: game.settings.get('twodsix', "useItemActiveEffects"),
           disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["trait"].includes(this.item.type),
           _id: newId,
@@ -421,7 +427,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             "system.pdfReference.label": dropData.label
           });
         }
-      } else {
+      } else if (['JournalEntry', 'JournalEntryPage'].includes(dropData.type)) {
+        const journalEntry = await fromUuid(dropData.uuid);
+        if (journalEntry) {
+          await this.item.update({
+            "system.pdfReference.type": 'JournalEntry',
+            "system.pdfReference.href": dropData.uuid,
+            "system.pdfReference.label": journalEntry.name
+          });
+        }
+      } else if (dropData.type === 'Item'){
         //This part handles just comsumables
         TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
         TwodsixItemSheet.check(["skills", "trait", "spell"].includes(this.item.type), "TraitsandSkillsNoConsumables");

@@ -59,7 +59,7 @@
 <div class="cargo-wrapper">
   <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
   {{#if settings.useProseMirror}}
-    {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+    {{editor richText.cargo target="system.cargo" button=true owner=owner editable=editable engine="prosemirror" collaborate=true}}
   {{else}}
     <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
   {{/if}}

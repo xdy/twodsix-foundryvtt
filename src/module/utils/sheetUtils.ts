@@ -283,6 +283,17 @@ export function openPDFReference(sourceString:string): void {
   }
 }
 
+export async function openJournalEntry():void {
+  if (this.item.system.pdfReference.type === 'JournalEntry') {
+    const journalToOpen = await fromUuid(this.item.system.pdfReference.href);
+    if (journalToOpen) {
+      journalToOpen.sheet.render(true);
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoJournalFound"));
+    }
+  }
+}
+
 export async function deletePDFReference(event): Promise<void> {
   event.preventDefault();
   if (this.object.system.pdfReference.href !== "") {

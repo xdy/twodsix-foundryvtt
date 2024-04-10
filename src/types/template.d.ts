@@ -215,7 +215,7 @@ export interface ShipStats {
 
 export interface Staterooms {
   name:string;
-  weight:string;
+  weight:number;
   cost:string;
   power?:string;
   value?:number;
@@ -479,7 +479,7 @@ export interface Vehicle extends LinkTemplate {
   systemStatus: VehicleSystemStatus;
   weapons:string;
   openVehicle:boolean;
-  techLevel:string;
+  techLevel:number;
   traits:string;
   weight:string;
   shippingSize:string;
@@ -556,7 +556,6 @@ export interface Augment extends GearTemplate, LinkTemplate {
   auglocation:string;
   type:string;
   bonus:string;
-  location:string[];
 }
 
 export interface Component extends GearTemplate, LinkTemplate {
@@ -572,7 +571,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   status:string;
   weightIsPct:boolean;
   isIllegal:boolean;
-  purchasePrice:string;
+  purchasePrice:number;
   cargoLocation:string;
   generatesPower:boolean;
   isRefined:boolean;
@@ -598,7 +597,6 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   max:number;
   type:string;
   subtype:string;
-  location:string[];
   armorPiercing:number;
   bonusDamage:string;
   isAttachment:boolean;
@@ -611,7 +609,6 @@ export interface Equipment extends GearTemplate, LinkTemplate {
   templates:string[];
   type:string;
   useConsumableForAttack:string;
-  location:string[];
   priorType?:string;
 }
 
@@ -619,7 +616,6 @@ export interface Tool extends GearTemplate, LinkTemplate {
   templates:string[];
   type:string;
   useConsumableForAttack:string;
-  location:string[];
 }
 
 export interface Skills extends LinkTemplate {
@@ -663,7 +659,7 @@ export interface GearTemplate {
   shortdescr:string;
   quantity:number;
   weight:number;
-  price:string;
+  price:number;
   traits:any[];
   consumables:any[];
   skillModifier:number;
@@ -717,8 +713,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   useConsumableForAttack:string;
   magazineCost:number;
   type:string;
-  location:string[];
-  lawLevel:number;
+  lawLevel:string;
   rangeBand:string;
   weaponType:string;
   damageType:string;

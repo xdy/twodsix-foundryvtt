@@ -7,14 +7,20 @@
   {{#if system.pdfReference.href}}
       <div class="item-link">
         {{localize "TWODSIX.Items.Link"}}:
-        <a href="{{system.pdfReference.href}}">
-          {{#iff system.pdfReference.type "===" 'pdf'}}
-            <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
-          {{else}}
-            <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
-          {{/iff}}
-          {{system.pdfReference.label}}
-        </a>
+        {{#iff system.pdfReference.type "===" 'JournalEntry'}}
+            <a class= "open-journal-entry">
+              <i class="fa-solid fa-book" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i> {{system.pdfReference.label}}
+            </a>
+        {{else}}
+          <a href="{{system.pdfReference.href}}">
+            {{#iff system.pdfReference.type "===" 'pdf'}}
+              <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+            {{else}}
+              <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+            {{/iff}}
+            {{system.pdfReference.label}}
+          </a>
+        {{/iff}}
         <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
       </div>
   {{/if}}

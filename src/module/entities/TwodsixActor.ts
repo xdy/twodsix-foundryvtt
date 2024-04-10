@@ -76,7 +76,7 @@ export default class TwodsixActor extends Actor {
       }
     }
     const actorSkills = this.itemTypes.skills.map(
-      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? game.system.template.Item.skills.value)]
+      (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value)]
     );
 
     const handler = {
@@ -88,7 +88,7 @@ export default class TwodsixActor extends Actor {
           const newName = property[property.length - 1] === "_" ? property.slice(0, -1) : property;
           return newName in target && target[newName] > 0 ? target[newName] : 0;
         } else {
-          return property in target ? target[property] : this.getUntrainedSkill()?.system.value ?? game.system.template.Item.skills.value;
+          return property in target ? target[property] : this.getUntrainedSkill()?.system.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
         }
       }
     };
@@ -506,6 +506,15 @@ export default class TwodsixActor extends Actor {
             });
           }
 
+          if (this.type === "animal") {
+            Object.assign(changeData, {
+              'system.characteristics.education.label': 'Instinct',
+              'system.characteristics.education.displayShortLabel': 'INS',
+              'system.characteristics.socialStanding.label': 'Pack',
+              'system.characteristics.socialStanding.displayShortLabel': 'PAK'
+            });
+          }
+
           if (game.settings.get("twodsix", "autoAddUnarmed")) {
             await this.createUnarmedSkill();
           }
@@ -797,8 +806,8 @@ export default class TwodsixActor extends Actor {
     //const addedSkill = (await this.createEmbeddedDocuments("Item", [duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        const skills: Skills = <Skills>game.system.template.Item?.skills;
-        addedSkill.update({"system.value": skills?.value});
+        const skillValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value ?? -3;
+        addedSkill.update({"system.value": skillValue});
       } else {
         addedSkill.update({"system.value": 0});
       }

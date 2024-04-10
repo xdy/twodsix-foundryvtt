@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
-import { ShipPosition, ShipPositionActorIds, Ship, Component } from "../../types/template";
+import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
 import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
@@ -199,12 +199,16 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = this.actor.items.get(li.data("itemId"));
+      if (!itemSelected) {
+        return;
+      }
       const type = $(event.currentTarget).data("type");
       if (type === "status") {
         const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-        itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+        const newState = event.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
+        itemSelected.update({"system.status": newState});
       } else if (type === "popup") {
-        itemSelected?.update({"system.isExtended": !itemSelected.system.isExtended});
+        itemSelected.update({"system.isExtended": !itemSelected.system.isExtended});
       }
     }
   }

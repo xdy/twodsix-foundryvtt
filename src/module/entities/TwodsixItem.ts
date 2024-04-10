@@ -19,31 +19,34 @@ import { TWODSIX } from "../config";
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
-    item?.setFlag('twodsix', 'newItem', true);
-    if ((item?.img === "" || item?.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
-      if (item?.type === 'weapon') {
-        await item.update({'img': 'systems/twodsix/assets/icons/default_weapon.png'});
-      } else if (item?.type === "spell") {
-        const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
-        await item.update({
-          img: 'systems/twodsix/assets/icons/spell-book.svg',
-          'system.associatedSkillName': defaultSkill
-        });
-      } else if (item?.type === 'component') {
-        await item.update({'img': 'systems/twodsix/assets/icons/components/other.svg'});
-      } else if (item?.type === 'computer') {
-        await item.update({'img': 'systems/twodsix/assets/icons/components/computer.svg'});
+    if (item) {
+      const updates = {};
+      item.setFlag('twodsix', 'newItem', true);
+      if ((item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
+        if (item.type === 'weapon') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
+        } else if (item.type === "spell") {
+          const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
+          Object.assign(updates, {
+            img: 'systems/twodsix/assets/icons/spell-book.svg',
+            'system.associatedSkillName': defaultSkill
+          });
+        } else if (item.type === 'component') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
+        } else if (item.type === 'computer') {
+          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+        }
       }
+      if (item.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        Object.assign(updates, {"system.value": 0});
+      }
+      //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+      if (item.system.consumables?.length > 0) {
+        Object.assign(updates, {"system.consumables": []});
+      }
+      Object.assign(updates, {"system.type": item.type});
+      await item.update(updates);
     }
-    if (item?.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
-      item.update({"system.value": 0});
-    }
-
-    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
-    if (item?.system?.consumables?.length > 0) {
-      await item.update({"system.consumables": []});
-    }
-
     return item;
   }
 
@@ -150,6 +153,7 @@ export default class TwodsixItem extends Item {
     // Set fire mode parameters
     let numberOfAttacks = 1;
     let bonusDamage = "0";
+    let isAutoFull = false;
     let skillLevelMax: number|undefined = undefined;
     const rof = parseInt(weapon.rateOfFire, 10);
     const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
@@ -174,8 +178,11 @@ export default class TwodsixItem extends Item {
         break;
       case "auto-full":
         numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
-        usedAmmo = (autoFireRules === 'CT') ? weapon.ammo : 3 * rateOfFire;
+        if (autoFireRules === 'CEL') {
+          usedAmmo = 3 * rateOfFire;
+        }
         skillLevelMax =  game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
+        isAutoFull = true;
         break;
       case "auto-burst":
         if (autoFireRules !== 'CT') {
@@ -211,7 +218,7 @@ export default class TwodsixItem extends Item {
 
       //Get single target weapon-armor modifier
       if (useCTBands) {
-        const weaponArmorInfo = getWeaponArmorValues(targetTokens[0], weaponType);
+        const weaponArmorInfo = this.getWeaponArmorValues(targetTokens[0], weaponType, isAutoFull);
         Object.assign(tmpSettings.rollModifiers, weaponArmorInfo);
       }
     }
@@ -230,7 +237,7 @@ export default class TwodsixItem extends Item {
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
-        const rangeData = this.getRangeModifier(targetRange, weaponType);
+        const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
         rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
@@ -277,13 +284,13 @@ export default class TwodsixItem extends Item {
 
         // Get armor modifier, if necessary
         if (useCTBands) {
-          const weaponArmorInfo = getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType);
+          const weaponArmorInfo = this.getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, weaponArmorInfo);
         }
 
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
-          const rangeData = this.getRangeModifier(targetRange, weaponType);
+          const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
@@ -310,7 +317,7 @@ export default class TwodsixItem extends Item {
    * @param {string} weaponBand The type of weapon used - as key string
    * @returns {any} {rangeModifier: rangeModifier, rollType: rollType}
    */
-  public getRangeModifier(range:number, weaponBand: string): any {
+  public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): any {
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
@@ -326,7 +333,7 @@ export default class TwodsixItem extends Item {
     } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier = getRangeBandModifier(weaponBand, targetBand);
+        rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -779,6 +786,117 @@ export default class TwodsixItem extends Item {
       }
     }
   }
+  /**
+   * A method for returning the weapons-armor modifier based on target and weapon type used
+   * @param {Token} targetToken Token for target
+   * @param {string} weaponType Weapon's type description, (e.g., club, rifle, hands). Can be an override based on fire mode (e.g. auto rifle in single fire mode)
+   * @param {boolean} isAuto is full auto fire
+   * @returns {object} Object of {armorModifier:number, armorLabel:string}
+   */
+  public getWeaponArmorValues(targetToken:Token, weaponType:string, isAuto:boolean): object {
+    let armorModifier = 0;
+    let armorLabel = "";
+    if (weaponType !== 'none') {
+      const targetActor = targetToken?.actor;
+      const lookupRow = weaponType === 'custom' ? this.getCustomArmorMod(isAuto): CT_Armor_Table[weaponType];
+      if (targetActor && lookupRow) {
+        if (targetActor.type === 'traveller') {
+          const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
+          if (wornArmor.length > 2) {
+            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyLayersOnTarget"));
+          } else if (targetActor.system.reflectOn && wornArmor.length === 2) {
+            const armor0Mod = lookupRow[wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
+            const armor1Mod = lookupRow[wornArmor[1].system.armorType] + (wornArmor[1].system.armorDM ?? 0);
+            armorModifier = armor0Mod < armor1Mod ? armor0Mod : armor1Mod;
+            armorLabel = armor0Mod < armor1Mod ? wornArmor[0].system.armorType : wornArmor[1].system.armorType;
+          } else if (wornArmor.length === 1) {
+            armorModifier = lookupRow[wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
+            armorLabel = wornArmor[0].system.armorType;
+          } else if (wornArmor.length === 0) {
+            armorModifier = lookupRow['nothing'];
+            armorLabel = 'nothing';
+          }
+        } else if (['animal', 'robot'].includes(targetActor.type)) {
+          armorModifier = lookupRow[targetActor.system.armorType] + (targetActor.system.armorDM ?? 0);
+          armorLabel = targetActor.system.armorType;
+        }
+      } else {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidWeaponArmor"));
+      }
+    }
+    armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
+    return {armorModifier: armorModifier, armorLabel: armorLabel };
+  }
+
+  private getCustomArmorMod(isAuto:boolean):any {
+    return {
+      nothing: parseCustomCTValue(this.system.customCT.armor.nothing, isAuto),
+      jack: parseCustomCTValue(this.system.customCT.armor.jack, isAuto),
+      mesh: parseCustomCTValue(this.system.customCT.armor.mesh, isAuto),
+      cloth: parseCustomCTValue(this.system.customCT.armor.cloth, isAuto),
+      reflec: parseCustomCTValue(this.system.customCT.armor.reflec, isAuto),
+      ablat: parseCustomCTValue(this.system.customCT.armor.ablat, isAuto),
+      combat: parseCustomCTValue(this.system.customCT.armor.combat, isAuto)
+    };
+  }
+  /**
+   * A method for returning range modifier based on RangeTable constant
+   * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
+   * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
+   * @param {boolean} isAuto Is full automatic fire
+   * @returns {number} Range Modifier
+   */
+  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean): number {
+    const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
+    let returnVal = 0;
+    if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
+      // do nothing
+    } else if (rangeSettings === 'CE_Bands') {
+      try {
+        returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+      }
+    } else if (rangeSettings === 'CT_Bands') {
+      try {
+        const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
+        return lookupRow[targetDistanceBand] || 0;
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+      }
+    } else {
+      console.log("Not a valid weapon range band type");
+      return 0;
+    }
+    return returnVal;
+  }
+  private getCustomRangeMod(isAuto:boolean):any {
+    return {
+      close: parseCustomCTValue(this.system.customCT.range.close, isAuto),
+      short: parseCustomCTValue(this.system.customCT.range.short, isAuto),
+      medium: parseCustomCTValue(this.system.customCT.range.medium, isAuto),
+      long: parseCustomCTValue(this.system.customCT.range.long, isAuto),
+      veryLong: parseCustomCTValue(this.system.customCT.range.veryLong, isAuto)
+    };
+  }
+}
+
+/**
+ * Parse a custom Weapon Range/Armor modifier for CT and return value
+ * @param {string} inputString   The custom input string of format x/y or x
+ * @param {boolean} isAuto Is full automatic fire
+ * @returns {number} modifier value, return defaults to zero if no valid number found
+ */
+function parseCustomCTValue(inputString:string, isAuto:boolean):number {
+  const parsedInput = inputString.split("/");
+  let returnVal = 0;
+  if (parsedInput.length > 0) {
+    returnVal = parseInt(parsedInput[isAuto? 1:0]);
+    if (isNaN(returnVal) && isAuto) { // base case where no slash and auto is default, e.g. submachinegun
+      returnVal = parseInt(parsedInput[0]);
+    }
+  }
+  return returnVal || 0;
 }
 
 /**
@@ -929,25 +1047,7 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
 
 async function promptForCTROF(modes: string[]): Promise<string> {
   if (parseInt(modes[0]) === 0) {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          burst: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-              resolve('auto-burst');
-            }
-          },
-          full: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-              resolve('auto-full');
-            }
-          }
-        },
-        default: 'burst',
-      }).render(true);
-    });
+    return 'auto-full';
   } else {
     return new Promise((resolve) => {
       new Dialog({
@@ -957,11 +1057,6 @@ async function promptForCTROF(modes: string[]): Promise<string> {
           single: {
             label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
               resolve('single');
-            }
-          },
-          burst: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-              resolve('auto-burst');
             }
           },
           full: {
@@ -985,11 +1080,12 @@ async function promptForCTROF(modes: string[]): Promise<string> {
  */
 function getRangeBand(range: number):string {
   //Convert ft to m if necessay
+  const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
   const units = canvas.scene.grid.units.toLowerCase();
   if (units === 'ft' || units === 'feet') {
     range /= 3.28;
   }
-  if (game.settings.get('twodsix', 'rangeModifierType') === 'CE_Bands') {
+  if ( rangeModifierType === 'CE_Bands') {
     if (range < 1.5) {
       return 'personal';
     } else if (range <= 3) {
@@ -1007,7 +1103,7 @@ function getRangeBand(range: number):string {
     } else {
       return 'unknown';
     }
-  } else if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+  } else if (rangeModifierType === 'CT_Bands') {
     if (range < 1) {
       return 'close';
     } else if (range <= 5) {
@@ -1028,74 +1124,6 @@ function getRangeBand(range: number):string {
   }
 }
 
-/**
- * A function for returning range modifier based on RangeTable constant
- * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
- * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
- * @returns {number} Range Modifier
- */
-function getRangeBandModifier(weaponBand: string, targetDistanceBand: string): number {
-  const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
-  let returnVal = 0;
-  if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
-    // do nothing
-  } else if (rangeSettings === 'CE_Bands') {
-    try {
-      returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
-    } catch(err) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
-    }
-  } else if (rangeSettings === 'CT_Bands') {
-    try {
-      returnVal = CT_Range_Table[weaponBand][targetDistanceBand];
-    } catch(err) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
-    }
-  } else {
-    console.log("Not a valid weapon range band type");
-    return 0;
-  }
-  return returnVal;
-}
-
-/**
- * A function for returning the weapons-armor modifier based on target and weapon type used
- * @param {Token} targetToken Token for target
- * @param {string} weaponType Weapon's type description, (e.g., club, rifle, hands)
- * @returns {object} Object of {armorModifier:number, armorLabel:string}
- */
-function getWeaponArmorValues(targetToken:Token, weaponType:string): object {
-  let armorModifier = 0;
-  let armorLabel = "";
-  if (targetToken?.actor && weaponType && CT_Armor_Table[weaponType]) {
-    const targetActor = targetToken.actor;
-    if (targetActor.type === 'traveller') {
-      const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
-      if (wornArmor.length > 2) {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyLayersOnTarget"));
-      } else if (targetActor.system.reflectOn && wornArmor.length === 2) {
-        const armor0Mod = CT_Armor_Table[weaponType][wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
-        const armor1Mod = CT_Armor_Table[weaponType][wornArmor[1].system.armorType] + (wornArmor[1].system.armorDM ?? 0);
-        armorModifier = armor0Mod < armor1Mod ? armor0Mod : armor1Mod;
-        armorLabel = armor0Mod < armor1Mod ? wornArmor[0].system.armorType : wornArmor[1].system.armorType;
-      } else if (wornArmor.length === 1) {
-        armorModifier = CT_Armor_Table[weaponType][wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
-        armorLabel = wornArmor[0].system.armorType;
-      } else if (wornArmor.length === 0) {
-        armorModifier = CT_Armor_Table[weaponType]['nothing'];
-        armorLabel = 'nothing';
-      }
-    } else if (['animal', 'robot'].includes(targetActor.type)) {
-      armorModifier = CT_Armor_Table[weaponType][targetActor.system.armorType] + (targetActor.system.armorDM ?? 0);
-      armorLabel = targetActor.system.armorType;
-    }
-  } else {
-    ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidWeaponArmor"));
-  }
-  armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
-  return {armorModifier: armorModifier, armorLabel: armorLabel };
-}
-
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;
 const CE_Range_Table = Object.freeze({
@@ -1108,7 +1136,8 @@ const CE_Range_Table = Object.freeze({
   assaultWeapon: { personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6 },
   rocket: { personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4 }
 });
-//Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition
+//Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition puls errat corrections from
+// CONSOLIDATED CT ERRATA, v0.7 (06/01/12)
 const CT_Range_Table = Object.freeze({
   hands: { close: 2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   claws: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
@@ -1118,7 +1147,7 @@ const CT_Range_Table = Object.freeze({
   stinger: { close: 4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   thrasher: { close: 5, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   club: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  dagger: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
+  dagger: { close: 1, short: -1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   blade: { close: 1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   foil: { close: -1, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
   cutlass: { close: -4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
@@ -1152,7 +1181,7 @@ const CT_Armor_Table = Object.freeze({
   club: { nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7 },
   dagger: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
   blade: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
-  foil: { nothing: 2, jack: 0, mesh: -4, cloth: -3, reflec: 2, ablat: -2, combat: -8 },
+  foil: { nothing: 2, jack: 0, mesh: -4, cloth: -3, reflec: 2, ablat: -2, combat: -6 },
   cutlass: { nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -6 },
   sword: { nothing: 3, jack: 3, mesh: -3, cloth: -3, reflec: 3, ablat: -2, combat: -6 },
   broadsword: { nothing: 5, jack: 5, mesh: 1, cloth: 0, reflec: 5, ablat: 1, combat: -4 },

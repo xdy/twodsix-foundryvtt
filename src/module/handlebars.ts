@@ -5,7 +5,6 @@ import { advantageDisadvantageTerm } from "./i18n";
 import { getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import {Skills} from "../types/template";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { getCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
@@ -91,7 +90,7 @@ export default function registerHandlebarsHelpers(): void {
     let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */
-    if (adjValue === (<Skills>game.system.template.Item?.skills)?.value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
+    if (adjValue === CONFIG.Item.dataModels.skills.schema.getInitialValue().value && !game.settings.get("twodsix", "hideUntrainedSkills")) {
       adjValue = actor.items.find((i) => i._id === actor.system.untrainedSkill).system.value;
     }
 
@@ -144,6 +143,11 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_useCTAuto', (weapon: TwodsixItem) => {
     const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
     return (modes.length > 1);
+  });
+
+  Handlebars.registerHelper('twodsix_useCTSingle', (weapon: TwodsixItem) => {
+    const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
+    return Number(modes[0]) === 1;
   });
 
   Handlebars.registerHelper('twodsix_CTBurstSize', (weapon: TwodsixItem) => {
