@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { Component, Vehicle } from "src/types/template";
+import {Vehicle, Component } from "src/types/template";
 import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
 import TwodsixItem from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
@@ -46,15 +46,18 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
 
   private _onToggleComponent(event:Event):void {
     if (event.currentTarget) {
-      const system = event.currentTarget["dataset"]["key"];
+      const vehicleSystem = event.currentTarget["dataset"]["key"];
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
-      if (system) {
-        const newState = stateTransitions[(<Vehicle>this.actor.system).systemStatus[system]];
-        this.actor.update({[`system.systemStatus.${system}`]: newState});
+      if (vehicleSystem) {
+        const newState = event.shiftKey ? ((<Vehicle>this.actor.system).systemStatus[vehicleSystem] === "off" ? "operational" : "off") : stateTransitions[(<Vehicle>this.actor.system).systemStatus[vehicleSystem]];
+        this.actor.update({[`system.systemStatus.${vehicleSystem}`]: newState});
       } else {
         const li = $(event.currentTarget).parents(".item");
-        const itemSelected = this.actor.items.get(li.data("itemId"));
-        itemSelected?.update({"system.status": stateTransitions[(<Component>itemSelected.system)?.status]});
+        const itemSelected:Component = this.actor.items.get(li.data("itemId"));
+        if (itemSelected) {
+          const newState = event.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
+          itemSelected?.update({"system.status": newState});
+        }
       }
     }
   }
