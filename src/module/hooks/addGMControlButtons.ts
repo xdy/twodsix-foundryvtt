@@ -44,7 +44,8 @@ async function requestRoll(): Promise<void> {
             rollSettings: selections
           }
         },
-        whisper: Object.keys(selections.userActorList)
+        whisper: Object.keys(selections.userActorList),
+        sound: "sounds/notify.wav"
       });
     }
   } else {

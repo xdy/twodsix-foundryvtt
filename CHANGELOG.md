@@ -1,3 +1,10 @@
+# [4.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.5...v4.24.0) (2024-04-10)
+
+
+### Features
+
+* initial cut at data models and Custom CT Weapons Modifiers ([#1553](https://github.com/xdy/twodsix-foundryvtt/issues/1553)) ([c5e1a8f](https://github.com/xdy/twodsix-foundryvtt/commit/c5e1a8f793832fbddd5f22bacdd855db210b7cf3))
+
 ## [4.23.5](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.4...v4.23.5) (2024-03-23)
 
 

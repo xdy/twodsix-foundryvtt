@@ -72,7 +72,8 @@
         "STA": "STA",
         "CTM": "CTM",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "ALT3": "ALT3"
       },
       "CharacteristicEdit": "Toggle Edit Mode for Characteristic Short Names",
       "Chassis": "Chassis",
@@ -410,7 +411,9 @@
           "AR": "AR",
           "subm": "Subm",
           "LC": "LC",
-          "LR": "LR"
+          "LR": "LR",
+          "custom": "Custom",
+          "cust": "Cust"
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -610,6 +613,7 @@
         "HIT": "HIT",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
+        "ALT3": "ALT3",
         "TrainingNotes": "Training Notes",
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
@@ -679,7 +683,11 @@
         "Consumables": "Consumables",
         "DefaultMagazine": "Default Magazine Size",
         "HandlingExample": "e.g., DEX 6/-3 10/+4",
-        "MeleeRangeModifier": "Melee Range DM"
+        "MeleeRangeModifier": "Melee Range DM",
+        "CustomModifier": {
+          "range": "Custom Range Modifier",
+          "armor": "Custom Armor Modifier"
+        }
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -877,6 +885,12 @@
       "rounds":"round(s)",
       "RoundsActive": "Rounds Active"
     },
+    "Resource": {
+      "Value": "Value",
+      "Min": "Min",
+      "Max": "Max",
+      "Label": "Label"
+    },
     "Migration": {
       "Completed": "Twodsix System Migration to version {version} completed!",
       "DoNotClose": "Migrating Twodsix to {version}. Do not close your game or shut down your server.",
@@ -906,6 +920,7 @@
       "Auto": "Auto",
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
+      "Single": "Single",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
@@ -1482,7 +1497,8 @@
       "trait": "trait",
       "spell": "spell",
       "component": "component",
-      "computer": "computer"
+      "computer": "computer",
+      "unknown": "unknown"
     },
     "speeds": {
       "walk": "walk",
@@ -1549,7 +1565,8 @@
       "typeMismatch": "RollTable link/UUID in Journal Entry is not a RollTable.",
       "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
       "TooManyLayersOnTarget": "Target is wearing too many layers of armor",
-      "ActorOverloaded": "Current actor is carrying more than its capacity."
+      "ActorOverloaded": "Current actor is carrying more than its capacity.",
+      "NoJournalFound": "Can't find linked Journal Entry"
     }
   },
   "TYPES": {
