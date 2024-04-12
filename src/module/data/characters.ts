@@ -15,8 +15,8 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.nationality = new fields.StringField({...requiredBlankString});
     schema.species =  new fields.StringField({...requiredBlankString});
     schema.age = new fields.SchemaField({
-      value: new fields.NumberField({...requiredInteger, initial: 18}),
-      min: new fields.NumberField({...requiredInteger, initial: 0})
+      value: new fields.NumberField({required: true, nullable: true, integer: false, initial: 18}),
+      min: new fields.NumberField({required: true, nullable: true, integer: false, initial: 0})
     });
     schema.gender = new fields.StringField({...requiredBlankString});
     schema.heroPoints = new fields.NumberField({...requiredInteger, initial: 2});
