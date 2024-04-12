@@ -9,7 +9,7 @@
     placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
 {{/unless}}
 <span class="bgi-age" data-tooltip='{{localize "TWODSIX.Actor.Age"}}'>
-  <i class="fa-solid fa-calendar-days"></i>:<input type="text" name="system.age.value" value="{{system.age.value}}" placeholder="0"  /></span>
+  <i class="fa-solid fa-calendar-days"></i>:<input type="number" name="system.age.value" value="{{system.age.value}}" placeholder="0" data-dtype="Number" /></span>
 <!-- Hero Points Information-->
 {{#if settings.showHeroPoints}}
   <span class="bgi-armor bgi-heroPoints" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
