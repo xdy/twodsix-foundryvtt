@@ -1,3 +1,10 @@
+## [4.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.0...v4.24.1) (2024-04-13)
+
+
+### Bug Fixes
+
+* age can be non-integer and CT weapons handling modifiers ([#1555](https://github.com/xdy/twodsix-foundryvtt/issues/1555)) ([a6e9a32](https://github.com/xdy/twodsix-foundryvtt/commit/a6e9a3242fdd447e97d56bb2017fb0cda2769cbc))
+
 # [4.24.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.23.5...v4.24.0) (2024-04-10)
 
 
