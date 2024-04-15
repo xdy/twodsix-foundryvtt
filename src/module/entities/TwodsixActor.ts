@@ -105,7 +105,7 @@ export default class TwodsixActor extends Actor {
       system.layersWorn = armorValues.layersWorn;
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
-      system.armorDM = armorValues.armorDM;
+      system.armorDM = armorValues.armorDM || 0;
       system.reflectOn = armorValues.reflectOn;
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
