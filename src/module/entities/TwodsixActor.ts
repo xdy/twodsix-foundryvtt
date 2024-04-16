@@ -105,6 +105,7 @@ export default class TwodsixActor extends Actor {
       system.layersWorn = armorValues.layersWorn;
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
+      system.armorDM = armorValues.armorDM || 0;
       system.reflectOn = armorValues.reflectOn;
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
@@ -128,6 +129,7 @@ export default class TwodsixActor extends Actor {
       layersWorn: 0,
       wearingNonstackable: false,
       CTLabel: "nothing",
+      armorDM: 0,
       reflectOn: false,
       protectionTypes: [] as string[],
       totalArmor: 0
@@ -135,13 +137,16 @@ export default class TwodsixActor extends Actor {
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
     const damageTypes = getDamageTypes(false);
+    let reflectDM = 0;
 
     for (const armor of armorItems) {
       if (armor.system.equipped === "equipped") {
         if (armor.system.armorType === 'reflec') {
           returnValue.reflectOn = true;
+          reflectDM = armor.system.armorDM;
         } else {
           returnValue.CTLabel = armor.system.armorType;
+          returnValue.armorDM = armor.system.armorDM;
         }
         const totalArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
         const protectionDetails:string[] = armor.system.secondaryArmor.protectionTypes.map((type:string) => `${damageTypes[type]}`);
@@ -172,6 +177,7 @@ export default class TwodsixActor extends Actor {
     // Case where only wearing reflec
     if (returnValue.reflectOn && returnValue.CTLabel === 'nothing') {
       returnValue.CTLabel = 'reflec';
+      returnValue.armorDM = reflectDM;
     }
     return returnValue;
   }

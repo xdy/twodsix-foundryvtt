@@ -66,6 +66,7 @@ export class ArmorData extends GearData {
   static defineSchema() {
     const schema = super.defineSchema();
     schema.armor = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.armorDM = new fields.NumberField({...requiredInteger, initial: 0});
     schema.secondaryArmor = new fields.SchemaField({
       value: new fields.NumberField({...requiredInteger, initial: 0}),
       protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
