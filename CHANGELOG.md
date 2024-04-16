@@ -1,3 +1,10 @@
+## [4.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.1...v4.24.2) (2024-04-16)
+
+
+### Bug Fixes
+
+* add missing fields and add actor check ([#1558](https://github.com/xdy/twodsix-foundryvtt/issues/1558)) ([048b6fa](https://github.com/xdy/twodsix-foundryvtt/commit/048b6facdc4be4cb55079ac59904dddf9f262d97))
+
 ## [4.24.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.0...v4.24.1) (2024-04-13)
 
 
