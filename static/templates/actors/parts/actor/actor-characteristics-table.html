@@ -1,14 +1,14 @@
   <thead>
     <tr class="table-header-row">
-      <td>{{#unless system.characteristicEdit}}<i class="fa-solid fa-dice"></i>{{/unless}}</td>
+      <th>{{#unless system.characteristicEdit}}<i class="fa-solid fa-dice"></i>{{/unless}}</th>
       {{#each system.characteristics as |char key|}}
         {{#if char.displayChar}}
           {{#if ../system.characteristicEdit}}
-            <td><input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
-              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="4"/></td>
+            <th><input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
+              class="stat-name-table" value="{{char.displayShortLabel}}" maxlength="4"/></th>
           {{else}}
-            <td><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
-              {{char.displayShortLabel}}</span></td>
+            <th><span class="stat-name-table rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
+              {{char.displayShortLabel}}</span></th>
           {{/if}}
         {{/if}}
       {{/each}}
