@@ -20,6 +20,7 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
       href: new fields.StringField({...requiredBlankString}),
       label: new fields.StringField({...requiredBlankString})
     });
+    schema.priorType = new fields.StringField({required: true, blank: false, initial: "unknown"});
     return schema;
   }
 }

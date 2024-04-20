@@ -12,15 +12,14 @@
       <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
     </div>
 
+    {{#if (twodsix_canBeEquipped this)}}
     <div class="item-type">
-      <label for="item.location" class="resource-label">{{localize "TWODSIX.Items.Equipment.ItemLocation"}}</label>
-      <select name="type" value={{system.location}}>
-        {{#select item.location}}
-        <option value="inventory">{{localize "TWODSIX.Items.Equipment.Inventory"}}</option>
-        <option value="storage">{{localize "TWODSIX.Items.Equipment.Storage"}}</option>
-        {{/select}}
-      </select>
+      <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+          <select class="form-input" name="system.equipped" id="system.equipped">
+            {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+          </select>
     </div>
+    {{/if}}
 
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>

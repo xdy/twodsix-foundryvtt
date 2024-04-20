@@ -111,7 +111,7 @@ export class TwodsixDiceRoll {
     if (game.settings.get('twodsix', 'difficultiesAsTargetNumber')) {
       effect = (this.roll?.total || 0) - this.rollSettings.difficulty.target;
     } else {
-      effect = (this.roll?.total || 0) - TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))].Average.target;
+      effect = (this.roll?.total || 0) - TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')].Average.target;
     }
 
     if (this.isNaturalCritSuccess()) {

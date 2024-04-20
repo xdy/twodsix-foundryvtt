@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import {TWODSIX} from "../config";
+import { getDifficultiesSelectObject, getRollTypeSelectObject } from "../utils/sheetUtils";
 //import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import { _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
 //import {getKeyByValue} from "./sheetUtils";
@@ -95,9 +96,9 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
     initialTokens: Object.keys(tokenData),
     allTokenNames: tokenNames,
     rollType: "Normal",
-    rollTypes: TWODSIX.ROLLTYPES,
+    rollTypes: getRollTypeSelectObject(),
     difficulty: "Average",
-    difficulties: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
+    difficultyList: getDifficultiesSelectObject(),
     skillsList: skillsList,
     rollMode: game.settings.get('core', 'rollMode'),
     rollModes: CONFIG.Dice.rollModes,
@@ -113,7 +114,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       icon: '<i class="fa-solid fa-message"></i>',
       callback: (buttonHtml) => {
         returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
-        returnValue.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
+        returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][buttonHtml.find('[name="difficulty"]').val()];
         returnValue.rollType = buttonHtml.find('[name="rollType"]').val();
         returnValue.rollMode = buttonHtml.find('[name="rollMode"]').val();
         returnValue.characteristic = buttonHtml.find('[name="characteristic"]').val();

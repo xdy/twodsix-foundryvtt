@@ -3,7 +3,7 @@
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
         <select class="form-input" name="system.skill" id="system.skill">
-          {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
+          {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
         </select>
     </div>
     {{else}}

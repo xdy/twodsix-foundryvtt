@@ -979,6 +979,27 @@ export const CT_ARMOR_TYPES = {
 
 export const TARGET_DM = {};
 
+export const AUG_LOCATIONS = {
+  Head: "TWODSIX.Items.Augmentation.Head",
+  Torso: "TWODSIX.Items.Augmentation.Torso",
+  Arms: "TWODSIX.Items.Augmentation.Arms",
+  Legs: "TWODSIX.Items.Augmentation.Legs",
+  "Full-Body": "TWODSIX.Items.Augmentation.FullBody",
+  None: "TWODSIX.Items.Augmentation.None"
+};
+
+export const ITEM_TYPE_SELECT = {
+  augment: "TWODSIX.Items.Items.AssignAugment",
+  weapon: "TWODSIX.Items.Items.AssignWeapon",
+  armor: "TWODSIX.Items.Items.AssignArmor",
+  equipment: "TWODSIX.Items.Items.AssignEquipment",
+  consumable: "TWODSIX.Items.Items.AssignConsumable",
+  computer: "TWODSIX.Items.Items.AssignComputer",
+  tool: "TWODSIX.Items.Items.AssignTool",
+  junk: "TWODSIX.Items.Items.AssignJunk",
+  storage: "TWODSIX.Items.Items.MoveStorage"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -1013,7 +1034,9 @@ export type TWODSIX = {
   CE_WEAPON_RANGE_TYPES: typeof CE_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: typeof CT_WEAPON_RANGE_TYPES,
   CT_ARMOR_TYPES: typeof  CT_ARMOR_TYPES,
-  TARGET_DM: object
+  TARGET_DM: object,
+  AUG_LOCATIONS: typeof AUG_LOCATIONS,
+  ITEM_TYPE_SELECT: typeof ITEM_TYPE_SELECT
 };
 
 export const TWODSIX = {
@@ -1050,5 +1073,7 @@ export const TWODSIX = {
   CE_WEAPON_RANGE_TYPES: CE_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: CT_WEAPON_RANGE_TYPES,
   CT_ARMOR_TYPES: CT_ARMOR_TYPES,
-  TARGET_DM: TARGET_DM
+  TARGET_DM: TARGET_DM,
+  AUG_LOCATIONS: AUG_LOCATIONS,
+  ITEM_TYPE_SELECT: ITEM_TYPE_SELECT
 };

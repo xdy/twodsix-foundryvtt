@@ -8,15 +8,8 @@
 
     <div class="item-augmentLoc">
       <label for="item.auglocation" class="resource-label">{{localize "TWODSIX.Items.Augmentation.AugLocation"}}</label>
-      <select class="form-input" name="system.auglocation" value={{system.auglocation}}>
-        {{#select system.auglocation}}
-        <option value="Head">{{localize "TWODSIX.Items.Augmentation.Head"}}</option>
-        <option value="Torso">{{localize "TWODSIX.Items.Augmentation.Torso"}}</option>
-        <option value="Arms">{{localize "TWODSIX.Items.Augmentation.Arms"}}</option>
-        <option value="Legs">{{localize "TWODSIX.Items.Augmentation.Legs"}}</option>
-        <option value="Full-Body">{{localize "TWODSIX.Items.Augmentation.FullBody"}}</option>
-        <option value="None">{{localize "TWODSIX.Items.Augmentation.None"}}</option>
-        {{/select}}
+      <select class="form-input" name="system.auglocation">
+        {{selectOptions settings.augLocations selected=system.auglocation localize=true}}
       </select>
     </div>
 

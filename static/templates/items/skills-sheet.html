@@ -48,25 +48,15 @@
       </div>
       <div class="item-rollDifficulty">
         <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
-          <select class="form-input" name="system.difficulty" value={{difficulty}}>
-            {{#select system.difficulty}}
-            {{#each settings.DIFFICULTIES}}
-            <option value="{{@key}}">{{localize @key}} (
-              {{#if (twodsix_difficultiesAsTargetNumber)}} {{this.target}} {{else}} {{this.mod}} {{/if}})
-            </option>
-            {{/each}}
-            {{/select}}
+          <select class="form-input" name="system.difficulty">
+            {{selectOptions settings.difficultyList selected=system.difficulty}}
           </select>
       </div>
 
     <div class="item-rollType">
       <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}</label>
-        <select class="form-input" name="system.rolltype" value={{rolltype}}>
-          {{#select system.rolltype}}
-            {{#each config.ROLLTYPES as |type|}}
-              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
-            {{/each}}
-          {{/select}}
+        <select class="form-input" name="system.rolltype">
+          {{selectOptions settings.rollTypes selected=system.rolltype}}
         </select>
     </div>
 

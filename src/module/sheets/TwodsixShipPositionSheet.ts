@@ -66,7 +66,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   public static async createActionFromSkill(position:TwodsixItem, skill:TwodsixItem): Promise<void> {
     const actions = (<ShipPosition>position.system).actions;
     const skillData = (<Skills>skill.system);
-    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     let command = skill.name ?? "";
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
       command += `/${skillData.characteristic}`;

@@ -186,7 +186,7 @@ export class ShipPositionData extends TwodsixItemBaseData {
     const schema = super.defineSchema();
     schema.name = new fields.StringField({...requiredBlankString});
     schema.icon = new fields.StringField({...requiredBlankString});
-    schema.actions =  new fields.ObjectField({required: true, initial: {}});;
+    schema.actions = new fields.ObjectField({required: true, initial: {}});;
     schema.order = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }
@@ -203,7 +203,6 @@ export class ComputerData extends EquipmentToolData {
 export class JunkStorageData extends EquipmentToolData {
   static defineSchema() {
     const schema = super.defineSchema();
-    schema.priorType = new fields.StringField({required: true, blank: false, initial: "unknown"});
     return schema;
   }
 }
