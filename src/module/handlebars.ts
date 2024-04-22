@@ -50,11 +50,11 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
-    if (!a) {
+  Handlebars.registerHelper('twodsix_limitLength', function (inStr:string, len: number) {
+    if (!inStr) {
       return '';
     } else {
-      return a.length > b ? '(...)' : a;
+      return inStr.length > len ? '(...)' : inStr;
     }
   });
 
