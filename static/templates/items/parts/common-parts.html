@@ -4,7 +4,6 @@
 {{#if owner}}
   {{#iff owner.type "!==" "ship"}}
     <div class="item-skill">
-      {{log this}}
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
         <select class="form-input" name="system.skill">
           {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
