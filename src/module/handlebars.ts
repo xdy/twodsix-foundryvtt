@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { advantageDisadvantageTerm } from "./i18n";
+/*import { advantageDisadvantageTerm } from "./i18n";*/
 import { getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
@@ -13,13 +13,13 @@ export default function registerHandlebarsHelpers(): void {
 
   let showedError = false;
 
-  Handlebars.registerHelper('twodsix_advantageDisadvantageTerm', (str) => {
+  /*Handlebars.registerHelper('twodsix_advantageDisadvantageTerm', (str) => {
     return advantageDisadvantageTerm(str);
   });
 
   Handlebars.registerHelper('twodsix_difficultiesAsTargetNumber', () => {
     return game.settings.get('twodsix', 'difficultiesAsTargetNumber');
-  });
+  });*/
 
   Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
     return (num % 2) == 1;
