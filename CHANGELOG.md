@@ -1,3 +1,10 @@
+## [4.24.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.2...v4.24.3) (2024-04-24)
+
+
+### Bug Fixes
+
+* cant edit traveller bio ([#1559](https://github.com/xdy/twodsix-foundryvtt/issues/1559)) ([5932b52](https://github.com/xdy/twodsix-foundryvtt/commit/5932b5299df4fe22510bc8940300037f2fb9efd1))
+
 ## [4.24.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.1...v4.24.2) (2024-04-16)
 
 
