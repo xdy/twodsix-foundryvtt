@@ -86,6 +86,7 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     /* Descriptions */
     schema.description = new fields.HTMLField({...requiredBlankString});
     schema.notes = new fields.HTMLField({...requiredBlankString});
+    schema.bio = new fields.HTMLField({...requiredBlankString});
 
     return schema;
   }

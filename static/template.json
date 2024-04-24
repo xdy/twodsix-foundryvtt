@@ -1,7 +1,7 @@
 {
   "Actor": {
     "types": ["traveller", "ship", "vehicle", "animal", "robot", "space-object"],
-    "htmlFields": ["descriptions", "notes", "contacts", "xpNotes", "cargo"],
+    "htmlFields": ["descriptions", "notes", "bio", "contacts", "xpNotes", "cargo"],
     "traveller": {},
     "animal": {},
     "robot": {},
