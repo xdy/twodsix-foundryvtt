@@ -19,7 +19,7 @@ import { TWODSIX } from "../config";
 export default class TwodsixItem extends Item {
   public static async create(data, options?):Promise<TwodsixItem> {
     const item = await super.create(data, options) as unknown as TwodsixItem;
-    if (item) {
+    if (item  && !options.temporary) {
       const updates = {};
       item.setFlag('twodsix', 'newItem', true);
       if ((item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
