@@ -50,7 +50,7 @@ export default class TwodsixItem extends Item {
       Object.assign(updates, {"system.value": 0});
     }
 
-    if (!["trait", "skills"].includes(this.type)) {
+    if (!["trait", "skills", "ship_position"].includes(this.type)) {
       //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
       if (!["spell"].includes(this.type)) {
         if (this.system.consumables?.length > 0) {
