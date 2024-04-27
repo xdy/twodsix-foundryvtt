@@ -49,7 +49,7 @@ export default class TwodsixItem extends Item {
       Object.assign(updates, {"system.value": 0});
     }
     //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
-    if (["weapon", "armor", "equipment", "tool", "computer"].includes(this.type)) {
+    if (["weapon", "armor", "equipment", "tool", "computer", "junk", "augment"].includes(this.type)) {
       if (this.system.consumables?.length > 0) {
         Object.assign(updates, {"system.consumables": []});
       }
