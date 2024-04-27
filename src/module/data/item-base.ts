@@ -34,6 +34,7 @@ export class GearData extends TwodsixItemBaseData {
     schema.price = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});
     schema.traits = new fields.ArrayField(new fields.StringField({blank: false}));
     schema.consumables = new fields.ArrayField(new fields.StringField({blank: false}));
+    schema.useConsumableForAttack = new fields.StringField({...requiredBlankString});
     schema.skillModifier = new fields.NumberField({...requiredInteger, initial: 0});
     schema.skill = new fields.StringField({...requiredBlankString});
     schema.associatedSkillName = new fields.StringField({...requiredBlankString});
