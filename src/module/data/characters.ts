@@ -28,7 +28,7 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.finances = new fields.SchemaField({
       cash: new fields.StringField({ required: true, blank: true, initial: "0"}),
       pension: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      payment: new fields.StringField({ required: true, blank: true, initial: "0"}),
+      payments: new fields.StringField({ required: true, blank: true, initial: "0"}),
       debt: new fields.StringField({ required: true, blank: true, initial: "0"}),
       livingCosts: new fields.StringField({ required: true, blank: true, initial: "0"}),
       'financial-notes': new fields.StringField({...requiredBlankString})
