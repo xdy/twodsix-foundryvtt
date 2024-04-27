@@ -45,15 +45,29 @@ export default class TwodsixItem extends Item {
         Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
       }
     }
+
     if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
       Object.assign(updates, {"system.value": 0});
     }
-    //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
-    if (["weapon", "armor", "equipment", "tool", "computer", "junk", "augment"].includes(this.type)) {
-      if (this.system.consumables?.length > 0) {
-        Object.assign(updates, {"system.consumables": []});
+
+    if (!["trait", "skills"].includes(this.type)) {
+      //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+      if (!["spell"].includes(this.type)) {
+        if (this.system.consumables?.length > 0) {
+          Object.assign(updates, {"system.consumables": []});
+        }
+        Object.assign(updates, {"system.useConsumableForAttack": ""});
       }
-      Object.assign(updates, {"system.useConsumableForAttack": ""});
+
+      //Try to set linked skill
+      if(this.actor) {
+        if (this.system.associatedSkillName === '') {
+          Object.assign(updates, {"system.skill": this.actor.system.untrainedSkill});
+        } else {
+          const tempSkill = (<TwodsixActor>this.actor).getBestSkill(this.system.associatedSkillName, false);
+          Object.assign(updates, {"system.skill": tempSkill.id ?? this.actor.system.untrainedSkill});
+        }
+      }
     }
 
     Object.assign(updates, {"system.type": this.type});
