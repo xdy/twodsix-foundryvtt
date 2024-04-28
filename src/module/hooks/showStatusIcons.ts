@@ -246,7 +246,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
   const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
 
-  let targetToken = {};
+  /*let targetToken = {};
   if(targetActor.isToken) {
     targetToken = <Token>targetActor.token.object;
   } else {
@@ -254,28 +254,28 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
     if (!targetToken?.document.isLinked) {
       return; //unlinked actor token found
     }
-  }
+  }*/
 
-  if (isAlreadySet.length > 1  && targetToken) {
+  if (isAlreadySet.length > 1  && targetActor) {
     //Need to get rid of duplicates
     for (let i = 1; i < isAlreadySet.length; i++) {
-      await (<Token>targetToken).toggleStatusEffect(targetEffect, {active: false});
+      await targetActor.toggleStatusEffect(targetEffect.id, {active: false});
     }
   }
 
   if ((isAlreadySet.length > 0) !== state) {
-    if (targetToken && targetEffect) {
+    if (targetEffect) {
       if (effectStatus === 'dead') {
-        (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state, overlay: false});
+        await targetActor.toggleStatusEffect(targetEffect.id, {active: state, overlay: false});
 
         // Set defeated if in combat
         const fighters = game.combats?.active?.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.tokenId === (<Token>targetToken).id);
+        const combatant = fighters?.find((f: Combatant) => f.actorId === targetActor.id);
         if (combatant !== undefined) {
-          combatant.update({defeated: state});
+          await combatant.update({defeated: state});
         }
       } else {
-        (<Token>targetToken).toggleStatusEffect(targetEffect, {active: state});
+        await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
       }
     }
   }
