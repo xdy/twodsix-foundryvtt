@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-//import { migrateStringToNumber } from "./commonSchemaUtils";
+import { migrateStringToNumber } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -41,11 +41,11 @@ export class GearData extends TwodsixItemBaseData {
     schema.equipped = new fields.StringField({ required: true, blank: false, initial: "backpack"});
     return schema;
   }
-  /*static migrateData(source:any) {
+  static migrateData(source:any) {
     migrateStringToNumber(source, "weight");
     migrateStringToNumber(source, "price");
     return super.migrateData(source);
-  }*/
+  }
 }
 
 export function makeTargetTemplate() {
