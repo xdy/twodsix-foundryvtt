@@ -31,7 +31,7 @@
 
         {{#iff setting.htmlType "===" "Color"}}
         <span class = "color-select" name="{{key}}">
-          {{colorPicker name=key value = setting.value default=setting.value}}
+          <color-picker name="{{key}}" value="{{setting.value}}"></color-picker>
         </span>
         {{/iff}}
       </div>
