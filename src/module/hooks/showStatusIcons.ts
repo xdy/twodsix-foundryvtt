@@ -256,7 +256,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
     }
   }*/
 
-  if (isAlreadySet.length > 1  && targetActor) {
+  if (isAlreadySet.length > 1) {
     //Need to get rid of duplicates
     for (let i = 1; i < isAlreadySet.length; i++) {
       await targetActor.toggleStatusEffect(targetEffect.id, {active: false});
