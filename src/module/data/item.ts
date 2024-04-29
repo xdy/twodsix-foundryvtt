@@ -51,7 +51,9 @@ export class WeaponData extends GearData {
 
   static migrateData(source:any) {
     migrateStringToNumber(source, "ammo");
-    source.ammo = Math.trunc(source.ammo);
+    if (!Number.isInteger(source.ammo)){
+      source.ammo = Math.trunc(source.ammo);
+    }
     if (source.ammo < 0) {
       source.ammo = 0;
     }
