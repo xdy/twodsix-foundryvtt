@@ -60,12 +60,12 @@ export default class TwodsixItem extends Item {
       }
 
       //Try to set linked skill
-      if(this.actor) {
+      if (this.actor) {
         if (this.system.associatedSkillName === '') {
           Object.assign(updates, {"system.skill": this.actor.system.untrainedSkill});
         } else {
           const tempSkill = (<TwodsixActor>this.actor).getBestSkill(this.system.associatedSkillName, false);
-          Object.assign(updates, {"system.skill": tempSkill.id ?? this.actor.system.untrainedSkill});
+          Object.assign(updates, {"system.skill": tempSkill?.id ?? this.actor.system.untrainedSkill});
         }
       }
     }
