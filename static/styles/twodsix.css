@@ -101,7 +101,8 @@ p span, p {
   background-color: transparent;
   font-family: inherit;
 }
-
+.application input[type="text"], .application input[type="number"], .application input[type="password"], .application input[type="date"],
+.application input[type="time"], .application input[type="search"], .application select,
 input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'],
 input[type='search'], input[type='date'], div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque);
@@ -3292,7 +3293,7 @@ button {
   color: var(--s2d6-form-light);
 }
 
-form button {
+form button, .application a.button, .application button {
   background: var(--s2d6-background-opaque);
   border: 2px groove var(--s2d6-default-color);
 }
@@ -3448,7 +3449,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
-  border-color: var(--s2d6-default-color);
+  border-color: var(--color-border-highlight); /*changed for v12*/
   background-color: var(--sidebar-dark-background);
 }
 
@@ -3801,4 +3802,22 @@ input[type="text"].color {
       scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
       scrollbar-width: thin;
   }
+}
+
+/*v12 changes**/
+.roll-table-config table.table-results .table-result .result-controls,
+.roll-table-config table.table-results .table-result .result-controls .lock-result {
+  color: var(--s2d6-default-color);
+}
+
+table thead {
+  background: var(--s2d6-background-nearly-transparent);
+  color: var(--s2d6-light-color);
+  text-shadow: none !important;
+  border: 1px solid var(--s2d6-item-border);
+}
+
+color-picker > input[type=color] {
+  flex: 0 0 36px;
+  height: 35px;
 }
