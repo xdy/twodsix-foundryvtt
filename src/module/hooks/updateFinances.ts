@@ -27,17 +27,19 @@ function updateFinanceValues(update:Record<string, any>, systemDiff:any) {
   Object.assign(update.system, {financeValues: financeValueUpdates});
 }
 
-function updateFinanceText(actor:TwodsixActor, update:Record<string, any>) {
-  for (const financeField in update.system.financeValues) {
+function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, systemDiff:any) {
+  const financeTextUpdates = {};
+  for (const financeField in systemDiff.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
-    let newValue = update.system.financeValues[financeField];
+    let newValue = systemDiff.financeValues[financeField];
     const numberDigits = Math.floor(Math.log10(newValue)) + 1;
     if (parsedText?.units) {
       newValue /= getMultiplier(parsedText.units);
     }
     const newText = ''.concat(newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}), (parsedText?.units ? ' ' + parsedText.units : ''));
-    Object.assign(update.system, {finances: {[financeField]: newText}});
+    Object.assign(financeTextUpdates, {[financeField]: newText});
   }
+  Object.assign(update.system, {finances: financeTextUpdates});
 }
 
 /**
