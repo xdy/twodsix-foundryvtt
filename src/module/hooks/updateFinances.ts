@@ -3,29 +3,31 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 
-export async function updateFinances(actor:TwodsixActor, update:Record<string, any>): Promise<void> {
+export function updateFinances(actor:TwodsixActor, update:Record<string, any>, systemDiff:any|undefined): void {
   if (["traveller"].includes(actor.type)) {
-    if (update.system?.finances) {
-      await updateFinanceValues(update);
-    } else if (update.system?.financeValues) {
-      await updateFinanceText(actor, update);
+    if (systemDiff?.finances) {
+      updateFinanceValues(update, systemDiff);
+    } else if (systemDiff?.financeValues) {
+      updateFinanceText(actor, update, systemDiff);
     }
   }
 }
 
-async function updateFinanceValues(update:Record<string, any>) {
-  for (const financeField in update.system.finances) {
+function updateFinanceValues(update:Record<string, any>, systemDiff:any) {
+  const financeValueUpdates = {};
+  for (const financeField in systemDiff.finances) {
     if (financeField !== "financial-notes") {
       const parsedText = getParsedFinanceText(update.system.finances[financeField]);
       if (parsedText) {
         const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
-        await Object.assign(update.system, {financeValues: {[financeField]: newValue}});
+        Object.assign(financeValueUpdates, {[financeField]: newValue});
       }
     }
   }
+  Object.assign(update.system, {financeValues: financeValueUpdates});
 }
 
-async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>) {
+function updateFinanceText(actor:TwodsixActor, update:Record<string, any>) {
   for (const financeField in update.system.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
     let newValue = update.system.financeValues[financeField];
@@ -34,7 +36,7 @@ async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>)
       newValue /= getMultiplier(parsedText.units);
     }
     const newText = ''.concat(newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}), (parsedText?.units ? ' ' + parsedText.units : ''));
-    await Object.assign(update.system, {finances: {[financeField]: newText}});
+    Object.assign(update.system, {finances: {[financeField]: newText}});
   }
 }
 
