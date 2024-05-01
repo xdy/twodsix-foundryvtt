@@ -35,7 +35,7 @@ export function makeValueField(initialValue = 0, schemaOptions: object={}):any {
 
 /**
  * Convert field from string to number respecting local number format, if necessary.
- * @param {any} source data source (docuement.system)
+ * @param {any} source data source (document.system)
  * @param {string} field  system field to convert.
  * @returns {void}
  */

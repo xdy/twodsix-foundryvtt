@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import {TwodsixActorBaseData} from "./character-base";
-import { makeValueField } from "./commonSchemaUtils";
+import { makeValueField, migrateStringToNumber } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -28,7 +28,7 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.finances = new fields.SchemaField({
       cash: new fields.StringField({ required: true, blank: true, initial: "0"}),
       pension: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      payment: new fields.StringField({ required: true, blank: true, initial: "0"}),
+      payments: new fields.StringField({ required: true, blank: true, initial: "0"}),
       debt: new fields.StringField({ required: true, blank: true, initial: "0"}),
       livingCosts: new fields.StringField({ required: true, blank: true, initial: "0"}),
       'financial-notes': new fields.StringField({...requiredBlankString})
@@ -60,6 +60,11 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.displaySkillGroup = new fields.ObjectField({required: true, initial: {}});
 
     return schema;
+  }
+
+  static migrateData(source:any) {
+    migrateStringToNumber(source.age, "value");
+    return super.migrateData(source);
   }
 }
 

@@ -1,19 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { makeResourceField, makeValueField} from "./commonSchemaUtils";
+import { makeResourceField, makeValueField, migrateStringToNumber} from "./commonSchemaUtils";
 import { GearData, makeTargetTemplate, TwodsixItemBaseData } from "./item-base";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
 const requiredBlankString = {required: true, blank: true, initial: "" };
-
-export class EquipmentToolData extends GearData {
-  static defineSchema() {
-    const schema = super.defineSchema();
-    schema.useConsumableForAttack = new fields.StringField({...requiredBlankString});
-    return schema;
-  }
-}
 
 export class WeaponData extends GearData {
   static defineSchema() {
@@ -24,7 +16,6 @@ export class WeaponData extends GearData {
     schema.damageBonus = new fields.NumberField({required: true, nullable: true, integer: true, initial: 0});
     schema.magazineSize = new fields.NumberField({...requiredInteger, initial: 0});
     schema.ammo = new fields.NumberField({...requiredInteger, initial: 0}); //;new fields.StringField({...requiredBlankString});
-    schema.useConsumableForAttack = new fields.StringField({...requiredBlankString});
     schema.magazineCost = new fields.NumberField({required: true, nullable: false, integer: false , initial: 0});
     schema.lawLevel = new fields.StringField({...requiredBlankString});//new fields.NumberField({required: true, nullable: true, integer: true , initial: 0});
     schema.rangeBand = new fields.StringField({required: true, blank: false, initial: "none" });
@@ -57,9 +48,17 @@ export class WeaponData extends GearData {
     });
     return schema;
   }
-  /*static migrateData(source:any) {
+
+  static migrateData(source:any) {
     migrateStringToNumber(source, "ammo");
-  }*/
+    if (!Number.isInteger(source.ammo)){
+      source.ammo = Math.trunc(source.ammo);
+    }
+    if (source.ammo < 0) {
+      source.ammo = 0;
+    }
+    return super.migrateData(source);
+  }
 }
 
 export class ArmorData extends GearData {
@@ -72,7 +71,6 @@ export class ArmorData extends GearData {
       protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
     });
     schema.radiationProtection = makeValueField(0);
-    schema.useConsumableForAttack = new fields.StringField({...requiredBlankString});
     schema.isPowered = new fields.BooleanField({ required: true, initial: false});
     schema.nonstackable = new fields.BooleanField({ required: true, initial: false});
     schema.armorType = new fields.StringField({required: true, blank: false, initial: "nothing" });
@@ -176,9 +174,10 @@ export class ComponentData extends GearData {
     schema.bandwidth = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }
-  /*static migrateData(source:any) {
+  static migrateData(source:any) {
     migrateStringToNumber(source, "purchasePrice");
-  }*/
+    return super.migrateData(source);
+  }
 }
 
 export class ShipPositionData extends TwodsixItemBaseData {
@@ -192,7 +191,7 @@ export class ShipPositionData extends TwodsixItemBaseData {
   }
 }
 
-export class ComputerData extends EquipmentToolData {
+export class ComputerData extends GearData {
   static defineSchema() {
     const schema = super.defineSchema();
     schema.processingPower = new fields.NumberField({...requiredInteger, initial: 0});
@@ -200,7 +199,7 @@ export class ComputerData extends EquipmentToolData {
   }
 }
 
-export class JunkStorageData extends EquipmentToolData {
+export class JunkStorageData extends GearData {
   static defineSchema() {
     const schema = super.defineSchema();
     schema.priorType = new fields.StringField({required: true, blank: false, initial: "unknown"});
