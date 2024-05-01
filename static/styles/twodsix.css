@@ -3449,8 +3449,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .sidebar-tab .directory-list .directory-item.context, .sidebar-tab .directory-list .directory-item.active {
-  border-color: var(--color-border-highlight); /*changed for v12*/
-  background-color: var(--sidebar-dark-background);
+  border: revert; /*changed for v12*/
 }
 
 .directory .directory-header .header-search input {
@@ -3820,4 +3819,16 @@ table thead {
 color-picker > input[type=color] {
   flex: 0 0 36px;
   height: 35px;
+}
+
+form .form-group.slim .form-fields > label {
+  color: var(--s2d6-form-light);
+}
+
+.standard-form .form-group > label {
+  color: var(--s2d6-default-color);
+}
+
+.standard-form .form-group:hover > label {
+  color: var(--s2d6-light-color);
 }
