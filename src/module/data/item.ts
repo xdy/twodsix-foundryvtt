@@ -50,7 +50,7 @@ export class WeaponData extends GearData {
   }
 
   static migrateData(source:any) {
-    if (source.ammo) {
+    if ("ammo" in source) {
       migrateStringToNumber(source, "ammo");
       if (!Number.isInteger(source.ammo)){
         source.ammo = Math.trunc(source.ammo);
@@ -177,7 +177,7 @@ export class ComponentData extends GearData {
     return schema;
   }
   static migrateData(source:any) {
-    if (source.purchasePrice) {
+    if ("purchasePrice" in source) {
       migrateStringToNumber(source, "purchasePrice");
     }
     return super.migrateData(source);
