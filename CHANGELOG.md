@@ -1,3 +1,10 @@
+## [4.24.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.3...v4.24.4) (2024-05-01)
+
+
+### Bug Fixes
+
+* Allow for Temporary Items and Refactor DataModel ([#1560](https://github.com/xdy/twodsix-foundryvtt/issues/1560)) ([029abfe](https://github.com/xdy/twodsix-foundryvtt/commit/029abfeb38fa7252e6a69e10710964c8f085044c))
+
 ## [4.24.3](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.2...v4.24.3) (2024-04-24)
 
 

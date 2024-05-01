@@ -17,36 +17,66 @@ import { TWODSIX } from "../config";
  * @extends {Item}
  */
 export default class TwodsixItem extends Item {
-  public static async create(data, options?):Promise<TwodsixItem> {
-    const item = await super.create(data, options) as unknown as TwodsixItem;
-    if (item) {
-      const updates = {};
-      item.setFlag('twodsix', 'newItem', true);
-      if ((item.img === "" || item.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
-        if (item.type === 'weapon') {
-          Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
-        } else if (item.type === "spell") {
-          const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
-          Object.assign(updates, {
-            img: 'systems/twodsix/assets/icons/spell-book.svg',
-            'system.associatedSkillName': defaultSkill
-          });
-        } else if (item.type === 'component') {
-          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
-        } else if (item.type === 'computer') {
-          Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+  /**
+   * Perform preliminary operations before a Document of this type is created.
+   * Pre-creation operations only occur for the client which requested the operation.
+   * Modifications to the pending document before it is persisted should be performed with this.updateSource().
+   * @param {object} data               The initial data object provided to the document creation request
+   * @param {object} options            Additional options which modify the creation request
+   * @param {documents.BaseUser} user   The User requesting the document creation
+   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
+   * @protected
+   */
+  async _preCreate(data, options, user): Promise <void> {
+    await super._preCreate(data, options, user);
+    const updates = {};
+    if ((this.img === "" || this.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
+      if (this.type === 'weapon') {
+        Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
+      } else if (this.type === "spell") {
+        const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
+        Object.assign(updates, {
+          img: 'systems/twodsix/assets/icons/spell-book.svg',
+          'system.associatedSkillName': defaultSkill
+        });
+      } else if (this.type === 'component') {
+        Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
+      } else if (this.type === 'computer') {
+        Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+      }
+    }
+
+    if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
+      Object.assign(updates, {"system.value": 0});
+    }
+
+    if (!["trait", "skills", "ship_position", "component"].includes(this.type)) {
+      //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
+      if (!["spell"].includes(this.type)) {
+        if (this.system.consumables?.length > 0) {
+          Object.assign(updates, {"system.consumables": []});
+        }
+        Object.assign(updates, {"system.useConsumableForAttack": ""});
+      }
+
+      //Try to set linked skill
+      if (this.actor) {
+        if (this.system.associatedSkillName === '') {
+          Object.assign(updates, {"system.skill": this.actor.system.untrainedSkill});
+        } else {
+          const tempSkill = (<TwodsixActor>this.actor).getBestSkill(this.system.associatedSkillName, false);
+          Object.assign(updates, {"system.skill": tempSkill?.id ?? this.actor.system.untrainedSkill});
         }
       }
-      if (item.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        Object.assign(updates, {"system.value": 0});
-      }
-      //Remove any attached consumables - needed for modules (like Monks Enhanced Journals) that have own drop management
-      if (item.system.consumables?.length > 0) {
-        Object.assign(updates, {"system.consumables": []});
-      }
-      Object.assign(updates, {"system.type": item.type});
-      await item.update(updates);
     }
+
+    Object.assign(updates, {"system.type": this.type});
+    Object.assign(updates, {"flags.twodsix.newItem": true});
+    await this.updateSource(updates);
+  }
+
+  public static async create(data, options?):Promise<TwodsixItem> {
+    const item = await super.create(data, options) as unknown as TwodsixItem;
     return item;
   }
 

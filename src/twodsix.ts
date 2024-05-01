@@ -31,7 +31,8 @@ import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
 import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
 import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
-import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, EquipmentToolData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
+import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
+import { GearData } from "./module/data/item-base";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -124,12 +125,12 @@ Hooks.once('init', async function () {
   Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
-    "equipment": EquipmentToolData,
+    "equipment": GearData,
     "weapon": WeaponData,
     "armor": ArmorData,
     "augment": AugmentData,
     "storage": JunkStorageData,
-    "tool": EquipmentToolData,
+    "tool": GearData,
     "junk": JunkStorageData,
     "skills": SkillData,
     "spell": SpellData,
