@@ -1,3 +1,10 @@
+## [4.24.5](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.4...v4.24.5) (2024-05-01)
+
+
+### Bug Fixes
+
+* bad migrations ([#1563](https://github.com/xdy/twodsix-foundryvtt/issues/1563)) ([98cd3fa](https://github.com/xdy/twodsix-foundryvtt/commit/98cd3fa7b13a530b48f372f317c28b591fd48d36))
+
 ## [4.24.4](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.3...v4.24.4) (2024-05-01)
 
 

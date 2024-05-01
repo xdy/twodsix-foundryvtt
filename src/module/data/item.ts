@@ -50,12 +50,14 @@ export class WeaponData extends GearData {
   }
 
   static migrateData(source:any) {
-    migrateStringToNumber(source, "ammo");
-    if (!Number.isInteger(source.ammo)){
-      source.ammo = Math.trunc(source.ammo);
-    }
-    if (source.ammo < 0) {
-      source.ammo = 0;
+    if (source.ammo) {
+      migrateStringToNumber(source, "ammo");
+      if (!Number.isInteger(source.ammo)){
+        source.ammo = Math.trunc(source.ammo);
+      }
+      if (source.ammo < 0) {
+        source.ammo = 0;
+      }
     }
     return super.migrateData(source);
   }
@@ -175,7 +177,9 @@ export class ComponentData extends GearData {
     return schema;
   }
   static migrateData(source:any) {
-    migrateStringToNumber(source, "purchasePrice");
+    if (source.purchasePrice) {
+      migrateStringToNumber(source, "purchasePrice");
+    }
     return super.migrateData(source);
   }
 }
