@@ -42,8 +42,12 @@ export class GearData extends TwodsixItemBaseData {
     return schema;
   }
   static migrateData(source:any) {
-    migrateStringToNumber(source, "weight");
-    migrateStringToNumber(source, "price");
+    if (source.weight) {
+      migrateStringToNumber(source, "weight");
+    }
+    if (source.price) {
+      migrateStringToNumber(source, "price");
+    }
     return super.migrateData(source);
   }
 }
