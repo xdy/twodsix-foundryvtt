@@ -63,7 +63,9 @@ export class TravellerData extends TwodsixActorBaseData {
   }
 
   static migrateData(source:any) {
-    migrateStringToNumber(source.age, "value");
+    if (source.age) {
+      migrateStringToNumber(source.age, "value");
+    }
     return super.migrateData(source);
   }
 }
