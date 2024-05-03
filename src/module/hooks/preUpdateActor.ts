@@ -6,7 +6,9 @@ import { updateFinances } from "./updateFinances";
 import { updateHits } from "./updateHits";
 
 Hooks.on('preUpdateActor', (actor:TwodsixActor, update:Record<string, any>) => {
-  const systemDiff = foundry.utils.diffObject(actor.system._source, update.system); //v12 stopped passing difffernetial
-  updateHits(actor, update, systemDiff);
-  updateFinances(actor, update, systemDiff);
+  if (update?.system) {
+    const systemDiff = foundry.utils.diffObject(actor.system._source, update.system); //v12 stopped passing difffernetial
+    updateHits(actor, update, systemDiff);
+    updateFinances(actor, update, systemDiff);
+  }
 });
