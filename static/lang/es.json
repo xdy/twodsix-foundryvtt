@@ -72,7 +72,8 @@
         "STA": "AGU",
         "CTM": "CTM",
         "ALT1": "ALT1",
-        "ALT2": "ALT2"
+        "ALT2": "ALT2",
+        "ALT3": "ALT3"
       },
       "CharacteristicEdit": "Modo Edición para los Nombres Cortos de Características.",
       "Chassis": "Chasis",
@@ -410,7 +411,9 @@
           "AR": "RAuto",
           "subm": "Amet",
           "LC": "CLsr",
-          "LR": "RLsr"
+          "LR": "RLsr",
+          "custom": "Personalizado",
+          "cust": "Pers."
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -610,6 +613,7 @@
         "HIT": "IMPACTOS",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
+        "ALT3": "ALT3",
         "TrainingNotes": "Notas Estudio",
         "NumberOfSkills": "Número de Habilidades",
         "SkillRanks": "Rangos Habilidad",
@@ -679,7 +683,11 @@
         "Consumables": "Consumibles",
         "DefaultMagazine": "Tamaño Cargador Defecto",
         "HandlingExample": "ej. DES 6/-3 10/+4",
-        "MeleeRangeModifier": "MD Melé"
+        "MeleeRangeModifier": "MD Melé",
+        "CustomModifier": {
+          "range": "Modificador Rango Personalizado",
+          "armor": "Mod. Armadura Personalizado"
+        }
       },
       "Spells": {
         "CircleSchool": "Círculo/Escuela Magia",
@@ -877,6 +885,12 @@
       "rounds": "asaltos",
       "RoundsActive": "Asaltos Activo"
     },
+    "Resource": {
+      "Value": "Valor",
+      "Min": "Min",
+      "Max": "Máx",
+      "Label": "Etiqueta"
+    },
     "Migration": {
       "Completed": "¡Migración del sistema Twodsix a la version {version} completada!",
       "DoNotClose": "Migrando Twodsix a {version}. No cierre su partida o apague el servidor.",
@@ -906,6 +920,7 @@
       "Auto": "Auto",
       "FullAuto": "Automático",
       "DoubleTap": "Disparo Doble",
+      "Single": "Simple",
       "Timeframe": "Tiempo",
       "RollInitiative": "Tira Iniciativa",
       "characteristic": "atributo",
@@ -1482,7 +1497,8 @@
       "trait": "rasgo",
       "spell": "conjuro",
       "component": "componente",
-      "computer": "computadora"
+      "computer": "computadora",
+      "unknown": "desconocido"
     },
     "speeds": {
       "walk": "Andar",
@@ -1549,7 +1565,8 @@
       "typeMismatch": "El enlace/UUID dentro del Diario no es una Tabla.",
       "MacroNameExists": "Existe una macro con ese nombre, pero el comando es diferente. ¿Actualizar al nuevo?",
       "TooManyLayersOnTarget": "El objetivo lleva demasiadas capas de armadura",
-      "ActorOverloaded": "El actor actual carga más de su capacidad."
+      "ActorOverloaded": "El actor actual carga más de su capacidad.",
+      "NoJournalFound": "No se encuentra la entrada conectada al diario"
     }
   },
   "TYPES": {
