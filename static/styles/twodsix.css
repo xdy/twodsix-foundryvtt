@@ -3348,10 +3348,11 @@ option {
   background-color: var(--s2d6-item-active);
 }
 
-.window-app .window-header {
+.window-app .window-header,
+.application .window-header {
   background-color: var(--s2d6-background-transparent);
-  border: none;
-  color: var(--s2d6-default-color);
+  border-color: var(--s2d6-default-color);
+  color: var(--s2d6-light-color);
   z-index: 99;
 }
 .window-app.twodsix.sheet.actor .window-header {
@@ -3359,6 +3360,7 @@ option {
   padding-left: 30px;
   padding-top: 7px;
   line-height: 22px;
+  border: none;
   /* justify-content: space-between; */
   /* align-self: center; */
 }
@@ -3369,6 +3371,7 @@ option {
   padding-top: 14px;
   align-content: center;
   line-height: 16px;
+  border: none;
   /* font-size: 14px; */
 }
 
@@ -3825,7 +3828,8 @@ form .form-group.slim .form-fields > label {
   color: var(--s2d6-form-light);
 }
 
-.standard-form .form-group > label {
+.standard-form .form-group > label,
+.application h1 {
   color: var(--s2d6-default-color);
 }
 
