@@ -46,7 +46,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills')) {
+    if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills') && !this.flags?.twodsix?.untrainedSkill) {
       Object.assign(updates, {"system.value": 0});
     }
 
