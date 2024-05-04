@@ -19,6 +19,128 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
  * @extends {Actor}
  */
 export default class TwodsixActor extends Actor {
+  /** @override */
+  protected async _preCreate(data, options, userId) {
+    await super._preCreate(data, options, userId);
+
+    let isDefaultImg = false;
+    const changeData = {};
+    //console.log("onCreate Start", this);
+    switch (this.type) {
+      case "traveller":
+      case "animal":
+      case "robot":
+        Object.assign(changeData, {
+          "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
+          "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
+        });
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON ) {
+          isDefaultImg = true;
+          if (game.settings.get("twodsix", "defaultTokenSettings") && this.type === "traveller") {
+            Object.assign(changeData, {
+              "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "token.sight": {
+                "enabled": true,
+                "visonMode": "basic",
+                "brightness": 1
+              },
+              "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+              "token.bar1": {
+                attribute: "hits"
+              }
+            });
+          }
+
+          let newImage = "";
+          if (this.type === "traveller") {
+            newImage = 'systems/twodsix/assets/icons/default_actor.png';
+          } else if (this.type === "animal") {
+            newImage = 'systems/twodsix/assets/icons/alien-bug.svg';
+          } else if (this.type === "robot") {
+            newImage = 'systems/twodsix/assets/icons/default_robot.svg';
+          } else {
+            newImage = foundry.documents.BaseActor.DEFAULT_ICON;
+          }
+
+          Object.assign(changeData, {
+            'img': newImage
+          });
+        }
+
+        if (this.type === "animal") {
+          Object.assign(changeData, {
+            'system.characteristics.education.label': 'Instinct',
+            'system.characteristics.education.displayShortLabel': 'INS',
+            'system.characteristics.socialStanding.label': 'Pack',
+            'system.characteristics.socialStanding.displayShortLabel': 'PAK'
+          });
+        }
+        break;
+      case "ship":
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          isDefaultImg = true;
+          Object.assign(changeData, {
+            'img': 'systems/twodsix/assets/icons/default_ship.png'
+          });
+        }
+        break;
+      case "vehicle":
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          isDefaultImg = true;
+          Object.assign(changeData, {
+            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+          });
+        }
+        break;
+      case "space-object":
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          isDefaultImg = true;
+          Object.assign(changeData, {
+            'img': 'systems/twodsix/assets/icons/default_space-object.png'
+          });
+        }
+        break;
+    }
+    await this.updateSource(changeData);
+
+    if (game.settings.get("twodsix", "useSystemDefaultTokenIcon") && isDefaultImg) {
+      await this.updateSource({
+        'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
+      });
+    }
+  }
+
+  protected async _onCreate(data, options, userId) {
+    if (userId === game.user.id) {
+      if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
+        return; // Don't do anything if a duplicate
+      }
+
+      const oldRenderSheet = options.renderSheet;
+      options.renderSheet = false;
+      await super._onCreate(data, options, userId);
+      if (["traveller", "robot", "animal"].includes(this.type)) {
+        await this.createUntrainedSkill();
+        if (game.settings.get("twodsix", "autoAddUnarmed")) {
+          await this.createUnarmedSkill();
+        }
+      }
+      if ( oldRenderSheet ) {
+        this.sheet?.render(true, {action: "create", data: data});
+      }
+    }
+  }
+
+  protected async _onDelete() {
+    //Remove actor references from ship Positions
+    if (this.type === "traveller") {
+      if(this.id) {
+        deleteIdFromShipPositions(this.id);
+      }
+    }
+  }
+
   /**
    * Augment the basic actor data with additional dynamic data.
    */
@@ -453,123 +575,6 @@ export default class TwodsixActor extends Actor {
       shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
       shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
       shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
-    }
-  }
-  /** @override */
-  protected async _onCreate(data, options, userId) {
-    if (userId === game.user.id) {
-      if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
-        return; // Don't do anything if a duplicate
-      }
-
-      const oldRenderSheet = options.renderSheet;
-      options.renderSheet = false;
-      await super._onCreate(data, options, userId);
-
-      let isDefaultImg = false;
-      const changeData = {};
-      //console.log("onCreate Start", this);
-      switch (this.type) {
-        case "traveller":
-        case "animal":
-        case "robot":
-          await this.createUntrainedSkill();
-          Object.assign(changeData, {
-            "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
-            "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
-          });
-          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON ) {
-            isDefaultImg = true;
-            if (game.settings.get("twodsix", "defaultTokenSettings") && this.type === "traveller") {
-              Object.assign(changeData, {
-                "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-                "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
-                "token.sight": {
-                  "enabled": true,
-                  "visonMode": "basic",
-                  "brightness": 1
-                },
-                "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-                "token.bar1": {
-                  attribute: "hits"
-                }
-              });
-            }
-
-            let newImage = "";
-            if (this.type === "traveller") {
-              newImage = 'systems/twodsix/assets/icons/default_actor.png';
-            } else if (this.type === "animal") {
-              newImage = 'systems/twodsix/assets/icons/alien-bug.svg';
-            } else if (this.type === "robot") {
-              newImage = 'systems/twodsix/assets/icons/default_robot.svg';
-            } else {
-              newImage = foundry.documents.BaseActor.DEFAULT_ICON;
-            }
-
-            Object.assign(changeData, {
-              'img': newImage
-            });
-          }
-
-          if (this.type === "animal") {
-            Object.assign(changeData, {
-              'system.characteristics.education.label': 'Instinct',
-              'system.characteristics.education.displayShortLabel': 'INS',
-              'system.characteristics.socialStanding.label': 'Pack',
-              'system.characteristics.socialStanding.displayShortLabel': 'PAK'
-            });
-          }
-
-          if (game.settings.get("twodsix", "autoAddUnarmed")) {
-            await this.createUnarmedSkill();
-          }
-          break;
-        case "ship":
-          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            isDefaultImg = true;
-            Object.assign(changeData, {
-              'img': 'systems/twodsix/assets/icons/default_ship.png'
-            });
-          }
-          break;
-        case "vehicle":
-          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            isDefaultImg = true;
-            Object.assign(changeData, {
-              'img': 'systems/twodsix/assets/icons/default_vehicle.png'
-            });
-          }
-          break;
-        case "space-object":
-          if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
-            isDefaultImg = true;
-            Object.assign(changeData, {
-              'img': 'systems/twodsix/assets/icons/default_space-object.png'
-            });
-          }
-          break;
-      }
-      await this.update(changeData);
-
-      if (game.settings.get("twodsix", "useSystemDefaultTokenIcon") && isDefaultImg) {
-        await this.update({
-          'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
-        });
-      }
-
-      if ( oldRenderSheet ) {
-        this.sheet?.render(true, {action: "create", data: data});
-      }
-    }
-  }
-
-  protected async _onDelete() {
-    //Remove actor references from ship Positions
-    if (this.type === "traveller") {
-      if(this.id) {
-        deleteIdFromShipPositions(this.id);
-      }
     }
   }
 
@@ -1016,13 +1021,13 @@ export default class TwodsixActor extends Actor {
 
     //Define derived data keys that can have active effects
     const overrides = {};
-    const specialStatuses = new Map();
+    //const specialStatuses = new Map();
     if (!isPost) {
-      this.statuses ??= new Set();
+      /*this.statuses ??= new Set();
       // Identify which special statuses had been active
       for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
         specialStatuses.set(statusId, this.statuses.has(statusId));
-      }
+      }*/
       this.statuses.clear();
     }
 
@@ -1064,7 +1069,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //Apply special statuses that changed to active tokens
-    if (!isPost) {
+    /*if (!isPost) {
       let tokens;
       for ( const [statusId, wasActive] of specialStatuses ) {
         const isActive = this.statuses.has(statusId);
@@ -1075,7 +1080,7 @@ export default class TwodsixActor extends Actor {
           }
         }
       }
-    }
+    }*/
   }
 
   /**
