@@ -1,3 +1,10 @@
+## [4.24.6](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.5...v4.24.6) (2024-05-04)
+
+
+### Bug Fixes
+
+* initial untrained skill value ([#1564](https://github.com/xdy/twodsix-foundryvtt/issues/1564)) ([5f4a8a6](https://github.com/xdy/twodsix-foundryvtt/commit/5f4a8a6f4b603285f0cc1a2049d7a7261dd6bc94))
+
 ## [4.24.5](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.4...v4.24.5) (2024-05-01)
 
 
