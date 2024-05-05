@@ -127,7 +127,7 @@ export default class TwodsixActor extends Actor {
         }
       }
       if ( oldRenderSheet ) {
-        this.sheet?.render(true, {action: "create", data: data});
+        this.sheet?.render(true, {renderContext: `create${this.documentName}`, renderData: data}); //Not certain that these options are needed/corect
       }
     }
   }
