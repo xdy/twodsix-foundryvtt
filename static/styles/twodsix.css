@@ -3352,7 +3352,7 @@ option {
 .application .window-header {
   background-color: var(--s2d6-background-transparent);
   border-color: var(--s2d6-default-color);
-  color: var(--s2d6-light-color);
+  color: var(--s2d6-form-light);
   z-index: 99;
 }
 .window-app.twodsix.sheet.actor .window-header {
@@ -3830,7 +3830,7 @@ form .form-group.slim .form-fields > label {
 
 .standard-form .form-group > label,
 .application h1 {
-  color: var(--s2d6-default-color);
+  color: var(--s2d6-form-light);
 }
 
 .standard-form .form-group:hover > label {

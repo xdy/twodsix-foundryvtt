@@ -38,15 +38,15 @@ export default class TwodsixActor extends Actor {
           isDefaultImg = true;
           if (game.settings.get("twodsix", "defaultTokenSettings") && this.type === "traveller") {
             Object.assign(changeData, {
-              "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "token.sight": {
+              "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
+              "prototypeToken.sight": {
                 "enabled": true,
                 "visonMode": "basic",
                 "brightness": 1
               },
-              "token.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-              "token.bar1": {
+              "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+              "prototypeToken.bar1": {
                 attribute: "hits"
               }
             });
