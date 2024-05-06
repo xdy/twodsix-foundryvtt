@@ -73,7 +73,7 @@
     <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
             name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.RadProt'}}"/></span>
     <span class="bgi-secondary" data-tooltip='{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}'><label for="system.secondaryArmor.protectionTypes"><i class="fa-solid fa-shield-halved"></i>: </label>
-      <select class="protectionTypes" name="system.secondaryArmor.protectionTypes" multiple>{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</select>
+      <multi-select class="actor-sheet" name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</mulit-select>
     </span>
     <br>
   {{/if}}

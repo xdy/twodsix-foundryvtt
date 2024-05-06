@@ -472,7 +472,10 @@ h2 {
 
 .npc-bgi-stats {
   grid-area: npc-bgi-stats;
-  overflow-y: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .npc-notes-container {
@@ -545,7 +548,7 @@ h2 {
 .animal-content-container {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 21em 0.5fr 0.5fr;
+  grid-template-rows: 22em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -557,7 +560,7 @@ h2 {
 .animal-content-container-small {
   display: grid;
   grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 11.5em 10em 0.5fr 0.5fr;
+  grid-template-rows: 12em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -3835,4 +3838,16 @@ form .form-group.slim .form-fields > label {
 
 .standard-form .form-group:hover > label {
   color: var(--s2d6-light-color);
+}
+
+.tags.input-element-tags .tag {
+  border-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-background-nearly-opaque);
+}
+
+multi-select.actor-sheet {
+  flex-direction: row;
+}
+multi-select.actor-sheet select {
+  width: 2ch;
 }

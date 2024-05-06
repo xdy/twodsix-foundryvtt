@@ -24,8 +24,7 @@
 
       <div class="item-secondaryArmor">
         <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}</label>
-        <select class="protectionTypes" name="system.secondaryArmor.protectionTypes" multiple>{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</select>
-        <!-- <input class="form-input" id="system.secondaryArmor.protectionTypes" type="text" name="system.secondaryArmor.protectionTypes" value="{{system.secondaryArmor.protectionTypes}}"/> -->
+        <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</multi-select>
       </div>
 
       <div class="item-radiationProtection">
