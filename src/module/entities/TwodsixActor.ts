@@ -66,29 +66,6 @@ export default class TwodsixActor extends Actor {
           Object.assign(changeData, {
             'img': newImage
           });
-
-          //Add standard embedded items
-          const items = this.items.map(i => i.toObject());
-          let isUpdated = false;
-          const untrainedSkillData = this.createUntrainedSkillData();
-          if (untrainedSkillData) {
-            const item = new CONFIG.Item.documentClass(untrainedSkillData);
-            items.push(item.toObject());
-            isUpdated = true;
-            Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData['_id']});
-          }
-          if (game.settings.get("twodsix", "autoAddUnarmed")) {
-            const unarmedData = this.createUnarmedData();
-            if (unarmedData) {
-              const item = new CONFIG.Item.documentClass(unarmedData);
-              item.skill = untrainedSkillData['_id'];
-              items.push(item.toObject());
-              isUpdated = true;
-            }
-          }
-          if(isUpdated) {
-            this.updateSource({ items });
-          }
         }
 
         if (this.type === "animal") {
@@ -99,6 +76,30 @@ export default class TwodsixActor extends Actor {
             'system.characteristics.socialStanding.displayShortLabel': 'PAK'
           });
         }
+
+        //Add standard embedded items
+        const items = this.items.map(i => i.toObject());
+        let isUpdated = false;
+        const untrainedSkillData = this.createUntrainedSkillData();
+        if (untrainedSkillData) {
+          const item = new CONFIG.Item.documentClass(untrainedSkillData);
+          items.push(item.toObject());
+          isUpdated = true;
+          Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData['_id']});
+        }
+        if (game.settings.get("twodsix", "autoAddUnarmed")) {
+          const unarmedData = this.createUnarmedData();
+          if (unarmedData) {
+            unarmedData.system.skill = unarmedData.system.skill || untrainedSkillData?._id || "";
+            const item = new CONFIG.Item.documentClass(unarmedData);
+            items.push(item.toObject());
+            isUpdated = true;
+          }
+        }
+        if(isUpdated) {
+          this.updateSource({ items });
+        }
+
         break;
       }
       case "ship": {
@@ -695,7 +696,7 @@ export default class TwodsixActor extends Actor {
         "type": "weapon",
         "damage": game.settings.get("twodsix", "unarmedDamage") || "1d6",
         "quantity": 1,
-        "skill": this.getUntrainedSkill()?.id ?? "",
+        "skill": this.getUntrainedSkill()?.id || "",
         "equipped": "equipped",
         "damageType": "bludgeoning",
         "range": "Melee",
