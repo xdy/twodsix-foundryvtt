@@ -85,7 +85,7 @@ export default class TwodsixActor extends Actor {
           const item = new CONFIG.Item.documentClass(untrainedSkillData);
           items.push(item.toObject());
           isUpdated = true;
-          Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData['_id']});
+          Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData._id});
         }
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           const unarmedData = this.createUnarmedData();
@@ -1311,8 +1311,8 @@ export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise
       } else {
         const untrainedSkillData = actor.createUntrainedSkillData();
         if (untrainedSkillData) {
-          await this.createEmbeddedDocuments("Item", [untrainedSkillData]);
-          await this.update({"system.untrainedSkill": untrainedSkillData['_id']});
+          await actor.createEmbeddedDocuments("Item", [untrainedSkillData]);
+          await actor.update({"system.untrainedSkill": untrainedSkillData['_id']});
         }
       }
     }
