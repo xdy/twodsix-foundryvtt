@@ -29,7 +29,7 @@ export default class TwodsixActor extends Actor {
     switch (this.type) {
       case "traveller":
       case "animal":
-      case "robot":
+      case "robot": {
         Object.assign(changeData, {
           "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
           "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
@@ -66,6 +66,29 @@ export default class TwodsixActor extends Actor {
           Object.assign(changeData, {
             'img': newImage
           });
+
+          //Add standard embedded items
+          const items = this.items.map(i => i.toObject());
+          let isUpdated = false;
+          const untrainedSkillData = this.createUntrainedSkillData();
+          if (untrainedSkillData) {
+            const item = new CONFIG.Item.documentClass(untrainedSkillData);
+            items.push(item.toObject());
+            isUpdated = true;
+            Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData['_id']});
+          }
+          if (game.settings.get("twodsix", "autoAddUnarmed")) {
+            const unarmedData = this.createUnarmedData();
+            if (unarmedData) {
+              const item = new CONFIG.Item.documentClass(unarmedData);
+              item.skill = untrainedSkillData['_id'];
+              items.push(item.toObject());
+              isUpdated = true;
+            }
+          }
+          if(isUpdated) {
+            this.updateSource({ items });
+          }
         }
 
         if (this.type === "animal") {
@@ -77,7 +100,8 @@ export default class TwodsixActor extends Actor {
           });
         }
         break;
-      case "ship":
+      }
+      case "ship": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
           Object.assign(changeData, {
@@ -85,7 +109,8 @@ export default class TwodsixActor extends Actor {
           });
         }
         break;
-      case "vehicle":
+      }
+      case "vehicle": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
           Object.assign(changeData, {
@@ -93,7 +118,8 @@ export default class TwodsixActor extends Actor {
           });
         }
         break;
-      case "space-object":
+      }
+      case "space-object": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
           Object.assign(changeData, {
@@ -101,6 +127,7 @@ export default class TwodsixActor extends Actor {
           });
         }
         break;
+      }
     }
     await this.updateSource(changeData);
 
@@ -108,27 +135,6 @@ export default class TwodsixActor extends Actor {
       await this.updateSource({
         'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
       });
-    }
-  }
-
-  protected async _onCreate(data, options, userId) {
-    if (userId === game.user.id) {
-      if (this.name.includes(game.i18n.localize("DOCUMENT.CopyOf").split(" ").pop())) {
-        return; // Don't do anything if a duplicate
-      }
-
-      const oldRenderSheet = options.renderSheet;
-      options.renderSheet = false;
-      await super._onCreate(data, options, userId);
-      if (["traveller", "robot", "animal"].includes(this.type)) {
-        await this.createUntrainedSkill();
-        if (game.settings.get("twodsix", "autoAddUnarmed")) {
-          await this.createUnarmedSkill();
-        }
-      }
-      if ( oldRenderSheet ) {
-        this.sheet?.render(true, {renderContext: `create${this.documentName}`, renderData: data}); //Not certain that these options are needed/corect
-      }
     }
   }
 
@@ -661,14 +667,7 @@ export default class TwodsixActor extends Actor {
     return <TwodsixItem>this.items.get((<Traveller>this.system).untrainedSkill);
   }
 
-  public async createUntrainedSkill(): Promise<void> {
-    const untrainedSkill = await this.buildUntrainedSkill();
-    if (untrainedSkill) {
-      await this.update({"system.untrainedSkill": untrainedSkill['id']});
-    }
-  }
-
-  public async buildUntrainedSkill(): Promise<Skills | void> {
+  public createUntrainedSkillData(): any {
     if ((<Traveller>this.system).untrainedSkill) {
       if (this.items.get(this.system.untrainedSkill)) {
         return;
@@ -676,27 +675,17 @@ export default class TwodsixActor extends Actor {
     }
     const existingSkill:Skills = this.itemTypes.skills?.find(sk => sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained"));
     if (existingSkill) {
-      return existingSkill;
+      return;
     }
-    const data = {
-      "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
-      "type": "skills",
-      "system": {"characteristic": "NONE"},
-      "flags": {'twodsix': {'untrainedSkill': true}},
-      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
-    };
-
-    //const data1: Skills = <Skills><unknown>await ((<ActorSheet>this.sheet)._onDropItemCreate(data));
-    const data1 = await (this.createEmbeddedDocuments("Item", [data]));
-    return data1[0];
+    return buildUntrainedSkillData();
   }
 
-  public async createUnarmedSkill(): Promise<Skills | void> {
+  public createUnarmedData(): any {
     if (this.items?.getName(game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"))) {
       return;
     }
     const bandSetting = game.settings.get('twodsix', 'rangeModifierType');
-    const data = {
+    return {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
       "img": "systems/twodsix/assets/icons/unarmed.svg",
@@ -714,7 +703,6 @@ export default class TwodsixActor extends Actor {
         "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
       }
     };
-    await (this.createEmbeddedDocuments("Item", [data]));
   }
 
   public static resetUntrainedSkill(): void {
@@ -1320,8 +1308,23 @@ export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise
       if (existingSkill) {
         await actor.update({"system.untrainedSkill": existingSkill.id});
       } else {
-        await actor.createUntrainedSkill();
+        const untrainedSkillData = actor.createUntrainedSkillData();
+        if (untrainedSkillData) {
+          await this.createEmbeddedDocuments("Item", [untrainedSkillData]);
+          await this.update({"system.untrainedSkill": untrainedSkillData['_id']});
+        }
       }
     }
   }
+}
+
+function buildUntrainedSkillData(): any {
+  return {
+    "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
+    "type": "skills",
+    "_id": foundry.utils.randomID(),
+    "system": {"characteristic": "NONE"},
+    "flags": {'twodsix': {'untrainedSkill': true}},
+    "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
+  };
 }
