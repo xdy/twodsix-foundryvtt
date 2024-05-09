@@ -22,7 +22,7 @@ export function simplifyRollFormula(formula, { preserveFlavor=false } = {}):stri
 
   // Optionally strip flavor annotations.
   if ( !preserveFlavor ) {
-    roll.terms = Roll.parse(roll.formula.replace(RollTerm.FLAVOR_REGEXP, ""));
+    roll.terms = Roll.parse(roll.formula.replace(foundry.dice.terms.RollTerm.FLAVOR_REGEXP, ""));
   }
   // Perform arithmetic simplification on the existing roll terms.
   roll.terms = _simplifyOperatorTerms(roll.terms);
@@ -57,8 +57,8 @@ export function simplifyRollFormula(formula, { preserveFlavor=false } = {}):stri
 
 /**
  * A helper function to perform arithmetic simplification and remove redundant operator terms.
- * @param {RollTerm[]} terms  An array of roll terms.
- * @returns {RollTerm[]}      A new array of roll terms with redundant operators removed.
+ * @param {foundry.dice.terms.RollTerm[]} terms  An array of roll terms.
+ * @returns {foundry.dice.terms.RollTerm[]}      A new array of roll terms with redundant operators removed.
  */
 function _simplifyOperatorTerms(terms) {
   return terms.reduce((acc, term) => {
@@ -70,10 +70,10 @@ function _simplifyOperatorTerms(terms) {
       acc.push(term);
     // Replace consecutive "+ -" operators with a "-" operator.
     } else if ( (ops.has("+")) && (ops.has("-")) ) {
-      acc.splice(-1, 1, new OperatorTerm({ operator: "-" }));
+      acc.splice(-1, 1, new foundry.dice.terms.OperatorTerm({ operator: "-" }));
     // Replace double "-" operators with a "+" operator.
     } else if ( (ops.has("-")) && (ops.size === 1) ) {
-      acc.splice(-1, 1, new OperatorTerm({ operator: "+" }));
+      acc.splice(-1, 1, new foundry.dice.terms.OperatorTerm({ operator: "+" }));
     // Don't include "+" operators that directly follow "+", "*", or "/". Otherwise, add the term as is.
     } else if ( !ops.has("+") ) {
       acc.push(term);
@@ -101,9 +101,9 @@ function _simplifyNumericTerms(terms) {
     }
     // If the staticBonus is greater than 0, add a "+" operator so the formula remains valid.
     if ( staticBonus > 0 ) {
-      simplified.push(new OperatorTerm({ operator: "+"}));
+      simplified.push(new foundry.dice.terms.OperatorTerm({ operator: "+"}));
     }
-    simplified.push(new NumericTerm({ number: staticBonus} ));
+    simplified.push(new foundry.dice.terms.NumericTerm({ number: staticBonus} ));
   }
   return [...simplified, ...annotated];
 }
@@ -120,7 +120,7 @@ function _simplifyDiceTerms(terms) {
 
   // Split the unannotated terms into different die sizes and signs
   const diceQuantities = unannotated.reduce((obj, curr, i) => {
-    if ( curr instanceof OperatorTerm ) {
+    if ( curr instanceof foundry.dice.terms.OperatorTerm ) {
       return obj;
     }
     const key = `${unannotated[i - 1].operator}${curr.faces}`;
@@ -130,8 +130,8 @@ function _simplifyDiceTerms(terms) {
 
   // Add new die and operator terms to simplified for each die size and sign
   const simplified = Object.entries(diceQuantities).flatMap(([key, number]) => ([
-    new OperatorTerm({ operator: key.charAt(0) }),
-    new Die({ number, faces: parseInt(key.slice(1)) })
+    new foundry.dice.terms.OperatorTerm({ operator: key.charAt(0) }),
+    new foundry.dice.terms.Die({ number, faces: parseInt(key.slice(1)) })
   ]));
   return [...simplified, ...annotated];
 }
@@ -145,9 +145,9 @@ function _simplifyDiceTerms(terms) {
  */
 function _expandParentheticalTerms(terms) {
   terms = terms.reduce((acc, term) => {
-    if ( term instanceof ParentheticalTerm ) {
+    if ( term instanceof foundry.dice.terms.ParentheticalTerm ) {
       if ( term.isDeterministic ) {
-        term = new NumericTerm({ number: Roll.safeEval(term.term) });
+        term = new foundry.dice.terms.NumericTerm({ number: Roll.safeEval(term.term) });
       } else {
         const subterms = new Roll(term.term).terms;
         term = _expandParentheticalTerms(subterms);
@@ -162,23 +162,23 @@ function _expandParentheticalTerms(terms) {
 /* -------------------------------------------- */
 
 /**
- * A helper function to group terms into PoolTerms, DiceTerms, MathTerms, and NumericTerms.
- * MathTerms are included as NumericTerms if they are deterministic.
- * @param {RollTerm[]} terms  An array of roll terms.
+ * A helper function to group terms into PoolTerms, DiceTerms, FunctionTerms, and NumericTerms.
+ * FunctionTerms are included as NumericTerms if they are deterministic.
+ * @param {foundry.dice.terms.RollTerm[]} terms  An array of roll terms.
  * @returns {object}          An object mapping term types to arrays containing roll terms of that type.
  */
 function _groupTermsByType(terms) {
   // Add an initial operator so that terms can be rearranged arbitrarily.
-  if ( !(terms[0] instanceof OperatorTerm) ) {
-    terms.unshift(new OperatorTerm({ operator: "+" }));
+  if ( !(terms[0] instanceof foundry.dice.terms.OperatorTerm) ) {
+    terms.unshift(new foundry.dice.terms.OperatorTerm({ operator: "+" }));
   }
 
   return terms.reduce((obj, term, i) => {
     let type;
-    if ( term instanceof DiceTerm ) {
-      type = DiceTerm;
-    } else if ( (term instanceof MathTerm) && (term.isDeterministic) ) {
-      type = NumericTerm;
+    if ( term instanceof foundry.dice.terms.DiceTerm ) {
+      type = foundry.dice.terms.DiceTerm;
+    } else if ( (term instanceof foundry.dice.terms.FunctionTerm) && (term.isDeterministic) ) {
+      type = foundry.dice.terms.NumericTerm;
     } else {
       type = term.constructor;
     }
@@ -199,7 +199,7 @@ function _groupTermsByType(terms) {
  */
 function _separateAnnotatedTerms(terms) {
   return terms.reduce((obj, curr, i) => {
-    if ( curr instanceof OperatorTerm ) {
+    if ( curr instanceof foundry.dice.terms.OperatorTerm ) {
       return obj;
     }
     obj[curr.flavor ? "annotated" : "unannotated"].push(terms[i - 1], curr);
