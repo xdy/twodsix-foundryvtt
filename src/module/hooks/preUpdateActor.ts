@@ -15,9 +15,10 @@ Hooks.on('preUpdateActor', (actor:TwodsixActor, update:Record<string, any>) => {
   }
 
   // Update Finances
-  const financeDiff = {};
-  financeDiff.finances = update?.system?.finances ? foundry.utils.diffObject(actor.system._source.finances, update.system.finances) : {};
-  financeDiff.financeValues = update?.system?.financeValues ? foundry.utils.diffObject(actor.system._source.financeValues, update.system.financeValues) : {}; //v12 stopped passing diffferential
+  const financeDiff = {
+    finances: update?.system?.finances ? foundry.utils.diffObject(actor.system._source.finances, update.system.finances) : {},
+    financeValues: update?.system?.financeValues ? foundry.utils.diffObject(actor.system._source.financeValues, update.system.financeValues) : {} //v12 stopped passing diffferential
+  };
   if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
     updateFinances(actor, update, financeDiff);
   }

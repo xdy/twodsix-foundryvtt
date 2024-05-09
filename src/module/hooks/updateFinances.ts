@@ -3,11 +3,11 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 
-export function updateFinances(actor:TwodsixActor, update:Record<string, any>, financeDiff:any|undefined): void {
+export function updateFinances(actor:TwodsixActor, update:Record<string, any>, financeDiff:any): void {
   if (["traveller"].includes(actor.type)) {
-    if (Object.keys(financeDiff?.finances)?.length > 0) {
+    if (Object.keys(financeDiff.finances).length > 0) {
       updateFinanceValues(update, financeDiff);
-    } else if (Object.keys(financeDiff?.financeValues)?.length > 0) {
+    } else if (Object.keys(financeDiff.financeValues).length > 0) {
       updateFinanceText(actor, update, financeDiff);
     }
   }
@@ -67,7 +67,7 @@ export function parseLocaleNumber(stringNumber:string): number {
  * @returns {Record<any>} - object with keys num and units
  */
 export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
-  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.-]*)(?<sp>\s*)(?<units>.*?)$/);
+  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
   const parsedResult: RegExpMatchArray | null = re.exec(financeString);
   return parsedResult?.groups;
 }
