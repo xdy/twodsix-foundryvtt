@@ -3,19 +3,19 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 
-export function updateFinances(actor:TwodsixActor, update:Record<string, any>, systemDiff:any|undefined): void {
+export function updateFinances(actor:TwodsixActor, update:Record<string, any>, financeDiff:any|undefined): void {
   if (["traveller"].includes(actor.type)) {
-    if (systemDiff?.finances) {
-      updateFinanceValues(update, systemDiff);
-    } else if (systemDiff?.financeValues) {
-      updateFinanceText(actor, update, systemDiff);
+    if (Object.keys(financeDiff?.finances)?.length > 0) {
+      updateFinanceValues(update, financeDiff);
+    } else if (Object.keys(financeDiff?.financeValues)?.length > 0) {
+      updateFinanceText(actor, update, financeDiff);
     }
   }
 }
 
-function updateFinanceValues(update:Record<string, any>, systemDiff:any) {
+function updateFinanceValues(update:Record<string, any>, financeDiff:any) {
   const financeValueUpdates = {};
-  for (const financeField in systemDiff.finances) {
+  for (const financeField in financeDiff.finances) {
     if (financeField !== "financial-notes") {
       const parsedText = getParsedFinanceText(update.system.finances[financeField]);
       if (parsedText) {
@@ -27,12 +27,12 @@ function updateFinanceValues(update:Record<string, any>, systemDiff:any) {
   Object.assign(update.system, {financeValues: financeValueUpdates});
 }
 
-function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, systemDiff:any) {
+function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, financeDiff:any) {
   const financeTextUpdates = {};
-  for (const financeField in systemDiff.financeValues) {
+  for (const financeField in financeDiff.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
-    let newValue = systemDiff.financeValues[financeField];
-    const numberDigits = Math.floor(Math.log10(newValue)) + 1;
+    let newValue = financeDiff.financeValues[financeField];
+    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
     if (parsedText?.units) {
       newValue /= getMultiplier(parsedText.units);
     }
@@ -67,7 +67,7 @@ export function parseLocaleNumber(stringNumber:string): number {
  * @returns {Record<any>} - object with keys num and units
  */
 export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
-  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.]*)(?<sp>\s*)(?<units>.*?)$/);
+  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.-]*)(?<sp>\s*)(?<units>.*?)$/);
   const parsedResult: RegExpMatchArray | null = re.exec(financeString);
   return parsedResult?.groups;
 }

@@ -6,9 +6,19 @@ import { updateFinances } from "./updateFinances";
 import { updateHits } from "./updateHits";
 
 Hooks.on('preUpdateActor', (actor:TwodsixActor, update:Record<string, any>) => {
-  if (update?.system) {
-    const systemDiff = foundry.utils.diffObject(actor.system._source, update.system); //v12 stopped passing diffferential
-    updateHits(actor, update, systemDiff);
-    updateFinances(actor, update, systemDiff);
+  // Update Hits
+  if (update?.system?.characteristics) {
+    const charDiff = foundry.utils.diffObject(actor.system._source.characteristics, update.system.characteristics); //v12 stopped passing diffferential
+    if (Object.keys(charDiff).length > 0) {
+      updateHits(actor, update, charDiff);
+    }
+  }
+
+  // Update Finances
+  const financeDiff = {};
+  financeDiff.finances = update?.system?.finances ? foundry.utils.diffObject(actor.system._source.finances, update.system.finances) : {};
+  financeDiff.financeValues = update?.system?.financeValues ? foundry.utils.diffObject(actor.system._source.financeValues, update.system.financeValues) : {}; //v12 stopped passing diffferential
+  if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
+    updateFinances(actor, update, financeDiff);
   }
 });

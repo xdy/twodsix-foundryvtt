@@ -19,9 +19,9 @@ function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
   }, {value: 0, max: 0, lastDelta: 0});
 }
 
-export function updateHits(actor:TwodsixActor, update:Record<string, any>, systemDiff:any): void {
-  if (systemDiff?.characteristics && (["traveller", "animal", "robot"].includes(actor.type))) {
-    update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, systemDiff.characteristics);
+export function updateHits(actor:TwodsixActor, update:Record<string, any>, charDiff:any): void {
+  if (charDiff && (["traveller", "animal", "robot"].includes(actor.type))) {
+    update.system.hits = getCurrentHits(actor.type, (<Traveller>actor.system).characteristics, charDiff);
     Object.assign(update.system.hits, {lastDelta: actor.system.hits.value - update.system.hits.value});
     if (update.system.hits.lastDelta !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
       const appliedType = update.system.hits.lastDelta > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
