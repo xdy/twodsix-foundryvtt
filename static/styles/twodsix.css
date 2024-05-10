@@ -1624,15 +1624,6 @@ svg:hover {
   /* font-weight: bold; */
 }
 
-#joat-skill {
-  position: absolute;
-}
-
-#joat-skill-input {
-  height: 20px;
-  width: 25px;
-}
-
 .skill-top-row {
   display: flex;
   flex-direction: row-reverse;
@@ -1684,7 +1675,7 @@ a:hover, a.active {
   justify-self: center;
 }
 
-input.item-value-edit {
+input.item-value-edit, input.joat-skill-input {
   /*padding: initial;*/
   text-align: center;
   height: auto;
@@ -2396,7 +2387,7 @@ span.total-output {
   color: var(--s2d6-damage-red);
 }
 
-#ship-stat-red {
+input.power-current.red, input.available-weight.red {
   color: var(--s2d6-damage-red);
 }
 

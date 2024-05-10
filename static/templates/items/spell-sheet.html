@@ -11,7 +11,7 @@
           <th>
             <div class="item-name">
               <label for="name">{{localize "TWODSIX.Items.Spells.SpellName"}}</label>
-              <input id="name" name="name" type="text" value="{{name}}"/>
+              <input name="name" type="text" value="{{name}}"/>
             </div>
           </th>
         </tr>
@@ -19,38 +19,38 @@
     </div>
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
-      <input class="form-input" id = "system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+      <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
     <div class="item-lvl">
       <label for="system.value" class="resource-label rollable">{{localize "TWODSIX.Items.Skills.Level"}}</label>
-      <input class="form-input" id="system.value" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
+      <input class="form-input" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
     </div>
     <div class="item-circle">
       <label for="system.circle" class="resource-label">{{localize "TWODSIX.Items.Spells.CircleSchool"}}</label>
-      <input class="form-input" id="system.circle" type="text" name="system.circle" value="{{system.circle}}"/>
+      <input class="form-input" type="text" name="system.circle" value="{{system.circle}}"/>
     </div>
     <div class="item-range">
       <label class="resource-label">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
-      <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
+      <input class="form-input" type="text" name="system.range" value="{{system.range}}">
     </div>
     <div class="item-damage">
       <label class="resource-label" for="system.damage">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
-      <input class="form-input" id="system.damage" type="text" name="system.damage" value="{{system.damage}}">
+      <input class="form-input"type="text" name="system.damage" value="{{system.damage}}">
     </div>
     {{#if settings.ShowDamageType}}
       <div class="item-damageType">
         <label class="resource-label" for="system.damageType">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-        <select id="system.damageType" name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
+        <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
       </div>
     {{/if}}
     {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}
     <div class="item-duration">
       <label class="resource-label">{{localize "TWODSIX.Items.Spells.Duration"}}</label>
-      <input class="form-input" id="system.duration" type="text" name="system.duration" value="{{system.duration}}">
+      <input class="form-input" type="text" name="system.duration" value="{{system.duration}}">
     </div>
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
-      <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+      <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>

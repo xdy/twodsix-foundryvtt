@@ -18,7 +18,7 @@
         {{/iff}}
 
         {{#iff setting.htmlType "===" "Select"}}
-        <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
+        <select name="{{key}}" value="{{setting.value}}">
           {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
         </select>
         {{/iff}}

@@ -3,12 +3,12 @@
   {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-description.html"}}
   <div class="item-handling">
     <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
-    <input class="form-input" id="system.handlingModifiers" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
+    <input class="form-input" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
   </div>
   {{#if settings.ShowRangeBandAndHideRange}}
     <div class="item-range">
       <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
-      <select id="system.rangeBand" name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
+      <select name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
     </div>
     {{#iff system.rangeBand '===' 'custom'}}
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-customCTModifier.html"}}
@@ -16,12 +16,12 @@
   {{else}}
     <div class="item-range">
       <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
-      <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
+      <input class="form-input" type="text" name="system.range" value="{{system.range}}">
     </div>
     {{#unless disableMeleeRangeDM}}
     <div class="item-range">
       <label class="resource-label" for="system.meleeRangeModifier">{{localize "TWODSIX.Items.Weapon.MeleeRangeModifier"}}</label>
-      <input class="form-input" id="system.meleeRangeModifier" type="text" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
+      <input class="form-input" type="text" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
     </div>
     {{/unless}}
   {{/if}}
@@ -30,7 +30,7 @@
 
   <div class="item-descr">
     <label class="resource-label" for="system.description">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
-    <div contenteditable="true" id="system.description" data-edit="system.description">{{{system.description}}}</div>
+    <div contenteditable="true" name="system.description" data-edit="system.description">{{{system.description}}}</div>
   </div>
   {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
   {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}

@@ -15,18 +15,18 @@
       {{> "systems/twodsix/templates/items/parts/item-type.html"}}
       <div class="item-tl">
         <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
-        <input class="form-input" id="system.techLevel" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+        <input class="form-input" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
       </div>
 
       <div class="item-price">
         <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
-        <input class="form-input" id="system.price" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+        <input class="form-input" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
       </div>
       {{#if owner}}
         {{#iff owner.type "!==" "ship"}}
         <div class="item-type">
           <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
-            <select class="form-input" name="system.equipped" id="system.equipped">
+            <select class="form-input" name="system.equipped" >
               {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
             </select>
         </div>
@@ -37,7 +37,7 @@
 
       <div class="item-descr">
         <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-        <div contenteditable="true" id="system.description" data-edit="system.description">{{{system.description}}}</div>
+        <div contenteditable="true" name="system.description" data-edit="system.description">{{{system.description}}}</div>
       </div>
       {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     </div>

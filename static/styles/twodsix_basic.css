@@ -1158,20 +1158,10 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   width: fit-content;
 }
 
-#joat-skill {
-  position: absolute;
-}
-
-#joat-skill-input {
-  height: auto;
-  /* width: 4ch; */
-  width: 2em !important;
-}
-
 .skill-top-row {
   display: flex;
   flex-direction: row-reverse;
-  margin-right: 20px;
+  margin-right: 12px;
 }
 
 .add-skill {
@@ -1185,7 +1175,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill {
   /* padding: 0.1em 0 0.1em 0.1em; */
-  width: 34em;
+  width: 35em;
 }
 
 /*a:hover, a.active {
@@ -1213,7 +1203,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   justify-self: center;
 }
 
-input.item-value-edit {
+input.item-value-edit, input.joat-skill-input {
   /*padding: initial;*/
   text-align: center;
   height: auto;
@@ -1266,7 +1256,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 2em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
+  grid-template-columns: 2em 13em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1853,7 +1843,7 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
-#ship-stat-red {
+input.power-current.red {
   color: var(--s2d6-damage-red);
 }
 

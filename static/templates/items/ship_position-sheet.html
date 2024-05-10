@@ -2,11 +2,11 @@
   <div class="item-sheet">
     <div class="item-data">
       <label for="name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}</label>
-      <input class="form-input" id="name" type="text" name="name" value="{{name}}" />
+      <input class="form-input" type="text" name="name" value="{{name}}" />
     </div>
     <div class="item-data">
       <label for="system.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}</label>
-      <input class="form-input" id="system.order" type="number" name="system.order" value="{{system.order}}" data-dtype="Number" />
+      <input class="form-input" type="number" name="system.order" value="{{system.order}}" data-dtype="Number" />
     </div>
     {{#if hasShipActor}}
     <div class="form-section">

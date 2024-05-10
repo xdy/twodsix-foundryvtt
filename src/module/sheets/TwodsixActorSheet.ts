@@ -139,9 +139,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   public activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    html.find('#joat-skill-input').on('input', this._updateJoatSkill.bind(this));
-    html.find('#joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
-    html.find('#joat-skill-input').on('click', (event) => {
+    html.find('.joat-skill-input').on('input', this._updateJoatSkill.bind(this));
+    html.find('.joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
+    html.find('.joat-skill-input').on('click', (event) => {
       $(event.currentTarget).trigger("select");
     });
 

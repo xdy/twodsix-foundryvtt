@@ -1,27 +1,27 @@
 <div class="item-qty">
   <label class="resource-label" for="system.quantity">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
-  <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+  <input class="form-input" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
 </div>
 
 <div class="item-weight">
   <label class="resource-label" for="system.weight">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
-  <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+  <input class="form-input" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
 </div>
 
 {{#if settings.ShowLawLevel}}
   <div class="item-lawLevel">
     <span class="resource-label" for="system.lawLevel">{{localize "TWODSIX.Items.Weapon.lawLevel"}}</span>
-    <input class="form-input" id="system.lawLevel" type="text" name="system.lawLevel" value="{{system.lawLevel}}">
+    <input class="form-input" type="text" name="system.lawLevel" value="{{system.lawLevel}}">
   </div>
 {{/if}}
 
 {{#if settings.ShowWeaponType}}
   <div class="item-weaponType">
     <label class="resource-label" for="system.weaponType">{{localize "TWODSIX.Items.Weapon.weaponType"}}</label>
-    <input class="form-input" id="system.weaponType" type= "text" name="system.weaponType" value="{{system.weaponType}}">
+    <input class="form-input" type= "text" name="system.weaponType" value="{{system.weaponType}}">
   </div>
 {{/if}}
 <div class="item-features">
   <label class="resource-label" for="system.features">{{localize "TWODSIX.Items.Weapon.Features"}}</label>
-  <input class="form-input" id="system.features" type="text" name="system.features" value="{{system.features}}">
+  <input class="form-input" type="text" name="system.features" value="{{system.features}}">
 </div>

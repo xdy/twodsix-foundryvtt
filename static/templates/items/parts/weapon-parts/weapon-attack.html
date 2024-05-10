@@ -1,24 +1,24 @@
 <div class="item-damage">
   <label class="resource-label" for="system.damage">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
-  <input class="form-input" id="system.damage" type="text" name="system.damage" value="{{system.damage}}">
+  <input class="form-input" type="text" name="system.damage" value="{{system.damage}}">
 </div>
 
 <div class="item-damage">
   <label class="resource-label" for="system.armorPiercing" >{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
-  <input class="form-input" id="system.armorPiercing" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1">
+  <input class="form-input" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" step="1">
 </div>
 
 {{#if settings.ShowDamageType}}
   <div class="item-damageType">
     <label class="resource-label" for="system.damageType">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-    <select id="system.damageType" name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
+    <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
   </div>
 {{/if}}
 
 {{#if settings.ShowDoubleTap}}
   <div class="item-doubleTap">
     <label class="resource-label" for="system.doubleTap">{{localize "TWODSIX.Items.Weapon.doubleTap"}}</label>
-    <input type="checkbox" class="checkbox" id="system.doubleTap" name="system.doubleTap" {{checked system.doubleTap}} data-dtype="Boolean"/>
+    <input type="checkbox" class="checkbox" name="system.doubleTap" {{checked system.doubleTap}} data-dtype="Boolean"/>
   </div>
 {{/if}}
 
@@ -26,7 +26,7 @@
 {{#iff (not system.doubleTap) "||" (not settings.ShowDoubleTap)}}
     <div class="item-rateOfFire">
       <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
-      <input class="form-input" id="system.rateOfFire" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
+      <input class="form-input" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
     </div>
 {{/iff}}
 {{/if}}
@@ -34,7 +34,7 @@
 {{#if settings.ShowRecoil}}
   <div class="item-recoil">
     <label class="resource-label" for="system.recoil">{{localize "TWODSIX.Items.Weapon.recoil"}}</label>
-    <input type="checkbox" class="checkbox" name="system.recoil" id="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
+    <input type="checkbox" class="checkbox" name="system.recoil" {{checked system.recoil}} data-dtype="Boolean" />
   </div>
 {{/if}}
 {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}

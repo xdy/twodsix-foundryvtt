@@ -1,38 +1,38 @@
 <div class="item-subtype">
   <label for="system.subtype" class="resource-label">{{localize "TWODSIX.Items.Component.ComponentType"}}: </label>
-  <select id="system.subtype" name="system.subtype">
+  <select name="system.subtype">
     {{selectOptions config.ComponentTypes selected = system.subtype localize = true}}
   </select>
 </div>
 
 <div class="item-tl">
   <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
-  <input class="form-input" id="system.techLevel" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+  <input class="form-input" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
 </div>
 
 {{#iff system.subtype "!==" "cargo" }}
   {{#if settings.showComponentRating}}
     <div class="item-tl">
         <label for="system.rating" class="resource-label">{{localize "TWODSIX.Items.Component.rating"}}</label>
-        <input class="form-input" id="system.rating" type="text" name="system.rating" value="{{system.rating}}"/>
+        <input class="form-input" type="text" name="system.rating" value="{{system.rating}}"/>
     </div>
   {{/if}}
   {{#if settings.showComponentDM}}
     <div class="item-data">
       <label for="system.rollModifier" class="resource-label">{{localize "TWODSIX.Items.Component.RollModifier"}}</label>
-      <input class="form-input" id="system.rollModifier" type="text" name="system.rollModifier" value="{{system.rollModifier}}"/>
+      <input class="form-input" type="text" name="system.rollModifier" value="{{system.rollModifier}}"/>
     </div>
   {{/if}}
 
   <div class="item-skill">
     <label for="system.status" class="resource-label">{{localize "TWODSIX.Items.Component.status"}}:</label>
-    <select class="select-color" id="system.status" name="system.status" value={{system.status}}>
+    <select class="select-color" name="system.status" value={{system.status}}>
       {{selectOptions config.ComponentStates selected = system.status localize = true}}
     </select>
   </div>
   <div class="item-hits">
     <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.SustainedHits"}}</label>
-    <input class="form-input" id="system.hits" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>
+    <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>
   </div>
 
   {{#iff system.subtype "!==" "vehicle"}}
@@ -40,7 +40,7 @@
   {{#iff system.subtype "!==" "fuel"}}
     <div class = "item-hardened">
       <label for="system.hardened" class="resource-label short-label">{{localize "TWODSIX.Items.Component.Hardened"}}</label>
-      <input type="checkbox" class="checkbox" name="system.hardened" id="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
+      <input type="checkbox" class="checkbox" name="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
     </div>
   {{/iff}}{{/iff}}{{/iff}}
 {{/iff}}
@@ -48,18 +48,18 @@
 {{#iff system.subtype "===" "fuel" }}
   <div class="item-refined">
     <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
-    <input type="checkbox" class="checkbox" name="system.isRefined"  id="system.isRefined" {{checked system.isRefined}} data-dtype="Boolean" />
+    <input type="checkbox" class="checkbox" name="system.isRefined"  {{checked system.isRefined}} data-dtype="Boolean" />
   </div>
 {{/iff}}
 {{#iff system.subtype "===" "computer" }}
   <div class="item-data">
     <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}</label>
-    <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+    <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
   </div>
 {{/iff}}
 {{#iff system.subtype "===" "software" }}
   <div class="item-data">
     <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
-    <input class="form-input" id="system.bandwidth" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
+    <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
   </div>
 {{/iff}}

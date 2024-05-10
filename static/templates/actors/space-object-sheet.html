@@ -13,15 +13,15 @@
         <!-- TL -->
         <div class="flexrow space-object-data">
           <label for="system.techLevel" class="flexlabel">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
-          <input class="form-input object-tl" id="system.techLevel" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+          <input class="form-input object-tl" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
         </div>
         <!-- Count -->
         <div class="flexrow space-object-data">
           <span class="flexlabel">{{localize "TWODSIX.Items.Consumable.Count"}}</span>
             <div>
-              <input class="object-count-value" id="system.count.value" style="width: calc(50% - 8px);" name="system.count.value" type="number" value="{{system.count.value}}" data-dtype="Number" step="1" min="0"/>
+              <input class="object-count-value" style="width: calc(50% - 8px);" name="system.count.value" type="number" value="{{system.count.value}}" data-dtype="Number" step="1" min="0"/>
               /
-              <input class="object-count-max" id="system.count.max" style="width: calc(50% - 8px);" name="system.count.max" type="number" value="{{system.count.max}}" data-dtype="Number" step="1" min="0"/>
+              <input class="object-count-max" style="width: calc(50% - 8px);" name="system.count.max" type="number" value="{{system.count.max}}" data-dtype="Number" step="1" min="0"/>
             </div>
         </div>
         <!--Features-->
@@ -57,7 +57,7 @@
         {{#if settings.usePDFPager}}
           <div class="item-reference">
             <a class="open-link flexlabel">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-            <input class="form-input" id="source" type="text" name="system.docReference" value="{{system.docReference}}"/>
+            <input class="form-input" type="text" name="system.docReference" value="{{system.docReference}}"/>
           </div>
         {{else}}
           {{#if system.pdfReference.href}}
