@@ -411,6 +411,7 @@ form .form-group span.units {
 
 .app.window-app.twodsix.sheet.actor .window-content {
   overflow: hidden;
+  /* height: -webkit-fill-available; */
 }
 
 .app.sidebar-popout .window-content {
@@ -429,7 +430,8 @@ h2 {
 
 .content-container {
   display: grid;
-  grid-template-columns: 297px 493px;
+  grid-template-columns: 1.2fr 2fr;
+  grid-template-rows: 1fr;
   gap: 1px 1px;
   position: relative;
   top: -34px;
@@ -837,6 +839,9 @@ h2 {
   left: 8px;
   position: absolute;
   z-index: 0;
+  /* object-fit: contain; */
+  /* width: -webkit-fill-available; */
+  /* overflow: hidden; */
 }
 
 .character-info {
@@ -851,17 +856,19 @@ h2 {
   pointer-events: none;
   margin-top: 21px;
   margin-left: 17px;
+  /* width: -webkit-fill-available; */
 }
 
 .character-photo {
-  margin-top: 32px;
-  margin-left: 30px;
-  position: absolute;
-  width: 270px;
-  height: 273px;
+  margin-top: 1.5ch;
+  /* margin-left: 30px; */
+  /* position: absolute; */
+  /* width: 270px; */
+  /* height: 273px; */
   text-align: center;
-  z-index: 0;
+  /* z-index: 0; */
   object-fit: contain;
+  /* height: auto; */
 }
 
 .character-photo img {
@@ -876,8 +883,8 @@ h2 {
 
 .status-icons {
   position: absolute;
-  left: 15px;
-  top: 15px;
+  left: 5.5ch;
+  top: 5.5ch;
   z-index: 1;
   flex-direction: column;
   display: flex;
@@ -885,8 +892,8 @@ h2 {
   height: 90%;
 }
 .condition-icon {
-  height: 20px;
-  width: 20px;
+  height: auto;
+  width: 3ch;
   background-color: var(--s2d6-background-opaque);
 }
 
@@ -905,12 +912,12 @@ h2 {
 }
 
 .character-name {
-  position: relative;
-  margin-top: 305px;
+  /* position: absolute; */
+  /* margin-top: 25.7em; */
   text-align: center;
   z-index: 6;
-  left: 32px;
-  width: 262px;
+  left: 1.5ch;
+  width: -webkit-fill-available;
 }
 
 .character-name .npc,  .character-name .vehicle {
@@ -1138,7 +1145,7 @@ span.bgi-charEdit {
 }
 
 .character-characteristics {
-  width: 252px;
+  width: 21rem;
   top: 478px;
   left: 39px;
   position: absolute;
@@ -1402,6 +1409,7 @@ svg:hover {
 
 .character-tabs-info {
   background-color: var(--s2d6-background-transparent);
+  height: auto;
 }
 
 .skill-tab, .item.skill-tab {
@@ -1493,8 +1501,8 @@ a.actor-notes-tab.active {
 }*/
 
 .tab.inventory, .tab.actor-notes {
-  margin-top: 27px;
-  height: 549px;
+  margin-top: 2ch;
+  height: -webkit-fill-available;
   overflow: auto;
   padding-left: 8px;
 }
@@ -1707,7 +1715,7 @@ input.item-value-edit {
 
 .tab.skills {
   top: 34px;
-  height: 535px;
+  height: -webkit-fill-available;
   overflow-x: auto;
   padding-left: 4px;
 }
@@ -1993,7 +2001,7 @@ span.total-output {
 
 .tab.info {
   margin-top: 28px;
-  height: 548px;
+  /* height: 548px; */
   overflow: auto;
   padding-left: 10px;
 }
@@ -3351,10 +3359,11 @@ option {
   z-index: 99;
 }
 .window-app.twodsix.sheet.actor .window-header {
-  padding-right: 29px;
-  padding-left: 30px;
-  padding-top: 7px;
-  line-height: 22px;
+  padding-right: 9ch;
+  padding-left: 6ch;
+  padding-top: 1.5ch;
+  line-height: 2ch;
+  border: none;
   /* justify-content: space-between; */
   /* align-self: center; */
 }
@@ -3406,8 +3415,8 @@ option {
 }
 
 div.app.window-app.twodsix.sheet.actor header a.close {
-  padding-left: 42px;
-  padding-right: 24px;
+  padding-left: 6ch;
+  padding-right: 2ch;
 }
 
 div.app.window-app.minimized.twodsix.sheet.actor header a.close {
