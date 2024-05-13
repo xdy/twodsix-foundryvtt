@@ -277,7 +277,7 @@ table tr:nth-child(even) {
   width: 96%;
 }
 .sheet nav.sheet-tabs {
-  height: 3ch;
+  height: 100%;
   /* flex: 0 0 23px !important; */
   /* margin: 0 0 !important; */
   /* line-height: 2ch !important; */
@@ -289,7 +289,7 @@ table tr:nth-child(even) {
   margin-left: 3%;
   padding-left: 1.5ch;
   overflow: hidden;
-  top: -1px;
+  /* top: -1px; */
   z-index: 10;
   width: 90%;
   flex-direction: row;
@@ -304,11 +304,8 @@ table tr:nth-child(even) {
   justify-content: center;
   /* height: -webkit-fill-available; */
   /* position: relative; */
-  top: -53%;
-  position: static;
-}
-
-.character-tabs {
+  top: -15%;
+  position: relative;
 }
 
 .sheet nav.sheet-tabs .item {
@@ -456,7 +453,7 @@ h2 {
   grid-template-columns: 35% 63%;
   /* gap: 1px 1px; */
   position: absolute;
-  top: 4.5ch;
+  /* top: 5%; */
   height: 100%;
   /* left: 7%; */
   grid-template-areas:
@@ -468,7 +465,7 @@ h2 {
   /* flex-direction: row; */
   /* flex-wrap: nowrap; */
   justify-content: space-between;
-  grid-template-rows: 4% 41% 5% 19% 23%;
+  grid-template-rows: 4% 40% 4.7% 19.3% 23%;
   width: -webkit-fill-available;
 }
 
@@ -1005,7 +1002,7 @@ h2 {
   font-size: 2ch;
   z-index: 9;
   color: var(--s2d6-default-color);
-  overflow: hidden;
+  overflow: hidden auto;
   grid-area: character-bgi;
 }
 
@@ -1213,7 +1210,7 @@ span.bgi-charEdit {
   /* left: 39px; */
   /* position: absolute; */
   z-index: 6;
-  height: 100%;
+  height: 98%;
   color: var(--s2d6-default-color);
   font-size: 2ch;
   display: flex;
@@ -1223,9 +1220,9 @@ span.bgi-charEdit {
   grid-area: character-characteristics;
   overflow: auto hidden;
   margin-left: 7%;
-  margin-top: 1ch;
+  /* padding-top: 1ch; */
   :;
-  gap: 2ch 0;
+  gap: 1ch 0;
 }
 
 .character-characteristics.atom {
@@ -1241,10 +1238,10 @@ span.bgi-charEdit {
 }
 
 .character-characteristics.wide {
-  margin-left: 8%;
-  margin-top: 2%;
+  /* margin-left: 8%; */
+  /* margin-top: 2%; */
   grid-area: auto;
-  gap: 3ch 1ch;
+  gap: 1ch 1ch;
   grid-area: character-characteristics;
   height: 100%;
 }
@@ -1258,9 +1255,9 @@ span.bgi-charEdit {
 .stat {
   /*background-image: url(../assets/actor/Stat-1.svg);*/
   /*background-size: cover !important;*/
-  height: 7ch;
+  height: 8.5ch;
   width: 8ch;
-  position: relative;
+  /* position: relative; */
   /* margin-bottom: 15px; */
 }
 
@@ -1296,9 +1293,9 @@ span.edit-char-toggle {
 }
 
 span.stat-name {
-  position: absolute;
-  left: 0.7em;
-  top: -1.1em;
+  /* position: relative; */
+  /* left: 0.7em; */
+  /* top: -1.1em; */
   /* font-size: 1em; */
   /* display: block; */
   /*width: 65%;*/
@@ -1341,7 +1338,7 @@ input.stat-name {
 
 input.stat-name, input.special-name {
   position: relative;
-  top: -8.8ch;
+  /* top: -8.8ch; */
   /* font-size: 1.1em; */
   /* display: block; */
   width: 90%;
@@ -1351,7 +1348,7 @@ input.stat-name, input.special-name {
 }
 
 input.special-name {
-  top: -9.8ch;
+  top: 0.2ch;
 }
 
 .stat img {
@@ -1363,7 +1360,7 @@ input.special-name {
 }
 
 .special {
-  height: 7ch;
+  height: 9.5ch;
   width: 6ch;
   /* background-size: cover; */
 }
@@ -1392,7 +1389,7 @@ input.special-name {
 }*/
 
 span.special-name {
-  position: relative;
+  /* position: relative; */
   top: -5.2em;
   cursor: pointer;
   display: inline-block;
@@ -1401,11 +1398,11 @@ span.special-name {
 }
 
 span.stat-ability {
-  position: absolute;
+  position: relative;
   margin: -0.3em;
   /* position: relative; */
   left: 1.8ch;
-  top: 1.1ch;
+  top: -6ch;
 }
 
 input[data-tooltip *="("] {
@@ -1419,9 +1416,9 @@ span.stat-ability-table {
 
 span.stat-modifier {
   margin: -6px;
-  position: absolute;
-  left: 5.2ch;
-  top: 1.1ch;
+  position: relative;
+  left: 3.8ch;
+  top: -6ch;
 }
 span.stat-modifier-table {
   text-align: center;
@@ -1435,9 +1432,9 @@ span.stat-ability-table input, span.stat-modifier-table input {
 }
 
 span.stat-damage {
-  position: absolute;
-  top: 3.2ch;
-  left: 3ch;
+  position: relative;
+  top: -3.5ch;
+  left: 0.1ch;
 }
 
 span.stat-damage-table {
@@ -1463,7 +1460,7 @@ span.stat-damage input, span.special-damage input {
 
 span.special-ability {
   position: relative;
-  top: -9.5ch;
+  top: -7.2ch;
   left: 1.4ch;
 }
 
@@ -1471,13 +1468,13 @@ span.special-modifier {
   margin: -6px;
   position: relative;
   left: 1.5ch;
-  top: -7.6ch;
+  top: -5.6ch;
 }
 
 span.special-damage {
   position: relative;
-  left: 1.5ch;
-  top: -8.8ch;
+  left: 1.4ch;
+  top: -6.8ch;
 }
 
 svg:hover {
@@ -1576,7 +1573,7 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active
 a.actor-notes-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
-  background-color: unset !important;
+  /* background-color: unset !important; */
 }
 
 a.actor-notes-tab.active {
@@ -1938,7 +1935,7 @@ span.total-output {
 
 .finances-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 47% 53%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 1px 1px;
   grid-template-areas:
@@ -1960,8 +1957,8 @@ span.total-output {
 .financial-notes div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   /* width: 14.8em; */
-  width: 221px;
-  min-height: 356px;
+  width: 98%;
+  min-height: 94%;
   border-radius: 0;
   overflow-y: auto;
   padding: 0.2em;
@@ -2041,8 +2038,8 @@ span.total-output {
   mask-image: url(../assets/actor/header.svg);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  height: 21px;
-  width: 207px;
+  height: 2.2ch;
+  width: 39ch;
   display: block;
   color: var(--s2d6-item-active);
   font-weight: bold;
@@ -3007,7 +3004,7 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .items-list {
   position: relative;
-  top: 3em;
+  top: 2em;
 }
 
 .item.item-list {
@@ -3886,8 +3883,9 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 30px 130px 130px 100px 60px;
-  grid-template-areas: '. . . .';
+  grid-template-columns: 3ch 17ch 14ch 100px 7ch;
+  grid-template-areas:
+    '. . . .';
   padding: inherit;
   align-items: center;
   grid-gap: 4px 2px;

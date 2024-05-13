@@ -3,7 +3,6 @@
   {{#with ../actor as |actor|}}
   {{#with (lookup actor.system.characteristics key) as |char|}}
     <div  class="stat {{key}}" data-characteristic="{{key}}">
-      {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
       {{#if actor.system.characteristicEdit}}
       <input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
         class="stat-name" value="{{char.displayShortLabel}}" maxlength="4"/>
@@ -12,6 +11,7 @@
           <i class="fa-solid fa-dice" alt="d6"></i>{{char.displayShortLabel}}
         </span>
       {{/if}}
+      {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.html"}}
       <span class="stat-ability" ><input type="number" min="0" name="system.characteristics.{{key}}.value" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
                                         data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
                                         placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
