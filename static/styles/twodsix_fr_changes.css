@@ -21,22 +21,6 @@
   width: 15ch;
 }
 
-.info-tab {
-  width: 75px;
-}
-
-.item-tab {
-  width: 98px;
-}
-
-.skill-tab {
-  width: 110px;
-}
-
-.effects-tab {
-  width: 80px;
-}
-
 .items-traits {
   grid-template-columns: 13em 5em 12em 3em;
 }

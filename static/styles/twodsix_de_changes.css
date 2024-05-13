@@ -74,10 +74,6 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 	margin-left: 2px;
 }
 
-.skill-tab, .item.skill-tab {
-  width: 104px;
-}
-
 .add-skill {
   width: 14ch;
 }
