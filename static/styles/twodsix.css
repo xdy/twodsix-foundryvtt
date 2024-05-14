@@ -1007,11 +1007,11 @@ h2 {
 }
 
 .character-bgi-std {
-  margin-left: 34px;
+  margin-left: 7%;
   /* position: relative; */
   margin-top: 4px;
-  width: 100%;
-  height: 96%;
+  width: 94%;
+  height: 97%;
   font-size: 2ch;
   z-index: 9;
   color: var(--s2d6-default-color);
