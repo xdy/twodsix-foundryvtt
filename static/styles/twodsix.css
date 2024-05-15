@@ -279,7 +279,7 @@ table tr:nth-child(even) {
 .sheet nav.sheet-tabs {
   height: 90%;
   /* flex: 0 0 23px !important; */
-  margin: 0 0 !important;
+  margin: 0 !important;
   /* line-height: 2ch !important; */
   /* bottom: 5% !important; */
   /* margin-bottom: 1em; */
@@ -874,7 +874,6 @@ h2 {
   overflow: hidden;
   height: 100%;
   /* max-width: 99%; */
-  height: 100%;
   aspect-ratio: auto;
 }
 
@@ -982,13 +981,11 @@ h2 {
 
 .character-name input[type='text'] {
   background-color: transparent;
-  /* position: relative; */
-  /* width: 15.55em; */
   font-size: larger;
   text-align: center;
   color: var(--s2d6-default-color);
   border: none;
-  height: 4ch;
+  height: 100%;
 }
 
 .character-bgi {
@@ -996,7 +993,6 @@ h2 {
   /* position: relative; */
   margin-top: 2px;
   width: -webkit-fill-available;
-  /* height: 100%; */
   font-size: 2ch;
   z-index: 9;
   color: var(--s2d6-default-color);
@@ -1237,7 +1233,6 @@ span.bgi-charEdit {
 .character-characteristics.wide {
   /* margin-left: 8%; */
   /* margin-top: 2%; */
-  grid-area: auto;
   gap: 1ch 1ch;
   grid-area: character-characteristics;
   height: 100%;
@@ -3887,7 +3882,7 @@ input[type="text"].color {
     '. . . .';
   padding: inherit;
   align-items: center;
-  grid-gap: 4px 4px;
+  grid-gap: 4px;
   min-height: 4ch;
 }
 
