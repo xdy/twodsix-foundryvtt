@@ -433,13 +433,13 @@ export default class TwodsixActor extends Actor {
     }
 
     function updateShipData(shipActor): void {
-      shipActor.system.shipStats.power.value = Math.round(calcShipStats.power.used);
-      shipActor.system.shipStats.power.max = Math.round(calcShipStats.power.max);
-      shipActor.system.reqPower.systems = Math.round(calcShipStats.power.systems);
-      shipActor.system.reqPower["m-drive"] = Math.round(calcShipStats.power.mDrive);
-      shipActor.system.reqPower["j-drive"] = Math.round(calcShipStats.power.jDrive);
-      shipActor.system.reqPower.sensors = Math.round(calcShipStats.power.sensors);
-      shipActor.system.reqPower.weapons = Math.round(calcShipStats.power.weapons);
+      shipActor.system.shipStats.power.value = roundToMaxDecimals(calcShipStats.power.used, 1);
+      shipActor.system.shipStats.power.max = roundToMaxDecimals(calcShipStats.power.max, 1);
+      shipActor.system.reqPower.systems = roundToMaxDecimals(calcShipStats.power.systems, 1);
+      shipActor.system.reqPower["m-drive"] = roundToMaxDecimals(calcShipStats.power.mDrive, 1);
+      shipActor.system.reqPower["j-drive"] = roundToMaxDecimals(calcShipStats.power.jDrive, 1);
+      shipActor.system.reqPower.sensors = roundToMaxDecimals(calcShipStats.power.sensors, 1);
+      shipActor.system.reqPower.weapons = roundToMaxDecimals(calcShipStats.power.weapons, 1);
 
       shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
       shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
