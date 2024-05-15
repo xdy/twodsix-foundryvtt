@@ -277,35 +277,34 @@ table tr:nth-child(even) {
   width: 96%;
 }
 .sheet nav.sheet-tabs {
-  height: 100%;
+  height: 90%;
   /* flex: 0 0 23px !important; */
-  /* margin: 0 0 !important; */
+  margin: 0 0 !important;
   /* line-height: 2ch !important; */
   /* bottom: 5% !important; */
   /* margin-bottom: 1em; */
   border: none !important;
-  nt; */
   /* padding: 0; */
   margin-left: 3%;
-  padding-left: 1.5ch;
+  padding-left: 4.5ch;
   overflow: hidden;
-  /* top: -1px; */
+  top: 0%;
   z-index: 10;
   width: 90%;
   flex-direction: row;
   /* align-items: unset; */
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }
 
 .character-tabs {
   grid-area: top-row;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   /* height: -webkit-fill-available; */
   /* position: relative; */
-  top: -15%;
-  position: relative;
+  /* top: -39%; */
+  /* position: relative; */
 }
 
 .sheet nav.sheet-tabs .item {
@@ -453,8 +452,8 @@ h2 {
   grid-template-columns: 35% 63%;
   /* gap: 1px 1px; */
   position: absolute;
-  /* top: 5%; */
-  height: 100%;
+  top: 4%;
+  height: 104%;
   /* left: 7%; */
   grid-template-areas:
     "character-photo top-row"
@@ -465,11 +464,9 @@ h2 {
   /* flex-direction: row; */
   /* flex-wrap: nowrap; */
   justify-content: space-between;
-  grid-template-rows: 4% 40% 4.7% 19.3% 23%;
+  grid-template-rows: 4% 39% 4.6% 19.2% 22.2%;
   width: -webkit-fill-available;
 }
-
-.content-container {}
 
 .npc-content-container {
   display: grid;
@@ -904,11 +901,12 @@ h2 {
   /* z-index: 4; */
   position: absolute;
   pointer-events: none;
-  width: 36%;
+  width: 37%;
   object-fit: cover;
-  height: 94%;
+  height: 96%;
   /* object-fit: contain; */
   overflow: hidden;
+  top: 4%;
 }
 
 .character-photo {
@@ -1221,7 +1219,6 @@ span.bgi-charEdit {
   overflow: auto hidden;
   margin-left: 7%;
   /* padding-top: 1ch; */
-  :;
   gap: 1ch 0;
 }
 
@@ -1507,17 +1504,18 @@ svg:hover {
 .character-tabs-info.character-inventory {
   width: 97%;
 }
-.character-tabs-info.sheet-body {}
 
 .skill-tab, .item.skill-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -2px;
   width: 14ch;
   /* padding-top: 0.15em; */
-  display: block;
+  display: flex;
   background-color: var(--s2d6-background-opaque);
-  border-radius: 45ch 4ch 11ch 22ch !important;
+  border-radius: 5ch 1ch 2ch 0ch;
   border: solid 2px var(--s2d6-default-color);
+  flex-direction: column;
+  justify-content: center;
 }
 
 a.skill-tab:hover {
@@ -1537,7 +1535,9 @@ a.skill-tab.active {
   background-position-x: -97px;
   /* padding-top: 0.15em; */
   width: 13ch;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--s2d6-background-opaque);
   /* border: solid 2px !important; */
   /* border-radius: 3ch 1ch 0; */
@@ -1563,11 +1563,13 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active
   /* background-position-x: 93px; */
   /* padding-top: 0.15em; */
   width: 11ch;
-  display: block;
+  display: flex;
   background-color: var(--s2d6-background-opaque);
   border-radius: 21ch 4ch 17ch 0 !important;
   border: solid 2px var(--s2d6-default-color) !important;
-  /* min-height: 2ch; */
+  min-height: 2ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 a.actor-notes-tab:hover {
@@ -2102,9 +2104,9 @@ span.total-output {
 
 .tab.info {
   /* margin-top: 6ch; */
-  height: 96%;
+  height: 98%;
   overflow: auto;
-  padding-left: 2ch;
+  padding-left: 1ch;
   /* margin-top: 3ch; */
   width: 98%;
 }
@@ -3464,19 +3466,16 @@ option {
 .window-app.twodsix.sheet.actor .window-header {
   /* padding-right: 9ch; */
   padding-left: 3%;
-  /* padding-top: 1.5ch; */
-  line-height: 2ch;
+  line-height: 3ch;
   /* border: none; */
   /* justify-content: space-between; */
-  align-items: center;
+  /* align-items: center; */
   /* position: relative; */
   /* top: 1%; */
-  min-height: 3.5ch;
+  /* min-height: 2ch; */
   /* vertical-align: middle; */
   color: var(--s2d6-app-color);
 }
-
-header.window-header.flexrow.draggable.resizable {}
 
 .window-app.twodsix.ship.actor .window-header {
   padding-right: 39px;
@@ -3494,9 +3493,9 @@ header.window-header.flexrow.draggable.resizable {}
   padding: 0 1px;
 }
 
-.window-app .window-content > * {
-  /* flex: 1; */
-}
+/*.window-app .window-content > * {
+  flex: 1;
+}*/
 
 .app {
   max-height: 100%;
@@ -3888,8 +3887,8 @@ input[type="text"].color {
     '. . . .';
   padding: inherit;
   align-items: center;
-  grid-gap: 4px 2px;
-  min-height: 28px;
+  grid-gap: 4px 4px;
+  min-height: 4ch;
 }
 
 .effect:nth-of-type(even) {
