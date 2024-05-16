@@ -1213,7 +1213,7 @@ span.bgi-charEdit {
   justify-content: center;
   grid-area: character-characteristics;
   overflow: auto hidden;
-  margin-left: 7%;
+  margin-left: 8%;
   /* padding-top: 1ch; */
   gap: 1ch 0;
 }
@@ -1234,8 +1234,6 @@ span.bgi-charEdit {
   /* margin-left: 8%; */
   /* margin-top: 2%; */
   gap: 1ch 1ch;
-  grid-area: character-characteristics;
-  height: 100%;
 }
 
 .edit-mode {
