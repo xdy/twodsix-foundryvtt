@@ -63,10 +63,7 @@
 
 
     {{#unless limited}}
-    {{!-- Sheet Body --}}
-    <div class="character-tabs-info sheet-body">
-
-      {{!-- Sheet Tab Navigation --}}
+    {{!-- Sheet Tab Navigation --}}
       <div class="character-tabs">
         <nav class="sheet-tabs tabs" data-group="primary">
           <a class="skill-tab" data-tab="skills" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.SkillsTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
@@ -77,6 +74,9 @@
           <a class="actor-notes-tab" data-tab="actor-notes" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.NotesTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
         </nav>
       </div>
+
+    {{!-- Sheet Body --}}
+    <div class="character-tabs-info sheet-body">
 
       {{!-- Skills Tab --}}
       <div class="tab skills" data-group="primary" data-tab="skills">
