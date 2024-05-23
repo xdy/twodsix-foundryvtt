@@ -305,7 +305,6 @@ table tr:nth-child(even) {
   /* position: relative; */
   /* top: -39%; */
   /* position: relative; */
-  grid-area: top-row;
   overflow: hidden;
 }
 
@@ -2679,13 +2678,12 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   text-shadow: none !important; /*necessary*/
   background-color: var(--s2d6-default-color);
   /* height: -webkit-fill-available; */
-  padding: 2ch 0 2ch;
+  padding: 2ch 1ch;
 }
 
 .ship-tabs-info.sheet-body {
   z-index: 99;
   position: absolute;
-  width: 99%;
   top: 53%;
   height: 43%;
   width: 95%;
@@ -2694,7 +2692,6 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-grid {
-  gap: 12px 14px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
