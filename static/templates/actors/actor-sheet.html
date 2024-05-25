@@ -41,9 +41,11 @@
             {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
           {{else}}
             {{#if settings.useFoundryStandardStyle}}
-              <table class="stat-table">
+            <div class="stat-table">
+              <table>
                 {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
               </table>
+            </div>
             {{else}}
               {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
                 {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
@@ -99,7 +101,7 @@
       </div>
 
       {{!-- Effects Tab --}}
-      <div class="tab info" data-group="primary" data-tab="effects">
+      <div class="tab effects" data-group="primary" data-tab="effects">
         {{> "systems/twodsix/templates/actors/parts/actor/actor-effects.html"}}
       </div>
 
