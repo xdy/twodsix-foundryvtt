@@ -2843,6 +2843,10 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   justify-content: space-evenly;
 }
 
+.cargo-weight span.ship-stat.centre {
+  margin-top: 0;
+}
+
 .cargo-list {
   /*margin-top: 1.1em;*/
   /* overflow-y: auto; */

@@ -155,7 +155,7 @@ export class VehicleData extends TwodsixVehicleBaseData {
     schema.openVehicle = new fields.BooleanField({required: true, initial: false});
     schema.traits = new fields.StringField({...requiredBlankString});
     schema.weight = new fields.StringField({...requiredBlankString});
-
+    schema.shippingSize = new fields.StringField({...requiredBlankString});
     return schema;
   }
 }
