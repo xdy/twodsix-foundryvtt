@@ -277,7 +277,7 @@ table tr:nth-child(even) {
   margin: 8px 2%;
   width: 96%;
 }
-.sheet nav.sheet-tabs {
+.sheet nav.actor-sheet-tabs {
   height: 100%;
   /* flex: 0 0 23px !important; */
   margin: 0 !important;
@@ -309,7 +309,7 @@ table tr:nth-child(even) {
   overflow: hidden;
 }
 
-.sheet nav.sheet-tabs .item {
+.sheet nav.actor-sheet-tabs .item {
   padding: 2px;
   /* border: none; */
   /* border: solid 2px var(--s2d6-default-color); */
@@ -1512,7 +1512,7 @@ svg:hover {
   width: 97%;
 }
 
-.sheet nav.sheet-tabs .skill-tab, .sheet nav.sheet-tabs .item.skill-tab {
+.sheet nav.actor-sheet-tabs .skill-tab, .sheet nav.actor-sheet-tabs .item.skill-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -2px;
   width: 14ch;
@@ -1525,19 +1525,19 @@ svg:hover {
   justify-content: center;
 }
 
-.sheet nav.sheet-tabs a.skill-tab:hover {
+.sheet nav.actor-sheet-tabs a.skill-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
-.sheet nav.sheet-tabs a.skill-tab.active {
+.sheet nav.actor-sheet-tabs a.skill-tab.active {
   /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color) !important;
 }
 
-.sheet nav.sheet-tabs .item-tab, .sheet nav.sheet-tabs .finances-tab, .sheet nav.sheet-tabs .info-tab, .sheet nav.sheet-tabs .effects-tab {
+.sheet nav.actor-sheet-tabs .item-tab, .sheet nav.actor-sheet-tabs .finances-tab, .sheet nav.actor-sheet-tabs .info-tab, .sheet nav.actor-sheet-tabs .effects-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -97px;
   padding: 0;
@@ -1553,19 +1553,19 @@ svg:hover {
   border-radius: 5ch 1ch 2ch 0;
 }
 
-.sheet nav.sheet-tabs a.item-tab:hover, .sheet nav.sheet-tabs a.finances-tab:hover, .sheet nav.sheet-tabs a.info-tab:hover, .sheet nav.sheet-tabs a.effects-tab:hover {
+.sheet nav.actor-sheet-tabs a.item-tab:hover, .sheet nav.actor-sheet-tabs a.finances-tab:hover, .sheet nav.actor-sheet-tabs a.info-tab:hover, .sheet nav.actor-sheet-tabs a.effects-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
 }
 
-.sheet nav.sheet-tabs a.item-tab.active, .sheet nav.sheet-tabs a.finances-tab.active, .sheet nav.sheet-tabs a.info-tab.active, .sheet nav.sheet-tabs a.effects-tab.active {
+.sheet nav.actor-sheet-tabs a.item-tab.active, .sheet nav.actor-sheet-tabs a.finances-tab.active, .sheet nav.actor-sheet-tabs a.info-tab.active, .sheet nav.actor-sheet-tabs a.effects-tab.active {
   /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color) !important;
 }
 
-.sheet nav.sheet-tabs .actor-notes-tab {
+.sheet nav.actor-sheet-tabs .actor-notes-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   /* background-position-x: 93px; */
   padding: 0;
@@ -1579,13 +1579,13 @@ svg:hover {
   justify-content: center;
 }
 
-.sheet nav.sheet-tabs a.actor-notes-tab:hover {
+.sheet nav.actor-sheet-tabs a.actor-notes-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
   /* background-color: unset !important; */
 }
 
-.sheet nav.sheet-tabs a.actor-notes-tab.active {
+.sheet nav.actor-sheet-tabs a.actor-notes-tab.active {
   /* -webkit-mask-image: url(../assets/actor/Interface-Tabs-Active.svg); */
   color: var(--s2d6-item-active);
   text-shadow: none !important;
@@ -3681,14 +3681,14 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 /* TOKEN SHEET */
 
-.token-sheet .sheet-tabs {
+.token-sheet .actor-sheet-tabs {
   flex: 0 0 32px;
   border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
   /*width: 32.5em;*/
 }
 
-.sheet-tabs {
+.actor-sheet-tabs {
   justify-content: space-around;
   font-size: 2ch;
   text-align: center;

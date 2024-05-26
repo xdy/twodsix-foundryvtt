@@ -1042,7 +1042,7 @@ svg:hover {
   align-items: center;
 }
 
-.sheet nav.sheet-tabs{
+.sheet nav.actor-sheet-tabs{
   height: auto !important;
   /* line-height: 100%; */
   text-align: center;
@@ -1054,7 +1054,7 @@ svg:hover {
   /* overflow: hidden; */
 }
 
-.sheet nav.sheet-tabs .item {
+.sheet nav.actor-sheet-tabs .item {
   padding: 2px;
 }
 
