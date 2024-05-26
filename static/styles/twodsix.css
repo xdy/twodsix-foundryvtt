@@ -302,7 +302,7 @@ table tr:nth-child(even) {
   /* display: flex; */
   /* flex-direction: column; */
   /* justify-content: flex-end; */
-  /* height: -webkit-fill-available; */
+  height: 100%;
   /* position: relative; */
   /* top: -39%; */
   /* position: relative; */
@@ -620,7 +620,7 @@ h2 {
 .robot-content-container-small {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 11.5em 10em 0.5fr 0.5fr;
+  grid-template-rows: 12.5em 10em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -1516,7 +1516,7 @@ svg:hover {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -2px;
   width: 14ch;
-  /* padding-top: 0.15em; */
+  padding: 0;
   display: flex;
   background-color: var(--s2d6-background-opaque);
   border-radius: 5ch 1ch 2ch 0ch;
@@ -1540,7 +1540,7 @@ svg:hover {
 .sheet nav.sheet-tabs .item-tab, .sheet nav.sheet-tabs .finances-tab, .sheet nav.sheet-tabs .info-tab, .sheet nav.sheet-tabs .effects-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   background-position-x: -97px;
-  /* padding-top: 0.15em; */
+  padding: 0;
   width: 13ch;
   display: flex;
   flex-direction: column;
@@ -1568,7 +1568,7 @@ svg:hover {
 .sheet nav.sheet-tabs .actor-notes-tab {
   /* background-image: url(../assets/actor/Interface-Tabs.svg); */
   /* background-position-x: 93px; */
-  /* padding-top: 0.15em; */
+  padding: 0;
   width: 11ch;
   display: flex;
   background-color: var(--s2d6-background-opaque);
@@ -3475,7 +3475,7 @@ option {
   padding-left: 3%;
   line-height: 3ch;
   padding-top: 3px;
-  /* border: none; */
+  border: none;
   /* justify-content: space-between; */
   /* align-items: center; */
   /* position: relative; */
@@ -3498,6 +3498,7 @@ option {
   top: 0.7%;
   /* display: flex; */
   /* align-self: auto; */
+  border: none;
 }
 
 .window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,
