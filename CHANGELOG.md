@@ -1,3 +1,10 @@
+# [4.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.6...v4.25.0) (2024-05-26)
+
+
+### Features
+
+* Make Traveller and Ship Sheet Responsive ([#1566](https://github.com/xdy/twodsix-foundryvtt/issues/1566)) ([a40b86f](https://github.com/xdy/twodsix-foundryvtt/commit/a40b86f5eb0f1379b4607e94e77579408bf974bd))
+
 ## [4.24.6](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.5...v4.24.6) (2024-05-04)
 
 

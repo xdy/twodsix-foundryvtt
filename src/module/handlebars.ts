@@ -425,12 +425,8 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {
-    const retValue:number = getPower(item);
-    if (item.system.generatesPower) {
-      return "+" + retValue.toLocaleString(game.i18n.lang);
-    } else {
-      return retValue.toLocaleString(game.i18n.lang);
-    }
+    const retValue:string = getPower(item).toLocaleString(game.i18n.lang, {maximumFractionDigits: 1});
+    return item.system.generatesPower ? "+" + retValue : retValue;
   });
 
   Handlebars.registerHelper('getComponentMaxHits', () => {

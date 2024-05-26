@@ -147,7 +147,7 @@ export class ComponentData extends GearData {
   static defineSchema() {
     const schema = super.defineSchema();
     schema.subtype = new fields.StringField({required: true, blank: false, initial: "otherInternal" });
-    schema.powerDraw = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.powerDraw = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});
     schema.rating = new fields.StringField({...requiredBlankString});
     schema.availableQuantity = new fields.StringField({...requiredBlankString});
     schema.hits = new fields.NumberField({...requiredInteger, initial: 0});
