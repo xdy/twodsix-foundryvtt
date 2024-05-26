@@ -61,7 +61,6 @@ label.checkbox > input[type="checkbox"] {
 .item-name {
   align-self: center;
   text-align: left;
-  padding-left: 1ch;
 }
 
 .left {
@@ -204,7 +203,7 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-list {
   margin-top: 4px;
-  margin-left: 1ch;
+  /*margin-left: 1ch;*/
 }
 
 .animal-content-container {
@@ -548,6 +547,13 @@ img.character-info-mask {
   flex-wrap: wrap;
   height: 41%;
 }
+
+.status-icons.npc {
+  position: absolute !important;
+  top: 0.5ch;
+  height: 40% !important;
+}
+
 .condition-icon {
   height: 3ch;
   width: 3ch;
@@ -609,6 +615,7 @@ img.character-info-mask {
   z-index: 9;
   border: 2px solid;
   border-radius: 0 0 1ch 1ch;
+  overflow-y: auto;
 }
 
 .character-bgi-std {
@@ -784,7 +791,7 @@ span.bgi-charEdit {
 .bgi-encumbrance input {
   position: relative;
   margin-bottom: -0.5em;
-  width: 4ch;
+  width: 5ch;
   border: none;
 }
 
@@ -1193,7 +1200,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .initiative {
   text-align: center;
   /* margin-top: 0.5ch; */
-  margin-bottom: 2ch;
+  /* margin-bottom: 2ch; */
 }
 
 .roll-initiative {
@@ -2468,7 +2475,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
 .item-priorType, .item-nonstackable {
-  margin-top: 0.3em;
+  /* margin-top: 0.3em; */
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1ch;
@@ -3093,8 +3100,8 @@ input[type="text"].color {
 .effect-image {
   height: auto;
   width: auto;
-  max-width: 2ch;
-  max-height: 2ch;
+  max-width: 3ch;
+  max-height: 3ch;
   background-color: var(--s2d6-background-nearly-opaque);
   display: list-item;
 }
@@ -3108,7 +3115,8 @@ input[type="text"].color {
   align-items: center;
   /* grid-gap: 4px 2px; */
   grid-auto-flow: column;
-  height: 3ch;
+  height: auto;
+  padding: 0.5ch 0;
 }
 
 .effect-name, .effect-source, .effect-duration {
@@ -3120,6 +3128,7 @@ input[type="text"].color {
 .effect:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
   width: fit-content;
+  /* height: max-content; */
 }
 
 .card-buttons {

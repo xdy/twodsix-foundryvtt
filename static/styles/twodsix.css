@@ -571,7 +571,7 @@ h2 {
 
 .npc-list {
   margin-top: 4px;
-  margin-left: 1ch;
+  margin-left: 4px;
 }
 
 .animal-content-container {
@@ -947,6 +947,12 @@ h2 {
   /* width: 100%; */
   grid-area: character-photo;
 }
+
+.status-icons.npc {
+  position: absolute !important;
+  top: 0.5ch;
+  height: 40% !important;
+}
 .condition-icon {
   height: auto;
   width: 3ch;
@@ -1179,7 +1185,7 @@ span.bgi-charEdit {
 .bgi-encumbrance input {
   position: relative;
   margin-bottom: -0.5em;
-  width: 4ch;
+  width: 5ch;
   border: none;
 }
 
@@ -2006,8 +2012,8 @@ span.total-output {
   mask-image: url(../assets/actor/header.svg);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  mask-size: auto;
-  height: auto;
+  mask-size: cover;
+  height: fit-content;
   width: 25ch;
   display: block;
   color: var(--s2d6-item-active);
