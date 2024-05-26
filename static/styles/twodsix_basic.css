@@ -1312,7 +1312,7 @@ input.item-value-edit {
 
 .item-controls {
   align-self: center;
-  padding-left: 1ch;
+  /* padding-left: 1ch; */
 }
 
 .skill:nth-of-type(even), .even-skill {
@@ -3109,9 +3109,7 @@ input[type="text"].color {
 .effects-container {
   display: grid;
   grid-template-columns: 4ch 19ch 14ch 12ch 10ch;
-  grid-template-areas:
-    ". . . . .";
-  padding: inherit;
+  grid-template-areas: ". . . . .";
   align-items: center;
   /* grid-gap: 4px 2px; */
   grid-auto-flow: column;
