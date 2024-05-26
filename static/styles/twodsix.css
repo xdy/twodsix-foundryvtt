@@ -1463,20 +1463,20 @@ span.stat-damage input, span.special-damage input {
 span.special-ability {
   position: relative;
   top: -7.2ch;
-  left: 1.4ch;
+  left: 0.3ch;
 }
 
 span.special-modifier {
-  margin: -6px;
+  /* margin: -6px; */
   position: relative;
-  left: 1.5ch;
-  top: -5.6ch;
+  left: 2.5ch;
+  top: -8.6ch;
 }
 
 span.special-damage {
   position: relative;
-  left: 1.4ch;
-  top: -6.8ch;
+  left: 0.4ch;
+  top: -9.8ch;
 }
 
 svg:hover {
