@@ -129,7 +129,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       width: 862,
       height: 720,
       resizable: true,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
+      tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
       scrollY: [".skills", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });

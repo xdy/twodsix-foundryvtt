@@ -276,7 +276,7 @@ table tr:nth-child(even) {
   margin: 8px 2%;
   width: 96%;
 }
-.sheet nav.sheet-tabs {
+.sheet nav.actor-sheet-tabs {
   height: 100%;
   /* flex: 0 0 23px !important; */
   margin: 0 !important;
@@ -308,7 +308,7 @@ table tr:nth-child(even) {
   overflow: hidden;
 }
 
-.sheet nav.sheet-tabs .item {
+.sheet nav.actor-sheet-tabs .item {
   padding: 2px;
   /* border: none; */
   /* border: solid 2px var(--s2d6-default-color); */
@@ -2848,6 +2848,10 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   justify-content: space-evenly;
 }
 
+.cargo-weight span.ship-stat.centre {
+  margin-top: 0;
+}
+
 .cargo-list {
   /*margin-top: 1.1em;*/
   /* overflow-y: auto; */
@@ -3685,14 +3689,14 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 
 /* TOKEN SHEET */
 
-.token-sheet .sheet-tabs {
+.token-sheet .actor-sheet-tabs {
   flex: 0 0 32px;
   border-bottom: 1px solid var(--s2d6-form-light);
   line-height: 10px;
   /*width: 32.5em;*/
 }
 
-.sheet-tabs {
+.actor-sheet-tabs {
   justify-content: space-around;
   font-size: 2ch;
   text-align: center;
