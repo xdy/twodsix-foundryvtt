@@ -1,27 +1,27 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{#unless settings.useFoundryStandardStyle}}
     {{> "systems/twodsix/templates/actors/parts/actor/actor-interface-bg.html"}}
-    <!--<img class="content-background" src="/systems/twodsix/assets/actor/Interface-Bg.svg" alt="?"/>-->
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-overlay-1.html"}}
   {{/unless}}
   <div class="content-container">
-    <div class="character-info">
+
       {{#unless settings.useFoundryStandardStyle}}
-        <!--<img class="character-info-mask" src="/systems/twodsix/assets/actor/Interface-Overlay-1.svg" alt="?"/>-->
-        {{> "systems/twodsix/templates/actors/parts/actor/actor-overlay-1.html"}}
+        <!--- -->
       {{/unless}}
-      <div class="character-photo">
-        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
-        {{#if settings.showStatusIcons}}
-        <span class="status-icons">
-            {{#each effects as |anEffect|}}
-            <!--{{actor.effects}}-->
-              {{#unless anEffect.disabled}}<img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
-            {{/each}}
-        {{/if}}
-        </span>
-      </div>
-      <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
-                                         onClick="this.select();"/></div>
+
+        <div class="character-photo">
+          <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+          {{#if settings.showStatusIcons}}
+          <span class="status-icons">
+              {{#each effects as |anEffect|}}
+              <!--{{actor.effects}}-->
+                {{#unless anEffect.disabled}}<img class="condition-icon" src="{{anEffect.icon}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
+              {{/each}}
+          {{/if}}
+          </span>
+        </div>
+        <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+                                          onClick="this.select();"/></div>
 
         {{#if settings.showLifebloodStamina }}
           <div class="character-bgi">
@@ -41,9 +41,11 @@
             {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
           {{else}}
             {{#if settings.useFoundryStandardStyle}}
-              <table class="stat-table">
+            <div class="stat-table">
+              <table>
                 {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
               </table>
+            </div>
             {{else}}
               {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
                 {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
@@ -60,12 +62,10 @@
             {{/if}}
           {{/if}}
         {{/unless}}
-      </div>
-    {{#unless limited}}
-    {{!-- Sheet Body --}}
-    <div class="character-tabs-info sheet-body">
 
-      {{!-- Sheet Tab Navigation --}}
+
+    {{#unless limited}}
+    {{!-- Sheet Tab Navigation --}}
       <div class="character-tabs">
         <nav class="sheet-tabs tabs" data-group="primary">
           <a class="skill-tab" data-tab="skills" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.SkillsTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
@@ -76,6 +76,9 @@
           <a class="actor-notes-tab" data-tab="actor-notes" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.NotesTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
         </nav>
       </div>
+
+    {{!-- Sheet Body --}}
+    <div class="character-tabs-info sheet-body">
 
       {{!-- Skills Tab --}}
       <div class="tab skills" data-group="primary" data-tab="skills">
@@ -98,7 +101,7 @@
       </div>
 
       {{!-- Effects Tab --}}
-      <div class="tab info" data-group="primary" data-tab="effects">
+      <div class="tab effects" data-group="primary" data-tab="effects">
         {{> "systems/twodsix/templates/actors/parts/actor/actor-effects.html"}}
       </div>
 

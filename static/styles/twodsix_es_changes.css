@@ -24,7 +24,3 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 .bgi-movement select {
   width: 17ch;
 }
-
-.skill-tab, .item.skill-tab {
-  width: 104px;
-}

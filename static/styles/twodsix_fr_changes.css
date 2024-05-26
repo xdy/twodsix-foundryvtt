@@ -2,9 +2,8 @@
   grid-template-rows: 22px 25px 47px 20px;
 }
 
-.power-grid {
-	font-size: 12px;
-	margin-top: 4px;
+.ship-power-subgrid {
+	font-size: 1.3ch;
 }
 
 .storage-header {
@@ -12,29 +11,8 @@
   min-height: 3ch;
 }
 
-.ship-payments .item-title {
-  font-size: 11px;
-  padding-top: 4px;
-}
-
 .add-skill {
   width: 15ch;
-}
-
-.info-tab {
-  width: 75px;
-}
-
-.item-tab {
-  width: 98px;
-}
-
-.skill-tab {
-  width: 110px;
-}
-
-.effects-tab {
-  width: 80px;
 }
 
 .items-traits {

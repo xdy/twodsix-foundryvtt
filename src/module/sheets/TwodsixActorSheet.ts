@@ -126,9 +126,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
-      width: 825,
-      height: 656,
-      resizable: false,
+      width: 862,
+      height: 720,
+      resizable: true,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
       scrollY: [".skills", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
       dragDrop: [{dragSelector: ".item", dropSelector: null}]

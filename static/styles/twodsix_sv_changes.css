@@ -4,11 +4,7 @@ a.ship-storage-tab, a.ship-cargo-tab,
 a.ship-finance-tab, a.ship-component-tab,
 a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 	padding: 1ch 0.3ch;
-  font-size: 13px;
-}
-
-.ship-fuel {
-  grid-template-rows: 22px 25px 47px 20px;
+  font-size: 1.5ch;
 }
 
 .storage-header {
@@ -16,16 +12,12 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
   min-height: 3ch;
 }
 
-.cargo-stored-double {
-  grid-template-columns: 145px 54px 31px 51px 52px 42px;
-}
-
 .add-skill {
   width: 15ch;
 }
 
 .actor-notes-tab {
-  width: 128px;
+  min-width: 12ch;
 }
 
 .info-tab {
@@ -33,29 +25,19 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 }
 
 .item-tab {
-  width: 98px;
+  min-width: 10ch;
 }
 
 .skill-tab {
-  width: 110px;
+  min-width: 12ch;
 }
 
 .effects-tab {
-  width: 80px;
+  min-width: 9ch;
 }
 
 .items-weapons {
   grid-template-columns: 1.5em 11em 1.9em 2.5em 2em 4em 4em 5.5em;
-}
-
-.ship-payments .item-title {
-  font-size: 12.5px;
-  padding-top: 4px;
-}
-
-.financial-notes .item-title {
-  font-size: 13px;
-  padding-top: 3px;
 }
 
 .item-title-npc {

@@ -19,11 +19,11 @@ input.dice-tray__input {
   background: #0d0d0d !important;
 }
 
-/*Correct PopOut! auto resizing of ship sheet*/
+/*Correct PopOut! auto resizing of ship sheet
 .ship-container {
   min-height: 305px;
   max-height: 305px;
-}
+}*/
 
 /* Allow FVTT sidebar (menu) pop-outs to be resized*/
 .app.sidebar-popout {
