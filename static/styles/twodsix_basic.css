@@ -1042,7 +1042,7 @@ svg:hover {
   align-items: center;
 }
 
-.sheet nav.sheet-tabs{
+.sheet nav.actor-sheet-tabs{
   height: auto !important;
   /* line-height: 100%; */
   text-align: center;
@@ -1054,7 +1054,7 @@ svg:hover {
   /* overflow: hidden; */
 }
 
-.sheet nav.sheet-tabs .item {
+.sheet nav.actor-sheet-tabs .item {
   padding: 2px;
 }
 
@@ -2927,7 +2927,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 */
 /* TOKEN SHEET */
 /*
-.token-sheet .sheet-tabs {
+.token-sheet .actor-sheet-tabs {
   flex: 0 0 32px;
   border-bottom: 1px solid var(--form-light);
   line-height: 28px !important;
