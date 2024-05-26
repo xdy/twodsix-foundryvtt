@@ -1,3 +1,10 @@
+## [4.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.0...v4.25.1) (2024-05-26)
+
+
+### Bug Fixes
+
+* missing ship-cargo weights and vehicle-shipping size ([#1569](https://github.com/xdy/twodsix-foundryvtt/issues/1569)) ([3835487](https://github.com/xdy/twodsix-foundryvtt/commit/383548799b10d9029e9affefea9baef4ae9d33f0))
+
 # [4.25.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.24.6...v4.25.0) (2024-05-26)
 
 
