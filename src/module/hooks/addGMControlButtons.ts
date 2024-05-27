@@ -160,7 +160,8 @@ function getSelectedTokenData(): any {
 
 function getControllingUser(token:Token): string {
   let userId = "";
-  const owningUsers = game.users.filter((user) => !user.isGM && user.active && (token.actor.ownership[user.id] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER || (token.actor.ownership.default === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER  && !(user.id in token.actor.ownership))));
+  const ownerType = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+  const owningUsers = game.users.filter((user) => !user.isGM && user.active && token.actor.testUserPermission(user, ownerType));
   if (owningUsers.length > 1) {
     const characterUser = owningUsers.find((user) => user.character.id === token.actor.id);
     if (characterUser) {
@@ -172,7 +173,7 @@ function getControllingUser(token:Token): string {
   } else if (owningUsers.length === 1) {
     userId = owningUsers[0].id;
   } else {
-    userId = game.users.find((user) => user.isGM && user.active && token.actor.ownership[user.id] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)?.id;
+    userId = game.users.find((user) => user.isGM && user.active && token.actor.testUserPermission(user, ownerType))?.id;
     if (!userId) {
       userId = game.users.find((user) => user.isGM && user.active)?.id;
     }
