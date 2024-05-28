@@ -2057,7 +2057,7 @@ span.total-output {
 
 .info-container {
   display: grid;
-  grid-template-columns: 33.6em;
+  /*grid-template-columns: 33.6em;*/
   grid-template-rows: 10em 2em 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
