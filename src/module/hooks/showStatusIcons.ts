@@ -268,12 +268,12 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
       if (effectStatus === 'dead') {
         await targetActor.toggleStatusEffect(targetEffect.id, {active: state, overlay: false});
 
-        // Set defeated if in combat
-        const fighters = game.combats?.active?.combatants;
+        // Set defeated if in combat (no longer needed in v12)
+        /*const fighters = game.combats?.active?.combatants;
         const combatant = fighters?.find((f: Combatant) => f.actorId === targetActor.id);
         if (combatant !== undefined) {
           await combatant.update({defeated: state});
-        }
+        }*/
       } else {
         await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
       }
