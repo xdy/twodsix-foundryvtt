@@ -471,14 +471,14 @@ h2 {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
+  grid-template-columns: 15em 21em 0.9fr;
   grid-template-rows: 18em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
-  "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-skills npc-skills npc-traits"
-  "npc-weapons npc-weapons npc-armor";
+    "npc-name-photo npc-bgi-stats npc-notes-container"
+    "npc-skills npc-skills npc-notes-container"
+    "npc-armor npc-traits npc-weapons";
 }
 .npc-content-container-spells {
   display: grid;
@@ -933,6 +933,7 @@ h2 {
 
 .character-photo.npc {
   min-height: 65%;
+  max-height: 100% !important;
 }
 
 .status-icons {
@@ -949,9 +950,11 @@ h2 {
 }
 
 .status-icons.npc {
-  position: absolute !important;
-  top: 0.5ch;
-  height: 40% !important;
+  position: relative !important;
+  top: -22.5ch;
+  /* height: -webkit-fill-available !important; */
+  align-content: flex-start;
+  /* flex-wrap: wrap; */
 }
 .condition-icon {
   height: auto;

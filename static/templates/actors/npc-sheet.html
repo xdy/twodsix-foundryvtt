@@ -96,6 +96,7 @@
                 {{/iff}}
               {{/each}}
               <span class="item-controls centre">
+                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
                     class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
@@ -112,10 +113,16 @@
       <div class="npc-list">
         <span >
          {{#each_sort_item container.trait as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+          <span class="item" data-item-id="{{item.id}}" >
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
+
+            <span class="item-controls centre" data-item-id="{{item.id}}">
+              <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+                class="fa-solid fa-pen-to-square"></i></a>
+              <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
             </span>
+          </span>
          {{/each_sort_item}}
         </span>
       </div>

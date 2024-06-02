@@ -107,14 +107,14 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 22em 18em;
+  grid-template-columns: 15em 22em 0.9fr;
   grid-template-rows: 19em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-skills npc-skills npc-traits"
-  "npc-weapons npc-weapons npc-armor";
+  "npc-skills npc-skills npc-notes-container"
+  "npc-armor npc-traits npc-weapons";
 }
 
 .npc-content-container-spells {
@@ -549,9 +549,9 @@ img.character-info-mask {
 }
 
 .status-icons.npc {
-  position: absolute !important;
-  top: 0.5ch;
-  height: 40% !important;
+  position: relative !important;
+  top: -22.5ch;
+  align-content: flex-start;
 }
 
 .condition-icon {
