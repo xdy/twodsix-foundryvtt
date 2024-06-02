@@ -3951,3 +3951,27 @@ input[type="text"].color {
       scrollbar-width: thin;
   }
 }
+
+/* file picker updates*/
+.filepicker .favorites .path, .filepicker .display-modes a {
+  background: var(--s2d6-background-nearly-opaque);
+}
+
+.filepicker .display-modes a.active {
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
+  text-shadow: none;
+}
+
+.filepicker .display-modes a:hover {
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
+  color: var(--s2d6-item-hover);
+}
+
+.standard-form .form-group > label {
+  color: var(--s2d6-default-color);
+}
+
+.filepicker .favorites .path a.link[data-source]::before {
+  color: var(--s2d6-form-light);
+}
