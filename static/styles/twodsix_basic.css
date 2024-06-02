@@ -2319,7 +2319,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-notes-container, .ship-notes-container-short, .ship-finances-container {
   margin-left: 15px;
   padding-top: 14px;
-  height: 302px;
+  height: 352px;
   width: 782px;
   overflow-x: hidden;
 }
@@ -2372,6 +2372,17 @@ div.ship-value {
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 63%;
+}
+
+.ship-financial-notes {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  gap: 2ch;
+}
+
+.ship-commonFunds input[type="number"] {
+  border: 1px solid;
+  width: 36ch;
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {

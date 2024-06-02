@@ -2698,8 +2698,8 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-position-box {
   width: 29ch;
-  min-height: 5ch;
   border: 1px groove var(--s2d6-default-color);
+  min-height: 6ch;
   border-radius: 0;
 }
 
@@ -2945,6 +2945,16 @@ div.ship-value {
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 74%;
+}
+
+.ship-financial-notes {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+}
+
+.ship-commonFunds input[type="number"] {
+  border: 1px solid var(--s2d6-default-color);
+  width: 36ch;
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
