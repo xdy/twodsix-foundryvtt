@@ -1495,12 +1495,13 @@ svg:hover {
 
 .character-tabs-info {
   background-color: var(--s2d6-background-transparent);
-  height: 97%;
+  height: 96%;
   grid-area: character-tabs;
   /* flex: 2 2 auto; */
-  overflow-x: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
   width: 97%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* margin-top: 1ch; */
   /* display: flex; */
   /* position: absolute; */
@@ -1509,12 +1510,10 @@ svg:hover {
 
 .character-tabs-info.character-inventory {
   width: 97%;
+  overflow: auto;
 }
 
-.skill-tab, .item.skill-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  background-position-x: -2px;
-  width: 14ch;
+.skill-tab, /*.item.skill-tab,*/ .item-tab, .finances-tab, .info-tab, .effects-tab, .actor-notes-tab {
   /* padding-top: 0.15em; */
   display: flex;
   background-color: var(--s2d6-background-opaque);
@@ -1522,6 +1521,33 @@ svg:hover {
   border: solid 2px var(--s2d6-default-color);
   flex-direction: column;
   justify-content: center;
+  min-height: 2ch;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.skill-tab {
+  min-width: 7ch;
+}
+
+.item-tab {
+  min-width: 10ch;
+}
+
+.finances-tab {
+  min-width: 10ch;
+}
+
+.info-tab {
+  min-width: 7ch;
+}
+
+.effects-tab {
+  min-width: 9ch;
+}
+
+.actor-notes-tab {
+  min-width: 9ch;
 }
 
 a.skill-tab:hover {
@@ -1536,22 +1562,6 @@ a.skill-tab.active {
   background-color: var(--s2d6-default-color) !important;
 }
 
-.item-tab, .finances-tab, .info-tab, .effects-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  background-position-x: -97px;
-  /* padding-top: 0.15em; */
-  width: 13ch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--s2d6-background-opaque);
-  /* border: solid 2px !important; */
-  /* border-radius: 3ch 1ch 0; */
-  border: solid 2px var(
-  --s2d6-default-color) !important;
-  border-radius: 5ch 1ch 2ch 0;
-}
-
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, .effects-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
@@ -1562,20 +1572,6 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color) !important;
-}
-
-.actor-notes-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  /* background-position-x: 93px; */
-  /* padding-top: 0.15em; */
-  width: 11ch;
-  display: flex;
-  background-color: var(--s2d6-background-opaque);
-  border-radius: 5ch 1ch 2ch 0;
-  border: solid 2px var(--s2d6-default-color) !important;
-  min-height: 2ch;
-  flex-direction: column;
-  justify-content: center;
 }
 
 a.actor-notes-tab:hover {
@@ -1607,10 +1603,18 @@ a.actor-notes-tab.active {
   padding-left: 5px;
 }*/
 
-.tab.inventory, .tab.actor-notes {
-  /* margin-top: 2ch; */
+.tab.inventory {
+  margin-top: 2ch;
   height: 97%;
-  overflow-y: auto;
+  overflow: hidden;
+  margin-left: 8px;
+  width: 98%;
+}
+
+.tab.actor-notes {
+  margin-top: 2ch;
+  height: 97%;
+  overflow: auto;
   margin-left: 8px;
   width: 98%;
 }
@@ -1941,11 +1945,15 @@ span.total-output {
 
 /*-------Finances Tab-----------*/
 
+.tab.finances {
+  overflow: auto;
+}
+
 .finances-container {
   display: grid;
   grid-template-columns: 45% 53%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1px 1px;
+  gap: 1px 8px;
   grid-template-areas:
     'cash financial-notes'
     'pension financial-notes'
@@ -1954,7 +1962,7 @@ span.total-output {
     'living-costs financial-notes';
   position: relative;
   margin-top: 44px;
-  margin-left: 24px;
+  margin-left: 8px;
 }
 
 .financial-notes {
@@ -1983,7 +1991,7 @@ span.total-output {
 }
 
 .cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'] {
-  width: 28ch;
+  width: 31ch;
   padding: 0.5em;
   height: 3.5ch;
   border: 1px solid var(--s2d6-default-color);
@@ -2017,7 +2025,7 @@ span.total-output {
   mask-repeat: no-repeat;
   mask-size: cover;
   height: fit-content;
-  width: 25ch;
+  width: 28ch;
   display: block;
   color: var(--s2d6-item-active);
   font-weight: bold;
@@ -2145,7 +2153,7 @@ span.total-output {
   height: 95%;
   width: 92%;
   /* margin-bottom: -77px; */
-  overflow: auto;
+  /* overflow: auto; */
   /* font-size: larger; */
 }
 
@@ -2252,6 +2260,7 @@ span.total-output {
   /* position: relative; */
   /* width: -webkit-fill-available; */
   color: var(--s2d6-stat-input);
+  overflow: hidden;
 }
 
 .ship-info li {
@@ -2424,6 +2433,7 @@ span.total-output {
   background-size: contain;
   /* background-repeat: no-repeat; */
   padding-top: 1px;
+  overflow: hidden;
 }
 
 .ship-power-management-image {
@@ -2722,14 +2732,14 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-grid input[type="text"] {
-  width: 28ch;
+  width: 30ch;
   border: 1px groove var(--s2d6-default-color);
   border-radius: 0;
   height: 4ch;
 }
 
 .ship-grid > div > div[contenteditable] {
-  width: 28ch;
+  width: 30ch;
   border: 1px groove var(--s2d6-default-color) !important; /* must keep !important*/
   border-radius: 0;
   min-height: 6ch;
@@ -3494,11 +3504,12 @@ option {
 .window-app.twodsix.sheet.actor .window-header {
   /* padding-right: 9ch; */
   padding-left: 3%;
-  line-height: 3ch;
-  padding-top: 3px;
+  line-height: 1ch;
+  flex-basis: 3%;
+  /* padding-top: 3px; */
   /* border: none; */
   /* justify-content: space-between; */
-  /* align-items: center; */
+  align-items: center;
   /* position: relative; */
   /* top: 1%; */
   /* min-height: 2ch; */
@@ -3738,6 +3749,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
   margin-top: 0;
+  border: 1px solid var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn svg {
@@ -3869,6 +3881,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-top: inset;
   text-align: center;
   padding-top: 8px;
+  width: 35em;
 }
 
 .prosemirror .editor-container .editor-content {
