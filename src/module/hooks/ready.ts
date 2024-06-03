@@ -88,6 +88,14 @@ Hooks.once("ready", async function () {
   if (game.settings.get('twodsix', 'showTLonItemsTab')) {
     setDocumentPartials();
   }
+
+  //Force colorScheme setting
+  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+    game.settings.set('core', 'colorScheme', 'dark', {config: false});
+  } else {
+    game.settings.set('core', 'colorScheme', 'light', {config: false});
+  }
+
   //Add index
   for (const pack of game.packs) {
     if (pack.metadata.type === 'Item') {

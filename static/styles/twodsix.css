@@ -3467,13 +3467,20 @@ option {
   background-color: var(--s2d6-item-active);
 }
 
-.window-app .window-header,
-.application .window-header {
+.window-app .window-header {
   background-color: var(--s2d6-background-transparent);
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);
   z-index: 99;
 }
+
+.application .window-header {
+  /*background-color: var(--s2d6-background-opaque);*/
+  border-color: var(--s2d6-default-color);
+  color: var(--s2d6-form-light);
+  z-index: 99;
+}
+
 .window-app.twodsix.sheet.actor .window-header {
   /* padding-right: 9ch; */
   padding-left: 3%;
