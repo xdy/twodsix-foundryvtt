@@ -1756,7 +1756,6 @@ img.ship-mask-bg {
 
 .fuel-bar {
   /* width: 25ch; */
-  height: 30px;
   /* vertical-align: middle; */
   width: 95%;
   max-width: 15ch;
