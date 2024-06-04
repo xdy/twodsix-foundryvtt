@@ -1724,23 +1724,27 @@ img.ship-mask-bg {
   padding: 0 !important;
 }
 
+.ship-info p {
+  margin: 0;
+}
+
 .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input {
   text-align: center;
   padding: 2px;
   /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
-  font-size: 18px;
-  /*width: 2.5em;*/
+  font-size: 1.8ch;
+  width: 6ch;
   border: solid 1px;
   border-radius: 0.5ch;
 }
 
 .ship-fuel-value input, .ship-armor-value input {
-  width: 40%;
+  width: 5ch;
 }
 
 .ship-drives input {
-  width: 65%
+  width: 5ch;
 }
 
 .overdrive-mode input[type="checkbox"] {
@@ -1751,9 +1755,14 @@ img.ship-mask-bg {
 }
 
 .fuel-bar {
-  width: 95%;
+  /* width: 25ch; */
   height: 30px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
+  width: 95%;
+  max-width: 15ch;
+  height: 4ch;
+  margin: 0;
+  padding: 0;
 }
 
 .fuel-name:hover, .fuel-bar:hover, .status-component:hover {
@@ -1762,27 +1771,36 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 18% 13% 21% 22% 21%;
-  /* grid-template-rows: 100px; */
+  grid-template-columns: 18% 13% 26% 18% 21%;
+  grid-template-rows: 100%;
   gap: 1px 5px;
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: 2ch;
-  margin-left: 2px;
-  margin-top: 2px;
-  height: -webkit-fill-available;
+  /* margin-left: 2px; */
+  /* margin-top: 2px; */
+  height: 96%;
+  text-align: center;
 }
 
 .ship-state-grid span {
-  text-align: center;
+  /* text-align: center; */
   vertical-align: middle;
+  /* align-items: center; */
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-evenly; */
+  margin: 0;
 }
 
 .ship-armor {
   grid-area: ship-armor;
-  display: grid;
+  display: flex;
   grid-template-rows: auto;
-  text-align: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .ship-armor-name textarea {
@@ -1808,6 +1826,19 @@ img.ship-mask-bg {
   text-align: center;
 }
 
+.hull-data {
+  /* position: relative; */
+  /* top: -90%; */
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+  /* grid-template-columns: 100%; */
+  /* grid-template-rows: 16% 32% 31% 19%; */
+}
+
 .ship-hull-bandwidth {
   grid-area: ship-hull;
   display: grid;
@@ -1817,29 +1848,36 @@ img.ship-mask-bg {
 .ship-hull-value input {
   border: solid;
   text-align: center;
-  display: grid;
+  /* display: grid; */
   border-radius: 1ch 1ch 0 0;
+  width: 10ch;
 }
 
 .ship-hull-max input {
   border: solid;
   text-align: center;
-  display: grid;
+  /* display: grid; */
   border-radius: 0 0 5ch 5ch;
+  width: 10ch;
 }
 
 .ship-fuel {
   grid-area: ship-fuel;
-  display: grid;
-  grid-template-rows: 15px 25px 42px 20px;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: 15px 25px 42px 20px; */
+  justify-content: space-evenly;
   text-align: center;
+  width: 100%;
 }
 
 .ship-mass {
   grid-area: ship-mass;
-  display: grid;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: -webkit-fill-available;
 }
 
 .ship-mass input, .ship-tl input {
@@ -1858,8 +1896,10 @@ img.ship-mask-bg {
 
 .ship-drives {
   grid-area: ship-drives;
-  display: grid;
-  grid-template-rows: 15px 37px 18px 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* grid-template-rows: 15px 37px 18px 27px; */
   /* margin-top: 0.5em; */
 }
 
@@ -1959,6 +1999,7 @@ img.ship-mask-bg {
   justify-items: center;
   height: -webkit-fill-available;
   width: 100%;
+  justify-content: space-evenly;
 }
 
 .ship-stat .red input[type="number"]{

@@ -2272,6 +2272,10 @@ span.total-output {
   padding: 5px;
 }
 
+.ship-info p {
+  margin: 0;
+}
+
 .ship-info ul {
   padding: 0 !important; /*not certain where this is used*/
 }
@@ -2286,7 +2290,7 @@ span.total-output {
   background-color: transparent;
 }
 
-.ship-fuel-value input, .ship-drives input, .ship-armor-value input, .ship-bandwidth input, .ship-hull-value input {
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input, .ship-bandwidth input, .ship-hull-value input, .ship-hull input {
   width: 4ch;
   font-size: 2.5ch;
   text-align: center;
