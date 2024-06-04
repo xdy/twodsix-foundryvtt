@@ -2330,11 +2330,11 @@ span.total-output {
   text-align: center;
 }
 
-.ship-state-grid span {
-  /* margin-top: 0.5em; */
-  /* text-align: center; */
-  /* vertical-align: middle; */
-}
+/*.ship-state-grid span {
+  margin-top: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}*/
 
 .ship-armor {
   grid-area: ship-armor;
