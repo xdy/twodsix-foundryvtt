@@ -2012,6 +2012,10 @@ img.ship-mask-bg {
   justify-content: space-evenly;
 }
 
+.cargo-weight .ship-stat {
+  width: fit-content;
+}
+
 .ship-stat .red input[type="number"]{
   color: var(--s2d6-damage-red);
 }
@@ -2066,7 +2070,7 @@ input.power-current, input.power-total {
   width: -webkit-fill-available;
   /* display: flex; */
   /* margin-left: 38%; */
-  margin-right: 7%;
+  /* margin-right: 7%; */
   /* margin-top: -49px; */
   /* z-index: 109; */
   height: 100%;
@@ -2126,6 +2130,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   row-gap: 1em;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: end;
 }
 
 .tab.ship-crew, .tab.ship-positions {
@@ -2134,6 +2139,8 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /* padding-right: 24px; */
   margin-top: 7px;
   overflow: auto;
+  padding-right: 14px;
+  height: -webkit-fill-available;
 }
 
 .ship-position-delete, .ship-position-edit {
@@ -2144,20 +2151,21 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-position-box {
-  width: 14.8em;
-  min-height: 50px;
+  width: 29ch;
+  min-height: 7ch;
   border: 1px solid;
   border-radius: 0;
+  align-content: space-evenly;
 }
 
 .ship-position-add-box {
   text-align: center;
-  min-height: 100px;
+  min-height: 14ch;
 }
 
 .ship-position-add-position {
-  font-size: 40px;
-  margin-top: 20px;
+  font-size: 6ch;
+  /* margin-top: 20px; */
 }
 
 .ship-position-actor-token, .create-ship-position {
@@ -2170,7 +2178,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .crew-list, .ship-positions-list {
-  height: 302px;
+  height: 100%;
 }
 
 .force-border {
@@ -2300,6 +2308,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   margin-bottom: 1em;
   display: flex;
   justify-content: space-evenly;
+  /* width: fit-content; */
 }
 
 .cargo-list {
@@ -2338,8 +2347,8 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-notes-container, .ship-notes-container-short, .ship-finances-container {
   margin-left: 15px;
   padding-top: 14px;
-  height: 352px;
-  width: 782px;
+  height: 50ch;
+  width: 80%;
   overflow-x: hidden;
 }
 
@@ -2380,10 +2389,10 @@ div.ship-value {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 245px;
+  height: 33ch;
   border: 1px solid var(--color-border-light-tertiary);
   border-radius: 0 3px 3px;
-  width: 238px;
+  width: 28ch;
   padding: 0 2ch;
   /* font-size: 15px; */
   overflow-y: auto;
@@ -2407,8 +2416,8 @@ div.ship-value {
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--color-border-light-tertiary);
   background-color: var(--s2d6-input-background) !important;
-  width: 487px;
-  height: 245px;
+  width: 60ch;
+  height: 33ch;
   border-radius: 0 3px 3px;
   overflow-y: auto;
   padding: 0.2em;
