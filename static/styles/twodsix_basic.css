@@ -1644,7 +1644,7 @@ span.total-output {
     "ship-image ship-info"
     "ship-image ship-requirements"
     "ship-deck ship-tabs";
-  height: 45%;
+  max-height: 43%;
   /* top: 5ch; */
 }
 
@@ -1776,7 +1776,7 @@ img.ship-mask-bg {
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: 2ch;
-  margin-left: 2px;
+  margin-left: 4px;
   /* margin-top: 2px; */
   height: 98%;
   text-align: center;
@@ -2140,7 +2140,8 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   margin-top: 7px;
   overflow: auto;
   padding-right: 14px;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+  min-height: 12ch;
 }
 
 .ship-position-delete, .ship-position-edit {
@@ -2178,7 +2179,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .crew-list, .ship-positions-list {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .force-border {
