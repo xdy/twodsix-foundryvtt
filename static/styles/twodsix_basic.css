@@ -2178,9 +2178,9 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background-color: var(--color-text-dark-inactive);
 }
 
-.crew-list, .ship-positions-list {
-  /* height: 100%; */
-}
+/*.crew-list, .ship-positions-list {
+  height: 100%;
+}*/
 
 .force-border {
   border: 1px solid yellow !important;
