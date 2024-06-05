@@ -1776,9 +1776,9 @@ img.ship-mask-bg {
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor ";
   font-size: 2ch;
-  /* margin-left: 2px; */
+  margin-left: 2px;
   /* margin-top: 2px; */
-  height: 96%;
+  height: 98%;
   text-align: center;
 }
 
@@ -1925,14 +1925,26 @@ img.ship-mask-bg {
   height: max-content;
 }
 
-.ship-power {
+.ship-power-used, .ship-power-avail {
  /*position: relative;
   left: 14px;
   width: 75px;
   margin-right: -74px;
   margin-bottom: -34px;
-  top: 4px;*/
-  grid-area: col1;
+  top: 4px;
+  grid-area: col1;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+.ship-power-used {
+  grid-area: used;
+}
+
+.ship-power-avail {
+  grid-area: avail;
 }
 
 .ship-power-subgrid {
@@ -1949,10 +1961,10 @@ img.ship-mask-bg {
     "used col1 col2 col3 col4 col5"
     "avail col1 col2 col3 col4 col5";
   text-align: center;
-  height: 92%;
+  height: 100%;
 }
 
-.power-grid {
+/*.power-grid {
   display: grid;
   grid-template-columns: 59px 59px 59px 59px 59px;
   grid-template-rows: 1fr;
@@ -1962,10 +1974,9 @@ img.ship-mask-bg {
   position: relative;
   left: 93px;
   top: -60px;
-  /*margin-bottom: -4em;
-  height: 4em;*/
   font-size: 15px;
-}
+}*/
+
 .systems-power, .systems-weight {
   grid-area: col1;
 }
@@ -2021,62 +2032,30 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-orange);
 }
 
-.power-grid input[type="text"] {
-  /*font-size: 28px;*/
+/*.power-grid input[type="text"] {
   position: relative;
   display: block;
   top: 0.20em;
   text-align: center;
   border: none;
-}
+}*/
 
 /*--- Labels ---*/
 
 span.ship-power-label {
-  display: block;
-  /* width: 75px; */
   font-size: 2ch;
-  text-align: center;
-  /* position: relative; */
-  /* top: -23%; */
   grid-area: pow;
   align-self: center;
 }
 
-span.power-now {
+span.power-now, span.power-max {
   font-size: 1ch;
-  /* position: relative; */
-  /* display: block; */
-  /* width: auto; */
-  /* top: 9%; */
-  /* align-self: end; */
-  margin-top: -7%;
-  grid-area: used;
-}
-
-span.power-max {
-  font-size: 1ch;
-  position: relative;
-  /* display: block; */
-  /* width: auto; */
-  /* top: -48px; */
-  /* align-self: end; */
-  margin-top: 32%;
-  grid-area: avail;
 }
 
 /*--- Input Fields ---*/
 
-input.power-current {
-  font-size: 2.2ch;
-  grid-area: used;
-  margin-top: 3%;
-}
-
-input.power-total {
-  font-size: 2.2ch;
-  grid-area: avail;
-  margin-top: 3%;
+input.power-current, input.power-total {
+  font-size: 2ch;
 }
 
 /*------------------*/

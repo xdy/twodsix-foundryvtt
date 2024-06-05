@@ -2516,6 +2516,7 @@ span.total-output {
   flex-direction: column;
   justify-content: space-evenly;
   margin-top: -23%;
+  overflow: hidden;
 }
 
 .systems-power, .systems-weight {
@@ -2552,28 +2553,20 @@ span.total-output {
   align-self: center;
 }
 
-.ship-power {
-  /* position: relative; */
-  /* left: 21px; */
-  /* width: 74px; */
-  /* margin-right: -75px; */
-  /* margin-bottom: -34px; */
-  /* top: -90px; */
-  grid-area: col1;
+.ship-power-used, .ship-power-avail {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.power-grid {
-  display: grid;
-  grid-template-columns: 53px 54px 53px 53px 55px;
-  gap: 0 2px;
-  grid-template-areas:
-    ". . . . .";
-  position: relative;
-  left: 104px;
-  top: -161px;
-  font-size: 14px;
-  /* margin-bottom: -4em; */
-  /* height: 4em; */
+.ship-power-used {
+  justify-content: flex-start;
+  grid-area: used;
+}
+
+.ship-power-avail {
+  justify-content: center;
+  grid-area: avail;
 }
 
 .ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
@@ -2610,77 +2603,29 @@ span.total-output {
   color: var(--s2d6-damage-red);
 }
 
-.power-grid input[type="text"] {
-  font-size: 28px;
-  position: relative;
-  display: block;
-  width: 54px;
-  top: 0.20em;
-  text-align: center;
-  border: none;
-  background-color: transparent;
-}
-
 /*--- Labels ---*/
 
 span.ship-power-label {
-  display: block;
+  /* display: block; */
   /* width: 75px; */
   font-size: 2ch;
-  text-align: center;
+  /* text-align: center; */
   /* position: relative; */
   /* top: -23%; */
   grid-area: pow;
   align-self: center;
 }
 
-span.power-now {
+span.power-now, span.power-max {
   font-size: 1ch;
-  /* position: relative; */
-  /* display: block; */
-  /* width: auto; */
-  /* top: 9%; */
-  align-self: end;
-  margin-bottom: 4%;
-  grid-area: used;
-}
-
-span.power-max {
-  font-size: 1ch;
-  /* position: relative; */
-  display: block;
-  /* width: auto; */
-  top: -48px;
-  align-self: end;
-  margin-bottom: 4%;
-  grid-area: avail;
 }
 
 /*--- Input Fields ---*/
 
-input.power-current {
-  font-size: 2.2ch;
-  /* position: relative; */
-  /* left: 0; */
-  /* top: -30%; */
-  /* width: inherit; */
-  /* display: block; */
+input.power-current, input.power-total  {
+  font-size: 2ch;
   border: none;
   background-color: transparent;
-  grid-area: used;
-}
-
-input.power-total {
-  font-size: 2.2ch;
-  /* position: relative; */
-  /* left: 0; */
-  /* top: -39px; */
-  /* width: inherit; */
-  /* display: block; */
-  border: none;
-  background-color: transparent;
-  grid-area: avail;
-  margin-top: 3%;
 }
 
 /*------------------*/
