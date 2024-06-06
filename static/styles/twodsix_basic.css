@@ -1637,14 +1637,15 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 10% 35% 32% 16%;
+  grid-template-rows: 5ch 16% 15% 8% 53%;
   gap: 1px 1px;
   grid-template-areas:
     "ship-image ship-name"
     "ship-image ship-info"
     "ship-image ship-requirements"
-    "ship-deck ship-tabs";
-  max-height: 43%;
+    "ship-deck ship-tabs"
+    "ship-data ship-data";
+  height: -webkit-fill-available;
   /* top: 5ch; */
 }
 
@@ -2109,12 +2110,13 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 2px solid;
   border-radius: 20px;
   z-index: 99;
-  position: absolute;
+  /* position: absolute; */
   top: 47%;
-  height: 51%;
-  width: 97%;
+  /* height: 51%; */
+  width: 100%;
   overflow-y: auto;
   overflow-x: auto;
+  grid-area: ship-data;
 }
 
 .ship-grid {
