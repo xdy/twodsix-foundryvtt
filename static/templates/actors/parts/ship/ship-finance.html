@@ -1,12 +1,18 @@
 <div class="ship-finances-container">
   <div class="ship-financial-notes">
-    <span class="item-title">{{localize "TWODSIX.Ship.FINANCENOTES"}}</span>
+    <div>
+      <span class="item-title">{{localize "TWODSIX.Ship.FINANCENOTES"}}</span>
       {{#if settings.useProseMirror}}
       {{editor richText.finances target="system.finances" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
       {{else}}
         <div contenteditable="true" data-edit="system.finances">{{#if actor.system.finances}}{{{actor.system.finances}}}{{/if}}</div>
       {{/if}}
     </div>
+    <div>
+      <span class="item-title">{{localize "TWODSIX.Ship.COMMONFUNDS"}}</span>
+      <span class="ship-commonFunds"><input type="number" value="{{actor.system.commonFunds}}" name="system.commonFunds" /> {{localize "TWODSIX.Ship.MCr"}}</span>
+    </div>
+  </div>
   <div class="financial-calcs">
     <span class="item-title">{{localize "TWODSIX.Ship.SHIPVALUE"}}</span>
     <div class="ship-value">

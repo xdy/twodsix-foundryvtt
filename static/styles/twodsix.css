@@ -114,7 +114,7 @@ input[type='search'], input[type='date'], div[contenteditable], textarea {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  border: 1px solid var(--s2d6-background-opaque);
+  border: 1px solid var(--s2d6-background-transparent);
   border-radius: 0;
   height: 3ch;
 }
@@ -419,6 +419,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
+  padding-top: 0;
 }
 
 .editor-content strong {
@@ -471,14 +472,14 @@ h2 {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 18em;
+  grid-template-columns: 15em 21em 0.9fr;
   grid-template-rows: 18em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
-  "npc-name-photo npc-bgi-stats npc-notes-container"
-  "npc-skills npc-skills npc-traits"
-  "npc-weapons npc-weapons npc-armor";
+    "npc-name-photo npc-bgi-stats npc-notes-container"
+    "npc-skills npc-skills npc-notes-container"
+    "npc-armor npc-traits npc-weapons";
 }
 .npc-content-container-spells {
   display: grid;
@@ -933,6 +934,7 @@ h2 {
 
 .character-photo.npc {
   min-height: 65%;
+  max-height: 100% !important;
 }
 
 .status-icons {
@@ -949,9 +951,11 @@ h2 {
 }
 
 .status-icons.npc {
-  position: absolute !important;
-  top: 0.5ch;
-  height: 40% !important;
+  position: relative !important;
+  top: -22.5ch;
+  /* height: -webkit-fill-available !important; */
+  align-content: flex-start;
+  /* flex-wrap: wrap; */
 }
 .condition-icon {
   height: auto;
@@ -1492,12 +1496,13 @@ svg:hover {
 
 .character-tabs-info {
   background-color: var(--s2d6-background-transparent);
-  height: 97%;
+  height: 96%;
   grid-area: character-tabs;
   /* flex: 2 2 auto; */
-  overflow-x: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
   width: 97%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* margin-top: 1ch; */
   /* display: flex; */
   /* position: absolute; */
@@ -1506,12 +1511,10 @@ svg:hover {
 
 .character-tabs-info.character-inventory {
   width: 97%;
+  overflow: auto;
 }
 
-.skill-tab, .item.skill-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  background-position-x: -2px;
-  width: 14ch;
+.skill-tab, /*.item.skill-tab,*/ .item-tab, .finances-tab, .info-tab, .effects-tab, .actor-notes-tab {
   /* padding-top: 0.15em; */
   display: flex;
   background-color: var(--s2d6-background-opaque);
@@ -1519,6 +1522,33 @@ svg:hover {
   border: solid 2px var(--s2d6-default-color);
   flex-direction: column;
   justify-content: center;
+  min-height: 2ch;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.skill-tab {
+  min-width: 7ch;
+}
+
+.item-tab {
+  min-width: 10ch;
+}
+
+.finances-tab {
+  min-width: 10ch;
+}
+
+.info-tab {
+  min-width: 7ch;
+}
+
+.effects-tab {
+  min-width: 9ch;
+}
+
+.actor-notes-tab {
+  min-width: 9ch;
 }
 
 a.skill-tab:hover {
@@ -1533,22 +1563,6 @@ a.skill-tab.active {
   background-color: var(--s2d6-default-color) !important;
 }
 
-.item-tab, .finances-tab, .info-tab, .effects-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  background-position-x: -97px;
-  /* padding-top: 0.15em; */
-  width: 13ch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--s2d6-background-opaque);
-  /* border: solid 2px !important; */
-  /* border-radius: 3ch 1ch 0; */
-  border: solid 2px var(
-  --s2d6-default-color) !important;
-  border-radius: 5ch 1ch 2ch 0;
-}
-
 a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, .effects-tab:hover {
   /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
   color: var(--s2d6-item-hover);
@@ -1559,20 +1573,6 @@ a.item-tab.active, a.finances-tab.active, a.info-tab.active, .effects-tab.active
   color: var(--s2d6-item-active);
   text-shadow: none !important;
   background-color: var(--s2d6-default-color) !important;
-}
-
-.actor-notes-tab {
-  /* background-image: url(../assets/actor/Interface-Tabs.svg); */
-  /* background-position-x: 93px; */
-  /* padding-top: 0.15em; */
-  width: 11ch;
-  display: flex;
-  background-color: var(--s2d6-background-opaque);
-  border-radius: 5ch 1ch 2ch 0;
-  border: solid 2px var(--s2d6-default-color) !important;
-  min-height: 2ch;
-  flex-direction: column;
-  justify-content: center;
 }
 
 a.actor-notes-tab:hover {
@@ -1604,10 +1604,18 @@ a.actor-notes-tab.active {
   padding-left: 5px;
 }*/
 
-.tab.inventory, .tab.actor-notes {
-  /* margin-top: 2ch; */
+.tab.inventory {
+  margin-top: 2ch;
   height: 97%;
-  overflow-y: auto;
+  overflow: hidden;
+  margin-left: 8px;
+  width: 98%;
+}
+
+.tab.actor-notes {
+  margin-top: 2ch;
+  height: 97%;
+  overflow: auto;
   margin-left: 8px;
   width: 98%;
 }
@@ -1938,11 +1946,15 @@ span.total-output {
 
 /*-------Finances Tab-----------*/
 
+.tab.finances {
+  overflow: auto;
+}
+
 .finances-container {
   display: grid;
   grid-template-columns: 45% 53%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1px 1px;
+  gap: 1px 8px;
   grid-template-areas:
     'cash financial-notes'
     'pension financial-notes'
@@ -1951,7 +1963,7 @@ span.total-output {
     'living-costs financial-notes';
   position: relative;
   margin-top: 44px;
-  margin-left: 24px;
+  margin-left: 8px;
 }
 
 .financial-notes {
@@ -1980,7 +1992,7 @@ span.total-output {
 }
 
 .cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'] {
-  width: 28ch;
+  width: 31ch;
   padding: 0.5em;
   height: 3.5ch;
   border: 1px solid var(--s2d6-default-color);
@@ -2014,7 +2026,7 @@ span.total-output {
   mask-repeat: no-repeat;
   mask-size: cover;
   height: fit-content;
-  width: 25ch;
+  width: 28ch;
   display: block;
   color: var(--s2d6-item-active);
   font-weight: bold;
@@ -2142,7 +2154,7 @@ span.total-output {
   height: 95%;
   width: 92%;
   /* margin-bottom: -77px; */
-  overflow: auto;
+  /* overflow: auto; */
   /* font-size: larger; */
 }
 
@@ -2165,32 +2177,36 @@ span.total-output {
 
 .ship-container {
   display: grid;
-  grid-template-columns: 51% 49%;
-  grid-template-rows: 9% 8% 28% 30% 12%;
+  grid-template-columns: 50% 48%;
+  grid-template-rows: 5% 5% 17% 19% 7% 47%;
   gap: 1px 1px;
   grid-template-areas:
     ". ."
     "ship-image ship-name"
     "ship-image ship-info"
     "ship-image ship-requirements"
-    "ship-deck ship-tabs";
+    "ship-deck ship-tabs"
+    "ship-data ship-data";
   /* left: 0; */
   /* margin-top: 6ch; */
   position: absolute;
   top: 0;
   left: 0;
-  height: 60%;
+  height: 98%;
   width: 99%;
+  row-gap: 1px;
+  margin-left: 1%;
 }
 
 .ship-mask-bg {
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 0;
+  /* z-index: -50000; */
   pointer-events: none;
   height: 100%;
   width: 100%;
+  /* background: white; */
 }
 
 .ship-image {
@@ -2229,16 +2245,17 @@ span.total-output {
   grid-area: ship-name;
   border-bottom: 2px solid var(--s2d6-default-color);
   z-index: 2;
-  font-size: 3.5ch;
-  /* padding: 2px 2px 2px 4px; */
+  font-size: 2.5ch;
+  padding: 3px 2px 0px 4px;
   width: 95%;
+  overflow: hidden;
 }
 
 .ship-name input[type="text"] {
-  height: 2ch;
+  height: 2.5ch;
   border: none;
   position: relative;
-  /* top: -4px; */
+  top: 5px;
   width: 100%;
   font-size: 2ch;
 }
@@ -2249,12 +2266,20 @@ span.total-output {
   /* position: relative; */
   /* width: -webkit-fill-available; */
   color: var(--s2d6-stat-input);
+  overflow: hidden;
+  /* height: 17ch; */
+  /* width: 99%; */
+  /* display: flex; */
 }
 
 .ship-info li {
   display: inline;
   list-style: none;
   padding: 5px;
+}
+
+.ship-info p {
+  margin: 0;
 }
 
 .ship-info ul {
@@ -2266,14 +2291,15 @@ span.total-output {
   padding: 0;
   /* margin-top: -0.5em; */
   /*margin-left: 1.7em;*/
-  width: 100%;
+  width: 7ch;
   border: none;
   background-color: transparent;
 }
 
-.ship-fuel-value input, .ship-drives input, .ship-armor-value input {
-  width: 42%;
-  font-size: 15px;
+.ship-fuel-value input, .ship-drives input, .ship-armor-value input, .ship-bandwidth input, .ship-hull-value input, .ship-hull input {
+  width: 4ch;
+  font-size: 2.5ch;
+  text-align: center;
 }
 
 .overdrive-mode input[type="checkbox"] {
@@ -2285,6 +2311,7 @@ span.total-output {
 
 .fuel-bar {
   width: 95%;
+  max-width: 17ch;
   height: 30px;
   /* align-self: center; */
 }
@@ -2294,24 +2321,26 @@ span.total-output {
 }
 
 .ship-state-grid {
+  /* grid-area: ship-info; */
   display: grid;
   grid-template-columns: 15% 12% 20% 22% 22%;
-  /* grid-template-rows: 122%; */
+  grid-template-rows: 100%;
   gap: 1px 5px;
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: 1.5ch;
-  height: 100%;
-  width: 100%;
+  height: 96%;
+  width: 99%;
   flex-direction: row;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-.ship-state-grid span {
-  /* margin-top: 0.5em; */
+/*.ship-state-grid span {
+  margin-top: 0.5em;
   text-align: center;
-  /* vertical-align: middle; */
-}
+  vertical-align: middle;
+}*/
 
 .ship-armor {
   grid-area: ship-armor;
@@ -2336,61 +2365,103 @@ span.total-output {
   /* word-break: break-all; */
   /* min-height: 48px; */
   height: 100%;
-  /* width: 90%; */
+  width: 100%;
   scrollbar-width: thin;
   scrollbar-color: var(--s2d6-default-color);
 }
 
 .ship-hull {
   grid-area: ship-hull;
-  /* display: grid; */
-  text-align: center;
-  margin-top: 0.5em;
+  display: flex;
+  /* text-align: center; */
+  /* margin-top: 0.5em; */
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .ship-hull-bandwidth {
   grid-area: ship-hull;
-  display: grid;
+  display: flex;
   text-align: center;
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; */
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* margin: 0 !important; */
 }
 
 .ship-hull-value {
-  position: relative;
-  top: -82px;
+  /* position: relative; */
+  /* top: -39%; */
+  /* font-size: 2.5ch; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* text-align: center; */
+  /* vertical-align: middle; */
+  align-items: center;
 }
 
 .ship-hull-max {
-  position: relative;
-  top: -66px;
+  /* position: relative; */
+  /* top: -43%; */
+  font-size: 2.5ch;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .ship-hull-svg {
   position: relative;
-  top: -12px;
+  top: 0;
+  /* width: -webkit-fill-available; */
+  object-fit: contain;
+  align-self: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+
+.hull-data {
+  position: relative;
+  top: -90%;
+  display: grid;
+  flex-direction: column;
+  gap: inherit;
+  height: 100%;
+  justify-content: space-between;
+  /* width: 100%; */
+  grid-template-columns: 100%;
+  grid-template-rows: 16% 32% 31% 19%;
 }
 
 .ship-fuel {
   grid-area: ship-fuel;
-  display: grid;
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   /* grid-template-rows: 15px 25px 47px 20px; */
   /* text-align: center; */
-  margin-top: 0.5em;
-  /* justify-content: space-between; */
+  /* margin-top: 0.5em; */
+  justify-content: space-evenly;
   /* vertical-align: middle; */
 }
 
 .ship-mass {
   grid-area: ship-mass;
-  display: grid;
-  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 0.5em; */
+  justify-content: space-evenly;
+  height: -webkit-fill-available;
 }
 
 .ship-drives {
   grid-area: ship-drives;
-  display: grid;
-  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 0.5em; */
+  justify-content: space-evenly;
+  min-width: 8ch;
 }
 
 .ship-mass input, .ship-tl input {
@@ -2398,7 +2469,7 @@ span.total-output {
   /*border: solid;
   border-color: var(--s2d6-default-color);
   border-radius: 0.5ch !important;*/
-  font-size: 15px;
+  font-size: 2.5ch;
 }
 
 /*.ship-mass input[type="number"], .ship-tl input[type="number"] {
@@ -2421,11 +2492,12 @@ span.total-output {
   background-size: contain;
   /* background-repeat: no-repeat; */
   padding-top: 1px;
+  overflow: hidden;
 }
 
 .ship-power-management-image {
   height: 100%;
-  width: 96%;
+  width: 98%;
 }
 
 .ship-power-subgrid {
@@ -2434,8 +2506,8 @@ span.total-output {
   position: relative;
   top: -97%;
   grid-template-columns: 20% 12% 12% 12% 12% 12%;
-  left: 6.5%;
-  gap: 0 1.5%;
+  left: 6%;
+  gap: 0 1.8%;
   grid-template-rows: 33% 47% 48%;
   height: 63%;
   grid-template-areas:
@@ -2450,6 +2522,7 @@ span.total-output {
   flex-direction: column;
   justify-content: space-evenly;
   margin-top: -23%;
+  overflow: hidden;
 }
 
 .systems-power, .systems-weight {
@@ -2486,28 +2559,20 @@ span.total-output {
   align-self: center;
 }
 
-.ship-power {
-  /* position: relative; */
-  /* left: 21px; */
-  /* width: 74px; */
-  /* margin-right: -75px; */
-  /* margin-bottom: -34px; */
-  /* top: -90px; */
-  grid-area: col1;
+.ship-power-used, .ship-power-avail {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.power-grid {
-  display: grid;
-  grid-template-columns: 53px 54px 53px 53px 55px;
-  gap: 0 2px;
-  grid-template-areas:
-    ". . . . .";
-  position: relative;
-  left: 104px;
-  top: -161px;
-  font-size: 14px;
-  /* margin-bottom: -4em; */
-  /* height: 4em; */
+.ship-power-used {
+  justify-content: flex-start;
+  grid-area: used;
+}
+
+.ship-power-avail {
+  justify-content: center;
+  grid-area: avail;
 }
 
 .ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
@@ -2544,77 +2609,29 @@ span.total-output {
   color: var(--s2d6-damage-red);
 }
 
-.power-grid input[type="text"] {
-  font-size: 28px;
-  position: relative;
-  display: block;
-  width: 54px;
-  top: 0.20em;
-  text-align: center;
-  border: none;
-  background-color: transparent;
-}
-
 /*--- Labels ---*/
 
 span.ship-power-label {
-  display: block;
+  /* display: block; */
   /* width: 75px; */
   font-size: 2ch;
-  text-align: center;
+  /* text-align: center; */
   /* position: relative; */
   /* top: -23%; */
   grid-area: pow;
   align-self: center;
 }
 
-span.power-now {
+span.power-now, span.power-max {
   font-size: 1ch;
-  /* position: relative; */
-  /* display: block; */
-  /* width: auto; */
-  /* top: 9%; */
-  align-self: end;
-  margin-bottom: 4%;
-  grid-area: used;
-}
-
-span.power-max {
-  font-size: 1ch;
-  /* position: relative; */
-  display: block;
-  /* width: auto; */
-  top: -48px;
-  align-self: end;
-  margin-bottom: 4%;
-  grid-area: avail;
 }
 
 /*--- Input Fields ---*/
 
-input.power-current {
-  font-size: 2.2ch;
-  /* position: relative; */
-  /* left: 0; */
-  /* top: -30%; */
-  /* width: inherit; */
-  /* display: block; */
+input.power-current, input.power-total  {
+  font-size: 2ch;
   border: none;
   background-color: transparent;
-  grid-area: used;
-}
-
-input.power-total {
-  font-size: 2.2ch;
-  /* position: relative; */
-  /* left: 0; */
-  /* top: -39px; */
-  /* width: inherit; */
-  /* display: block; */
-  border: none;
-  background-color: transparent;
-  grid-area: avail;
-  margin-top: 3%;
 }
 
 /*------------------*/
@@ -2655,12 +2672,14 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-tabs-info.sheet-body {
   z-index: 99;
-  position: absolute;
+  /* position: absolute; */
   top: 53%;
-  height: 43%;
-  width: 95%;
+  height: 96%;
+  width: 98%;
   overflow-y: auto;
   overflow-x: auto;
+  grid-area: ship-data;
+  margin-top: 8px;
 }
 
 .ship-grid {
@@ -2695,18 +2714,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-position-box {
   width: 29ch;
-  min-height: 5ch;
   border: 1px groove var(--s2d6-default-color);
+  min-height: 6ch;
   border-radius: 0;
 }
 
 .ship-position-add-box {
   text-align: center;
-  min-height: 100px;
+  min-height: 14ch;
 }
 
 .ship-position-add-position {
-  font-size: 40px;
+  font-size: 6ch;
   margin-top: 20px;
 }
 
@@ -2719,22 +2738,22 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-grid input[type="text"] {
-  width: 28ch;
+  width: 30ch;
   border: 1px groove var(--s2d6-default-color);
   border-radius: 0;
   height: 4ch;
 }
 
 .ship-grid > div > div[contenteditable] {
-  width: 28ch;
+  width: 30ch;
   border: 1px groove var(--s2d6-default-color) !important; /* must keep !important*/
   border-radius: 0;
   min-height: 6ch;
 }
 
 .storage-wrapper {
-  margin-top: 17px;
-  margin-left: 27px;
+  margin-top: 1%;
+  margin-left: 3%;
   /* margin-bottom: 32px; */
   overflow-y: auto;
   /* height: 46%; */
@@ -2882,8 +2901,8 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 .ship-notes-container, .ship-notes-container-short {
   margin-left: 2%;
   padding-top: 3%;
-  height: 32%;
-  width: 90%;
+  /* height: 32%; */
+  /* width: 90%; */
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -2923,8 +2942,8 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   grid-template-columns: 2fr 1fr;
   column-gap: 4ch;
   margin-left: 4ch;
-  margin-top:  3%;
-  height: 100%;
+  margin-top: 1%;
+  /* height: 97%; */
 }
 
 div.ship-value {
@@ -2942,6 +2961,16 @@ div.ship-value {
 
 .ship-finances-container >div[contenteditable], .ship-finances-container .editor {
   height: 74%;
+}
+
+.ship-financial-notes {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+}
+
+.ship-commonFunds input[type="number"] {
+  border: 1px solid var(--s2d6-default-color);
+  width: 36ch;
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
@@ -3481,11 +3510,12 @@ option {
 .window-app.twodsix.sheet.actor .window-header {
   /* padding-right: 9ch; */
   padding-left: 3%;
-  line-height: 3ch;
-  padding-top: 3px;
+  line-height: 1ch;
+  flex-basis: 3%;
+  /* padding-top: 3px; */
   /* border: none; */
   /* justify-content: space-between; */
-  /* align-items: center; */
+  align-items: center;
   /* position: relative; */
   /* top: 1%; */
   /* min-height: 2ch; */
@@ -3496,16 +3526,19 @@ option {
 .window-app.twodsix.ship.actor .window-header {
   margin-right: 5%;
   margin-left: 5%;
-  /* padding-top: 3ch; */
-  /* align-content: center; */
-  /* line-height: 1ch; */
+  margin-top: 3px;
+  padding-top: 0.4%;
+  /* align-content: baseline; */
+  /* line-height: 7ch; */
   /* font-size: 2ch; */
-  height: 100%;
-  position: relative;
-  z-index: 100;
-  top: 0.7%;
+  /* height: 8%; */
+  /* position: relative; */
+  /* z-index: 100000; */
+  /* top: 1.5%; */
   /* display: flex; */
   /* align-self: auto; */
+  /* vertical-align: bottom; */
+  overflow: visible;
 }
 
 .window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,
@@ -3705,7 +3738,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   gap: 0 1ch;
   align-items: center;
   margin-left: -4ch;
-  margin-right: 3ch;
+  /* margin-right: 3ch; */
   height: 100%;
   /* margin-top: 0; */
 }
@@ -3725,6 +3758,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-default-color);
   margin-top: 0;
+  border: 1px solid var(--s2d6-default-color);
 }
 
 .tox .tox-tbtn svg {
@@ -3856,6 +3890,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-top: inset;
   text-align: center;
   padding-top: 8px;
+  width: 35em;
 }
 
 .prosemirror .editor-container .editor-content {
@@ -3947,4 +3982,28 @@ input[type="text"].color {
       scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
       scrollbar-width: thin;
   }
+}
+
+/* file picker updates*/
+.filepicker .favorites .path, .filepicker .display-modes a {
+  background: var(--s2d6-background-nearly-opaque);
+}
+
+.filepicker .display-modes a.active {
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
+  text-shadow: none;
+}
+
+.filepicker .display-modes a:hover {
+  /* background-image: url(../assets/actor/Interface-Tabs-Hover.svg); */
+  color: var(--s2d6-item-hover);
+}
+
+.standard-form .form-group > label {
+  color: var(--s2d6-default-color);
+}
+
+.filepicker .favorites .path a.link[data-source]::before {
+  color: var(--s2d6-form-light);
 }

@@ -361,3 +361,34 @@ div.pdf-app section.window-content {
 .customCssSettings .stylesheet-editor {
 	background-color: var(--s2d6-form-light);
 }
+
+
+/***** Quick Insert****/
+.quick-insert-app .search-editable-input {
+  background: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-light-color);
+}
+
+.quick-insert-result {
+  background:var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-default-color);
+}
+
+.quick-insert-result li span.sub, .quick-insert-result li a i.action-icon {
+  background: var(--s2d6-background-nearly-transparent);
+  color: var(--s2d6-app-color);
+}
+
+.quick-insert-app .search-selected a, .quick-insert-result li a:hover {
+  background: var(--s2d6-background-semi-opaque);
+}
+
+.quick-insert-result li a strong {
+  background: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-light-color);
+}
+
+.quick-insert-app .search-selected a:hover {
+  background: var(--s2d6-background-opaque);
+  color: var(--s2d6-light-color);
+}
