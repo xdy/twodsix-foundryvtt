@@ -1,3 +1,10 @@
+## [4.25.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.1...v4.25.2) (2024-06-07)
+
+
+### Bug Fixes
+
+* missing species field and style updates ([#1574](https://github.com/xdy/twodsix-foundryvtt/issues/1574)) ([4100ac8](https://github.com/xdy/twodsix-foundryvtt/commit/4100ac843157bcac015896dea65701cf63b51fe9))
+
 ## [4.25.1](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.0...v4.25.1) (2024-05-26)
 
 
