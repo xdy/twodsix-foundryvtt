@@ -956,7 +956,7 @@ h2 {
 
 .status-icons.npc {
   position: relative !important;
-  top: -22.5ch;
+  top: -20.5ch;
   /* height: -webkit-fill-available !important; */
   align-content: flex-start;
   /* flex-wrap: wrap; */
@@ -3524,6 +3524,7 @@ option {
   /* min-height: 2ch; */
   /* vertical-align: middle; */
   color: var(--s2d6-app-color);
+  border: none;
 }
 
 .window-app.twodsix.ship.actor .window-header {
