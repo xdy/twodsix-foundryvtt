@@ -75,6 +75,7 @@ export class AnimalData extends TwodsixActorBaseData {
     const schema = super.defineSchema();
 
     schema.homeWorld = new fields.StringField({...requiredBlankString});
+    schema.species =  new fields.StringField({...requiredBlankString});
     schema.animalType = new fields.SchemaField({
       niche: new fields.StringField({required: true, blank: false, initial: "herbivore"}),
       subtype: new fields.StringField({required: true, blank: false, initial: "filter"})

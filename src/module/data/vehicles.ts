@@ -40,6 +40,7 @@ export class ShipData extends TwodsixVehicleBaseData {
     schema.mortgageCost = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.shipValue = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.isMassProduced = new fields.BooleanField({required: true, initial: false});
+    schema.commonFunds = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 });
     schema.reqPower = new fields.SchemaField({
       systems: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       "m-drive": new fields.NumberField({ ...requiredInteger, initial: 0 }),
