@@ -3446,6 +3446,18 @@ form button, .application a.button, .application button {
   border: 2px groove var(--s2d6-default-color);
 }
 
+.application a.button:focus, .application button:focus {
+  outline: none;
+  box-shadow: 0 0 4px var(--s2d6-app-color);
+}
+
+.application a.button:hover, .application button:hover {
+  background: var(--s2d6-background-opaque);
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
+  /*transition: background-color 0.5s, border-color 0.5s;*/
+}
+
 button:hover {
   box-shadow: 0 0 5px var(--s2d6-default-color);
   color: var(--s2d6-light-color);
