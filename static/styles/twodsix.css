@@ -420,7 +420,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding-top: 0;
+  padding-top: 1ch;
 }
 
 .editor-content strong {
