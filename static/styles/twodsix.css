@@ -3498,10 +3498,10 @@ form .notes, form .hint {
   border-color: var(--s2d6-light-color)!important; /*must keep important*/
 }
 
-/*.dialog .dialog-buttons button.default {
+dialog .dialog-buttons button.default {
   background: var(--s2d6-item-active);
   border: 2px groove var(--s2d6-item-border);
-}*/
+}
 
 option {
   color: var(--s2d6-default-color);
