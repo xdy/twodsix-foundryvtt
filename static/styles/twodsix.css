@@ -2208,20 +2208,25 @@ span.total-output {
   grid-area: ship-image;
   text-align: center;
   width: 94%;
-  padding-left: 5%;
-  padding-top: 3%;
+  padding-left: 7%;
+  padding-top: 5%;
+  padding-bottom: 2%;
   z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-image img {
-  vertical-align: middle;
+  /* justify-content: center; */
   z-index: -1;
-  max-height: 84%;
+  max-height: -webkit-fill-available;
+  object-fit: contain;
 }
 
 .ship-deck {
   margin-left: -3%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
   text-align: center;
   font-size: 2ch;
   grid-area: ship-deck;
