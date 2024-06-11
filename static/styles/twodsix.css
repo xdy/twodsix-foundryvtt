@@ -420,7 +420,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding-top: 1ch;
+  padding: 1ch 0 0;
 }
 
 .editor-content strong {
@@ -2817,7 +2817,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   height: 100%;
   align-items: center;
   display: grid;
-  width: fit-content;
+  /* width: fit-content; */
 }
 
 .components-stored-single {
@@ -3555,6 +3555,7 @@ option {
   /* align-self: auto; */
   /* vertical-align: bottom; */
   overflow: visible;
+  border: none;
 }
 
 .window-app.minimized.twodsix.ship.actor, .window-app.minimized.twodsix.ship.actor .window-header ,

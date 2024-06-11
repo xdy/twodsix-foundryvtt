@@ -1254,7 +1254,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-header {
   cursor: pointer;
-  width: 34em
+  width: 35em;
 }
 
 /* Style overrides */
