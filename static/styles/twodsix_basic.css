@@ -1761,7 +1761,7 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 18% 13% 26% 18% 21%;
+  grid-template-columns: 18% 13% 24% 20% 21%;
   grid-template-rows: 100%;
   gap: 1px 5px;
   grid-template-areas:
@@ -2001,6 +2001,7 @@ img.ship-mask-bg {
   height: -webkit-fill-available;
   width: 100%;
   justify-content: space-evenly;
+  overflow: hidden;
 }
 
 .cargo-weight .ship-stat {
@@ -2103,7 +2104,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /* position: absolute; */
   top: 47%;
   /* height: 51%; */
-  width: 100%;
+  width: 99%;
   overflow-y: auto;
   overflow-x: auto;
   grid-area: ship-data;
@@ -2337,11 +2338,16 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 10em;
 }*/
 
-.ship-notes-container, .ship-notes-container-short, .ship-finances-container {
+.ship-finances-container {
+  padding-top: 14px;
+  overflow-x: hidden;
+}
+
+.ship-notes-container, .ship-notes-container-short {
   margin-left: 15px;
   padding-top: 14px;
   height: 50ch;
-  width: 80%;
+  width: 90%;
   overflow-x: hidden;
 }
 
