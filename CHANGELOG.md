@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.2...v5.0.0) (2024-06-14)
+
+
+### Features
+
+* Foundry vtt v12 update ([#1515](https://github.com/xdy/twodsix-foundryvtt/issues/1515)) ([c498390](https://github.com/xdy/twodsix-foundryvtt/commit/c498390a96e1b5497dbc8bcd16b89bca18816161))
+
+
+### BREAKING CHANGES
+
+* This version is only compatible with v12+.  Also, "id" fields were removed from the html due to incompatibility with FVTT core.  Those wanting custom css should use "name" instead.
+
 ## [4.25.2](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.1...v4.25.2) (2024-06-07)
 
 
