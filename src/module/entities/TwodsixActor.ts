@@ -208,7 +208,7 @@ export default class TwodsixActor extends Actor {
 
     //Check for status change
     if (options.diff && game.user?.id === userId) {  //Not certain why options.diff is needed, but opening token editor for tokenActor and cancelling fires updateActor
-      if (!!options?.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
+      if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
         if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
           await applyWoundedEffect(this);
         }
@@ -221,7 +221,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //scroll hits change
-    if (!!options?.deltaHits && this.isOwner ) {
+    if (!!options.deltaHits && this.isOwner ) {
       this.scrollDamage(options.deltaHits);
     }
   }
