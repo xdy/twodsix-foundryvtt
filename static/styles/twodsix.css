@@ -3568,6 +3568,7 @@ option {
 .window-app.minimized.twodsix.sheet.npc-actor, .window-app.minimized.twodsix.sheet.npc-actor .window-header,
 .window-app.minimized.twodsix.sheet.vehicle-actor, .window-app.minimized.twodsix.sheet.vehicle-actor .window-header {
   padding: 0 1px;
+  flex-basis: 4ch;
 }
 
 /*.window-app .window-content > * {
