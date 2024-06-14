@@ -130,7 +130,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       height: 720,
       resizable: true,
       tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
+      scrollY: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
@@ -268,7 +268,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
       const newState = getNewEquippedState(itemSelected);
-      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true});
+      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true, noHook: true});
 
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       const itemUpdates = [];
@@ -281,7 +281,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true, noHook: true});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
         await applyEncumberedEffect(this.actor);

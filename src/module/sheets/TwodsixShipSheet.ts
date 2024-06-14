@@ -76,7 +76,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       height: 820,
       resizable: true,
       tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
-      scrollY: [".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
+      scrollY: [".ship-tabs-info", ".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
       dragDrop: [
         //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
         {
