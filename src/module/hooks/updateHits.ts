@@ -3,11 +3,11 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 import { getDamageCharacteristics } from "../utils/actorDamage";
-import { mergeDeep } from "../utils/utils";
+//import { mergeDeep } from "../utils/utils";
 import {Traveller} from "../../types/template";
 
-function getCurrentHits(actorType: string, ...args: Record<string, any>[]) {
-  const characteristics = mergeDeep({}, ...args);
+function getCurrentHits(actorType: string, current: Record<string, any>[], diff: Record<string, any>[]) {
+  const characteristics = foundry.utils.mergeObject(current, diff);
   const hitsCharacteristics: string[] = getDamageCharacteristics(actorType);
 
   return Object.entries(characteristics).reduce((hits, [key, chr]) => {
