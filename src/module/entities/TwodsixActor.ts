@@ -13,6 +13,9 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
+import { updateFinances } from "../hooks/updateFinances";
+import { updateHits } from "../hooks/updateHits";
+import { applyEncumberedEffect, applyWoundedEffect } from "../hooks/showStatusIcons";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -20,12 +23,22 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
  */
 export default class TwodsixActor extends Actor {
   /** @override */
-  protected async _preCreate(data, options, userId) {
-    await super._preCreate(data, options, userId);
+  /**
+   * Perform preliminary operations before an Actor of this type is created.
+   * Pre-creation operations only occur for the client which requested the operation.
+   * @param {object} data               The initial data object provided to the document creation request.
+   * @param {object} options            Additional options which modify the creation request.
+   * @param {User} userId                 The User requesting the document creation.
+   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
+   * @see {Document#_preCreate}
+   * @protected
+   */
+  protected async _preCreate(data:object, options:object, userId:User): Promise<boolean|void> {
+    const allowed:boolean = await super._preCreate(data, options, userId);
 
     let isDefaultImg = false;
     const changeData = {};
-    //console.log("onCreate Start", this);
+
     switch (this.type) {
       case "traveller":
       case "animal":
@@ -136,6 +149,81 @@ export default class TwodsixActor extends Actor {
       await this.updateSource({
         'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
       });
+    }
+
+    return allowed;
+  }
+
+  /**
+   * Perform preliminary operations before a Document of this type is updated.
+   * Pre-update operations only occur for the client which requested the operation.
+   * @param {object} data            The data object that is changed - NOT always relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {documents.BaseUser} user   The User requesting the document update
+   * @returns {Promise<boolean|void>}   A return value of false indicates the update operation should be cancelled.
+   * @see {Document#_preUpdate}
+   * @protected
+   */
+  async _preUpdate(data:object, options:object, user:any): Promise<boolean> {
+    const allowed = await super._preUpdate(data, options, user);
+
+    // Update hits & wounds
+    let deltaHits = 0;
+    if (data?.system?.characteristics && ['traveller', 'animal', 'robot'].includes(this.type)) {
+      const charDiff = foundry.utils.diffObject(this.system._source.characteristics, data.system.characteristics); //v12 stopped passing diffferential
+      if (Object.keys(charDiff).length > 0) {
+        deltaHits = updateHits(this, data, charDiff);
+      }
+
+      if (deltaHits !== 0) {
+        //console.log ('need to update wounded status');
+        Object.assign(options, {deltaHits: deltaHits});
+      }
+    }
+
+    // Update Finances
+    if (this.type === 'traveller') {
+      const financeDiff = {
+        finances: data?.system?.finances ? foundry.utils.diffObject(this.system._source.finances, data.system.finances) : {},
+        financeValues: data?.system?.financeValues ? foundry.utils.diffObject(this.system._source.financeValues, data.system.financeValues) : {} //v12 stopped passing diffferential
+      };
+      if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
+        updateFinances(this, data, financeDiff);
+      }
+    }
+
+    return allowed;
+  }
+
+  /**
+   * Perform follow-up operations after a Document of this type is updated.
+   * Post-update operations occur for all clients after the update is broadcast.
+   * @param {object} changed            The differential data that was changed relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {string} userId             The id of the User requesting the document update
+   * @see {Document#_onUpdate}
+   * @protected
+   */
+  async _onUpdate(changed:object, options:object, userId:string) {
+    await super._onUpdate(changed, options, userId);
+
+    //Check for status change
+    if (options.diff && game.user?.id === userId) {  //Not certain why options.diff is needed, but opening token editor for tokenActor and cancelling fires updateActor
+      if (!!options?.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
+        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+          await applyWoundedEffect(this);
+        }
+      }
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') ) {
+        if (changed.system?.characteristics && (this.type === 'traveller') ) {
+          await applyEncumberedEffect(this);
+        }
+      }
+    }
+
+    //scroll hits change
+    if (!!options?.deltaHits && this.isOwner ) {
+      this.scrollDamage(options.deltaHits);
     }
   }
 

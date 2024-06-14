@@ -6,24 +6,6 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "../utils/actorDamage";
 
-Hooks.on('updateActor', async (actor: TwodsixActor, update: Record<string, any>, options: any, userId: string) => {
-  if (options.diff) {  //Not certain why this is needed, but opening token editor for tokenActor and cancelling fires updateActor
-    if (checkForWounds(update.system, actor.type) && (["traveller", "animal", "robot"].includes(actor.type))) {
-      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && game.user?.id === userId) {
-        await applyWoundedEffect(actor);
-      }
-      if (actor.system.hits.lastDelta !== 0 && actor.isOwner ) {
-        actor.scrollDamage(actor.system.hits.lastDelta);
-      }
-    }
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && game.user?.id === userId) {
-      if (update.system?.characteristics && (actor.type === 'traveller') ) {
-        await applyEncumberedEffect(actor);
-      }
-    }
-  }
-});
-
 Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
   if (game.user?.id === userId) {
     const owningActor: TwodsixActor = item.actor;
@@ -42,20 +24,6 @@ Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, op
     }
   }
 });
-
-function checkForWounds(systemUpdates: Record<string, any>, actorType:string): boolean {
-  if (systemUpdates !== undefined) {
-    const damageCharacteristics = getDamageCharacteristics(actorType);
-    for (const characteristic of damageCharacteristics) {
-      if (systemUpdates.characteristics) {
-        if (characteristic in systemUpdates.characteristics) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
 
 function checkForDamageStat (update: any, actorType: string): boolean {
   if (update.effects?.length > 0) {
@@ -91,7 +59,7 @@ export const effectType = Object.freeze({
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
-async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
+export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
   const tintToApply = getIconTint(selectedActor);
   const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
   const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
@@ -192,7 +160,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
         img: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
         statuses: ["encumbered"]
-      }], {dontSync: true});
+      }], {dontSync: true, noHook: true});
     } else {
       const encumberedEffect = await selectedActor.effects.get(idToKeep);
       if (changeData[0].value !== encumberedEffect?.changes[0].value  && encumberedEffect) {
