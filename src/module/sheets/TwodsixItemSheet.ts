@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions } from "../utils/sheetUtils";
 import { Component, Gear } from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -18,7 +18,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /** @override */
   static get defaultOptions(): ItemSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       submitOnClose: true,
       submitOnChange: true,
@@ -60,13 +60,18 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      DIFFICULTIES: TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))],
+      difficultyList: getDifficultiesSelectObject(),
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
       rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.long : TWODSIX.CE_WEAPON_RANGE_TYPES.long,
-      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
+      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
+      rollTypes: getRollTypeSelectObject(),
+      augLocations: TWODSIX.AUG_LOCATIONS,
+      consumableOptions: getConsumableOptions(this.item),
+      itemTypes: TWODSIX.ITEM_TYPE_SELECT
     };
+
     if (this.item.type === 'skills') {
       returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
       //Set characterisitic, making certin it is valid choice
@@ -78,7 +83,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
 
     //prevent processor attachements to software
-    returnData.config = duplicate(TWODSIX);
+    returnData.config = foundry.utils.duplicate(TWODSIX);
+
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
@@ -186,6 +192,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
     await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
     //await this.item.update({"system.type": event.currentTarget.value});
+    //await this.render(false);
   }
 
   /* -------------------------------------------- */
@@ -243,7 +250,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
-      const newId = randomID();
+      const newId = foundry.utils.randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
         const effects = [new ActiveEffect({
           origin: undefined, //UUID? this.item.uuid
@@ -343,7 +350,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       return;
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
-    const consumablesList = duplicate(TWODSIX.CONSUMABLES);
+    const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
     if (this.item.type === "computer" ) {
       delete consumablesList["processor"];
     }

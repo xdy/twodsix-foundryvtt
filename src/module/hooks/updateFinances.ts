@@ -3,39 +3,43 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 
-export async function updateFinances(actor:TwodsixActor, update:Record<string, any>): Promise<void> {
+export function updateFinances(actor:TwodsixActor, update:Record<string, any>, financeDiff:any): void {
   if (["traveller"].includes(actor.type)) {
-    if (update.system?.finances) {
-      await updateFinanceValues(update);
-    } else if (update.system?.financeValues) {
-      await updateFinanceText(actor, update);
+    if (Object.keys(financeDiff.finances).length > 0) {
+      updateFinanceValues(update, financeDiff);
+    } else if (Object.keys(financeDiff.financeValues).length > 0) {
+      updateFinanceText(actor, update, financeDiff);
     }
   }
 }
 
-async function updateFinanceValues(update:Record<string, any>) {
-  for (const financeField in update.system.finances) {
+function updateFinanceValues(update:Record<string, any>, financeDiff:any) {
+  const financeValueUpdates = {};
+  for (const financeField in financeDiff.finances) {
     if (financeField !== "financial-notes") {
       const parsedText = getParsedFinanceText(update.system.finances[financeField]);
       if (parsedText) {
         const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
-        await Object.assign(update.system, {financeValues: {[financeField]: newValue}});
+        Object.assign(financeValueUpdates, {[financeField]: newValue});
       }
     }
   }
+  Object.assign(update.system, {financeValues: financeValueUpdates});
 }
 
-async function updateFinanceText(actor:TwodsixActor, update:Record<string, any>) {
-  for (const financeField in update.system.financeValues) {
+function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, financeDiff:any) {
+  const financeTextUpdates = {};
+  for (const financeField in financeDiff.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
-    let newValue = update.system.financeValues[financeField];
-    const numberDigits = Math.floor(Math.log10(newValue)) + 1;
+    let newValue = financeDiff.financeValues[financeField];
+    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
     if (parsedText?.units) {
       newValue /= getMultiplier(parsedText.units);
     }
     const newText = ''.concat(newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}), (parsedText?.units ? ' ' + parsedText.units : ''));
-    await Object.assign(update.system, {finances: {[financeField]: newText}});
+    Object.assign(financeTextUpdates, {[financeField]: newText});
   }
+  Object.assign(update.system, {finances: financeTextUpdates});
 }
 
 /**
@@ -63,7 +67,7 @@ export function parseLocaleNumber(stringNumber:string): number {
  * @returns {Record<any>} - object with keys num and units
  */
 export function getParsedFinanceText(financeString: string): Record<string, any> | undefined {
-  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.]*)(?<sp>\s*)(?<units>.*?)$/);
+  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
   const parsedResult: RegExpMatchArray | null = re.exec(financeString);
   return parsedResult?.groups;
 }

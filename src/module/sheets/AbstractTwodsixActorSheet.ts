@@ -6,8 +6,7 @@ import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from 
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
-//import { getKeyByValue } from "../utils/sheetUtils"
-import { TWODSIX } from "../config";
+import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 
@@ -235,7 +234,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const {type} = header.dataset;
 
     // Grab any data associated with this control.
-    //const data = duplicate(header.dataset) as Record<string, any>;
+    //const data = foundry.utils.duplicate(header.dataset) as Record<string, any>;
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
@@ -442,7 +441,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const dialogData = {
       shouldRoll: false,
       rollType: "Normal",
-      rollTypes: TWODSIX.ROLLTYPES,
+      rollTypes: getRollTypeSelectObject(),
       diceModifier: "",
       rollMode: game.settings.get('core', 'rollMode'),
       rollModes: CONFIG.Dice.rollModes,

@@ -168,6 +168,8 @@ export default class TwodsixItem extends Item {
 
     // Initialize settings
     const tmpSettings = {
+      rollType: "",
+      bonusDamage: "0",
       rollModifiers: {
         characteristic: "",
         other: 0
@@ -180,59 +182,9 @@ export default class TwodsixItem extends Item {
       tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
     }
 
-    // Set fire mode parameters
-    let numberOfAttacks = 1;
-    let bonusDamage = "0";
-    let isAutoFull = false;
-    let skillLevelMax: number|undefined = undefined;
-    const rof = parseInt(weapon.rateOfFire, 10);
-    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
-    if (attackType !== 'single' && !rateOfFire) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
-    }
-
-    let usedAmmo = rateOfFire;
-    let weaponTypeOverride = "";
-    const autoFireRules:string = game.settings.get('twodsix', 'autofireRulesUsed');
-    const useCTBands:boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
-    switch (attackType) {
-      case "single":
-        // Need a single fire override for auto weapons
-        if (useCTBands) {
-          if (weapon.rangeBand === 'autoRifle') {
-            weaponTypeOverride = 'rifle';
-          } else if ( weapon.rangeBand === 'submachinegun') {
-            weaponTypeOverride = 'autoPistol';
-          }
-        }
-        break;
-      case "auto-full":
-        numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
-        if (autoFireRules === 'CEL') {
-          usedAmmo = 3 * rateOfFire;
-        }
-        skillLevelMax =  game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
-        isAutoFull = true;
-        break;
-      case "auto-burst":
-        if (autoFireRules !== 'CT') {
-          bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh`: rateOfFire.toString(); //special rule for CD-EE
-        }
-        break;
-      case "burst-attack-dm":
-        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFire)});
-        break;
-      case "burst-bonus-damage":
-        bonusDamage = TwodsixItem.burstBonusDamage(rateOfFire);
-        break;
-      case "double-tap":
-        Object.assign(tmpSettings.rollModifiers, {rof: 1});
-        usedAmmo = 2;
-        break;
-    }
-    Object.assign(tmpSettings, {bonusDamage: bonusDamage});
-    Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
-    const weaponType:string = weaponTypeOverride || weapon.rangeBand;
+    // Get fire mode parameters
+    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings);
+    const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
     const targetTokens = Array.from(game.user.targets);
@@ -266,7 +218,7 @@ export default class TwodsixItem extends Item {
       const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
-        const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[0], {gridSpaces: true});
+        const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
         const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
@@ -274,6 +226,7 @@ export default class TwodsixItem extends Item {
       } else if (targetTokens.length === 0) {
         rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
+      console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
       Object.assign(tmpSettings, {rollType: rollType});
     }
@@ -319,7 +272,7 @@ export default class TwodsixItem extends Item {
         }
 
         if (controlledTokens.length === 1) {
-          const targetRange = canvas.grid.measureDistance(controlledTokens[0], targetTokens[i%targetTokens.length], {gridSpaces: true});
+          const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
           const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
@@ -329,8 +282,8 @@ export default class TwodsixItem extends Item {
       const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
         let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
-        if (bonusDamage !== "0" && bonusDamage !== "") {
-          totalBonusDamage += (addEffect ? ` + `: ``) + `${bonusDamage}`;
+        if (tmpSettings.bonusDamage !== "0" && tmpSettings.bonusDamage !== "") {
+          totalBonusDamage += (addEffect ? ` + `: ``) + `${tmpSettings.bonusDamage}`;
         }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (targetTokens.length >= 1 && damagePayload) {
@@ -341,8 +294,72 @@ export default class TwodsixItem extends Item {
   }
 
   /**
+   * A method to get the weapon fire mode parameters.
+   * @param {number} rateOfFireCE  The rate of fire used
+   * @param {string} attackType The type of attack (e.g. burst, double-tap, etc.)
+   * @param {any} tmpSettings the temporary settings object for the roll
+   * @returns {any} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
+   */
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: any): any {
+    const weapon:Weapon = <Weapon>this.system;
+    let numberOfAttacks = 1;
+    let bonusDamage = "0";
+    let isAutoFull = false;
+    let skillLevelMax: number | undefined = undefined;
+    const rof = parseInt(weapon.rateOfFire, 10);
+    const rateOfFire: number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
+    if (attackType !== 'single' && !rateOfFire) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
+    }
+
+    let usedAmmo = rateOfFire;
+    let weaponTypeOverride = "";
+    const autoFireRules: string = game.settings.get('twodsix', 'autofireRulesUsed');
+
+    switch (attackType) {
+      case "single":
+        // Need a single fire override for auto weapons
+        if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+          if (weapon.rangeBand === 'autoRifle') {
+            weaponTypeOverride = 'rifle';
+          } else if (weapon.rangeBand === 'submachinegun') {
+            weaponTypeOverride = 'autoPistol';
+          }
+        }
+        break;
+      case "auto-full":
+        numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
+        if (autoFireRules === 'CEL') {
+          usedAmmo = 3 * rateOfFire;
+        }
+        skillLevelMax = game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
+        isAutoFull = true;
+        break;
+      case "auto-burst":
+        if (autoFireRules !== 'CT') {
+          bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh` : rateOfFire.toString(); //special rule for CD-EE
+        }
+        break;
+      case "burst-attack-dm":
+        Object.assign(tmpSettings.rollModifiers, { rof: TwodsixItem.burstAttackDM(rateOfFire) });
+        break;
+      case "burst-bonus-damage":
+        bonusDamage = TwodsixItem.burstBonusDamage(rateOfFire);
+        break;
+      case "double-tap":
+        Object.assign(tmpSettings.rollModifiers, { rof: 1 });
+        usedAmmo = 2;
+        break;
+    }
+    Object.assign(tmpSettings, { bonusDamage: bonusDamage });
+    Object.assign(tmpSettings.rollModifiers, { skillLevelMax: skillLevelMax });
+    const weaponType: string = weaponTypeOverride || weapon.rangeBand;
+    return { weaponType, isAutoFull, usedAmmo, numberOfAttacks };
+  }
+
+  /**
    * A method to get the weapons range modifer based on the weapon type and measured range (distance).
-   * Valid for Classic Traveller and Cepheus Engine rule sets.
+   * Valid for Classic Traveller and Cepheus Engine band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
    * @param {string} weaponBand The type of weapon used - as key string
    * @returns {any} {rangeModifier: rangeModifier, rollType: rollType}
@@ -427,7 +444,7 @@ export default class TwodsixItem extends Item {
   }
 
   /**
-   * A method to parse and return the weapon's handling modifier based on attacker's charactersiticis.
+   * A method to parse and return the weapon's handling modifier based on attacker's characteristics.
    * @returns {number} The DM for the actor firing the weapon used
    */
   public getWeaponsHandlingMod(): number {
@@ -448,6 +465,12 @@ export default class TwodsixItem extends Item {
     return weaponHandlingMod;
   }
 
+  /**
+   * Perform a skill roll / check based on input settings.
+   * @param showThrowDialog {boolean} Whether to show roll/through dialog
+   * @param tmpSettings {TwodsixRollSettings|undefined} Roll settings to use
+   * @param showInChat Whehter to show attack in chat
+   */
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
     let skill:TwodsixItem | null = null;
     let item:TwodsixItem | undefined;
@@ -531,6 +554,7 @@ export default class TwodsixItem extends Item {
     }
 
     const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
+    await diceRoll.evaluateRoll();
 
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);
@@ -558,7 +582,7 @@ export default class TwodsixItem extends Item {
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
-        await damage.evaluate({async: true}); // async: true will be default in foundry 0.10
+        await damage.evaluate();
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -572,7 +596,7 @@ export default class TwodsixItem extends Item {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
           radDamage = new Roll(radFormula, this.actor?.getRollData());
-          await radDamage.evaluate({async: true});
+          await radDamage.evaluate();
         }
       }
 
@@ -613,7 +637,7 @@ export default class TwodsixItem extends Item {
         await damage.toMessage({
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
           flags: {
             "core.canPopout": true,
             "transfer": transfer,
@@ -802,7 +826,7 @@ export default class TwodsixItem extends Item {
       if (consumable.quantity > 1) {
         //Make a duplicate and add to inventory if not empty
         if (consumable.currentCount > 0) {
-          const partialConsumable = duplicate(this);
+          const partialConsumable = foundry.utils.duplicate(this);
           (<Consumable>partialConsumable.system).quantity = 1;
           await this.actor?.createEmbeddedDocuments("Item", [partialConsumable]);
         }
@@ -817,7 +841,7 @@ export default class TwodsixItem extends Item {
     }
   }
   /**
-   * A method for returning the weapons-armor modifier based on target and weapon type used
+   * A method for returning the weapons-armor modifier based on target and weapon type used - Classic Traveller
    * @param {Token} targetToken Token for target
    * @param {string} weaponType Weapon's type description, (e.g., club, rifle, hands). Can be an override based on fire mode (e.g. auto rifle in single fire mode)
    * @param {boolean} isAuto is full auto fire

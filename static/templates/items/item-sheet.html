@@ -4,27 +4,26 @@
 
     <div class="item-qty">
       <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
-      <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+      <input class="form-input" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
     </div>
 
     <div class="item-weight">
       <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
-      <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+      <input class="form-input" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
     </div>
 
+    {{#if (twodsix_canBeEquipped this)}}
     <div class="item-type">
-      <label for="item.location" class="resource-label">{{localize "TWODSIX.Items.Equipment.ItemLocation"}}</label>
-      <select name="type" value={{system.location}}>
-        {{#select item.location}}
-        <option value="inventory">{{localize "TWODSIX.Items.Equipment.Inventory"}}</option>
-        <option value="storage">{{localize "TWODSIX.Items.Equipment.Storage"}}</option>
-        {{/select}}
-      </select>
+      <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+          <select class="form-input" name="system.equipped" >
+            {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+          </select>
     </div>
+    {{/if}}
 
     <div class="item-short">
       <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
-      <input class="form-input" id="system.shortdescr" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+      <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
     </div>
 
     <div class="item-descr">

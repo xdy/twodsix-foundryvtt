@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 //Assorted utility functions likely to be helpful when displaying characters
+import { TWODSIX } from "../config";
+import { advantageDisadvantageTerm } from "../i18n";
 import { camelCase } from "../settings/settingsUtils";
 
 // export function pseudoHex(value:number):string {
@@ -233,7 +235,7 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = deepClone(item);
+  const itemCopy = foundry.utils.deepClone(item);
 
   //Delete Active effects if not used
   if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
@@ -320,7 +322,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
     new Dialog({
       title: title,
       content:
-        `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" id="outputFormula" value="` + initFormula + `"></input>`,
+        `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
       buttons: {
         Roll: {
           label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
@@ -362,4 +364,50 @@ export function getDamageTypes(isWeapon:boolean): object {
     Object.assign(returnObject, {"NONE": "---"});
   }
   return returnObject;
+}
+
+/**
+ * Function to return an object for roll type {{selctOptions}}, localized and using system settings
+ * @returns {object} An object with the roll type type key and localized label pairs
+ * @export
+ */
+export function getRollTypeSelectObject(): object {
+  const returnObj = {};
+  Object.keys(TWODSIX.ROLLTYPES).forEach((key) => {
+    returnObj[key] = advantageDisadvantageTerm(key);
+  });
+  return returnObj;
+}
+
+/**
+ * Function to return an object for difficulty type {{selctOptions}}, localized and using system settings
+ * @param {object} difficultyList A specific difficulty list from TWODSIX.DIFFICULTIES
+ * @returns {object} An object with the difficulty type key and localized label (value) pairs
+ * @export
+ */
+export function getDifficultiesSelectObject(difficultyList?:any = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]): object {
+  const returnObj = {};
+  const useTargetDiff:boolean = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
+  Object.keys(difficultyList).forEach((key) => {
+    const value = difficultyList[key];
+    const label = useTargetDiff ? `${value.target}+` : `${value.mod >=0 ? `+` : ``}${value.mod}`;
+    returnObj[key] = `${game.i18n.localize(key)} (${label})`;
+  });
+  return returnObj;
+}
+
+/**
+ * Function to return an object for consumables to use for attack/use
+ * @param {TwodsixItem} item an item with consumables
+ * @returns {object} An object with the difficulty the id as key and name pairs
+ * @export
+ */
+export function getConsumableOptions(item:TwodsixItem): object {
+  const returnObj = {"": "---"};
+  if (item.system.consumableData?.length > 0) {
+    for (const consumable of item.system.consumableData) {
+      returnObj[consumable.id] = consumable.name;
+    };
+  }
+  return returnObj;
 }

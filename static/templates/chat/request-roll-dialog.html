@@ -14,34 +14,21 @@
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}
         <select name="difficulty">
-          {{#select difficulty}}
-            {{#each difficulties}}
-              <option value="{{@key}}">{{localize @key}} ({{#if (twodsix_difficultiesAsTargetNumber)}}{{this.target}}+{{else}}{{#iff this.mod ">=" 0}}+{{/iff}}{{this.mod}}{{/if}})
-              </option>
-            {{/each}}
-          {{/select}}
+          {{selectOptions difficultyList selected=difficulty}}
         </select>
       </label>
     </div>
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Type"}}
         <select name="rollType">
-          {{#select rollType}}
-            {{#each rollTypes as |type|}}
-              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
-            {{/each}}
-          {{/select}}
+          {{selectOptions rollTypes selected=rollType}}
         </select>
       </label>
     </div>
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
         <select name="rollMode">
-          {{#select rollMode}}
-            {{#each rollModes as |label mode|}}
-              <option value="{{mode}}">{{localize label}}</option>
-            {{/each}}
-          {{/select}}
+          {{selectOptions rollModes selected=rollMode localize=true}}
         </select>
       </label>
     </div>

@@ -2,8 +2,8 @@
   <div class="item-price">
     <label for = "system.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}</label>
     <span class="short-label">
-      <input class="short-label" id="system.price" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
-      <select id = "system.pricingBasis" name = "system.pricingBasis" >
+      <input class="short-label" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+      <select name = "system.pricingBasis" >
         {{#if system.isBaseHull}}
           {{selectOptions config.HullPricingOptions selected = system.pricingBasis localize = true}}
         {{else}}
@@ -15,16 +15,16 @@
 {{else}}
   <div class="item-price">
     <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Component.Value"}}</label>
-    <input class="form-input" id="system.price" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+    <input class="form-input" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
   </div>
 
   <div class="item-price">
     <label for="system.purchasePrice" class="resource-label">{{localize "TWODSIX.Items.Component.purchasePrice"}}</label>
-    <input class="form-input" id="system.purchasePrice" type="text" name="system.purchasePrice" value="{{system.purchasePrice}}" data-dtype="Number"/>
+    <input class="form-input" type="text" name="system.purchasePrice" value="{{system.purchasePrice}}" data-dtype="Number"/>
   </div>
 
   <div class="item-price">
     <label for="system.isIllegal" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isIllegal"}}</label>
-    <input type="checkbox" class="checkbox" name="system.isIllegal" id="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
+    <input type="checkbox" class="checkbox" name="system.isIllegal" {{checked system.isIllegal}} data-dtype="Boolean" />
   </div>
 {{/iff}}

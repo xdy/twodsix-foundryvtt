@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { advantageDisadvantageTerm } from "./i18n";
+/*import { advantageDisadvantageTerm } from "./i18n";*/
 import { getKeyByValue } from "./utils/sheetUtils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
@@ -13,13 +13,13 @@ export default function registerHandlebarsHelpers(): void {
 
   let showedError = false;
 
-  Handlebars.registerHelper('twodsix_advantageDisadvantageTerm', (str) => {
+  /*Handlebars.registerHelper('twodsix_advantageDisadvantageTerm', (str) => {
     return advantageDisadvantageTerm(str);
   });
 
   Handlebars.registerHelper('twodsix_difficultiesAsTargetNumber', () => {
     return game.settings.get('twodsix', 'difficultiesAsTargetNumber');
-  });
+  });*/
 
   Handlebars.registerHelper('twodsix_isOdd', (num:number) => {
     return (num % 2) == 1;
@@ -50,11 +50,11 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_limitLength', function (a, b) {
-    if (!a) {
+  Handlebars.registerHelper('twodsix_limitLength', function (inStr:string, len: number) {
+    if (!inStr) {
       return '';
     } else {
-      return a.length > b ? '(...)' : a;
+      return inStr.length > len ? '(...)' : inStr;
     }
   });
 
@@ -304,11 +304,11 @@ export default function registerHandlebarsHelpers(): void {
     let returnValue = ``;
     if (actor) {
       const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-      if (getProperty(actor.overrides, field) !== undefined) {
+      if (foundry.utils.getProperty(actor.overrides, field) !== undefined) {
         returnValue += field.includes('Armor') && actor.type === 'traveller' ? `- ` : ``;
         const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
         const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-        const baseValue = getProperty(actor._source, field);
+        const baseValue = foundry.utils.getProperty(actor._source, field);
         returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
         const workingEffects = actor.appliedEffects;
         for (const effect of workingEffects) {

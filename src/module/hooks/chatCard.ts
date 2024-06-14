@@ -337,19 +337,21 @@ async function makeRequestedRoll(message:ChatMessage):void {
     }
   };
   const rollingActorsUuids = messageSettings.userActorList[game.user.id];
-
-  for (const actorUuid of rollingActorsUuids) {
-    const actor = <TwodsixActor>fromUuidSync(actorUuid);
-    const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
-    let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
-    if (selectedSkill && selectedCharacteristic === "NONE") {
-      selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
-    }
-    tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
-    const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
-    if (rollSettings.shouldRoll) {
-      const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
-      diceRoll.sendToChat(TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))]);
+  if (rollingActorsUuids?.length > 0) {
+    for (const actorUuid of rollingActorsUuids) {
+      const actor = <TwodsixActor>fromUuidSync(actorUuid);
+      const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
+      let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
+      if (selectedSkill && selectedCharacteristic === "NONE") {
+        selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
+      }
+      tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
+      const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
+      if (rollSettings.shouldRoll) {
+        const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
+        await diceRoll.evaluateRoll();
+        diceRoll.sendToChat(TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]);
+      }
     }
   }
 }

@@ -18,7 +18,7 @@
         {{/iff}}
 
         {{#iff setting.htmlType "===" "Select"}}
-        <select name="{{key}}" id = "{{key}}" value="{{setting.value}}">
+        <select name="{{key}}" value="{{setting.value}}">
           {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
         </select>
         {{/iff}}
@@ -31,7 +31,7 @@
 
         {{#iff setting.htmlType "===" "Color"}}
         <span class = "color-select" name="{{key}}">
-          {{colorPicker name=key value = setting.value default=setting.value}}
+          <color-picker name="{{key}}" value="{{setting.value}}"></color-picker>
         </span>
         {{/iff}}
       </div>

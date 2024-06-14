@@ -2,7 +2,7 @@
   {{#if settings.usePDFPager}}
     <div class="item-reference">
       <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-      <input class="form-input" id="source" type="text" name="system.docReference" value="{{actor.system.docReference}}"/>
+      <input class="form-input" type="text" name="system.docReference" value="{{actor.system.docReference}}"/>
     </div>
   {{else}}
     {{#if actor.system.pdfReference.href}}

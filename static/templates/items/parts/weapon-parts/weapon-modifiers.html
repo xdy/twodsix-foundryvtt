@@ -2,38 +2,37 @@
   {{#iff owner.type "!==" "ship"}}
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
-        <select class="form-input" name="system.skill" id="system.skill">
-          {{selectOptions skillsList selected=system.skill nameAttr="id" labelAttr="name"}}
+        <select class="form-input" name="system.skill" >
+          {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
         </select>
     </div>
     {{else}}
     <div class="item-skill">
       <label for="system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
-      <input class="form-input" id="system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+      <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
   {{/iff}}
 {{else}}
   <div class="item-skill">
     <label for="system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
-    <input class="form-input" id="system.associatedSkillName" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+    <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
   </div>
 {{/if}}
 
 <div class="item-skillModifier">
   <label for="system.skillModifier" class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
-  <input class="form-input" id="system.skillModifier" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
-          data-dtype="Number"/>
+  <input class="form-input" type="text" name="system.skillModifier" value="{{system.skillModifier}}" data-dtype="Number"/>
 </div>
 
 <div class="item-handling">
   <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
-  <input class="form-input" id="system.handlingModifiers" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
+  <input class="form-input" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
 </div>
 
 {{#if settings.ShowRangeBandAndHideRange}}
   <div class="item-range">
     <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
-    <select id="system.rangeBand" name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
+    <select name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
   </div>
   {{#iff system.rangeBand '===' 'custom'}}
     {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-customCTModifier.html"}}
@@ -41,12 +40,12 @@
 {{else}}
   <div class="item-range">
     <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
-    <input class="form-input" id="system.range" type="text" name="system.range" value="{{system.range}}">
+    <input class="form-input" type="text" name="system.range" value="{{system.range}}">
   </div>
   {{#unless disableMeleeRangeDM}}
   <div class="item-range">
     <label class="resource-label" for="system.meleeRangeModifier">{{localize "TWODSIX.Items.Weapon.MeleeRangeModifier"}}</label>
-    <input class="form-input" id="system.meleeRangeModifier" type="text" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
+    <input class="form-input" type="text" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
   </div>
   {{/unless}}
 {{/if}}

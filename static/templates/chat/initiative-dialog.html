@@ -5,11 +5,7 @@
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Type"}}
         <select name="rollType">
-          {{#select rollType}}
-            {{#each rollTypes as |type|}}
-              <option value="{{type.key}}">{{localize (twodsix_advantageDisadvantageTerm type.key)}}</option>
-            {{/each}}
-          {{/select}}
+          {{selectOptions rollTypes selected=rollType}}
         </select>
       </label>
     </div>
@@ -21,11 +17,7 @@
     <div class="form-group">
       <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
         <select name="rollMode">
-          {{#select rollMode}}
-            {{#each rollModes as |label mode|}}
-              <option value="{{mode}}">{{localize label}}</option>
-            {{/each}}
-          {{/select}}
+          {{selectOptions rollModes selected="publicroll" localize=true}}
         </select>
       </label>
     </div>

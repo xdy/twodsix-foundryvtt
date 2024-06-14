@@ -36,16 +36,17 @@ export default class ItemTemplate extends MeasuredTemplate {
   /**
    * A factory method to create an AbilityTemplate instance using provided data from an Item5e instance
    * @param {TwodsixItem} item               The Item object for which to construct the template
+   * @param {object} [options={}]       Options to modify the created template.
    * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template
    */
-  static fromItem(item: TwodsixItem): Promise<ItemTemplate> {
+  static fromItem(item: TwodsixItem, options={}): Promise<ItemTemplate> {
     const target = item.system.target ?? {};
     const templateShape = TWODSIX.areaTargetTypes[target.type]?.template;
     if ( !templateShape ) {
       return null;
     }
     // Prepare template data
-    const templateData = {
+    const templateData = foundry.utils.mergeObject({
       t: templateShape,
       user: game.user?.id,
       distance: target.value,
@@ -54,7 +55,7 @@ export default class ItemTemplate extends MeasuredTemplate {
       y: 0,
       fillColor: game.user?.color,
       flags: { twodsix: { origin: item.uuid } }
-    };
+    }, options);
 
     // Additional type-specific data
     switch ( templateShape ) {
@@ -79,6 +80,8 @@ export default class ItemTemplate extends MeasuredTemplate {
     const object = new this(template);
     object.item = item;
     object.actorSheet = item.actor?.sheet || null;
+
+    // TWODSIX DOES NOT IMPLENT TEMPLATE HOOKS AS DOES 5e
     return object;
   }
 
@@ -159,8 +162,7 @@ export default class ItemTemplate extends MeasuredTemplate {
       return;
     }
     const center = event.data.getLocalPosition(this.layer);
-    const interval = canvas.grid.type === CONST.GRID_TYPES.GRIDLESS ? 0 : 2;
-    const snapped = canvas.grid.getSnappedPosition(center.x, center.y, interval);
+    const snapped = canvas.grid.getSnappedPoint(center, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
     this.document.updateSource({x: snapped.x, y: snapped.y});
     this.refresh();
     this.#moveTime = now;
@@ -192,8 +194,7 @@ export default class ItemTemplate extends MeasuredTemplate {
    */
   async _onConfirmPlacement(event) {
     await this._finishPlacement(event);
-    const interval = canvas.grid.type === CONST.GRID_TYPES.GRIDLESS ? 0 : 2;
-    const destination = canvas.grid.getSnappedPosition(this.document.x, this.document.y, interval);
+    const destination = canvas.grid.getSnappedPoint(this.document, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
     this.document.updateSource(destination);
     this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
   }

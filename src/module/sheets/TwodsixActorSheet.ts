@@ -20,17 +20,17 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  getData(): any {
+  async getData(): any {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
     returnData.container = {};
     if (game.settings.get('twodsix', 'useProseMirror')) {
       returnData.richText = {
-        description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
-        contacts: TextEditor.enrichHTML(returnData.system.contacts, {async: false}),
-        bio: TextEditor.enrichHTML(returnData.system.bio, {async: false}),
-        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false}),
-        xpNotes: TextEditor.enrichHTML(returnData.system.xpNotes, {async: false})
+        description: await TextEditor.enrichHTML(returnData.system.description),
+        contacts: await TextEditor.enrichHTML(returnData.system.contacts),
+        bio: await TextEditor.enrichHTML(returnData.system.bio),
+        notes: await TextEditor.enrichHTML(returnData.system.notes),
+        xpNotes: await TextEditor.enrichHTML(returnData.system.xpNotes)
       };
     }
 
@@ -123,14 +123,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
       width: 862,
       height: 720,
       resizable: true,
       tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
+      scrollY: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
@@ -139,9 +139,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   public activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
-    html.find('#joat-skill-input').on('input', this._updateJoatSkill.bind(this));
-    html.find('#joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
-    html.find('#joat-skill-input').on('click', (event) => {
+    html.find('.joat-skill-input').on('input', this._updateJoatSkill.bind(this));
+    html.find('.joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
+    html.find('.joat-skill-input').on('click', (event) => {
       $(event.currentTarget).trigger("select");
     });
 
@@ -268,7 +268,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
       const newState = getNewEquippedState(itemSelected);
-      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true});
+      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true, noHook: true});
 
       //change equipped state after toggling active effects so that encumbrance calcs correctly
       const itemUpdates = [];
@@ -281,7 +281,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
           itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
         }
       }
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true});
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true, noHook: true});
       //await wait(100); ///try adding delay to lessen the db error of clicking to fast
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
         await applyEncumberedEffect(this.actor);
@@ -341,7 +341,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
 export class TwodsixNPCSheet extends TwodsixActorSheet {
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "npc-actor"],
       template: "systems/twodsix/templates/actors/npc-sheet.html",
       width: 830,

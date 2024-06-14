@@ -20,6 +20,7 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
       href: new fields.StringField({...requiredBlankString}),
       label: new fields.StringField({...requiredBlankString})
     });
+    schema.priorType = new fields.StringField({required: true, blank: false, initial: "unknown"});
     return schema;
   }
 }
@@ -42,10 +43,10 @@ export class GearData extends TwodsixItemBaseData {
     return schema;
   }
   static migrateData(source:any) {
-    if (source.weight) {
+    if ("weight" in source) {
       migrateStringToNumber(source, "weight");
     }
-    if (source.price) {
+    if ("price" in source) {
       migrateStringToNumber(source, "price");
     }
     return super.migrateData(source);

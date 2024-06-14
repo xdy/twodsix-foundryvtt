@@ -12,7 +12,7 @@ export default class AdvancedSettings extends FormApplication {
 
   /** @override */
   static get defaultOptions(): FormApplicationOptions {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix"],
       template: "systems/twodsix/templates/misc/advanced-settings.html",
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],

@@ -13,34 +13,33 @@
     {{else}}
       <div class="item-armor">
         <label for="system.armor" class="resource-label">{{localize "TWODSIX.Items.Armor.Armor"}}</label>
-        <input class="form-input" id="system.armor" type="text" name="system.armor" value="{{system.armor}}" data-dtype="Number"/>
+        <input class="form-input"  type="text" name="system.armor" value="{{system.armor}}" data-dtype="Number"/>
       </div>
 
       <!-- This is to handle armors like reflec with 0/14. I.e. put the 14 here. -->
       <div class="item-secondaryArmor">
         <label for="system.secondaryArmor.value" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</label>
-        <input class="form-input" id="system.secondaryArmor.value" type="text" name="system.secondaryArmor.value" value="{{system.secondaryArmor.value}}" data-dtype="Number"/>
+        <input class="form-input" type="text" name="system.secondaryArmor.value" value="{{system.secondaryArmor.value}}" data-dtype="Number"/>
       </div>
 
       <div class="item-secondaryArmor">
         <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}</label>
-        <select class="protectionTypes" name="system.secondaryArmor.protectionTypes" multiple>{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</select>
-        <!-- <input class="form-input" id="system.secondaryArmor.protectionTypes" type="text" name="system.secondaryArmor.protectionTypes" value="{{system.secondaryArmor.protectionTypes}}"/> -->
+        <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</multi-select>
       </div>
 
       <div class="item-radiationProtection">
         <label for="system.radiationProtection.value" class="resource-label">{{localize "TWODSIX.Items.Armor.RadProt"}}</label>
-        <input class="form-input" id="system.radiationProtection.value" type="text" name="system.radiationProtection.value" value="{{system.radiationProtection.value}}" data-dtype="Number"/>
+        <input class="form-input" type="text" name="system.radiationProtection.value" value="{{system.radiationProtection.value}}" data-dtype="Number"/>
       </div>
     {{/if}}
     <div class="item-qty">
       <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
-      <input class="form-input" id="system.quantity" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+      <input class="form-input" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
     </div>
 
     <div class="item-weight">
       <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
-      <input class="form-input" id="system.weight" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+      <input class="form-input" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
     </div>
 
     <div class="item-powered">

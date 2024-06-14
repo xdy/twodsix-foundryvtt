@@ -37,7 +37,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   }
 
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "item"],
       template: "systems/twodsix/templates/items/ship_position-sheet.html",
       submitOnClose: true,
@@ -66,7 +66,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
   public static async createActionFromSkill(position:TwodsixItem, skill:TwodsixItem): Promise<void> {
     const actions = (<ShipPosition>position.system).actions;
     const skillData = (<Skills>skill.system);
-    const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     let command = skill.name ?? "";
     if (skillData.characteristic && skillData.characteristic !== "NONE"){
       command += `/${skillData.characteristic}`;
@@ -74,7 +74,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     command += ` ${difficulties[skillData.difficulty].target}+`;
 
     const newAction = {
-      [randomID()]: {
+      [foundry.utils.randomID()]: {
         "order": Object.keys(actions).length,
         "name": skill.name,
         "icon": skill.img ?? "",
@@ -83,7 +83,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "component": ""
       }
     };
-    const newActions = duplicate(Object.assign(actions, newAction));
+    const newActions = foundry.utils.duplicate(Object.assign(actions, newAction));
     await position.update({ "system.actions": newActions });
   }
 
@@ -132,7 +132,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
       // await this.item.update({ [`system.actions.-=${deleteId}`]: null });
       // The code below is an ugly fix because of a bug in foundry: https://gitlab.com/foundrynet/foundryvtt/-/issues/6421
-      const actions = duplicate((<ShipPosition>this.item.system).actions);
+      const actions = foundry.utils.duplicate((<ShipPosition>this.item.system).actions);
       delete actions[deleteId];
       await this.item.update({"system.actions": null}, {noHook: true, render: false});
       await this.item.update({"system.actions": actions });
@@ -149,7 +149,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
 
   private _onCreateAction() {
     const actions = (<ShipPosition>this.item.system).actions;
-    actions[randomID()] = {
+    actions[foundry.utils.randomID()] = {
       "order": Object.values(actions).length === 0 ? 1 : Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
       "name": game.i18n.localize("TWODSIX.Ship.NewAction"),
       "icon": "icons/svg/dice-target.svg",

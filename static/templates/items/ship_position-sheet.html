@@ -2,11 +2,11 @@
   <div class="item-sheet">
     <div class="item-data">
       <label for="name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}</label>
-      <input class="form-input" id="name" type="text" name="name" value="{{name}}" />
+      <input class="form-input" type="text" name="name" value="{{name}}" />
     </div>
     <div class="item-data">
       <label for="system.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}</label>
-      <input class="form-input" id="system.order" type="number" name="system.order" value="{{system.order}}" data-dtype="Number" />
+      <input class="form-input" type="number" name="system.order" value="{{system.order}}" data-dtype="Number" />
     </div>
     {{#if hasShipActor}}
     <div class="form-section">
@@ -14,9 +14,9 @@
       <table>
         <thead>
           <tr>
-            <td></td>
-            <td>{{localize "TWODSIX.Actor.Items.Name"}}</td>
-            <td></td>
+            <th></th>
+            <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -40,16 +40,16 @@
       <table>
         <thead>
           <tr>
-            <td style="min-width: 6ch;">{{localize "TWODSIX.Ship.Order"}}</td>
-            <td>{{localize "TWODSIX.Ship.Name"}}</td>
-            <td>{{localize "TWODSIX.Ship.MacroSkill"}}</td>
-            <td>{{localize "TWODSIX.Ship.Component"}}</td>
-            <td>{{localize "TWODSIX.Ship.ActionType"}}</td>
-            <td class="centre">
+            <th style="min-width: 6ch;">{{localize "TWODSIX.Ship.Order"}}</th>
+            <th>{{localize "TWODSIX.Ship.Name"}}</th>
+            <th>{{localize "TWODSIX.Ship.MacroSkill"}}</th>
+            <th>{{localize "TWODSIX.Ship.Component"}}</th>
+            <th>{{localize "TWODSIX.Ship.ActionType"}}</th>
+            <th class="centre">
               <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}'>
                 <i class="fa-solid fa-plus"></i>
               </a>
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>

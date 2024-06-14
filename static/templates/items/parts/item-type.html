@@ -1,16 +1,6 @@
 <div class="item-type">
   <label for="type" class="resource-label">{{localize "TWODSIX.Items.Items.ItemType"}} </label>
-    <select class="form-input" id="type" name="type" value={{item.type}}>
-      {{#select type}}
-        <option value="augment">{{localize "TWODSIX.Items.Items.AssignAugment"}}</option>
-        <option value="weapon">{{localize "TWODSIX.Items.Items.AssignWeapon"}}</option>
-        <option value="armor">{{localize "TWODSIX.Items.Items.AssignArmor"}}</option>
-        <option value="equipment">{{localize "TWODSIX.Items.Items.AssignEquipment"}}</option>
-        <option value="consumable">{{localize "TWODSIX.Items.Items.AssignConsumable"}}</option>
-        <option value="computer">{{localize "TWODSIX.Items.Items.AssignComputer"}}</option>
-        <option value="tool">{{localize "TWODSIX.Items.Items.AssignTool"}}</option>
-        <option value="junk">{{localize "TWODSIX.Items.Items.AssignJunk"}}</option>
-        <option value="storage">{{localize "TWODSIX.Items.Items.MoveStorage"}}</option>
-      {{/select}}
+    <select class="form-input" name="type">
+      {{selectOptions settings.itemTypes selected=type localize=true}}
     </select>
 </div>

@@ -221,7 +221,7 @@ label.checkbox > input[type="checkbox"] {
 .animal-content-container-small {
   display: grid;
   grid-template-columns: 15em 24em 18em;
-  grid-template-rows: 13em 9em 0.5fr 0.5fr;
+  grid-template-rows: 14em 9em 0.5fr 0.5fr;
   gap: 16px 16px;
   position: relative;
   grid-template-areas:
@@ -1219,16 +1219,6 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   width: fit-content;
 }
 
-#joat-skill {
-  position: absolute;
-}
-
-#joat-skill-input {
-  height: auto;
-  /* width: 4ch; */
-  width: 2em !important;
-}
-
 .skill-top-row {
   display: flex;
   /* flex-direction: row-reverse; */
@@ -1246,7 +1236,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill {
   /* padding: 0.1em 0 0.1em 0.1em; */
-  width: 34em;
+  width: 35em;
 }
 
 /*a:hover, a.active {
@@ -1264,7 +1254,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-header {
   cursor: pointer;
-  width: 34em
+  width: 35em;
 }
 
 /* Style overrides */
@@ -1274,7 +1264,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   justify-self: center;
 }
 
-input.item-value-edit {
+input.item-value-edit, input.joat-skill-input {
   /*padding: initial;*/
   text-align: center;
   height: auto;
@@ -1327,7 +1317,7 @@ input.item-value-edit {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 2em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
+  grid-template-columns: 2em 13em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
   gap: 1px 1px;
 }
@@ -1530,7 +1520,7 @@ span.total-output {
 
 .info-container {
   display: grid;
-  grid-template-columns: 33.6em;
+  /*grid-template-columns: 33.6em;*/
   grid-template-rows: 10em 2em 11em 12em 19em;
   gap: 30px 1px;
   grid-template-areas:
@@ -1771,7 +1761,7 @@ img.ship-mask-bg {
 
 .ship-state-grid {
   display: grid;
-  grid-template-columns: 18% 13% 26% 18% 21%;
+  grid-template-columns: 18% 13% 24% 20% 21%;
   grid-template-rows: 100%;
   gap: 1px 5px;
   grid-template-areas:
@@ -2011,6 +2001,7 @@ img.ship-mask-bg {
   height: -webkit-fill-available;
   width: 100%;
   justify-content: space-evenly;
+  overflow: hidden;
 }
 
 .cargo-weight .ship-stat {
@@ -2021,7 +2012,7 @@ img.ship-mask-bg {
   color: var(--s2d6-damage-red);
 }
 
-#ship-stat-red {
+input.power-current.red {
   color: var(--s2d6-damage-red);
 }
 
@@ -2113,7 +2104,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /* position: absolute; */
   top: 47%;
   /* height: 51%; */
-  width: 100%;
+  width: 99%;
   overflow-y: auto;
   overflow-x: auto;
   grid-area: ship-data;
@@ -2347,11 +2338,18 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   height: 10em;
 }*/
 
-.ship-notes-container, .ship-notes-container-short, .ship-finances-container {
+.ship-finances-container {
+  padding-top: 14px;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ship-notes-container, .ship-notes-container-short {
   margin-left: 15px;
   padding-top: 14px;
   height: 50ch;
-  width: 80%;
+  width: 90%;
   overflow-x: hidden;
 }
 
@@ -2381,11 +2379,6 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .ship-notes-container-short >div[contenteditable] {
   height: 80%;
-}
-
-.ship-finances-container {
-  display: flex;
-  justify-content: space-around;
 }
 
 div.ship-value {
@@ -3240,4 +3233,13 @@ Monk's Enhanced Journals
   * {
       scrollbar-width: thin;
   }
+}
+
+/* v12 Changes */
+
+multi-select.actor-sheet {
+  flex-direction: row;
+}
+multi-select.actor-sheet select {
+  width: 2ch;
 }

@@ -3,7 +3,7 @@
 
 import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import {getKeyByValue} from "./sheetUtils";
+import {getDifficultiesSelectObject, getKeyByValue, getRollTypeSelectObject} from "./sheetUtils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
@@ -36,7 +36,7 @@ export class TwodsixRollSettings {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem, sourceActor?:TwodsixActor) {
-    this.difficulties = settings?.difficulties ? settings.difficulties : TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+    this.difficulties = settings?.difficulties ? settings.difficulties : TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const skill = <Skills>aSkill?.system;
     let skillValue = 0;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
@@ -200,9 +200,9 @@ export class TwodsixRollSettings {
     const template = 'systems/twodsix/templates/chat/throw-dialog.html';
     const dialogData = {
       rollType: this.rollType,
-      rollTypes: TWODSIX.ROLLTYPES,
+      rollTypes: getRollTypeSelectObject(),
       difficulty: getKeyByValue(this.difficulties, this.difficulty),
-      difficulties: this.difficulties,
+      difficultyList: getDifficultiesSelectObject(this.difficulties),
       skillsList: await skill?.actor?.getSkillNameList(),
       rollMode: this.rollMode,
       rollModes: CONFIG.Dice.rollModes,
@@ -235,7 +235,7 @@ export class TwodsixRollSettings {
         icon: '<i class="fa-solid fa-dice"></i>',
         callback: (buttonHtml) => {
           this.shouldRoll = true;
-          this.difficulty = dialogData.difficulties[buttonHtml.find('[name="difficulty"]').val()];
+          this.difficulty = this.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
           this.rollMode = buttonHtml.find('[name="rollMode"]').val();
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
@@ -402,7 +402,7 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
  * @returns {TwodsixRollSettings | any} an object of the initial RollSettings
  */
 export function getInitialSettingsFromFormula(parseString: string, actor: TwodsixActor): TwodsixRollSettings|any {
-  const difficulties = TWODSIX.DIFFICULTIES[(<number>game.settings.get('twodsix', 'difficultyListUsed'))];
+  const difficulties = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
   // eslint-disable-next-line no-useless-escape
   const re = new RegExp(/^(.[^\/\+=]*?) ?(?:\/([\S]+))? ?(?:(\d{0,2})\+)? ?(?:=(\w*))? ?$/);
   const parsedResult: RegExpMatchArray | null = re.exec(parseString);
@@ -443,7 +443,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
       //find the most advantageous characteristic to use based on the displayed (custom) short label
       const charOptions = char.split("|").map(str => str.trim());
       let candidateCharObject = undefined;
-      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel));
+      const candidateCharObjects = charObjectArray.filter(ch => charOptions.includes(ch.displayShortLabel) || charOptions.includes(ch.shortLabel));
       if(candidateCharObjects.length > 0){
         candidateCharObject = candidateCharObjects.reduce((prev, current) =>(prev.mod > current.mod) ? prev: current);
       }

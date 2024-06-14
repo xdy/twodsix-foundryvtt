@@ -18,14 +18,14 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  getData(): any {
+  async getData(): any {
     const returnData: any = super.getData();
     returnData.system = returnData.actor.system;
     returnData.container = {};
     if (game.settings.get('twodsix', 'useProseMirror')) {
       returnData.richText = {
-        description: TextEditor.enrichHTML(returnData.system.description, {async: false}),
-        notes: TextEditor.enrichHTML(returnData.system.notes, {async: false})
+        description: await TextEditor.enrichHTML(returnData.system.description),
+        notes: await TextEditor.enrichHTML(returnData.system.notes)
       };
     }
 
@@ -81,7 +81,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
   /** @override */
   static get defaultOptions(): ActorSheet.Options {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "animal-actor"],
       template: "systems/twodsix/templates/actors/animal-sheet.html",
       width: 830,
@@ -103,7 +103,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     if (this.actor.system.woundedEffect) {
       rollString += " + @woundedEffect";
     }
-    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await (new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE}));
 
     let flavor = "";
 
@@ -120,7 +120,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       await roll.toMessage(
         { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
           flavor: flavor,
-          type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         },
         {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
       );
@@ -135,7 +135,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     if (this.actor.system.moraleDM) {
       rollString += " + @moraleDM";
     }
-    const roll = await new Roll(rollString, this.actor.getRollData()).roll({async: true, rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
 
     let flavor = "";
     if (roll.total <= 5) {
@@ -152,7 +152,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     await roll.toMessage(
       { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
         flavor: flavor,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [roll]
       },
       {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
