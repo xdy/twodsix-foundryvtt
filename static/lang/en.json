@@ -1479,9 +1479,9 @@
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
       },
-      "showCostInsteadOfWeight": {
-        "hint": "List the ship component's cost in MCr instead of displacement weight for the single-line component list on the ship sheet.",
-        "name": "Display Cost instead of Displacement Weight"
+      "showCost": {
+        "hint": "List the ship component's cost in MCr for the single-line component list on the ship sheet.",
+        "name": "Display Cost"
       }
     },
     "CloseAndCreateNew": "Close and create new",

@@ -1474,7 +1474,7 @@
         "hint": "Mostrar etiqueta para la gestión de potencia del motor de salto.",
         "name": "Etiqueta Motor-S"
       },
-      "showCostInsteadOfWeight": {
+      "showCost": {
         "hint": "Mostrar el coste de los componentes de la nave en MCr, en vez del Peso; en las líneas de  la hoja de la nave.",
         "name": "Mostrar Coste en vez de Peso"
       }

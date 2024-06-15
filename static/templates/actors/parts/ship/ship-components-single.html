@@ -1,18 +1,6 @@
 <div class="storage-wrapper">
   <div class="grid-columns-single storage-header">
-    {{#if settings.showComponentRating}}
-      {{#if settings.showComponentDM}}
-        <div class="components-stored-single">
-      {{else}}
-        <div class="components-stored-single only-rating">
-      {{/if}}
-    {{else}}
-      {{#if settings.showComponentDM}}
-        <div class="components-stored-single only-dm">
-      {{else}}
-        <div class="components-stored-single no-dm-rating">
-      {{/if}}
-    {{/if}}
+    <div class="{{settings.singleComponentClass}}"">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.techLevel"}}'>{{localize "TWODSIX.Actor.Items.TL"}}</span>
       {{#if settings.showComponentRating}}
@@ -21,10 +9,9 @@
       {{#if settings.showComponentDM}}
       <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.diceModifier"}}'>{{localize "TWODSIX.Items.Component.DM"}}</span>
       {{/if}}
-      {{#if settings.showCostInsteadOfWeight}}
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.displacementWeight"}}'>{{localize "TWODSIX.Actor.Items.Weight"}}</span>
+      {{#if settings.showCost}}
         <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.installedCost"}}'>{{localize "TWODSIX.Ship.MCr"}}</span>
-      {{else}}
-        <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.displacementWeight"}}'>{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       {{/if}}
       <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.PowerUsed"}}'>{{localize "TWODSIX.Items.Component.Power"}}</span>
       <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.Quantity"}}'>{{localize "TWODSIX.Actor.Items.Qty"}}</span>
