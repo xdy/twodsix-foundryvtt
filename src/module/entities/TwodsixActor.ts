@@ -13,7 +13,6 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances } from "../hooks/updateFinances";
-import { updateHits } from "../hooks/updateHits";
 import { applyEncumberedEffect, applyWoundedEffect } from "../hooks/showStatusIcons";
 
 /**
@@ -171,7 +170,7 @@ export default class TwodsixActor extends Actor {
     if (data?.system?.characteristics && ['traveller', 'animal', 'robot'].includes(this.type)) {
       const charDiff = foundry.utils.diffObject(this.system._source.characteristics, data.system.characteristics); //v12 stopped passing diffferential
       if (Object.keys(charDiff).length > 0) {
-        deltaHits = updateHits(this, data, charDiff);
+        deltaHits = this.updateHits(data, charDiff);
       }
 
       if (deltaHits !== 0) {
@@ -720,6 +719,18 @@ export default class TwodsixActor extends Actor {
       await this.update(charArray); /*update only once*/
     }
   }
+
+  updateHits(update:Record<string, any>, charDiff:any): number {
+    update.system.hits = getCurrentHits(this.type, this.system.characteristics, charDiff);
+    const deltaHits = this.system.hits.value - update.system.hits.value;
+    //Object.assign(update.system.hits, {lastDelta: deltaHits});
+    if (deltaHits !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
+      const appliedType = deltaHits > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
+      const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
+      ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(deltaHits)}`, speaker: ChatMessage.getSpeaker({ actor: this }), whisper: ChatMessage.getWhisperRecipients("GM") });
+    }
+    return deltaHits;
+  };
 
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
@@ -1415,4 +1426,17 @@ function buildUntrainedSkillData(): any {
     "flags": {'twodsix': {'untrainedSkill': true}},
     "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
   };
+}
+
+function getCurrentHits(actorType: string, current: Record<string, any>[], diff: Record<string, any>[]) {
+  const characteristics = foundry.utils.mergeObject(current, diff);
+  const hitsCharacteristics: string[] = getDamageCharacteristics(actorType);
+
+  return Object.entries(characteristics).reduce((hits, [key, chr]) => {
+    if (hitsCharacteristics.includes(key)) {
+      hits.value += chr.value-chr.damage;
+      hits.max += chr.value;
+    }
+    return hits;
+  }, {value: 0, max: 0, lastDelta: 0});
 }
