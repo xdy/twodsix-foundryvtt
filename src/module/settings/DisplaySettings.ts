@@ -62,6 +62,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.ship.push(stringSetting('jDriveLabel', "TWODSIX.Ship.JDrive", false, "world", updateJDrive, true));
     settings.ship.push(booleanSetting('showCostInsteadOfWeight', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
+    settings.general.push(booleanSetting('showItemIconsInChat', true));
     return settings;
   }
 }

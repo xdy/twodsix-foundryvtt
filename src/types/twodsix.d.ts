@@ -157,6 +157,7 @@ declare global {
       'twodsix.jDriveLabel': string;
       'twodsix.showCostInsteadOfWeight': boolean;
       'twodsix.showTotalArmor': boolean;
+      'twodsix.showItemIconsInChat': boolean;
     }
   }
 }
