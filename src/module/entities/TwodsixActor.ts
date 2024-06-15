@@ -162,7 +162,7 @@ export default class TwodsixActor extends Actor {
    * @see {Document#_preUpdate}
    * @protected
    */
-  async _preUpdate(data:object, options:object, user:any): Promise<boolean> {
+  async _preUpdate(data:object, options:object, user:any): Promise<boolean|void> {
     const allowed = await super._preUpdate(data, options, user);
 
     // Update hits & wounds
