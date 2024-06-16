@@ -745,7 +745,7 @@ export default class TwodsixActor extends Actor {
       const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
       ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(deltaHits)}`, speaker: ChatMessage.getSpeaker({ actor: this }), whisper: ChatMessage.getWhisperRecipients("GM") });
     }
-    return deltaHits ?? 0;
+    return isNaN(deltaHits) ? 0 : deltaHits;
   };
 
   getCurrentHits(currentCharacteristics: Record<string, any>[]) {
