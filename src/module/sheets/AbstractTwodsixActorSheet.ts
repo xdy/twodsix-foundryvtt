@@ -614,7 +614,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
-        if (this.actor?.type === 'traveller') {
+        if (this.actor?.type === 'traveller' && game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
           applyEncumberedEffect(this.actor); //a hack for encumbrance not resetting on change of effect
         }
       }
