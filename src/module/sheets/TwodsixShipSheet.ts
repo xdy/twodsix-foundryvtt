@@ -47,14 +47,18 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
-      showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
-      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
-      showCostInsteadOfWeight: game.settings.get('twodsix', 'showCostInsteadOfWeight'),
+      showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
+      showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
+      showCost: game.settings.get('twodsix', 'showCost'),
+      singleComponentClass: (`components-stored-single` +
+                                (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
+                                (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +
+                                (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`))
     };
 
     if (context.settings.useProseMirror) {

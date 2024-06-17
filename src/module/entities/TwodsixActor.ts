@@ -13,7 +13,6 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances } from "../hooks/updateFinances";
-import { updateHits } from "../hooks/updateHits";
 import { applyEncumberedEffect, applyWoundedEffect } from "../hooks/showStatusIcons";
 
 /**
@@ -79,6 +78,13 @@ export default class TwodsixActor extends Actor {
             'img': newImage
           });
         }
+
+        //Setup Hits
+        const newHits = this.getCurrentHits(this.system.characteristics);
+        Object.assign(changeData, {
+          'system.hits.value': newHits.value,
+          'system.hits.max': newHits.max
+        });
 
         if (this.type === "animal") {
           Object.assign(changeData, {
@@ -163,7 +169,7 @@ export default class TwodsixActor extends Actor {
    * @see {Document#_preUpdate}
    * @protected
    */
-  async _preUpdate(data:object, options:object, user:any): Promise<boolean> {
+  async _preUpdate(data:object, options:object, user:any): Promise<boolean|void> {
     const allowed = await super._preUpdate(data, options, user);
 
     // Update hits & wounds
@@ -171,7 +177,7 @@ export default class TwodsixActor extends Actor {
     if (data?.system?.characteristics && ['traveller', 'animal', 'robot'].includes(this.type)) {
       const charDiff = foundry.utils.diffObject(this.system._source.characteristics, data.system.characteristics); //v12 stopped passing diffferential
       if (Object.keys(charDiff).length > 0) {
-        deltaHits = updateHits(this, data, charDiff);
+        deltaHits = this.getDeltaHits(charDiff);
       }
 
       if (deltaHits !== 0) {
@@ -283,6 +289,7 @@ export default class TwodsixActor extends Actor {
     this._updateActiveEffects(false);
     const {system} = this;
 
+    //Update Damage
     for (const cha of Object.keys(system.characteristics)) {
       const characteristic: Characteristic = system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
@@ -291,6 +298,13 @@ export default class TwodsixActor extends Actor {
         characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
       }
     }
+
+    //Update hits
+    const newHitsValue = this.getCurrentHits(system.characteristics);
+    this.system.hits.value = newHitsValue.value;
+    this.system.hits.max = newHitsValue.max;
+
+    /// update skills formula reference
     const actorSkills = this.itemTypes.skills.map(
       (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value)]
     );
@@ -719,6 +733,30 @@ export default class TwodsixActor extends Actor {
       }
       await this.update(charArray); /*update only once*/
     }
+  }
+
+  getDeltaHits(charDiff:any): number {
+    const newCharacteristics = foundry.utils.mergeObject(this.system.characteristics, charDiff);
+    const updatedHitValues = this.getCurrentHits(newCharacteristics);
+    const deltaHits = this.system.hits.value - updatedHitValues.value;
+    //Object.assign(update.system.hits, {lastDelta: deltaHits});
+    if (deltaHits !== 0 && game.settings.get("twodsix", "showHitsChangesInChat")) {
+      const appliedType = deltaHits > 0 ? game.i18n.localize("TWODSIX.Actor.damage") : game.i18n.localize("TWODSIX.Actor.healing");
+      const actionWord = game.i18n.localize("TWODSIX.Actor.Applied");
+      ChatMessage.create({ flavor: `${actionWord} ${appliedType}: ${Math.abs(deltaHits)}`, speaker: ChatMessage.getSpeaker({ actor: this }), whisper: ChatMessage.getWhisperRecipients("GM") });
+    }
+    return isNaN(deltaHits) ? 0 : deltaHits;
+  };
+
+  getCurrentHits(currentCharacteristics: Record<string, any>[]) {
+    const hitsCharacteristics: string[] = getDamageCharacteristics(this.type);
+    return Object.entries(currentCharacteristics).reduce((hits, [key, chr]) => {
+      if (hitsCharacteristics.includes(key)) {
+        hits.value += chr.value-chr.damage;
+        hits.max += chr.value;
+      }
+      return hits;
+    }, {value: 0, max: 0, lastDelta: 0});
   }
 
   public getCharacteristicModifier(characteristic: string): number {
@@ -1416,3 +1454,5 @@ function buildUntrainedSkillData(): any {
     "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg"
   };
 }
+
+

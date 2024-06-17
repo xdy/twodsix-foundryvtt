@@ -65,33 +65,33 @@ async function onChatCardAction(event: Event): Promise<any> {
   } else {
     // Recover the actor for the chat card
     const actor = await getChatCardActor(message);
-    if ( !actor ) {
+    if (!actor) {
       return;
     }
 
     // Validate permission to proceed with the roll
     const isTargettedAction = ["chain", "opposed"].includes(action);
-    if ( !( isTargettedAction || game.user.isGM || actor.isOwner ) ) {
+    if (!(isTargettedAction || game.user.isGM || actor.isOwner)) {
       return;
     }
     // Get the Item from stored flag data
     const storedData = message.getFlag("twodsix", "itemUUID");
-    const item:TwodsixItem = storedData ? await fromUuid(storedData) : {};
-    if ( !item ) {
-      const err = game.i18n.format("DND5E.ActionWarningNoItem", {item: card.dataset.itemId, name: actor.name});
+    const item: TwodsixItem = storedData ? await fromUuid(storedData) : {};
+    if (!item) {
+      const err = game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
       return ui.notifications.error(err);
     }
 
-    const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-    const bonusDamage:string = message.getFlag("twodsix", "bonusDamage");
+    const bonusDamage: string = message.getFlag("twodsix", "bonusDamage");
     const effect = message.getFlag("twodsix", "effect") ?? 0;
-    const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
+    const addEffect: boolean = game.settings.get('twodsix', 'addEffectToDamage');
     let totalBonusDamage = addEffect ? `${effect}` : ``;
     if (bonusDamage !== "0" && bonusDamage !== "") {
-      totalBonusDamage += ((addEffect) ? ` + `: ``) + `${bonusDamage}`;
+      totalBonusDamage += ((addEffect) ? ` + ` : ``) + `${bonusDamage}`;
     }
-    switch ( action ) {
+    switch (action) {
       case "damage":
         await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
         break;
@@ -134,8 +134,8 @@ function onChatCardToggleContent(event: Event) {
  * @returns {Actor|null}        The Actor document or null
  * @private
  */
-async function getChatCardActor(message:ChatMessage): Actor | null {
-  const actor:TwodsixActor = await fromUuid(message.getFlag("twodsix", "actorUUID"));
+async function getChatCardActor(message: ChatMessage): Actor | null {
+  const actor: TwodsixActor = await fromUuid(message.getFlag("twodsix", "actorUUID"));
   if (actor) {
     return actor;
   } else {
@@ -166,13 +166,13 @@ async function getChatCardActor(message:ChatMessage): Actor | null {
   * @param {Event} event
   * @private
   */
-async function onExpandClick(message:ChatMessage) {
+async function onExpandClick(message: ChatMessage) {
   // Toggle the message flag
 
   if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
-    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"')});
+    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"') });
   } else {
-    message.update({flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"')});
+    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"') });
   }
 }
 /**
@@ -182,8 +182,8 @@ async function onExpandClick(message:ChatMessage) {
  * @param {boolean} showDialog whether or not to show skill roll dialog
  * @returns {void}
  */
-async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:boolean): Promise<void> {
-  const secondActor:TwodsixActor = getControlledTraveller();
+async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog: boolean): Promise<void> {
+  const secondActor: TwodsixActor = getControlledTraveller();
   if (!secondActor) {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
     return;
@@ -196,7 +196,7 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
     return;
   }
-  const selectedSkill:TwodsixItem = await fromUuid(selectedSkillUuid);
+  const selectedSkill: TwodsixItem = await fromUuid(selectedSkillUuid);
   const tempSettings = {};
   switch (type) {
     case "opposed":
@@ -207,17 +207,17 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
     case "chain":
       Object.assign(tempSettings, {
         extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesChainRoll"),
-        rollModifiers: {chain: getChainRollBonus(originalEffect)}
+        rollModifiers: { chain: getChainRollBonus(originalEffect) }
       });
       break;
     default:
       break;
   }
-  const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showDialog, tempSettings, selectedSkill, undefined, <TwodsixActor>secondActor);
+  const settings: TwodsixRollSettings = await TwodsixRollSettings.create(showDialog, tempSettings, selectedSkill, undefined, <TwodsixActor>secondActor);
   if (!settings.shouldRoll) {
     return;
   }
-  const roll:TwodsixDiceRoll = await selectedSkill.skillRoll(showDialog, settings, true);
+  const roll: TwodsixDiceRoll = await selectedSkill.skillRoll(showDialog, settings, true);
   let winnerName = "";
   if (roll && type === "opposed") {
     if (originalEffect > roll.effect) {
@@ -239,7 +239,7 @@ async function makeSecondaryRoll(message:ChatMessage, type:string, showDialog:bo
  * @param {object} skillList    list of skill uuid and name pairs
  * @returns {string} the uuid of the selected skill item
  */
-async function skillDialog(skillList:object):Promise<string> {
+async function skillDialog(skillList: object): Promise<string> {
   let returnValue = "";
   let options = ``;
   for (const [key, value] of Object.entries(skillList)) {
@@ -283,14 +283,14 @@ async function skillDialog(skillList:object):Promise<string> {
  * @param {number} effect    effect from assisting / first roll
  * @returns {number} DM for second roll base on first roll
  */
-function getChainRollBonus(effect:number): number {
+function getChainRollBonus(effect: number): number {
   let ranges = {};
   switch (game.settings.get("twodsix", "ruleset")) {
     case "OTHER": //MgT2
-      ranges ={"-6": -3, "-5 to -2": -2, "-1": -1, "0": 1, "1 to 5": 2, "6+": 3};
+      ranges = { "-6": -3, "-5 to -2": -2, "-1": -1, "0": 1, "1 to 5": 2, "6+": 3 };
       break;
     case "CE": //Traveller SRD
-      ranges ={"-6": -2, "-5 to -2": -1, "-1": -1, "0": 1, "1 to 5": 1, "6+": 2};
+      ranges = { "-6": -2, "-5 to -2": -1, "-1": -1, "0": 1, "1 to 5": 1, "6+": 2 };
       break;
     case "CLU":
     case "CD":
@@ -299,9 +299,11 @@ function getChainRollBonus(effect:number): number {
     case "CT":
     case "CEFTL":
     case "CEATOM":
-    case "CL":
+    case "CEL":
     case "BARBARIC":
     case "SOC":
+      return 0;
+    default:
       return 0;
   }
 
@@ -324,7 +326,7 @@ function getChainRollBonus(effect:number): number {
  * Makes roll per chat message flag settings using default actor
  * @param {ChatMessage} message    clicked Chat message
  */
-async function makeRequestedRoll(message:ChatMessage):void {
+async function makeRequestedRoll(message: ChatMessage): void {
   const messageSettings = message.getFlag("twodsix", "rollSettings");
   const tmpSettings = {
     difficulty: messageSettings.difficulty,
@@ -340,7 +342,7 @@ async function makeRequestedRoll(message:ChatMessage):void {
   if (rollingActorsUuids?.length > 0) {
     for (const actorUuid of rollingActorsUuids) {
       const actor = <TwodsixActor>fromUuidSync(actorUuid);
-      const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills")  ?? actor.items.get(actor.system.untrainedSkill) : undefined;
+      const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
       let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
       if (selectedSkill && selectedCharacteristic === "NONE") {
         selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";

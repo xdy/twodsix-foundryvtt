@@ -233,15 +233,20 @@ export class TwodsixDiceRoll {
     const rollingString: string = game.i18n.localize("TWODSIX.Rolls.Rolling");
     const usingString:string = game.i18n.localize("TWODSIX.Actor.using");
     const difficulty = game.i18n.localize(getKeyByValue(difficultyList, this.rollSettings.difficulty));
-    const showModifiers: boolean = game.settings.get('twodsix', "showModifierDetails");
+    const showModifiers: boolean = game.settings.get('twodsix', 'showModifierDetails');
 
     //Initialize flavor strings
     let flavorText = ``;
-    if (this.rollSettings.itemRoll && this.item?.img) {
-      flavorText += `<section style="align-self: center;"><img src=${this.item.img} class="chat-image"></section>`;
-    } else if (this.rollSettings.skillRoll && this.skill?.img) {
-      flavorText += `<section style="align-self: center;"><img src=${this.skill.img} class="chat-image"></section>`;
+
+    //Add Icons
+    if (game.settings.get('twodsix', 'showItemIconsInChat')) {
+      if (this.rollSettings.itemRoll && this.item?.img) {
+        flavorText += `<section style="align-self: center;"><img src=${this.item.img} class="chat-image"></section>`;
+      } else if (this.rollSettings.skillRoll && this.skill?.img) {
+        flavorText += `<section style="align-self: center;"><img src=${this.skill.img} class="chat-image"></section>`;
+      }
     }
+
     let flavorTable = `<table><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
 
     //Add roll data

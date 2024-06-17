@@ -60,8 +60,9 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(stringChoiceSetting('equippedToggleStates', "default", true, TWODSIX.EQUIPPED_TOGGLE_OPTIONS));
     settings.actor.push(booleanSetting('showSkillGroups', false));
     settings.ship.push(stringSetting('jDriveLabel', "TWODSIX.Ship.JDrive", false, "world", updateJDrive, true));
-    settings.ship.push(booleanSetting('showCostInsteadOfWeight', false));
+    settings.ship.push(booleanSetting('showCost', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
+    settings.general.push(booleanSetting('showItemIconsInChat', true));
     return settings;
   }
 }

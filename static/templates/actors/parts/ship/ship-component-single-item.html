@@ -1,18 +1,6 @@
 <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
   <ol class="ol-no-indent">
-    {{#if settings.showComponentRating}}
-      {{#if settings.showComponentDM}}
-        <li class="components-stored-single" >
-      {{else}}
-        <li class="components-stored-single only-rating">
-      {{/if}}
-    {{else}}
-      {{#if settings.showComponentDM}}
-        <li class="components-stored-single only-dm">
-      {{else}}
-        <li class="components-stored-single no-dm-rating">
-      {{/if}}
-    {{/if}}
+      <li class="{{settings.singleComponentClass}}">
       {{#iff item.system.actorLink "===" ""}}
         <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfLists}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
       {{else}}
@@ -26,10 +14,9 @@
       {{#if settings.showComponentDM}}
       <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
       {{/if}}
-      {{#if settings.showCostInsteadOfWeight}}
+      <span class="item-name centre">{{getComponentWeight item}}</span>
+      {{#if settings.showCost}}
         <span class="item-name centre">{{getComponentCost item}}</span>
-      {{else}}
-        <span class="item-name centre">{{getComponentWeight item}}</span>
       {{/if}}
       <span class="item-name centre">{{getComponentPower item}}</span>
       {{#iff item.system.subtype "===" "armament"}}

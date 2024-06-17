@@ -1405,6 +1405,10 @@
         "hint": "Display the total armor value (promary + secondary values) instead of the secondary armor value for Traveller sheet.",
         "name": "Display total armor value on Traveller"
       },
+      "showItemIconsInChat": {
+        "hint": "Show the item or skill icon in chat message when making a roll",
+        "name": "Show Item Image in Chat"
+      },
       "defaultDamageOptions": "Ballistic, Bludgeoning, Corrosive, EMP, Energy, Fire, Laser, Piercing, Poison, Plasma, Psionic, Rad, Slashing, Smoke, Stun",
       "menuLabels": {
         "general": "General",
@@ -1475,9 +1479,9 @@
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
       },
-      "showCostInsteadOfWeight": {
-        "hint": "List the ship component's cost in MCr instead of displacement weight for the single-line component list on the ship sheet.",
-        "name": "Display Cost instead of Displacement Weight"
+      "showCost": {
+        "hint": "List the ship component's cost in MCr for the single-line component list on the ship sheet.",
+        "name": "Display Cost"
       }
     },
     "CloseAndCreateNew": "Close and create new",

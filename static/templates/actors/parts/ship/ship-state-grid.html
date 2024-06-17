@@ -28,8 +28,10 @@
   </div>
   <div class="ship-fuel">
     <div>
-      <span class = "fuel-name"><p>{{#if actor.system.shipStats.fuel.isRefined}}{{localize "TWODSIX.Ship.RefinedFuel"}}{{else}}{{localize "TWODSIX.Ship.UnrefinedFuel"}}{{/if}}{{system.shipStats.fuel.isRefined}}<p></span>
-      <meter class = "fuel-bar" value="{{actor.system.shipStats.fuel.value}}" max = "{{actor.system.shipStats.fuel.max}}" min="0" low= "{{twodsix_product actor.system.shipStats.fuel.max 0.25}}" high = "{{twodsix_product actor.system.shipStats.fuel.max 0.5}}" optimum = "{{twodsix_product actor.system.shipStats.fuel.max 0.95}}">{{actor.system.shipStats.fuel.value}}</meter>
+      <span class = "fuel-name">
+        <p>{{#if actor.system.shipStats.fuel.isRefined}}{{localize "TWODSIX.Ship.RefinedFuel"}}{{else}}{{localize "TWODSIX.Ship.UnrefinedFuel"}}{{/if}}{{system.shipStats.fuel.isRefined}}</p>
+        <meter class = "fuel-bar" value="{{actor.system.shipStats.fuel.value}}" max = "{{actor.system.shipStats.fuel.max}}" min="0" low= "{{twodsix_product actor.system.shipStats.fuel.max 0.25}}" high = "{{twodsix_product actor.system.shipStats.fuel.max 0.5}}" optimum = "{{twodsix_product actor.system.shipStats.fuel.max 0.95}}">{{actor.system.shipStats.fuel.value}}</meter>
+      </span>
       <span class="ship-fuel-value">
         <p><input type="number" value="{{actor.system.shipStats.fuel.value}}" name="system.shipStats.fuel.value" placeholder="0" max = "{{actor.system.shipStats.fuel.max}}" min = "0"/>/<input type="number" value="{{actor.system.shipStats.fuel.max}}" name="system.shipStats.fuel.max" placeholder="0"/>
       </span>

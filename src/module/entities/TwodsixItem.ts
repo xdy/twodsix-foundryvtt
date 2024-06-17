@@ -222,11 +222,15 @@ export default class TwodsixItem extends Item {
         const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
         rangeModifier = rangeData.rangeModifier;
         rollType = rangeData.rollType;
-        rangeLabel = isQualitativeBands ? (this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`) : `${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})} ${canvas.scene.grid.units}`;
+        if (isQualitativeBands) {
+          rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
+        } else {
+          rangeLabel = `${this.system.range} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
+        }
       } else if (targetTokens.length === 0) {
         rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
-      console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
+      //console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
       Object.assign(tmpSettings, {rollType: rollType});
     }
