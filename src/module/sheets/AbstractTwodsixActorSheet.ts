@@ -614,8 +614,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
-        if (this.actor) {
-          this.render(false);
+        if (this.actor?.type === 'traveller') {
+          applyEncumberedEffect(this.actor); //a hack for encumbrance not resetting on change of effect
         }
       }
     } else if (action === "create") {
