@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.0.0...v5.1.0) (2024-06-17)
+
+
+### Features
+
+* Misc Improvements ([#1575](https://github.com/xdy/twodsix-foundryvtt/issues/1575)) ([670b8ce](https://github.com/xdy/twodsix-foundryvtt/commit/670b8ced4d3bacbb0416ae668c66dd3ed233608d))
+
 # [5.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v4.25.2...v5.0.0) (2024-06-14)
 
 
