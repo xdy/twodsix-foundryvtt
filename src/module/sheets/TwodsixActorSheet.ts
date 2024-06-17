@@ -6,7 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
-import { applyEncumberedEffect } from "../hooks/showStatusIcons";
+//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 //import { wait } from "../utils/sheetUtils";
 
 export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
@@ -267,25 +267,25 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     if (event.currentTarget) {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
-      const newState = getNewEquippedState(itemSelected);
-      await itemSelected.toggleActiveEffectStatus(newState !== "equipped", {dontSync: true, noHook: true});
+      const newSuspendedState = getNewEquippedState(itemSelected);
+      const itemEffects = itemSelected.effects.toJSON();
+      for (const effect of itemEffects) {
+        effect.disabled = newSuspendedState !== "equipped";
+      }
 
-      //change equipped state after toggling active effects so that encumbrance calcs correctly
+      //change equipped state while toggling active effects
       const itemUpdates = [];
-      itemUpdates.push({_id: itemSelected.id, "system.equipped": newState});
+      itemUpdates.push({_id: itemSelected.id, "system.equipped": newSuspendedState, effects: itemEffects});
 
       // Sync associated consumables equipped state - need to gate due to race condition
       for (const consumeableID of itemSelected.system.consumables) {
         const consumableSelected = await itemSelected.actor.items.get(consumeableID);
         if (consumableSelected) {
-          itemUpdates.push({_id: consumableSelected.id, "system.equipped": newState});
+          itemUpdates.push({_id: consumableSelected.id, "system.equipped": newSuspendedState});
         }
       }
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates, {dontSync: true, noHook: true});
-      //await wait(100); ///try adding delay to lessen the db error of clicking to fast
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        await applyEncumberedEffect(this.actor);
-      }
+      await this.actor.updateEmbeddedDocuments("Item", itemUpdates);
+
       //check for equipping more than one armor with nonstackable
       if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
