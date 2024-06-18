@@ -279,46 +279,28 @@ async function skillDialog(skillList: object): Promise<string> {
   });
 }
 /**
- * Returns chain roll DM based on effect and rileset
+ * Returns chain roll DM based on effect and string setting
  * @param {number} effect    effect from assisting / first roll
  * @returns {number} DM for second roll base on first roll
  */
 function getChainRollBonus(effect: number): number {
-  let ranges = {};
-  switch (game.settings.get("twodsix", "ruleset")) {
-    case "OTHER": //MgT2
-      ranges = { "-6": -3, "-5 to -2": -2, "-1": -1, "0": 1, "1 to 5": 2, "6+": 3 };
-      break;
-    case "CE": //Traveller SRD
-      ranges = { "-6": -2, "-5 to -2": -1, "-1": -1, "0": 1, "1 to 5": 1, "6+": 2 };
-      break;
-    case "CLU":
-    case "CD":
-    case "CDEE":
-      return (effect < 0 ? 0 : 1);
-    case "CT":
-    case "CEFTL":
-    case "CEATOM":
-    case "CEL":
-    case "BARBARIC":
-    case "SOC":
-      return 0;
-    default:
-      return 0;
-  }
-
-  if (effect <= -6) {
-    return ranges["-6"];
-  } else if (effect <= -2) {
-    return ranges["-5 to -2"];
-  } else if (effect === -1) {
-    return ranges["-1"];
-  } else if (effect === 0) {
-    return ranges["0"];
-  } else if (effect <= 5) {
-    return ranges["1 to 5"];
-  } else if (effect >= 6) {
-    return ranges["6+"];
+  const ranges = game.settings.get('twodsix', 'chainBonus').split(",").map((str:string) => parseInt(str));
+  if (ranges.length !== 6) {
+    return 0;
+  } else {
+    if (effect <= -6) {
+      return ranges[0];
+    } else if (effect <= -2) {
+      return ranges[1];
+    } else if (effect === -1) {
+      return ranges[2];
+    } else if (effect === 0) {
+      return ranges[3];
+    } else if (effect <= 5) {
+      return ranges[4];
+    } else if (effect >= 6) {
+      return ranges[5];
+    }
   }
 }
 

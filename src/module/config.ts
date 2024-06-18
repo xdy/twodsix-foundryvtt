@@ -91,7 +91,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage",
       addEffectToDamage: false,
       addEffectToManualDamage: false,
-      weightModifierForWornArmor: "0"
+      weightModifierForWornArmor: "0",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
   CE: {
@@ -142,7 +143,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "-2, -1, -1, 1, 1, 2"
     }
   },
   CEL: {
@@ -187,7 +189,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
   CEFTL: {
@@ -231,7 +234,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     },
   },
   CEATOM: {
@@ -275,7 +279,8 @@ const RULESETS = Object.freeze({
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
   BARBARIC: {
@@ -318,7 +323,8 @@ const RULESETS = Object.freeze({
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     },
   },
   CEQ: {
@@ -362,7 +368,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'none',
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true
+      addEffectToDamage: true,
+      chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
   CD: {
@@ -414,7 +421,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1"
     }
   },
   CDEE: {
@@ -466,7 +474,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1"
     }
   },
   CLU: {
@@ -518,7 +527,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1"
     }
   },
   SOC: {
@@ -570,7 +580,8 @@ const RULESETS = Object.freeze({
       targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      weightModifierForWornArmor: "1"
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
   OTHER: {
@@ -580,6 +591,7 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'other',
       rangeModifierType: "singleBand",
       armorDamageFormula: "@damage - @effectiveArmor",
+      chainBonus: "-3, -2, -1, 1, 2, 3"
     },
   }
 })
