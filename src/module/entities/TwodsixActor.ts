@@ -242,7 +242,29 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Augment the basic actor data with additional dynamic data.
+   * Do most of actor data prep in prepare base data so that AE can change prepared data without custom AE override.
+   */
+  prepareBaseData(): void {
+    super.prepareBaseData();
+    switch (this.type) {
+      case 'traveller':
+      case 'animal':
+      case 'robot':
+        this._prepareActorBaseData();
+        break;
+      case 'ship':
+        break;
+      case 'vehicle':
+      case 'space-object':
+        break;
+      default:
+        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+    }
+  }
+
+
+  /**
+   * Augment the basic actor data with additional dynamic data. After AE preparation
    */
   prepareDerivedData(): void {
     super.prepareDerivedData();
@@ -253,18 +275,20 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
       case 'animal':
       case 'robot':
-        this._prepareTravellerData();
+        this._prepareActorDerivedData();
+        //NOT CERTAIN THIS IS NEEDED
+        /*if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
+          this.system.totalArmor += this.overrides.system.primaryArmor.value - this.system.baseArmor;
+        }*/
         break;
       case 'ship':
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
           this._prepareShipData();
         }
         this._checkCrewTitles();
-        super.applyActiveEffects();
         break;
       case 'vehicle':
       case 'space-object':
-        super.applyActiveEffects();
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -283,10 +307,9 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Prepare Character type specific data
+   * Prepare Character type specific base data
    */
-  async _prepareTravellerData(): void {
-    this._updateActiveEffects(false);
+  async _prepareActorBaseData(): void {
     const {system} = this;
 
     //Update Damage
@@ -340,12 +363,82 @@ export default class TwodsixActor extends Actor {
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
     }
+    system.baseArmor = system.primaryArmor.value;
+  }
+
+  /**
+   * Prepare Character type specific derived data
+   */
+  _prepareActorDerivedData(): void {
+    const {system} = this;
     const baseArmor = system.primaryArmor.value;
-    await this._updateActiveEffects(true);
+    //Fix for item-piles module
+    if (game.modules.get("item-piles")?.active) {
+      if (this.getFlag("item-piles", "data.enabled")) {
+        return;
+      }
+    }
+    // Re do overrides to include derived data (code from core FVTT)
+    this.applyActiveEffectsCustom();
+
     if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
       system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
     }
   }
+
+  applyActiveEffectsCustom() {
+    const derivedData = [];
+
+    //Add characteristics mods
+    for (const char of Object.keys(this.system.characteristics)) {
+      derivedData.push(`system.characteristics.${char}.mod`);
+    }
+    //Add skills
+    for (const skill of this.itemTypes.skills) {
+      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
+    }
+    //Add specials
+    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+
+    //Define derived data keys that can have active effects
+    const overrides = {};
+
+    // Organize non-disabled effects by their application priority and add CUSTOM to derivedData
+    const changes = [];
+    for ( const effect of this.appliedEffects ) {
+      changes.push(...effect.changes.map(change => {
+        const c = foundry.utils.deepClone(change);
+        c.effect = effect;
+        c.priority = c.priority ?? (c.mode * 10);
+        return c;
+      }));
+      for ( const statusId of effect.statuses ) {
+        this.statuses.add(statusId);
+      }
+      //Add custom effects to the derivedData array
+      const customChanges = effect.changes.filter( change => change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM);
+      for ( const change of customChanges) {
+        if(!derivedData.includes(change.key)) {
+          derivedData.push(change.key);
+        }
+      }
+    }
+    changes.sort((a, b) => a.priority - b.priority);
+
+    // Apply all changes
+    for ( const change of changes ) {
+      if (derivedData.includes(change.key)) {
+        const newChanges = change.effect.apply(this, change);
+        Object.assign(overrides, newChanges);
+      }
+    }
+
+    // Expand the set of final overrides
+    if (Object.keys(overrides).length > 0) {
+      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
+    }
+  }
+
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
    * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
@@ -1089,112 +1182,6 @@ export default class TwodsixActor extends Actor {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
     }
     return false;
-  }
-
-  /**
-   * We override this with an empty implementation because we have our own custom way of applying
-   * {@link ActiveEffect} and {@link Actor#prepareEmbeddedDocuments} calls this.
-   * @override
-   */
-  override applyActiveEffects() {
-    return;
-  }
-
-  /**
-   * The TWODSIX override for applying active effects to traveller actors.  Depends on whenther this is before or after derived data calc.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  public async _updateActiveEffects(isPost:boolean): Promise<void> {
-    //Fix for item-piles module
-    if (game.modules.get("item-piles")?.active) {
-      if (this.getFlag("item-piles", "data.enabled")) {
-        return;
-      }
-    }
-    // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffectsCustom(isPost);
-  }
-
-  /**
-   * Apply any transformations to the Actor data which are caused by ActiveEffects.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  applyActiveEffectsCustom(isPost: boolean) {
-    const derivedData = [];
-
-    //Add characteristics mods
-    for (const char of Object.keys(this.system.characteristics)) {
-      derivedData.push(`system.characteristics.${char}.mod`);
-    }
-    //Add skills
-    for (const skill of this.itemTypes.skills) {
-      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
-    }
-    //Add specials
-    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
-
-    //Define derived data keys that can have active effects
-    const overrides = {};
-    //const specialStatuses = new Map();
-    if (!isPost) {
-      /*this.statuses ??= new Set();
-      // Identify which special statuses had been active
-      for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
-        specialStatuses.set(statusId, this.statuses.has(statusId));
-      }*/
-      this.statuses.clear();
-    }
-
-    // Organize non-disabled effects by their application priority and add CUSTOM to derivedData
-    const changes = [];
-    for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10);
-        return c;
-      }));
-      for ( const statusId of effect.statuses ) {
-        this.statuses.add(statusId);
-      }
-      //Add custom effects to the derivedData array
-      const customChanges = effect.changes.filter( change => change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM);
-      for ( const change of customChanges) {
-        if(!derivedData.includes(change.key)) {
-          derivedData.push(change.key);
-        }
-      }
-    }
-    changes.sort((a, b) => a.priority - b.priority);
-
-    // Apply all changes
-    for ( const change of changes ) {
-      if (isPost ? derivedData.includes(change.key) : !derivedData.includes(change.key)) {
-        const newChanges = change.effect.apply(this, change);
-        Object.assign(overrides, newChanges);
-      }
-    }
-
-    // Expand the set of final overrides
-    if (!isPost) {
-      this.overrides = foundry.utils.expandObject(overrides);
-    } else if (Object.keys(overrides).length > 0) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
-    }
-
-    //Apply special statuses that changed to active tokens
-    /*if (!isPost) {
-      let tokens;
-      for ( const [statusId, wasActive] of specialStatuses ) {
-        const isActive = this.statuses.has(statusId);
-        if ( isActive !== wasActive ) {
-          tokens ??= this.getActiveTokens();
-          for ( const token of tokens ) {
-            token._onApplyStatusEffect(statusId, isActive);
-          }
-        }
-      }
-    }*/
   }
 
   /**
