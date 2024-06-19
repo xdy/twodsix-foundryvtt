@@ -316,7 +316,7 @@ export default class TwodsixActor extends Actor {
     for (const cha of Object.keys(system.characteristics)) {
       const characteristic: Characteristic = system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
-      characteristic.mod = calcModFor(characteristic.current);
+      characteristic.mod = 0;
       if (characteristic.displayShortLabel === "") {
         characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
       }
@@ -347,14 +347,14 @@ export default class TwodsixActor extends Actor {
     };
 
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
-    system.encumbrance.max = this.getMaxEncumbrance();
-    system.encumbrance.value = this.getActorEncumbrance();
+    system.encumbrance.max = 0;
+    system.encumbrance.value = 0;
 
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
-      system.primaryArmor.value = armorValues.primaryArmor;
-      system.secondaryArmor.value = armorValues.secondaryArmor;
-      system.radiationProtection.value = armorValues.radiationProtection;
+      system.primaryArmor.value = 0;
+      system.secondaryArmor.value = 0;
+      system.radiationProtection.value = 0;
       system.layersWorn = armorValues.layersWorn;
       system.wearingNonstackable = armorValues.wearingNonstackable;
       system.armorType = armorValues.CTLabel;
@@ -371,71 +371,26 @@ export default class TwodsixActor extends Actor {
    */
   _prepareActorDerivedData(): void {
     const {system} = this;
-    const baseArmor = system.primaryArmor.value;
-    //Fix for item-piles module
-    if (game.modules.get("item-piles")?.active) {
-      if (this.getFlag("item-piles", "data.enabled")) {
-        return;
-      }
-    }
-    // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffectsCustom();
 
+    //Update mod
+    for (const cha of Object.keys(system.characteristics)) {
+      const characteristic: Characteristic = system.characteristics[cha];
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod += calcModFor(characteristic.current);
+    }
+
+    system.encumbrance.max += this.getMaxEncumbrance();
+    system.encumbrance.value += this.getActorEncumbrance();
+
+    if (this.type === 'traveller') {
+      const armorValues = this.getArmorValues();
+      system.primaryArmor.value += armorValues.primaryArmor;
+      system.secondaryArmor.value += armorValues.secondaryArmor;
+      system.radiationProtection.value += armorValues.radiationProtection;
+    }
+    const baseArmor = system.primaryArmor.value;
     if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
       system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
-    }
-  }
-
-  applyActiveEffectsCustom() {
-    const derivedData = [];
-
-    //Add characteristics mods
-    for (const char of Object.keys(this.system.characteristics)) {
-      derivedData.push(`system.characteristics.${char}.mod`);
-    }
-    //Add skills
-    for (const skill of this.itemTypes.skills) {
-      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
-    }
-    //Add specials
-    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
-
-    //Define derived data keys that can have active effects
-    const overrides = {};
-
-    // Organize non-disabled effects by their application priority and add CUSTOM to derivedData
-    const changes = [];
-    for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10);
-        return c;
-      }));
-      for ( const statusId of effect.statuses ) {
-        this.statuses.add(statusId);
-      }
-      //Add custom effects to the derivedData array
-      const customChanges = effect.changes.filter( change => change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM);
-      for ( const change of customChanges) {
-        if(!derivedData.includes(change.key)) {
-          derivedData.push(change.key);
-        }
-      }
-    }
-    changes.sort((a, b) => a.priority - b.priority);
-
-    // Apply all changes
-    for ( const change of changes ) {
-      if (derivedData.includes(change.key)) {
-        const newChanges = change.effect.apply(this, change);
-        Object.assign(overrides, newChanges);
-      }
-    }
-
-    // Expand the set of final overrides
-    if (Object.keys(overrides).length > 0) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     }
   }
 
