@@ -192,7 +192,9 @@ async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog:
   const skillList = await secondActor.getSkillNameList();
   const selectedSkillUuid = await skillDialog(skillList);
   const originalEffect = message.getFlag("twodsix", "effect");
-  if (selectedSkillUuid === "") {
+  if (selectedSkillUuid === false) {
+    return;
+  } else if (selectedSkillUuid === "") {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
     return;
   }
@@ -237,9 +239,9 @@ async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog:
 /**
  * Prompt for skill from actor. Returns selected skill's uuid
  * @param {object} skillList    list of skill uuid and name pairs
- * @returns {string} the uuid of the selected skill item
+ * @returns {string|boolean} the uuid of the selected skill item or flase for cancelled action
  */
-async function skillDialog(skillList: object): Promise<string> {
+async function skillDialog(skillList: object): Promise<string|boolean> {
   let returnValue = "";
   let options = ``;
   for (const [key, value] of Object.entries(skillList)) {
@@ -261,9 +263,9 @@ async function skillDialog(skillList: object): Promise<string> {
       icon: '<i class="fa-solid fa-xmark"></i>',
       label: game.i18n.localize("Cancel"),
       callback: () => {
-        returnValue = '';
+        returnValue = false;
       }
-    },
+    }
   };
 
   return new Promise<void>((resolve) => {
