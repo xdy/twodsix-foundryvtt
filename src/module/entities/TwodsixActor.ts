@@ -253,18 +253,16 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
       case 'animal':
       case 'robot':
-        this._prepareTravellerData();
+        this._prepareActorDerivedData();
         break;
       case 'ship':
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
-          this._prepareShipData();
+          this._prepareShipDerivedData();
         }
         this._checkCrewTitles();
-        super.applyActiveEffects();
         break;
       case 'vehicle':
       case 'space-object':
-        super.applyActiveEffects();
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -285,8 +283,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  async _prepareTravellerData(): void {
-    this._updateActiveEffects(false);
+  async _prepareActorDerivedData(): void {
     const {system} = this;
 
     //Update Damage
@@ -341,7 +338,7 @@ export default class TwodsixActor extends Actor {
       system.totalArmor = armorValues.totalArmor;
     }
     const baseArmor = system.primaryArmor.value;
-    await this._updateActiveEffects(true);
+    this.applyActiveEffectsCustom();
     if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
       system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
     }
@@ -460,7 +457,7 @@ export default class TwodsixActor extends Actor {
     return encumbrance;
   }
 
-  _prepareShipData(): void {
+  _prepareShipDerivedData(): void {
     const calcShipStats = {
       power: {
         max: 0,
@@ -1092,34 +1089,15 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * We override this with an empty implementation because we have our own custom way of applying
-   * {@link ActiveEffect} and {@link Actor#prepareEmbeddedDocuments} calls this.
-   * @override
+   * Apply any transformations to the Actor data which are caused by ActiveEffects - post prepare data.
    */
-  override applyActiveEffects() {
-    return;
-  }
-
-  /**
-   * The TWODSIX override for applying active effects to traveller actors.  Depends on whenther this is before or after derived data calc.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  public async _updateActiveEffects(isPost:boolean): Promise<void> {
+  applyActiveEffectsCustom() {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled")) {
         return;
       }
     }
-    // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffectsCustom(isPost);
-  }
-
-  /**
-   * Apply any transformations to the Actor data which are caused by ActiveEffects.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  applyActiveEffectsCustom(isPost: boolean) {
     const derivedData = [];
 
     //Add characteristics mods
@@ -1135,15 +1113,6 @@ export default class TwodsixActor extends Actor {
 
     //Define derived data keys that can have active effects
     const overrides = {};
-    //const specialStatuses = new Map();
-    if (!isPost) {
-      /*this.statuses ??= new Set();
-      // Identify which special statuses had been active
-      for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
-        specialStatuses.set(statusId, this.statuses.has(statusId));
-      }*/
-      this.statuses.clear();
-    }
 
     // Organize non-disabled effects by their application priority and add CUSTOM to derivedData
     const changes = [];
@@ -1167,34 +1136,18 @@ export default class TwodsixActor extends Actor {
     }
     changes.sort((a, b) => a.priority - b.priority);
 
-    // Apply all changes
+    // Apply derived data changes
     for ( const change of changes ) {
-      if (isPost ? derivedData.includes(change.key) : !derivedData.includes(change.key)) {
+      if (derivedData.includes(change.key)) {
         const newChanges = change.effect.apply(this, change);
         Object.assign(overrides, newChanges);
       }
     }
 
     // Expand the set of final overrides
-    if (!isPost) {
-      this.overrides = foundry.utils.expandObject(overrides);
-    } else if (Object.keys(overrides).length > 0) {
+    if (Object.keys(overrides).length > 0) {
       this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     }
-
-    //Apply special statuses that changed to active tokens
-    /*if (!isPost) {
-      let tokens;
-      for ( const [statusId, wasActive] of specialStatuses ) {
-        const isActive = this.statuses.has(statusId);
-        if ( isActive !== wasActive ) {
-          tokens ??= this.getActiveTokens();
-          for ( const token of tokens ) {
-            token._onApplyStatusEffect(statusId, isActive);
-          }
-        }
-      }
-    }*/
   }
 
   /**
