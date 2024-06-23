@@ -102,12 +102,9 @@
           </div>
         {{/if}}
         {{#if showTargetModifier}}
+        <label>{{localize "TWODSIX.Chat.Roll.TargetModifier"}}</label>
           <div class="form-group">
-            <label>{{localize "TWODSIX.Chat.Roll.TargetModifier"}}
-              <select class="select" name="rollModifiers.targetModifier" value={{rollModifiers.targetModifier}}>
-              {{selectOptions targetDMList selected=targetModifier}}
-              </select>
-            </label>
+            <multi-select class="select" style="min-height: 6ch;" name="rollModifiers.targetModifier">{{selectOptions targetDMList selected=targetModifier}}</multi-select>
           </div>
         {{/if}}
       {{/if}}
