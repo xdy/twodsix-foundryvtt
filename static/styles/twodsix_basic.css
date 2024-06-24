@@ -3280,6 +3280,7 @@ multi-select.select.target-modifier {
 }
 multi-select.select.target-modifier select {
   width: 2ch;
+  height: 2.5ch;
 }
 
 multi-select.select.target-modifier div.tags.input-element-tags {
