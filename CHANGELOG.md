@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.1.0...v5.2.0) (2024-06-24)
+
+
+### Features
+
+* custom chain roll bonus and target modifier multiselect ([#1578](https://github.com/xdy/twodsix-foundryvtt/issues/1578)) ([0813c4d](https://github.com/xdy/twodsix-foundryvtt/commit/0813c4dd7b799903ad97bd0e0741b4f8dc0cb895))
+
 # [5.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.0.0...v5.1.0) (2024-06-17)
 
 
