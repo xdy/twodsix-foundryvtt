@@ -69,7 +69,9 @@ export class TwodsixDiceRoll {
       if (modifierName === "characteristic") {
         modifierValue = this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers[modifierName]);
       } else if (modifierName === "targetModifier") {
-        modifierValue = TWODSIX.TARGET_DM[this.rollSettings.rollModifiers.targetModifier].value;
+        for (const targetMod of this.rollSettings.rollModifiers.targetModifier) {
+          modifierValue += TWODSIX.TARGET_DM[targetMod].value;
+        }
       } else {
         modifierValue = this.rollSettings.rollModifiers[modifierName];
       }
@@ -203,7 +205,7 @@ export class TwodsixDiceRoll {
       if(this.rollSettings.rollModifiers.armorModifier !== 0) {
         returnValue.push("armorModifier");
       }
-      if(this.rollSettings.rollModifiers.targetModifier !== "key0") {
+      if(this.rollSettings.rollModifiers.targetModifier.length > 0) {
         returnValue.push("targetModifier");
       }
       if(this.rollSettings.rollModifiers.attachments !== 0) {
@@ -290,11 +292,17 @@ export class TwodsixDiceRoll {
         flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`) + ` ${charShortName}` + (showModifiers ? `(${characteristicValue})` : ``) + ` ${description}`;
         flavorTable += `<tr><td>${description}</td><td>${charShortName}</td><td class="centre">${characteristicValue}</td></tr>`;
       } else if (modifierName === "targetModifier") {
-        const modifierObj = TWODSIX.TARGET_DM[this.rollSettings.rollModifiers.targetModifier];
-        const modValue = addSign(modifierObj.value);
-        flavorText += ` + ${description}`;
-        flavorText += showModifiers ? `(${modValue})` : ``;
-        flavorTable += `<tr><td>${description}</td><td>${modifierObj.label}</td><td class="centre">${modValue}</td></tr>`;
+        let modValue = 0;
+        for (const modifier of this.rollSettings.rollModifiers.targetModifier) {
+          const modifierObj = TWODSIX.TARGET_DM[modifier];
+          flavorTable += `<tr><td>${description}</td><td>${modifierObj.label}</td><td class="centre">${modifierObj.value}</td></tr>`;
+          modValue += modifierObj.value;
+        }
+        if (modValue !== 0) {
+          const modValueStr = addSign(modValue);
+          flavorText += ` + ${description}`;
+          flavorText += showModifiers ? `(${modValueStr})` : ``;
+        }
       } else {
         switch (modifierName) {
           case "item":

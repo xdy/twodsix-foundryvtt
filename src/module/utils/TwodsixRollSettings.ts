@@ -137,7 +137,7 @@ export class TwodsixRollSettings {
       weaponsHandling: settings?.rollModifiers?.weaponsHandling ?? 0,
       weaponsRange: settings?.rollModifiers?.weaponsRange ?? 0,
       rangeLabel: settings?.rollModifiers?.rangeLabel ?? "",
-      targetModifier: settings?.rollModifiers?.targetModifier ?? "key0",
+      targetModifier: settings?.rollModifiers?.targetModifier?.length > 0 ? settings.rollModifiers.targetModifier : [],
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,

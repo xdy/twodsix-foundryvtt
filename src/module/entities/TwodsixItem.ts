@@ -488,15 +488,11 @@ export default class TwodsixItem extends Item {
     } else if (this.type === "spell") {
       const skillList = `${game.settings.get("twodsix", "sorcerySkill")}|` + this.system?.associatedSkillName;
       skill =  <TwodsixItem>(workingActor.getBestSkill(skillList, false));
-
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
     } else if (this.type === "component") {
       workingActor = await fromUuid(tmpSettings?.flags.actorUUID);
       skill = <TwodsixItem>workingActor?.items.getName(tmpSettings?.skillName);
-      if (skill === undefined) {
-        skill = workingActor.getUntrainedSkill();
-      }
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
     } else if (usesConsumable.skill) {
@@ -506,8 +502,11 @@ export default class TwodsixItem extends Item {
     }
 
     if (!skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
-      return;
+      skill = workingActor?.getUntrainedSkill();
+      if(!skill) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+        return;
+      }
     }
 
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.

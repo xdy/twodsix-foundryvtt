@@ -410,7 +410,8 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('getComponentCost', (item: TwodsixItem) => {
     if (item.system.installedCost) {
-      return item.system.installedCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+      const maxDigits = item.system.installedCost < 0.1 ? 2 : 1;
+      return item.system.installedCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: maxDigits, maximumFractionDigits: maxDigits});
     } else {
       return "\u2014";
     }

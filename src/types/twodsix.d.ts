@@ -158,6 +158,7 @@ declare global {
       'twodsix.showCost': boolean;
       'twodsix.showTotalArmor': boolean;
       'twodsix.showItemIconsInChat': boolean;
+      'twodsix.chainBonus': string;
     }
   }
 }
