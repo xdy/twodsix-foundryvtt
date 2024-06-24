@@ -5,19 +5,14 @@ import { TWODSIX } from "../config";
 
 /**
  * A function that parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.
- * Always adds a {key0: {value: 0, label:'None'}} entry to object
+ * The format is {key#: {label: string, value: integer}}
  * @returns {void}
  */
 export function generateTargetDMObject():void {
-  const modifierObject = {
-    "key0": {
-      label: game.i18n.localize("TWODSIX.Chat.Roll.RangeModifierTypes.none"),
-      value: 0
-    }
-  };
+  const modifierObject = {};
   const parseString:string = game.settings.get('twodsix', 'targetDMList');
   if (parseString !== "") {
-    let i = 1;
+    let i = 0;
     const customDMs:string[] = parseString.replace(/[\t\n\r]/gm, ' ').split(',');
     for (const modifier of customDMs) {
       // eslint-disable-next-line no-useless-escape
