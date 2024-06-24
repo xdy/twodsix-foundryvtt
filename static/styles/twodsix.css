@@ -4100,3 +4100,17 @@ multi-select.actor-sheet select {
 .filepicker .favorites .path a.link[data-source]::before {
   color: var(--s2d6-form-light);
 }
+
+/* Roll Dialog Format*/
+multi-select.select.target-modifier {
+  flex-direction: row;
+}
+multi-select.select.target-modifier select {
+  width: 2ch;
+}
+
+multi-select.select.target-modifier div.tags.input-element-tags {
+  justify-content: start;
+  line-height: 2ch;
+  width: auto;
+}
