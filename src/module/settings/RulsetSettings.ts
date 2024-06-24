@@ -113,6 +113,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.general.push(stringChoiceSetting('rangeModifierType', "none", true, TWODSIX.RANGE_MODIFIERS_TYPES));
     settings.general.push(numberSetting("meleeRange", 2, false, "world"));
     settings.roll.push(largeStringSetting('targetDMList', "", false, "world", generateTargetDMObject));
+    settings.roll.push(stringSetting('chainBonus', "", false, 'world'));
     return settings;
   }
 }

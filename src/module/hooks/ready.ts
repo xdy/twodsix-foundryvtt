@@ -7,6 +7,7 @@ import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
 import { setDocumentPartials, updateStatusIcons } from "../settings/DisplaySettings";
 import { switchCss } from "../settings";
 import { generateTargetDMObject } from "../utils/targetModifiers";
+import { TWODSIX } from "../config";
 
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
@@ -108,6 +109,12 @@ Hooks.once("ready", async function () {
   //create custom DM List Object
   generateTargetDMObject();
 
+  //Reset chain bonus if empty string
+  if (game.settings.get('twodsix', 'chainBonus') === "") {
+    const ruleset = game.settings.get('twodsix', 'ruleset');
+    const rulesetChainBonus = TWODSIX.RULESETS[ruleset]?.settings.chainBonus;
+    game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
+  }
 });
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize

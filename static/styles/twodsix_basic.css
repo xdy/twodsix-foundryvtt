@@ -3273,3 +3273,18 @@ multi-select.actor-sheet {
 multi-select.actor-sheet select {
   width: 2ch;
 }
+
+/* Roll Dialog Format*/
+multi-select.select.target-modifier {
+  flex-direction: row;
+}
+multi-select.select.target-modifier select {
+  width: 2ch;
+  height: 2.5ch;
+}
+
+multi-select.select.target-modifier div.tags.input-element-tags {
+  justify-content: start;
+  line-height: 2ch;
+  width: auto;
+}
