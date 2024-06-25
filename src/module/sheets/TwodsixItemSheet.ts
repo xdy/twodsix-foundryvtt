@@ -183,15 +183,17 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _changeType(event) {
-    await this.item.update({"system.type": event.currentTarget.value, "system.priorType": this.item.type});
-    try {
-      await this.item.update({"type": event.currentTarget.value});
-    } catch(err) {
-      console.log(`Converting Item refresh Error`);
-      await this.render(false);
-      return;
+    const duplicateItem = foundry.utils.duplicate(this.item);
+    const newType = event.currentTarget.value;
+    const newSchema = CONFIG.Item.dataModels[newType];
+    duplicateItem.system = await newSchema.cleanData(this.item.system);
+    duplicateItem.system.priorType = this.item.type;
+    duplicateItem.system.type = newType;
+    duplicateItem.type = newType;
+    const newItem = TwodsixItem.create(duplicateItem, {renderSheet: true, parent: this.item.parent});
+    if (newItem) {
+      this.item.delete();
     }
-    await this.render(false);
   }
 
   /* -------------------------------------------- */
