@@ -183,16 +183,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _changeType(event) {
-    /*Unset active effect if storage or junk*/
-    let disableState = true;
-    if (!["storage", "junk"].includes(event.currentTarget.value)) {
-      disableState = (this.item.system.equipped !== "equipped" && !["trait"].includes(event.currentTarget.value));
-    } else {
-      await this.item.update({"system.priorType": this.item.type});
+    await this.item.update({"system.type": event.currentTarget.value, "system.priorType": this.item.type});
+    try {
+      await this.item.update({"type": event.currentTarget.value});
+    } catch(err) {
+      console.log(`Converting Item refresh Error`);
+      await this.render(false);
+      return;
     }
-    await (<TwodsixItem>this.item).toggleActiveEffectStatus(disableState);
-    //await this.item.update({"system.type": event.currentTarget.value});
-    //await this.render(false);
+    await this.render(false);
   }
 
   /* -------------------------------------------- */
@@ -202,11 +201,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     //console.log(event);
     if (event.currentTarget?.name !== 'type') {
       await super._onChangeInput(event);
-    } else {
-      await this.item.update({"system.type": event.currentTarget.value, "type": event.currentTarget.value});
+      this.item?.sheet?.render();
     }
-    //await (<TwodsixItem>this.item).prepareConsumable();
-    this.item?.sheet?.render();
   }
   /* -------------------------------------------- */
 
