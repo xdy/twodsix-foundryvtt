@@ -143,6 +143,7 @@ Hooks.once('init', async function () {
     "computer": ComputerData
   });
 
+  //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
