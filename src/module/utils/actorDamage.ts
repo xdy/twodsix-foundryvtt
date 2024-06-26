@@ -149,7 +149,7 @@ export class Stats {
   }
 
   public updateActor(): void {
-    this.actor.prepareData();
+    this.actor.prepareData(); //Not certain why this is needed?
     for (const characteristic of this.damageCharacteristics) {
       this[characteristic].original = (<Traveller>this.actor.system).characteristics[characteristic];
     }
