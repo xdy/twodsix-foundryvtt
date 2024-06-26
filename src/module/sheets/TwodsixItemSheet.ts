@@ -5,7 +5,7 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions } from "../utils/sheetUtils";
-import { Component, Gear } from "src/types/template";
+import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 
@@ -257,7 +257,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
           name: this.item.name,
           description: "",
           transfer: game.settings.get('twodsix', "useItemActiveEffects"),
-          disabled: (<Gear>this.item.system).equipped !== undefined && (<Gear>this.item.system).equipped !== "equipped" && !["trait"].includes(this.item.type),
+          disabled: false,
           _id: newId,
           flags: {twodsix: {sourceId: newId}}
         }).toObject()];
