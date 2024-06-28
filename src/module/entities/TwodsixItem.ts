@@ -787,26 +787,6 @@ export default class TwodsixItem extends Item {
     );
   }*/
 
-  ////// ACTIVE EFFECTS //////
-  /**
-   * A method to change the suspened state of an Actor Active effect linked to item
-   *
-   * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
-   * @param {any} options An object to pass to update hook (only {dontSync: true/false} for encumbrance checks is coded)
-   * @returns {Promise<void>}
-   */
-  public async toggleActiveEffectStatus(newSuspendedState:boolean, options: any = {}): Promise<void> {
-    const changes = [];
-    for (const effect of this.effects) {
-      if (effect.disabled !== newSuspendedState) {
-        changes.push({_id: effect.id, disabled: newSuspendedState});
-      }
-    }
-    if (changes.length > 0 ) {
-      await this.updateEmbeddedDocuments("ActiveEffect", changes, options);
-    }
-  }
-
   //////// CONSUMABLE ////////
   /**
    * A function decrement a consumable selected consumbles from inventory.

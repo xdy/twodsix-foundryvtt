@@ -8,6 +8,7 @@ import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, delete
 import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
+import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -140,7 +141,6 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
     html.find(`[name="type"]`).on('change', this._changeType.bind(this));
     html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
-    html.find(`[name="system.equipped"]`).on('change', this._changeEquipped.bind(this));
   }
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
@@ -229,41 +229,24 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private _changeEquipped(event) {
-    if (this.item.isEmbedded) {
-      const newDiabledState = event.currentTarget.value !== 'equipped';
-      const updates = [];
-      for (const effect of this.item.effects) {
-        if (effect.disabled !== newDiabledState) {
-          updates.push({_id: effect.id, disabled: newDiabledState});
-        }
-      }
-      if (updates.length > 0) {
-        this.item.updateEmbeddedDocuments('ActiveEffect', updates);
-      }
-    }
-  }
-
   private async _onCreateEffect(): Promise<void> {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
       const newId = foundry.utils.randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
-        const effects = [new ActiveEffect({
-          origin: undefined, //UUID? this.item.uuid
-          icon: this.item.img,
-          tint: "#ffffff",
-          name: this.item.name,
-          description: "",
-          transfer: game.settings.get('twodsix', "useItemActiveEffects"),
-          disabled: false,
-          _id: newId,
-          flags: {twodsix: {sourceId: newId}}
-        }).toObject()];
         if (await fromUuid(this.item.uuid)) {
-          await this.item.createEmbeddedDocuments('ActiveEffect', effects);
-          await this.item.effects.contents[0]?.sheet?.render(true);
+          TwodsixActiveEffect.create({
+            origin: undefined, //UUID? this.item.uuid
+            icon: this.item.img,
+            tint: "#ffffff",
+            name: this.item.name,
+            description: "",
+            transfer: game.settings.get('twodsix', "useItemActiveEffects"),
+            disabled: false,
+            _id: newId,
+            //flags: {twodsix: {sourceId: newId}}  //Needed?
+          }, {renderSheet: true, parent: this.item});
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
         }
