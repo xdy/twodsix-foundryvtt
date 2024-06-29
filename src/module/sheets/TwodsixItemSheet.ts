@@ -183,14 +183,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _changeType(event) {
-    const duplicateItem = foundry.utils.duplicate(this.item);
+    const duplicateItem = this.item.toJSON();
     const newType = event.currentTarget.value;
-    const newSchema = CONFIG.Item.dataModels[newType];
-    duplicateItem.system = await newSchema.cleanData(this.item.system);
     duplicateItem.system.priorType = this.item.type;
     duplicateItem.system.type = newType;
     duplicateItem.type = newType;
-    const newItem = TwodsixItem.create(duplicateItem, {renderSheet: true, parent: this.item.parent});
+    const newItem = await TwodsixItem.create(duplicateItem, {renderSheet: true, parent: this.item.parent});
     if (newItem) {
       this.item.delete();
     }

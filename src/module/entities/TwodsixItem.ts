@@ -104,6 +104,17 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    //Update item tab list if TL Changed
+    if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+      if(["skills", "trait", "spell", "ship_position"].includes(this.type)) {
+        return;
+      } else if (this.isEmbedded || this.compendium) {
+        return;
+      } else if (changed.system?.techLevel) {
+        ui.items.render();
+      }
+    }
+
   }
 
   public static async create(data, options?):Promise<TwodsixItem> {
