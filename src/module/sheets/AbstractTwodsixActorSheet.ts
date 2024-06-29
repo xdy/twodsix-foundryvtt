@@ -9,7 +9,7 @@ import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
-import { applyEncumberedEffect } from "../hooks/showStatusIcons";
+import { applyEncumberedEffect } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {

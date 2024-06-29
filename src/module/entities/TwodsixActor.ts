@@ -13,7 +13,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances } from "../hooks/updateFinances";
-import { applyEncumberedEffect, applyWoundedEffect } from "../hooks/showStatusIcons";
+import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -336,11 +336,12 @@ export default class TwodsixActor extends Actor {
       system.reflectOn = armorValues.reflectOn;
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
-    }
-    const baseArmor = system.primaryArmor.value;
-    this.applyActiveEffectsCustom();
-    if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
-      system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+      const baseArmor = system.primaryArmor.value;
+
+      this.applyActiveEffectsCustom();
+      if (this.overrides.system?.primaryArmor?.value) {
+        system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+      }
     }
   }
   /**

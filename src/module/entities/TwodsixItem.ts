@@ -11,6 +11,7 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
+import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
 
 /**
  * Extend the base Item entity
@@ -73,6 +74,36 @@ export default class TwodsixItem extends Item {
     Object.assign(updates, {"system.type": this.type});
     Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);
+  }
+
+  /**
+   * Perform follow-up operations after a Document of this type is updated.
+   * Post-update operations occur for all clients after the update is broadcast.
+   * @param {object} changed            The differential data that was changed relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {string} userId             The id of the User requesting the document update
+   * @see {Document#_onUpdate}
+   * @protected
+   */
+  async _onUpdate(changed:object, options:object, userId:string) {
+    await super._onUpdate(changed, options, userId);
+    if (game.user?.id === userId) {
+      const owningActor: TwodsixActor = this.actor;
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
+        if (!["skills", "trait", "spell"].includes(this.type) && changed.system) {
+          if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+            await applyEncumberedEffect(owningActor);
+          }
+        }
+      }
+      //Needed - for active effects changing damage stats
+      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+        if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+          await applyWoundedEffect(owningActor);
+        }
+      }
+    }
+
   }
 
   public static async create(data, options?):Promise<TwodsixItem> {
