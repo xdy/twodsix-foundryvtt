@@ -1008,8 +1008,10 @@ export default class TwodsixActor extends Actor {
     delete transferData._id;
     // Prepare effects
     if ( transferData.effects?.length > 0) {
-      transferData.effects[0].disabled = (transferData.type !== "trait");
-      transferData.effects[0].transfer =  game.settings.get('twodsix', "useItemActiveEffects");
+      for (const effect of transferData.effects) {
+        effect.disabled = false;
+        effect.transfer =  game.settings.get('twodsix', "useItemActiveEffects");
+      }
     }
 
     //Link an actor skill with names defined by item.associatedSkillName

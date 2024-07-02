@@ -9,7 +9,7 @@ async function refactorLinkedEffects (actor: TwodsixActor): Promise<void> {
     for (const effect of itemEffects) {
       const linkedItem = await fromUuid(effect.origin);
       if (linkedItem) {
-        await linkedItem.effects.contents[0].update({"transfer": game.settings.get('twodsix', 'useItemActiveEffects'), "disabled": (linkedItem.system.equipped !== "equipped" && !["trait"].includes(linkedItem.type)), "sourceLabel": linkedItem.name});
+        await linkedItem.effects.contents[0].update({"transfer": game.settings.get('twodsix', 'useItemActiveEffects'), "disabled": false, "sourceLabel": linkedItem.name});
         await effect.delete();
       }
     }
