@@ -11,6 +11,7 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
+import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
 
 /**
  * Extend the base Item entity
@@ -73,6 +74,47 @@ export default class TwodsixItem extends Item {
     Object.assign(updates, {"system.type": this.type});
     Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);
+  }
+
+  /**
+   * Perform follow-up operations after a Document of this type is updated.
+   * Post-update operations occur for all clients after the update is broadcast.
+   * @param {object} changed            The differential data that was changed relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {string} userId             The id of the User requesting the document update
+   * @see {Document#_onUpdate}
+   * @protected
+   */
+  async _onUpdate(changed:object, options:object, userId:string) {
+    await super._onUpdate(changed, options, userId);
+    if (game.user?.id === userId) {
+      const owningActor: TwodsixActor = this.actor;
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
+        if (!["skills", "trait", "spell"].includes(this.type) && changed.system) {
+          if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+            await applyEncumberedEffect(owningActor);
+          }
+        }
+      }
+      //Needed - for active effects changing damage stats
+      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+        if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+          await applyWoundedEffect(owningActor);
+        }
+      }
+    }
+
+    //Update item tab list if TL Changed
+    if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+      if(["skills", "trait", "spell", "ship_position"].includes(this.type)) {
+        return;
+      } else if (this.isEmbedded || this.compendium) {
+        return;
+      } else if (changed.system?.techLevel) {
+        ui.items.render();
+      }
+    }
+
   }
 
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -786,26 +828,6 @@ export default class TwodsixItem extends Item {
       (modes.length > 1)
     );
   }*/
-
-  ////// ACTIVE EFFECTS //////
-  /**
-   * A method to change the suspened state of an Actor Active effect linked to item
-   *
-   * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
-   * @param {any} options An object to pass to update hook (only {dontSync: true/false} for encumbrance checks is coded)
-   * @returns {Promise<void>}
-   */
-  public async toggleActiveEffectStatus(newSuspendedState:boolean, options: any = {}): Promise<void> {
-    const changes = [];
-    for (const effect of this.effects) {
-      if (effect.disabled !== newSuspendedState) {
-        changes.push({_id: effect.id, disabled: newSuspendedState});
-      }
-    }
-    if (changes.length > 0 ) {
-      await this.updateEmbeddedDocuments("ActiveEffect", changes, options);
-    }
-  }
 
   //////// CONSUMABLE ////////
   /**

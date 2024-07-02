@@ -4,28 +4,10 @@
 import { Traveller } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TWODSIX } from "../config";
-import { getDamageCharacteristics } from "../utils/actorDamage";
+import { getDamageCharacteristics } from "./actorDamage";
+import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
-Hooks.on("updateItem", async (item: TwodsixItem, update: Record<string, any>, options: any, userId:string) => {
-  if (game.user?.id === userId) {
-    const owningActor: TwodsixActor = item.actor;
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
-      if (!["skills", "trait", "spell"].includes(item.type) && update.system) {
-        if ((Object.hasOwn(update.system, "weight") || Object.hasOwn(update.system, "quantity") || (Object.hasOwn(update.system, "equipped")) && item.system.weight > 0)) {
-          await applyEncumberedEffect(owningActor);
-        }
-      }
-    }
-    //Needed - for active effects changing damage stats
-    if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-      if (checkForDamageStat(update, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-        await applyWoundedEffect(owningActor);
-      }
-    }
-  }
-});
-
-function checkForDamageStat (update: any, actorType: string): boolean {
+export function checkForDamageStat (update: any, actorType: string): boolean {
   if (update.effects?.length > 0) {
     const damageCharacteristics = getDamageCharacteristics(actorType);
     for (const effect of update.effects) {
@@ -174,10 +156,10 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 /**
  * Determine whether actor becomes unconscious based on ruleset. Depending on ruleset, may make endurance roll.
  * @param {TwodsixActor} selectedActor  The actor to check
- * @param {ActiveEffect | undefined} oldWoundState The current wounded AE for actor
+ * @param {TwodsixActiveEffect | undefined} oldWoundState The current wounded AE for actor
  * @param {string} tintToApply The wounded state tint to be applied (the updated tint)
  */
-async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: ActiveEffect | undefined, tintToApply: string): Promise<void> {
+async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
   const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.statuses.has('unconscious'));
   const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();

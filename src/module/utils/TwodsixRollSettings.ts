@@ -8,7 +8,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
-import { effectType } from "../hooks/showStatusIcons";
+import { effectType } from "./showStatusIcons";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import { getTargetDMSelectObject } from "./targetModifiers";
 

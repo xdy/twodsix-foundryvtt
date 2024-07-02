@@ -10,7 +10,7 @@
         {{#if settings.showStatusIcons}}
         <span class="status-icons npc">
             {{#each effects as |anEffect|}}
-            {{#unless anEffect.disabled}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>{{/unless}}
+            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>{{/unless}}
             {{/each}}
         {{/if}}
       </div>

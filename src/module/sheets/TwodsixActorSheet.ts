@@ -268,14 +268,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       const li = $(event.currentTarget).parents(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
       const newSuspendedState = getNewEquippedState(itemSelected);
-      const itemEffects = itemSelected.effects.toJSON();
-      for (const effect of itemEffects) {
-        effect.disabled = newSuspendedState !== "equipped";
-      }
 
-      //change equipped state while toggling active effects
+      //change equipped state
       const itemUpdates = [];
-      itemUpdates.push({_id: itemSelected.id, "system.equipped": newSuspendedState, effects: itemEffects});
+      itemUpdates.push({_id: itemSelected.id, "system.equipped": newSuspendedState});
 
       // Sync associated consumables equipped state - need to gate due to race condition
       for (const consumeableID of itemSelected.system.consumables) {
