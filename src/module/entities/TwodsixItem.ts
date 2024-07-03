@@ -279,6 +279,8 @@ export default class TwodsixItem extends Item {
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel, targetModifier: appliedStatuses});
       Object.assign(tmpSettings, {rollType: rollType});
     }
+    //Flag that targetDM is an override
+    Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
@@ -328,7 +330,11 @@ export default class TwodsixItem extends Item {
           Object.assign(settings, {rollType: rangeData.rollType});
         }
         //Assign target modifiers based on statuses, if not overridden
-        Object.assign(settings.rollModifiers, {targetModifier: targetModifierOverride.length > 0 ? targetModifierOverride : getTargetModifiers(targetTokens[i%targetTokens.length].actor)});
+        if (targetModifierOverride.length > 0 ) {
+          Object.assign(settings.rollModifiers, {targetModifier: targetModifierOverride});
+        } else {
+          Object.assign(settings.rollModifiers, {targetModifier: getTargetModifiers(targetTokens[i%targetTokens.length].actor)});
+        }
       }
       const roll = await this.skillRoll(false, settings, showInChat);
       const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
