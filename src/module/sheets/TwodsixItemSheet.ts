@@ -82,13 +82,14 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       }
     }
 
-    //prevent processor attachements to software
+    //prevent processor/suite attachements to computers(?)
     returnData.config = foundry.utils.duplicate(TWODSIX);
 
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
         delete returnData.config.CONSUMABLES.processor;
+        delete returnData.config.CONSUMABLES.suite;
       }
     }
 
@@ -170,7 +171,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         await this.item.update(updates);
       }
     } else if (this.item.type === "consumable" ) {
-      if (["software", "processor"].includes(this.item.system.subtype)) {
+      if (["software", "processor", "suite"].includes(this.item.system.subtype)) {
         await this.item.update({"system.isAttachment": true});
       }
       if (this.item.actor) {
@@ -353,6 +354,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
     if (this.item.type === "computer" ) {
       delete consumablesList["processor"];
+      delete consumablesList["suite"];
     }
     const html = await renderTemplate(template, {
       consumables: consumablesList
@@ -378,7 +380,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 currentCount: max,
                 max: max,
                 equipped: equippedState,
-                isAttachment: ["processor", "software"].includes(buttonHtml.find('.consumable-subtype').val())
+                isAttachment: ["processor", "software", "suite"].includes(buttonHtml.find('.consumable-subtype').val())
               }
             };
             const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};

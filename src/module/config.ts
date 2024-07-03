@@ -612,6 +612,7 @@ const CONSUMABLES = Object.freeze({
   power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
   software: "TWODSIX.Items.Consumable.Types.software",
   processor: "TWODSIX.Items.Consumable.Types.processor",
+  suite: "TWODSIX.Items.Consumable.Types.suite",
   other: "TWODSIX.Items.Consumable.Types.other"
 });
 

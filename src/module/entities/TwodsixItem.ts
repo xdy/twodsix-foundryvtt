@@ -90,6 +90,14 @@ export default class TwodsixItem extends Item {
     }
   }
 
+  /**
+   * Augment the basic item data with additional dynamic data.
+   */
+  prepareDerivedData(): void {
+    super.prepareDerivedData();
+    this.system.canProcess = (this.type === "consumable" && ["processor", "suite"].includes(this.system.subtype));
+  }
+
   prepareConsumable(gear:Gear = <Gear>this.system):void {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 

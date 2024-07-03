@@ -642,6 +642,7 @@
           "power_cell": "Power Cell",
           "software": "Software",
           "processor": "Processor",
+          "suite": "Suite",
           "other": "Other"
         },
         "Size": "Size",

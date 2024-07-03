@@ -30,9 +30,9 @@
 <div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
   <span class="wrapper">
     {{name}}
-    {{#iff system.subtype "===" "processor"}}
+    {{#if system.canProcess}}
        - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
-    {{/iff}}
+    {{/if}}
     <span class="item-controls centre">
       {{#iff system.subtype "===" "software"}}
       <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
