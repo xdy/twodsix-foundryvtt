@@ -733,6 +733,7 @@
       "CargoWeight": "Peso Total Carga",
       "CARGONOTES": "NOTAS CARGA",
       "COMPONENTS": "COMPONENTES",
+      "COMMONFUNDS": "FONDO COMÚN",
       "CreateAction": "Crear Acción",
       "Crew": {
         "ADMIN": "ADMINISTRADOR",
@@ -1404,6 +1405,10 @@
         "hint": "Mostrar el valor total de armadura (primaria + secundaria) en vez del valor secundario en la hoja.",
         "name": "Mostrar el valor de la armadura total al jugador"
       },
+      "showItemIconsInChat": {
+        "hint": "Mostrar el icono del objeto o habilidad en el mensaje las tiradas en el chat",
+        "name": "Mostrar Imagen Objeto en Chat"
+      },
       "defaultDamageOptions": "Balístico, Contundente, Corrosivo, PEM, Energía, Fuego, Laser, Perforante, Veneno, Plasma, Psiónico, Radiación, Cortante, Sofocante, Aturdidor",
       "menuLabels": {
         "general": "General",
@@ -1477,6 +1482,10 @@
       "showCost": {
         "hint": "Mostrar el coste de los componentes de la nave en MCr, en vez del Peso; en las líneas de  la hoja de la nave.",
         "name": "Mostrar Coste en vez de Peso"
+      },
+      "chainBonus": {
+        "hint": "Modificador para las tiradas encadenadas (o asistidas por otro) en base al efecto de la tirada anterior. El formato de la cadena de configuración son enteros separados por comas. La secuencia esta basada en el valor del efecto:  <=-6, -5 to -2, -1, 0 , 1 to 5, >=6.  Por ejemplo, para Engine Cepheus, la cadena de configuración sería '-2, -1, -1, 1, 1, 2'. Nota: si no existen seis enteros en la cadena, el bono será cero.",
+        "name": "MD Tirada Asistida/Encadenada"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
