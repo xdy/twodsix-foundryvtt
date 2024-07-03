@@ -12,6 +12,7 @@ import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
+import { getTargetModifiers } from "../utils/targetModifiers";
 
 /**
  * Extend the base Item entity
@@ -257,6 +258,7 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let rollType = 'Normal';
+      let appliedStatuses = [];
       const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
@@ -269,11 +271,12 @@ export default class TwodsixItem extends Item {
         } else {
           rangeLabel = `${this.system.range} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
         }
+        appliedStatuses = getTargetModifiers(targetTokens[0].actor);
       } else if (targetTokens.length === 0) {
         rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
       //console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
-      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
+      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel, targetModifier: appliedStatuses});
       Object.assign(tmpSettings, {rollType: rollType});
     }
 
@@ -305,6 +308,7 @@ export default class TwodsixItem extends Item {
     }
 
     //Make attack rolls
+    const targetModifierOverride = [...settings.rollModifiers.targetModifier];
     for (let i = 0; i < numberOfAttacks; i++) {
       if (targetTokens.length > 1) {
         //need to update dodgeParry and weapons range modifiers for each target
@@ -316,13 +320,15 @@ export default class TwodsixItem extends Item {
           const weaponArmorInfo = this.getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, weaponArmorInfo);
         }
-
+        //Set range modifiers if possible
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
           const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
         }
+        //Assign target modifiers based on statuses, if not overridden
+        Object.assign(settings.rollModifiers, {targetModifier: targetModifierOverride.length > 0 ? targetModifierOverride : getTargetModifiers(targetTokens[i%targetTokens.length].actor)});
       }
       const roll = await this.skillRoll(false, settings, showInChat);
       const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
