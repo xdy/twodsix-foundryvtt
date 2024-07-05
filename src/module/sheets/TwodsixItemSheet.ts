@@ -352,7 +352,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
     const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
-    if (this.item.type === "computer" ) {
+    if (this.item.type === "computer" || (this.item.type === "consumable" && ["processor", "suite"].includes(this.item.system.subtype))) {
       delete consumablesList["processor"];
       delete consumablesList["suite"];
     }
@@ -380,7 +380,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 currentCount: max,
                 max: max,
                 equipped: equippedState,
-                isAttachment: ["processor", "software", "suite"].includes(buttonHtml.find('.consumable-subtype').val())
+                isAttachment: ["processor", "software", "suite"].includes(buttonHtml.find('.consumable-subtype').val()) && this.item.type !== "consumable",
+                parentName: this.item.name,
+                parentType: this.item.type
               }
             };
             const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
@@ -403,11 +405,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       system: {
         subtype: "other",
         quantity: 1,
-        isAttachment: true
+        isAttachment: true,
+        parentName: this.item.name,
+        parentType: this.item.type
       }
     };
     const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
-    //newConsumable.update({"system.isAttachment": true});
     await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
     this.render();
   }
@@ -455,6 +458,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
         const itemData = await getItemDataFromDropData(dropData);
 
         TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
+        TwodsixItemSheet.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");
 
         // If the dropped item has the same actor as the current item let's just use the same id.
         let itemId: string;

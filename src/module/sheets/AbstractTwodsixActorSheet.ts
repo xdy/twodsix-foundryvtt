@@ -369,6 +369,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         const parentItem = sheetData.items.find((i) => i.system.consumables?.includes(item.id));
         if (parentItem) {
           item.system.parentName = parentItem.name;
+          item.system.parentType = parentItem.type;
         }
       }
       //prepare ship summary status
