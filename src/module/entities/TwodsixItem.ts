@@ -11,6 +11,8 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
+import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
+import { getTargetModifiers } from "../utils/targetModifiers";
 
 /**
  * Extend the base Item entity
@@ -73,6 +75,47 @@ export default class TwodsixItem extends Item {
     Object.assign(updates, {"system.type": this.type});
     Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);
+  }
+
+  /**
+   * Perform follow-up operations after a Document of this type is updated.
+   * Post-update operations occur for all clients after the update is broadcast.
+   * @param {object} changed            The differential data that was changed relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {string} userId             The id of the User requesting the document update
+   * @see {Document#_onUpdate}
+   * @protected
+   */
+  async _onUpdate(changed:object, options:object, userId:string) {
+    await super._onUpdate(changed, options, userId);
+    if (game.user?.id === userId) {
+      const owningActor: TwodsixActor = this.actor;
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
+        if (!["skills", "trait", "spell"].includes(this.type) && changed.system) {
+          if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+            await applyEncumberedEffect(owningActor);
+          }
+        }
+      }
+      //Needed - for active effects changing damage stats
+      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
+        if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+          await applyWoundedEffect(owningActor);
+        }
+      }
+    }
+
+    //Update item tab list if TL Changed
+    if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+      if(["skills", "trait", "spell", "ship_position"].includes(this.type)) {
+        return;
+      } else if (this.isEmbedded || this.compendium) {
+        return;
+      } else if (changed.system?.techLevel) {
+        ui.items.render();
+      }
+    }
+
   }
 
   public static async create(data, options?):Promise<TwodsixItem> {
@@ -215,6 +258,7 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let rollType = 'Normal';
+      let appliedStatuses = [];
       const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
@@ -227,13 +271,16 @@ export default class TwodsixItem extends Item {
         } else {
           rangeLabel = `${this.system.range} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
         }
+        appliedStatuses = getTargetModifiers(targetTokens[0].actor);
       } else if (targetTokens.length === 0) {
         rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
       }
       //console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
-      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel});
+      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel, targetModifier: appliedStatuses});
       Object.assign(tmpSettings, {rollType: rollType});
     }
+    //Flag that targetDM is an override
+    Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
 
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
@@ -263,6 +310,7 @@ export default class TwodsixItem extends Item {
     }
 
     //Make attack rolls
+    const targetModifierOverride = [...settings.rollModifiers.targetModifier];
     for (let i = 0; i < numberOfAttacks; i++) {
       if (targetTokens.length > 1) {
         //need to update dodgeParry and weapons range modifiers for each target
@@ -274,12 +322,18 @@ export default class TwodsixItem extends Item {
           const weaponArmorInfo = this.getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, weaponArmorInfo);
         }
-
+        //Set range modifiers if possible
         if (controlledTokens.length === 1) {
           const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
           const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
           Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
           Object.assign(settings, {rollType: rangeData.rollType});
+        }
+        //Assign target modifiers based on statuses, if not overridden
+        if (targetModifierOverride.length > 0 ) {
+          Object.assign(settings.rollModifiers, {targetModifier: targetModifierOverride});
+        } else {
+          Object.assign(settings.rollModifiers, {targetModifier: getTargetModifiers(targetTokens[i%targetTokens.length].actor)});
         }
       }
       const roll = await this.skillRoll(false, settings, showInChat);
@@ -786,26 +840,6 @@ export default class TwodsixItem extends Item {
       (modes.length > 1)
     );
   }*/
-
-  ////// ACTIVE EFFECTS //////
-  /**
-   * A method to change the suspened state of an Actor Active effect linked to item
-   *
-   * @param {boolean} newSuspendedState    The new Active Effect suspended state for the actor
-   * @param {any} options An object to pass to update hook (only {dontSync: true/false} for encumbrance checks is coded)
-   * @returns {Promise<void>}
-   */
-  public async toggleActiveEffectStatus(newSuspendedState:boolean, options: any = {}): Promise<void> {
-    const changes = [];
-    for (const effect of this.effects) {
-      if (effect.disabled !== newSuspendedState) {
-        changes.push({_id: effect.id, disabled: newSuspendedState});
-      }
-    }
-    if (changes.length > 0 ) {
-      await this.updateEmbeddedDocuments("ActiveEffect", changes, options);
-    }
-  }
 
   //////// CONSUMABLE ////////
   /**

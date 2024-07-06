@@ -318,6 +318,7 @@
         "Description": "Description",
         "DM": "DM",
         "TargetModifier": "Target DM",
+        "OverrideAuto": "Override Auto",
         "Characteristic": "Characteristic",
         "Condition": "Condition",
         "Attack": "Attack",

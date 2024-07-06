@@ -9,7 +9,8 @@ import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
-import { applyEncumberedEffect } from "../hooks/showStatusIcons";
+import { applyEncumberedEffect } from "../utils/showStatusIcons";
+import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -577,7 +578,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onEditEffect(event): Promise<void> {
     const effectUuid = event.currentTarget["dataset"].uuid;
-    const selectedEffect = <ActiveEffect> await fromUuid(effectUuid);
+    const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
       await new ActiveEffectConfig(selectedEffect).render(true);
@@ -611,7 +612,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (action === "edit") {
       await this._onEditEffect(event);
     } else if (action === "toggle") {
-      const selectedEffect:ActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
+      const selectedEffect:TwodsixActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
         if (this.actor?.type === 'traveller' && game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {

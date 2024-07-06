@@ -13,7 +13,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances } from "../hooks/updateFinances";
-import { applyEncumberedEffect, applyWoundedEffect } from "../hooks/showStatusIcons";
+import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -253,18 +253,16 @@ export default class TwodsixActor extends Actor {
       case 'traveller':
       case 'animal':
       case 'robot':
-        this._prepareTravellerData();
+        this._prepareActorDerivedData();
         break;
       case 'ship':
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
-          this._prepareShipData();
+          this._prepareShipDerivedData();
         }
         this._checkCrewTitles();
-        super.applyActiveEffects();
         break;
       case 'vehicle':
       case 'space-object':
-        super.applyActiveEffects();
         break;
       default:
         console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
@@ -285,8 +283,7 @@ export default class TwodsixActor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  async _prepareTravellerData(): void {
-    this._updateActiveEffects(false);
+  async _prepareActorDerivedData(): void {
     const {system} = this;
 
     //Update Damage
@@ -339,11 +336,12 @@ export default class TwodsixActor extends Actor {
       system.reflectOn = armorValues.reflectOn;
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
-    }
-    const baseArmor = system.primaryArmor.value;
-    await this._updateActiveEffects(true);
-    if (this.type === 'traveller' && this.overrides.system?.primaryArmor?.value) {
-      system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+      const baseArmor = system.primaryArmor.value;
+
+      this.applyActiveEffectsCustom();
+      if (this.overrides.system?.primaryArmor?.value) {
+        system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+      }
     }
   }
   /**
@@ -460,7 +458,7 @@ export default class TwodsixActor extends Actor {
     return encumbrance;
   }
 
-  _prepareShipData(): void {
+  _prepareShipDerivedData(): void {
     const calcShipStats = {
       power: {
         max: 0,
@@ -1010,8 +1008,10 @@ export default class TwodsixActor extends Actor {
     delete transferData._id;
     // Prepare effects
     if ( transferData.effects?.length > 0) {
-      transferData.effects[0].disabled = (transferData.type !== "trait");
-      transferData.effects[0].transfer =  game.settings.get('twodsix', "useItemActiveEffects");
+      for (const effect of transferData.effects) {
+        effect.disabled = false;
+        effect.transfer =  game.settings.get('twodsix', "useItemActiveEffects");
+      }
     }
 
     //Link an actor skill with names defined by item.associatedSkillName
@@ -1092,34 +1092,15 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * We override this with an empty implementation because we have our own custom way of applying
-   * {@link ActiveEffect} and {@link Actor#prepareEmbeddedDocuments} calls this.
-   * @override
+   * Apply any transformations to the Actor data which are caused by ActiveEffects - post prepare data.
    */
-  override applyActiveEffects() {
-    return;
-  }
-
-  /**
-   * The TWODSIX override for applying active effects to traveller actors.  Depends on whenther this is before or after derived data calc.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  public async _updateActiveEffects(isPost:boolean): Promise<void> {
+  applyActiveEffectsCustom() {
     //Fix for item-piles module
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled")) {
         return;
       }
     }
-    // Re do overrides to include derived data (code from core FVTT)
-    this.applyActiveEffectsCustom(isPost);
-  }
-
-  /**
-   * Apply any transformations to the Actor data which are caused by ActiveEffects.
-   *  @param {boolean} isPost after derived values calculated
-   */
-  applyActiveEffectsCustom(isPost: boolean) {
     const derivedData = [];
 
     //Add characteristics mods
@@ -1135,20 +1116,11 @@ export default class TwodsixActor extends Actor {
 
     //Define derived data keys that can have active effects
     const overrides = {};
-    //const specialStatuses = new Map();
-    if (!isPost) {
-      /*this.statuses ??= new Set();
-      // Identify which special statuses had been active
-      for ( const statusId of Object.values(CONFIG.specialStatusEffects) ) {
-        specialStatuses.set(statusId, this.statuses.has(statusId));
-      }*/
-      this.statuses.clear();
-    }
 
-    // Organize non-disabled effects by their application priority and add CUSTOM to derivedData
+    // Organize non-disabled effect changes using derived data list or CUSTOM by their application priority
     const changes = [];
     for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.map(change => {
+      changes.push(...effect.changes.filter( change => (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM || derivedData.includes(change.key))).map(change => {
         const c = foundry.utils.deepClone(change);
         c.effect = effect;
         c.priority = c.priority ?? (c.mode * 10);
@@ -1157,44 +1129,19 @@ export default class TwodsixActor extends Actor {
       for ( const statusId of effect.statuses ) {
         this.statuses.add(statusId);
       }
-      //Add custom effects to the derivedData array
-      const customChanges = effect.changes.filter( change => change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM);
-      for ( const change of customChanges) {
-        if(!derivedData.includes(change.key)) {
-          derivedData.push(change.key);
-        }
-      }
     }
     changes.sort((a, b) => a.priority - b.priority);
 
-    // Apply all changes
+    // Apply derived data changes
     for ( const change of changes ) {
-      if (isPost ? derivedData.includes(change.key) : !derivedData.includes(change.key)) {
-        const newChanges = change.effect.apply(this, change);
-        Object.assign(overrides, newChanges);
-      }
+      const newChanges = change.effect.apply(this, change);
+      Object.assign(overrides, newChanges);
     }
 
     // Expand the set of final overrides
-    if (!isPost) {
-      this.overrides = foundry.utils.expandObject(overrides);
-    } else if (Object.keys(overrides).length > 0) {
+    if (Object.keys(overrides).length > 0) {
       this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     }
-
-    //Apply special statuses that changed to active tokens
-    /*if (!isPost) {
-      let tokens;
-      for ( const [statusId, wasActive] of specialStatuses ) {
-        const isActive = this.statuses.has(statusId);
-        if ( isActive !== wasActive ) {
-          tokens ??= this.getActiveTokens();
-          for ( const token of tokens ) {
-            token._onApplyStatusEffect(statusId, isActive);
-          }
-        }
-      }
-    }*/
   }
 
   /**
