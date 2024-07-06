@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.2.0...v5.3.0) (2024-07-06)
+
+
+### Features
+
+* Add optional statuses linking and refactor Active Effects([#1579](https://github.com/xdy/twodsix-foundryvtt/issues/1579)) ([6942b55](https://github.com/xdy/twodsix-foundryvtt/commit/6942b551b74615e5fb9c4e10158e7c77070fd4e4))
+
 # [5.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.1.0...v5.2.0) (2024-06-24)
 
 

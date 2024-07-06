@@ -8,7 +8,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
-import { effectType } from "../hooks/showStatusIcons";
+import { effectType } from "./showStatusIcons";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import { getTargetDMSelectObject } from "./targetModifiers";
 
@@ -138,6 +138,7 @@ export class TwodsixRollSettings {
       weaponsRange: settings?.rollModifiers?.weaponsRange ?? 0,
       rangeLabel: settings?.rollModifiers?.rangeLabel ?? "",
       targetModifier: settings?.rollModifiers?.targetModifier?.length > 0 ? settings.rollModifiers.targetModifier : [],
+      targetModifierOverride: settings?.rollModifiers?.targetModifierOverride ?? false,
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
       selectedSkill: aSkill?.uuid,
@@ -152,7 +153,7 @@ export class TwodsixRollSettings {
       actorUUID: actorUUID,
       bonusDamage: bonusDamage
     };
-    //console.log("Modifiers: ", this.rollModifiers);
+    console.log("Modifiers: ", this.rollModifiers);
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
@@ -218,6 +219,7 @@ export class TwodsixRollSettings {
       armorModifier: this.rollModifiers.armorModifier,
       armorLabel: this.rollModifiers.armorLabel,
       targetModifier: this.rollModifiers.targetModifier,
+      targetModifierOverride: this.rollModifiers.targetModifierOverride,
       targetDMList: getTargetDMSelectObject(),
       skillRoll: this.skillRoll,
       itemRoll: this.itemRoll,

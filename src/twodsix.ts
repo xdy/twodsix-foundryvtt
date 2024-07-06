@@ -33,6 +33,7 @@ import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
 import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
 import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
 import { GearData } from "./module/data/item-base";
+import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -53,6 +54,7 @@ Hooks.once('init', async function () {
   game['twodsix'] = {
     TwodsixActor,
     TwodsixItem,
+    TwodsixActiveEffect,
     rollItemMacro,
     TwodsixDiceRoll,
     TwodsixRollSettings
@@ -140,6 +142,9 @@ Hooks.once('init', async function () {
     "ship_position": ShipPositionData,
     "computer": ComputerData
   });
+
+  //Extend ActiveEffects class with custom overrides
+  CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
 
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();

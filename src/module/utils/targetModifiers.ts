@@ -5,7 +5,7 @@ import { TWODSIX } from "../config";
 
 /**
  * A function that parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.
- * The format is {key#: {label: string, value: integer}}
+ * The format is {key#: {label: string, value: integer, key: string, statusKey: string}}
  * @returns {void}
  */
 export function generateTargetDMObject():void {
@@ -16,14 +16,16 @@ export function generateTargetDMObject():void {
     const customDMs:string[] = parseString.replace(/[\t\n\r]/gm, ' ').split(',');
     for (const modifier of customDMs) {
       // eslint-disable-next-line no-useless-escape
-      const re = new RegExp(/(.+?)([+-]?\d+)$/);
+      const re = new RegExp(/(.+?)([+-]?\d+)(?:\s*\|*\s*)(.*)$/gm);
       const parsedResult: RegExpMatchArray | null = re.exec(modifier);
       if (parsedResult) {
         const keyValue = `key${i}`;
         Object.assign(modifierObject, {
           [keyValue]: {
             label: parsedResult[1].trim() || game.i18n.localize("TWODSIX.Ship.Unknown"),
-            value: parseInt(parsedResult[2]) || 0
+            value: parseInt(parsedResult[2]) || 0,
+            key: keyValue,
+            statusKey: CONFIG.statusEffects.find(se => parsedResult[3].trim() === game.i18n.localize(se.name))?.id || ""
           }
         });
         ++i;
@@ -48,3 +50,20 @@ export function getTargetDMSelectObject(): object {
   return returnValue;
 }
 
+/**
+ * A function that takes a target actor parses its stataus into an array of keys from TWODSIX.TARGET_DM
+ * @param {TwodsixActor} targetActor actor for the target
+ * @returns {string[]} An array of keys from TWODSIX.TARGET_DM
+ */
+export function getTargetModifiers(targetActor:TwodsixActor): string[] {
+  const returnValue = [];
+  if (targetActor) {
+    for (const statusApplied of Array.from(targetActor.statuses)) {
+      const linkedDM = Object.values(TWODSIX.TARGET_DM).find( targetDM => targetDM.statusKey === statusApplied);
+      if (linkedDM) {
+        returnValue.push(linkedDM.key);
+      }
+    }
+  }
+  return returnValue;
+}

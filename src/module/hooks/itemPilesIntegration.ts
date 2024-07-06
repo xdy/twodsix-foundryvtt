@@ -18,7 +18,7 @@ Hooks.once("item-piles-ready", async function() {
     "ITEM_FILTERS": [
       {
         "path": "type",
-        "filters": "skills,trait,spell"
+        "filters": "skills,trait,spell,ship_position"
       },
       {
         "path": "name",

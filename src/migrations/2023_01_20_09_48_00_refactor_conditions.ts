@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { applyToAllActors } from "../module/utils/migration-utils";
-import { effectType } from "../module/hooks/showStatusIcons";
+import { effectType } from "../module/utils/showStatusIcons";
 
 async function refactorConditions (actor: TwodsixActor): Promise<void> {
 
