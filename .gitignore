@@ -17,6 +17,7 @@ dist/
 #This project
 foundryconfig.json
 foundry.js
+foundry-esm.js
 foundry/foundryvtt
 foundry/license.json
 foundry/foundry_dev_data
