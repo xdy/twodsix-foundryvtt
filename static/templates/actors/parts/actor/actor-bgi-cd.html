@@ -53,7 +53,7 @@
   {{else}}
   <i class="fa-solid fa-weight-hanging"></i>
   {{/iff}}:<input name="system.encumbrance.value" style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>
-      /<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/></span>
+      /{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/>{{/if}}</span>
   {{#unless settings.useCTData}}<br>{{/unless}}
 
 <!-- Damage Stats Information-->
