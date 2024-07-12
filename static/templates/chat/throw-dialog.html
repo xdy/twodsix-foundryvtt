@@ -101,7 +101,6 @@
           </div>
         {{/if}}
         {{#if showTargetModifier}}
-          {{log this rollModifiers}}
           <div class="form-group">
             <label>{{#if rollModifiers.targetModifierOverride}}{{localize "TWODSIX.Chat.Roll.OverrideAuto"}} {{/if}}{{localize "TWODSIX.Chat.Roll.TargetModifier"}}
             <multi-select class="select target-modifier" name="rollModifiers.targetModifier">{{selectOptions targetDMList selected=targetModifier}}</multi-select>
