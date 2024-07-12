@@ -355,5 +355,11 @@
     }
   ],
   "relationships": {
+  },
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["twodsix.css", "templates", "lang", "styles"]
+    }
   }
 }

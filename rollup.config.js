@@ -31,5 +31,6 @@ module.exports = function() {
       intro: `const migrationFileNames = ${migrations};\nconst handlebarsTemplateFiles = ${templates};\nconst hookScriptFiles = ${hooks};`
     },
     plugins: plugins,
+    strictDeprecation: true
   };
 }
