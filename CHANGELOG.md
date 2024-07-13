@@ -1,3 +1,10 @@
+## [5.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.4.0...v5.4.1) (2024-07-13)
+
+
+### Bug Fixes
+
+* allow zero value for Active Effect Custom ([#1584](https://github.com/xdy/twodsix-foundryvtt/issues/1584)) ([da35659](https://github.com/xdy/twodsix-foundryvtt/commit/da35659e8a8f6b99e2b81b03a2c7ad6cbaf4e5e4))
+
 # [5.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.3.0...v5.4.0) (2024-07-13)
 
 
