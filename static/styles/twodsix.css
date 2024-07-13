@@ -2929,7 +2929,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 .ship-notes-container, .ship-notes-container-short {
   margin-left: 3%;
   padding-top: 3%;
-  /* height: 32%; */
+  height: 45ch;
   /* width: 90%; */
   overflow-x: hidden;
   overflow-y: auto;
