@@ -9,7 +9,7 @@
   "Impossible": "Unmöglich",
   "Normal": "Normal",
   "Routine": "Routine",
-  "Simple": "Leicht",
+  "Simple": "Trivial",
   "TWODSIX": {
     "Actor": {
       "Age": "Alter",
@@ -23,10 +23,11 @@
         "SOC": "SOZ",
         "STR": "STA",
         "LFB": "LFB",
-        "STA": "STA",
+        "STA": "AUS",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
-        "CTM": "CTM"
+        "CTM": "CTM",
+        "ALT3": "ALT3"
       },
       "CharacterName": "Charaktername",
       "Contamination": "Kontamination",
@@ -49,13 +50,13 @@
         "ENEMIES": "FEINDE",
         "XP": "ERFAHRUNGSPUNKTE",
         "Points": "Punkte",
-        "TotalEarned": "Gesamt Verdient",
+        "TotalEarned": "Insgesamt erworben",
         "Available": "Verfügbar"
       },
       "Items": {
         "Ammo": "Mun",
-        "ARMOR": "RÜSTUNG",
-        "Armor": "Rüstung",
+        "ARMOR": "PANZERUNG",
+        "Armor": "Panzerung",
         "AUGMENTS": "AUGMENTIERUNGEN",
         "CONSUMABLES": "VERBRAUCHSGEGENSTÄNDE",
         "Count": "Zählen",
@@ -68,21 +69,26 @@
         "Location": "Ort",
         "Name": "Name",
         "Qty": "Anz.",
-        "Range": "Reich.",
+        "Range": "Reichw.",
         "ShortDescr": "Kurzbeschr.",
         "TL": "TL",
         "WEAPONS": "WAFFEN",
         "Weight": "Gew.",
-        "EffectiveArmor": "Effektive Rüstung",
+        "EffectiveArmor": "Effektive Panzerung",
         "HideStored": "Verstecke gelagerte Gegenstände",
         "Value": "Wert",
         "LocationState": {
           "equipped": "Ausgerüstet",
           "ship": "Schiff",
-          "backpack": "Rucksack"
+          "backpack": "Rucksack",
+          "all": "Alles",
+          "vehicle": "Fahrzeug",
+          "base": "Basis",
+          "core": "Grund (nur Rucksack und Ausgerüstet)",
+          "default": "Standard (Rucksack, Ausgerüstet und Schiff)"
         },
         "Traits": "Merkmale",
-        "TechLevel": "Tech­nolo­gie­stufe",
+        "TechLevel": "Technologielevel",
         "Transfer": "Transfer­gegen­stände",
         "DisplayStored": "Zeige gelagerte Gegenstände an",
         "Amount": "Menge",
@@ -97,12 +103,13 @@
         "TRAITS": "MERKMALE",
         "Weapons": "Waffen",
         "EQUIPMENT_TOOLS": "AUSRÜSTUNG & WERKZEUGE",
-        "STORAGE_JUNK": "LAGER & MÜLL"
+        "STORAGE_JUNK": "LAGER & SCHROTT",
+        "EquippedLocation": "Bedindet sich"
       },
       "Lifeblood": "Lebensblut",
       "Notes": {
         "NOTES": "CHARAKTER NOTIZEN",
-        "Notes": "Charakternotizen"
+        "Notes": "Charakter Notizen"
       },
       "Rolling": "Würfeln",
       "Skills": {
@@ -129,7 +136,8 @@
           "rounds": "Runde(n)"
         },
         "BaseLevel": "Grund­stufe",
-        "AdjLevel": "ang. Stufe"
+        "AdjLevel": "ang. Stufe",
+        "NoGroup": "Keine Gruppe"
       },
       "Species": "Spezies",
       "Tabs": {
@@ -138,13 +146,13 @@
         "Inventory": "Inventar",
         "Notes": "Notizen",
         "Skills": "Fertigkeiten",
-        "InventoryTabTooltip": "Waffen, Rüstungen, Augmentierungen, Ausrüstung & Werkzeuge, Verbrauchsgegenstände und Zubehör",
+        "InventoryTabTooltip": "Waffen, Panzerung, Augmentierungen, Ausrüstung & Werkzeuge, Verbrauchsgegenstände und Zubehör",
         "Effects": "Effekte",
         "FinancesTabTooltip": "Bargeld, Schulden, Pension, Lebenserhaltungskosten, etc.",
         "InfoTabTooltip": "Merkmale, Beschreibung, Kontakte und Biografie",
         "EffectsTabTooltip": "Aktive Effekte",
         "NotesTabTooltip": "Reisender-Notizen",
-        "SkillsTabTooltip": "Reisender-Fähigkeiten"
+        "SkillsTabTooltip": "Reisender-Fertigkeiten"
       },
       "UnknownActorType": "Unbekannter Charaktertyp",
       "using": "benutzt",
@@ -176,8 +184,9 @@
       "Chassis": "Karosse",
       "CharDisplay": {
         "Alternate": "Alternativ",
-        "Base": "Grund",
-        "All": "Alle"
+        "Base": "Basis",
+        "All": "Alle",
+        "Core": "Grund"
       },
       "Price": "Preis",
       "LocomotionType": "Fortbewegungstyp",
@@ -199,7 +208,7 @@
         "Units": "Einheiten",
         "taskDuration": "Die Aufgabe braucht _TIME_ _UNITS_ bis zum Abschluss.",
         "RollModifiers": "Wurfmodifikatoren",
-        "SkillModifier": "Fähigkeitsstufe",
+        "SkillModifier": "Fertigkeitsstufe",
         "ItemModifier": "Gegenstandsbonus",
         "RollFormula": "Wurfformel",
         "Modifier": "Modifikator",
@@ -223,7 +232,7 @@
         "Timeframe": "Zeitrahmen",
         "Bonus": "Bonus",
         "WithChainBonus": "mit Ketten- / Unterstützungsbonus",
-        "WinsRoll": "gewinnt angefochtene / entgegengesetzte Prüfung",
+        "WinsRoll": "gewinnt Anfechtungs- / Gegenprüfung.",
         "GMUtils": "GM Hilfsmittel",
         "RequestRoll": "Fordere Wurf an",
         "GMRequestsRoll": "GM fordert ein _TYPE_ Wurf an.",
@@ -244,7 +253,95 @@
         "ApplyHealing": "Heilung anwenden",
         "Attachments": "Zubehör/Verbr.",
         "RequestRollClip": "<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Request Roll</h4><p>Wähle beliebige Token für die du eine Fertigkeitsorprüfung durchführen möchtest. Ein Pop-Up Dialog öffnet sich in dem die Details des Wurfs angepasst werden können.</p><p class='faint'>Disable Toolclips in the Settings</p></div>",
-        "TiedRoll": "unentschiedene angefochtene / entgegengesetzte Prüfung. Kein Gewinner."
+        "TiedRoll": "unentschiedene Anfechtungs- / Gegenprüfung. Kein Gewinner.",
+        "ArmorModifier": "Panzerungsmodifikator",
+        "RangeModifierTypes": {
+          "CT_Bands": "Classic Traveller Bänder",
+          "none": "Kein",
+          "singleBand": "Einzelwert",
+          "doubleBand": "Doppelwert",
+          "CE_Bands": "Cepheus Engine Bänder"
+        },
+        "WeaponRangeTypes": {
+          "extendedReach": "Erweiterte Reichweite",
+          "rocket": "Rakete",
+          "none": "Kein",
+          "hands": "Hände",
+          "claws": "Klauen",
+          "teeth": "Zähne",
+          "horns": "Hörner",
+          "hooves": "Hufen",
+          "stinger": "Stachel",
+          "thrasher": "Drescher",
+          "blade": "Klinge",
+          "cutlass": "Säbel",
+          "broadsword": "Breitschwert",
+          "bayonet": "Bayonett",
+          "spear": "Speer",
+          "cudgel": "Knüppel",
+          "pike": "Pike",
+          "bodyPistol": "Körper-Pistole",
+          "revolver": "Revolver",
+          "carbine": "Karabiner",
+          "autoRifle": "Automatisches Gewehr",
+          "submachinegun": "Maschinenpistole",
+          "laserCarbine": "Laser-Karabiner",
+          "brdswd": "Brtschwrt",
+          "aPistl": "Apistol",
+          "bPistl": "Kpistol",
+          "AR": "AG",
+          "subm": "MP",
+          "halberd": "Hellebarde",
+          "laserRifle": "Laser-Gewehr",
+          "dagger": "Dolch",
+          "halb": "Helleb",
+          "LC": "LKara",
+          "bynt": "Byntt",
+          "reach": "Reichweite",
+          "pistol": "Pistole",
+          "thrown": "Geworfen",
+          "rifle": "Gewehr",
+          "shotgun": "Schrotflinte",
+          "closeQuarters": "Nahbereich",
+          "assaultWeapon": "Sturmgewehr",
+          "club": "Keule",
+          "CQ": "NK",
+          "AW": "SG",
+          "foil": "Florett",
+          "sword": "Schwert",
+          "thras": "Dresch",
+          "cutl": "Säbl",
+          "autoPistol": "Auto-Pistole",
+          "LR": "LGwhr",
+          "custom": "Benutzerdefiniert",
+          "cust": "Ben. Def."
+        },
+        "ArmorTypes": {
+          "nothing": "Keine",
+          "reflec": "Reflek",
+          "cloth": "Stoff",
+          "combat": "Kampf",
+          "mesh": "Masche",
+          "jack": "Jacke",
+          "ablat": "Ablativ"
+        },
+        "RangeBandTypes": {
+          "personal": "Persönlich",
+          "close": "Nah",
+          "short": "Kurz",
+          "medium": "Mittel",
+          "veryLong": "Sehr Weit",
+          "long": "Weit",
+          "distant": "Entfernt",
+          "none": "Kein"
+        },
+        "Dice": "Würfel",
+        "TargetModifier": "Ziel WM",
+        "Chain": "Ketten- / Unterstützungswurf",
+        "Rof": "Feuerrate",
+        "Other": "WM anpassen",
+        "WeaponsRange": "Waffenreichweite",
+        "OverrideAuto": "Auto überschreiben"
       }
     },
     "Create": "Erstellen",
@@ -260,7 +357,7 @@
       "TotalDamage": "Gesamter Schaden",
       "UnallocatedDamage": "Nicht zugewiesener Schaden",
       "NoRegularDamage": "Keine regulären Schäden",
-      "AP": "AP",
+      "AP": "PB",
       "Mod": "Mod",
       "Dmg": "Schaden",
       "DamageFormula": "Schadensformel"
@@ -270,23 +367,31 @@
       "ROFFull": "Vollautomatik",
       "ROFPickerTitle": "Wähle eine Feuerrate",
       "ROFSingle": "Einzelfeuer",
-      "ROFDoubleTap": "Feuersalve"
+      "ROFDoubleTap": "Feuersalve",
+      "ReplaceMacroCommand": "Makrobefehl aktualisieren"
     },
     "Handlebars": {
-      "CantShowCharacteristic": "Sie müssen das Merkmal für alle mit XXX markierten Fähigkeiten erneut auswählen. Entschuldigung..."
+      "CantShowCharacteristic": "Du musst die Charakteristik für alle mit XXX markierten Fertigkeiten erneut auswählen. Entschuldigung..."
     },
     "Items": {
       "Armor": {
-        "Armor": "Rüstung",
-        "RadProt": "Rad Prot",
-        "SecondaryArmor": "Zweite Rüstung",
-        "IsPowered": "Angetriebene Rüstung",
-        "SecondaryArmorProtectionTypes": "Sekundäre Schutztypen"
+        "Armor": "Panzerung",
+        "RadProt": "Rad Schutz",
+        "SecondaryArmor": "Sekundärpanzerung",
+        "IsPowered": "Angetriebene Panzerung",
+        "SecondaryArmorProtectionTypes": "Sekundäre Schutzarten",
+        "ArmorType": "Panzerungsart",
+        "ArmorModifier": "Panzerungsmodifikator",
+        "WearingReflec": "Reflek tragen",
+        "Nonstackable": "Nicht stapelbar",
+        "PrimaryArmor": "Primärpanzerung",
+        "TotalArmor": "Gesamtpanzerung",
+        "armorDM": "WM"
       },
       "Augmentation": {
         "Arms": "Arme",
         "AugEffect": "Effekt",
-        "AugLocation": "Ort",
+        "AugLocation": "Augmentierungsort",
         "FullBody": "Ganzkörper",
         "Head": "Kopf",
         "Legs": "Beine",
@@ -310,10 +415,11 @@
           "other": "Sonstiges",
           "power_cell": "Power-Zelle",
           "software": "Software",
-          "processor": "Prozessor"
+          "processor": "Prozessor",
+          "suite": "Elektronik-Suite"
         },
         "DropAttachmentsHere": "Sie können Zubehör hier fallen lassen.",
-        "ArmorPiercing": "Rüstungsdurchschlagswert",
+        "ArmorPiercing": "Panzerbrechungswert",
         "SoftwareOff": "Software Inaktiv",
         "Bandwidth": "Bandweite",
         "SelectConsumable": "Wähle Verbrauchsgegenstand aus",
@@ -336,24 +442,24 @@
         "isAttachment": "Zubehör?",
         "NewAttachment": "Neues Zubehör",
         "BonusDamage": "Bonusschaden",
-        "AssociatedSkillName": "Name der zugehörigen Fertigkeit",
+        "AssociatedSkillName": "Zugehörige Fertigkeit(en)",
         "PriorType": "Vorheriger Gegenstandstyp"
       },
       "Items": {
-        "AssignArmor": "Rüstung zuweisen",
-        "AssignAugment": "Anpassung zuweisen",
+        "AssignArmor": "Panzerung zuweisen",
+        "AssignAugment": "Augmentierung zuweisen",
         "AssignEquipment": "Ausrüstung zuweisen",
-        "AssignJunk": "Junk zuweisen",
+        "AssignJunk": "Schrott zuweisen",
         "AssignTool": "Werkzeug zuweisen",
         "AssignWeapon": "Waffen zuweisen",
         "Inventory": "Inventar",
         "ItemType": "Typ",
-        "MoveStorage": "Aufbewahrung verschieben",
+        "MoveStorage": "Lager verschieben",
         "New": "Neu",
-        "Storage": "Aufbewahrung",
+        "Storage": "Lager",
         "AssignComputer": "Computer zuweisen",
         "AssignConsumable": "Verbrauchsgegenstand zuweisen",
-        "Junk": "Müll"
+        "Junk": "Schrott"
       },
       "Skills": {
         "DEX": "GES",
@@ -364,19 +470,21 @@
         "Modifier": "Modifikator",
         "NONE": "---",
         "PSI": "PSI",
-        "SkillName": "Fertigkeit Name",
+        "SkillName": "Fertigkeitsname",
         "SOC": "SOZ",
         "STR": "STA",
-        "STA": "STA",
+        "STA": "AUS",
         "NumberOfSkills": "Anzahl der Fertigkeiten",
-        "SkillRanks": "Fertigkeitsränge",
+        "SkillRanks": "Fertigkeitsstufen",
         "ALT1": "ALT1",
         "ALT2": "ALT2",
         "TrainingNotes": "Trainingsnotizen",
         "SimplifiedSkillName": "Vereinfachter Fertigkeitsname",
         "SimplifiedSkillNameDescription": "Verwendet in Wurfformeln wie @skills._SKILL_NAME_.<br>@skills._SKILL_NAME__standardmäßig 0 wenn die Fertigkeit fehlt oder unter null ist.",
         "LFB": "LBB",
-        "HIT": "TREFFER"
+        "HIT": "TREFFER",
+        "ALT3": "ALT3",
+        "GroupLabel": "Gruppenbezeichnung"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -396,15 +504,20 @@
         "Magazine": "Magazin",
         "Unarmed": "Unbewaffnet",
         "UnarmedDescription": "Unbewaffneter Angriff",
-        "HandlingModifiers": "Waffenhandhabungsmodifikatoren",
+        "HandlingModifiers": "Handhabungsmodifikatoren",
         "doubleTap": "Feuersalve",
-        "ArmorPiercing": "Rüstungsdurchschlagswert",
+        "ArmorPiercing": "Panzerbrechungswert",
         "DefaultMagazine": "Standard-Magazingröße",
         "Features": "Funktionen / Merkmale",
         "Attack": "Angriff",
         "Consumables": "Verbrauchsgegenstände",
         "Modifiers": "Modifikatoren",
-        "HandlingExample": "z.B., GES 6/-3 10/+4"
+        "HandlingExample": "z.B., GES 6/-3 10/+4",
+        "CustomModifier": {
+          "armor": "Individueller Panzerungsmodifikator",
+          "range": "Benutzerdefinierter Reichweitenmodifikator"
+        },
+        "MeleeRangeModifier": "Nahkampf WM"
       },
       "Enc": "Bel",
       "Component": {
@@ -415,7 +528,7 @@
         "computer": "Computer",
         "drone": "Drone",
         "otherInternal": "Anderes - Intern",
-        "powerDraw": "Energieverbrauch pro Einheit",
+        "powerDraw": "Energieverbrauch",
         "Range": "Entfernung",
         "isIllegal": "Illegal?",
         "DM": "WM",
@@ -445,7 +558,7 @@
         "damaged": "beschädigt",
         "destroyed": "zerstört",
         "off": "aus",
-        "powerGenerated": "Energie erzeugt pro Einheit",
+        "powerGenerated": "Erzeugte Energie",
         "Power": "Energie",
         "status": "Status",
         "rating": "Bewertung",
@@ -461,10 +574,10 @@
         "perCompTon": "MCr pro Tonne Komponenten",
         "perHullTon": "MCr pro Tonne Rumpf",
         "per100HullTon": "MCr pro 100 Tonnen Rumpf",
-        "pctHull": "Prozent des Grund-Rumpfwerts",
-        "pctHullPerUnit": "Prozent des Grund-Rumpfwert pro Einheit",
+        "pctHull": "Prozent des Basis-Rumpfwerts",
+        "pctHullPerUnit": "Prozent des Basis-Rumpfwert pro Einheit",
         "RollModifier": "Wurfmodifikator",
-        "hardened": "gehärtet",
+        "hardened": "Gehärtet",
         "isBaseHull": "Ist Basisrumpf?",
         "extended": "ausgefahren",
         "retracted": "eingefahren",
@@ -473,13 +586,25 @@
         "cargo": "Fracht",
         "Ammunition": "Munition",
         "componentName": "Komponente",
-        "armor": "Rüstung",
+        "armor": "Panzerung",
         "bridge": "Brücke",
         "Displacement": "Verdrängung",
         "availableQuantity": "Verfügbare Menge",
         "Hd": "geh.",
         "isPopup": "Ist es Ausfahrbar?",
-        "isExtended": "Ist es ausgefahren?"
+        "isExtended": "Ist es ausgefahren?",
+        "techLevel": "Technologielevel",
+        "installedCost": "Installierte Kosten",
+        "diceModifier": "Würfelmodifikator",
+        "numberHits": "Trefferanzahl",
+        "opStatus": "Operativer Status",
+        "Quantity": "Menge",
+        "AttackDamage": "Angriffsschaden",
+        "powerPerUnit": "pro Einheit",
+        "powerPerCompTon": "pro Komponententonne",
+        "powerPerHullTon": "pro Hüllentonne",
+        "displacementWeight": "Verdrängungsgewicht (V-Tonnen)",
+        "PowerUsed": "Energie Vebraucht oder Erzeugt"
       },
       "Traits": {
         "DeleteEffect": "Effekt löschen",
@@ -721,7 +846,7 @@
         "Herbivore": "Pflanzenfresser",
         "Omnivore": "Allesfresser",
         "Carnivore": "Fleischfresser",
-        "Scavenger": "Aasfresser",
+        "Scavenger": "Plünderer",
         "Other": "Andere"
       },
       "Niche": "Nische",
@@ -876,27 +1001,30 @@
       "USED": "BENUTZT",
       "Systems": "Systeme",
       "PP": "PP",
-      "PowerWeightManagement": "Energie- & Gewichtsverwaltung"
+      "PowerWeightManagement": "Energie- & Gewichtsverwaltung",
+      "COMMONFUNDS": "GEMEINSCHAFTSMITTEL"
     },
     "Settings": {
       "showStatusIcons": {
-        "name": "Zeige Zustandssymbole auf Charakterblättern"
+        "name": "Zeige Zustandssymbole auf Reisendenbögen"
       },
       "defaultMovement": {
-        "hint": "Die Standardbewegung für neue Reisende (meistens eine insiginifikante Aktion), z.B. 10 für 10m"
+        "hint": "Die Standardbewegung für neue Reisende (meistens eine insiginifikante Aktion), z.B. 10 für 10m",
+        "name": "Die Standardbewegungrate"
       },
       "lifebloodInsteadOfCharacteristics": {
         "hint": "Zeige KON und 'Lebensblut' (nutzt STR unter der Haube) als Charakteristiken. Nützlich für Cepheon Atom, Barabaric!, etc.",
-        "name": "Zeige KON und 'Lebensblut' (nutzt STR unter der Haube) als Charakteristiken."
+        "name": "Zeige KON und 'Lebensblut' (STR) als Charakteristiken."
       },
       "showContaminationBelowLifeblood": {
-        "hint": "Zeige Kontamination unter Lebensblut. Nur nützlich wenn 'Zeige KON und Lebensblut' als Einstellung aktiv ist."
+        "hint": "Zeige Kontamination unter Lebensblut. Nur nützlich wenn 'Zeige KON und Lebensblut' als Einstellung aktiv ist.",
+        "name": "Kontamination unter Lebensblut anzeigen. "
       },
       "encumbranceModifier": {
         "hint": "Die Zahl die den physischen (STA, KON, GES) Charakteristikmodifikatoren zugerechnet wird wenn man belastet ist. Z.B. -1 zeigt an, dass von allen Würfen mit physischen Charakteristiken eins abgezogen werden sollte."
       },
       "showSkillCountsRanks": {
-        "name": "Zeige Fertigkeitsanzahl und -ränge auf Charakterblättern"
+        "name": "Zeige Fertigkeitsanzahl und -stufen auf Charakterbögen"
       },
       "defaultMovementUnits": {
         "hint": "Die Standardbewegungseinheiten für neue Reisende (meistens eine insiginifikante Aktion), z.B. m für 10m"
@@ -930,12 +1058,216 @@
         "name": "Automatischer Schadenswurf bei Fertigkeitsprüfungen die treffen (d.h. Effekt > 0) mit Gegenständen die Schaden verursachen?"
       },
       "showHullAndArmor": {
-        "hint": "Option zur Auswahl der Informationen im Schutzbereich der Fahrzeugblätter. Die Optionen sind \"nur Panzerung\" (ein einfaches Textfeld), \"Schwellenwerte\" (Wurfwerte für normale und kritische Treffer) und Panzerung, Rumpf, Struktur (Tabelle mit drei Schadensfeldern).",
-        "name": "Schutzwerte auf Fahrzeugblättern"
+        "hint": "Option zur Auswahl der Informationen im Schutzbereich der Fahrzeugbögen. Die Optionen sind \"nur Panzerung\" (ein einfaches Textfeld), \"Schwellenwerte\" (Wurfwerte für normale und kritische Treffer) und Panzerung, Rumpf, Struktur (Tabelle mit drei Schadensfeldern).",
+        "name": "Schutzwerte auf Fahrzeugbögen"
+      },
+      "ruleset": {
+        "name": "Regelwerk",
+        "hint": "Dadurch werden die folgenden Einstellungen mit den besten Optionen für den gegebenen Regelwerk konfiguriert. Beachte, dass die Regelsätze an der Spitze die am besten unterstützten sind. Siehe https://github.com/xdy/twodsix-foundryvtt/blob/master/docs/docs.md für Details. Regeln, die sich auf den Regelwerk beziehen, sind mit einem grünen Rahmen gekennzeichnet. Änderungen an den Einstellungen, die durch den Regelwerk festgelegt wurden, werden mit einem orangefarbenen Rahmen gekennzeichnet."
+      },
+      "shortINT": {
+        "hint": "Kurzbezeichnung für die Intelligenz-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Intelligenz-Charakteristik"
+      },
+      "settingsInterface": {
+        "displaySettings": {
+          "name": "Anzeigeeinstellungen",
+          "intro": "Anzeigeeinstellungen",
+          "hint": "Anzeigeeinstellungen konfigurieren."
+        },
+        "debugSettings": {
+          "intro": "Experimentelle & Debugging Einstellungen",
+          "hint": "Konfigurieren/Anzeigen der Einstellungen für Debugging und experimentelle Funktionen.",
+          "name": "Experimentelle & Debugging Einstellungen"
+        },
+        "itemSettings": {
+          "intro": "Gegenstandseinstellungen",
+          "hint": "Die angezeigten Gegenstandsfelder konfigurieren.",
+          "name": "Gegenstandseinstellungen"
+        },
+        "rulesetSettings": {
+          "modified": "geändert",
+          "name": "Fortgeschrittene Regelwerkeinstellungen",
+          "hint": "Regelwerkeinstellungen konfigurieren.",
+          "intro": "Aktuelle Regeln"
+        }
+      },
+      "showHeroPoints": {
+        "name": "Heldenpunkte anzeigen",
+        "hint": "Zähler für Heldenpunkte auf dem Akteurbogen anzeigen."
+      },
+      "ShowLawLevel": {
+        "hint": "angekreuzt=Einblenden des Feldes 'Justizgrad', nicht angekreuzt=Ausblenden",
+        "name": "Das 'Justizgrad' Feld auf den Waffenbögen anzeigen"
+      },
+      "useFoundryStandardStyle": {
+        "default": "Standard Twodsix-Stil",
+        "foundry": "Standard FoundryVTT-Stil",
+        "name": "Nutze Standard Foundry-Stil",
+        "hint": "Verwende für die Benutzeroberfläche den Standardstil von Foundry. Dies sollte einige Module besser mit TWODSIX kompatibel machen"
+      },
+      "shortSTR": {
+        "name": "Kurzbezeichnung für die Stärke-Charakteristik",
+        "hint": "Kurzbezeichnung für die Stärke-Charakteristik. Nicht mehr als 4 Zeichen."
+      },
+      "alternativeShort3": {
+        "name": "Kurzbezeichnung für Alternativcharakteristik 3",
+        "hint": "Kurzbezeichnung für die dritte Alternativcharakteristik. Nicht mehr als 4 Zeichen."
+      },
+      "shortEND": {
+        "hint": "Kurzbezeichnung für die Konstitution-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Konstitution-Charakteristik"
+      },
+      "ShowRecoil": {
+        "hint": "angekreuzt=Das Feld 'Rückstoß' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das 'Rückstoß' Feld auf den Waffenblättern zeigen"
+      },
+      "shortSOC": {
+        "hint": "Kurzbezeichnung für die Sozialstand-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Sozialstand-Charakteristik"
+      },
+      "shortEDU": {
+        "hint": "Kurzbezeichnung für die Bildung-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Bildung-Charakteristik"
+      },
+      "invertSkillRollShiftClick": {
+        "hint": "Wenn man auf einen Fertigkeitswurf klickt oder Schaden auf einen Charakter zieht, wird normalerweise ein Dialog angezeigt, ein Shift-Klick wendet Standardwerte an (durchschnittlicher Fertigkeitswurf oder automatische Schadensverteilung). Wenn du dieses Kästchen anhakst, wird dieses Verhalten geändert.",
+        "name": "Umkehrung des Verhaltens beim Umschaltklick für Fertigkeitswürfe und beim Ziehen mit der Umschalttaste, um Schaden zu nehmen"
+      },
+      "difficultiesAsTargetNumber": {
+        "name": "Zielwert statt Modifikator für Schwierigkeitsgrade verwenden.",
+        "hint": "angekreuzt=Zielwert statt Modifikator für Schwierigkeitsgrade verwenden, nicht angekreuzt=Modifikatoren verwenden"
+      },
+      "difficultyListUsed": {
+        "name": "Wähle aus, welche Variante der Schwierigkeitsgradliste verwendet werden soll.",
+        "hint": "Wähle aus, welche Variante der Schwierigkeitsgradliste verwendet werden soll."
+      },
+      "effectOrTotal": {
+        "hint": "angekreuzt=Effekt anzeigen (d.h. Wurf+Modifikatoren-Zielwert, normalerweise 6 oder 8), nicht angekreuzt=Gesamtwert anzeigen (d.h. Wurf+Modifikatoren)",
+        "name": "Zeigt den Effekt oder den Gesamtwurfswert für Fertigkeits- und Charakteristikwürfe an."
+      },
+      "termForDisadvantage": {
+        "hint": "Verwende nicht denselben Begriff wie für \"Vorteil\"...",
+        "name": "Bezeichnung für Würfe mit Nachteil (3d6kl2)."
+      },
+      "ShowRateOfFire": {
+        "hint": "angekreuzt=Das Feld 'Feuerrate' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das 'Feuerrate' Feld auf den Waffenblättern zeigen"
+      },
+      "shortDEX": {
+        "hint": "Kurzbezeichnung für die Geschicklichkeit-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Geschicklichkeit-Charakteristik"
+      },
+      "hideUntrainedSkills": {
+        "warning": "Warnung!",
+        "warningUpdateWeapon": "Nach dem Speichern der Systemeinstellungen werden alle Waffen der Akteure, die keine Fertigkeit haben, auf die Pseudo-Fertigkeit Untrainiert aktualisiert.",
+        "continue": "Möchtest du fortfahren?",
+        "warningReset": "Nach dem Speichern der Systemeinstellungen werden alle Fertigkeiten, welche die Pseudo-Fertigkeit \"Untrainiert\" verwenden, dauerhaft auf \"keine Fertigkeit\" zurückgesetzt. Diese Aktion kann nicht rückgängig gemacht werden.",
+        "hint": "angekreuzt=Pseudo-Fertigkeit 'Untrainiert' anstelle aller ungeübten Fertigkeiten anzeigen. nicht angekreuzt=Alle ungeübten Fertigkeiten anzeigen",
+        "name": "Ausblenden aller ungeübten Fertigkeiten, stattdessen Anzeige einer einzigen Pseudo-Fertigkeit mit dem Namen \"Untrainiert\". Dadurch werden auch neue Fertigkeiten bei 0 anstelle des Wertes der ungeübten Fertigkeit hinzugefügt."
+      },
+      "initiativeFormula": {
+        "hint": "z.B. \"2d6 + @characteristics.dexterity.mod\"",
+        "name": "Formel für Initiative"
+      },
+      "usePDFPagerForRefs": {
+        "hint": "Mit PDF Pager verwenden, um Referenzen anzuzeigen. Das Format muss '[Codename] [Seitenzahl]' lauten. Bei der Einstellung \"falsch\" werden stattdessen URL-Links zu Referenzen verwendet.",
+        "name": "PDF-Pager verwenden um Referenzen anzuzeigen"
+      },
+      "ShowDamageType": {
+        "name": "Anzeige des Feldes 'Schadenstyp' auf Waffenbögen",
+        "hint": "angekreuzt=Das Feld 'Schadensart' anzeigen, nicht angekreuzt=ausblenden"
+      },
+      "showLifebloodStamina": {
+        "hint": "Zeige die Charakteristiken Lebensblut und Ausdauer auf dem Akteurbogen an. Schaden wird auf diese Charakteristiken angewendet. Nützlich für Cepheus Deluxe.",
+        "name": "Lebensblut- und Ausdauercharakteristiken anzeigen und für Schaden verwenden."
+      },
+      "showBandwidth": {
+        "name": "Bandbreite der Schiffscomputer",
+        "hint": "Zeige die genutzte und verfügbare Bandbreite für Computer und Software an."
+      },
+      "systemMigrationVersion": {
+        "hint": "Zeichnet die Schemaversion für das Twodsix-System auf. (Dies solltest du nur ändern wenn du weißt was du tust)",
+        "name": "System Schemaversion"
+      },
+      "criticalNaturalAffectsEffect": {
+        "name": "Ob eine natürliche 2 oder 12 eine Sonderbehandlung in Bezug auf Erfolg/Misserfolg haben soll.",
+        "hint": "angekreuzt=Unabhängig vom Erfolg hat eine natürliche 2 einen Effekt von -1 und eine 12 einen Effekt von 0, nicht angekreuzt=Normale Regeln anwenden"
+      },
+      "defaultTokenSettings": {
+        "hint": "Automatisches Setzen von empfohlenen Prototyp-Token-Einstellungen für neu erstellte Akteure.",
+        "name": "Standardeinstellungen für Prototyp-Token"
+      },
+      "ShowRangeBandAndHideRange": {
+        "name": "Auf Waffen- und Akteurbögen 'Reichweite-Bänder' anzeigen und 'Reichweite' ausblenden",
+        "hint": "angekreuzt=Zeige 'Reichweite-Bänder', nicht angekreuzt=Zeige 'Reichweite'"
+      },
+      "ExperimentalFeatures": {
+        "hint": "angekreuzt=Die unschönen und fehlerhaften experimentellen Funktionen, die vielleicht nicht deine Spielwelt zerstören, nicht angekreuzt=ausblenden, wie es jeder vernünftige Mensch tun würde",
+        "name": "Unschöne, fehlerhafte und unfertige Funktionen anzeigen. D.h., so wie alle anderen Funktionen, die nicht durch diese Option versteckt werden :)"
+      },
+      "showWeightUsage": {
+        "hint": "Anzeige von Schiffsgewicht anstelle der Leistung auf dem Schiffsbogen.",
+        "name": "Gewicht anstelle von Energiemanagement auf dem Schiffsplan anzeigen"
+      },
+      "armorDamageFormula": {
+        "hint": "VTT-Wurfmathematik ohne Würfelbegriffe verwenden '@damage'/'@effectiveArmor' werden durch den Schaden/die effektive Panzerung ersetzt. standardmäßiges Verhalten: \"@damage-@effectiveArmor\"",
+        "name": "Formel für Panzerungsreduzierung"
+      },
+      "ShowDoubleTap": {
+        "hint": "angekreuzt=Das Feld 'Feuersalve' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das 'Feuersalve' Feld auf den Waffenblättern zeigen"
+      },
+      "shipInitiativeFormula": {
+        "hint": "z.B. \"2d6\"",
+        "name": "Formel für Initiative (Schiffe)"
+      },
+      "showAlternativeCharacteristics": {
+        "hint": " Grund: sechs Grundcharakteristiken (STA, GES, KON, INT, BIL und SOZ). Basis: sechs Grundcharakteristiken + PSI. Alternativ: sechs Grundcharakteristiken + zwei alternative Charakteristiken. Alle: sechs Grundcharakteristiken + PSI + drei alternative Charakteristiken.",
+        "name": "Charakteristik zum Anzeigen wählen"
+      },
+      "ShowWeaponType": {
+        "hint": "angekreuzt=Das Feld 'Waffentyp' anzeigen, nicht angekreuzt=Ausblenden",
+        "name": "Das 'Waffentyp' Feld auf den Waffenblättern zeigen"
+      },
+      "maxSkillLevel": {
+        "hint": "Leer lassen, um die Standardeinstellung (9) zu verwenden.",
+        "name": "Maximale Fertigkeitsstufe."
+      },
+      "shortPSI": {
+        "hint": "Kurzbezeichnung für die Psionik-Charakteristik. Nicht mehr als 4 Zeichen.",
+        "name": "Kurzbezeichnung für die Psionik-Charakteristik"
+      },
+      "useShipAutoCalcs": {
+        "hint": "Wenn diese Option aktiviert ist, werden die Statistiken zu Leistung, Gewicht, Bandbreite und Preis des Schiffes auf der Grundlage von Komponentenwerten berechnet. Andernfalls werden die Werte vom Benutzer eingegeben.",
+        "name": "Automatische Berechnung einer Zusammenfassung der Werte für Schiffsleistung, Gewicht, Bandbreite und Preis"
+      },
+      "showIcons": {
+        "hint": "Verwendung von Symbolen anstelle von Text für biografische Informationen. Symbole werden immer angezeigt, wenn Lebensblut und Ausdauer verwendet werden.",
+        "name": "Nutze Symbolen für biografische Informationen."
+      },
+      "modifierForZeroCharacteristic": {
+        "hint": "Leer lassen um den Standardwert (-2) zu verwenden. Berechnet die Modifikatoren für vorhandene Charaktere nicht automatisch neu.",
+        "name": "Modifikator für den Charakteristikwert von Null."
+      },
+      "showSingleComponentColumn": {
+        "hint": "Schiffskomponentenliste als eine einzige Zeile anzeigen.",
+        "name": "Schiffskomponenten in einer einzigen Zeile aufgelistet"
+      },
+      "termForAdvantage": {
+        "hint": "Verwende nicht denselben Begriff wie für \"Nachteil\"...",
+        "name": "Bezeichnung für Würfe mit Vorteil (3d6kh2)."
+      },
+      "useModuleFixStyle": {
+        "name": "Korrektur einiger CSS-Stilprobleme aufgrund von Modulen und des Standard-Twodsix-Stils.",
+        "hint": "Ändert den CSS-Stil, um identifizierte Stilprobleme für bestimmte Module bei Verwendung des Twodsix-Stils zu korrigieren. Ffunktioniert nicht, wenn der Standard Foundry-Stil verwendet wird."
       }
     },
     "Warnings": {
-      "DecreaseEnduranceFirst": "Konstitution/Ausdauer sollte vor allen anderen Werten reduziert werden"
+      "DecreaseEnduranceFirst": "Konstitution/Ausdauer sollte vor allen anderen Werten reduziert werden",
+      "TooManyLayersOnTarget": "Ziel trägt zu viele Schichten an Panzerung",
+      "WearingMultipleLayers": "Es werden mehrere Panzerungsschichten getragen obwohl nicht-stapelbare Panzerung getragen wird.",
+      "NoJournalFound": "Kann verknüpften Journaleintrag nicht finden"
     },
     "No": "Nein",
     "speeds": {
@@ -947,7 +1279,7 @@
     "Vehicle": {
       "SystemStatus": "Systemstatus",
       "systems": {
-        "powerPlant": "Kraftwerk",
+        "powerPlant": "Reaktor",
         "cockpit": "Cockpit",
         "computers": "Computer",
         "cargo": "Fracht",
@@ -957,7 +1289,7 @@
         "sensors": "Sensoren",
         "weapons": "Waffen"
       },
-      "ArmorHull": "Rüstung und Rumpf",
+      "ArmorHull": "Panzerung und Rumpf",
       "skillToOperate": "Fertigkeit zur Bedienung",
       "Regular": "Regulär",
       "Cargo": "Fracht",
@@ -974,7 +1306,7 @@
       "Movement": "Bewegung",
       "Crew": "Besatzung",
       "Weight": "Gewicht",
-      "Armor": "Rüstung",
+      "Armor": "Panzerung",
       "Hull": "Rumpf",
       "Structure": "Struktur",
       "Weapons": "Waffen",
@@ -985,12 +1317,12 @@
       "Traits": "Merkmale",
       "Critical": "Kritisch",
       "ProtectionType": {
-        "ArmorHullStruc": "Rüstung, Rumpf und Struktur",
-        "ArmorOnly": "Nur Rüstung",
+        "ArmorHullStruc": "Panzerung, Rumpf und Struktur",
+        "ArmorOnly": "Nur Panzerung",
         "Threshold": "Schwellenwert"
       },
       "Thresholds": "Schwellenwerte",
-      "ShippingSize": "Versandgröße"
+      "ShippingSize": "Größe"
     },
     "Rolls": {
       "sum": "Summe",
@@ -1001,7 +1333,7 @@
       "DamageUsing": "Schaden durch",
       "Effect": "Effekt",
       "Roll": "Wurf",
-      "RollOpposed": "Entgegengesetzte Prüfung",
+      "RollOpposed": "Gegenprüfung",
       "Rolling": "Würfeln",
       "With": "mit",
       "RollChain": "Ketten- / Unterstützungsprüfung",
@@ -1022,18 +1354,21 @@
       "Attachments": "Zubehör/Verbr",
       "WeaponsHandling": "Waffenhandhabung",
       "SelectSkill": "Wähle Fertigkeit aus",
-      "MakesOpposedRoll": "Führt eine angefochtene / entgegengesetzte Prüfung durch.",
+      "MakesOpposedRoll": "Führt eine Anfechtungs- / Gegenprüfung durch.",
       "SkillName": "Fertigkeitsname",
-      "MakesChainRoll": "Führt einen Ketten- / Unterstützungs-Prüfung durch."
+      "MakesChainRoll": "Führt einen Ketten- / Unterstützungs-Prüfung durch.",
+      "Burst": "Stoß",
+      "Auto": "Auto",
+      "Single": "Einzel"
     },
     "Yes": "Ja",
     "itemTypes": {
       "consumable": "Verbrauchsgegenstand",
       "spell": "Spruch",
       "equipment": "Ausrüstung",
-      "junk": "Müll",
+      "junk": "Schrott",
       "weapon": "Waffe",
-      "armor": "Rüstung",
+      "armor": "Panzerung",
       "augment": "Augmentierung",
       "storage": "Lager",
       "tool": "Werkzeug",
@@ -1054,7 +1389,19 @@
       "RoundsActive": "Aktive Runden"
     },
     "CloseAndCreateNew": "Schließen und Neu erstellen",
-    "Name": "Name"
+    "Name": "Name",
+    "Resource": {
+      "Max": "Max",
+      "Value": "Wert",
+      "Label": "Bezeichnung",
+      "Min": "Min"
+    },
+    "Errors": {
+      "InvalidWeaponArmor": "Waffen- und/oder Panzerungstyp sind im Regelwerk nicht erlaubt."
+    },
+    "Table": {
+      "TableResults": "Ergebnistabelle"
+    }
   },
   "VeryDifficult": "Sehr Schwierig",
   "TYPES": {
@@ -1078,7 +1425,7 @@
       "computerPl": "Computer",
       "consumable": "Verbrauchsgegenstand",
       "storagePl": "Lager",
-      "junkPl": "Müll",
+      "junkPl": "Schrott",
       "tool": "Werkzeug",
       "skills": "Fertigkeit",
       "trait": "Merkmal",
@@ -1090,20 +1437,20 @@
       "equipment": "Ausrüstung",
       "spell": "Spruch",
       "weapon": "Waffe",
-      "armor": "Rüstung",
+      "armor": "Panzerung",
       "skill": "Fertigkeit",
       "component": "Komponente",
       "computer": "Computer",
       "augment": "Augmentierung",
       "storage": "Lager",
-      "junk": "Müll",
+      "junk": "Schrott",
       "backpackPl": "Rucksäcke",
       "containerPl": "Behälter",
       "equipmentPl": "Ausrüstung",
       "spellPl": "Sprüche",
       "toolPl": "Werkzeuge",
       "weaponPl": "Waffen",
-      "armorPl": "Rüstungen",
+      "armorPl": "Panzerungen",
       "skillPl": "Fertigkeiten",
       "componentPl": "Komponenten",
       "ship_positionPl": "Schiffspositionen"
