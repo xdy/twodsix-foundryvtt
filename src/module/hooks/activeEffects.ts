@@ -13,7 +13,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 //This hook applies CUSTOM active effects values as a formula that is evaluated and not a static
 Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any, _delta: any) => {
   //return if current doesn't exist (probably derived value)
-  if (!current) {
+  if (current == undefined) {
     return;
   }
 
