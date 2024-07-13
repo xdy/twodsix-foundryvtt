@@ -89,7 +89,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
-      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor')
+      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
+      Infinity: Infinity
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
@@ -309,7 +310,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     const consumableId: string = $(event.currentTarget).data("consumableId");
     const parentItem: TwodsixItem = await this.actor.items.get(parentId);
     const consumable: TwodsixItem = await this.actor.items.get(consumableId);
-    if (parentItem?.type === "weapon" && !["software", "processor"].includes(consumable.system.subtype)) {
+    if (parentItem?.type === "weapon" && !["software", "processor", "suite"].includes(consumable.system.subtype)) {
       if (parentItem?.system.useConsumableForAttack != consumableId) {
         await parentItem.update({'system.useConsumableForAttack': consumableId});
       }

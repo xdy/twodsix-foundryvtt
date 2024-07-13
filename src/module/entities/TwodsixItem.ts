@@ -48,7 +48,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills') && !this.getFlag('twodsix', 'untrainedSkill')) {
+    if (this.type === "skills" && game.settings.get('twodsix', 'hideUntrainedSkills') && !this.getFlag('twodsix', 'untrainedSkill') && this.system.value < 0) {
       Object.assign(updates, {"system.value": 0});
     }
 
@@ -133,6 +133,14 @@ export default class TwodsixItem extends Item {
     }
   }
 
+  /**
+   * Augment the basic item data with additional dynamic data.
+   */
+  prepareDerivedData(): void {
+    super.prepareDerivedData();
+    this.system.canProcess = (this.type === "consumable" && ["processor", "suite"].includes(this.system.subtype));
+  }
+
   prepareConsumable(gear:Gear = <Gear>this.system):void {
     if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
 
@@ -211,7 +219,7 @@ export default class TwodsixItem extends Item {
 
     // Initialize settings
     const tmpSettings = {
-      rollType: "",
+      rollType: "Normal",
       bonusDamage: "0",
       rollModifiers: {
         characteristic: "",
@@ -223,6 +231,7 @@ export default class TwodsixItem extends Item {
     const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
     if (skill) {
       tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
+      tmpSettings.rollType = skill.system.rolltype || "Normal";
     }
 
     // Get fire mode parameters
@@ -257,7 +266,6 @@ export default class TwodsixItem extends Item {
     if (controlledTokens?.length === 1) {
       let rangeLabel = "";
       let rangeModifier = 0;
-      let rollType = 'Normal';
       let appliedStatuses = [];
       const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
@@ -265,7 +273,9 @@ export default class TwodsixItem extends Item {
         const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
         const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
         rangeModifier = rangeData.rangeModifier;
-        rollType = rangeData.rollType;
+        if (rangeData.rollType !== tmpSettings.rollType ) {
+          Object.assign(tmpSettings, {rollType: (tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal')});
+        }
         if (isQualitativeBands) {
           rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
         } else {
@@ -277,7 +287,6 @@ export default class TwodsixItem extends Item {
       }
       //console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
       Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel, targetModifier: appliedStatuses});
-      Object.assign(tmpSettings, {rollType: rollType});
     }
     //Flag that targetDM is an override
     Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});

@@ -441,6 +441,13 @@ export default class TwodsixActor extends Actor {
   }
 
   getMaxEncumbrance():number {
+    //Ignore encumbrance if an active ItemPiles Shop
+    if (game.modules.get("item-piles")?.active) {
+      if (this.getFlag("item-piles", "data.enabled") && this.getFlag("item-piles", "data.type") === "merchant") {
+        return Infinity;
+      }
+    }
+
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
     if (Roll.validate(encumbFormula)) {

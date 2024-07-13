@@ -25,7 +25,8 @@ export function generateTargetDMObject():void {
             label: parsedResult[1].trim() || game.i18n.localize("TWODSIX.Ship.Unknown"),
             value: parseInt(parsedResult[2]) || 0,
             key: keyValue,
-            statusKey: CONFIG.statusEffects.find(se => parsedResult[3].trim() === game.i18n.localize(se.name))?.id || ""
+            statusKey: CONFIG.statusEffects.find(se => parsedResult[3].trim() === game.i18n.localize(se.name))?.id || "",
+            linkString: parsedResult[3].trim() || ""
           }
         });
         ++i;
@@ -51,15 +52,25 @@ export function getTargetDMSelectObject(): object {
 }
 
 /**
- * A function that takes a target actor parses its stataus into an array of keys from TWODSIX.TARGET_DM
+ * A function that takes a target actor parses its statuses and traits into an array of keys from TWODSIX.TARGET_DM
  * @param {TwodsixActor} targetActor actor for the target
  * @returns {string[]} An array of keys from TWODSIX.TARGET_DM
  */
 export function getTargetModifiers(targetActor:TwodsixActor): string[] {
   const returnValue = [];
+  const targetDMObject = Object.values(TWODSIX.TARGET_DM);
   if (targetActor) {
+    //link statuses
     for (const statusApplied of Array.from(targetActor.statuses)) {
-      const linkedDM = Object.values(TWODSIX.TARGET_DM).find( targetDM => targetDM.statusKey === statusApplied);
+      const linkedDM = targetDMObject.find( targetDM => targetDM.statusKey === statusApplied);
+      if (linkedDM) {
+        returnValue.push(linkedDM.key);
+      }
+    }
+
+    //link traits
+    for (const trait of targetActor.itemTypes.trait) {
+      const linkedDM = targetDMObject.find( targetDM => targetDM.linkString === trait.name);
       if (linkedDM) {
         returnValue.push(linkedDM.key);
       }

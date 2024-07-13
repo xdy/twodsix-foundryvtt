@@ -2674,7 +2674,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   z-index: 99;
   /* position: absolute; */
   top: 53%;
-  height: 96%;
+  height: 91%;
   width: 98%;
   overflow-y: auto;
   overflow-x: auto;
@@ -2927,9 +2927,9 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-notes-container, .ship-notes-container-short {
-  margin-left: 2%;
+  margin-left: 3%;
   padding-top: 3%;
-  /* height: 32%; */
+  height: 45ch;
   /* width: 90%; */
   overflow-x: hidden;
   overflow-y: auto;
@@ -2961,6 +2961,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-notes-container-short >div[contenteditable] {
   height: 80%;
+  min-height: 33ch;
 }
 
 .ship-finances-container {

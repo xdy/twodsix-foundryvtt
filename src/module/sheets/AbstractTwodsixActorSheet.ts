@@ -59,7 +59,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           title: title,
           content: template,
           yes: async () => {
-            const selectedActor = this.actor.isToken ? this.token?.actor : this.actor;
+            const selectedActor = this.actor ?? this.token?.actor;
             await ownedItem.update({'system.equipped': 'ship'});
             await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
             // somehow on hooks isn't working when a consumable is deleted  - force the issue
@@ -370,6 +370,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
         const parentItem = sheetData.items.find((i) => i.system.consumables?.includes(item.id));
         if (parentItem) {
           item.system.parentName = parentItem.name;
+          item.system.parentType = parentItem.type;
         }
       }
       //prepare ship summary status
