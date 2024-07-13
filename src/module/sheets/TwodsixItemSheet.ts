@@ -351,7 +351,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
               equippedState = this.item.system.equipped ?? "backpack";
             }
             const newConsumableData = {
-              name: buttonHtml.find('.consumable-name').val(),
+              name: buttonHtml.find('.consumable-name').val() || game.i18n.localize("TYPES.Item.consumable"),
               type: "consumable",
               system: {
                 subtype: buttonHtml.find('.consumable-subtype').val(),
@@ -364,9 +364,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
                 parentType: this.item.type
               }
             };
-            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]) || {};
-            await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
-            this.render();
+            const newConsumable = await this.item.actor?.createEmbeddedDocuments("Item", [newConsumableData]);
+            if (newConsumable) {
+              await (<TwodsixItem>this.item).addConsumable(newConsumable[0].id);
+              this.render();
+            }
           }
         },
         cancel: {
