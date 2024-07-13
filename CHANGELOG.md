@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.3.0...v5.4.0) (2024-07-13)
+
+
+### Features
+
+* Add suite attachment type and lots of Bug fixes ([#1582](https://github.com/xdy/twodsix-foundryvtt/issues/1582)) ([0d884b7](https://github.com/xdy/twodsix-foundryvtt/commit/0d884b7095d1447faa5954e1f13be59d453a6758))
+
 # [5.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.2.0...v5.3.0) (2024-07-06)
 
 
