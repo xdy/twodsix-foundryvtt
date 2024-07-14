@@ -21,18 +21,18 @@ function updateFinanceValues(actor:TwodsixActor, update:Record<string, any>, fin
 
       if (isDelta) {
         const delta = getParsedFinanceText(update.system.finances[financeField]);
-        Object.assign(updateMods, {financeValues: {[financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * getMultiplier(delta.units))}}) ;
+        foundry.utils.mergeObject(updateMods, {financeValues: {[financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * getMultiplier(delta.units))}}) ;
         const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
-        Object.assign(updateMods, {finances: {[financeField]: convertNumberToFormatedText(updateMods.financeValues[financeField], parsedText.units || delta.units)}});
+        foundry.utils.mergeObject(updateMods, {finances: {[financeField]: convertNumberToFormatedText(updateMods.financeValues[financeField], (getMultiplier(parsedText.units) > getMultiplier(delta.units) ? parsedText.units : delta.units))}});
       } else {
         const parsedText = getParsedFinanceText(update.system.finances[financeField]);
         if (parsedText) {
-          Object.assign(updateMods, {financeValues: {[financeField]: parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units)}});
+          foundry.utils.mergeObject(updateMods, {financeValues: {[financeField]: parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units)}});
         }
       }
     }
   }
-  Object.assign(update.system, updateMods);
+  foundry.utils.mergeObject(update.system, updateMods);
 }
 
 function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, financeDiff:any) {
@@ -40,9 +40,9 @@ function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, finan
   for (const financeField in financeDiff.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
     const newValue = financeDiff.financeValues[financeField];
-    Object.assign(financeTextUpdates, {[financeField]: convertNumberToFormatedText(newValue, parsedText.units)});
+    foundry.utils.mergeObject(financeTextUpdates, {[financeField]: convertNumberToFormatedText(newValue, parsedText.units)});
   }
-  Object.assign(update.system, {finances: financeTextUpdates});
+  foundry.utils.mergeObject(update.system, {finances: financeTextUpdates});
 }
 
 /**
