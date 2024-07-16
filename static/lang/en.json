@@ -1466,7 +1466,7 @@
         "name": "List of target modifiers"
       },
       "meleeRange": {
-        "hint": "The distance where combat is in melee range.  Typically on grid unit or less (e.g. 1.5m).",
+        "hint": "The distance where combat is in melee range.  Typically one grid unit or less (e.g. 1.5m).",
         "name": "Melee combat range"
       },
       "showSkillGroups": {
