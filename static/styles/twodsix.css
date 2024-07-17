@@ -2220,6 +2220,7 @@ span.total-output {
 .ship-image img {
   /* justify-content: center; */
   z-index: -1;
+  max-height: 100%;
   max-height: -webkit-fill-available;
   object-fit: contain;
 }
