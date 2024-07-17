@@ -19,7 +19,7 @@
   </div>
 
   <div class="grid-columns-single">
-    {{#if settings.allowDragDropOfLists}}
+    {{#if settings.allowDragDropOfListsShip}}
     <div class="item-list grid-columns-double">
       {{#each_sort_item container.nonCargo as |item id|}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.html" item = item settings = ../settings}}

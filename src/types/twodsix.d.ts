@@ -126,7 +126,8 @@ declare global {
       'twodsix.showComponentRating': boolean;
       'twodsix.showComponentDM': boolean;
       'twodsix.transferDroppedItems': boolean;
-      'twodsix.allowDragDropOfLists': boolean;
+      'twodsix.allowDragDropOfListsActor': boolean;
+      'twodsix.allowDragDropOfListsShip': boolean;
       'twodsix.useDodgeParry': boolean;
       'twodsix.showModifierDetails': boolean;
       'twodsix.defaultColor': string;
