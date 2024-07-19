@@ -24,7 +24,7 @@
   </div>
 
   <div class="grid-columns-single">
-    {{#if settings.allowDragDropOfLists}}
+    {{#if settings.allowDragDropOfListsShip}}
     <div class="item-list grid-columns-single">
       {{#each_sort_item container.nonCargo as |item id|}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../settings}}

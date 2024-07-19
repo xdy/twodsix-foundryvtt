@@ -1331,9 +1331,13 @@
         "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
         "name": "Transfer rather than copy dropped equipment on actors"
       },
-      "allowDragDropOfLists" : {
-        "hint": "Allow items in lists to be moved by drag and drop rather than sorting alphabetically.",
-        "name":"Allow Drag-Drop in Lists"
+      "allowDragDropOfListsActor" : {
+        "hint": "Allow items in lists for Actors (i.e. Travellers, Animals, and Robots) to be moved by drag and drop rather than sorting alphabetically.",
+        "name":"Allow Drag-Drop in Actor Lists"
+      },
+      "allowDragDropOfListsShip" : {
+        "hint": "Allow items in lists for Ships and Vehicles to be moved by drag and drop rather than sorting alphabetically.",
+        "name":"Allow Drag-Drop in Ship and Vehcile Lists"
       },
       "useDodgeParry" : {
         "hint": "Add a roll penalty that reflects a target's ability to dodge / parry.  A target must be selected and the skill name for the weapon's action must match.",
@@ -1466,7 +1470,7 @@
         "name": "List of target modifiers"
       },
       "meleeRange": {
-        "hint": "The distance where combat is in melee range.  Typically on grid unit or less (e.g. 1.5m).",
+        "hint": "The distance where combat is in melee range.  Typically one grid unit or less (e.g. 1.5m).",
         "name": "Melee combat range"
       },
       "showSkillGroups": {

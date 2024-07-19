@@ -384,9 +384,10 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('each_sort_item', (array, options) => {
     let sortedArray: TwodsixItem[] = [];
-    const sortLabel = game.settings.get('twodsix', 'allowDragDropOfLists') ? "sort" : "name";
     const slice: TwodsixItem[] = <TwodsixItem[]>array?.slice(0);
-    if (slice) {
+    if (slice?.length > 0) {
+      const sortSetting = ["ship", "vehicle"].includes(slice[0].parent.type)  ? 'allowDragDropOfListsShip' : 'allowDragDropOfListsActor';
+      const sortLabel = game.settings.get('twodsix', sortSetting) ? "sort" : "name";
       sortedArray = slice.sort((a, b) => {
         if (a[sortLabel] == null) {
           return 1;
@@ -396,7 +397,7 @@ export default function registerHandlebarsHelpers(): void {
           } else if (a[sortLabel] === b[sortLabel]) {
             return 0;
           } else {
-            if (game.settings.get('twodsix', 'allowDragDropOfLists')) {
+            if (game.settings.get('twodsix', sortSetting)) {
               return a.sort - b.sort;
             } else {
               return a.name.localeCompare(b.name);

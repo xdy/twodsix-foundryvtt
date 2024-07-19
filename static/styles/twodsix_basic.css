@@ -85,7 +85,7 @@ label.checkbox > input[type="checkbox"] {
 .content-container {
   display: grid;
   grid-template-columns: 35% 63%;
-  /* gap: 1px 1px; */
+  /* gap: 1px; */
   position: absolute;
   top: 4ch;
   height: calc(100% - 4ch);
@@ -109,7 +109,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 22em 0.9fr;
   grid-template-rows: 19em 0.5fr 0.5fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
@@ -121,7 +121,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 21em 18em;
   grid-template-rows: 18em 0.5fr 0.5fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
@@ -210,7 +210,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 22em 18em;
   grid-template-rows: 24em 0.5fr 0.5fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
@@ -222,7 +222,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 24em 18em;
   grid-template-rows: 14em 9em 0.5fr 0.5fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
   "npc-name-photo npc-bgi-stats npc-notes-container"
@@ -235,7 +235,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 22em 18em;
   grid-template-rows: 23.5em 0.7fr 0.7fr 0.7fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-augments"
@@ -248,7 +248,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 15em 22em 18em;
   grid-template-rows: 14em 9em 0.5fr 0.5fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
@@ -289,7 +289,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 19em 19em 17em;
   grid-template-rows: 15em 15em 5em 9fr;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
     "vehicle-name-photo vehicle-stats vehicle-armor"
@@ -302,7 +302,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   grid-template-columns: 18em 18em;
   grid-template-rows: 23em 8em;
-  gap: 16px 16px;
+  gap: 16px;
   position: relative;
   grid-template-areas:
     "space-object-name-photo space-object-stats"
@@ -1121,7 +1121,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-weapons {
   display: grid;
   grid-template-columns: 1.5em 11.5em 1.6em 3em 2em 4em 4em 6em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . . . . .';
 }
@@ -1149,7 +1149,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-armor {
   display: grid;
   grid-template-columns: 1.7em 13.5em 3em 3em 3.5em 4em 5em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . .';
 }
@@ -1157,7 +1157,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-augments {
   display: grid;
   grid-template-columns: 1.7em 10.5em 1.6em 1.6em 10.5em 4em 4em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . . . .';
 }
@@ -1165,7 +1165,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-equipment {
   display: grid;
   grid-template-columns: 1.7em 12em 2em 2em 12em 4.5em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . . .';
 }
@@ -1173,7 +1173,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-traits {
   display: grid;
   grid-template-columns: 11em 3em 16em 3em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . .';
   word-wrap: break-word;
@@ -1182,7 +1182,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-spells {
   display: grid;
   grid-template-columns: 10em 3em 5em 12em 3em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . .';
   word-wrap: break-word;
@@ -1191,7 +1191,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .items-consumable {
   display: grid;
   grid-template-columns: 1.7em 12.5em 6em 2.5em 7em 4.5em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     '. . . . . .';
 }
@@ -1319,7 +1319,7 @@ input.item-value-edit, input.joat-skill-input {
   display: grid;
   grid-template-columns: 2em 13em 3.3em 4.5em 3em 2.8em 2em 4em;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  gap: 1px;
 }
 
 select.select-mod {
@@ -1416,7 +1416,7 @@ span.total-output {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     'cash financial-notes'
     'pension financial-notes'
@@ -1628,7 +1628,7 @@ span.total-output {
   display: grid;
   grid-template-columns:  51% 49%;
   grid-template-rows: 5ch 16% 15% 8% 53%;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     "ship-image ship-name"
     "ship-image ship-info"
@@ -1959,7 +1959,7 @@ img.ship-mask-bg {
   display: grid;
   grid-template-columns: 59px 59px 59px 59px 59px;
   grid-template-rows: 1fr;
-  gap: 2px 2px;
+  gap: 2px;
   grid-template-areas:
     ". . . . .";
   position: relative;
@@ -2204,7 +2204,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     ". .";
   width: 55.5em;
@@ -2227,7 +2227,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   display: grid;
   grid-template-columns: 8.5em 5em 3em 3em 4em 3em;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     ". . . . . .";
   /*border-right: 1px solid var(--s2d6-form-light);*/
@@ -2247,7 +2247,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
     ". . . . . .";
   /*border-right: 1px solid var(--s2d6-form-light);*/
@@ -2480,7 +2480,7 @@ button.flexrow.flex-group-center.toggle-skills {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1em 2em;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas:
       ". ."
       ". .";
@@ -2511,7 +2511,7 @@ button.flexrow.flex-group-center.toggle-skills {
   display: grid;
   grid-template-columns: 15em 2em 2em 4em 6em 3em;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  gap: 1px;
   grid-template-areas: '. . . . . .';
 }
 
@@ -3287,4 +3287,11 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   justify-content: start;
   line-height: 2ch;
   width: auto;
+}
+
+/* Monk's Active Tile Fix */
+.monks-active-tiles.sheet .items-list {
+  top: 0;
+  width: auto;
+  margin-bottom: 3ch;
 }

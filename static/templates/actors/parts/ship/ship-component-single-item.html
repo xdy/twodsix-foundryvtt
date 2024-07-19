@@ -2,10 +2,10 @@
   <ol class="ol-no-indent">
       <li class="{{settings.singleComponentClass}}">
       {{#iff item.system.actorLink "===" ""}}
-        <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfLists}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
+        <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
       {{else}}
         <!-- allow vehciles to have a link -->
-        <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfLists}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
+        <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
       {{/iff}}
       <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
       {{#if settings.showComponentRating}}

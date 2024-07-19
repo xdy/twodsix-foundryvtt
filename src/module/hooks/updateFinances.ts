@@ -6,40 +6,57 @@ import TwodsixActor from "../entities/TwodsixActor";
 export function updateFinances(actor:TwodsixActor, update:Record<string, any>, financeDiff:any): void {
   if (["traveller"].includes(actor.type)) {
     if (Object.keys(financeDiff.finances).length > 0) {
-      updateFinanceValues(update, financeDiff);
+      updateFinanceValues(actor, update, financeDiff);
     } else if (Object.keys(financeDiff.financeValues).length > 0) {
       updateFinanceText(actor, update, financeDiff);
     }
   }
 }
 
-function updateFinanceValues(update:Record<string, any>, financeDiff:any) {
-  const financeValueUpdates = {};
+function updateFinanceValues(actor:TwodsixActor, update:Record<string, any>, financeDiff:any) {
+  const updateMods = {};
   for (const financeField in financeDiff.finances) {
     if (financeField !== "financial-notes") {
-      const parsedText = getParsedFinanceText(update.system.finances[financeField]);
-      if (parsedText) {
-        const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
-        Object.assign(financeValueUpdates, {[financeField]: newValue});
+      const isDelta:boolean = ["+", "-"].includes(update.system.finances[financeField][0]);
+
+      if (isDelta) {
+        const delta = getParsedFinanceText(update.system.finances[financeField]);
+        foundry.utils.mergeObject(updateMods, {financeValues: {[financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * getMultiplier(delta.units))}}) ;
+        const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
+        foundry.utils.mergeObject(updateMods, {finances: {[financeField]: convertNumberToFormatedText(updateMods.financeValues[financeField], (getMultiplier(parsedText.units) > getMultiplier(delta.units) ? parsedText.units : delta.units))}});
+      } else {
+        const parsedText = getParsedFinanceText(update.system.finances[financeField]);
+        if (parsedText) {
+          foundry.utils.mergeObject(updateMods, {financeValues: {[financeField]: parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units)}});
+        }
       }
     }
   }
-  Object.assign(update.system, {financeValues: financeValueUpdates});
+  foundry.utils.mergeObject(update.system, updateMods);
 }
 
 function updateFinanceText(actor:TwodsixActor, update:Record<string, any>, financeDiff:any) {
   const financeTextUpdates = {};
   for (const financeField in financeDiff.financeValues) {
     const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
-    let newValue = financeDiff.financeValues[financeField];
-    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
-    if (parsedText?.units) {
-      newValue /= getMultiplier(parsedText.units);
-    }
-    const newText = ''.concat(newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}), (parsedText?.units ? ' ' + parsedText.units : ''));
-    Object.assign(financeTextUpdates, {[financeField]: newText});
+    const newValue = financeDiff.financeValues[financeField];
+    foundry.utils.mergeObject(financeTextUpdates, {[financeField]: convertNumberToFormatedText(newValue, parsedText.units)});
   }
-  Object.assign(update.system, {finances: financeTextUpdates});
+  foundry.utils.mergeObject(update.system, {finances: financeTextUpdates});
+}
+
+/**
+ * Parse a localized number to a float.
+ * @param {number} newValue - the new value
+ * @param {string} units -  any units for the number, e.g. M or k
+ * @returns {string} - the localized number as a string
+ */
+function convertNumberToFormatedText(newValue: number, units?:string): string {
+  const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
+  if (units) {
+    newValue /= getMultiplier(units);
+  }
+  return ''.concat(newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}), (units ? ' ' + units : ''));
 }
 
 /**

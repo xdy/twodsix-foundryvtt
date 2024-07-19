@@ -312,7 +312,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     if (sameActor) {
       const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
       const targetItem = this.actor.items.get(dropTargetId);
-      if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', 'allowDragDropOfLists') && !sameActor.getFlag('twodsix','untrainedSkill')) {
+      const sortSetting = ["ship", "vehicle"].includes(this.actor.type) ? 'allowDragDropOfListsShip' : 'allowDragDropOfListsActor';
+      if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', sortSetting) && !sameActor.getFlag('twodsix','untrainedSkill')) {
         console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
         //super._onDrop(event); //needed?
         return !!await this._onSortItem(event, itemData); //.toJSON()???

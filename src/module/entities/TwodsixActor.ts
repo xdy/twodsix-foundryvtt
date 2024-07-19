@@ -451,7 +451,7 @@ export default class TwodsixActor extends Actor {
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
     if (Roll.validate(encumbFormula)) {
-      maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, this.system));
+      maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, this.getRollData()));
     }
     return Math.max(maxEncumbrance, 0);
   }

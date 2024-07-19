@@ -327,6 +327,11 @@ div.pdf-app section.window-content {
   border-color: var(--s2d6-default-color);
 }
 
+.monks-active-tiles.sheet .items-list {
+  margin-bottom: 3ch;
+  top: 0;
+}
+
 /******** Token Action HUD ******/
 
 .tah-dialog-light-button {

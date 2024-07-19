@@ -47,7 +47,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
-      allowDragDropOfLists: game.settings.get('twodsix', 'allowDragDropOfLists'),
+      allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
