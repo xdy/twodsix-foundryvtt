@@ -3288,3 +3288,10 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   line-height: 2ch;
   width: auto;
 }
+
+/* Monk's Active Tile Fix */
+.monks-active-tiles.sheet .items-list {
+  top: 0;
+  width: auto;
+  margin-bottom: 3ch;
+}
