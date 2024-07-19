@@ -1,3 +1,10 @@
+# [5.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.4.1...v5.5.0) (2024-07-19)
+
+
+### Features
+
+* Improve Target DM parsing and Finance Field Calcs ([#1585](https://github.com/xdy/twodsix-foundryvtt/issues/1585)) ([7c208fd](https://github.com/xdy/twodsix-foundryvtt/commit/7c208fdd111bbd307d625c3aa223deacee237d7d))
+
 ## [5.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.4.0...v5.4.1) (2024-07-13)
 
 
