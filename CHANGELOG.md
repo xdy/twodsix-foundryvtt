@@ -1,3 +1,10 @@
+## [5.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.0...v5.5.1) (2024-07-22)
+
+
+### Bug Fixes
+
+* add option to change the damage-stat-color style ([#1598](https://github.com/xdy/twodsix-foundryvtt/issues/1598)) ([add459b](https://github.com/xdy/twodsix-foundryvtt/commit/add459b08354ac2e8520776b0d8de8314fb295a4))
+
 # [5.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.4.1...v5.5.0) (2024-07-19)
 
 
