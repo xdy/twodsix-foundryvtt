@@ -1355,6 +1355,10 @@
         "hint": "Change the theme highlight color. Delete value to reset.",
         "name": "Set Highlight Color"
       },
+      "damageStatColor": {
+        "hint": "Change the color of characteristic damage on the actor sheet. Delete value to reset.",
+        "name": "Set Characteristic Damage Color"
+      },
       "useItemActiveEffects": {
         "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
         "name": "Use Item Active Effects"

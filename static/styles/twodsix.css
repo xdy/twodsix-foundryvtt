@@ -27,65 +27,35 @@
 }
 
 :root {
-  --s2d6-default-color:
-  rgba(41, 170, 225, 1);
-  --s2d6-light-color:
-  rgba(0, 229, 255, 1);
-  --s2d6-window-color:
-  rgba(86, 148, 175, 1);
-  --s2d6-background-transparent:
-  rgba(0, 0, 0, 0);
-  --s2d6-background-nearly-transparent:
-  rgba(0, 0, 0, 0.25);
-  --s2d6-background-semi-opaque:
-  rgba(0, 0, 0, 0.5);
-  --s2d6-background-nearly-opaque:
-  rgba(0, 0, 0, 0.75);
-  --s2d6-background-opaque:
-  rgba(0, 0, 0, 1);
-  --s2d6-nav-background:
-  rgb(64 63 63 / 95%);
-  --s2d6-dark-hover:
-  var(--s2d6-background-nearly-opaque);
-  --s2d6-light-background-transparent:
-  rgba(255, 255, 255, 0.09);
-  --s2d6-stat-input:
-  rgb(146 172 213);
-  --s2d6-item-active:
-  var(--s2d6-background-opaque);
-  --s2d6-header-border:
-  rgba(34, 80, 120, 1);
-  --s2d6-form-light:
-  rgb(175, 173, 160, 1);
-  --s2d6-item-border:
-  var(--s2d6-stat-input);
-  --s2d6-skill-list-even:
-  var(--s2d6-light-background-transparent);
-  --s2d6-sidebar-background:
-  var(--s2d6-form-light); /*rgba(130, 129, 125, 1)*/
-  --s2d6-crit-fail:
-  rgba(170, 2, 0, 1);
-  --s2d6-crit-success:
-  rgba(47, 120, 34, 1);
-  --s2d6-dialog-color:
-  rgba(168, 184, 208, 1); /*rgba(162, 188, 228, 1)*/
-  --s2d6-app-color:
-  rgba(240, 240, 224, 1);
-  --s2d6-item-hover:
-  var(--s2d6-app-color); /*rgba(255, 255, 255, 1)*/
-  --s2d6-select-light:
-  var(--s2d6-item-hover);
-  --s2d6-damage-red:
-  rgba(255, 0, 0, 1);
-  --s2d6-damage-stat-color:
-  rgba(181, 44, 44, 1);
-  --s2d6-damage-orange:
-  rgba(255, 153, 0, 1);
-  --s2d6-pie-color:
-  var(--s2d6-default-color);
-  --s2d6-pie-background-color:
-  var(--s2d6-background-opaque);
-  /*--sidebar-width: 318px;*/
+  --s2d6-default-color: rgba(41, 170, 225, 1);
+  --s2d6-light-color: rgba(0, 229, 255, 1);
+  --s2d6-window-color: rgba(86, 148, 175, 1);
+  --s2d6-background-transparent: rgba(0, 0, 0, 0);
+  --s2d6-background-nearly-transparent:rgba(0, 0, 0, 0.25);
+  --s2d6-background-semi-opaque: rgba(0, 0, 0, 0.5);
+  --s2d6-background-nearly-opaque: rgba(0, 0, 0, 0.75);
+  --s2d6-background-opaque: rgba(0, 0, 0, 1);
+  --s2d6-nav-background: rgb(64 63 63 / 95%);
+  --s2d6-dark-hover: var(--s2d6-background-nearly-opaque);
+  --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
+  --s2d6-stat-input: rgb(146 172 213);
+  --s2d6-item-active: var(--s2d6-background-opaque);
+  --s2d6-header-border: rgba(34, 80, 120, 1);
+  --s2d6-form-light: rgb(175, 173, 160, 1);
+  --s2d6-item-border: var(--s2d6-stat-input);
+  --s2d6-skill-list-even: var(--s2d6-light-background-transparent);
+  --s2d6-sidebar-background: var(--s2d6-form-light); /*rgba(130, 129, 125, 1)*/
+  --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
+  --s2d6-crit-fail: rgba(170, 2, 0, 1);
+  --s2d6-crit-success: rgba(47, 120, 34, 1);
+  --s2d6-dialog-color: rgba(168, 184, 208, 1); /*rgba(162, 188, 228, 1)*/
+  --s2d6-app-color: rgba(240, 240, 224, 1);
+  --s2d6-item-hover: var(--s2d6-app-color); /*rgba(255, 255, 255, 1)*/
+  --s2d6-select-light: var(--s2d6-item-hover);
+  --s2d6-damage-red: rgba(255, 0, 0, 1);
+  --s2d6-damage-orange: rgba(255, 153, 0, 1);
+  --s2d6-pie-color: var(--s2d6-default-color);
+  --s2d6-pie-background-color: var(--s2d6-background-opaque);
 }
 
 body {

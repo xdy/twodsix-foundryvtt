@@ -51,6 +51,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('showFeaturesInChat', false));
     settings.general.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.general.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
+    settings.general.push(colorSetting('damageStatColor', "#b52c2c", "Color", false, 'world', changeDamageColor));
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
@@ -83,6 +84,13 @@ export const changeLightColor = function () {
     game.settings.set('twodsix', 'lightColor', "#00e5ff");
   }
   document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+};
+
+export const changeDamageColor = function () {
+  if (game.settings.get('twodsix', 'damageStatColor') === "") {
+    game.settings.set('twodsix', 'damageStatColor', "#b52c2c");
+  }
+  document.documentElement.style.setProperty('--s2d6-damage-stat-color', game.settings.get('twodsix', 'damageStatColor'));
 };
 
 export const updateStatusIcons = function () {
