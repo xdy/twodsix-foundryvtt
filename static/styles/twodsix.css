@@ -2963,10 +2963,10 @@ div.ship-value {
   height: 74%;
 }
 
-.ship-financial-notes {
+/*.ship-financial-notes {
   display: grid;
   grid-template-rows: 4fr 1fr;
-}
+}*/
 
 .ship-commonFunds input[type="number"] {
   border: 1px solid var(--s2d6-default-color);
@@ -2976,10 +2976,14 @@ div.ship-value {
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
   border: 1px solid var(--s2d6-default-color);
   /* width: 107%; */
-  min-height: min-content;
+  height: 31ch;
   border-radius: 0;
   overflow-y: auto;
   padding: 0.2em;
+}
+
+.ship-common-funds {
+  margin-top: 3ch;
 }
 
 /*-------------------------------------------------*/
