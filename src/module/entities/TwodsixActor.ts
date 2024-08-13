@@ -183,6 +183,11 @@ export default class TwodsixActor extends Actor {
       if (deltaHits !== 0) {
         //console.log ('need to update wounded status');
         Object.assign(options, {deltaHits: deltaHits});
+        if (game.modules.get('splatter')?.active) {
+          //A hack to get splatter to work correctly - it doesn't respect derived data
+          const newHits = Math.clamp((this.system.hits.value - deltaHits), 0, this.system.hits.max);
+          foundry.utils.mergeObject(data, {'system.hits.value': newHits});
+        }
       }
     }
 
