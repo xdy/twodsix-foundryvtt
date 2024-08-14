@@ -1,3 +1,10 @@
+## [5.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.1...v5.5.2) (2024-08-14)
+
+
+### Bug Fixes
+
+* finance edit box size ([#1606](https://github.com/xdy/twodsix-foundryvtt/issues/1606)) ([56ade07](https://github.com/xdy/twodsix-foundryvtt/commit/56ade079eb316ad7db47288e65a671a39ba93748))
+
 ## [5.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.0...v5.5.1) (2024-07-22)
 
 
