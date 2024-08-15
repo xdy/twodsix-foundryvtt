@@ -336,9 +336,6 @@
   ],
   "primaryTokenAttribute": "hits",
   "styles": [],
-  "templateVersion": 2,
-  "manifestPlusVersion": "1.0.0",
-  "allowBugReporter": true,
   "bugs": "https://github.com/xdy/twodsix-foundryvtt/issues",
   "media": [
     {
@@ -360,6 +357,8 @@
     "hotReload": {
       "extensions": ["css", "html", "hbs", "json"],
       "paths": ["twodsix.css", "templates", "lang", "styles"]
-    }
+    },
+    "manifestPlusVersion": "1.0.0",
+    "allowBugReporter": true
   }
 }
