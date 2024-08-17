@@ -1337,7 +1337,7 @@
       },
       "allowDragDropOfListsShip" : {
         "hint": "Allow items in lists for Ships and Vehicles to be moved by drag and drop rather than sorting alphabetically.",
-        "name":"Allow Drag-Drop in Ship and Vehcile Lists"
+        "name":"Allow Drag-Drop in Ship and Vehicle Lists"
       },
       "useDodgeParry" : {
         "hint": "Add a roll penalty that reflects a target's ability to dodge / parry.  A target must be selected and the skill name for the weapon's action must match.",
