@@ -127,8 +127,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twodsix", "sheet", "actor"],
       template: "systems/twodsix/templates/actors/actor-sheet.html",
-      width: 862,
-      height: 720,
+      width: game.settings.get('twodsix', 'defaultActorSheetWidth'),
+      height: game.settings.get('twodsix', 'defaultActorSheetHeight'),
       resizable: true,
       tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
       scrollY: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],

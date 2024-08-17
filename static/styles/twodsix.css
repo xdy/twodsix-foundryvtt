@@ -438,6 +438,8 @@ h2 {
   /* flex-wrap: nowrap; */
   justify-content: space-between;
   grid-template-rows: 4% 39% 4.6% 19.2% 22.2%;
+  width: 100%;
+  width: -moz-available;
   width: -webkit-fill-available;
 }
 
@@ -898,6 +900,7 @@ h2 {
   /* height: auto; */
   grid-area: character-photo;
   /* width: -webkit-fill-available; */
+  overflow: hidden;
 }
 
 .character-photo img {

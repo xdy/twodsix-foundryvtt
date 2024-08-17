@@ -1496,6 +1496,14 @@
       "chainBonus": {
         "hint": "The roll DM for chain rolls (or aiding another) based on the previous roll's effect.  This configuration string is formated as comma separated integers.  The sequence is based on effect values:  <=-6, -5 to -2, -1, 0 , 1 to 5, >=6.  So for Cepheus Engine, the configuration string would be '-2, -1, -1, 1, 1, 2'. Note if there are not six integers entered the chain bonus is zero.",
         "name": "Assisted/Chain Roll DM"
+      },
+      "defaultActorSheetWidth": {
+        "hint": "The default Traveller sheet width when opening after startup - in pixels.  WARNING: changing this setting will reload the world.",
+        "name": "Default Width of Traveller Sheet"
+      },
+      "defaultActorSheetHeight": {
+        "hint": "The default Traveller sheet height when opening after startup - in pixels. WARNING: changing this setting will reload the world.",
+        "name": "Default Height of Traveller Sheet"
       }
     },
     "CloseAndCreateNew": "Close and create new",
