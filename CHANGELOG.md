@@ -1,3 +1,10 @@
+## [5.5.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.2...v5.5.3) (2024-08-17)
+
+
+### Bug Fixes
+
+* actor image on traveller sheet too small for firefox ([#1611](https://github.com/xdy/twodsix-foundryvtt/issues/1611)) ([970dbed](https://github.com/xdy/twodsix-foundryvtt/commit/970dbed8641366f22a570fc266b83192554fa8e5))
+
 ## [5.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.1...v5.5.2) (2024-08-14)
 
 
