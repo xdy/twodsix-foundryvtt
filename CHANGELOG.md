@@ -1,3 +1,10 @@
+## [5.5.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.3...v5.5.4) (2024-08-17)
+
+
+### Bug Fixes
+
+* typo in settings description and add updated ES localization ([#1613](https://github.com/xdy/twodsix-foundryvtt/issues/1613)) ([94c8b87](https://github.com/xdy/twodsix-foundryvtt/commit/94c8b870210761549d7bcd2a5a903ee23100f4be))
+
 ## [5.5.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.2...v5.5.3) (2024-08-17)
 
 
