@@ -1498,12 +1498,12 @@
         "name": "Assisted/Chain Roll DM"
       },
       "defaultActorSheetWidth": {
-        "hint": "The initial default actor sheet width when opening after startup - in pixels.  WARNING: changing this setting will reload the world.",
-        "name": "Initial Width of Actor Sheet"
+        "hint": "The default Traveller sheet width when opening after startup - in pixels.  WARNING: changing this setting will reload the world.",
+        "name": "Default Width of Traveller Sheet"
       },
       "defaultActorSheetHeight": {
-        "hint": "The initial default actor sheet height when opening after startup - in pixels. WARNING: changing this setting will reload the world.",
-        "name": "Initial Height of Actor Sheet"
+        "hint": "The default Traveller sheet height when opening after startup - in pixels. WARNING: changing this setting will reload the world.",
+        "name": "Default Height of Traveller Sheet"
       }
     },
     "CloseAndCreateNew": "Close and create new",
