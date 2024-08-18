@@ -368,6 +368,7 @@ export default class TwodsixItem extends Item {
    * @returns {any} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
   private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: any): any {
+    const ruleSet = game.settings.get("twodsix", "ruleset");
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
     let bonusDamage = "0";
@@ -399,12 +400,12 @@ export default class TwodsixItem extends Item {
         if (autoFireRules === 'CEL') {
           usedAmmo = 3 * rateOfFire;
         }
-        skillLevelMax = game.settings.get("twodsix", "ruleset") === "CDEE" ? 1 : undefined; //special rule for CD-EE
+        skillLevelMax = ruleSet === "CDEE" ? 1 : undefined; //special rule for CD-EE
         isAutoFull = true;
         break;
       case "auto-burst":
         if (autoFireRules !== 'CT') {
-          bonusDamage = game.settings.get("twodsix", "ruleset") === "CDEE" ? `${rateOfFire}d6kh` : rateOfFire.toString(); //special rule for CD-EE
+          bonusDamage = ruleSet === "CDEE" ? `${rateOfFire}d6kh` : rateOfFire.toString(); //special rule for CD-EE
         }
         break;
       case "burst-attack-dm":
@@ -414,7 +415,14 @@ export default class TwodsixItem extends Item {
         bonusDamage = TwodsixItem.burstBonusDamage(rateOfFire);
         break;
       case "double-tap":
-        Object.assign(tmpSettings.rollModifiers, { rof: 1 });
+        //Need to assign as bonus damage or rof bonus depending on rules
+        if ( ['CD', 'CLU'].includes(ruleSet)) {
+          bonusDamage = "1d6";
+        } else if (['AC', 'CEL'].includes(ruleSet)) {
+          bonusDamage = "1";
+        } else {
+          Object.assign(tmpSettings.rollModifiers, { rof: 1 });
+        }
         usedAmmo = 2;
         break;
     }
