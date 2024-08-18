@@ -433,7 +433,7 @@ const RULESETS = Object.freeze({
       difficultyListUsed: "CE",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
-      ShowDoubleTap: true,
+      ShowDoubleTap: false,
       modifierForZeroCharacteristic: -2,
       termForAdvantage: "advantage",
       termForDisadvantage: "disadvantage",

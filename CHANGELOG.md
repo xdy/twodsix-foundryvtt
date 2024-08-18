@@ -1,3 +1,24 @@
+## [5.5.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.4...v5.5.5) (2024-08-18)
+
+
+### Bug Fixes
+
+* double tap not correct for CD, CLU, CEL ([#1616](https://github.com/xdy/twodsix-foundryvtt/issues/1616)) ([92f2ed2](https://github.com/xdy/twodsix-foundryvtt/commit/92f2ed2f6f036162c2e1b5595858bcabff20a29a))
+
+## [5.5.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.3...v5.5.4) (2024-08-17)
+
+
+### Bug Fixes
+
+* typo in settings description and add updated ES localization ([#1613](https://github.com/xdy/twodsix-foundryvtt/issues/1613)) ([94c8b87](https://github.com/xdy/twodsix-foundryvtt/commit/94c8b870210761549d7bcd2a5a903ee23100f4be))
+
+## [5.5.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.2...v5.5.3) (2024-08-17)
+
+
+### Bug Fixes
+
+* actor image on traveller sheet too small for firefox ([#1611](https://github.com/xdy/twodsix-foundryvtt/issues/1611)) ([970dbed](https://github.com/xdy/twodsix-foundryvtt/commit/970dbed8641366f22a570fc266b83192554fa8e5))
+
 ## [5.5.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.1...v5.5.2) (2024-08-14)
 
 

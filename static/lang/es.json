@@ -318,6 +318,7 @@
         "Description": "Descripción",
         "DM": "MD",
         "TargetModifier": "MD Objetivo",
+        "OverrideAuto": "Anular Auto",
         "Characteristic": "Atributo",
         "Condition": "Estado",
         "Attack": "Ataque",
@@ -642,6 +643,7 @@
           "power_cell": "Batería Energia",
           "software": "Software",
           "processor": "Procesador",
+          "suite": "Traje Electrónico",
           "other": "Otros"
         },
         "Size": "Tamaño",
@@ -1329,9 +1331,13 @@
         "hint": "Cambia la funcionalidad por defecto de Foundry al soltar objetos encima (objeto será borrado de la fuente) y transferir equipo entre los actores.",
         "name": "Transferir en vez de copiar equipo soltado sobre un actor"
       },
-      "allowDragDropOfLists": {
-        "hint": "Permitir a objetos en listas moverse arrastrándolos, en vez del orden alfabético.",
-        "name": "Permitir Reordenar Listas"
+      "allowDragDropOfListsActor": {
+        "hint": "Permitir mover mediante drag & drop los objetos de la lista de Actores (ej. Travellers, Animales, y Robots), en vez de ordenar alfabéticamente.",
+        "name": "Permitir Drag & Drop en Lista Actores"
+      },
+      "allowDragDropOfListsShip": {
+        "hint": "Permitir mover mediante drag & drop los objetos de la lista de Naves y Vehículos, en vez de ordenar alfabéticamente.",
+        "name": "Permitir Drag & Drop en Lista Naves y Vehículos"
       },
       "useDodgeParry": {
         "hint": "Añadir un penalizador en la tirada que represente la habilidad de esquiva/parada. El objetivo debe seleccionarse y la habilidad del arma que actúa debe coincidir.",
@@ -1348,6 +1354,10 @@
       "lightColor": {
         "hint": "Cambiar el color resaltado. Borrar el valor para reiniciar.",
         "name": "Color Resaltado"
+      },
+      "damageStatColor": {
+        "hint": "Cambiar el color del daño en atributos de la hoja de personaje. Borrar el valor para reiniciar.",
+        "name": "Color Daño en Atributos"
       },
       "useItemActiveEffects": {
         "hint": "Utilizar Efectos Activos en Objetos. AVISO: puede resultar en comportamientos raros del sistema.",
@@ -1464,7 +1474,7 @@
         "name": "Lista de modificadores para objetivos"
       },
       "meleeRange": {
-        "hint": "La distancia donde se considera el ataque como Melé. Normalmente una casilla de la rejilla (ej: 1,5m).",
+        "hint": "Distancia para el combate melé (ej. 1,5m).",
         "name": "Distancia combate Melé"
       },
       "showSkillGroups": {
@@ -1486,6 +1496,14 @@
       "chainBonus": {
         "hint": "Modificador para las tiradas encadenadas (o asistidas por otro) en base al efecto de la tirada anterior. El formato de la cadena de configuración son enteros separados por comas. La secuencia esta basada en el valor del efecto:  <=-6, -5 to -2, -1, 0 , 1 to 5, >=6.  Por ejemplo, para Engine Cepheus, la cadena de configuración sería '-2, -1, -1, 1, 1, 2'. Nota: si no existen seis enteros en la cadena, el bono será cero.",
         "name": "MD Tirada Asistida/Encadenada"
+      },
+      "defaultActorSheetWidth": {
+        "hint": "Tamaño de pixeles inicial, en anchura, para la hoja del personaje. AVISO: este cambio genera una recarga del mundo.",
+        "name": "Ancho por Defecto de la Hoja"
+      },
+      "defaultActorSheetHeight": {
+        "hint": "Tamaño de pixeles inicial, en altura, para la hoja del personaje. AVISO: este cambio genera una recarga del mundo.",
+        "name": "Alto por Defecto de la Hoja"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1534,7 +1552,8 @@
       "CantPlaceTemplate": "Error reemplazando la Plantilla Area de Efecto.",
       "TraitsandSkillsNoConsumables": "Los Conjuros, Rasgos y Habilidades no pueden tener consumibles.",
       "InvalidRangeBand": "El tipo de Arma y/o rango no pertenece a las reglas.",
-      "InvalidWeaponArmor": "El tipo de Arma y/o Armadura no pertenece a las reglas."
+      "InvalidWeaponArmor": "El tipo de Arma y/o Armadura no pertenece a las reglas.",
+      "CantDropAttachOnConsumables": "No se pueden colocar accesorios en consumibles."
     },
     "Warnings": {
       "ActorMissingItem": "El Actor controlado no tiene un objeto con id: _ITEM_ID_",
