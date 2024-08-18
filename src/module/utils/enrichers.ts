@@ -67,7 +67,7 @@ async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> 
     a.classList.add("table-roll");
     a.dataset.tableId = table.uuid;
     a.dataset.tableName = table.name;
-    a.innerHTML = `<i class="fas fa-dice-d20"></i><i class="fas fa-th-list"></i> ${tableName}`;
+    a.innerHTML = `<i class="fas fa-dice"></i><i class="fas fa-th-list"></i> ${tableName}`;
   } else {
     a.dataset.tableId = match[1];
     if (match[2]) {
