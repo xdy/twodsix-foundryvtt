@@ -1,3 +1,10 @@
+## [5.5.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.4...v5.5.5) (2024-08-18)
+
+
+### Bug Fixes
+
+* double tap not correct for CD, CLU, CEL ([#1616](https://github.com/xdy/twodsix-foundryvtt/issues/1616)) ([92f2ed2](https://github.com/xdy/twodsix-foundryvtt/commit/92f2ed2f6f036162c2e1b5595858bcabff20a29a))
+
 ## [5.5.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.3...v5.5.4) (2024-08-17)
 
 
