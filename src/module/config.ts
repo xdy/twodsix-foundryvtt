@@ -24,6 +24,7 @@ const CHARACTERISTICS = Object.freeze({
 const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
+  "AC": "AC"
 });
 
 /**
@@ -589,7 +590,7 @@ const RULESETS = Object.freeze({
     name: "Alpha Cephei",
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics",
-      difficultyListUsed: "CE",
+      difficultyListUsed: "AC",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
       ShowDoubleTap: true,
@@ -664,7 +665,8 @@ const CONSUMABLES = Object.freeze({
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Object.freeze({
+export type AC_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Routine:{ mod:number; target:number }, Simple:{ mod:number; target:number }; };
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -680,6 +682,13 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Obje
     Average: {mod: 0, target: 6},
     Difficult: {mod: -2, target: 8},
     VeryDifficult: {mod: -4, target: 10},
+    Formidable: {mod: -6, target: 12},
+  },
+  AC: {
+    Routine: {mod: 2, target: 4},
+    Simple: {mod: 0, target: 6},
+    Average: {mod: -2, target: 8},
+    Difficult: {mod: -4, target: 10},
     Formidable: {mod: -6, target: 12},
   }
 });
