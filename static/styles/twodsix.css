@@ -1203,7 +1203,7 @@ span.bgi-charEdit {
   justify-content: center;
   grid-area: character-characteristics;
   overflow: auto hidden;
-  margin-left: 7%;
+  margin-left: 8%;
   /* padding-top: 1ch; */
   gap: 1ch 0;
 }
@@ -1487,7 +1487,7 @@ svg:hover {
 }
 
 .character-tabs-info.character-inventory {
-  width: 97%;
+  width: 100%;
   overflow: auto;
 }
 
@@ -1607,8 +1607,7 @@ a.actor-notes-tab:hover {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 2.6em 1.6em 4em 4em 5.5em;
-  gap: 1px;
+  grid-template-columns: 5% 33% 6% 6% 11% 12% 13% 14%;
   grid-template-areas:
     '. . . . . . . .';
 }
@@ -1617,10 +1616,8 @@ a.actor-notes-tab:hover {
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
-  padding-left: 0.3em;
-  margin-right: 0.5em;
   overflow-x: visible;
-  width: fit-content;
+  width: 98%;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -1631,16 +1628,13 @@ a.actor-notes-tab:hover {
   border: solid;
   border-width: 1px;
   border-color: var(--s2d6-default-color);
-  padding-left: 0.3em;
-  margin-right: 0.5em;
-  width: fit-content;
+  width: 98%;
   margin-bottom: -1px;
 }
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.5em 12.5em 3.5em 3.5em 3.5em 4em 4em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 10% 10% 10% 11% 14%;
   grid-template-areas:
     '. . . . . . .';
 }
@@ -2059,7 +2053,7 @@ span.total-output {
   /* margin-top: 6ch; */
   height: 100%;
   overflow: auto;
-  padding-left: 2ch;
+  padding: 0 2ch;
   /* margin-top: 3ch; */
   width: 98%;
 }
@@ -3012,6 +3006,7 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .mini-dice {
   align-self: center;
+  text-align: center;
 }
 
 /*--- Item Page ---*/
