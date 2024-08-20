@@ -689,9 +689,9 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     Simple: {mod: 0, target: 6},
     Average: {mod: -2, target: 8},
     Difficult: {mod: -4, target: 10},
-    VeryDifficult: {mod: -4, target: 12},
-    Formidable: {mod: -6, target: 14},
-    Impossible: {mod: -8, target: 16}
+    VeryDifficult: {mod: -6, target: 12},
+    Formidable: {mod: -8, target: 14},
+    Impossible: {mod: -10, target: 16}
   }
 });
 
