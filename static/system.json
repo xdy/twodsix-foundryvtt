@@ -261,6 +261,33 @@
       "path": "./packs/macro-rolltables",
       "entity": "RollTable",
       "type": "RollTable"
+    },
+    {
+      "name": "alpha-cephei-skills",
+      "label": "alpha cephei skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-skills",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "alpha-cephei-items",
+      "label": "alpha cephei items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "alpha-cephei-actors",
+      "label": "alpha cephei actors",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-actors",
+      "entity": "Actor",
+      "type": "Actor"
     }
   ],
   "packFolders": [
@@ -323,6 +350,15 @@
         "cepheus-quantum-items",
         "cepheus-quantum-careers",
         "cepheus-quantum-gm-screen"
+      ]
+    },
+    {
+      "name": "Alpha Cephei",
+      "sorting": "m",
+      "packs": [
+        "alpha-cephei-actors",
+        "alpha-cephei-items",
+        "alpha-cephei-skills"
       ]
     },
     {

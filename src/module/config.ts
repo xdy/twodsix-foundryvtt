@@ -24,6 +24,7 @@ const CHARACTERISTICS = Object.freeze({
 const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
+  "AC": "AC"
 });
 
 /**
@@ -584,6 +585,52 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
+  AC: {
+    key: "AC",
+    name: "Alpha Cephei",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "AC",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: true,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3*(@characteristics.strength.value)",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Aim +1, Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Prone (melee) +1, Darkness -3, Dim Light -1, Shield -1, Overwatch w/shield -2, Behind someone (if missed, 50% chance of hitting other) -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0"
+    }
+  },
   OTHER: {
     key: "OTHER",
     name: "Other",
@@ -618,7 +665,8 @@ const CONSUMABLES = Object.freeze({
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Object.freeze({
+export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -635,6 +683,15 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES }> = Obje
     Difficult: {mod: -2, target: 8},
     VeryDifficult: {mod: -4, target: 10},
     Formidable: {mod: -6, target: 12},
+  },
+  AC: {
+    Routine: {mod: 2, target: 4},
+    Simple: {mod: 0, target: 6},
+    Average: {mod: -2, target: 8},
+    Difficult: {mod: -4, target: 10},
+    VeryDifficult: {mod: -6, target: 12},
+    Formidable: {mod: -8, target: 14},
+    Impossible: {mod: -10, target: 16}
   }
 });
 

@@ -16,7 +16,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
     getRanges(token) {
       const actor = (<TwodsixActor>token.actor);
       const actorType = actor.type;
-      const rulesSet = game.settings.get("twodsix", "ruleset");
+      const rulesSet = game.settings.get('twodsix', 'ruleset');
       let movementSpeed = 0;
 
       if (actorType === "ship") {
@@ -49,6 +49,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
           case "CEL":
           case "CLU":
           case "CDEE":
+          case "AC":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 3) && game.settings.get("twodsix", "useEncumbrance")) {
