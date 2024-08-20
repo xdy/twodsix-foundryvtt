@@ -665,7 +665,7 @@ const CONSUMABLES = Object.freeze({
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-export type AC_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Routine:{ mod:number; target:number }, Simple:{ mod:number; target:number }; };
+export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
 const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
@@ -689,7 +689,9 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     Simple: {mod: 0, target: 6},
     Average: {mod: -2, target: 8},
     Difficult: {mod: -4, target: 10},
-    Formidable: {mod: -6, target: 12},
+    VeryDifficult: {mod: -4, target: 12},
+    Formidable: {mod: -6, target: 14},
+    Impossible: {mod: -8, target: 16}
   }
 });
 
