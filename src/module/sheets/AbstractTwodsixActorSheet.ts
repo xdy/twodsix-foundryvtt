@@ -119,7 +119,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
         html.find('.roll-damage').on('click', onRollDamage.bind(this));
       }
-      //add hooks to allow skill levels consumable counts to be updated on skill and equipment tabs, repectively
+      //add hooks to allow skill levels and consumable counts to be updated on skill and equipment tabs, repectively
       html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
       html.find(".item-value-edit").on("click", (event) => {
         $(event.currentTarget).trigger("select");
