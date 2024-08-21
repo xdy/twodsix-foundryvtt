@@ -4,8 +4,8 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v5.5.5/twodsix.zip",
-  "version": "5.5.5",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v5.6.0/twodsix.zip",
+  "version": "5.6.0",
   "socket": true,
   "background": "systems/twodsix/assets/pause/sunburst.svg",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -261,6 +261,33 @@
       "path": "./packs/macro-rolltables",
       "entity": "RollTable",
       "type": "RollTable"
+    },
+    {
+      "name": "alpha-cephei-skills",
+      "label": "alpha cephei skills",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-skills",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "alpha-cephei-items",
+      "label": "alpha cephei items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "alpha-cephei-actors",
+      "label": "alpha cephei actors",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/alpha-cephei-actors",
+      "entity": "Actor",
+      "type": "Actor"
     }
   ],
   "packFolders": [
@@ -323,6 +350,15 @@
         "cepheus-quantum-items",
         "cepheus-quantum-careers",
         "cepheus-quantum-gm-screen"
+      ]
+    },
+    {
+      "name": "Alpha Cephei",
+      "sorting": "m",
+      "packs": [
+        "alpha-cephei-actors",
+        "alpha-cephei-items",
+        "alpha-cephei-skills"
       ]
     },
     {

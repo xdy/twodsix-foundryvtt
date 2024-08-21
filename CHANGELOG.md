@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.5...v5.6.0) (2024-08-20)
+
+
+### Features
+
+* Alpha Cephei ruleset and compendia ([#1614](https://github.com/xdy/twodsix-foundryvtt/issues/1614)) ([15c1c50](https://github.com/xdy/twodsix-foundryvtt/commit/15c1c505e54e0d77df014a9b0aaa0df04fddd680))
+
 ## [5.5.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.4...v5.5.5) (2024-08-18)
 
 

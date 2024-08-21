@@ -164,7 +164,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'OTHER'].includes(rulesSet)) {
+    if (['CE', 'AC', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         setConditionState('unconscious', selectedActor, true);
       }
@@ -261,7 +261,13 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
-    const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };//
+    let changeData = {}; //AC has a movement penalty not roll penalty
+    if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === DAMAGECOLORS.seriousWoundTint) {
+      changeData = { key: "system.movement.walk", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: 1.5 };
+    } else {
+      changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+    }
+    //
     if (!currentEffectId) {
       targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.wounded),
@@ -300,6 +306,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CT':
         return (getCELWoundTint(selectedTraveller));
       case 'CE':
+      case 'AC':
       case 'OTHER':
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
@@ -407,7 +414,7 @@ export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
  * @function
  */
 function getEncumbranceModifier(ratio:number):number {
-  const ruleset = game.settings.get("twodsix", "ruleset");
+  const ruleset = game.settings.get('twodsix', 'ruleset');
   if (ratio === 0 ) {
     return 0; //Shoudn't get here
   } else if (['CE', 'CT'].includes(ruleset)) {

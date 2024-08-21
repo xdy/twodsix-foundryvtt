@@ -368,7 +368,7 @@ export default class TwodsixItem extends Item {
    * @returns {any} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
   private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: any): any {
-    const ruleSet = game.settings.get("twodsix", "ruleset");
+    const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
     let bonusDamage = "0";

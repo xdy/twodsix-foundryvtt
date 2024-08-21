@@ -20,7 +20,7 @@ export default class RulesetSettings extends AdvancedSettings {
   /** @override */
   getData() {
     const data = super.getData();
-    const ruleset = TWODSIX.RULESETS[game.settings.get("twodsix", "ruleset")];
+    const ruleset = TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')];
     const rulesetSettings = TWODSIX.RULESETS[ruleset.key].settings;
     const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
       return game.settings.get("twodsix", settingName) === value;
