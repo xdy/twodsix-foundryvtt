@@ -1681,6 +1681,10 @@ a.actor-notes-tab:hover {
     '. . . . . .';
 }
 
+.attachment-list, .consumable-list {
+  margin-left: 5%;
+}
+
 /*-------Skill Tab-----------*/
 
 .initiative {
