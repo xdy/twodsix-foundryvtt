@@ -23,9 +23,9 @@
   </span>
 </div>
 
-<section class="item-list">
+<div class="item-list">
   <div class="skill" draggable="false">
-    <span class="fixed-item skill-container">
+    <span class="fixed-item">
       <ol class="ol-no-indent">
         <li class="fixed-item flexrow" data-item-id="{{joat-skill-input}}" style="margin-bottom: 0.01px;">
           <span class="skill-container">
@@ -49,7 +49,7 @@
         </ol>
       </div>
       {{#if (lookup ../actor.system.displaySkillGroup @key)}}
-      <div class="item-list grid-columns-single">
+      <div class="item-list">
         {{#each_sort_item this as |item id|}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
         {{/each_sort_item}}
@@ -80,7 +80,7 @@
     </ol>
   </div>
 {{/if}}
-</section>
+</div>
 
 
 {{#if settings.showSkillCountsRanks}}

@@ -1641,24 +1641,21 @@ a.actor-notes-tab:hover {
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.5em 10.5em 1.6em 1.6em 9.5em 4em 4em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 5% 10% 25% 10% 15%;
   grid-template-areas:
     '. . . . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 12em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 10% 10% 30% 15%;
   grid-template-areas:
     '. . . . . .';
 }
 
 .items-traits {
   display: grid;
-  grid-template-columns: 14em 3em 13em 3em;
-  gap: 1px;
+  grid-template-columns: 35% 15% 40% 10%;
   grid-template-areas:
     '. . . .';
   word-wrap: break-word;
@@ -1666,8 +1663,7 @@ a.actor-notes-tab:hover {
 
 .items-spells {
   display: grid;
-  grid-template-columns: 12em 3em 5em 10em 3em;
-  gap: 1px;
+  grid-template-columns: 30% 15% 15% 30% 10%;
   grid-template-areas:
     '. . . . .';
   word-wrap: break-word;
@@ -1675,8 +1671,7 @@ a.actor-notes-tab:hover {
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1.5em 13.5em 5em 2.5em 5.8em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 15% 10% 15% 15%;
   grid-template-areas:
     '. . . . . .';
 }
@@ -1706,7 +1701,7 @@ a.actor-notes-tab:hover {
 
 .skill-list {
   padding: 0.3em 0.5em;
-  width: 34.2em;
+  width: 98%;
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
@@ -1717,7 +1712,7 @@ a.actor-notes-tab:hover {
   display: flex;
   flex-direction: row-reverse;
   margin-right: 10px;
-  width: 34.2em;
+  width: 98%;
 }
 
 .add-skill {
@@ -1736,8 +1731,8 @@ a.actor-notes-tab:hover {
 }
 
 .skill {
-  padding: 0.1em 0 0.1em 0.5em;
-  width: 34.2em;
+  padding: 0.1em 0 0.1em 0;
+  width: 98%;
 }
 
 a:hover, a.active {
@@ -1755,7 +1750,7 @@ a:hover, a.active {
 
 .skill-header {
   cursor: pointer;
-  width: 34.2em
+  width: 98%;
 }
 
 /* Style overrides */
@@ -1817,7 +1812,7 @@ input.item-value-edit, input.joat-skill-input {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
+  grid-template-columns: 5% 34% 10% 13% 10% 10% 7% 10%;
   grid-template-rows: 1fr;
   gap: 1px;
 }
@@ -3133,7 +3128,7 @@ select.form-input, input.form-input, span.form-input {
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   /* padding: 0; */
-  width: 96%;
+  width: 94%;
   /* height: 30px; */
   text-align: right;
 }
@@ -3918,7 +3913,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-top: inset;
   text-align: center;
   padding-top: 8px;
-  width: 35em;
+  width: 98%;
 }
 
 .prosemirror .editor-container .editor-content {
@@ -3975,18 +3970,18 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 3ch 19ch 14ch 10ch 7ch;
+  grid-template-columns: 8% 30% 25% 25% 11%;
   grid-template-areas:
     '. . . . .';
   padding: inherit;
   align-items: center;
-  grid-gap: 4px;
   min-height: 4ch;
+  gap: 1px;
+  width: 99%
 }
 
 .effect:nth-of-type(even) {
-  background: var(--s2d6-skill-list-even);
-  width: fit-content;
+  background: var(--s2d6-skill-list-even)
 }
 
 .revised-partial {
