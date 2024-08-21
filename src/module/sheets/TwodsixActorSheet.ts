@@ -90,7 +90,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
       showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
-      Infinity: Infinity
+      Infinity: Infinity,
+      showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),
+      showConsumablesList: game.settings.get('twodsix', 'showConsumablesList')
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {

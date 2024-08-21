@@ -117,6 +117,7 @@
         "Amount": "Amount",
         "ARMOR": "ARMOR",
         "ATTACHMENTS": "ATTACHMENTS",
+        "Attachments": "Attachments",
         "AUGMENTS": "AUGMENTS",
         "Augments": "Augments",
         "Ammo": "Ammo",
@@ -1504,6 +1505,14 @@
       "defaultActorSheetHeight": {
         "hint": "The default Traveller sheet height when opening after startup - in pixels. WARNING: changing this setting will reload the world.",
         "name": "Default Height of Traveller Sheet"
+      },
+      "showAttachmentsList": {
+        "hint": "Automatically expand attachments lists for items on the Traveller sheet.",
+        "name": "Display Item Attachment Lists on Traveller Sheet"
+      },
+      "showConsumablesList": {
+        "hint": "Automatically expand consumables lists for items on the Traveller sheet.",
+        "name": "Display Item Consumables Lists on Traveller Sheet"
       }
     },
     "CloseAndCreateNew": "Close and create new",

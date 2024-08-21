@@ -66,6 +66,8 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(booleanSetting('showItemIconsInChat', true));
     settings.actor.push(numberSetting('defaultActorSheetWidth', 900, false, 'world', refreshWindow));
     settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
+    settings.actor.push(booleanSetting('showAttachmentsList', false));
+    settings.actor.push(booleanSetting('showConsumablesList', false));
     return settings;
   }
 }
