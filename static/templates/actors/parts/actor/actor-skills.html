@@ -48,7 +48,7 @@
       {{else}}
       <details class="skill-details" data-parent-key="{{@key}}">
       {{/if}}
-        <summary class="header-row">{{@key}}</summary>
+        <summary class="skill header-row">{{@key}}</summary>
         <div class="item-list">
           {{#each_sort_item this as |item id|}}
             {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
@@ -60,7 +60,7 @@
 {{#if settings.hideUntrainedSkills}}
   {{#if settings.showSkillGroups}}
   <div>
-    <summary class="header-row">{{twodsix_titleCase untrainedSkill.name}}</summary>
+    <summary class="skill header-row">{{twodsix_titleCase untrainedSkill.name}}</summary>
   </div>
   {{/if}}
   <div class="item skill" data-item-id="{{untrainedSkill.id}}" >

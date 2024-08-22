@@ -1630,6 +1630,7 @@ a.actor-notes-tab:hover {
   border-color: var(--s2d6-default-color);
   width: 98%;
   margin-bottom: -1px;
+  padding-left: 2px;
 }
 
 .items-armor {
@@ -1659,6 +1660,7 @@ a.actor-notes-tab:hover {
   grid-template-areas:
     '. . . .';
   word-wrap: break-word;
+  padding-left: 2px;
 }
 
 .items-spells {
@@ -2035,7 +2037,7 @@ span.total-output {
 
 .info-container {
   display: grid;
-  /*grid-template-columns: 33.6em;*/
+  grid-template-columns: 98%;
   grid-template-rows: 10em 2em 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
@@ -3841,8 +3843,6 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
-  width: -webkit-fill-available;
-  width: -moz-available;
   padding-bottom: 2px;
   border: solid;
 }
