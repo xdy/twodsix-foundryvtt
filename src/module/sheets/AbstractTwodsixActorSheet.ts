@@ -119,7 +119,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
         html.find('.roll-damage').on('click', onRollDamage.bind(this));
       }
-      //add hooks to allow skill levels consumable counts to be updated on skill and equipment tabs, repectively
+      //add hooks to allow skill levels and consumable counts to be updated on skill and equipment tabs, repectively
       html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
       html.find(".item-value-edit").on("click", (event) => {
         $(event.currentTarget).trigger("select");
@@ -359,7 +359,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
               // Create toggle states
               if (!Object.hasOwn(actor.system.displaySkillGroup, groupLabel)) {
-                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: true});
+                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: false});
               }
             }
             skillsList.push(item);
@@ -470,7 +470,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (this.token?.combatant?.id) {
-      //@ts-ignore
+      //@ts-expect-error FVTT Object not included currently
       game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
     } else {
       this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});

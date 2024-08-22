@@ -23,9 +23,9 @@
   </span>
 </div>
 
-<section class="item-list">
+<div class="item-list">
   <div class="skill" draggable="false">
-    <span class="fixed-item skill-container">
+    <span class="fixed-item">
       <ol class="ol-no-indent">
         <li class="fixed-item flexrow" data-item-id="{{joat-skill-input}}" style="margin-bottom: 0.01px;">
           <span class="skill-container">
@@ -43,26 +43,24 @@
     {{/each_sort_item}}
   {{else}}
     {{#each container.skillGroups}}
-      <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}">
-        <ol class="ol-no-indent header-row">
-          {{@key}} {{#unless (lookup ../actor.system.displaySkillGroup @key)}}<i class="fa-solid fa-eye"></i>{{else}}<i class="fa-solid fa-eye-slash" ></i>{{/unless}}
-        </ol>
-      </div>
       {{#if (lookup ../actor.system.displaySkillGroup @key)}}
-      <div class="item-list grid-columns-single">
-        {{#each_sort_item this as |item id|}}
-          {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
-        {{/each_sort_item}}
-      </div>
+      <details class="skill-details" data-parent-key="{{@key}}" open>
+      {{else}}
+      <details class="skill-details" data-parent-key="{{@key}}">
       {{/if}}
+        <summary class="skill header-row">{{@key}}</summary>
+        <div class="item-list">
+          {{#each_sort_item this as |item id|}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
+          {{/each_sort_item}}
+        </div>
+      </details>
     {{/each}}
   {{/unless}}
 {{#if settings.hideUntrainedSkills}}
   {{#if settings.showSkillGroups}}
-  <div class="grid-columns-single-row skill-header" style="cursor: auto;">
-    <ol class="ol-no-indent header-row">
-      {{twodsix_titleCase untrainedSkill.name}}
-    </ol>
+  <div>
+    <summary class="skill header-row">{{twodsix_titleCase untrainedSkill.name}}</summary>
   </div>
   {{/if}}
   <div class="item skill" data-item-id="{{untrainedSkill.id}}" >
@@ -80,7 +78,7 @@
     </ol>
   </div>
 {{/if}}
-</section>
+</div>
 
 
 {{#if settings.showSkillCountsRanks}}

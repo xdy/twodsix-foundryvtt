@@ -90,7 +90,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
       showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
-      Infinity: Infinity
+      Infinity: Infinity,
+      showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),
+      showConsumablesList: game.settings.get('twodsix', 'showConsumablesList')
     };
 
     returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
@@ -156,7 +158,7 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     //Consumable Toggling
     html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
     //Skill list toggling
-    html.find(".skill-header").on("click", this._onSkillHeaderToggle.bind(this));
+    html.find(".skill-details").on("click", this._onSkillHeaderToggle.bind(this));
   }
 
   /**
@@ -330,8 +332,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   private async _onSkillHeaderToggle(event): Promise<void> {
     const parentKey: string = $(event.currentTarget).data("parentKey");
     if (parentKey) {
-      this.actor.system.displaySkillGroup[parentKey] = !this.actor.system.displaySkillGroup[parentKey];
-      this.render(false);
+      //this.actor.system.displaySkillGroup[parentKey] = !this.actor.system.displaySkillGroup[parentKey];
+      this.actor.update({[`system.displaySkillGroup.${parentKey}`]: !this.actor.system.displaySkillGroup[parentKey]});
+      //this.render(false);
     }
   }
 }

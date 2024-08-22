@@ -1120,19 +1120,19 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 3em 2em 4em 4em 6em;
-  gap: 1px;
+  grid-template-columns: 5% 33% 6% 6% 11% 12% 13% 14%;
   grid-template-areas:
     '. . . . . . . .';
+  width: 98%;
 }
 
 .gear-header {
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
-  padding-left: 0.5em;
   padding-top: 2px;
   padding-bottom: 2px;
-  width: fit-content;
+  padding-left: 2px;
+  width: 98%;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -1141,60 +1141,64 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .gear {
   border: 1px solid var(--s2d6-background-semi-opaque);
-  padding-left: 0.4em;
-  width: fit-content;
+  width: 98%;
   margin-bottom: -1px;
+  padding-left: 2px;
 }
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.7em 13.5em 3em 3em 3.5em 4em 5em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 10% 10% 10% 11% 14%;
   grid-template-areas:
     '. . . . .';
+  width: 98%;
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.7em 10.5em 1.6em 1.6em 10.5em 4em 4em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 5% 10% 25% 10% 15%;
   grid-template-areas:
     '. . . . . . .';
+  width: 98%;
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.7em 12em 2em 2em 12em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 10% 10% 30% 15%;
   grid-template-areas:
     '. . . . . .';
+  width: 98%;
 }
 
 .items-traits {
   display: grid;
-  grid-template-columns: 11em 3em 16em 3em;
-  gap: 1px;
+  grid-template-columns: 35% 15% 40% 10%;
   grid-template-areas:
     '. . . .';
   word-wrap: break-word;
+  width: 98%;
 }
 
 .items-spells {
   display: grid;
-  grid-template-columns: 10em 3em 5em 12em 3em;
-  gap: 1px;
+  grid-template-columns: 30% 15% 15% 30% 10%;
   grid-template-areas:
     '. . . . .';
   word-wrap: break-word;
+  width: 98%;
 }
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1.7em 12.5em 6em 2.5em 7em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 15% 10% 15% 15%;
   grid-template-areas:
     '. . . . . .';
 }
+
+.attachment-list, .consumable-list {
+  margin-left: 5%;
+}
+
 
 /*-------Skill Tab-----------*/
 .initiative {
@@ -1216,7 +1220,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   background-color: var(--s2d6-background-nearly-opaque);
   color: var(--s2d6-app-color);
   /*font-weight: bold;*/
-  width: fit-content;
+  width: 98%;
 }
 
 .skill-top-row {
@@ -1236,7 +1240,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill {
   /* padding: 0.1em 0 0.1em 0.1em; */
-  width: 35em;
+  width: 98%;
 }
 
 /*a:hover, a.active {
@@ -1317,7 +1321,7 @@ input.item-value-edit, input.joat-skill-input {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 2em 13em 3.3em 4.5em 3em 2.8em 2em 4em;
+  grid-template-columns: 5% 34% 10% 13% 10% 10% 7% 10%;
   grid-template-rows: 1fr;
   gap: 1px;
 }
@@ -1520,7 +1524,7 @@ span.total-output {
 
 .info-container {
   display: grid;
-  /*grid-template-columns: 33.6em;*/
+  grid-template-columns: 98%;
   grid-template-rows: 10em 2em 11em 12em 19em;
   gap: 30px 1px;
   grid-template-areas:
@@ -3076,9 +3080,7 @@ form .form-group > label {
   color: var(--s2d6-item-hover);
   background-color: var(--s2d6-backgroun-semi-opaque);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-background-opaque), var(--s2d6-input-background));
-  width: -webkit-fill-available;
-  width: -moz-available;
-  /* border-right: 1px solid var(--s2d6-form-light); */
+  border: 1px solid var(--s2d6-form-light);
 }
 /* ------ WEBCAM Settings ------ */
 /*

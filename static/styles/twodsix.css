@@ -1203,7 +1203,7 @@ span.bgi-charEdit {
   justify-content: center;
   grid-area: character-characteristics;
   overflow: auto hidden;
-  margin-left: 7%;
+  margin-left: 8%;
   /* padding-top: 1ch; */
   gap: 1ch 0;
 }
@@ -1487,7 +1487,7 @@ svg:hover {
 }
 
 .character-tabs-info.character-inventory {
-  width: 97%;
+  width: 100%;
   overflow: auto;
 }
 
@@ -1607,8 +1607,7 @@ a.actor-notes-tab:hover {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 2.6em 1.6em 4em 4em 5.5em;
-  gap: 1px;
+  grid-template-columns: 5% 33% 6% 6% 11% 12% 13% 14%;
   grid-template-areas:
     '. . . . . . . .';
 }
@@ -1617,10 +1616,8 @@ a.actor-notes-tab:hover {
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
-  padding-left: 0.3em;
-  margin-right: 0.5em;
   overflow-x: visible;
-  width: fit-content;
+  width: 98%;
 }
 
 .advanced-settings-checkbox-wrapper {
@@ -1631,49 +1628,44 @@ a.actor-notes-tab:hover {
   border: solid;
   border-width: 1px;
   border-color: var(--s2d6-default-color);
-  padding-left: 0.3em;
-  margin-right: 0.5em;
-  width: fit-content;
+  width: 98%;
   margin-bottom: -1px;
+  padding-left: 2px;
 }
 
 .items-armor {
   display: grid;
-  grid-template-columns: 1.5em 12.5em 3.5em 3.5em 3.5em 4em 4em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 10% 10% 10% 11% 14%;
   grid-template-areas:
     '. . . . . . .';
 }
 
 .items-augments {
   display: grid;
-  grid-template-columns: 1.5em 10.5em 1.6em 1.6em 9.5em 4em 4em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 5% 10% 25% 10% 15%;
   grid-template-areas:
     '. . . . . . .';
 }
 
 .items-equipment {
   display: grid;
-  grid-template-columns: 1.5em 11.5em 1.6em 1.6em 12em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 30% 10% 10% 30% 15%;
   grid-template-areas:
     '. . . . . .';
 }
 
 .items-traits {
   display: grid;
-  grid-template-columns: 14em 3em 13em 3em;
-  gap: 1px;
+  grid-template-columns: 35% 15% 40% 10%;
   grid-template-areas:
     '. . . .';
   word-wrap: break-word;
+  padding-left: 2px;
 }
 
 .items-spells {
   display: grid;
-  grid-template-columns: 12em 3em 5em 10em 3em;
-  gap: 1px;
+  grid-template-columns: 30% 15% 15% 30% 10%;
   grid-template-areas:
     '. . . . .';
   word-wrap: break-word;
@@ -1681,10 +1673,13 @@ a.actor-notes-tab:hover {
 
 .items-consumable {
   display: grid;
-  grid-template-columns: 1.5em 13.5em 5em 2.5em 5.8em 4.5em;
-  gap: 1px;
+  grid-template-columns: 5% 40% 15% 10% 15% 15%;
   grid-template-areas:
     '. . . . . .';
+}
+
+.attachment-list, .consumable-list {
+  margin-left: 5%;
 }
 
 /*-------Skill Tab-----------*/
@@ -1708,7 +1703,7 @@ a.actor-notes-tab:hover {
 
 .skill-list {
   padding: 0.3em 0.5em;
-  width: 34.2em;
+  width: 98%;
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
@@ -1719,7 +1714,7 @@ a.actor-notes-tab:hover {
   display: flex;
   flex-direction: row-reverse;
   margin-right: 10px;
-  width: 34.2em;
+  width: 98%;
 }
 
 .add-skill {
@@ -1738,8 +1733,8 @@ a.actor-notes-tab:hover {
 }
 
 .skill {
-  padding: 0.1em 0 0.1em 0.5em;
-  width: 34.2em;
+  padding: 0.1em 0;
+  width: 98%;
 }
 
 a:hover, a.active {
@@ -1757,7 +1752,7 @@ a:hover, a.active {
 
 .skill-header {
   cursor: pointer;
-  width: 34.2em
+  width: 98%;
 }
 
 /* Style overrides */
@@ -1819,7 +1814,7 @@ input.item-value-edit, input.joat-skill-input {
 
 .skill-container {
   display: grid;
-  grid-template-columns: 1.5em 12em 3.3em 4.5em 3em 2.8em 2em 4em;
+  grid-template-columns: 5% 34% 10% 13% 10% 10% 7% 10%;
   grid-template-rows: 1fr;
   gap: 1px;
 }
@@ -2042,7 +2037,7 @@ span.total-output {
 
 .info-container {
   display: grid;
-  /*grid-template-columns: 33.6em;*/
+  grid-template-columns: 98%;
   grid-template-rows: 10em 2em 12em 13em 19em;
   gap: 30px 1px;
   grid-template-areas:
@@ -2059,7 +2054,7 @@ span.total-output {
   /* margin-top: 6ch; */
   height: 100%;
   overflow: auto;
-  padding-left: 2ch;
+  padding: 0 2ch;
   /* margin-top: 3ch; */
   width: 98%;
 }
@@ -3012,6 +3007,7 @@ button.flexrow.flex-group-center.toggle-skills {
 
 .mini-dice {
   align-self: center;
+  text-align: center;
 }
 
 /*--- Item Page ---*/
@@ -3134,7 +3130,7 @@ select.form-input, input.form-input, span.form-input {
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   /* padding: 0; */
-  width: 96%;
+  width: 94%;
   /* height: 30px; */
   text-align: right;
 }
@@ -3842,13 +3838,13 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   margin: 0.2em 0;
 }
 
-.header-row{
+.header-row {
   text-align: center;
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
-  width: -webkit-fill-available;
-  width: -moz-available;
+  padding-bottom: 2px;
+  border: solid;
 }
 /* ------ WEBCAM Settings ------ */
 /*
@@ -3919,7 +3915,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-top: inset;
   text-align: center;
   padding-top: 8px;
-  width: 35em;
+  width: 98%;
 }
 
 .prosemirror .editor-container .editor-content {
@@ -3976,18 +3972,18 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 3ch 19ch 14ch 10ch 7ch;
+  grid-template-columns: 8% 30% 25% 25% 11%;
   grid-template-areas:
     '. . . . .';
   padding: inherit;
   align-items: center;
-  grid-gap: 4px;
   min-height: 4ch;
+  gap: 1px;
+  width: 99%
 }
 
 .effect:nth-of-type(even) {
-  background: var(--s2d6-skill-list-even);
-  width: fit-content;
+  background: var(--s2d6-skill-list-even)
 }
 
 .revised-partial {
