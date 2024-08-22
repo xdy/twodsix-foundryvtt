@@ -1,3 +1,10 @@
+## [5.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.6.0...v5.6.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* Improve scaling changes for Traveller Sheet and add collapsable attachments([#1619](https://github.com/xdy/twodsix-foundryvtt/issues/1619)) ([e633fa1](https://github.com/xdy/twodsix-foundryvtt/commit/e633fa1cf326a9a39544f00b212e94f1ed128afc))
+
 # [5.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.5.5...v5.6.0) (2024-08-20)
 
 
