@@ -359,7 +359,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
               // Create toggle states
               if (!Object.hasOwn(actor.system.displaySkillGroup, groupLabel)) {
-                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: true});
+                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: false});
               }
             }
             skillsList.push(item);
@@ -470,7 +470,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     if (this.token?.combatant?.id) {
-      //@ts-ignore
+      //@ts-expect-error FVTT Object not included currently
       game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
     } else {
       this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});

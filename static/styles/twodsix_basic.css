@@ -3083,7 +3083,7 @@ form .form-group > label {
   background-image: radial-gradient(circle farthest-side, var(--s2d6-background-opaque), var(--s2d6-input-background));
   width: -webkit-fill-available;
   width: -moz-available;
-  /* border-right: 1px solid var(--s2d6-form-light); */
+  border: 1px solid var(--s2d6-form-light);
 }
 /* ------ WEBCAM Settings ------ */
 /*

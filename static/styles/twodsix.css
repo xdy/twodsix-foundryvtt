@@ -3836,13 +3836,15 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   margin: 0.2em 0;
 }
 
-.header-row{
+.header-row {
   text-align: center;
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-background-opaque);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-default-color), var(--s2d6-background-semi-opaque));
   width: -webkit-fill-available;
   width: -moz-available;
+  padding-bottom: 2px;
+  border: solid;
 }
 /* ------ WEBCAM Settings ------ */
 /*
