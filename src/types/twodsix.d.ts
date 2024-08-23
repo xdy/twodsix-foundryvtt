@@ -150,6 +150,7 @@ declare global {
       'twodsix.defaultCompendiumPartial': string;
       'twodsix.showTLonItemsTab': boolean;
       'twodsix.omitPSIifZero': boolean;
+      'twodsix.omitALTifZero': boolean;
       'twodsix.rangeModifierType': string;
       'twodsix.equippedToggleStates': string;
       'twodsix.targetDMList': string;

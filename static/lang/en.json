@@ -1462,6 +1462,10 @@
         "hint": "Does not display PSI characteristic if value set to zero.",
         "name": "Omit PSI from actor sheets if value zero"
       },
+      "omitALTifZero": {
+        "hint": "Does not display ALT characteristic if value set to zero.",
+        "name": "Omit Alternative from actor sheets if value zero"
+      },
       "rangeModifierType": {
         "hint": "Type of modifier to use for ranged weapons. Single Range Value (e.g. XX, for MgT2). Double Range Value (e.g. XX/YY for CD, CDEE, CQ, etc.). Range Bands by weapon type (e.g. 'Shotgun' for CE and MgT1).",
         "name": "Range Modifier Types for Weapons"
