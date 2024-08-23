@@ -390,15 +390,14 @@ export function getDisplayOrder(returnData: any): string[] {
       const altList = ['alternative1', 'alternative2', 'alternative3'];
       if (charMode === 'alternate') {
         altList.pop();
+      } else {
+        altList.push('psionicStrength');
       }
+
       for (const key of altList) {
-        if (returnData.system.characteristics[key].value !== 0 || !game.settings.get('twodsix', 'omitALTifZero')) {
+        const displaySetting = key === 'psionicStrength' ? game.settings.get('twodsix', 'omitPSIifZero') : game.settings.get('twodsix', 'omitALTifZero');
+        if (returnData.system.characteristics[key].value !== 0 || !displaySetting) {
           returnValue.push(key);
-        }
-      }
-      if (charMode === 'all') {
-        if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
-          returnValue.push('psionicStrength');
         }
       }
       break;
