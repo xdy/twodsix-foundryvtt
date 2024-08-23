@@ -354,9 +354,12 @@ export class TwodsixNPCSheet extends TwodsixActorSheet {
 
 export function setCharacteristicDisplay(returnData: object): void {
   const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
-  returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode);
-  returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode);
-  returnData.system.characteristics.alternative3.displayChar = ['all'].includes(charMode);
+  returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode) &&
+        (returnData.system.characteristics.alternative1.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
+  returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode) &&
+        (returnData.system.characteristics.alternative2.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
+  returnData.system.characteristics.alternative3.displayChar = ['all'].includes(charMode) &&
+        (returnData.system.characteristics.alternative3.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   returnData.system.characteristics.dexterity.displayChar = true;
   returnData.system.characteristics.education.displayChar = true;
   returnData.system.characteristics.endurance.displayChar = true;
@@ -382,14 +385,23 @@ export function getDisplayOrder(returnData: any): string[] {
       }
       break;
     case 'alternate':
-      returnValue.push('alternative1', 'alternative2');
-      break;
     case 'all':
-      returnValue.push('alternative1', 'alternative2', 'alternative3');
-      if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
-        returnValue.push('psionicStrength');
+    {
+      const altList = ['alternative1', 'alternative2', 'alternative3'];
+      if (charMode === 'alternate') {
+        altList.pop();
+      } else {
+        altList.push('psionicStrength');
+      }
+
+      for (const key of altList) {
+        const displaySetting = key === 'psionicStrength' ? game.settings.get('twodsix', 'omitPSIifZero') : game.settings.get('twodsix', 'omitALTifZero');
+        if (returnData.system.characteristics[key].value !== 0 || !displaySetting) {
+          returnValue.push(key);
+        }
       }
       break;
+    }
     default:
       break;
   }
