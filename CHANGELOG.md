@@ -1,3 +1,10 @@
+# [5.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.6.1...v5.7.0) (2024-08-23)
+
+
+### Features
+
+* add setting to omit alt characteristics that are zero ([#1620](https://github.com/xdy/twodsix-foundryvtt/issues/1620)) ([51844d3](https://github.com/xdy/twodsix-foundryvtt/commit/51844d36fd4104b3d885f3d815bd6e47206de83e))
+
 ## [5.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.6.0...v5.6.1) (2024-08-22)
 
 
