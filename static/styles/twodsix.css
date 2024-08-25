@@ -4089,3 +4089,109 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   line-height: 2ch;
   width: auto;
 }
+
+/*  Battle Sheet */
+
+.battle-content-container {
+  display: grid;
+  grid-template-columns: 24% 24% 48%;
+  grid-template-rows: 10% 30% 35%;
+  grid-template-areas:
+    "battle-name-photo battle-status-container battle-damage-container"
+    "battle-operations-container battle-defence-container battle-damage-container"
+    "battle-weapons-container battle-weapons-container battle-damage-container";
+  gap: 1%;
+}
+
+.battle-name-photo {
+  grid-area: battle-name-photo;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.battle-photo {
+  object-fit: contain;
+}
+
+.battle-status-container {
+  grid-area: battle-status-container;
+}
+
+.battle-damage-container {
+  grid-area: battle-damage-container;
+}
+
+.battle-damage {
+  display: grid;
+  grid-template-columns: 48% 10% 20% 10%;
+  grid-template-areas: '. . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-weapons-container {
+  grid-area: battle-weapons-container;
+}
+
+.battle-weapons {
+  display: grid;
+  grid-template-columns: 30% 8% 25% 8% 10% 20%;
+  grid-template-areas: '. . . . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-operations-container {
+  grid-area: battle-operations-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-defence-container {
+  grid-area: battle-defence-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
+.battle-operations-container, .battle-defence-container {
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-background-nearly-opaque);
+  border-width: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.battle-storage-header {
+  /* border: 0 1px solid var(--s2d6-default-color); */
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
+  position: sticky;
+  top:0%;
+  z-index: 20;
+  width: 100%;
+  height: 3ch;
+  padding-top: 0.5ch;
+  margin-top: 1ch;
+}
+
+.battle-name {
+  text-align: center;
+}
+
+input.battle-input {
+  width:  5ch;
+  text-align: right;
+}
+
+input.red {
+  color: var(--s2d6-damage-red);
+}
+
+.battle-status-icons {
+  padding-top: 2ch;
+  padding-left: 1ch;
+}

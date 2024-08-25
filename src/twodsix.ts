@@ -34,6 +34,7 @@ import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
 import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
+import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -88,6 +89,12 @@ Hooks.once('init', async function () {
     types: ["ship"],
     label: "Ship Sheet",
     makeDefault: true,
+  });
+
+  Actors.registerSheet("twodsix", TwodsixBattleSheet, {
+    types: ["ship"],
+    label: "Battle Sheet",
+    makeDefault: false,
   });
 
   Actors.registerSheet("twodsix", TwodsixVehicleSheet, {

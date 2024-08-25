@@ -752,7 +752,9 @@
         "PILOT": "PILOT",
         "STEWARD": "STEWARD"
       },
+      "Damage": "Damage",
       "Deckplan": "Deck Plan",
+      "Defense": "Defense",
       "DeleteAction": "Delete Action",
       "Displacement": "Displacement",
       "Drives": "Drives",
@@ -781,6 +783,7 @@
       "Name": "Name",
       "NewAction": "New Action",
       "NoActorsForAction": "No actor available for action",
+      "Operations": "Operations",
       "Order": "Order",
       "Overdrive": "Overdrive",
       "Parsecs": "Parsecs",

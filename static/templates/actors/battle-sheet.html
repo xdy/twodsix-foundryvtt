@@ -1,0 +1,165 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="battle-content-container">
+    <div class="battle-name-photo">
+      <div class="battle-name">
+        <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
+      </div>
+    </div>
+
+    <div class="battle-status-container">
+      <span class="item-title-npc">{{localize "TWODSIX.Items.Component.status"}}</span>
+      {{#unless limited}}
+      <div class="battle-status-icons">
+        {{#each summaryStatus}}
+            {{#iff @key "!==" "cargo"}}
+            {{#iff @key "!==" "otherInternal"}}
+            {{#iff @key "!==" "otherExternal"}}
+            {{#iff @key "!==" "mount"}}
+            {{#iff @key "!==" "vehicle"}}
+            {{#iff @key "!==" "software"}}
+              <span class="status-component" data-uuid="{{this.uuid}}"
+                {{#iff this.status "===" 'operational'}} style="color: green;"
+                {{else iff this.status "===" 'damaged'}} style="color: yellow;"
+                {{else iff this.status "===" 'destroyed'}} style="color: red;"
+                {{else iff this.status "===" 'off'}} style="color: grey;"
+                {{/iff}}">
+                  <i class= '{{twodsix_getComponentIcon @key}}'></i>
+              </span>
+            {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+        {{/each}}
+      </div>
+      {{/unless}}
+    </div>
+
+    <div class="battle-damage-container">
+      <span class="item-title-npc">{{localize "TWODSIX.Ship.Damage"}}</span>
+      <div class="battle-storage-header">
+        <div class="battle-damage">
+          <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.Hardened"}}'>{{localize "TWODSIX.Items.Component.Hd"}}</span>
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.numberHits"}}'>{{localize "TWODSIX.Items.Component.hits"}}</span>
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.opStatus"}}'>{{localize "TWODSIX.Items.Component.status"}}</span>
+        </div>
+      </div>
+      <div class="item-list">
+        {{#each_sort_item container.nonCargo as |item id|}}
+          <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
+            <ol class="ol-no-indent">
+              <li class="battle-damage">
+                <span class="item-name"><i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i> {{item.name}}</span>
+                <span class="item-name centre">{{#if item.system.hardened}}<i class="fa-solid fa-gem"></i>{{else}}&mdash;{{/if}}</span>
+                <span class="item-name centre">{{item.system.hits}}
+                  <span class="combined-buttons" data-field="hits">
+                    <button class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                    <button class="right-button adjust-counter" {{#iff item.system.hits "===" settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+                  </span>
+                </span>
+                <span class="item-name centre" >
+                  <span class="component-toggle" data-type="status">
+                    {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
+                    {{else}}
+                      {{#iff item.system.status "===" 'damaged'}} <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
+                    {{else}}
+                      {{#iff item.system.status "===" 'destroyed'}} <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
+                    {{else}}
+                      {{#iff item.system.status "===" 'off'}} <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
+                    {{/iff}} {{/iff}} {{/iff}} {{/iff}}
+                  </span>
+                </span>
+              </li>
+            </ol>
+          </div>
+          {{/each_sort_item}}
+      </div>
+    </div>
+
+    <div class="battle-weapons-container">
+      <span class="item-title-npc">{{localize "TWODSIX.Ship.Weapons"}}</span>
+      <div class="battle-storage-header">
+        <div class="battle-weapons">
+          <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.techLevel"}}'>{{localize "TWODSIX.Actor.Items.TL"}}</span>
+          {{#if settings.showComponentRating}}
+          <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+          {{/if}}
+          {{#if settings.showComponentDM}}
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.diceModifier"}}'>{{localize "TWODSIX.Items.Component.DM"}}</span>
+          {{/if}}
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.Quantity"}}'>{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+          <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.AttackDamage"}}'>{{localize "TWODSIX.Items.Component.damage"}}</span>
+        </div>
+      </div>
+      <div class="item-list">
+        {{#each_sort_item container.nonCargo as |item id|}}
+          {{#iff item.system.subtype "===" "armament"}}
+            <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
+              <ol class="ol-no-indent">
+                <li class="battle-weapons">
+                  <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
+                  <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
+                  {{#if settings.showComponentRating}}
+                  <span class="item-name centre">{{#iff item.system.rating "!==" ""}}{{item.system.rating}}{{else}}&mdash;{{/iff}}</span>
+                  {{/if}}
+                  {{#if settings.showComponentDM}}
+                  <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
+                  {{/if}}
+
+                  {{#iff item.system.ammunition.max "!==" 0}}
+                    <span class="item-name centre">{{item.system.ammunition.value}}
+                      <span class="combined-buttons" data-field="ammo">
+                        <button class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                        <button class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
+                      </span>
+                    </span>
+                  {{else}}
+                    <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+                  {{/iff}}
+
+                  <span class="item-name centre">
+                    {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+                  </span>
+                  {{#if item.system.isPopup}}
+                    <span class="component-toggle" data-type="popup">
+                      {{#if item.system.isExtended}}<i class="fa-solid fa-square-caret-up" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.extended"}}'></i>{{else}}<i class="fa-solid fa-square-caret-down" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.retracted"}}'></i>{{/if}}
+                    </span>
+                  {{/if}}
+                </li>
+              </ol>
+            </div>
+          {{/iff}}
+        {{/each_sort_item}}
+
+      </div>
+    </div>
+
+    <div class="battle-operations-container">
+      <span class="item-title-npc">{{localize "TWODSIX.Ship.Operations"}}</span>
+      <div>
+        {{localize "TWODSIX.Ship.Thrust"}}: <input type="number" value="{{actor.system.shipStats.drives.mDrive.rating}}" name="system.shipStats.drives.mDrive.rating" class="battle-input" placeholder="0" min="0" max="15" step="1"/> {{localize "TWODSIX.Ship.Gs"}}
+      </div>
+      <div>
+        {{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="system.shipStats.drives.overdrive" {{checked actor.system.shipStats.drives.overdrive}} data-dtype="Boolean"/>
+      </div>
+      {{#if settings.showBandwidth}}
+        <div>
+          {{localize "TWODSIX.Items.Consumable.Bandwidth"}}: <input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" {{#if settings.useShipAutoCalc}}readonly{{/if}} class="battle-input"/>/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" {{#if settings.useShipAutoCalc}}readonly{{/if}} class="battle-input"/>
+          <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
+        </div>
+      {{/if}}
+      <div>
+        <span >{{localize "TWODSIX.Ship.Power"}}</span>
+        {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
+          <input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input red"/>
+        {{else}}
+          <input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input"/>
+        {{/iff}}
+        /<input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input"/>
+        <span class="small-font">{{localize "TWODSIX.Ship.USED"}}/{{localize "TWODSIX.Ship.MAX"}}</span>
+      </div>
+    </div>
+
+    <div class="battle-defence-container">
+      <span class="item-title-npc">{{localize "TWODSIX.Ship.Defense"}}</span>
+    </div>
+  </div>
+</form>
