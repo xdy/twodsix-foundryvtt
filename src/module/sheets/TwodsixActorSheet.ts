@@ -158,7 +158,10 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     //Consumable Toggling
     html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
     //Skill list toggling
-    html.find(".skill-details").on("click", this._onSkillHeaderToggle.bind(this));
+    html.find(".skill-header").on("click", this._onSkillHeaderToggle.bind(this));
+    /*html.find('.attachment-list').on('click', (event) => {
+      console.log(event);
+    });*/
   }
 
   /**
