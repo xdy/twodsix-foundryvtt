@@ -15,13 +15,13 @@
     </button>
     {{/with}}
     <span class="item-controls centre">
-      <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
         {{#iff isSelected '===' consumableId}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
         {{else}}
           data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
         {{/iff}}> <i class="fa-solid fa-circle-check"></i>
-      </span>
+      </a>
       <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
     </span>
   </span>
@@ -35,13 +35,13 @@
     {{/if}}
     <span class="item-controls centre">
       {{#iff system.subtype "===" "software"}}
-      <span class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
         {{#if system.softwareActive}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"
         {{else}}
           data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOff'}}"
         {{/if}}> <i class="fa-solid fa-power-off"></i>
-      </span>
+      </a>
       {{/iff}}
       <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
     </span>
