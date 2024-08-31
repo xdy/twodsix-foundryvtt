@@ -87,10 +87,10 @@
                 <li class="battle-weapons">
                   <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
                   <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
-                  {{#if settings.showComponentRating}}
+                  {{#if ../settings.showComponentRating}}
                   <span class="item-name centre">{{#iff item.system.rating "!==" ""}}{{item.system.rating}}{{else}}&mdash;{{/iff}}</span>
                   {{/if}}
-                  {{#if settings.showComponentDM}}
+                  {{#if ../settings.showComponentDM}}
                   <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
                   {{/if}}
 
