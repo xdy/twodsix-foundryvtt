@@ -142,7 +142,7 @@ function displayTable(uuid: string, table:any, tableName: string): string {
                   <td>${result.text}</td>
               </tr>`;
       }
-    } else if (result.documentCollection == "Item") {
+    } else if (result.documentCollection == "Item" && result.documentId) {
       html += `</td>
               <td>@UUID[Item.${result.documentId}]{${result.text}}</td>
           </tr>`;
