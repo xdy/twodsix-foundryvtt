@@ -1480,7 +1480,7 @@ span.total-output {
   padding: 1em;
 }
 
-.item-title, .item-title-npc,  .item-title-vehicle {
+.item-title, .item-title-npc,  .item-title-vehicle, .item-title-battle {
   min-height: 3ch;
   display: block;
   color: var(--s2d6-app-color);
@@ -1797,7 +1797,7 @@ img.ship-mask-bg {
   align-items: center;
 }
 
-.ship-armor-name textarea {
+.ship-armor-name textarea, .battle-armor-name textarea  {
   border: 2px solid;
   border-radius: 1ch !important;
   text-align: center;

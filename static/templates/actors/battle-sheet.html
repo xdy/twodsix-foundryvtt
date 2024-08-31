@@ -4,35 +4,25 @@
       <div class="battle-name">
         <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
       </div>
+      {{#iff actor.system.deckPlan "!==" ""}}
+        <div style="text-align: center;">
+          <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+          <a class="item-control ship-deck-unlink" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+        </div>
+      {{/iff}}
     </div>
 
     <div class="battle-status-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Items.Component.status"}}</span>
+      <span class="item-title-battle">{{localize "TWODSIX.Items.Component.status"}}</span>
       {{#unless limited}}
       <div class="battle-status-icons">
-        {{#each summaryStatus}}
-            {{#iff @key "!==" "cargo"}}
-            {{#iff @key "!==" "otherInternal"}}
-            {{#iff @key "!==" "otherExternal"}}
-            {{#iff @key "!==" "mount"}}
-            {{#iff @key "!==" "vehicle"}}
-            {{#iff @key "!==" "software"}}
-              <span class="status-component" data-uuid="{{this.uuid}}"
-                {{#iff this.status "===" 'operational'}} style="color: green;"
-                {{else iff this.status "===" 'damaged'}} style="color: yellow;"
-                {{else iff this.status "===" 'destroyed'}} style="color: red;"
-                {{else iff this.status "===" 'off'}} style="color: grey;"
-                {{/iff}}">
-                  <i class= '{{twodsix_getComponentIcon @key}}'></i>
-              </span>
-            {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
-        {{/each}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-status.html"}}
       </div>
       {{/unless}}
     </div>
 
     <div class="battle-damage-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Ship.Damage"}}</span>
+      <span class="item-title-battle">{{localize "TWODSIX.Ship.Damage"}}</span>
       <div class="battle-storage-header">
         <div class="battle-damage">
           <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
@@ -74,7 +64,7 @@
     </div>
 
     <div class="battle-weapons-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Ship.Weapons"}}</span>
+      <span class="item-title-battle">{{localize "TWODSIX.Ship.Weapons"}}</span>
       <div class="battle-storage-header">
         <div class="battle-weapons">
           <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
@@ -133,20 +123,19 @@
     </div>
 
     <div class="battle-operations-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Ship.Operations"}}</span>
-      <div>
+      <span class="item-title-battle">{{localize "TWODSIX.Ship.Operations"}}</span>
+      <div class="battle-operations">
         {{localize "TWODSIX.Ship.Thrust"}}: <input type="number" value="{{actor.system.shipStats.drives.mDrive.rating}}" name="system.shipStats.drives.mDrive.rating" class="battle-input" placeholder="0" min="0" max="15" step="1"/> {{localize "TWODSIX.Ship.Gs"}}
       </div>
-      <div>
+      <div class="battle-operations">
         {{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="system.shipStats.drives.overdrive" {{checked actor.system.shipStats.drives.overdrive}} data-dtype="Boolean"/>
       </div>
       {{#if settings.showBandwidth}}
-        <div>
+        <div class="battle-operations">
           {{localize "TWODSIX.Items.Consumable.Bandwidth"}}: <input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" {{#if settings.useShipAutoCalc}}readonly{{/if}} class="battle-input"/>/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" {{#if settings.useShipAutoCalc}}readonly{{/if}} class="battle-input"/>
-          <span class="small-font">{{localize "TWODSIX.Damage.Current"}}/{{localize "TWODSIX.Damage.Max"}}</span>
         </div>
       {{/if}}
-      <div>
+      <div class="battle-operations">
         <span >{{localize "TWODSIX.Ship.Power"}}</span>
         {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
           <input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input red"/>
@@ -154,12 +143,28 @@
           <input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input"/>
         {{/iff}}
         /<input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input"/>
-        <span class="small-font">{{localize "TWODSIX.Ship.USED"}}/{{localize "TWODSIX.Ship.MAX"}}</span>
+        <span class="small-font">{{localize "TWODSIX.Ship.PP"}}</span>
       </div>
     </div>
 
     <div class="battle-defence-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Ship.Defense"}}</span>
+      <span class="item-title-battle">{{localize "TWODSIX.Ship.Defense"}}</span>
+      <div class="battle-hull">
+        <span class="hull-label">{{localize "TWODSIX.Vehicle.Hull"}}:</span>
+        <span class="battle-hull">
+          <input class="battle-input" type="number" value="{{actor.system.shipStats.hull.value}}" name="system.shipStats.hull.value" placeholder="0" min="0" max="{{actor.system.shipStats.hull.max}}" step = "1"/>/<input type="number" value="{{actor.system.shipStats.hull.max}}" name="system.shipStats.hull.max" placeholder="0" min="0" step="1"/>
+        </span>
+      </div>
+      <div class="battle-armor">
+        <div class="battle-armor-value">
+          <span>{{localize "TWODSIX.Items.Armor.Armor"}}:</span>
+          <input class="battle-input" type="number" value="{{actor.system.shipStats.armor.value}}" name="system.shipStats.armor.value" placeholder="0" max = "{{actor.system.shipStats.armor.max}}" min = "0" step="1"/>/
+          <input class="battle-input" type="number" value="{{actor.system.shipStats.armor.max}}" name="system.shipStats.armor.max" placeholder="0" min="0" step="1"/>
+        </div>
+        <div class="battle-armor-name">
+          <textarea type="text" name="system.shipStats.armor.name" value="{{actor.system.shipStats.armor.name}}">{{~actor.system.shipStats.armor.name~}}</textarea>
+        </div>
+      </div>
     </div>
   </div>
 </form>

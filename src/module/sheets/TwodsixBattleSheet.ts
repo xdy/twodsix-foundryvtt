@@ -12,7 +12,7 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
 
   static get defaultOptions():ActorSheet.Options {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "ship", "actor"],
+      classes: ["twodsix", "battle", "actor"],
       template: "systems/twodsix/templates/actors/battle-sheet.html",
       width: 850,
       height: 700,
