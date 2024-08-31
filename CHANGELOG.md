@@ -1,3 +1,10 @@
+## [5.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.7.0...v5.7.1) (2024-08-31)
+
+
+### Bug Fixes
+
+* skill header and consumable toggle bugs ([#1621](https://github.com/xdy/twodsix-foundryvtt/issues/1621)) ([a9bd64a](https://github.com/xdy/twodsix-foundryvtt/commit/a9bd64a99e17e1f7fea68b78c283f3655cc0510d))
+
 # [5.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.6.1...v5.7.0) (2024-08-23)
 
 
