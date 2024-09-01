@@ -4121,7 +4121,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-damage {
   display: grid;
-  grid-template-columns: 38% 10% 20% 10% 10%;
+  grid-template-columns: 45% 10% 20% 10% 10%;
   grid-template-areas: '. . . . .';
   width: 100%;
   padding-left: 2px;

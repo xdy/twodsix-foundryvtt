@@ -63,6 +63,11 @@
                       {{#iff item.system.status "===" 'off'}} <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
                     {{/iff}} {{/iff}} {{/iff}} {{/iff}}
                   </span>
+                  {{#if item.system.isPopup}}
+                    <span class="component-toggle" data-type="popup">
+                      {{#if item.system.isExtended}}<i class="fa-solid fa-square-caret-up" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.extended"}}'></i>{{else}}<i class="fa-solid fa-square-caret-down" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.retracted"}}'></i>{{/if}}
+                    </span>
+                  {{/if}}
                 </span>
                 <span class="item-controls centre">
                   <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
@@ -122,11 +127,6 @@
                   <span class="item-name centre">
                     {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
                   </span>
-                  {{#if item.system.isPopup}}
-                    <span class="component-toggle" data-type="popup">
-                      {{#if item.system.isExtended}}<i class="fa-solid fa-square-caret-up" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.extended"}}'></i>{{else}}<i class="fa-solid fa-square-caret-down" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.retracted"}}'></i>{{/if}}
-                    </span>
-                  {{/if}}
                 </li>
               </ol>
             </div>
