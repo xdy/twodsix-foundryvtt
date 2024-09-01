@@ -516,6 +516,7 @@
         "availableQuantity": "Available Quantity",
         "damage": "Damage",
         "RadiationDamage": "Radiation Damage",
+        "Rads": "Rads",
         "hits": "Hits",
         "SustainedHits": "Sustained Hits",
         "weightIsPct": "Weight is Percentage?",

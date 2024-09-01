@@ -38,7 +38,7 @@
   {{/if}}
   <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input name="system.encumbrance.value" style="text-align: right;"
       type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>/{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/>{{/if}}</span>
-  <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">Rads:<input name="system.radiationDose.value" style="text-align: right;"
+  <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize 'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
         type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
 
   <!-- Movement -->
