@@ -6,7 +6,15 @@ import { TwodsixShipSheet } from "./TwodsixShipSheet";
 export class TwodsixBattleSheet extends TwodsixShipSheet {
   /** @override */
   async getData() {
-    const context = super.getData();
+    const context = await super.getData();
+
+    // Reset autocalc values to _source values
+    if (game.settings.get("twodsix", "useShipAutoCalcs"))  {
+      context.actor.system.shipStats.bandwidth.value = this.actor.system._source.shipStats.bandwidth.value;
+      context.actor.system.shipStats.bandwidth.max = this.actor.system._source.shipStats.bandwidth.max;
+      context.actor.system.shipStats.power.value = this.actor.system._source.shipStats.power.value;
+      context.actor.system.shipStats.power.max = this.actor.system._source.shipStats.power.max;
+    }
     return context;
   }
 
