@@ -100,6 +100,7 @@
       "Stamina": "Stamina",
       "Endurance": "Endurance",
       "RadiationExposure": "Radiation Exposure",
+      "Rads": "Rads",
       "HomeWorld": "Home world",
       "Nationality": "Nationality",
       "Info": {
@@ -516,7 +517,6 @@
         "availableQuantity": "Available Quantity",
         "damage": "Damage",
         "RadiationDamage": "Radiation Damage",
-        "Rads": "Rads",
         "hits": "Hits",
         "SustainedHits": "Sustained Hits",
         "weightIsPct": "Weight is Percentage?",
@@ -757,6 +757,7 @@
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
+      "Designation": "Designation",
       "Displacement": "Displacement",
       "Drives": "Drives",
       "FINANCENOTES": "FINANCE NOTES",
