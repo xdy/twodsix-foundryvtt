@@ -105,28 +105,32 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         actorId = shipPosEl.find(".ship-position-actor-token.force-border").data("id");
       }
 
-      if (!actorId) {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
-        return null;
-      }
       const actionId = $(event.currentTarget).data("id");
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
-      const shipPosition = this.actor.items.get(shipPositionId);
-      const action = (<ShipPosition>shipPosition?.system)?.actions[actionId];
-      if (action) {
-        const component = this.actor.items.find(item => item.id === action.component);
-        const extra = {
-          actor: game.actors?.get(actorId),
-          ship: this.actor,
-          component: <TwodsixItem>component,
-          event: event,
-          actionName: action.name,
-          positionName: shipPosition?.name ?? "",
-          diceModifier: ""
-        };
+      this.performShipAction(shipPositionId, actorId, actionId);
+    }
+  }
 
-        TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
-      }
+  async performShipAction(positionId: string, actorId: string, actionId: string): Promise<any> {
+    if (!actorId) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
+      return null;
+    }
+    const shipPosition = this.actor.items.get(positionId);
+    const action = (<ShipPosition>shipPosition?.system)?.actions[actionId];
+    if (action) {
+      const component = this.actor.items.find(item => item.id === action.component);
+      const extra = {
+        actor: game.actors?.get(actorId),
+        ship: this.actor,
+        component: <TwodsixItem>component,
+        event: event,
+        actionName: action.name,
+        positionName: shipPosition?.name ?? "",
+        diceModifier: ""
+      };
+
+      TwodsixShipActions.availableMethods[action.type].action(action.command, extra);
     }
   }
 

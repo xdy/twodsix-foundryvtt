@@ -4095,11 +4095,12 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 20% 30% 45%;
+  grid-template-rows: 20% 30% 25% 20%;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
-    "battle-weapons-container battle-weapons-container battle-damage-container";
+    "battle-weapons-container battle-weapons-container battle-damage-container"
+    "battle-positions-container battle-positions-container battle-damage-container";
   gap: 1%;
 }
 
@@ -4152,7 +4153,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
-.battle-operations-container, .battle-defence-container {
+.battle-operations-container, .battle-defence-container, .battle-positions-container {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -4213,4 +4214,14 @@ input.red {
 .battle-deckplan {
   text-align: center;
   padding-top: 2ch;
+}
+
+.battle-positions-container {
+  grid-area: battle-positions-container;
+}
+
+.battle-positions {
+  display: grid;
+  grid-template-columns: 30% 30% 25% 10%;
+  padding-left: 1%;
 }

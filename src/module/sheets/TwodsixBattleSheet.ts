@@ -15,6 +15,29 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
       context.actor.system.shipStats.power.value = this.actor.system._source.shipStats.power.value;
       context.actor.system.shipStats.power.max = this.actor.system._source.shipStats.power.max;
     }
+
+    //Build Position Data context
+    const positionData = [];
+    for (const position of this.actor.itemTypes.ship_position) {
+      const actions = {};
+      let defaultAction = "";
+      for (const action in position.system.actions) {
+        Object.assign(actions, {[action]: position.system.actions[action].name});
+        if (!defaultAction) {
+          defaultAction = action;
+        }
+      }
+      const actors = {};
+      let defaultActor = "";
+      for (const actor of position.system.actors) {
+        Object.assign(actors, {[actor.id]: actor.name});
+        if (!defaultActor) {
+          defaultActor = actor.id;
+        }
+      }
+      positionData.push({id: position.id, name: position.name, actions: actions, actors: actors, defaultActor: defaultActor, defaultAction: defaultAction});
+    }
+    Object.assign(context, {positionData: positionData});
     return context;
   }
 
@@ -30,5 +53,28 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
         {dragSelector: ".item", dropSelector: null}
       ]
     });
+  }
+
+  activateListeners(html:JQuery):void {
+    super.activateListeners(html);
+    html.find(".position-name").on("click", this._onPositionClick.bind(this));
+  }
+
+  _onPositionClick(event) {
+    if (event.currentTarget !== null) {
+      const li = $(event.currentTarget).parents(".item");
+      const selectedPositionId = li.data("itemId");
+      let selectedActorId = "";
+      let selectedActionId = "";
+      if (selectedPositionId) {
+        if ($(event.currentTarget).parent().find("[name='selectedActor']").length > 0) {
+          selectedActorId = $(event.currentTarget).parent().find("[name='selectedActor']")[0]?.value;
+        }
+        if ($(event.currentTarget).parent().find("[name='selectedAction']").length > 0) {
+          selectedActionId = $(event.currentTarget).parent().find("[name='selectedAction']")[0]?.value;
+        }
+      }
+      this.performShipAction(selectedPositionId, selectedActorId, selectedActionId);
+    }
   }
 }
