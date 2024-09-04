@@ -10,7 +10,7 @@ The following publishers have explicitly given us permission to support their pr
     * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/26694/far-future-enterprises-traveller)
     * Classic Traveller rules supported with permission.
 * [Mongoose Publishing](https://www.mongoosepublishing.com)
-    * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/26694/far-future-enterprises-traveller)
+    * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/45/mongoose)
     * Classic Traveller rules supported with permission.
 * [Corte Real](https://alphacepheirpg.com/)
     * Buy Alpha Cephei products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/28287/corte-real/category/50216/alpha-cephei)
