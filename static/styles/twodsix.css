@@ -4095,12 +4095,12 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 20% 30% 20% 25%;
+  grid-template-rows: 0.15fr 0.23fr 0.3fr 0.3fr;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
     "battle-weapons-container battle-weapons-container battle-damage-container"
-    "battle-positions-container battle-positions-container battle-damage-container";
+    "battle-positions-container battle-positions-container battle-cargo-container";
   gap: 1%;
 }
 
@@ -4153,7 +4153,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
-.battle-operations-container, .battle-defence-container, .battle-positions-container {
+.battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -4223,5 +4223,15 @@ input.red {
 .battle-positions {
   display: grid;
   grid-template-columns: 30% 30% 25% 10%;
+  padding-left: 1%;
+}
+
+.battle-cargo-container {
+  grid-area: battle-cargo-container;
+}
+
+.battle-cargo {
+  display: grid;
+  grid-template-columns: 40% 15% 15% 15% 10%;
   padding-left: 1%;
 }

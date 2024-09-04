@@ -50,7 +50,7 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
       classes: ["twodsix", "battle", "actor"],
       template: "systems/twodsix/templates/actors/battle-sheet.html",
       width: 850,
-      height: 700,
+      height: 730,
       resizable: true,
       scrollY: ["battle-content-container"],
       dragDrop: [
