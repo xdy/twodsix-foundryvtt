@@ -4134,7 +4134,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-weapons {
   display: grid;
-  grid-template-columns: 30% 8% 25% 8% 10% 18%;
+  grid-template-columns: 30% 8% 22% 8% 15% 15%;
   grid-template-areas: '. . . . . .';
   width: 100%;
   padding-left: 2px;
