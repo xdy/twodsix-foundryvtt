@@ -3306,7 +3306,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 0.17fr 0.23fr 0.3fr 0.3fr;
+  grid-template-rows: 14ch 0.3fr 0.34fr 0.34fr;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"

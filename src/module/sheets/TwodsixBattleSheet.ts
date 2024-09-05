@@ -42,6 +42,11 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
       positionData.push({id: position.id, name: position.name, actions: actions, actors: actors, defaultActor: defaultActor, defaultAction: defaultAction});
     }
     Object.assign(context, {positionData: positionData});
+
+    //Build filtered components data
+    const componentsToIgnore = game.settings.get('twodsix', 'componentsIgnored');
+    context.container.nonCargoForDamage = context.container.nonCargo?.filter( (comp) => !(componentsToIgnore.includes(comp.system.subtype)));
+
     return context;
   }
 

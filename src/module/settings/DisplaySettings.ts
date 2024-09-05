@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import AdvancedSettings from "./AdvancedSettings";
-import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting} from "./settingsUtils";
+import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting, arrayChoiceSetting} from "./settingsUtils";
 import {TWODSIX} from "../config";
 
 export default class DisplaySettings extends AdvancedSettings {
@@ -70,6 +70,9 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));
     settings.ship.push(booleanSetting('showCombatPosition', false));
+    const nonCargoTypes = TWODSIX.ComponentTypes;
+    delete nonCargoTypes.cargo;
+    settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
     return settings;
   }
 }

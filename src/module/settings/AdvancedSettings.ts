@@ -36,7 +36,7 @@ export default class AdvancedSettings extends FormApplication {
         } else if (setting.choices === "textarea") {
           setting.htmlType = "Textarea";
         } else if (setting.choices) {
-          setting.htmlType = "Select";
+          setting.htmlType = setting.type === Array ? "MultiSelect": "Select";
         } else {
           setting.htmlType = setting.type.name;
         }

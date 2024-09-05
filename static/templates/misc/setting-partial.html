@@ -23,6 +23,12 @@
         </select>
         {{/iff}}
 
+        {{#iff setting.htmlType "===" "MultiSelect"}}
+        <multi-select name="{{key}}" value="{{setting.value}}">
+          {{selectOptions setting.choices selected = setting.value localize = setting.localize}}
+        </multi-select>
+        {{/iff}}
+
         {{#iff setting.htmlType "===" "Boolean"}}
         <span class="advanced-settings-checkbox-wrapper">
             <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{#if setting.value}}checked{{/if}}>

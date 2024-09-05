@@ -7,7 +7,7 @@ function registerSetting(key, scope, config, defaultValue, type, onChange, choic
     hint: game.i18n.localize(`TWODSIX.Settings.${key}.hint`),
     scope: scope,
     config: config,
-    default: localize ? game.i18n.localize(defaultValue) : defaultValue,
+    default: localize && type !== Array ? game.i18n.localize(defaultValue) : defaultValue,
     type: type,
     onChange: onChange,
     choices: choices,
@@ -28,6 +28,11 @@ export function numberSetting(key: string, defaultValue: number, config = false,
 
 export function stringChoiceSetting(key: string, defaultValue: string, localize = false, choices, config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
   registerSetting(key.replace('.', ''), scope, config, defaultValue, String, onChange, choices, localize);
+  return key;
+}
+
+export function arrayChoiceSetting(key: string, defaultValue: string[], localize = false, choices, config = false, scope = 'world', onChange?: ((value: string) => void) | undefined): string {
+  registerSetting(key.replace('.', ''), scope, config, defaultValue, Array, onChange, choices, localize);
   return key;
 }
 

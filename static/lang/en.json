@@ -1527,6 +1527,10 @@
       "showCombatPosition": {
         "hint": "Show combat position value on Battle Sheet",
         "name": "Display Combat Position"
+      },
+      "componentsIgnored": {
+        "hint": "A list of non-cargo components to omit from 'Damage' section of Battle Sheet",
+        "name": "Components Ignored for Damage Tracking"
       }
     },
     "CloseAndCreateNew": "Close and create new",
