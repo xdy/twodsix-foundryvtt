@@ -1631,7 +1631,7 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 5ch 16% 15% 8% 53%;
+  grid-template-rows: 5ch 19% 14% 8% 51%;
   gap: 1px;
   grid-template-areas:
     "ship-image ship-name"

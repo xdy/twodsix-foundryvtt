@@ -55,6 +55,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
       showCost: game.settings.get('twodsix', 'showCost'),
+      showCombatPosition: game.settings.get('twodsix', 'showCombatPosition'),
       singleComponentClass: (`components-stored-single` +
                                 (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
                                 (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +

@@ -2298,7 +2298,7 @@ span.total-output {
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: 1.5ch;
-  height: 96%;
+  height: 98%;
   width: 99%;
   flex-direction: row;
   justify-content: space-evenly;

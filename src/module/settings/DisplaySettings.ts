@@ -69,6 +69,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
     settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));
+    settings.ship.push(booleanSetting('showCombatPosition', false));
     return settings;
   }
 }

@@ -738,6 +738,7 @@
       "CARGONOTES": "CARGO NOTES",
       "COMPONENTS": "COMPONENTS",
       "COMMONFUNDS": "COMMON FUNDS",
+      "CombatPosition": "Combat Position",
       "CreateAction": "Create Action",
       "Crew": {
         "ADMIN": "ADMINISTRATION",
@@ -1522,6 +1523,10 @@
       "showConsumablesList": {
         "hint": "Automatically expand consumables lists for items on the Traveller sheet.",
         "name": "Display Item Consumables Lists on Traveller Sheet"
+      },
+      "showCombatPosition": {
+        "hint": "Show combat position value on Battle Sheet",
+        "name": "Display Combat Position"
       }
     },
     "CloseAndCreateNew": "Close and create new",

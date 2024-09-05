@@ -163,6 +163,11 @@
         /<input type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input"/>
         <span class="small-font">{{localize "TWODSIX.Ship.PP"}}</span>
       </div>
+      {{#if settings.showCombatPosition}}
+        <div class="battle-operations">
+          {{localize "TWODSIX.Ship.CombatPosition"}}: <input type="number" value="{{actor.system.combatPosition}}" name="system.combatPosition" placeholder="0" step = "1" class="battle-input"/>
+        </div>
+      {{/if}}
     </div>
 
     <div class="battle-defence-container">

@@ -25,6 +25,12 @@
         {{localize "TWODSIX.Ship.Gs"}}
       </span>
     </div>
+    {{#if settings.showCombatPosition}}
+      <div>
+        <span><p>{{localize "TWODSIX.Ship.CombatPosition"}}</p></span>
+        <span><input type="number" value="{{actor.system.combatPosition}}" name="system.combatPosition" placeholder="0" step = "1"/></span>
+      </div>
+    {{/if}}
   </div>
   <div class="ship-fuel">
     <div>

@@ -161,6 +161,7 @@ declare global {
       'twodsix.showTotalArmor': boolean;
       'twodsix.showItemIconsInChat': boolean;
       'twodsix.chainBonus': string;
+      'twodsix.showCombatPosition': boolean;
     }
   }
 }

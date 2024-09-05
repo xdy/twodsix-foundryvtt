@@ -90,7 +90,7 @@ export class ShipData extends TwodsixVehicleBaseData {
       }),
       bandwidth: makeResourceField(0, 0)
     });
-
+    schema.combatPosition = new fields.NumberField({ ...requiredInteger, initial: 0 });
     return schema;
   }
 }
