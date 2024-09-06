@@ -1,3 +1,10 @@
+# [5.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.7.1...v5.8.0) (2024-09-06)
+
+
+### Features
+
+* add battle sheet ([#1625](https://github.com/xdy/twodsix-foundryvtt/issues/1625)) ([9de95ee](https://github.com/xdy/twodsix-foundryvtt/commit/9de95ee0437a2c942f5dd814707ac33ae93558ea))
+
 ## [5.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.7.0...v5.7.1) (2024-08-31)
 
 
