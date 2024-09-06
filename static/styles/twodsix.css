@@ -28,6 +28,7 @@
 
 :root {
   --s2d6-default-color: rgba(41, 170, 225, 1);
+  --s2d6-battle-color: var(--s2d6-default-color);
   --s2d6-light-color: rgba(0, 229, 255, 1);
   --s2d6-window-color: rgba(86, 148, 175, 1);
   --s2d6-background-transparent: rgba(0, 0, 0, 0);
@@ -2000,7 +2001,7 @@ span.total-output {
   /* align-items: center; */
 }
 
-.item-title-npc, .item-title-vehicle {
+.item-title-npc, .item-title-vehicle, .item-title-battle {
   height: 3ch;
   width: 20ch;
   display: block;
@@ -2298,7 +2299,7 @@ span.total-output {
   grid-template-areas:
     "ship-mass ship-drives ship-fuel ship-hull ship-armor";
   font-size: 1.5ch;
-  height: 96%;
+  height: 98%;
   width: 99%;
   flex-direction: row;
   justify-content: space-evenly;
@@ -2321,7 +2322,7 @@ span.total-output {
   /* align-self: center; */
 }
 
-.ship-armor-name textarea {
+.ship-armor-name textarea, .battle-armor-name textarea {
   border: solid;
   border-radius: 1ch;
   border-color: var(--s2d6-default-color);
@@ -4088,4 +4089,177 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   justify-content: start;
   line-height: 2ch;
   width: auto;
+}
+
+/*  Battle Sheet */
+
+.battle-content-container {
+  display: grid;
+  grid-template-columns: 24% 24% 48%;
+  grid-template-rows: 14ch 0.3fr 0.34fr 0.34fr;
+  grid-template-areas:
+    "battle-name-photo battle-status-container battle-damage-container"
+    "battle-operations-container battle-defence-container battle-damage-container"
+    "battle-weapons-container battle-weapons-container battle-damage-container"
+    "battle-positions-container battle-positions-container battle-cargo-container";
+  gap: 1%;
+  scrollbar-color: var(--s2d6-battle-color);
+  color: var(--s2d6-battle-color);
+  border-color: var(--s2d6-battle-color);
+}
+
+.battle-name-photo {
+  grid-area: battle-name-photo;
+}
+
+.battle-photo {
+  object-fit: contain;
+}
+
+.battle-status-container {
+  grid-area: battle-status-container;
+}
+
+.battle-damage-container {
+  grid-area: battle-damage-container;
+}
+
+.battle-damage {
+  display: grid;
+  grid-template-columns: 45% 10% 20% 10% 10%;
+  grid-template-areas: '. . . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-weapons-container {
+  grid-area: battle-weapons-container;
+}
+
+li.battle-damage button,  li.battle-weapons button{
+  border-color: var(--s2d6-battle-color);
+}
+
+.battle-weapons {
+  display: grid;
+  grid-template-columns: 30% 8% 22% 8% 15% 15%;
+  grid-template-areas: '. . . . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-operations-container {
+  grid-area: battle-operations-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-defence-container {
+  grid-area: battle-defence-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
+.battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-battle-color);
+  background-color: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-battle-color);
+  border-width: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: var(--s2d6-battle-color) !important;
+}
+
+.item-title-battle {
+  background-color: var(--s2d6-battle-color);
+}
+
+.battle-storage-header {
+  /* border: 0 1px solid var(--s2d6-default-color); */
+  background-color: var(--s2d6-battle-color);
+  color: var(--s2d6-item-active);
+  position: sticky;
+  top:0%;
+  z-index: 20;
+  width: 100%;
+  height: 3ch;
+  padding-top: 0.5ch;
+  margin-top: 1ch;
+}
+
+.battle-name {
+  text-align: center;
+}
+
+input.battle-input {
+  width:  5ch;
+  text-align: right;
+  color: var(--s2d6-battle-color);
+}
+
+input.red {
+  color: var(--s2d6-damage-red);
+}
+
+.battle-status-icons {
+  padding-top: 2ch;
+  padding-left: 1ch;
+}
+
+.battle-armor {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.battle-hull, .battle-armor-value, .battle-operations {
+  display: inline-flex;
+  padding: 0 2px;
+  align-items: center;
+  gap: 1ch;
+}
+
+.battle-armor-name {
+  padding: 2px 1ch;
+}
+
+.battle-armor-name textarea {
+  color: var(--s2d6-battle-color);
+  border-color: var(--s2d6-battle-color);
+}
+
+.battle-name input {
+  color: var(--s2d6-battle-color);
+}
+
+.battle-deckplan {
+  text-align: center;
+  padding-top: 2ch;
+}
+
+.battle-positions-container {
+  grid-area: battle-positions-container;
+}
+
+.battle-positions {
+  display: grid;
+  grid-template-columns: 30% 30% 25% 10%;
+  padding-left: 1%;
+}
+
+.battle-positions select {
+  color: var(--s2d6-battle-color);
+}
+
+.battle-cargo-container {
+  grid-area: battle-cargo-container;
+}
+
+.battle-cargo {
+  display: grid;
+  grid-template-columns: 40% 15% 15% 15% 10%;
+  padding-left: 1%;
 }

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import AdvancedSettings from "./AdvancedSettings";
-import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting} from "./settingsUtils";
+import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting, arrayChoiceSetting} from "./settingsUtils";
 import {TWODSIX} from "../config";
 
 export default class DisplaySettings extends AdvancedSettings {
@@ -52,6 +52,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.general.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     settings.general.push(colorSetting('damageStatColor', "#b52c2c", "Color", false, 'world', changeDamageColor));
+    settings.general.push(colorSetting('battleColor', "#29aae1", "Color", false, 'world', changeBattleColor));
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
@@ -69,6 +70,10 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
     settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));
+    settings.ship.push(booleanSetting('showCombatPosition', false));
+    const nonCargoTypes = TWODSIX.ComponentTypes;
+    delete nonCargoTypes.cargo;
+    settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
     return settings;
   }
 }
@@ -82,6 +87,13 @@ export const changeDefaultColor = function () {
     game.settings.set('twodsix', 'defaultColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+};
+
+export const changeBattleColor = function () {
+  if (game.settings.get('twodsix', 'battleColor') === "") {
+    game.settings.set('twodsix', 'battleColor', "#29aae1");
+  }
+  document.documentElement.style.setProperty('--s2d6-battle-color',  game.settings.get('twodsix', 'battleColor'));
 };
 
 export const changeLightColor = function () {

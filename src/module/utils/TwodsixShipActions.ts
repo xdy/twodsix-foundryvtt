@@ -33,7 +33,7 @@ export class TwodsixShipActions {
     [TWODSIX.SHIP_ACTION_TYPE.executeMacro]: <AvailableShipActionData>{
       action: TwodsixShipActions.executeMacro,
       name: "TWODSIX.Ship.ExecuteMacro",
-      placeholder: "TWODSIX.Ship.MacroPlaceholder",
+      placeholder: "TWODSIX.Ship.macroPlaceholder",
       tooltip: "TWODSIX.Ship.MacroTooltip"
     }
   };

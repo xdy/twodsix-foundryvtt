@@ -1480,7 +1480,7 @@ span.total-output {
   padding: 1em;
 }
 
-.item-title, .item-title-npc,  .item-title-vehicle {
+.item-title, .item-title-npc,  .item-title-vehicle, .item-title-battle {
   min-height: 3ch;
   display: block;
   color: var(--s2d6-app-color);
@@ -1631,7 +1631,7 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 5ch 16% 15% 8% 53%;
+  grid-template-rows: 5ch 19% 14% 8% 51%;
   gap: 1px;
   grid-template-areas:
     "ship-image ship-name"
@@ -1797,7 +1797,7 @@ img.ship-mask-bg {
   align-items: center;
 }
 
-.ship-armor-name textarea {
+.ship-armor-name textarea, .battle-armor-name textarea  {
   border: 2px solid;
   border-radius: 1ch !important;
   text-align: center;
@@ -3299,4 +3299,150 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   top: 0;
   width: auto;
   margin-bottom: 3ch;
+}
+
+/*  Battle Sheet */
+
+.battle-content-container {
+  display: grid;
+  grid-template-columns: 24% 24% 48%;
+  grid-template-rows: 14ch 0.3fr 0.34fr 0.34fr;
+  grid-template-areas:
+    "battle-name-photo battle-status-container battle-damage-container"
+    "battle-operations-container battle-defence-container battle-damage-container"
+    "battle-weapons-container battle-weapons-container battle-damage-container"
+    "battle-positions-container battle-positions-container battle-cargo-container";
+  gap: 1%;
+}
+
+.battle-name-photo {
+  grid-area: battle-name-photo;
+}
+
+.battle-photo {
+  object-fit: contain;
+}
+
+.battle-status-container {
+  grid-area: battle-status-container;
+}
+
+.battle-damage-container {
+  grid-area: battle-damage-container;
+}
+
+.battle-damage {
+  display: grid;
+  grid-template-columns: 45% 10% 20% 10% 10%;
+  grid-template-areas: '. . . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-weapons-container {
+  grid-area: battle-weapons-container;
+}
+
+.battle-weapons {
+  display: grid;
+  grid-template-columns: 30% 8% 22% 8% 15% 15%;
+  grid-template-areas: '. . . . . .';
+  width: 100%;
+  padding-left: 2px;
+}
+
+.battle-operations-container {
+  grid-area: battle-operations-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-defence-container {
+  grid-area: battle-defence-container;
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
+.battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+  /*background-color: var(--s2d6-background-nearly-opaque);*/
+  border-width: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.battle-storage-header {
+  /* border: 0 1px solid var(--s2d6-default-color); */
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-app-color);
+  position: sticky;
+  top:0%;
+  z-index: 20;
+  width: 100%;
+  height: 3ch;
+  padding-top: 0.5ch;
+  margin-top: 1ch;
+}
+
+.battle-name {
+  text-align: center;
+}
+
+input.battle-input {
+  width:  5ch;
+  text-align: right;
+}
+
+input.red {
+  color: var(--s2d6-damage-red);
+}
+
+.battle-status-icons {
+  padding-top: 2ch;
+  padding-left: 1ch;
+}
+
+.battle-armor {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.battle-hull, .battle-armor-value, .battle-operations {
+  display: inline-flex;
+  padding: 0 2px;
+  align-items: center;
+  gap: 1ch;
+}
+
+.battle-armor-name {
+  padding: 2px 1ch;
+}
+
+.battle-deckplan {
+  text-align: center;
+  padding-top: 2ch;
+}
+
+.battle-positions-container {
+  grid-area: battle-positions-container;
+}
+
+.battle-positions {
+  display: grid;
+  grid-template-columns: 30% 30% 25% 10%;
+  padding-left: 1%;
+}
+
+.battle-cargo-container {
+  grid-area: battle-cargo-container;
+}
+
+.battle-cargo {
+  display: grid;
+  grid-template-columns: 40% 15% 15% 15% 10%;
+  padding-left: 1%;
 }

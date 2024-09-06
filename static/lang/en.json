@@ -100,6 +100,7 @@
       "Stamina": "Stamina",
       "Endurance": "Endurance",
       "RadiationExposure": "Radiation Exposure",
+      "Rads": "Rads",
       "HomeWorld": "Home world",
       "Nationality": "Nationality",
       "Info": {
@@ -737,6 +738,7 @@
       "CARGONOTES": "CARGO NOTES",
       "COMPONENTS": "COMPONENTS",
       "COMMONFUNDS": "COMMON FUNDS",
+      "CombatPosition": "Combat Position",
       "CreateAction": "Create Action",
       "Crew": {
         "ADMIN": "ADMINISTRATION",
@@ -752,8 +754,11 @@
         "PILOT": "PILOT",
         "STEWARD": "STEWARD"
       },
+      "Damage": "Damage",
       "Deckplan": "Deck Plan",
+      "Defense": "Defense",
       "DeleteAction": "Delete Action",
+      "Designation": "Designation",
       "Displacement": "Displacement",
       "Drives": "Drives",
       "FINANCENOTES": "FINANCE NOTES",
@@ -781,6 +786,7 @@
       "Name": "Name",
       "NewAction": "New Action",
       "NoActorsForAction": "No actor available for action",
+      "Operations": "Operations",
       "Order": "Order",
       "Overdrive": "Overdrive",
       "Parsecs": "Parsecs",
@@ -1360,6 +1366,10 @@
         "hint": "Change the color of characteristic damage on the actor sheet. Delete value to reset.",
         "name": "Set Characteristic Damage Color"
       },
+      "battleColor": {
+        "hint": "Change the theme color for the shi battle sheet. Delete value to reset.",
+        "name": "Set Battle Sheet Color"
+      },
       "useItemActiveEffects": {
         "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
         "name": "Use Item Active Effects"
@@ -1517,6 +1527,14 @@
       "showConsumablesList": {
         "hint": "Automatically expand consumables lists for items on the Traveller sheet.",
         "name": "Display Item Consumables Lists on Traveller Sheet"
+      },
+      "showCombatPosition": {
+        "hint": "Show combat position value on Battle Sheet",
+        "name": "Display Combat Position"
+      },
+      "componentsIgnored": {
+        "hint": "A list of non-cargo components to omit from 'Damage' section of Battle Sheet",
+        "name": "Components Ignored for Damage Tracking"
       }
     },
     "CloseAndCreateNew": "Close and create new",
