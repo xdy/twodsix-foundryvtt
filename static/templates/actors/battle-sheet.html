@@ -39,7 +39,7 @@
           <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = {{@key}}> <i class="fa-solid fa-plus"></i></a></span>
         </div>
       </div>
-      <div class="item-list">
+      <div class="item-list battle">
         {{#each_sort_item container.nonCargoForDamage as |item id|}}
           <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
             <ol class="ol-no-indent">
@@ -98,7 +98,7 @@
           <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.AttackDamage"}}'>{{localize "TWODSIX.Items.Component.damage"}}</span>
         </div>
       </div>
-      <div class="item-list">
+      <div class="item-list battle">
         {{#each_sort_item container.nonCargo as |item id|}}
           {{#iff item.system.subtype "===" "armament"}}
             <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
@@ -200,7 +200,7 @@
           <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Ship.AddShipPosition"}}' data-type="position"> <i class="fa-solid fa-plus"></i></a></span>
         </div>
       </div>
-      <div class="item-list">
+      <div class="item-list battle">
         {{#each positionData as |position|}}
             <div class="grid-columns-single-row item" data-item-id="{{position.id}}">
               <ol class="ol-no-indent">
@@ -231,7 +231,7 @@
             class="fa-solid fa-plus"></i></a></span>
         </div>
       </div>
-      <div class="item-list">
+      <div class="item-list battle">
         {{#each_sort_item componentObject.cargo as |item id|}}
         <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">

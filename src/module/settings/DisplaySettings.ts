@@ -52,6 +52,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.general.push(colorSetting('defaultColor', "#29aae1", "Color", false, 'world', changeDefaultColor));
     settings.general.push(colorSetting('lightColor', "#00e5ff", "Color", false, 'world', changeLightColor));
     settings.general.push(colorSetting('damageStatColor', "#b52c2c", "Color", false, 'world', changeDamageColor));
+    settings.general.push(colorSetting('battleColor', "#29aae1", "Color", false, 'world', changeBattleColor));
     settings.general.push(booleanSetting('showHitsChangesInChat', false));
     settings.token.push(booleanSetting('reduceStatusIcons', false, false, "world", updateStatusIcons));
     settings.general.push(booleanSetting('useTabbedViews', false));
@@ -86,6 +87,13 @@ export const changeDefaultColor = function () {
     game.settings.set('twodsix', 'defaultColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+};
+
+export const changeBattleColor = function () {
+  if (game.settings.get('twodsix', 'battleColor') === "") {
+    game.settings.set('twodsix', 'battleColor', "#29aae1");
+  }
+  document.documentElement.style.setProperty('--s2d6-battle-color',  game.settings.get('twodsix', 'battleColor'));
 };
 
 export const changeLightColor = function () {

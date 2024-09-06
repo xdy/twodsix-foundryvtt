@@ -1366,6 +1366,10 @@
         "hint": "Change the color of characteristic damage on the actor sheet. Delete value to reset.",
         "name": "Set Characteristic Damage Color"
       },
+      "battleColor": {
+        "hint": "Change the theme color for the shi battle sheet. Delete value to reset.",
+        "name": "Set Battle Sheet Color"
+      },
       "useItemActiveEffects": {
         "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
         "name": "Use Item Active Effects"

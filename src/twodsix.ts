@@ -190,6 +190,7 @@ Hooks.once('init', async function () {
   if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
     document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
     document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
+    document.documentElement.style.setProperty('--s2d6-battle-color', game.settings.get('twodsix', 'battleColor'));
   }
   document.documentElement.style.setProperty('--s2d6-damage-stat-color', game.settings.get('twodsix', 'damageStatColor'));
 

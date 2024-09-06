@@ -28,6 +28,7 @@
 
 :root {
   --s2d6-default-color: rgba(41, 170, 225, 1);
+  --s2d6-battle-color: var(--s2d6-default-color);
   --s2d6-light-color: rgba(0, 229, 255, 1);
   --s2d6-window-color: rgba(86, 148, 175, 1);
   --s2d6-background-transparent: rgba(0, 0, 0, 0);
@@ -4102,6 +4103,9 @@ multi-select.select.target-modifier div.tags.input-element-tags {
     "battle-weapons-container battle-weapons-container battle-damage-container"
     "battle-positions-container battle-positions-container battle-cargo-container";
   gap: 1%;
+  scrollbar-color: var(--s2d6-battle-color);
+  color: var(--s2d6-battle-color);
+  border-color: var(--s2d6-battle-color);
 }
 
 .battle-name-photo {
@@ -4132,6 +4136,10 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   grid-area: battle-weapons-container;
 }
 
+li.battle-damage button,  li.battle-weapons button{
+  border-color: var(--s2d6-battle-color);
+}
+
 .battle-weapons {
   display: grid;
   grid-template-columns: 30% 8% 22% 8% 15% 15%;
@@ -4156,16 +4164,22 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
   border-style: solid;
   border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border-color: var(--s2d6-battle-color);
   background-color: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-battle-color);
   border-width: 2px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-color: var(--s2d6-battle-color) !important;
+}
+
+.item-title-battle {
+  background-color: var(--s2d6-battle-color);
 }
 
 .battle-storage-header {
   /* border: 0 1px solid var(--s2d6-default-color); */
-  background-color: var(--s2d6-default-color);
+  background-color: var(--s2d6-battle-color);
   color: var(--s2d6-item-active);
   position: sticky;
   top:0%;
@@ -4183,6 +4197,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 input.battle-input {
   width:  5ch;
   text-align: right;
+  color: var(--s2d6-battle-color);
 }
 
 input.red {
@@ -4211,6 +4226,15 @@ input.red {
   padding: 2px 1ch;
 }
 
+.battle-armor-name textarea {
+  color: var(--s2d6-battle-color);
+  border-color: var(--s2d6-battle-color);
+}
+
+.battle-name input {
+  color: var(--s2d6-battle-color);
+}
+
 .battle-deckplan {
   text-align: center;
   padding-top: 2ch;
@@ -4224,6 +4248,10 @@ input.red {
   display: grid;
   grid-template-columns: 30% 30% 25% 10%;
   padding-left: 1%;
+}
+
+.battle-positions select {
+  color: var(--s2d6-battle-color);
 }
 
 .battle-cargo-container {
