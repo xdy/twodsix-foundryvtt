@@ -5,7 +5,7 @@ The following publishers have explicitly given us permission to support their pr
     * Fairly well supported in Twodsix already, but see https://github.com/xdy/twodsix-foundryvtt/issues/458 for the current status.
 * [Independence Games](https://independencerpgs.com/)
     * Buy Clement Sector products at [Drivethrurpg](https://www.drivethrurpg.com/browse/pub/3565/Independence-Games/subcategory/6213_31067/Clement-Sector)
-    * At the time of writing, Twodsix has not yet added support for Clement Sector, but see https://github.com/xdy/twodsix-foundryvtt/issues/459 for the current status.
+    * We have permission to support Clement Sector, but at the time of writing, Twodsix has not yet added support for Clement Sector, but see https://github.com/xdy/twodsix-foundryvtt/issues/459 for the current status.
 * [Far Future Enterprises](https://www.farfuture.net)
     * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/26694/far-future-enterprises-traveller)
     * Classic Traveller rules supported with permission.
@@ -17,4 +17,5 @@ The following publishers have explicitly given us permission to support their pr
     * Alpha Cephei rules supported with permission.
 * [Zozer Games](https://www.paulelliottbooks.com/)
     * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/3743/zozer-games)
-    * Cepheus Universal rules supported with permission.
+    * We have permission to support Cepheus Universal, but at the time of writing, Twodsix has not yet added support for Cepheus Universal, but see [https://github.com/xdy/twodsix-foundryvtt/issues/459](https://github.com/xdy/twodsix-foundryvtt/issues/1576) for the current status.
+    
