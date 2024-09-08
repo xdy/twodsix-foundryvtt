@@ -13,5 +13,8 @@ The following publishers have explicitly given us permission to support their pr
     * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/45/mongoose)
     * Classic Traveller rules supported with permission.
 * [Corte Real](https://alphacepheirpg.com/)
-    * Buy Alpha Cephei products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/28287/corte-real/category/50216/alpha-cephei)
+    * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/28287/corte-real/category/50216/alpha-cephei)
     * Alpha Cephei rules supported with permission.
+* [Zozer Games](https://www.paulelliottbooks.com/)
+    * Buy their products at [Drivethrurpg](https://www.drivethrurpg.com/en/publisher/3743/zozer-games)
+    * Cepheus Universal rules supported with permission.
