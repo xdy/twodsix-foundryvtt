@@ -1,3 +1,10 @@
+## [5.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.0...v5.8.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* Localization style and ES updates ([#1629](https://github.com/xdy/twodsix-foundryvtt/issues/1629)) ([7b1ddfe](https://github.com/xdy/twodsix-foundryvtt/commit/7b1ddfed4cd3fae23fbc9f0268c4d40b85721d47))
+
 # [5.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.7.1...v5.8.0) (2024-09-06)
 
 
