@@ -1,5 +1,9 @@
 .items-weapons {
-	grid-template-columns: 1.5em 11.5em 1.6em 2.7em 2.2em 3.8em 3.6em 5.5em;
+	grid-template-columns: 5% 30% 6% 7% 11% 12% 13% 16%;
+}
+
+.items-armor {
+  grid-template-columns: 5% 38% 10% 10% 10% 15% 12%;
 }
 
 .ship-mass, .ship-drives,.ship-fuel, .ship-hull-bandwidth, .ship-armor {
@@ -59,4 +63,12 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 
 .add-skill {
   width: 14ch;
+}
+
+.skill-tab {
+  min-width: 12ch;
+}
+
+.consumable-row .refill-button {
+  width: 12ch;
 }

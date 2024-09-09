@@ -37,9 +37,17 @@ a.ship-notes-tab, a.ship-notes-tab.active, a.ship-notes-tab:hover {
 }
 
 .items-weapons {
-  grid-template-columns: 1.5em 11em 1.9em 2.5em 2em 4em 4em 5.5em;
+	grid-template-columns: 5% 30% 6% 7% 11% 12% 13% 16%;
+}
+
+.items-armor {
+  grid-template-columns: 5% 38% 10% 10% 10% 15% 12%;
 }
 
 .item-title-npc {
   width: 21ch;
+}
+
+.consumable-row .refill-button {
+  width: 12ch;
 }
