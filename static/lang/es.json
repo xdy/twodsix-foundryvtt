@@ -100,6 +100,7 @@
       "Stamina": "Aguante",
       "Endurance": "Resistencia",
       "RadiationExposure": "Exposición Radiación",
+      "Rads": "Rads",
       "HomeWorld": "Planeta Natal",
       "Nationality": "Nacionalidad",
       "Info": {
@@ -117,6 +118,7 @@
         "Amount": "Cantidad",
         "ARMOR": "ARMADURA",
         "ATTACHMENTS": "ACCESORIOS",
+        "Attachments": "Accesorios",
         "AUGMENTS": "AUMENTOS",
         "Augments": "Aumentos",
         "Ammo": "Cargador",
@@ -164,7 +166,7 @@
         "Value": "Precio",
         "WEAPONS": "ARMAS",
         "Weapons": "Armas",
-        "Weight": "KG"
+        "Weight": "Masa"
       },
       "Notes": {
         "NOTES": "NOTAS DEL PERSONAJE",
@@ -736,6 +738,7 @@
       "CARGONOTES": "NOTAS CARGA",
       "COMPONENTS": "COMPONENTES",
       "COMMONFUNDS": "FONDO COMÚN",
+      "CombatPosition": "Posición Combate",
       "CreateAction": "Crear Acción",
       "Crew": {
         "ADMIN": "ADMINISTRADOR",
@@ -751,8 +754,11 @@
         "PILOT": "PILOTO",
         "STEWARD": "AUXILIAR"
       },
+      "Damage": "Daño",
       "Deckplan": "Mapa Planta",
+      "Defense": "Defensa",
       "DeleteAction": "Borrar Acción",
+      "Designation": "Denominación",
       "Displacement": "Desplazamiento",
       "Drives": "Motores",
       "FINANCENOTES": "NOTAS FINANZAS",
@@ -780,6 +786,7 @@
       "Name": "Nombre",
       "NewAction": "Nueva Acción",
       "NoActorsForAction": "Sin actor disponible para la acción",
+      "Operations": "Operaciones",
       "Order": "Orden",
       "Overdrive": "Sobrecarga",
       "Parsecs": "Parsecs",
@@ -1337,7 +1344,7 @@
       },
       "allowDragDropOfListsShip": {
         "hint": "Permitir mover mediante drag & drop los objetos de la lista de Naves y Vehículos, en vez de ordenar alfabéticamente.",
-        "name": "Permitir Drag & Drop en Lista Naves y Vehículos"
+        "name": "Permitir Arrastrar en Listas de Naves y Vehículos"
       },
       "useDodgeParry": {
         "hint": "Añadir un penalizador en la tirada que represente la habilidad de esquiva/parada. El objetivo debe seleccionarse y la habilidad del arma que actúa debe coincidir.",
@@ -1358,6 +1365,10 @@
       "damageStatColor": {
         "hint": "Cambiar el color del daño en atributos de la hoja de personaje. Borrar el valor para reiniciar.",
         "name": "Color Daño en Atributos"
+      },
+      "battleColor": {
+        "hint": "Cambiar el tema de color para la hoja de batalla de las naves. Borrar valor para reiniciar.",
+        "name": "Color de Hoja de Batalla"
       },
       "useItemActiveEffects": {
         "hint": "Utilizar Efectos Activos en Objetos. AVISO: puede resultar en comportamientos raros del sistema.",
@@ -1458,8 +1469,12 @@
         "name": "Mostrar Nivel Tecnología en Compendios y listas de Objetos"
       },
       "omitPSIifZero": {
-        "hint": "No mostrar atributo PSI si el valor es cero.",
-        "name": "Omitir PSI de la hoja con valor cero"
+        "hint": "Oculta el atributo de fuerza psiónica si el valor es cero.",
+        "name": "Omitir atributo PSI de la hoja si el valor es cero"
+      },
+      "omitALTifZero": {
+        "hint": "Oculta el atributo alternativo si el valor es cero.",
+        "name": "Omitir atributo ALT de la hoja si el valor es cero"
       },
       "rangeModifierType": {
         "hint": "Tipo de modificador a utilizar por armas a distancia. Valor Único (ej. XX, en MGT2E). Valor Doble (ej. XX/YY en CD, CDEE, CQ, etc.). Bandas de Rango por tipo arma (ej. 'Escopeta' en CE y MGT1E).",
@@ -1504,6 +1519,22 @@
       "defaultActorSheetHeight": {
         "hint": "Tamaño de pixeles inicial, en altura, para la hoja del personaje. AVISO: este cambio genera una recarga del mundo.",
         "name": "Alto por Defecto de la Hoja"
+      },
+      "showAttachmentsList": {
+        "hint": "Automáticamente expandir la lista de accesorios de los objetos en la Hoja.",
+        "name": "Mostrar Listado Accesorios en Hoja"
+      },
+      "showConsumablesList": {
+        "hint": "Automáticamente expandir la lista de consumibles de los objetos en la Hoja.",
+        "name": "Mostrar Listado Consumibles en Hoja"
+      },
+      "showCombatPosition": {
+        "hint": "Mostrar el valor de la posición de combate en la Hoja Batalla",
+        "name": "Mostrar Posición Combate"
+      },
+      "componentsIgnored": {
+        "hint": "Una lista de componentes no de carga a omitir de la sección 'Daño' de la Hoja Batalla",
+        "name": "Componentes Ignorados en Gestión Daño"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
