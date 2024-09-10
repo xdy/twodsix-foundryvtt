@@ -1199,6 +1199,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   margin-left: 5%;
 }
 
+.consumable {
+  text-align: center;
+}
 
 /*-------Skill Tab-----------*/
 .initiative {

@@ -3218,6 +3218,10 @@ select.form-input, input.form-input, span.form-input {
   cursor: pointer;
   color: var(--s2d6-nav-background);
 }
+
+.consumable {
+  text-align: center;
+}
 /*--- Chat Log ---*/
 
 #sidebar-tabs.tabs .item.active {
