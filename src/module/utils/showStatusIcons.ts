@@ -164,7 +164,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'OTHER'].includes(rulesSet)) {
+    if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         setConditionState('unconscious', selectedActor, true);
       }
@@ -313,6 +313,8 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CEATOM':
       case 'BARBARIC':
         return (getCEAWoundTint(selectedTraveller));
+      case 'CU':
+        return (getCUWoundTint(selectedTraveller));
       default:
         return ('');
     }
@@ -386,6 +388,20 @@ export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
+export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
+  let returnVal = '';
+  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+  const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
+  if (currentZero === 3) {
+    returnVal = DAMAGECOLORS.deadTint;
+  } else if (currentZero === 2) {
+    returnVal = DAMAGECOLORS.seriousWoundTint;
+  } else if (currentZero === 1) {
+    returnVal = DAMAGECOLORS.minorWoundTint;
+  }
+  return returnVal;
+}
+
 export function isUnconsciousCE(selectedTraveller: TwodsixActor): boolean {
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   return (testArray.filter(chr => chr.current <= 0 && chr.value !== 0).length === 2);
@@ -417,22 +433,26 @@ function getEncumbranceModifier(ratio:number):number {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   if (ratio === 0 ) {
     return 0; //Shoudn't get here
-  } else if (['CE', 'CT'].includes(ruleset)) {
+  } else if (['CE'].includes(ruleset)) {
     if (ratio <= game.settings.get('twodsix', 'encumbranceFraction')) {
       return 0;
     } else if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 2) {
       return game.settings.get('twodsix', 'encumbranceModifier');
     } else {
-      if (ruleset === 'CE') {
-        if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 3) {
-          return game.settings.get('twodsix', 'encumbranceModifier') * 2;
-        } else {
-          //console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
-          return game.settings.get('twodsix', 'encumbranceModifier') * 20; //Cannot take any actions other than push
-        }
-      } else {
+      if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 3) {
         return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+      } else {
+        //console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
+        return game.settings.get('twodsix', 'encumbranceModifier') * 20; //Cannot take any actions other than push
       }
+    }
+  } else if (['CU', 'CT'].includes(ruleset)) {
+    if (ratio <= 1/3) {
+      return 0;
+    } else if (ratio <= 2/3) {
+      return game.settings.get('twodsix', 'encumbranceModifier');
+    } else {
+      return game.settings.get('twodsix', 'encumbranceModifier') * 2;
     }
   } else {
     return game.settings.get('twodsix', 'encumbranceModifier');
