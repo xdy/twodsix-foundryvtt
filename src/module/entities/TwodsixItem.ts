@@ -396,7 +396,7 @@ export default class TwodsixItem extends Item {
         }
         break;
       case "auto-full":
-        numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
+        numberOfAttacks = getNumberOfAttacks(autoFireRules, rateOfFire);
         if (autoFireRules === 'CEL') {
           usedAmmo = 3 * rateOfFire;
         }
@@ -1344,3 +1344,22 @@ const CT_Armor_Table = Object.freeze({
   laserCarbine: { nothing: 2, jack: 2, mesh: 1, cloth: 1, reflec: -8, ablat: -7, combat: -6 },
   laserRifle: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6 }
 });
+
+function getNumberOfAttacks(autoFireRulesUsed:string, rateOfFire:number): number {
+  const returnValue = rateOfFire;
+  switch (autoFireRulesUsed) {
+    case 'CT':
+      returnValue = 2;
+      break;
+    case 'CU':
+      if (rateOfFire === 4) {
+        returnValue = 2;
+      } else if (rateOfFire === 10 || rateOfFire === 20) {
+        returnValue = 3;
+      }
+      break;
+    default:
+      break;
+  }
+  return returnValue;
+}
