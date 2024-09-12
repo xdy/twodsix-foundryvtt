@@ -842,7 +842,7 @@ export default class TwodsixItem extends Item {
           rof = (attackType === 'single') ? 1 : Number(modes[0]);
           await this.performAttack(attackType, true, rof);
         } else {
-          await this.performAttack(attackType, true, Number(modes[0]));
+          await this.performAttack(attackType, true, 1);
         }
         break;
       default:
