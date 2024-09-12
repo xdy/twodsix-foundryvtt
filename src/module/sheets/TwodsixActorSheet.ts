@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
+import { getRangeTypes } from "../utils/sheetUtils";
 //import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 //import { wait } from "../utils/sheetUtils";
 
@@ -62,8 +63,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),

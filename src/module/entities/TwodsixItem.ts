@@ -267,7 +267,7 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let appliedStatuses = [];
-      const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
+      const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
@@ -444,7 +444,7 @@ export default class TwodsixItem extends Item {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     // Return immediately with default if bad migration
-    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands'].includes(rangeModifierType)){
+    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
       console.log("Bad weapon system.range value - should be string");
       return {rangeModifier: rangeModifier, rollType: rollType};
     }
@@ -452,7 +452,7 @@ export default class TwodsixItem extends Item {
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
     if (rangeModifierType === 'none') {
       //rangeModifier = 0;
-    } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
+    } else if (['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
         rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull);
@@ -957,27 +957,31 @@ export default class TwodsixItem extends Item {
   public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean): number {
     const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
     let returnVal = 0;
-    if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
-      // do nothing
-    } else if (rangeSettings === 'CE_Bands') {
+    if (targetDistanceBand !== 'unknown' && weaponBand !== 'none') {
       try {
-        returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+        switch (rangeSettings) {
+          case 'CE_Bands':
+            returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+            break;
+          case 'CU_Bands':
+            returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
+            break;
+          case 'CT_Bands': {
+            const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
+            returnVal = lookupRow[targetDistanceBand] || 0;
+            break;
+          }
+          default:
+            console.log("Not a valid weapon range band type");
+            break;
+        }
       } catch(err) {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
       }
-    } else if (rangeSettings === 'CT_Bands') {
-      try {
-        const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
-        return lookupRow[targetDistanceBand] || 0;
-      } catch(err) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
-      }
-    } else {
-      console.log("Not a valid weapon range band type");
-      return 0;
     }
     return returnVal;
   }
+
   private getCustomRangeMod(isAuto:boolean):any {
     return {
       close: parseCustomCTValue(this.system.customCT.range.close, isAuto),
@@ -1227,6 +1231,24 @@ function getRangeBand(range: number):string {
     } else {
       return 'unknown';
     }
+  } else if ( rangeModifierType === 'CU_Bands') {
+    if (range < 1.5) {
+      return 'personal';
+    } else if (range <= 3) {
+      return 'close';
+    } else if (range <= 15) {
+      return 'short';
+    } else if (range <= 50) {
+      return 'medium';
+    } else if (range <= 250) {
+      return 'long';
+    } else if (range <= 500) {
+      return 'veryLong';
+    } else if (range > 500) {
+      return 'distant';
+    } else {
+      return 'unknown';
+    }
   } else {
     return 'unknown';
   }
@@ -1244,6 +1266,19 @@ const CE_Range_Table = Object.freeze({
   assaultWeapon: { personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6 },
   rocket: { personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4 }
 });
+
+// From Combat Data Sheet pg 427 Cepheus Universal
+const CU_Range_Table = Object.freeze({
+  personal: { personal: 0, close: -1, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  close: { personal: -1, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  short: { personal: 2, close: 2, short: -0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  medium: { personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
+  shotgun: { personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
+  long: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
+  veryLong: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: -2 },
+  distant: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: 0 },
+});
+
 //Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition puls errat corrections from
 // CONSOLIDATED CT ERRATA, v0.7 (06/01/12)
 const CT_Range_Table = Object.freeze({

@@ -4,7 +4,7 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
-import { getDamageTypes } from "../utils/sheetUtils";
+import { getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
 import { setCharacteristicDisplay } from "./TwodsixActorSheet";
 
 export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
@@ -44,8 +44,8 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),

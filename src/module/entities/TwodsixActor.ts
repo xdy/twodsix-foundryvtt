@@ -781,9 +781,15 @@ export default class TwodsixActor extends Actor {
   }
 
   public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
+    //Set charactersitic label
     if (!tmpSettings.rollModifiers?.characteristic) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
+    }
+    //Select Difficulty if needed
+    if (!tmpSettings.difficulty) {
+      const difficultyObject = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
+      tmpSettings.difficulty =  game.settings.get('twodsix', 'ruleset') === 'CU' ? difficultyObject.Routine : difficultyObject.Average ;
     }
     const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, undefined, undefined, this);
     if (!settings.shouldRoll) {
@@ -821,6 +827,14 @@ export default class TwodsixActor extends Actor {
       return;
     }
     const bandSetting = game.settings.get('twodsix', 'rangeModifierType');
+    let rangeSetting = "";
+    if ( bandSetting === 'CT_Bands' ) {
+      rangeSetting = "hands";
+    } else if (bandSetting === 'CE_Bands') {
+      rangeSetting = "closeQuarters";
+    } else if (bandSetting === 'CU_Bands') {
+      rangeSetting = "personal";
+    }
     return {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
@@ -835,7 +849,7 @@ export default class TwodsixActor extends Actor {
         "equipped": "equipped",
         "damageType": "bludgeoning",
         "range": "Melee",
-        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : ""),
+        "rangeBand": rangeSetting,
         "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
       }
     };

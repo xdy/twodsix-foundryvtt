@@ -24,7 +24,8 @@ const CHARACTERISTICS = Object.freeze({
 const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
-  "AC": "AC"
+  "AC": "AC",
+  "CU": "CU"
 });
 
 /**
@@ -35,7 +36,8 @@ const DIFFICULTY_VARIANTS = Object.freeze({
 const AUTOFIRE_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
-  "CT": "CT"
+  "CT": "CT",
+  "CU": "CU"
 });
 
 //TODO VARIANTS and RULESETS should really be combined/refactored.
@@ -631,6 +633,58 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0"
     }
   },
+  CU: {
+    key: "CU",
+    name: "Cepheus Universal",
+    settings: {
+      initiativeFormula: "2d6 + min( 1, max( @skills.Tactics, 0)) + min( 1, max( @skills.Recon, 0))",
+      difficultyListUsed: "CU",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "CU",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: true,
+      rangeModifierType: "CU_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: false,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "6 * @characteristics.strength.current",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6 + min( 1, max( -1, @characteristics.strength.mod))",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.3334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'CE',
+      targetDMList: "Aiming +1, Aiming w/scope +2, Cover (partial) -3, Movement -1, Dodges -1, Frenzy Fire -2, Into Hand-to-Hand -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "-2, -1, -1, 1, 1, 2"
+    }
+  },
   OTHER: {
     key: "OTHER",
     name: "Other",
@@ -664,9 +718,10 @@ const CONSUMABLES = Object.freeze({
 });
 
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
+export type CU_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }};
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
 export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES }> = Object.freeze({
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES, CU:CU_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -675,14 +730,14 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     Difficult: {mod: -2, target: 10},
     VeryDifficult: {mod: -4, target: 12},
     Formidable: {mod: -6, target: 14},
-    Impossible: {mod: -8, target: 16},
+    Impossible: {mod: -8, target: 16}
   },
   CEL: {
     Routine: {mod: 2, target: 4},
     Average: {mod: 0, target: 6},
     Difficult: {mod: -2, target: 8},
     VeryDifficult: {mod: -4, target: 10},
-    Formidable: {mod: -6, target: 12},
+    Formidable: {mod: -6, target: 12}
   },
   AC: {
     Routine: {mod: 2, target: 4},
@@ -692,6 +747,14 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     VeryDifficult: {mod: -6, target: 12},
     Formidable: {mod: -8, target: 14},
     Impossible: {mod: -10, target: 16}
+  },
+  CU: {
+    Easy: {mod: 4, target: 4},
+    Routine: {mod: 2, target: 6},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -2, target: 10},
+    VeryDifficult: {mod: -4, target: 12},
+    Formidable: {mod: -6, target: 14}
   }
 });
 
@@ -939,6 +1002,7 @@ export const RANGE_MODIFIERS_TYPES = {
   none: "TWODSIX.Chat.Roll.RangeModifierTypes.none",
   CT_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CT_Bands",
   CE_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CE_Bands",
+  CU_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CU_Bands",
   singleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.singleBand",
   doubleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.doubleBand"
 };
@@ -964,6 +1028,31 @@ export const CE_WEAPON_RANGE_TYPES = {
     shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
     assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.AW",
     rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
+export const CU_WEAPON_RANGE_TYPES = {
+  long: {
+    personal: "TWODSIX.Chat.Roll.WeaponRangeTypes.personal",
+    close: "TWODSIX.Chat.Roll.WeaponRangeTypes.close",
+    short: "TWODSIX.Chat.Roll.WeaponRangeTypes.short",
+    medium: "TWODSIX.Chat.Roll.WeaponRangeTypes.medium",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    long: "TWODSIX.Chat.Roll.WeaponRangeTypes.long",
+    veryLong: "TWODSIX.Chat.Roll.WeaponRangeTypes.veryLong",
+    distant: "TWODSIX.Chat.Roll.WeaponRangeTypes.distant",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    personal: "TWODSIX.Chat.Roll.WeaponRangeTypes.pers",
+    close: "TWODSIX.Chat.Roll.WeaponRangeTypes.close",
+    short: "TWODSIX.Chat.Roll.WeaponRangeTypes.short",
+    medium: "TWODSIX.Chat.Roll.WeaponRangeTypes.medium",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    long: "TWODSIX.Chat.Roll.WeaponRangeTypes.long",
+    veryLong: "TWODSIX.Chat.Roll.WeaponRangeTypes.vLong",
+    distant: "TWODSIX.Chat.Roll.WeaponRangeTypes.dist",
     none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
   }
 };
@@ -1102,6 +1191,7 @@ export type TWODSIX = {
   EQUIPPED_TOGGLE_OPTIONS: typeof EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: typeof RANGE_MODIFIERS_TYPES,
   CE_WEAPON_RANGE_TYPES: typeof CE_WEAPON_RANGE_TYPES,
+  CU_WEAPON_RANGE_TYPES: typeof CU_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: typeof CT_WEAPON_RANGE_TYPES,
   CT_ARMOR_TYPES: typeof  CT_ARMOR_TYPES,
   TARGET_DM: object,
@@ -1141,6 +1231,7 @@ export const TWODSIX = {
   EQUIPPED_TOGGLE_OPTIONS: EQUIPPED_TOGGLE_OPTIONS,
   RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
   CE_WEAPON_RANGE_TYPES: CE_WEAPON_RANGE_TYPES,
+  CU_WEAPON_RANGE_TYPES: CU_WEAPON_RANGE_TYPES,
   CT_WEAPON_RANGE_TYPES: CT_WEAPON_RANGE_TYPES,
   CT_ARMOR_TYPES: CT_ARMOR_TYPES,
   TARGET_DM: TARGET_DM,

@@ -362,7 +362,8 @@
           "singleBand": "Single Value",
           "doubleBand": "Double Value",
           "CE_Bands": "Cepheus Engine Bands",
-          "CT_Bands": "Classic Traveller Bands"
+          "CT_Bands": "Classic Traveller Bands",
+          "CU_Bands": "Cepheus Universal Bands"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Close Quarters",
@@ -416,7 +417,17 @@
           "LC": "LC",
           "LR": "LR",
           "custom": "Custom",
-          "cust": "Cust"
+          "cust": "Cust",
+          "personal": "Personal",
+          "pers": "Pers.",
+          "close": "Close",
+          "short": "Short",
+          "medium": "Medium",
+          "long": "Long",
+          "veryLong":"Very Long",
+          "vLong": "v.Long",
+          "distant": "Distant"
+
         },
         "RangeBandTypes": {
           "personal": "Personal",
