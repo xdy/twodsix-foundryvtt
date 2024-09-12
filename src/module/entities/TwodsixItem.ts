@@ -836,6 +836,15 @@ export default class TwodsixItem extends Item {
           await this.performAttack(attackType, true, Number(modes[0]));
         }
         break;
+      case TWODSIX.RULESETS.CU.key:
+        if (modes[0] > 1) {
+          attackType = await promptForCTROF(modes);
+          rof = (attackType === 'single') ? 1 : Number(modes[0]);
+          await this.performAttack(attackType, true, rof);
+        } else {
+          await this.performAttack(attackType, true, Number(modes[0]));
+        }
+        break;
       default:
         await this.performAttack(attackType, true, 1);
         break;
@@ -1345,8 +1354,14 @@ const CT_Armor_Table = Object.freeze({
   laserRifle: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6 }
 });
 
+/**
+ * A function to return number of attacks for auto fire depending on rules set and rof
+ * @param {string} autoFireRulesUsed The automatic fire rules used
+ * @param {number} rateOfFire The fire rate (rounds used)
+ * @returns {number} The number of attacks
+ */
 function getNumberOfAttacks(autoFireRulesUsed:string, rateOfFire:number): number {
-  const returnValue = rateOfFire;
+  let returnValue = rateOfFire;
   switch (autoFireRulesUsed) {
     case 'CT':
       returnValue = 2;
