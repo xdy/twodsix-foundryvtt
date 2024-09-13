@@ -47,6 +47,14 @@
       "DamageFormula": "Damage Formula",
       "NoRegularDamage": "No Regular Damage"
     },
+    "DamageType": {
+      "Ballistic": "Ballistic",
+      "Disintegrate": "Disintegrate",
+      "Fire": "Fire",
+      "Laser": "Laser",
+      "Melee": "Melee",
+      "Plasma": "Plasma"
+    },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
       "ROFSingle": "Single Fire",
@@ -1406,7 +1414,7 @@
         "name": "Use tabbed views for weapons sheets, component sheets, and system settings"
       },
       "damageTypeOptions": {
-        "hint": "A comma separated list that specifies the allowable damage types.",
+        "hint": "A comma separated list that specifies the allowable damage types. Note that using CU ruleset overrides this setting.",
         "name": "Damage and Protection Types"
       },
       "animalTypesIndependentofNiche": {

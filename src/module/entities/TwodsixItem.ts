@@ -690,7 +690,7 @@ export default class TwodsixItem extends Item {
         armorPiercingValue: apValue,
         damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
         damageType: damageType,
-        damageLabel: damageLabels[damageType] ?? ""
+        damageLabel: damageLabels[damageType] || ""
       });
 
       if (radDamage.total) {

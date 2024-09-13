@@ -696,12 +696,13 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, showDamageDialog = true): Promise<void> {
+  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string = "", showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
       const damageData: { damageValue: number, armorPiercingValue: number, damageType:string, damageId: string, tokenId?: string|null, actorId?: string|null } = {
         damageValue: damageValue,
         armorPiercingValue: armorPiercingValue,
         damageType: damageType,
+        damageLabel: damageLabel,
         damageId: "damage-" + Math.random().toString(36).substring(2, 15)
       };
 
@@ -713,7 +714,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damageValue, armorPiercingValue, damageType);
+      const stats = new Stats(this, damageValue, armorPiercingValue, damageType, damageLabel);
       await stats.applyDamage();
     }
   }
@@ -847,7 +848,7 @@ export default class TwodsixActor extends Actor {
         "quantity": 1,
         "skill": this.getUntrainedSkill()?.id || "",
         "equipped": "equipped",
-        "damageType": "bludgeoning",
+        "damageType": game.settings.get('twodsix', 'ruleset') === 'CU' ? "melee" : "bludgeoning",
         "range": "Melee",
         "rangeBand": rangeSetting,
         "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
@@ -914,7 +915,7 @@ export default class TwodsixActor extends Actor {
       const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, "NONE", false);
+        this.damageActor(delta, 9999, "NONE", "NONE", false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);
@@ -1109,7 +1110,7 @@ export default class TwodsixActor extends Actor {
     if (!this.isOwner && !showDamageDialog) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
     } else if (["traveller", "animal", "robot"].includes(this.type)) {
-      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
+      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, showDamageDialog);
       return true;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));

@@ -351,19 +351,23 @@ export async function wait(ms) {
  * @export
  */
 export function getDamageTypes(isWeapon:boolean): object {
-  const returnObject = {};
-  const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
-  if (damageTypeOptions !== "") {
-    let protectionTypeLabels:string[] = damageTypeOptions.split(',');
-    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
-    for (const type of protectionTypeLabels) {
-      Object.assign(returnObject, {[camelCase(type)]: type});
+  if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+    return TWODSIX.CU_DAMAGE_TYPES;
+  } else {
+    const returnObject = {};
+    const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
+    if (damageTypeOptions !== "") {
+      let protectionTypeLabels:string[] = damageTypeOptions.split(',');
+      protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+      for (const type of protectionTypeLabels) {
+        Object.assign(returnObject, {[camelCase(type)]: type});
+      }
     }
+    if (isWeapon) {
+      Object.assign(returnObject, {"NONE": "---"});
+    }
+    return returnObject;
   }
-  if (isWeapon) {
-    Object.assign(returnObject, {"NONE": "---"});
-  }
-  return returnObject;
 }
 
 /**

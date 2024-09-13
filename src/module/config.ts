@@ -1159,6 +1159,15 @@ export const ITEM_TYPE_SELECT = {
   storage: "TWODSIX.Items.Items.MoveStorage"
 };
 
+export const CU_DAMAGE_TYPES = {
+  ballistic: "TWODSIX.DamageType.Ballistic",
+  disintegrate: "TWODSIX.DamageType.Disintegrate",
+  fire: "TWODSIX.DamageType.Fire",
+  laser: "TWODSIX.DamageType.Laser",
+  melee: "TWODSIX.DamageType.Melee",
+  plasma: "TWODSIX.DamageType.Plasma"
+};
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -1196,7 +1205,8 @@ export type TWODSIX = {
   CT_ARMOR_TYPES: typeof  CT_ARMOR_TYPES,
   TARGET_DM: object,
   AUG_LOCATIONS: typeof AUG_LOCATIONS,
-  ITEM_TYPE_SELECT: typeof ITEM_TYPE_SELECT
+  ITEM_TYPE_SELECT: typeof ITEM_TYPE_SELECT,
+  CU_DAMAGE_TYPES: typeof CU_DAMAGE_TYPES
 };
 
 export const TWODSIX = {
@@ -1236,5 +1246,6 @@ export const TWODSIX = {
   CT_ARMOR_TYPES: CT_ARMOR_TYPES,
   TARGET_DM: TARGET_DM,
   AUG_LOCATIONS: AUG_LOCATIONS,
-  ITEM_TYPE_SELECT: ITEM_TYPE_SELECT
+  ITEM_TYPE_SELECT: ITEM_TYPE_SELECT,
+  CU_DAMAGE_TYPES: CU_DAMAGE_TYPES
 };
