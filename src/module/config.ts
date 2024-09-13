@@ -672,7 +672,7 @@ const RULESETS = Object.freeze({
       animalsUseHits: false,
       robotsUseHits: false,
       animalsUseLocations: false,
-      displayReactionMorale: false,
+      displayReactionMorale: true,
       showComponentRating: true,
       showComponentDM: true,
       encumbranceFraction: "0.3334",
