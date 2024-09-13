@@ -59,7 +59,7 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      robotsUseHits: game.settings.get('twodsix', 'robotsUseHits'),
+      useHits: game.settings.get('twodsix', 'robotsUseHits'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),

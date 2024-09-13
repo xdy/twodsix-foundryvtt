@@ -61,7 +61,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
-      animalsUseHits: game.settings.get('twodsix', 'animalsUseHits'),
+      useHits: game.settings.get('twodsix', 'animalsUseHits'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
@@ -72,9 +72,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
     };
-    //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
-    returnData.config = TWODSIX;
 
+    returnData.config = TWODSIX;
     return returnData;
   }
 

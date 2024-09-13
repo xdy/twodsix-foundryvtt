@@ -1278,7 +1278,7 @@ span.stat-name {
   /* left: 0.7em; */
   /* top: -1.1em; */
   /* font-size: 1em; */
-  /* display: block; */
+  display: block;
   /*width: 65%;*/
   cursor: pointer;
   text-align: center;
