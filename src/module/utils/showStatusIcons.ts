@@ -136,6 +136,14 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }];
     }
 
+    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+      changeData.push({
+        key: "system.movement.walk",
+        mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY,
+        value: 0.75
+      });
+    }
+
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.encumbered),

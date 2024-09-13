@@ -92,6 +92,17 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               { range: movementSpeed * 2, color: "dash" },
               { range: movementSpeed * 3, color: "run" }
             ];
+          case "CU":
+            if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
+              return [];
+            } else {
+              //note that movement speed already reduced by active effect (if used)
+              return [
+                { range: movementSpeed, color: "walk" },
+                { range: movementSpeed * 2, color: "dash" },
+                { range: movementSpeed * 3, color: "run" }
+              ];
+            }
           case "CEQ":
           case "CEFTL":
           case "CT": //NEED TO CHECK THIS
