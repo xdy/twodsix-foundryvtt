@@ -1434,7 +1434,7 @@
         "name": "Override degree of success on critical roll (2 or 12)"
       },
       "showTotalArmor": {
-        "hint": "Display the total armor value (promary + secondary values) instead of the secondary armor value for Traveller sheet.",
+        "hint": "Display the total armor value (primary + secondary values) instead of the secondary armor value for Traveller sheet.",
         "name": "Display total armor value on Traveller"
       },
       "showItemIconsInChat": {
