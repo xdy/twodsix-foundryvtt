@@ -6,7 +6,7 @@ import { applyEncumberedEffect } from "../utils/showStatusIcons";
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
  * We extend to our own class to have isSuppressed getter work with equipped status and
- * include a CUSTOM calulation mode directly rather than in a hook
+ * check for encumbrance when an AE is created or deleted.  CUSTOM mode is still applied as a hook.
  * Each TwodsixActiveEffect belongs to the effects collection of its parent Document.
  * Each TwodsixActiveEffect contains a ActiveEffectData object which provides its source data.
  */
@@ -37,7 +37,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onCreate(data, options, userId): void {
     await super._onCreate(data, options, userId);
-    if(game.userId === userId  && this.parent) {
+    if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
     }
   }
@@ -52,7 +52,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onDelete(options, userId): void {
     await super._onDelete(options, userId);
-    if(game.userId === userId && this.parent) {
+    if(game.userId === userId && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
     }
 
