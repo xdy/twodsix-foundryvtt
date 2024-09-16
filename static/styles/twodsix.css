@@ -636,7 +636,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 13em 5em 9fr;
+  grid-template-rows: 15em 14em 5em 9fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -1267,6 +1267,10 @@ span.bgi-charEdit {
 
 .table-header-row {
   height: 5ch;
+}
+
+.table-header-row.vehicle {
+  height: auto;
 }
 
 span.edit-char-toggle {

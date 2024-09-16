@@ -865,6 +865,7 @@
       "CargoCapacity": "Capacity",
       "Speed": "Speed",
       "Range": "Range",
+      "Spaces": "Spaces",
       "Agility": "Agility",
       "systems": {
         "cargo": "Cargo",
