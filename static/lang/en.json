@@ -48,12 +48,16 @@
       "NoRegularDamage": "No Regular Damage"
     },
     "DamageType": {
+      "Acid": "Acid",
       "Ballistic": "Ballistic",
       "Disintegrate": "Disintegrate",
+      "Electrical": "Electrical",
       "Fire": "Fire",
       "Laser": "Laser",
       "Melee": "Melee",
-      "Plasma": "Plasma"
+      "Plasma": "Plasma",
+      "Poison": "Poison",
+      "Stun": "Stun"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",

@@ -1160,12 +1160,16 @@ export const ITEM_TYPE_SELECT = {
 };
 
 export const CU_DAMAGE_TYPES = {
+  acid: "TWODSIX.DamageType.Acid",
   ballistic: "TWODSIX.DamageType.Ballistic",
   disintegrate: "TWODSIX.DamageType.Disintegrate",
+  electrical: "TWODSIX.DamageType.Electrical",
   fire: "TWODSIX.DamageType.Fire",
   laser: "TWODSIX.DamageType.Laser",
   melee: "TWODSIX.DamageType.Melee",
-  plasma: "TWODSIX.DamageType.Plasma"
+  plasma: "TWODSIX.DamageType.Plasma",
+  poison: "TWODSIX.DamageType.Poison",
+  stun: "TWODSIX.DamageType.Stun"
 };
 
 export type TWODSIX = {
