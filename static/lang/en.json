@@ -481,6 +481,7 @@
         "IsPowered": "Powered Armor",
         "Nonstackable": "Non-stackable",
         "SecondaryArmorProtectionTypes": "Secondary Protection Types",
+        "ArmorProtectionTypes": "Protection Types",
         "armorDM": "DM",
         "ArmorModifier": "Armor Modifier",
         "ArmorType": "Armor Type",

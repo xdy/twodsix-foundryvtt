@@ -77,6 +77,7 @@ export class Stats {
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
+    this.useCUData = game.settings.get('twodsix', 'ruleset') === 'CU';
 
     if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
       this.useLifebloodStamina = false;
@@ -307,13 +308,8 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel} = damageData;
-  let actor;
-  if (damageData.actorId) {
-    actor = game.actors?.get(damageData.actorId);
-  } else {
-    actor = (canvas.tokens?.placeables?.find((t: Token) => t.id === damageData.tokenId) || null)?.actor || null;
-  }
+  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, actor} = damageData;
+
   const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3) && !user.isGM) || null;
   if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
     return;

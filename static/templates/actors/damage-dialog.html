@@ -1,11 +1,16 @@
 <div class="damage-dialog">
+  {{log this}}
   {{#with stats}}
   <table class="center-table-text">
     <thead>
       <tr>
         <th>{{localize "TWODSIX.Damage.Damage"}}</th>
-        <th>{{localize "TWODSIX.Items.Armor.PrimaryArmor"}}</th>
-        <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
+        {{#unless useCUData}}
+          <th>{{localize "TWODSIX.Items.Armor.PrimaryArmor"}}</th>
+          <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
+        {{else}}
+          <th>{{localize "TWODSIX.Items.Armor.Armor"}}</th>
+        {{/unless}}
         <th>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</th>
         <th>{{localize "TWODSIX.Damage.TotalDamage"}}</th>
       </tr>
@@ -13,7 +18,9 @@
     <tbody>
       <tr>
         <td><input type="number" value="{{damageValue}}" class="damage"></td>
-        <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
+        {{#unless useCUData}}
+          <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
+        {{/unless}}
         <td><input type="number" value="{{secondaryArmor}}" class="armor" readonly></td>
         <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
         <td class="applied-damage"></td>
@@ -21,7 +28,9 @@
       {{#iff damageLabel "!==" "---"}}
       <tr>
         <td>({{localize damageLabel}})</td>
-        <td></td>
+        {{#unless useCUData}}
+          <td></td>
+        {{/unless}}
         <td></td>
         <td></td>
         <td></td>

@@ -3,13 +3,16 @@
     <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input name="system.armorDM" type="number" value="{{system.armorDM}}"
       placeholder='0' data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}" step="1"/></span><br>
 {{else}}
-  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:<input
-      style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'
-      data-tooltip="{{localize 'TWODSIX.Items.Armor.PrimaryArmor'}}"/>+<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.SecondaryArmor'}}" />
+  <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:
+    {{#unless settings.useCUData}}
+      <input style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.PrimaryArmor'}}"/>+
+    {{/unless}}
+    <input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' {{#unless settings.useCUData}} data-tooltip="{{localize 'TWODSIX.Items.Armor.SecondaryArmor'}}" {{/unless}} />
   </span>
   <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
       name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.RadProt'}}"/></span>
-  <span class="bgi-secondary" data-tooltip='{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}'><label for="system.secondaryArmor.protectionTypes"><i class="fa-solid fa-shield-halved"></i>: </label>
+  <span class="bgi-secondary" {{#unless settings.useCUData}} data-tooltip='{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}' {{else}} data-tooltip='{{localize "TWODSIX.Items.Armor.ArmorProtectionTypes"}}'{{/unless}}>
+    <label for="system.secondaryArmor.protectionTypes"><i class="fa-solid fa-shield-halved"></i>: </label>
     <multi-select class="actor-sheet" name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes localize=true}}</multi-select>
   </span>
   <br>

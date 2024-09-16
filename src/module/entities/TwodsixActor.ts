@@ -339,7 +339,7 @@ export default class TwodsixActor extends Actor {
       system.armorType = armorValues.CTLabel;
       system.armorDM = armorValues.armorDM || 0;
       system.reflectOn = armorValues.reflectOn;
-      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map( x => game.i18n.localize(x)).join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
 
@@ -703,14 +703,10 @@ export default class TwodsixActor extends Actor {
         armorPiercingValue: armorPiercingValue,
         damageType: damageType,
         damageLabel: damageLabel,
-        damageId: "damage-" + Math.random().toString(36).substring(2, 15)
+        damageId: "damage-" + Math.random().toString(36).substring(2, 15),
+        actor: this
       };
 
-      if (this.isToken) {
-        damageData.tokenId = this.token?.id;
-      } else {
-        damageData.actorId = this.id;
-      }
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
