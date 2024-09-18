@@ -5,6 +5,8 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
 import { getDamageTypes } from "./sheetUtils";
+import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { TWODSIX } from "../config";
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -50,6 +52,7 @@ export class Stats {
   effectiveArmor: number;
   primaryArmor:number;
   secondaryArmor:number;
+  parryArmor: number;
   edited = false;
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
@@ -58,7 +61,7 @@ export class Stats {
   useLifebloodOnly = false;
   damageFormula: string;
 
-  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string) {
+  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string, parryArmor:number = 0) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
@@ -73,7 +76,8 @@ export class Stats {
     if (actor.type !== "ship") {
       this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
       this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
-      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
+      this.parryArmor = parryArmor;
+      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
@@ -316,8 +320,8 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   }
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
-
-  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel);
+  const parryArmor = await getParryValue(actor);
+  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
@@ -368,4 +372,40 @@ export function getDamageCharacteristics(actorType:string): string[] {
   } else {
     return ["endurance", "strength", "dexterity"];
   }
+}
+
+/**
+ * Gets the weapon's Parry AV value on a sucesssful melee roll if ruleset is CU.
+ * @param {TwodsixActor} actor The defending actor
+ * @returns {number} The parry AV value if sucessful, otherwise zero
+ */
+export async function getParryValue(actor:TwodsixActor): number {
+  let returnValue = 0;
+
+  if (game.settings.get('twodsix', 'ruleset') === 'CU'){
+    //Try to find melee combat skill
+    const meleeSkill:TwodsixItem =  actor.getBestSkill(game.i18n.localize("TWODSIX.Items.Skills.MeleeCombat") + "| Melee Combat", false);
+    if (meleeSkill) {
+      const weapon = actor.itemTypes.weapon.find( it => it.system.damageType === 'melee' && it.system.equipped === 'equipped');
+      if (weapon) {
+        const tmpSettings = {
+          difficulty: TWODSIX.DIFFICULTIES.CU.Average,
+          rollModifiers: {char: 'DEX'},
+          extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")
+        };
+        const settings:TwodsixRollSettings = await TwodsixRollSettings.create(false, tmpSettings, meleeSkill, undefined, actor);
+        if (settings.shouldRoll) {
+          const returnRoll = await meleeSkill.skillRoll(false, settings);
+          if (returnRoll?.effect >= 0) {
+            returnValue = weapon.system.parryAV;
+          }
+        }
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFindMeleeWeapon"));
+      }
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFindMeleeSkill"));
+    }
+  }
+  return returnValue;
 }

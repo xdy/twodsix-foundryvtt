@@ -9,6 +9,7 @@
           <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
         {{else}}
           <th>{{localize "TWODSIX.Items.Armor.Armor"}}</th>
+          <th>{{localize "TWODSIX.Items.Weapon.ParryAV"}}</th>
         {{/unless}}
         <th>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</th>
         <th>{{localize "TWODSIX.Damage.TotalDamage"}}</th>
@@ -21,15 +22,16 @@
           <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
         {{/unless}}
         <td><input type="number" value="{{secondaryArmor}}" class="armor" readonly></td>
+        {{#if useCUData}}
+          <td><input type="number" value="{{parryArmor}}" class="armor" readonly></td>
+        {{/if}}
         <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
         <td class="applied-damage"></td>
       </tr>
       {{#iff damageLabel "!==" "---"}}
       <tr>
         <td>({{localize damageLabel}})</td>
-        {{#unless useCUData}}
-          <td></td>
-        {{/unless}}
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

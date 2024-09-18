@@ -135,6 +135,7 @@
         "Augments": "Augments",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "Parry": "Parry",
         "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
@@ -644,7 +645,8 @@
         "TrainingNotes": "Training Notes",
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
-        "GroupLabel": "Group Label"
+        "GroupLabel": "Group Label",
+        "Melee Combat": "Melee Combat"
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
@@ -701,6 +703,7 @@
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost",
         "ArmorPiercing": "Armor Piercing Value",
+        "ParryAV": "Parry AV",
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack",
@@ -967,7 +970,8 @@
       "SelectSkill": "Select Skill",
       "SkillName": "Skill Name",
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
-      "MakesChainRoll": "Makes a chain / assisted roll."
+      "MakesChainRoll": "Makes a chain / assisted roll.",
+      "MakesParryRoll": "Makes a melee combat skill check to parry attack."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1650,7 +1654,9 @@
       "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
       "TooManyLayersOnTarget": "Target is wearing too many layers of armor",
       "ActorOverloaded": "Current actor is carrying more than its capacity.",
-      "NoJournalFound": "Can't find linked Journal Entry"
+      "NoJournalFound": "Can't find linked Journal Entry",
+      "CantFindMeleeSkill": "Can't find Melee Combat skill",
+      "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry"
     }
   },
   "TYPES": {

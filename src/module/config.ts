@@ -1,6 +1,5 @@
 // Namespace TWODSIX Configuration Values
 
-
 const CHARACTERISTICS = Object.freeze({
   "strength": "STR",
   "dexterity": "DEX",
@@ -1172,6 +1171,20 @@ export const CU_DAMAGE_TYPES = {
   stun: "TWODSIX.DamageType.Stun"
 };
 
+export const DAMAGECOLORS = Object.freeze({
+  minorWoundTint: '#ffff00', // Yellow
+  seriousWoundTint: '#ff0000', // Red
+  deadTint: '#ffffff'  // White
+});
+
+export const effectType = Object.freeze({
+  dead: 'EFFECT.StatusDead',
+  wounded: 'EFFECT.StatusWounded',
+  unconscious: 'EFFECT.StatusUnconscious',
+  encumbered: 'EFFECT.StatusEncumbered'
+});
+
+
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
   CONSUMABLES: typeof CONSUMABLES,
@@ -1210,7 +1223,9 @@ export type TWODSIX = {
   TARGET_DM: object,
   AUG_LOCATIONS: typeof AUG_LOCATIONS,
   ITEM_TYPE_SELECT: typeof ITEM_TYPE_SELECT,
-  CU_DAMAGE_TYPES: typeof CU_DAMAGE_TYPES
+  CU_DAMAGE_TYPES: typeof CU_DAMAGE_TYPES,
+  effectType: typeof effectType,
+  DAMAGECOLORS: typeof DAMAGECOLORS
 };
 
 export const TWODSIX = {
@@ -1251,5 +1266,7 @@ export const TWODSIX = {
   TARGET_DM: TARGET_DM,
   AUG_LOCATIONS: AUG_LOCATIONS,
   ITEM_TYPE_SELECT: ITEM_TYPE_SELECT,
-  CU_DAMAGE_TYPES: CU_DAMAGE_TYPES
+  CU_DAMAGE_TYPES: CU_DAMAGE_TYPES,
+  effectType: effectType,
+  DAMAGECOLORS: DAMAGECOLORS
 };

@@ -23,19 +23,6 @@ export function checkForDamageStat (update: any, actorType: string): boolean {
   return false;
 }
 
-export const DAMAGECOLORS = Object.freeze({
-  minorWoundTint: '#ffff00', // Yellow
-  seriousWoundTint: '#ff0000', // Red
-  deadTint: '#ffffff'  // White
-});
-
-export const effectType = Object.freeze({
-  dead: 'EFFECT.StatusDead',
-  wounded: 'EFFECT.StatusWounded',
-  unconscious: 'EFFECT.StatusUnconscious',
-  encumbered: 'EFFECT.StatusEncumbered'
-});
-
 /**
  * Determine whether wounded effect applies to actor.  Update encumbered AE & tint, if necessary.
  * @param {TwodsixActor} selectedActor  The actor to check
@@ -54,7 +41,7 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
       await setWoundedState(selectedActor, false, tintToApply);
     }
   } else {
-    if (tintToApply === DAMAGECOLORS.deadTint) {
+    if (tintToApply === TWODSIX.DAMAGECOLORS.deadTint) {
       if (!isCurrentlyDead) {
         await setConditionState('dead', selectedActor, true);
       }
@@ -66,7 +53,7 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
       if (isCurrentlyDead) {
         await setConditionState('dead', selectedActor, false);
       }
-      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint*/) {
+      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint*/) {
         await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
       }
       if (tintToApply !== oldWoundState?.tint.css) {
@@ -146,7 +133,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
     if (isCurrentlyEncumbered.length === 0) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(effectType.encumbered),
+        name: game.i18n.localize(TWODSIX.effectType.encumbered),
         img: "systems/twodsix/assets/icons/weight.svg",
         changes: changeData,
         statuses: ["encumbered"]
@@ -177,10 +164,10 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
         setConditionState('unconscious', selectedActor, true);
       }
     } else if (['CT'].includes(rulesSet)) {
-      if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
+      if (oldWoundState === undefined && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
         setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
-    } else if (oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
+    } else if (oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint && tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
         setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
@@ -243,7 +230,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
  * Determine whether wounded effect applies to actor.  Update wounded AE, if necessary.
  * @param {TwodsixActor} targetActor  The actor to check
  * @param {boolean} state whether wounded effect applies
- * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. DAMAGECOLORS.minorWoundTint and DAMAGECOLORS.seriousWoundTint
+ * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
   const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
@@ -262,15 +249,15 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
   if (state) {
     let woundModifier = 0;
     switch (tint) {
-      case DAMAGECOLORS.minorWoundTint:
+      case TWODSIX.DAMAGECOLORS.minorWoundTint:
         woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
         break;
-      case DAMAGECOLORS.seriousWoundTint:
+      case TWODSIX.DAMAGECOLORS.seriousWoundTint:
         woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
         break;
     }
     let changeData = {}; //AC has a movement penalty not roll penalty
-    if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === DAMAGECOLORS.seriousWoundTint) {
+    if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
       changeData = { key: "system.movement.walk", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: 1.5 };
     } else {
       changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
@@ -278,7 +265,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     //
     if (!currentEffectId) {
       targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(effectType.wounded),
+        name: game.i18n.localize(TWODSIX.effectType.wounded),
         img: "icons/svg/blood.svg",
         tint: tint,
         changes: [changeData],
@@ -296,7 +283,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
 /**
  * Determine the wounded tint that applies to actor.  Depends on ruleset.
  * @param {TwodsixActor} selectedActor  The actor to check
- * @returns {string} The wounded tint color (as a hex code string).  Color indicates the severity of wounds. DAMAGECOLORS.minorWoundTint and DAMAGECOLORS.seriousWoundTint
+ * @returns {string} The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
 export function getIconTint(selectedActor: TwodsixActor): string {
   const selectedTraveller = <Traveller>selectedActor.system;
@@ -332,11 +319,11 @@ export function getIconTint(selectedActor: TwodsixActor): string {
 export function getHitsTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 3)) {
-    returnVal = DAMAGECOLORS.seriousWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
   } else if (selectedTraveller.characteristics.lifeblood.current < (2 * selectedTraveller.characteristics.lifeblood.value / 3)) {
-    returnVal = DAMAGECOLORS.minorWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
@@ -344,11 +331,11 @@ export function getHitsTint(selectedTraveller: TwodsixActor): string {
 export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 2)) {
-    returnVal = DAMAGECOLORS.seriousWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
   } else if (selectedTraveller.characteristics.lifeblood.damage > 0) {
-    returnVal = DAMAGECOLORS.minorWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
@@ -359,12 +346,12 @@ export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   if (currentZero === maxNonZero) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (currentZero > 0){
     if (currentZero > 1) {
-      returnVal = DAMAGECOLORS.seriousWoundTint;
+      returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
     } else {
-      returnVal = DAMAGECOLORS.minorWoundTint;
+      returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
     }
   }
   return returnVal;
@@ -377,19 +364,19 @@ export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   const numDamaged = testArray.filter(chr => chr.damage > 0 && chr.value !== 0).length;
   if (currentZero === maxNonZero) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (numDamaged > 0) {
     if (maxNonZero > 1) {
       if (numDamaged === maxNonZero) {
-        returnVal = DAMAGECOLORS.seriousWoundTint;
+        returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
       } else {
-        returnVal = DAMAGECOLORS.minorWoundTint;
+        returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
       }
     } else {
       if(testArray.filter(chr => (chr.damage >= chr.value / 2) && chr.value !== 0).length) {
-        returnVal = DAMAGECOLORS.seriousWoundTint;
+        returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
       } else {
-        returnVal = DAMAGECOLORS.minorWoundTint;
+        returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
       }
     }
   }
@@ -401,11 +388,11 @@ export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
   const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   if (currentZero === 3) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (currentZero === 2) {
-    returnVal = DAMAGECOLORS.seriousWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
   } else if (currentZero === 1) {
-    returnVal = DAMAGECOLORS.minorWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }
@@ -422,11 +409,11 @@ export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
   const currentHits = selectedTraveller.characteristics[lfbCharacteristic].current + selectedTraveller.characteristics[endCharacteristic].current;
   //const totalHits = selectedTraveller.characteristics[lfbCharacteristic].value + selectedTraveller.characteristics[endCharacteristic].value;
   if (currentHits <= 0) {
-    returnVal = DAMAGECOLORS.deadTint;
+    returnVal = TWODSIX.DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics[lfbCharacteristic].current < (selectedTraveller.characteristics[lfbCharacteristic].value / 2)) {
-    returnVal = DAMAGECOLORS.seriousWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.seriousWoundTint;
   } else if (selectedTraveller.characteristics[endCharacteristic].current <= 0) {
-    returnVal = DAMAGECOLORS.minorWoundTint;
+    returnVal = TWODSIX.DAMAGECOLORS.minorWoundTint;
   }
   return returnVal;
 }

@@ -7,7 +7,7 @@ import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { roundToMaxDecimals, simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
-import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
+import { getDamageCharacteristics, getParryValue, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
@@ -710,7 +710,8 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damageValue, armorPiercingValue, damageType, damageLabel);
+      const parryArmor = await getParryValue(this);
+      const stats = new Stats(this, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
       await stats.applyDamage();
     }
   }
