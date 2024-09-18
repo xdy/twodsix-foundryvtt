@@ -77,7 +77,7 @@ export class Stats {
       this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
       this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
       this.parryArmor = parryArmor;
-      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0);
+      this.effectiveArmor = game.settings.get('twodsix', 'ruleset') === 'CU' ? Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0) :  Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
