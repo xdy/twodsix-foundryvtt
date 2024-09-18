@@ -380,7 +380,7 @@ export async function getCustomModifiers(selectedActor:TwodsixActor, characteris
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   const returnObject = [];
-  const customEffects = await selectedActor.appliedEffects.filter(eff => eff.name !== game.i18n.localize(TWODSIX.effectType.wounded) && eff.name !== game.i18n.localize(TWODSIX.effectType.encumbered));
+  const customEffects = await selectedActor.appliedEffects.filter(eff  => !eff.statuses.has('encumbered') && !eff.statuses.has('wounded'));
   for (const effect of customEffects) {
     for (const change of effect.changes) {
       if (change.key === `system.characteristics.${characteristicKey}.mod` || change.key === `system.characteristics.${characteristicKey}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
