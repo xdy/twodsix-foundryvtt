@@ -72,7 +72,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
   let state = false;
   let ratio = 0;
-  let idToKeep = "";
+  let aeToKeep: TwodsixActiveEffect | undefined = undefined;
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
 
   //Determined whether encumbered
@@ -86,11 +86,11 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 
   // Delete encumbered AE's if uneeded or more than one
   if (isCurrentlyEncumbered.length > 0) {
-    const idList = isCurrentlyEncumbered.map(i => i.id);
     if (state === true) {
-      idToKeep = idList.pop();
+      aeToKeep = isCurrentlyEncumbered.pop();
     }
-    if(idList.length > 0) {
+    if(isCurrentlyEncumbered.length > 0) {
+      const idList = isCurrentlyEncumbered.map(i => i.id);
       await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
     }
   }
@@ -131,7 +131,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       });
     }
 
-    if (isCurrentlyEncumbered.length === 0) {
+    if (!aeToKeep) {
       await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(TWODSIX.effectType.encumbered),
         img: "systems/twodsix/assets/icons/weight.svg",
@@ -139,9 +139,8 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
         statuses: ["encumbered"]
       }], {dontSync: true, noHook: true});
     } else {
-      const encumberedEffect = await selectedActor.effects.get(idToKeep);
-      if (changeData[0].value !== encumberedEffect?.changes[0].value  && encumberedEffect) {
-        await encumberedEffect.update({changes: changeData });
+      if (changeData[0].value !== aeToKeep.changes[0].value) {
+        await aeToKeep.update({changes: changeData });
       }
     }
   }
