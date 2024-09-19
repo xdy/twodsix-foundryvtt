@@ -710,7 +710,7 @@ export default class TwodsixActor extends Actor {
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const parryArmor = await getParryValue(this);
+      const parryArmor = damageType === 'melee' ? await getParryValue(this) : 0;
       const stats = new Stats(this, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
       await stats.applyDamage();
     }

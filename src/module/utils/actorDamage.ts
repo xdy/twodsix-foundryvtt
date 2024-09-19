@@ -320,7 +320,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   }
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
-  const parryArmor = await getParryValue(actor);
+  const parryArmor = damageType === 'melee' ? await getParryValue(actor) : 0;
   const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
@@ -375,9 +375,9 @@ export function getDamageCharacteristics(actorType:string): string[] {
 }
 
 /**
- * Gets the weapon's Parry AV value on a sucesssful melee roll if ruleset is CU.
+ * Gets the best Parry AV value based on equipped melee damage weapons on a sucesssful melee roll if ruleset is CU.
  * @param {TwodsixActor} actor The defending actor
- * @returns {number} The parry AV value if sucessful, otherwise zero
+ * @returns {number} The best equipped melee damage weapon parry AV value if sucessful, otherwise zero
  */
 export async function getParryValue(actor:TwodsixActor): number {
   let returnValue = 0;
@@ -386,12 +386,14 @@ export async function getParryValue(actor:TwodsixActor): number {
     //Try to find melee combat skill
     const meleeSkill:TwodsixItem =  actor.getBestSkill(game.i18n.localize("TWODSIX.Items.Skills.MeleeCombat") + "| Melee Combat", false);
     if (meleeSkill) {
-      const weapon = actor.itemTypes.weapon.find( it => it.system.damageType === 'melee' && it.system.equipped === 'equipped');
-      if (weapon) {
+      const weaponsList: TwodsixItem[] = actor.itemTypes.weapon.filter( it => it.system.damageType === 'melee' && it.system.equipped === 'equipped' && Number.isInteger(it.system.parryAV));
+      if (weaponsList?.length > 0) {
+        weaponsList.sort((a, b) => b.system.parryAV - a.system.parryAV); //Find best parry weapon
+        const weapon:TwodsixItem = weaponsList[0];
         const tmpSettings = {
           difficulty: TWODSIX.DIFFICULTIES.CU.Average,
           rollModifiers: {char: 'DEX'},
-          extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")
+          extraFlavor: `${game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")} ${weapon.name}(AV: ${weapon.system.parryAV})`
         };
         const settings:TwodsixRollSettings = await TwodsixRollSettings.create(false, tmpSettings, meleeSkill, undefined, actor);
         if (settings.shouldRoll) {
