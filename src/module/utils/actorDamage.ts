@@ -390,16 +390,18 @@ export async function getParryValue(actor:TwodsixActor): number {
       if (weaponsList?.length > 0) {
         weaponsList.sort((a, b) => b.system.parryAV - a.system.parryAV); //Find best parry weapon
         const weapon:TwodsixItem = weaponsList[0];
-        const tmpSettings = {
-          difficulty: TWODSIX.DIFFICULTIES.CU.Average,
-          rollModifiers: {char: 'DEX'},
-          extraFlavor: `${game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")} ${weapon.name}(AV: ${weapon.system.parryAV})`
-        };
-        const settings:TwodsixRollSettings = await TwodsixRollSettings.create(false, tmpSettings, meleeSkill, undefined, actor);
-        if (settings.shouldRoll) {
-          const returnRoll = await meleeSkill.skillRoll(false, settings);
-          if (returnRoll?.effect >= 0) {
-            returnValue = weapon.system.parryAV;
+        if (weapon.system.parryAV > 0){
+          const tmpSettings = {
+            difficulty: TWODSIX.DIFFICULTIES.CU.Average,
+            rollModifiers: {char: 'DEX'},
+            extraFlavor: `${game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")} ${weapon.name}(AV: ${weapon.system.parryAV})`
+          };
+          const settings:TwodsixRollSettings = await TwodsixRollSettings.create(false, tmpSettings, meleeSkill, undefined, actor);
+          if (settings.shouldRoll) {
+            const returnRoll = await meleeSkill.skillRoll(false, settings);
+            if (returnRoll?.effect >= 0) {
+              returnValue = weapon.system.parryAV;
+            }
           }
         }
       } else {
