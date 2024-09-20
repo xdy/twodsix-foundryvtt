@@ -1,3 +1,10 @@
+## [5.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.1...v5.8.2) (2024-09-19)
+
+
+### Bug Fixes
+
+* AE through macros can trigger encumbrance check ([#1634](https://github.com/xdy/twodsix-foundryvtt/issues/1634)) ([f170f03](https://github.com/xdy/twodsix-foundryvtt/commit/f170f0382758120359d52988b9c132f4d69707b8))
+
 ## [5.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.0...v5.8.1) (2024-09-09)
 
 
