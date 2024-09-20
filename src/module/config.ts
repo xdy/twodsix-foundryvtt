@@ -646,7 +646,7 @@ const RULESETS = Object.freeze({
       absoluteBonusValueForEachTimeIncrement: 1,
       criticalNaturalAffectsEffect: false,
       absoluteCriticalEffectValue: 99,
-      ShowLawLevel: true,
+      ShowLawLevel: false,
       rangeModifierType: "CU_Bands",
       ShowWeaponType: true,
       ShowDamageType: true,
