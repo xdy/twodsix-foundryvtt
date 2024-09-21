@@ -1,3 +1,10 @@
+## [5.8.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.2...v5.8.3) (2024-09-21)
+
+
+### Bug Fixes
+
+* missing cargo key in component list ([#1638](https://github.com/xdy/twodsix-foundryvtt/issues/1638)) ([4b864c3](https://github.com/xdy/twodsix-foundryvtt/commit/4b864c30caaa5cbcd746ba3c46753c6cd69e8c5f))
+
 ## [5.8.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.1...v5.8.2) (2024-09-19)
 
 

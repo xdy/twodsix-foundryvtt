@@ -71,7 +71,7 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));
     settings.ship.push(booleanSetting('showCombatPosition', false));
-    const nonCargoTypes = TWODSIX.ComponentTypes;
+    const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;
     settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
     return settings;
