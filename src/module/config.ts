@@ -1163,6 +1163,7 @@ export const CU_DAMAGE_TYPES = {
   ballistic: "TWODSIX.DamageType.Ballistic",
   disintegrate: "TWODSIX.DamageType.Disintegrate",
   electrical: "TWODSIX.DamageType.Electrical",
+  entangle: "TWODSIX.DamageType.Entangle",
   fire: "TWODSIX.DamageType.Fire",
   laser: "TWODSIX.DamageType.Laser",
   melee: "TWODSIX.DamageType.Melee",
