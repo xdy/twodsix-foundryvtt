@@ -700,7 +700,7 @@ export default class TwodsixActor extends Actor {
     if (showDamageDialog) {
       const damageData = foundry.utils.duplicate(damagePayload);
       Object.assign(damageData, {
-        damageId: "damage-" + foundry.utils.randomID,
+        damageId: "damage-" + foundry.utils.randomID(),
         actor: this
       });
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
