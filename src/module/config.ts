@@ -679,7 +679,7 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'CE',
       targetDMList: "Aiming +1, Aiming w/scope +2, Cover (partial) -3, Movement -1, Dodges -1, Frenzy Fire -2, Into Hand-to-Hand -2",
       armorDamageFormula: "@damage - @effectiveArmor",
-      addEffectToDamage: true,
+      addEffectToDamage: false,
       weightModifierForWornArmor: "1",
       chainBonus: "-2, -1, -1, 1, 1, 2"
     }

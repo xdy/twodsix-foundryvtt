@@ -682,6 +682,7 @@ export default class TwodsixItem extends Item {
       const damageLabels = getDamageTypes(true);
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
+      const canBeParried = game.settings.get('twodsix', 'ruleset') === 'CU'  && damageType === 'melee' && ['personal', 'close'].includes(this.system.rangeBand);
 
       Object.assign(contentData, {
         flavor: flavor,
@@ -690,7 +691,8 @@ export default class TwodsixItem extends Item {
         armorPiercingValue: apValue,
         damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
         damageType: damageType,
-        damageLabel: damageLabels[damageType] || ""
+        damageLabel: damageLabels[damageType] || "",
+        canBeParried: canBeParried
       });
 
       if (radDamage.total) {

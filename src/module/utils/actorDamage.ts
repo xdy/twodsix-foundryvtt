@@ -312,15 +312,15 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, actor} = damageData;
+  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, actor, canBeParried} = damageData;
 
-  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3) && !user.isGM) || null;
+  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) && !user.isGM) || null;
   if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
     return;
   }
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
-  const parryArmor = damageType === 'melee' ? await getParryValue(actor) : 0;
+  const parryArmor = canBeParried ? await getParryValue(actor) : 0;
   const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});

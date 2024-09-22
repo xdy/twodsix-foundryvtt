@@ -696,22 +696,18 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string = "", showDamageDialog = true): Promise<void> {
+  public async damageActor(damagePayload:any, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damageValue: number, armorPiercingValue: number, damageType:string, damageId: string, tokenId?: string|null, actorId?: string|null } = {
-        damageValue: damageValue,
-        armorPiercingValue: armorPiercingValue,
-        damageType: damageType,
-        damageLabel: damageLabel,
-        damageId: "damage-" + Math.random().toString(36).substring(2, 15),
+      const damageData = foundry.utils.duplicate(damagePayload);
+      Object.assign(damageData, {
+        damageId: "damage-" + foundry.utils.randomID,
         actor: this
-      };
-
+      });
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const parryArmor = damageType === 'melee' ? await getParryValue(this) : 0;
-      const stats = new Stats(this, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor);
+      const parryArmor = damagePayload.canBeParried ? await getParryValue(this) : 0;
+      const stats = new Stats(this, damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, parryArmor);
       await stats.applyDamage();
     }
   }
@@ -912,7 +908,7 @@ export default class TwodsixActor extends Actor {
       const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, "NONE", "NONE", false);
+        this.damageActor({damageValue: delta, armorPiercingValue: 9999, damageType: "NONE", damageLabel: "NONE", canBeParried: false}, false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);
@@ -1098,7 +1094,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Method to handle a dropped damage payload
-   * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type)
+   * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type & label)
    * @param {boolean} showDamageDialog Whethter to show apply damage dialog
    * @returns {boolean}
    * @private
@@ -1107,7 +1103,7 @@ export default class TwodsixActor extends Actor {
     if (!this.isOwner && !showDamageDialog) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
     } else if (["traveller", "animal", "robot"].includes(this.type)) {
-      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, showDamageDialog);
+      await this.damageActor(damagePayload, showDamageDialog);
       return true;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
