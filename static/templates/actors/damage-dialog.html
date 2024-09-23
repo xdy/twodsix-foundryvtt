@@ -9,7 +9,11 @@
           <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
         {{else}}
           <th>{{localize "TWODSIX.Items.Armor.Armor"}}</th>
-          <th>{{localize "TWODSIX.Items.Weapon.ParryAV"}}</th>
+          {{#if canOnlyBeBlocked}}
+            <th>{{localize "TWODSIX.Items.Weapon.ShieldAV"}}</th>
+          {{else}}
+            <th>{{localize "TWODSIX.Items.Weapon.ParryAV"}}</th>
+          {{/if}}
         {{/unless}}
         <th>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</th>
         <th>{{localize "TWODSIX.Damage.TotalDamage"}}</th>

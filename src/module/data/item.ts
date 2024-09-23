@@ -27,6 +27,7 @@ export class WeaponData extends GearData {
     schema.features = new fields.StringField({...requiredBlankString});
     schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
     schema.parryAV = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.isShield = new fields.BooleanField({ required: true, initial: false});
     schema.handlingModifiers = new fields.StringField({...requiredBlankString});
     schema.meleeRangeModifier = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.customCT = new fields.SchemaField({

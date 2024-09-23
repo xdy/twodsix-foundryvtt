@@ -441,7 +441,7 @@
           "veryLong":"Very Long",
           "vLong": "v.Long",
           "distant": "Distant",
-          "thr": "thr"
+          "thr": "Thr."
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -705,6 +705,8 @@
         "MagazineCost": "Magazine/Power Cell Cost",
         "ArmorPiercing": "Armor Piercing Value",
         "ParryAV": "Parry AV",
+        "ShieldAV": "Shield AV",
+        "isShield": "Acts as a shield",
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack",
@@ -1657,7 +1659,8 @@
       "ActorOverloaded": "Current actor is carrying more than its capacity.",
       "NoJournalFound": "Can't find linked Journal Entry",
       "CantFindMeleeSkill": "Can't find Melee Combat skill",
-      "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry"
+      "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
+      "CantFindShield": "Can't find an equipped shield to block"
     }
   },
   "TYPES": {
