@@ -440,8 +440,8 @@
           "long": "Long",
           "veryLong":"Very Long",
           "vLong": "v.Long",
-          "distant": "Distant"
-
+          "distant": "Distant",
+          "thr": "thr"
         },
         "RangeBandTypes": {
           "personal": "Personal",

@@ -455,7 +455,7 @@ export default class TwodsixItem extends Item {
     } else if (['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull);
+        rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull, range);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -962,10 +962,11 @@ export default class TwodsixItem extends Item {
    * A method for returning range modifier based on RangeTable constant
    * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
    * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
+   * @param {number} range Range to target, in meters
    * @param {boolean} isAuto Is full automatic fire
    * @returns {number} Range Modifier
    */
-  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean): number {
+  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean, range:number): number {
     const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
     let returnVal = 0;
     if (targetDistanceBand !== 'unknown' && weaponBand !== 'none') {
@@ -974,9 +975,22 @@ export default class TwodsixItem extends Item {
           case 'CE_Bands':
             returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
             break;
-          case 'CU_Bands':
-            returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
+          case 'CU_Bands': {
+            if (weaponBand === 'thrown') {
+              //Special case for thrown weapons
+              const maxThrow = 10 + this.actor?.system.characteristics.strength.value - this.system.weight;
+              if (range < maxThrow / 2) {
+                returnVal = 0;
+              } else if (range > maxThrow) {
+                returnVal = INFEASIBLE;
+              } else {
+                returnVal = -2; //Thrown weapons default to DIFFICULT
+              }
+            } else {
+              returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
+            }
             break;
+          }
           case 'CT_Bands': {
             const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
             returnVal = lookupRow[targetDistanceBand] || 0;
