@@ -1,1 +1,420 @@
-{}
+{
+  "Advantage": "Преимущество",
+  "Easy": "Простая",
+  "Impossible": "Impossible",
+  "Routine": "Routine",
+  "TWODSIX": {
+    "ActiveEffects": {
+    },
+    "Damage": {
+    },
+    "Dialogs": {
+    },
+    "Actor": {
+      "Characteristics": {
+      },
+      "Finances": {
+      },
+      "Info": {
+      },
+      "Items": {
+        "LocationState": {
+        }
+      },
+      "Notes": {
+      },
+      "Skills": {
+        "Timeframe": {
+        }
+      },
+      "Tabs": {
+      },
+      "Movement": {
+      },
+      "CharDisplay": {
+      }
+    },
+    "Animal": {
+      "NicheType": {
+      },
+      "Subtype": {
+      },
+      "Locations": {
+      }
+    },
+    "Chat": {
+      "Roll": {
+        "DegreesOfSuccess": {
+        },
+        "RangeModifierTypes": {
+        },
+        "WeaponRangeTypes": {
+        },
+        "RangeBandTypes": {
+        },
+        "ArmorTypes": {
+        }
+      }
+    },
+    "Table": {
+    },
+    "Handlebars": {
+    },
+    "Items": {
+      "Armor": {
+      },
+      "Augmentation": {
+      },
+      "Component": {
+      },
+      "Equipment": {
+      },
+      "Items": {
+      },
+      "Skills": {
+      },
+      "Traits": {
+      },
+      "Tool": {
+      },
+      "Consumable": {
+        "Types": {
+        }
+      },
+      "Weapon": {
+        "CustomModifier": {
+        }
+      },
+      "Spells": {
+      },
+      "Computer": {
+      }
+    },
+    "Target": {
+    },
+    "Ship": {
+      "Crew": {
+      },
+      "Tabs": {
+      }
+    },
+    "Vehicle": {
+      "systems": {
+      },
+      "crew": {
+      },
+      "ProtectionType": {
+      }
+    },
+    "SpaceObject": {
+    },
+    "Resource": {
+    },
+    "Migration": {
+    },
+    "Rolls": {
+    },
+    "Settings": {
+      "absoluteBonusValueForEachTimeIncrement": {
+      },
+      "absoluteCriticalEffectValue": {
+      },
+      "shortSTR": {
+      },
+      "shortDEX": {
+      },
+      "shortEND": {
+      },
+      "shortINT": {
+      },
+      "shortSOC": {
+      },
+      "shortEDU": {
+      },
+      "shortPSI": {
+      },
+      "alternativeShort1": {
+      },
+      "alternativeShort2": {
+      },
+      "alternativeShort3": {
+      },
+      "autofireRulesUsed": {
+      },
+      "automateDamageRollOnHit": {
+      },
+      "criticalNaturalAffectsEffect": {
+      },
+      "defaultTokenSettings": {
+      },
+      "difficultiesAsTargetNumber": {
+      },
+      "difficultyListUsed": {
+      },
+      "effectOrTotal": {
+      },
+      "ExperimentalFeatures": {
+      },
+      "hideUntrainedSkills": {
+      },
+      "initiativeFormula": {
+      },
+      "armorDamageFormula": {
+      },
+      "invertSkillRollShiftClick": {
+      },
+      "lifebloodInsteadOfCharacteristics": {
+      },
+      "maxSkillLevel": {
+      },
+      "modifierForZeroCharacteristic": {
+      },
+      "ruleset": {
+      },
+      "settingsInterface": {
+        "debugSettings": {
+        },
+        "displaySettings": {
+        },
+        "itemSettings": {
+        },
+        "rulesetSettings": {
+        }
+      },
+      "shipInitiativeFormula": {
+      },
+      "showAlternativeCharacteristics": {
+      },
+      "showContaminationBelowLifeblood": {
+      },
+      "ShowDamageType": {
+      },
+      "showHeroPoints": {
+      },
+      "usePDFPagerForRefs": {
+      },
+      "ShowLawLevel": {
+      },
+      "showLifebloodStamina": {
+      },
+      "ShowRangeBandAndHideRange": {
+      },
+      "ShowRateOfFire": {
+      },
+      "ShowRecoil": {
+      },
+      "ShowDoubleTap": {
+      },
+      "showSingleComponentColumn": {
+      },
+      "showBandwidth": {
+      },
+      "ShowWeaponType": {
+      },
+      "showWeightUsage": {
+      },
+      "systemMigrationVersion": {
+      },
+      "termForAdvantage": {
+      },
+      "termForDisadvantage": {
+      },
+      "useFoundryStandardStyle": {
+      },
+      "useModuleFixStyle": {
+      },
+      "useShipAutoCalcs": {
+      },
+      "useSystemDefaultTokenIcon": {
+      },
+      "useWoundedStatusIndicators": {
+      },
+      "minorWoundsRollModifier": {
+      },
+      "seriousWoundsRollModifier": {
+      },
+      "weightModifierForWornArmor": {
+      },
+      "useProseMirror": {
+      },
+      "showIcons": {
+      },
+      "maxComponentHits": {
+      },
+      "mortgagePayment": {
+      },
+      "massProductionDiscount": {
+      },
+      "reverseHealingOrder": {
+      },
+      "maxEncumbrance": {
+      },
+      "allowDropOnIcon": {
+      },
+      "defaultMovement": {
+      },
+      "defaultMovementUnits": {
+      },
+      "useEncumbrance": {
+      },
+      "addEffectForShipDamage": {
+      },
+      "autoAddUnarmed": {
+      },
+      "unarmedDamage": {
+      },
+      "showTimeframe": {
+      },
+      "showStatusIcons": {
+      },
+      "showHullAndArmor": {
+      },
+      "addEffectToDamage": {
+      },
+      "addEffectToManualDamage": {
+      },
+      "showRangeSpeedNoUnits": {
+      },
+      "showInitiativeButton": {
+      },
+      "showSkillCountsRanks": {
+      },
+      "showComponentSummaryIcons": {
+      },
+      "showSpells": {
+      },
+      "sorcerySkill": {
+      },
+      "useNationality": {
+      },
+      "animalsUseHits": {
+      },
+      "animalsUseLocations": {
+      },
+      "displayReactionMorale": {
+      },
+      "robotsUseHits": {
+      },
+      "showComponentRating": {
+      },
+      "showComponentDM": {
+      },
+      "useEncumbranceStatusIndicators": {
+      },
+      "encumbranceFraction": {
+      },
+      "encumbranceModifier": {
+      },
+      "transferDroppedItems": {
+      },
+      "allowDragDropOfListsActor": {
+      },
+      "allowDragDropOfListsShip": {
+      },
+      "useDodgeParry": {
+      },
+      "showModifierDetails": {
+      },
+      "defaultColor": {
+      },
+      "lightColor": {
+      },
+      "damageStatColor": {
+      },
+      "battleColor": {
+      },
+      "useItemActiveEffects": {
+      },
+      "showFeaturesInChat": {
+      },
+      "showHitsChangesInChat": {
+      },
+      "encumbFractionOneSquare": {
+      },
+      "encumbFraction75pct": {
+      },
+      "useTabbedViews": {
+      },
+      "damageTypeOptions": {
+      },
+      "animalTypesIndependentofNiche": {
+      },
+      "reduceStatusIcons": {
+      },
+      "overrideDamageRoll": {
+      },
+      "autoDamageTarget": {
+      },
+      "useDegreesOfSuccess": {
+      },
+      "overrideSuccessWithNaturalCrit": {
+      },
+      "showTotalArmor": {
+      },
+      "showItemIconsInChat": {
+      },
+      "menuLabels": {
+      },
+      "useMaxArmorValue": {
+      },
+      "showActorReferences": {
+      },
+      "maxSpellLevel": {
+      },
+      "showAllCharWithTable": {
+      },
+      "showTLonItemsTab": {
+      },
+      "omitPSIifZero": {
+      },
+      "omitALTifZero": {
+      },
+      "rangeModifierType": {
+      },
+      "equippedToggleStates": {
+      },
+      "targetDMList": {
+      },
+      "meleeRange": {
+      },
+      "showSkillGroups": {
+      },
+      "NoDuplicatesOnHotbar": {
+      },
+      "jDriveLabel": {
+      },
+      "showCost": {
+      },
+      "chainBonus": {
+      },
+      "defaultActorSheetWidth": {
+      },
+      "defaultActorSheetHeight": {
+      },
+      "showAttachmentsList": {
+      },
+      "showConsumablesList": {
+      },
+      "showCombatPosition": {
+      },
+      "componentsIgnored": {
+      }
+    },
+    "itemTypes": {
+    },
+    "speeds": {
+    },
+    "Errors": {
+    },
+    "Warnings": {
+    }
+  },
+  "TYPES": {
+    "Item": {
+    },
+    "Actor": {
+    }
+  },
+  "EFFECT": {
+  }
+}
