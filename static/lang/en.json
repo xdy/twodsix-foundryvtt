@@ -45,7 +45,9 @@
       "CharacterIsDead": "Character is dead",
       "DealDamageTo": "Deal damage to _ACTOR_NAME_",
       "DamageFormula": "Damage Formula",
-      "NoRegularDamage": "No Regular Damage"
+      "NoRegularDamage": "No Regular Damage",
+      "CanBeBlocked": "Can be blocked",
+      "CanBeParried": "Can be parried"
     },
     "DamageType": {
       "Acid": "Acid",
