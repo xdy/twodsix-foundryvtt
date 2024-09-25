@@ -35,7 +35,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onCreate}
    * @protected
    */
-  async _onCreate(data, options, userId): void {
+  async _onCreate(data: object, options: object, userId: string): void {
     await super._onCreate(data, options, userId);
     if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -50,7 +50,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onDelete}
    * @protected
    */
-  async _onDelete(options, userId): void {
+  async _onDelete(options: object, userId: string): void {
     await super._onDelete(options, userId);
     if(game.userId === userId && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -60,15 +60,37 @@ export class TwodsixActiveEffect extends ActiveEffect {
 }
 
 async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-    if (activeEffect.statuses.size === 0) {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && changesEncumbranceStat(activeEffect)) {
+    if (activeEffect.statuses.size === 0 ) {
       await applyEncumberedEffect(activeEffect.parent);
     } else {
       const notEncumbered= !activeEffect.statuses.has('encumbered');
       const notWounded = !activeEffect.statuses.has('wounded');
-      if (notEncumbered && notWounded) {
+      const notUnc = !activeEffect.statuses.has('unconscious');
+      const notDead = !activeEffect.statuses.has('dead');
+      if (notEncumbered && notWounded && notUnc && notDead) {
         await applyEncumberedEffect(activeEffect.parent);
       }
     }
   }
+}
+/**
+ * Checks the changes in an active effect and determines whether it might affect encumbrance
+ * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
+ * @returns {boolean} Whether the effect could change encumbrance status
+ */
+function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
+  if (activeEffect.changes.length > 0){
+    for (const change of activeEffect.changes) {
+      if (change.key.includes('system.characteristics.strength.value')  ||
+          change.key.includes('system.characteristics.strength.current') ||
+          change.key.includes('system.characteristics.strength.mod') ||
+          change.key.includes('system.characteristics.endurance.value') ||
+          change.key.includes('system.encumbrance.max') ||
+          change.key.includes('system.encumbrance.value')) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
