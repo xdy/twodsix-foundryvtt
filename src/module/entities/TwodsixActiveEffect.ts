@@ -58,17 +58,20 @@ export class TwodsixActiveEffect extends ActiveEffect {
 
   }
 }
-
+/**
+ * Calls applyEncumberedEffect if active effect could change encumbered status
+ * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
+ * @returns {void}
+ */
 async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
   if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && changesEncumbranceStat(activeEffect)) {
     if (activeEffect.statuses.size === 0 ) {
       await applyEncumberedEffect(activeEffect.parent);
     } else {
-      const notEncumbered= !activeEffect.statuses.has('encumbered');
-      const notWounded = !activeEffect.statuses.has('wounded');
+      const notEncumbered = !activeEffect.statuses.has('encumbered');
       const notUnc = !activeEffect.statuses.has('unconscious');
       const notDead = !activeEffect.statuses.has('dead');
-      if (notEncumbered && notWounded && notUnc && notDead) {
+      if (notEncumbered && notUnc && notDead) {
         await applyEncumberedEffect(activeEffect.parent);
       }
     }
