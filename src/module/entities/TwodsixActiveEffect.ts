@@ -43,6 +43,22 @@ export class TwodsixActiveEffect extends ActiveEffect {
   }
 
   /**
+   * Perform follow-up operations after a Document of this type is updated.
+   * Post-update operations occur for all clients after the update is broadcast.
+   * @param {object} changed            The differential data that was changed relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {string} userId             The id of the User requesting the document update
+   * @see {Document#_onUpdate}
+   * @protected
+   */
+  async _onUpdate(changed, options, userId) {
+    await super._onUpdate(changed, options, userId);
+    if(game.userId === userId  && this.parent?.type === 'traveller') {
+      await checkEncumbranceStatus(this);
+    }
+  }
+
+  /**
    * Perform follow-up operations after a Document of this type is deleted.
    * Post-deletion operations occur for all clients after the deletion is broadcast.
    * @param {object} options            Additional options which modify the deletion request
