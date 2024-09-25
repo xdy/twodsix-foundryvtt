@@ -33,7 +33,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @param {object} options            Additional options which modify the creation request
    * @param {string} userId             The id of the User requesting the document update
    * @see {Document#_onCreate}
-   * @protected
+   * @override
    */
   async _onCreate(data: object, options: object, userId: string): void {
     await super._onCreate(data, options, userId);
@@ -49,9 +49,9 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @param {object} options            Additional options which modify the update request
    * @param {string} userId             The id of the User requesting the document update
    * @see {Document#_onUpdate}
-   * @protected
+   * @override
    */
-  async _onUpdate(changed, options, userId) {
+  async _onUpdate(changed: object, options: object, userId: string) {
     await super._onUpdate(changed, options, userId);
     if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -64,7 +64,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @param {object} options            Additional options which modify the deletion request
    * @param {string} userId             The id of the User requesting the document update
    * @see {Document#_onDelete}
-   * @protected
+   * @override
    */
   async _onDelete(options: object, userId: string): void {
     await super._onDelete(options, userId);
@@ -74,6 +74,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
 
   }
 }
+
 /**
  * Calls applyEncumberedEffect if active effect could change encumbered status
  * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
