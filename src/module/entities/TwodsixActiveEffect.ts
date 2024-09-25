@@ -35,7 +35,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onCreate}
    * @override
    */
-  async _onCreate(data: object, options: object, userId: string): void {
+  async _onCreate(data: object, options: object, userId: string):void {
     await super._onCreate(data, options, userId);
     if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -51,7 +51,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onUpdate}
    * @override
    */
-  async _onUpdate(changed: object, options: object, userId: string) {
+  async _onUpdate(changed: object, options: object, userId: string):void {
     await super._onUpdate(changed, options, userId);
     if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -66,7 +66,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onDelete}
    * @override
    */
-  async _onDelete(options: object, userId: string): void {
+  async _onDelete(options: object, userId: string):void {
     await super._onDelete(options, userId);
     if(game.userId === userId && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -99,7 +99,7 @@ async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
  * @returns {boolean} Whether the effect could change encumbrance status
  */
 function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
-  if (activeEffect.changes.length > 0){
+  if (activeEffect.changes.length > 0) {
     for (const change of activeEffect.changes) {
       if (change.key.includes('system.characteristics.strength.value')  ||
           change.key.includes('system.characteristics.strength.current') ||
