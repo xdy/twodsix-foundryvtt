@@ -88,7 +88,7 @@ function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
       if (change.key.includes('system.characteristics.strength.value')  ||
           change.key.includes('system.characteristics.strength.current') ||
           change.key.includes('system.characteristics.strength.mod') ||
-          change.key.includes('system.characteristics.endurance.value') ||
+          (change.key.includes('system.characteristics.endurance.value') && ['CEATOM', "BARBARIC"].includes(game.settings.get('twodsix', 'ruleset'))) ||
           change.key.includes('system.encumbrance.max') ||
           change.key.includes('system.encumbrance.value')) {
         return true;
