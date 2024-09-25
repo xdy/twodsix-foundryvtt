@@ -80,14 +80,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
  * @returns {void}
  */
 async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && changesEncumbranceStat(activeEffect)) {
+  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (changesEncumbranceStat(activeEffect) || activeEffect.statuses.has('dead'))) {
     if (activeEffect.statuses.size === 0 ) {
       await applyEncumberedEffect(activeEffect.parent);
     } else {
       const notEncumbered = !activeEffect.statuses.has('encumbered');
       const notUnc = !activeEffect.statuses.has('unconscious');
-      const notDead = !activeEffect.statuses.has('dead');
-      if (notEncumbered && notUnc && notDead) {
+      if (notEncumbered && notUnc) {
         await applyEncumberedEffect(activeEffect.parent);
       }
     }
