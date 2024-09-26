@@ -166,7 +166,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
       }
     } else if (['CT'].includes(rulesSet)) {
       if (oldWoundState === undefined && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
-        setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
     } else if (oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint && tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
@@ -191,16 +191,6 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
 async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
   const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
   const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
-
-  /*let targetToken = {};
-  if(targetActor.isToken) {
-    targetToken = <Token>targetActor.token.object;
-  } else {
-    targetToken = <Token>canvas.tokens?.ownedTokens.find(t => t.actor?.id === targetActor.id);
-    if (!targetToken?.document.isLinked) {
-      return; //unlinked actor token found
-    }
-  }*/
 
   if (isAlreadySet.length > 1) {
     //Need to get rid of duplicates
