@@ -424,7 +424,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 1, 1, 1"
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true
     }
   },
   CDEE: {
@@ -477,7 +478,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 1, 1, 1"
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true
     }
   },
   CLU: {
@@ -530,7 +532,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 1, 1, 1"
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true
     }
   },
   SOC: {

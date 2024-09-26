@@ -9,7 +9,6 @@ import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
-import { applyEncumberedEffect } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
@@ -617,9 +616,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       const selectedEffect:TwodsixActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
-        if (this.actor?.type === 'traveller' && game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-          applyEncumberedEffect(this.actor); //a hack for encumbrance not resetting on change of effect
-        }
       }
     } else if (action === "create") {
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
