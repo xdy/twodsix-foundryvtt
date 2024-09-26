@@ -88,13 +88,15 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   let idToKeep = "";
   const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
 
-  //Determined whether encumbered
-  if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
-    state = true;
-    ratio = 1;
-  } else if (maxEncumbrance > 0) {
-    ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
-    state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
+  //Determined whether encumbered if not dead
+  if (selectedActor.system.hits.value > 0) {
+    if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
+      state = true;
+      ratio = 1;
+    } else if (maxEncumbrance > 0) {
+      ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+      state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
+    }
   }
 
   // Delete encumbered AE's if uneeded or more than one
@@ -166,20 +168,20 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'AC', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
-        setConditionState('unconscious', selectedActor, true);
+        await setConditionState('unconscious', selectedActor, true);
       }
     } else if (['CT'].includes(rulesSet)) {
       if (oldWoundState === undefined && [DAMAGECOLORS.minorWoundTint, DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
-        setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       }
     } else if (oldWoundState?.tint.css !== DAMAGECOLORS.seriousWoundTint && tintToApply === DAMAGECOLORS.seriousWoundTint) {
       if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
-        setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
         const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
         const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
         if (returnRoll && returnRoll.effect < 0) {
-          setConditionState('unconscious', selectedActor, true);
+          await setConditionState('unconscious', selectedActor, true);
         }
       }
     }
@@ -269,7 +271,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     }
     //
     if (!currentEffectId) {
-      targetActor.createEmbeddedDocuments("ActiveEffect", [{
+      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize(effectType.wounded),
         img: "icons/svg/blood.svg",
         tint: tint,
@@ -279,7 +281,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);
       if (currentEfffect.tint !== tint) {
-        targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
+        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
       }
     }
   }
@@ -333,7 +335,7 @@ export function getHitsTint(selectedTraveller: TwodsixActor): string {
 
 export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
-  if (selectedTraveller.characteristics.lifeblood.current <= 0) {
+  if (selectedTraveller.characteristics.lifeblood.current <= 0 && selectedTraveller.characteristics.stamina.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;

@@ -224,8 +224,8 @@ export default class TwodsixActor extends Actor {
           await applyWoundedEffect(this);
         }
       }
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') ) {
-        if (changed.system?.characteristics && (this.type === 'traveller') ) {
+      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller')) {
+        if (isEncumbranceChange(changed)) {
           await applyEncumberedEffect(this);
         }
       }
@@ -1414,4 +1414,11 @@ function buildUntrainedSkillData(): any {
   };
 }
 
-
+function isEncumbranceChange(changed:object): boolean {
+  if (changed.system?.characteristics?.strength) {
+    return true;
+  } else if (changed.system?.characteristics?.endurance && ['CEATOM', "BARBARIC"].includes(game.settings.get('twodsix', 'ruleset'))) {
+    return true;
+  }
+  return false;
+}
