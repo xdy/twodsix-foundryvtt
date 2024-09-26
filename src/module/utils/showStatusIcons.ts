@@ -335,7 +335,7 @@ export function getHitsTint(selectedTraveller: TwodsixActor): string {
 
 export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
-  if (selectedTraveller.characteristics.lifeblood.current <= 0) {
+  if (selectedTraveller.characteristics.lifeblood.current <= 0 && selectedTraveller.characteristics.stamina.current <= 0) {
     returnVal = DAMAGECOLORS.deadTint;
   } else if (selectedTraveller.characteristics.lifeblood.current < (selectedTraveller.characteristics.lifeblood.value / 2)) {
     returnVal = DAMAGECOLORS.seriousWoundTint;
