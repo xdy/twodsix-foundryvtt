@@ -1,3 +1,10 @@
+## [5.8.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.3...v5.8.4) (2024-09-26)
+
+
+### Bug Fixes
+
+*  encumbrance indicator doubling on status change ([#1644](https://github.com/xdy/twodsix-foundryvtt/issues/1644)) ([92a71e4](https://github.com/xdy/twodsix-foundryvtt/commit/92a71e4257729e1afb1507f3294da1e35aa2a01e))
+
 ## [5.8.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.2...v5.8.3) (2024-09-21)
 
 
