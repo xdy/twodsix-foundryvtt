@@ -259,7 +259,7 @@ export default class TwodsixItem extends Item {
 
     // Get weapon handling modifier
     if (this.system.handlingModifiers !== "") {
-      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod()});
+      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod(rateOfFireCE)});
     }
 
     //Get single target weapons range modifier
@@ -520,19 +520,30 @@ export default class TwodsixItem extends Item {
 
   /**
    * A method to parse and return the weapon's handling modifier based on attacker's characteristics.
+   * @param {number} rateOfFire The weapon rate of fire (needed for CU)
    * @returns {number} The DM for the actor firing the weapon used
    */
-  public getWeaponsHandlingMod(): number {
+  public getWeaponsHandlingMod(rateOfFire:number): number {
+    // Handle CU special case of auto fire affecting recoil
+    let rofOffset = 0;
+    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+      if ( rateOfFire === 4) {
+        rofOffset = 1;
+      } else if (rateOfFire >= 10 ) {
+        rofOffset = 2;
+      }
+    }
+
     let weaponHandlingMod = 0;
     const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
     const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
     if (parsedResult) {
       const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
       if (checkCharacteristic) {
-        const charValue = this.actor.system.characteristics[checkCharacteristic].value;
-        if (charValue <= parseInt(parsedResult[2], 10)) {
+        const charValue = game.settings.get('twodsix', 'ruleset') === 'CU' ? this.actor.system.characteristics[checkCharacteristic].current : this.actor.system.characteristics[checkCharacteristic].value;
+        if (charValue <= parseInt(parsedResult[2], 10) + rofOffset) {
           weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
-        } else if (charValue >= parseInt(parsedResult[4], 10)) {
+        } else if (charValue >= parseInt(parsedResult[4], 10) + rofOffset) {
           weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
         }
       }
