@@ -1,0 +1,23 @@
+2024/09/29-08:12:59.228145 7000039ed000 Recovering log #155
+2024/09/29-08:12:59.229309 7000039ed000 Delete type=3 #153
+2024/09/29-08:12:59.229478 7000039ed000 Delete type=0 #155
+2024/09/29-08:35:30.832194 700005279000 Moved #154 to level-1 424 bytes OK: files[ 0 1 1 0 0 0 0 ]
+2024/09/29-08:42:51.702201 700005279000 Level-0 table #159: started
+2024/09/29-08:42:51.705420 700005279000 Level-0 table #159: 123537 bytes OK
+2024/09/29-08:42:51.705684 700005279000 Delete type=0 #157
+2024/09/29-08:42:51.716024 700005279000 Manual compaction at level-0 from '!folders!3zz4ZDjRQRPbf5zM' @ 72057594037927935 : 1 .. '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 0 : 0; will stop at '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 383 : 0
+2024/09/29-08:42:51.716043 700005279000 Compacting 1@0 + 1@1 files
+2024/09/29-08:42:51.718773 700005279000 Generated table #160@0: 163 keys, 113589 bytes
+2024/09/29-08:42:51.718804 700005279000 Compacted 1@0 + 1@1 files => 113589 bytes
+2024/09/29-08:42:51.718956 700005279000 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/09/29-08:42:51.719066 700005279000 Delete type=2 #159
+2024/09/29-08:42:51.719367 700005279000 Delete type=2 #154
+2024/09/29-08:42:51.720376 700005279000 Manual compaction at level-0 from '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 383 : 0 .. '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 0 : 0; will stop at (end)
+2024/09/29-08:42:51.731043 700005279000 Manual compaction at level-1 from '!folders!3zz4ZDjRQRPbf5zM' @ 72057594037927935 : 1 .. '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 0 : 0; will stop at '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 384 : 1
+2024/09/29-08:42:51.731078 700005279000 Compacting 1@1 + 1@2 files
+2024/09/29-08:42:51.734696 700005279000 Generated table #161@1: 161 keys, 117869 bytes
+2024/09/29-08:42:51.734721 700005279000 Compacted 1@1 + 1@2 files => 117869 bytes
+2024/09/29-08:42:51.734851 700005279000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/09/29-08:42:51.734968 700005279000 Delete type=2 #160
+2024/09/29-08:42:51.735245 700005279000 Delete type=2 #108
+2024/09/29-08:42:51.736580 700005279000 Manual compaction at level-1 from '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 384 : 1 .. '!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq' @ 0 : 0; will stop at (end)

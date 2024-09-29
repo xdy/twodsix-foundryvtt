@@ -295,6 +295,15 @@
       "path": "./packs/alpha-cephei-actors",
       "entity": "Actor",
       "type": "Actor"
+    },
+    {
+      "name": "cepheus-universal-items",
+      "label": "cepheus universal items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-universal-items",
+      "entity": "Item",
+      "type": "Item"
     }
   ],
   "packFolders": [
@@ -366,6 +375,13 @@
         "alpha-cephei-actors",
         "alpha-cephei-items",
         "alpha-cephei-skills"
+      ]
+    },
+    {
+      "name": "Cepheus Universal",
+      "sorting": "m",
+      "packs": [
+        "cepheus-universal-items"
       ]
     },
     {
