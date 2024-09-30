@@ -279,7 +279,8 @@ export default class TwodsixItem extends Item {
         if (isQualitativeBands) {
           rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
         } else {
-          rangeLabel = `${this.system.range} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
+          const effectiveRange = this.system.range * this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
+          rangeLabel = `${effectiveRange.toFixed(1)} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
         }
         appliedStatuses = getTargetModifiers(targetTokens[0].actor);
       } else if (targetTokens.length === 0) {
@@ -443,6 +444,7 @@ export default class TwodsixItem extends Item {
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
     // Return immediately with default if bad migration
     if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
       console.log("Bad weapon system.range value - should be string");
@@ -476,13 +478,13 @@ export default class TwodsixItem extends Item {
         rangeModifier = parseInt(this.system.meleeRangeModifier) || 0;
       }
     } else if (rangeModifierType === 'singleBand') {
-      if (range <= rangeValues[0] * 0.25) {
+      if (range <= rangeValues[0] * 0.25 * ammoModifier) {
         rangeModifier = 1;
-      } else if (range <= rangeValues[0]) {
+      } else if (range <= rangeValues[0] * ammoModifier) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[0] * 2) {
+      } else if (range <= rangeValues[0] * 2 * ammoModifier) {
         rangeModifier = -2;
-      } else if (range <= rangeValues[0] * 4) {
+      } else if (range <= rangeValues[0] * 4 * ammoModifier) {
         rangeModifier = -4;
       } else {
         rangeModifier = INFEASIBLE;
@@ -490,15 +492,31 @@ export default class TwodsixItem extends Item {
     } else if (rangeModifierType === 'doubleBand') {
       if (rangeValues[0] > rangeValues[1]) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[0]) {
+      } else if (range <= rangeValues[0] * ammoModifier) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[1]) {
+      } else if (range <= rangeValues[1] * ammoModifier) {
         rangeModifier = -2;
       } else {
         rangeModifier = INFEASIBLE;
       }
     }
     return {rangeModifier: rangeModifier, rollType: rollType};
+  }
+  /**
+   * A method to return ammo range modifier.
+   * @param {string} rangeModifierType  The type of range modifier (setting)
+   * @returns {any} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
+   */
+  public getAmmoRangeModifier(rangeModifierType:string):number {
+    let returnValue = 1;
+    //Get ammo range modifier if single or double bands
+    if (['singleBand', 'doubleBand'].includes(rangeModifierType) && this.system.useConsumableForAttack) {
+      const magazine = this.actor?.items.get(this.system.useConsumableForAttack) as TwodsixItem;
+      if (magazine?.system.ammoRangeModifier !== "") {
+        returnValue =  1 + ((parseFloat(magazine.system.ammoRangeModifier) ?? 0) / 100);
+      }
+    }
+    return returnValue;
   }
 
   /**

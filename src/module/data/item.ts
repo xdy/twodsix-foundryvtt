@@ -136,6 +136,7 @@ export class ConsumableData extends GearData {
     schema.subtype = new fields.StringField({required: true, blank: false, initial: "other" });
     schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
     schema.bonusDamage = new fields.StringField({...requiredBlankString});
+    schema.ammoRangeModifier = new fields.StringField({...requiredBlankString});
     schema.isAttachment = new fields.BooleanField({ required: true, initial: false});
     schema.bandwidth = new fields.NumberField({...requiredInteger, initial: 0});
     schema.softwareActive = new fields.BooleanField({ required: true, initial: true});
