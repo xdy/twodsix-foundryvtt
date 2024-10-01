@@ -164,7 +164,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
   const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.statuses.has('unconscious'));
   const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
-  const rulesSet = game.settings.get('twodsix', 'ruleset').toString();
+  const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'AC', 'OTHER'].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
@@ -179,7 +179,11 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
         await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
       } else {
         const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
-        const returnRoll = await selectedActor.characteristicRoll({ rollModifiers: {characteristic: 'END'}, difficulty: setDifficulty}, false);
+        const returnRoll = await selectedActor.characteristicRoll({
+          rollModifiers: {characteristic: 'END'},
+          difficulty: setDifficulty,
+          extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesUncRoll")
+        }, false);
         if (returnRoll && returnRoll.effect < 0) {
           await setConditionState('unconscious', selectedActor, true);
         }

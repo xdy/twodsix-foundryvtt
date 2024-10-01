@@ -235,19 +235,7 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = foundry.utils.deepClone(item);
-
-  //Delete Active effects if not used
-  if (!game.settings.get('twodsix', 'useItemActiveEffects') && itemCopy.isEmbedded !== true) {
-    const systemAEs = itemCopy.effects?.contents;
-    if (systemAEs?.length > 0) {
-      const idsToDelete = [];
-      for (const eff of systemAEs) {
-        idsToDelete.push(eff.id);
-      }
-      await itemCopy.deleteEmbeddedDocuments('ActiveEffect', idsToDelete);
-    }
-  }
+  const itemCopy = foundry.utils.duplicate(item);
   return itemCopy;
 }
 

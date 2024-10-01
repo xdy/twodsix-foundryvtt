@@ -942,7 +942,8 @@
       "SelectSkill": "Select Skill",
       "SkillName": "Skill Name",
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
-      "MakesChainRoll": "Makes a chain / assisted roll."
+      "MakesChainRoll": "Makes a chain / assisted roll.",
+      "MakesUncRoll": "Rolls to remain conscious."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
