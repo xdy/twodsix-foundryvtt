@@ -513,7 +513,10 @@ export default class TwodsixItem extends Item {
     if (['singleBand', 'doubleBand'].includes(rangeModifierType) && this.system.useConsumableForAttack) {
       const magazine = this.actor?.items.get(this.system.useConsumableForAttack) as TwodsixItem;
       if (magazine?.system.ammoRangeModifier !== "") {
-        returnValue =  1 + ((parseFloat(magazine.system.ammoRangeModifier) ?? 0) / 100);
+        const modifierVal = parseFloat(magazine.system.ammoRangeModifier);
+        if (!isNaN(modifierVal)) {
+          returnValue =  1 + (modifierVal / 100);
+        }
       }
     }
     return returnValue;
