@@ -977,7 +977,8 @@
       "SkillName": "Skill Name",
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
       "MakesChainRoll": "Makes a chain / assisted roll.",
-      "MakesParryRoll": "Makes a melee combat skill check to parry attack with"
+      "MakesParryRoll": "Makes a melee combat skill check to parry attack with",
+      "MakesUncRoll": "Rolls to remain conscious."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
