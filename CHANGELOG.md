@@ -1,3 +1,10 @@
+## [5.8.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.4...v5.8.5) (2024-10-01)
+
+
+### Bug Fixes
+
+* Item Active Effect Improvements ([#1649](https://github.com/xdy/twodsix-foundryvtt/issues/1649)) ([804b0cd](https://github.com/xdy/twodsix-foundryvtt/commit/804b0cd823b31a4905a1d4fd813878216abc789c))
+
 ## [5.8.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.3...v5.8.4) (2024-09-26)
 
 

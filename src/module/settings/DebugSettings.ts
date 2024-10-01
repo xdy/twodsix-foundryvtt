@@ -37,7 +37,7 @@ export default class DebugSettings extends AdvancedSettings {
     settings.dragDrop.push(booleanSetting('allowDropOnIcon', false));
     settings.dragDrop.push(booleanSetting('allowDragDropOfListsActor', false));
     settings.dragDrop.push(booleanSetting('allowDragDropOfListsShip', false));
-    settings.general.push(booleanSetting('useItemActiveEffects', false, false, 'world', deactivateActorAE));
+    settings.general.push(booleanSetting('useItemActiveEffects', true, false, 'world', deactivateActorAE));
     return settings;
   }
 }
