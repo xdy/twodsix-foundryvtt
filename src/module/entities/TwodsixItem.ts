@@ -205,9 +205,11 @@ export default class TwodsixItem extends Item {
     }
 
     /*Apply measured template if valid AOE*/
-    if ( weapon.target?.type !== "none" ) {
+    const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
+    const itemForAOE:TwodsixItem = magazine?.system.target.type !== "none" ? magazine : this;
+    if ( itemForAOE.system.target?.type !== "none" ) {
       try {
-        await (ItemTemplate.fromItem(this))?.drawPreview();
+        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
         //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
         //if (templates?.length > 0) {
         //  ItemTemplate.targetTokensInTemplate(templates[0]);
@@ -299,18 +301,15 @@ export default class TwodsixItem extends Item {
     }
 
     // Update consumables for use
-    if (weapon.useConsumableForAttack) {
-      const magazine = this.actor?.items.get(weapon.useConsumableForAttack) as TwodsixItem;
-      if (magazine) {
-        try {
-          await magazine.consume(usedAmmo);
-        } catch (err) {
-          if (err.name == "NoAmmoError") {
-            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
-            return;
-          } else {
-            throw err;
-          }
+    if (magazine) {
+      try {
+        await magazine.consume(usedAmmo);
+      } catch (err) {
+        if (err.name == "NoAmmoError") {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
+          return;
+        } else {
+          throw err;
         }
       }
     }

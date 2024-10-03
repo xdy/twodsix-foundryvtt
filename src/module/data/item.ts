@@ -143,6 +143,7 @@ export class ConsumableData extends GearData {
     schema.damageType = new fields.StringField({required: true, blank: false, initial: "NONE" });
     schema.parentName = new fields.StringField({...requiredBlankString});
     schema.parentType = new fields.StringField({...requiredBlankString});
+    schema.target = makeTargetTemplate();
     return schema;
   }
 }
