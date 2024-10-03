@@ -23,8 +23,8 @@
           {{#iff item.system.ammunition.max "!==" 0}}
             <span class="item-name centre">{{item.system.ammunition.value}}
               <span class="combined-buttons" data-field="ammo">
-                <button class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-                <button class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
+                <button type="button" class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                <button type="button" class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
               </span>
             </span>
           {{else}}
@@ -43,8 +43,8 @@
       <span class="item-name centre">{{#if item.system.hardened}}<i class="fa-solid fa-gem"></i>{{else}}&mdash;{{/if}}</span>
       <span class="item-name centre">{{item.system.hits}}
         <span class="combined-buttons" data-field="hits">
-          <button class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-          <button class="right-button adjust-counter" {{#iff item.system.hits "===" settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+          <button type="button" class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+          <button type="button" class="right-button adjust-counter" {{#iff item.system.hits "===" settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
         </span>
       </span>
       <span class="item-name centre" >
