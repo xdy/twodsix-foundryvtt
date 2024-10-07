@@ -1,7 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { calcModFor, getDamageTypes, getKeyByValue } from "../utils/sheetUtils";
+import { calcModFor, getDamageTypes} from "../utils/sheetUtils";
+import { getKeyByValue } from "../utils/utils";
 import { TWODSIX } from "../config";
 import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
@@ -347,6 +348,8 @@ export default class TwodsixActor extends Actor {
       if (this.overrides.system?.primaryArmor?.value) {
         system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
       }
+    } else {
+      this.applyActiveEffectsCustom();
     }
   }
   /**
@@ -895,7 +898,7 @@ export default class TwodsixActor extends Actor {
    * @returns {Promise}
    * @public
    */
-  public async modifyTokenAttribute(attribute, value, isDelta, isBar): Promise <any>{
+  public async modifyTokenAttribute(attribute: string, value: number, isDelta: boolean, isBar: boolean): Promise <any>{
     if ( attribute === "hits" && ["traveller", "animal", "robot"].includes(this.type)) {
       const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
@@ -916,7 +919,7 @@ export default class TwodsixActor extends Actor {
    * @returns {Promise} A boolean promise of whether the drop was sucessful
    * @private
    */
-  private async _addDroppedSkills(skillData): Promise<boolean>{
+  private async _addDroppedSkills(skillData: any): Promise<boolean>{
     // Handle item sorting within the same Actor SHOULD NEVER DO THIS
     const sameActor = this.items.get(skillData._id);
     if (sameActor) {
@@ -1124,7 +1127,9 @@ export default class TwodsixActor extends Actor {
       derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
     }
     //Add specials
-    derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+    if (this.type === 'traveller') {
+      derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+    }
 
     //Define derived data keys that can have active effects
     const overrides = {};
@@ -1189,7 +1194,8 @@ export default class TwodsixActor extends Actor {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
     for (const skill of skillsArray) {
-      if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills')) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+      if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills') || this.system.skills[simplifySkillName(skill.name)] >= 0)
+         || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
         Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
       }
     }

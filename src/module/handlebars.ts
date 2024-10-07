@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 /*import { advantageDisadvantageTerm } from "./i18n";*/
-import { getKeyByValue } from "./utils/sheetUtils";
+import { getKeyByValue} from "./utils/utils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
@@ -308,8 +308,17 @@ export default function registerHandlebarsHelpers(): void {
         returnValue += field.includes('Armor') && actor.type === 'traveller' ? `- ` : ``;
         const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
         const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-        const baseValue = foundry.utils.getProperty(actor._source, field);
-        returnValue += `${baseText}: ${baseValue > 0 ? baseValue : "?"}. ${modifierText}: `;
+        let baseValue = 0;
+        if (field.includes('skills')) {
+          const simplifiedName = field.replace('system.skills.', '');
+          if (simplifiedName) {
+            const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
+            baseValue = coreSkill?.system.value;
+          }
+        } else {
+          baseValue =  foundry.utils.getProperty(actor._source, field);
+        }
+        returnValue += `${baseText}: ${Number.isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
         const workingEffects = actor.appliedEffects;
         for (const effect of workingEffects) {
           const realChanges = effect.changes.filter(ch => ch.key === field);

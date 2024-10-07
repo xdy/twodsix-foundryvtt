@@ -4,7 +4,7 @@ import {TWODSIX} from "../config";
 import { getDifficultiesSelectObject, getRollTypeSelectObject } from "../utils/sheetUtils";
 //import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import { _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
-//import {getKeyByValue} from "./sheetUtils";
+//import {getKeyByValue} from "./utils";
 import { simplifySkillName, sortObj } from "../utils/utils.ts";
 
 Hooks.on("getSceneControlButtons", (controls) => {

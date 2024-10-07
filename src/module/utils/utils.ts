@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { getKeyByValue } from "./sheetUtils";
 
 // https://stackoverflow.com/a/34749873
 /**
@@ -194,4 +193,9 @@ export function roundToDecimal(num:number, decimalPlaces:number): number {
 export function roundToMaxDecimals(num:number, maxDecimals:number): number {
   const decimalsToShow = Math.min(maxDecimals, Math.max(0, maxDecimals - Math.floor(Math.log10(Math.abs(num)))));
   return roundToDecimal(num, decimalsToShow);
+}
+
+export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string {
+  //TODO This assumes I always find the value. Bad form really.
+  return <string>Object.keys(object).find(key => JSON.stringify(object[key]) === JSON.stringify(value));
 }
