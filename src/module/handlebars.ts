@@ -318,7 +318,7 @@ export default function registerHandlebarsHelpers(): void {
         } else {
           baseValue =  foundry.utils.getProperty(actor._source, field);
         }
-        returnValue += `${baseText}: ${Number.isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
+        returnValue += `${baseText}: ${isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
         const workingEffects = actor.appliedEffects;
         for (const effect of workingEffects) {
           const realChanges = effect.changes.filter(ch => ch.key === field);
