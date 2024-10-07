@@ -8,6 +8,7 @@ import TwodsixItem from "./entities/TwodsixItem";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { getCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
+import { calcModFor } from "./utils/sheetUtils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -315,9 +316,18 @@ export default function registerHandlebarsHelpers(): void {
             const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
             baseValue = coreSkill?.system.value;
           }
+        } else if (field.includes('encumbrance.max')) {
+          baseValue = actor.getMaxEncumbrance();
+        } else if (field.includes('mod')) {
+          baseValue =  calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
         } else {
-          baseValue =  foundry.utils.getProperty(actor._source, field);
+          baseValue = foundry.utils.getProperty(actor._source, field);
         }
+
+        if (baseValue === foundry.utils.getProperty(actor, field)) {
+          baseValue = undefined;
+        }
+
         returnValue += `${baseText}: ${isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
         const workingEffects = actor.appliedEffects;
         for (const effect of workingEffects) {
