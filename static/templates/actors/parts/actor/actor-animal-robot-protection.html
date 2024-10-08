@@ -5,9 +5,9 @@
 {{else}}
   <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:
     {{#unless settings.useCUData}}
-      <input style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.PrimaryArmor'}}"/>+
+      <input style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0' data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>+
     {{/unless}}
-    <input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' {{#unless settings.useCUData}} data-tooltip="{{localize 'TWODSIX.Items.Armor.SecondaryArmor'}}" {{/unless}} />
+    <input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}" placeholder='0' {{#if settings.useCUData}} data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.Armor') (twodsix_getTooltip actor 'system.secondaryArmor.value')}}" {{else}} data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') (twodsix_getTooltip actor 'system.secondaryArmor.value')}}" {{/if}} />
   </span>
   <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
       name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' data-tooltip="{{localize 'TWODSIX.Items.Armor.RadProt'}}"/></span>
