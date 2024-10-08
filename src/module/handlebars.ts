@@ -306,7 +306,7 @@ export default function registerHandlebarsHelpers(): void {
     if (actor) {
       const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
       if (foundry.utils.getProperty(actor.overrides, field) !== undefined) {
-        returnValue += field.includes('Armor') && actor.type === 'traveller' ? `- ` : ``;
+        returnValue += field.includes('Armor') ? `- ` : ``;
         const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
         const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
         let baseValue = 0;
