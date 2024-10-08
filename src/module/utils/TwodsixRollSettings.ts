@@ -3,7 +3,8 @@
 
 import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import {getDifficultiesSelectObject, getKeyByValue, getRollTypeSelectObject} from "./sheetUtils";
+import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
+import { getKeyByValue } from "./utils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";

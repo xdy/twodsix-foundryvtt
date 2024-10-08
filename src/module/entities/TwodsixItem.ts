@@ -228,11 +228,13 @@ export default class TwodsixItem extends Item {
     };
 
     // Set characteristic from skill
-    const skill:TwodsixItem = this.actor?.items.get(weapon.skill) as TwodsixItem;
-    if (skill) {
-      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
-      tmpSettings.rollType = skill.system.rolltype || "Normal";
+    const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
+    if (!skill) {
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      return;
     }
+    tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
+    tmpSettings.rollType = skill.system.rolltype || "Normal";
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings);

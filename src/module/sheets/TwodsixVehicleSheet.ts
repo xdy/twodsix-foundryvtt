@@ -54,9 +54,15 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       } else {
         const li = $(event.currentTarget).parents(".item");
         const itemSelected:Component = this.actor.items.get(li.data("itemId"));
-        if (itemSelected) {
+        if (!itemSelected) {
+          return;
+        }
+        const type = $(event.currentTarget).data("type");
+        if (type === "status") {
           const newState = event.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
-          itemSelected?.update({"system.status": newState});
+          itemSelected.update({"system.status": newState});
+        } else if (type === "popup") {
+          itemSelected.update({"system.isExtended": !itemSelected.system.isExtended});
         }
       }
     }

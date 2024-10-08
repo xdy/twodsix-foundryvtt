@@ -548,8 +548,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const li = $(event.currentTarget).parents(".item");
     const itemSelected = this.actor.items.get(li.data("itemId"));
 
-    if (itemSelected) {
-      if (itemSelected.type === "skills") {
+    if (itemSelected && Number.isInteger(newValue)) {
+      if (itemSelected.type === "skills" ) {
         itemSelected.update({"system.value": newValue});
       } else if (itemSelected.type === "consumable") {
         itemSelected.update({"system.quantity": newValue});
