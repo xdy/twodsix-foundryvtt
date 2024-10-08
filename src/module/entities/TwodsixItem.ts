@@ -206,7 +206,7 @@ export default class TwodsixItem extends Item {
 
     /*Apply measured template if valid AOE*/
     const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
-    const itemForAOE:TwodsixItem = magazine?.system.target.type !== "none" ? magazine : this;
+    const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
     if ( itemForAOE.system.target?.type !== "none" ) {
       try {
         await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
