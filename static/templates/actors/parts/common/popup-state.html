@@ -1,0 +1,5 @@
+{{#if item.system.isPopup}}
+  <span class="component-toggle" data-type="popup">
+    {{#if item.system.isExtended}}<i class="fa-solid fa-square-caret-up" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.extended"}}'></i>{{else}}<i class="fa-solid fa-square-caret-down" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.retracted"}}'></i>{{/if}}
+  </span>
+{{/if}}

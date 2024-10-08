@@ -4,6 +4,7 @@
 import { TWODSIX } from "../config";
 import { advantageDisadvantageTerm } from "../i18n";
 import { camelCase } from "../settings/settingsUtils";
+import { simplifySkillName } from "./utils";
 
 // export function pseudoHex(value:number):string {
 //   switch (value) {
@@ -188,10 +189,6 @@ export function calcModFor(characteristic:number):number {
 //   return calcModFor(characteristic);
 // }
 
-export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string {
-  //TODO This assumes I always find the value. Bad form really.
-  return <string>Object.keys(object).find(key => JSON.stringify(object[key]) === JSON.stringify(value));
-}
 
 export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   try {
@@ -296,7 +293,7 @@ export async function deletePDFReference(event): Promise<void> {
 export function isDisplayableSkill(skill:Skills): boolean {
   if (skill.getFlag("twodsix", "untrainedSkill")) {
     return false;
-  } else if (skill.system.trainingNotes !== ""  || skill.system.value >= 0) {
+  } else if (skill.system.trainingNotes !== ""  || skill.system.value >= 0 || skill.actor?.system.skills[simplifySkillName(skill.name)] > 0) {
     return true;
   } else if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
     return true;
