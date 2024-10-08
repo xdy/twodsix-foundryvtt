@@ -1,3 +1,10 @@
+## [5.8.6](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.5...v5.8.6) (2024-10-08)
+
+
+### Bug Fixes
+
+* button changes, component qty, and AE fixes ([#1653](https://github.com/xdy/twodsix-foundryvtt/issues/1653)) ([dc1db8f](https://github.com/xdy/twodsix-foundryvtt/commit/dc1db8fd12d632f0b64412e3499fafa554a9eaa6))
+
 ## [5.8.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.4...v5.8.5) (2024-10-01)
 
 

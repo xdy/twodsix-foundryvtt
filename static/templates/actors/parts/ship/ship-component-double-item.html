@@ -7,38 +7,15 @@
         <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
       {{/iff}}
       {{#iff item.system.subtype "===" "armament"}}
-          {{#iff item.system.ammunition.max "!==" 0}}
-            <span class="item-name centre">{{item.system.ammunition.value}}
-              <span class="combined-buttons" data-field="ammo">
-                <button class="left-button adjust-counter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-                <button class="right-button adjust-counter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
-              </span>
-            </span>
-          {{else}}
-            <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
-          {{/iff}}
+        {{> "systems/twodsix/templates/actors/parts/common/armament-qty.html"}}
       {{else}}
         <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
       {{/iff}}
       <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
       <span class="item-name centre">{{item.system.rating}}</span>
       <span class="item-name centre" >
-        <span class="component-toggle" data-type="status">
-          {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
-          {{else}}
-            {{#iff item.system.status "===" 'damaged'}} <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
-          {{else}}
-            {{#iff item.system.status "===" 'destroyed'}} <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
-          {{else}}
-            {{#iff item.system.status "===" 'off'}} <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
-          {{/iff}} {{/iff}} {{/iff}} {{/iff}}
-        </span>
-
-        {{#if item.system.isPopup}}
-          <span class="component-toggle" data-type="popup">
-            {{#if item.system.isExtended}}<i class="fa-solid fa-square-caret-up" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.extended"}}'></i>{{else}}<i class="fa-solid fa-square-caret-down" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.retracted"}}'></i>{{/if}}
-          </span>
-        {{/if}}
+        {{> "systems/twodsix/templates/actors/parts/common/component-status.html"}}
+        {{> "systems/twodsix/templates/actors/parts/common/popup-state.html"}}
       </span>
       <span class="item-controls centre">
         <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
