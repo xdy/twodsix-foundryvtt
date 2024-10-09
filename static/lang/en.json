@@ -45,7 +45,22 @@
       "CharacterIsDead": "Character is dead",
       "DealDamageTo": "Deal damage to _ACTOR_NAME_",
       "DamageFormula": "Damage Formula",
-      "NoRegularDamage": "No Regular Damage"
+      "NoRegularDamage": "No Regular Damage",
+      "CanBeBlocked": "Can be blocked",
+      "CanBeParried": "Can be parried"
+    },
+    "DamageType": {
+      "Acid": "Acid",
+      "Ballistic": "Ballistic",
+      "Disintegrate": "Disintegrate",
+      "Electrical": "Electrical",
+      "Entangle": "Entangle",
+      "Fire": "Fire",
+      "Laser": "Laser",
+      "Melee": "Melee",
+      "Plasma": "Plasma",
+      "Poison": "Poison",
+      "Stun": "Stun"
     },
     "Dialogs": {
       "ROFPickerTitle": "Select a rate of fire",
@@ -123,6 +138,7 @@
         "Augments": "Augments",
         "Ammo": "Ammo",
         "Armor": "Armor",
+        "Parry": "Parry",
         "EffectiveArmor": "Effective Armor",
         "CONSUMABLES": "CONSUMABLES",
         "Count": "Count",
@@ -362,7 +378,8 @@
           "singleBand": "Single Value",
           "doubleBand": "Double Value",
           "CE_Bands": "Cepheus Engine Bands",
-          "CT_Bands": "Classic Traveller Bands"
+          "CT_Bands": "Classic Traveller Bands",
+          "CU_Bands": "Cepheus Universal Bands"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Close Quarters",
@@ -416,7 +433,17 @@
           "LC": "LC",
           "LR": "LR",
           "custom": "Custom",
-          "cust": "Cust"
+          "cust": "Cust",
+          "personal": "Personal",
+          "pers": "Pers.",
+          "close": "Close",
+          "short": "Short",
+          "medium": "Medium",
+          "long": "Long",
+          "veryLong":"Very Long",
+          "vLong": "v.Long",
+          "distant": "Distant",
+          "thr": "Thr."
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -462,6 +489,7 @@
         "IsPowered": "Powered Armor",
         "Nonstackable": "Non-stackable",
         "SecondaryArmorProtectionTypes": "Secondary Protection Types",
+        "ArmorProtectionTypes": "Protection Types",
         "armorDM": "DM",
         "ArmorModifier": "Armor Modifier",
         "ArmorType": "Armor Type",
@@ -620,7 +648,8 @@
         "TrainingNotes": "Training Notes",
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
-        "GroupLabel": "Group Label"
+        "GroupLabel": "Group Label",
+        "Melee Combat": "Melee Combat"
       },
       "Traits": {
               "Prerequisite": "Prerequisite",
@@ -677,6 +706,9 @@
         "UseAsAmmunitionForAttack": "Use as consumable for rolls",
         "MagazineCost": "Magazine/Power Cell Cost",
         "ArmorPiercing": "Armor Piercing Value",
+        "ParryAV": "Parry AV",
+        "ShieldAV": "Shield AV",
+        "isShield": "Acts as a shield",
         "Features": "Features / Traits",
         "Unarmed": "Unarmed",
         "UnarmedDescription": "Unarmed attack",
@@ -845,6 +877,7 @@
       "CargoCapacity": "Capacity",
       "Speed": "Speed",
       "Range": "Range",
+      "Spaces": "Spaces",
       "Agility": "Agility",
       "systems": {
         "cargo": "Cargo",
@@ -943,6 +976,7 @@
       "SkillName": "Skill Name",
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
       "MakesChainRoll": "Makes a chain / assisted roll.",
+      "MakesParryRoll": "Makes a melee combat skill check to parry attack with",
       "MakesUncRoll": "Rolls to remain conscious."
     },
     "Settings": {
@@ -1396,7 +1430,7 @@
         "name": "Use tabbed views for weapons sheets, component sheets, and system settings"
       },
       "damageTypeOptions": {
-        "hint": "A comma separated list that specifies the allowable damage types.",
+        "hint": "A comma separated list that specifies the allowable damage types. Note that using CU ruleset overrides this setting.",
         "name": "Damage and Protection Types"
       },
       "animalTypesIndependentofNiche": {
@@ -1424,7 +1458,7 @@
         "name": "Override degree of success on critical roll (2 or 12)"
       },
       "showTotalArmor": {
-        "hint": "Display the total armor value (promary + secondary values) instead of the secondary armor value for Traveller sheet.",
+        "hint": "Display the total armor value (primary + secondary values) instead of the secondary armor value for Traveller sheet.",
         "name": "Display total armor value on Traveller"
       },
       "showItemIconsInChat": {
@@ -1627,7 +1661,10 @@
       "MacroNameExists": "Macro by that name exists, but command is different.  Update to the new command?",
       "TooManyLayersOnTarget": "Target is wearing too many layers of armor",
       "ActorOverloaded": "Current actor is carrying more than its capacity.",
-      "NoJournalFound": "Can't find linked Journal Entry"
+      "NoJournalFound": "Can't find linked Journal Entry",
+      "CantFindMeleeSkill": "Can't find Melee Combat skill",
+      "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
+      "CantFindShield": "Can't find an equipped shield to block"
     }
   },
   "TYPES": {

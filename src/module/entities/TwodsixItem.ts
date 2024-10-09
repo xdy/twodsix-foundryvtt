@@ -261,7 +261,7 @@ export default class TwodsixItem extends Item {
 
     // Get weapon handling modifier
     if (this.system.handlingModifiers !== "") {
-      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod()});
+      Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod(rateOfFireCE)});
     }
 
     //Get single target weapons range modifier
@@ -269,7 +269,7 @@ export default class TwodsixItem extends Item {
       let rangeLabel = "";
       let rangeModifier = 0;
       let appliedStatuses = [];
-      const isQualitativeBands = ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
+      const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
       const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
       if (targetTokens.length === 1) {
         const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
@@ -398,7 +398,7 @@ export default class TwodsixItem extends Item {
         }
         break;
       case "auto-full":
-        numberOfAttacks = autoFireRules === 'CT' ? 2 : rateOfFire;
+        numberOfAttacks = getNumberOfAttacks(autoFireRules, rateOfFire);
         if (autoFireRules === 'CEL') {
           usedAmmo = 3 * rateOfFire;
         }
@@ -446,7 +446,7 @@ export default class TwodsixItem extends Item {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     // Return immediately with default if bad migration
-    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands'].includes(rangeModifierType)){
+    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
       console.log("Bad weapon system.range value - should be string");
       return {rangeModifier: rangeModifier, rollType: rollType};
     }
@@ -454,10 +454,10 @@ export default class TwodsixItem extends Item {
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
     if (rangeModifierType === 'none') {
       //rangeModifier = 0;
-    } else if (['CE_Bands', 'CT_Bands'].includes(rangeModifierType)) {
+    } else if (['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)) {
       const targetBand:string = getRangeBand(range);
       if (targetBand !== "unknown") {
-        rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull);
+        rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull, range);
       }
     } else if (this.system.range?.toLowerCase().includes('melee')) {
       // Handle special case of melee weapon
@@ -522,19 +522,30 @@ export default class TwodsixItem extends Item {
 
   /**
    * A method to parse and return the weapon's handling modifier based on attacker's characteristics.
+   * @param {number} rateOfFire The weapon rate of fire (needed for CU)
    * @returns {number} The DM for the actor firing the weapon used
    */
-  public getWeaponsHandlingMod(): number {
+  public getWeaponsHandlingMod(rateOfFire:number): number {
+    // Handle CU special case of auto fire affecting recoil
+    let rofOffset = 0;
+    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+      if ( rateOfFire === 4) {
+        rofOffset = 1;
+      } else if (rateOfFire >= 10 ) {
+        rofOffset = 2;
+      }
+    }
+
     let weaponHandlingMod = 0;
     const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
     const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
     if (parsedResult) {
       const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
       if (checkCharacteristic) {
-        const charValue = this.actor.system.characteristics[checkCharacteristic].value;
-        if (charValue <= parseInt(parsedResult[2], 10)) {
+        const charValue = game.settings.get('twodsix', 'ruleset') === 'CU' ? this.actor.system.characteristics[checkCharacteristic].current : this.actor.system.characteristics[checkCharacteristic].value;
+        if (charValue <= parseInt(parsedResult[2], 10) + rofOffset) {
           weaponHandlingMod = getValueFromRollFormula(parsedResult[3], this);
-        } else if (charValue >= parseInt(parsedResult[4], 10)) {
+        } else if (charValue >= parseInt(parsedResult[4], 10) + rofOffset) {
           weaponHandlingMod = getValueFromRollFormula(parsedResult[5], this);
         }
       }
@@ -684,7 +695,8 @@ export default class TwodsixItem extends Item {
       const damageLabels = getDamageTypes(true);
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-
+      const canBeBlocked = game.settings.get('twodsix', 'ruleset') === 'CU'  && damageType === 'melee';
+      const canBeParried = canBeBlocked && ['personal', 'close'].includes(this.system.rangeBand);
       Object.assign(contentData, {
         flavor: flavor,
         roll: damage,
@@ -692,7 +704,9 @@ export default class TwodsixItem extends Item {
         armorPiercingValue: apValue,
         damageValue: (damage.total && damage.total > 0) ? damage.total : 0,
         damageType: damageType,
-        damageLabel: damageLabels[damageType] ?? ""
+        damageLabel: damageLabels[damageType] || "",
+        canBeParried: canBeParried,
+        canBeBlocked: canBeBlocked
       });
 
       if (radDamage.total) {
@@ -838,6 +852,15 @@ export default class TwodsixItem extends Item {
           await this.performAttack(attackType, true, Number(modes[0]));
         }
         break;
+      case TWODSIX.RULESETS.CU.key:
+        if (modes[0] > 1) {
+          attackType = await promptForCTROF(modes);
+          rof = (attackType === 'single') ? 1 : Number(modes[0]);
+          await this.performAttack(attackType, true, rof);
+        } else {
+          await this.performAttack(attackType, true, 1);
+        }
+        break;
       default:
         await this.performAttack(attackType, true, 1);
         break;
@@ -953,33 +976,51 @@ export default class TwodsixItem extends Item {
    * A method for returning range modifier based on RangeTable constant
    * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
    * @param {string} targetDistanceBand Qualitative distance to target, (e.g. close, short, very long)
+   * @param {number} range Range to target, in meters
    * @param {boolean} isAuto Is full automatic fire
    * @returns {number} Range Modifier
    */
-  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean): number {
+  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean, range:number): number {
     const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
     let returnVal = 0;
-    if (targetDistanceBand === 'unknown' || weaponBand === 'none') {
-      // do nothing
-    } else if (rangeSettings === 'CE_Bands') {
+    if (targetDistanceBand !== 'unknown' && weaponBand !== 'none') {
       try {
-        returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+        switch (rangeSettings) {
+          case 'CE_Bands':
+            returnVal = CE_Range_Table[weaponBand][targetDistanceBand];
+            break;
+          case 'CU_Bands': {
+            if (weaponBand === 'thrown') {
+              //Special case for thrown weapons
+              const maxThrow = 10 + this.actor?.system.characteristics.strength.value - this.system.weight;
+              if (range < maxThrow / 2) {
+                returnVal = 0;
+              } else if (range > maxThrow) {
+                returnVal = INFEASIBLE;
+              } else {
+                returnVal = -2; //Thrown weapons default to DIFFICULT
+              }
+            } else {
+              returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
+            }
+            break;
+          }
+          case 'CT_Bands': {
+            const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
+            returnVal = lookupRow[targetDistanceBand] || 0;
+            break;
+          }
+          default:
+            console.log("Not a valid weapon range band type");
+            break;
+        }
       } catch(err) {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
       }
-    } else if (rangeSettings === 'CT_Bands') {
-      try {
-        const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
-        return lookupRow[targetDistanceBand] || 0;
-      } catch(err) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
-      }
-    } else {
-      console.log("Not a valid weapon range band type");
-      return 0;
     }
     return returnVal;
   }
+
   private getCustomRangeMod(isAuto:boolean):any {
     return {
       close: parseCustomCTValue(this.system.customCT.range.close, isAuto),
@@ -1229,6 +1270,24 @@ function getRangeBand(range: number):string {
     } else {
       return 'unknown';
     }
+  } else if ( rangeModifierType === 'CU_Bands') {
+    if (range < 1.5) {
+      return 'personal';
+    } else if (range <= 3) {
+      return 'close';
+    } else if (range <= 15) {
+      return 'short';
+    } else if (range <= 50) {
+      return 'medium';
+    } else if (range <= 250) {
+      return 'long';
+    } else if (range <= 500) {
+      return 'veryLong';
+    } else if (range > 500) {
+      return 'distant';
+    } else {
+      return 'unknown';
+    }
   } else {
     return 'unknown';
   }
@@ -1246,6 +1305,19 @@ const CE_Range_Table = Object.freeze({
   assaultWeapon: { personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6 },
   rocket: { personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4 }
 });
+
+// From Combat Data Sheet pg 427 Cepheus Universal
+const CU_Range_Table = Object.freeze({
+  personal: { personal: 0, close: -1, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  close: { personal: -1, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  short: { personal: 2, close: 2, short: -0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  medium: { personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
+  shotgun: { personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
+  long: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
+  veryLong: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: -2 },
+  distant: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: 0 },
+});
+
 //Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition puls errat corrections from
 // CONSOLIDATED CT ERRATA, v0.7 (06/01/12)
 const CT_Range_Table = Object.freeze({
@@ -1311,3 +1383,28 @@ const CT_Armor_Table = Object.freeze({
   laserCarbine: { nothing: 2, jack: 2, mesh: 1, cloth: 1, reflec: -8, ablat: -7, combat: -6 },
   laserRifle: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6 }
 });
+
+/**
+ * A function to return number of attacks for auto fire depending on rules set and rof
+ * @param {string} autoFireRulesUsed The automatic fire rules used
+ * @param {number} rateOfFire The fire rate (rounds used)
+ * @returns {number} The number of attacks
+ */
+function getNumberOfAttacks(autoFireRulesUsed:string, rateOfFire:number): number {
+  let returnValue = rateOfFire;
+  switch (autoFireRulesUsed) {
+    case 'CT':
+      returnValue = 2;
+      break;
+    case 'CU':
+      if (rateOfFire === 4) {
+        returnValue = 2;
+      } else if (rateOfFire === 10 || rateOfFire === 20) {
+        returnValue = 3;
+      }
+      break;
+    default:
+      break;
+  }
+  return returnValue;
+}

@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
 import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -52,7 +52,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     // Add relevant data from system settings
     returnData.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
       ShowDamageType: game.settings.get('twodsix', 'ShowDamageType'),
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
@@ -65,8 +65,9 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       useItemAEs: game.settings.get('twodsix', 'useItemActiveEffects'),
       useTabbedViews: game.settings.get('twodsix', 'useTabbedViews'),
       damageTypes: getDamageTypes(["weapon", "consumable"].includes(this.item.type)),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.long : TWODSIX.CE_WEAPON_RANGE_TYPES.long,
-      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
+      rangeTypes: getRangeTypes('long'),
+      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
       rollTypes: getRollTypeSelectObject(),
       augLocations: TWODSIX.AUG_LOCATIONS,
       consumableOptions: getConsumableOptions(this.item),

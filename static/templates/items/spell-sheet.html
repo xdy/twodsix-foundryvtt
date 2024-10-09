@@ -40,7 +40,7 @@
     {{#if settings.ShowDamageType}}
       <div class="item-damageType">
         <label class="resource-label" for="system.damageType">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
-        <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType}}</select>
+        <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType localize=true}}</select>
       </div>
     {{/if}}
     {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}

@@ -8,7 +8,7 @@ import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { roundToMaxDecimals, simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
-import { getDamageCharacteristics, Stats } from "../utils/actorDamage";
+import { getDamageCharacteristics, getParryValue, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
@@ -340,7 +340,7 @@ export default class TwodsixActor extends Actor {
       system.armorType = armorValues.CTLabel;
       system.armorDM = armorValues.armorDM || 0;
       system.reflectOn = armorValues.reflectOn;
-      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.join(', ') : "";
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map( x => game.i18n.localize(x)).join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
 
@@ -699,24 +699,19 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async damageActor(damageValue: number, armorPiercingValue: number, damageType:string, showDamageDialog = true): Promise<void> {
+  public async damageActor(damagePayload:any, showDamageDialog = true): Promise<void> {
     if (showDamageDialog) {
-      const damageData: { damageValue: number, armorPiercingValue: number, damageType:string, damageId: string, tokenId?: string|null, actorId?: string|null } = {
-        damageValue: damageValue,
-        armorPiercingValue: armorPiercingValue,
-        damageType: damageType,
-        damageId: "damage-" + Math.random().toString(36).substring(2, 15)
-      };
-
-      if (this.isToken) {
-        damageData.tokenId = this.token?.id;
-      } else {
-        damageData.actorId = this.id;
-      }
+      const damageData = foundry.utils.duplicate(damagePayload);
+      Object.assign(damageData, {
+        damageId: "damage-" + foundry.utils.randomID(),
+        actor: this
+      });
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
     } else {
-      const stats = new Stats(this, damageValue, armorPiercingValue, damageType);
+      const canOnlyBeBlocked = damagePayload.canBeBlocked && !damagePayload.canBeParried;
+      const parryArmor = damagePayload.canBeParried || damagePayload.canBeBlocked ? await getParryValue(this, canOnlyBeBlocked) : 0;
+      const stats = new Stats(this, damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, parryArmor, canOnlyBeBlocked);
       await stats.applyDamage();
     }
   }
@@ -784,9 +779,15 @@ export default class TwodsixActor extends Actor {
   }
 
   public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
+    //Set charactersitic label
     if (!tmpSettings.rollModifiers?.characteristic) {
       ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
       return;
+    }
+    //Select Difficulty if needed
+    if (!tmpSettings.difficulty) {
+      const difficultyObject = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
+      tmpSettings.difficulty =  game.settings.get('twodsix', 'ruleset') === 'CU' ? difficultyObject.Routine : difficultyObject.Average ;
     }
     const settings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, undefined, undefined, this);
     if (!settings.shouldRoll) {
@@ -824,6 +825,14 @@ export default class TwodsixActor extends Actor {
       return;
     }
     const bandSetting = game.settings.get('twodsix', 'rangeModifierType');
+    let rangeSetting = "";
+    if ( bandSetting === 'CT_Bands' ) {
+      rangeSetting = "hands";
+    } else if (bandSetting === 'CE_Bands') {
+      rangeSetting = "closeQuarters";
+    } else if (bandSetting === 'CU_Bands') {
+      rangeSetting = "personal";
+    }
     return {
       "name": game.i18n.localize("TWODSIX.Items.Weapon.Unarmed"),
       "type": "weapon",
@@ -836,9 +845,9 @@ export default class TwodsixActor extends Actor {
         "quantity": 1,
         "skill": this.getUntrainedSkill()?.id || "",
         "equipped": "equipped",
-        "damageType": "bludgeoning",
+        "damageType": game.settings.get('twodsix', 'ruleset') === 'CU' ? "melee" : "bludgeoning",
         "range": "Melee",
-        "rangeBand": bandSetting === 'CT_Bands' ? "hands" : (bandSetting === 'CE_Bands' ? "closeQuarters" : ""),
+        "rangeBand": rangeSetting,
         "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
       }
     };
@@ -903,7 +912,7 @@ export default class TwodsixActor extends Actor {
       const hits = foundry.utils.getProperty(this.system, attribute);
       const delta = isDelta ? (-1 * value) : (hits.value - value);
       if (delta > 0) {
-        this.damageActor(delta, 9999, "NONE", false);
+        this.damageActor({damageValue: delta, armorPiercingValue: 9999, damageType: "NONE", damageLabel: "NONE", canBeParried: false}, false);
         return;
       } else if (delta < 0) {
         this.healActor(-delta);
@@ -1089,7 +1098,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Method to handle a dropped damage payload
-   * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type)
+   * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type & label)
    * @param {boolean} showDamageDialog Whethter to show apply damage dialog
    * @returns {boolean}
    * @private
@@ -1098,7 +1107,7 @@ export default class TwodsixActor extends Actor {
     if (!this.isOwner && !showDamageDialog) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
     } else if (["traveller", "animal", "robot"].includes(this.type)) {
-      await this.damageActor(damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, showDamageDialog);
+      await this.damageActor(damagePayload, showDamageDialog);
       return true;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));

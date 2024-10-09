@@ -25,3 +25,14 @@
   <label class="resource-label" for="system.features">{{localize "TWODSIX.Items.Weapon.Features"}}</label>
   <input class="form-input" type="text" name="system.features" value="{{system.features}}">
 </div>
+
+{{#if settings.useCUData}}
+  <div class="item-parryAV">
+    <label class="resource-label" for="system.weaponType">{{localize "TWODSIX.Items.Weapon.ParryAV"}}</label>
+    <input class="form-input" type= "text" name="system.parryAV" value="{{system.parryAV}}">
+  </div>
+  <div class="item-isShield">
+    <span class="resource-label" for="system.isShield">{{localize "TWODSIX.Items.Weapon.isShield"}}</span>
+    <input type="checkbox" class="checkbox" name="system.isShield" {{checked system.isShield}} data-dtype="Boolean" />
+  </div>
+{{/if}}

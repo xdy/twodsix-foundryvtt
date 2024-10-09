@@ -54,5 +54,7 @@
 
 <footer class="damage-footer">
   <span> {{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}: {{armorPiercingValue}}</span>
-  {{#iff damageLabel "!==" ""}}<span>{{localize "TWODSIX.Items.Weapon.damageType"}}: {{damageLabel}}</span>{{/iff}}
+  {{#iff damageLabel "!==" ""}}<span>{{localize "TWODSIX.Items.Weapon.damageType"}}: {{localize damageLabel}}
+    {{#if canBeParried}} <i class="fa-solid fa-down-left-and-up-right-to-center" data-tooltip='{{localize "TWODSIX.Damage.CanBeParried"}}'></i>
+    {{else if canBeBlocked}} <i class="fa-solid fa-shield" data-tooltip='{{localize "TWODSIX.Damage.CanBeBlocked"}}'></i>{{/if}}</span>{{/iff}}
 </footer>
