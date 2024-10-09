@@ -1592,7 +1592,8 @@
       "spell": "spell",
       "component": "component",
       "computer": "computer",
-      "unknown": "unknown"
+      "unknown": "unknown",
+      "ship_position": "position"
     },
     "speeds": {
       "walk": "walk",

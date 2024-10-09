@@ -1,3 +1,10 @@
+## [5.8.7](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.6...v5.8.7) (2024-10-09)
+
+
+### Bug Fixes
+
+* add new ship position from battle sheet ([#1660](https://github.com/xdy/twodsix-foundryvtt/issues/1660)) ([19db71c](https://github.com/xdy/twodsix-foundryvtt/commit/19db71c40e5bf5a2afffe8dccf15db1a0f3ce542))
+
 ## [5.8.6](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.5...v5.8.6) (2024-10-08)
 
 
