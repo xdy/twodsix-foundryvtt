@@ -20,7 +20,8 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
-      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
     };
 
     return context;
@@ -31,7 +32,7 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       classes: ["twodsix", "vehicle", "actor"],
       template: "systems/twodsix/templates/actors/vehicle-sheet.html",
       width: 835,
-      height: 698,
+      height: 'auto',
       resizable: true,
     });
   }

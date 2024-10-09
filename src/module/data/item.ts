@@ -26,6 +26,8 @@ export class WeaponData extends GearData {
     schema.recoil = new fields.BooleanField({ required: true, initial: false});
     schema.features = new fields.StringField({...requiredBlankString});
     schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.parryAV = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.isShield = new fields.BooleanField({ required: true, initial: false});
     schema.handlingModifiers = new fields.StringField({...requiredBlankString});
     schema.meleeRangeModifier = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.customCT = new fields.SchemaField({
@@ -134,12 +136,14 @@ export class ConsumableData extends GearData {
     schema.subtype = new fields.StringField({required: true, blank: false, initial: "other" });
     schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
     schema.bonusDamage = new fields.StringField({...requiredBlankString});
+    schema.ammoRangeModifier = new fields.StringField({...requiredBlankString});
     schema.isAttachment = new fields.BooleanField({ required: true, initial: false});
     schema.bandwidth = new fields.NumberField({...requiredInteger, initial: 0});
     schema.softwareActive = new fields.BooleanField({ required: true, initial: true});
     schema.damageType = new fields.StringField({required: true, blank: false, initial: "NONE" });
     schema.parentName = new fields.StringField({...requiredBlankString});
     schema.parentType = new fields.StringField({...requiredBlankString});
+    schema.target = makeTargetTemplate();
     return schema;
   }
 }

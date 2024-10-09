@@ -20,11 +20,31 @@
         <span class="single-line vehicle-range">{{localize "TWODSIX.Vehicle.Range"}}:<input type="text" value="{{actor.system.maneuver.range}}" name="system.maneuver.range"/>{{#unless settings.showRangeSpeedNoUnits}}<input  type="text" value="{{actor.system.maneuver.rangeUnits}}" name="system.maneuver.rangeUnits"/>{{/unless}}</span>
         <span class="single-line vehicle-agility">{{localize "TWODSIX.Vehicle.Agility"}}:<input type="text" value="{{actor.system.maneuver.agility}}" name="system.maneuver.agility"/></span>
       </fieldset>
-      <fieldset class="vehicle-inset">
-        <legend>{{localize "TWODSIX.Vehicle.Crew"}}</legend>
-        <span class="single-line vehicle-operator">{{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="text" value="{{actor.system.crew.operators}}" name="system.crew.operators"/></span>
-        <span class="single-line vehcicle-passengers">{{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="text" value="{{actor.system.crew.passengers}}" name="system.crew.passengers"/></span>
-      </fieldset>
+      {{#if settings.useCUData}}
+        <fieldset class="vehicle-inset">
+          <legend>{{localize "TWODSIX.Vehicle.Spaces"}}</legend>
+          <table>
+            <thead>
+              <tr class="table-header-row vehicle">
+                  <th class="vehicle-cell">{{localize "TWODSIX.Damage.Current"}}</th>
+                  <th class="vehicle-cell">{{localize "TWODSIX.Damage.Max"}}</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="vehicle-cell"><input type="number" value="{{actor.system.spaces.value}}" name="system.spaces.value" placeholder="0" max = "{{actor.system.spaces.max}}" min = "0"/></td>
+                  <td class="vehicle-cell"><input type="number" value="{{actor.system.spaces.max}}" name="system.spaces.max" placeholder="0"/></td>
+                </tr>
+            </tbody>
+            </table>
+        </fieldset>
+      {{else}}
+        <fieldset class="vehicle-inset">
+          <legend>{{localize "TWODSIX.Vehicle.Crew"}}</legend>
+          <span class="single-line vehicle-operator">{{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="text" value="{{actor.system.crew.operators}}" name="system.crew.operators"/></span>
+          <span class="single-line vehcicle-passengers">{{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="text" value="{{actor.system.crew.passengers}}" name="system.crew.passengers"/></span>
+        </fieldset>
+      {{/if}}
       <span class="single-line vehicle-inset vehicle-opSkill" data-label="{{actor.system.skillToOperate}}"><label class="rollable orange" for="system.skillToOperate">{{localize "TWODSIX.Vehicle.skillToOperate"}}:</label><input type="text" value="{{actor.system.skillToOperate}}" name="system.skillToOperate"/></span>
     </div>
     <div class="vehicle-notes">

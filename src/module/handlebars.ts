@@ -141,6 +141,10 @@ export default function registerHandlebarsHelpers(): void {
     return (parseInt(weapon.system.rateOfFire) > 1 || (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')));
   });
 
+  Handlebars.registerHelper('twodsix_useCUAuto', (weapon: TwodsixItem) => {
+    return parseInt(weapon.system.rateOfFire) > 1;
+  });
+
   Handlebars.registerHelper('twodsix_useCTAuto', (weapon: TwodsixItem) => {
     const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
     return (modes.length > 1);

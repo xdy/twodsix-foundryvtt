@@ -5,7 +5,7 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
-import { getDamageTypes } from "../utils/sheetUtils";
+import { getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
 import { setCharacteristicDisplay } from "./TwodsixActorSheet";
 export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
@@ -45,8 +45,8 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
@@ -61,7 +61,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
-      animalsUseHits: game.settings.get('twodsix', 'animalsUseHits'),
+      useHits: game.settings.get('twodsix', 'animalsUseHits'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
@@ -70,11 +70,11 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       damageTypes: getDamageTypes(false),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT'
+      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
     };
-    //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
-    returnData.config = TWODSIX;
 
+    returnData.config = TWODSIX;
     return returnData;
   }
 

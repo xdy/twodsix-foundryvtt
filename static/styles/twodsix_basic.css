@@ -288,7 +288,7 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 15em 5em 9fr;
+  grid-template-rows: 15em 17em 5em 9fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -851,6 +851,11 @@ span.bgi-charEdit {
   height: 5ch;
 }
 
+.table-header-row.vehicle {
+  height: auto;
+}
+
+
 span.edit-char-toggle {
   text-align: center;
 }
@@ -1199,6 +1204,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   margin-left: 5%;
 }
 
+.consumable {
+  text-align: center;
+}
 
 /*-------Skill Tab-----------*/
 .initiative {
@@ -2546,7 +2554,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-doubleTap, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
-.item-priorType, .item-nonstackable {
+.item-priorType, .item-nonstackable, .item-parryAV, .item-isShield {
   /* margin-top: 0.3em; */
   display: grid;
   grid-template-columns: 1fr 2fr;
