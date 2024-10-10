@@ -3302,11 +3302,15 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 /*  Battle Sheet */
+.battle-content {
+  container-type: inline-size;
+  container-name: battle-content;
+}
 
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 14ch 0.3fr 0.34fr 0.34fr;
+  grid-template-rows: 15ch 19ch 0.34fr 0.34fr;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
@@ -3315,8 +3319,33 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   gap: 1%;
 }
 
+@container battle-content (width < 500px) {
+  .battle-content-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "battle-name-photo"
+      "battle-status-container"
+      "battle-operations-container"
+      "battle-defence-container"
+      "battle-damage-container"
+      "battle-weapons-container"
+      "battle-positions-container"
+      "battle-cargo-container";
+    grid-template-rows: auto;
+    gap: 1ch 0;
+  }
+}
+
+@container battle-content (width < 250px) {
+  .battle-content-container {
+    font-size: smaller;
+  }
+}
+
 .battle-name-photo {
   grid-area: battle-name-photo;
+  display: flex;
+  flex-direction: column;
 }
 
 .battle-photo {
@@ -3325,6 +3354,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-status-container {
   grid-area: battle-status-container;
+  min-height: 9ch;
 }
 
 .battle-damage-container {
@@ -3341,6 +3371,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-weapons-container {
   grid-area: battle-weapons-container;
+  min-height: 12ch;
 }
 
 .battle-weapons {
@@ -3361,6 +3392,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   grid-area: battle-defence-container;
   display: flex;
   flex-direction: column;
+  min-height: 19ch;
 }
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
@@ -3382,13 +3414,20 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   top:0%;
   z-index: 20;
   width: 100%;
-  height: 3ch;
+  min-height: 3ch;
   padding-top: 0.5ch;
   margin-top: 1ch;
 }
 
 .battle-name {
   text-align: center;
+  text-align: left;
+  padding: 0 2px;
+}
+
+.battle-name input {
+  color: var(--s2d6-battle-color);
+  width: 19ch;
 }
 
 input.battle-input {
@@ -3429,6 +3468,7 @@ input.red {
 
 .battle-positions-container {
   grid-area: battle-positions-container;
+  min-height: 12ch;
 }
 
 .battle-positions {
