@@ -1,3 +1,10 @@
+## [5.8.8](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.7...v5.8.8) (2024-10-11)
+
+
+### Bug Fixes
+
+* more responsive battle sheet ([#1661](https://github.com/xdy/twodsix-foundryvtt/issues/1661)) ([ec71542](https://github.com/xdy/twodsix-foundryvtt/commit/ec71542e82bf3db4e1b1b7714fd62e5871224e79))
+
 ## [5.8.7](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.6...v5.8.7) (2024-10-09)
 
 
