@@ -392,6 +392,8 @@ form .form-group span.units {
   font-family: inherit;
   color: var(--s2d6-default-color);
   padding: 1ch 0 0;
+  --color-scrollbar: var(--s2d6-default-color);
+  --color-scrollbar-border: var(--s2d6-header-border);
 }
 
 .editor-content strong {
@@ -778,8 +780,6 @@ h2 {
   /*text-align: center;*/
   overflow-wrap: break-word;
   resize: none;
-  scrollbar-width: thin;
-  scrollbar-color: var(--s2d6-default-color);
   height: 16ch;
 }
 
@@ -792,7 +792,6 @@ h2 {
   overflow-wrap: break-word;
   resize: none;
   scrollbar-width: thin;
-  scrollbar-color: var(--s2d6-default-color);
   height: 84%;
   max-width: 100%;
   padding: 0 1ch;
@@ -1571,7 +1570,7 @@ a.actor-notes-tab:hover {
 
 .tab, div{
   scrollbar-width: thin;
-  scrollbar-color: var(--s2d6-default-color);
+  --color-scrollbar: var(--s2d6-default-color);
 }
 
 /*.tab[data-tab].active {
@@ -2336,8 +2335,6 @@ span.total-output {
   /* min-height: 48px; */
   height: 100%;
   width: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: var(--s2d6-default-color);
 }
 
 .ship-hull {
@@ -3998,10 +3995,10 @@ input[type="text"].color {
 }
 
 /* Chrome scrollbar fix */
-* {
+/* * {
   scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
   scrollbar-width: thin;
-}
+}*/
 
 @-moz-document url-prefix() {
   * {
@@ -4092,24 +4089,53 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 /*  Battle Sheet */
-
+.battle {
+  --color-scrollbar: var(--s2d6-battle-color);
+  --s2d6-default-color: var(--s2d6-battle-color);
+}
+.battle-content {
+  container-type: inline-size;
+  container-name: battle-content;
+}
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 14ch 0.3fr 0.34fr 0.34fr;
+  grid-template-rows: 15ch 20ch 0.5fr 0.5fr;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
     "battle-weapons-container battle-weapons-container battle-damage-container"
     "battle-positions-container battle-positions-container battle-cargo-container";
   gap: 1%;
-  scrollbar-color: var(--s2d6-battle-color);
-  color: var(--s2d6-battle-color);
-  border-color: var(--s2d6-battle-color);
+}
+
+@container battle-content (width < 500px) {
+  .battle-content-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "battle-name-photo"
+      "battle-status-container"
+      "battle-operations-container"
+      "battle-defence-container"
+      "battle-damage-container"
+      "battle-weapons-container"
+      "battle-positions-container"
+      "battle-cargo-container";
+    grid-template-rows: auto;
+    gap: 1ch 0;
+  }
+}
+
+@container battle-content (width < 250px) {
+  .battle-content-container {
+    font-size: smaller;
+  }
 }
 
 .battle-name-photo {
   grid-area: battle-name-photo;
+  display: flex;
+  flex-direction: column;
 }
 
 .battle-photo {
@@ -4118,6 +4144,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-status-container {
   grid-area: battle-status-container;
+  min-height: 12ch;
 }
 
 .battle-damage-container {
@@ -4134,6 +4161,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-weapons-container {
   grid-area: battle-weapons-container;
+  min-height: 12ch;
 }
 
 li.battle-damage button,  li.battle-weapons button{
@@ -4158,19 +4186,17 @@ li.battle-damage button,  li.battle-weapons button{
   grid-area: battle-defence-container;
   display: flex;
   flex-direction: column;
+  min-height: 19ch;
 }
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
 .battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
   border-style: solid;
   border-radius: 2ch;
-  border-color: var(--s2d6-battle-color);
-  background-color: var(--s2d6-background-nearly-opaque);
-  color: var(--s2d6-battle-color);
   border-width: 2px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: var(--s2d6-battle-color) !important;
+  --color-scrollbar: var(--s2d6-battle-color);
 }
 
 .item-title-battle {
@@ -4185,15 +4211,20 @@ li.battle-damage button,  li.battle-weapons button{
   top:0%;
   z-index: 20;
   width: 100%;
-  height: 3ch;
+  min-height: 3ch;
   padding-top: 0.5ch;
   margin-top: 1ch;
 }
 
 .battle-name {
-  text-align: center;
+  text-align: left;
+  padding: 0 2px;
 }
 
+.battle-name input {
+  color: var(--s2d6-battle-color);
+  width: 19ch;
+}
 input.battle-input {
   width:  5ch;
   text-align: right;
@@ -4231,17 +4262,14 @@ input.red {
   border-color: var(--s2d6-battle-color);
 }
 
-.battle-name input {
-  color: var(--s2d6-battle-color);
-}
-
 .battle-deckplan {
   text-align: center;
-  padding-top: 2ch;
+  padding-top: 1ch;
 }
 
 .battle-positions-container {
   grid-area: battle-positions-container;
+  min-height: 12ch;
 }
 
 .battle-positions {
