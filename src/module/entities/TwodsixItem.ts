@@ -513,7 +513,7 @@ export default class TwodsixItem extends Item {
     //Get ammo range modifier if single or double bands
     if (['singleBand', 'doubleBand'].includes(rangeModifierType) && this.system.useConsumableForAttack) {
       const magazine = this.actor?.items.get(this.system.useConsumableForAttack) as TwodsixItem;
-      if (magazine?.system.ammoRangeModifier !== "") {
+      if (magazine?.system.ammoRangeModifier !== "" && magazine?.system.ammoRangeModifier !== "0") {
         const modifierVal = parseFloat(magazine.system.ammoRangeModifier);
         if (!isNaN(modifierVal)) {
           returnValue =  1 + (modifierVal / 100);
@@ -1075,7 +1075,7 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
  * @param {Event} event   The originating click event
  * @private
  */
-export async function onRollDamage(event):Promise<void> {
+export async function onRollDamage(event:Event):Promise<void> {
   event.preventDefault();
   event.stopPropagation();
   const itemId = $(event.currentTarget).parents('.item').data('item-id');
@@ -1086,7 +1086,12 @@ export async function onRollDamage(event):Promise<void> {
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
-      bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));
+      const effectString = String(lastMessage.getFlag("twodsix", "effect"));
+      if (bonusDamageFormula === "0") {
+        bonusDamageFormula = effectString;
+      } else {
+        bonusDamageFormula += `+` + effectString;
+      }
     }
   }
 
