@@ -142,6 +142,8 @@
               <span class="item-name centre">{{item.system.weight}}</span>
               {{#if ../settings.useCTData}}
                 <span class="item-name centre">{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' item.system.armorType)}}</span>
+              {{else if ../settings.useCUData}}
+                <span class="item-name centre">{{item.system.secondaryArmor.value}}</span>
               {{else}}
                 <span class="item-name centre">{{item.system.armor}}</span>
               {{/if}}
