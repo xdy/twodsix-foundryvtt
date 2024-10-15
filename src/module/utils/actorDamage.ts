@@ -388,7 +388,7 @@ export async function getParryValue(actor:TwodsixActor, canOnlyBeBlocked:boolean
 
   if (game.settings.get('twodsix', 'ruleset') === 'CU'){
     //Try to find melee combat skill
-    const meleeSkill:TwodsixItem =  actor.getBestSkill(game.i18n.localize("TWODSIX.Items.Skills.MeleeCombat") + "| Melee Combat", false);
+    const meleeSkill:TwodsixItem =  actor.getBestSkill(game.i18n.localize("TWODSIX.Items.Skills.MeleeCombat") + "| Melee Combat | Melee", false);
     if (meleeSkill) {
       const weaponsList: TwodsixItem[] = actor.itemTypes.weapon.filter( it => itemCanBlock(it, canOnlyBeBlocked));
       if (weaponsList?.length > 0) {
