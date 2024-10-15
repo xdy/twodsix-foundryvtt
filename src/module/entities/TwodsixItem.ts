@@ -1335,7 +1335,7 @@ const CE_Range_Table = Object.freeze({
 const CU_Range_Table = Object.freeze({
   personal: { personal: 0, close: -1, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
   close: { personal: -1, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  short: { personal: 2, close: 2, short: -0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  short: { personal: 2, close: 2, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
   medium: { personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
   shotgun: { personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
   long: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
