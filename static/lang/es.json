@@ -45,7 +45,22 @@
       "CharacterIsDead": "El PJ ha muerto",
       "DealDamageTo": "Aplicar daño en _ACTOR_NAME_",
       "DamageFormula": "Fórmula Daño",
-      "NoRegularDamage": "Sin Daño Normal"
+      "NoRegularDamage": "Sin Daño Normal",
+      "CanBeBlocked": "Puede ser bloqueado",
+      "CanBeParried": "Puede ser parado"
+    },
+    "DamageType": {
+      "Acid": "Acido",
+      "Ballistic": "Balístico",
+      "Disintegrate": "Desintegrante",
+      "Electrical": "Eléctrico",
+      "Entangle": "Enredar",
+      "Fire": "Fuego",
+      "Laser": "Laser",
+      "Melee": "Melé",
+      "Plasma": "Plasma",
+      "Poison": "Veneno",
+      "Stun": "Aturdir"
     },
     "Dialogs": {
       "ROFPickerTitle": "Seleccionar modo disparo",
@@ -123,6 +138,7 @@
         "Augments": "Aumentos",
         "Ammo": "Cargador",
         "Armor": "Protección",
+        "Parry": "Parada",
         "EffectiveArmor": "Armadura",
         "CONSUMABLES": "CONSUMIBLES",
         "Count": "Cantidad",
@@ -362,7 +378,8 @@
           "singleBand": "Valor Único",
           "doubleBand": "Valor Doble",
           "CE_Bands": "Rangos de CE",
-          "CT_Bands": "Rangos Traveller Clásico"
+          "CT_Bands": "Rangos Traveller Clásico",
+          "CU_Bands": "Rango Cepheus Universal"
         },
         "WeaponRangeTypes": {
           "closeQuarters": "Cuerpo a Cuerpo",
@@ -416,7 +433,17 @@
           "LC": "CLsr",
           "LR": "RLsr",
           "custom": "Personalizado",
-          "cust": "Pers."
+          "cust": "Pers.",
+          "personal": "Personal",
+          "pers": "Pers.",
+          "close": "Cerca",
+          "short": "Corto",
+          "medium": "Medio",
+          "long": "Largo",
+          "veryLong": "Muy Largo",
+          "vLong": "m.Larg",
+          "distant": "Distante",
+          "thr": "Lanz."
         },
         "RangeBandTypes": {
           "personal": "Personal",
@@ -462,6 +489,7 @@
         "IsPowered": "Armadura Energía",
         "Nonstackable": "No apilable",
         "SecondaryArmorProtectionTypes": "Tipo Protección Secundaria",
+        "ArmorProtectionTypes": "Tipo Protección",
         "armorDM": "MD",
         "ArmorModifier": "Mod. Armadura",
         "ArmorType": "Tipo Armadura",
@@ -620,7 +648,8 @@
         "TrainingNotes": "Notas Estudio",
         "NumberOfSkills": "Número de Habilidades",
         "SkillRanks": "Rangos Habilidad",
-        "GroupLabel": "Etiqueta de Grupo"
+        "GroupLabel": "Etiqueta de Grupo",
+        "Melee Combat": "Combate Melé"
       },
       "Traits": {
         "Prerequisite": "Prerequisito",
@@ -677,6 +706,9 @@
         "UseAsAmmunitionForAttack": "Utilizar como munición en ataques",
         "MagazineCost": "Coste del cargador/celda",
         "ArmorPiercing": "Valor Penetración Armadura",
+        "ParryAV": "Parada AV",
+        "ShieldAV": "Escudo AV",
+        "isShield": "Como Escudo",
         "Features": "Rasgos",
         "Unarmed": "Desarmado",
         "UnarmedDescription": "Ataque sin armas",
@@ -845,6 +877,7 @@
       "CargoCapacity": "Capacidad",
       "Speed": "Velocidad",
       "Range": "Rango",
+      "Spaces": "Espacios",
       "Agility": "Agilidad",
       "systems": {
         "cargo": "Carga",
@@ -942,7 +975,9 @@
       "SelectSkill": "Selecciona Habilidad",
       "SkillName": "Nombre Habilidad",
       "MakesOpposedRoll": "Realiza una tirada disputa / opuesta.",
-      "MakesChainRoll": "Realizar tirada encadenada/asistida."
+      "MakesChainRoll": "Realizar tirada encadenada/asistida.",
+      "MakesParryRoll": "Realiza una tirada habilidad melé para parar el ataque con",
+      "MakesUncRoll": "Tira para mantenerse consciente."
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1395,7 +1430,7 @@
         "name": "Visión por secciones en configuración de armas, componentes y sistema"
       },
       "damageTypeOptions": {
-        "hint": "Una lista separada por comas que especifica los tipos de daño permitidos.",
+        "hint": "Una lista separada por comas que especifica los tipos de daño permitidos. Aviso: al usar el reglamento CU se anula.",
         "name": "Tipo de Daño y Protección"
       },
       "animalTypesIndependentofNiche": {
@@ -1423,7 +1458,7 @@
         "name": "Grado de éxito en tiradas críticas (2 ó 12)"
       },
       "showTotalArmor": {
-        "hint": "Mostrar el valor total de armadura (primaria + secundaria) en vez del valor secundario en la hoja.",
+        "hint": "Muestra el valor total de armadura (primaria + secundaria) en vez del valor secundario de armadura de la hoja.",
         "name": "Mostrar el valor de la armadura total al jugador"
       },
       "showItemIconsInChat": {
@@ -1556,7 +1591,8 @@
       "spell": "conjuro",
       "component": "componente",
       "computer": "computadora",
-      "unknown": "desconocido"
+      "unknown": "desconocido",
+      "ship_position": "posición"
     },
     "speeds": {
       "walk": "Andar",
@@ -1625,7 +1661,10 @@
       "MacroNameExists": "Existe una macro con ese nombre, pero el comando es diferente. ¿Actualizar al nuevo?",
       "TooManyLayersOnTarget": "El objetivo lleva demasiadas capas de armadura",
       "ActorOverloaded": "El actor actual carga más de su capacidad.",
-      "NoJournalFound": "No se encuentra la entrada conectada al diario"
+      "NoJournalFound": "No se encuentra la entrada conectada al diario",
+      "CantFindMeleeSkill": "No encuentro habilidad de Combate Melé",
+      "CantFindMeleeWeapon": "No encuentro arma melé equipada para la parada",
+      "CantFindShield": "No encuentro escudo equipado para bloqueo"
     }
   },
   "TYPES": {
