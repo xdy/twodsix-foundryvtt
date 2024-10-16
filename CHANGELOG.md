@@ -1,3 +1,10 @@
+# [5.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.8...v5.9.0) (2024-10-16)
+
+
+### Features
+
+* Support for Cepheus Universal ([#1632](https://github.com/xdy/twodsix-foundryvtt/issues/1632)) ([143df93](https://github.com/xdy/twodsix-foundryvtt/commit/143df93445d50c96c5dc3d2f4a560938b670effb))
+
 ## [5.8.8](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.7...v5.8.8) (2024-10-11)
 
 
