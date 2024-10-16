@@ -205,9 +205,11 @@ export default class TwodsixItem extends Item {
     }
 
     /*Apply measured template if valid AOE*/
-    if ( weapon.target?.type !== "none" ) {
+    const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
+    const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
+    if ( itemForAOE.system.target?.type !== "none" ) {
       try {
-        await (ItemTemplate.fromItem(this))?.drawPreview();
+        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
         //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
         //if (templates?.length > 0) {
         //  ItemTemplate.targetTokensInTemplate(templates[0]);
@@ -281,7 +283,8 @@ export default class TwodsixItem extends Item {
         if (isQualitativeBands) {
           rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
         } else {
-          rangeLabel = `${this.system.range} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
+          const effectiveRange = this.system.range * this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
+          rangeLabel = `${effectiveRange.toFixed(1)} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
         }
         appliedStatuses = getTargetModifiers(targetTokens[0].actor);
       } else if (targetTokens.length === 0) {
@@ -300,18 +303,15 @@ export default class TwodsixItem extends Item {
     }
 
     // Update consumables for use
-    if (weapon.useConsumableForAttack) {
-      const magazine = this.actor?.items.get(weapon.useConsumableForAttack) as TwodsixItem;
-      if (magazine) {
-        try {
-          await magazine.consume(usedAmmo);
-        } catch (err) {
-          if (err.name == "NoAmmoError") {
-            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
-            return;
-          } else {
-            throw err;
-          }
+    if (magazine) {
+      try {
+        await magazine.consume(usedAmmo);
+      } catch (err) {
+        if (err.name == "NoAmmoError") {
+          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
+          return;
+        } else {
+          throw err;
         }
       }
     }
@@ -445,6 +445,7 @@ export default class TwodsixItem extends Item {
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
     // Return immediately with default if bad migration
     if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
       console.log("Bad weapon system.range value - should be string");
@@ -478,13 +479,13 @@ export default class TwodsixItem extends Item {
         rangeModifier = parseInt(this.system.meleeRangeModifier) || 0;
       }
     } else if (rangeModifierType === 'singleBand') {
-      if (range <= rangeValues[0] * 0.25) {
+      if (range <= rangeValues[0] * 0.25 * ammoModifier) {
         rangeModifier = 1;
-      } else if (range <= rangeValues[0]) {
+      } else if (range <= rangeValues[0] * ammoModifier) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[0] * 2) {
+      } else if (range <= rangeValues[0] * 2 * ammoModifier) {
         rangeModifier = -2;
-      } else if (range <= rangeValues[0] * 4) {
+      } else if (range <= rangeValues[0] * 4 * ammoModifier) {
         rangeModifier = -4;
       } else {
         rangeModifier = INFEASIBLE;
@@ -492,15 +493,34 @@ export default class TwodsixItem extends Item {
     } else if (rangeModifierType === 'doubleBand') {
       if (rangeValues[0] > rangeValues[1]) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[0]) {
+      } else if (range <= rangeValues[0] * ammoModifier) {
         //rangeModifier = 0;
-      } else if (range <= rangeValues[1]) {
+      } else if (range <= rangeValues[1] * ammoModifier) {
         rangeModifier = -2;
       } else {
         rangeModifier = INFEASIBLE;
       }
     }
     return {rangeModifier: rangeModifier, rollType: rollType};
+  }
+  /**
+   * A method to return ammo range modifier.
+   * @param {string} rangeModifierType  The type of range modifier (setting)
+   * @returns {any} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
+   */
+  public getAmmoRangeModifier(rangeModifierType:string):number {
+    let returnValue = 1;
+    //Get ammo range modifier if single or double bands
+    if (['singleBand', 'doubleBand'].includes(rangeModifierType) && this.system.useConsumableForAttack) {
+      const magazine = this.actor?.items.get(this.system.useConsumableForAttack) as TwodsixItem;
+      if (magazine?.system.ammoRangeModifier !== "" && magazine?.system.ammoRangeModifier !== "0") {
+        const modifierVal = parseFloat(magazine.system.ammoRangeModifier);
+        if (!isNaN(modifierVal)) {
+          returnValue =  1 + (modifierVal / 100);
+        }
+      }
+    }
+    return returnValue;
   }
 
   /**
@@ -1055,7 +1075,7 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
  * @param {Event} event   The originating click event
  * @private
  */
-export async function onRollDamage(event):Promise<void> {
+export async function onRollDamage(event:Event):Promise<void> {
   event.preventDefault();
   event.stopPropagation();
   const itemId = $(event.currentTarget).parents('.item').data('item-id');
@@ -1066,7 +1086,12 @@ export async function onRollDamage(event):Promise<void> {
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
-      bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));
+      const effectString = String(lastMessage.getFlag("twodsix", "effect"));
+      if (bonusDamageFormula === "0") {
+        bonusDamageFormula = effectString;
+      } else {
+        bonusDamageFormula += `+` + effectString;
+      }
     }
   }
 
@@ -1310,7 +1335,7 @@ const CE_Range_Table = Object.freeze({
 const CU_Range_Table = Object.freeze({
   personal: { personal: 0, close: -1, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
   close: { personal: -1, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  short: { personal: 2, close: 2, short: -0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
+  short: { personal: 2, close: 2, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
   medium: { personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
   shotgun: { personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
   long: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },

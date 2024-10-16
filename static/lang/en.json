@@ -682,6 +682,7 @@
         "Count": "Count",
         "Bandwidth": "Bandwidth",
         "ArmorPiercing": "Armor Piercing Value",
+        "AmmoRangeModifier": "Range Modifier (% change to base range)",
         "DropConsumablesHere": "You can drop consumables here.",
         "DropAttachmentsHere": "You can drop attachments here.",
         "RemoveConsumable": "Remove consumable",

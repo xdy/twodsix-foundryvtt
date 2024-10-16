@@ -983,6 +983,7 @@ export default class TwodsixActor extends Actor {
     try {
       transferData = itemData.toJSON();
     } catch(err) {
+      console.log(`Try importing as direct data ${err}`);
       transferData = itemData;
     }
     let numberToMove = itemData.system?.quantity ?? 1;
