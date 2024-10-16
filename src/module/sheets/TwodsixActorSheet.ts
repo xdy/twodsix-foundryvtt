@@ -6,6 +6,7 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
+import { getRangeTypes } from "../utils/sheetUtils";
 //import { applyEncumberedEffect } from "../hooks/showStatusIcons";
 //import { wait } from "../utils/sheetUtils";
 
@@ -62,8 +63,8 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
     // Add relevant data from system settings
     returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' ? TWODSIX.CT_WEAPON_RANGE_TYPES.short : TWODSIX.CE_WEAPON_RANGE_TYPES.short,
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
@@ -88,7 +89,9 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
       useCEAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key,
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
-      useCTData: game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands' || game.settings.get('twodsix', 'ruleset') === 'CT',
+      useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
+      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
       showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
       Infinity: Infinity,
       showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),

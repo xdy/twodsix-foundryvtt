@@ -5,6 +5,8 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
 import { getDamageTypes } from "./sheetUtils";
+import { TwodsixRollSettings } from "./TwodsixRollSettings";
+import { TWODSIX } from "../config";
 
 /**
  * This class handles an individual attribute, such as strength and dexterity
@@ -50,6 +52,8 @@ export class Stats {
   effectiveArmor: number;
   primaryArmor:number;
   secondaryArmor:number;
+  parryArmor: number;
+  canOnlyBeBlocked: boolean;
   edited = false;
   actor: TwodsixActor;
   damageCharacteristics: string[] = [];
@@ -58,7 +62,7 @@ export class Stats {
   useLifebloodOnly = false;
   damageFormula: string;
 
-  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string) {
+  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string, parryArmor:number = 0, canOnlyBeBlocked:boolean = false) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
@@ -68,15 +72,18 @@ export class Stats {
     this.damageValue = damageValue;
     this.damageType = damageType;
     const damageLabels = getDamageTypes(true);
-    this.damageLabel = damageLabels[damageType];
+    this.damageLabel = damageLabels[damageType] || damageLabel;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
       this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
       this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
-      this.effectiveArmor = Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
+      this.parryArmor = parryArmor;
+      this.canOnlyBeBlocked = canOnlyBeBlocked;
+      this.effectiveArmor = game.settings.get('twodsix', 'ruleset') === 'CU' ? Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0) :  Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
+    this.useCUData = game.settings.get('twodsix', 'ruleset') === 'CU';
 
     if ((game.settings.get("twodsix", "animalsUseHits") && actor.type === 'animal' ) || (game.settings.get("twodsix", "robotsUseHits") && actor.type === 'robot')) {
       this.useLifebloodStamina = false;
@@ -307,21 +314,17 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damageValue, armorPiercingValue, damageType} = damageData;
-  let actor;
-  if (damageData.actorId) {
-    actor = game.actors?.get(damageData.actorId);
-  } else {
-    actor = (canvas.tokens?.placeables?.find((t: Token) => t.id === damageData.tokenId) || null)?.actor || null;
-  }
-  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, 3) && !user.isGM) || null;
+  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, actor, canBeParried, canBeBlocked} = damageData;
+
+  const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) && !user.isGM) || null;
   if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
     return;
   }
 
   const template = 'systems/twodsix/templates/actors/damage-dialog.html';
-
-  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType);
+  const canOnlyBeBlocked = canBeBlocked && !canBeParried;
+  const parryArmor = canBeParried || canBeBlocked ? await getParryValue(actor, canOnlyBeBlocked) : 0;
+  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
@@ -372,4 +375,59 @@ export function getDamageCharacteristics(actorType:string): string[] {
   } else {
     return ["endurance", "strength", "dexterity"];
   }
+}
+
+/**
+ * Gets the best Parry AV value based on equipped melee damage weapons on a sucesssful melee roll if ruleset is CU.
+ * @param {TwodsixActor} actor The defending actor
+ * @param {boolean} canOnlyBeBlocked Damage can only be blocked with shield
+ * @returns {number} The best equipped melee damage weapon parry AV value if sucessful, otherwise zero
+ */
+export async function getParryValue(actor:TwodsixActor, canOnlyBeBlocked:boolean): number {
+  let returnValue = 0;
+
+  if (game.settings.get('twodsix', 'ruleset') === 'CU'){
+    //Try to find melee combat skill
+    const meleeSkill:TwodsixItem =  actor.getBestSkill(game.i18n.localize("TWODSIX.Items.Skills.MeleeCombat") + "| Melee Combat | Melee", false);
+    if (meleeSkill) {
+      const weaponsList: TwodsixItem[] = actor.itemTypes.weapon.filter( it => itemCanBlock(it, canOnlyBeBlocked));
+      if (weaponsList?.length > 0) {
+        weaponsList.sort((a, b) => b.system.parryAV - a.system.parryAV); //Find best parry weapon
+        const weapon:TwodsixItem = weaponsList[0];
+        if (weapon.system.parryAV > 0){
+          const tmpSettings = {
+            difficulty: TWODSIX.DIFFICULTIES.CU.Average,
+            rollModifiers: {char: 'DEX'},
+            extraFlavor: `${game.i18n.localize("TWODSIX.Rolls.MakesParryRoll")} ${weapon.name}(AV: ${weapon.system.parryAV})`
+          };
+          const settings:TwodsixRollSettings = await TwodsixRollSettings.create(false, tmpSettings, meleeSkill, undefined, actor);
+          if (settings.shouldRoll) {
+            const returnRoll = await meleeSkill.skillRoll(false, settings);
+            if (returnRoll?.effect >= 0) {
+              returnValue = weapon.system.parryAV;
+            }
+          }
+        }
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFind" + (canOnlyBeBlocked ? "Shield" : "MeleeWeapon")));
+      }
+    } else {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFindMeleeSkill"));
+    }
+  }
+  return returnValue;
+}
+
+/**
+ * Returns whether an weapon (item) can mitigate damage.
+ * @param {TwodsixItem} weapon The weapon attempting to parry/block
+ * @param {boolean} canBeBlocked Damage can be blocked only with shield
+ * @returns {boolean} Whether the item can mitigate damage
+ */
+function itemCanBlock(weapon:TwodsixItem, canBeBlocked: boolean):boolean {
+  let returnValue = weapon.system.damageType === 'melee' && weapon.system.equipped === 'equipped' && Number.isInteger(weapon.system.parryAV);
+  if (canBeBlocked) {
+    returnValue = returnValue && weapon.system.isShield;
+  }
+  return returnValue;
 }

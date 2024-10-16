@@ -336,19 +336,23 @@ export async function wait(ms) {
  * @export
  */
 export function getDamageTypes(isWeapon:boolean): object {
-  const returnObject = {};
-  const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
-  if (damageTypeOptions !== "") {
-    let protectionTypeLabels:string[] = damageTypeOptions.split(',');
-    protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
-    for (const type of protectionTypeLabels) {
-      Object.assign(returnObject, {[camelCase(type)]: type});
+  if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+    return TWODSIX.CU_DAMAGE_TYPES;
+  } else {
+    const returnObject = {};
+    const damageTypeOptions:string = game.settings.get('twodsix', 'damageTypeOptions');
+    if (damageTypeOptions !== "") {
+      let protectionTypeLabels:string[] = damageTypeOptions.split(',');
+      protectionTypeLabels = protectionTypeLabels.map((s:string) => s.trim());
+      for (const type of protectionTypeLabels) {
+        Object.assign(returnObject, {[camelCase(type)]: type});
+      }
     }
+    if (isWeapon) {
+      Object.assign(returnObject, {"NONE": "---"});
+    }
+    return returnObject;
   }
-  if (isWeapon) {
-    Object.assign(returnObject, {"NONE": "---"});
-  }
-  return returnObject;
 }
 
 /**
@@ -395,4 +399,23 @@ export function getConsumableOptions(item:TwodsixItem): object {
     };
   }
   return returnObj;
+}
+
+/**
+ * Function to return an object for range types list, abbreviated
+ * @param {string} labelType a string key for label type "short" or "long"
+ * @returns {object} An object with the range type as key and short label localization string
+ * @export
+ */
+export function getRangeTypes(labelType:string = 'short'): object {
+  switch (game.settings.get('twodsix', 'rangeModifierType')) {
+    case 'CT_Bands':
+      return TWODSIX.CT_WEAPON_RANGE_TYPES[labelType];
+    case 'CE_Bands':
+      return TWODSIX.CE_WEAPON_RANGE_TYPES[labelType];
+    case 'CU_Bands':
+      return TWODSIX.CU_WEAPON_RANGE_TYPES[labelType];
+    default:
+      return {};
+  }
 }

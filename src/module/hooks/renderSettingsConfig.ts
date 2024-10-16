@@ -60,7 +60,7 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
     })) {
       const newRuleset = ev.target.value;
       const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
-      game.settings.set("twodsix", "ruleset", newRuleset); //TODO Should have await?
+      await game.settings.set("twodsix", "ruleset", newRuleset);
       // Step through each option and update the corresponding field
       Object.entries(newRulesetSettings).forEach(([settingName, value]) => {
         game.settings.set("twodsix", settingName, value);

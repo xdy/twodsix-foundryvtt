@@ -638,7 +638,7 @@ h2 {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 13em 5em 9fr;
+  grid-template-rows: 15em 14em 5em 9fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -1268,6 +1268,10 @@ span.bgi-charEdit {
   height: 5ch;
 }
 
+.table-header-row.vehicle {
+  height: auto;
+}
+
 span.edit-char-toggle {
   text-align: center;
 }
@@ -1277,7 +1281,7 @@ span.stat-name {
   /* left: 0.7em; */
   /* top: -1.1em; */
   /* font-size: 1em; */
-  /* display: block; */
+  display: block;
   /*width: 65%;*/
   cursor: pointer;
   text-align: center;
@@ -3069,7 +3073,7 @@ a:hover {
 .item-lawLevel, .item-rangeBand, .item-weaponType,  .item-damageType, .item-rateOfFire, .item-recoil, .item-doubleTap, .item-augmentLoc, .item-bonus,
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
-.item-priorType, .item-nonstackable {
+.item-priorType, .item-nonstackable, .item-parryAV, .item-isShield {
   margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -3214,6 +3218,10 @@ select.form-input, input.form-input, span.form-input {
 .consumable-toggle {
   cursor: pointer;
   color: var(--s2d6-nav-background);
+}
+
+.consumable {
+  text-align: center;
 }
 /*--- Chat Log ---*/
 

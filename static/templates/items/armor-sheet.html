@@ -11,20 +11,22 @@
         <input name="system.armorDM" type="number" value="{{system.armorDM}}" placeholder='0' step="1"/>
       </div>
     {{else}}
+      {{#unless settings.useCUData}}
       <div class="item-armor">
         <label for="system.armor" class="resource-label">{{localize "TWODSIX.Items.Armor.Armor"}}</label>
         <input class="form-input"  type="text" name="system.armor" value="{{system.armor}}" data-dtype="Number"/>
       </div>
+      {{/unless}}
 
       <!-- This is to handle armors like reflec with 0/14. I.e. put the 14 here. -->
       <div class="item-secondaryArmor">
-        <label for="system.secondaryArmor.value" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</label>
+        <label for="system.secondaryArmor.value" class="resource-label">{{#if settings.useCUData}}{{localize "TWODSIX.Items.Armor.Armor"}}{{else}}{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}{{/if}}</label>
         <input class="form-input" type="text" name="system.secondaryArmor.value" value="{{system.secondaryArmor.value}}" data-dtype="Number"/>
       </div>
 
       <div class="item-secondaryArmor">
-        <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}</label>
-        <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes}}</multi-select>
+        <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{#if settings.useCUData}}{{localize "TWODSIX.Items.Armor.ArmorProtectionTypes"}}{{else}}{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}{{/if}}</label>
+        <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes localize=true}}</multi-select>
       </div>
 
       <div class="item-radiationProtection">

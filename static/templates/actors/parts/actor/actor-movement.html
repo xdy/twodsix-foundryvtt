@@ -1,0 +1,6 @@
+<span class="bgi-movement" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'><i class="fa-solid fa-person-walking"></i>:
+  <input type="number" name="system.movement.walk" value="{{system.movement.walk}}" data-tooltip="{{twodsix_getTooltip actor 'system.movement.walk'}}"/>
+  <select name="system.movement.units" >
+    {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
+  </select>
+</span>

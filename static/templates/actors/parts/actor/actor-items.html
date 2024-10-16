@@ -81,6 +81,13 @@
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
                 </span>
               {{/if}}
+              {{else if ../settings.useCUAutofireRules}}
+              {{#if (twodsix_useCUAuto item)}}
+                <span class="items-weapons-abilities">
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="single" data-rof="1">[{{localize "TWODSIX.Rolls.Single"}}]</span>
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-attack-type="auto-full" data-rof="{{item.system.rateOfFire}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
+                </span>
+              {{/if}}
             {{/if}}
           </li>
         </ol>
@@ -135,6 +142,8 @@
               <span class="item-name centre">{{item.system.weight}}</span>
               {{#if ../settings.useCTData}}
                 <span class="item-name centre">{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' item.system.armorType)}}</span>
+              {{else if ../settings.useCUData}}
+                <span class="item-name centre">{{item.system.secondaryArmor.value}}</span>
               {{else}}
                 <span class="item-name centre">{{item.system.armor}}</span>
               {{/if}}

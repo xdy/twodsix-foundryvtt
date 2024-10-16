@@ -18,7 +18,7 @@ Hooks.once("ready", async function () {
   }
 
   //*Set default damage options localized
-  if (game.settings.get("twodsix", "damageTypeOptions") === "") {
+  if (game.settings.get("twodsix", "damageTypeOptions") === ""  && game.settings.get('twodsix', 'ruleset') !== 'CU') {
     game.settings.set("twodsix", "damageTypeOptions", game.i18n.localize("TWODSIX.Settings.defaultDamageOptions"));
   }
 
