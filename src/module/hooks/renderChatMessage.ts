@@ -3,7 +3,8 @@
 
 import Crit from "../utils/crit";
 
-Hooks.on('renderChatMessage', (app, html) => {
+Hooks.on('renderChatMessageHTML', (app, htmlElement) => {
+  const html = $(htmlElement);
   const damageMessage = html.find(".damage-message")[0];
   if (damageMessage) {
     damageMessage.setAttribute("draggable", "true");
