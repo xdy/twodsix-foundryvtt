@@ -15,8 +15,10 @@ Hooks.on("getSceneControlButtons", (controls) => {
       icon: "fa-solid fa-dice",
       button: true,
       visible: game.user.isGM,
-      onChange: async () => {
-        await requestRoll();
+      onChange: async (event, active) => {
+        if (active) {
+          await requestRoll();
+        }
       }
     };
   }
