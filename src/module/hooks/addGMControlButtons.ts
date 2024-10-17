@@ -9,16 +9,16 @@ import { simplifySkillName, sortObj } from "../utils/utils.ts";
 
 Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {
-    controls.find((c) => c.name === "token").tools.push({
+    controls.tokens.tools.requestRoll = {
       name: "requestRoll",
       title: "TWODSIX.Chat.Roll.RequestRoll" + (game.settings.get("core", "showToolclips") ? "Clip" : ""),
       icon: "fa-solid fa-dice",
       button: true,
       visible: game.user.isGM,
-      onClick: async () => {
+      onChange: async () => {
         await requestRoll();
       }
-    });
+    };
   }
 });
 
@@ -108,11 +108,14 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
     other: 0
   };
   const returnValue = {};
-  const buttons = {
-    ok: {
-      label: game.i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
-      icon: '<i class="fa-solid fa-message"></i>',
-      callback: (buttonHtml) => {
+  const buttons = [
+    {
+      action: "ok",
+      label: "TWODSIX.Chat.Roll.RequestRoll",
+      icon: "fa-solid fa-message",
+      callback: (event, button, dialog) => {
+        console.log(event, button, dialog);
+        const buttonHtml = $(dialog);
         returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
         returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][buttonHtml.find('[name="difficulty"]').val()];
         returnValue.rollType = buttonHtml.find('[name="rollType"]').val();
@@ -123,25 +126,30 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
         returnValue.other = parseInt(buttonHtml.find('[name="other"]').val());
       }
     },
-    cancel: {
-      icon: '<i class="fa-solid fa-xmark"></i>',
-      label: game.i18n.localize("Cancel"),
+    {
+      action: "cancel",
+      icon: "fa-solid fa-xmark",
+      label: "Cancel",
       callback: () => {
         returnValue.shouldRoll = false;
       }
     },
-  };
+  ];
 
   const html = await renderTemplate(template, dialogData);
   return new Promise<void>((resolve) => {
-    new Dialog({
-      title: game . i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Chat.Roll.RequestRoll"},
       content: html,
       buttons: buttons,
       default: 'ok',
       close: () => {
         resolve(returnValue);
       },
+      submit: () => {
+        console.log(returnValue);
+        resolve(returnValue);
+      }
     }).render(true);
   });
 }
