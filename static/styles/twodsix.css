@@ -189,9 +189,9 @@ table tr:nth-child(even) {
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
-.sheet > * {
+/*.sheet > * {
   flex: 1;
-}
+}*/
 .sheet > .flex0 {
   display: block;
   flex: 0;
