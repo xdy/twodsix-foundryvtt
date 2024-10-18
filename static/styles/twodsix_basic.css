@@ -108,7 +108,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 22em 0.9fr;
-  grid-template-rows: 19em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
