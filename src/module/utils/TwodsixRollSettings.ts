@@ -74,7 +74,7 @@ export class TwodsixRollSettings {
       }
 
       //Check for "Untrained" value and use if better to account for JOAT
-      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+      const joat = (selectedActor.getUntrainedSkill()?.system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
