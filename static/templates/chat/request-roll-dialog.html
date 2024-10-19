@@ -1,14 +1,14 @@
 <!-- TODO Move this file -->
-<form>
+<form class="standard-form">
+  <div class = "standard-form">
   <fieldset>
     <legend>{{localize "TWODSIX.Actor.CharacterNames"}}</legend>
     <div class="form-group">
-      <select class="protectionTypes" name="selectedTokens" multiple>
+      <select class="selectTokens" name="selectedTokens" multiple>
         {{selectOptions allTokenNames selected=initialTokens}}
       </select>
     </div>
   </fieldset>
-  <br>
   <fieldset>
   <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
     <div class="form-group">
@@ -33,7 +33,6 @@
       </label>
     </div>
   </fieldset>
-  <br>
   <fieldset>
     <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
     <div class="form-group">
@@ -56,5 +55,5 @@
       </label>
     </div>
   </fieldset>
-  <br>
+</div>
 </form>
