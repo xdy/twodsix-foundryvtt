@@ -332,7 +332,7 @@ form .form-group, form .form-group-stacked {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 3px 0;
+  margin: 3px 1ch;
   /* color: var(--s2d6-default-color) ; */
 }
 
@@ -4334,6 +4334,6 @@ input.red {
 }
 
 .selectTokens {
-  height: auto;
+  height: auto !important;
   min-height: 5ch;
 }

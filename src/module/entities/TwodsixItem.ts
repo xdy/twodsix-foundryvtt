@@ -1160,7 +1160,7 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
   for ( const mode of modes) {
     const number = Number(mode);
     const attackDM = TwodsixItem.burstAttackDM(number);
-    const bonusDamage =TwodsixItem.burstBonusDamage(number);
+    const bonusDamage = TwodsixItem.burstBonusDamage(number);
 
     if (number === 1) {
       buttons["single"] = {

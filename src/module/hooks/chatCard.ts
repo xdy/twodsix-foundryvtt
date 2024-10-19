@@ -252,31 +252,34 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
   const select = `<select name="item-select">${options}</select>`;
   const content = `<form><div class="form-group"><label>${game.i18n.localize("TWODSIX.Rolls.SkillName")} (${game.i18n.localize("TWODSIX.Actor.Skills.Level")}): ${select}</label></div></form>`;
 
-  const buttons = {
-    ok: {
-      label: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
-      icon: '<i class="fa-solid fa-list"></i>',
-      callback: async (htmlObject) => {
-        const skillId = htmlObject[0].querySelector("select[name='item-select']").value;
+  const buttons = [
+    {
+      action: "ok",
+      label: "TWODSIX.Rolls.SelectSkill",
+      icon: "fa-solid fa-list",
+      callback: async (event, button, dialog) => {
+        const html = $(dialog);
+        const skillId = html[0].querySelector("select[name='item-select']").value;
         returnValue = skillId;
       }
     },
-    cancel: {
-      icon: '<i class="fa-solid fa-xmark"></i>',
-      label: game.i18n.localize("Cancel"),
+    {
+      action: "cancel",
+      icon: "fa-solid fa-xmark",
+      label: "Cancel",
       callback: () => {
         returnValue = false;
       }
     }
-  };
+  ];
 
   return new Promise<void>((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Rolls.SelectSkill"},
       content: content,
       buttons: buttons,
       default: 'ok',
-      close: () => {
+      submit: () => {
         resolve(returnValue);
       },
     }).render(true);
