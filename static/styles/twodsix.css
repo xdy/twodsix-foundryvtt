@@ -1765,7 +1765,7 @@ a:hover, a.active {
 /* Style overrides */
 
 .skills input[type='number'] {
-  width: 2em;
+  /*width: 2em;*/
   justify-self: center;
 }
 
