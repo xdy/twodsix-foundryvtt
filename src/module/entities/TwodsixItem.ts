@@ -1066,7 +1066,12 @@ export async function onRollDamage(event):Promise<void> {
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
-      bonusDamageFormula === "0" ? bonusDamageFormula = String(lastMessage.getFlag("twodsix", "effect")) : bonusDamageFormula += `+` + String(lastMessage.getFlag("twodsix", "effect"));
+      const effectDM = String(lastMessage.getFlag("twodsix", "effect"));
+      if (bonusDamageFormula === "0") {
+        bonusDamageFormula = effectDM;
+      } else {
+        bonusDamageFormula += `+` + effectDM;
+      }
     }
   }
 
