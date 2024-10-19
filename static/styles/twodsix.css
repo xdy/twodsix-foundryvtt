@@ -394,6 +394,7 @@ form .form-group span.units {
   padding: 1ch 0 0;
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-border: var(--s2d6-header-border);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 .editor-content strong {
@@ -1575,6 +1576,7 @@ a.actor-notes-tab:hover {
 .tab, div{
   scrollbar-width: thin;
   --color-scrollbar: var(--s2d6-default-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 /*.tab[data-tab].active {
@@ -4105,6 +4107,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 /*  Battle Sheet */
 .battle {
   --color-scrollbar: var(--s2d6-battle-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
   --s2d6-default-color: var(--s2d6-battle-color);
 }
 .battle-content {
@@ -4211,6 +4214,7 @@ li.battle-damage button,  li.battle-weapons button{
   overflow-y: auto;
   overflow-x: hidden;
   --color-scrollbar: var(--s2d6-battle-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 .item-title-battle {
