@@ -116,7 +116,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       label: "TWODSIX.Chat.Roll.RequestRoll",
       icon: "fa-solid fa-message",
       callback: (event, button, dialog) => {
-        console.log(event, button, dialog);
+        //console.log(event, button, dialog);
         const buttonHtml = $(dialog);
         returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
         returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][buttonHtml.find('[name="difficulty"]').val()];
@@ -145,11 +145,8 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       content: html,
       buttons: buttons,
       default: 'ok',
-      close: () => {
-        resolve(returnValue);
-      },
       submit: () => {
-        console.log(returnValue);
+        //console.log(returnValue);
         resolve(returnValue);
       }
     }).render(true);
