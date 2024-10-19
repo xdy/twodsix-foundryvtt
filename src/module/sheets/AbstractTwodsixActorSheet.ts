@@ -478,12 +478,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   protected async initiativeDialog(dialogData):Promise<any> {
     const template = 'systems/twodsix/templates/chat/initiative-dialog.html';
-
-    const buttons = {
-      ok: {
-        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-        icon: '<i class="fa-solid fa-dice"></i>',
-        callback: (buttonHtml) => {
+    const buttons = [
+      {
+        action: "ok",
+        label: "TWODSIX.Rolls.Roll",
+        icon: "fa-solid fa-dice",
+        callback: (event, button, dialog) => {
+          const buttonHtml = $(dialog);
           dialogData.shouldRoll = true;
           dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
           dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
@@ -491,23 +492,24 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
         }
       },
-      cancel: {
-        icon: '<i class="fa-solid fa-xmark"></i>',
-        label: game.i18n.localize("Cancel"),
+      {
+        action: "cancel",
+        icon: "fa-solid fa-xmark",
+        label: "Cancel",
         callback: () => {
           dialogData.shouldRoll = false;
         }
       },
-    };
+    ];
 
     const html = await renderTemplate(template, dialogData);
     return new Promise<void>((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Rolls.RollInitiative"),
+      new foundry.applications.api.DialogV2({
+        window: {title: "TWODSIX.Rolls.RollInitiative"},
         content: html,
         buttons: buttons,
         default: 'ok',
-        close: () => {
+        submit: () => {
           resolve();
         },
       }).render(true);
