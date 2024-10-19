@@ -3427,6 +3427,12 @@ background: var(--s2d6-sidebar-background);
   gap: 0 5px;
 }
 
+.flavor-table {
+  width: 95%;
+  margin: 1ch;
+  padding: 0.25rem;
+}
+
 /*
 #settings button {
     position: relative;

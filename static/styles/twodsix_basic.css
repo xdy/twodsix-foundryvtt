@@ -2898,6 +2898,16 @@ background: var(--sidebar-background);
   gap: 0 5px;
 }
 
+.flavor-table {
+  width: 95%;
+  margin: 1ch;
+  padding: 0.25rem;
+}
+
+.flavor-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 /*
 #settings button {
     position: relative;
