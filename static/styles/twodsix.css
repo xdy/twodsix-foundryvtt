@@ -1251,6 +1251,7 @@ span.bgi-charEdit {
   font-size: smaller;
   margin: 0.5em 0 0;
   overflow-x: hidden;
+  border-radius: 0;
 }
 
 .stat-table-small {
@@ -4033,7 +4034,7 @@ table thead {
   background: var(--s2d6-background-nearly-transparent);
   color: var(--s2d6-light-color);
   text-shadow: none !important;
-  border: 1px solid var(--s2d6-item-border);
+  /*border: 1px solid var(--s2d6-item-border);*/
 }
 
 color-picker > input[type=color] {
