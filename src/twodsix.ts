@@ -35,6 +35,7 @@ import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, Ju
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
+import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -204,6 +205,8 @@ Hooks.once('init', async function () {
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
 
+  //Game pause icon change
+  CONFIG.ui.pause = TwodsixGamePause;
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
 });
