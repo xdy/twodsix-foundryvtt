@@ -895,7 +895,6 @@ input.stat-name-table {
   width: 1.5em;
   text-align: center;
   border: none;
-  border: none;
   -moz-appearance: textfield;
   appearance: textfield;
 }
