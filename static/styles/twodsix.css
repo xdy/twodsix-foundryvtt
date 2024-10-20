@@ -3457,8 +3457,8 @@ form button {
 /*--- INTERFACE MAKEUP ---*/
 
 button {
-  position: relative;
-  margin: 0.3em 0.1em;
+  /*position: relative;
+  margin: 0.3em 0.1em;*/
   background-color: var(--s2d6-background-opaque);
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);
@@ -4336,4 +4336,8 @@ input.red {
 .selectTokens {
   height: auto !important;
   min-height: 5ch;
+}
+
+#sidebar-tabs {
+  padding: 16px;
 }
