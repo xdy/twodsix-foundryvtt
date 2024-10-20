@@ -3643,6 +3643,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
+  padding: 16px;
 }
 
 #sidebar-tabs > .item {
@@ -4336,8 +4337,4 @@ input.red {
 .selectTokens {
   height: auto !important;
   min-height: 5ch;
-}
-
-#sidebar-tabs {
-  padding: 16px;
 }
