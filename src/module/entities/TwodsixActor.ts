@@ -950,8 +950,8 @@ export default class TwodsixActor extends Actor {
       await matching.update({"system.value": updateValue});
       return false;
     }
-    const addedSkill = (await (<ActorSheet>this.sheet)._onDropItemCreate(foundry.utils.duplicate(skillData)))[0];
-    //const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skillData)]))[0];
+
+    const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skillData)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skillValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value ?? -3;
@@ -978,32 +978,24 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    let transferData = {};
-    //Need to catch because Monk's enhanced Journal drops item data not TwodsixItem
-    try {
-      transferData = itemData.toJSON();
-    } catch(err) {
-      transferData = itemData;
-    }
     let numberToMove = itemData.system?.quantity ?? 1;
-
+    const originalItem:TwodsixItem = await fromUuid(itemData.uuid);
     //Handle moving items from another actor if enabled by settings
-    if (itemData.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
-      const sourceActor = itemData.actor; //fix
+    if (originalItem.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
       if (itemData.system.quantity > 1) {
         numberToMove = await getMoveNumber(itemData);
         if (numberToMove >= itemData.system.quantity) {
-          await itemData.update({"system.equipped": "ship"});
+          await originalItem.update({"system.equipped": "ship"});
           numberToMove = itemData.system.quantity;
-          await sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
+          await originalItem.delete();
         } else if (numberToMove === 0) {
           return false;
         } else {
-          await sourceActor.updateEmbeddedDocuments("Item", [{_id: itemData.id, 'system.quantity': (itemData.system.quantity - numberToMove)}]);
+          await originalItem.update({'system.quantity': (itemData.system.quantity - numberToMove)});
         }
       } else if (itemData.system.quantity === 1) {
-        await itemData.update({"system.equipped": "ship"});
-        await sourceActor.deleteEmbeddedDocuments("Item", [itemData.id]);
+        await originalItem.update({"system.equipped": "ship"});
+        await originalItem.delete();
       } else {
         return false;
       }
@@ -1027,30 +1019,36 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
-    transferData.system.quantity = numberToMove;
-    transferData.system.equipped = "backpack";
-    delete transferData._id;
+    itemData.system.quantity = numberToMove;
+    itemData.system.equipped = "backpack";
+    if (Object.hasOwn(itemData, '_id')) {
+      delete itemData._id;
+    }
+    if (Object.hasOwn(itemData, 'uuid')){
+      delete itemData.uuid;
+    }
+
     // Prepare effects
-    if ( transferData.effects?.length > 0) {
-      for (const effect of transferData.effects) {
+    if ( itemData.effects?.length > 0) {
+      for (const effect of itemData.effects) {
         effect.disabled = false;
         effect.transfer =  game.settings.get('twodsix', "useItemActiveEffects");
       }
     }
 
     //Link an actor skill with names defined by item.associatedSkillName
-    transferData.system.skill = this.getBestSkill(transferData.system.associatedSkillName, false)?.id ?? this.getUntrainedSkill()?.id;
+    itemData.system.skill = this.getBestSkill(itemData.system.associatedSkillName, false)?.id ?? this.getUntrainedSkill()?.id;
 
     //Remove any attached consumables
-    transferData.system.consumables = [];
-    transferData.system.useConsumableForAttack = '';
+    itemData.system.consumables = [];
+    itemData.system.useConsumableForAttack = '';
 
     //Create Item
-    const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
+    const addedItem = (await this.createEmbeddedDocuments("Item", [itemData]))[0];
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !["skills", "trait", "spell"].includes(addedItem.type)) {
       await applyEncumberedEffect(this);
     }
-    console.log(`Twodsix | Added Item ${itemData.name} to character`);
+    console.log(`Twodsix | Added Item ${addedItem.name} to character`);
     return (!!addedItem);
   }
 
@@ -1370,21 +1368,23 @@ function getEquipmentWeight(item:TwodsixItem):number {
  */
 async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   const returnNumber:number = await new Promise((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Actor.Items.QuantityToTransfer"},
       content:
         `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
         `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `<input type="number" name="amount" value="` +
         itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></label></div>`,
-      buttons: {
-        Transfer: {
-          label: `<i class="fa-solid fa-arrow-right-arrow-left"></i> ` + game.i18n.localize("TWODSIX.Actor.Items.Transfer"),
-          callback:
-            (html:JQuery) => {
-              resolve(html.find('[name="amount"]')[0]["value"]);
-            }
+      buttons: [
+        {
+          action: "Transfer",
+          icon: "fa-solid fa-arrow-right-arrow-left",
+          label: "TWODSIX.Actor.Items.Transfer",
+          callback: (event, button, dialog) => {
+            const html:jQuery = $(dialog);
+            resolve(html.find('[name="amount"]')[0]["value"]);
+          }
         }
-      },
+      ],
       default: `Transfer`
     }).render(true);
   });

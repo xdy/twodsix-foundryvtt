@@ -232,7 +232,8 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = foundry.utils.duplicate(item);
+  const itemCopy = foundry.utils.duplicate(item); ///Should this be copy???
+  Object.assign(itemCopy, {uuid: item.uuid});
   return itemCopy;
 }
 
