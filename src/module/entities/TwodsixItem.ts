@@ -1112,55 +1112,48 @@ export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): n
 
 async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
   if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          doubleTap: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFDoubleTap"), callback: () => {
-              resolve('double-tap');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle"
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "double-tap",
+          label: "TWODSIX.Dialogs.ROFDoubleTap",
+        }
+      ],
+      default: 'single',
+      rejectClose: false
     });
   } else {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          burst: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-              resolve('auto-burst');
-            }
-          },
-          full: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-              resolve('auto-full');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle"
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "auto-burst",
+          label: "TWODSIX.Dialogs.ROFBurst"
+        },
+        {
+          action: "auto-full",
+          label: "TWODSIX.Dialogs.ROFFull"
+        }
+      ],
+      default: "single",
+      rejectClose: false
     });
   }
 }
 
 async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
-  const buttons = {};
+  const buttons = [];
 
   for ( const mode of modes) {
     const number = Number(mode);
@@ -1168,61 +1161,62 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
     const bonusDamage = TwodsixItem.burstBonusDamage(number);
 
     if (number === 1) {
-      buttons["single"] = {
-        "label": game.i18n.localize("TWODSIX.Dialogs.ROFSingle"),
-        "callback": () => {
+      buttons.push({
+        action: "single",
+        label: "TWODSIX.Dialogs.ROFSingle",
+        callback: () => {
           item.performAttack("single", true, 1);
         }
-      };
+      });
     } else if (number > 1){
       let key = game.i18n.localize("TWODSIX.Rolls.AttackDM")+ ' +' + attackDM;
-      buttons[key] = {
-        "label": key,
-        "callback": () => {
+      buttons.push({
+        action: `burst${number}`,
+        label: key,
+        callback: () => {
           item.performAttack('burst-attack-dm', true, number);
         }
-      };
+      });
 
       key = game.i18n.localize("TWODSIX.Rolls.BonusDamage") + ' +' + bonusDamage;
-      buttons[key] = {
-        "label": key,
-        "callback": () => {
+      buttons.push({
+        action: `bonus${number}`,
+        label: key,
+        callback: () => {
           item.performAttack('burst-bonus-damage', true, number);
         }
-      };
+      });
     }
   }
 
-  await new Dialog({
-    title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+  await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
     content: "",
     buttons: buttons,
-    default: "single"
-  }).render(true);
+    default: "single",
+    rejectClose: false
+  });
 }
 
 async function promptForCTROF(modes: string[]): Promise<string> {
   if (parseInt(modes[0]) === 0) {
     return 'auto-full';
   } else {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          full: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-              resolve('auto-full');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle"
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "auto-full",
+          label: "TWODSIX.Dialogs.ROFFull"
+        }
+      ],
+      default: 'single',
+      rejectClose: false
     });
   }
 }
