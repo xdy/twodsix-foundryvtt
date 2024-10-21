@@ -135,7 +135,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       callback: () => {
         returnValue.shouldRoll = false;
       }
-    },
+    }
   ];
 
   const html = await renderTemplate(template, dialogData);
