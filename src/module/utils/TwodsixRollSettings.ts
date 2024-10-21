@@ -231,11 +231,13 @@ export class TwodsixRollSettings {
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
     };
 
-    const buttons = {
-      ok: {
-        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-        icon: '<i class="fa-solid fa-dice"></i>',
-        callback: (buttonHtml) => {
+    const buttons = [
+      {
+        action: "ok",
+        label: "TWODSIX.Rolls.Roll",
+        icon: "fa-solid fa-dice",
+        callback: (event, button, dialog) => {
+          const buttonHtml = $(dialog);
           this.shouldRoll = true;
           this.difficulty = this.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
@@ -271,46 +273,48 @@ export class TwodsixRollSettings {
           this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
         }
       },
-      cancel: {
-        icon: '<i class="fa-solid fa-xmark"></i>',
-        label: game.i18n.localize("Cancel"),
+      {
+        action: "cancel",
+        icon: "fa-solid fa-xmark",
+        label: "Cancel",
         callback: () => {
           this.shouldRoll = false;
         }
       },
-    };
+    ];
 
     const html = await renderTemplate(template, dialogData);
-    return new Promise<void>((resolve) => {
-      new Dialog({
-        title: title,
-        content: html,
-        buttons: buttons,
-        default: 'ok',
-        render: handleRender,
-        close: () => {
-          resolve();
-        },
-      }).render(true);
+    await foundry.applications.api.DialogV2.wait({
+      window: {title: title},
+      content: html,
+      buttons: buttons,
+      default: 'ok',
+      render: handleRender,
+      close: () => {
+        Promise.resolve();
+      },
+      rejectClose: false
     });
   }
 }
-function handleRender(html) {
-  html.on("change", ".select-skill", () => {
-    const characteristicElement = html.find('[name="rollModifiers.characteristic"]');
-    const newSkillUuid = html.find('[name="rollModifiers.selectedSkill"]').val();
+
+function handleRender(event, htmlRend) {
+  const workingHtml = $(htmlRend);
+  workingHtml.on("change", ".select-skill", () => {
+    const characteristicElement = workingHtml.find('[name="rollModifiers.characteristic"]');
+    const newSkillUuid = workingHtml.find('[name="rollModifiers.selectedSkill"]').val();
     const newSkill = fromUuidSync(newSkillUuid);
     characteristicElement.val(newSkill.system.characteristic);
-    let title = "";
-    const titleElement = html.parent().parent().find('.window-title')[0];
+    let newTitle = "";
+    const titleElement = workingHtml.find('.window-title')[0];
     if (titleElement) {
       const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
       if (titleElement.innerText.includes(usingWord)) {
-        title = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill.name}`;
+        newTitle = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill.name}`;
       } else {
-        title = newSkill.name || "";
+        newTitle = newSkill.name || "";
       }
-      titleElement.innerText = title;
+      titleElement.innerText = newTitle;
     }
   });
 }

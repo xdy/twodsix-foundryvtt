@@ -23,7 +23,6 @@
       </label>
     </div>
   </fieldset>
-  <br>
   <fieldset>
     <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
       {{#if skillRoll}}
@@ -114,7 +113,6 @@
         </label>
       </div>
   </fieldset>
-  <br>
   {{#if showConditions}}
     <fieldset>
       <legend>{{localize "TWODSIX.Chat.Roll.Conditions"}}</legend>
@@ -133,22 +131,20 @@
           </div>
         {{/if}}
     </fieldset>
-    <br>
   {{/if}}
   {{#if (twodsix_showTimeframe)}}
     <fieldset>
       <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
       <div class="form-group">
-        <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}<br>
+        <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}
           <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
         </label>
-        <label>{{localize "TWODSIX.Chat.Roll.Units"}}<br>
+        <label>{{localize "TWODSIX.Chat.Roll.Units"}}
           <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
             {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
           </select>
         </label>
       </div>
     </fieldset>
-    <br>
   {{/if}}
 </form>
