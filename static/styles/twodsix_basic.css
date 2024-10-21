@@ -3510,3 +3510,7 @@ input.red {
   height: auto !important;
   min-height: 5ch;
 }
+
+.standard-form {
+  overflow-y: auto;
+}

@@ -4327,6 +4327,10 @@ input.red {
   font-family: Asap, sans-serif;
 }
 
+.standard-form {
+  overflow-y: auto;
+}
+
 .standard-form fieldset {
   padding: 0 0.5rem;
   display: flex;
