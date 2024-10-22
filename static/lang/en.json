@@ -47,7 +47,8 @@
       "DamageFormula": "Damage Formula",
       "NoRegularDamage": "No Regular Damage",
       "CanBeBlocked": "Can be blocked",
-      "CanBeParried": "Can be parried"
+      "CanBeParried": "Can be parried",
+      "DamageCalculation": "Applied Damage Calculation"
     },
     "DamageType": {
       "Acid": "Acid",

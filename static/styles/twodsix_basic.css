@@ -3121,6 +3121,12 @@ form .form-group > label {
 }
 */
 /* ------ Damage Dialog ------ */
+.damage-dialog {
+  font-size: revert;
+}
+.damage-table {
+  max-width: 30ch;
+}
 
 .damage-dialog .red {
   color: var(--s2d6-damage-red);

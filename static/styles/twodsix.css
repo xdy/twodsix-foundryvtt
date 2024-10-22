@@ -3884,6 +3884,12 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border: none !important;
 }*/
 /* ------ Damage Dialog ------ */
+.damage-dialog {
+  font-size: revert;
+}
+.damage-table {
+  max-width: 30ch;
+}
 
 .damage-dialog .red {
   color: var(--s2d6-damage-red);
