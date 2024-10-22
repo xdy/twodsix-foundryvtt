@@ -45,6 +45,13 @@
         <input class="form-input" type="number" name="system.armorPiercing" value="{{system.armorPiercing}}" data-dtype="Number" step ="1"/>
       </div>
 
+      {{#unless settings.ShowRangeBandAndHideRange}}
+        <div class="item-data">
+          <label class="resource-label">{{localize "TWODSIX.Items.Consumable.AmmoRangeModifier"}}</label>
+          <input class="form-input" type="text" name="system.ammoRangeModifier" value="{{numberFormat system.ammoRangeModifier decimals=0 sign=true}}" data-dtype="Number"/>
+        </div>
+      {{/unless}}
+
       <div class="item-data">
         <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Count"}}</label>
           <div>
@@ -71,6 +78,8 @@
         <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType localize=true}}</select>
       </div>
     {{/if}}
+
+    {{> "systems/twodsix/templates/items/parts/aoe-parts.html"}}
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
