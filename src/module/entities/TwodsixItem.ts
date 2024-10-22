@@ -725,6 +725,7 @@ export default class TwodsixItem extends Item {
           }
         );
         await damage.toMessage({
+          title: game.i18n.localize("TWODSIX.Damage.DamageCard"),
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
           style: CONST.CHAT_MESSAGE_STYLES.OTHER,

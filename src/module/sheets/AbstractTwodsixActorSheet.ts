@@ -570,7 +570,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const capType = item.type.capitalize();
     if (item.type === "trait"  || item.type === "spell") {
       const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
-      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+      ChatMessage.create({ title: game.i18n.localize("TWODSIX.Chat.Roll.Types.TriatSpell"), content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
 

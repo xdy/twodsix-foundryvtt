@@ -48,7 +48,8 @@
       "NoRegularDamage": "No Regular Damage",
       "CanBeBlocked": "Can be blocked",
       "CanBeParried": "Can be parried",
-      "DamageCalculation": "Applied Damage Calculation"
+      "DamageCalculation": "Applied Damage Calculation",
+      "DamageCard": "Damage Card"
     },
     "DamageType": {
       "Acid": "Acid",
@@ -465,7 +466,15 @@
           "ablat": "Ablat",
           "combat": "Combat"
         },
-        "Dice": "Dice"
+        "Dice": "Dice",
+        "Types": {
+          "SkillRoll": "Skill Roll Card",
+          "ItemRoll": "Item Roll Card",
+          "OtherRoll": "Other Roll Card",
+          "CharRoll": "Characteristic Roll Card",
+          "ShipAction": "Ship Action Card",
+          "TraitSpell": "Trait/Spell Card"
+        }
       }
     },
     "Table": {

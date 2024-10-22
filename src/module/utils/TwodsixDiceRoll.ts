@@ -383,8 +383,20 @@ export class TwodsixDiceRoll {
 
     const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="flavor-message"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 
+    let title = "";
+    if (this.item) {
+      title = "TWODSIX.Chat.Roll.Types.ItemRoll";
+    } else if (this.skill) {
+      title = "TWODSIX.Chat.Roll.Types.SkillRoll";
+    } else if (this.modifierList?.includes("characteristic")) {
+      title = "TWODSIX.Chat.Roll.Types.CharRoll";
+    } else {
+      title = "TWODSIX.Chat.Roll.Types.OtherRoll";
+    }
+
     await this.roll?.toMessage(
       {
+        title: game.i18n.localize(title),
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],

@@ -53,7 +53,12 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor.getRollData() ?? {};
         Object.assign(rollData, {ship: extra.ship.getRollData()});
-        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorText, type: CONST.CHAT_MESSAGE_TYPES.OTHER});
+        const msg =  await new Roll(rollText, rollData).toMessage({
+          title: game.i18n.localize("TWODSIX.Chat.Roll.Types.ShipAction"),
+          speaker: speakerData,
+          flavor: flavorText,
+          type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        });
         return msg;
       }
     }
