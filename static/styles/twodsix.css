@@ -321,7 +321,7 @@ table tr:nth-child(even) {
 
 /******************************************************/
 
-.macro-sheet .form-group.command div[contenteditable] {
+/*.macro-sheet .form-group.command div[contenteditable] {
   height: calc(100% - 24px);
   resize: none;
   color: var(--s2d6-light-color);
@@ -333,12 +333,12 @@ form .form-group, form .form-group-stacked {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 3px 1ch;
-  /* color: var(--s2d6-default-color) ; */
+  * color: var(--s2d6-default-color) ; *
 }
 
 form .form-group > label {
   flex: 4;
-  /* line-height: 18px; */
+  * line-height: 18px; *
 }
 
 form .form-group span.units {
@@ -346,7 +346,7 @@ form .form-group span.units {
   line-height: 28px;
   font-size: 12px;
   color: var(--s2d6-form-light);
-}
+}*/
 
 #player-config label {
   font-size: 14px;
@@ -3647,7 +3647,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
-  padding: 16px;
+  padding: 8px;
 }
 
 #sidebar-tabs > .item {
@@ -4326,7 +4326,6 @@ input.red {
 #pause.paused {
   display: flex;
   animation: none;
-
 }
 
 #pause figcaption {
@@ -4355,4 +4354,8 @@ input.red {
 
 h4 {
   font-family: Asap, sans-serif;
+}
+
+.cm-editor {
+  background: var(--s2d6-background-opaque);
 }
