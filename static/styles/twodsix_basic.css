@@ -1639,7 +1639,7 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 5ch 19% 14% 8% 51%;
+  grid-template-rows: 5ch 20% 14% 8% 51%;
   gap: 1px;
   grid-template-areas:
     "ship-image ship-name"
@@ -1737,7 +1737,7 @@ img.ship-mask-bg {
   /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
   font-size: 1.8ch;
-  width: 6ch;
+  width: 5ch;
   border: solid 1px;
   border-radius: 0.5ch;
 }
@@ -1806,8 +1806,8 @@ img.ship-mask-bg {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea  {
-  border: 2px solid;
-  border-radius: 1ch !important;
+  /*border: 2px solid;
+  border-radius: 1ch !important;*/
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
@@ -2162,11 +2162,14 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 1px solid;
   border-radius: 0;
   align-content: space-evenly;
+  display: flex;
 }
 
 .ship-position-add-box {
   text-align: center;
   min-height: 14ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-position-add-position {
@@ -2600,7 +2603,7 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .sheet-navigation.tabs {
-  padding-bottom: 0.5em;
+  padding: 0.5em 0;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 
@@ -3517,6 +3520,12 @@ input.red {
   min-height: 5ch;
 }
 
+/************ v13 Changes *******/
+
 .standard-form {
   overflow-y: auto;
+}
+
+table {
+  border-radius: 0;
 }

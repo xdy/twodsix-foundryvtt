@@ -2691,16 +2691,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   border: 1px groove var(--s2d6-default-color);
   min-height: 6ch;
   border-radius: 0;
+  display: flex;
 }
 
 .ship-position-add-box {
   text-align: center;
   min-height: 14ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-position-add-position {
   font-size: 6ch;
-  margin-top: 20px;
 }
 
 .ship-position-actor-token, .create-ship-position {
@@ -4323,6 +4325,8 @@ input.red {
   padding-left: 1%;
 }
 
+
+/********v13 updates******/
 #pause.paused {
   display: flex;
   animation: none;
@@ -4358,4 +4362,8 @@ h4 {
 
 .cm-editor {
   background: var(--s2d6-background-opaque);
+}
+
+table {
+  border-radius: 0;
 }
