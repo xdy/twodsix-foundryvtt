@@ -1,3 +1,10 @@
+# [5.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.9.0...v5.10.0) (2024-10-22)
+
+
+### Features
+
+*  Add ammo range modifier and AOE ([#1648](https://github.com/xdy/twodsix-foundryvtt/issues/1648)) ([b1a167f](https://github.com/xdy/twodsix-foundryvtt/commit/b1a167f3bee9c51d68fe896edf53a6a5ebe2c245))
+
 # [5.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.8.8...v5.9.0) (2024-10-16)
 
 
