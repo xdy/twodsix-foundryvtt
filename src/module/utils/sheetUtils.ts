@@ -232,7 +232,8 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = foundry.utils.duplicate(item);
+  const itemCopy = foundry.utils.duplicate(item); ///Should this be copy???
+  Object.assign(itemCopy, {uuid: item.uuid});
   return itemCopy;
 }
 
@@ -304,20 +305,22 @@ export function isDisplayableSkill(skill:Skills): boolean {
 
 export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
   const returnText:string = await new Promise((resolve) => {
-    new Dialog({
-      title: title,
+    new foundry.applications.api.DialogV2({
+      window: {title: title},
       content:
         `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
-      buttons: {
-        Roll: {
-          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
-          callback:
-            (html:JQuery) => {
-              resolve(html.find('[name="outputFormula"]')[0]["value"]);
-            }
+      buttons: [
+        {
+          action: "roll",
+          icon: "fa-solid fa-dice",
+          label: "TWODSIX.Rolls.Roll",
+          callback: (event, button, dialog) => {
+            const html = $(dialog);
+            resolve(html.find('[name="outputFormula"]')[0]["value"]);
+          }
         }
-      },
-      default: `Roll`,
+      ],
+      default: `roll`,
     }).render(true);
   });
   return (returnText ?? "");

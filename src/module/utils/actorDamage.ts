@@ -329,13 +329,14 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
 
-  new Dialog({
-    title: title,
+  await foundry.applications.api.DialogV2.wait({
+    window: {title: title},
     content: renderedHtml,
-    buttons: {
-      ok: {
-        label: game.i18n.localize("TWODSIX.Damage.DealDamage"),
-        icon: '<i class="fa-solid fa-hand-fist"></i>',
+    buttons: [
+      {
+        action: "ok",
+        label: "TWODSIX.Damage.DealDamage",
+        icon: "fa-solid fa-hand-fist",
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
@@ -343,18 +344,23 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
           Hooks.call("destroyDamageDialog", damageId);
         }
       },
-      cancel: {
-        icon: '<i class="fa-solid fa-xmark"></i>',
-        label: game.i18n.localize("Cancel"),
+      {
+        action: "cancel",
+        icon: "fa-solid fa-xmark",
+        label: "Cancel",
         callback: () => {
           //pass
         }
       },
-    },
+    ],
     default: 'ok',
     close: () => damageDialogHandler.unRegisterListeners(),
-    render: (html: JQuery) => damageDialogHandler.setHtml(html),
-  }, {id: damageId}).render(true);
+    render: (event, html) => {
+      const inJQ = $(html);
+      damageDialogHandler.setHtml(inJQ);
+    },
+    rejectClose: false
+  }, {id: damageId});
 }
 
 export function destroyDamageDialog(damageId: string): void {

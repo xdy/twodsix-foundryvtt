@@ -339,13 +339,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const html = await renderTemplate(template, {
       consumables: consumablesList
     });
-    new Dialog({
-      title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
+    new foundry.applications.api.DialogV2({
+      window: {title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`},
       content: html,
-      buttons: {
-        ok: {
-          label: game.i18n.localize("TWODSIX.Create"),
-          callback: async (buttonHtml: JQuery) => {
+      buttons: [
+        {
+          action: "ok",
+          label: "TWODSIX.Create",
+          callback: async (event, button, dialog) => {
+            const buttonHtml = $(dialog);
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             let equippedState = "";
             if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
@@ -372,10 +374,11 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             }
           }
         },
-        cancel: {
-          label: game.i18n.localize("Cancel")
+        {
+          action: "cancel",
+          label: "Cancel"
         }
-      },
+      ],
       default: 'ok',
     }).render(true);
   }
