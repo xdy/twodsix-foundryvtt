@@ -1134,7 +1134,7 @@
       },
       "ShowDamageType": {
         "hint": "checked=Show the 'Damage Type' field, unchecked=Hide it",
-        "name": "Show the 'Damage Type' field on weapon sheets"
+        "name": "Show the 'Damage Type' field on weapon (and spell) sheets"
       },
       "showHeroPoints": {
         "hint": "Show Hero Points counter on actor sheet.",
