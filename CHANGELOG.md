@@ -1,3 +1,10 @@
+## [5.10.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.10.0...v5.10.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* missing damage type for spells ([#1673](https://github.com/xdy/twodsix-foundryvtt/issues/1673)) ([7a826c2](https://github.com/xdy/twodsix-foundryvtt/commit/7a826c2c8ffe367d35d3002070c6d89866a2a97e))
+
 # [5.10.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.9.0...v5.10.0) (2024-10-22)
 
 
