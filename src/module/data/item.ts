@@ -124,6 +124,7 @@ export class SpellData extends TraitData {
     schema.duration = new fields.StringField({...requiredBlankString});
     schema.associatedSkillName = new fields.StringField({...requiredBlankString});
     schema.damage = new fields.StringField({...requiredBlankString});
+    schema.damageType = new fields.StringField({required: true, blank: false, initial: "NONE" });
     return schema;
   }
 }
