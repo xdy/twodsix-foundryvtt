@@ -1,6 +1,5 @@
 //Everything except the namespace is generated from template.json using https://app.quicktype.io/?l=ts
 
-
 // Actors
 export interface TravellerDataSource {
   type:'traveller';
@@ -78,6 +77,11 @@ export interface SpellDataSource {
   system:Spell;
 }
 
+export interface PsiAbilityDataSource {
+  type:'psiAbility';
+  system:PsiAbility;
+}
+
 export interface ConsumableDataSource {
   type:'consumable';
   system:Consumable;
@@ -114,6 +118,7 @@ export type ItemTwodsixDataSource = ArmorDataSource
   | StorageItemDataSource
   | TraitDataSource
   | SpellDataSource
+  | PsiAbilityDataSource
   | WeaponDataSource
   | ShipPositionDataSource
   | ComputerDataSource
@@ -532,6 +537,7 @@ export interface Item {
   skills:Skills;
   trait:Trait;
   spell:Spell;
+  psiAbility:PsiAbility;
   consumable:Consumable;
   component:Component;
   computer:Computer;
@@ -701,6 +707,20 @@ export interface Spell extends LinkTemplate, TargetTemplate {
   subtype:string;
   associatedSkillName:string;
   damage:string;
+}
+
+export interface PsiAbility extends LinkTemplate, TargetTemplate {
+  templates:string[];
+  description:string;
+  duration:string;
+  shortdescr:string;
+  subtype:string;
+  associatedSkillName:string;
+  damage:string;
+  rangeBand:string;
+  range:string;
+  psiCost:integer;
+  damageType:string;
 }
 
 export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {

@@ -45,6 +45,8 @@ export default class TwodsixItem extends Item {
         Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/other.svg'});
       } else if (this.type === 'computer') {
         Object.assign(updates, {img: 'systems/twodsix/assets/icons/components/computer.svg'});
+      } else if (this.type === 'psiAbility') {
+        Object.assign(updates, {img: 'systems/twodsix/assets/icons/extra-lucid.svg'});
       }
     }
 
@@ -91,7 +93,7 @@ export default class TwodsixItem extends Item {
     if (game.user?.id === userId) {
       const owningActor: TwodsixActor = this.actor;
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
-        if (!["skills", "trait", "spell"].includes(this.type) && changed.system) {
+        if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
           if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
             await applyEncumberedEffect(owningActor);
           }
@@ -107,7 +109,7 @@ export default class TwodsixItem extends Item {
 
     //Update item tab list if TL Changed
     if (game.settings.get('twodsix', 'showTLonItemsTab')) {
-      if(["skills", "trait", "spell", "ship_position"].includes(this.type)) {
+      if([...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
         return;
       } else if (this.isEmbedded || this.compendium) {
         return;
@@ -575,11 +577,12 @@ export default class TwodsixItem extends Item {
 
   /**
    * Perform a skill roll / check based on input settings.
-   * @param showThrowDialog {boolean} Whether to show roll/through dialog
-   * @param tmpSettings {TwodsixRollSettings|undefined} Roll settings to use
-   * @param showInChat Whehter to show attack in chat
+   * @param {boolean} showThrowDialog  Whether to show roll/through dialog
+   * @param {TwodsixRollSettings|undefined} tmpSettings Roll settings to use
+   * @param {boolean} showInChat Whehter to show attack in chat
+   * @returns {TwodsixDiceRoll | void} Results of dice roll, if made
    */
-  public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat = true):Promise<TwodsixDiceRoll | void> {
+  public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat: boolean = true):Promise<TwodsixDiceRoll | void> {
     let skill:TwodsixItem | null = null;
     let item:TwodsixItem | undefined;
     let workingActor:TwodsixActor = this.actor;
@@ -666,7 +669,31 @@ export default class TwodsixItem extends Item {
     if (showInChat) {
       await diceRoll.sendToChat(tmpSettings.difficulties);
     }
+
+    //Process post roll actions
+    if (this.type === 'psiAbility') {
+      await this._processPsiAction(diceRoll);
+    }
     return diceRoll;
+  }
+
+  /**
+   * Perform post skill roll actions for using psiAbility (damage and use of psi points).
+   * @param {TwodsixDiceRoll} diceRoll Results of psionic skill check
+   */
+  private async _processPsiAction(diceRoll:TwodsixDiceRoll): Promise<void> {
+    if(diceRoll.effect < 0) {
+      await (<TwodsixActor>this.actor).removePsiPoints(1);
+    } else {
+      if (this.system.damage !== "") {
+        const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll.effect}`, true, true);
+        if(rollResults) {
+          await (<TwodsixActor>this.actor).removePsiPoints(this.system.psiCost);
+        }
+      } else {
+        await (<TwodsixActor>this.actor).removePsiPoints(this.system.psiCost);
+      }
+    }
   }
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {

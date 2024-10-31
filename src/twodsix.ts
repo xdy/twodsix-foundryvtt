@@ -31,7 +31,7 @@ import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
 import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
 import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
-import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData } from "./module/data/item";
+import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData, PsiAbilityData } from "./module/data/item";
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
@@ -147,7 +147,8 @@ Hooks.once('init', async function () {
     "consumable": ConsumableData,
     "component": ComponentData,
     "ship_position": ShipPositionData,
-    "computer": ComputerData
+    "computer": ComputerData,
+    "psiAbility": PsiAbilityData
   });
 
   //Extend ActiveEffects class with custom overrides

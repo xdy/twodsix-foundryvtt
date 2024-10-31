@@ -12,7 +12,7 @@ async function checkEquippedState (actor: TwodsixActor): Promise<void> {
 }
 
 async function checkItemEquippedState (item:TwodsixItem): Promise<void> {
-  if (!["skills", "trait", "spell", "component", "ship_position"].includes(item.type)) {
+  if (!["skills", "trait", "spell", "component", "ship_position", "psiAbility"].includes(item.type)) {
     if (typeof item.system.equipped !== "string") {
       await item.update({"system.equipped": "backpack"});
       console.log("Migrated " + item.name  + (item.actor ? " on " + item.actor.name : ""));

@@ -10,6 +10,7 @@ import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { TWODSIX } from "../config";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -220,6 +221,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           itemData.system.max = 1;
         }
         break;
+      case "psiAbility":
+        if (!itemData.img) {
+          itemData.img = 'systems/twodsix/assets/icons/extra-lucid.svg';
+        }
+        break;
     }
   }
 
@@ -338,7 +344,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Iterate through items, calculating derived data
     items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
+      if (![...TWODSIX.WeightlessItems, "ship_position"].includes(item.type)) {
         item.prepareConsumable();
       }
       if (["traveller", "animal", "robot"].includes(actor.type)) {
@@ -405,7 +411,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "component"].includes(i.type));
+      sheetData.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
       sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     sheetData.effects = Array.from(actor.allApplicableEffects());
@@ -566,7 +572,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const item = <TwodsixItem>this.getItem(event);
     const picture = item.img;
     const capType = item.type.capitalize();
-    if (item.type === "trait"  || item.type === "spell") {
+    if (["trait", "spell", "psiAbility"].includes(item.type)) {
       const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
       ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }

@@ -433,7 +433,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       } else if (dropData.type === 'Item'){
         //This part handles just comsumables
         TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-        TwodsixItemSheet.check(["skills", "trait", "spell"].includes(this.item.type), "TraitsandSkillsNoConsumables");
+        TwodsixItemSheet.check(TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
 
         TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
 

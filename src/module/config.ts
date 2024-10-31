@@ -706,6 +706,8 @@ const ROLLTYPES = Object.freeze({
   Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
 });
 
+const WeightlessItems = ["skills", "trait", "spell", "psiAbility"];
+
 const CONSUMABLES = Object.freeze({
   air: "TWODSIX.Items.Consumable.Types.air",
   drugs: "TWODSIX.Items.Consumable.Types.drugs",
@@ -1174,7 +1176,8 @@ export const CU_DAMAGE_TYPES = {
   melee: "TWODSIX.DamageType.Melee",
   plasma: "TWODSIX.DamageType.Plasma",
   poison: "TWODSIX.DamageType.Poison",
-  stun: "TWODSIX.DamageType.Stun"
+  stun: "TWODSIX.DamageType.Stun",
+  psionic: "TWODSIX.DamageType.Psionic"
 };
 
 export const DAMAGECOLORS = Object.freeze({
@@ -1231,7 +1234,8 @@ export type TWODSIX = {
   ITEM_TYPE_SELECT: typeof ITEM_TYPE_SELECT,
   CU_DAMAGE_TYPES: typeof CU_DAMAGE_TYPES,
   effectType: typeof effectType,
-  DAMAGECOLORS: typeof DAMAGECOLORS
+  DAMAGECOLORS: typeof DAMAGECOLORS,
+  WeightlessItems: typeof WeightlessItems
 };
 
 export const TWODSIX = {
@@ -1274,5 +1278,6 @@ export const TWODSIX = {
   ITEM_TYPE_SELECT: ITEM_TYPE_SELECT,
   CU_DAMAGE_TYPES: CU_DAMAGE_TYPES,
   effectType: effectType,
-  DAMAGECOLORS: DAMAGECOLORS
+  DAMAGECOLORS: DAMAGECOLORS,
+  WeightlessItems: WeightlessItems
 };

@@ -60,6 +60,7 @@
       "Melee": "Melee",
       "Plasma": "Plasma",
       "Poison": "Poison",
+      "Psionic": "Psionic",
       "Stun": "Stun"
     },
     "Dialogs": {
@@ -182,7 +183,8 @@
         "Value": "Value",
         "WEAPONS": "WEAPONS",
         "Weapons": "Weapons",
-        "Weight": "Wt"
+        "Weight": "Wt",
+        "PSIONIC_ABILITIES": "PSOINIC ABILITIES"
       },
       "Notes": {
         "NOTES": "CHARACTER NOTES",
@@ -735,7 +737,8 @@
       },
       "Computer": {
         "ProcessingPower": "Processing Power"
-      }
+      },
+      "PsiCost": "Psionic Points Cost"
     },
     "Target": {
       "AreaEffect": "Area of Effect",
@@ -1703,7 +1706,8 @@
       "junkPl": "Junk",
       "skillsPl": "Skills",
       "traitPl": "Traits",
-      "ship_positionPl": "Ship Positions"
+      "ship_positionPl": "Ship Positions",
+      "psiAbility": "Psionic Ability"
     },
     "Actor": {
       "traveller": "Traveller",
