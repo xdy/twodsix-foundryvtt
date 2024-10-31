@@ -625,7 +625,8 @@
         "MoveStorage": "Move Storage",
         "New": "New",
         "Storage": "Storage",
-        "Junk": "Junk"
+        "Junk": "Junk",
+        "AssignPsiAbility": "Assign Psionic Ability"
       },
       "Skills": {
         "DEX": "DEX",
@@ -738,7 +739,11 @@
       "Computer": {
         "ProcessingPower": "Processing Power"
       },
-      "PsiCost": "Psionic Points Cost"
+      "Psionics": {
+        "PsiCost": "Psionic Points Cost",
+        "UsePoints": "Use Psionic Points"
+      }
+
     },
     "Target": {
       "AreaEffect": "Area of Effect",
@@ -1574,6 +1579,10 @@
       "componentsIgnored": {
         "hint": "A list of non-cargo components to omit from 'Damage' section of Battle Sheet",
         "name": "Components Ignored for Damage Tracking"
+      },
+      "psiTalentsRequireRoll": {
+        "hint": "Using a psionic talent requires a sucessful skill roll",
+        "name": "Psionics Require Roll"
       }
     },
     "CloseAndCreateNew": "Close and create new",

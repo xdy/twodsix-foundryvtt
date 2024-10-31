@@ -528,7 +528,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
     const item = this.getItem(event);
-    await item.skillRoll(showThrowDiag );
+    if (item.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
+      item.processPsiAction(0);
+    } else {
+      await item.skillRoll(showThrowDiag );
+    }
   }
 
   /**

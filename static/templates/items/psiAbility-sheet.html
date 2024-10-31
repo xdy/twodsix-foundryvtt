@@ -1,6 +1,6 @@
 <form class="{{cssClass}} item-class" autocomplete="off">
   {{> "systems/twodsix/templates/items/parts/image-name.html"}}
-
+  {{> "systems/twodsix/templates/items/parts/item-type.html"}}
   {{#if owner}}
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="item-lvl">
-    <label for="system.psiCost" class="resource-label">{{localize "TWODSIX.Items.PsiCost"}}</label>
+    <label for="system.psiCost" class="resource-label">{{localize "TWODSIX.Items.Psionics.PsiCost"}}</label>
     <input class="form-input" type="number" name="system.psiCost" value="{{system.psiCost}}" min="0" step="1"/>
   </div>
 

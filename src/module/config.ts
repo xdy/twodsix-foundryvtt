@@ -94,7 +94,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: false,
       addEffectToManualDamage: false,
       weightModifierForWornArmor: "0",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     }
   },
   CE: {
@@ -146,7 +147,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "-2, -1, -1, 1, 1, 2"
+      chainBonus: "-2, -1, -1, 1, 1, 2",
+      psiTalentsRequireRoll: true
     }
   },
   CEL: {
@@ -192,7 +194,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     }
   },
   CEFTL: {
@@ -237,7 +240,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     },
   },
   CEATOM: {
@@ -282,7 +286,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     }
   },
   BARBARIC: {
@@ -326,7 +331,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     },
   },
   CEQ: {
@@ -371,7 +377,8 @@ const RULESETS = Object.freeze({
       targetDMList: "",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     }
   },
   CD: {
@@ -425,7 +432,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
-      reverseHealingOrder: true
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false
     }
   },
   CDEE: {
@@ -479,7 +487,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
-      reverseHealingOrder: true
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false
     }
   },
   CLU: {
@@ -533,7 +542,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
-      reverseHealingOrder: true
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false
     }
   },
   SOC: {
@@ -632,7 +642,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false
     }
   },
   CU: {
@@ -684,7 +695,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "-2, -1, -1, 1, 1, 2"
+      chainBonus: "-2, -1, -1, 1, 1, 2",
+      psiTalentsRequireRoll: false
     }
   },
   OTHER: {
@@ -1162,7 +1174,8 @@ export const ITEM_TYPE_SELECT = {
   computer: "TWODSIX.Items.Items.AssignComputer",
   tool: "TWODSIX.Items.Items.AssignTool",
   junk: "TWODSIX.Items.Items.AssignJunk",
-  storage: "TWODSIX.Items.Items.MoveStorage"
+  storage: "TWODSIX.Items.Items.MoveStorage",
+  psiAbility: "TWODSIX.Items.Items.AssignPsiAbility"
 };
 
 export const CU_DAMAGE_TYPES = {

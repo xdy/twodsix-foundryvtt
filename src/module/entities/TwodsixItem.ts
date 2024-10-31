@@ -579,7 +579,7 @@ export default class TwodsixItem extends Item {
    * Perform a skill roll / check based on input settings.
    * @param {boolean} showThrowDialog  Whether to show roll/through dialog
    * @param {TwodsixRollSettings|undefined} tmpSettings Roll settings to use
-   * @param {boolean} showInChat Whehter to show attack in chat
+   * @param {boolean} showInChat Whether to show attack in chat
    * @returns {TwodsixDiceRoll | void} Results of dice roll, if made
    */
   public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat: boolean = true):Promise<TwodsixDiceRoll | void> {
@@ -672,26 +672,37 @@ export default class TwodsixItem extends Item {
 
     //Process post roll actions
     if (this.type === 'psiAbility') {
-      await this._processPsiAction(diceRoll);
+      await this.processPsiAction(diceRoll.effect);
     }
     return diceRoll;
   }
 
   /**
    * Perform post skill roll actions for using psiAbility (damage and use of psi points).
-   * @param {TwodsixDiceRoll} diceRoll Results of psionic skill check
+   * @param {TwodsixDiceRoll} diceRoll Results effect of psionic skill check
    */
-  private async _processPsiAction(diceRoll:TwodsixDiceRoll): Promise<void> {
-    if(diceRoll.effect < 0) {
+  async processPsiAction(diceRoll:number): Promise<void> {
+    if(diceRoll < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
     } else {
-      if (this.system.damage !== "") {
-        const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll.effect}`, true, true);
+      const psiCost = await foundry.applications.api.DialogV2.prompt({
+        window: { title: "TWODSIX.Items.Psionics.PsiCost" },
+        content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
+        ok: {
+          label: "TWODSIX.Items.Psionics.UsePoints",
+          callback: (event, button, dialog) => button.form.elements.psiCost.valueAsNumber
+        }
+      });
+
+      if(isNaN(psiCost)) {
+        return;
+      } else if (this.system.damage !== "") {
+        const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll}`, true, true);
         if(rollResults) {
-          await (<TwodsixActor>this.actor).removePsiPoints(this.system.psiCost);
+          await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
         }
       } else {
-        await (<TwodsixActor>this.actor).removePsiPoints(this.system.psiCost);
+        await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
       }
     }
   }
