@@ -15,6 +15,19 @@
     </div>
   {{/if}}
 
+  <div class="item-rollDifficulty">
+    <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
+      <select class="form-input" name="system.difficulty">
+        {{selectOptions settings.difficultyList selected=system.difficulty}}
+      </select>
+  </div>
+
+  <div class="item-skillModifier">
+    <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
+    <input class="form-input" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
+            data-dtype="Number"/>
+  </div>
+
   {{#if settings.ShowRangeBandAndHideRange}}
     <div class="item-range">
       <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>

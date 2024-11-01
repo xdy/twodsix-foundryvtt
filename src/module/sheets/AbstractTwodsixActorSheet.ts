@@ -543,6 +543,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       await this._onSendToChat(item, true);
     } else {
       diceRoll = await item.skillRoll(showThrowDiag);
+      if (!diceRoll) {
+        return;
+      }
     }
 
     if (item.type === 'psiAbility') {
