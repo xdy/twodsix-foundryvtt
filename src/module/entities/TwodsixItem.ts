@@ -698,7 +698,7 @@ export default class TwodsixItem extends Item {
 
       if(isNaN(psiCost)) {
         return;
-      } else if (this.system.damage !== "" || this.system.damage !== "0") {
+      } else if (this.system.damage !== "" && this.system.damage !== "0") {
         const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll}`, true, true);
         if(rollResults) {
           await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
