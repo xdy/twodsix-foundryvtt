@@ -670,10 +670,6 @@ export default class TwodsixItem extends Item {
       await diceRoll.sendToChat(tmpSettings.difficulties);
     }
 
-    //Process post roll actions
-    if (this.type === 'psiAbility') {
-      await this.processPsiAction(diceRoll.effect);
-    }
     return diceRoll;
   }
 
@@ -685,18 +681,24 @@ export default class TwodsixItem extends Item {
     if(diceRoll < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
     } else {
-      const psiCost = await foundry.applications.api.DialogV2.prompt({
-        window: { title: "TWODSIX.Items.Psionics.PsiCost" },
-        content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
-        ok: {
-          label: "TWODSIX.Items.Psionics.UsePoints",
-          callback: (event, button, dialog) => button.form.elements.psiCost.valueAsNumber
-        }
-      });
+      let psiCost:number;
+      try {
+        psiCost = await foundry.applications.api.DialogV2.prompt({
+          window: { title: "TWODSIX.Items.Psionics.PsiCost" },
+          content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
+          ok: {
+            label: "TWODSIX.Items.Psionics.UsePoints",
+            callback: (event, button, dialog) => button.form.elements.psiCost.valueAsNumber
+          }
+        });
+      } catch {
+        console.log("No psionic points selected");
+        return;
+      }
 
       if(isNaN(psiCost)) {
         return;
-      } else if (this.system.damage !== "") {
+      } else if (this.system.damage !== "" || this.system.damage !== "0") {
         const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll}`, true, true);
         if(rollResults) {
           await (<TwodsixActor>this.actor).removePsiPoints(psiCost);

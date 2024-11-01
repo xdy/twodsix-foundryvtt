@@ -11,6 +11,7 @@ import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
+import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -113,7 +114,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       // Handle click for attack roll
       html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
       if (this.actor.type != "vehicle") {  //Vehcile has a special skill roll
-        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillTalentRoll));
       }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
@@ -126,7 +127,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
 
       //display trait item to chat
-      html.find(".showChat").on("click", this._onSendToChat.bind(this));
+      html.find(".showChat").on("click", (event:Event) => {
+        const item = this.getItem(event);
+        if (item) {
+          this._onSendToChat(item, false);
+        }
+      });
 
       //Roll initiative from traveller sheet
       html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
@@ -521,17 +527,26 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   /**
-   * Handle clickable skill rolls.
+   * Handle clickable skill and talent rolls.
    * @param {Event} event   The originating click event
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  protected async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
-    const item = this.getItem(event);
-    if (item.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-      item.processPsiAction(0);
+  protected async _onSkillTalentRoll(event:Event, showThrowDiag: boolean): Promise<void> {
+    const item:TwodsixItem = this.getItem(event);
+    let diceRoll: TwodsixDiceRoll|undefined = undefined;
+
+    if (item.type === "psiAbility" && (<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
+      return;
+    } else if (item.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
+      await this._onSendToChat(item, true);
     } else {
-      await item.skillRoll(showThrowDiag );
+      diceRoll = await item.skillRoll(showThrowDiag);
+    }
+
+    if (item.type === 'psiAbility') {
+      await item.processPsiAction(diceRoll?.effect ?? 0);
     }
   }
 
@@ -570,15 +585,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Handle send to chat.
    * @param {Event} event   The originating click event
+   * @param {boolean} usedItem Whether or not item was used
    * @private
    */
-  protected async _onSendToChat(event): Promise<void> {
-    const item = <TwodsixItem>this.getItem(event);
-    const picture = item.img;
-    const capType = item.type.capitalize();
-    if (["trait", "spell", "psiAbility"].includes(item.type)) {
-      const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
-      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+  protected async _onSendToChat(item:TwodsixItem, usedItem:boolean = false): Promise<void> {
+    if (["trait", "spell", "psiAbility"].includes(item.type)) { //Is this line necessary?
+      const picture = item.img;
+      const capType = game.i18n.localize(`TYPES.Item.${item.type}`).capitalize();
+      let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
+      msg += usedItem ? `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${item.name}</span></div>` : `<strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
+      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: item.actor }) });
     }
   }
 

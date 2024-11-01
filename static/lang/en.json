@@ -741,7 +741,8 @@
       },
       "Psionics": {
         "PsiCost": "Psionic Points Cost",
-        "UsePoints": "Use Psionic Points"
+        "UsePoints": "Use Psionic Points",
+        "Used": "Used"
       }
 
     },
@@ -1677,7 +1678,8 @@
       "NoJournalFound": "Can't find linked Journal Entry",
       "CantFindMeleeSkill": "Can't find Melee Combat skill",
       "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
-      "CantFindShield": "Can't find an equipped shield to block"
+      "CantFindShield": "Can't find an equipped shield to block",
+      "NoPsiPoints": "Must have at least one psionic point to use an ability"
     }
   },
   "TYPES": {
