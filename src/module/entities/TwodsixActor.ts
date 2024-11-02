@@ -466,7 +466,7 @@ export default class TwodsixActor extends Actor {
 
   getActorEncumbrance():number {
     let encumbrance = 0;
-    const actorItems = this.items.filter( i => !["skills", "trait", "ship_position", "storage", "spell", "psiAbility"].includes(i.type));
+    const actorItems = this.items.filter( i => ![...TWODSIX.WeightlessItems, "ship_position", "storage"].includes(i.type));
     for (const item of actorItems) {
       encumbrance += getEquipmentWeight(item);
     }
