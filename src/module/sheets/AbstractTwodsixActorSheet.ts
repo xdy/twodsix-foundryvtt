@@ -11,7 +11,6 @@ import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
-import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -130,7 +129,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       html.find(".showChat").on("click", (event:Event) => {
         const item = this.getItem(event);
         if (item) {
-          this._onSendToChat(item, false);
+          item.sendDescriptionToChat(false);
         }
       });
 
@@ -534,22 +533,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    */
   protected async _onSkillTalentRoll(event:Event, showThrowDiag: boolean): Promise<void> {
     const item:TwodsixItem = this.getItem(event);
-    let diceRoll: TwodsixDiceRoll|undefined = undefined;
-
-    if (item.type === "psiAbility" && (<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
-      return;
-    } else if (item.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-      await this._onSendToChat(item, true);
-    } else {
-      diceRoll = await item.skillRoll(showThrowDiag);
-      if (!diceRoll) {
-        return;
-      }
-    }
-
-    if (item.type === 'psiAbility') {
-      await item.processPsiAction(diceRoll?.effect ?? 0);
+    if (item) {
+      item.doSkillTalentRoll(showThrowDiag);
     }
   }
 
@@ -559,7 +544,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  protected async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
+  protected async _onRollChar(event:Event, showThrowDiag: boolean): Promise<void> {
     const shortChar = $(event.currentTarget).data("label");
     //const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
     //const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
@@ -582,22 +567,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       } else if (itemSelected.type === "consumable") {
         itemSelected.update({"system.quantity": newValue});
       }
-    }
-  }
-
-  /**
-   * Handle send to chat.
-   * @param {Event} event   The originating click event
-   * @param {boolean} usedItem Whether or not item was used
-   * @private
-   */
-  protected async _onSendToChat(item:TwodsixItem, usedItem:boolean = false): Promise<void> {
-    if (["trait", "spell", "psiAbility"].includes(item.type)) { //Is this line necessary?
-      const picture = item.img;
-      const capType = game.i18n.localize(`TYPES.Item.${item.type}`).capitalize();
-      let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
-      msg += usedItem ? `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${item.name}</span></div>` : `<strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
-      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: item.actor }) });
     }
   }
 

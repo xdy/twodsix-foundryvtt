@@ -712,6 +712,45 @@ export default class TwodsixItem extends Item {
     }
   }
 
+  /**
+   * Send item description to chat.
+   * @param {boolean} usedItem Whether or not item was used
+   * @private
+   */
+  public sendDescriptionToChat(usedItem:boolean = false): Promise<void> {
+    const picture = this.img;
+    const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
+    let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
+    msg += usedItem ? `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}</span></div>` : `<strong>${capType}: ${this.name}</strong></span></div><br>${this.system["description"]}`;
+    ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+  }
+
+  /**
+   * Handle skill and talent rolls.
+   * @param {Event} event   The originating click event
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  public async doSkillTalentRoll(showThrowDiag: boolean): Promise<void> {
+    let diceRoll:TwodsixDiceRoll|undefined = undefined;
+    if (this.type === "psiAbility" && (<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
+      return;
+    } else if (this.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
+      await this.sendDescriptionToChat(true);
+    } else {
+      diceRoll = await this.skillRoll(showThrowDiag);
+      if (!diceRoll) {
+        return;
+      }
+    }
+
+    if (this.type === 'psiAbility') {
+      await this.processPsiAction(diceRoll?.effect ?? 0);
+    }
+  }
+
+
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
     const consumableDamage = this.getConsumableBonusDamage();
