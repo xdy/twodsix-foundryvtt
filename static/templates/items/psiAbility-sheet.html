@@ -2,19 +2,21 @@
   {{> "systems/twodsix/templates/items/parts/image-name.html"}}
   {{> "systems/twodsix/templates/items/parts/item-type.html"}}
   {{#if owner}}
+    {{#if settings.psiTalentsRequireRoll}}
     <div class="item-skill">
       <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
         <select class="form-input" name="system.skill">
           {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
         </select>
     </div>
+    {{/if}}
   {{else}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
     </div>
   {{/if}}
-
+  {{#if settings.psiTalentsRequireRoll}}
   <div class="item-rollDifficulty">
     <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
       <select class="form-input" name="system.difficulty">
@@ -27,7 +29,7 @@
     <input class="form-input" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
             data-dtype="Number"/>
   </div>
-
+  {{/if}}
   {{#if settings.ShowRangeBandAndHideRange}}
     <div class="item-range">
       <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>

@@ -71,7 +71,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       rollTypes: getRollTypeSelectObject(),
       augLocations: TWODSIX.AUG_LOCATIONS,
       consumableOptions: getConsumableOptions(this.item),
-      itemTypes: TWODSIX.ITEM_TYPE_SELECT
+      itemTypes: TWODSIX.ITEM_TYPE_SELECT,
+      psiTalentsRequireRoll: game.settings.get('twodsix', 'psiTalentsRequireRoll')
     };
 
     if (this.item.type === 'skills') {
