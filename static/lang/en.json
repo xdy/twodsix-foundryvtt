@@ -742,7 +742,8 @@
       "Psionics": {
         "PsiCost": "Psionic Points Cost",
         "UsePoints": "Use Psionic Points",
-        "Used": "Used"
+        "Used": "Used",
+        "Pts": "Pts."
       }
 
     },

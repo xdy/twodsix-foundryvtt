@@ -42,9 +42,10 @@
 <!---- Psionic Abilities ---->
 <div><span class="pusher"></span>
   <span class="item-title">{{localize "TWODSIX.Actor.Items.PSIONIC_ABILITIES"}}</span>
-  <div class="items-traits gear-header">
+  <div class="items-spells gear-header">
     <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
-    <span class="item-name centre">{{localize "TWODSIX.Ship.PP"}}</span>
+    <span class="item-name centre">{{localize "TWODSIX.Actor.Skills.Level"}}</span>
+    <span class="item-name centre">{{localize "TWODSIX.Items.Psionics.Pts"}}</span>
     <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
     <span class="item-name centre"><a class="item-control item-create"
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="psiAbility"><i class="fa-solid fa-plus"></i></a></span>
@@ -54,8 +55,9 @@
       <div class="item gear" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow" >
-            <span class="items-traits">
+            <span class="items-spells">
               <span class="item-name showChat">{{item.name}}</span>
+              <span class="item-controls centre">{{item.system.skillModifier}}</span>
               <span class="item-name centre rollable"><i class="fa-solid fa-dice" alt="2d6"></i>{{item.system.psiCost}}</span>
               <span class="item-name centre">{{item.system.shortdescr}}</span>
               <span class="item-controls centre">
