@@ -700,10 +700,16 @@ export default class TwodsixItem extends Item {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
-    msg += usedItem ? `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}</span></div>` : `<strong>${capType}: ${this.name}</strong></span></div><br>${this.system["description"]}`;
-    if (!game.settings.get("twodsix", "automateDamageRollOnHit") && this.system.damage !== "" && this.system.damage !== "0") {
-      msg += `<section class="card-buttons"><button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button></section>`;
+
+    if (usedItem) {
+      msg += `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}</span></div>`;
+      if (!game.settings.get("twodsix", "automateDamageRollOnHit") && this.system.damage !== "" && this.system.damage !== "0") {
+        msg += `<section class="card-buttons"><button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button></section>`;
+      }
+    } else {
+      msg += `<strong>${capType}: ${this.name}</strong></span></div><br>${this.system["description"]}`;
     }
+
     const flags = {
       "core.canPopout": true,
       "twodsix.itemUUID": this.uuid ?? "",
