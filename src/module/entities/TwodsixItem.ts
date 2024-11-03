@@ -207,19 +207,7 @@ export default class TwodsixItem extends Item {
     }
 
     /*Apply measured template if valid AOE*/
-    const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
-    const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
-    if ( itemForAOE.system.target?.type !== "none" ) {
-      try {
-        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
-        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
-        //if (templates?.length > 0) {
-        //  ItemTemplate.targetTokensInTemplate(templates[0]);
-        //}
-      } catch(err) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
-      }
-    }
+    await this.drawItemTemplate();
 
     // Initialize settings
     const tmpSettings = {
@@ -305,6 +293,7 @@ export default class TwodsixItem extends Item {
     }
 
     // Update consumables for use
+    const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
     if (magazine) {
       try {
         await magazine.consume(usedAmmo);
@@ -628,13 +617,7 @@ export default class TwodsixItem extends Item {
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         Object.assign(workingSettings, {difficulty: workingSettings.difficulties[level]});
-        if ( this.system.target?.type !== "none" ) {
-          try {
-            await (ItemTemplate.fromItem(this))?.drawPreview();
-          } catch(err) {
-            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
-          }
-        }
+        await this.drawItemTemplate();
       } else if (this.type === "psiAbility") {
         if (this.system.difficulty) {
           Object.assign(workingSettings, {difficulty: TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][this.system.difficulty]});
@@ -678,10 +661,10 @@ export default class TwodsixItem extends Item {
 
   /**
    * Perform post skill roll actions for using psiAbility (damage and use of psi points).
-   * @param {TwodsixDiceRoll} diceRoll Results effect of psionic skill check
+   * @param {TwodsixDiceRoll} diceRollEffect Results effect of psionic skill check
    */
-  async processPsiAction(diceRoll:number): Promise<void> {
-    if(diceRoll < 0) {
+  async processPsiAction(diceRollEffect:number): Promise<void> {
+    if(diceRollEffect < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
     } else {
       let psiCost:number;
@@ -701,14 +684,10 @@ export default class TwodsixItem extends Item {
 
       if(isNaN(psiCost)) {
         return;
-      } else if (this.system.damage !== "" && this.system.damage !== "0") {
-        const rollResults = await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRoll}`, true, true);
-        if(rollResults) {
-          await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
-        }
-      } else {
-        await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
+      } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
+        await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRollEffect}`, true, true);
       }
+      await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
     }
   }
 
@@ -722,34 +701,53 @@ export default class TwodsixItem extends Item {
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
     msg += usedItem ? `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}</span></div>` : `<strong>${capType}: ${this.name}</strong></span></div><br>${this.system["description"]}`;
-    ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+    if (!game.settings.get("twodsix", "automateDamageRollOnHit") && this.system.damage !== "" && this.system.damage !== "0") {
+      msg += `<section class="card-buttons"><button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button></section>`;
+    }
+    const flags = {
+      "core.canPopout": true,
+      "twodsix.itemUUID": this.uuid ?? "",
+      "twodsix.tokenUUID": this.actor?.token?.uuid ?? "",
+      "twodsix.actorUUID": this.actor?.uuid ?? "",
+      "twodsix.bonusDamage": ""
+    };
+    ChatMessage.create({ content: msg, flags: flags, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
   }
 
   /**
    * Handle skill and talent rolls.
-   * @param {Event} event   The originating click event
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
   public async doSkillTalentRoll(showThrowDiag: boolean): Promise<void> {
-    let diceRoll:TwodsixDiceRoll|undefined = undefined;
-    if (this.type === "psiAbility" && (<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
-      return;
-    } else if (this.type === "psiAbility" && !game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-      await this.sendDescriptionToChat(true);
+    if (this.type === "psiAbility") {
+      this.doPsiAction(showThrowDiag);
     } else {
-      diceRoll = await this.skillRoll(showThrowDiag);
-      if (!diceRoll) {
-        return;
-      }
-    }
-
-    if (this.type === 'psiAbility') {
-      await this.processPsiAction(diceRoll?.effect ?? 0);
+      await this.skillRoll(showThrowDiag);
     }
   }
 
+  /**
+   * Handle psionic ability / talent.
+   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @private
+   */
+  private async doPsiAction(showThrowDiag: boolean): Promise<void> {
+    if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
+    } else {
+      await this.drawItemTemplate();
+      if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
+        await this.sendDescriptionToChat(true);
+        await this.processPsiAction(0);
+      } else {
+        const diceRoll = await this.skillRoll(showThrowDiag);
+        if (diceRoll) {
+          await this.processPsiAction(diceRoll.effect);
+        }
+      }
+    }
+  }
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
     const weapon = <Weapon | Component>this.system;
@@ -1063,7 +1061,12 @@ export default class TwodsixItem extends Item {
     return {armorModifier: armorModifier, armorLabel: armorLabel };
   }
 
-  private getCustomArmorMod(isAuto:boolean):any {
+  /**
+   * A method for returning an object of custom armor values for a weapon in CT
+   * @param {boolean} isAuto Is full automatic fire
+   * @returns {object} Object of protection values versus different armor types
+   */
+  private getCustomArmorMod(isAuto:boolean):object {
     return {
       nothing: parseCustomCTValue(this.system.customCT.armor.nothing, isAuto),
       jack: parseCustomCTValue(this.system.customCT.armor.jack, isAuto),
@@ -1123,6 +1126,11 @@ export default class TwodsixItem extends Item {
     return returnVal;
   }
 
+  /**
+   * A method for returning an object of custom range modifiers for a weapon in CT
+   * @param {boolean} isAuto Is full automatic fire
+   * @returns {object} Object of range modifiers versus different range bands
+   */
   private getCustomRangeMod(isAuto:boolean):any {
     return {
       close: parseCustomCTValue(this.system.customCT.range.close, isAuto),
@@ -1131,6 +1139,25 @@ export default class TwodsixItem extends Item {
       long: parseCustomCTValue(this.system.customCT.range.long, isAuto),
       veryLong: parseCustomCTValue(this.system.customCT.range.veryLong, isAuto)
     };
+  }
+  /**
+   * A method for drawing a measured template for an item action - accounting for consumables
+   * having attachements with AOE's
+   */
+  private async drawItemTemplate():Promise<void> {
+    const magazine:TwodsixItem | undefined = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
+    const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
+    if ( itemForAOE.system.target?.type !== "none" ) {
+      try {
+        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
+        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
+        //if (templates?.length > 0) {
+        //  ItemTemplate.targetTokensInTemplate(templates[0]);
+        //}
+      } catch(err) {
+        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+      }
+    }
   }
 }
 
