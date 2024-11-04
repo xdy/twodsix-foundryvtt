@@ -662,10 +662,12 @@ export default class TwodsixItem extends Item {
   /**
    * Perform post skill roll actions for using psiAbility (damage and use of psi points).
    * @param {TwodsixDiceRoll} diceRollEffect Results effect of psionic skill check
+   * @returns {number} The number of psi points used
    */
-  async processPsiAction(diceRollEffect:number): Promise<void> {
+  async processPsiAction(diceRollEffect:number): Promise<number> {
     if(diceRollEffect < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
+      return 1;
     } else {
       let psiCost:number;
       try {
@@ -679,7 +681,7 @@ export default class TwodsixItem extends Item {
         });
       } catch {
         console.log("No psionic points selected");
-        return;
+        return 0;
       }
 
       if(isNaN(psiCost)) {
@@ -688,26 +690,32 @@ export default class TwodsixItem extends Item {
         await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRollEffect}`, true, true);
       }
       await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
+      return psiCost;
     }
   }
 
   /**
    * Send item description to chat.
-   * @param {boolean} usedItem Whether or not item was used
-   * @private
    */
-  public sendDescriptionToChat(usedItem:boolean = false): Promise<void> {
+  public sendDescriptionToChat():Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
-    let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;">`;
+    const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${this.name}</strong></span></div><div>${this.system["description"]}</div>`;
+    ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+  }
 
-    if (usedItem) {
-      msg += `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}</span></div>`;
-      if (!game.settings.get("twodsix", "automateDamageRollOnHit") && this.system.damage !== "" && this.system.damage !== "0") {
-        msg += `<section class="card-buttons"><button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button></section>`;
-      }
-    } else {
-      msg += `<strong>${capType}: ${this.name}</strong></span></div><br>${this.system["description"]}`;
+  /**
+   * Send message to chat when using a psionic action.
+   * @param {number} pointsUsed The number of psi points used for action
+   * @private
+   */
+  private sendPsiUseToChat(pointsUsed:number, rollEffect:number=0):Promise<void> {
+    const picture = this.img;
+    const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
+    let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="padding-left: 1ch;">`
+      + `${game.i18n.localize('TWODSIX.Items.Psionics.Used')} ${capType}: ${this.name}, ${pointsUsed} ${game.i18n.localize('TWODSIX.Items.Psionics.Pts')}</span></div>`;
+    if (!game.settings.get("twodsix", "automateDamageRollOnHit") && this.system.damage !== "" && this.system.damage !== "0" && pointsUsed > 0 && rollEffect >= 0) {
+      msg += `<section class="card-buttons"><button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button></section>`;
     }
 
     const flags = {
@@ -715,7 +723,8 @@ export default class TwodsixItem extends Item {
       "twodsix.itemUUID": this.uuid ?? "",
       "twodsix.tokenUUID": this.actor?.token?.uuid ?? "",
       "twodsix.actorUUID": this.actor?.uuid ?? "",
-      "twodsix.bonusDamage": ""
+      "twodsix.bonusDamage": "",
+      "twodsix.effect": rollEffect
     };
     ChatMessage.create({ content: msg, flags: flags, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
   }
@@ -739,19 +748,22 @@ export default class TwodsixItem extends Item {
    * @private
    */
   private async doPsiAction(showThrowDiag: boolean): Promise<void> {
+    let psiCost = 0;
+    let rollEffect = 0;
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
     } else {
       await this.drawItemTemplate();
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-        await this.sendDescriptionToChat(true);
-        await this.processPsiAction(0);
+        psiCost = await this.processPsiAction(0);
       } else {
         const diceRoll = await this.skillRoll(showThrowDiag);
         if (diceRoll) {
-          await this.processPsiAction(diceRoll.effect);
+          psiCost = await this.processPsiAction(diceRoll.effect);
+          rollEffect = diceRoll.effect;
         }
       }
+      await this.sendPsiUseToChat(psiCost, rollEffect);
     }
   }
 

@@ -129,7 +129,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       html.find(".showChat").on("click", (event:Event) => {
         const item = this.getItem(event);
         if (item) {
-          item.sendDescriptionToChat(false);
+          item.sendDescriptionToChat();
         }
       });
 
