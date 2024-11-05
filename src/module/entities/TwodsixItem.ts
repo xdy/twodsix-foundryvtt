@@ -707,6 +707,7 @@ export default class TwodsixItem extends Item {
   /**
    * Send message to chat when using a psionic action.
    * @param {number} pointsUsed The number of psi points used for action
+   * @param {number} rollEffect the effect of the skill roll,used for damage calcs if necessary
    * @private
    */
   private sendPsiUseToChat(pointsUsed:number, rollEffect:number=0):Promise<void> {
