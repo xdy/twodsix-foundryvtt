@@ -190,9 +190,19 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     duplicateItem.system.priorType = this.item.type;
     duplicateItem.system.type = newType;
     duplicateItem.type = newType;
-    const newItem = await TwodsixItem.create(duplicateItem, {renderSheet: true, parent: this.item.parent});
+    const options = {renderSheet: true};
+    if (this.item.pack) {
+      options.pack = this.item.pack;
+    } else {
+      options.parent = this.item.parent;
+    }
+    const newItem = await TwodsixItem.create(duplicateItem, options);
     if (newItem) {
-      this.item.delete();
+      if (this.item.pack) {
+        this.item.delete({pack: this.item.pack});
+      } else {
+        this.item.delete();
+      }
     }
   }
 
