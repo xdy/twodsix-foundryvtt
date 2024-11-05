@@ -662,9 +662,10 @@ export default class TwodsixItem extends Item {
   /**
    * Perform post skill roll actions for using psiAbility (damage and use of psi points).
    * @param {TwodsixDiceRoll} diceRollEffect Results effect of psionic skill check
+   * @param {boolean} showThrowDiag whether or not to show throw dialog for damage
    * @returns {number} The number of psi points used
    */
-  async processPsiAction(diceRollEffect:number): Promise<number> {
+  async processPsiAction(diceRollEffect:number, showThrowDiag:boolean): Promise<number> {
     if(diceRollEffect < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
       return 1;
@@ -687,7 +688,7 @@ export default class TwodsixItem extends Item {
       if(isNaN(psiCost)) {
         return;
       } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
-        await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRollEffect}`, true, true);
+        await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRollEffect}`, true, showThrowDiag);
       }
       await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
       return psiCost;
@@ -756,11 +757,11 @@ export default class TwodsixItem extends Item {
     } else {
       await this.drawItemTemplate();
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-        psiCost = await this.processPsiAction(0);
+        psiCost = await this.processPsiAction(0, showThrowDiag);
       } else {
         const diceRoll = await this.skillRoll(showThrowDiag);
         if (diceRoll) {
-          psiCost = await this.processPsiAction(diceRoll.effect);
+          psiCost = await this.processPsiAction(diceRoll.effect, showThrowDiag);
           rollEffect = diceRoll.effect;
         }
       }
