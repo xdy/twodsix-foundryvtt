@@ -36,7 +36,7 @@ export default class TwodsixItem extends Item {
       if (this.type === 'weapon') {
         Object.assign(updates, {img: 'systems/twodsix/assets/icons/default_weapon.png'});
       } else if (this.type === "spell") {
-        const defaultSkill = await game.settings.get("twodsix", "sorcerySkill") ?? "";
+        const defaultSkill = game.settings.get("twodsix", "sorcerySkill") ?? "";
         Object.assign(updates, {
           img: 'systems/twodsix/assets/icons/spell-book.svg',
           'system.associatedSkillName': defaultSkill
@@ -662,10 +662,11 @@ export default class TwodsixItem extends Item {
   /**
    * Perform post skill roll actions for using psiAbility (damage and use of psi points).
    * @param {TwodsixDiceRoll} diceRollEffect Results effect of psionic skill check
+   * @param {DICE_ROLL_MODES} rollMode The rollMode (who roll is shared with)
    * @param {boolean} showThrowDiag whether or not to show throw dialog for damage
    * @returns {number} The number of psi points used
    */
-  async processPsiAction(diceRollEffect:number, showThrowDiag:boolean): Promise<number> {
+  async processPsiAction(diceRollEffect:number, rollMode:DICE_ROLL_MODES, showThrowDiag:boolean): Promise<number> {
     if(diceRollEffect < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
       return 1;
@@ -688,7 +689,7 @@ export default class TwodsixItem extends Item {
       if(isNaN(psiCost)) {
         return;
       } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
-        await this.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), ` ${diceRollEffect}`, true, showThrowDiag);
+        await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${diceRollEffect}`, true, showThrowDiag);
       }
       await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
       return psiCost;
@@ -708,10 +709,11 @@ export default class TwodsixItem extends Item {
   /**
    * Send message to chat when using a psionic action.
    * @param {number} pointsUsed The number of psi points used for action
+   * @param {DICE_ROLL_MODES} rollMode The roll mode used, if any
    * @param {number} rollEffect the effect of the skill roll,used for damage calcs if necessary
    * @private
    */
-  private sendPsiUseToChat(pointsUsed:number, rollEffect:number=0):Promise<void> {
+  private sendPsiUseToChat(pointsUsed:number, rollMode:DICE_ROLL_MODES , rollEffect:number=0):Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="padding-left: 1ch;">`
@@ -728,7 +730,19 @@ export default class TwodsixItem extends Item {
       "twodsix.bonusDamage": "",
       "twodsix.effect": rollEffect
     };
-    ChatMessage.create({ content: msg, flags: flags, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+
+    const messageContent = {
+      content: msg,
+      flags: flags,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor })
+    };
+
+    if (rollMode !== 'publicroll') {
+      const showToUsers = game.users.filter((user)=> user.isGM || (game.userId === user.id));
+      Object.assign(messageContent, {whisper: showToUsers});
+    }
+
+    ChatMessage.create(messageContent);
   }
 
   /**
@@ -752,20 +766,22 @@ export default class TwodsixItem extends Item {
   private async doPsiAction(showThrowDiag: boolean): Promise<void> {
     let psiCost = 0;
     let rollEffect = 0;
+    let rollMode = "gmroll";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
     } else {
       await this.drawItemTemplate();
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-        psiCost = await this.processPsiAction(0, showThrowDiag);
+        psiCost = await this.processPsiAction(0, rollMode, showThrowDiag);
       } else {
         const diceRoll = await this.skillRoll(showThrowDiag);
         if (diceRoll) {
-          psiCost = await this.processPsiAction(diceRoll.effect, showThrowDiag);
+          rollMode = diceRoll.rollSettings.rollMode;
+          psiCost = await this.processPsiAction(diceRoll.effect, rollMode, showThrowDiag);
           rollEffect = diceRoll.effect;
         }
       }
-      await this.sendPsiUseToChat(psiCost, rollEffect);
+      await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
     }
   }
 
