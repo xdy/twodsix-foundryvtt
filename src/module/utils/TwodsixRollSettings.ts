@@ -97,7 +97,11 @@ export class TwodsixRollSettings {
             rollClass = "ShipWeapon";
           } else {
             rollClass = "ShipAction";
-          }
+          } ////NEED TO EXPAND TYPES HERE to INCLUDE SP
+        } else if (anItem.type === "spell") {
+          rollClass = "Spell";
+        } else if (anItem.type === "psiAbility") {
+          rollClass = "PsionicAbility";
         } else {
           rollClass = "Item";
         }
@@ -115,6 +119,7 @@ export class TwodsixRollSettings {
     this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
+    this.isPsionicAbility = this.itemRoll ? anItem.type === "psiAbility" : false;
     this.itemName = settings?.itemName ?? itemName;
     this.showRangeModifier =  (game.settings.get('twodsix', 'rangeModifierType') !== 'none' && anItem?.type === "weapon"  && settings?.rollModifiers?.rangeLabel) ?? false;
     this.showTargetModifier = Object.keys(TWODSIX.TARGET_DM).length > 1;
@@ -144,7 +149,7 @@ export class TwodsixRollSettings {
       selectedSkill: aSkill?.uuid,
       skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined,
       armorModifier: settings?.rollModifiers?.armorModifier ?? 0,
-      armorLabel: settings?.rollModifiers?.armorLabel ?? "",
+      armorLabel: settings?.rollModifiers?.armorLabel ?? ""
     };
     this.flags = {
       rollClass: rollClass,
@@ -229,6 +234,7 @@ export class TwodsixRollSettings {
       showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators')),
       showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
+      isPsionicAbility: this.isPsionicAbility
     };
 
     const buttons = {
