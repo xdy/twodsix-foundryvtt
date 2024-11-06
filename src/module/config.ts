@@ -1166,16 +1166,17 @@ export const AUG_LOCATIONS = {
 };
 
 export const ITEM_TYPE_SELECT = {
-  augment: "TWODSIX.Items.Items.AssignAugment",
-  weapon: "TWODSIX.Items.Items.AssignWeapon",
   armor: "TWODSIX.Items.Items.AssignArmor",
-  equipment: "TWODSIX.Items.Items.AssignEquipment",
-  consumable: "TWODSIX.Items.Items.AssignConsumable",
+  augment: "TWODSIX.Items.Items.AssignAugment",
   computer: "TWODSIX.Items.Items.AssignComputer",
-  tool: "TWODSIX.Items.Items.AssignTool",
+  consumable: "TWODSIX.Items.Items.AssignConsumable",
+  equipment: "TWODSIX.Items.Items.AssignEquipment",
   junk: "TWODSIX.Items.Items.AssignJunk",
+  psiAbility: "TWODSIX.Items.Items.AssignPsiAbility",
   storage: "TWODSIX.Items.Items.MoveStorage",
-  psiAbility: "TWODSIX.Items.Items.AssignPsiAbility"
+  spell: "TWODSIX.Items.Items.AssignSpell",
+  tool: "TWODSIX.Items.Items.AssignTool",
+  weapon: "TWODSIX.Items.Items.AssignWeapon"
 };
 
 export const CU_DAMAGE_TYPES = {

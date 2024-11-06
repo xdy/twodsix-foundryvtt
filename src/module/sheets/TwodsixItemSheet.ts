@@ -189,6 +189,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const duplicateItem = this.item.toJSON();
     const newType = event.currentTarget.value;
     duplicateItem.system.priorType = this.item.type;
+    //Remove Sorcery As Associated Skill if Spell
+    if (duplicateItem.system.priorType === 'spell'  && duplicateItem.system.associatedSkillName === game.settings.get("twodsix", "sorcerySkill")) {
+      duplicateItem.system.associatedSkillName = "";
+    } else if (newType === 'spell' && duplicateItem.system.associatedSkillName === "") {
+      duplicateItem.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill");
+    }
     duplicateItem.system.type = newType;
     duplicateItem.type = newType;
     const options = {renderSheet: true};
