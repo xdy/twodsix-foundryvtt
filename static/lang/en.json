@@ -184,7 +184,7 @@
         "WEAPONS": "WEAPONS",
         "Weapons": "Weapons",
         "Weight": "Wt",
-        "PSIONIC_ABILITIES": "PSOINIC ABILITIES"
+        "PSIONIC_ABILITIES": "PSIONIC ABILITIES"
       },
       "Notes": {
         "NOTES": "CHARACTER NOTES",
@@ -744,7 +744,8 @@
         "PsiCost": "Psionic Points Cost",
         "UsePoints": "Use Psionic Points",
         "Used": "Used",
-        "Pts": "Pts."
+        "Pts": "Pts.",
+        "Level": "Level"
       }
 
     },
@@ -1298,7 +1299,7 @@
         "name": "Unarmed Damage Formula"
       },
       "showTimeframe": {
-        "hint": "Add timeframe options to skill / characteristic rolls/",
+        "hint": "Add timeframe options to skill / characteristic rolls.",
         "name": "Show Timeframe in Roll Dialog"
       },
       "showStatusIcons": {
@@ -1608,7 +1609,8 @@
       "component": "component",
       "computer": "computer",
       "unknown": "unknown",
-      "ship_position": "position"
+      "ship_position": "position",
+      "psiAbility": "psionic ability"
     },
     "speeds": {
       "walk": "walk",
