@@ -1,3 +1,10 @@
+# [5.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.10.2...v5.11.0) (2024-11-07)
+
+
+### Features
+
+* Initial Psionic Ability feature ([#1679](https://github.com/xdy/twodsix-foundryvtt/issues/1679)) ([f20dfa1](https://github.com/xdy/twodsix-foundryvtt/commit/f20dfa1f6d080343969b88b0794ef879a81e1e0c))
+
 ## [5.10.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.10.1...v5.10.2) (2024-11-05)
 
 
