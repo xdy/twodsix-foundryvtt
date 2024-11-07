@@ -71,7 +71,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       rollTypes: getRollTypeSelectObject(),
       augLocations: TWODSIX.AUG_LOCATIONS,
       consumableOptions: getConsumableOptions(this.item),
-      itemTypes: TWODSIX.ITEM_TYPE_SELECT
+      itemTypes: TWODSIX.ITEM_TYPE_SELECT,
+      psiTalentsRequireRoll: game.settings.get('twodsix', 'psiTalentsRequireRoll')
     };
 
     if (this.item.type === 'skills') {
@@ -188,6 +189,12 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const duplicateItem = this.item.toJSON();
     const newType = event.currentTarget.value;
     duplicateItem.system.priorType = this.item.type;
+    //Remove Sorcery As Associated Skill if Spell
+    if (duplicateItem.system.priorType === 'spell'  && duplicateItem.system.associatedSkillName === game.settings.get("twodsix", "sorcerySkill")) {
+      duplicateItem.system.associatedSkillName = "";
+    } else if (newType === 'spell' && duplicateItem.system.associatedSkillName === "") {
+      duplicateItem.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill");
+    }
     duplicateItem.system.type = newType;
     duplicateItem.type = newType;
     const options = {renderSheet: true};
@@ -443,7 +450,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       } else if (dropData.type === 'Item'){
         //This part handles just comsumables
         TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-        TwodsixItemSheet.check(["skills", "trait", "spell"].includes(this.item.type), "TraitsandSkillsNoConsumables");
+        TwodsixItemSheet.check(TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
 
         TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
 

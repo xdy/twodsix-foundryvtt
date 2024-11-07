@@ -10,7 +10,7 @@
     "space-object": {}
   },
   "Item": {
-    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position", "computer"],
+    "types": ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "ship_position", "computer", "psiAbility"],
     "equipment": {},
     "tool": {},
     "weapon": {},

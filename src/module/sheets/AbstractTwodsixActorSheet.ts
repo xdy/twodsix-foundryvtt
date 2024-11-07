@@ -10,6 +10,7 @@ import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { TWODSIX } from "../config";
 
 export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
@@ -112,7 +113,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       // Handle click for attack roll
       html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
       if (this.actor.type != "vehicle") {  //Vehcile has a special skill roll
-        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillRoll));
+        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillTalentRoll));
       }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
@@ -125,7 +126,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       });
 
       //display trait item to chat
-      html.find(".showChat").on("click", this._onSendToChat.bind(this));
+      html.find(".showChat").on("click", (event:Event) => {
+        const item = this.getItem(event);
+        if (item) {
+          item.sendDescriptionToChat();
+        }
+      });
 
       //Roll initiative from traveller sheet
       html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
@@ -218,6 +224,11 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");
         } else {
           itemData.system.max = 1;
+        }
+        break;
+      case "psiAbility":
+        if (!itemData.img) {
+          itemData.img = 'systems/twodsix/assets/icons/extra-lucid.svg';
         }
         break;
     }
@@ -338,7 +349,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     // Iterate through items, calculating derived data
     items.forEach((item:TwodsixItem) => {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (!["ship_position", "spell", "skills", "trait"].includes(item.type)) {
+      if (![...TWODSIX.WeightlessItems, "ship_position"].includes(item.type)) {
         item.prepareConsumable();
       }
       if (["traveller", "animal", "robot"].includes(actor.type)) {
@@ -405,7 +416,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     } else if (actor.type === "ship" || actor.type === "vehicle" ) {
       sheetData.componentObject = sortObj(component);
       sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = items.filter(i => !["ship_position", "spell", "skills", "trait", "component"].includes(i.type));
+      sheetData.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
       sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     sheetData.effects = Array.from(actor.allApplicableEffects());
@@ -515,14 +526,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   /**
-   * Handle clickable skill rolls.
+   * Handle clickable skill and talent rolls.
    * @param {Event} event   The originating click event
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  protected async _onSkillRoll(event, showThrowDiag: boolean): Promise<void> {
-    const item = this.getItem(event);
-    await item.skillRoll(showThrowDiag );
+  protected async _onSkillTalentRoll(event:Event, showThrowDiag: boolean): Promise<void> {
+    const item:TwodsixItem = this.getItem(event);
+    if (item) {
+      item.doSkillTalentRoll(showThrowDiag);
+    }
   }
 
   /**
@@ -531,7 +544,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  protected async _onRollChar(event, showThrowDiag: boolean): Promise<void> {
+  protected async _onRollChar(event:Event, showThrowDiag: boolean): Promise<void> {
     const shortChar = $(event.currentTarget).data("label");
     //const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
     //const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
@@ -554,21 +567,6 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       } else if (itemSelected.type === "consumable") {
         itemSelected.update({"system.quantity": newValue});
       }
-    }
-  }
-
-  /**
-   * Handle send to chat.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  protected async _onSendToChat(event): Promise<void> {
-    const item = <TwodsixItem>this.getItem(event);
-    const picture = item.img;
-    const capType = item.type.capitalize();
-    if (item.type === "trait"  || item.type === "spell") {
-      const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${item.name}</strong></span></div><br>${item.system["description"]}`;
-      ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
     }
   }
 

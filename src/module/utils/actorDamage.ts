@@ -75,7 +75,7 @@ export class Stats {
     this.damageLabel = damageLabels[damageType] || damageLabel;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
-      this.primaryArmor = (<Traveller>actor.system).primaryArmor.value;
+      this.primaryArmor = this.damageType === 'psionic' ? 0 : (<Traveller>actor.system).primaryArmor.value; //primary armor does not stop psionic damage
       this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
       this.parryArmor = parryArmor;
       this.canOnlyBeBlocked = canOnlyBeBlocked;

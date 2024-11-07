@@ -894,7 +894,6 @@ input.stat-name-table {
   width: 1.5em;
   text-align: center;
   border: none;
-  border: none;
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -1189,6 +1188,15 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   grid-template-columns: 30% 15% 15% 30% 10%;
   grid-template-areas:
     '. . . . .';
+  word-wrap: break-word;
+  width: 98%;
+}
+
+.items-psiAbilities {
+  display: grid;
+  grid-template-columns: 30% 10% 8% 12% 30% 10%;
+  grid-template-areas:
+    '. . . . . .';
   word-wrap: break-word;
   width: 98%;
 }

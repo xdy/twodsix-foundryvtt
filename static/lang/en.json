@@ -60,6 +60,7 @@
       "Melee": "Melee",
       "Plasma": "Plasma",
       "Poison": "Poison",
+      "Psionic": "Psionic",
       "Stun": "Stun"
     },
     "Dialogs": {
@@ -182,7 +183,8 @@
         "Value": "Value",
         "WEAPONS": "WEAPONS",
         "Weapons": "Weapons",
-        "Weight": "Wt"
+        "Weight": "Wt",
+        "PSIONIC_ABILITIES": "PSIONIC ABILITIES"
       },
       "Notes": {
         "NOTES": "CHARACTER NOTES",
@@ -325,6 +327,7 @@
         "RollModifiers": "Roll Modifiers",
         "SkillModifier": "Skill Level",
         "ItemModifier": "Item Bonus",
+        "AbilityModifier": "Ability Level",
         "Rof": "Rate-of-Fire",
         "Wounds": "Wounds",
         "Encumbered": "Encumbered",
@@ -623,7 +626,9 @@
         "MoveStorage": "Move Storage",
         "New": "New",
         "Storage": "Storage",
-        "Junk": "Junk"
+        "Junk": "Junk",
+        "AssignPsiAbility": "Assign Psionic Ability",
+        "AssignSpell": "Assign Spell"
       },
       "Skills": {
         "DEX": "DEX",
@@ -735,7 +740,15 @@
       },
       "Computer": {
         "ProcessingPower": "Processing Power"
+      },
+      "Psionics": {
+        "PsiCost": "Psionic Points Cost",
+        "UsePoints": "Use Psionic Points",
+        "Used": "Used",
+        "Pts": "Pts.",
+        "Level": "Level"
       }
+
     },
     "Target": {
       "AreaEffect": "Area of Effect",
@@ -1260,7 +1273,7 @@
       },
       "allowDropOnIcon": {
         "hint": "Items can be dropped and added to actors directly on top of icon without opening actor sheet.  Duplicate items increase inventory quantity.  Chat damage items will apply damage.",
-        "name": "Allow Items to be droped onto icons"
+        "name": "Allow Items to be dropped onto icons"
       },
       "defaultMovement": {
         "hint": "The default movement/walk for new travellers (typically a minor action), e.g. 10 for 10m",
@@ -1287,7 +1300,7 @@
         "name": "Unarmed Damage Formula"
       },
       "showTimeframe": {
-        "hint": "Add timeframe options to skill / characteristic rolls/",
+        "hint": "Add timeframe options to skill / characteristic rolls.",
         "name": "Show Timeframe in Roll Dialog"
       },
       "showStatusIcons": {
@@ -1571,6 +1584,10 @@
       "componentsIgnored": {
         "hint": "A list of non-cargo components to omit from 'Damage' section of Battle Sheet",
         "name": "Components Ignored for Damage Tracking"
+      },
+      "psiTalentsRequireRoll": {
+        "hint": "Using a psionic talent requires a sucessful skill roll",
+        "name": "Psionics Require Roll"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1593,7 +1610,8 @@
       "component": "component",
       "computer": "computer",
       "unknown": "unknown",
-      "ship_position": "position"
+      "ship_position": "position",
+      "psiAbility": "psionic ability"
     },
     "speeds": {
       "walk": "walk",
@@ -1665,7 +1683,8 @@
       "NoJournalFound": "Can't find linked Journal Entry",
       "CantFindMeleeSkill": "Can't find Melee Combat skill",
       "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
-      "CantFindShield": "Can't find an equipped shield to block"
+      "CantFindShield": "Can't find an equipped shield to block",
+      "NoPsiPoints": "Must have at least one psionic point to use an ability"
     }
   },
   "TYPES": {
@@ -1686,6 +1705,7 @@
       "junk": "Junk",
       "skills": "Skill",
       "trait": "Trait",
+      "psiAbility": "Psionic Ability",
       "ship_position": "Ship Position",
       "backpackPl": "Backpacks",
       "containerPl": "Containers",
@@ -1703,7 +1723,8 @@
       "junkPl": "Junk",
       "skillsPl": "Skills",
       "traitPl": "Traits",
-      "ship_positionPl": "Ship Positions"
+      "ship_positionPl": "Ship Positions",
+      "psiAbilityPl": "Psionic Abilities"
     },
     "Actor": {
       "traveller": "Traveller",

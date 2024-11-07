@@ -49,7 +49,7 @@
       {{/if}}
       {{#if itemRoll}}
         <div class="form-group">
-          <label>{{localize "TWODSIX.Chat.Roll.ItemModifier"}}
+          <label>{{#if isPsionicAbility}}{{localize "TWODSIX.Items.Psionics.Level"}}{{else}}{{localize "TWODSIX.Chat.Roll.ItemModifier"}}{{/if}}
             <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
             ({{itemLabel}})
           </label>

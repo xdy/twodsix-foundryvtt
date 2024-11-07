@@ -466,7 +466,7 @@ export default class TwodsixActor extends Actor {
 
   getActorEncumbrance():number {
     let encumbrance = 0;
-    const actorItems = this.items.filter( i => !["skills", "trait", "ship_position", "storage", "spell"].includes(i.type));
+    const actorItems = this.items.filter( i => ![...TWODSIX.WeightlessItems, "ship_position", "storage"].includes(i.type));
     for (const item of actorItems) {
       encumbrance += getEquipmentWeight(item);
     }
@@ -1048,7 +1048,7 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [transferData]))[0];
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !["skills", "trait", "spell"].includes(addedItem.type)) {
+    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
       await applyEncumberedEffect(this);
     }
     console.log(`Twodsix | Added Item ${itemData.name} to character`);
@@ -1083,7 +1083,7 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case 'ship':
-        if (!["skills", "trait", "spell"].includes(itemData.type)) {
+        if (!TWODSIX.WeightlessItems.includes(itemData.type)) {
           return await this._addDroppedEquipment(itemData);
         }
         break;
@@ -1267,6 +1267,20 @@ export default class TwodsixActor extends Actor {
       return 0;
     }
   }
+
+  /**
+   * Removes (damages) psionic characteristic and spreads excess to regular damage
+   * @param {number} psiCost The number of psi points to remove
+   */
+  public async removePsiPoints(psiCost: number): Promise<void> {
+    if (psiCost > 0) {
+      const netPoints = Math.min(this.system.characteristics.psionicStrength.current, psiCost);
+      await this.update({'system.characteristics.psionicStrength.damage': this.system.characteristics.psionicStrength.damage + netPoints});
+      if (netPoints < psiCost) {
+        await this.damageActor({damageValue: psiCost - netPoints, armorPiercingValue: 9999, damageType: "psionic", damageLabel: game.i18n.localize("TWODSIX.DamageType.Psionic"), canBeParried: false}, false);
+      }
+    }
+  }
 }
 
 /**
@@ -1346,7 +1360,7 @@ async function deleteIdFromShipPositions(actorId: string) {
  * @function
  */
 function getEquipmentWeight(item:TwodsixItem):number {
-  if (!["skills", "spell", "trait"].includes(item.type)) {
+  if (!TWODSIX.WeightlessItems.includes(item.type)) {
     if (["backpack", "equipped"].includes(item.system.equipped)) {
       let q = item.system.quantity || 0;
       const w = item.system.weight || 0;
