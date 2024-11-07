@@ -678,7 +678,7 @@ export default class TwodsixItem extends Item {
           content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
           ok: {
             label: "TWODSIX.Items.Psionics.UsePoints",
-            callback: (event, button, dialog) => button.form.elements.psiCost.valueAsNumber
+            callback: (event, button /*, dialog*/) => button.form.elements.psiCost.valueAsNumber
           }
         });
       } catch {
