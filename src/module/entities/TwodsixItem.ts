@@ -689,7 +689,13 @@ export default class TwodsixItem extends Item {
       if(isNaN(psiCost)) {
         return;
       } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
-        await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${diceRollEffect}`, true, showThrowDiag);
+        const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${diceRollEffect}`, true, showThrowDiag);
+        if (damagePayload?.damageValue > 0) {
+          const targetTokens = Array.from(game.user.targets);
+          if (targetTokens.length > 0) {
+            await (<TwodsixActor>targetTokens[0].actor).handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          }
+        }
       }
       await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
       return psiCost;
