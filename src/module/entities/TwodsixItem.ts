@@ -357,10 +357,10 @@ export default class TwodsixItem extends Item {
    * A method to get the weapon fire mode parameters.
    * @param {number} rateOfFireCE  The rate of fire used
    * @param {string} attackType The type of attack (e.g. burst, double-tap, etc.)
-   * @param {any} tmpSettings the temporary settings object for the roll
-   * @returns {any} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
+   * @param {object} tmpSettings the temporary settings object for the roll
+   * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: any): any {
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object): object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
@@ -430,9 +430,9 @@ export default class TwodsixItem extends Item {
    * Valid for Classic Traveller and Cepheus Engine band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
    * @param {string} weaponBand The type of weapon used - as key string
-   * @returns {any} {rangeModifier: rangeModifier, rollType: rollType}
+   * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
-  public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): any {
+  public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): object {
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
@@ -497,7 +497,7 @@ export default class TwodsixItem extends Item {
   /**
    * A method to return ammo range modifier.
    * @param {string} rangeModifierType  The type of range modifier (setting)
-   * @returns {any} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
+   * @returns {number} range modifier DM
    */
   public getAmmoRangeModifier(rangeModifierType:string):number {
     let returnValue = 1;
@@ -517,7 +517,7 @@ export default class TwodsixItem extends Item {
   /**
    * A method to get the dodge / parry modifer based on the target's corresponding skill used for attack.
    * @param {Token} target  The target token
-   * @returns {any} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
+   * @returns {object} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
    */
   public getDodgeParryValues(target: Token): object {
     let dodgeParryModifier = 0;
@@ -791,7 +791,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<any | void> {
+  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<object | void> {
     const weapon = <Weapon | Component>this.system;
     const consumableDamage = this.getConsumableBonusDamage();
     if (!weapon.damage && !consumableDamage) {
@@ -1173,7 +1173,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} isAuto Is full automatic fire
    * @returns {object} Object of range modifiers versus different range bands
    */
-  private getCustomRangeMod(isAuto:boolean):any {
+  private getCustomRangeMod(isAuto:boolean):object {
     return {
       close: parseCustomCTValue(this.system.customCT.range.close, isAuto),
       short: parseCustomCTValue(this.system.customCT.range.short, isAuto),
@@ -1259,7 +1259,7 @@ export async function onRollDamage(event:Event):Promise<void> {
  * @returns {object[]}        The resulting simplified dice terms.
  */
 export function getDiceResults(inputRoll:Roll) {
-  const returnValue:any[] = [];
+  const returnValue:object[] = [];
   for (const die of inputRoll.dice) {
     returnValue.push(die.results);
   }
