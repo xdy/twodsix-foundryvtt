@@ -1161,7 +1161,7 @@ export default class TwodsixItem extends Item {
             console.log("Not a valid weapon range band type");
             break;
         }
-      } catch(err) {
+      } catch /*(err)*/ {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
       }
     }
@@ -1196,7 +1196,7 @@ export default class TwodsixItem extends Item {
         //if (templates?.length > 0) {
         //  ItemTemplate.targetTokensInTemplate(templates[0]);
         //}
-      } catch(err) {
+      } catch /*(err)*/ {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
       }
     }
