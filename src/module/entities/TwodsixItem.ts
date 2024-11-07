@@ -792,14 +792,13 @@ export default class TwodsixItem extends Item {
   }
 
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<object | void> {
-    const weapon = <Weapon | Component>this.system;
     const consumableDamage = this.getConsumableBonusDamage();
-    if (!weapon.damage && !consumableDamage) {
+    if (!this.system.damage && !consumableDamage) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
       return;
     } else {
       //Calc regular damage
-      let rollFormula = weapon.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? " + " + bonusDamage : "") + (consumableDamage != "" ? " + " + consumableDamage : "");
+      let rollFormula = this.system.damage + ((bonusDamage !== "0" && bonusDamage !== "") ? " + " + bonusDamage : "") + (consumableDamage != "" ? " + " + consumableDamage : "");
       //console.log(rollFormula);
       if (confirmFormula) {
         rollFormula = await confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
@@ -807,7 +806,7 @@ export default class TwodsixItem extends Item {
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
       let damage = <Roll>{};
-      let apValue = weapon.armorPiercing ?? 0;
+      let apValue = this.system.armorPiercing ?? 0;
 
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
@@ -832,7 +831,7 @@ export default class TwodsixItem extends Item {
       //Deterime Damage type
       let damageType:string = this.getConsumableDamageType();
       if (damageType === '' || damageType === "NONE") {
-        damageType = weapon.damageType ?? "NONE"; //component doesn't have a specified damage type
+        damageType = this.system.damageType ?? "NONE"; //component doesn't have a specified damage type
       }
       const damageLabels = getDamageTypes(true);
       const contentData = {};
