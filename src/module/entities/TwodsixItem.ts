@@ -1243,7 +1243,7 @@ export async function onRollDamage(event:Event):Promise<void> {
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
   const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
 
-  await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamageFormula, true, showFormulaDialog);
+  await item.rollDamage(item.type === 'psiAbility' ? "gmroll" : game.settings.get('core', 'rollMode'), bonusDamageFormula, true, showFormulaDialog);
 
 }
 /**

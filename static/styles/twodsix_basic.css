@@ -1193,6 +1193,15 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   width: 98%;
 }
 
+.items-psiAbilities {
+  display: grid;
+  grid-template-columns: 30% 10% 8% 12% 30% 10%;
+  grid-template-areas:
+    '. . . . . .';
+  word-wrap: break-word;
+  width: 98%;
+}
+
 .items-consumable {
   display: grid;
   grid-template-columns: 5% 40% 15% 10% 15% 15%;
