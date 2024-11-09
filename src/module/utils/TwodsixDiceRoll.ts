@@ -307,7 +307,7 @@ export class TwodsixDiceRoll {
         switch (modifierName) {
           case "item":
             flavorText += (this.rollSettings.skillRoll ? ` &` : ` ${usingString}`)   + ` ${this.rollSettings.itemName}`;
-            flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.ItemModifier")}</td><td>${this.rollSettings.itemName}</td>`;
+            flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll." + (this.item?.type === 'psiAbility' ? "AbilityModifier" : "ItemModifier"))}</td><td>${this.rollSettings.itemName}</td>`;
             break;
           case "chain":
             flavorText += ` ${game.i18n.localize("TWODSIX.Chat.Roll.WithChainBonus")}`;

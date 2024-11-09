@@ -485,11 +485,11 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_canBeEquipped', (item: TwodsixItem) => {
-    return !["skills", "trait", "spell", "component", "ship_position"].includes(item.type);
+    return ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(item.type);
   });
 
   Handlebars.registerHelper('twodsix_getTLString', (itemData: any) => {
-    if(["skills", "trait", "spell", "ship_position"].includes(itemData.type)) {
+    if([...TWODSIX.WeightlessItems, "ship_position"].includes(itemData.type)) {
       return "";
     } else if (itemData.system?.techLevel !== null && itemData.system?.techLevel !== undefined) {
       if(isNaN(itemData.system.techLevel)) {

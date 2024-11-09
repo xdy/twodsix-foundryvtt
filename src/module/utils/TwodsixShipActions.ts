@@ -92,9 +92,9 @@ export class TwodsixShipActions {
         }
 
         if (extra.component) {
-          return extra.component.skillRoll(false, options);
+          return await extra.component.skillRoll(false, options);
         } else {
-          return skill.skillRoll(false, options);
+          return await skill.skillRoll(false, options);
         }
       }
     } else {
