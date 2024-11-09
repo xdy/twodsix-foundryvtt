@@ -1,3 +1,10 @@
+## [5.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.0...v5.11.1) (2024-11-09)
+
+
+### Bug Fixes
+
+* add space between symbol and points ([#1687](https://github.com/xdy/twodsix-foundryvtt/issues/1687)) ([217697b](https://github.com/xdy/twodsix-foundryvtt/commit/217697b13014b2d0a196fc1e156da5815310c71b))
+
 # [5.11.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.10.2...v5.11.0) (2024-11-07)
 
 
