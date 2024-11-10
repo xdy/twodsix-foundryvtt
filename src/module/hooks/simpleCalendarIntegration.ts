@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 /**
- * Advances Time for the Simple Calendar Module
+ * Hook for proxy socket that advances time as activeGM for the Simple Calendar Module
  * @param {number} timeUsed the scalar of time
  * @param {string} timeUnit the units (key) of the timeUsed scalar, e.g. secs
  */
@@ -12,7 +12,8 @@ Hooks.on("advanceTime", async (timeUsed: number, timeUnit:string) => {
   }
 });
 
-/* Advances Time for the Simple Calendar Module
+/**
+ * Advances Time for the Simple Calendar Module when GM
  * @param {number} timeUsed the scalar of time
  * @param {string} timeUnit the units (key) of the timeUsed scalar, e.g. secs
  */
@@ -25,7 +26,7 @@ export async function advanceTimeGM(timeUsed: number, timeUnit:string): Promise<
       await SimpleCalendar.api.changeDate({minute: timeUsed});
       break;
     case "hrs":
-      await SimpleCalendar.api.changeDate({ hour: timeUsed});
+      await SimpleCalendar.api.changeDate({hour: timeUsed});
       break;
     case "days":
       await SimpleCalendar.api.changeDate({day: timeUsed});
@@ -43,23 +44,3 @@ export async function advanceTimeGM(timeUsed: number, timeUnit:string): Promise<
       break;
   }
 }
-/*Hooks.once("socketlib.ready", () => {
-  const mySocket = socketlib.registerSystem('twodsix');
-  mySocket.register("changeTime", advanceTimeGM);
-});
-
-/*Hooks.on("simple-calendar-ready", (data) => {
-  console.log(data);
-  const priorGlobal = game.settings.get("foundryvtt-simple-calendar","global-configuration");
-  const newGlobal = foundry.utils.duplicate(priorGlobal);
-  Object.assign(newGlobal.permissions.changeDateTime, {
-    "player": true,
-    "trustedPlayer": true,
-    "assistantGameMaster": true
-  });
-  game.settings.set("foundryvtt-simple-calendar","global-configuration", newGlobal);
-});
-
-Hooks.on("simple-calendar-date-time-change", (data) => {
-  console.log(data);
-});*/
