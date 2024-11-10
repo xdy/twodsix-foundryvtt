@@ -6,7 +6,17 @@
  * @param {number} timeUsed the scalar of time
  * @param {string} timeUnit the units (key) of the timeUsed scalar, e.g. secs
  */
-export async function advanceTime(timeUsed: number, timeUnit:string): Promise<void> {
+Hooks.on("advanceTime", async (timeUsed: number, timeUnit:string) => {
+  if (game.users.activeGM === game.user) {
+    await advanceTimeGM(timeUsed, timeUnit);
+  }
+});
+
+/* Advances Time for the Simple Calendar Module
+ * @param {number} timeUsed the scalar of time
+ * @param {string} timeUnit the units (key) of the timeUsed scalar, e.g. secs
+ */
+export async function advanceTimeGM(timeUsed: number, timeUnit:string): Promise<void> {
   switch (timeUnit) {
     case "sec":
       await SimpleCalendar.api.changeDate({seconds: timeUsed});
@@ -33,8 +43,12 @@ export async function advanceTime(timeUsed: number, timeUnit:string): Promise<vo
       break;
   }
 }
+/*Hooks.once("socketlib.ready", () => {
+  const mySocket = socketlib.registerSystem('twodsix');
+  mySocket.register("changeTime", advanceTimeGM);
+});
 
-Hooks.on("simple-calendar-ready", (data) => {
+/*Hooks.on("simple-calendar-ready", (data) => {
   console.log(data);
   const priorGlobal = game.settings.get("foundryvtt-simple-calendar","global-configuration");
   const newGlobal = foundry.utils.duplicate(priorGlobal);
@@ -48,4 +62,4 @@ Hooks.on("simple-calendar-ready", (data) => {
 
 Hooks.on("simple-calendar-date-time-change", (data) => {
   console.log(data);
-});
+});*/

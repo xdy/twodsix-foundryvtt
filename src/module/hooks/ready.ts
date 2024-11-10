@@ -8,6 +8,7 @@ import { setDocumentPartials, updateStatusIcons } from "../settings/DisplaySetti
 import { switchCss } from "../settings";
 import { generateTargetDMObject } from "../utils/targetModifiers";
 import { TWODSIX } from "../config";
+//import { advanceTime } from "./simpleCalendarIntegration";
 
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
