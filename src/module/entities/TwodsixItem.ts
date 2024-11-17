@@ -686,8 +686,8 @@ export default class TwodsixItem extends Item {
         return 0;
       }
 
-      if(isNaN(psiCost)) {
-        return;
+      if(isNaN(psiCost) || psiCost <= 0) {
+        return 0;
       } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
         const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${diceRollEffect}`, true, showThrowDiag);
         if (damagePayload?.damageValue > 0) {
@@ -785,6 +785,8 @@ export default class TwodsixItem extends Item {
           rollMode = diceRoll.rollSettings.rollMode;
           psiCost = await this.processPsiAction(diceRoll.effect, rollMode, showThrowDiag);
           rollEffect = diceRoll.effect;
+        } else {
+          return;
         }
       }
       await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
