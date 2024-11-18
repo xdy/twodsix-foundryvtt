@@ -9,7 +9,7 @@ import {getKeyByValue} from "./utils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
 import { simplifySkillName, addSign, capitalizeFirstLetter } from "./utils";
-import { advanceTime } from "../hooks/simpleCalendarIntegration";
+import { advanceTime } from "../hooks/timeIntegration";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
