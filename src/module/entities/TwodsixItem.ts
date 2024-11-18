@@ -660,13 +660,11 @@ export default class TwodsixItem extends Item {
   }
 
   /**
-   * Perform post skill roll actions for using psiAbility (damage and use of psi points).
-   * @param {TwodsixDiceRoll} diceRollEffect Results effect of psionic skill check
-   * @param {DICE_ROLL_MODES} rollMode The rollMode (who roll is shared with)
-   * @param {boolean} showThrowDiag whether or not to show throw dialog for damage
-   * @returns {number} The number of psi points used
+   * Dialog to determine number of psi points used for action. Returns either a number or undefined (canceled points)
+   * @param {number} diceRollEffect Results effect of psionic skill check
+   * @returns {number|undefined} The number of psi points used or undefined if selection cancelled
    */
-  async processPsiAction(diceRollEffect:number, rollMode:DICE_ROLL_MODES, showThrowDiag:boolean): Promise<number> {
+  async processPsiPoints(diceRollEffect:number): Promise<number|undefined> {
     if(diceRollEffect < 0) {
       await (<TwodsixActor>this.actor).removePsiPoints(1);
       return 1;
@@ -678,25 +676,19 @@ export default class TwodsixItem extends Item {
           content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
           ok: {
             label: "TWODSIX.Items.Psionics.UsePoints",
-            callback: (event, button /*, dialog*/) => button.form.elements.psiCost.valueAsNumber
+            callback: (event, button /*, dialog*/) => Math.round(button.form.elements.psiCost.valueAsNumber)
           }
         });
       } catch {
         console.log("No psionic points selected");
-        return 0;
+        return;
       }
 
-      if(isNaN(psiCost)) {
+      if(isNaN(psiCost) || psiCost <= 0) {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PsiUsageGTZero"));
         return;
-      } else if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
-        const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${diceRollEffect}`, true, showThrowDiag);
-        if (damagePayload?.damageValue > 0) {
-          const targetTokens = Array.from(game.user.targets);
-          if (targetTokens.length > 0) {
-            await (<TwodsixActor>targetTokens[0].actor).handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
-          }
-        }
       }
+
       await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
       return psiCost;
     }
@@ -719,7 +711,7 @@ export default class TwodsixItem extends Item {
    * @param {number} rollEffect the effect of the skill roll,used for damage calcs if necessary
    * @private
    */
-  private sendPsiUseToChat(pointsUsed:number, rollMode:DICE_ROLL_MODES , rollEffect:number=0):Promise<void> {
+  private async sendPsiUseToChat(pointsUsed:number, rollMode:DICE_ROLL_MODES , rollEffect:number=0):Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="padding-left: 1ch;">`
@@ -748,7 +740,7 @@ export default class TwodsixItem extends Item {
       Object.assign(messageContent, {whisper: showToUsers});
     }
 
-    ChatMessage.create(messageContent);
+    await ChatMessage.create(messageContent);
   }
 
   /**
@@ -770,24 +762,41 @@ export default class TwodsixItem extends Item {
    * @private
    */
   private async doPsiAction(showThrowDiag: boolean): Promise<void> {
-    let psiCost = 0;
+    let psiCost: number|undefined;
     let rollEffect = 0;
     let rollMode = "gmroll";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
     } else {
       await this.drawItemTemplate();
+
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
-        psiCost = await this.processPsiAction(0, rollMode, showThrowDiag);
+        psiCost = await this.processPsiPoints(0);
       } else {
         const diceRoll = await this.skillRoll(showThrowDiag);
         if (diceRoll) {
           rollMode = diceRoll.rollSettings.rollMode;
-          psiCost = await this.processPsiAction(diceRoll.effect, rollMode, showThrowDiag);
           rollEffect = diceRoll.effect;
+          psiCost = await this.processPsiPoints(rollEffect);
+        } else {
+          return;
         }
       }
-      await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
+
+      if (psiCost !== undefined) {
+        await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
+
+        // Roll damage and post, if necessary
+        if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
+          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${rollEffect}`, true, showThrowDiag);
+          if (damagePayload?.damageValue > 0) {
+            const targetTokens = Array.from(game.user.targets);
+            if (targetTokens.length > 0) {
+              await (<TwodsixActor>targetTokens[0].actor).handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+            }
+          }
+        }
+      }
     }
   }
 
