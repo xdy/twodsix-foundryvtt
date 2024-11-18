@@ -1,3 +1,10 @@
+## [5.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.1...v5.11.2) (2024-11-18)
+
+
+### Bug Fixes
+
+* stop psionic action if skill roll canceled ([#1689](https://github.com/xdy/twodsix-foundryvtt/issues/1689)) ([d093e40](https://github.com/xdy/twodsix-foundryvtt/commit/d093e40d754dd385c73510608c9d5ad1a56154fa))
+
 ## [5.11.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.0...v5.11.1) (2024-11-09)
 
 

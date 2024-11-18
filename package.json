@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "twodsix",
-  "version": "5.11.1",
+  "version": "5.11.2",
   "description": "A 2d6 system",
   "scripts": {
     "build": "gulp build",
