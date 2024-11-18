@@ -1684,7 +1684,9 @@
       "CantFindMeleeSkill": "Can't find Melee Combat skill",
       "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
       "CantFindShield": "Can't find an equipped shield to block",
-      "NoPsiPoints": "Must have at least one psionic point to use an ability"
+      "NoPsiPoints": "Must have at least one psionic point to use an ability",
+      "PsiUsageGTZero": "PSI Points used must be greater than zero"
+
     }
   },
   "TYPES": {
