@@ -9,7 +9,7 @@ import {getKeyByValue} from "./utils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
 import { simplifySkillName, addSign, capitalizeFirstLetter } from "./utils";
-import { advanceTimeGM } from "../hooks/simpleCalendarIntegration";
+import { advanceTime } from "../hooks/simpleCalendarIntegration";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -365,12 +365,10 @@ export class TwodsixDiceRoll {
         const timeUsed = (await new Roll(this.rollSettings.timeRollFormula).evaluate()).total;
         const timeUnit = this.rollSettings.selectedTimeUnit;
         timeToComplete = `${timeUsed.toString()} ${game.i18n.localize(TWODSIX.TimeUnits[timeUnit])}`;
-        if (game.modules.get("foundryvtt-simple-calendar")?.active) {
-          if(game.users.activeGM === game.user) {
-            advanceTimeGM(timeUsed, timeUnit);
-          } else {
-            game.socket?.emit ("system.twodsix", ["advanceTime", timeUsed, timeUnit]);
-          }
+        if(game.users.activeGM === game.user) {
+          advanceTime(timeUsed, timeUnit);
+        } else {
+          game.socket?.emit ("system.twodsix", ["advanceTime", timeUsed, timeUnit]);
         }
       }
     }
