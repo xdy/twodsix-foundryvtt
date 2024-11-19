@@ -1,3 +1,10 @@
+## [5.11.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.2...v5.11.3) (2024-11-19)
+
+
+### Bug Fixes
+
+* force a compendium migration ([#1692](https://github.com/xdy/twodsix-foundryvtt/issues/1692)) ([566c6af](https://github.com/xdy/twodsix-foundryvtt/commit/566c6af16b14878d9d2e573a8f80845256756a5b))
+
 ## [5.11.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.1...v5.11.2) (2024-11-18)
 
 
