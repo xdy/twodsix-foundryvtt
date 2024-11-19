@@ -1,0 +1,24 @@
+2024/11/19-08:51:16.392144 700010bad000 Recovering log #14
+2024/11/19-08:51:16.392431 700010bad000 Level-0 table #16: started
+2024/11/19-08:51:16.393998 700010bad000 Level-0 table #16: 18632 bytes OK
+2024/11/19-08:51:16.395847 700010bad000 Delete type=0 #14
+2024/11/19-08:51:16.396117 700010bad000 Delete type=3 #13
+2024/11/19-09:21:39.844626 700010c30000 Level-0 table #19: started
+2024/11/19-09:21:39.846319 700010c30000 Level-0 table #19: 30330 bytes OK
+2024/11/19-09:21:39.846853 700010c30000 Delete type=0 #17
+2024/11/19-09:21:39.852950 700010c30000 Manual compaction at level-0 from '!folders!GPBSNXRjYCvOMJl6' @ 72057594037927935 : 1 .. '!items!xe6XhrCowwAENDb0' @ 0 : 0; will stop at '!items!xe6XhrCowwAENDb0' @ 148 : 1
+2024/11/19-09:21:39.852980 700010c30000 Compacting 2@0 + 0@1 files
+2024/11/19-09:21:39.854327 700010c30000 Generated table #20@0: 33 keys, 18700 bytes
+2024/11/19-09:21:39.854372 700010c30000 Compacted 2@0 + 0@1 files => 18700 bytes
+2024/11/19-09:21:39.854578 700010c30000 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/11/19-09:21:39.854690 700010c30000 Delete type=2 #16
+2024/11/19-09:21:39.855228 700010c30000 Delete type=2 #19
+2024/11/19-09:21:39.861476 700010c30000 Manual compaction at level-0 from '!items!xe6XhrCowwAENDb0' @ 148 : 1 .. '!items!xe6XhrCowwAENDb0' @ 0 : 0; will stop at (end)
+2024/11/19-09:21:39.864198 700010c30000 Manual compaction at level-1 from '!folders!GPBSNXRjYCvOMJl6' @ 72057594037927935 : 1 .. '!items!xe6XhrCowwAENDb0' @ 0 : 0; will stop at '!items!xe6XhrCowwAENDb0' @ 214 : 1
+2024/11/19-09:21:39.864217 700010c30000 Compacting 1@1 + 1@2 files
+2024/11/19-09:21:39.865756 700010c30000 Generated table #21@1: 37 keys, 18174 bytes
+2024/11/19-09:21:39.865781 700010c30000 Compacted 1@1 + 1@2 files => 18174 bytes
+2024/11/19-09:21:39.865935 700010c30000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/11/19-09:21:39.866066 700010c30000 Delete type=2 #10
+2024/11/19-09:21:39.866404 700010c30000 Delete type=2 #20
+2024/11/19-09:21:39.871825 700010c30000 Manual compaction at level-1 from '!items!xe6XhrCowwAENDb0' @ 214 : 1 .. '!items!xe6XhrCowwAENDb0' @ 0 : 0; will stop at (end)
