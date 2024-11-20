@@ -1,3 +1,10 @@
+# [5.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.3...v5.12.0) (2024-11-20)
+
+
+### Features
+
+* Add in-world time integration to timeframe rolls ([#1686](https://github.com/xdy/twodsix-foundryvtt/issues/1686)) ([3d711de](https://github.com/xdy/twodsix-foundryvtt/commit/3d711deb2712454d1e49b316561a2f8eefb6c884))
+
 ## [5.11.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.2...v5.11.3) (2024-11-19)
 
 

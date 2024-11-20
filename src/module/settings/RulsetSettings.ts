@@ -95,6 +95,7 @@ export default class RulesetSettings extends AdvancedSettings {
     settings.ship.push(booleanSetting('addEffectForShipDamage', false));
     settings.damage.push(stringSetting("unarmedDamage", "1d6", false, "world"));
     settings.roll.push(booleanSetting("showTimeframe", false));
+    settings.roll.push(booleanSetting("autoIncrementTime", false));
     settings.general.push(stringChoiceSetting('showHullAndArmor', "armorOnly", true, TWODSIX.VehicleProtection));
     settings.general.push(stringSetting("sorcerySkill", "Sorcery", false, "world"));
     settings.general.push(numberSetting("maxSpellLevel", 7, false, "world"));
