@@ -365,10 +365,12 @@ export class TwodsixDiceRoll {
         const timeUsed = (await new Roll(this.rollSettings.timeRollFormula).evaluate()).total;
         const timeUnit = this.rollSettings.selectedTimeUnit;
         timeToComplete = `${timeUsed.toString()} ${game.i18n.localize(TWODSIX.TimeUnits[timeUnit])}`;
-        if(game.users.activeGM === game.user) {
-          advanceTime(timeUsed, timeUnit);
-        } else {
-          game.socket?.emit ("system.twodsix", ["advanceTime", timeUsed, timeUnit]);
+        if (game.settings.get("twodsix", "autoIncrementTime")) {
+          if(game.users.activeGM === game.user) {
+            advanceTime(timeUsed, timeUnit);
+          } else {
+            game.socket?.emit ("system.twodsix", ["advanceTime", timeUsed, timeUnit]);
+          }
         }
       }
     }

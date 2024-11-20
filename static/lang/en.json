@@ -1047,8 +1047,8 @@
         "name": "Select which variant's auto/burst fire rules should be used."
       },
       "automateDamageRollOnHit": {
-        "hint": "checked=Roll damage, modified by effect of skill roll. unchecked=Don't roll damage.",
-        "name": "Automatically roll damage on skill rolls that hit (i.e. get effect > 0) with items that do damage?"
+        "hint": "When effect > 0 and the item causes damage: checked = Roll damage, modified by effect of skill roll. unchecked = Don't roll damage (button to roll damage on chat card should appear).",
+        "name": "Automatically roll damage for skill rolls that hit."
       },
       "criticalNaturalAffectsEffect": {
         "hint": "checked=Regardless of success consider a natural 2 to have an effect of -1 and a 12 to have an effect of 0, unchecked=Use normal rules",
@@ -1588,6 +1588,10 @@
       "psiTalentsRequireRoll": {
         "hint": "Using a psionic talent requires a sucessful skill roll",
         "name": "Psionics Require Roll"
+      },
+      "autoIncrementTime": {
+        "hint": "Advance game time (optionally integrated with Simple Calendar) if timeframe for roll is selected.",
+        "name": "Automatically Advance Game Time"
       }
     },
     "CloseAndCreateNew": "Close and create new",
