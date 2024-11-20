@@ -9,6 +9,7 @@ import {getKeyByValue} from "./utils";
 import {TwodsixRollSettings} from "./TwodsixRollSettings";
 import Crit from "./crit";
 import { simplifySkillName, addSign, capitalizeFirstLetter } from "./utils";
+import { advanceTime } from "../hooks/timeIntegration";
 
 export class TwodsixDiceRoll {
   rollSettings:TwodsixRollSettings;
@@ -361,7 +362,16 @@ export class TwodsixDiceRoll {
     let timeToComplete = ``;
     if (game.settings.get("twodsix", "showTimeframe")  && this.rollSettings.selectedTimeUnit !== "none") {
       if (Roll.validate(this.rollSettings.timeRollFormula)) {
-        timeToComplete = (await new Roll(this.rollSettings.timeRollFormula).evaluate()).total.toString() + ` ` + game.i18n.localize(TWODSIX.TimeUnits[this.rollSettings.selectedTimeUnit]);
+        const timeUsed = (await new Roll(this.rollSettings.timeRollFormula).evaluate()).total;
+        const timeUnit = this.rollSettings.selectedTimeUnit;
+        timeToComplete = `${timeUsed.toString()} ${game.i18n.localize(TWODSIX.TimeUnits[timeUnit])}`;
+        if (game.settings.get("twodsix", "autoIncrementTime")) {
+          if(game.users.activeGM === game.user) {
+            advanceTime(timeUsed, timeUnit);
+          } else {
+            game.socket?.emit ("system.twodsix", ["advanceTime", timeUsed, timeUnit]);
+          }
+        }
       }
     }
     // Add degree of Success

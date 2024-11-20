@@ -1,15 +1,8 @@
-2023/04/07-08:19:13.145289 700010ae5000 Recovering log #4
-2023/04/07-08:19:13.146838 700010ae5000 Delete type=0 #4
-2023/04/07-08:19:13.147006 700010ae5000 Delete type=3 #2
-2023/04/07-13:21:26.440045 700010b68000 Level-0 table #9: started
-2023/04/07-13:21:26.440795 700010b68000 Level-0 table #9: 336 bytes OK
-2023/04/07-13:21:26.441147 700010b68000 Delete type=0 #7
-2023/04/07-13:21:26.441477 700010b68000 Manual compaction at level-0 from '!journal!25ZYyRuyiF7iJUyF' @ 72057594037927935 : 1 .. '!journal!xlN9UXBdUghDyVya' @ 0 : 0; will stop at (end)
-2023/04/07-13:21:26.444126 700010b68000 Manual compaction at level-1 from '!journal!25ZYyRuyiF7iJUyF' @ 72057594037927935 : 1 .. '!journal!xlN9UXBdUghDyVya' @ 0 : 0; will stop at '!journal!mW9J5h5GEEGDQqMg' @ 42 : 0
-2023/04/07-13:21:26.444147 700010b68000 Compacting 1@1 + 1@2 files
-2023/04/07-13:21:26.445766 700010b68000 Generated table #10@1: 30 keys, 39948 bytes
-2023/04/07-13:21:26.445799 700010b68000 Compacted 1@1 + 1@2 files => 39948 bytes
-2023/04/07-13:21:26.445959 700010b68000 compacted to: files[ 0 0 1 0 0 0 0 ]
-2023/04/07-13:21:26.446080 700010b68000 Delete type=2 #5
-2023/04/07-13:21:26.446373 700010b68000 Delete type=2 #9
-2023/04/07-13:21:26.449296 700010b68000 Manual compaction at level-1 from '!journal!mW9J5h5GEEGDQqMg' @ 42 : 0 .. '!journal!xlN9UXBdUghDyVya' @ 0 : 0; will stop at (end)
+2024/11/19-09:22:06.542865 70000f3a4000 Recovering log #23
+2024/11/19-09:22:06.544065 70000f3a4000 Delete type=3 #20
+2024/11/19-09:22:06.544231 70000f3a4000 Delete type=0 #23
+2024/11/19-09:26:06.452593 700010c30000 Level-0 table #30: started
+2024/11/19-09:26:06.452825 700010c30000 Level-0 table #30: 0 bytes OK
+2024/11/19-09:26:06.453203 700010c30000 Delete type=0 #28
+2024/11/19-09:26:06.455772 700010c30000 Manual compaction at level-0 from '!journal!25ZYyRuyiF7iJUyF' @ 72057594037927935 : 1 .. '!journal.pages!xlN9UXBdUghDyVya.HWrHRXteD7cpJYyY' @ 0 : 0; will stop at (end)
+2024/11/19-09:26:06.455871 700010c30000 Manual compaction at level-1 from '!journal!25ZYyRuyiF7iJUyF' @ 72057594037927935 : 1 .. '!journal.pages!xlN9UXBdUghDyVya.HWrHRXteD7cpJYyY' @ 0 : 0; will stop at (end)
