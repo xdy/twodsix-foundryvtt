@@ -397,3 +397,8 @@ div.pdf-app section.window-content {
   background: var(--s2d6-background-opaque);
   color: var(--s2d6-light-color);
 }
+
+/**** Small Time ****/
+#smalltime-app {
+  padding: 0;
+}
