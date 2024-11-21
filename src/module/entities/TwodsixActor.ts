@@ -1386,8 +1386,8 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
       window: {title: "TWODSIX.Actor.Items.QuantityToTransfer"},
       content:
         `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
-        `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `<input type="number" name="amount" value="` +
-        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></label></div>`,
+        `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" value="` +
+        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></div>`,
       buttons: [
         {
           action: "Transfer",

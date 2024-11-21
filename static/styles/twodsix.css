@@ -1834,7 +1834,7 @@ input.item-value-edit, input.joat-skill-input {
   gap: 1px;
 }
 
-select.select-mod {
+/*select.select-mod {
   width: 6em;
   margin-left: 1em;
 }
@@ -1847,7 +1847,7 @@ select.select-difficulty {
 select.select-rolltype {
   width: 10em;
   margin-left: 1em;
-}
+}*/
 
 span.total-output {
   text-align: center;
@@ -4108,6 +4108,7 @@ multi-select.actor-sheet select {
 .standard-form .form-group > label {
   color: var(--s2d6-default-color);
   font-weight: normal;
+  flex: 2 1 0%;
 }
 
 .filepicker .favorites .path a.link[data-source]::before {

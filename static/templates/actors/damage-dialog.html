@@ -1,55 +1,54 @@
 <form>
 <div class="standard-form damage-dialog">
   {{#with stats}}
-  <div class = "form-group">
-    <label>{{localize "TWODSIX.Damage.DamageCalculation"}}
-      <table class="damage-table center-table-text">
-        <thead class="centre">
-          <tr>
-            <th>{{localize "TWODSIX.Damage.Damage"}}</th>
-            {{#unless useCUData}}
-              <th>{{localize "TWODSIX.Items.Armor.PrimaryArmor"}}</th>
-              <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
+  <div class = "">
+    <label>{{localize "TWODSIX.Damage.DamageCalculation"}} </label>
+    <table class="damage-table center-table-text">
+      <thead class="centre">
+        <tr>
+          <th>{{localize "TWODSIX.Damage.Damage"}}</th>
+          {{#unless useCUData}}
+            <th>{{localize "TWODSIX.Items.Armor.PrimaryArmor"}}</th>
+            <th>{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}</th>
+          {{else}}
+            <th>{{localize "TWODSIX.Items.Armor.Armor"}}</th>
+            {{#if canOnlyBeBlocked}}
+              <th>{{localize "TWODSIX.Items.Weapon.ShieldAV"}}</th>
             {{else}}
-              <th>{{localize "TWODSIX.Items.Armor.Armor"}}</th>
-              {{#if canOnlyBeBlocked}}
-                <th>{{localize "TWODSIX.Items.Weapon.ShieldAV"}}</th>
-              {{else}}
-                <th>{{localize "TWODSIX.Items.Weapon.ParryAV"}}</th>
-              {{/if}}
-            {{/unless}}
-            <th>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</th>
-            <th>{{localize "TWODSIX.Damage.TotalDamage"}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input type="number" value="{{damageValue}}" class="damage"></td>
-            {{#unless useCUData}}
-              <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
-            {{/unless}}
-            <td><input type="number" value="{{secondaryArmor}}" class="armor" readonly></td>
-            {{#if useCUData}}
-              <td><input type="number" value="{{parryArmor}}" class="armor" readonly></td>
+              <th>{{localize "TWODSIX.Items.Weapon.ParryAV"}}</th>
             {{/if}}
-            <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
-            <td class="applied-damage"></td>
-          </tr>
-          {{#iff damageLabel "!==" "---"}}
-          <tr>
-            <td>({{localize damageLabel}})</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          {{/iff}}
-        </tbody>
-      </table>
-    </label>
+          {{/unless}}
+          <th>{{localize "TWODSIX.Actor.Items.EffectiveArmor"}}</th>
+          <th>{{localize "TWODSIX.Damage.TotalDamage"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="number" value="{{damageValue}}" class="damage"></td>
+          {{#unless useCUData}}
+            <td><input type="number" value="{{primaryArmor}}" class="armor" readonly></td>
+          {{/unless}}
+          <td><input type="number" value="{{secondaryArmor}}" class="armor" readonly></td>
+          {{#if useCUData}}
+            <td><input type="number" value="{{parryArmor}}" class="armor" readonly></td>
+          {{/if}}
+          <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
+          <td class="applied-damage"></td>
+        </tr>
+        {{#iff damageLabel "!==" "---"}}
+        <tr>
+          <td>({{localize damageLabel}})</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {{/iff}}
+      </tbody>
+    </table>
   </div>
-  <div class = "form-group">
-    <label>{{localize "TWODSIX.Damage.Characteristics"}}
+  <div class = "">
+    <label>{{localize "TWODSIX.Damage.Characteristics"}}</label>
     <table class="damage center-table-text">
       <thead class="centre">
         <tr>
@@ -115,12 +114,11 @@
         {{/if}}
       </tbody>
     </table>
-    </label>
   </div>
-  <div class = "form-group">
+  <div class = "">
     <span class="unalocated-damage-text">{{localize "TWODSIX.Damage.UnallocatedDamage"}}: <span class="unalocated-damage"></span></span>
   </div>
-  <div class = "form-group">
+  <div class = "">
     <span class="character-dead red">{{localize "TWODSIX.Damage.CharacterIsDead"}}</span>
   </div>
   {{/with}}
