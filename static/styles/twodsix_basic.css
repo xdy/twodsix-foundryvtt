@@ -120,7 +120,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container-spells {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -549,8 +549,9 @@ img.character-info-mask {
 }
 
 .status-icons.npc {
-  position: relative !important;
-  top: -22.5ch;
+  position: absolute !important;
+  top: 2ch;
+  left: 1ch !important;
   align-content: flex-start;
 }
 
@@ -1243,7 +1244,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .skill-top-row {
   display: flex;
   /* flex-direction: row-reverse; */
-  margin-left: 28.8em;
+  margin-left: 33.7em;
 }
 
 .add-skill {
@@ -2908,19 +2909,23 @@ background: var(--sidebar-background);
 .flavor-line {
   display: inline-flex;
   gap: 0 5px;
+  padding-bottom: 1ch;
+  width:  98%
 }
 
 .flavor-table {
-  width: 95%;
-  margin: 1ch;
-  padding: 0.25rem;
+  width: calc(100% - 2ch);
   background-color: var(--color-text-light-3);
+  margin: 1ch;
 }
 
 .flavor-table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.flavor-table th, .flavor-table td {
+  padding: 0.5ch;
+}
 /*
 #settings button {
     position: relative;
@@ -3046,8 +3051,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 }
 */
 form .form-group > label {
-  flex: 4;
-  line-height: 18px;
+  line-height: 2ch;
 }
 
 /* EDITOR */
@@ -3537,4 +3541,8 @@ input.red {
 
 table {
   border-radius: 0;
+}
+
+.standard-form .form-group {
+  flex: 2 1 0%;
 }

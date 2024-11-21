@@ -4113,7 +4113,11 @@ multi-select.actor-sheet select {
 .standard-form .form-group > label {
   color: var(--s2d6-default-color);
   font-weight: normal;
-  flex: 2 1 0%;
+  line-height: 2ch;
+}
+
+.standard-form .form-group {
+  margin: 0.25rem 0;
 }
 
 .filepicker .favorites .path a.link[data-source]::before {
@@ -4381,4 +4385,8 @@ h4 {
 
 table {
   border-radius: 0;
+}
+
+header.effect-change.effects-header.flexrow {
+  height: auto;
 }
