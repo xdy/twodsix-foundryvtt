@@ -929,8 +929,8 @@ h2 {
 }
 
 .status-icons.npc {
-  position: relative !important;
-  top: -20.5ch;
+  position: absolute !important;
+  top: 2ch;
   /* height: -webkit-fill-available !important; */
   align-content: flex-start;
   /* flex-wrap: wrap; */
@@ -4107,6 +4107,7 @@ multi-select.actor-sheet select {
 
 .standard-form .form-group > label {
   color: var(--s2d6-default-color);
+  font-weight: normal;
 }
 
 .filepicker .favorites .path a.link[data-source]::before {
