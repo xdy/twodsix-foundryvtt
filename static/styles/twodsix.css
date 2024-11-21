@@ -3438,12 +3438,17 @@ background: var(--s2d6-sidebar-background);
 .flavor-line {
   display: inline-flex;
   gap: 0 5px;
+  padding-bottom: 1ch;
+  width: 98%;
 }
 
 .flavor-table {
-  width: 95%;
   margin: 1ch;
-  padding: 0.25rem;
+  width: calc(100% - 2ch);
+}
+
+.flavor-table th, .flavor-table td {
+  padding: 0.5ch;
 }
 
 /*
