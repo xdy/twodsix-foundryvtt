@@ -2917,6 +2917,7 @@ background: var(--sidebar-background);
   width: calc(100% - 2ch);
   background-color: var(--color-text-light-3);
   margin: 1ch;
+  border: 1px solid;
 }
 
 .flavor-table tr:nth-child(even) {

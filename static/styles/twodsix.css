@@ -3445,6 +3445,7 @@ background: var(--s2d6-sidebar-background);
 .flavor-table {
   margin: 1ch;
   width: calc(100% - 2ch);
+  border: 1px solid;
 }
 
 .flavor-table th, .flavor-table td {
