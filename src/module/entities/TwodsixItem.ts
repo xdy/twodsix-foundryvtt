@@ -787,8 +787,9 @@ export default class TwodsixItem extends Item {
         await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
 
         // Roll damage and post, if necessary
-        if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit")) {
-          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), ` ${rollEffect}`, true, showThrowDiag);
+        if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >=0 ) {
+          const bonusDamage:string = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ?  ` ${rollEffect}` : ``;
+          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), bonusDamage, true, showThrowDiag);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
             if (targetTokens.length > 0) {
