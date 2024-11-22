@@ -1,3 +1,10 @@
+## [5.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.0...v5.12.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* damage roll for psionic use with negative effect ([#1694](https://github.com/xdy/twodsix-foundryvtt/issues/1694)) ([0162c5b](https://github.com/xdy/twodsix-foundryvtt/commit/0162c5b4117de2b3804b85bfcc2089c0e678a961))
+
 # [5.12.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.11.3...v5.12.0) (2024-11-20)
 
 
