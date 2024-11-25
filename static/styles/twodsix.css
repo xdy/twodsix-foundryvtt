@@ -928,12 +928,12 @@ h2 {
 }
 
 .status-icons.npc {
-  position: relative !important;
-  top: -20.5ch;
-  /* height: -webkit-fill-available !important; */
+  position: absolute !important;
+  top: 2ch;
+  left: 1ch !important;
   align-content: flex-start;
-  /* flex-wrap: wrap; */
 }
+
 .condition-icon {
   height: auto;
   width: 3ch;
