@@ -1,3 +1,10 @@
+## [5.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.1...v5.12.2) (2024-11-26)
+
+
+### Bug Fixes
+
+*  max encumbrance for CT ([#1695](https://github.com/xdy/twodsix-foundryvtt/issues/1695)) ([d03fac8](https://github.com/xdy/twodsix-foundryvtt/commit/d03fac858c4868ba437b0fac7d2514d02b3df498))
+
 ## [5.12.1](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.0...v5.12.1) (2024-11-22)
 
 

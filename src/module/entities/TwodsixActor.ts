@@ -15,6 +15,7 @@ import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances } from "../hooks/updateFinances";
 import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
+import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -459,7 +460,20 @@ export default class TwodsixActor extends Actor {
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
     if (Roll.validate(encumbFormula)) {
-      maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, this.getRollData(), {missing: "0", warn: false}));
+      let rollData:object;
+      if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+        rollData = foundry.utils.duplicate(this.getRollData()); //Not celar why deepClone doesn't work here
+        const encumberedEffect:TwodsixActiveEffect = this.effects.find(eff  => eff.statuses.has('encumbered'));
+        if (encumberedEffect) {
+          for (const change of encumberedEffect.changes) {
+            const rollKey = change.key.replace('system.', '');
+            foundry.utils.mergeObject(rollData, {[rollKey]: foundry.utils.getProperty(this, change.key) - parseInt(change.value)});
+          }
+        }
+      } else {
+        rollData = this.getRollData();
+      }
+      maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, rollData, {missing: "0", warn: false}));
     }
     return Math.max(maxEncumbrance, 0);
   }

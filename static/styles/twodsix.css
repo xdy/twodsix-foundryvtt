@@ -931,10 +931,10 @@ h2 {
 .status-icons.npc {
   position: absolute !important;
   top: 2ch;
-  /* height: -webkit-fill-available !important; */
+  left: 1ch !important;
   align-content: flex-start;
-  /* flex-wrap: wrap; */
 }
+
 .condition-icon {
   height: auto;
   width: 3ch;
