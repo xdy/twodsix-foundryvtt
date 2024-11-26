@@ -549,8 +549,9 @@ img.character-info-mask {
 }
 
 .status-icons.npc {
-  position: relative !important;
-  top: -22.5ch;
+  position: absolute !important;
+  top: 2ch;
+  left: 1ch !important;
   align-content: flex-start;
 }
 
