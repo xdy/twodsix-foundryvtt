@@ -71,7 +71,11 @@
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
       "ROFDoubleTap": "Double Tap",
-      "ReplaceMacroCommand": "Update Macro Command"
+      "ReplaceMacroCommand": "Update Macro Command",
+      "rulesetChange": {
+        "title": "Change ruleset",
+        "content": "Do you want to change ruleset?<br>If you have custom options they will be erased. This step cannot be undone."
+      }
     },
     "Actor": {
       "Age": "Age",
@@ -1700,7 +1704,6 @@
       "CantFindShield": "Can't find an equipped shield to block",
       "NoPsiPoints": "Must have at least one psionic point to use an ability",
       "PsiUsageGTZero": "PSI Points used must be greater than zero"
-
     }
   },
   "TYPES": {

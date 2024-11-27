@@ -54,9 +54,9 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
   }
 
   html.find('[name="twodsix.ruleset"]').on('change', async ev => {
-    if (await Dialog.confirm({
-      title: "Change ruleset",
-      content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone."
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Dialogs.rulesetChange.title")},
+      content: game.i18n.localize("TWODSIX.Dialogs.rulesetChange.content")
     })) {
       const newRuleset = ev.target.value;
       const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
