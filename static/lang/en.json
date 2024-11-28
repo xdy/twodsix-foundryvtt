@@ -1093,7 +1093,7 @@
         "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
         "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
         "warning": "Warning!",
-        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
+        "warningReset": "After saving the system settings, all skills using the pseudo-skill 'Untrained' <br> will be permanently reset to using no skill.  This action cannot be undone.",
         "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone."
       },
       "initiativeFormula": {
