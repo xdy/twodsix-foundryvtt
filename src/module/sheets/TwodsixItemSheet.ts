@@ -318,23 +318,19 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   private async _onDeleteConsumable(event:Event): Promise<void> {
     const consumable = this.getConsumable(event);
     if (!consumable) {
-      (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?
+      await (<TwodsixItem>this.item).removeConsumable("");
     } else {
-      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", `"<strong>${consumable.name}</strong>"`).replace("_ITEM_NAME_", <string>this.item.name);
+      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", <string>consumable.name).replace("_ITEM_NAME_", <string>this.item.name);
 
-      await Dialog.confirm({
-        title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
-        content: `<div class="remove-consumable">${body}<br><br></div>`,
-        yes: async () => {
-          if (consumable && consumable.id) {
-            await (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
-            this.render();
-          }
-        },
-        no: () => {
-          //Nothing
-        },
-      });
+      if (await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable")},
+        content: body,
+      })) {
+        if (consumable && consumable.id) {
+          await (<TwodsixItem>this.item).removeConsumable(consumable.id);
+          this.render();
+        }
+      }
     }
   }
 
