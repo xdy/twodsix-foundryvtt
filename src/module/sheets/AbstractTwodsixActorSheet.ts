@@ -569,14 +569,15 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  protected async _onEditEffect(event): Promise<void> {
-    const effectUuid = event.currentTarget["dataset"].uuid;
+  protected async _onEditEffect(event:Event): Promise<void> {
+    const effectUuid:string = event.currentTarget["dataset"].uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      await new ActiveEffectConfig(selectedEffect).render(true);
+      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect, position: {width: 700}}).render(true);
     }
   }
+
   /**
    * Handle when the right clicking on status icon.
    * @param {Event} event   The originating click event
