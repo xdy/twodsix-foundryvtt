@@ -671,14 +671,14 @@
         "Melee Combat": "Melee Combat"
       },
       "Traits": {
-              "Prerequisite": "Prerequisite",
-              "TraitName": "Trait Name",
-              "CreateEffect": "Create Effect",
-              "DeleteEffect": "Delete Effect",
-              "EditEffect": "Edit Effects",
-              "CreateTrait": "Create Trait",
-              "DeleteTrait": "Delete Trait",
-              "ShortDescAndEffects": "Short description and list of effects"
+        "Prerequisite": "Prerequisite",
+        "TraitName": "Trait Name",
+        "CreateEffect": "Create Effect",
+        "DeleteEffect": "Delete Effect",
+        "EditEffect": "Edit Effects",
+        "CreateTrait": "Create Trait",
+        "DeleteTrait": "Delete Trait",
+        "ShortDescAndEffects": "Short description and list of effects"
       },
       "Tool": {
         "Bonus": "Bonus"

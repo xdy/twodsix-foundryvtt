@@ -41,55 +41,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }));
 
     // Delete Item
-    html.find('.item-delete').on('click', async (ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const ownedItem = this.actor.items.get(li.data('itemId')) || null;
-      const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
-      const template = `
-      <form>
-        <div>
-          <div style="text-align: center;">${title}
-             "<strong>${ownedItem?.name}</strong>"?
-          </div>
-          <br>
-        </div>
-      </form>`;
-      if (ownedItem) {
-        await Dialog.confirm({
-          title: title,
-          content: template,
-          yes: async () => {
-            const selectedActor = this.actor ?? this.token?.actor;
-            await ownedItem.update({'system.equipped': 'ship'});
-            await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
-            // somehow on hooks isn't working when a consumable is deleted  - force the issue
-            if (ownedItem.type === "consumable") {
-              selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
-                const consumablesList = (<UsesConsumables>i.system).consumables;
-                let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
-                if (consumablesList != undefined) {
-                  if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
-                    //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
-                    const index = consumablesList.indexOf(ownedItem.id);
-                    if (index > -1) {
-                      consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                    }
-                    if (usedForAttack === ownedItem.id) {
-                      usedForAttack = "";
-                    }
-                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack}]);
-                  }
-                }
-              });
-            }
-            li.slideUp(200, () => this.render(false));
-          },
-          no: () => {
-            //Nothing
-          },
-        });
-      }
-    });
+    html.find('.item-delete').on('click', this._deleteItem.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -145,6 +97,46 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     //Document links
     html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
+  }
+
+  /**
+   * Handle delete item for actor sheet.
+   * @param {Event} event   The originating click event
+   */
+  protected async _deleteItem(ev:Event):Promise<void> {
+    const li = ev.currentTarget.closest('.item');
+    const ownedItem = this.actor.items.get(li.dataset.itemId) || null;
+
+    if (ownedItem) {
+      if (await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
+        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${ownedItem?.name}</strong>`,
+      })) {
+        const selectedActor = this.actor ?? this.token?.actor;
+        await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed to keep enc calc correct*/
+        await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
+        // somehow on hooks isn't working when a consumable is deleted  - force the issue
+        if (ownedItem.type === "consumable") {
+          selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async (i) => {
+            const consumablesList = (<UsesConsumables>i.system).consumables;
+            let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
+            if (consumablesList != undefined) {
+              if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
+                //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                const index = consumablesList.indexOf(ownedItem.id);
+                if (index > -1) {
+                  consumablesList.splice(index, 1); // 2nd parameter means remove one item only
+                }
+                if (usedForAttack === ownedItem.id) {
+                  usedForAttack = "";
+                }
+                selectedActor.updateEmbeddedDocuments('Item', [{ _id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack }]);
+              }
+            }
+          });
+        }
+      }
+    }
   }
 
   /**
