@@ -582,20 +582,16 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  protected async _onDeleteEffect(event): Promise<void> {
-    const effectUuid = event.currentTarget["dataset"].uuid;
+  protected async _onDeleteEffect(event:Event): Promise<void> {
+    const effectUuid = event.currentTarget.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        await selectedEffect.delete();
-        await this.render(false); //needed because can right-click on icon over image instead of toggle icons
-      },
-      no: () => {
-        //Nothing
-      }
-    });
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      await selectedEffect.delete();
+      await this.render(false); //needed because can right-click on icon over image instead of toggle icons
+    }
   }
 
   protected async _modifyEffect(event): Promise<void> {
