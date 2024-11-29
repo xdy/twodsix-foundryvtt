@@ -279,7 +279,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       try {
         editSheet?.bringToTop();
       } catch(err) {
-        //nothing
+        console.log(err);
       }
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
@@ -287,23 +287,19 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onDeleteEffect(): Promise<void> {
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        if (await fromUuid(this.item.uuid)) {
-          await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
-          if (this.item.actor) {
-            this.item.actor.sheet.render(false);
-          }
-        } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      if (await fromUuid(this.item.uuid)) {
+        await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+        if (this.item.actor) {
+          this.item.actor.sheet.render(false);
         }
-      },
-      no: () => {
-        //Nothing
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
       }
-    });
+    }
   }
 
   private getConsumable(event:Event):TwodsixItem | undefined {
