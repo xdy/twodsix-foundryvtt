@@ -818,6 +818,8 @@
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
+      "DeletePosition": "Delete Position",
+      "ConfirmDeletePosition": "Are you sure you want to delete this position?",
       "Designation": "Designation",
       "Displacement": "Displacement",
       "Drives": "Drives",
