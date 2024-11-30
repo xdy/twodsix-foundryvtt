@@ -12,18 +12,33 @@ import { TwodsixRollSettings } from "./TwodsixRollSettings";
 export function addCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push(
     {
+      id: 'displayTable',
       pattern: /@DisplayTable\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: enrichDisplayTable
+      enricher: enrichDisplayTable,
     },
     {
+      id: 'rollTable',
       pattern: /@Table\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: rollTable
+      enricher: rollTable,
+      onRender: addTableRollListener
     },
     {
+      id: 'rollSkill',
       pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
-      enricher: rollSkill
+      enricher: rollSkill,
+      onRender: addSkillRollListener
     }
   );
+}
+
+function addTableRollListener(enrichedContent:HTMLElement):void {
+  //console.log(enrichedContent);
+  enrichedContent.querySelector('.table-roll').addEventListener('click', handleTableRoll);
+}
+
+function addSkillRollListener(enrichedContent:HTMLElement):void {
+  //console.log(enrichedContent);
+  enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
 }
 
 /**
