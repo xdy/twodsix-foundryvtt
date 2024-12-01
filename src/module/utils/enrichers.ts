@@ -32,12 +32,10 @@ export function addCustomEnrichers() {
 }
 
 function addTableRollListener(enrichedContent:HTMLElement):void {
-  //console.log(enrichedContent);
   enrichedContent.querySelector('.table-roll').addEventListener('click', handleTableRoll);
 }
 
 function addSkillRollListener(enrichedContent:HTMLElement):void {
-  //console.log(enrichedContent);
   enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
 }
 
