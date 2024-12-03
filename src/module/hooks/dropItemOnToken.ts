@@ -22,14 +22,15 @@ async function catchDrop(canvasObject: Canvas, dropData) {
   } else if (foundTokens.length === 1) {
     const targetActor = <TwodsixActor>foundTokens[0]?.actor;
 
-    if (!targetActor?.isOwner) {
-      return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
-    }
     if (dropData.type === 'damageItem') {
-      return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+      return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
     } else if (dropData.type === 'Item') {
-      const itemData = await getItemDataFromDropData(dropData);
-      return targetActor.handleDroppedItem(itemData);
+      if (targetActor?.isOwner) {
+        const itemData = await getItemDataFromDropData(dropData);
+        return targetActor.handleDroppedItem(itemData);
+      } else {
+        ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+      }
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
     }

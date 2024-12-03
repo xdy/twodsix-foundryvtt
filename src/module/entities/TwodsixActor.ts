@@ -718,7 +718,8 @@ export default class TwodsixActor extends Actor {
       const damageData = foundry.utils.duplicate(damagePayload);
       Object.assign(damageData, {
         damageId: "damage-" + foundry.utils.randomID(),
-        actor: this
+        actor: this,
+        targetUuid: this.uuid
       });
       game.socket?.emit("system.twodsix", ["createDamageDialog", damageData]);
       Hooks.call('createDamageDialog', damageData);
@@ -1119,15 +1120,16 @@ export default class TwodsixActor extends Actor {
    * @private
    */
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
-    if (!this.isOwner && !showDamageDialog) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
-    } else if (["traveller", "animal", "robot"].includes(this.type)) {
-      await this.damageActor(damagePayload, showDamageDialog);
+    if (["traveller", "animal", "robot"].includes(this.type)) {
+      if (!this.isOwner && !showDamageDialog) {
+        console.log(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+      }
+      await this.damageActor(damagePayload, (this.isOwner ? showDamageDialog : true));
       return true;
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+      return false;
     }
-    return false;
   }
 
   /**
