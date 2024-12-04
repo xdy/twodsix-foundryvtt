@@ -273,8 +273,9 @@ export default class TwodsixItem extends Item {
         if (isQualitativeBands) {
           rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
         } else {
-          const effectiveRange = this.system.range * this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
-          rangeLabel = `${effectiveRange.toFixed(1)} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 2})}${canvas.scene.grid.units}`;
+          const ammoMultiplier = this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
+          const effectiveRange = (<string>this.system.range).split("/").map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})).join('/').replace('NaN', game.i18n.localize("TWODSIX.Ship.Unknown"));
+          rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})}${canvas.scene.grid.units}`;
         }
         appliedStatuses = getTargetModifiers(targetTokens[0].actor);
       } else if (targetTokens.length === 0) {
