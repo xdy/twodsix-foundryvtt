@@ -314,7 +314,11 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, actor, canBeParried, canBeBlocked} = damageData;
+  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, canBeParried, canBeBlocked} = damageData;
+  let actor:TwodsixActor = damageData.actor;
+  if (!actor.uuid) {
+    actor = await fromUuid(damageData.targetUuid);
+  }
 
   const actorUsersNonGM = game.users?.filter(user => user.active && actor && actor.testUserPermission(user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) && !user.isGM) || null;
   if ((game.user?.isGM && actorUsersNonGM?.length > 0) || (!game.user?.isGM && !actor.isOwner)) {
