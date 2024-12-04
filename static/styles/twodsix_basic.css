@@ -3220,13 +3220,18 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 4ch 19ch 14ch 12ch 10ch;
+  grid-template-columns: 5% 30% 25% 20% 15%;
   grid-template-areas: ". . . . .";
   align-items: center;
   /* grid-gap: 4px 2px; */
   grid-auto-flow: column;
   height: auto;
   padding: 0.5ch 0;
+  width:  98%
+}
+
+.items-list.effects-list {
+  width: 98%;
 }
 
 .effect-name, .effect-source, .effect-duration {
@@ -3237,7 +3242,6 @@ input[type="text"].color {
 
 .effect:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
-  width: fit-content;
   /* height: max-content; */
 }
 
