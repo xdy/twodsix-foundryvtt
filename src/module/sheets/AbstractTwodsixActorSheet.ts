@@ -574,7 +574,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect, position: {width: 700}}).render(true);
+      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect}).render(true);
     }
   }
 
