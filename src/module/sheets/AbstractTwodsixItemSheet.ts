@@ -21,8 +21,9 @@ export abstract class AbstractTwodsixItemSheet extends ItemSheet {
   }
 
   getData():any {
-    // @ts-ignore
-    const data = super.getData().item;
+    console.log(super.getData());
+    const data = super.getData();
+    data.system = data.item.system; //convience access to item system data
     data.owner = this.actor;
     if (data.owner){
       //build Skills Pick List

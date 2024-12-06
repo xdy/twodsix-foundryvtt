@@ -1,22 +1,6 @@
 <form class="{{cssClass}} item-class" autocomplete="off">
   <div class="skill-container-small">
-    <div>
-      <table>
-        <tr>
-          <th>
-            <div class="item-img">
-              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
-                   height="128"/></div>
-          </th>
-          <th>
-            <div class="item-name">
-              <label for="name">{{localize "TWODSIX.Items.Spells.SpellName"}}</label>
-              <input name="name" type="text" value="{{name}}"/>
-            </div>
-          </th>
-        </tr>
-      </table>
-    </div>
+    {{> "systems/twodsix/templates/items/parts/image-name.html"}}
     {{> "systems/twodsix/templates/items/parts/item-type.html"}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>

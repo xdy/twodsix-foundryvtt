@@ -3,13 +3,23 @@
     <tr>
       <th>
         <div class="item-img">
-          <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
+          <img class="item-img" src="{{item.img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="item.img" width="128"
                height="128"/></div>
       </th>
       <th>
         <div class="item-name">
-          <label for="item.name">{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
-          <input class="form-input" name="name" type="text" value="{{name}}" autocomplete="off"/>
+          <label for="item.name">
+            {{#iff item.type "===" "spell"}}
+              {{localize "TWODSIX.Items.Spells.SpellName"}}
+            {{else iff item.type "===" "skills"}}
+              {{localize "TWODSIX.Items.Skills.SkillName"}}
+            {{else iff item.type "===" "trait"}}
+              {{localize "TWODSIX.Items.Traits.TraitName"}}
+            {{else}}
+              {{localize "TWODSIX.Items.Equipment.ItemName"}}
+            {{/iff}}
+          </label>
+          <input class="form-input" name="item.name" type="text" value="{{item.name}}" autocomplete="off"/>
         </div>
       </th>
     </tr>

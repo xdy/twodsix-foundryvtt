@@ -142,7 +142,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
-    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
+    html.find(`[name="item.type"]`).on('change', this._changeType.bind(this));
     html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
   }
   private async _changeSubtype(event) {

@@ -4393,7 +4393,7 @@ header.effect-change.effects-header.flexrow {
 }
 
 .active-effect-config .tab.changes header, .active-effect-config .tab.changes ol {
-  grid-template-columns: 16rem 6rem 14rem 3rem 1rem;
+  /*grid-template-columns: 16rem 6rem 14rem 3rem 1rem;*/
 }
 
 .menu-item h2 {
