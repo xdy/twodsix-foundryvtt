@@ -129,6 +129,7 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
+  Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   Items.unregisterSheet("core", ItemSheet);
 
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});

@@ -11,31 +11,39 @@ import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * Extend the basic ItemSheetV2 with some very simple modifications
+ * @extends {ItemSheetV2}
  */
-export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
-  returnData: any; ///Not certain on this one or is it just 'data' ************
+export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
+  //returnData: any; ///Not certain on this one or is it just 'data' ************
+  constructor(options = {}) {
+    super(options);
+    console.log(options);
+  }
 
   /** @override */
-  static get defaultOptions(): ItemSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "item"],
-      submitOnClose: true,
-      submitOnChange: true,
-      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null, dragSelector: null}],
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "item"],
+    //tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+    dragDrop: [{dropSelector: null, dragSelector: null}],
+    window: {
       resizable: true,
       width: 550,
       height: 'auto'
-    });
-  }
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    }
+  };
 
-  /** @override */
-  get template(): string {
-    const path = "systems/twodsix/templates/items";
-    return `${path}/${this.item.type}-sheet.html`;
-  }
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/items/item-stub.html",
+      scroll
+    }
+  };
+
   /** @override */
   _canDragDrop() {
     //console.log("got to drop check", selector);
@@ -44,13 +52,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData(): ItemSheet {
-    const returnData = super.getData();
+  async _prepareContext(options): ItemSheet {
+    const context = await super._prepareContext(options);
+    context.item = this.item;
+    context.system = this.item.system;
     //returnData.actor = returnData.data;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
-    returnData.settings = {
+    context.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
       ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
@@ -76,53 +86,54 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     };
 
     if (this.item.type === 'skills') {
-      returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
+      context.settings.characteristicsList = getCharacteristicList(this.item.actor);
       //Set characterisitic, making certin it is valid choice
-      if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
-        returnData.system.initialCharacteristic = this.item.system.characteristic;
+      if (Object.keys(context.settings.characteristicsList).includes(this.item.system.characteristic)) {
+        context.system.initialCharacteristic = this.item.system.characteristic;
       } else {
-        returnData.system.initialCharacteristic = 'NONE';
+        context.system.initialCharacteristic = 'NONE';
       }
     }
 
     //prevent processor/suite attachements to computers(?)
-    returnData.config = foundry.utils.duplicate(TWODSIX);
+    context.config = foundry.utils.duplicate(TWODSIX);
 
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
-        delete returnData.config.CONSUMABLES.processor;
-        delete returnData.config.CONSUMABLES.suite;
+        delete context.config.CONSUMABLES.processor;
+        delete context.config.CONSUMABLES.suite;
       }
     }
 
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
-      returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
+      context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    return returnData;
+    return context;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
+  /*setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
     const position: Application.Position = <Application.Position>super.setPosition(options);
     const sheetBody = (this.element as JQuery).find(".sheet-body");
     const bodyHeight = <number>position.height - 192;
     sheetBody.css("height", bodyHeight);
     return <(Application.Position & { height: number }) | void>position;
-  }
+  }*/
 
   /* -------------------------------------------- */
 
   /** @override */
-  activateListeners(html: JQuery): void {
-    super.activateListeners(html);
+  _onRender(context, options): void {
+    super._onRender(context, options);
+    const html = $(this.element);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) {
+    if (!context.editable) {
       return;
     }
 

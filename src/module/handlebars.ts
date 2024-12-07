@@ -549,3 +549,8 @@ export default function registerHandlebarsHelpers(): void {
   });
 
 }
+
+Handlebars.registerHelper('whichItemSheet', (type:string) => {
+  const path = "systems/twodsix/templates/items";
+  return `${path}/${type}-sheet.html`;
+});

@@ -172,7 +172,8 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
       }
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
-      this.actor?.items?.get(shipPositionId)?.sheet?.render(true);
+      const positionItem = this.actor?.items?.get(shipPositionId);
+      await positionItem?.sheet.render(true);
     }
   }
 
