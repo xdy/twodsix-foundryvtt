@@ -3,7 +3,7 @@
     <tr>
       <th>
         <div class="item-img">
-          <img class="item-img" src="{{item.img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="item.img" width="128"
+          <img class="item-img" src="{{item.img}}" data-tooltip="{{item.img}}" alt="{{item.name}}" data-edit="img" width="128"
                height="128"/></div>
       </th>
       <th>
@@ -19,7 +19,8 @@
               {{localize "TWODSIX.Items.Equipment.ItemName"}}
             {{/iff}}
           </label>
-          <input class="form-input" name="item.name" type="text" value="{{item.name}}" autocomplete="off"/>
+          <input class="form-input" name="name" type="text" value="{{item.name}}" autocomplete="off"/>
+          {{log this}}
         </div>
       </th>
     </tr>

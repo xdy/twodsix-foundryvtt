@@ -4399,3 +4399,7 @@ header.effect-change.effects-header.flexrow {
 .menu-item h2 {
   border: none;
 }
+
+.action-name {
+  display: flex;
+}

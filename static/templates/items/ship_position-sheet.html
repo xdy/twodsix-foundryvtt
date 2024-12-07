@@ -2,7 +2,7 @@
   <div class="item-sheet">
     <div class="item-data">
       <label for="name" class="resource-label">{{localize "TWODSIX.Ship.PositionName"}}</label>
-      <input class="form-input" type="text" name="item.name" value="{{item.name}}" />
+      <input class="form-input" type="text" name="name" value="{{item.name}}" />
     </div>
     <div class="item-data">
       <label for="system.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}</label>
@@ -57,7 +57,7 @@
           <tr class="ship-position-details-action">
             <td><input type="number" style="width: 5ch;" name="system.actions.{{action.id}}.order"
                 value="{{action.order}}" data-dtype="Number"></td>
-            <td data-id="{{action.id}}">
+            <td data-id="{{action.id}}" class="action-name">
               <img src="{{action.icon}}" data-edit="system.actions.{{action.id}}.icon" width="24" height="24" style="vertical-align: middle;">
               <input style="width: calc(100% - 30px); vertical-align: middle;" type="text" name="system.actions.{{id}}.name" value="{{action.name}}">
             </td>
