@@ -117,12 +117,12 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       } else {
         flavor = game.i18n.localize("TWODSIX.Animal.NoReactionMessage");
       }
-      await roll.toMessage(
-        { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
-          flavor: flavor,
-          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
-        },
-        {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+      await roll.toMessage({
+        title: game.i18n.localize("TWODSIX.Animal.Reaction"),
+        speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
+        flavor: flavor,
+        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      }, {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
       );
     }
   }
@@ -149,13 +149,14 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     } else {
       flavor = game.i18n.localize("TWODSIX.Animal.FightToTheDeath");
     }
-    await roll.toMessage(
-      { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
-        flavor: flavor,
-        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
-        rolls: [roll]
-      },
-      {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+    await roll.toMessage({
+      title: game.i18n.localize("TWODSIX.Animal.MoraleRoll"),
+      speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
+      flavor: flavor,
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      rolls: [roll]
+    },
+    {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
     );
   }
 }
