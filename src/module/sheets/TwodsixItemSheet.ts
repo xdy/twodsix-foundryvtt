@@ -18,6 +18,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   //returnData: any; ///Not certain on this one or is it just 'data' ************
   constructor(options = {}) {
     super(options);
+    this.#dragDrop = this._createDragDropHandlers();
     console.log(options);
   }
 
@@ -44,11 +45,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   };
 
-  /** @override */
-  _canDragDrop() {
-    //console.log("got to drop check", selector);
-    return this.isEditable && this.item.isOwner;
-  }
   /* -------------------------------------------- */
 
   /** @override */
@@ -130,6 +126,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /** @override */
   _onRender(context, options): void {
     super._onRender(context, options);
+    this.#dragDrop.forEach((d) => d.bind(this.element));
     const html = $(this.element);
 
     // Everything below here is only needed if the sheet is editable
@@ -430,6 +427,95 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
     }
   }
+
+  /*******************
+   *
+   * Drag Drop Handling
+   *
+   * Code mainly from https://github.com/MetaMorphic-Digital/draw-steel/blob/main/src/module/apps/item-sheet.mjs
+   * and Foundry Wiki
+   *******************/
+
+  /**
+   * Create drag-and-drop workflow handlers for this Application
+   * @returns {DragDrop[]}     An array of DragDrop handlers
+   * @private
+   */
+  private _createDragDropHandlers(): DragDrop[] {
+    return this.options.dragDrop.map((d) => {
+      d.permissions = {
+        dragstart: this._canDragStart.bind(this),
+        drop: this._canDragDrop.bind(this),
+      };
+      d.callbacks = {
+        dragstart: this._onDragStart.bind(this),
+        dragover: this._onDragOver.bind(this),
+        drop: this._onDrop.bind(this),
+      };
+      return new DragDrop(d);
+    });
+  }
+
+  /** The following pieces set up drag handling and are unlikely to need modification  */
+
+  /**
+   * Returns an array of DragDrop instances
+   * @type {DragDrop[]}
+   */
+  get dragDrop() {
+    return this.#dragDrop;
+  }
+
+  // This is marked as private because there's no real need
+  // for subclasses or external hooks to mess with it directly
+  #dragDrop;
+
+  /** @override */
+  _canDragDrop(/*selector*/) {
+    //console.log("got to drop check", selector);
+    return this.isEditable && this.item.isOwner;
+  }
+
+  /**
+   * Define whether a user is able to begin a dragstart workflow for a given drag selector
+   * @param {string} selector       The candidate HTML selector for dragging
+   * @returns {boolean}             Can the current user drag this selector?
+   * @protected
+   */
+  _canDragStart(/*selector*/) {
+    //console.log("got to start", selector);
+    return this.isEditable;
+  }
+
+  /**
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(event) {
+    const el = event.currentTarget;
+    console.log("drag start", el);
+    if ('link' in event.target.dataset) {
+      return;
+    }
+
+    // Extract the data you need
+    const dragData = super._onDragStart(event);
+
+    if (!dragData) {
+      return;
+    }
+    // Set data transfer
+    event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+  }
+
+
+  /**
+   * Callback actions which occur when a dragged element is over a drop target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragOver(/*event*/) {}
 
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
