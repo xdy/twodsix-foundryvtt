@@ -3095,8 +3095,8 @@ a:hover {
 
 .item-link {
   display: inline-flex;
-  margin-top: 0.3em;
-  gap: 1ch;
+  margin: 1rem 0;
+  gap: 2ch;
   align-items: center;
 }
 
@@ -3234,7 +3234,11 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .consumable {
-  text-align: center;
+  margin: 1rem 0;
+}
+
+table.consumable thead tr th, table.consumable tbody tr td {
+  padding: 0.25rem;
 }
 /*--- Chat Log ---*/
 
@@ -4402,4 +4406,13 @@ header.effect-change.effects-header.flexrow {
 
 .action-name {
   display: flex;
+}
+
+section.item-class {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.consumable table {
+  color: green;
 }

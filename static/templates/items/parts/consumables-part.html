@@ -1,7 +1,7 @@
 {{#if item.isOwned}}
 <div class="form-section">
   {{localize "TWODSIX.Actor.Items.CONSUMABLES"}}: <br>
-  <table>
+  <table class="consumable">
     <thead>
       <tr>
         <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>
@@ -45,7 +45,7 @@
 {{#iff type "!==" "consumable"}}
 <div class="form-section">
   {{localize "TWODSIX.Actor.Items.ATTACHMENTS"}}: <br>
-  <table>
+  <table class="consumable">
     <thead>
       <tr>
         <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>

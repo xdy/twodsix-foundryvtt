@@ -27,10 +27,12 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     classes: ["twodsix", "sheet", "item"],
     //tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
     dragDrop: [{dropSelector: null, dragSelector: null}],
+    position: {
+      width: 600,
+      height: 400
+    },
     window: {
-      resizable: true,
-      width: 550,
-      height: 'auto'
+      resizable: true
     },
     form: {
       submitOnChange: true,
