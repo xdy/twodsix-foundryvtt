@@ -11,7 +11,7 @@
 
   {{!-- Item Sheet Body --}}
   <section class="sheet-body auto-height">
-    <div class="tab description" data-group="primary" data-tab="description">
+    <div class="tab description {{tab.cssClass}}" data-group="primary" data-tab="description">
       {{> "systems/twodsix/templates/items/parts/item-type.html"}}
       <div class="item-tl">
         <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
@@ -42,16 +42,16 @@
       {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     </div>
 
-    <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+    <div class="tab modifiers {{tab.cssClass}}" data-group="primary" data-tab="modifiers">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-modifiers.html"}}
       {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.html"}}{{/if}}
     </div>
 
-    <div class="tab attack" data-group="primary" data-tab="attack">
+    <div class="tab attack {{tab.cssClass}}" data-group="primary" data-tab="attack">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-attack.html"}}
     </div>
 
-    <div class="tab magazine" data-group="primary" data-tab="magazine">
+    <div class="tab magazine {{tab.cssClass}}" data-group="primary" data-tab="magazine">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-magazine.html"}}
       {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
       {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.html"}}

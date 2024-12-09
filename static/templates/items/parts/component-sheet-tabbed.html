@@ -10,7 +10,7 @@
 
   {{!-- Component Sheet Body --}}
   <section class="sheet-body auto-height">
-    <div class="tab description" data-group="primary" data-tab="description">
+    <div class="tab description {{tab.cssClass}}" data-group="primary" data-tab="description">
       {{> "systems/twodsix/templates/items/parts/component-parts/component-general.html"}}
       <div class="item-descr">
         <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
@@ -18,16 +18,16 @@
       </div>
       {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     </div>
-    <div class="tab displacement" data-group="primary" data-tab="displacement">
+    <div class="tab displacement {{tab.cssClass}}" data-group="primary" data-tab="displacement">
       {{> "systems/twodsix/templates/items/parts/component-parts/component-displacement.html"}}
     </div>
-    <div class="tab power" data-group="primary" data-tab="power">
+    <div class="tab power {{tab.cssClass}}" data-group="primary" data-tab="power">
       {{> "systems/twodsix/templates/items/parts/component-parts/component-power.html"}}
     </div>
-    <div class="tab attack" data-group="primary" data-tab="attack">
+    <div class="tab attack {{tab.cssClass}}" data-group="primary" data-tab="attack">
       {{> "systems/twodsix/templates/items/parts/component-parts/component-attack.html"}}
     </div>
-    <div class="tab price" data-group="primary" data-tab="price">
+    <div class="tab price {{tab.cssClass}}" data-group="primary" data-tab="price">
       {{> "systems/twodsix/templates/items/parts/component-parts/component-price.html"}}
     </div>
   </section>
