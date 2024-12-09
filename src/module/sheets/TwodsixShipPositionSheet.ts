@@ -94,7 +94,8 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "type": "Actor",
         "data": actor,  //NOT CERTAIN WHAT TO DO ABOUT THIS ONE
         "actorId": this.actor?.id,
-        "id": $(event.target).data("id")
+        "id": $(event.target).data("id"),
+        "uuid": actor.uuid
       }));
     } else {
       super._onDragStart(event);

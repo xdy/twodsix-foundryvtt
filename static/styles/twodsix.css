@@ -3234,7 +3234,11 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .consumable {
-  margin: 1rem 0;
+  width: 98%;
+}
+
+table.consumable {
+  margin: 0.5rem 0 1rem 0;
 }
 
 table.consumable thead tr th, table.consumable tbody tr td {
@@ -4411,8 +4415,4 @@ header.effect-change.effects-header.flexrow {
 section.item-class {
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.consumable table {
-  color: green;
 }

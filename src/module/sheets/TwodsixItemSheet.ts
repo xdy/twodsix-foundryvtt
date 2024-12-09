@@ -9,6 +9,7 @@ import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 
 /**
  * Extend the basic ItemSheetV2 with some very simple modifications
@@ -18,18 +19,18 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   //returnData: any; ///Not certain on this one or is it just 'data' ************
   constructor(options = {}) {
     super(options);
-    this.#dragDrop = this._createDragDropHandlers();
-    console.log(options);
+    this.#dragDrop = this.#createDragDropHandlers();
+    //console.log(options);
   }
 
   /** @override */
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "item"],
-    //tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-    dragDrop: [{dropSelector: null, dragSelector: null}],
+    tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+    dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
     position: {
       width: 600,
-      height: 400
+      height: 700
     },
     window: {
       resizable: true
@@ -37,13 +38,21 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     form: {
       submitOnChange: true,
       submitOnClose: true
-    }
+    },
+    actions: {
+      createConsumable: this._onCreateConsumable,
+      createAttachment: this._onCreateAttachment,
+      consumableEdit: this._onEditConsumable,
+      consumableDelete: this._onDeleteConsumable
+
+    },
+    tag: "form"
   };
 
   static PARTS = {
     main: {
       template: "systems/twodsix/templates/items/item-stub.html",
-      scroll
+      scrollable: ['']
     }
   };
 
@@ -112,35 +121,18 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     return context;
   }
 
-  /* -------------------------------------------- */
-
   /** @override */
-  /*setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
-    const position: Application.Position = <Application.Position>super.setPosition(options);
-    const sheetBody = (this.element as JQuery).find(".sheet-body");
-    const bodyHeight = <number>position.height - 192;
-    sheetBody.css("height", bodyHeight);
-    return <(Application.Position & { height: number }) | void>position;
-  }*/
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  _onRender(context, options): void {
+  _onRender(context:Context, options:any): void {
     super._onRender(context, options);
-    this.#dragDrop.forEach((d) => d.bind(this.element));
+    this.dragDrop.forEach((d) => d.bind(this.element));
     const html = $(this.element);
 
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
     }
-
-    html.find('.consumable-create').on('click', this._onCreateConsumable.bind(this));
-    html.find('.attachment-create').on('click', this._onCreateAttachment.bind(this));
-    html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
-    html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
-    html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
+    this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
+    //html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
 
     html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
     html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
@@ -312,21 +304,21 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  private getConsumable(event:Event):TwodsixItem | undefined {
-    if (event.currentTarget) {
-      const li = $(event.currentTarget).parents(".consumable");
-      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+  getConsumable(target:HTMLElement):TwodsixItem | undefined {
+    if (target) {
+      const consumableId = target.closest(".consumable").dataset.consumableId;
+      return <TwodsixItem>(this.item).actor?.items.get(consumableId);
     } else {
       return undefined;
     }
   }
 
-  private _onEditConsumable(event:Event): void {
-    this.getConsumable(event)?.sheet?.render(true);
+  static _onEditConsumable(event:Event, target:HTMLElement): void {
+    this.getConsumable(target)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event:Event): Promise<void> {
-    const consumable = this.getConsumable(event);
+  static async _onDeleteConsumable(event:Event, target:HTMLElement): Promise<void> {
+    const consumable = this.getConsumable(target);
     if (!consumable) {
       await (<TwodsixItem>this.item).removeConsumable("");
     } else {
@@ -344,7 +336,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  private async _onCreateConsumable(): Promise<void> {
+  static async _onCreateConsumable(/*event, target*/): Promise<void> {
     if (!this.item.isOwned) {
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
@@ -402,7 +394,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }).render(true);
   }
 
-  private async _onCreateAttachment():Promise<void> {
+  static async _onCreateAttachment():Promise<void> {
     const newConsumableData = {
       name: game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment"),
       type: "consumable",
@@ -443,7 +435,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {DragDrop[]}     An array of DragDrop handlers
    * @private
    */
-  private _createDragDropHandlers(): DragDrop[] {
+  #createDragDropHandlers(): DragDrop[] {
     return this.options.dragDrop.map((d) => {
       d.permissions = {
         dragstart: this._canDragStart.bind(this),
@@ -494,21 +486,24 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @param {DragEvent} event       The originating DragEvent
    * @protected
    */
-  _onDragStart(event) {
-    const el = event.currentTarget;
-    console.log("drag start", el);
+  _onDragStart(event: DragEvent):void {
+    //const el = event.currentTarget;
+    //console.log("drag start", el);
     if ('link' in event.target.dataset) {
       return;
     }
 
     // Extract the data you need
-    const dragData = super._onDragStart(event);
-
-    if (!dragData) {
-      return;
+    const consumableId = event.currentTarget.closest(".consumable").dataset.consumableId;
+    const draggedConsumable = this.item.actor?.items.get(consumableId);
+    if (draggedConsumable) {
+      const dragData = {
+        type: "Item",
+        uuid: draggedConsumable.uuid
+      };
+      // Set data transfer
+      event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
-    // Set data transfer
-    event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
   }
 
 
@@ -555,8 +550,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
         // If the dropped item has the same actor as the current item let's just use the same id.
         let itemId: string;
-        if (this.item.actor?.items.get(itemData.id)) {
-          itemId = itemData.id;
+        if (this.item.actor?.items.get(itemData._id)) {
+          itemId = itemData._id;
         } else {
           const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
           if (!newItem) {
