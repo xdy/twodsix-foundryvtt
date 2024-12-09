@@ -16,11 +16,9 @@ import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/fou
  * @extends {ItemSheetV2}
  */
 export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
-  //returnData: any; ///Not certain on this one or is it just 'data' ************
   constructor(options = {}) {
     super(options);
     this.#dragDrop = this.#createDragDropHandlers();
-    //console.log(options);
   }
 
   /** @override */
@@ -118,6 +116,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
+    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description);
+
     return context;
   }
 
@@ -138,7 +138,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
     html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
 
-    this.handleContentEditable(html);
     html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
     html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
@@ -514,6 +513,11 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    */
   _onDragOver(/*event*/) {}
 
+  /**
+   * Callback actions which occur when dropping.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
@@ -563,7 +567,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       }
       this.render();
     } catch (err) {
-      console.error(`Twodsix | ${err}`);
+      console.error(`Twodsix drop error| ${err}`);
       ui.notifications.error(err);
     }
   }

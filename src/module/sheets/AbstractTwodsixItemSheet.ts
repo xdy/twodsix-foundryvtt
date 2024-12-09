@@ -6,17 +6,6 @@ import { sortByItemName } from "../utils/utils";
 export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2) {
 
-  protected handleContentEditable(html:JQuery):void {
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'focusout',
-      this._onSubmitForm.bind(this)
-    );
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'paste',
-      onPasteStripFormatting.bind(this)
-    );
-  }
-
   public _onRender(context:any, options: any):void {
     super._onRender(context, options);
   }
