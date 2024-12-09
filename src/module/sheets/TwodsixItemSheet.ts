@@ -9,48 +9,63 @@ import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * Extend the basic ItemSheetV2 with some very simple modifications
+ * @extends {ItemSheetV2}
  */
-export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
-  returnData: any; ///Not certain on this one or is it just 'data' ************
+export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
+  constructor(options = {}) {
+    super(options);
+    this.#dragDrop = this.#createDragDropHandlers();
+  }
 
   /** @override */
-  static get defaultOptions(): ItemSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "item"],
-      submitOnClose: true,
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "item"],
+    tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+    dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
+    position: {
+      width: 600,
+      height: 700
+    },
+    window: {
+      resizable: true
+    },
+    form: {
       submitOnChange: true,
-      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null, dragSelector: null}],
-      resizable: true,
-      width: 550,
-      height: 'auto'
-    });
-  }
+      submitOnClose: true
+    },
+    actions: {
+      createConsumable: this._onCreateConsumable,
+      createAttachment: this._onCreateAttachment,
+      consumableEdit: this._onEditConsumable,
+      consumableDelete: this._onDeleteConsumable
 
-  /** @override */
-  get template(): string {
-    const path = "systems/twodsix/templates/items";
-    return `${path}/${this.item.type}-sheet.html`;
-  }
-  /** @override */
-  _canDragDrop() {
-    //console.log("got to drop check", selector);
-    return this.isEditable && this.item.isOwner;
-  }
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/items/item-stub.html",
+      scrollable: ['']
+    }
+  };
+
   /* -------------------------------------------- */
 
   /** @override */
-  getData(): ItemSheet {
-    const returnData = super.getData();
+  async _prepareContext(options): ItemSheet {
+    const context = await super._prepareContext(options);
+    context.item = this.item;
+    context.system = this.item.system;
     //returnData.actor = returnData.data;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
-    returnData.settings = {
+    context.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
       ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
@@ -76,73 +91,59 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     };
 
     if (this.item.type === 'skills') {
-      returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
+      context.settings.characteristicsList = getCharacteristicList(this.item.actor);
       //Set characterisitic, making certin it is valid choice
-      if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
-        returnData.system.initialCharacteristic = this.item.system.characteristic;
+      if (Object.keys(context.settings.characteristicsList).includes(this.item.system.characteristic)) {
+        context.system.initialCharacteristic = this.item.system.characteristic;
       } else {
-        returnData.system.initialCharacteristic = 'NONE';
+        context.system.initialCharacteristic = 'NONE';
       }
     }
 
     //prevent processor/suite attachements to computers(?)
-    returnData.config = foundry.utils.duplicate(TWODSIX);
+    context.config = foundry.utils.duplicate(TWODSIX);
 
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
-        delete returnData.config.CONSUMABLES.processor;
-        delete returnData.config.CONSUMABLES.suite;
+        delete context.config.CONSUMABLES.processor;
+        delete context.config.CONSUMABLES.suite;
       }
     }
 
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
-      returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
+      context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    return returnData;
+    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description);
+
+    return context;
   }
 
-  /* -------------------------------------------- */
-
   /** @override */
-  setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
-    const position: Application.Position = <Application.Position>super.setPosition(options);
-    const sheetBody = (this.element as JQuery).find(".sheet-body");
-    const bodyHeight = <number>position.height - 192;
-    sheetBody.css("height", bodyHeight);
-    return <(Application.Position & { height: number }) | void>position;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners(html: JQuery): void {
-    super.activateListeners(html);
+  _onRender(context:Context, options:any): void {
+    super._onRender(context, options);
+    this.dragDrop.forEach((d) => d.bind(this.element));
+    const html = $(this.element);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) {
+    if (!context.editable) {
       return;
     }
-
-    html.find('.consumable-create').on('click', this._onCreateConsumable.bind(this));
-    html.find('.attachment-create').on('click', this._onCreateAttachment.bind(this));
-    html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
-    html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
-    html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
+    this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
+    //html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
 
     html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
     html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
     html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
 
-    this.handleContentEditable(html);
     html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
     html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
     html.find('.delete-link').on('click', deletePDFReference.bind(this));
     html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
     html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
-    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
+    html.find(`[name="item.type"]`).on('change', this._changeType.bind(this));
     html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
   }
   private async _changeSubtype(event) {
@@ -279,7 +280,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       try {
         editSheet?.bringToTop();
       } catch(err) {
-        //nothing
+        console.log(err);
       }
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
@@ -287,62 +288,54 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
   }
 
   private async _onDeleteEffect(): Promise<void> {
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        if (await fromUuid(this.item.uuid)) {
-          await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
-          if (this.item.actor) {
-            this.item.actor.sheet.render(false);
-          }
-        } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      if (await fromUuid(this.item.uuid)) {
+        await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+        if (this.item.actor) {
+          this.item.actor.sheet.render(false);
         }
-      },
-      no: () => {
-        //Nothing
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
       }
-    });
+    }
   }
 
-  private getConsumable(event:Event):TwodsixItem | undefined {
-    if (event.currentTarget) {
-      const li = $(event.currentTarget).parents(".consumable");
-      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+  getConsumable(target:HTMLElement):TwodsixItem | undefined {
+    if (target) {
+      const consumableId = target.closest(".consumable").dataset.consumableId;
+      return <TwodsixItem>(this.item).actor?.items.get(consumableId);
     } else {
       return undefined;
     }
   }
 
-  private _onEditConsumable(event:Event): void {
-    this.getConsumable(event)?.sheet?.render(true);
+  static _onEditConsumable(event:Event, target:HTMLElement): void {
+    this.getConsumable(target)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event:Event): Promise<void> {
-    const consumable = this.getConsumable(event);
+  static async _onDeleteConsumable(event:Event, target:HTMLElement): Promise<void> {
+    const consumable = this.getConsumable(target);
     if (!consumable) {
-      (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?
+      await (<TwodsixItem>this.item).removeConsumable("");
     } else {
-      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", `"<strong>${consumable.name}</strong>"`).replace("_ITEM_NAME_", <string>this.item.name);
+      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", <string>consumable.name).replace("_ITEM_NAME_", <string>this.item.name);
 
-      await Dialog.confirm({
-        title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
-        content: `<div class="remove-consumable">${body}<br><br></div>`,
-        yes: async () => {
-          if (consumable && consumable.id) {
-            await (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
-            this.render();
-          }
-        },
-        no: () => {
-          //Nothing
-        },
-      });
+      if (await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable")},
+        content: body,
+      })) {
+        if (consumable && consumable.id) {
+          await (<TwodsixItem>this.item).removeConsumable(consumable.id);
+          this.render();
+        }
+      }
     }
   }
 
-  private async _onCreateConsumable(): Promise<void> {
+  static async _onCreateConsumable(/*event, target*/): Promise<void> {
     if (!this.item.isOwned) {
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
@@ -356,13 +349,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const html = await renderTemplate(template, {
       consumables: consumablesList
     });
-    new Dialog({
-      title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
+    new foundry.applications.api.DialogV2({
+      window: {title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`},
       content: html,
-      buttons: {
-        ok: {
-          label: game.i18n.localize("TWODSIX.Create"),
-          callback: async (buttonHtml: JQuery) => {
+      buttons: [
+        {
+          action: "ok",
+          label: "TWODSIX.Create",
+          callback: async (event, button, dialog) => {
+            const buttonHtml = $(dialog);
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             let equippedState = "";
             if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
@@ -389,15 +384,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             }
           }
         },
-        cancel: {
-          label: game.i18n.localize("Cancel")
+        {
+          action: "cancel",
+          label: "Cancel"
         }
-      },
+      ],
       default: 'ok',
     }).render(true);
   }
 
-  private async _onCreateAttachment():Promise<void> {
+  static async _onCreateAttachment():Promise<void> {
     const newConsumableData = {
       name: game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment"),
       type: "consumable",
@@ -425,6 +421,103 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
+  /*******************
+   *
+   * Drag Drop Handling
+   *
+   * Code mainly from https://github.com/MetaMorphic-Digital/draw-steel/blob/main/src/module/apps/item-sheet.mjs
+   * and Foundry Wiki
+   *******************/
+
+  /**
+   * Create drag-and-drop workflow handlers for this Application
+   * @returns {DragDrop[]}     An array of DragDrop handlers
+   * @private
+   */
+  #createDragDropHandlers(): DragDrop[] {
+    return this.options.dragDrop.map((d) => {
+      d.permissions = {
+        dragstart: this._canDragStart.bind(this),
+        drop: this._canDragDrop.bind(this),
+      };
+      d.callbacks = {
+        dragstart: this._onDragStart.bind(this),
+        dragover: this._onDragOver.bind(this),
+        drop: this._onDrop.bind(this),
+      };
+      return new DragDrop(d);
+    });
+  }
+
+  /** The following pieces set up drag handling and are unlikely to need modification  */
+
+  /**
+   * Returns an array of DragDrop instances
+   * @type {DragDrop[]}
+   */
+  get dragDrop() {
+    return this.#dragDrop;
+  }
+
+  // This is marked as private because there's no real need
+  // for subclasses or external hooks to mess with it directly
+  #dragDrop;
+
+  /** @override */
+  _canDragDrop(/*selector*/) {
+    //console.log("got to drop check", selector);
+    return this.isEditable && this.item.isOwner;
+  }
+
+  /**
+   * Define whether a user is able to begin a dragstart workflow for a given drag selector
+   * @param {string} selector       The candidate HTML selector for dragging
+   * @returns {boolean}             Can the current user drag this selector?
+   * @protected
+   */
+  _canDragStart(/*selector*/) {
+    //console.log("got to start", selector);
+    return this.isEditable;
+  }
+
+  /**
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(event: DragEvent):void {
+    //const el = event.currentTarget;
+    //console.log("drag start", el);
+    if ('link' in event.target.dataset) {
+      return;
+    }
+
+    // Extract the data you need
+    const consumableId = event.currentTarget.closest(".consumable").dataset.consumableId;
+    const draggedConsumable = this.item.actor?.items.get(consumableId);
+    if (draggedConsumable) {
+      const dragData = {
+        type: "Item",
+        uuid: draggedConsumable.uuid
+      };
+      // Set data transfer
+      event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    }
+  }
+
+
+  /**
+   * Callback actions which occur when a dragged element is over a drop target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragOver(/*event*/) {}
+
+  /**
+   * Callback actions which occur when dropping.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
@@ -461,8 +554,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
         // If the dropped item has the same actor as the current item let's just use the same id.
         let itemId: string;
-        if (this.item.actor?.items.get(itemData.id)) {
-          itemId = itemData.id;
+        if (this.item.actor?.items.get(itemData._id)) {
+          itemId = itemData._id;
         } else {
           const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
           if (!newItem) {
@@ -474,7 +567,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       }
       this.render();
     } catch (err) {
-      console.error(`Twodsix | ${err}`);
+      console.error(`Twodsix drop error| ${err}`);
       ui.notifications.error(err);
     }
   }

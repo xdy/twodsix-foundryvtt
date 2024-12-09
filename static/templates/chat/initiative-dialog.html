@@ -3,28 +3,25 @@
   <fieldset>
   <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
     <div class="form-group">
-      <label>{{localize "TWODSIX.Chat.Roll.Type"}}
-        <select name="rollType">
-          {{selectOptions rollTypes selected=rollType}}
-        </select>
-      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.Type"}}</label>
+      <select name="rollType">
+        {{selectOptions rollTypes selected=rollType}}
+      </select>
     </div>
     <div class="form-group">
-      <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}
-        <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
-      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.OtherModifiers"}}</label>
+      <input type="number" name="diceModifier" value="{{diceModifier}}" placeholder="0" onClick="this.select();" style="width: 8ch;"/>
+
     </div>
     <div class="form-group">
-      <label>{{localize "TWODSIX.Chat.Roll.Mode"}}
-        <select name="rollMode">
-          {{selectOptions rollModes selected="publicroll" localize=true}}
-        </select>
-      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.Mode"}}</label>
+      <select name="rollMode">
+        {{selectOptions rollModes selected="publicroll" localize=true}}
+      </select>
     </div>
     <div class="form-group">
-      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}
-        <input type="text" name="rollFormula" value="{{rollFormula}}" placeholder="" onClick="this.select();" />
-      </label>
+      <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}}</label>
+      <input type="text" name="rollFormula" value="{{rollFormula}}" placeholder="" onClick="this.select();" />
     </div>
   </fieldset>
 </form>

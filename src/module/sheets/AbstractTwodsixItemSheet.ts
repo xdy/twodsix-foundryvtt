@@ -3,38 +3,28 @@
 import { isDisplayableSkill } from "../utils/sheetUtils";
 import { sortByItemName } from "../utils/utils";
 
-export abstract class AbstractTwodsixItemSheet extends ItemSheet {
+export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(
+  foundry.applications.sheets.ItemSheetV2) {
 
-  protected handleContentEditable(html:JQuery):void {
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'focusout',
-      this._onSubmit.bind(this)
-    );
-    html.find('div[contenteditable="true"][data-edit]').on(
-      'paste',
-      onPasteStripFormatting.bind(this)
-    );
+  public _onRender(context:any, options: any):void {
+    super._onRender(context, options);
   }
 
-  public activateListeners(html:JQuery):void {
-    super.activateListeners(html);
-  }
-
-  getData():any {
-    // @ts-ignore
-    const data = super.getData().item;
-    data.owner = this.actor;
-    if (data.owner){
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
+    context.system = this.item.system; //convenience access to item.system data
+    context.owner = this.actor;
+    if (context.owner){
       //build Skills Pick List
       const skillsList: TwodsixItem[] = [];
-      for (const skill of data.owner.itemTypes.skills) {
+      for (const skill of context.owner.itemTypes.skills) {
         if (isDisplayableSkill(<TwodsixItem>skill) || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
           skillsList.push(<TwodsixItem>skill);
         }
       }
-      data.skillsList = sortByItemName(skillsList);
+      context.skillsList = sortByItemName(skillsList);
     }
-    return data;
+    return context;
   }
 }
 

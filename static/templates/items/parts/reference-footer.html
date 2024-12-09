@@ -8,11 +8,11 @@
       <div class="item-link">
         {{localize "TWODSIX.Items.Link"}}:
         {{#iff system.pdfReference.type "===" 'JournalEntry'}}
-            <a class= "open-journal-entry">
+            <a class= "open-journal-entry orange">
               <i class="fa-solid fa-book" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i> {{system.pdfReference.label}}
             </a>
         {{else}}
-          <a href="{{system.pdfReference.href}}">
+          <a class="orange" href="{{system.pdfReference.href}}">
             {{#iff system.pdfReference.type "===" 'pdf'}}
               <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
             {{else}}
