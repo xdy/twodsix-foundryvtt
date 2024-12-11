@@ -131,8 +131,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (!context.editable) {
       return;
     }
-    //TESTING!
-    this.handleContentEditable($(this.element));
+    //Not strictly necessary
+    this.handleContentEditable(this.element);
 
     this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
     this.element.querySelector(`[name="system.subtype"]`)?.addEventListener('change', this._changeSubtype.bind(this));
@@ -211,8 +211,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   /* -------------------------------------------- */
   /** @override */
-  // Kludge to fix consumables dissapearing when updating item sheet
-  // NEEDED ANYMORE??
+  // Not really needed with change to prosemirror
   async _onChangeInput(event) {
     //console.log(event);
     if (event.currentTarget?.name !== 'type') {
@@ -423,16 +422,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  //TESTING
-  protected handleContentEditable(html:JQuery):void {
-    html.find('div[contenteditable="true"][data-edit]')?.on(
-      'focusout',
-      this._onChangeInput.bind(this)
-    );
-    html.find('div[contenteditable="true"][data-edit]')?.on(
-      'paste',
-      onPasteStripFormatting.bind(this)
-    );
+  //These aren't necessary with change to prosemirror
+  protected handleContentEditable(element:HTMLElement):void {
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('focusout', this._onChangeInput.bind(this));
+    });
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('paste', onPasteStripFormatting.bind(this));
+    });
   }
 
   /*******************
