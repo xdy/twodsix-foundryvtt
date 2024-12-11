@@ -3,6 +3,10 @@
 import { isDisplayableSkill } from "../utils/sheetUtils";
 import { sortByItemName } from "../utils/utils";
 
+/**
+ * Extend the basic ItemSheetV2 with some very simple modifications
+ * @extends {ItemSheetV2}
+ */
 export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2) {
 

@@ -12,8 +12,8 @@ import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 
 /**
- * Extend the basic ItemSheetV2 with some very simple modifications
- * @extends {ItemSheetV2}
+ * Extend the basic AbstractTwodsixItemSheet
+ * @extends {AbstractTwodsixItemSheet}
  */
 export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
   constructor(options = {}) {
