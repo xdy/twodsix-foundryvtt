@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
+import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
@@ -131,12 +131,16 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (!context.editable) {
       return;
     }
+    //TESTING!
+    this.handleContentEditable($(this.element));
+
     this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
     this.element.querySelector(`[name="system.subtype"]`)?.addEventListener('change', this._changeSubtype.bind(this));
     this.element.querySelector(`[name="system.isBaseHull"]`)?.addEventListener('change', this._changeIsBaseHull.bind(this));
     this.element.querySelector(`[name="item.type"]`)?.addEventListener('change', this._changeType.bind(this));
     this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
   }
+
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
@@ -208,11 +212,18 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /* -------------------------------------------- */
   /** @override */
   // Kludge to fix consumables dissapearing when updating item sheet
+  // NEEDED ANYMORE??
   async _onChangeInput(event) {
     //console.log(event);
     if (event.currentTarget?.name !== 'type') {
-      await super._onChangeInput(event);
-      this.item?.sheet?.render();
+      const  formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
+      if (formField) {
+        const target = formField.dataset?.edit;
+        const newValue = formField.closest('div[contenteditable="true"][data-edit]').innerHTML;
+        if (target) {
+          this.item.update({[target]: newValue});
+        }
+      }
     }
   }
   /* -------------------------------------------- */
@@ -410,6 +421,18 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (cond) {
       throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
     }
+  }
+
+  //TESTING
+  protected handleContentEditable(html:JQuery):void {
+    html.find('div[contenteditable="true"][data-edit]')?.on(
+      'focusout',
+      this._onChangeInput.bind(this)
+    );
+    html.find('div[contenteditable="true"][data-edit]')?.on(
+      'paste',
+      onPasteStripFormatting.bind(this)
+    );
   }
 
   /*******************
