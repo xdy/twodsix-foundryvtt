@@ -40,9 +40,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     actions: {
       createConsumable: this._onCreateConsumable,
       createAttachment: this._onCreateAttachment,
-      consumableEdit: this._onEditConsumable,
-      consumableDelete: this._onDeleteConsumable
-
+      editConsumable: this._onEditConsumable,
+      deleteConsumable: this._onDeleteConsumable,
+      editActiveEffect: this._onEditEffect,
+      createActiveEffect: this._onCreateEffect,
+      deleteActiveEffect: this._onDeleteEffect,
+      openLink: openPDFReference,
+      openJournalEntry: openJournalEntry,
+      deleteLink: deletePDFReference
     },
     tag: "form"
   };
@@ -59,9 +64,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /** @override */
   async _prepareContext(options): ItemSheet {
     const context = await super._prepareContext(options);
-    context.item = this.item;
-    context.system = this.item.system;
-    //returnData.actor = returnData.data;
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
@@ -124,27 +126,16 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /** @override */
   _onRender(context:Context, options:any): void {
     super._onRender(context, options);
-    this.dragDrop.forEach((d) => d.bind(this.element));
-    const html = $(this.element);
-
+    this.#dragDrop.forEach((d) => d.bind(this.element));
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
     }
     this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
-    //html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
-
-    html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
-    html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
-    html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
-
-    html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
-    html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
-    html.find('.delete-link').on('click', deletePDFReference.bind(this));
-    html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
-    html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
-    html.find(`[name="item.type"]`).on('change', this._changeType.bind(this));
-    html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
+    this.element.querySelector(`[name="system.subtype"]`)?.addEventListener('change', this._changeSubtype.bind(this));
+    this.element.querySelector(`[name="system.isBaseHull"]`)?.addEventListener('change', this._changeIsBaseHull.bind(this));
+    this.element.querySelector(`[name="item.type"]`)?.addEventListener('change', this._changeType.bind(this));
+    this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
   }
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
@@ -247,7 +238,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  private async _onCreateEffect(): Promise<void> {
+  static async _onCreateEffect(): Promise<void> {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
@@ -272,7 +263,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  private async _onEditEffect(): void {
+  static async _onEditEffect(): void {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else if (await fromUuid(this.item.uuid)) {
@@ -287,7 +278,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  private async _onDeleteEffect(): Promise<void> {
+  static async _onDeleteEffect(): Promise<void> {
     if (await foundry.applications.api.DialogV2.confirm({
       window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
@@ -514,7 +505,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   _onDragOver(/*event*/) {}
 
   /**
-   * Callback actions which occur when dropping.
+   * Callback actions which occur when dropping.  TWODSIX Specific!
    * @param {DragEvent} event       The originating DragEvent
    * @protected
    */
@@ -523,7 +514,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     try {
       const dropData = getDataFromDropEvent(event);
       TwodsixItemSheet.check(!dropData, "DraggingSomething");
-      if (dropData.type === 'html' || dropData.type === 'pdf'){
+      if (['html', 'pdf'].includes(dropData.type)){
         if (dropData.href) {
           await this.item.update({
             "system.pdfReference.type": dropData.type,

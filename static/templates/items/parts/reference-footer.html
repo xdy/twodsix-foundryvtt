@@ -1,6 +1,6 @@
 {{#if settings.usePDFPager}}
   <div class="item-reference">
-    <a class="open-link">{{localize "TWODSIX.Items.DocumentReference"}}</a>
+    <a class="open-link" data-action="openLink">{{localize "TWODSIX.Items.DocumentReference"}}</a>
     <input class="form-input" type="text" name="system.docReference" value="{{system.docReference}}"/>
   </div>
 {{else}}
@@ -8,7 +8,7 @@
       <div class="item-link">
         {{localize "TWODSIX.Items.Link"}}:
         {{#iff system.pdfReference.type "===" 'JournalEntry'}}
-            <a class= "open-journal-entry orange">
+            <a class= "open-journal-entry orange" data-action="openJournalEntry">
               <i class="fa-solid fa-book" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i> {{system.pdfReference.label}}
             </a>
         {{else}}
@@ -21,7 +21,7 @@
             {{system.pdfReference.label}}
           </a>
         {{/iff}}
-        <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
+        <a class="delete-link" data-action="deleteLink" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
       </div>
   {{/if}}
 {{/if}}

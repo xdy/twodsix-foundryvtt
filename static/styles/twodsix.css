@@ -3826,7 +3826,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .editor {
   height: 95%;
   background: var(--s2d6-background-semi-opaque);
-  color: var(--s2d6-default-color);
+  color: var(--s2d6-light-color);
   margin-top: 0;
   border: 1px solid var(--s2d6-default-color);
 }

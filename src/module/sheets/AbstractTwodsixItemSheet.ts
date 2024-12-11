@@ -12,9 +12,10 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
 
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
+    context.item = this.item;
     context.system = this.item.system; //convenience access to item.system data
     context.owner = this.actor;
-    if (context.owner){
+    if (this.actor){
       //build Skills Pick List
       const skillsList: TwodsixItem[] = [];
       for (const skill of context.owner.itemTypes.skills) {
