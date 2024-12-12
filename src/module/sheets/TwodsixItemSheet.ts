@@ -54,12 +54,19 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/items/item-stub.html",
+      template: "", //systems/twodsix/templates/items/item-sheet.html
       scrollable: ['']
     }
   };
 
   /* -------------------------------------------- */
+
+  _configureRenderParts(options) {
+    let parts = super._configureRenderParts(options);
+    const path = "systems/twodsix/templates/items";
+    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.html`});
+    return parts;
+  }
 
   /** @override */
   async _prepareContext(options): ItemSheet {
@@ -212,7 +219,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /* -------------------------------------------- */
   /** @override */
   // Not really needed with change to prosemirror
-  async _onChangeInput(event) {
+  async _onChangeContenteditable(event) {
     //console.log(event);
     if (event.currentTarget?.name !== 'type') {
       const  formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
@@ -425,7 +432,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   //These aren't necessary with change to prosemirror
   protected handleContentEditable(element:HTMLElement):void {
     element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
-      el.addEventListener('focusout', this._onChangeInput.bind(this));
+      el.addEventListener('focusout', this._onChangeContenteditable.bind(this));
     });
     element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
       el.addEventListener('paste', onPasteStripFormatting.bind(this));
