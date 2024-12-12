@@ -82,7 +82,7 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
   /** @override */
   _canDragDrop(/*selector*/) {
     //console.log("got to drop check", selector);
-    return this.isEditable && this.item.isOwner;
+    return this.isEditable;
   }
 
   /**
