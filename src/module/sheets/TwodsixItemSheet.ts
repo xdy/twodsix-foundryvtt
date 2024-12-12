@@ -435,14 +435,24 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     });
   }
 
+
+  /**************
+   *
+   * Drag Drop Overrides
+   *
+   **************/
+
+  /** @override */
+  _canDragDrop(/*selector*/) {
+    return this.isEditable && this.item.isOwner;
+  }
+
   /**
    * Callback actions which occur at the beginning of a drag start workflow.
    * @param {DragEvent} event       The originating DragEvent
    * @protected
    */
   _onDragStart(event: DragEvent):void {
-    //const el = event.currentTarget;
-    //console.log("drag start", el);
     if ('link' in event.target.dataset) {
       return;
     }
@@ -459,7 +469,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
   }
-
 
   /**
    * Callback actions which occur when a dragged element is over a drop target.
