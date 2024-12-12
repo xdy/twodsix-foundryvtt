@@ -189,9 +189,9 @@ table tr:nth-child(even) {
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
-.sheet > * {
+/*.sheet > * {
   flex: 1;
-}
+}*/
 .sheet > .flex0 {
   display: block;
   flex: 0;
@@ -321,7 +321,7 @@ table tr:nth-child(even) {
 
 /******************************************************/
 
-.macro-sheet .form-group.command div[contenteditable] {
+/*.macro-sheet .form-group.command div[contenteditable] {
   height: calc(100% - 24px);
   resize: none;
   color: var(--s2d6-light-color);
@@ -332,13 +332,13 @@ form .form-group, form .form-group-stacked {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 3px 0;
-  /* color: var(--s2d6-default-color) ; */
+  margin: 3px 1ch;
+  * color: var(--s2d6-default-color) ; *
 }
 
 form .form-group > label {
   flex: 4;
-  /* line-height: 18px; */
+  * line-height: 18px; *
 }
 
 form .form-group span.units {
@@ -346,7 +346,7 @@ form .form-group span.units {
   line-height: 28px;
   font-size: 12px;
   color: var(--s2d6-form-light);
-}
+}*/
 
 #player-config label {
   font-size: 14px;
@@ -391,9 +391,10 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding: 1ch 0 0;
+  padding: 1ch; /*1ch 0 0 */
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-border: var(--s2d6-header-border);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 .editor-content strong {
@@ -1250,6 +1251,7 @@ span.bgi-charEdit {
   font-size: smaller;
   margin: 0.5em 0 0;
   overflow-x: hidden;
+  border-radius: 0;
 }
 
 .stat-table-small {
@@ -1575,6 +1577,7 @@ a.actor-notes-tab:hover {
 .tab, div{
   scrollbar-width: thin;
   --color-scrollbar: var(--s2d6-default-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 /*.tab[data-tab].active {
@@ -1770,7 +1773,7 @@ a:hover, a.active {
 /* Style overrides */
 
 .skills input[type='number'] {
-  width: 2em;
+  /*width: 2em;*/
   justify-self: center;
 }
 
@@ -1831,7 +1834,7 @@ input.item-value-edit, input.joat-skill-input {
   gap: 1px;
 }
 
-select.select-mod {
+/*select.select-mod {
   width: 6em;
   margin-left: 1em;
 }
@@ -1844,7 +1847,7 @@ select.select-difficulty {
 select.select-rolltype {
   width: 10em;
   margin-left: 1em;
-}
+}*/
 
 span.total-output {
   text-align: center;
@@ -2696,16 +2699,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   border: 1px groove var(--s2d6-default-color);
   min-height: 6ch;
   border-radius: 0;
+  display: flex;
 }
 
 .ship-position-add-box {
   text-align: center;
   min-height: 14ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-position-add-position {
   font-size: 6ch;
-  margin-top: 20px;
 }
 
 .ship-position-actor-token, .create-ship-position {
@@ -3090,8 +3095,8 @@ a:hover {
 
 .item-link {
   display: inline-flex;
-  margin-top: 0.3em;
-  gap: 1ch;
+  margin: 1rem 0;
+  gap: 2ch;
   align-items: center;
 }
 
@@ -3117,7 +3122,7 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .sheet-navigation.tabs {
-  padding-bottom: 0.5em;
+  padding: 0.5em 0;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 }
@@ -3229,7 +3234,15 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .consumable {
-  text-align: center;
+  width: 98%;
+}
+
+table.consumable {
+  margin: 0.5rem 0 1rem 0;
+}
+
+table.consumable thead tr th, table.consumable tbody tr td {
+  padding: 0.25rem;
 }
 /*--- Chat Log ---*/
 
@@ -3433,6 +3446,18 @@ background: var(--s2d6-sidebar-background);
 .flavor-line {
   display: inline-flex;
   gap: 0 5px;
+  padding-bottom: 1ch;
+  width: 98%;
+}
+
+.flavor-table {
+  margin: 1ch;
+  width: calc(100% - 2ch);
+  border: 1px solid;
+}
+
+.flavor-table th, .flavor-table td {
+  padding: 0.5ch;
 }
 
 /*
@@ -3456,8 +3481,8 @@ form button {
 /*--- INTERFACE MAKEUP ---*/
 
 button {
-  position: relative;
-  margin: 0.3em 0.1em;
+  /*position: relative;
+  margin: 0.3em 0.1em;*/
   background-color: var(--s2d6-background-opaque);
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);
@@ -3542,6 +3567,10 @@ option {
   border-color: var(--s2d6-default-color);
   color: var(--s2d6-form-light);
   z-index: 99;
+}
+
+.application {
+  border-color: var(--s2d6-header-border);
 }
 
 .window-app.twodsix.sheet.actor .window-header {
@@ -3642,6 +3671,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
+  padding: 8px;
 }
 
 #sidebar-tabs > .item {
@@ -3780,6 +3810,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   /* margin-right: 3ch; */
   height: 100%;
   /* margin-top: 0; */
+  border: none;
 }
 
 .token-sheet .notes {
@@ -3795,7 +3826,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 .editor {
   height: 95%;
   background: var(--s2d6-background-semi-opaque);
-  color: var(--s2d6-default-color);
+  color: var(--s2d6-light-color);
   margin-top: 0;
   border: 1px solid var(--s2d6-default-color);
 }
@@ -3877,6 +3908,12 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border: none !important;
 }*/
 /* ------ Damage Dialog ------ */
+.damage-dialog {
+  font-size: revert;
+}
+.damage-table {
+  max-width: 30ch;
+}
 
 .damage-dialog .red {
   color: var(--s2d6-damage-red);
@@ -4033,7 +4070,7 @@ table thead {
   background: var(--s2d6-background-nearly-transparent);
   color: var(--s2d6-light-color);
   text-shadow: none !important;
-  border: 1px solid var(--s2d6-item-border);
+  /*border: 1px solid var(--s2d6-item-border);*/
 }
 
 color-picker > input[type=color] {
@@ -4084,6 +4121,12 @@ multi-select.actor-sheet select {
 
 .standard-form .form-group > label {
   color: var(--s2d6-default-color);
+  font-weight: normal;
+  line-height: 2ch;
+}
+
+.standard-form .form-group {
+  margin: 0.25rem 0;
 }
 
 .filepicker .favorites .path a.link[data-source]::before {
@@ -4107,6 +4150,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 /*  Battle Sheet */
 .battle {
   --color-scrollbar: var(--s2d6-battle-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
   --s2d6-default-color: var(--s2d6-battle-color);
 }
 .battle-content {
@@ -4213,6 +4257,7 @@ li.battle-damage button,  li.battle-weapons button{
   overflow-y: auto;
   overflow-x: hidden;
   --color-scrollbar: var(--s2d6-battle-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
 }
 
 .item-title-battle {
@@ -4306,4 +4351,68 @@ input.red {
   display: grid;
   grid-template-columns: 40% 15% 15% 15% 10%;
   padding-left: 1%;
+}
+
+
+/********v13 updates******/
+#pause.paused {
+  display: flex;
+  animation: none;
+}
+
+#pause figcaption {
+  font-family: Asap, sans-serif;
+}
+
+.standard-form {
+  overflow-y: auto;
+}
+
+.standard-form fieldset {
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
+  border-color: unset;
+  border-radius: 0;
+  margin: 0 0.5rem;
+}
+
+.selectTokens {
+  height: auto !important;
+  min-height: 5ch;
+}
+
+h4 {
+  font-family: Asap, sans-serif;
+}
+
+.cm-editor {
+  background: var(--s2d6-background-opaque);
+}
+
+table {
+  border-radius: 0;
+}
+
+header.effect-change.effects-header.flexrow {
+  height: auto;
+}
+
+/*.active-effect-config .tab.changes header, .active-effect-config .tab.changes ol {
+  grid-template-columns: 16rem 6rem 14rem 3rem 1rem;
+}*/
+
+.menu-item h2 {
+  border: none;
+}
+
+.action-name {
+  display: flex;
+}
+
+section.item-class {
+  overflow-y: auto;
+  overflow-x: hidden;
 }

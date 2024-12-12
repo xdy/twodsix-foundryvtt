@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
+import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
@@ -9,48 +9,68 @@ import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
- * @extends {ItemSheet}
+ * Extend the basic AbstractTwodsixItemSheet
+ * @extends {AbstractTwodsixItemSheet}
  */
-export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
-  returnData: any; ///Not certain on this one or is it just 'data' ************
+export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
 
   /** @override */
-  static get defaultOptions(): ItemSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "item"],
-      submitOnClose: true,
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "item"],
+    tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+    dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
+    position: {
+      width: 600,
+      height: 700
+    },
+    window: {
+      resizable: true
+    },
+    form: {
       submitOnChange: true,
-      tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dropSelector: null, dragSelector: null}],
-      resizable: true,
-      width: 550,
-      height: 'auto'
-    });
-  }
+      submitOnClose: true
+    },
+    actions: {
+      createConsumable: this._onCreateConsumable,
+      createAttachment: this._onCreateAttachment,
+      editConsumable: this._onEditConsumable,
+      deleteConsumable: this._onDeleteConsumable,
+      editActiveEffect: this._onEditEffect,
+      createActiveEffect: this._onCreateEffect,
+      deleteActiveEffect: this._onDeleteEffect,
+      openLink: openPDFReference,
+      openJournalEntry: openJournalEntry,
+      deleteLink: deletePDFReference
+    },
+    tag: "form"
+  };
 
-  /** @override */
-  get template(): string {
-    const path = "systems/twodsix/templates/items";
-    return `${path}/${this.item.type}-sheet.html`;
-  }
-  /** @override */
-  _canDragDrop() {
-    //console.log("got to drop check", selector);
-    return this.isEditable && this.item.isOwner;
-  }
+  static PARTS = {
+    main: {
+      template: "", //systems/twodsix/templates/items/item-sheet.html
+      scrollable: ['']
+    }
+  };
+
   /* -------------------------------------------- */
 
+  _configureRenderParts(options) {
+    let parts = super._configureRenderParts(options);
+    const path = "systems/twodsix/templates/items";
+    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.html`});
+    return parts;
+  }
+
   /** @override */
-  getData(): ItemSheet {
-    const returnData = super.getData();
-    //returnData.actor = returnData.data;
+  async _prepareContext(options): ItemSheet {
+    const context = await super._prepareContext(options);
 
     (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
-    returnData.settings = {
+    context.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),
       ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
       ShowWeaponType: game.settings.get('twodsix', 'ShowWeaponType'),
@@ -76,75 +96,54 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     };
 
     if (this.item.type === 'skills') {
-      returnData.settings.characteristicsList = getCharacteristicList(this.item.actor);
+      context.settings.characteristicsList = getCharacteristicList(this.item.actor);
       //Set characterisitic, making certin it is valid choice
-      if (Object.keys(returnData.settings.characteristicsList).includes(this.item.system.characteristic)) {
-        returnData.system.initialCharacteristic = this.item.system.characteristic;
+      if (Object.keys(context.settings.characteristicsList).includes(this.item.system.characteristic)) {
+        context.system.initialCharacteristic = this.item.system.characteristic;
       } else {
-        returnData.system.initialCharacteristic = 'NONE';
+        context.system.initialCharacteristic = 'NONE';
       }
     }
 
     //prevent processor/suite attachements to computers(?)
-    returnData.config = foundry.utils.duplicate(TWODSIX);
+    context.config = foundry.utils.duplicate(TWODSIX);
 
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
-        delete returnData.config.CONSUMABLES.processor;
-        delete returnData.config.CONSUMABLES.suite;
+        delete context.config.CONSUMABLES.processor;
+        delete context.config.CONSUMABLES.suite;
       }
     }
 
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
-      returnData.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
+      context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    return returnData;
+    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description);
+
+    return context;
   }
 
-  /* -------------------------------------------- */
-
   /** @override */
-  setPosition(options: Partial<Application.Position> = {}): (Application.Position & { height: number }) | void {
-    const position: Application.Position = <Application.Position>super.setPosition(options);
-    const sheetBody = (this.element as JQuery).find(".sheet-body");
-    const bodyHeight = <number>position.height - 192;
-    sheetBody.css("height", bodyHeight);
-    return <(Application.Position & { height: number }) | void>position;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  activateListeners(html: JQuery): void {
-    super.activateListeners(html);
+  _onRender(context:Context, options:any): void {
+    super._onRender(context, options);
 
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) {
+    if (!context.editable) {
       return;
     }
+    //Not strictly necessary
+    this.handleContentEditable(this.element);
 
-    html.find('.consumable-create').on('click', this._onCreateConsumable.bind(this));
-    html.find('.attachment-create').on('click', this._onCreateAttachment.bind(this));
-    html.find('.consumable-edit').on('click', this._onEditConsumable.bind(this));
-    html.find('.consumable-delete').on('click', this._onDeleteConsumable.bind(this));
-    html.find('.consumable-use-consumable-for-attack').on('change', this._onChangeUseConsumableForAttack.bind(this));
-
-    html.find(".edit-active-effect").on("click", this._onEditEffect.bind(this));
-    html.find(".create-active-effect").on("click", this._onCreateEffect.bind(this));
-    html.find(".delete-active-effect").on("click", this._onDeleteEffect.bind(this));
-
-    this.handleContentEditable(html);
-    html.find('.open-link').on('click', openPDFReference.bind(this, this.item.system.docReference));
-    html.find('.open-journal-entry').on('click', openJournalEntry.bind(this));
-    html.find('.delete-link').on('click', deletePDFReference.bind(this));
-    html.find(`[name="system.subtype"]`).on('change', this._changeSubtype.bind(this));
-    html.find(`[name="system.isBaseHull"]`).on('change', this._changeIsBaseHull.bind(this));
-    html.find(`[name="type"]`).on('change', this._changeType.bind(this));
-    html.find(`[name="system.nonstackable"]`).on('change', this._changeNonstackable.bind(this));
+    this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
+    this.element.querySelector(`[name="system.subtype"]`)?.addEventListener('change', this._changeSubtype.bind(this));
+    this.element.querySelector(`[name="system.isBaseHull"]`)?.addEventListener('change', this._changeIsBaseHull.bind(this));
+    this.element.querySelector(`[name="item.type"]`)?.addEventListener('change', this._changeType.bind(this));
+    this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
   }
+
   private async _changeSubtype(event) {
     event.preventDefault(); //Needed?
     await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
@@ -215,12 +214,18 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
   /* -------------------------------------------- */
   /** @override */
-  // Kludge to fix consumables dissapearing when updating item sheet
-  async _onChangeInput(event) {
+  // Not really needed with change to prosemirror
+  async _onChangeContenteditable(event) {
     //console.log(event);
     if (event.currentTarget?.name !== 'type') {
-      await super._onChangeInput(event);
-      this.item?.sheet?.render();
+      const  formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
+      if (formField) {
+        const target = formField.dataset?.edit;
+        const newValue = formField.closest('div[contenteditable="true"][data-edit]').innerHTML;
+        if (target) {
+          this.item.update({[target]: newValue});
+        }
+      }
     }
   }
   /* -------------------------------------------- */
@@ -246,7 +251,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private async _onCreateEffect(): Promise<void> {
+  static async _onCreateEffect(): Promise<void> {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else {
@@ -271,7 +276,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
-  private async _onEditEffect(): void {
+  static async _onEditEffect(): void {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else if (await fromUuid(this.item.uuid)) {
@@ -279,70 +284,62 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       try {
         editSheet?.bringToTop();
       } catch(err) {
-        //nothing
+        console.log(err);
       }
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
     }
   }
 
-  private async _onDeleteEffect(): Promise<void> {
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        if (await fromUuid(this.item.uuid)) {
-          await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
-          if (this.item.actor) {
-            this.item.actor.sheet.render(false);
-          }
-        } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
+  static async _onDeleteEffect(): Promise<void> {
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      if (await fromUuid(this.item.uuid)) {
+        await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+        if (this.item.actor) {
+          this.item.actor.sheet.render(false);
         }
-      },
-      no: () => {
-        //Nothing
+      } else {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
       }
-    });
+    }
   }
 
-  private getConsumable(event:Event):TwodsixItem | undefined {
-    if (event.currentTarget) {
-      const li = $(event.currentTarget).parents(".consumable");
-      return <TwodsixItem>(this.item).actor?.items.get(li.data("consumableId"));
+  getConsumable(target:HTMLElement):TwodsixItem | undefined {
+    if (target) {
+      const consumableId = target.closest(".consumable").dataset.consumableId;
+      return <TwodsixItem>(this.item).actor?.items.get(consumableId);
     } else {
       return undefined;
     }
   }
 
-  private _onEditConsumable(event:Event): void {
-    this.getConsumable(event)?.sheet?.render(true);
+  static _onEditConsumable(event:Event, target:HTMLElement): void {
+    this.getConsumable(target)?.sheet?.render(true);
   }
 
-  private async _onDeleteConsumable(event:Event): Promise<void> {
-    const consumable = this.getConsumable(event);
+  static async _onDeleteConsumable(event:Event, target:HTMLElement): Promise<void> {
+    const consumable = this.getConsumable(target);
     if (!consumable) {
-      (<TwodsixItem>this.item).removeConsumable(""); //TODO Should have await?
+      await (<TwodsixItem>this.item).removeConsumable("");
     } else {
-      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", `"<strong>${consumable.name}</strong>"`).replace("_ITEM_NAME_", <string>this.item.name);
+      const body = game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumableFrom").replace("_CONSUMABLE_NAME_", <string>consumable.name).replace("_ITEM_NAME_", <string>this.item.name);
 
-      await Dialog.confirm({
-        title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable"),
-        content: `<div class="remove-consumable">${body}<br><br></div>`,
-        yes: async () => {
-          if (consumable && consumable.id) {
-            await (<TwodsixItem>this.item).removeConsumable(consumable.id); //TODO Should have await?
-            this.render();
-          }
-        },
-        no: () => {
-          //Nothing
-        },
-      });
+      if (await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Items.Consumable.RemoveConsumable")},
+        content: body,
+      })) {
+        if (consumable && consumable.id) {
+          await (<TwodsixItem>this.item).removeConsumable(consumable.id);
+          this.render();
+        }
+      }
     }
   }
 
-  private async _onCreateConsumable(): Promise<void> {
+  static async _onCreateConsumable(/*event, target*/): Promise<void> {
     if (!this.item.isOwned) {
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
@@ -356,13 +353,15 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     const html = await renderTemplate(template, {
       consumables: consumablesList
     });
-    new Dialog({
-      title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`,
+    new foundry.applications.api.DialogV2({
+      window: {title: `${game.i18n.localize("TWODSIX.Items.Items.New")} ${game.i18n.localize("TWODSIX.itemTypes.consumable")}`},
       content: html,
-      buttons: {
-        ok: {
-          label: game.i18n.localize("TWODSIX.Create"),
-          callback: async (buttonHtml: JQuery) => {
+      buttons: [
+        {
+          action: "ok",
+          label: "TWODSIX.Create",
+          callback: async (event, button, dialog) => {
+            const buttonHtml = $(dialog);
             const max = parseInt(buttonHtml.find('.consumable-max').val() as string, 10) || 0;
             let equippedState = "";
             if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
@@ -389,15 +388,16 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
             }
           }
         },
-        cancel: {
-          label: game.i18n.localize("Cancel")
+        {
+          action: "cancel",
+          label: "Cancel"
         }
-      },
+      ],
       default: 'ok',
     }).render(true);
   }
 
-  private async _onCreateAttachment():Promise<void> {
+  static async _onCreateAttachment():Promise<void> {
     const newConsumableData = {
       name: game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment"),
       type: "consumable",
@@ -425,12 +425,62 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
     }
   }
 
+  //These aren't necessary with change to prosemirror
+  protected handleContentEditable(element:HTMLElement):void {
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('focusout', this._onChangeContenteditable.bind(this));
+    });
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('paste', onPasteStripFormatting.bind(this));
+    });
+  }
+
+
+  /**************
+   *
+   * Drag Drop Overrides
+   *
+   **************/
+
+  /** @override */
+  _canDragDrop(/*selector*/) {
+    return this.isEditable && this.item.isOwner;
+  }
+
+  /**
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(event: DragEvent):void {
+    if ('link' in event.target.dataset) {
+      return;
+    }
+
+    // Extract the data you need
+    const consumableId = event.currentTarget.closest(".consumable").dataset.consumableId;
+    const draggedConsumable = this.item.actor?.items.get(consumableId);
+    if (draggedConsumable) {
+      const dragData = {
+        type: "Item",
+        uuid: draggedConsumable.uuid
+      };
+      // Set data transfer
+      event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    }
+  }
+
+  /**
+   * Callback actions which occur when dropping.  TWODSIX Specific!
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
   protected async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     try {
       const dropData = getDataFromDropEvent(event);
       TwodsixItemSheet.check(!dropData, "DraggingSomething");
-      if (dropData.type === 'html' || dropData.type === 'pdf'){
+      if (['html', 'pdf'].includes(dropData.type)){
         if (dropData.href) {
           await this.item.update({
             "system.pdfReference.type": dropData.type,
@@ -461,8 +511,8 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
 
         // If the dropped item has the same actor as the current item let's just use the same id.
         let itemId: string;
-        if (this.item.actor?.items.get(itemData.id)) {
-          itemId = itemData.id;
+        if (this.item.actor?.items.get(itemData._id)) {
+          itemId = itemData._id;
         } else {
           const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
           if (!newItem) {
@@ -474,7 +524,7 @@ export class TwodsixItemSheet extends AbstractTwodsixItemSheet {
       }
       this.render();
     } catch (err) {
-      console.error(`Twodsix | ${err}`);
+      console.error(`Twodsix drop error| ${err}`);
       ui.notifications.error(err);
     }
   }
