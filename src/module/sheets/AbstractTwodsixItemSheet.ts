@@ -95,6 +95,28 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
     //console.log("got to start", selector);
     return this.isEditable;
   }
+
+  /**
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(/*event: Event*/) {}
+
+  /**
+   * Callback actions which occur when a dragged element is over a drop target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragOver(/*event: Event*/) {}
+
+  /**
+   * Callback actions which occur when a dragged element is dropped on a target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  async _onDrop(/*event*/) {}
+
 }
 
 export function onPasteStripFormatting(event): void {

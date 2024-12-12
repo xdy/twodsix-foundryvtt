@@ -471,13 +471,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   /**
-   * Callback actions which occur when a dragged element is over a drop target.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
-   */
-  _onDragOver(/*event*/) {}
-
-  /**
    * Callback actions which occur when dropping.  TWODSIX Specific!
    * @param {DragEvent} event       The originating DragEvent
    * @protected
