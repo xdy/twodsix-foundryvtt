@@ -55,6 +55,12 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   };
 
+  /** @override */
+  tabGroups = {
+    primary: "description"  //set default tab
+  };
+
+
   /* -------------------------------------------- */
 
   _configureRenderParts(options) {
@@ -123,7 +129,27 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
     context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description);
 
+    context.tabs = this.#getTabs();
+
     return context;
+  }
+
+  /**
+   * Prepare a record of form header tabs.
+   * @returns {Record<string, Partial<ApplicationTab>>}
+   */
+  #getTabs() {
+    const tabs = {
+      description: {id: "description", group: "primary", icon: "fa-solid fa-book", label: "TWODSIX.Items.Equipment.Description"},
+      modifiers: {id: "modifiers", group: "primary", icon: "fa-solid fa-dice", label: "TWODSIX.Items.Weapon.Modifiers"},
+      attack: {id: "attack", group: "primary", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"},
+      magazine: {id: "magazine", group: "primary", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"}
+    };
+    for ( const v of Object.values(tabs) ) {
+      v.active = this.tabGroups[v.group] === v.id;
+      v.cssClass = v.active ? "active" : "";
+    }
+    return tabs;
   }
 
   /** @override */

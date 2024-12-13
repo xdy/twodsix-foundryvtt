@@ -2,16 +2,18 @@
   {{> "systems/twodsix/templates/items/parts/image-name.html"}}
 
   {{!-- Item Sheet Navigation --}}
-  <nav class="sheet-navigation tabs" data-group="primary">
-      <a class="item active" data-tab="description"><i class="fa-solid fa-book"></i> {{ localize "TWODSIX.Items.Equipment.Description" }}</a>
-      <a class="item" data-tab="modifiers"><i class="fa-solid fa-dice"></i> {{ localize "TWODSIX.Items.Weapon.Modifiers" }}</a>
-      <a class="item" data-tab="attack"><i class="fa-solid fa-burst"></i> {{ localize "TWODSIX.Items.Weapon.Attack" }}</a>
-      <a class="item" data-tab="magazine"><i class="fa-solid fa-battery-full"></i> {{ localize "TWODSIX.Items.Weapon.Consumables" }}</a>
+  <nav class="sheet-tabs tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
+    {{#each tabs as |tab|}}
+    <a class="{{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+        <i class="{{tab.icon}}"></i>
+        <label>{{localize tab.label}}</label>
+    </a>
+    {{/each}}
   </nav>
 
   {{!-- Item Sheet Body --}}
   <section class="sheet-body auto-height">
-    <div class="tab description {{tab.cssClass}}" data-group="primary" data-tab="description">
+    <section class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
       {{> "systems/twodsix/templates/items/parts/item-type.html"}}
       <div class="item-tl">
         <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
@@ -42,21 +44,21 @@
         </prose-mirror>
       </div>
       {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
-    </div>
+    </section>
 
-    <div class="tab modifiers {{tab.cssClass}}" data-group="primary" data-tab="modifiers">
+    <section class="tab {{tabs.modifiers.cssClass}}" data-group="primary" data-tab="modifiers">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-modifiers.html"}}
       {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.html"}}{{/if}}
-    </div>
+    </section>
 
-    <div class="tab attack {{tab.cssClass}}" data-group="primary" data-tab="attack">
+    <section class="tab {{tab.attack.cssClass}}" data-group="primary" data-tab="attack">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-attack.html"}}
-    </div>
+    </section>
 
-    <div class="tab magazine {{tab.cssClass}}" data-group="primary" data-tab="magazine">
+    <section class="tab {{tab.magazine.cssClass}}" data-group="primary" data-tab="magazine">
       {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-magazine.html"}}
       {{> "systems/twodsix/templates/items/parts/consumables-part.html"}}
       {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.html"}}
-    </div>
+    </section>
   </section>
 </div>
