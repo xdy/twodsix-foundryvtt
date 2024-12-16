@@ -139,15 +139,32 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {Record<string, Partial<ApplicationTab>>}
    */
   #getTabs() {
-    const tabs = {
-      description: {id: "description", group: "primary", icon: "fa-solid fa-book", label: "TWODSIX.Items.Equipment.Description"},
-      modifiers: {id: "modifiers", group: "primary", icon: "fa-solid fa-dice", label: "TWODSIX.Items.Weapon.Modifiers"},
-      attack: {id: "attack", group: "primary", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"},
-      magazine: {id: "magazine", group: "primary", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"}
-    };
-    for ( const v of Object.values(tabs) ) {
-      v.active = this.tabGroups[v.group] === v.id;
-      v.cssClass = v.active ? "active" : "";
+    let tabs = {};
+    if (this.item.type === "weapon") {
+      tabs = {
+        description: {id: "description", group: "primary", icon: "fa-solid fa-book", label: "TWODSIX.Items.Equipment.Description"},
+        modifiers: {id: "modifiers", group: "primary", icon: "fa-solid fa-dice", label: "TWODSIX.Items.Weapon.Modifiers"},
+        attack: {id: "attack", group: "primary", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"},
+        magazine: {id: "magazine", group: "primary", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"}
+      };
+    } else if (this.item.type === "component") {
+      tabs = {
+        description: {id: "description", group: "primary", icon: "fa-solid fa-book", label: "TWODSIX.Items.Component.Description"},
+        displacement: {id: "displacement", group: "primary", icon: "fa-solid fa-weight-hanging", label: "TWODSIX.Items.Component.Displacement"}
+      };
+      if (this.item.system.subtype !== "cargo") {
+        Object.assign(tabs, {power: {id: "power", group: "primary", icon: "fa-solid fa-bolt", label: "TWODSIX.Items.Component.Power"}});
+      }
+      Object.assign(tabs, {price: {id: "price", group: "primary", icon: "fa-solid fa-coins", label: "TWODSIX.Items.Component.Price"}});
+      if (["armament", "mount"].includes(this.item.system.subtype)) {
+        Object.assign(tabs, {attack: {id: "attack", group: "primary", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"}});
+      }
+    }
+    if (Object.keys(tabs).length > 0) {
+      for ( const v of Object.values(tabs) ) {
+        v.active = this.tabGroups[v.group] === v.id;
+        v.cssClass = v.active ? "active" : "";
+      }
     }
     return tabs;
   }
@@ -170,27 +187,28 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
   }
 
-  private async _changeSubtype(event) {
-    event.preventDefault(); //Needed?
-    await this.item.update({"system.subtype": event.currentTarget.selectedOptions[0].value}); //for some reason this update must happen first
+  private async _changeSubtype(ev:Event) {
+    ev.preventDefault(); //Needed?
+    const chosenSubtype = ev.target.value;
+    await this.item.update({"system.subtype": chosenSubtype}); //for some reason this update must happen first
     if (this.item.type === "component") {
       const updates = {};
       /*Update default image if using system images*/
       const componentImagePath = "systems/twodsix/assets/icons/components/";
       if (this.item.img.includes(componentImagePath)) {
-        Object.assign(updates, {"img": componentImagePath + event.currentTarget.selectedOptions[0].value + ".svg"});
+        Object.assign(updates, {"img": componentImagePath + chosenSubtype + ".svg"});
       }
       /*Prevent cargo from using %hull weight*/
       const anComponent = <Component> this.item.system;
-      if (anComponent.weightIsPct && event.currentTarget.value === "cargo") {
+      if (anComponent.weightIsPct && chosenSubtype === "cargo") {
         Object.assign(updates, {"system.weightIsPct": false});
       }
       /*Unset isBaseHull if not hull component*/
-      if (event.currentTarget.value !== "hull" && anComponent.isBaseHull) {
+      if (chosenSubtype !== "hull" && anComponent.isBaseHull) {
         Object.assign(updates, {"system.isBaseHull": false});
       }
       /*Unset hardened if fuel, cargo, storage, vehicle*/
-      if (["fuel", "cargo", "storage", "vehicle"].includes(event.currentTarget.value)) {
+      if (["fuel", "cargo", "storage", "vehicle"].includes(chosenSubtype)) {
         Object.assign(updates, {"system.hardened": false});
       }
 
