@@ -253,10 +253,8 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
       action: "ok",
       label: "TWODSIX.Rolls.SelectSkill",
       icon: "fa-solid fa-list",
-      callback: async (event, button, dialog) => {
-        const html = $(dialog);
-        const skillId = html[0].querySelector("select[name='item-select']").value;
-        returnValue = skillId;
+      callback: (event, button, dialog) => {
+        returnValue = dialog.querySelector("select[name='item-select']").value;
       }
     },
     {
