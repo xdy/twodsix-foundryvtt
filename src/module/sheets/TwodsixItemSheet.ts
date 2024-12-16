@@ -20,7 +20,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   /** @override */
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "item"],
-    tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+    //tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
     dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
     position: {
       width: 600,
@@ -135,7 +135,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   /**
-   * Prepare a record of form header tabs.
+   * Prepare a record of form tabs.
    * @returns {Record<string, Partial<ApplicationTab>>}
    */
   #getTabs() {
