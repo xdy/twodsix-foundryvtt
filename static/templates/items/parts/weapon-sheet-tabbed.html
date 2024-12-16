@@ -2,14 +2,7 @@
   {{> "systems/twodsix/templates/items/parts/image-name.html"}}
 
   {{!-- Item Sheet Navigation --}}
-  <nav class="sheet-tabs tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
-    {{#each tabs as |tab|}}
-    <a class="{{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-        <i class="{{tab.icon}}"></i>
-        <label>{{localize tab.label}}</label>
-    </a>
-    {{/each}}
-  </nav>
+  {{> "systems/twodsix/templates/misc/navigation-tabs.html"}}
 
   {{!-- Item Sheet Body --}}
   <section class="sheet-body auto-height">
