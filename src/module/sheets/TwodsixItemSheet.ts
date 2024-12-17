@@ -249,9 +249,16 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     const newItem = await TwodsixItem.create(duplicateItem, options);
     if (newItem) {
       if (this.item.pack) {
-        this.item.delete({pack: this.item.pack});
+        await this.item.delete({pack: this.item.pack});
       } else {
-        this.item.delete();
+        //Unattach from items if consumable
+        if (duplicateItem.system.priorType === "consumable" && this.item.parent) {
+          const attachedTo = this.item.parent?.items.filter(it => it.system.consumables?.includes(this.item.id));
+          for (const holdingItem of attachedTo) {
+            await (<TwodsixItem>holdingItem).removeConsumable(this.item.id);
+          }
+        }
+        await this.item.delete();
       }
     }
   }
