@@ -8,10 +8,40 @@ import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { Ship, ShipAction, ShipPosition, ShipPositionActorIds, Skills } from "../../types/template";
 import { TwodsixShipPositionSheetData } from "src/types/twodsix";
 
-export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
+export class TwodsixShipPositionSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
 
-  getData(): TwodsixShipPositionSheetData {
-    const context = <TwodsixShipPositionSheetData>super.getData();
+  /** @override */
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "item"],
+    dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"}],
+    position: {
+      width: 'auto',
+      height: 'auto'
+    },
+    window: {
+      resizable: true
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      deleteAction: this._onDeleteAction,
+      createAction: this._onCreateAction,
+      deleteActor: this._onDeleteActor
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/items/ship_position-sheet.html",
+      scrollable: [".ship-positions-list"]
+    }
+  };
+
+  async _prepareContext(options): TwodsixShipPositionSheetData {
+    const context = await super._prepareContext(options);
     context.nonCargoComponents = this.item.actor?.itemTypes.component.filter( i => i.system.subtype !== "cargo") ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
     const actions = (<ShipPosition>this.item.system).actions ?? [];
@@ -34,33 +64,6 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     }
 
     return context;
-  }
-
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "item"],
-      template: "systems/twodsix/templates/items/ship_position-sheet.html",
-      submitOnClose: true,
-      scrollY: [".ship-positions-list"],
-      submitOnChange: true,
-      dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"}],
-      width: 'auto',
-      height: 'auto',
-      resizable: true
-    });
-  }
-
-  public activateListeners(html: JQuery): void {
-    super.activateListeners(html);
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) {
-      return;
-    }
-
-    html.find('.ship-position-details-action-delete').on('click', this._onDeleteAction.bind(this));
-    html.find('.ship-position-details-action-create').on('click', this._onCreateAction.bind(this));
-    html.find('.ship-position-details-actor-delete').on('click', this._onDeleteActor.bind(this));
-
   }
 
   public static async createActionFromSkill(position:TwodsixItem, skill:TwodsixItem): Promise<void> {
@@ -94,7 +97,7 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
         "type": "Actor",
         "data": actor,  //NOT CERTAIN WHAT TO DO ABOUT THIS ONE
         //"actorId": this.actor?.id,
-        "id": $(event.target).data("id"),
+        "id": actor?.id, //$(event.target).data("id")
         "uuid": actor?.uuid
       }));
     } else {
@@ -127,28 +130,22 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
     return true;
   }
 
-  private async _onDeleteAction(event: Event) {
-    if (event.currentTarget !== null) {
-      const deleteId = $(event.currentTarget).data("id");
-
+  static async _onDeleteAction(event:Event, target:HTMLElement) {
+    const deleteId = target.dataset.id;
+    if (deleteId) {
       await this.item.update({ [`system.actions.-=${deleteId}`]: null });
-      // The code below is an ugly fix because of a bug in foundry: https://gitlab.com/foundrynet/foundryvtt/-/issues/6421
-      /*const actions = foundry.utils.duplicate((<ShipPosition>this.item.system).actions);
-      delete actions[deleteId];
-      await this.item.update({"system.actions": null}, {noHook: true, render: false});
-      await this.item.update({"system.actions": actions });*/
     }
   }
 
-  private async _onDeleteActor(event: Event) {
-    if (event.currentTarget !== null) {
-      const deleteId = $(event.currentTarget).data("id");
+  static async _onDeleteActor(event:Event, target:HTMLElement) {
+    const deleteId = target.dataset.id;
+    if (deleteId) {
       await this.actor?.update({[`system.shipPositionActorIds.-=${deleteId}`]: null});
       this.render();
     }
   }
 
-  private _onCreateAction() {
+  static async _onCreateAction() {
     const actions = (<ShipPosition>this.item.system).actions;
     actions[foundry.utils.randomID()] = {
       "order": Object.values(actions).length === 0 ? 1 : Math.max(...Object.values(actions).map(itm => itm.order)) + 1,
@@ -158,6 +155,6 @@ export class TwodsixShipPositionSheet extends AbstractTwodsixItemSheet {
       "component": "",
       "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
-    this.item.update({ "system.actions": actions });
+    await this.item.update({ "system.actions": actions });
   }
 }

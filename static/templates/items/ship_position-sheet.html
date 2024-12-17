@@ -24,7 +24,7 @@
           <td><img src="{{actor.img}}" width="20" height="20"></td>
           <td>{{actor.name}}</td>
           <td class="centre">
-            <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" data-tooltip='{{localize "TWODSIX.Ship.RemoveTraveller"}}'>
+            <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" data-tooltip='{{localize "TWODSIX.Ship.RemoveTraveller"}}' data-action="deleteActor">
               <i class="fa-solid fa-trash"></i>
             </a>
           </td>
@@ -45,7 +45,7 @@
           <th>{{localize "TWODSIX.Ship.Component"}}</th>
           <th>{{localize "TWODSIX.Ship.ActionType"}}</th>
           <th class="centre">
-            <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}'>
+            <a class="ship-position-details-action-create" data-tooltip='{{localize "TWODSIX.Ship.CreateAction"}}' data-action="createAction">
               <i class="fa-solid fa-plus"></i>
             </a>
           </th>
@@ -78,7 +78,7 @@
             </select>
           </td>
           <td class="centre">
-            <a class="ship-position-details-action-delete" data-id="{{action.id}}" data-tooltip='{{localize "TWODSIX.Ship.DeleteAction"}}'>
+            <a class="ship-position-details-action-delete" data-id="{{action.id}}" data-tooltip='{{localize "TWODSIX.Ship.DeleteAction"}}' data-action="deleteAction">
               <i class="fa-solid fa-trash"></i>
             </a>
           </td>
