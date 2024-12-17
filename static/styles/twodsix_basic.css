@@ -2692,12 +2692,12 @@ select.form-input, input.form-input, span.form-input {
   border-radius: 0 10px 10px 0;
 }
 
-.item-sheet .form-consumable-count {
+.item-class .form-consumable-count {
   width: 50px;
   text-align: center;
 }
 
-.item-sheet table {
+.item-class table {
   background-color: inherit;
 }
 

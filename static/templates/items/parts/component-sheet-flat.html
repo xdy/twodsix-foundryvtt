@@ -1,15 +1,13 @@
-<div class="item-sheet">
-  {{> "systems/twodsix/templates/items/parts/component-parts/component-general.html"}}
-  {{> "systems/twodsix/templates/items/parts/component-parts/component-displacement.html"}}
-  {{> "systems/twodsix/templates/items/parts/component-parts/component-power.html"}}
-  {{> "systems/twodsix/templates/items/parts/component-parts/component-attack.html"}}
-  {{> "systems/twodsix/templates/items/parts/component-parts/component-price.html"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-general.html"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-displacement.html"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-power.html"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-attack.html"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-price.html"}}
 
-  <div class="item-descr">
-    <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
-      {{{enrichedDescription}}}
-    </prose-mirror>
-  </div>
-  {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
+<div class="item-descr">
+  <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+  <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+    {{{enrichedDescription}}}
+  </prose-mirror>
 </div>
+{{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
