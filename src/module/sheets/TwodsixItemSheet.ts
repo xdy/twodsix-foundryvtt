@@ -61,12 +61,19 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
 
   /* -------------------------------------------- */
-
+  /** @inheritDoc */
   _configureRenderParts(options) {
     let parts = super._configureRenderParts(options);
     const path = "systems/twodsix/templates/items";
     parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.html`});
     return parts;
+  }
+
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.window.icon = getItemIcon(applicationOptions.document.type);
+    return applicationOptions;
   }
 
   /** @override */
@@ -137,7 +144,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * Prepare a record of form tabs.
    * @returns {Record<string, Partial<ApplicationTab>>}
    */
-  #getTabs() {
+  #getTabs(): ApplicationTab {
     let tabs = {};
     if (this.item.type === "weapon") {
       tabs = {
@@ -577,5 +584,44 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       console.error(`Twodsix drop error| ${err}`);
       ui.notifications.error(err);
     }
+  }
+}
+/**
+ * Function to return font awesome icon as string based on item type
+ * @param {string} type item type
+ * @returns {string} fontawesome icon string reference/id
+ */
+function getItemIcon(type:string): string {
+  switch (type) {
+    case 'spell':
+      return 'fa-solid fa-wand-sparkles';
+    case 'weapon':
+      return 'fa-solid fa-gun';
+    case 'armor':
+      return 'fa-solid fa-shield';
+    case 'consumable':
+      return 'fa-solid fa-battery-full';
+    case 'augment':
+      return 'fa-solid fa-users-rays';
+    case 'ship_position':
+      return 'fa-solid fa-gamepad';
+    case 'computer':
+      return 'fa-solid fa-computer';
+    case 'junk':
+      return 'fa-solid fa-trash-can';
+    case 'component':
+      return 'fa-solid fa-gears';
+    case 'psiAbility':
+      return 'fa-solid fa-head-side-virus';
+    case 'skills':
+      return 'fa-solid fa-person-running';
+    case 'trait':
+      return 'fa-solid fa-image-portrait';
+    case 'equipment':
+      return 'fa-solid fa-toolbox';
+    case 'tool':
+      return 'fa-solid fa-hammer';
+    default:
+      return '';
   }
 }
