@@ -41,55 +41,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }));
 
     // Delete Item
-    html.find('.item-delete').on('click', async (ev) => {
-      const li = $(ev.currentTarget).parents('.item');
-      const ownedItem = this.actor.items.get(li.data('itemId')) || null;
-      const title = game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem");
-      const template = `
-      <form>
-        <div>
-          <div style="text-align: center;">${title}
-             "<strong>${ownedItem?.name}</strong>"?
-          </div>
-          <br>
-        </div>
-      </form>`;
-      if (ownedItem) {
-        await Dialog.confirm({
-          title: title,
-          content: template,
-          yes: async () => {
-            const selectedActor = this.actor ?? this.token?.actor;
-            await ownedItem.update({'system.equipped': 'ship'});
-            await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
-            // somehow on hooks isn't working when a consumable is deleted  - force the issue
-            if (ownedItem.type === "consumable") {
-              selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async i => {
-                const consumablesList = (<UsesConsumables>i.system).consumables;
-                let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
-                if (consumablesList != undefined) {
-                  if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
-                    //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
-                    const index = consumablesList.indexOf(ownedItem.id);
-                    if (index > -1) {
-                      consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                    }
-                    if (usedForAttack === ownedItem.id) {
-                      usedForAttack = "";
-                    }
-                    selectedActor.updateEmbeddedDocuments('Item', [{_id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack}]);
-                  }
-                }
-              });
-            }
-            li.slideUp(200, () => this.render(false));
-          },
-          no: () => {
-            //Nothing
-          },
-        });
-      }
-    });
+    html.find('.item-delete').on('click', this._deleteItem.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -148,14 +100,54 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   /**
-   * Handle clickable weapon attacks.
+   * Handle delete item for actor sheet.
    * @param {Event} event   The originating click event
+   */
+  protected async _deleteItem(ev:Event):Promise<void> {
+    const li = ev.currentTarget.closest('.item');
+    const ownedItem = this.actor.items.get(li.dataset.itemId) || null;
+
+    if (ownedItem) {
+      if (await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
+        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${ownedItem?.name}</strong>`,
+      })) {
+        const selectedActor = this.actor ?? this.token?.actor;
+        await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed to keep enc calc correct*/
+        await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
+        // somehow on hooks isn't working when a consumable is deleted  - force the issue
+        if (ownedItem.type === "consumable") {
+          selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async (i) => {
+            const consumablesList = (<UsesConsumables>i.system).consumables;
+            let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
+            if (consumablesList != undefined) {
+              if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
+                //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
+                const index = consumablesList.indexOf(ownedItem.id);
+                if (index > -1) {
+                  consumablesList.splice(index, 1); // 2nd parameter means remove one item only
+                }
+                if (usedForAttack === ownedItem.id) {
+                  usedForAttack = "";
+                }
+                selectedActor.updateEmbeddedDocuments('Item', [{ _id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack }]);
+              }
+            }
+          });
+        }
+      }
+    }
+  }
+
+  /**
+   * Handle clickable weapon attacks.
+   * @param {Event} ev   The originating click event
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    */
-  protected async _onPerformAttack(event, showThrowDiag: boolean): Promise<void> {
-    const attackType = event.currentTarget["dataset"].attackType || "single";
-    const rof = event.currentTarget["dataset"].rof ? parseInt(event.currentTarget["dataset"].rof, 10) : 1;
-    const item = this.getItem(event);
+  protected async _onPerformAttack(ev:Event, showThrowDiag: boolean): Promise<void> {
+    const attackType = ev.currentTarget["dataset"].attackType || "single";
+    const rof = ev.currentTarget["dataset"].rof ? parseInt(ev.currentTarget["dataset"].rof, 10) : 1;
+    const item = this.getItem(ev);
     //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {
       item.resolveUnknownAutoMode();
@@ -164,8 +156,8 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
   }
 
-  _onDragStart(event:DragEvent):void {
-    if (event.currentTarget && !(event.currentTarget)["dataset"]) {
+  _onDragStart(ev:DragEvent):void {
+    if (ev.currentTarget && !(ev.currentTarget)["dataset"]) {
       return;
     }
     // Active Effect
@@ -180,7 +172,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       event.dataTransfer?.setData("text/plain", li.dataset.uuid);
     }*/
 
-    return super._onDragStart(event);
+    return super._onDragStart(ev);
   }
 
   protected updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
@@ -236,12 +228,12 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  protected async _onItemCreate(event:{ preventDefault:() => void; currentTarget:HTMLElement }):Promise<void> {
-    event.preventDefault();
-    const header = event.currentTarget;
+  protected async _onItemCreate(ev:Event):Promise<void> {
+    ev.preventDefault();
+    const header = ev.currentTarget;
     // Get the type of item to create.
     const {type} = header.dataset;
 
@@ -275,9 +267,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Process dropped information.
    */
-  protected async _onDrop(event:DragEvent):Promise<boolean | any> {
-    event.preventDefault();
-    const dropData = getDataFromDropEvent(event);
+  protected async _onDrop(ev:DragEvent):Promise<boolean | any> {
+    ev.preventDefault();
+    const dropData = getDataFromDropEvent(ev);
     const actor = <TwodsixActor>this.actor;
 
     if (!dropData) {
@@ -292,7 +284,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     if (dropData.type === 'damageItem') {
       const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showDamageDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+      const showDamageDialog = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
       return actor.handleDamageData(dropData.payload, showDamageDialog);
     }
 
@@ -314,19 +306,19 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     const itemData = await getItemDataFromDropData(dropData);
-    return await this.processDroppedItem(event, itemData);
+    return await this.processDroppedItem(ev, itemData);
   }
 
-  public async processDroppedItem(event:DragEvent, itemData: any): Promise<boolean> {
+  public async processDroppedItem(ev:DragEvent, itemData: any): Promise<boolean> {
     const sameActor:TwodsixItem = this.actor.items.get(itemData._id);
     if (sameActor) {
-      const dropTargetId = event.target.closest("[data-item-id]")?.dataset?.itemId;
+      const dropTargetId = ev.target.closest("[data-item-id]")?.dataset?.itemId;
       const targetItem = this.actor.items.get(dropTargetId);
       const sortSetting = ["ship", "vehicle"].includes(this.actor.type) ? 'allowDragDropOfListsShip' : 'allowDragDropOfListsActor';
       if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', sortSetting) && !sameActor.getFlag('twodsix','untrainedSkill')) {
         console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
         //super._onDrop(event); //needed?
-        return !!await this._onSortItem(event, itemData); //.toJSON()???
+        return !!await this._onSortItem(ev, itemData); //.toJSON()???
       } else {
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
@@ -407,7 +399,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     sheetData.container = actor.itemTypes;
     sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
     sheetData.container.storageAndJunk = actor.itemTypes.storage.concat(actor.itemTypes.junk);
-    sheetData.container.skills = skillsList;
+    sheetData.container.skillsList = skillsList;
     sheetData.container.skillGroups = sortObj(skillGroups);
     if (actor.type === "traveller") {
       sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
@@ -489,12 +481,13 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
   protected async initiativeDialog(dialogData):Promise<any> {
     const template = 'systems/twodsix/templates/chat/initiative-dialog.html';
-
-    const buttons = {
-      ok: {
-        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-        icon: '<i class="fa-solid fa-dice"></i>',
-        callback: (buttonHtml) => {
+    const buttons = [
+      {
+        action: "ok",
+        label: "TWODSIX.Rolls.Roll",
+        icon: "fa-solid fa-dice",
+        callback: (event, button, dialog) => {
+          const buttonHtml = $(dialog);
           dialogData.shouldRoll = true;
           dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
           dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
@@ -502,23 +495,24 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
           dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
         }
       },
-      cancel: {
-        icon: '<i class="fa-solid fa-xmark"></i>',
-        label: game.i18n.localize("Cancel"),
+      {
+        action: "cancel",
+        icon: "fa-solid fa-xmark",
+        label: "Cancel",
         callback: () => {
           dialogData.shouldRoll = false;
         }
       },
-    };
+    ];
 
     const html = await renderTemplate(template, dialogData);
     return new Promise<void>((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Rolls.RollInitiative"),
+      new foundry.applications.api.DialogV2({
+        window: {title: "TWODSIX.Rolls.RollInitiative"},
         content: html,
         buttons: buttons,
         default: 'ok',
-        close: () => {
+        submit: () => {
           resolve();
         },
       }).render(true);
@@ -575,33 +569,30 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  protected async _onEditEffect(event): Promise<void> {
-    const effectUuid = event.currentTarget["dataset"].uuid;
+  protected async _onEditEffect(event:Event): Promise<void> {
+    const effectUuid:string = event.currentTarget["dataset"].uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      await new ActiveEffectConfig(selectedEffect).render(true);
+      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect}).render(true);
     }
   }
+
   /**
    * Handle when the right clicking on status icon.
    * @param {Event} event   The originating click event
    * @private
    */
-  protected async _onDeleteEffect(event): Promise<void> {
-    const effectUuid = event.currentTarget["dataset"].uuid;
+  protected async _onDeleteEffect(event:Event): Promise<void> {
+    const effectUuid = event.currentTarget.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
-    await Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect"),
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete"),
-      yes: async () => {
-        await selectedEffect.delete();
-        await this.render(false); //needed because can right-click on icon over image instead of toggle icons
-      },
-      no: () => {
-        //Nothing
-      }
-    });
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      await selectedEffect.delete();
+      await this.render(false); //needed because can right-click on icon over image instead of toggle icons
+    }
   }
 
   protected async _modifyEffect(event): Promise<void> {
