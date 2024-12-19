@@ -3,7 +3,7 @@
 import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting} from "./settingsUtils";
 
-export default class ItemSettings extends AdvancedSettings {
+export default class ItemSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {
     ItemSettings.settings = ItemSettings.registerSettings();
     return ItemSettings;
@@ -14,10 +14,45 @@ export default class ItemSettings extends AdvancedSettings {
   }
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.intro`)}</h2><br>`;
-    return data;
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix"],
+    position: {
+      width: 675,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      contentClasses: ["standard-form"],
+      title: "TWODSIX.Settings.settingsInterface.itemSettings.name",
+      icon: "fa-solid fa-bars"
+    },
+    form: {
+      handler: AdvancedSettings.onSubmit,
+      closeOnSubmit: true,
+      submitOnChange: false,
+      submitOnClose: false
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      scrollable: ['']
+    }
+  };
+
+  /** @override */
+  tabGroups = {
+    primary: "weapon"  //set default tab
+  };
+
+  /** @override */
+  async _prepareContext(options): any {
+    const context: any = await super._prepareContext(options);
+    //context.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.itemSettings.intro`)}</h2><br>`;
+    context.tabs = this.getTabs(ItemSettings.settings, this.tabGroups.primary);
+    return context;
   }
 
   static registerSettings(): any {

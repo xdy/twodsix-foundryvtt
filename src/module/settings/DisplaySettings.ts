@@ -4,7 +4,7 @@ import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting, arrayChoiceSetting} from "./settingsUtils";
 import {TWODSIX} from "../config";
 
-export default class DisplaySettings extends AdvancedSettings {
+export default class DisplaySettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {
     DisplaySettings.settings = DisplaySettings.registerSettings();
     return DisplaySettings;
@@ -15,10 +15,45 @@ export default class DisplaySettings extends AdvancedSettings {
   }
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.intro`)}</h2><br>`;
-    return data;
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix"],
+    position: {
+      width: 675,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      contentClasses: ["standard-form"],
+      title: "TWODSIX.Settings.settingsInterface.displaySettings.name",
+      icon: "fa-solid fa-tv"
+    },
+    form: {
+      handler: AdvancedSettings.onSubmit,
+      closeOnSubmit: true,
+      submitOnChange: false,
+      submitOnClose: false
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      scrollable: ['']
+    }
+  };
+
+  /** @override */
+  tabGroups = {
+    primary: "general"  //set default tab
+  };
+
+  /** @override */
+  async _prepareContext(options): any {
+    const context: any = await super._prepareContext(options);
+    //context.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.intro`)}</h2>`;
+    context.tabs = this.getTabs(DisplaySettings.settings, this.tabGroups.primary);
+    return context;
   }
 
   static registerSettings(): any {

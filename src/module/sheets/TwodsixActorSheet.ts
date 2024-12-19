@@ -241,12 +241,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /**
    * Handle auto add of weapons consumables.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  private async _onAutoAddConsumable(event): Promise<void> {
-    const li = $(event.currentTarget).parents(".item");
-    const weaponSelected: any = this.actor.items.get(li.data("itemId"));
+  private async _onAutoAddConsumable(ev:Event): Promise<void> {
+    const weaponSelected: any = this.actor.items.get(ev.currentTarget.closest(".item")?.dataset.itemId);
 
     const max = weaponSelected.system.ammo;
     if (max > 0 && !weaponSelected.system.consumableData?.length) {
