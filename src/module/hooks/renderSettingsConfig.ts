@@ -26,7 +26,8 @@ Hooks.on('updateSetting', async (setting) => {
   }
 });
 
-Hooks.on('renderAdvancedSettings', async (app, html) => {
+Hooks.on('renderAdvancedSettings', async (app, htmlElement) => {
+  const html = $(htmlElement);
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   Object.entries(rulesetSettings).forEach(([settingName, value]) => {
@@ -41,7 +42,8 @@ Hooks.on('renderAdvancedSettings', async (app, html) => {
   });
 });
 
-Hooks.on('renderSettingsConfig', async (app, html) => {
+Hooks.on('renderSettingsConfig', async (app, htmlElement) => {
+  const html = $(htmlElement);
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {

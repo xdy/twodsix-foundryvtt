@@ -1,4 +1,4 @@
-import RulesetSettings from "../module/settings/RulsetSettings";
+import RulesetSettings from "../module/settings/RulesetSettings";
 import DisplaySettings from "../module/settings/DisplaySettings";
 import ItemSettings from "../module/settings/ItemSettings";
 import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
