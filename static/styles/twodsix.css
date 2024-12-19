@@ -3121,12 +3121,14 @@ select.form-input, input.form-input, span.form-input {
   height: 2em;
 }
 
-.sheet-tabs.tabs {
+.standard-form .sheet-tabs.tabs {
   /*padding: 0.5em 0;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;*/
   line-height: 3ch;
+  padding: 0 1rem;
 }
+
 .auto-height {
   height: auto !important;
 }
@@ -4363,6 +4365,11 @@ input.red {
 
 .standard-form {
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.standard-form .tab.active {
+  padding: 0 1rem;
 }
 
 .standard-form fieldset {
