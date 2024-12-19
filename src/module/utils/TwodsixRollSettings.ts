@@ -291,7 +291,7 @@ export class TwodsixRollSettings {
 
     const html = await renderTemplate(template, dialogData);
     await foundry.applications.api.DialogV2.wait({
-      window: {title: title},
+      window: {title: title, icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
       default: 'ok',

@@ -140,7 +140,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
   const html = await renderTemplate(template, dialogData);
   return new Promise<void>((resolve) => {
     new foundry.applications.api.DialogV2({
-      window: {title: "TWODSIX.Chat.Roll.RequestRoll"},
+      window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
       default: 'ok',

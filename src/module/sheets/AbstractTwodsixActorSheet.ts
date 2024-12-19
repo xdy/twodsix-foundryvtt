@@ -508,7 +508,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     const html = await renderTemplate(template, dialogData);
     return new Promise<void>((resolve) => {
       new foundry.applications.api.DialogV2({
-        window: {title: "TWODSIX.Rolls.RollInitiative"},
+        window: {title: "TWODSIX.Rolls.RollInitiative", icon: "fa-solid fa-dice"},
         content: html,
         buttons: buttons,
         default: 'ok',
