@@ -19,7 +19,8 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
       height: 'auto'
     },
     window: {
-      resizable: true
+      resizable: true,
+      icon: "fa-solid fa-gamepad"
     },
     form: {
       submitOnChange: true,
