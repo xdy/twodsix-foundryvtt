@@ -49,7 +49,7 @@ export const registerSettings = function ():void {
   booleanSetting('autoAddUnarmed', false, true);
   booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
   //Store default partials for items and compendium tab - hidden
-  stringSetting('defaultItemPartial', ItemDirectory.entryPartial, false, "client");
+  stringSetting('defaultItemPartial', foundry.applications.sidebar.tabs.ItemDirectory._entryPartial, false, "client");
   stringSetting('defaultCompendiumPartial', Compendium.entryPartial, false, "client");
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
