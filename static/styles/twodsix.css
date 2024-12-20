@@ -4419,4 +4419,8 @@ header.effect-change.effects-header.flexrow {
 section.item-class {
   overflow-y: auto;
   overflow-x: hidden;
+  padding-right: 0.5rem;
+}
+.item-class table{
+  margin: 0.5rem 0;
 }
